@@ -1,0 +1,47 @@
+<ion-view title="Appointment Details">
+
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
+		<div ng-include src="'templates/patientHeader.html'"></div>
+</ion-header-bar>
+
+<ion-content class="ContentHomeUser">
+ 	<ion-list>
+		<ion-item style="padding: 6px; top: -2px;">
+			 <h1 class="title appointment_with">Appointment with</h1>
+	    </ion-item>
+		
+		<ion-item style="padding:11px;top: -2px;">
+			 <a class="HrefListView"  href="#/tab/appoimentDetails_wait">   
+				<img ng-src="img/IMG_2.png" class="listImgView">
+				<span class = "ListText" style="top: -18px;"><b>Dr.</b> <span class="SubTitleSpan">Skibinskitran</span></span>
+				
+				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
+			 </a>
+		</ion-item >
+		
+		<ion-item style="padding:15px; top: -2px;text-align: center;height: 85px;">
+			  <span class = "title"><h1 style="color:#888;margin-top: -9px; font-size: 40px;"><b>12:15</b><span style="font-size:23px;">PM</span></h1> 
+			 <span style="color:#a7a7a7;position: relative;top: -13px;font-size: 20px;"> Monday January 26 </span>
+			  </span>
+		</ion-item>
+		
+		<ion-item style="padding:11px;top: -2px;border-color: #9e9e9e;">
+			 <div class="primary"><span style="margin-right:13px;margin-left: 14px;">1 </span> Primary Concern</div>
+			 <p class="ptagprimary" style="font-size:20px;">Vomiting</p>
+			 <div class="secondary"><span style="margin-right:13px;margin-left: 14px;">2 </span>Secondary Concern</div>
+			 <p class="ptagprimary" style="font-size:20px;">She has completely last her balance. <br>Any attempt to stand or walk re-sluts in collasping to the floor. <br> this has been going on four days. </p>
+		</ion-item>
+		
+		<ion-item style="padding:11px;top: -2px;border-color: #9e9e9e;">
+			<div class="pre_consultant"><span style="margin-right:27px;margin-left: 14px;"></span>Pre consultant Notes</div>
+			 <p class="ptagprimary" style="font-size:20px;">This is general Note Entered <br>This is general Note Entered <br>This is general Note Entered <br> </p>
+		</ion-item>
+		
+		
+</ion-content>
+
+
+		<div ng-include src="'templates/patientFooter.html'"></div>
+
+
+</ion-view>

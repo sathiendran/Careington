@@ -1,0 +1,48 @@
+/* Empty. Add your own Variable CSS if you like */
+
+$Flamingo:                           #F0502C;
+$Altoa:                         	 #DADADA;
+$Camouflage_Green:                   #78906C;
+$Feijoa:                            #A2D28A;
+$Silver_Chalice:                    #9D9D9D;
+$Tundora:							#484848;
+$Shiraz:							#A80532;
+$Mercury:							#E6E6E6;
+$Viking:							#4FC0DA;
+$Sun:								#FBAE17; //patient detail page
+$pinkPipe:        					#A80532;
+$MineShaft:							#383838; //patient calendar page
+$Bridesmaid:						#FEEFE8;
+$Nobel:								#B3B3B3;
+$Silver:							#C2C2C2; //add health page
+$Emperor:							#555555; //plan details
+$Scorpion:							#5C5C5C;
+$Scooter:							#39BAD9;
+$fontFamily: 				Adobe Heiti Std R;
+
+
+@mixin font($fontFamily, $fontWeight, $fontSize) {
+	 @if length($fontFamily) == 0 {
+		$fontFamily: Adobe Heiti Std R;
+	  }	
+    font-family: $fontFamily;   
+    font-weight: $fontWeight;
+	font-size: $fontSize;	
+}
+@mixin measurement($padding, $margin, $width, $height) {
+	padding: $padding;
+	margin: $margin;
+	width: $width;
+	height: $height;
+}
+@mixin buttons($background-color, $font-weight, $border-radius, $font-size, $min-height ) {
+	background-color : $background-color;	
+	border-color: $background-color;
+	background-image: linear-gradient(0deg, $background-color, $background-color 50%, transparent 50%);
+	font-weight: $font-weight;
+	border-radius: $border-radius;
+	font-size: $font-size;
+	min-height:$min-height;	
+	text-decoration: none;
+}
+

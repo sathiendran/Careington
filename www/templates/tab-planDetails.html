@@ -1,0 +1,54 @@
+<ion-view title="Plan Details">
+	<div ng-include src="'templates/planDetails_header.html'"></div>
+		
+	<ion-content class="planDetails_content" >
+		<div>		
+			<div class="healthPlan_text">
+				Health Plan				
+			</div>			
+			
+			<div class="healthPlan_header" style="padding-top: 13px; color: #5C5C5C;" >
+				<div class="planInformation"  >
+				Enter your health plan information			
+				</div>
+				<div class="provider"  >Select your provider</div>
+				<div class="addHealthPlan_header" style=" margin-left:-62px;" >
+					<img ng-src="img/add.png"><span class="addHealthPlan_text" >Add a health plan</span>
+					<div class="demo select_div">
+					  <span style=" font-size: 29px; margin-left: -36px;position: relative;top: 6px;">1. </span>
+					  <select>
+					   <option style="padding:10px;"><b>Choose</b></option>
+					  </select>
+					  </div>
+				</div>
+			</div>
+			
+			<div class="list">
+			  <label class="item item-input">
+				<span class="input-label" >First Name</span>
+				<input type="text" placeholder="Payment">
+			  </label>
+			  <label class="item item-input">
+				<span class="input-label" >Last Name</span>
+				<input type="password" placeholder="Required">
+			  </label>
+			  <label class="item item-input">
+				<span class="input-label" >Policy Number</span>
+				<input type="password" placeholder="Required">
+			  </label>
+				<label class="item item-input" style="padding-bottom: 0px;">
+				<span class="input-label" >Date of Birth
+						<div style="font-size: 10px;">for the policy holder</div></span>
+				<input type="password" placeholder="Required">
+			  </label>
+			</div>
+			
+			<div class="planDetails"  >
+				<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
+			</div>
+			<div class="privacy" >About Connected Care Privacy</div>
+		</div>
+	</ion-content>
+
+	
+</ion-view>

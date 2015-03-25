@@ -1,0 +1,31 @@
+<ion-view title="Patient Details">
+	
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
+		<div ng-include src="'templates/patientHeader.html'"></div>
+	</ion-header-bar>
+	
+	
+	
+	<ion-content class="patient_content" >
+		<div class="password_home">	
+			<div>
+				<a style="text-decoration: none;" ng-href="#/tab/patientCalendar"><button class="button button-block button-energized">
+				  View Appointments
+				</button></a>
+			</div>
+			<div class="scheduled_appointments_text" >
+				See all your scheduled appointments.
+			</div>
+			<div style="padding-top: 20px;">
+				<button class="button button-block button-balanced">
+				  Next Available
+				</button>
+			</div>
+			<div class="scheduled_appointments_text" >
+				Don't have an appointment? <br/>
+				See the next available clincian.
+			</div>
+		</div>
+	</ion-content>
+	
+</ion-view>
