@@ -178,6 +178,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
+  .state('tab.verifyPlan', {
+    url: '/verifyPlan',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-verifyPlan.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
     .state('tab.ChronicCondition', {
     url: '/ChronicCondition',
     views: {

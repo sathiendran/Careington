@@ -8035,19 +8035,20 @@ a.button {
     font-weight: normal; }
   .planDetails_content .planInformation {
     color: #5C5C5C;
-    font-size: 17px;
-    margin-left: 8px;
+    font-size: 20px;
+    margin-left: 20px;
     font-weight: normal; }
   .planDetails_content .provider {
-    margin-left: -110px;
-    padding-top: 15px; }
+    margin-left: 20px;
+    padding-top: 23px;
+    font-size: 18px; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
     text-align: left;
-    font-size: 11px; }
+    font-size: 13px; }
   .planDetails_content .privacy {
     color: #39BAD9;
-    font-size: 11px;
+    font-size: 13px;
     padding: 0 5px 50px 15px;
     margin-top: -10px; }
 
