@@ -227,6 +227,44 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
+  .state('tab.verifyCard', {
+    url: '/verifyCard',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-verifyCard.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('tab.submitPayment', {
+    url: '/submitPayment',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-submitPayment.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+  .state('tab.receipt', {
+    url: '/receipt',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-receipt.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+   .state('tab.waitingRoom', {
+    url: '/waitingRoom',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-waitingRoom.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
   
     .state('tab.ChronicCondition', {
     url: '/ChronicCondition',

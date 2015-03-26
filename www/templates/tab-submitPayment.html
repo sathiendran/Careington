@@ -1,4 +1,4 @@
-<ion-view title="Apply Plan">
+<ion-view title="Submit Payment">
 	<div ng-include src="'templates/healthPlan_header.html'"></div>
 	<div class="consultCharge_subHeader" >
 		<span>Payment</span>
@@ -14,25 +14,25 @@
 			
 			<div class="healthPlan_header" style="padding-top: 40px; color: #5C5C5C; text-align: left;" >
 				
-				<a ng-href="#/tab/addCard">	<div style="margin-left: 20px; padding-top: 30px; font-size: 18px;">Select Health Plan</div>
+				<div style="margin-left: 20px; padding-top: 30px; font-size: 18px;">Pay Using</div>
 					<div class="addHealthPlan_header"  >					
 						<div class="demo" style="margin-left: 50px;">
 							
 							<select>
-								<option style="padding:10px;"><b>Blue Cross ...0054</b></option>
+								<option style="padding:10px;"><b>Visa ending in ...0054</b></option>
 							</select>
 						</div>
 					</div>
-				</a>
+				
 			</div>
 			
 			<div style="padding-top: 15px; padding-bottom: 5px;">
-				<a ng-href="#/tab/addCard"><button class="button button-block button-balanced">
-				  Apply Plan
+				<a ng-href="#/tab/receipt"><button class="button button-block button-balanced">
+				  Submit Payment
 				</button></a>
 			</div>
-			<div class="scheduled_appointments_text" >
-				Don't add a health plan, pay full charge directly.
+			<div class="scheduled_appointments_text" style="text-align: justify; padding-top: 5px; padding-bottom: 25px;" >
+				<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
 			</div>
 		</div>
 	</ion-content>
