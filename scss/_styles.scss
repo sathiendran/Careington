@@ -749,7 +749,9 @@ text-align:center;  color:#888;
 margin-left: 16px;
 }	
 
-
+.PragraphContent {
+@include font($fontFamily_thin, normal, 15px);
+}
 
 
  
