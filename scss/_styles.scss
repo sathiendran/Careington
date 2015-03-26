@@ -1,5 +1,20 @@
 @import "variable";
 
+
+@font-face {
+  font-family: 'Glober Thin';
+  src: url("Glober Thin Free.otf");
+}
+
+@font-face {
+  font-family: 'Glober semiBold';
+  src: url("Glober SemiBold Free.otf");
+}
+
+body {
+	font-family: $fontFamily_semiBold;
+}
+
 .bar.bar-positive{
 		background-color : $Flamingo;
 		height: 36px;
@@ -8,7 +23,7 @@
 }
 .login_sub_header {	
 	@include measurement(27px, 38px 0 0 0, auto, 78px);	
-	@include font($fontFamily, bold,27px);
+	@include font($fontFamily_semiBold, bold,27px);
 	text-align: center;
 	color: $Flamingo;
 	position:relative;       
@@ -146,7 +161,7 @@
 	background-color: $Tundora;
 	border-color: $Tundora;
 	height: 40px;
-	@include font($fontFamily, bold, 11px);
+	@include font($fontFamily_semiBold, bold, 11px);
 	border-top-width: -1px;
 	border-top: -1px;
 		.terms {
@@ -233,7 +248,7 @@
 }
 
 .button_new {
-    @include font($fontFamily, normal, 19px);
+    @include font($fontFamily_semiBold, normal, 19px);
  color: #fff;
  border-radius: 7px;
  width: 105px;
@@ -269,7 +284,7 @@
     padding-right: 4px;
 }
 .title_patient {
-	@include font($fontFamily, bold, 25px);
+	@include font($fontFamily_semiBold, bold, 25px);
 	color: #fff;
 	text-align: center;
 	left: 0px;
@@ -447,14 +462,17 @@
 }
 
 .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
-	font-size: 50px;
-	margin-top: 15px;
+	font-size: 60px;
+  margin-top: 5px;
+  width: 25px;
 }
 
 //plan details page
 
 .planDetails_content {
 	margin: 100px 0 0 0;
+	padding-top: 30px;
+	
 		.healthPlan_text {
 			font-size: 30px;
 			text-align: center;
@@ -469,7 +487,7 @@
 		}
 		.provider {
 			margin-left: 20px;
-			padding-top: 23px;
+			padding-top: 30px;
 			font-size: 18px;
 		}
 		.planDetails {
@@ -483,6 +501,27 @@
 			padding:0 5px 50px 15px;
 			margin-top: -10px;
 		}
+		.list {
+			padding-top: 25px;
+		}
+		.item.item-input {
+			padding: 16px;
+		}
+		.input-label {
+			font-weight: bold;
+			font-size: 20px;
+			width: 50%;
+		}
+}
+
+//Verify Plan
+
+.verifyPlan_subHeader {
+	padding-top: 70px;
+	color: #5C5C5C;
+	text-align: center;
+	font-size: 27px;
+	font-weight: bold;
 }
 
 .select_div {
@@ -539,7 +578,7 @@
 }
 	
 .head_titleLess {
-	@include font(0, bold, 30px);
+	@include font($fontFamily_semiBold, bold, 30px);
 	text-align: center;
 	color: $Flamingo;
 	position:relative; 
@@ -557,7 +596,7 @@ padding: 25px;
 }
 
 .TitleLess {
-		@include font(0, bold, 21px);
+		@include font($fontFamily_semiBold, bold, 21px);
 		text-align: left;
 		position:relative; 
 		top: 25px;	
@@ -580,7 +619,7 @@ padding: 25px;
 
 
 .footer {
-	@include font(0, bold, 11px);
+	@include font($fontFamily_semiBold, bold, 11px);
 	color: #fff;;
 	background-color: #484848;
 }
@@ -605,7 +644,7 @@ text-align:center
 }
 
 .head_titleHomeUser {
-	@include font(0, bold, 22px);
+	@include font($fontFamily_semiBold, bold, 22px);
 	text-align: center;
 	color: $light;
 	display:inline-block;	
@@ -620,7 +659,7 @@ text-align:center
     top: 63px;
 }
 .TitleHomeUser_Sub {
-	@include font(0, bold, 25px);
+	@include font($fontFamily_semiBold, bold, 25px);
 	position:relative; 
 	margin: 1px 25px 25px;
 	top: 0px;
@@ -632,7 +671,7 @@ text-align:center
 width:55px; height:55px;
 }
 .HrefListView {
-@include font(0, normal, 21px);
+@include font($fontFamily_semiBold, normal, 21px);
 color:#000; font-size: 21px; margin: 12px;
 }
 .ListText {
@@ -666,7 +705,7 @@ color:#888;
 }
 
 .appointment_with {
-@include font($fontFamily, bold, 20px);
+@include font($fontFamily_semiBold, bold, 20px);
 text-align:center;  color:#888;
 }
 
@@ -682,7 +721,7 @@ text-align:center;  color:#888;
     padding: 5px;
 }
 .ptagprimary {
-	@include font($fontFamily, normal, 20px);
+	@include font($fontFamily_semiBold, normal, 20px);
 	 margin-left: 32px;
  }
  
@@ -705,10 +744,12 @@ text-align:center;  color:#888;
 
 
 .ChronicCondition {
-@include font($fontFamily, bold, 30px);
+@include font($fontFamily_semiBold, bold, 30px);
  color:#535353;
 margin-left: 16px;
 }	
+
+
 
 
  

@@ -1,0 +1,42 @@
+<ion-view title="Apply Plan">
+	<div ng-include src="'templates/healthPlan_header.html'"></div>
+	<div class="consultCharge_subHeader" >
+		<span>Payment</span>
+	</div>
+	
+	<ion-content style="margin: 180px 0 0 4%; padding-top: 25px;" >
+		<div class="password_home">
+		
+			<div class="consultation_head" >
+				<div>Consultation Charge</div>
+				<div class="consultation_number"> $60*</div>
+			</div>
+			
+			<div class="healthPlan_header" style="padding-top: 40px; color: #5C5C5C; text-align: left;" >
+				
+				<a ng-href="#/tab/verifyPlan">	<div style="margin-left: 20px; padding-top: 30px; font-size: 18px;">Select Health Plan</div>
+					<div class="addHealthPlan_header"  >					
+						<div class="demo" style="margin-left: 50px;">
+							
+							<select>
+								<option style="padding:10px;"><b>Blue Cross ...0054</b></option>
+							</select>
+						</div>
+					</div>
+				</a>
+			</div>
+			
+			<div style="padding-top: 15px; padding-bottom: 5px;">
+				<a ng-href="#/tab/addCard"><button class="button button-block button-balanced">
+				  Next Available
+				</button></a>
+			</div>
+			<div class="scheduled_appointments_text" >
+				Don't add a health plan, pay full charge directly.
+			</div>
+		</div>
+	</ion-content>
+	
+	<div ng-include src="'templates/consultCharge_footer.html'"></div>
+	
+</ion-view>

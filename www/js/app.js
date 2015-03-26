@@ -188,6 +188,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
+    .state('tab.applyPlan', {
+    url: '/applyPlan',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-applyPlan.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+   .state('tab.addCard', {
+    url: '/addCard',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-addCard.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+   .state('tab.consultChargeNoPlan', {
+    url: '/consultChargeNoPlan',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-consultChargeNoPlan.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  .state('tab.cardDetails', {
+    url: '/cardDetails',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-cardDetails.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+  
     .state('tab.ChronicCondition', {
     url: '/ChronicCondition',
     views: {

@@ -1,0 +1,35 @@
+<ion-view title="Consult Charge No Plan">
+	<div ng-include src="'templates/healthPlan_header.html'"></div>
+	<div class="consultCharge_subHeader" >
+		<span>Payment</span>
+	</div>
+	
+	<ion-content style="margin: 180px 0 0 4%; padding-top: 25px;" >
+		<div class="password_home">
+		
+			<div class="consultation_head" >
+				<div>Consultation Charge</div>
+				<div class="consultation_number"> $60*</div>				
+			</div>
+			
+			<div class="healthPlan_header" >
+				<div class="healthPlan_text" style="margin-left: -150px;" >Pay Using</div>
+				<a ng-href="#/tab/cardDetails"><div class="addHealthPlan_header" style="margin-left: -15px;" >
+					<img ng-src="img/add.png"><span class="addHealthPlan_text" >Add a Payment Card</span>
+				</div></a>
+			</div>
+			
+			<div style="padding-top: 15px; padding-bottom: 5px;">
+				<a ng-href="#/tab/cardDetails"><button class="button button-block button-royal">
+				  Submit Payment
+				</button></a>
+			</div>
+			<div class="scheduled_appointments_text" style="text-align: justify; padding-bottom: 50px;" >
+				*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed. 
+			</div>
+		</div>
+	</ion-content>
+	
+	<div ng-include src="'templates/consultCharge_footer.html'"></div>
+	
+</ion-view>

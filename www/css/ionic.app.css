@@ -7603,6 +7603,17 @@ a.button {
   transition-duration: 0s; }
 
 /* Empty. Add your own Variable CSS if you like */
+@font-face {
+  font-family: 'Glober Thin';
+  src: url("Glober Thin Free.otf"); }
+
+@font-face {
+  font-family: 'Glober semiBold';
+  src: url("Glober SemiBold Free.otf"); }
+
+body {
+  font-family: 'Glober semiBold'; }
+
 .bar.bar-positive {
   background-color: #F0502C;
   height: 36px;
@@ -7614,7 +7625,7 @@ a.button {
   margin: 38px 0 0 0;
   width: auto;
   height: 78px;
-  font-family: Adobe Heiti Std R;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 27px;
   text-align: center;
@@ -7752,7 +7763,7 @@ a.button {
   background-color: #484848;
   border-color: #484848;
   height: 40px;
-  font-family: Adobe Heiti Std R;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 11px;
   border-top-width: -1px;
@@ -7824,7 +7835,7 @@ a.button {
     font-size: 12px; }
 
 .button_new {
-  font-family: Adobe Heiti Std R;
+  font-family: 'Glober semiBold';
   font-weight: normal;
   font-size: 19px;
   color: #fff;
@@ -7855,7 +7866,7 @@ a.button {
   padding-right: 4px; }
 
 .title_patient {
-  font-family: Adobe Heiti Std R;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 25px;
   color: #fff;
@@ -8023,11 +8034,13 @@ a.button {
       top: -8px; }
 
 .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
-  font-size: 50px;
-  margin-top: 15px; }
+  font-size: 60px;
+  margin-top: 5px;
+  width: 25px; }
 
 .planDetails_content {
-  margin: 100px 0 0 0; }
+  margin: 100px 0 0 0;
+  padding-top: 30px; }
   .planDetails_content .healthPlan_text {
     font-size: 30px;
     text-align: center;
@@ -8040,7 +8053,7 @@ a.button {
     font-weight: normal; }
   .planDetails_content .provider {
     margin-left: 20px;
-    padding-top: 23px;
+    padding-top: 30px;
     font-size: 18px; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
@@ -8051,6 +8064,21 @@ a.button {
     font-size: 13px;
     padding: 0 5px 50px 15px;
     margin-top: -10px; }
+  .planDetails_content .list {
+    padding-top: 25px; }
+  .planDetails_content .item.item-input, .planDetails_content .item.password-input {
+    padding: 16px; }
+  .planDetails_content .input-label {
+    font-weight: bold;
+    font-size: 20px;
+    width: 50%; }
+
+.verifyPlan_subHeader {
+  padding-top: 70px;
+  color: #5C5C5C;
+  text-align: center;
+  font-size: 27px;
+  font-weight: bold; }
 
 .select_div {
   margin: 33px 10px 5px 47px; }
@@ -8096,7 +8124,7 @@ a {
   box-shadow: 0 0 3px 3px #888; }
 
 .head_titleLess {
-  font-family: 0;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 30px;
   text-align: center;
@@ -8114,7 +8142,7 @@ a {
   padding: 25px; }
 
 .TitleLess {
-  font-family: 0;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 21px;
   text-align: left;
@@ -8132,7 +8160,7 @@ a {
   text-decoration: none; }
 
 .footer {
-  font-family: 0;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 11px;
   color: #fff;
@@ -8153,7 +8181,7 @@ a {
   position: relative; }
 
 .head_titleHomeUser {
-  font-family: 0;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 22px;
   text-align: center;
@@ -8169,7 +8197,7 @@ a {
   top: 63px; }
 
 .TitleHomeUser_Sub {
-  font-family: 0;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 25px;
   position: relative;
@@ -8184,7 +8212,7 @@ a {
   height: 55px; }
 
 .HrefListView {
-  font-family: 0;
+  font-family: 'Glober semiBold';
   font-weight: normal;
   font-size: 21px;
   color: #000;
@@ -8223,7 +8251,7 @@ a {
   color: #FF0000; }
 
 .appointment_with {
-  font-family: Adobe Heiti Std R;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 20px;
   text-align: center;
@@ -8240,7 +8268,7 @@ a {
   padding: 5px; }
 
 .ptagprimary {
-  font-family: Adobe Heiti Std R;
+  font-family: 'Glober semiBold';
   font-weight: normal;
   font-size: 20px;
   margin-left: 32px; }
@@ -8260,7 +8288,7 @@ a {
   margin: 33px 10px 5px 47px; }
 
 .ChronicCondition {
-  font-family: Adobe Heiti Std R;
+  font-family: 'Glober semiBold';
   font-weight: bold;
   font-size: 30px;
   color: #535353;

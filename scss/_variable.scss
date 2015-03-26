@@ -18,13 +18,12 @@ $Silver:							#C2C2C2; //add health page
 $Emperor:							#555555; //plan details
 $Scorpion:							#5C5C5C;
 $Scooter:							#39BAD9;
-$fontFamily: 				Adobe Heiti Std R;
+$fontFamily_thin: 				'Glober Thin';
+$fontFamily_semiBold: 				'Glober semiBold';
 
 
-@mixin font($fontFamily, $fontWeight, $fontSize) {
-	 @if length($fontFamily) == 0 {
-		$fontFamily: Adobe Heiti Std R;
-	  }	
+
+@mixin font($fontFamily, $fontWeight, $fontSize) {	 
     font-family: $fontFamily;   
     font-weight: $fontWeight;
 	font-size: $fontSize;	
