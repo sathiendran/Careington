@@ -295,6 +295,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+   .state('tab.ConsentTreat', {
+    url: '/ConsentTreat',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-ConsentTreat.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
 
   .state('tab.chats', {
       url: '/chats',
