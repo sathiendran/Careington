@@ -1,74 +1,39 @@
 
-<ion-view title="Appointment Details">
+<ion-view title="Chronic Condition">
 	
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
-		<div ng-include src="'templates/patientHeader.html'"></div>
-	</ion-header-bar>
+	<div ng-include src="'templates/healthPlan_header.html'"></div>
 	
 
-<ion-content class="ContentHomeUser">
+<ion-content class="ContentHomeUser" style="margin-top: 120px;">
  	<ion-list>
 		<ion-item style="top: -2px;padding: 2px;">
-			<div style="color:#888;float:right;margin-right: 10px;">Step <b>2</b> of <b>7</b></div>
-			<div style="margin-top: 15px;">
+			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>2</b> of <b>7</b></div>
+			<div style="margin-top: 25px;">
 				<a ng-href="#/tab/priorSurgeries"> 
-					<h1 class="title ChronicCondition" style="font-size: 28px;">Chronic Conditions</h1>
+					<h1 class="title ChronicCondition" style="font-size: 25px;">Chronic Conditions</h1>
 				</a>
 				<p style="margin-left: 19px;">List any chronic medical conditions.</p>
 			</div>
-			<div style="margin-left: 19px; float: left; font-size: 12px;">Select up to four</div>
-			<div style="margin-right: 45px; font-size: 11px; float: right;">
+			<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 10px;">Select up to four</div>
+			<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
 				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;" >
 					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
 					<label for="squaredCheckbox"></label>
 				</div>
 			<div style="font-size: 17px;"> None</div>
 			</div>
-		</ion-item>
 		
-		<!--<div >
-    <div class="item" style="padding: 16px; border-top: 0px;">
-     This is a chronic condition  <i class="radio-icon ion-checkmark"></i>
-    </div>
-	 <div class="item" style="padding: 16px; ">
-     This is a chronic condition
-    </div>
-	<div class="item" style="padding: 16px; ">
-     This is a chronic condition
-    </div>
-	<div class="item" style="padding: 16px; ">
-     This is a chronic condition
-    </div>
-	<div class="item" style="padding: 16px; ">
-     This is a chronic condition
-    </div>
-	
-	</div>-->
-	
-	
-	<div class="list" >
-	  <label class="item item-radio" style="border-top: 0px;">
-		<input type="radio" name="group">
-		<div class="item-content" style="padding: 0px;">
-		  This is a chronic condition
-		</div>
-		<i class="radio-icon ion-checkmark"></i>
-	  </label>
-	  
-	  	 <ion-checkbox ng-model="isChecked">This is a chronic condition</ion-checkbox>
-
-	 <ion-checkbox ng-model="isChecked">This is a chronic condition1</ion-checkbox>
-	 
-	 	 <ion-checkbox ng-model="isChecked">This is a chronic condition2</ion-checkbox>
-	  
-	</div>
-	
-	
+		
+			<div class="list" style="clear: both; padding-top: 10px;" >
+				<ion-checkbox ng-repeat="item in chronicList"
+							  ng-model="item.checked" 
+							  ng-checked="item.checked" ng-change="validate();">
+				  {{ item.text }}
+				</ion-checkbox>
+			</div>
+		</ion-item>
+	</ion-list>
 </ion-content>
 
 		<div ng-include src="'templates/invokeFooter.html'"></div>
-
-
-
-
 </ion-view>

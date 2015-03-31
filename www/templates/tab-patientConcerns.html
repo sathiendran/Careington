@@ -1,0 +1,74 @@
+
+<ion-view title="Patient Concerns.html">
+	
+	<div ng-include src="'templates/healthPlan_header.html'"></div>
+	
+
+<ion-content class="ContentHomeUser" style="margin-top: 120px;">
+ 	<ion-list>
+		<ion-item style="top: -2px;padding: 2px;">
+			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div>
+			<div style="margin-top: 25px;">
+				<a ng-href="#/tab/ChronicCondition"> 
+					<h1 class="title ChronicCondition" style="font-size: 25px;">Patient Concerns</h1>
+				</a>
+				<p style="margin-left: 19px;">What is reason(s) for todays visit?</p>
+			</div>
+			<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 10px;">Select up to two</div>
+			<!--<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
+				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;" >
+					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
+					<label for="squaredCheckbox"></label>
+				</div>
+			<div style="font-size: 17px;"> None</div>
+			</div>
+		
+		
+		
+		<form name="myForm">
+	
+	
+        Name: 
+		
+		
+    <div ng-repeat="c in colors">
+	
+        <input type="checkbox" ng-model="chosen[c.Id]" required> {{c.Name}}
+		
+    </div>
+	
+        <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
+        <p>Colors Chosen: {{chosen}}</p>
+        <p>Form $Invalid : {{myForm.$invalid}}</p>
+		
+		
+    </form>-->
+		
+		
+		
+			<div class="list" style="clear: both; padding-top: 10px;" >
+				<ion-checkbox ng-repeat="item in patientList"
+							  ng-model="item.checked" 
+							  ng-checked="item.checked" ng-change="validate();">
+				  {{ item.text }}
+				</ion-checkbox>
+			</div>
+		</ion-item>
+	</ion-list>
+</ion-content>
+
+		<ion-footer-bar  class="footer">
+			<div style="width:100%;">
+					 
+						<div class="" style="text-align:center;">
+							<a class="button_new icon" href="#/demo/demo" style=" color:#999999;"> Cancel </a>
+						</div>
+						   
+						<div class="" style="text-align:right;margin-top: -40px; 0px;position: relative;">
+							<a class="button_new icon ion-chevron-right"   href="#/demo/demo"> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
+						</div>
+						  
+			<div>
+		</ion-footer-bar>	
+
+</ion-view>
