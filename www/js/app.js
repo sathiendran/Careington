@@ -313,11 +313,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'LoginCtrl'
       }
     }
-  })
-  
+  })  
   
 
-  
   
    .state('tab.ReportScreen', {
     url: '/ReportScreen',
