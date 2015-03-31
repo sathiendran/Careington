@@ -1,77 +1,47 @@
-var indexOf = [].indexOf || function(item) {
-	for (var i = 0, l = this.length; i < l; i++) {
-	  if (i in this && this[i] === item) return i;
-	}
-	return -1;
-}
+;(function(angular){
+  var indexOf = [].indexOf || function(item) {
+    for (var i = 0, l = this.length; i < l; i++) {
+      if (i in this && this[i] === item) return i;
+    }
+    return -1;
+  };
 
+  angular.module('pickadate.utils', [])
+    .factory('pickadateUtils', ['dateFilter', function(dateFilter) {
+      return {
+        isDate: function(obj) {
+          return Object.prototype.toString.call(obj) === '[object Date]';
+        },
 
-angular.module('starter.controllers', [])
+        stringToDate: function(dateString) {
+          if (this.isDate(dateString)) return new Date(dateString);
+          var dateParts = dateString.split('-'),
+            year  = dateParts[0],
+            month = dateParts[1],
+            day   = dateParts[2];
 
-/*.controller('LoginCtrl', function($scope) {})*/
-.controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal) {	
+          // set hour to 3am to easily avoid DST change
+          return new Date(year, month - 1, day, 3);
+        },
 
-	$scope.model = null;
-	$scope.rightButtons = [
-        { 
-			type: 'button-positive',  
-			content: '<i class="icon ion-navicon"></i>',
-			tap: function(e) {
-				$scope.date = null;
-				$scope.modal.scope.model = {description :"",amount :""};
-				$scope.openModal();
-				  
-			}
+        dateRange: function(first, last, initial, format) {
+          var date, i, _i, dates = [];
+
+          if (!format) format = 'yyyy-MM-dd';
+
+          for (i = _i = first; first <= last ? _i < last : _i > last; i = first <= last ? ++_i : --_i) {
+            date = this.stringToDate(initial);
+            date.setDate(date.getDate() + i);
+            dates.push(dateFilter(date, format));
+          }
+          return dates;
         }
-    ]
+      };
+    }]);
 
-    $ionicModal.fromTemplateUrl('templates/modal.html', 
-        function(modal) {
-            $scope.modal = modal;
-		},
-        {
-            // Use our scope for the scope of the modal to keep it simple
-            scope: $scope, 
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
+  angular.module('pickadate', ['pickadate.utils'])
 
-        }
-    );
-    $scope.openModal = function() {
-        $scope.modal.show();
-    };
-    $scope.closeModal = function(model) {
-        $scope.modal.hide();
-    };
-
-    $ionicModal.fromTemplateUrl('templates/datemodal.html', 
-        function(modal) {
-            $scope.datemodal = modal;
-		},
-		{
-            // Use our scope for the scope of the modal to keep it simple
-            scope: $scope, 
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
-
-        }
-    );
-    $scope.opendateModal = function() {
-        $scope.datemodal.show();
-	};
-    $scope.closedateModal = function(model) {
-		$scope.datemodal.hide();
-        $scope.date = model;
-    };
-
-    $scope.save =  function(model){
-        alert("Date :"+$scope.date+" Description: "+model.amount+ " Amount: "+model.amount);
-        $scope.closeModal();
-    };
-}])
-
-
-.directive('pickadate', ['$locale', 'pickadateUtils', 'dateFilter', function($locale, dateUtils, dateFilter) {
+    .directive('pickadate', ['$locale', 'pickadateUtils', 'dateFilter', function($locale, dateUtils, dateFilter) {
       return {
         require: 'ngModel',
         scope: {
@@ -191,22 +161,5 @@ angular.module('starter.controllers', [])
           }
         }
       };
-}])
-
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+    }]);
+})(window.angular);

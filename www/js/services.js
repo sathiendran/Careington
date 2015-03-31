@@ -47,4 +47,37 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+
+
+.factory('pickadateUtils', ['dateFilter', function(dateFilter) {
+      return {
+        isDate: function(obj) {
+          return Object.prototype.toString.call(obj) === '[object Date]';
+        },
+
+        stringToDate: function(dateString) {
+          if (this.isDate(dateString)) return new Date(dateString);
+          var dateParts = dateString.split('-'),
+            year  = dateParts[0],
+            month = dateParts[1],
+            day   = dateParts[2];
+
+          // set hour to 3am to easily avoid DST change
+          return new Date(year, month - 1, day, 3);
+        },
+
+        dateRange: function(first, last, initial, format) {
+          var date, i, _i, dates = [];
+
+          if (!format) format = 'yyyy-MM-dd';
+
+          for (i = _i = first; first <= last ? _i < last : _i > last; i = first <= last ? ++_i : --_i) {
+            date = this.stringToDate(initial);
+            date.setDate(date.getDate() + i);
+            dates.push(dateFilter(date, format));
+          }
+          return dates;
+        }
+      };
+    }]);

@@ -148,6 +148,55 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
+    .state('tab.ChronicCondition', {
+    url: '/ChronicCondition',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-ChronicCondition.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+   .state('tab.priorSurgeries', {
+    url: '/priorSurgeries',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-priorSurgeries.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+
+ .state('tab.CurrentMedication', {
+    url: '/CurrentMedication',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-CurrentMedication.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+  .state('tab.MedicationAllegies', {
+    url: '/MedicationAllegies',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-MedicationAllegies.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+   .state('tab.ConsentTreat', {
+    url: '/ConsentTreat',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-ConsentTreat.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
   .state('tab.consultCharge', {
     url: '/consultCharge',
     views: {
@@ -266,44 +315,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
-    .state('tab.ChronicCondition', {
-    url: '/ChronicCondition',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-ChronicCondition.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
-
- .state('tab.CurrentMedication', {
-    url: '/CurrentMedication',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-CurrentMedication.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
   
-  .state('tab.MedicationAllegies', {
-    url: '/MedicationAllegies',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-MedicationAllegies.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
-   .state('tab.ConsentTreat', {
-    url: '/ConsentTreat',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-ConsentTreat.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
 
   .state('tab.chats', {
       url: '/chats',
