@@ -304,6 +304,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  
+   .state('tab.ReportScreen', {
+    url: '/ReportScreen',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-ReportScreen.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
 
   .state('tab.chats', {
       url: '/chats',

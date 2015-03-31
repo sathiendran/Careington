@@ -750,9 +750,18 @@ margin-left: 16px;
 }	
 
 .PragraphContent {
-@include font($fontFamily_thin, normal, 15px);
+@include font($fontFamily_thin, normal,15px);
 }
 
+.ReportTitle {
+@include font($fontFamily_semiBold, Bold, 22px);
+}
+.Roundcircle { width: 25px; height: 21px; background: #000; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; }
 
- 
-
+.patientstatics {
+	background-color: #ccc;
+    height: 100px;
+    margin: 10px;
+    position: relative;
+    top: 84px;
+}
