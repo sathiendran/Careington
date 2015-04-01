@@ -8138,9 +8138,6 @@ a {
   height: 63px;
   top: 127px; }
 
-.item {
-  padding: 25px; }
-
 .TitleLess {
   font-family: 'Glober semiBold';
   font-weight: bold;
@@ -8295,7 +8292,7 @@ a {
   margin-left: 16px; }
 
 .PragraphContent {
-  font-family: 'Glober Thin';
+  font-family: 'Glober semiBold';
   font-weight: normal;
   font-size: 15px; }
 
@@ -8318,3 +8315,10 @@ a {
   margin: 10px;
   position: relative;
   top: 84px; }
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+  background: #A2D28A;
+  border-color: #A2D28A; }
+
+.ng-binding {
+  margin-left: 35px; }

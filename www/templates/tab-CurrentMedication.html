@@ -1,12 +1,13 @@
 
+<ion-view title="Medical Allergies">
+	
+	<div ng-include src="'templates/healthPlan_header.html'"></div>
+	
 
-<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
-		<div ng-include src="'templates/intakeHeader.html'"></div>
-</ion-header-bar>
-<ion-view title="Appointment Details">
-<ion-content class="ContentHomeUser">
+<ion-content class="ContentHomeUser" style="margin-top: 120px;">
  	<ion-list>
 		<ion-item style="top: -2px;padding: 2px;">
+<<<<<<< HEAD
 			<span style="color:#888;float:right;margin-right: 10px;">Step <b>5</b> of <b>7</b></span>
 			<a ng-href="#/tab/ConsentTreat{{hash}}"> <h1 class="title ChronicCondition">Current Medications</h1></a>
 			 <p style=" margin-top: -8px;margin-left: 19px;padding-bottom: 13px;">Select medication allergies</p>
@@ -44,17 +45,35 @@
 		 <div class="squaredCheckbox" style="margin-top: -3px;" >
 				 <input type="checkbox" value="None" id="squaredCheckbox" name="check" />
 				 <label for="squaredCheckbox"></label>
+=======
+			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>4</b> of <b>7</b></div>
+			<div style="margin-top: 25px;">
+				<a ng-href="#/tab/ConsentTreat"> 
+					<h1 class="title ChronicCondition" style="font-size: 25px;">Current Medications</h1>
+				</a>
+				<p style="margin-left: 19px;">List any medications currently talking.</p>
 			</div>
-			
-			<div><span style="margin-left:10px;">None</span></div>
-	    </ion-item>
+			<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 10px;">Select up to four</div>
+			<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
+				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;" >
+					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
+					<label for="squaredCheckbox"></label>
+				</div>
+			<div style="font-size: 17px;"> None</div>
+>>>>>>> 6a329a2f17df4cdd1940503101a641160eb9e2d1
+			</div>
 		
-			
 		
+			<a ng-href="#/tab/ConsentTreat"> <div class="list" style="clear: both; padding-top: 10px;" >
+				<ion-checkbox ng-repeat="item in currentList"
+							  ng-model="item.checked" 
+							  ng-checked="item.checked" >
+				  {{ item.text }}
+				</ion-checkbox>
+			</div></a>
+		</ion-item>
+	</ion-list>
 </ion-content>
 
-</ion-view>
 		<div ng-include src="'templates/invokeFooter.html'"></div>
-
-
-
+</ion-view>

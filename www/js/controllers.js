@@ -11,6 +11,68 @@ angular.module('starter.controllers', [])
 /*.controller('LoginCtrl', function($scope) {})*/
 .controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal) {	
 
+
+$scope.name ='';
+    $scope.chosen = {};
+    $scope.colors = [{Id: 'R', Name : 'Red'},{Id: 'G', Name : 'Green'},{Id: 'B', Name: 'Blue'}];
+
+	$scope.patientList = [
+		{ text: "This is a patient concern", checked: false },
+		{ text: "This is a patient concern", checked: false },
+		{ text: "This is a patient concern", checked: false },
+		{ text: "This is a patient concern", checked: false },
+		{ text: "This is a patient concern", checked: false },
+		{ text: "This is a patient concern", checked: false },
+		{ text: "This is a patient concern", checked: false }
+	  ];
+
+ $scope.chronicList = [
+    { text: "This is a chronic condition", checked: false },
+    { text: "This is a chronic condition", checked: false },
+    { text: "This is a chronic condition", checked: false },
+	{ text: "This is a chronic condition", checked: false },
+	{ text: "This is a chronic condition", checked: false },
+	{ text: "This is a chronic condition", checked: false },
+	{ text: "This is a chronic condition", checked: false }
+  ];
+  
+  $scope.medicationList = [
+    { text: "This is a medication allergies", checked: false },
+    { text: "This is a medication allergies", checked: false },
+    { text: "This is a medication allergies", checked: false },
+	{ text: "This is a medication allergies", checked: false },
+	{ text: "This is a medication allergies", checked: false },
+	{ text: "This is a medication allergies", checked: false },
+	{ text: "This is a medication allergies", checked: false }
+  ];
+  
+  $scope.currentList = [
+    { text: "This is a current medication", checked: false },
+    { text: "This is a current medication", checked: false },
+    { text: "This is a current medication", checked: false },
+	{ text: "This is a current medication", checked: false },
+	{ text: "This is a current medication", checked: false },
+	{ text: "This is a current medication", checked: false },
+	{ text: "This is a current medication", checked: false }
+  ];
+  
+  
+  $scope.validate = function(){
+  var numChecked = $filter($scope.devList, function(device) {
+    return device.checked
+  }).length;
+  $scope.devList.length == numChecked;
+  console.log($scope.devList.length);
+}
+
+  /*$scope.pushNotificationChange = function() {
+    console.log('Push Notification Change', $scope.pushNotification.checked);
+  };
+  
+  $scope.pushNotification = { checked: true };
+  $scope.emailNotification = 'Subscribed';*/
+
+
 	$scope.model = null;
 	$scope.rightButtons = [
         { 
