@@ -15,7 +15,7 @@
 				<p style="margin-left: 19px;">What is reason(s) for todays visit?</p>
 			</div>
 			<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 10px;">Select up to two</div>
-			<!--<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
+			<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
 				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;" >
 					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
 					<label for="squaredCheckbox"></label>
@@ -25,34 +25,6 @@
 		
 		
 		
-		<form name="myForm">
-	
-	
-        Name: 
-		
-		
-    <div ng-repeat="c in colors">
-	
-        <input type="checkbox" ng-model="chosen[c.Id]" required> {{c.Name}}
-		
-    </div>
-	
-        <button type="submit" ng-disabled="myForm.$invalid">Submit</button>
-        <p>Colors Chosen: {{chosen}}</p>
-        <p>Form $Invalid : {{myForm.$invalid}}</p>
-		
-		
-    </form>-->
-		
-		
-		
-			<div class="list" style="clear: both; padding-top: 10px;" >
-				<ion-checkbox ng-repeat="item in patientList"
-							  ng-model="item.checked" 
-							  ng-checked="item.checked" ng-change="validate();">
-				  {{ item.text }}
-				</ion-checkbox>
-			</div>
 		</ion-item>
 	</ion-list>
 </ion-content>
