@@ -8319,6 +8319,3 @@ a {
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
   background: #A2D28A;
   border-color: #A2D28A; }
-
-.ng-binding {
-  margin-left: 35px; }

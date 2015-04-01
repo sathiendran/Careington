@@ -1,16 +1,16 @@
 <ion-view title="Prior Surgeries">
 
-<!--<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
 		<div ng-include src="'templates/intakeHeader.html'"></div>
-</ion-header-bar>-->
-
+</ion-header-bar>
+<!--
 <ion-header-bar ng-controller="LoginCtrl" class="bar-positiveHomeUser"
             type="bar-positive"
             title="Demo"
             left-buttons="leftButtons" 
             right-buttons="rightButtons">
 </ion-header-bar>
-
+-->
 
 
 <ion-view title="Appointment Details">
@@ -22,18 +22,33 @@
 			 <p style=" margin-top: -8px;margin-left: 19px;padding-bottom: 13px;">List any Prior Surgeries.</p>
 	    </ion-item>
 		
-		<div class="demo select_div">
-		<span style=" font-size: 29px; margin-left: -36px;position: relative;top: 6px;">1. </span>
-		<select>
-			<option style="padding:10px;"><b>Surgery</b></option>
-		</select>
-		</div>	
-		<div ><input type="text" datepicker  /></div>
-		
-		<div class="addHealthPlan_header" style="padding: 50px;" >
-					<img ng-src="img/add.png"><span class="addHealthPlan_text" >  Add Another</span>
-				</div>
-		
+		<div class="modal">
+   
+    <ion-content has-header="true">
+      
+       
+        <div class="padding">
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">Date</span>
+            <input ng-model="date" type="text" ng-click="opendateModal()">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Description</span>
+            <input ng-model="model.description" type="text" placeholder="">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Amount</span>
+            <input type="number" ng-model="model.amount" placeholder="">
+          </label>
+          <button class="button button-full button-balanced" ng-click="save(model)">Save</button>
+          
+        </div>
+        </div>
+        
+    </ion-content>
+  </div>
+
 		
 </ion-content>
 
