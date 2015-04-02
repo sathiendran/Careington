@@ -8,8 +8,12 @@ var indexOf = [].indexOf || function(item) {
 
 angular.module('starter.controllers', [])
 
-/*.controller('LoginCtrl', function($scope) {})*/
-.controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal) {	
+/*.controller('LoginCtrl', function($scope) {})
+.controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal, $ionicSideMenuDelegate) {	*/
+.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate) {
+ $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
 
 
 $scope.name ='';
@@ -56,14 +60,26 @@ $scope.name ='';
 	{ text: "This is a current medication", checked: false }
   ];
   
+  //Delete option
+$scope.data = {
+    showDelete: true
+  };  
+ 
   
-  $scope.validate = function(){
-  var numChecked = $filter($scope.devList, function(device) {
-    return device.checked
-  }).length;
-  $scope.devList.length == numChecked;
-  console.log($scope.devList.length);
-}
+  $scope.onItemDelete = function(item) {
+    $scope.items.splice($scope.items.indexOf(item), 1);
+  };
+  
+  $scope.items = [
+    { id: 0 },
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 }, 
+    { id: 5 }
+  ];
+  // end delete option
+  
 
   /*$scope.pushNotificationChange = function() {
     console.log('Push Notification Change', $scope.pushNotification.checked);
@@ -130,7 +146,8 @@ $scope.name ='';
         alert("Date :"+$scope.date+" Description: "+model.amount+ " Amount: "+model.amount);
         $scope.closeModal();
     };
-}])
+//}])
+})
 
 
 .directive('pickadate', ['$locale', 'pickadateUtils', 'dateFilter', function($locale, dateUtils, dateFilter) {
@@ -266,6 +283,11 @@ $scope.name ='';
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
+
+.controller('MedicationAllegiesCtrl', function($scope) {
+ 
+})
+
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
