@@ -273,6 +273,76 @@ $scope.data = {
 }])
 
 
+.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup) {
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  
+ $scope.model = null;
+ $scope.devList = [
+    { text: "Fever", checked: true },
+    { text: "Vomiting", checked: false },
+	{ text: "Headache", checked: false },
+	{ text: "shortness of breath", checked: false }
+  ];	
+ $scope.rightButtons = [
+        { 
+   type: 'button-positive',  
+   content: '<i class="icon ion-navicon"></i>',
+   tap: function(e) {
+    $scope.date = null;
+    $scope.modal.scope.model = {description :"",amount :""};
+    $scope.openModal();
+      
+	}
+        }
+    ]
+
+    $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', 
+        function(modal) {
+            $scope.modal = modal;
+	},
+        {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope, 
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+
+        }
+    );
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+    $scope.closeModal = function(model) {
+        $scope.modal.hide();
+    };
+	
+	$scope.SaveDesc = function(model) {
+	$scope.data = {}
+        $ionicPopup.show({
+			template: '<input type="text" ng-model="data.wifi">',
+			title: '<div style="float:right;">Enter Concerns<div>',
+			subTitle: '',
+			scope: $scope,
+			buttons: [
+			  { text: 'Cancel' },
+			  {
+				text: '<b>Done</b>',
+				type: 'button-positive',
+				onTap: function(e) {
+				  if (!$scope.data.wifi) {
+					//don't allow the user to close unless he enters wifi password
+					e.preventDefault();
+				  } else {
+					return $scope.data.wifi;
+				  }
+				}
+			  }
+			]
+		  });
+    };
+})
+
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {

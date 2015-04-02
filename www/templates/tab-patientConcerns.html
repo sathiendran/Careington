@@ -1,33 +1,32 @@
+<ion-view title="Patient Concerns">
+<ion-side-menus>
+	<ion-side-menu-content>
 
-<ion-view title="Patient Concerns.html">
-	
-	<div ng-include src="'templates/healthPlan_header.html'"></div>
+
+		<div ng-include src="'templates/intakeHeader.html'"></div>
 	
 
 <ion-content class="ContentHomeUser" style="margin-top: 120px;">
  	<ion-list>
-		<ion-item style="top: -2px;padding: 2px;">
+		<ion-item style="top:3px;padding: 1px;">
 			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div>
 			<div style="margin-top: 25px;">
-				<a ng-href="#/tab/ChronicCondition"> 
+				
 					<h1 class="title ChronicCondition" style="font-size: 25px;">Patient Concerns</h1>
 				</a>
 				<p style="margin-left: 19px;">What is reason(s) for todays visit?</p>
-			</div>
-			<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 10px;">Select up to two</div>
-			<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
-				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;" >
-					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
-					<label for="squaredCheckbox"></label>
+				 <div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="float:right;left: -15px; position: relative; margin-top: -45px; cursor:pointer;">
+					<img ng-src="img/add_surgery.png"  >
 				</div>
-			<div style="font-size: 17px;"> None</div>
 			</div>
-		
-		
-		
+			
 		</ion-item>
 	</ion-list>
 </ion-content>
+</ion-side-menu-content>
+<!-- Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+
 
 		<ion-footer-bar  class="footer">
 			<div style="width:100%;">
