@@ -8319,3 +8319,39 @@ a {
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
   background: #A2D28A;
   border-color: #A2D28A; }
+
+.popup-title {
+  float: left;
+  font-size: 15px;
+  margin: 0;
+  padding: 0; }
+
+.checkbox input, .checkbox-icon {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  cursor: pointer;
+  display: block;
+  height: 28px;
+  position: relative;
+  width: 28px;
+  float: right; }
+
+.checkbox input::before, .checkbox-icon::before {
+  background: none repeat scroll 0 0 #fff;
+  border-radius: 28px;
+  border-style: none;
+  border-width: 1px;
+  content: " ";
+  display: table;
+  height: 100%;
+  transition: background-color 20ms ease-in-out 0s;
+  width: 100%; }
+
+.item-checkbox .checkbox {
+  left: 8px;
+  margin-right: 12px;
+  margin-top: -21px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  z-index: 3; }
