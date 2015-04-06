@@ -8355,3 +8355,7 @@ a {
   right: 8px;
   top: 50%;
   z-index: 3; }
+
+.disable-pointer-events {
+  margin-left: -47px;
+  pointer-events: none; }
