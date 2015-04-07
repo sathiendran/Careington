@@ -6,7 +6,7 @@ var indexOf = [].indexOf || function(item) {
 }
 
 
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngStorage'])
 
 /*.controller('LoginCtrl', function($scope) {})
 .controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal, $ionicSideMenuDelegate) {	*/
@@ -273,34 +273,32 @@ $scope.data = {
 }])
 
 
-.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup) {
+.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup, $localStorage) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
   
  $scope.model = null;
+
  $scope.devList = [
-    { text: "Fever", checked: true },
+    { text: "Fever", checked: false },
     { text: "Vomiting", checked: false },
 	{ text: "Headache", checked: false },
 	{ text: "shortness of breath", checked: false }
   ];	
+  
  $scope.rightButtons = [
         { 
    type: 'button-positive',  
    content: '<i class="icon ion-navicon"></i>',
    tap: function(e) {
     $scope.date = null;
-    $scope.modal.scope.model = {description :"",amount :""};
     $scope.openModal();
-      
-	}
-        }
-    ]
-
-    $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', 
-        function(modal) {
-            $scope.modal = modal;
+    }
+        } ]
+	
+    $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', function(modal) {
+    $scope.modal = modal;
 	},
         {
             // Use our scope for the scope of the modal to keep it simple
@@ -316,6 +314,16 @@ $scope.data = {
     $scope.closeModal = function(model) {
         $scope.modal.hide();
     };
+	
+	
+	$scope.OnSelectPatientConcerns = function($item) {
+	
+	if ($item == 'Fever') {                         
+			return false;
+			} else {                         
+			return true;
+			}
+		}
 	
 	$scope.SaveDesc = function(model) {
 	$scope.data = {}

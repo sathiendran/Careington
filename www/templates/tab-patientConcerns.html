@@ -10,13 +10,31 @@
  	<ion-list>
 		<ion-item style="top:3px;padding: 1px;">
 			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div>
+			<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
 			<div style="margin-top: 25px;">
 				
-					<h1 class="title ChronicCondition" style="font-size: 25px;">Patient Concerns</h1>
+					<h1 class="title ChronicCondition" style="font-size: 25px;">Primary Concerns</h1>
 				</a>
 				<p style="margin-left: 19px;">What is reason(s) for todays visit?</p>
-				 <div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="float:right;left: -15px; position: relative; margin-top: -45px; cursor:pointer;">
+					<div style="float:right;left: -15px; position: relative; margin-top: -45px; cursor:pointer;">
 					<img ng-src="img/add_surgery.png"  >
+					</div>
+				</div>
+			</div>
+			
+		</ion-item>
+		
+		<ion-item style="top:3px;padding: 1px;">
+			<!--<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div> -->
+			<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
+			<div style="margin-top: 25px;">
+				
+					<h1 class="title ChronicCondition" style="font-size: 25px;">Secondary Concerns</h1>
+				</a>
+				<p style="margin-left: 19px;">What is reason(s) for todays visit?</p>
+				 <div style="float:right;left: -15px; position: relative; margin-top: -45px;">
+					<img ng-src="img/add_surgery.png"  >
+				</div>
 				</div>
 			</div>
 			
