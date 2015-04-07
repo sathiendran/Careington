@@ -8,6 +8,7 @@ var indexOf = [].indexOf || function(item) {
 
 angular.module('starter.controllers', ['ngStorage'])
 
+
 /*.controller('LoginCtrl', function($scope) {})
 .controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal, $ionicSideMenuDelegate) {	*/
 .controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate) {
@@ -316,15 +317,19 @@ $scope.data = {
     };
 	
 	
-	$scope.OnSelectPatientConcerns = function($item) {
-	
-	if ($item == 'Fever') {                         
-			return false;
-			} else {                         
-			return true;
-			}
+	$scope.OnSelectPatientConcerns = function($items) {
+		//alert($items);
+		$scope.isdisabled=true;
+		if ($items
+		
+		) {                         
+		return true;
 		}
-	
+		else {                         
+		return false;
+		}
+	}
+
 	$scope.SaveDesc = function(model) {
 	$scope.data = {}
         $ionicPopup.show({

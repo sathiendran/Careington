@@ -72,7 +72,7 @@
 		
 			<ion-checkbox ng-repeat="item in devList"
 						  ng-model="item.checked" 
-						  ng-checked="item.checked"  ng-disabled="OnSelectPatientConcerns(item.text)" >
+						  ng-checked="item.checked" ng-click="!OnSelectPatientConcerns(item.text)" ng-disabled="checked" >
 			  {{ item.text }}
 			</ion-checkbox>
 			
