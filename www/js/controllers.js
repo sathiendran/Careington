@@ -10,11 +10,14 @@ angular.module('starter.controllers', [])
 
 /*.controller('LoginCtrl', function($scope) {})
 .controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal, $ionicSideMenuDelegate) {	*/
-.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate) {
+.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, $ionicHistory) {
  $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
-
+$scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+  
 
 $scope.name ='';
     $scope.chosen = {};
@@ -272,10 +275,25 @@ $scope.data = {
       };
 }])
 
+.controller('UserhomeCtrl', function($scope, $ionicHistory) {
+ $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+})
 
-.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup) {
+.controller('UsersearchCtrl', function($scope, $ionicHistory) {
+ $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+})
+
+
+.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
   };
   
  $scope.model = null;
@@ -354,8 +372,10 @@ $scope.data = {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('MedicationAllegiesCtrl', function($scope) {
- 
+.controller('MedicationAllegiesCtrl', function($scope, $ionicHistory) {
+ $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
 })
 
 
