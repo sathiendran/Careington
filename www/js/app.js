@@ -21,6 +21,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
+
+
+
 .config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -93,7 +96,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-userhome.html',
-        controller: 'LoginCtrl'
+        controller: 'UserhomeCtrl'
       }
     }
   })
@@ -103,7 +106,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-uersearch.html',
-        controller: 'LoginCtrl'
+        controller: 'UsersearchCtrl'
       }
     }
   })

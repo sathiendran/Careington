@@ -7676,7 +7676,7 @@ a.button {
   src: url("Glober xBold.otf"); }
 
 body {
-  font-family: 'Glober Thin'; }
+  font-family: 'Glober Regular'; }
 
 .bar.bar-positive {
   background-color: #F0502C;
@@ -7689,9 +7689,9 @@ body {
   margin: 38px 0 0 0;
   width: auto;
   height: 78px;
-  font-family: 'Glober Thin';
+  font-family: 'Glober xBold';
   font-weight: bold;
-  font-size: 27px;
+  font-size: 30px;
   text-align: center;
   color: #F0502C;
   position: relative;
@@ -7732,18 +7732,22 @@ body {
       background-color: #999999; }
       .login_content .login_home .item-input ::-webkit-input-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .password-input {
         /* WebKit browsers */
-        color: #484848 !important; }
+        color: #484848 !important;
+        font-size: 15px; }
       .login_content .login_home .item-input :-moz-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .password-input {
         /* Mozilla Firefox 4 to 18 */
         color: #484848 !important;
+        font-size: 15px;
         opacity: 1; }
       .login_content .login_home .item-input ::-moz-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .password-input {
         /* Mozilla Firefox 19+ */
         color: #484848 !important;
+        font-size: 15px;
         opacity: 1; }
       .login_content .login_home .item-input :-ms-input-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .password-input {
         /* Internet Explorer 10+ */
-        color: #484848 !important; }
+        color: #484848 !important;
+        font-size: 15px; }
 
 /* SQUARED TWO */
 .squaredCheckbox {
@@ -7799,11 +7803,12 @@ body {
 .remember {
   padding-top: 20px;
   color: #9D9D9D;
-  font-size: 10.5px; }
+  font-size: 13px;
+  font-family: 'Glober SemiBold'; }
 
 .continue {
   text-align: center;
-  padding-top: 20px;
+  padding-top: 40px;
   margin-bottom: 50px; }
 
 .button.button-positive.button-outline {
@@ -7812,9 +7817,10 @@ body {
   background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
   font-weight: normal;
   border-radius: 7px;
-  font-size: 18px;
-  min-height: 38px;
+  font-size: 19px;
+  min-height: 35px;
   text-decoration: none;
+  font-family: 'Glober SemiBold';
   color: #fff;
   width: 105px; }
 
@@ -7829,17 +7835,23 @@ body {
   height: 40px;
   font-family: 'Glober Thin';
   font-weight: bold;
-  font-size: 11px;
+  font-size: 9px;
   border-top-width: -1px;
   border-top: -1px; }
   .footer .terms {
+    font-family: 'Glober Thin';
+    font-weight: bold;
+    font-size: 9px;
     text-align: left;
     width: 50%;
     margin: 5px 0 0 1%; }
     .footer .terms a {
       text-decoration: none;
-      color: #9D9D9D; }
+      color: #fff; }
   .footer .powerdBySnapMD {
+    font-family: 'Glober Thin';
+    font-weight: bold;
+    font-size: 9px;
     text-align: right;
     width: 49%;
     margin: 5px 0 0 0; }
@@ -7862,10 +7874,12 @@ body {
   margin-top: 115px;
   color: #A80532; }
   .password_sub_header span {
-    color: #DADADA;
-    font-size: 11px;
+    color: #C4C4C4;
+    font-size: 12px;
     position: relative;
-    top: -5px; }
+    top: -5px;
+    font-family: 'Glober Thin';
+    font-weight: bold; }
 
 .password_content {
   margin: 195px 0 0 4%; }
@@ -7905,7 +7919,7 @@ body {
   color: #fff;
   border-radius: 7px;
   width: 105px;
-  line-height: 38px;
+  /*line-height: 38px;*/
   min-height: 38px;
   margin: 0 0 0 10px;
   text-decoration: none; }
@@ -7930,9 +7944,10 @@ body {
   padding-right: 4px; }
 
 .title_patient {
-  font-family: 'Glober Thin';
+  font-family: 'Glober SemiBold';
   font-weight: bold;
   font-size: 25px;
+  /*@include font($fontFamily_xBold, bold,30px);*/
   color: #fff;
   text-align: center;
   left: 0px;
@@ -7941,7 +7956,7 @@ body {
   line-height: 61px;
   margin: 7px 10px;
   min-width: 30px;
-  position: absolute;
+  position: relative;
   text-align: center;
   top: 0; }
 
@@ -7958,6 +7973,17 @@ body {
   .patient_subHeader .subHeader_content {
     margin-left: 45px;
     margin-top: 7px; }
+    .patient_subHeader .subHeader_content .sub_username {
+      font-family: 'Glober Bold'; }
+    .patient_subHeader .subHeader_content .sub_user_subname {
+      font-family: 'Glober Thin';
+      font-weight: normal;
+      font-size: 21px;
+      color: #fff; }
+    .patient_subHeader .subHeader_content .sub_age {
+      color: #fff;
+      font-size: 11px;
+      font-family: 'Glober Thin'; }
 
 .patient_content {
   margin: 40px 0 0 4%;
@@ -7967,27 +7993,30 @@ body {
   background-color: #FBAE17;
   border-color: #FBAE17;
   background-image: linear-gradient(0deg, #FBAE17, #FBAE17 50%, transparent 50%);
-  font-weight: bold;
+  font-weight: normal;
   border-radius: 5px;
-  font-size: 27px;
+  font-size: 23px;
   min-height: 35px;
-  text-decoration: none; }
+  text-decoration: none;
+  font-family: 'Glober SemiBold'; }
 
 .scheduled_appointments_text {
   margin-top: -7px;
   color: #9D9D9D;
   font-size: 14px;
-  text-align: center; }
+  text-align: center;
+  font-family: 'Glober Regular'; }
 
 .button.button-balanced {
   background-color: #A2D28A;
   border-color: #A2D28A;
   background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
-  font-weight: bold;
+  font-weight: normal;
   border-radius: 5px;
-  font-size: 27px;
+  font-size: 23px;
   min-height: 35px;
-  text-decoration: none; }
+  text-decoration: none;
+  font-family: 'Glober SemiBold'; }
 
 .button.button-balanced.activated {
   background-color: #A2D28A;
@@ -8060,11 +8089,12 @@ body {
   background-color: #B3B3B3;
   border-color: #B3B3B3;
   background-image: linear-gradient(0deg, #B3B3B3, #B3B3B3 50%, transparent 50%);
-  font-weight: bold;
+  font-weight: normal;
   border-radius: 5px;
-  font-size: 27px;
+  font-size: 23px;
   min-height: 35px;
-  text-decoration: none; }
+  text-decoration: none;
+  font-family: 'Glober SemiBold'; }
 
 .button.button-royal.activated {
   background-color: #B3B3B3;
@@ -8188,7 +8218,7 @@ a {
   box-shadow: 0 0 3px 3px #888; }
 
 .head_titleLess {
-  font-family: 'Glober Thin';
+  font-family: 'Glober xBold';
   font-weight: bold;
   font-size: 30px;
   text-align: center;
@@ -8203,8 +8233,8 @@ a {
   top: 127px; }
 
 .TitleLess {
-  font-family: 'Glober Thin';
-  font-weight: bold;
+  font-family: 'Glober Bold';
+  font-weight: normal;
   font-size: 21px;
   text-align: left;
   position: relative;
@@ -8258,7 +8288,7 @@ a {
   top: 63px; }
 
 .TitleHomeUser_Sub {
-  font-family: 'Glober Thin';
+  font-family: 'Glober SemiBold';
   font-weight: bold;
   font-size: 25px;
   position: relative;
@@ -8266,7 +8296,8 @@ a {
   top: 0px; }
 
 .ContentHomeUser {
-  margin: 81px 0 0 0; }
+  margin: 81px 0 0 0;
+  font-family: 'Glober Regular'; }
 
 .listImgView {
   width: 55px;
@@ -8283,7 +8314,8 @@ a {
 .ListText {
   position: relative;
   top: -27px;
-  margin-left: 10px; }
+  margin-left: 10px;
+  font-family: 'Glober Bold'; }
 
 .ItemList {
   padding: 8px;
@@ -8297,10 +8329,11 @@ a {
   font-size: 14px;
   margin-bottom: -1px;
   margin-left: 86px;
-  margin-top: -29px; }
+  margin-top: -29px;
+  font-family: 'Glober Thin'; }
 
 .SubTitleSpan {
-  font-family: Arial;
+  font-family: 'Glober Regular';
   font-weight: normal;
   font-size: 21px;
   color: #888; }
@@ -8312,7 +8345,7 @@ a {
   color: #FF0000; }
 
 .appointment_with {
-  font-family: 'Glober Thin';
+  font-family: 'Glober SemiBold';
   font-weight: bold;
   font-size: 20px;
   text-align: center;
@@ -8329,7 +8362,7 @@ a {
   padding: 5px; }
 
 .ptagprimary {
-  font-family: 'Glober Thin';
+  font-family: 'Glober Regular';
   font-weight: normal;
   font-size: 20px;
   margin-left: 32px; }
@@ -8349,19 +8382,19 @@ a {
   margin: 33px 10px 5px 47px; }
 
 .ChronicCondition {
-  font-family: 'Glober Thin';
+  font-family: 'Glober Bold';
   font-weight: bold;
   font-size: 30px;
   color: #535353;
   margin-left: 16px; }
 
 .PragraphContent {
-  font-family: 'Glober Thin';
+  font-family: 'Glober Regular';
   font-weight: normal;
   font-size: 15px; }
 
 .ReportTitle {
-  font-family: 'Glober Thin';
+  font-family: 'Glober Regular';
   font-weight: Bold;
   font-size: 22px; }
 

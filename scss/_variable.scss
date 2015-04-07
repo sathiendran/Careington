@@ -53,10 +53,11 @@ $fontFamily_xBold: 					'Glober xBold';
 	background-color : $background-color;	
 	border-color: $background-color;
 	background-image: linear-gradient(0deg, $background-color, $background-color 50%, transparent 50%);
-	font-weight: $font-weight;
+	font-weight: normal;
 	border-radius: $border-radius;
 	font-size: $font-size;
 	min-height:$min-height;	
 	text-decoration: none;
+	font-family: $fontFamily_semibold;
 }
 
