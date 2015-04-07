@@ -7604,15 +7604,79 @@ a.button {
 
 /* Empty. Add your own Variable CSS if you like */
 @font-face {
-  font-family: 'Glober Thin';
-  src: url("Glober Thin Free.otf"); }
+  font-family: 'Glober Black Italic';
+  src: url("Glober Black Italic.otf"); }
 
 @font-face {
-  font-family: 'Glober semiBold';
-  src: url("Glober SemiBold Free.otf"); }
+  font-family: 'Glober Black';
+  src: url("Glober Black.otf"); }
+
+@font-face {
+  font-family: 'Glober Bold Italic';
+  src: url("Glober Bold Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober Bold';
+  src: url("Glober Bold.otf"); }
+
+@font-face {
+  font-family: 'Glober Book Italic';
+  src: url("Glober Book Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober Book';
+  src: url("Glober Book.otf"); }
+
+@font-face {
+  font-family: 'Glober Heavy Italic';
+  src: url("Glober Heavy Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober Heavy';
+  src: url("Glober Heavy.otf"); }
+
+@font-face {
+  font-family: 'Glober Light Italic';
+  src: url("Glober Light Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober Light';
+  src: url("Glober Light.otf"); }
+
+@font-face {
+  font-family: 'Glober Regular Italic';
+  src: url("Glober Regular Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober Regular';
+  src: url("Glober Regular.otf"); }
+
+@font-face {
+  font-family: 'Glober SemiBold Italic';
+  src: url("Glober SemiBold Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober SemiBold';
+  src: url("Glober SemiBold.otf"); }
+
+@font-face {
+  font-family: 'Glober Thin Italic';
+  src: url("Glober Thin Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober Thin';
+  src: url("Glober Thin.otf"); }
+
+@font-face {
+  font-family: 'Glober xBold Italic';
+  src: url("Glober xBold Italic.otf"); }
+
+@font-face {
+  font-family: 'Glober xBold';
+  src: url("Glober xBold.otf"); }
 
 body {
-  font-family: 'Glober semiBold'; }
+  font-family: 'Glober Thin'; }
 
 .bar.bar-positive {
   background-color: #F0502C;
@@ -7625,7 +7689,7 @@ body {
   margin: 38px 0 0 0;
   width: auto;
   height: 78px;
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 27px;
   text-align: center;
@@ -7763,7 +7827,7 @@ body {
   background-color: #484848;
   border-color: #484848;
   height: 40px;
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 11px;
   border-top-width: -1px;
@@ -7835,7 +7899,7 @@ body {
     font-size: 12px; }
 
 .button_new {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: normal;
   font-size: 19px;
   color: #fff;
@@ -7866,7 +7930,7 @@ body {
   padding-right: 4px; }
 
 .title_patient {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 25px;
   color: #fff;
@@ -8124,7 +8188,7 @@ a {
   box-shadow: 0 0 3px 3px #888; }
 
 .head_titleLess {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 30px;
   text-align: center;
@@ -8139,7 +8203,7 @@ a {
   top: 127px; }
 
 .TitleLess {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 21px;
   text-align: left;
@@ -8157,7 +8221,7 @@ a {
   text-decoration: none; }
 
 .footer {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 11px;
   color: #fff;
@@ -8178,7 +8242,7 @@ a {
   position: relative; }
 
 .head_titleHomeUser {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 22px;
   text-align: center;
@@ -8194,7 +8258,7 @@ a {
   top: 63px; }
 
 .TitleHomeUser_Sub {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 25px;
   position: relative;
@@ -8209,7 +8273,7 @@ a {
   height: 55px; }
 
 .HrefListView {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: normal;
   font-size: 21px;
   color: #000;
@@ -8248,7 +8312,7 @@ a {
   color: #FF0000; }
 
 .appointment_with {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 20px;
   text-align: center;
@@ -8265,7 +8329,7 @@ a {
   padding: 5px; }
 
 .ptagprimary {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: normal;
   font-size: 20px;
   margin-left: 32px; }
@@ -8285,19 +8349,19 @@ a {
   margin: 33px 10px 5px 47px; }
 
 .ChronicCondition {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: bold;
   font-size: 30px;
   color: #535353;
   margin-left: 16px; }
 
 .PragraphContent {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: normal;
   font-size: 15px; }
 
 .ReportTitle {
-  font-family: 'Glober semiBold';
+  font-family: 'Glober Thin';
   font-weight: Bold;
   font-size: 22px; }
 

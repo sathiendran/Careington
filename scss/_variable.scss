@@ -18,9 +18,24 @@ $Silver:							#C2C2C2; //add health page
 $Emperor:							#555555; //plan details
 $Scorpion:							#5C5C5C;
 $Scooter:							#39BAD9;
-$fontFamily_thin: 				    'Glober Thin';
-$fontFamily_semiBold: 				'Glober semiBold';
-
+$fontFamily_black_italic: 			'Glober Black Italic';
+$fontFamily_black: 					'Glober Black';
+$fontFamily_bold_italic: 			'Glober Bold Italic';
+$fontFamily_bold: 					'Glober Bold';
+$fontFamily_book_italic: 			'Glober Book Italic';
+$fontFamily_book: 					'Glober Book';
+$fontFamily_heavy_italic: 			'Glober Heavy Italic';
+$fontFamily_heavy: 					'Glober Heavy';
+$fontFamily_light_italic: 			'Glober Light Italic';
+$fontFamily_light: 					'Glober Light';
+$fontFamily_regular_italic: 		'Glober Regular Italic';
+$fontFamily_regular: 				'Glober Regular';
+$fontFamily_semibold_italic: 		'Glober SemiBold Italic';
+$fontFamily_semibold: 				'Glober SemiBold';
+$fontFamily_thin_italic: 			'Glober Thin Italic';
+$fontFamily_thin: 					'Glober Thin';
+$fontFamily_xBold_italic: 			'Glober xBold Italic';
+$fontFamily_xBold: 					'Glober xBold';
 
 
 @mixin font($fontFamily, $fontWeight, $fontSize) {	 
