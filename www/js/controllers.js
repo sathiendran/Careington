@@ -21,6 +21,8 @@ $scope.myGoBack = function() {
    $scope.data = {};
    $scope.loginProcess = function () {
      LoginService.loginUser($scope);
+	var email = $scope.data.email;
+	alert(email);
 	};
 	
 $scope.name ='';
@@ -369,6 +371,17 @@ $scope.data = {
 		  });
     };
 })
+
+
+.controller('PatientConcernsSelectCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicHistory) {
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+})
+
 
 .controller('ChatsCtrl', function($scope, Chats) {
   $scope.chats = Chats.all();
