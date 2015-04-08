@@ -373,6 +373,56 @@ $scope.data = {
 })
 
 
+.controller('ChronicConditionCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+  
+ $scope.model = null;
+ $scope.devList = [
+    { text: "This is a Chronic Conditions", checked: false },
+    { text: "This is a Chronic Conditions", checked: false },
+	{ text: "This is a Chronic Conditions", checked: false },
+	{ text: "This is a Chronic Conditions", checked: false }
+  ];	
+ $scope.rightButtons = [
+        { 
+   type: 'button-positive',  
+   content: '<i class="icon ion-navicon"></i>',
+   tap: function(e) {
+    $scope.date = null;
+    $scope.modal.scope.model = {description :"",amount :""};
+    $scope.openModal();
+      
+	}
+        }
+    ]
+
+    $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', 
+        function(modal) {
+            $scope.modal = modal;
+	},
+        {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope, 
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+
+        }
+    );
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+    $scope.closeModal = function(model) {
+        $scope.modal.hide();
+    };
+		
+})
+
+
 .controller('PatientConcernsSelectCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicHistory) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
@@ -394,10 +444,105 @@ $scope.data = {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('MedicationAllegiesCtrl', function($scope, $ionicHistory) {
+.controller('MedicationAllegiesCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
  $scope.myGoBack = function() {
     $ionicHistory.goBack();
   };
+  
+   $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+  
+ $scope.model = null;
+ $scope.devList = [
+    { text: "This is a Chronic Conditions", checked: false },
+    { text: "This is a Chronic Conditions", checked: false },
+	{ text: "This is a Chronic Conditions", checked: false },
+	{ text: "This is a Chronic Conditions", checked: false }
+  ];	
+ $scope.rightButtons = [
+        { 
+   type: 'button-positive',  
+   content: '<i class="icon ion-navicon"></i>',
+   tap: function(e) {
+    $scope.date = null;
+    $scope.modal.scope.model = {description :"",amount :""};
+    $scope.openModal();
+      
+	}
+        }
+    ]
+
+    $ionicModal.fromTemplateUrl('templates/tab-MedicationAllegiesList.html', 
+        function(modal) {
+            $scope.modal = modal;
+	},
+        {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope, 
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+
+        }
+    );
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+    $scope.closeModal = function(model) {
+        $scope.modal.hide();
+    };
+ 
+})
+
+
+.controller('CurrentMedicationCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
+ $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+  
+   $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+  
+ $scope.model = null;
+ $scope.devList = [
+    { text: "This is a Current Medication", checked: false },
+    { text: "This is a Current Medication", checked: false },
+	{ text: "This is a Current Medication", checked: false },
+	{ text: "This is a Current Medication", checked: false }
+  ];	
+ $scope.rightButtons = [
+        { 
+   type: 'button-positive',  
+   content: '<i class="icon ion-navicon"></i>',
+   tap: function(e) {
+    $scope.date = null;
+    $scope.modal.scope.model = {description :"",amount :""};
+    $scope.openModal();
+      
+	}
+        }
+    ]
+
+    $ionicModal.fromTemplateUrl('templates/tab-CurrentMedicationList.html', 
+        function(modal) {
+            $scope.modal = modal;
+	},
+        {
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope, 
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+
+        }
+    );
+    $scope.openModal = function() {
+        $scope.modal.show();
+    };
+    $scope.closeModal = function(model) {
+        $scope.modal.hide();
+    };
+ 
 })
 
 

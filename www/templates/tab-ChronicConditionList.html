@@ -1,0 +1,99 @@
+<div class="modal">
+<ion-view  title="Home">
+			<!-- Start Header -->
+	<!--<ion-header-bar align-title="left" class="bar-positiveLess" style="background-color: #000;height: 55px;border:none;">
+	
+		  <h1 class="title_patient" style="font-size: 24px;margin-top: -7px;">Primary Concerns</h1>
+		  
+	 <button class="button button-clear" style="background-color:#000;color:#fff;float:right;font-size: 18px;left: -9px;margin-top: 17px;" ng-click="closeModal()">Done</button>
+	
+		  
+		 
+		<div class="bar bar-headerLess title" style="background-color:#000; border:none;">
+		 
+		</div>  
+	</ion-header-bar>-->
+	
+	
+	 <header class="bar bar-header bar-dark" style="height: 55px;">
+      <h1 class="title" style="top: 7px;">Chronic Conditions</h1>
+     <a ng-href="#/tab/ChronicCondition"> <button class="button button-clear" ng-click="closeModal()" style="top: 7px;">Done</button></a>
+    </header>
+	
+			<!-- End Header -->
+	
+			<!-- Start Content -->
+<ion-content class="ContentList" style="margin: 0px 0 0;top: 54px;">
+	<ion-list>
+	<!--	<ion-item>
+			Fever
+				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em; float: right; >
+					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
+					<label for="squaredCheckbox"></label>
+				</div>
+		</ion-item>
+		<ion-item>
+			  
+				Nousea
+				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em; float: right; >
+					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
+					<label for="squaredCheckbox"></label>
+				</div>
+			 
+		</ion-item>
+		<ion-item>
+			 
+				Vomiting
+				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;float: right;" >
+					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
+					<label for="squaredCheckbox"></label>
+				</div>
+			 
+		</ion-item>
+		<ion-item>
+			 
+				Headache
+				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;float: right;" >
+					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
+					<label for="squaredCheckbox"></label>
+				</div>
+			  
+		</ion-item>
+		
+		<ion-item>
+			 
+				shortness of breath
+				<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;float: right;" >
+					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
+					<label for="squaredCheckbox"></label>
+				</div>
+			  
+		</ion-item>
+		
+		<ion-item>
+		<a ng-click="SaveDesc()" style="cursor:pointer;">
+			 Other
+			 </a>
+		</ion-item> --->
+		
+		
+		<ion-checkbox ng-repeat="item in devList"
+						  ng-model="item.checked" 
+						  ng-checked="item.checked" ng-click="!OnSelectPatientConcerns(item.text)" ng-disabled="checked" >
+			  {{ item.text }}
+			</ion-checkbox> 
+		
+			<!--<ion-radio ng-repeat="item in devList" ng-model="item.text" ng-value="item.text" name="item.text" ng-click="OnSelectPatientConcerns(item.text)">
+       <span style=" margin-left: 44px"> {{item.text}} </span>
+		</ion-radio> -->
+	
+		
+	</ion-list>
+	
+</ion-content>
+
+			<!-- End Content -->
+	
+	
+</ion-view>
+</div>

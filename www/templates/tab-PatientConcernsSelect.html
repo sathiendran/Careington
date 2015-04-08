@@ -1,4 +1,4 @@
-<ion-view title="Prior Surgeries">
+<ion-view title="Patient Concerns">
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" >
 		<div ng-include src="'templates/intakeHeader.html'"></div>
@@ -25,7 +25,7 @@
 				<div style="color:#888;float:right;margin-right: 10px; font-size: 13px;">Step <b>3</b> of <b>7</b></div>
 				<div style="margin-top: 12px;">
 					<a ng-href=""> 
-						<h1 class="title ChronicCondition" style="font-size: 26px; margin-left: 5px;">Patient Concerns</h1>
+						<h1 class="title ChronicCondition" style="font-size: 26px; margin-left: 5px;">Primary Concerns </h1>
 					</a>				
 				</div>
 				<div style="margin-left: 5px; font-size: 13px; float: left;">What is the reason(s) for today's visit?</div>
@@ -37,6 +37,7 @@
 				  <img ng-src="img/add_surgery.png" ></div>
 				 </div>
 			</div>
+			
 	    </ion-item>
 		
 		<div class="list" style="margin-top: -3px;">
@@ -48,6 +49,37 @@
 				<div style="text-align: right; margin-right: 5px;"><img ng-src="img/delete1.png" ></div>
 			</a>
 		</div>
+		
+		
+		<ion-item style="top: -19px;padding: 7px; margin-bottom: -20px; height: 85px;">
+			<div>
+				<div style="margin-top: 12px;">
+					<a ng-href=""> 
+						<h1 class="title ChronicCondition" style="font-size: 26px; margin-left: 5px;">Secondary Concerns </h1>
+					</a>				
+				</div>
+				<div style="margin-left: 5px; font-size: 13px; float: left;">What is the reason(s) for today's visit?</div>
+				<!--<div style="float: right; position: relative;right: 10px; top: -15px;"><img ng-src="img/add_surgery.png"></div>-->
+				
+				
+				<div class="buttons" style="float: right; position: relative;right: 10px; top: -15px; cursor: pointer;"> 
+				  <div  ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons">
+				  <img ng-src="img/add_surgery.png" ></div>
+				 </div>
+			</div>
+			
+	    </ion-item>
+		
+		<div class="list" style="margin-top: -3px;">
+
+			<a class="item item-avatar" href="#" style="padding-left: 15px;" show-delete="data.showDelete">     
+				<div style="float: left;font-size: 20px;margin: 8px; ">
+					Vomiting
+				</div>
+				<div style="text-align: right; margin-right: 5px;"><img ng-src="img/delete1.png" ></div>
+			</a>
+		</div>
+
 		
 	<!--	<ion-list show-delete="data.showDelete" >
 		<ion-item ng-repeat="item in items" 
@@ -83,7 +115,7 @@
 		    </div>
 			   
 			<div class="" style="text-align:right;margin-top: -20px;">
-				<a class="button_new icon ion-chevron-right"   href=""> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
+				<a class="button_new icon ion-chevron-right"  ng-href="#/tab/ChronicCondition"> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
 			</div>
 			  
 <div>

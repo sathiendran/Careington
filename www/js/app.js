@@ -179,7 +179,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-ChronicCondition.html',
-        controller: 'LoginCtrl'
+        controller: 'ChronicConditionCtrl'
       }
     }
   })
@@ -199,7 +199,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-CurrentMedication.html',
-        controller: 'LoginCtrl'
+        controller: 'CurrentMedicationCtrl'
       }
     }
   })
