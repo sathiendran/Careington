@@ -6,11 +6,11 @@ var indexOf = [].indexOf || function(item) {
 }
 
 
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 /*.controller('LoginCtrl', function($scope) {})
 .controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal, $ionicSideMenuDelegate) {	*/
-.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, $ionicHistory) {
+.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, $ionicHistory,LoginService) {
  $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -18,7 +18,11 @@ $scope.myGoBack = function() {
     $ionicHistory.goBack();
   };
   
-
+   $scope.data = {};
+   $scope.loginProcess = function () {
+     LoginService.loginUser($scope);
+	};
+	
 $scope.name ='';
     $scope.chosen = {};
     $scope.colors = [{Id: 'R', Name : 'Red'},{Id: 'G', Name : 'Green'},{Id: 'B', Name: 'Blue'}];
@@ -146,7 +150,7 @@ $scope.data = {
     };
 
     $scope.save =  function(model){
-        alert("Date :"+$scope.date+" Description: "+model.amount+ " Amount: "+model.amount);
+       // alert("Date :"+$scope.date+" Description: "+model.amount+ " Amount: "+model.amount);
         $scope.closeModal();
     };
 //}])
@@ -288,7 +292,7 @@ $scope.data = {
 })
 
 
-.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
+.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -298,7 +302,7 @@ $scope.data = {
   
  $scope.model = null;
  $scope.devList = [
-    { text: "Fever", checked: true },
+    { text: "Fever", checked: false },
     { text: "Vomiting", checked: false },
 	{ text: "Headache", checked: false },
 	{ text: "shortness of breath", checked: false }
@@ -334,6 +338,11 @@ $scope.data = {
     $scope.closeModal = function(model) {
         $scope.modal.hide();
     };
+	
+	$scope.OnSelectPatientConcerns = function($items) {
+		//alert($items);
+		PatientConcernsListService.PatientConcernsList($items);
+	}
 	
 	$scope.SaveDesc = function(model) {
 	$scope.data = {}
