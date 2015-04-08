@@ -1,0 +1,63 @@
+<ion-view title="Patient Concerns">
+<ion-side-menus>
+	<ion-side-menu-content>
+
+
+		<div ng-include src="'templates/intakeHeader.html'"></div>
+	
+
+<ion-content class="ContentHomeUser" style="margin-top: 120px;">
+ 	<ion-list>
+		<ion-item style="top:3px;padding: 1px;">
+			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div>
+			<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
+			<div style="margin-top: 25px;">
+				
+					<h1 class="title ChronicCondition" style="font-size: 25px;">Primary Concerns</h1>
+				</a>
+				<p style="margin-left: 19px;">What is reason(s) for todays visit?</p>
+					<div style="float:right;left: -15px; position: relative; margin-top: -45px; cursor:pointer;">
+					<img ng-src="img/add_surgery.png"  >
+					</div>
+				</div>
+			</div>
+			
+		</ion-item>
+		
+		<ion-item style="top:3px;padding: 1px;">
+			<!--<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div> -->
+			<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
+			<div style="margin-top: 25px;">
+				
+					<h1 class="title ChronicCondition" style="font-size: 25px;">Secondary Concerns</h1>
+				</a>
+				<p style="margin-left: 19px;">What is reason(s) for todays visit?</p>
+				 <div style="float:right;left: -15px; position: relative; margin-top: -45px;">
+					<img ng-src="img/add_surgery.png"  >
+				</div>
+				</div>
+			</div>
+			
+		</ion-item>
+	</ion-list>
+</ion-content>
+</ion-side-menu-content>
+<!-- Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+
+
+		<ion-footer-bar  class="footer">
+			<div style="width:100%;">
+					 
+						<div class="" style="text-align:center;">
+							<a class="button_new icon" href="#/tab/patientDetail" style=" color:#999999;"> Cancel </a>
+						</div>
+						   
+						<div class="" style="text-align:right;margin-top: -20px;">
+							<a class="button_new icon ion-chevron-right"   href="#/tab/ChronicCondition"> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
+						</div>
+						  
+			<div>
+		</ion-footer-bar>	
+
+</ion-view>

@@ -8457,14 +8457,15 @@ a {
   margin-left: -47px;
   pointer-events: none; }
 
-.ion-checkmark::before {
-  /*content: "";*/
-  background: none repeat scroll 0 0 #fff;
-  border-radius: 28px;
-  border-style: solid;
-  border-width: 1px;
-  content: " ";
-  display: table;
-  height: 100%;
-  transition: background-color 20ms ease-in-out 0s;
-  width: 100%; }
+/*.ion-checkmark::before {
+    //content: "";
+	 background: none repeat scroll 0 0 #fff;
+    border-radius: 28px;
+    border-style: solid;
+    border-width: 1px;
+    content: " ";
+    display: table;
+    height: 100%;
+    transition: background-color 20ms ease-in-out 0s;
+    width: 100%;
+}*/
