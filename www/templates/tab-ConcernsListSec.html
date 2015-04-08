@@ -74,7 +74,11 @@
 						  ng-model="item.checked" 
 						  ng-checked="item.checked" ng-click="OnSelectPatientConcerns(item.text)" >
 			  {{ item.text }}
-			</ion-checkbox>
+			</ion-checkbox> 
+			
+	<!--		<input type="radio" ng-model="$parent.lunch" ng-repeat="item in devList"  
+    ng-value="item.text" name="lunch">    
+    {{ item.text }}-->
 			
 		<a ng-click="SaveDesc()" style="cursor:pointer;">
 		<ion-item>

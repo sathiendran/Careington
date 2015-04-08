@@ -23,7 +23,7 @@
 	<ion-content class="login_content">
 		<div class="login_home">	
 				<label class="item-input">
-					<input type="text" placeholder="Email" >
+					<input type="text" placeholder="Email" ng-model="data.email" >
 				</label>
 				
 				<div class="squaredCheckbox">
@@ -34,9 +34,11 @@
 				<div class="remember"> Remember my email</div> 	
 				
 				<div class="continue">
-					<a ng-href="#/tab/provider"><button class="button button-outline button-positive">
+					<!--<a ng-href="#/tab/provider"> -->
+					<button class="button button-outline button-positive" ng-click="loginProcess()">
 						Continue
-					</button></a>
+					</button>
+					<!-- </a> --->
 				</div>
 				
 				<!--<div><a ng-href="#/tab/consultCharge">consultCharge</a></div>

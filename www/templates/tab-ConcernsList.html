@@ -70,12 +70,16 @@
 		</ion-item> --->
 		
 		
-			<ion-checkbox ng-repeat="item in devList"
+		<!--	<ion-checkbox ng-repeat="item in devList"
 						  ng-model="item.checked" 
 						  ng-checked="item.checked" ng-click="!OnSelectPatientConcerns(item.text)" ng-disabled="checked" >
 			  {{ item.text }}
-			</ion-checkbox>
-			
+			</ion-checkbox> -->
+		
+		<ion-radio ng-repeat="item in devList" ng-model="item.text" ng-value="item.text" name="item.text" ng-click="OnSelectPatientConcerns(item.text)">
+       <span style=" margin-left: 44px"> {{item.text}} </span>
+		</ion-radio>
+	
 		<a ng-click="SaveDesc()" style="cursor:pointer;">
 		<ion-item>
 			Other

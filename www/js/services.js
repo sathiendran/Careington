@@ -50,6 +50,49 @@ angular.module('starter.services', [])
 })
 
 
+
+.factory('PatientConcernsListService', function() { 
+	return { 
+		PatientConcernsList: function($scope) {
+			alert($scope)	
+				
+		}
+	}
+})
+
+.factory('LoginService', function($http) { 
+	return { 
+		loginUser: function($scope) {
+				
+				var request = $http({
+							method: "post",
+							url: "https://snap-dev.com/api/Account/Token ",
+							data: {
+								email: $scope.data.email
+							},
+							headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+				});
+			
+					/* Successful HTTP post request or not */
+			    request.success(function (data) {
+						if(data == "True"){
+							 $scope.responseMessage = "Successfully Logged In";
+							  $scope.loading = false;
+							  /* value Reset */
+							  $scope.data.email = "";
+							  password: $scope.data.password ="";
+							  /* value Reset */
+						 }
+						else {
+							 $scope.responseMessage = "Email or Password is incorrect";
+							  $scope.loading = false;
+						}
+				});
+		}
+	}
+})
+
+
 .factory('pickadateUtils', ['dateFilter', function(dateFilter) {
       return {
         isDate: function(obj) {

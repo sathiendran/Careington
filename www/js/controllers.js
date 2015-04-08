@@ -6,17 +6,23 @@ var indexOf = [].indexOf || function(item) {
 }
 
 
-angular.module('starter.controllers', ['ngStorage'])
-
+angular.module('starter.controllers', ['starter.services'])
 
 /*.controller('LoginCtrl', function($scope) {})
 .controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal, $ionicSideMenuDelegate) {	*/
-.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate) {
+.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, $ionicHistory,LoginService) {
  $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
-
-
+$scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+  
+   $scope.data = {};
+   $scope.loginProcess = function () {
+     LoginService.loginUser($scope);
+	};
+	
 $scope.name ='';
     $scope.chosen = {};
     $scope.colors = [{Id: 'R', Name : 'Red'},{Id: 'G', Name : 'Green'},{Id: 'B', Name: 'Blue'}];
@@ -144,7 +150,7 @@ $scope.data = {
     };
 
     $scope.save =  function(model){
-        alert("Date :"+$scope.date+" Description: "+model.amount+ " Amount: "+model.amount);
+       // alert("Date :"+$scope.date+" Description: "+model.amount+ " Amount: "+model.amount);
         $scope.closeModal();
     };
 //}])
@@ -273,33 +279,50 @@ $scope.data = {
       };
 }])
 
+.controller('UserhomeCtrl', function($scope, $ionicHistory) {
+ $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+})
 
-.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup, $localStorage) {
+.controller('UsersearchCtrl', function($scope, $ionicHistory) {
+ $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
+})
+
+
+.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
+  $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
   
  $scope.model = null;
-
  $scope.devList = [
     { text: "Fever", checked: false },
     { text: "Vomiting", checked: false },
 	{ text: "Headache", checked: false },
 	{ text: "shortness of breath", checked: false }
   ];	
-  
  $scope.rightButtons = [
         { 
    type: 'button-positive',  
    content: '<i class="icon ion-navicon"></i>',
    tap: function(e) {
     $scope.date = null;
+    $scope.modal.scope.model = {description :"",amount :""};
     $scope.openModal();
-    }
-        } ]
-	
-    $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', function(modal) {
-    $scope.modal = modal;
+      
+	}
+        }
+    ]
+
+    $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', 
+        function(modal) {
+            $scope.modal = modal;
 	},
         {
             // Use our scope for the scope of the modal to keep it simple
@@ -316,20 +339,11 @@ $scope.data = {
         $scope.modal.hide();
     };
 	
-	
 	$scope.OnSelectPatientConcerns = function($items) {
 		//alert($items);
-		$scope.isdisabled=true;
-		if ($items
-		
-		) {                         
-		return true;
-		}
-		else {                         
-		return false;
-		}
+		PatientConcernsListService.PatientConcernsList($items);
 	}
-
+	
 	$scope.SaveDesc = function(model) {
 	$scope.data = {}
         $ionicPopup.show({
@@ -367,8 +381,10 @@ $scope.data = {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('MedicationAllegiesCtrl', function($scope) {
- 
+.controller('MedicationAllegiesCtrl', function($scope, $ionicHistory) {
+ $scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
 })
 
 
