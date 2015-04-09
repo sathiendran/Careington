@@ -66,30 +66,22 @@ angular.module('starter.services', [])
 				
 				var request = $http({
 							method: "post",
-							url: "https://snap-dev.com/api/Account/Token ",
-							data: {
-								email: $scope.data.email
-							},
+							url: "https://snap-dev.com/api/account/token/",
+							 data: "email=ben.ross.310.95348@gmail.com&password=Password@123&hospitalId=126&userTypeId=1",
 							headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 				});
 			
 					/* Successful HTTP post request or not */
-			    request.success(function (data) {
-						if(data == "True"){
-							 $scope.responseMessage = "Successfully Logged In";
-							  $scope.loading = false;
-							  /* value Reset */
-							  $scope.data.email = "";
-							  password: $scope.data.password ="";
-							  /* value Reset */
-						 }
-						else {
-							 $scope.responseMessage = "Email or Password is incorrect";
-							  $scope.loading = false;
-						}
-				});
-		}
-	}
+				    $http($scope.send).success(function(data){
+					$scope.response = "SUCCESS";
+					console.log(data);
+				   })
+				   .error(function(error){
+					$scope.response = "FAILED";
+					console.log(error);
+				   });
+				}
+		    }
 })
 
 

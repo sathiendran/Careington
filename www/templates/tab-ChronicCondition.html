@@ -1,9 +1,13 @@
 
-<ion-view title="Chronic Condition">
-	
-	<div ng-include src="'templates/healthPlan_header.html'"></div>
-	
+<ion-side-menus> >
+	<ion-side-menu-content> 
 
+
+		<div ng-include src="'templates/intakeHeader.html'"></div>
+	
+	<!-- <div ng-include src="'templates/healthPlan_header.html'"></div> -->
+	
+<ion-view title="Chronic Condition">
 <ion-content class="ContentHomeUser" style="margin-top: 120px;">
  	<ion-list>
 		<ion-item style="top: 0px;padding: 2px;">
@@ -21,11 +25,7 @@
 					<img ng-src="img/add_surgery.png"  >
 					</div>
 				</div>
-			<!--	<div class="squaredCheckbox" style="margin: -1em 0.5em 0.25em 0.3em;" >
-					<input type="checkbox" value="None" id="squaredCheckbox" name="check" />
-					<label for="squaredCheckbox"></label>
-				</div>
-			<div style="font-size: 17px;"> None</div> -->
+			
 			</div>
 		
 		</ion-item>
@@ -52,25 +52,25 @@
 		
 	</ion-list>
 </ion-content>
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
+<ion-footer-bar  class="footer">
+	<div style="width:100%;">
+		<div class="buttons">
+		  <a class="button_new icon ion-chevron-left" ng-click="myGoBack()" style="cursor: pointer;"> Back </a>
+		</div class="buttons">
 
-		<!--<div ng-include src="'templates/invokeFooter.html'"></div> -->
-		
-		<ion-footer-bar  class="footer">
-<div style="width:100%;">
-    <div class="buttons">
-      <a class="button_new icon ion-chevron-left" ng-click="myGoBack()" style="cursor: pointer;"> Back </a>
-    </div class="buttons">
-
-   
-      <div class="" style="text-align:center;margin-top: -20px;">
-    <a class="button_new icon" ng-click="myGoBack()" style=" color:#999999; cursor: pointer;"> Cancel </a>
-      </div>
-      
-   <div class="" style="text-align:right;margin-top: -20px;">
-    <a class="button_new icon ion-chevron-right"   href="#/tab/priorSurgeries"> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
-   </div>
-     
-<div>
+	   
+		  <div class="" style="text-align:center;margin-top: -20px;">
+		<a class="button_new icon" ng-click="myGoBack()" style=" color:#999999; cursor: pointer;"> Cancel </a>
+		  </div>
+		  
+	   <div class="" style="text-align:right;margin-top: -20px;">
+		<a class="button_new icon ion-chevron-right"   href="#/tab/priorSurgeries"> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
+	   </div>
+		 
+	<div>
 </ion-footer-bar>
 		
-</ion-view>

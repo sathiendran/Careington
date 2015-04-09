@@ -20,9 +20,9 @@ $scope.myGoBack = function() {
   
    $scope.data = {};
    $scope.loginProcess = function () {
+   var email = $scope.data.email;
+   alert(email);
      LoginService.loginUser($scope);
-	var email = $scope.data.email;
-	alert(email);
 	};
 	
 $scope.name ='';
@@ -445,9 +445,9 @@ $scope.data = {
 })
 
 .controller('MedicationAllegiesCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
- $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
+	 $scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	  };
   
    $scope.myGoBack = function() {
     $ionicHistory.goBack();
@@ -455,10 +455,10 @@ $scope.data = {
   
  $scope.model = null;
  $scope.devList = [
-    { text: "This is a Chronic Conditions", checked: false },
-    { text: "This is a Chronic Conditions", checked: false },
-	{ text: "This is a Chronic Conditions", checked: false },
-	{ text: "This is a Chronic Conditions", checked: false }
+    { text: "This is a Medication Allergies", checked: false },
+    { text: "This is a Medication Allergies", checked: false },
+	{ text: "This is a Medication Allergies", checked: false },
+	{ text: "This is a Medication Allergies", checked: false }
   ];	
  $scope.rightButtons = [
         { 
@@ -496,9 +496,10 @@ $scope.data = {
 
 
 .controller('CurrentMedicationCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
- $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
+ 	 $scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	  };
+
   
    $scope.myGoBack = function() {
     $ionicHistory.goBack();
