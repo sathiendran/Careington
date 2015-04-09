@@ -133,27 +133,27 @@ body {
 	padding-top: 85px;
 		.login_home {	
 				padding: 0 12%;
+				
 				.item-input {
-						border: 1px solid $Altoa;
-						border-radius: 8px;
-						height: 45px;
-						font-weight: bold;
-						background-color: #999999;
-						::-webkit-input-placeholder { /* WebKit browsers */
-							color:    $Tundora !important;
-							font-size: 17px !important;
-							padding-top: 3px !important;
-						}
-						input {
-						font-size: 17px;
-						}
-						
-						
+					border: 1px solid $Altoa;
+					border-radius: 8px;
+					height: 45px;
+					font-weight: bold;
+					background-color: #999999;
+					::-webkit-input-placeholder { /* WebKit browsers */
+						color:    $Tundora !important;
+						font-size: 17px !important;
+						padding-top: 3px !important;
+					}
+					input {
+					font-size: 17px;
+					}
 
 				}
-				
 		}
 }
+
+
 
 
 
@@ -255,6 +255,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}
 }
 
+.bar-footer {
+	background-position: 0px 40px;
+}
+
 //Password Page
 
 .password {
@@ -280,20 +284,36 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			color: #C4C4C4;
 			font-size: 12px;
 			position: relative;
-			top: -5px;
-			font-family: $fontFamily_thin;
+			top: -4px;
+			font-family: $fontFamily_semibold;
 			font-weight: bold;
 		}
 }
 .password_content {
 	@extend .login_content;
-	margin: 195px 0 0 4%;
+	margin: 195px 0 0 0;
+	.item-input {
+		border: 1px solid $Altoa;
+		border-radius: 8px;
+		height: 45px;
+		font-weight: bold;
+		background-color: #999999;
+		::-webkit-input-placeholder { /* WebKit browsers */
+			color:    $Tundora !important;
+			font-size: 17px !important;
+			padding-top: 3px !important;
+		}
+		input {
+		font-size: 17px;
+		}
+	}
 }
-.password-input {
+/*.item-input {
 	background-color: $Mercury;
-	@extend .item-input;
+	
 	border: 1px solid $Altoa;
 	border-radius: 8px;
+	@extend .item-input;
 	
 		input {
 			-moz-appearance: none;
@@ -303,10 +323,11 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			flex: 1 1 220px;
 			margin: 0;
 			padding-right: 24px;
+			font-size: 17px;			
 		}		
-}
+}*/
 .password_home {
-			padding-right: 25px;
+			padding: 0 12%;
 }
 
 .login {
@@ -316,6 +337,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .forgot_password_text {
 	text-align: center;
+	  padding-top: 8px;
 	a{
 		text-decoration: none;
 		color:$Viking;
@@ -635,10 +657,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
  
  // from Sakthi
  
- /* Colors for my Website */
-
-@import  "variable";
-
+ 
  a {
       text-decoration:none;
    }
@@ -678,7 +697,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .bar-TitleLess{
 	display: block;
 	background-color: #f2f2f2;
-	height: 63px;
+	height: 57px;
     top: 127px;
 }
 
@@ -689,11 +708,30 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		position:relative; 
 		top: 25px;	
 		 margin: 12px;	
+		 Color: #4D4D4D;
 }		
-	
+.ContentList_provider {
+	margin: 138px 0 0 0;
+	.item {
+		  padding: 25px 16px 16px 35px;
+		   Color: #4D4D4D;
+		   font-size: 20px;
+		   .ion-chevron-right.ListLinkHref {
+			font-size: 28px;
+			margin-top: -8px;
+		   }
+	}
+
+}	
 
 .ContentList {
-	margin: 145px 0 0 0;
+	margin: 138px 0 0 0;	
+}
+
+ .bar .buttons > .button {
+    min-height: 31px;
+    line-height: 35px;
+	color: #fff;
 }
 
 .ListLinkHref{

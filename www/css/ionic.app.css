@@ -5351,7 +5351,7 @@ a.item-content {
 .card .item, .list-inset .item, .padding > .list .item, .padding-horizontal > .list .item {
   margin-right: 0;
   margin-left: 0; }
-  .card .item.item-input input, .card .item.item-input .item.password-input, .list-inset .item.item-input input, .list-inset .item.item-input .item.password-input, .padding > .list .item.item-input input, .padding > .list .item.item-input .item.password-input, .padding-horizontal > .list .item.item-input input, .padding-horizontal > .list .item.item-input .item.password-input {
+  .card .item.item-input input, .list-inset .item.item-input input, .padding > .list .item.item-input input, .padding-horizontal > .list .item.item-input input {
     padding-right: 44px; }
 
 .padding-left > .list .item {
@@ -5633,7 +5633,7 @@ label, input, button, select, textarea {
 input, button, select, textarea {
   font-family: "Helvetica Neue", "Roboto", sans-serif; }
 
-.item-input, .password-input {
+.item-input {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -5648,7 +5648,7 @@ input, button, select, textarea {
   position: relative;
   overflow: hidden;
   padding: 6px 0 5px 16px; }
-  .item-input input, .item-input .password-input {
+  .item-input input {
     -webkit-border-radius: 0;
     border-radius: 0;
     -webkit-box-flex: 1;
@@ -5663,7 +5663,7 @@ input, button, select, textarea {
     margin: 0;
     padding-right: 24px;
     background-color: transparent; }
-  .item-input .button .icon, .item-input .button .password-input {
+  .item-input .button .icon {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 24px;
     -moz-box-flex: 0;
@@ -5675,7 +5675,7 @@ input, button, select, textarea {
     height: auto;
     text-align: center;
     font-size: 16px; }
-  .item-input .button-bar, .item-input .password-input {
+  .item-input .button-bar {
     -webkit-border-radius: 0;
     border-radius: 0;
     -webkit-box-flex: 1;
@@ -5687,7 +5687,7 @@ input, button, select, textarea {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none; }
-  .item-input .icon, .item-input .password-input {
+  .item-input .icon {
     min-width: 14px; }
 
 .item-input-inset {
@@ -5804,7 +5804,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 .platform-ios input[type="datetime-local"], .platform-ios input[type="date"], .platform-ios input[type="month"], .platform-ios input[type="time"], .platform-ios input[type="week"], .platform-android input[type="datetime-local"], .platform-android input[type="date"], .platform-android input[type="month"], .platform-android input[type="time"], .platform-android input[type="week"] {
   padding-top: 8px; }
 
-.item-input input, .item-input .password-input, .item-input textarea, .item-input .password-input {
+.item-input input, .item-input textarea {
   width: 100%; }
 
 textarea {
@@ -5827,7 +5827,7 @@ input[type="radio"], input[type="checkbox"] {
   margin: 0;
   line-height: normal; }
 
-.item-input input[type="file"], .item-input .password-input, .item-input input[type="image"], .item-input .password-input, .item-input input[type="submit"], .item-input .password-input, .item-input input[type="reset"], .item-input .password-input, .item-input input[type="button"], .item-input .password-input, .item-input input[type="radio"], .item-input .password-input, .item-input input[type="checkbox"], .item-input .password-input {
+.item-input input[type="file"], .item-input input[type="image"], .item-input input[type="submit"], .item-input input[type="reset"], .item-input input[type="button"], .item-input input[type="radio"], .item-input input[type="checkbox"] {
   width: auto; }
 
 input[type="file"] {
@@ -7728,18 +7728,18 @@ body {
   padding-top: 85px; }
   .login_content .login_home, .login_content .password_content {
     padding: 0 12%; }
-    .login_content .login_home .item-input, .login_content .login_home .password_content, .login_content .login_home .password-input {
+    .login_content .login_home .item-input, .login_content .login_home .password_content {
       border: 1px solid #DADADA;
       border-radius: 8px;
       height: 45px;
       font-weight: bold;
       background-color: #999999; }
-      .login_content .login_home .item-input ::-webkit-input-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .password-input {
+      .login_content .login_home .item-input ::-webkit-input-placeholder, .login_content .login_home .item-input .password_content {
         /* WebKit browsers */
         color: #484848 !important;
         font-size: 17px !important;
         padding-top: 3px !important; }
-      .login_content .login_home .item-input input, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .password-input {
+      .login_content .login_home .item-input input, .login_content .login_home .item-input .password_content {
         font-size: 17px; }
 
 /* SQUARED TWO */
@@ -7849,6 +7849,9 @@ body {
     width: 49%;
     margin: 5px 0 0 0; }
 
+.bar-footer {
+  background-position: 0px 40px; }
+
 .password {
   background-color: #A80532;
   height: 115px;
@@ -7870,28 +7873,46 @@ body {
     color: #C4C4C4;
     font-size: 12px;
     position: relative;
-    top: -5px;
-    font-family: 'Glober Thin';
+    top: -4px;
+    font-family: 'Glober SemiBold';
     font-weight: bold; }
 
 .password_content {
-  margin: 195px 0 0 4%; }
+  margin: 195px 0 0 0; }
+  .password_content .item-input {
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    height: 45px;
+    font-weight: bold;
+    background-color: #999999; }
+    .password_content .item-input ::-webkit-input-placeholder {
+      /* WebKit browsers */
+      color: #484848 !important;
+      font-size: 17px !important;
+      padding-top: 3px !important; }
+    .password_content .item-input input {
+      font-size: 17px; }
 
-.password-input {
-  background-color: #E6E6E6;
-  border: 1px solid #DADADA;
-  border-radius: 8px; }
-  .password-input input {
-    -moz-appearance: none;
-    -moz-box-flex: 1;
-    background-color: transparent;
-    border-radius: 0;
-    flex: 1 1 220px;
-    margin: 0;
-    padding-right: 24px; }
-
+/*.item-input {
+	background-color: $Mercury;
+	
+	border: 1px solid $Altoa;
+	border-radius: 8px;
+	@extend .item-input;
+	
+		input {
+			-moz-appearance: none;
+			-moz-box-flex: 1;
+			background-color: transparent;
+			border-radius: 0;
+			flex: 1 1 220px;
+			margin: 0;
+			padding-right: 24px;
+			font-size: 17px;			
+		}		
+}*/
 .password_home {
-  padding-right: 25px; }
+  padding: 0 12%; }
 
 .login {
   text-align: center;
@@ -7899,7 +7920,8 @@ body {
   margin-bottom: 10px; }
 
 .forgot_password_text {
-  text-align: center; }
+  text-align: center;
+  padding-top: 8px; }
   .forgot_password_text a {
     text-decoration: none;
     color: #4FC0DA;
@@ -8153,7 +8175,7 @@ body {
     margin-top: -10px; }
   .planDetails_content .list {
     padding-top: 25px; }
-  .planDetails_content .item.item-input, .planDetails_content .item.password-input {
+  .planDetails_content .item.item-input {
     padding: 16px; }
   .planDetails_content .input-label {
     font-weight: bold;
@@ -8184,8 +8206,6 @@ body {
   padding: 6px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); }
 
-/* Colors for my Website */
-/* Empty. Add your own Variable CSS if you like */
 a {
   text-decoration: none; }
 
@@ -8222,7 +8242,7 @@ a {
 .bar-TitleLess {
   display: block;
   background-color: #f2f2f2;
-  height: 63px;
+  height: 57px;
   top: 127px; }
 
 .TitleLess {
@@ -8232,10 +8252,26 @@ a {
   text-align: left;
   position: relative;
   top: 25px;
-  margin: 12px; }
+  margin: 12px;
+  Color: #4D4D4D; }
+
+.ContentList_provider {
+  margin: 138px 0 0 0; }
+  .ContentList_provider .item {
+    padding: 25px 16px 16px 35px;
+    Color: #4D4D4D;
+    font-size: 20px; }
+    .ContentList_provider .item .ion-chevron-right.ListLinkHref {
+      font-size: 28px;
+      margin-top: -8px; }
 
 .ContentList {
-  margin: 145px 0 0 0; }
+  margin: 138px 0 0 0; }
+
+.bar .buttons > .button {
+  min-height: 31px;
+  line-height: 35px;
+  color: #fff; }
 
 .ListLinkHref {
   float: right; }
