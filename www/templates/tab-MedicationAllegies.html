@@ -1,39 +1,31 @@
-
 <ion-side-menus>
 	<ion-side-menu-content>
 
-
-		<div ng-include src="'templates/intakeHeader.html'"></div>
+	<div ng-include src="'templates/intakeHeader.html'"></div>
 	
-
+<ion-view title="Medication Allergies">
 <ion-content class="ContentHomeUser" style="margin-top: 120px;">
  	<ion-list>
 		<ion-item style="top: -2px;padding: 2px;">
 			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>4</b> of <b>7</b></div>
 				<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
-				<div style="margin-top: 25px;">
-					<a ng-href="#/tab/CurrentMedication"> 
-						<h1 class="title ChronicCondition" style="font-size: 27px;">Medication Allergies</h1>
-					</a>
-					<p style="margin-left: 19px;">Select medication allergies.</p>
+						<div style="margin-top: 25px;">
+							<a ng-href="#/tab/CurrentMedication"> 
+								<h1 class="title ChronicCondition" style="font-size: 27px;">Medication Allergies</h1>
+							</a>
+							<p style="margin-left: 19px;">Select medication allergies.</p>
+						</div>
+						<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 0px;">Select up to four</div>
+					
+						<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
+							<div style="float:right;left: 20px; position: relative; margin-top: -45px; cursor:pointer;">
+								<img ng-src="img/add_surgery.png"  >
+							</div>
+						</div>
 				</div>
-				<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 0px;">Select up to four</div>
-				
-				<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
-					<div style="float:right;left: 20px; position: relative; margin-top: -45px; cursor:pointer;">
-						<img ng-src="img/add_surgery.png"  >
-				</div>
-				</div>
-			</div>
-		<!--	<div class="list" style="clear: both; padding-top: 10px;" >
-				<ion-checkbox ng-repeat="item in medicationList"
-							  ng-model="item.checked" 
-							  ng-checked="item.checked" >
-				  {{ item.text }}
-				</ion-checkbox> --->
-</ion-item>
+	    </ion-item>
 
-	<ion-item style="top: -1px;">
+		<ion-item style="top: -1px;">
 		<div style="margin-top: 10px;">
 			<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
 			<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Medication Allergies</div>
@@ -52,8 +44,7 @@
 </ion-side-menu-content>
 <!-- Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
-<!-- Footer File Include --->
-<!--<div ng-include src="'templates/invokeFooter.html'"></div> -->
+</ion-view>
 
 <ion-footer-bar  class="footer">
 <div style="width:100%;">
