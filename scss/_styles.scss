@@ -85,19 +85,24 @@ body {
 
 .bar.bar-positive{
 		background-color : $Flamingo;
-		height: 36px;
-		border-color: $Flamingo;
+		height: 40px;
+		/*border-color: $Flamingo;*/
 		background-image: linear-gradient(0deg, $Flamingo, $Flamingo 50%, transparent 50%);
+		border-color: #B03A21;
+		  border-width: 0px 0px 3px 0px;
+		  border-style: solid;
 }
 .login_sub_header {	
-	@include measurement(27px, 38px 0 0 0, auto, 78px);	
-	@include font($fontFamily_xBold, bold,30px);
+	@include measurement(32px, 38px 0 0 0, auto, 78px);	
+	@include font($fontFamily_xBold, bold, 28px);
 	text-align: center;
 	color: $Flamingo;
 	position:relative;       
-    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    /*-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;*/
+	
+  box-shadow: 0px 2px 9px #ADABAB;
 		after
 		{
 			right:10px; 
@@ -124,10 +129,10 @@ body {
 } 
 
 .login_content {
-	margin: 78px 0 0 4%;
-	padding-top: 50px;
-		.login_home {
-			padding-right: 25px;
+	margin: 78px 0 0 0;
+	padding-top: 85px;
+		.login_home {	
+				padding: 0 12%;
 				.item-input {
 						border: 1px solid $Altoa;
 						border-radius: 8px;
@@ -136,22 +141,14 @@ body {
 						background-color: #999999;
 						::-webkit-input-placeholder { /* WebKit browsers */
 							color:    $Tundora !important;
-							font-size: 15px;
+							font-size: 17px !important;
+							padding-top: 3px !important;
 						}
-						:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-						   color:    $Tundora !important;
-						   font-size: 15px;
-						   opacity:  1;
+						input {
+						font-size: 17px;
 						}
-						::-moz-placeholder { /* Mozilla Firefox 19+ */
-						   color:    $Tundora !important;
-						   font-size: 15px;
-						   opacity:  1;
-						}
-						:-ms-input-placeholder { /* Internet Explorer 10+ */
-						   color:    $Tundora !important;
-						   font-size: 15px;
-						}
+						
+						
 
 				}
 				
@@ -173,15 +170,15 @@ body {
 			position: absolute;
 			left: 0px;
 			top: 0px;
-			background: -webkit-linear-gradient(top, $Feijoa 0%, $Feijoa 100%);
-			background: -moz-linear-gradient(top, $Feijoa 0%, $Feijoa 100%);
-			background: -o-linear-gradient(top, $Feijoa 0%, $Feijoa 100%);
-			background: -ms-linear-gradient(top, $Feijoa 0%, $Feijoa 100%);
-			background: linear-gradient(top, $Feijoa 0%, $Feijoa 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$Feijoa', endColorstr='$Feijoa',GradientType=0 );
+			background: -webkit-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
+			background: -moz-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
+			background: -o-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
+			background: -ms-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
+			background: linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A0D18A', endColorstr='#A0D18A',GradientType=0 );
 		}
 			label:after {
-				@include measurement(0, 0, 20px, 10px);	
+				@include measurement(0, 0, 20px, 8px);	
 				-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
 				filter: alpha(opacity=0);
 				opacity: 0;
@@ -190,15 +187,10 @@ body {
 				background: transparent;
 				top: 5px;
 				left: 2px;
-				border: 3px solid #fcfff4;
+				border: 4px solid #fcfff4;
 				border-top: none;
 				border-right: none;
-
-				-webkit-transform: rotate(-45deg);
-				-moz-transform: rotate(-45deg);
-				-o-transform: rotate(-45deg);
-				-ms-transform: rotate(-45deg);
-				transform: rotate(-45deg);
+				transform: rotate(-50deg);
 			}
 				input[type=checkbox]:checked + label:after {
 					-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
@@ -209,7 +201,7 @@ body {
 
 .remember {
 	padding-top: 20px;
-	color: $Silver_Chalice;
+	color: #7A7A7A;
 	font-size: 13px;
 	font-family: $fontFamily_semibold;
 }
@@ -218,10 +210,18 @@ body {
 	padding-top: 40px;
 	margin-bottom: 50px;
 }
+
+
 .button.button-positive.button-outline {	
 	@include buttons($Feijoa, normal, 7px, 19px, 35px );	
 	color: #fff;
 	width: 105px;
+	line-height: 30px;
+	padding-top: 5px;
+background: linear-gradient(#A0D18A, #91BE7B); 
+	 box-shadow:1px 1px 13px rgba(0,0,0,0.3); 
+   
+	 
 }
 
 .button.button-outline.button-positive.activated {
@@ -230,9 +230,9 @@ body {
 }
 
 .footer {
-	color: $Silver_Chalice;	
-	background-color: $Tundora;
-	border-color: $Tundora;
+	color: #fff;	
+	background-color: #4D4D4D;
+	border-color: #4D4D4D;
 	height: 40px;
 	@include font($fontFamily_thin, bold, 9px);
 	border-top-width: -1px;
@@ -295,7 +295,6 @@ body {
 	border: 1px solid $Altoa;
 	border-radius: 8px;
 	
-
 		input {
 			-moz-appearance: none;
 			-moz-box-flex: 1;
