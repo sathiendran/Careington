@@ -281,14 +281,20 @@ $scope.data = {
       };
 }])
 
-.controller('UserhomeCtrl', function($scope, $ionicHistory) {
- $scope.myGoBack = function() {
+.controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory) {
+ $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.myGoBack = function() {
     $ionicHistory.goBack();
   };
 })
 
-.controller('UsersearchCtrl', function($scope, $ionicHistory) {
- $scope.myGoBack = function() {
+.controller('UsersearchCtrl', function($scope,$ionicSideMenuDelegate, $ionicHistory) {
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+  $scope.myGoBack = function() {
     $ionicHistory.goBack();
   };
 })
@@ -546,6 +552,86 @@ $scope.data = {
  
 })
 
+
+.controller('ConsentTreatCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+		$ionicHistory.goBack();
+	};
+})
+
+.controller('addHealthPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+	$ionicHistory.goBack();
+	};
+})
+
+.controller('applyPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+	$ionicHistory.goBack();
+	};
+})
+
+.controller('addCardCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+		$ionicHistory.goBack();
+	};
+})
+
+.controller('consultChargeNoPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+		$ionicHistory.goBack();
+	};
+})
+
+.controller('submitPaymentCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+		$ionicHistory.goBack();
+	};
+})
+
+.controller('receiptCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+		$ionicHistory.goBack();
+	};
+})
+
+.controller('waitingRoomCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+	$scope.myGoBack = function() {
+		$ionicHistory.goBack();
+	};
+})
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {

@@ -1,5 +1,7 @@
-<ion-view title="Apply Plan">
-	<div ng-include src="'templates/healthPlan_header.html'"></div>
+<ion-side-menus>
+	<ion-side-menu-content> 
+		<div ng-include src="'templates/intakeHeader.html'"></div>
+	<ion-view title="Apply Plan">
 	<div class="consultCharge_subHeader" >
 		<span>Payment</span>
 	</div>
@@ -36,7 +38,10 @@
 			</div>
 		</div>
 	</ion-content>
-	
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>	
 	<div ng-include src="'templates/consultCharge_footer.html'"></div>
 	
-</ion-view>
+

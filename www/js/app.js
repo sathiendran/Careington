@@ -219,7 +219,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-ConsentTreat.html',
-        controller: 'LoginCtrl'
+        controller: 'ConsentTreatCtrl'
       }
     }
   })
@@ -239,7 +239,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-addHealthPlan.html',
-        controller: 'LoginCtrl'
+        controller: 'addHealthPlanCtrl'
       }
     }
   })
@@ -269,7 +269,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-applyPlan.html',
-        controller: 'LoginCtrl'
+        controller: 'applyPlanCtrl'
       }
     }
   })
@@ -279,7 +279,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-addCard.html',
-        controller: 'LoginCtrl'
+        controller: 'addCardCtrl'
       }
     }
   })
@@ -289,7 +289,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-consultChargeNoPlan.html',
-        controller: 'LoginCtrl'
+        controller: 'consultChargeNoPlanCtrl'
       }
     }
   })
@@ -317,7 +317,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-submitPayment.html',
-        controller: 'LoginCtrl'
+        controller: 'submitPaymentCtrl'
       }
     }
   })
@@ -327,7 +327,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-receipt.html',
-        controller: 'LoginCtrl'
+        controller: 'receiptCtrl'
       }
     }
   })
@@ -337,7 +337,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-waitingRoom.html',
-        controller: 'LoginCtrl'
+        controller: 'waitingRoomCtrl'
       }
     }
   })  
