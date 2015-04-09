@@ -1,17 +1,21 @@
+
+<ion-side-menus>
+	<ion-side-menu-content> 
+		<div ng-include src="'templates/intakeHeader.html'"></div>
 <ion-view title="Appointment Details">
 
-<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
+<!--<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
 		
-		<div ng-include src="'templates/intakeHeader.html'"></div>
+		<div ng-include src="'templates/intakeHeader.html'"></div>-->
 		
-		<div style="margin-top: 120px; margin-left: -52px; width:102%">
-			<span style="color:#888;float:right;margin-right: 23px;margin-top: 11px;">Step <b>5</b> of <b>7</b></span>
-			 <h1 class="ChronicCondition" style="margin-left: 55px;">Consent to Treat</h1>
-			 <p style=" margin-top: -8px;margin-left: 60px;padding-bottom: 13px; color:#888;">read, Acknowledge, and Agree (Scroll to Bottom)</p>
+		<div style="">
+			<span style="color:#888;float:right;margin-right: 23px;margin-top: 11px;">Step <b>6</b> of <b>7</b></span>
+			 <h1 class="ChronicCondition" style="margin-top: 136px; margin-left: 15px; width:100%">Consent to Treat</h1>
+			 <p style=" margin-top: -8px;margin-left: 16px;padding-bottom: 13px; color:#888;">read, Acknowledge, and Agree (Scroll to Bottom)</p>
 			 <div style=" border-bottom: 1px solid #ddd;"></div>
 	   </div>
 	   
-</ion-header-bar>
+<!--</ion-header-bar>-->
  
 
 
@@ -46,25 +50,29 @@ By clicking "I Agree", I acknowledge and agree to the Terms and Conditions and C
    </div>	
 
 </ion-content>
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
 
-		<ion-footer-bar  class="footer">
-<div style="width:100%;">
-		  <div class="buttons">
-						<a class="button_new icon ion-chevron-left" ng-click="myGoBack()" style="cursor: pointer;"> Back </a>
-		  </div class="buttons">
+<ion-footer-bar  class="footer">
+	<div style="width:100%;">
+			  <div class="buttons">
+							<a class="button_new icon ion-chevron-left" ng-click="myGoBack()" style="cursor: pointer;"> Back </a>
+			  </div class="buttons">
 
-		 
-		    <div class="" style="text-align:center;margin-top: -20px;">
-				<a class="button_new icon" ng-click="myGoBack()" style=" color:#999999; cursor: pointer;"> Cancel </a>
-		    </div>
-			   
-			<div class="" style="text-align:right;margin-top: -20px;">
-				<a class="button_new icon ion-chevron-right"   href="#/tab/consultCharge"> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
-			</div>
-			  
-<div>
+			 
+				<div class="" style="text-align:center;margin-top: -20px;">
+					<a class="button_new icon" ng-click="myGoBack()" style=" color:#999999; cursor: pointer;"> Cancel </a>
+				</div>
+				   
+				<div class="" style="text-align:right;margin-top: -20px;">
+					<a class="button_new icon ion-chevron-right"   href="#/tab/consultCharge"> <span style="margin-left: -63px;margin-right: 35px;">Next<span> </a>
+				</div>
+				  
+	<div>
 </ion-footer-bar>
 
 
-</ion-view>
+
 

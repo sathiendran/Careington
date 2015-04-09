@@ -1,18 +1,25 @@
+<ion-side-menus>
+	<ion-side-menu-content> 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser">
+  
+  <div class="buttons" >
+					<button class="button icon button-clear ion-navicon-round"
+							ng-click="toggleLeft()" style="color:#000; margin-top:10px;margin-top: 10px;"></button>
+  </div>
   
   <div class="bar bar-headerHomeUser" style="border-bottom: none;">
     <h2 class="head_titleHomeUser">Patient List</h2>
-	 <img ng-src="img/menu.png" style="float:left;margin: 7px 0 0 17px;">
+	<!-- <img ng-src="img/menu.png" style="float:left;margin: 7px 0 0 17px;"> -->
   </div>
- <div class="bar bar-subheaderHomeUser">
-			<a href="#/tab/uersearch">  
+<a href="#/tab/uersearch">  <div class="bar bar-subheaderHomeUser">
+			 
 			<div><img ng-src="img/search.png" style="float:right; margin-right: 16px;margin-top: 11px;"></div>
-			</a>
+			
 		  <h2 class="TitleHomeUser_Sub">Who needs care today?</h2>
-  </div>
+  </div> </a>
    
 </ion-header-bar>
-
+<ion-view title="User Home">	
 <ion-content class="ContentHomeUser" style="margin-top: 65px">
  	<ion-list>
 		<ion-item style="padding:11px;">
@@ -61,7 +68,10 @@
 		
 	</ion-list>
 </ion-content>
-
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>	>
 <!--
 <ion-footer-bar align-title="left" class="bar-assertive" style="background-color:#fff; border-color:#fff;border-bottom: none;">
  
