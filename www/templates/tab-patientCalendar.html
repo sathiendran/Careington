@@ -1,8 +1,25 @@
 <ion-view title="Patient Calender">
 	
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
-		<div ng-include src="'templates/patientHeader.html'"></div>
-	</ion-header-bar>
+		
+		<div class="backButtonDiv" style="margin-top: -6px;">
+		<a style="padding-top: 15px; font-weight: bold;" class="button icon-left ion-chevron-left button-clear button-light"  style="cursor: pointer;" ng-href="#/tab/patientDetail">
+		<span style="margin-top:3px; position:absolute;">Back</span>
+		</a>
+	    </div>
+		 <h1 class="title_patient" style="font-size: 24px; position: absolute;">Patient</h1>
+		<div class="bar patient_subHeader">
+			<div style="margin-left:10px;">
+				<div class="subHeader_image" style="margin-top: -2px;">
+					<img src="img/PatientImg.png" style="width:50px; margin-top:-11px; margin-left:-11px;" />
+				</div>
+				<div class="subHeader_content">
+					    <div style="font-size: 20px;margin-left: 13px;"><span style="font-weight: bold;" class="PatintHeaderFontStyle">Merida</span> <span class="PatintHeaderFontStyleInner">Ariadnae</span></div>
+						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >Age 14 | Guardian Benjamin Ross</div>
+				</div>
+			</div>
+	    </div>	
+</ion-header-bar>
 	
 	<div class="patientCalendar_subHeader" >
 		<div class="patientCalendar_watch" ><img ng-src="img/watch.png" width="20px" /></div>
@@ -16,35 +33,35 @@
 			<a class="item" style=" background-color: #FEEFE8;" href="#/tab/appoimentDetails">
 				<div class="patient_appointment" >
 					<div class="appointment_text">Next Appointment:</div>
-					<div class="appointment_text_time" >Oct 12 @ 12:15<span>PM</span></div>
+					<div class="appointment_text_time" >Oct 12 <span style="font-size:18px;"><sup>@</sup></span> 12:15<span>PM</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
 			
 			<a class="item"  href="#/tab/appoimentDetails_wait">
 				<div class="patient_appointment" >						
-					<div class="appointment_time" >Oct 18 @ 1:35<span>PM</span></div>
+					<div class="appointment_time" >Oct 18 <span style="font-size:18px;"><sup>@</sup></span> 1:35<span>PM</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
 			
 			<a class="item"  href="#/tab/appoimentDetails_wait">
 				<div class="patient_appointment" >						
-					<div class="appointment_time" >Oct 18 @ 1:35<span>PM</span></div>
+					<div class="appointment_time" >Oct 18 <span style="font-size:18px;"><sup>@</sup></span> 1:35<span>PM</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
 			
 			<a class="item"  href="#/tab/appoimentDetails_wait">
 				<div class="patient_appointment" >						
-					<div class="appointment_time" >Oct 18 @ 1:35<span>PM</span></div>
+					<div class="appointment_time" >Oct 18 <span style="font-size:18px;"><sup>@</sup></span> 1:35<span>PM</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
 			
 			<a class="item"  href="#/tab/appoimentDetails_wait">
 				<div class="patient_appointment" >						
-					<div class="appointment_time" >Oct 18 @ 1:35<span>PM</span></div>
+					<div class="appointment_time" >Oct 18 <span style="font-size:18px;"><sup>@</sup></span> 1:35<span>PM</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>

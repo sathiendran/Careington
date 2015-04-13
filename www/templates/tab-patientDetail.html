@@ -1,23 +1,42 @@
 <ion-view title="Patient Details">
 	
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
-		<div ng-include src="'templates/patientHeader.html'"></div>
-	</ion-header-bar>
+		
+		<div class="backButtonDiv" style="margin-top: -6px;">
+		<a style="padding-top: 15px; font-weight: bold;" class="button icon-left ion-chevron-left button-clear button-light"  style="cursor: pointer;" ng-href="#/tab/userhome">
+		<span style="margin-top:3px; position:absolute;">Back</span>
+		</a>
+	    </div>
+		 <h1 class="title_patient" style="font-size: 24px; position: absolute;">Patient</h1>
+		<div class="bar patient_subHeader">
+			<div style="margin-left:10px;">
+				<div class="subHeader_image" style="margin-top: -2px;">
+					<img src="img/PatientImg.png" style="width:50px; margin-top:-11px; margin-left:-11px;" />
+				</div>
+				<div class="subHeader_content">
+					    <div style="font-size: 20px;margin-left: 13px;"><span style="font-weight: bold;" class="PatintHeaderFontStyle">Merida</span> <span class="PatintHeaderFontStyleInner">Ariadnae</span></div>
+						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >Age 14 | Guardian Benjamin Ross</div>
+				</div>
+			</div>
+	    </div>	
+</ion-header-bar>
 	
 	
 	
 	<ion-content class="patient_content" >
 		<div class="password_home">	
-			<div>
-				<a style="text-decoration: none;" ng-href="#/tab/patientCalendar"><button class="button button-block button-energized">
-				  View Appointments
+			
+				<a style="text-decoration: none;" ng-href="#/tab/patientCalendar">
+				<button class="button button-block button-energized" style="padding-top: 6px;">
+				 <span style=""> View Appointments </span>
 				</button></a>
-			</div>
+			
 			<div class="scheduled_appointments_text" >
 				See all your scheduled appointments.
 			</div>
 			<div style="padding-top: 40px;">
-				<a style="text-decoration: none;" ng-href="#/tab/patientConcerns"><button class="button button-block button-balanced">
+				<a style="text-decoration: none;" ng-href="#/tab/patientConcerns">
+				<button class="button button-block button-balanced" style="padding-top: 6px;">
 				  Next Available
 				</button></a>
 			</div>

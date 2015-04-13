@@ -4,65 +4,73 @@
   
   <div class="buttons" >
 					<button class="button icon button-clear ion-navicon-round"
-							ng-click="toggleLeft()" style="color:#000; margin-top:10px;margin-top: 10px;"></button>
+							ng-click="toggleLeft()" style="color:#000;margin-top: 7px;"></button>
   </div>
+  <h1 class="title_patient" style="font-size: 24px; position: absolute;">Patient List</h1>
   
-  <div class="bar bar-headerHomeUser" style="border-bottom: none;">
-    <h2 class="head_titleHomeUser">Patient List</h2>
-	<!-- <img ng-src="img/menu.png" style="float:left;margin: 7px 0 0 17px;"> -->
-  </div>
-<a href="#/tab/uersearch">  <div class="bar bar-subheaderHomeUser">
-			 
-			<div><img ng-src="img/search.png" style="float:right; margin-right: 16px;margin-top: 11px;"></div>
-			
-		  <h2 class="TitleHomeUser_Sub">Who needs care today?</h2>
-  </div> </a>
+
+<a href="#/tab/uersearch"> 
+<div class="bar bar-subheaderHomeUser">
+			<h2 class="TitleHomeUser_Sub">Who needs care today?</h2>
+			<img ng-src="img/search.png" style="float:right; margin-right: 19px;margin-top: -45px;">
+</div> 
+</a>
    
 </ion-header-bar>
 <ion-view title="User Home">	
 <ion-content class="ContentHomeUser" style="margin-top: 65px">
  	<ion-list>
-		<ion-item style="padding:11px;">
-			 <a class="HrefListView"  href="#/tab/uersearch">   
+	<a class=""  href="#/tab/uersearch">
+		<ion-item style="padding:11px;height: 104px;">
+			 <div class="HrefListView"> 
+				<div style="margin-top:-5px !important;">
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>Cedar</b> <span class="SubTitleSpan">Sinai</span></span>
-				<p class="ListHomeUser_p">Age 14 | Guardain : Banjamin Ross</p>
+				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
-			 </a>
+				</div>
+			 </div>
 		</ion-item>
+		</a>
 		
 		<ion-item style="height: 66px;" class="ItemList">
 			  <a class="HrefListView" href="#/tab/uersearch"> 
 			   <span class = "ListText" style="font-size: 16px;top: 1px;color: #888;">Next Appointment:</span>
-			   <h2 style="margin-left: 22px; margin-top: 2px;font-size:22px;"><b>OCT 12 </b> <span style="font-size:14px;">@</span> <b>12:15</b><span style="font-size:14px;">Pm</span></h2>
+			   <h2 style="margin-left: 22px; margin-top: 2px;font-size:22px; color:#706A67;" class="DateFormateStyle"><b>OCT 12 </b> <span style="font-size:18px;"><sup>@</sup></span> <b>12:15</b><span style="font-size:14px;">Pm</span></h2>
 			   <list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
-			   <span style="float: right;font-size: 16px; margin-right: 20px; color:#888;margin-top: -33px;">View Details</span>
+			   <span class="DateFormateStyle" style="float: right;font-size: 16px; margin-right: 20px; color:#888;margin-top: -33px;">View Details</span>
 				
 			  </a>	
 		</ion-item>
 		
-		<ion-item style="padding:11px;">
+		<ion-item style="padding:11px;height: 104px;">
 			 <a class="HrefListView"  href="#/tab/uersearch">   
+			 <div style="margin-top:-11px !important;">
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Ariadnae</span></span>
-				<p class="ListHomeUser_p">Age 14 | Guardain : Banjamin Ross</p>
+				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
+			 </div>
 			 </a>
 		</ion-item >
-		<ion-item style="padding:11px;">
-			 <a class="HrefListView"  href="#/tab/uersearch">   
+		<ion-item style="padding:11px;height: 104px;">
+			 <a class="HrefListView"  href="#/tab/uersearch"> 
+				<div style="margin-top:-11px !important;">			 
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Ariadnae</span></span>
-				<p class="ListHomeUser_p">Age 14 | Guardain : Banjamin Ross</p>
+				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
-			 </a>
+			</div>			
+			</a>
 		</ion-item>
-		<ion-item style="padding:11px;">
-			 <a class="HrefListView"  href="#/tab/uersearch">   
+		<ion-item style="padding:11px;height: 104px;">
+			 <a class="HrefListView"  href="#/tab/uersearch">  
+				<div style="margin-top:-11px !important;">			 
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Sinai</span></span>
-				<p class="ListHomeUser_p">Age 14 | Guardain : Banjamin Ross</p>
+				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
+			 </div>
 			 </a>
 		</ion-item>
 		
