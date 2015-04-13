@@ -8014,7 +8014,7 @@ body {
   text-align: center;
   left: 0px;
   right: 0px;
-  height: 45px;
+  /* height: 45px;*/
   /*line-height: 61px;*/
   /*margin: 7px 10px;*/
   min-width: 30px;
@@ -8144,7 +8144,7 @@ body {
     position: relative;
     left: 10px;
     font-size: 23px;
-    top: -5px; }
+    top: -15px; }
 
 .consultCharge_content {
   margin: 140px 0 0 4%;
