@@ -93,7 +93,7 @@ body {
 		  border-style: solid;
 }
 .login_sub_header {	
-	@include measurement(32px, 38px 0 0 0, auto, 78px);	
+	@include measurement(0, 38px 0 0 0, auto, 78px);	
 	@include font($fontFamily_xBold, bold, 28px);
 	text-align: center;
 	color: $Flamingo;
@@ -113,6 +113,12 @@ body {
 				 -o-transform:skew(8deg) rotate(3deg); 
 					transform:skew(8deg) rotate(3deg);
 		}
+	span {
+	 position: relative;
+    top: 25px;
+}	
+		
+		
 }
 
 .login_sub_header:before, .login_sub_header:after{
@@ -444,7 +450,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.subHeader_image {
 			padding: 5px;
 			float: left;
-			margin-top: 7px;
+			margin-top: -4px;
 		}
 		.subHeader_content {
 			margin-left: 45px;
@@ -557,6 +563,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	font-size: 20px;
 	font-weight: bold;
 	line-height: 3;
+	color:#666666;
 	 span {
 		position: relative;
 		left: 10px;
@@ -582,6 +589,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	font-size: 27px;
 	text-align: center;
 	padding-top: 15px;
+	color:#2A2A2A;
 		.consultation_number {
 			font-weight: bold;
 			padding-top: 15px;
@@ -1043,4 +1051,7 @@ font-family: $fontFamily_thin;
 }
 .PatintHeaderFontStyleSub { 
 font-family: $fontFamily_thin;
+}
+.ItalicSemiBoldStyle { 
+font-family: $fontFamily_light;
 }

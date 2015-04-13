@@ -1,9 +1,33 @@
 <ion-view title="Consult Charge">
 	
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
-		<div ng-include src="'templates/patientHeader.html'"></div>
+		<!-- <div ng-include src="'templates/patientHeader.html'"></div> -->
+		
+		<div class="backButtonDiv" style="margin-top: -6px;">
+			<a style="padding-top: 15px; font-weight: bold;" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/tab/ConsentTreat" style="cursor: pointer;">
+				<span style="margin-top:3px; position:absolute;">Back</span>
+			</a>
+		</div>
+			 <h1 class="title_patient" style="font-size: 24px; position: absolute;">Patient</h1>
+		<div class="bar patient_subHeader">
+				<div style="margin-left:10px;">
+					<div class="subHeader_image" style="margin-top: -5px;">
+						<img src="img/PatientImg.png" style="width:50px; margin-left:-11px;" />
+					</div>
+					<div class="subHeader_content" style="position:absolute;margin-top:10px;">
+							<div style="font-size: 20px;margin-left: 13px;">
+								<span style="font-weight: bold;margin-top: 5px;" class="PatintHeaderFontStyle">Merida</span> 
+								<span class="PatintHeaderFontStyleInner">Ariadnae</span>
+							</div>
+							<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >
+								Age 14 | Guardian Benjamin Ross
+							</div>
+					</div>
+				</div>
+		</div>
+		
 	</ion-header-bar>
-	<div class="consultCharge_subHeader" >
+	<div class="consultCharge_subHeader PatintHeaderFontStyle" >
 		<span>Payment</span>
 	</div>
 	
@@ -11,14 +35,14 @@
 	<ion-content class="consultCharge_content" >
 		<div class="password_home">
 		
-			<div class="consultation_head" >
+			<div class="consultation_head PatintHeaderFontStyle" >
 				<div>Consultation Charge</div>
 				<div class="consultation_number"> $60*</div>
 			</div>
 			
 			<div style="padding-top: 45px;">
 				<a style="text-decoration: none;" ng-href="#/tab/addHealthPlan">
-					<button class="button button-block button-energized">
+					<button class="button button-block button-energized" style="padding-top: 6px;">
 						Use Health Plan
 					</button>
 				</a>
@@ -28,7 +52,7 @@
 			</div>
 			<div style="padding-top: 15px;">
 				<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">
-				<button class="button button-block button-royal">
+				<button class="button button-block button-royal" style="padding-top: 6px;">
 				  Skip to Payment
 				</button>
 				</a>
@@ -39,6 +63,18 @@
 		</div>
 	</ion-content>
 	
-	<div ng-include src="'templates/consultCharge_footer.html'"></div>
+	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div> --->
+	
+	<div class="hide-on-keyboard-open">
+		<ion-footer-bar align-title="left" class="footer">
+			<div class="buttons" style="width: 50%; margin-top: 2px;">
+				<a class="button_new icon ion-chevron-left" style="cursor: pointer;" ng-href="#/tab/ConsentTreat" > Back </a>
+			</div>
+			<div class="buttons" style="width: 50%; margin-top: 2px;">
+				<a style="text-decoration: none; color: #fff; font-size: 18px; margin-top: 5px; font-weight: normal; cursor: pointer;" ng-click="myGoBack()" > Cancel </a>
+			</div>
+		</ion-footer-bar> 
+	</div>
+	
 	
 </ion-view>

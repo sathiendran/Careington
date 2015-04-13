@@ -1,50 +1,75 @@
 
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" >
-		<div ng-include src="'templates/patientHeader.html'"></div>
+		<!-- <div ng-include src="'templates/patientHeader.html'"></div> --->
+		
+			<div class="backButtonDiv" style="margin-top: -6px;">
+		<a style="padding-top: 15px; font-weight: bold;" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/tab/appoimentDetails" style="cursor: pointer;">
+			<span style="margin-top:3px; position:absolute;">Back</span>
+		</a>
+	</div>
+		 <h1 class="title_patient" style="font-size: 24px; position: absolute;">Appt Details</h1>
+	<div class="bar patient_subHeader">
+			<div style="margin-left:10px;">
+				<div class="subHeader_image" style="margin-top: -5px;">
+					<img src="img/PatientImg.png" style="width:50px; margin-left:-11px;" />
+				</div>
+				<div class="subHeader_content" style="position:absolute;margin-top:10px;">
+					    <div style="font-size: 20px;margin-left: 13px;">
+							<span style="font-weight: bold;margin-top: 5px;" class="PatintHeaderFontStyle">Merida</span> 
+							<span class="PatintHeaderFontStyleInner">Ariadnae</span>
+						</div>
+						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >
+							Age 14 | Guardian Benjamin Ross
+						</div>
+				</div>
+			</div>
+	</div>			
 </ion-header-bar>
+
+
 <ion-view title="Appointment Details">
 <ion-content class="ContentHomeUser">
  	<ion-list>
-		<ion-item style="padding: 6px; top: -2px;">
+		<ion-item style="padding: 6px; top: -2px;border-color: #9e9e9e;">
 			<a href="#/tab/patientConcerns">    <h1 class="title appointment_with">Appointment with</h1> </a>
 	    </ion-item>
 		
-		<ion-item style="padding:11px;top: -2px;">
+		<ion-item style="padding:11px;top: -2px;border-color: #9e9e9e;">
 			 <a class="HrefListView"  href="#/demo/demo">   
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText" style="top: -18px;"><b>Dr.</b> <span class="SubTitleSpan">Skibinskitran</span></span>
 				
-				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
+				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: 22px;"></list>
 			 </a>
 		</ion-item >
 		
-		<ion-item style="padding:15px; top: -2px;text-align: center;height: 85px;">
-			  <span class = "title"><h1 style="color:#888;margin-top: -9px; font-size: 40px;"><b>12:15</b><span style="font-size:23px;">PM</span></h1> 
-			 <span style="color:#a7a7a7;position: relative;top: -13px;font-size: 20px;"> Monday January 26 </span>
+			<ion-item style="padding:15px; top: -2px;text-align: center;height: 85px;border-color: #9e9e9e;">
+			  <span class = "title  ItalicSemiBoldStyle"><h1 style="color:#706A67;margin-top: -9px;">12:15<span style="font-size:20px;">PM</span></h1> 
+			 <span class="ItalicSemiBoldStyle" style="color:#706A67;position: relative;top: -13px;font-size: 20px;"> Monday January 26 </span>
 			  </span>
 		</ion-item>
 		
 		<ion-item style="padding:11px;top: -2px;border-color: #9e9e9e;">
 			 <div class="primary"><span style="margin-right:13px;margin-left: 14px;">1 </span> Primary Concern</div>
-			 <p class="ptagprimary" style="font-size:20px;">Vomiting</p>
+			 <p class="ptagprimary" style="font-size:16px;">Vomiting</p>
 			 <div class="secondary"><span style="margin-right:13px;margin-left: 14px;">2 </span>Secondary Concern</div>
-			 <p class="ptagprimary" style="font-size:20px;">She has completely last her balance. <br>Any attempt to stand or walk re-sluts in collasping to the floor. <br> this has been going on four days. </p>
+			 <p class="ptagprimary" style="font-size:16px;">She has completely last her balance. <br>Any attempt to stand or walk re-sluts <br> in collasping to the floor. <br> this has been going on four days. </p>
 		</ion-item>
 		
 		<ion-item style="padding:11px;top: -2px;border-color: #9e9e9e;">
 			<div class="pre_consultant"><span style="margin-right:27px;margin-left: 14px;"></span>Pre consultant Notes</div>
-			 <p class="ptagprimary" style="font-size:20px;">This is general Note Entered <br>This is general Note Entered <br> </p>
+			 <p class="ptagprimary" style="font-size:16px;">This is general Note Entered <br>This is general Note Entered <br> </p>
 		</ion-item>
 		
 		
 </ion-content>
 
 </ion-view>
-		<ion-footer-bar align-title="left" class="bar-assertive" style="background-color:#FFC609; border-color:#888;" >
+		<ion-footer-bar align-title="left" class="bar-assertive" style="background-color:#FFC609; border:none;  box-shadow: 0 0px 8px 3px #333;" >
 		<div class="">
 		<!--<a style="" class="button icon-left ion-chevron-left button-clear button-light">Back</a> --->
-			<a ng-href="#/tab/patientConcerns"><div class="title" style="font-size: 22px;"><img ng-src="img/clk.png" style="margin: -2px;"> Available in <b>00:02:14</b></div></a>
+			<a ng-href="#/tab/patientConcerns"><div class="title" style="font-size: 22px;margin-top: 2px;"><img ng-src="img/clk.png" style="margin: -2px;"> Available in <b>00:02:14</b></div></a>
 		</div>
 		
 </ion-footer-bar>

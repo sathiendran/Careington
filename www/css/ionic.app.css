@@ -7688,7 +7688,7 @@ body {
   border-style: solid; }
 
 .login_sub_header, .password_sub_header {
-  padding: 32px;
+  padding: 0;
   margin: 38px 0 0 0;
   width: auto;
   height: 78px;
@@ -7710,6 +7710,9 @@ body {
     -ms-transform: skew(8deg) rotate(3deg);
     -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg); }
+  .login_sub_header span, .login_sub_header .password_sub_header {
+    position: relative;
+    top: 25px; }
 
 .login_sub_header:before, .password_sub_header:before, .login_sub_header:after, .password_sub_header:after {
   content: "";
@@ -8022,7 +8025,7 @@ body {
   .patient_subHeader .subHeader_image {
     padding: 5px;
     float: left;
-    margin-top: 7px; }
+    margin-top: -4px; }
   .patient_subHeader .subHeader_content {
     margin-left: 45px;
     margin-top: 7px; }
@@ -8129,7 +8132,8 @@ body {
   margin-top: 125px;
   font-size: 20px;
   font-weight: bold;
-  line-height: 3; }
+  line-height: 3;
+  color: #666666; }
   .consultCharge_subHeader span {
     position: relative;
     left: 10px;
@@ -8159,7 +8163,8 @@ body {
 .consultation_head {
   font-size: 27px;
   text-align: center;
-  padding-top: 15px; }
+  padding-top: 15px;
+  color: #2A2A2A; }
   .consultation_head .consultation_number {
     font-weight: bold;
     padding-top: 15px;
@@ -8583,3 +8588,6 @@ a {
 
 .PatintHeaderFontStyleSub {
   font-family: 'Glober Thin'; }
+
+.ItalicSemiBoldStyle {
+  font-family: 'Glober Light'; }
