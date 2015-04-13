@@ -93,7 +93,8 @@ body {
 		  border-style: solid;
 }
 .login_sub_header {	
-	@include measurement(0, 38px 0 0 0, auto, 78px);	
+	/*@include measurement(0, 38px 0 0 0, auto, 78px);	*/
+	@include measurement(0, 0, auto, 100px);
 	@include font($fontFamily_xBold, bold, 28px);
 	text-align: center;
 	color: $Flamingo;
@@ -113,9 +114,9 @@ body {
 				 -o-transform:skew(8deg) rotate(3deg); 
 					transform:skew(8deg) rotate(3deg);
 		}
-	span {
-	 position: relative;
-    top: 25px;
+	div {
+	position: relative;
+	top: 62px;
 }	
 		
 		
@@ -290,7 +291,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 .password {
 		background-color : $Shiraz;
-		height: 115px;
+		height: 17%;
 		border-color: $Shiraz;
 		background-image: linear-gradient(0deg, $Shiraz, $Shiraz 50%, transparent 50%);
 }
@@ -307,14 +308,19 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	@extend .login_sub_header;
 	margin-top: 115px;
 	color: $Shiraz;
-		span {
-			color: #C4C4C4;
-			font-size: 12px;
+		.password_header_content {
 			position: relative;
-			top: -4px;
-			font-family: $fontFamily_semibold;
-			font-weight: bold;
+			top: 35px;
+			span {
+				color: #C4C4C4;
+				font-size: 12px;
+				position: relative;
+				top: -4px;
+				font-family: $fontFamily_semibold;
+				font-weight: bold;
+			}
 		}
+		
 }
 .password_content {
 	@extend .login_content;
@@ -414,7 +420,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
     background-color: $pinkPipe;
     background-image: linear-gradient(0deg, $pinkPipe, $pinkPipe 50%, transparent 50%);
     border-color: #f0502c;
-	height: 63px;
+	height: 15%;
 }
 .backButtonDiv {
 	float: left;
@@ -835,7 +841,8 @@ text-align:center
 .TitleHomeUser_Sub {
 	@include font($fontFamily_semibold, bold, 25px);
 	position:relative; 
-	margin: 1px 7px 25px;
+	/*margin: 1px 7px 25px;*/
+	margin-left: 7px;
 	top: 5px;
 }
 .ContentHomeUser {

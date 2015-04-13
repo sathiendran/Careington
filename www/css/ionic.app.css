@@ -7688,10 +7688,11 @@ body {
   border-style: solid; }
 
 .login_sub_header, .password_sub_header {
+  /*@include measurement(0, 38px 0 0 0, auto, 78px);	*/
   padding: 0;
-  margin: 38px 0 0 0;
+  margin: 0;
   width: auto;
-  height: 78px;
+  height: 100px;
   font-family: 'Glober xBold';
   font-weight: bold;
   font-size: 28px;
@@ -7710,9 +7711,9 @@ body {
     -ms-transform: skew(8deg) rotate(3deg);
     -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg); }
-  .login_sub_header span, .login_sub_header .password_sub_header {
+  .login_sub_header div, .login_sub_header .password_sub_header {
     position: relative;
-    top: 25px; }
+    top: 62px; }
 
 .login_sub_header:before, .password_sub_header:before, .login_sub_header:after, .password_sub_header:after {
   content: "";
@@ -7878,7 +7879,7 @@ body {
 
 .password {
   background-color: #A80532;
-  height: 115px;
+  height: 17%;
   border-color: #A80532;
   background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%); }
 
@@ -7893,13 +7894,16 @@ body {
 .password_sub_header {
   margin-top: 115px;
   color: #A80532; }
-  .password_sub_header span {
-    color: #C4C4C4;
-    font-size: 12px;
+  .password_sub_header .password_header_content {
     position: relative;
-    top: -4px;
-    font-family: 'Glober SemiBold';
-    font-weight: bold; }
+    top: 35px; }
+    .password_sub_header .password_header_content span {
+      color: #C4C4C4;
+      font-size: 12px;
+      position: relative;
+      top: -4px;
+      font-family: 'Glober SemiBold';
+      font-weight: bold; }
 
 .password_content {
   margin: 195px 0 0 0; }
@@ -7988,7 +7992,7 @@ body {
   background-color: #A80532;
   background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%);
   border-color: #f0502c;
-  height: 63px; }
+  height: 15%; }
 
 .backButtonDiv {
   float: left;
@@ -8367,7 +8371,8 @@ a {
   font-weight: bold;
   font-size: 25px;
   position: relative;
-  margin: 1px 7px 25px;
+  /*margin: 1px 7px 25px;*/
+  margin-left: 7px;
   top: 5px; }
 
 .ContentHomeUser {
