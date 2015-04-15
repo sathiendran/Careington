@@ -451,8 +451,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 .patient_subHeader {
 	display: block;
-	height: 63px;
-    top: 62px;
+	height: auto;
+    top: 100%;
 	background-color: #333333;
 	color: #fff;
 		.subHeader_image {
