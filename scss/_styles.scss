@@ -601,7 +601,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.consultation_number {
 			font-weight: bold;
 			padding-top: 15px;
-			font-size: 27px;
+			font-size: 30px;
 		}
 }
 
@@ -1064,4 +1064,7 @@ font-family: $fontFamily_thin;
 }
 .ItalicSemiBoldStyle { 
 font-family: $fontFamily_light;
+}
+.RegularFontStyle { 
+font-family: $fontFamily_regular;
 }

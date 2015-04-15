@@ -1,17 +1,44 @@
 <ion-side-menus>
 	<ion-side-menu-content> 
-		<div ng-include src="'templates/intakeHeader.html'"></div>
+		<!--<div ng-include src="'templates/intakeHeader.html'"></div> -->
+		
+		<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
+		<div class="buttons" >
+					<button class="button icon button-clear ion-navicon-round"
+							ng-click="toggleLeft()" style="color:#000; margin-top:10px;margin-top: 10px;"></button>
+		</div>
+		 <h1 class="title_patient" style="font-size: 24px; text-align: center;width: 100%;">Intake Form</h1>
+			<div class="bar patient_subHeader">
+			<div style="margin-left:10px;">
+				<div class="subHeader_image" style="margin-top: -5px;">
+					<img src="img/PatientImg.png" style="width:50px; margin-left:-11px;" />
+				</div>
+				<div class="subHeader_content" style="position:absolute;margin-top:10px;">
+					    <div style="font-size: 20px;margin-left: 13px;">
+							<span style="font-weight: bold;margin-top: 5px;" class="PatintHeaderFontStyle">Merida</span> 
+							<span class="PatintHeaderFontStyleInner">Ariadnae</span>
+						</div>
+						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >
+							Age 14 | Guardian Benjamin Ross
+						</div>
+				</div>
+			</div>
+	</div>
+		
+	</ion-header-bar>
+		
+		
 	<ion-view title="Add Health Plan">
-	<div class="consultCharge_subHeader" >
-		<span>Payment</span>
+	<div class="consultCharge_subHeader PatintHeaderFontStyle" style="top:-15px;" >
+		<span style="color:#666666;font-size:27px;margin-top:10px;">Payment</span>
 	</div>
 	
 	<ion-content style="margin: 180px 0 0 4%; padding-top: 25px;" >
 		<div class="password_home">
 		
-			<div class="consultation_head" >
-				<div>Consultation Charge</div>
-				<div class="consultation_number"> $60*</div>
+			<div class="consultation_head RegularFontStyle" >
+				<div style="color:#000000;">Consultation Charge</div>
+				<div class="consultation_number" style="color:#666666;"> $60*</div>
 			</div>
 			
 			<div class="healthPlan_header" >

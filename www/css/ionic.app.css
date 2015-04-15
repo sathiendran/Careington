@@ -8174,7 +8174,7 @@ body {
   .consultation_head .consultation_number {
     font-weight: bold;
     padding-top: 15px;
-    font-size: 27px; }
+    font-size: 30px; }
 
 .healthPlan_header {
   padding-top: 45px;
@@ -8599,3 +8599,6 @@ a {
 
 .ItalicSemiBoldStyle {
   font-family: 'Glober Light'; }
+
+.RegularFontStyle {
+  font-family: 'Glober Regular'; }
