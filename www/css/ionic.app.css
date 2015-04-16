@@ -8026,6 +8026,7 @@ body {
   display: block;
   height: auto;
   top: 100%;
+  margin-top: -10px;
   background-color: #333333;
   color: #fff; }
   .patient_subHeader .subHeader_image {
