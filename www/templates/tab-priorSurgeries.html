@@ -44,13 +44,12 @@
 	    </ion-item>
 		
 		<div class="list" style="margin-top: -3px;">
-
-			<a class="item item-avatar" href="#" style="padding-left: 15px;" show-delete="data.showDelete">     
+			<a class="item item-avatar" href="#" style="padding-left: 15px;" ng-repeat="surgery in StockSurgery" show-delete="data.showDelete">     
 				<div style="float: left;">
-					<div style="font-size: 20px;">Knee Scope</div>
-					<div style="padding-top: 5px; font-size: 17px;">12/15/2005</div>	  
+					<div style="font-size: 20px;">{{surgery.SurgeryName}} {{surgery.id}}</div>
+					<div style="padding-top: 5px; font-size: 17px;">{{date | date: 'yyyy-MM-dd'}}</div>	  
 				</div>
-				<div style="text-align: right; margin-right: -1px;" ng-click="onItemDelete(item)"><img ng-src="img/delete1.png" ></div>
+				<div style="text-align: right; margin-right: -1px;" ng-click="deleteSurgeryItem($index)"><img ng-src="img/delete1.png" ></div>
 			</a>
 		</div>
 		
@@ -67,6 +66,9 @@
 		  
 		</ion-item>
 	</ion-list>-->
+	
+	
+	
 
 		
 </ion-content>

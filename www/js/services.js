@@ -62,16 +62,15 @@ angular.module('starter.services', [])
 
 .factory('LoginService', function($http) { 
 	return { 
-		loginUser: function($scope) {
+		loginUser: function($email,$providerId,$password) {
 				
-				var request = $http({
+				/*var request = $http({
 							method: "post",
 							url: "https://snap-dev.com/api/account/token/",
 							 data: "email=ben.ross.310.95348@gmail.com&password=Password@123&hospitalId=126&userTypeId=1",
 							headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 				});
 			
-					/* Successful HTTP post request or not */
 				    $http($scope.send).success(function(data){
 					$scope.response = "SUCCESS";
 					console.log(data);
@@ -79,9 +78,80 @@ angular.module('starter.services', [])
 				   .error(function(error){
 					$scope.response = "FAILED";
 					console.log(error);
-				   });
+				   });*/
+				   
+			var promise = $http({method: 'post',
+						url: 'https://snap-dev.com/api/account/token/',
+						data: "email="+$email+"&password="+$password+"&hospitalId="+$providerId+"&userTypeId=1",
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+						})
+			
+				.success(function (data, status, headers, config) {
+					//console.log(data);
+					return data;
+				})
+				.error(function (data, status, headers, config) {
+					return {"status": false};
+				});
+			return promise;
+				   
+				   
+				},
+				
+		getCount: function($data) {
+			
+			var promise = $http({method: 'get',
+						url: 'https://snap-dev.com/api/patientconsultation/2440/all',
+						headers: { 'Authorization': 'Bearer '+ $data }
+						})	
+			
+			
+			.success(function (data, status, headers, config) {
+			console.log(data);
+					return data;
+				})
+				.error(function (data, status, headers, config) {
+					return {"status": false};
+				});
+			return promise;
+		},
+		
+		getPostPaymentDetails: function(params) {
+	 
+		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+		
+        $http.
+			post('https://snap-dev.com/api/patients/' + params.userId + '/payments', 
+			{
+				userId: params.userId,
+				BillingAddress: params.BillingAddress,
+				CardNumber: params.CardNumber,
+				City: params.City,
+				ExpiryMonth: params.ExpiryMonth,
+				ExpiryYear: params.ExpiryYear,
+				FirstName: params.FirstName,
+				LastName: params.LastName,
+				State: params.State,
+				Zip: params.Zip,
+				Country: params.Country,
+				ProfileId: params.ProfileId,
+				Cvv: params.Cvv				
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
 				}
-		    }
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    }
+	
+		
+		
+	}
 })
 
 
@@ -115,4 +185,19 @@ angular.module('starter.services', [])
           return dates;
         }
       };
-    }]);
+    }])
+	
+	
+.service('SurgeryStocksSession', function () {
+    var SurgeryStocksSession = {};
+    return {
+        getSurgeryStocksSession: function () {
+            return SurgeryStocksSession;
+        },
+        setSurgeryStocksSession: function (value) {
+            SurgeryStocksSession = value;
+        }
+    };
+})
+
+

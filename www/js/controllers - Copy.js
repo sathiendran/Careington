@@ -8,140 +8,22 @@ var indexOf = [].indexOf || function(item) {
 
 angular.module('starter.controllers', ['starter.services'])
 
-
-.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter) {
- 
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-
-	//Back Button	
-	$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	};
-	
-	
+/*.controller('LoginCtrl', function($scope) {})
+.controller('LoginCtrl', ['$scope', '$ionicModal', function ($scope, $ionicModal, $ionicSideMenuDelegate) {	*/
+.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, $ionicHistory,LoginService) {
+ $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft();
+  };
+$scope.myGoBack = function() {
+    $ionicHistory.goBack();
+  };
   
-	$scope.userLogin = {};
-    $scope.LoginFunction = function(item,event){
-		//$rootScope.email = $scope.userLogin.email;
-		$rootScope.email = 'ben.ross.310.95348@gmail.com';
-		//console.log($rootScope.email);
-		$state.go('tab.provider');
-    };
-	
-	//$rootScope.providerId = $stateParams.providerID;
-	//$rootScope.providerId ='126';
-	
-	$scope.ProviderFunction = function($ProviderID) {
-		
-		//$rootScope.providerId = $ProviderID;		
-		$rootScope.providerId = '126';		
-		//console.log($rootScope.providerId);			
-		$state.go('tab.password');
-	}
-	
-	//Password functionality	
-	$scope.pass = {};
-	$scope.PasswordFunction = function() {
-		//$rootScope.password = $scope.pass.password;
-		$rootScope.password = 'Password@123';
-		//console.log($rootScope.password);	
-		//LoginService.loginUser($rootScope.email, $rootScope.providerId, $rootScope.password);	
-		LoginService.loginUser($rootScope.email, $rootScope.providerId, $rootScope.password).then(function (results) {	
-			$scope.GetToken(results);
-		});
-	
-		$state.go('tab.userhome');
-	}
- 
-	//Get Token
-	$scope.GetToken = function(results){
-		$rootScope.token = results.data.access_token;
-		console.log('ffgfg', $rootScope.token);
-	}
-	
-	
-	$scope.userId = 471;
-	$scope.BillingAddress = '123 chennai';
-	$scope.CardNumber = 4111111111111111;
-	$scope.City = 'chennai';
-	$scope.ExpiryMonth = 8;
-	$scope.ExpiryYear = 2019;
-	$scope.FirstName = 'Rin';
-	$scope.LastName = 'Soft';
-	$scope.State = 'Tamilnadu';
-	$scope.Zip = 91302;
-	$scope.Country = 'US';	
-	$scope.Cvv = 123;
-	$scope.profileId = 31867222;
-	
-	$scope.doPostPaymentDetails = function () {
-		
-		var params = {
-            userId: $scope.userId, 
-			BillingAddress: $scope.BillingAddress,
-			CardNumber: $scope.CardNumber,
-			City: $scope.City,
-			ExpiryMonth: $scope.ExpiryMonth,
-			ExpiryYear: $scope.ExpiryYear,
-			FirstName: $scope.FirstName,
-			LastName: $scope.LastName,
-			State: $scope.State,
-			Zip: $scope.Zip,
-			Country: $scope.Country,
-			ProfileId: $scope.profileId,
-			Cvv: $scope.Cvv,		
-            accessToken: $rootScope.token,
-			
-            success: function (data) {
-                $scope.PostPaymentDetails = data;	
-					console.log(data);
-            },
-            error: function (data) {
-                $scope.PostPaymentDetails = 'Error getting consultation report';
-				console.log(data);
-            }
-        };
-        
-        LoginService.getPostPaymentDetails(params);
-	}
-	
-	
-	
-	$scope.todayStocks = [];
-	
-	$scope.appoimentDetails = function() {
-		LoginService.getCount($rootScope.token).then(function (results) {	
-			
-			console.log(results.data);
-			
-			angular.forEach(results.data, function(index, item) {	
-			
-			$scope.todayStocks.push({
-			'id': index.id,
-			'CompanyCode': index.CompanyCode,
-			'CompanyName': index.CompanyName,			
-			'TradingDate': index.TradingDate,
-			'SignalType': index.SignalType,
-			'ChartType': index.ChartType,
-			'ImageName': index.ImageName,
-			'description': index.description,
-			'pastMonthMatches': index.pastMonthMatches,
-			'data': angular.fromJson(index.data),
-			});
-		});
-			
-		});
-	}
-
- 
-   /*$scope.data = {};
+   $scope.data = {};
    $scope.loginProcess = function () {
    var email = $scope.data.email;
    alert(email);
      LoginService.loginUser($scope);
-	};*/
+	};
 	
 $scope.name ='';
     $scope.chosen = {};
@@ -187,23 +69,50 @@ $scope.name ='';
 	{ text: "This is a current medication", checked: false }
   ];
   
+  //Delete option
+$scope.data = {
+    showDelete: true
+  };  
  
-
   
-/* Prior Surgery page START */
+  $scope.onItemDelete = function(item) {
+    $scope.items.splice($scope.items.indexOf(item), 1);
+  };
+  
+  $scope.items = [
+    { id: 0 },
+    { id: 1 },
+    { id: 2 },
+    { id: 3 },
+    { id: 4 }, 
+    { id: 5 }
+  ];
+  // end delete option
+  
+
+  /*$scope.pushNotificationChange = function() {
+    console.log('Push Notification Change', $scope.pushNotification.checked);
+  };
+  
+  $scope.pushNotification = { checked: true };
+  $scope.emailNotification = 'Subscribed';*/
+
 
 	$scope.model = null;
 	$scope.rightButtons = [
         { 
 			type: 'button-positive',  
 			content: '<i class="icon ion-navicon"></i>',
-			tap: function(e) {				
-				$scope.openModal();				  
+			tap: function(e) {
+				$scope.date = null;
+				$scope.modal.scope.model = {description :"",amount :""};
+				$scope.openModal();
+				  
 			}
         }
     ]
 
-    $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', 
+    $ionicModal.fromTemplateUrl('templates/modal.html', 
         function(modal) {
             $scope.modal = modal;
 		},
@@ -215,149 +124,164 @@ $scope.name ='';
 
         }
     );
-	
     $scope.openModal = function() {
         $scope.modal.show();
     };
-	
-	$scope.doLogin = function() {
-	$state.go('tab.MedicationAllegies');	
-	
-	}
-	
-	
-	/* $scope.user = {
-    username: '',
-    password : ''
-  };
-  $scope.signIn = function(form) {
-    console.log(form);
-    if(form.$valid) {
-    console.log('Sign-In', $scope.user.username);
-    $state.go('tab.MedicationAllegies');
-    }
-  };
-	*/
-	
-	$scope.surgery = {};
-    $scope.closeSurgeryPopup = function(model) {	
-	
-		$scope.PreviousSurgeryLoadedList = SurgeryStocksSession.getSurgeryStocksSession();
-				
-		$scope.StockSurgery = [];
-		
-		angular.forEach($scope.PreviousSurgeryLoadedList, function(index, item) {			
-			$scope.StockSurgery.push({
-				 SurgeryName: index.SurgeryName,
-				 SurgeryDate: index.surgeryDate
-			});
-		});	
-		
-	
-		$rootScope.surgeryName = $scope.surgery.name;
-		console.log($rootScope.surgeryName);
-		
-		 $scope.$watch('surgery.dateString', function (dateString)
-			{
-				$scope.date = new Date(dateString);
-				 //alert('c ' + $scope.date);
-				 alert('d '+ $scope.surgery.dateString);
-				console.log('B', $scope.date, $scope.dateString);
-				$rootScope.surgeryDate = $scope.surgery.dateString;
-				alert($rootScope.surgeryDate);
-			});
-		
-		$scope.StockSurgery.push({     
-			 id: $scope.StockSurgery.length + 1,
-            SurgeryName: $rootScope.surgeryName,
-			SurgeryDate: $rootScope.surgeryDate
-        });
-		SurgeryStocksSession.setSurgeryStocksSession($scope.StockSurgery);
-		
-		 $scope.deleteSurgeryItem = function (index) {
-			$scope.StockSurgery.splice(index, 1);
-			}
-		
-		
-       // $scope.modal.hide();
-		$state.go('tab.priorSurgeries');		
-		 $scope.modal.hide();
-		 $scope.surgery.name = '';
-		// $scope.surgery.dateString = '';
-		
+    $scope.closeModal = function(model) {
+        $scope.modal.hide();
     };
-	
-	/* Prior Surgery page END */
-	
-	
+
+    $ionicModal.fromTemplateUrl('templates/datemodal.html', 
+        function(modal) {
+            $scope.datemodal = modal;
+		},
+		{
+            // Use our scope for the scope of the modal to keep it simple
+            scope: $scope, 
+            // The animation we want to use for the modal entrance
+            animation: 'slide-in-up'
+
+        }
+    );
+    $scope.opendateModal = function() {
+        $scope.datemodal.show();
+	};
+    $scope.closedateModal = function(model) {
+		$scope.datemodal.hide();
+        $scope.date = model;
+    };
+
+    $scope.save =  function(model){
+       // alert("Date :"+$scope.date+" Description: "+model.amount+ " Amount: "+model.amount);
+        $scope.closeModal();
+    };
+//}])
 })
 
-.directive('onValidSubmit', ['$parse', '$timeout', function($parse, $timeout) {
-    return {
-      require: '^form',
-      restrict: 'A',
-      link: function(scope, element, attrs, form) {
-        form.$submitted = false;
-        var fn = $parse(attrs.onValidSubmit);
-        element.on('submit', function(event) {
-          scope.$apply(function() {
-            element.addClass('ng-submitted');
-            form.$submitted = true;
-            if (form.$valid) {
-              if (typeof fn === 'function') {
-                fn(scope, {$event: event});
-              }
+
+.directive('pickadate', ['$locale', 'pickadateUtils', 'dateFilter', function($locale, dateUtils, dateFilter) {
+      return {
+        require: 'ngModel',
+        scope: {
+          date: '=ngModel',
+          minDate: '=',
+          maxDate: '=',
+          disabledDates: '='
+        },
+        template:
+          '<div class="pickadate">' +
+            '<div class="pickadate-header">' +
+              '<div class="pickadate-controls">' +
+                '<a href="" class="pickadate-prev" ng-click="changeMonth(-1)" ng-show="allowPrevMonth">prev</a>' +
+                '<a href="" class="pickadate-next" ng-click="changeMonth(1)" ng-show="allowNextMonth">next</a>' +
+              '</div>'+
+              '<h3 class="pickadate-centered-heading">' +
+                '{{currentDate | date:"MMMM yyyy"}}' +
+              '</h3>' +
+            '</div>' +
+            '<div class="pickadate-body">' +
+              '<div class="pickadate-main">' +
+                '<ul class="pickadate-cell">' +
+                  '<li class="pickadate-head" ng-repeat="dayName in dayNames">' +
+                    '{{dayName}}' +
+                  '</li>' +
+                '</ul>' +
+                '<ul class="pickadate-cell">' +
+                  '<li ng-repeat="d in dates" ng-click="setDate(d)" class="{{d.className}}" ng-class="{\'pickadate-active\': date == d.date}">' +
+                    '{{d.date | date:"d"}}' +
+                  '</li>' +
+                '</ul>' +
+              '</div>' +
+            '</div>' +
+          '</div>',
+
+        link: function(scope, element, attrs, ngModel)  {
+          var minDate       = scope.minDate && dateUtils.stringToDate(scope.minDate),
+              maxDate       = scope.maxDate && dateUtils.stringToDate(scope.maxDate),
+              disabledDates = scope.disabledDates || [],
+              currentDate   = new Date();
+
+          scope.dayNames    = $locale.DATETIME_FORMATS['SHORTDAY'];
+          scope.currentDate = currentDate;
+
+          scope.render = function(initialDate) {
+            initialDate = new Date(initialDate.getFullYear(), initialDate.getMonth(), 1, 3);
+
+            var currentMonth    = initialDate.getMonth() + 1,
+              dayCount          = new Date(initialDate.getFullYear(), initialDate.getMonth() + 1, 0, 3).getDate(),
+              prevDates         = dateUtils.dateRange(-initialDate.getDay(), 0, initialDate),
+              currentMonthDates = dateUtils.dateRange(0, dayCount, initialDate),
+              lastDate          = dateUtils.stringToDate(currentMonthDates[currentMonthDates.length - 1]),
+              nextMonthDates    = dateUtils.dateRange(1, 7 - lastDate.getDay(), lastDate),
+              allDates          = prevDates.concat(currentMonthDates, nextMonthDates),
+              dates             = [],
+              today             = dateFilter(new Date(), 'yyyy-MM-dd');
+
+            // Add an extra row if needed to make the calendar to have 6 rows
+            if (allDates.length / 7 < 6) {
+              allDates = allDates.concat(dateUtils.dateRange(1, 8, allDates[allDates.length - 1]));
             }
-          });
-        });
-      }
-    }
- 
-  }])
-  .directive('validated', ['$parse', function($parse) {
-    return {
-      restrict: 'AEC',
-      require: '^form',
-      link: function(scope, element, attrs, form) {
-        var inputs = element.find("*");
-        for(var i = 0; i < inputs.length; i++) {
-          (function(input){
-            var attributes = input.attributes;
-            if (attributes.getNamedItem('ng-model') != void 0 && attributes.getNamedItem('name') != void 0) {
-              var field = form[attributes.name.value];
-              if (field != void 0) {
-                angular.element(input).bind('blur',function(){
-                  scope.$apply(function(){
-                    field.$blurred = true;
-                  })
-                });
-                scope.$watch(function() {
-                  return form.$submitted + "_" + field.$valid + "_" + field.$blurred;
-                }, function() {console.log(arguments);
-                  if (!field.$blurred && form.$submitted != true) return;
-                  var inp = angular.element(input);
-                  if (inp.hasClass('ng-invalid')) {
-                    element.removeClass('has-success');
-                    element.addClass('has-error');
-                  } else {
-                    element.removeClass('has-error').addClass('has-success');
-                  }
-                });
+
+            var nextMonthInitialDate = new Date(initialDate);
+            nextMonthInitialDate.setMonth(currentMonth);
+
+            scope.allowPrevMonth = !minDate || initialDate > minDate;
+            scope.allowNextMonth = !maxDate || nextMonthInitialDate < maxDate;
+
+            for (var i = 0; i < allDates.length; i++) {
+              var className = "", date = allDates[i];
+
+              if (date < scope.minDate || date > scope.maxDate || dateFilter(date, 'M') !== currentMonth.toString()) {
+                className = 'pickadate-disabled';
+              } else if (indexOf.call(disabledDates, date) >= 0) {
+                className = 'pickadate-disabled pickadate-unavailable';
+              } else {
+                className = 'pickadate-enabled';
               }
+
+              if (date === today) {
+                className += ' pickadate-today';
+              }
+
+              dates.push({date: date, className: className});
             }
-          })(inputs[i]);
+
+            scope.dates = dates;
+          };
+
+          scope.setDate = function(dateObj) {
+            if (isDateDisabled(dateObj)) return;
+            ngModel.$setViewValue(dateObj.date);
+          };
+
+          ngModel.$render = function () {
+            if ((date = ngModel.$modelValue) && (indexOf.call(disabledDates, date) === -1)) {
+              scope.currentDate = currentDate = dateUtils.stringToDate(date);
+            } else if (date) {
+              // if the initial date set by the user is in the disabled dates list, unset it
+              scope.setDate({});
+            }
+            scope.render(currentDate);
+          };
+
+          scope.changeMonth = function (offset) {
+            // If the current date is January 31th, setting the month to date.getMonth() + 1
+            // sets the date to March the 3rd, since the date object adds 30 days to the current
+            // date. Settings the date to the 2nd day of the month is a workaround to prevent this
+            // behaviour
+            currentDate.setDate(1);
+            currentDate.setMonth(currentDate.getMonth() + offset);
+            scope.render(currentDate);
+          };
+
+          function isDateDisabled(dateObj) {
+            return (/pickadate-disabled/.test(dateObj.className));
+          }
         }
-      }
-    }
-  }])
+      };
+}])
 
-.controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
-
-console.log($rootScope.providerId);
-	console.log($rootScope.email);
-	console.log($rootScope.password);
-
-
+.controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory) {
  $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };

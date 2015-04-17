@@ -1,34 +1,23 @@
-<ion-view title="Login">	
-	
-	<!-- Header Start-->
-<!--	<ion-header-bar align-title="left" class="bar-positive">
-	  
-	</ion-header-bar> 
-	<div class='login_sub_header'><div>Connected Care</div></div>-->
+<ion-view title="Login">
 	
 	<ion-header-bar align-title="left" class="bar-positiveLess">
-		  
 		<div class="bar bar-headerLess">
-		  
 		</div>
 		
 		<div class="bar bar-subheaderLess">
-		  <h2 class="head_titleLess">Connected Care</h2>
+			<h2 class="head_titleLess">Connected Care</h2>
 		</div>
-		
-		
 	</ion-header-bar>
-	
-	
 	<!-- Header end-->
 	
 	
 	<!-- Content Start-->
 	
 	<ion-content class="login_content">
-		<div class="login_home">	
+		<form>
+			<div class="login_home">	
 				<label class="item-input">
-					<input type="text" placeholder="Email" ng-model="data.email" >
+					<input type="email" placeholder="Email" ng-model="userLogin.email" >
 				</label>
 				
 				<div class="squaredCheckbox">
@@ -39,14 +28,14 @@
 				<div class="remember"> Remember my email</div> 	
 				
 				<div class="continue">
-				<a ng-href="#/tab/provider"> 
-					<button class="button button-outline button-positive" >
+				<!--<a ng-href="#/tab/provider"> -->
+					<button on-touch="LoginFunction()" class="button button-outline button-positive" >
 						Continue
 					</button>
-					</a> 
-				</div>			
-				
-		</div>
+				<!--</a> -->
+				</div>	
+			</div>
+		</form>
 	</ion-content>
 	<!-- Content End-->
 	
