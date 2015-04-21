@@ -6,7 +6,7 @@
 					<button class="button icon button-clear ion-navicon-round"
 							ng-click="toggleLeft()" style="color:#000;margin-top: 7px;"></button>
   </div>
-  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -10px; ">Patient List</h1>
+  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -32px; ">Patient List</h1>
   
 
 <a href="#/tab/uersearch"> 
@@ -47,16 +47,25 @@
 			  </a>	
 		</ion-item>
 		
-		<ion-item style="padding:11px;height: 104px;" ng-repeat="dependentDetails in dependentDetails" >
+		<ion-item style="padding:11px;  top: 0px;  height: 80px;" ng-repeat="dependentDetails in dependentDetails">
+			 <a class="HrefListView"  href="#/tab/patientDetail">   
+				<img ng-src="img/IMG_2.png" class="listImgView">
+				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
+				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
+				<!--<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>-->
+			 </a>
+		</ion-item> 
+		
+		<!--<ion-item style="" ng-repeat="dependentDetails in dependentDetails" >
 			 <a class="HrefListView"  href="#/tab/uersearch">   
-			 <div style="margin-top:-11px !important;  margin-left: 20px;">
+			 <div style="/*margin-top:-11px !important;*/ height: 66px;  margin-left: 20px;">
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
-				<!--<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list> -->
+				<!--<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list> 
 			 </div>
 			 </a>
-		</ion-item >
+		</ion-item >-->
 		<!--<ion-item style="padding:11px;height: 104px;">
 			 <a class="HrefListView"  href="#/tab/uersearch"> 
 				<div style="margin-top:-11px !important;">			 
