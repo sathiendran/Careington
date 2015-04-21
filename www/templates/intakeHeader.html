@@ -26,7 +26,7 @@
 					<button class="button icon button-clear ion-navicon-round"
 							ng-click="toggleLeft()" style="color:#000;margin-top: 7px;"></button>
   </div>
-  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%; ">Intake Form</h1>
+  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -33px; ">Intake Form</h1>
   
 
 
@@ -37,8 +37,8 @@
 				</div>
 				<div class="subHeader_content" >
 					
-						<div style="font-size: 20px;"><span style="font-weight: bold;">{{patientInfomation.patientName}}</span> {{patientInfomation.lastName}}</div>
-						<div style="font-size: 9px;">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}</div>
+						<div style="font-size: 16px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
+						<div style="font-size: 9px;" class="PatintHeaderFontStyleSub">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}</div>
 					
 				</div>
 	</div>

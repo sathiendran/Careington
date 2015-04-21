@@ -8663,3 +8663,13 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -ms-flex: 0 0 10%;
   flex: 0 0 10%;
   max-width: 10%; }
+
+.checkbox-icon {
+  background: none repeat scroll 0 0 transparent;
+  border: 0 none;
+  cursor: pointer;
+  display: block;
+  height: 28px;
+  position: relative;
+  width: 28px;
+  float: right; }
