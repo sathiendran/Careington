@@ -317,7 +317,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-submitPayment.html',
-        controller: 'submitPaymentCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })

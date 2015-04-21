@@ -20,7 +20,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services'])
 
 
-.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter) {
+.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -169,9 +169,25 @@ angular.module('starter.controllers', ['starter.services'])
 		var params = {
             hospitalId: $rootScope.providerId, 
 			patientId: $rootScope.patientId,
-            accessToken: $rootScope.token,
+            token: $rootScope.token,
             success: function (data) {
-                $scope.patientPaymentProfiles = data;				
+                $scope.patientPaymentProfiles = data;	
+
+					$rootScope.paymentProfiles123 = [];	
+			
+			angular.forEach(data.data.paymentProfiles, function(index, item) {	
+	
+				
+				$rootScope.paymentProfiles123.push({
+					'id': index.$id,
+					'billingAddress': angular.fromJson(index.billingAddress),
+					'cardExpiration': index.cardExpiration,
+					'cardNumber': index.cardNumber,
+					'isBusiness': index.isBusiness,
+					'profileID': index.profileID,
+				});
+			});	
+				
             },
             error: function (data) {
                 $scope.patientPaymentProfiles = 'Error getting patient payment profiles';
@@ -180,6 +196,7 @@ angular.module('starter.controllers', ['starter.services'])
         };
         
         LoginService.getPatientPaymentProfile(params);
+		$state.go('tab.submitPayment');
 	}
 	
 	$scope.paymentProfileId = 28804398;
@@ -192,7 +209,7 @@ angular.module('starter.controllers', ['starter.services'])
 			Amount: 30,
 			consultationId: $rootScope.consultationId,
 			paymentProfileId: $scope.paymentProfileId,
-            accessToken: $rootScope.token,
+            token: $rootScope.token,
             success: function (data) {
                 $scope.CreditCardDetails = data;				
             },
@@ -203,6 +220,8 @@ angular.module('starter.controllers', ['starter.services'])
         };
         
         LoginService.postCoPayDetails(params);
+		
+		$state.go('tab.receipt');
 	}
 	
 	
@@ -222,7 +241,7 @@ angular.module('starter.controllers', ['starter.services'])
 			Country: $scope.Country,
 			ProfileId: $scope.profileId,
 			Cvv: $scope.Cvv,		
-            accessToken: $rootScope.token,
+            token: $rootScope.token,
 			
             success: function (data) {
                 $scope.PostPaymentDetails = data;	
@@ -235,6 +254,8 @@ angular.module('starter.controllers', ['starter.services'])
         };
         
         LoginService.postPaymentProfileDetails(params);
+		 $state.go('tab.verifyCard');  
+		
 	}
 	
 	$scope.doGetFacilitiesList = function () {

@@ -7,6 +7,7 @@
 	</div>
 	
 	<ion-content style="margin: 180px 0 0 4%; padding-top: 25px;" >
+	<form>
 		<div class="password_home">
 		
 			<div class="consultation_head" >
@@ -21,7 +22,8 @@
 						<div class="demo" style="margin-left: 50px;">
 							
 							<select>
-								<option style="padding:10px;"><b>Visa ending in ...0054</b></option>
+								<option style="padding:10px;" ng-repeat="paymentProfiles123 in paymentProfiles123"  ><b>{{paymentProfiles123.cardNumber}}</b></option>
+								
 							</select>
 						</div>
 					</div>
@@ -29,15 +31,19 @@
 			</div>
 			
 			<div style="padding-top: 15px; padding-bottom: 5px;">
-				<a ng-href="#/tab/receipt"><button class="button button-block button-balanced">
+				<!--<a ng-href="#/tab/receipt">-->
+				<button type="submit" on-touch='doPostCoPayDetails()'  class="button button-block button-balanced">
 				  Submit Payment
-				</button></a>
+				</button>
+				
+				<!--</a>-->
 			</div>
 			<div class="scheduled_appointments_text" style="text-align: justify; padding-top: 5px; padding-bottom: 25px;" >
 				<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
 			</div>
 		</div>
 	</ion-content>
+	</form>
 </ion-side-menu-content>	
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
