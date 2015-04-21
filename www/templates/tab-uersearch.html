@@ -9,10 +9,14 @@
   <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;">Patient List</h1>
  
   
-  <div class="bar bar-subheaderHomeUser">
-		  <h2 class="TitleHomeUser_Sub">Who needs care today?</h2>
-		  <img ng-src="img/search.png" style="float:right; margin-right: 19px;margin-top: -45px;">
-  </div>
+ <div class="bar bar-subheaderHomeUser">
+
+			<div class="TitleHomeUser_Sub">Who needs care today?</div>
+			<div style="top: 10px; float:right; width:10%;">
+			<img ng-src="img/search.png" style="float:right;margin-right: 15px; width: 20px;">
+			</div>
+
+</div> 
    
 </ion-header-bar>
 <ion-view title="User Search">
@@ -34,7 +38,7 @@
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>{{patientInfomation.patientName}}</b> <span class="SubTitleSpan">{{patientInfomation.lastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{patientInfomation.age}}  | Guardain : {{patientInfomation.guardianName}}</p>
-				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
+				<!--<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list> -->
 			 </a>
 		</ion-item >
 		<ion-item style="padding:11px;  top: 0px;  height: 80px;" ng-repeat="dependentDetails in dependentDetails">
@@ -42,9 +46,9 @@
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
-				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
+				<!--<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>-->
 			 </a>
-		</ion-item>
+		</ion-item> 
 		<!--<ion-item style="padding:11px;  top: 0px;  height: 80px;">
 			 <a class="HrefListView"  href="#/tab/patientDetail">   
 				<img ng-src="img/IMG_2.png" class="listImgView" >
