@@ -98,24 +98,23 @@ angular.module('starter.services', [])
 		},
 		
 		getConsultationFinalReport: function(params) {
-		//https://snap-dev.com/api/reports/consultationreportdetails/2440
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+			
+			var existingConsultation = $http({method: 'get',
+						url: 'https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId,
+						headers: { 'Authorization': 'Bearer '+ params.token }
+						})	
+			
+			
+			.success(function (data, status, headers, config) {
+				console.log(data);
+					return data;
+				})
+				.error(function (data, status, headers, config) {
+					return {"status": false};
+				});
+			return existingConsultation;
+		},
 		
-		$http.
-			get('https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId).
-			success(function(data, status, headers, config) {
-				if(typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function(data, status, headers, config) {
-				if(typeof params.error != 'undefined') {
-					params.success(data);
-				}
-			});
-	},
-	
-	
 	getPatientPaymentProfile: function(params) {
 		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
 		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;

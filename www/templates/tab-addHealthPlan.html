@@ -15,11 +15,11 @@
 				</div>
 				<div class="subHeader_content" style="position:absolute;margin-top:10px;">
 					    <div style="font-size: 20px;margin-left: 13px;">
-							<span style="font-weight: bold;margin-top: 5px;" class="PatintHeaderFontStyle">Merida</span> 
-							<span class="PatintHeaderFontStyleInner">Ariadnae</span>
+							<span style="font-weight: bold;margin-top: 5px;" class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> 
+							<span class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span>
 						</div>
 						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >
-							Age 14 | Guardian Benjamin Ross
+							Age {{patientInfomation.age}} | Guardian {{patientInfomation.guardianName}}
 						</div>
 				</div>
 			</div>

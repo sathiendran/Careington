@@ -4,7 +4,18 @@ var indexOf = [].indexOf || function(item) {
 	}
 	return -1;
 }
-
+/*
+var util = {
+	setHeaders: function(request, credentials) {
+		if (typeof credentials != 'undefined') {
+			request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+		}		
+		request.defaults.headers['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+		request.defaults.headers['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+		return request;
+	}
+}
+*/
 
 angular.module('starter.controllers', ['starter.services'])
 
@@ -19,14 +30,14 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.myGoBack = function() {
 		$ionicHistory.goBack();
 	};
-	
+	$rootScope.UserEmail = 'ben.ross.310.95348@gmail.com';
 	
   
 	$scope.userLogin = {};
     $scope.LoginFunction = function(item,event){
 		//$rootScope.email = $scope.userLogin.email;
-		$rootScope.email = 'ben.ross.310.95348@gmail.com';
-		//console.log($rootScope.email);
+		$rootScope.UserEmail = $scope.UserEmail;
+		//console.log($rootScope.UserEmail);
 		$state.go('tab.provider');
     };
 	
@@ -41,15 +52,18 @@ angular.module('starter.controllers', ['starter.services'])
 		$state.go('tab.password');
 	}
 	
-	//Password functionality	
+	//Password functionality
+
+	$rootScope.password = 'Password@123';
 	$scope.pass = {};
 	$scope.PasswordFunction = function() {
 		//$rootScope.password = $scope.pass.password;
-		$rootScope.password = 'Password@123';
-		//console.log($rootScope.password);	
+		$rootScope.password = $scope.password;
+		console.log($rootScope.password);	
+		console.log($rootScope.UserEmail);
 		
 		var params = {
-            email: $rootScope.email, 
+            email: $rootScope.UserEmail, 
             password: $rootScope.password,
             userTypeId: 1,
             hospitalId: $rootScope.providerId,
@@ -120,7 +134,7 @@ angular.module('starter.controllers', ['starter.services'])
 					'guardianName': index.guardianName,
 				});
 			});	
-			console.log($rootScope.dependentDetails);
+			//console.log($rootScope.dependentDetails);
 			
 		});
 		
@@ -132,17 +146,13 @@ angular.module('starter.controllers', ['starter.services'])
 		
 		var params = {
             consultationId: $rootScope.consultationId, 
-            accessToken: $rootScope.token,
-            success: function (data) {
-                $scope.existingConsultationReport = data;				
-            },
-            error: function (data) {
-                $scope.existingConsultationReport = 'Error getting consultation report';
-				console.log(data);
-            }
-        };
-        
-        LoginService.getConsultationFinalReport(params);
+            token: $rootScope.token
+        };        
+       
+		LoginService.getConsultationFinalReport(params).then(function (results) {	
+			$rootScope.consultionInformation = results.data.data.consultionInfo;
+		});
+		//$state.go('tab.ReportScreen');
 	}
 	
 	$scope.doGetPatientPaymentProfiles = function () {
@@ -169,7 +179,7 @@ angular.module('starter.controllers', ['starter.services'])
 		
 		var params = {
             profileId: $scope.profileId, 
-			emailId: $rootScope.email,
+			emailAddress: $rootScope.UserEmail,
 			Amount: 30,
 			consultationId: $rootScope.consultationId,
 			paymentProfileId: $scope.paymentProfileId,
@@ -221,7 +231,7 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.doGetFacilitiesList = function () {
 		
 		var params = {
-            emailAddress: $rootScope.email, 
+            emailAddress: $rootScope.UserEmail, 
 			accessToken: $rootScope.token,			
             success: function (data) {
                 $scope.PostPaymentDetails = data;				
@@ -461,7 +471,7 @@ $scope.name ='';
 .controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
 
 console.log($rootScope.providerId);
-	console.log($rootScope.email);
+	console.log($rootScope.UserEmail);
 	console.log($rootScope.password);
 
 

@@ -17,8 +17,8 @@
 				</div>
 				<div class="subHeader_content" >
 					
-						<div style="font-size: 20px;"><span style="font-weight: bold;">Merida</span> Ariadnae</div>
-						<div style="font-size: 9px;">Age 14 | Guardian Benjamin Ross</div>
+						<div style="font-size: 20px;"><span style="font-weight: bold;">{{patientInfomation.patientName}}</span> {{patientInfomation.lastName}}</div>
+						<div style="font-size: 9px;">Age {{patientInfomation.age}} | Guardian {{patientInfomation.guardianName}}</div>
 					
 				</div>
 			</div>
@@ -46,9 +46,11 @@
 			
 			
 			<div style="padding-top: 50px; padding-bottom: 25px;">
-				<a ng-href="#/tab/waitingRoom"><button class="button button-block button-balanced">
+				<!--<a ng-href="#/tab/waitingRoom">-->
+				<button type="submit" on-touch ='doGetExistingConsulatationReport()' class="button button-block button-balanced">
 				  Enter the Waiting Room
-				</button></a>
+				</button>
+				<!--</a>-->
 			</div>
 			
 		</div>
@@ -56,4 +58,4 @@
 </ion-side-menu-content>	
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
-</ion-view>	>
+</ion-view>	

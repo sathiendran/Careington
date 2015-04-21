@@ -327,7 +327,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-receipt.html',
-        controller: 'receiptCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -337,7 +337,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-waitingRoom.html',
-        controller: 'waitingRoomCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })  
