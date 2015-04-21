@@ -25,8 +25,8 @@
 			 <div class="HrefListView"> 
 				<div style="margin-top:-5px !important;">
 				<img ng-src="img/IMG_2.png" class="listImgView">
-				<span class = "ListText"><b>Cedar</b> <span class="SubTitleSpan">Sinai</span></span>
-				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
+				<span class = "ListText"><b>{{patientInfomation.patientName}}</b> <span class="SubTitleSpan">{{patientInfomation.lastName}}</span></span>
+				<p class="ListHomeUser_p DateFormateStyle">Age {{patientInfomation.age}} | Guardain : {{patientInfomation.guardianName}}</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 				</div>
 			 </div>
@@ -43,17 +43,17 @@
 			  </a>	
 		</ion-item>
 		
-		<ion-item style="padding:11px;height: 104px;">
+		<ion-item style="padding:11px;height: 104px;" ng-repeat="dependentDetails in dependentDetails" >
 			 <a class="HrefListView"  href="#/tab/uersearch">   
 			 <div style="margin-top:-11px !important;">
 				<img ng-src="img/IMG_2.png" class="listImgView">
-				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Ariadnae</span></span>
-				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
+				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
+				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 			 </div>
 			 </a>
 		</ion-item >
-		<ion-item style="padding:11px;height: 104px;">
+		<!--<ion-item style="padding:11px;height: 104px;">
 			 <a class="HrefListView"  href="#/tab/uersearch"> 
 				<div style="margin-top:-11px !important;">			 
 				<img ng-src="img/IMG_2.png" class="listImgView">
@@ -72,7 +72,7 @@
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 			 </div>
 			 </a>
-		</ion-item>
+		</ion-item>-->
 		
 	</ion-list>
 </ion-content>

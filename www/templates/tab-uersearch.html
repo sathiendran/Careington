@@ -32,27 +32,27 @@
 		<ion-item style="padding:11px;top: 0px;  height: 80px;">
 			 <a class="HrefListView"  href="#/tab/patientDetail">   
 				<img ng-src="img/IMG_2.png" class="listImgView">
-				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Ariadnae</span></span>
-				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age 14 | Guardain : Banjamin Ross</p>
+				<span class = "ListText"><b>{{patientInfomation.patientName}}</b> <span class="SubTitleSpan">{{patientInfomation.lastName}}</span></span>
+				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{patientInfomation.age}}  | Guardain : {{patientInfomation.guardianName}}</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 			 </a>
 		</ion-item >
-		<ion-item style="padding:11px;  top: 0px;  height: 80px;">
+		<ion-item style="padding:11px;  top: 0px;  height: 80px;" ng-repeat="dependentDetails in dependentDetails">
 			 <a class="HrefListView"  href="#/tab/patientDetail">   
 				<img ng-src="img/IMG_2.png" class="listImgView">
-				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Ariadnae</span></span>
-				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age 14 | Guardain : Banjamin Ross</p>
+				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
+				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 			 </a>
 		</ion-item>
-		<ion-item style="padding:11px;  top: 0px;  height: 80px;">
+		<!--<ion-item style="padding:11px;  top: 0px;  height: 80px;">
 			 <a class="HrefListView"  href="#/tab/patientDetail">   
 				<img ng-src="img/IMG_2.png" class="listImgView" >
 				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Sinai</span></span>
 				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age 14 | Guardain : Banjamin Ross</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 			 </a>
-		</ion-item>
+		</ion-item>-->
 		
 	</ion-list>
 	

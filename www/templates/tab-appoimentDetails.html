@@ -16,11 +16,11 @@
 				</div>
 				<div class="subHeader_content" style="position:absolute;margin-top:10px;">
 					    <div style="font-size: 20px;margin-left: 13px;">
-							<span style="font-weight: bold;margin-top: 5px;" class="PatintHeaderFontStyle">Merida</span> 
-							<span class="PatintHeaderFontStyleInner">Ariadnae</span>
+							<span style="font-weight: bold;margin-top: 5px;" class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> 
+							<span class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span>
 						</div>
 						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >
-							Age 14 | Guardian Benjamin Ross
+							Age {{patientInfomation.age}} | Guardian {{patientInfomation.guardianName}}
 						</div>
 				</div>
 			</div>
@@ -55,14 +55,14 @@
 		
 		<ion-item style="padding:11px;top: -2px;border-color: #9e9e9e;">
 			 <div class="primary"><span style="margin-right:13px;margin-left: 14px;">1 </span> Primary Concern</div>
-			 <p class="ptagprimary" style="font-size:16px;">Vomiting</p>
+			 <p class="ptagprimary" style="font-size:16px;">{{consultionInformation.primaryConsern}}</p>
 			 <div class="secondary"><span style="margin-right:13px;margin-left: 14px;">2 </span>Secondary Concern</div>
-			 <p class="ptagprimary" style="font-size:16px;">She has completely last her balance. <br>Any attempt to stand or walk re-sluts <br> in collasping to the floor. <br> this has been going on four days. </p>
+			 <p class="ptagprimary" style="font-size:16px;">{{consultionInformation.secondaryConsern}}</p>
 		</ion-item>
 		
 		<ion-item style="padding:11px;top: -2px;border-color: #9e9e9e;">
 			<div class="pre_consultant"><span style="margin-right:27px;margin-left: 14px;"></span>Pre consultant Notes</div>
-			 <p class="ptagprimary" style="font-size:16px;">This is general Note Entered <br>This is general Note Entered <br>This is general Note Entered <br> </p>
+			 <p class="ptagprimary" style="font-size:16px;">{{consultionInformation.note}} </p>
 		</ion-item>
 		
 		

@@ -14,8 +14,8 @@
 					<img src="img/PatientImg.png" style="width:50px; margin-top:-11px; margin-left:-11px;" />
 				</div>
 				<div class="subHeader_content">
-					    <div style="font-size: 20px;margin-left: 13px;"><span style="font-weight: bold;" class="PatintHeaderFontStyle">Merida</span> <span class="PatintHeaderFontStyleInner">Ariadnae</span></div>
-						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >Age 14 | Guardian Benjamin Ross</div>
+					    <div style="font-size: 20px;margin-left: 13px;"><span style="font-weight: bold;" class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
+						<div style="font-size: 13px;margin-left: 13px;" class="PatintHeaderFontStyleSub" >Age {{patientInfomation.age}} | Guardian {{patientInfomation.guardianName}}</div>
 				</div>
 			</div>
 	    </div>	
@@ -35,7 +35,7 @@
 				See all your scheduled appointments.
 			</div>
 			<div style="padding-top: 40px;">
-				<a style="text-decoration: none;" ng-click="appoimentDetails();">
+				<a style="text-decoration: none;"  ng-href="#/tab/patientConcerns">
 				<button class="button button-block button-balanced" style="padding-top: 6px;">
 				  Next Available
 				</button></a>

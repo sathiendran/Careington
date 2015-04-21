@@ -62,27 +62,11 @@ angular.module('starter.services', [])
 
 .factory('LoginService', function($http) { 
 	return { 
-		loginUser: function($email,$providerId,$password) {
-				
-				/*var request = $http({
-							method: "post",
-							url: "https://snap-dev.com/api/account/token/",
-							 data: "email=ben.ross.310.95348@gmail.com&password=Password@123&hospitalId=126&userTypeId=1",
-							headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-				});
-			
-				    $http($scope.send).success(function(data){
-					$scope.response = "SUCCESS";
-					console.log(data);
-				   })
-				   .error(function(error){
-					$scope.response = "FAILED";
-					console.log(error);
-				   });*/
+		GetToken: function(params) {			
 				   
-			var promise = $http({method: 'post',
+			var token = $http({method: 'post',
 						url: 'https://snap-dev.com/api/account/token/',
-						data: "email="+$email+"&password="+$password+"&hospitalId="+$providerId+"&userTypeId=1",
+						data: "email="+params.email+"&password="+params.password+"&hospitalId="+params.hospitalId+"&userTypeId="+params.userTypeId,
 						headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
 						})
 			
@@ -93,30 +77,65 @@ angular.module('starter.services', [])
 				.error(function (data, status, headers, config) {
 					return {"status": false};
 				});
-			return promise;
-				   
-				   
+			return token;
 				},
 				
-		getCount: function($data) {
+		getExistingConsulatation: function(params) {
 			
-			var promise = $http({method: 'get',
-						url: 'https://snap-dev.com/api/patientconsultation/2440/all',
-						headers: { 'Authorization': 'Bearer '+ $data }
+			var existingConsultation = $http({method: 'get',
+						url: 'https://snap-dev.com/api/patientconsultation/'+params.consultationId+'/all',
+						headers: { 'Authorization': 'Bearer '+ params.token }
 						})	
 			
 			
 			.success(function (data, status, headers, config) {
-			console.log(data);
 					return data;
 				})
 				.error(function (data, status, headers, config) {
 					return {"status": false};
 				});
-			return promise;
+			return existingConsultation;
 		},
 		
-		getPostPaymentDetails: function(params) {
+		getConsultationFinalReport: function(params) {
+		//https://snap-dev.com/api/reports/consultationreportdetails/2440
+		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+		
+		$http.
+			get('https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	},
+	
+	
+	getPatientPaymentProfile: function(params) {
+		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	},	
+		
+		
+		postPaymentProfileDetails: function(params) {
 	 
 		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
 		
@@ -147,7 +166,24 @@ angular.module('starter.services', [])
 					params.success(data);
 				}
 			});
-    }
+    },
+	getFacilitiesList: function(params) {
+		//GET v2/patients/hospitals?email=<email>
+		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/hospitals?email=' + params.emailAddress).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
 	
 		
 		

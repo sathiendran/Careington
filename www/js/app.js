@@ -99,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-userhome.html',
-        controller: 'UserhomeCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -109,7 +109,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-uersearch.html',
-        controller: 'UsersearchCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })

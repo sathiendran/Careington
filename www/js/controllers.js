@@ -9,7 +9,7 @@ var indexOf = [].indexOf || function(item) {
 angular.module('starter.controllers', ['starter.services'])
 
 
-.controller('LoginCtrl', function($scope, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter) {
+.controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -47,10 +47,23 @@ angular.module('starter.controllers', ['starter.services'])
 		//$rootScope.password = $scope.pass.password;
 		$rootScope.password = 'Password@123';
 		//console.log($rootScope.password);	
-		//LoginService.loginUser($rootScope.email, $rootScope.providerId, $rootScope.password);	
-		LoginService.loginUser($rootScope.email, $rootScope.providerId, $rootScope.password).then(function (results) {	
+		
+		var params = {
+            email: $rootScope.email, 
+            password: $rootScope.password,
+            userTypeId: 1,
+            hospitalId: $rootScope.providerId,
+           
+        };
+        
+		
+		LoginService.GetToken(params).then(function (results) {	
 			$scope.GetToken(results);
+			
+			$scope.existingConsultation();
 		});
+		
+		
 	
 		$state.go('tab.userhome');
 	}
@@ -62,6 +75,8 @@ angular.module('starter.controllers', ['starter.services'])
 	}
 	
 	
+	$rootScope.patientId = 471;
+	$rootScope.consultationId = 2440;
 	$scope.userId = 471;
 	$scope.BillingAddress = '123 chennai';
 	$scope.CardNumber = 4111111111111111;
@@ -76,7 +91,103 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.Cvv = 123;
 	$scope.profileId = 31867222;
 	
-	$scope.doPostPaymentDetails = function () {
+	
+	$scope.existingConsultation = function() {
+	
+	var params = {
+            token: $rootScope.token, 
+            consultationId: $rootScope.consultationId
+            
+        };
+	
+		LoginService.getExistingConsulatation(params).then(function (results) {	
+			
+			$rootScope.consultionInformation = results.data.data.consultionInfo;
+			$rootScope.patientInfomation = results.data.data.patientInfomation;	
+			$rootScope.inTakeForm = results.data.data.inTakeForm;
+			$rootScope.depedentInformation = results.data.data.depedentInformation;
+			
+			$rootScope.dependentDetails = [];	
+			
+			angular.forEach(results.data.data.depedentInformation, function(index, item) {	
+	
+				
+				$rootScope.dependentDetails.push({
+					'id': index.$id,
+					'patientName': index.patientName,
+					'lastName': index.lastName,
+					'age': index.age,
+					'guardianName': index.guardianName,
+				});
+			});	
+			console.log($rootScope.dependentDetails);
+			
+		});
+		
+		console.log($rootScope.dependentDetails);
+		//$state.go('tab.appoimentDetails');
+	}
+	
+	$scope.doGetExistingConsulatationReport = function () {
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.token,
+            success: function (data) {
+                $scope.existingConsultationReport = data;				
+            },
+            error: function (data) {
+                $scope.existingConsultationReport = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+        
+        LoginService.getConsultationFinalReport(params);
+	}
+	
+	$scope.doGetPatientPaymentProfiles = function () {
+		
+		var params = {
+            hospitalId: $rootScope.providerId, 
+			patientId: $rootScope.patientId,
+            accessToken: $rootScope.token,
+            success: function (data) {
+                $scope.patientPaymentProfiles = data;				
+            },
+            error: function (data) {
+                $scope.patientPaymentProfiles = 'Error getting patient payment profiles';
+				console.log(data);
+            }
+        };
+        
+        LoginService.getPatientPaymentProfile(params);
+	}
+	
+	$scope.paymentProfileId = 28804398;
+	
+	$scope.doPostCoPayDetails = function () {
+		
+		var params = {
+            profileId: $scope.profileId, 
+			emailId: $rootScope.email,
+			Amount: 30,
+			consultationId: $rootScope.consultationId,
+			paymentProfileId: $scope.paymentProfileId,
+            accessToken: $rootScope.token,
+            success: function (data) {
+                $scope.CreditCardDetails = data;				
+            },
+            error: function (data) {
+                $scope.CreditCardDetails = 'Error getting patient payment profiles';
+				console.log(data);
+            }
+        };
+        
+        LoginService.postCoPayDetails(params);
+	}
+	
+	
+	$scope.doPostPaymentProfileDetails = function () {
 		
 		var params = {
             userId: $scope.userId, 
@@ -104,36 +215,32 @@ angular.module('starter.controllers', ['starter.services'])
             }
         };
         
-        LoginService.getPostPaymentDetails(params);
+        LoginService.postPaymentProfileDetails(params);
+	}
+	
+	$scope.doGetFacilitiesList = function () {
+		
+		var params = {
+            emailAddress: $rootScope.email, 
+			accessToken: $rootScope.token,			
+            success: function (data) {
+                $scope.PostPaymentDetails = data;				
+            },
+            error: function (data) {
+                $scope.PostPaymentDetails = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+		
+		LoginService.getFacilitiesList(params);
 	}
 	
 	
 	
-	$scope.todayStocks = [];
 	
-	$scope.appoimentDetails = function() {
-		LoginService.getCount($rootScope.token).then(function (results) {	
-			
-			console.log(results.data);
-			
-			angular.forEach(results.data, function(index, item) {	
-			
-			$scope.todayStocks.push({
-			'id': index.id,
-			'CompanyCode': index.CompanyCode,
-			'CompanyName': index.CompanyName,			
-			'TradingDate': index.TradingDate,
-			'SignalType': index.SignalType,
-			'ChartType': index.ChartType,
-			'ImageName': index.ImageName,
-			'description': index.description,
-			'pastMonthMatches': index.pastMonthMatches,
-			'data': angular.fromJson(index.data),
-			});
-		});
-			
-		});
-	}
+
+	
+	
 
  
    /*$scope.data = {};
