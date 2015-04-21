@@ -97,30 +97,31 @@ angular.module('starter.services', [])
 			return existingConsultation;
 		},
 		
-		getConsultationFinalReport: function(params) {
+	/*	getConsultationFinalReport: function(params) {
 			
-			var existingConsultation = $http({method: 'get',
+			var existingConsultation123 = $http({method: 'get',
 						url: 'https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId,
 						headers: { 'Authorization': 'Bearer '+ params.token }
 						})	
 			
 			
-			.success(function (data, status, headers, config) {
-				console.log(data);
+			.success(function (data, status, headers, config) {				
 					return data;
 				})
 				.error(function (data, status, headers, config) {
 					return {"status": false};
 				});
-			return existingConsultation;
-		},
+			return existingConsultation123;
+		},*/
 		
-	getPatientPaymentProfile: function(params) {
-		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+		getConsultationFinalReport: function(params) {
+		//https://snap-dev.com/api/reports/consultationreportdetails/2440
+		//util.setHeaders($http, params);
+		
+		$http.defaults.headers.common['Authorization'] = "Bearer " + params.token;
 		
 		$http.
-			get('https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId).
+			get('https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId).
 			success(function(data, status, headers, config) {
 				if(typeof params.success != 'undefined') {
 					params.success(data);
@@ -131,13 +132,10 @@ angular.module('starter.services', [])
 					params.success(data);
 				}
 			});
-	},	
-		
-		
+	},
 		postPaymentProfileDetails: function(params) {
-	 
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
 		
+		$http.defaults.headers.common['Authorization'] = "Bearer " + params.token;
         $http.
 			post('https://snap-dev.com/api/patients/' + params.userId + '/payments', 
 			{
@@ -166,6 +164,27 @@ angular.module('starter.services', [])
 				}
 			});
     },
+	
+	getPatientPaymentProfile: function(params) {
+		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	},	
+		
+		
+		
 	getFacilitiesList: function(params) {
 		//GET v2/patients/hospitals?email=<email>
 		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;

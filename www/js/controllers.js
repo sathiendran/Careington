@@ -20,7 +20,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services'])
 
 
-.controller('LoginCtrl', function($scope, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter) {
+.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -69,15 +69,19 @@ angular.module('starter.controllers', ['starter.services'])
             hospitalId: $rootScope.providerId,
            
         };
-        
+        $ionicLoading.show({
+				template: 'Loading...'
+			});
 		
 		LoginService.GetToken(params).then(function (results) {	
+		
 			$scope.GetToken(results);
 			
 			$scope.existingConsultation();
+			
 		});
 		
-		
+		$ionicLoading.hide();
 	
 		$state.go('tab.userhome');
 	}
@@ -142,17 +146,22 @@ angular.module('starter.controllers', ['starter.services'])
 		//$state.go('tab.appoimentDetails');
 	}
 	
-	$scope.doGetExistingConsulatationReport = function () {
+	$scope.doGetExistingConsulatationReport = function () {		
 		
 		var params = {
             consultationId: $rootScope.consultationId, 
-            token: $rootScope.token
-        };        
-       
-		LoginService.getConsultationFinalReport(params).then(function (results) {	
-			$rootScope.consultionInformation = results.data.data.consultionInfo;
-		});
-		//$state.go('tab.ReportScreen');
+            token: $rootScope.token,
+            success: function (data) {
+                $rootScope.existingConsultationReport = data.data[0];				
+            },
+            error: function (data) {
+                $scope.existingConsultationReport = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+        
+		LoginService.getConsultationFinalReport(params);
+		$state.go('tab.waitingRoom');
 	}
 	
 	$scope.doGetPatientPaymentProfiles = function () {

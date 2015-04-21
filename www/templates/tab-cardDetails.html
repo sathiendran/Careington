@@ -1,3 +1,5 @@
+
+<form novalidate="novalidate" on-valid-submit="doPostPaymentProfileDetails()">
 <ion-view title="Card Details">
 	<!--<div ng-include src="'templates/planDetails_header.html'"></div>-->
 	
@@ -9,12 +11,13 @@
 	 <h1 class="title_patient"></h1>	
 	 
 	 <div style="color: #fff; font-size: 17px; line-height: 3; width: 91%; text-align: right;" >
-		<a style="padding-top: 10px; cursor: pointer; color: #fff;"  ng-href="#/tab/verifyCard">Next</a>
+		<a style="padding-top: 10px; cursor: pointer; color: #fff;" on-touch="doPostPaymentProfileDetails()">Next</a>
 	</div>
 	
 </ion-header-bar>
 		
 	<ion-content class="planDetails_content" >
+	 
 		<div>		
 			<a ng-href="#/tab/verifyCard"><div class="healthPlan_text" style="font-size: 37px;">
 				Card Details			
@@ -27,19 +30,19 @@
 			<div class="list" >
 			  <label class="item item-input" >
 				<span class="input-label" >Name</span>
-				<input type="text" placeholder="Payment" style="font-size: 20px;">
+				<input type="text" placeholder="Payment" ng-model="FirstName" style="font-size: 20px;">
 			  </label>
 			  <label class="item item-input">
 				<span class="input-label" >Card Number</span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="text" placeholder="Required" ng-model="CardNumber" style="font-size: 20px;">
 			  </label>
 			  <label class="item item-input" >
 				<span class="input-label" >Expiration Date</span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="date" placeholder="Required"  style="font-size: 20px;">
 			  </label>
 				<label class="item item-input" >
 				<span class="input-label" >Security Code</span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="text" placeholder="Required" ng-model="Cvv" style="font-size: 20px;">
 			  </label>
 			</div>
 			
@@ -48,7 +51,9 @@
 			</div>
 			<div class="privacy" >About Connected Care Privacy</div>
 		</div>
+		
 	</ion-content>
 
 	
 </ion-view>
+</form>

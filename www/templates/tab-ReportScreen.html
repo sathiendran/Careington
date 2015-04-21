@@ -57,11 +57,11 @@
 	<div style="height:50px;">
 		<div style="float:left;margin-left: 10px;">
 			<p><b>Patient:</b><br> 
-			Karen Goodman <br>
+			{{existingConsultationReport.PatientName}} {{existingConsultationReport.LastName}} <br>
 			121 lexington Drive <br>
 			Glendale, CA 91203 <br>
-			Home: 626.544.1259 <br>
-			Cell: 626.544.1259 <br>
+			Home: {{existingConsultationReport.HomePhone}}  <br>
+			Cell: {{existingConsultationReport.MobilePhone}}  <br>
 			</p>
 		</div>
 		<div style="float:right;margin-right: 18px;">
@@ -81,11 +81,11 @@
         
         <div style="float:left;margin-left: -118px;margin-top: 45px;">
 			<p> 
-			<b style="Color:#4D4D4D;font-size:18px;"> Age : </b>   <input type="text" style="background-color:#CCCCCC;position: relative;left: 80px;top: -25px; width:70px;" readonly value="36">
+			<b style="Color:#4D4D4D;font-size:18px;"> Age : </b>   <input type="text" style="background-color:#CCCCCC;position: relative;left: 80px;top: -25px; width:70px;" readonly value="{{existingConsultationReport.AgeString}}">
 			</p> 
             
             <p style="margin-top:-23px;"> 
-			<b style="Color:#4D4D4D;font-size:18px;"> Gender : </b>  <input type="text" style="background-color:#CCCCCC;position: relative;left: 80px;top: -25px; width:70px;" readonly value="Male">
+			<b style="Color:#4D4D4D;font-size:18px;"> Gender : </b>  <input type="text" style="background-color:#CCCCCC;position: relative;left: 80px;top: -25px; width:70px;" readonly value="{{existingConsultationReport.Gender}}">
 			</p>
             
             
@@ -112,7 +112,7 @@
        <p>  <span style="padding:5px;background-color:#E5E5E5;font-size: 20px;">1</span> <span style="padding:10px;font-size: 20px;">Temprature Over 100⁰</b></span></p>
 <br>
 
- <p>  <span style="padding:5px;background-color:#ccc;font-size: 20px;">2</span> <span style="padding:10px;font-size: 20px;">Vomiting</b></span></p>
+ <p>  <span style="padding:5px;background-color:#ccc;font-size: 20px;">2</span> <span style="padding:10px;font-size: 20px;">{{existingConsultationReport.PrimaryConcern}}</b></span></p>
 
       </div> 
 
