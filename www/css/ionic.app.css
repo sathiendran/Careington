@@ -8020,7 +8020,7 @@ body {
   min-width: 30px;
   position: relative;
   text-align: center;
-  /*top: 0;*/ }
+  top: -4px; }
 
 .patient_subHeader {
   display: block;
@@ -8366,9 +8366,10 @@ a {
   margin-left: -55px; }
 
 .bar-subheaderHomeUser {
-  display: block;
-  height: auto;
-  top: 63px; }
+  /*display: block;*/
+  height: 60%;
+  top: 80px;
+  margin-top: -6px; }
 
 .TitleHomeUser_Sub {
   font-family: 'Glober SemiBold';
@@ -8377,7 +8378,9 @@ a {
   position: relative;
   /*margin: 1px 7px 25px;*/
   margin-left: 7px;
-  top: 5px; }
+  top: 3px;
+  width: 90%;
+  color: #000; }
 
 .ContentHomeUser {
   margin: 81px 0 0 0;
