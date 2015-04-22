@@ -60,64 +60,53 @@ angular.module('starter.services', [])
 	}
 })
 
-.factory('LoginService', function($http) { 
-	return { 
-		GetToken: function(params) {	   
-			var token = $http({method: 'post',
-						url: 'https://snap-dev.com/api/account/token/',
-						data: "email="+params.email+"&password="+params.password+"&hospitalId="+params.hospitalId+"&userTypeId="+params.userTypeId,
-						headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-						})
-			
-				.success(function (data, status, headers, config) {
-					//console.log(data);
-					return data;
-				})
-				.error(function (data, status, headers, config) {
-					return {"status": false};
-				});
-			return token;
-				},
+/*.factory('LoginService', function($http) { 
+	return { 	
+		getToken: function(params) {
+		util.setHeaders($http);
+        $http.
+			post('https://snap-dev.com/api/Account/Token', 
+			{
+				UserTypeId: params.userTypeId,
+				HospitalId: params.hospitalId,
+				Email: params.email,
+				Password: params.password
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    },
 				
-		getExistingConsulatation: function(params) {
-			
-			var existingConsultation = $http({method: 'get',
-						url: 'https://snap-dev.com/api/patientconsultation/'+params.consultationId+'/all',
-						headers: { 'Authorization': 'Bearer '+ params.token }
-						})	
-			
-			
-			.success(function (data, status, headers, config) {
-					return data;
-				})
-				.error(function (data, status, headers, config) {
-					return {"status": false};
-				});
-			return existingConsultation;
-		},
+	
 		
-	/*	getConsultationFinalReport: function(params) {
-			
-			var existingConsultation123 = $http({method: 'get',
-						url: 'https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId,
-						headers: { 'Authorization': 'Bearer '+ params.token }
-						})	
-			
-			
-			.success(function (data, status, headers, config) {				
-					return data;
-				})
-				.error(function (data, status, headers, config) {
-					return {"status": false};
-				});
-			return existingConsultation123;
-		},*/
+	getExistingConsulatation: function(params) {
+		//https://snap-dev.com/api/patientconsultation/2440/all		
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/patientconsultation/' + params.consultationId + '/all').
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	},
 		
 		getConsultationFinalReport: function(params) {
-		//https://snap-dev.com/api/reports/consultationreportdetails/2440
-		//util.setHeaders($http, params);
 		
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.token;
+			util.setHeaders($http, params);
 		
 		$http.
 			get('https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId).
@@ -134,7 +123,8 @@ angular.module('starter.services', [])
 	},
 		postPaymentProfileDetails: function(params) {
 		
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.token;
+		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+		util.setHeaders($http, params);
         $http.
 			post('https://snap-dev.com/api/patients/' + params.userId + '/payments', 
 			{
@@ -166,7 +156,8 @@ angular.module('starter.services', [])
 	
 	getPatientPaymentProfile: function(params) {
 		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.token;
+	
+		util.setHeaders($http, params);
 		
 		$http.
 			get('https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId).
@@ -183,7 +174,8 @@ angular.module('starter.services', [])
 	},	
 		
 		postCoPayDetails: function(params) {
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.token;
+		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+		util.setHeaders($http, params);
         $http.
 			post('https://snap-dev.com/api/patients/copay', 
 			{
@@ -209,7 +201,10 @@ angular.module('starter.services', [])
 		
 	getFacilitiesList: function(params) {
 		//GET v2/patients/hospitals?email=<email>
-		$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+	//	$http.defaults.headers.common['Authorization'] = "Bearer " + params.accessToken;
+	
+	//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+		util.setHeaders($http, params);
 		
 		$http.
 			get('https://snap-dev.com/api/v2/patients/hospitals?email=' + params.emailAddress).
@@ -229,7 +224,165 @@ angular.module('starter.services', [])
 		
 	}
 })
+*/
 
+.service('LoginService', function($http){
+    /*
+        params: email, password, userTypeId, hospitalId
+                (event handlers): success, failure
+    */
+    this.getToken = function(params) {
+		util.setHeaders($http);
+        $http.
+			post('https://snap-dev.com/api/Account/Token', 
+			{
+				UserTypeId: params.userTypeId,
+				HospitalId: params.hospitalId,
+				Email: params.email,
+				Password: params.password
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    }
+	
+	this.getExistingConsulatation = function(params) {
+		//https://snap-dev.com/api/patientconsultation/2440/all		
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/patientconsultation/' + params.consultationId + '/all').
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+	
+	this.getConsultationFinalReport = function(params) {
+		//https://snap-dev.com/api/reports/consultationreportdetails/2440
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+	
+	this.getPatientPaymentProfile = function(params) {
+		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}	
+	
+	this.getFacilitiesList = function(params) {
+		//GET v2/patients/hospitals?email=<email>
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/hospitals?email=' + params.emailAddress).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+	
+	this.postCoPayDetails = function(params) {
+		util.setHeaders($http, params);
+		
+        $http.
+			post('https://snap-dev.com/api/patients/copay', 
+			{
+				ProfileId: params.profileId,
+				Email: params.emailAddress,
+				Amount: params.Amount,
+				ConsultationId: params.consultationId,
+				PaymentProfileId: params.paymentProfileId				
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success({
+						"transaction": "SUCCESSFUL"
+					});
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    }
+	
+	this.postPaymentProfileDetails = function(params) {
+		util.setHeaders($http, params);
+		
+        $http.
+			post('https://snap-dev.com/api/patients/' + params.userId + '/payments', 
+			{
+				userId: params.userId,
+				BillingAddress: params.BillingAddress,
+				CardNumber: params.CardNumber,
+				City: params.City,
+				ExpiryMonth: params.ExpiryMonth,
+				ExpiryYear: params.ExpiryYear,
+				FirstName: params.FirstName,
+				LastName: params.LastName,
+				State: params.State,
+				Zip: params.Zip,
+				Country: params.Country,
+				ProfileId: params.ProfileId,
+				Cvv: params.Cvv				
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    }
+})
 
 .factory('pickadateUtils', ['dateFilter', function(dateFilter) {
       return {

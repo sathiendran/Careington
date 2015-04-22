@@ -4,7 +4,7 @@ var indexOf = [].indexOf || function(item) {
 	}
 	return -1;
 }
-/*
+
 var util = {
 	setHeaders: function(request, credentials) {
 		if (typeof credentials != 'undefined') {
@@ -15,7 +15,6 @@ var util = {
 		return request;
 	}
 }
-*/
 
 angular.module('starter.controllers', ['starter.services'])
 
@@ -55,43 +54,35 @@ angular.module('starter.controllers', ['starter.services'])
 	//Password functionality
 
 	$rootScope.password = 'Password@123';
-	$scope.pass = {};
-	$scope.PasswordFunction = function() {
-		//$rootScope.password = $scope.pass.password;
-		$rootScope.password = $scope.password;
-		console.log($rootScope.password);	
-		console.log($rootScope.UserEmail);
-		
-		var params = {
+	
+	
+	$scope.doGetToken = function () {
+        var params = {
             email: $rootScope.UserEmail, 
-            password: $rootScope.password,
+            password: 'Password@123',
             userTypeId: 1,
             hospitalId: $rootScope.providerId,
-           
+            success: function (data) {
+                $rootScope.accessToken = data.access_token;
+				console.log($scope.accessToken);
+				$scope.tokenStatus = 'alert-success';
+				$scope.doGetExistingConsulatation();
+				
+            },
+            error: function (data) {
+                $scope.accessToken = 'Error getting access token';
+				$scope.tokenStatus = 'alert-danger';
+				console.log(data);
+            }
         };
-        $ionicLoading.show({
-				template: 'Loading...'
-			});
+        
+        LoginService.getToken(params);
 		
-		LoginService.GetToken(params).then(function (results) {	
-		
-			$scope.GetToken(results);
-			
-			$scope.existingConsultation();
-			
-		});
-		
-		$ionicLoading.hide();
-	
 		$state.go('tab.userhome');
-	}
- 
-	//Get Token
-	$scope.GetToken = function(results){
-		$rootScope.token = results.data.access_token;
-		console.log('ffgfg', $rootScope.token);
-	}
+		
+    }
 	
+ 
 	
 	$rootScope.patientId = 471;
 	$rootScope.consultationId = 2440;
@@ -110,26 +101,28 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.profileId = 31867222;
 	
 	
-	$scope.existingConsultation = function() {
 	
-	var params = {
-            token: $rootScope.token, 
-            consultationId: $rootScope.consultationId
-            
-        };
 	
-		LoginService.getExistingConsulatation(params).then(function (results) {	
+	$scope.doGetExistingConsulatation = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
 			
-			$rootScope.consultionInformation = results.data.data.consultionInfo;
-			$rootScope.patientInfomation = results.data.data.patientInfomation;	
-			$rootScope.inTakeForm = results.data.data.inTakeForm;
-			$rootScope.depedentInformation = results.data.data.depedentInformation;
+			$rootScope.consultionInformation = data.data.consultionInfo;
+			$rootScope.patientInfomation = data.data.patientInfomation;	
+			$rootScope.inTakeForm = data.data.inTakeForm;
+			$rootScope.depedentInformation = data.data.depedentInformation;
 			
 			$rootScope.dependentDetails = [];	
 			
-			angular.forEach(results.data.data.depedentInformation, function(index, item) {	
-	
-				
+			angular.forEach(data.data.depedentInformation, function(index, item) {	
 				$rootScope.dependentDetails.push({
 					'id': index.$id,
 					'patientName': index.patientName,
@@ -138,19 +131,32 @@ angular.module('starter.controllers', ['starter.services'])
 					'guardianName': index.guardianName,
 				});
 			});	
-			//console.log($rootScope.dependentDetails);
 			
-		});
+			console.log($rootScope.dependentDetails)
+				
+            },
+            error: function (data) {
+                $scope.existingConsultation = 'Error getting existing consultation';
+				console.log(data);
+            }
+        };
+        
+        LoginService.getExistingConsulatation(params);
 		
-		console.log($rootScope.dependentDetails);
-		//$state.go('tab.appoimentDetails');
+		
 	}
+	
 	
 	$scope.doGetExistingConsulatationReport = function () {		
 		
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
 		var params = {
             consultationId: $rootScope.consultationId, 
-            token: $rootScope.token,
+            accessToken: $rootScope.accessToken,
             success: function (data) {
                 $rootScope.existingConsultationReport = data.data[0];				
             },
@@ -166,10 +172,15 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	$scope.doGetPatientPaymentProfiles = function () {
 		
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
 		var params = {
             hospitalId: $rootScope.providerId, 
 			patientId: $rootScope.patientId,
-            token: $rootScope.token,
+            accessToken: $rootScope.accessToken,
             success: function (data) {
                 $scope.patientPaymentProfiles = data;	
 
@@ -202,14 +213,17 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.paymentProfileId = 28804398;
 	
 	$scope.doPostCoPayDetails = function () {
-		
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
 		var params = {
             profileId: $scope.profileId, 
 			emailAddress: $rootScope.UserEmail,
 			Amount: 30,
 			consultationId: $rootScope.consultationId,
 			paymentProfileId: $scope.paymentProfileId,
-            token: $rootScope.token,
+            accessToken: $rootScope.accessToken,
             success: function (data) {
                 $scope.CreditCardDetails = data;				
             },
@@ -226,7 +240,10 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	
 	$scope.doPostPaymentProfileDetails = function () {
-		
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
 		var params = {
             userId: $scope.userId, 
 			BillingAddress: $scope.BillingAddress,
@@ -241,7 +258,7 @@ angular.module('starter.controllers', ['starter.services'])
 			Country: $scope.Country,
 			ProfileId: $scope.profileId,
 			Cvv: $scope.Cvv,		
-            token: $rootScope.token,
+            accessToken: $rootScope.accessToken,
 			
             success: function (data) {
                 $scope.PostPaymentDetails = data;	
@@ -259,10 +276,13 @@ angular.module('starter.controllers', ['starter.services'])
 	}
 	
 	$scope.doGetFacilitiesList = function () {
-		
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
 		var params = {
             emailAddress: $rootScope.UserEmail, 
-			accessToken: $rootScope.token,			
+			accessToken: $rootScope.accessToken,			
             success: function (data) {
                 $scope.PostPaymentDetails = data;				
             },
@@ -278,17 +298,6 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	
 	
-
-	
-	
-
- 
-   /*$scope.data = {};
-   $scope.loginProcess = function () {
-   var email = $scope.data.email;
-   alert(email);
-     LoginService.loginUser($scope);
-	};*/
 	
 $scope.name ='';
     $scope.chosen = {};

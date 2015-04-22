@@ -1139,6 +1139,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .item-radio input:checked ~ .radio-icon {
   visibility: visible;
-  color: green;
-
+  color: red;
+}
 //end Validation styles
