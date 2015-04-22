@@ -314,13 +314,13 @@ $scope.name ='';
 	  ];
 
  $scope.chronicList = [
-    { text: "This is a chronic condition", checked: false },
-    { text: "This is a chronic condition", checked: false },
-    { text: "This is a chronic condition", checked: false },
-	{ text: "This is a chronic condition", checked: false },
-	{ text: "This is a chronic condition", checked: false },
-	{ text: "This is a chronic condition", checked: false },
-	{ text: "This is a chronic condition", checked: false }
+    { text: "This is a chronic condition1", checked: false },
+    { text: "This is a chronic condition2", checked: false },
+    { text: "This is a chronic condition3", checked: false },
+	{ text: "This is a chronic condition4", checked: false },
+	{ text: "This is a chronic condition5", checked: false },
+	{ text: "This is a chronic condition6", checked: false },
+	{ text: "This is a chronic condition7", checked: false }
   ];
   
   $scope.medicationList = [
@@ -621,10 +621,10 @@ console.log($rootScope.providerId);
   
  $scope.model = null;
  $scope.devList = [
-    { text: "This is a Chronic Conditions", checked: false },
-    { text: "This is a Chronic Conditions", checked: false },
-	{ text: "This is a Chronic Conditions", checked: false },
-	{ text: "This is a Chronic Conditions", checked: false }
+    { text: "This is a Chronic Conditions1", checked: false },
+    { text: "This is a Chronic Conditions2", checked: false },
+	{ text: "This is a Chronic Conditions3", checked: false },
+	{ text: "This is a Chronic Conditions4", checked: false }
   ];	
  $scope.rightButtons = [
         { 
