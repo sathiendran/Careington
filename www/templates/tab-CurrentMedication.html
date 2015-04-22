@@ -6,13 +6,13 @@
 <ion-content class="ContentHomeUser" style="margin-top: 100px;">
  	<ion-list>
 		<ion-item style="top: 0px;padding: 2px;">
-			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>4</b> of <b>7</b></div>
+			<div style="color:#888;float:right;margin-right: 10px; margin-top: 20px;">Step <b>5</b> of <b>7</b></div>
 			<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
-				<div style="margin-top: 25px;">
+				<div style="margin-top: 35px;">
 					<!-- <a ng-href="#/tab/ConsentTreat">  -->
-						<h1 class="title ChronicCondition" style="font-size: 25px;">Current Medications</h1>
+						<h1 class="title ChronicCondition" style="font-size: 24px;">Current Medications</h1>
 					<!--</a> -->
-					<p style="margin-left: 19px;">List any medications currently talking.</p>
+					<p style="margin-left: 19px;margin-top: -9px;">List any medications currently talking.</p>
 				</div>
 				<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 0px;">Select up to four</div>
 			
@@ -47,7 +47,7 @@
 </ion-view>
 
 
-		<ion-footer-bar  class="footer">
+<!--		<ion-footer-bar  class="footer">
 			<div style="width:100%;">
 					 
 						<div class="" style="text-align:center;">
@@ -59,6 +59,23 @@
 						</div>
 						  
 			<div>
-		</ion-footer-bar>
+		</ion-footer-bar> -->
 
+<ion-footer-bar  class="footer">
+			<div style="width:100%;">
+					 
+					 <div class="" style="float:left; width:33%">
+							<a class="button_new icon ion-chevron-left" href="#/tab/MedicationAllegies" style="cursor: pointer;">Back</a>
+						</div>
+						
+						<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
+							<a class="button_new icon" href="#/tab/patientDetail" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
+						</div>
+						   
+						<div class="" style="text-align:right;margin-top: 3px;float:left;width:33%">
+							<a class="button_new icon ion-chevron-right"   href="#/tab/ConsentTreat"> <span style="margin-left: -58px;margin-right: 25px;">Next<span> </a>
+						</div>
+						  
+			<div>
+</ion-footer-bar>		
 		

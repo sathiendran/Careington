@@ -7,11 +7,11 @@
 <ion-content class="ContentHomeUser" style="margin-top: 120px;">
  	<ion-list>
 		<ion-item style="top: -2px;padding: 2px;">
-			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>4</b> of <b>7</b></div>
+			<div style="color:#888;float:right;margin-right: 10px; margin-top: 3px;">Step <b>4</b> of <b>7</b></div>
 				<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
 						<div style="margin-top: 25px;">
 							<a ng-href="#/tab/CurrentMedication"> 
-								<h1 class="title ChronicCondition" style="font-size: 27px;">Medication Allergies</h1>
+								<h1 class="title ChronicCondition" style="font-size: 26px;">Medication Allergies</h1>
 							</a>
 							<p style="margin-left: 19px;">Select medication allergies.</p>
 						</div>
@@ -27,15 +27,15 @@
 
 		<ion-item style="top: -1px;">
 		<div style="margin-top: 10px;">
-			<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
-			<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Medication Allergies</div>
+			<div style="text-align: right; margin-right: 14px;  top: -13px;position: relative;"><img ng-src="img/delete1.png" ></div>
+			<div style="text-align: left; margin-right: 5px;margin-top: -39px;"> This is a Medication Allergies</div>
 	    </div>
 		</ion-item>
 		
 		<ion-item>
 		<div>
-			<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
-			<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Medication Allergies</div>
+			<div style="text-align: right; margin-right: 14px;  top: 0px;position: relative;"><img ng-src="img/delete1.png" ></div>
+			<div style="text-align: left; margin-right: 5px;margin-top: -29px;"> This is a Medication Allergies</div>
 	    </div>
 		</ion-item>
 
@@ -46,7 +46,7 @@
 <div ng-include src="'templates/SideMenu.html'"></div>
 </ion-view>
 
-<ion-footer-bar  class="footer">
+<!--<ion-footer-bar  class="footer">
 <div style="width:100%;">
     <div class="buttons">
       <a class="button_new icon ion-chevron-left" ng-click="myGoBack()" style="cursor: pointer;"> Back </a>
@@ -62,4 +62,22 @@
    </div>
      
 <div>
+</ion-footer-bar> -->
+
+<ion-footer-bar  class="footer">
+			<div style="width:100%;">
+					 
+					 <div class="" style="float:left; width:33%">
+							<a class="button_new icon ion-chevron-left" href="#/tab/priorSurgeries" style="cursor: pointer;">Back</a>
+						</div>
+						
+						<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
+							<a class="button_new icon" href="#/tab/patientDetail" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
+						</div>
+						   
+						<div class="" style="text-align:right;margin-top: 3px;float:left;width:33%">
+							<a class="button_new icon ion-chevron-right"   href="#/tab/CurrentMedication"> <span style="margin-left: -58px;margin-right: 25px;">Next<span> </a>
+						</div>
+						  
+			<div>
 </ion-footer-bar>
