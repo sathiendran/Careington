@@ -7,7 +7,6 @@ For example, you might change some of the default colors:
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
 $positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
 $assertive:                       #ef473a !default;
@@ -7440,23 +7439,23 @@ a.button {
  * Platform specific tweaks
  */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: 64px; }
+  height: auto; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-    margin-top: 19px !important; }
+    _margin-top: 19px !important; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    margin-top: 20px; }
+    _margin-top: 20px; }
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  top: 64px; }
+  _top: auto; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  top: 64px; }
+  _top: auto; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  top: 108px; }
+  _top: auto; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  top: 113px; }
+  _top: auto; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  top: 157px; }
+  _top: auto; }
 .platform-ios.platform-cordova.status-bar-hide {
-  margin-bottom: 20px; }
+  margin-bottom: _auto; }
 
 @media (orientation: landscape) {
   .platform-ios.platform-browser.platform-ipad {
@@ -8664,12 +8663,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
   flex: 0 0 10%;
   max-width: 10%; }
 
-.checkbox-icon {
-  background: none repeat scroll 0 0 transparent;
-  border: 0 none;
-  cursor: pointer;
-  display: block;
-  height: 28px;
-  position: relative;
-  width: 28px;
-  float: right; }
+.item-radio input:checked ~ .radio-icon {
+  visibility: visible;
+  color: red; }
