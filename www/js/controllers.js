@@ -579,10 +579,12 @@ console.log($rootScope.providerId);
         $scope.modal.hide();
     };
 	
-	$scope.OnSelectPatientConcerns = function($items) {
-		//alert($items);
-		PatientConcernsListService.PatientConcernsList($items);
-	}
+	$scope.OnSelectPatientConcerns = function(position, devList) {
+      angular.forEach(devList, function(item, index) {
+        if (position != index) 
+          item.checked = false;
+      });
+    }
 	
 	$scope.SaveDesc = function(model) {
 	$scope.data = {}

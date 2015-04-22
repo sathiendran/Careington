@@ -1,26 +1,25 @@
 <div class="modal">
     <header class="bar bar-header bar-dark" style="height: 55px;">
-		  <h1 class="title" style="top: 7px;">Primary Concerns</h1>
-		    <button class="button button-clear" ng-click="closeModal()" style="top: 7px;">Done</button> 
+      <h1 class="title" style="top: 7px;">Chronic Conditions</h1>
+      <button class="button button-clear" ng-click="closeModal()" style="top: 7px;">Done</button>
     </header>
+
 <ion-content has-header="true" style="margin-top: 52px;">
+      
     <ion-list>
-       <ion-radio ng-repeat="item in devList" ng-model="item.text" ng-value="item.text" name="item.text" ng-click="OnSelectPatientConcerns(item.text)">
-		<span style=" margin-left: 44px"> {{item.text}} </span>
-	   </ion-radio>
-	
-		<!--<ion-checkbox ng-repeat="item in devList"
+		<ion-checkbox ng-repeat="item in devList"
 						  ng-model="item.checked" 
-						  ng-checked="item.checked" ng-click="!OnSelectPatientConcerns(item.text)" ng-disabled="checked" >
+						  ng-checked="item.checked" ng-click="OnSelectPatientConcerns($index,devList)" ng-disabled="checked" >
 			  {{ item.text }}
-			</ion-checkbox> -->
-	
+		</ion-checkbox> 
+		
 		<a ng-click="SaveDesc()" style="cursor:pointer;">
 			<ion-item>
 				Other
 			</ion-item>
 		</a>
-      
-    </ion-list> 
+		
+</ion-list>	
+
 </ion-content>
-</div>
+  </div>
