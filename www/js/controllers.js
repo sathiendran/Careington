@@ -295,55 +295,6 @@ angular.module('starter.controllers', ['starter.services'])
 		LoginService.getFacilitiesList(params);
 	}
 	
-	
-	
-	
-	
-$scope.name ='';
-    $scope.chosen = {};
-    $scope.colors = [{Id: 'R', Name : 'Red'},{Id: 'G', Name : 'Green'},{Id: 'B', Name: 'Blue'}];
-
-	$scope.patientList = [
-		{ text: "This is a patient concern", checked: false },
-		{ text: "This is a patient concern", checked: false },
-		{ text: "This is a patient concern", checked: false },
-		{ text: "This is a patient concern", checked: false },
-		{ text: "This is a patient concern", checked: false },
-		{ text: "This is a patient concern", checked: false },
-		{ text: "This is a patient concern", checked: false }
-	  ];
-
- $scope.chronicList = [
-    { text: "This is a chronic condition1", checked: false },
-    { text: "This is a chronic condition2", checked: false },
-    { text: "This is a chronic condition3", checked: false },
-	{ text: "This is a chronic condition4", checked: false },
-	{ text: "This is a chronic condition5", checked: false },
-	{ text: "This is a chronic condition6", checked: false },
-	{ text: "This is a chronic condition7", checked: false }
-  ];
-  
-  $scope.medicationList = [
-    { text: "This is a medication allergies", checked: false },
-    { text: "This is a medication allergies", checked: false },
-    { text: "This is a medication allergies", checked: false },
-	{ text: "This is a medication allergies", checked: false },
-	{ text: "This is a medication allergies", checked: false },
-	{ text: "This is a medication allergies", checked: false },
-	{ text: "This is a medication allergies", checked: false }
-  ];
-  
-  $scope.currentList = [
-    { text: "This is a current medication", checked: false },
-    { text: "This is a current medication", checked: false },
-    { text: "This is a current medication", checked: false },
-	{ text: "This is a current medication", checked: false },
-	{ text: "This is a current medication", checked: false },
-	{ text: "This is a current medication", checked: false },
-	{ text: "This is a current medication", checked: false }
-  ];
-  
- 
 
   
 /* Prior Surgery page START */
@@ -381,19 +332,6 @@ $scope.name ='';
 	
 	}
 	
-	
-	/* $scope.user = {
-    username: '',
-    password : ''
-  };
-  $scope.signIn = function(form) {
-    console.log(form);
-    if(form.$valid) {
-    console.log('Sign-In', $scope.user.username);
-    $state.go('tab.MedicationAllegies');
-    }
-  };
-	*/
 	
 	$scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {	
@@ -613,7 +551,7 @@ console.log($rootScope.providerId);
 })
 
 
-.controller('ChronicConditionCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
+.controller('ChronicConditionCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $rootScope, ChronicStocksSession) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -659,6 +597,42 @@ console.log($rootScope.providerId);
     $scope.closeModal = function(model) {
         $scope.modal.hide();
     };
+	
+	$scope.OnSelectPatientConcerns = function(position, devList) {
+	
+		
+		
+		$rootScope.PreviousChronicLoadedList = ChronicStocksSession.getChronicStocksSession();
+		
+		$rootScope.chronicpatlist = [];
+		
+		 angular.forEach(PreviousChronicLoadedList, function(item, index) {      
+				$rootScope.chronicpatlist.push({
+						'text': index.text,
+						'checked': index.checked,
+						'index': item,					
+					});
+		
+		  
+			});
+		
+	
+      angular.forEach(devList, function(item, index) {
+       if (position == index) {
+          //item.checked = false;
+		 
+				$rootScope.chronicpatlist.push({
+						'text': item.text,
+						'checked': item.checked,
+						'index': index,					
+					});
+		}	
+		  
+      });
+	  ChronicStocksSession.setChronicStocksSession($rootScope.chronicpatlist);
+	  
+    }
+	
 		
 })
 

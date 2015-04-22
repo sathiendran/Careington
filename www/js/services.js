@@ -51,14 +51,6 @@ angular.module('starter.services', [])
 
 
 
-.factory('PatientConcernsListService', function() { 
-	return { 
-		PatientConcernsList: function($scope) {
-			//alert($scope)	
-				
-		}
-	}
-})
 
 /*.factory('LoginService', function($http) { 
 	return { 	
@@ -425,6 +417,18 @@ angular.module('starter.services', [])
         },
         setSurgeryStocksSession: function (value) {
             SurgeryStocksSession = value;
+        }
+    };
+})
+
+.service('ChronicStocksSession', function () {
+    var ChronicStocksSession = {};
+    return {
+        getChronicStocksSession: function () {
+            return ChronicStocksSession;
+        },
+        setChronicStocksSession: function (value) {
+            ChronicStocksSession = value;
         }
     };
 })
