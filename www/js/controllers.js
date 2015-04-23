@@ -605,8 +605,7 @@ console.log($rootScope.providerId);
 		$rootScope.PreviousChronicLoadedList = ChronicStocksSession.getChronicStocksSession();
 		
 		$rootScope.chronicpatlist = [];
-		
-		 angular.forEach(PreviousChronicLoadedList, function(item, index) {      
+		/*angular.forEach(PreviousChronicLoadedList, function(item, index) {      
 				$rootScope.chronicpatlist.push({
 						'text': index.text,
 						'checked': index.checked,
@@ -614,8 +613,9 @@ console.log($rootScope.providerId);
 					});
 		
 		  
-			});
-		
+			});*/
+			
+			
 	
       angular.forEach(devList, function(item, index) {
        if (position == index) {
@@ -629,7 +629,9 @@ console.log($rootScope.providerId);
 		}	
 		  
       });
-	  ChronicStocksSession.setChronicStocksSession($rootScope.chronicpatlist);
+	  
+	   ChronicStocksSession.setChronicStocksSession($rootScope.chronicpatlist);
+	   
 	  
     }
 	
