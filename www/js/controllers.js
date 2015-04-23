@@ -299,38 +299,19 @@ angular.module('starter.controllers', ['starter.services'])
   
 /* Prior Surgery page START */
 
-	$scope.model = null;
-	$scope.rightButtons = [
-        { 
-			type: 'button-positive',  
-			content: '<i class="icon ion-navicon"></i>',
-			tap: function(e) {				
-				$scope.openModal();				  
-			}
-        }
-    ]
-
-    $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', 
-        function(modal) {
-            $scope.modal = modal;
-		},
-        {
-            // Use our scope for the scope of the modal to keep it simple
-            scope: $scope, 
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
-
-        }
-    );
 	
-    $scope.openModal = function() {
-        $scope.modal.show();
+   $scope.getSurgeryPopup = function() {
+      
+        $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        }); 
     };
 	
-	$scope.doLogin = function() {
-	$state.go('tab.MedicationAllegies');	
-	
-	}
 	
 	
 	$scope.surgery = {};
@@ -382,6 +363,35 @@ angular.module('starter.controllers', ['starter.services'])
     };
 	
 	/* Prior Surgery page END */
+	
+	/*Chronic condition start here*/
+	
+	 $scope.devList = [
+    { text: "This is a Chronic Conditions1", checked: false },
+    { text: "This is a Chronic Conditions2", checked: false },
+	{ text: "This is a Chronic Conditions3", checked: false },
+	{ text: "This is a Chronic Conditions4", checked: false }
+  ];
+	
+	$scope.getChronicConditionPopup = function() {
+      
+        $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        }); 
+    };
+
+
+    $scope.closeChronicConditionPopup = function() {
+        $scope.modal.hide();
+    };
+
+
+	/*Chronic condition END here*/
 	
 	
 })

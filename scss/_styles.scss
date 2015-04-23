@@ -136,8 +136,8 @@ body {
 } 
 
 .login_content {
-	margin: 78px 0 0 0;
-	padding-top: 85px;
+	margin: 16px 0 0 0;
+	padding-top: 155px;
 		.login_home {	
 				padding: 0 12%;
 				
@@ -294,13 +294,21 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		height: auto;
 		border-color: $Shiraz;
 		background-image: linear-gradient(0deg, $Shiraz, $Shiraz 50%, transparent 50%);
-		border-color: #ccc;
-		border-width: 0px 0px 3px 0px;
+		/*border-color: #ccc;
+		border-width: 0px 0px 3px 0px;*/
+		box-shadow: 0px 3px 0px 0px #800F1B;
+		-moz-box-shadow: 0px 3px 0px 0px #800F1B;
+		-webkit-box-shadow: 0px 3px 0px 0px #800F1B;
 }
 .header_image {
 	margin-top: 23px;
 	text-align: center;
 	width: 100%;
+	border-color: #B03A21;
+	border-width: 0px 0px 3px 0px;
+	box-shadow: 0px 3px 2px #B03A21;
+	-moz-box-shadow: 0px 3px 2px #B03A21;
+	-webkit-box-shadow: 0px 3px 2px #B03A21;
 		img {
 			width: 135px;
 			height: 75px;
@@ -308,11 +316,11 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .password_sub_header {
 	@extend .login_sub_header;
-	margin-top: 115px;
+	margin-top: 96px;
 	color: $Shiraz;
 		.password_header_content {
 			position: relative;
-			top: 35px;
+			top: 45px;
 			span {
 				color: #C4C4C4;
 				font-size: 12px;
@@ -327,6 +335,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .password_content {
 	@extend .login_content;
 	margin: 220px 0 0 0;
+	padding-top: 60px;
 	.item-input {
 		border: 1px solid $Altoa;
 		border-radius: 8px;
@@ -727,18 +736,21 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	
 	
 .bar-headerLess {
-	/*border-bottom-width: 1px;*/
+	border-bottom-width: 0px;
 	border-top-width: 0;
 	top: 0;
 	background-color: #f0502c;
 	background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
-	border-color: #B03A21;
-	border-width: 0px 0px 3px 0px;
+	/*border-color: #B03A21;
+	border-width: 0px 0px 3px 0px;*/
+	box-shadow: 0px 3px 2px #B03A21;
+	-moz-box-shadow: 0px 3px 2px #B03A21;
+  -webkit-box-shadow: 0px 3px 2px #B03A21;
 }
 .bar-subheaderLess {
 	display: block;
 	height: 70px;
-	top: 45px;
+	top: 47px;
 	-moz-box-shadow: 0px 2px 9px #ADABAB;
 	-webkit-box-shadow: 0px 2px 9px #ADABAB;
 	box-shadow: 0px 2px 9px #ADABAB;
@@ -1154,11 +1166,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
     _margin-top: 19px !important; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    _margin-top: 20px; }
+    margin-top: 0px; }
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
   _top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  _top: 64px; }
+  top: 0px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
   _top: 108px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
@@ -1167,3 +1179,5 @@ form.ng-submitted input.ng-valid + i.icon.error {
   _top: 157px; }
 .platform-ios.platform-cordova.status-bar-hide {
   _margin-bottom: 20px; }
+  
+  
