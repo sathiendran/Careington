@@ -1,6 +1,6 @@
 <ion-view title="Patient Details">
 	
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
+<!--<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
 		
 		<div class="backButtonDiv" style="margin-top: -6px;">
 		<a style="padding-top: 15px; font-weight: bold;" class="button icon-left ion-chevron-left button-clear button-light"  style="cursor: pointer;" ng-href="#/tab/userhome">
@@ -19,16 +19,44 @@
 				</div>
 			</div>
 	    </div>	
+</ion-header-bar> -->
+
+<ion-header-bar align-title="left" class="bar-positiveHomeUser">
+  
+  		<div class="backButtonDiv" style="margin-top: -6px;">
+		<a style="padding-top: 15px; font-weight: bold;" class="button icon-left ion-chevron-left button-clear button-light"  style="cursor: pointer;" ng-href="#/tab/userhome">
+		<span style="margin-top:3px; position:absolute;">Back</span>
+		</a>
+	    </div>
+  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -33px; ">Patient</h1>
+  
+
+
+<div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 74px;height: 87%">
+	<div style="margin-left:10px;">
+				<div class="subHeader_image" style="margin-left: -15px;  margin-top: -13px;">
+					<img src="img/cutmypic.png" style="width:42px;" />
+				</div>
+				<div class="subHeader_content" >
+					
+						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
+						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}</div>
+					
+				</div>
+	</div>
+</div> 
+
+   
 </ion-header-bar>
 	
 	
 	
 	<ion-content class="patient_content" >
-		<div class="password_home">	
+		<div class="password_home" style="padding-left: 7%;">	
 			
 				<a style="text-decoration: none;" ng-href="#/tab/patientCalendar">
-				<button class="button button-block button-energized" style="padding-top: 6px;">
-				 <span style=""> View Appointments </span>
+				<button class="button button-block button-energized">
+				 <span style="position: relative;top: 3px;"> View Appointments </span>
 				</button></a>
 			
 			<div class="scheduled_appointments_text" >
@@ -36,8 +64,8 @@
 			</div>
 			<div style="padding-top: 40px;">
 				<a style="text-decoration: none;"  ng-href="#/tab/patientConcerns">
-				<button class="button button-block button-balanced" style="padding-top: 6px;">
-				  Next Available
+				<button class="button button-block button-balanced" >
+				  <span style="position: relative;top: 3px;">Next Available</span>
 				</button></a>
 			</div>
 			<div class="scheduled_appointments_text" >
