@@ -457,7 +457,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 .controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
 
-console.log($rootScope.providerId);
+    console.log($rootScope.providerId);
 	console.log($rootScope.UserEmail);
 	console.log($rootScope.password);
 
@@ -480,7 +480,7 @@ console.log($rootScope.providerId);
 })
 
 
-.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService) {
+.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -489,12 +489,7 @@ console.log($rootScope.providerId);
   };
   
  $scope.model = null;
- $scope.devList = [
-    { text: "Fever", checked: false },
-    { text: "Vomiting", checked: false },
-	{ text: "Headache", checked: false },
-	{ text: "shortness of breath", checked: false }
-  ];	
+ $scope.devList = IntakeLists.getConcerns();
  $scope.rightButtons = [
         { 
    type: 'button-positive',  
@@ -558,6 +553,100 @@ console.log($rootScope.providerId);
 			]
 		  });
     };
+})
+
+
+
+/// Controller to be used by all intake forms
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope) {
+    
+    //$rootScope.Appointment = {};
+    //$rootScope.Appointment.primaryConcern = "Hell";
+    $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
+    $scope.myGoBack = function() {
+        $ionicHistory.goBack();
+    };
+  
+    $scope.model = null;
+    
+    // Get list of primary concerns lists
+    $scope.primaryConcernList = IntakeLists.getConcerns();
+    
+    $scope.PatientPrimaryConcern = "";
+    
+    // Open primary concerns popup
+    $scope.loadPrimaryConcerns = function() {
+        $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        }); 
+    };
+
+    $scope.closePrimaryConcerns = function() {
+        $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
+        angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
+            $scope.PatientPrimaryConcern = item.text;
+        });
+        $scope.modal.hide();
+    };
+    
+    
+    // Onchange of primary concerns
+    $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList, item) {
+        angular.forEach(primaryConcernList, function(item, index) {
+            if (position != index) 
+              item.checked = false;
+        });
+        if(item.text == "Other"){
+            $scope.openOtherPrimaryConcernView();
+        }
+    }
+	
+    // Open text view for other primary concern
+	$scope.openOtherPrimaryConcernView = function(model) {
+	   $scope.data = {}
+       $ionicPopup.show({
+            template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+            title: 'Enter Concerns',
+			subTitle: '',
+			scope: $scope,
+			buttons: [
+			  { 
+                  text: 'Cancel',
+                  onTap: function(e) {
+                      angular.forEach($scope.primaryConcernList, function(item, index) {
+                        item.checked = false;
+                      });
+                    }
+              },
+			  {
+				text: '<b>Done</b>',
+				type: 'button-positive',
+				onTap: function(e) {
+				  if (!$scope.data.PrimaryConcernOther) {
+					e.preventDefault();
+				  } else {
+                      angular.forEach($scope.primaryConcernList, function(item, index) {
+                        item.checked = false;
+                      });
+                      $scope.primaryConcernList.push({ text: $scope.data.PrimaryConcernOther, checked: true });
+					  return $scope.data.PrimaryConcernOther;
+				  }
+				}
+			  }
+			]
+		  });
+    };
+    
+    $scope.removePrimaryConcern = function(){
+        $scope.PatientPrimaryConcern = "";
+    }
 })
 
 

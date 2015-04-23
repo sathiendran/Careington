@@ -440,4 +440,68 @@ angular.module('starter.services', [])
     };
 })
 
+.service('IntakeLists', function(){
+    var concerns = [
+        { text: "Fever 789 (100+)", checked: false },
+        { text: "Cough", checked: false },
+        { text: "Vomiting", checked: false },
+        { text: "Pink Eye", checked: false },
+        { text: "Stomach and Abdominal Pain", checked: false },
+        { text: "Cramps and Spasms", checked: false },
+        { text: "Diarrhea or Constipation", checked: false },
+        { text: "Skin Rash", checked: false },
+        { text: "Earache or Ear Infection", checked: false },
+        { text: "Sore Throat", checked: false },
+        { text: "Injury: Head, Neck, Face", checked: false },    
+        { text: "Headache", checked: false },
+        { text: "Other", checked: false },
+    ];
+    
+    var chronics = [
+        { text: "ADD or ADHD", checked: false },
+        { text: "Allergies", checked: false },
+        { text: "Asthma", checked: false },
+        { text: "Cancer", checked: false },
+        { text: "Cerebral Palsy", checked: false },
+        { text: "Cystic Fibrosis", checked: false },
+        { text: "Diabetes", checked: false },
+        { text: "Shakes and Seizures", checked: false },
+        { text: "Sickle Cell Anemia", checked: false },
+    ];
+    
+    var allergies = [
+        { text: "Allergy Medication", checked: false },
+        { text: "Antibiotics", checked: false },
+        { text: "Anticonvulsants", checked: false },
+        { text: "Aspirin", checked: false },
+        { text: "Insulin", checked: false },
+    ];
+    
+    var medications =[
+        { text: "Allergy Medications", checked: false },
+        { text: "Antibiotics", checked: false },
+        { text: "Asthma Medications", checked: false },
+        { text: "Pain Medications", checked: false },
+        { text: "Mental Health Medications", checked: false },
+        { text: "Seizure Medications", checked: false },
+        { text: "Other", checked: false },
+    ];
+    
+    this.getConcerns = function(){
+        return concerns;
+    }
+    
+    this.getChronics = function(){
+        return chronics;
+    }
+    
+    this.getAllergies = function(){
+        return allergies;
+    }
+    
+    this.getMedications = function(){
+        return medications;
+    }
+})
+
 
