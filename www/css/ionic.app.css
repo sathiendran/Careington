@@ -5966,18 +5966,18 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   display: table;
   width: 14px;
   height: 6px;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   border-top: 0;
   border-right: 0;
   content: ' ';
   opacity: 0; }
 
 .platform-android .checkbox-platform input:before, .platform-android .checkbox-platform .checkbox-icon:before, .checkbox-square input:before, .checkbox-square .checkbox-icon:before {
-  border-radius: 28px;
-  width: 100%;
-  height: 100%;
-  margin-top: -10%;
-  margin-left: 0%;
+  border-radius: 2px;
+  width: 72%;
+  height: 72%;
+  margin-top: 14%;
+  margin-left: 14%;
   border-width: 2px; }
 
 .platform-android .checkbox-platform input:after, .platform-android .checkbox-platform .checkbox-icon:after, .checkbox-square input:after, .checkbox-square .checkbox-icon:after {
@@ -7440,23 +7440,23 @@ a.button {
  * Platform specific tweaks
  */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: auto; }
+  height: 64px; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-    _margin-top: 19px !important; }
+    margin-top: 19px !important; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    _margin-top: 20px; }
+    margin-top: 20px; }
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  _top: 64px; }
+  top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  _top: 64px; }
+  top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  _top: 108px; }
+  top: 108px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  _top: 113px; }
+  top: 113px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  _top: 157px; }
+  top: 157px; }
 .platform-ios.platform-cordova.status-bar-hide {
-  _margin-bottom: 20px; }
+  margin-bottom: 20px; }
 
 @media (orientation: landscape) {
   .platform-ios.platform-browser.platform-ipad {
@@ -7728,8 +7728,8 @@ body {
   right: 1px; }
 
 .login_content, .password_content, .ContentSearchHomeUser {
-  margin: 78px 0 0 0;
-  padding-top: 85px; }
+  margin: 16px 0 0 0;
+  padding-top: 155px; }
   .login_content .login_home, .login_content .password_content, .login_content .ContentSearchHomeUser {
     padding: 0 12%; }
     .login_content .login_home .item-input, .login_content .login_home .password_content, .login_content .login_home .ContentSearchHomeUser {
@@ -7882,23 +7882,31 @@ body {
   height: auto;
   border-color: #A80532;
   background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%);
-  border-color: #ccc;
-  border-width: 0px 0px 3px 0px; }
+  /*border-color: #ccc;
+		border-width: 0px 0px 3px 0px;*/
+  box-shadow: 0px 3px 0px 0px #800F1B;
+  -moz-box-shadow: 0px 3px 0px 0px #800F1B;
+  -webkit-box-shadow: 0px 3px 0px 0px #800F1B; }
 
 .header_image {
   margin-top: 23px;
   text-align: center;
-  width: 100%; }
+  width: 100%;
+  border-color: #B03A21;
+  border-width: 0px 0px 3px 0px;
+  box-shadow: 0px 3px 2px #B03A21;
+  -moz-box-shadow: 0px 3px 2px #B03A21;
+  -webkit-box-shadow: 0px 3px 2px #B03A21; }
   .header_image img {
     width: 135px;
     height: 75px; }
 
 .password_sub_header {
-  margin-top: 115px;
+  margin-top: 96px;
   color: #A80532; }
   .password_sub_header .password_header_content {
     position: relative;
-    top: 35px; }
+    top: 45px; }
     .password_sub_header .password_header_content span {
       color: #C4C4C4;
       font-size: 12px;
@@ -7908,7 +7916,8 @@ body {
       font-weight: bold; }
 
 .password_content {
-  margin: 220px 0 0 0; }
+  margin: 220px 0 0 0;
+  padding-top: 60px; }
   .password_content .item-input {
     border: 1px solid #DADADA;
     border-radius: 8px;
@@ -8268,18 +8277,21 @@ a {
   border-color: #f0502c; }
 
 .bar-headerLess {
-  /*border-bottom-width: 1px;*/
+  border-bottom-width: 0px;
   border-top-width: 0;
   top: 0;
   background-color: #f0502c;
   background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
-  border-color: #B03A21;
-  border-width: 0px 0px 3px 0px; }
+  /*border-color: #B03A21;
+	border-width: 0px 0px 3px 0px;*/
+  box-shadow: 0px 3px 2px #B03A21;
+  -moz-box-shadow: 0px 3px 2px #B03A21;
+  -webkit-box-shadow: 0px 3px 2px #B03A21; }
 
 .bar-subheaderLess {
   display: block;
   height: 70px;
-  top: 45px;
+  top: 47px;
   -moz-box-shadow: 0px 2px 9px #ADABAB;
   -webkit-box-shadow: 0px 2px 9px #ADABAB;
   box-shadow: 0px 2px 9px #ADABAB; }
@@ -8400,9 +8412,22 @@ a {
 
 .ListText {
   position: relative;
-  top: -27px;
+  top: -28px;
   margin-left: 10px;
   font-family: 'Glober Bold'; }
+
+.ListTextTitle {
+  position: relative;
+  top: -50px;
+  margin-left: 66px;
+  font-family: 'Glober Bold'; }
+
+.listTitle {
+  position: relative;
+  top: -48px;
+  left: 68px;
+  width: 67%;
+  font-size: 24px; }
 
 .DateFormateStyle {
   font-family: 'Glober Regular'; }
@@ -8420,6 +8445,14 @@ a {
   margin-bottom: -1px;
   margin-left: 73px;
   margin-top: -29px;
+  /*font-family: $fontFamily_thin; */ }
+
+.ListHomeUser_pTitle {
+  color: #706A67;
+  font-size: 14px;
+  margin-bottom: -1px;
+  margin-left: 66px;
+  margin-top: -51px;
   /*font-family: $fontFamily_thin; */ }
 
 .SubTitleSpan {
@@ -8664,4 +8697,127 @@ form.ng-submitted input.ng-valid + i.icon.error {
   flex: 0 0 10%;
   max-width: 10%; }
 
+.item-radio input:checked ~ .radio-icon {
+  visibility: visible;
+  color: red; }
 
+/**
+ * Platform
+ * --------------------------------------------------
+ * Platform specific tweaks
+ */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  height: auto; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
+  _margin-top: 19px !important; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
+  margin-top: 0px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
+  _top: 64px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
+  top: 0px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
+  _top: 108px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
+  _top: 113px; }
+
+.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
+  _top: 157px; }
+
+.platform-ios.platform-cordova.status-bar-hide {
+  _margin-bottom: 20px; }
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: normal; }
+
+.textAreaPop {
+  margin: -5px -13.60938px 0px 0px;
+  width: 380px;
+  height: 100px;
+  margin-left: 0px; }
+
+.popup-container .popup {
+  width: 80%;
+  max-width: 100%;
+  max-height: 90%;
+  border-radius: 0px;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+.popup-head {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center; }
+
+.popup-body {
+  padding: 10px; }
+
+.checkbox input:after, .checkbox-icon:after {
+  -webkit-transition: opacity 0.05s ease-in-out;
+  transition: opacity 0.05s ease-in-out;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  display: table;
+  width: 14px;
+  height: 6px;
+  border: 1px solid #fff;
+  border-top: 0;
+  border-right: 0;
+  content: ' ';
+  opacity: 0; }
+
+.platform-android .checkbox-platform input:before, .platform-android .checkbox-platform .checkbox-icon:before, .checkbox-square input:before, .checkbox-square .checkbox-icon:before {
+  border-radius: 28px;
+  width: 100%;
+  height: 100%;
+  margin-top: -10%;
+  margin-left: 0%;
+  border-width: 2px; }
+
+.grade-c .checkbox input:after, .grade-c .checkbox-icon:after {
+  -webkit-transform: rotate(0);
+  transform: rotate(0);
+  top: -1px;
+  left: 7px;
+  border: none;
+  color: #fff;
+  content: '\2713';
+  font-weight: bold;
+  font-size: 20px; }
+
+.popupSearch {
+  border: 1px solid #DADADA;
+  border-radius: 8px;
+  height: 37px;
+  font-weight: bold;
+  background-color: #E6E6E6; }
+
+.innerSearchPop {
+  border: 1px solid #DADADA;
+  border-radius: 8px;
+  height: 37px;
+  font-weight: bold;
+  background-color: #E6E6E6; }
