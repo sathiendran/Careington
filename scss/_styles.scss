@@ -864,7 +864,13 @@ width:55px; height:55px;
 color:#000; font-size: 21px; margin: 12px;
 }
 .ListText {
- position: relative; top: -27px;margin-left: 10px; font-family: $fontFamily_bold;
+ position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_bold;
+}
+.ListTextTitle {
+ position: relative; top: -50px;margin-left: 66px; font-family: $fontFamily_bold;
+}
+.listTitle {
+position: relative;top: -48px;left: 68px;width: 67%;font-size:24px;
 }
 .DateFormateStyle { 
 font-family: $fontFamily_regular;
@@ -882,6 +888,15 @@ padding: 8px; background-color:#FEEFE8;
     margin-bottom: -1px;
     margin-left: 73px;
     margin-top: -29px;
+	/*font-family: $fontFamily_thin; */
+}
+
+.ListHomeUser_pTitle {
+    color: #706A67;
+    font-size: 14px;
+    margin-bottom: -1px;
+    margin-left: 66px;
+    margin-top: -51px;
 	/*font-family: $fontFamily_thin; */
 }
 .SubTitleSpan {
@@ -1154,7 +1169,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
     _margin-top: 19px !important; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    _margin-top: 20px; }
+    margin-top: 0px; }
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
   _top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
@@ -1167,3 +1182,92 @@ form.ng-submitted input.ng-valid + i.icon.error {
   _top: 157px; }
 .platform-ios.platform-cordova.status-bar-hide {
   _margin-bottom: 20px; }
+  
+.ellipsis { text-overflow: ellipsis;  white-space: nowrap;
+  overflow: hidden;  line-height: normal; }  
+  
+ .textAreaPop {
+  margin: -5px -13.609375px 0px 0px;
+  width: 380px;
+  height: 100px;
+  margin-left: 0px;
+ }
+ 
+ .popup-container .popup {
+    width: 80%;
+    max-width: 100%;
+    max-height: 90%;
+    border-radius: 0px;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+	
+.popup-head {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center; }	
+  
+ .popup-body {
+  padding: 10px;
+   }
+
+  .checkbox input:after, .checkbox-icon:after {
+  -webkit-transition: opacity 0.05s ease-in-out;
+  transition: opacity 0.05s ease-in-out;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  display: table;
+  width: 14px;
+  height: 6px;
+  border: 1px solid #fff;
+  border-top: 0;
+  border-right: 0;
+  content: ' ';
+  opacity: 0; }
+  
+.platform-android .checkbox-platform input:before, .platform-android .checkbox-platform .checkbox-icon:before, .checkbox-square input:before, .checkbox-square .checkbox-icon:before {
+  border-radius: 28px;
+  width: 100%;
+  height: 100%;
+  margin-top: -10%;
+  margin-left: 0%;
+  border-width: 2px;
+}  
+
+.grade-c .checkbox input:after, .grade-c .checkbox-icon:after {
+  -webkit-transform: rotate(0);
+  transform: rotate(0);
+  top: -1px;
+  left: 7px;
+  border: none;
+  color: #fff;
+  content: '\2713';
+  font-weight: bold;
+  font-size: 20px; }
+  
+  .popupSearch {  
+  border: 1px solid #DADADA;
+  border-radius: 8px;
+  height: 37px;
+  font-weight: bold;
+  background-color: #E6E6E6;}
+  .innerSearchPop{
+  border: 1px solid #DADADA;
+  border-radius: 8px;
+  height: 37px;
+  font-weight: bold;
+  background-color: #E6E6E6;
+  }
