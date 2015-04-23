@@ -50,7 +50,14 @@ angular.module('starter.services', [])
 })
 
 
-
+.factory('PatientConcernsListService', function() { 
+	return { 
+		PatientConcernsList: function($scope) {
+			//alert($scope)	
+				
+		}
+	}
+})
 
 /*.factory('LoginService', function($http) { 
 	return { 	
