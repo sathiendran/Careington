@@ -306,9 +306,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	width: 100%;
 	border-color: #B03A21;
 	border-width: 0px 0px 3px 0px;
-	box-shadow: 0px 3px 2px #B03A21;
-	-moz-box-shadow: 0px 3px 2px #B03A21;
-	-webkit-box-shadow: 0px 3px 2px #B03A21;
+	
 		img {
 			width: 135px;
 			height: 75px;
@@ -767,7 +765,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .bar-TitleLess{
 	display: block;
 	background-color: #f2f2f2;
-	height: 63px;
+	/*height: 63px;*/
     top: 120px;
 }
 

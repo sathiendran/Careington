@@ -336,10 +336,10 @@ angular.module('starter.controllers', ['starter.services'])
 			{
 				$scope.date = new Date(dateString);
 				 //alert('c ' + $scope.date);
-				 alert('d '+ $scope.surgery.dateString);
+				// alert('d '+ $scope.surgery.dateString);
 				console.log('B', $scope.date, $scope.dateString);
 				$rootScope.surgeryDate = $scope.surgery.dateString;
-				alert($rootScope.surgeryDate);
+				//alert($rootScope.surgeryDate);
 			});
 		
 		$scope.StockSurgery.push({     
@@ -557,7 +557,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 
 
-/// Controller to be used by all intake forms
+// Controller to be used by all intake forms
 .controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope) {
     
     //$rootScope.Appointment = {};
@@ -571,6 +571,8 @@ angular.module('starter.controllers', ['starter.services'])
   
     $scope.model = null;
     
+	/*Primary concern Start here*/
+	
     // Get list of primary concerns lists
     $scope.primaryConcernList = IntakeLists.getConcerns();
     
@@ -612,7 +614,8 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.openOtherPrimaryConcernView = function(model) {
 	   $scope.data = {}
        $ionicPopup.show({
-            template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+          template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+			//template: '<textarea name="comment" id="comment-textarea" ng-model="incident.comment" class="textAreaPop" ng-model="data.PrimaryConcernOther">',
             title: 'Enter Concerns',
 			subTitle: '',
 			scope: $scope,
@@ -647,6 +650,173 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.removePrimaryConcern = function(){
         $scope.PatientPrimaryConcern = "";
     }
+	
+	/*Primary concern End here*/
+	
+	/*Secondary concern Start here*/
+	
+    // Get list of Secondary concerns lists
+    $scope.secondaryConcernList = IntakeLists.getConcerns();
+    
+    $scope.PatientSecondaryConcern = "";
+    
+    // Open Secondary concerns popup
+    $scope.loadSecondaryConcerns = function() {
+        $ionicModal.fromTemplateUrl('templates/tab-SecondaryConcernsList.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        }); 
+    };
+
+    $scope.closeSecondaryConcerns = function() {
+        $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {checked:true});
+        angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
+            $scope.PatientSecondaryConcern = item.text;
+        });
+        $scope.modal.hide();
+    };
+    
+    
+    // Onchange of Secondary concerns
+    $scope.OnSelectPatientSecondaryConcern = function(position, secondaryConcernList, item) {
+        angular.forEach(secondaryConcernList, function(item, index) {
+            if (position != index) 
+              item.checked = false;
+        });
+        if(item.text == "Other"){
+            $scope.openOtherSecondaryConcernView();
+        }
+    }
+	
+    // Open text view for other Secondary concern
+	$scope.openOtherSecondaryConcernView = function(model) {
+	   $scope.data = {}
+       $ionicPopup.show({
+            template: '<input type="text" ng-model="data.SecondaryConcernOther">',
+            title: 'Enter Concerns',
+			subTitle: '',
+			scope: $scope,
+			buttons: [
+			  { 
+                  text: 'Cancel',
+                  onTap: function(e) {
+                      angular.forEach($scope.secondaryConcernList, function(item, index) {
+                        item.checked = false;
+                      });
+                    }
+              },
+			  {
+				text: '<b>Done</b>',
+				type: 'button-positive',
+				onTap: function(e) {
+				  if (!$scope.data.SecondaryConcernOther) {
+					e.preventDefault();
+				  } else {
+                      angular.forEach($scope.secondaryConcernList, function(item, index) {
+                        item.checked = false;
+                      });
+                      $scope.secondaryConcernList.push({ text: $scope.data.SecondaryConcernOther, checked: true });
+					  return $scope.data.SecondaryConcernOther;
+				  }
+				}
+			  }
+			]
+		  });
+    };
+    
+    $scope.removeSecondaryConcern = function(){
+        $scope.PatientSecondaryConcern = "";
+    }
+	
+	/*Secondary concern End here*/
+	
+	
+	/*Chronic Condition Start here*/
+	
+    // Get list of Chronic Condition lists
+    $scope.chronicConditionList = IntakeLists.getChronics();
+    
+    $scope.PatientChronicCondition = "";
+    
+    // Open primary concerns popup
+    $scope.loadChronicCondition = function() {
+        $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        }); 
+    };
+
+    $scope.closeChronicCondition = function() {
+        $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
+        angular.forEach($scope.PatientChronicConditionItem, function(item, index) {
+            $scope.PatientChronicCondition = item.text;
+        });
+        $scope.modal.hide();
+    };
+    
+    
+    // Onchange of primary concerns
+    $scope.OnSelectChronicCondition = function(position, PatientChronicCondition, item) {
+        angular.forEach(PatientChronicCondition, function(item, index) {
+            if (position != index) 
+              item.checked = false;
+        });
+        if(item.text == "Other"){
+            $scope.openOtherPrimaryConcernView();
+        }
+    }
+	
+    // Open text view for other primary concern
+	/*$scope.openOtherPrimaryConcernView = function(model) {
+	   $scope.data = {}
+       $ionicPopup.show({
+            template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+            title: 'Enter Concerns',
+			subTitle: '',
+			scope: $scope,
+			buttons: [
+			  { 
+                  text: 'Cancel',
+                  onTap: function(e) {
+                      angular.forEach($scope.primaryConcernList, function(item, index) {
+                        item.checked = false;
+                      });
+                    }
+              },
+			  {
+				text: '<b>Done</b>',
+				type: 'button-positive',
+				onTap: function(e) {
+				  if (!$scope.data.PrimaryConcernOther) {
+					e.preventDefault();
+				  } else {
+                      angular.forEach($scope.primaryConcernList, function(item, index) {
+                        item.checked = false;
+                      });
+                      $scope.primaryConcernList.push({ text: $scope.data.PrimaryConcernOther, checked: true });
+					  return $scope.data.PrimaryConcernOther;
+				  }
+				}
+			  }
+			]
+		  });
+    };*/
+    
+    $scope.removePrimaryConcern = function(){
+        $scope.PatientPrimaryConcern = "";
+    }
+	
+	/*Chronic Condition End here*/
+	
+	
 })
 
 

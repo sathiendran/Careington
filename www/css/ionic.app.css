@@ -5966,18 +5966,18 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   display: table;
   width: 14px;
   height: 6px;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   border-top: 0;
   border-right: 0;
   content: ' ';
   opacity: 0; }
 
 .platform-android .checkbox-platform input:before, .platform-android .checkbox-platform .checkbox-icon:before, .checkbox-square input:before, .checkbox-square .checkbox-icon:before {
-  border-radius: 28px;
-  width: 100%;
-  height: 100%;
-  margin-top: -10%;
-  margin-left: 0%;
+  border-radius: 2px;
+  width: 72%;
+  height: 72%;
+  margin-top: 14%;
+  margin-left: 14%;
   border-width: 2px; }
 
 .platform-android .checkbox-platform input:after, .platform-android .checkbox-platform .checkbox-icon:after, .checkbox-square input:after, .checkbox-square .checkbox-icon:after {
@@ -7440,23 +7440,23 @@ a.button {
  * Platform specific tweaks
  */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: auto; }
+  height: 64px; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-    _margin-top: 19px !important; }
+    margin-top: 19px !important; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    _margin-top: 20px; }
+    margin-top: 20px; }
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  _top: 64px; }
+  top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  _top: 64px; }
+  top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  _top: 108px; }
+  top: 108px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  _top: 113px; }
+  top: 113px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  _top: 157px; }
+  top: 157px; }
 .platform-ios.platform-cordova.status-bar-hide {
-  _margin-bottom: 20px; }
+  margin-bottom: 20px; }
 
 @media (orientation: landscape) {
   .platform-ios.platform-browser.platform-ipad {
@@ -7893,10 +7893,7 @@ body {
   text-align: center;
   width: 100%;
   border-color: #B03A21;
-  border-width: 0px 0px 3px 0px;
-  box-shadow: 0px 3px 2px #B03A21;
-  -moz-box-shadow: 0px 3px 2px #B03A21;
-  -webkit-box-shadow: 0px 3px 2px #B03A21; }
+  border-width: 0px 0px 3px 0px; }
   .header_image img {
     width: 135px;
     height: 75px; }
@@ -8308,7 +8305,7 @@ a {
 .bar-TitleLess {
   display: block;
   background-color: #f2f2f2;
-  height: 63px;
+  /*height: 63px;*/
   top: 120px; }
 
 .TitleLess {
@@ -8676,7 +8673,17 @@ form.ng-submitted input.ng-valid + i.icon.error {
   flex: 0 0 10%;
   max-width: 10%; }
 
+.item-radio input:checked ~ .radio-icon {
+  visibility: visible;
+  color: red; }
 
+/**
+ * Platform
+ * --------------------------------------------------
+ * Platform specific tweaks
+ */
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  height: auto; }
 
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
   _margin-top: 19px !important; }
@@ -8701,4 +8708,3 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .platform-ios.platform-cordova.status-bar-hide {
   _margin-bottom: 20px; }
-
