@@ -78,6 +78,7 @@
 }
 
 
+
 body {
 	font-family: $fontFamily_regular;
 }
@@ -588,7 +589,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .consultCharge_content {
-	margin: 140px 0 0 4%;
+	margin: 133px 0 0 0;
     padding-bottom: 30px;
     padding-top: 15px;
 }
@@ -609,29 +610,33 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			font-weight: bold;
 			padding-top: 15px;
 			font-size: 30px;
+			font-family: $fontFamily_heavy;
 		}
 }
 
 //add health plan
 
 .healthPlan_header {
-	padding-top: 45px;
+	padding-top: 15px;
 	text-align: center;
+	color: #5C5C5C;
 		.healthPlan_text {
-			font-size: 15px;
-			color: #C2C2C2;
+			font-size: 16px;
+			color: #888585;
 			margin-left: -100px;
 			font-weight: bold;
 		}
 		.addHealthPlan_header {
-			padding-top: 10px;
+			//padding-top: 10px;
 			margin-left:-35px;
+			margin-right: 17px;
 				.addHealthPlan_text {
 					font-size: 20px;
 					font-weight: bold;
-					left: 10px;
+					left: 18px;
 					position: relative;
 					top: -8px;
+					color: black;
 				}
 		}
 }
@@ -644,26 +649,25 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 //plan details page
 
-.planDetails_content {
-	margin: 100px 0 0 0;
-	padding-top: 30px;
-	
+.planDetails_content {	
+	padding-top: 32px;
+	margin-top: 12px;
 		.healthPlan_text {
-			font-size: 30px;
+			font-size: 37px;
 			text-align: center;
 			color: $Scorpion;
 			font-weight: normal;
 		}
 		.planInformation {
 			color: $Scorpion;
-			font-size: 20px;
-			margin-left: 20px;
+			font-size: 18px;
 			font-weight: normal;
 		}
 		.provider {
-			margin-left: 20px;
-			padding-top: 30px;
-			font-size: 18px;
+			margin-left: 27px;
+			padding-top: 20px;
+			font-size: 15px;
+			text-align: left;
 		}
 		.planDetails {
 			padding:0 5px 0 15px;
@@ -677,14 +681,14 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			margin-top: -10px;
 		}
 		.list {
-			padding-top: 25px;
+			padding-top: 12px;
 		}
 		.item.item-input {
-			padding: 16px;
+			padding: 10px 16px 10px 16px;
 		}
 		.input-label {
 			font-weight: bold;
-			font-size: 20px;
+			font-size: 18px;
 			width: 50%;
 		}
 }
@@ -692,7 +696,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 //Verify Plan
 
 .verifyPlan_subHeader {
-	padding-top: 70px;
+	padding-top: 40px;
 	color: #5C5C5C;
 	text-align: center;
 	font-size: 27px;
@@ -708,14 +712,16 @@ background: linear-gradient(#A0D18A, #91BE7B);
   -webkit-appearance: none;  
   -moz-appearance: none; 
   background: #ccc url(../img/select-arrow.png) no-repeat 95% center;
-  width: 95%; 
+  width: 93%; 
   text-indent: 0.01px; 
   text-overflow: ""; 
   color: #515151;
-  border-radius: 15px;
-  margin-left: 6px;
+  border-radius: 7px;
+  margin-left: 8px;
   padding: 6px;
   box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+  height: 45px;
+  font-size: 18px;
  }
  
  // from Sakthi
@@ -764,7 +770,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .bar-TitleLess{
 	display: block;
 	background-color: #f2f2f2;
-	height: 63px;
+	/*height: 63px;*/
     top: 120px;
 }
 
@@ -1168,8 +1174,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 //end Validation styles
 
 
-
-  
+   
 
 .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
   overflow: hidden;  line-height: normal; }  
@@ -1207,7 +1212,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
   
  .popup-body {
   padding: 10px;
-  overflow: hidden !important;
    }
 
   .checkbox input:after, .checkbox-icon:after {
@@ -1216,7 +1220,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   position: absolute;
-  top: 40%;
+  top: 33%;
   left: 25%;
   display: table;
   width: 14px;
@@ -1259,36 +1263,5 @@ form.ng-submitted input.ng-valid + i.icon.error {
   height: 37px;
   font-weight: bold;
   background-color: #E6E6E6;
-}
+  }
 
-.popup-buttons{
-	min-height: 30px !important;
-	
-}
-.popup-buttons .button {
-  min-height: 20px !important;
-  height: 24px !important;
-  font-size: 12px !important;
-}
-
-.intakeNote{
-    width: 93%;  
-    float: left;
-    white-space: normal !important;
-}
-
-.intakeNoteDelete{
-    float: right;
-}
-
-.addBtn{
-    color: black;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.delBtn{
-    color: red;
-    font-size: 30px;
-    cursor: pointer;
-}
