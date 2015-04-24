@@ -1,14 +1,14 @@
 <ion-view title="Plan Details">
 	<!--<div ng-include src="'templates/planDetails_header.html'"></div>-->
 	
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height: 58px;" >
 	
-	<div style="color: #fff; font-size: 17px; line-height: 3; margin-left: 7px;" >
-		<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/addHealthPlan" >Cancel</a>
+	<div style="color: #fff; font-size: 17px; line-height: 3; margin-left: 15px; width: 25%;" >
+		<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/consultCharge" >Cancel</a>
 	</div>
 	 <h1 class="title_patient"></h1>	
 	 
-	 <div style="color: #fff; font-size: 17px; line-height: 3; width: 91%; text-align: right;" >
+	 <div style="color: #fff; font-size: 17px; line-height: 3; width: 91%; text-align: right; margin-right: 15px;" >
 		<a style="padding-top: 10px; cursor: pointer; color: #fff;"  ng-href="#/tab/verifyPlan">Next</a>
 	</div>
 	
@@ -20,39 +20,42 @@
 				Health Plan				
 			</div>			
 			
-			<div class="healthPlan_header" style="padding-top: 30px; color: #5C5C5C; text-align: left;" >
+			<div class="healthPlan_header"  >
 				<div class="planInformation"  >
 				Enter your health plan information			
 				</div>
-				<a ng-href="#/tab/verifyPlan">	
+					
 					<div class="provider">Select your provider</div>
 					<div class="addHealthPlan_header"  >					
-						<div class="demo" style="margin-left: 50px;">							
+						<div class="demo" style="margin-left: 50px;">	
 							<select>
-								<option style="padding:10px;"><b>Plan Provider</b></option>
+								<option style="padding:10px;"><b></b></option>
+								<option style="padding:10px;"><b>Blue Cross</b></option>
+								<option style="padding:10px;"><b>Anthem Cross</b></option>
+								<option style="padding:10px;"><b>Blue Cross Blue shield</b></option>
 							</select>
 						</div>
 					</div>
-				</a>
+				
 			</div>
 			
 			<div class="list" >
 			  <label class="item item-input" >
 				<span class="input-label">First Name</span>
-				<input type="text" placeholder="Payment" style="font-size: 20px;">
+				<input type="text" placeholder="Required" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input" >
 				<span class="input-label">Last Name</span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="password" placeholder="Required" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input">
 				<span class="input-label">Policy Number</span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="password" placeholder="Required" style="font-size: 18px;">
 			  </label>
 				<label class="item item-input" >
 				<span class="input-label"  >Date of Birth
 						<div style="font-size: 10px;">for the policy holder</div></span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="password" placeholder="Required" style="font-size: 18px;">
 			  </label>
 			</div>
 			

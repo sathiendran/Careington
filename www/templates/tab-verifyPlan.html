@@ -1,33 +1,45 @@
 <ion-view title="Verify Plan">
-	<div ng-include src="'templates/planDetails_header.html'"></div>
+	<!--<div ng-include src="'templates/planDetails_header.html'"></div>-->
+	
+	
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height: 58px;" >
+		<div style="color: #fff; font-size: 17px; line-height: 3; margin-left: 15px; width: 25%;" >
+			<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/consultCharge" >Cancel</a>
+		</div>
+		 <h1 class="title_patient"></h1>	
+		 
+		 <div style="color: #fff; font-size: 17px; line-height: 3; width: 91%; text-align: right; margin-right: 15px;" >
+			<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/applyPlan" >Next</a>
+		</div>
+	</ion-header-bar>
 		
 	<ion-content class="planDetails_content" >
 		<div>		
-			<a ng-href="#/tab/applyPlan"><div class="healthPlan_text" style="padding-top: 35px; font-size: 37px;">
+			<div class="healthPlan_text" style="padding-top: 35px;">
 				Verifying Plan				
-			</div></a>			
+			</div>			
 			
-			<div class="verifyPlan_subHeader" >
+			<div class="verifyPlan_subHeader ellipsis" >
 				Blue Cross
 			</div>
 			
 			<div class="list" >
 			  <label class="item item-input" >
 				<span class="input-label" >First Name</span>
-				<input type="text" placeholder="Payment" style="font-size: 20px;">
+				<input type="text" placeholder="Required" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input">
 				<span class="input-label" >Last Name</span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="password" placeholder="Required" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input" >
 				<span class="input-label" >Policy Number</span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="password" placeholder="Required" style="font-size: 18px;">
 			  </label>
 				<label class="item item-input" >
 				<span class="input-label" >Date of Birth
 						<div style="font-size: 10px;">for the policy holder</div></span>
-				<input type="password" placeholder="Required" style="font-size: 20px;">
+				<input type="password" placeholder="Required" style="font-size: 18px;">
 			  </label>
 			</div>
 			

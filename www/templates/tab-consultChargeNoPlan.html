@@ -1,30 +1,41 @@
+
+<ion-view title="Consult Charge No Plan">
 <ion-side-menus>
 	<ion-side-menu-content> 
-		<div ng-include src="'templates/intakeHeader.html'"></div>
-		<ion-view title="Consult Charge No Plan">
-<div class="consultCharge_subHeader" >
-		<span>Payment</span>
+		<div ng-include src="'templates/intakeHeader.html'"></div> 
+	
+	<div class="consultCharge_subHeader PatintHeaderFontStyle" style="top:-15px;" >
+		<span style="color:#666666;font-size:27px;margin-top:-16px;">Payment</span>
 	</div>
 	
-	<ion-content style="margin: 180px 0 0 4%; padding-top: 25px;" >
+	
+	<ion-content style="margin: 176px 0 0 0; padding-top: 25px;" >
 		<div class="password_home">
-		
-			<div class="consultation_head" >
-				<div>Consultation Charge</div>
-				<div class="consultation_number"> $60*</div>				
+			
+			<div class="consultation_head RegularFontStyle" style="padding-top: 5px;" >
+				<div style="color:#000000;">Consultation Charge</div>
+				<div class="consultation_number" style="color:#666666;"> $60*</div>	
 			</div>
 			
-			<div class="healthPlan_header" >
-				<div class="healthPlan_text" style="margin-left: -150px;" >Pay Using</div>
-				<a ng-href="#/tab/cardDetails"><div class="addHealthPlan_header" style="margin-left: -15px;" >
-					<img ng-src="img/add.png"><span class="addHealthPlan_text" >Add a Payment Card</span>
-				</div></a>
+			<div class="healthPlan_header" style="padding-top: 60px;" >
+				<div class="healthPlan_text" style="margin-left: -160px;" >Pay Using</div>
+				<a ng-href="#/tab/cardDetails">
+					<div class="addHealthPlan_header" style="margin-left: 0px;" >
+						<img ng-src="img/add.png" style="width: 30px; height: 30px;" ><span class="addHealthPlan_text" style="margin-left:0px;" >Add a Payment Card</span>
+					</div>
+				</a>
 			</div>
 			
 			<div style="padding-top: 15px; padding-bottom: 5px;">
-				<a ng-href="#/tab/cardDetails"><button class="button button-block button-royal">
+				<!--<a ng-href="#/tab/cardDetails"><button class="button button-block button-royal">
 				  Submit Payment
-				</button></a>
+				</button></a>-->
+				<button class="button button-block button-royal" style="background-color: #DADADA;
+  border-color: #DADADA;
+  background-image: linear-gradient(0deg, #DADADA, #DADADA 50%, transparent 50%);">
+						<span style="position: relative;top: 3px;">  Submit Payment</span>
+					</button>
+				
 			</div>
 			<div class="scheduled_appointments_text" style="text-align: justify; padding-bottom: 50px;" >
 				<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p> 
@@ -34,6 +45,23 @@
 </ion-side-menu-content>	
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
-</ion-view>	
-	<div ng-include src="'templates/consultCharge_footer.html'"></div>
 
+	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div>-->
+	
+	<div class="hide-on-keyboard-open">
+		<ion-footer-bar align-title="left" class="footer">
+			<div style="width:100%;">
+				<div class="" style="float:left; width:33%">
+					<a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" style="cursor: pointer;">Back</a>
+			</div>
+						
+			<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
+				<a class="button_new icon" href="#/tab/userhome" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
+			</div>
+						
+			</div>
+			
+		</ion-footer-bar> 
+	</div>
+
+</ion-view>	

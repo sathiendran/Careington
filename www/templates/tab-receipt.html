@@ -1,35 +1,12 @@
+
+<ion-view title="Receipt">
 <ion-side-menus>
 	<ion-side-menu-content> 
+		<div ng-include src="'templates/receiptHeader.html'"></div> 
 	
-
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
 	
-	 <div class="buttons" >
-					<button class="button icon button-clear ion-navicon-round"
-							ng-click="toggleLeft()" style="color:#000; margin-top:10px;margin-top: 10px;"></button>
-	</div>
-		
-		 <h1 class="title_patient" style="font-size: 24px; position: absolute;">Receipt</h1>
-		<div class="bar patient_subHeader">
-			<div style="margin-left:10px;">
-				<div class="subHeader_image">
-					<img src="img/patient.png" />
-				</div>
-				<div class="subHeader_content" >
-					
-						<div style="font-size: 20px;"><span style="font-weight: bold;">{{patientInfomation.patientName}}</span> {{patientInfomation.lastName}}</div>
-						<div style="font-size: 9px;">Age {{patientInfomation.age}} | Guardian {{patientInfomation.guardianName}}</div>
-					
-				</div>
-			</div>
-	    </div>	
-	</ion-header-bar>
-<ion-view title="Receipt">	
-	<ion-content style="margin: 50px 0 0 4%; padding-top: 30px;" >
-		<div class="password_home">
-		
-			
-			
+	<ion-content style="margin: 117px 0 0 0; padding-top: 40px;" >
+		<div>
 			<div class="healthPlan_header"  >
 				<img ng-src="img/success.png">				
 			</div>
@@ -37,7 +14,7 @@
 				Payment Successful
 				<div style="font-size: 20px;  padding-top: 20px; color: #F3795D; ">
 					Confirmation #12345678912345
-						<div style="font-size: 12px; padding-top: 10px; color: black;">
+						<div style="font-size: 12px;  color: black;">
 							A receipt has been sent to you via email
 						</div>
 				</div>
@@ -45,10 +22,10 @@
 			
 			
 			
-			<div style="padding-top: 50px; padding-bottom: 25px;">
+			<div style="padding: 50px 8% 25px 8%;">
 				<!--<a ng-href="#/tab/waitingRoom">-->
 				<button type="submit" on-touch ='doGetExistingConsulatationReport()' class="button button-block button-balanced">
-				  Enter the Waiting Room
+				  <span style="position: relative;top: 3px;">Enter the Waiting Room</span>
 				</button>
 				<!--</a>-->
 			</div>

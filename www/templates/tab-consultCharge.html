@@ -2,24 +2,24 @@
 	
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser">
   
-  		<div class="backButtonDiv" style="margin-top: -6px;">
-		<a style="padding-top: 15px; font-weight: bold; cursor: pointer;" class="button icon-left ion-chevron-left button-clear button-light"  ng-href="#/tab/userhome">
+  <div class="buttons" >
+				<a style="padding-top: 7px; font-weight: bold;" class="button icon-left ion-chevron-left button-clear button-light"  style="cursor: pointer;" ng-href="#/tab/ConsentTreat">
 		<span style="margin-top:3px; position:absolute;">Back</span>
 		</a>
-	    </div>
+  </div>
   <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -33px; ">Patient</h1>
   
 
 
-<div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 74px;height: 87%">
+<div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 65px;height: 87%">
 	<div style="margin-left:10px;">
 				<div class="subHeader_image" style="margin-left: -15px;  margin-top: -13px;">
 					<img src="img/cutmypic.png" style="width:42px;" />
 				</div>
 				<div class="subHeader_content" >
 					
-						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">rywtytwyty{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}dfhdsh</span></div>
-						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age 14{{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}gdfhgsdh</div>
+						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
+						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}} </div>
 					
 				</div>
 	</div>
@@ -31,7 +31,7 @@
 	
 	
 	<div class="consultCharge_subHeader PatintHeaderFontStyle" style="top:-15px;" >
-		<span style="color:#666666;font-size:27px;top:-10px;">Payment</span>
+		<span style="color:#666666;font-size:27px;top:-16px;">Payment</span>
 	</div>
 	
 	
@@ -54,9 +54,9 @@
 			</div>
 			<div style="padding-top: 15px;">
 				<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">
-				<button class="button button-block button-royal" >
-				 <span style="position: relative;top: 3px;"> Skip to Payment</span>
-				</button>
+					<button class="button button-block button-royal" >
+						<span style="position: relative;top: 3px;"> Skip to Payment</span>
+					</button>
 				</a>
 			</div>
 			<div class="scheduled_appointments_text" >
@@ -68,28 +68,17 @@
 	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div> --->
 	
 	<div class="hide-on-keyboard-open">
-		<ion-footer-bar align-title="left" class="footer">
-			<!--<div class="buttons" style="width: 50%; margin-top: 2px;">
-				<a class="button_new icon ion-chevron-left" style="cursor: pointer;" ng-href="#/tab/ConsentTreat" > Back </a>
-			</div>
-			<div class="buttons" style="width: 50%; margin-top: 2px;">
-				<a style="text-decoration: none; color: #fff; font-size: 18px; margin-top: 5px; font-weight: normal; cursor: pointer;" ng-click="myGoBack()" > Cancel </a>
-			</div>-->
-			
-			
+		<ion-footer-bar align-title="left" class="footer">			
 			<div style="width:100%;">
-					 
-					 <div class="" style="float:left; width:33%">
-							<a class="button_new icon ion-chevron-left" href="#/tab/ConsentTreat" style="cursor: pointer;">Back</a>
-						</div>
+				<div class="" style="float:left; width:33%">
+					<a class="button_new icon ion-chevron-left" href="#/tab/ConsentTreat" style="cursor: pointer;">Back</a>
+			</div>
 						
-						<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
-							<a class="button_new icon" href="#/tab/ConsentTreat" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
-						</div>
+			<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
+				<a class="button_new icon" href="#/tab/userhome" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
+			</div>
 						
-						  
-			<div>
-			
+			</div>
 		</ion-footer-bar> 
 	</div>
 	
