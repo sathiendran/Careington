@@ -756,8 +756,15 @@ angular.module('starter.controllers', ['starter.services'])
 
     $scope.closeChronicCondition = function() {
         $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
-        angular.forEach($scope.PatientChronicConditionItem, function(item, index) {
-            $scope.PatientChronicCondition = item.text;
+        $rootScope.PatientChronicCondition = [];
+		
+	   angular.forEach($scope.PatientChronicConditionItem, function(item, index) {
+            //$scope.PatientChronicCondition = item.text;
+				$rootScope.PatientChronicCondition.push({
+						'text': item.text,
+						'checked': item.checked,
+						'index': index,					
+					});
         });
         $scope.modal.hide();
     };
@@ -766,8 +773,8 @@ angular.module('starter.controllers', ['starter.services'])
     // Onchange of primary concerns
     $scope.OnSelectChronicCondition = function(position, PatientChronicCondition, item) {
         angular.forEach(PatientChronicCondition, function(item, index) {
-            if (position != index) 
-              item.checked = false;
+            /*if (position != index) 
+              item.checked = false;*/
         });
         if(item.text == "Other"){
             $scope.openOtherPrimaryConcernView();

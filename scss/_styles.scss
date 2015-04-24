@@ -589,7 +589,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .consultCharge_content {
-	margin: 140px 0 0 4%;
+	margin: 133px 0 0 0;
     padding-bottom: 30px;
     padding-top: 15px;
 }
@@ -1169,30 +1169,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 //end Validation styles
 
 
-/**
- * Platform
- * --------------------------------------------------
- * Platform specific tweaks
- */
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: auto; }
-  .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-    _margin-top: 19px !important; }
-  .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    margin-top: 0px; }
-.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  _top: 64px; }
-.platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  top: 0px; }
-.platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  _top: 108px; }
-.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  _top: 113px; }
-.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  _top: 157px; }
-.platform-ios.platform-cordova.status-bar-hide {
-  _margin-bottom: 20px; }
-  
+   
 
 .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
   overflow: hidden;  line-height: normal; }  
