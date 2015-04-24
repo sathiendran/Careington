@@ -517,7 +517,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	border-bottom: 1px solid #b9b8b8;
 	color: #565656; 
 	height: auto; 
-	margin-top: 125px;
+	margin-top: 118px;
 }
 .patientCalendar_watch {
 	padding: 10px;
@@ -531,7 +531,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	font-weight: bold;
 }
 .patientCalendar_Content {
-	margin: 129px 0 0 0;
+	margin: 122px 0 0 0;
 	.list {
 		.item {
 			padding: 10px;
@@ -770,10 +770,9 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .bar-TitleLess{
 	display: block;
 	background-color: #f2f2f2;
-	/*height: 63px;*/
+	height: 63px;
     top: 120px;
 }
-
 
 .TitleLess {
 		@include font($fontFamily_bold, normal, 21px);
