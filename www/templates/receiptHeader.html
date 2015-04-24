@@ -1,0 +1,28 @@
+
+
+<ion-header-bar align-title="left" class="bar-positiveHomeUser">
+  
+  <div class="buttons" >
+					<button class="button icon button-clear ion-navicon-round"
+							ng-click="toggleLeft()" style="color:#000;margin-top: 7px;"></button>
+  </div>
+  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -33px; ">Receipt</h1>
+  
+
+
+<div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 65px;height: 87%">
+	<div style="margin-left:10px;">
+				<div class="subHeader_image" style="margin-left: -15px;  margin-top: -13px;">
+					<img src="img/cutmypic.png" style="width:42px;" />
+				</div>
+				<div class="subHeader_content" >
+					
+						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}} </span></div>
+						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian: {{patientInfomation.guardianName}} </div>
+					
+				</div>
+	</div>
+</div> 
+
+   
+</ion-header-bar>
