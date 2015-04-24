@@ -39,8 +39,8 @@
 				</div>
 				<div class="subHeader_content" >
 					
-						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}Vinoth</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}} Kumar</span></div>
-						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age 15{{patientInfomation.guardianName}} | Guardian: {{patientInfomation.guardianName}} Vinoth Kumar</div>
+						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
+						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian: {{patientInfomation.guardianName}}</div>
 					
 				</div>
 	</div>
@@ -57,9 +57,9 @@
 			 <div class="HrefListView"> 
 				<div style="margin-top:-5px !important; margin-left: 0px;">
 				<img ng-src="img/IMG_2.png" class="listImgView">
-				 <div class= "ListTextTitle ellipsis" style="width:67%;" >Welcome{{patientInfomation.patientName}}<span class="SubTitleSpan ellipsis">{{patientInfomation.lastName}} Test</span></div> 
+				 <div class= "ListTextTitle ellipsis" style="width:67%;" >{{patientInfomation.patientName}}<span class="SubTitleSpan ellipsis">{{patientInfomation.lastName}}</span></div> 
 				<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-				<p class="ListHomeUser_pTitle DateFormateStyle" style="width: 67%">Age 30 {{patientInfomation.age}} | Guardain : Demo {{patientInfomation.guardianName}}</p>
+				<p class="ListHomeUser_pTitle DateFormateStyle" style="width: 67%">Age {{patientInfomation.age}} | Guardain : {{patientInfomation.guardianName}}</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 				</div>
 			 </div>
