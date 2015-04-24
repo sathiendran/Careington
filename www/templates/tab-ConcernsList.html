@@ -1,38 +1,19 @@
 <div class="modal">
     <header class="bar bar-header bar-dark" style="height: 55px;">
-<<<<<<< HEAD
+
 
       <h1 class="title" style="top: 7px; font-size:16px;">Primary Concerns</h1>
       <button class="button button-clear" ng-click="closePrimaryConcerns()"  style="top: 7px;font-size:15px;">Done</button>
 
-=======
-<<<<<<< HEAD
-      <h1 class="title" style="top: 7px; font-size:16px;">Primary Concerns</h1>
-      <button class="button button-clear" ng-click="closeModal()"  style="top: 7px;font-size:15px;">Done</button>
-=======
-      <h1 class="title" style="top: 7px;">Primary Concerns</h1>
-      <button class="button button-clear" ng-click="closePrimaryConcerns()" style="top: 7px;">Done</button>
->>>>>>> 3069f83acfe0c2801861a2a397a772b055d94dca
->>>>>>> a5484c128abc973f14e6f8044a68d76849bc4084
     </header>
 
 <ion-content has-header="true" style="margin-top: 52px;">
       
     <ion-list>
 		<ion-checkbox ng-repeat="item in primaryConcernList"
-<<<<<<< HEAD
-						  ng-model="item.checked" ng-checked="item.checked" ng-click="OnSelectPatientPrimaryConcern($index,primaryConcernList, item)" ng-disabled="checked" >
+ng-model="item.checked" ng-checked="item.checked" ng-click="OnSelectPatientPrimaryConcern($index,primaryConcernList, item)" ng-disabled="checked" >
 			  <span style="font-size: 15px;"> {{ item.text }} </span>
-=======
-						  ng-model="item.checked" 
-<<<<<<< HEAD
-						  ng-checked="item.checked" ng-click="OnSelectPatientConcerns($index,devList)" ng-disabled="checked" >
-			 <span style="font-size: 15px;"> {{ item.text }} </span>
-=======
-						  ng-checked="item.checked" ng-click="OnSelectPatientPrimaryConcern($index,primaryConcernList, item)" ng-disabled="checked" >
-			  {{ item.text }}
->>>>>>> 3069f83acfe0c2801861a2a397a772b055d94dca
->>>>>>> a5484c128abc973f14e6f8044a68d76849bc4084
+
 		</ion-checkbox> 
 		
 		<a ng-click="SaveDesc()" style="cursor:pointer;">
