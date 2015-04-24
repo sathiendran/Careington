@@ -13,42 +13,48 @@
 			<div style="color:#888;float:right;margin-right: 10px; margin-top: 20px;">Step <b>2</b> of <b>7</b></div>
 			<div ng-click="loadChronicCondition();" style="cursor:pointer;">
 			<div style="margin-top: 28px;">
-			<!---	<a ng-href="#/tab/priorSurgeries">  -->
-					<h1 class="title ChronicCondition" style="font-size: 25px;margin-bottom: 2px;">Chronic Conditions</h1>
-			<!---	</a> -->
-				<p style="margin-left: 19px;">List any chronic medical conditions.</p>
-			</div>
-			<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 0px;">Select up to four</div>
-			<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
-				<div style="float:right;left: 20px; position: relative; margin-top: -45px; cursor:pointer;">
-					<img ng-src="img/add_surgery.png"  >
+                
+                <div style="margin-top: 30px;">
+				
+					<h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px; width: 100%;">Chronic Conditions</h1>
+				    <p style="margin-left: 19px;margin-bottom: 10px;">
+                        List any chronic medical conditions.
+                        <br/>
+                        Select up to four
+                    </p>
+					<div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;">
+					<i class="ion-plus-circled addBtn">  </i>
 					</div>
 				</div>
-			
 			</div>
-		
+            </div>
 		</ion-item>
-		<ion-item>
-		<div>
-			<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
-			<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Chronic Conditions </div>
-	    </div>
+        
+        <ion-item>
+			<div>
+				<div class="intakeNote">ADD or ADHD</div>
+                <i class="ion-close-circled delBtn" ></i>
+			</div>
 		</ion-item>
-		
-		<ion-item>
-		<div>
-			<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
-			<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Chronic Conditions </div>
-	    </div>
+        <ion-item>
+			<div>
+				<div class="intakeNote">Asthma</div>
+                <i class="ion-close-circled delBtn" ></i>
+			</div>
 		</ion-item>
-		
-		<ion-item>
-		<div>
-			<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
-			<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Chronic Conditions </div>
-	    </div>
+        <ion-item>
+			<div>
+				<div class="intakeNote">Cerebral Palsy</div>
+                <i class="ion-close-circled delBtn" ></i>
+			</div>
 		</ion-item>
-		{{PatientChronicCondition}}
+        <ion-item>
+			<div>
+				<div class="intakeNote">Shakes and Seizures</div>
+                <i class="ion-close-circled delBtn" ></i>
+			</div>
+		</ion-item>
+        
 	</ion-list>
 </ion-content>
 </ion-side-menu-content>	

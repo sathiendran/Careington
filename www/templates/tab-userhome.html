@@ -1,6 +1,6 @@
 <ion-side-menus>
 	<ion-side-menu-content> 
-<ion-header-bar align-title="left" class="bar-positiveHomeUser">
+<!--<ion-header-bar align-title="left" class="bar-positiveHomeUser">
   
   <div class="buttons" >
 					<button class="button icon button-clear ion-navicon-round"
@@ -10,35 +10,63 @@
   
 
 <a href="#/tab/uersearch"> 
-<div class="bar bar-subheaderHomeUser">
+<div class="bar bar-subheaderHomeUser" style="top: 81px;">
 
-			<div class="TitleHomeUser_Sub">Who needs care today?</div>
-			<div style="top: 10px; float:right; width:10%;">
-			<img ng-src="img/search.png" style="float:right;margin-right: 15px; width: 20px;">
+			<div class="TitleHomeUser_Sub" style="font-size: 23px;  width: 85%;">Who needs care today?</div>
+			<div style="width:10%;">
+			<img ng-src="img/search.png" style="width: 20px;">
 			</div>
 
 </div> 
 </a>
    
+</ion-header-bar> -->
+
+<ion-header-bar align-title="left" class="bar-positiveHomeUser">
+  
+  <div class="buttons" >
+					<button class="button icon button-clear ion-navicon-round"
+							ng-click="toggleLeft()" style="color:#000;margin-top: 7px;"></button>
+  </div>
+  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -33px; ">Patient List</h1>
+  
+
+
+<div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 65px;height: 87%">
+	<div style="margin-left:10px;">
+				<div class="subHeader_image" style="margin-left: -15px;  margin-top: -13px;">
+					<img src="img/cutmypic.png" style="width:42px;" />
+				</div>
+				<div class="subHeader_content" >
+					
+						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}Vinoth</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}} Kumar</span></div>
+						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age 15{{patientInfomation.guardianName}} | Guardian: {{patientInfomation.guardianName}} Vinoth Kumar</div>
+					
+				</div>
+	</div>
+</div>   
 </ion-header-bar>
+
+
+
 <ion-view title="User Home">	
 <ion-content class="ContentHomeUser" style="margin-top: 70px">
  	<ion-list>
 	<a class=""  href="#/tab/uersearch">
-		<ion-item style="padding:11px;height: 104px;">
+		<ion-item style="top: 1px;padding:11px;height: 104px;">
 			 <div class="HrefListView"> 
-				<div style="margin-top:-5px !important; margin-left: 7px;">
+				<div style="margin-top:-5px !important; margin-left: 0px;">
 				<img ng-src="img/IMG_2.png" class="listImgView">
-				 <div class= "ListTextTitle ellipsis" style="width:67%;" >{{patientInfomation.patientName}}<span class="SubTitleSpan ellipsis">{{patientInfomation.lastName}} </span></div> 
+				 <div class= "ListTextTitle ellipsis" style="width:67%;" >Welcome{{patientInfomation.patientName}}<span class="SubTitleSpan ellipsis">{{patientInfomation.lastName}} Test</span></div> 
 				<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-				<p class="ListHomeUser_pTitle DateFormateStyle" style="width: 67%">Age {{patientInfomation.age}} | Guardain : {{patientInfomation.guardianName}}</p>
+				<p class="ListHomeUser_pTitle DateFormateStyle" style="width: 67%">Age 30 {{patientInfomation.age}} | Guardain : Demo {{patientInfomation.guardianName}}</p>
 				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
 				</div>
 			 </div>
 		</ion-item>
 		</a>
 		
-		<ion-item style="height: 66px;" class="ItemList">
+		<ion-item style="top: -2px;height: 66px;" class="ItemList">
 			  <a class="HrefListView" href="#/tab/uersearch" style="margin-left:10px;"> 
 			   <span class = "ListText" style="font-size: 16px;top: 1px;color: #888;  margin-left: -5px;">Next Appointment:</span>
 			   <h2 style="margin-left: 4px; margin-top: 2px;font-size:22px; color:#706A67;" class="DateFormateStyle"><b>OCT 12 </b> <span style="font-size:18px;"><sup>@</sup></span> <b>12:15</b><span style="font-size:14px;">PM</span></h2>

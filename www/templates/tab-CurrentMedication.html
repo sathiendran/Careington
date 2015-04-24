@@ -8,35 +8,41 @@
 		<ion-item style="top: 0px;padding: 2px;">
 			<div style="color:#888;float:right;margin-right: 10px; margin-top: 20px;">Step <b>5</b> of <b>7</b></div>
 			<div ng-click="button.tap($event, $index)"  ng-repeat="button in rightButtons" style="cursor:pointer;">
-				<div style="margin-top: 35px;">
-					<!-- <a ng-href="#/tab/ConsentTreat">  -->
-						<h1 class="title ChronicCondition" style="font-size: 24px;">Current Medications</h1>
-					<!--</a> -->
-					<p style="margin-left: 19px;margin-top: -9px;">List any medications currently talking.</p>
-				</div>
-				<div style="margin-left: 19px; float: left; font-size: 12px; margin-top: 0px;">Select up to four</div>
-			
-				<div style="margin-right: 45px; font-size: 11px; float: right; margin-top: 10px;">
-						<div style="float:right;left: 20px; position: relative; margin-top: -45px; cursor:pointer;">
-							<img ng-src="img/add_surgery.png"  >
-						</div>
-				</div>
+                
+                <div style="margin-top: 12px;">
+                        <h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px; width: 100%;">Current Medications</h1>
+                    </div>
+                    <p style="margin-left: 19px;margin-bottom: 10px;">List any medications currently talking.
+                        <br/>
+                        Select up to four</p>
+                    <div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;"> 
+				  
+				    <i class="ion-plus-circled addBtn">  </i></div>
 			</div>
 		
 		</ion-item>
-		
-		
 		<ion-item>
 			<div>
-				<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
-				<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Current Medication </div>
+				<div class="intakeNote">Allergy Medications</div>
+                <i class="ion-close-circled delBtn" ng-click="" ></i>
 			</div>
 		</ion-item>
-		
-		<ion-item>
+        <ion-item>
 			<div>
-				<div style="text-align: right; margin-right: 14px;"><img ng-src="img/delete1.png" ></div>
-				<div style="text-align: left; margin-right: 5px;margin-top: -24px;"> This is a Current Medication </div>
+				<div class="intakeNote">Asthma Medications</div>
+                <i class="ion-close-circled delBtn" ng-click="" ></i>
+			</div>
+		</ion-item>
+        <ion-item>
+			<div>
+				<div class="intakeNote">Mental Health Medications</div>
+                <i class="ion-close-circled delBtn" ng-click="" ></i>
+			</div>
+		</ion-item>
+        <ion-item>
+			<div>
+				<div class="intakeNote">Seizure Medications</div>
+                <i class="ion-close-circled delBtn" ng-click="" ></i>
 			</div>
 		</ion-item>
 	</ion-list>

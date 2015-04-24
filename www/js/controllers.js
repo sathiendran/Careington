@@ -562,9 +562,7 @@ angular.module('starter.controllers', ['starter.services'])
     
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
-    $scope.toggleLeft = function() {
-        $ionicSideMenuDelegate.toggleLeft();
-    };
+   
     $scope.myGoBack = function() {
         $ionicHistory.goBack();
     };
@@ -574,18 +572,20 @@ angular.module('starter.controllers', ['starter.services'])
 	/*Primary concern Start here*/
 	
     // Get list of primary concerns lists
-    $scope.primaryConcernList = IntakeLists.getConcerns();
+    $scope.primaryConcernList = IntakeLists.getPrimaryConcerns();
     
     $scope.PatientPrimaryConcern = "";
     
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
+        
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: true
         }).then(function(modal) {
             $scope.modal = modal;
+            
             $scope.modal.show();
         }); 
     };
@@ -614,8 +614,8 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.openOtherPrimaryConcernView = function(model) {
 	   $scope.data = {}
        $ionicPopup.show({
-          template: '<input type="text" ng-model="data.PrimaryConcernOther">',
-			//template: '<textarea name="comment" id="comment-textarea" ng-model="incident.comment" class="textAreaPop" ng-model="data.PrimaryConcernOther">',
+          //template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+			template: '<textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
             title: 'Enter Concerns',
 			subTitle: '',
 			scope: $scope,
@@ -656,7 +656,7 @@ angular.module('starter.controllers', ['starter.services'])
 	/*Secondary concern Start here*/
 	
     // Get list of Secondary concerns lists
-    $scope.secondaryConcernList = IntakeLists.getConcerns();
+    $scope.secondaryConcernList = IntakeLists.getSecondaryConcerns();
     
     $scope.PatientSecondaryConcern = "";
     
@@ -696,7 +696,7 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.openOtherSecondaryConcernView = function(model) {
 	   $scope.data = {}
        $ionicPopup.show({
-            template: '<input type="text" ng-model="data.SecondaryConcernOther">',
+           template: '<textarea name="comment" id="comment-textarea" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
             title: 'Enter Concerns',
 			subTitle: '',
 			scope: $scope,
@@ -823,6 +823,9 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	/*Chronic Condition End here*/
 	
+     $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 	
 })
 

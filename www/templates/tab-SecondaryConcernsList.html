@@ -10,15 +10,8 @@
 		<ion-checkbox ng-repeat="item in secondaryConcernList"
 						  ng-model="item.checked" 
 						  ng-checked="item.checked" ng-click="OnSelectPatientSecondaryConcern($index,secondaryConcernList, item)" ng-disabled="checked" >
-			  {{ item.text }}
+			  <p class="intakeNote"> {{ item.text }} </p>
 		</ion-checkbox> 
-		
-		<a ng-click="SaveDesc()" style="cursor:pointer;">
-			<ion-item>
-				Other
-			</ion-item>
-		</a>
-		
 		
 </ion-list>	
 

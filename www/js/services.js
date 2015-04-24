@@ -441,8 +441,24 @@ angular.module('starter.services', [])
 })
 
 .service('IntakeLists', function(){
-    var concerns = [
-        { text: "Fever 789 (100+)", checked: false },
+    var primaryConcerns = [
+        { text: "Fever (100+)", checked: false },
+        { text: "Cough", checked: false },
+        { text: "Vomiting", checked: false },
+        { text: "Pink Eye", checked: false },
+        { text: "Stomach and Abdominal Pain", checked: false },
+        { text: "Cramps and Spasms", checked: false },
+        { text: "Diarrhea or Constipation", checked: false },
+        { text: "Skin Rash", checked: false },
+        { text: "Earache or Ear Infection", checked: false },
+        { text: "Sore Throat", checked: false },
+        { text: "Injury: Head, Neck, Face", checked: false },    
+        { text: "Headache", checked: false },
+        { text: "Other", checked: false },
+    ];
+    
+    var secondaryConcerns = [
+        { text: "Fever (100+)", checked: false },
         { text: "Cough", checked: false },
         { text: "Vomiting", checked: false },
         { text: "Pink Eye", checked: false },
@@ -487,8 +503,12 @@ angular.module('starter.services', [])
         { text: "Other", checked: false },
     ];
     
-    this.getConcerns = function(){
-        return concerns;
+    this.getPrimaryConcerns = function(){
+        return primaryConcerns;
+    }
+    
+    this.getSecondaryConcerns = function(){
+        return secondaryConcerns;
     }
     
     this.getChronics = function(){
