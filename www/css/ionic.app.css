@@ -7440,23 +7440,24 @@ a.button {
  * Platform specific tweaks
  */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: 64px; }
+  _height: 64px;
+  height: auto; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-    margin-top: 19px !important; }
+    _margin-top: 19px !important; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    margin-top: 20px; }
+    _margin-top: 20px; }
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  top: 64px; }
+  _top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  top: 64px; }
+  _top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  top: 108px; }
+  _top: 108px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  top: 113px; }
+  _top: 113px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  top: 157px; }
+  _top: 157px; }
 .platform-ios.platform-cordova.status-bar-hide {
-  margin-bottom: 20px; }
+  _margin-bottom: 20px; }
 
 @media (orientation: landscape) {
   .platform-ios.platform-browser.platform-ipad {
@@ -8154,7 +8155,7 @@ body {
     top: -15px; }
 
 .consultCharge_content {
-  margin: 140px 0 0 4%;
+  margin: 133px 0 0 0;
   padding-bottom: 30px;
   padding-top: 15px; }
 
@@ -8181,25 +8182,28 @@ body {
   .consultation_head .consultation_number {
     font-weight: bold;
     padding-top: 15px;
-    font-size: 30px; }
+    font-size: 30px;
+    font-family: 'Glober Heavy'; }
 
 .healthPlan_header {
-  padding-top: 45px;
-  text-align: center; }
+  padding-top: 15px;
+  text-align: center;
+  color: #5C5C5C; }
   .healthPlan_header .healthPlan_text {
-    font-size: 15px;
-    color: #C2C2C2;
+    font-size: 16px;
+    color: #888585;
     margin-left: -100px;
     font-weight: bold; }
   .healthPlan_header .addHealthPlan_header {
-    padding-top: 10px;
-    margin-left: -35px; }
+    margin-left: -35px;
+    margin-right: 17px; }
     .healthPlan_header .addHealthPlan_header .addHealthPlan_text {
       font-size: 20px;
       font-weight: bold;
-      left: 10px;
+      left: 18px;
       position: relative;
-      top: -8px; }
+      top: -8px;
+      color: black; }
 
 .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
   font-size: 70px;
@@ -8207,22 +8211,22 @@ body {
   width: 25px; }
 
 .planDetails_content {
-  margin: 100px 0 0 0;
-  padding-top: 30px; }
+  padding-top: 32px;
+  margin-top: 12px; }
   .planDetails_content .healthPlan_text {
-    font-size: 30px;
+    font-size: 37px;
     text-align: center;
     color: #5C5C5C;
     font-weight: normal; }
   .planDetails_content .planInformation {
     color: #5C5C5C;
-    font-size: 20px;
-    margin-left: 20px;
+    font-size: 18px;
     font-weight: normal; }
   .planDetails_content .provider {
-    margin-left: 20px;
-    padding-top: 30px;
-    font-size: 18px; }
+    margin-left: 27px;
+    padding-top: 20px;
+    font-size: 15px;
+    text-align: left; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
     text-align: left;
@@ -8233,16 +8237,16 @@ body {
     padding: 0 5px 50px 15px;
     margin-top: -10px; }
   .planDetails_content .list {
-    padding-top: 25px; }
+    padding-top: 12px; }
   .planDetails_content .item.item-input {
-    padding: 16px; }
+    padding: 10px 16px 10px 16px; }
   .planDetails_content .input-label {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     width: 50%; }
 
 .verifyPlan_subHeader {
-  padding-top: 70px;
+  padding-top: 40px;
   color: #5C5C5C;
   text-align: center;
   font-size: 27px;
@@ -8256,14 +8260,16 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
   background: #ccc url(../img/select-arrow.png) no-repeat 95% center;
-  width: 95%;
+  width: 93%;
   text-indent: 0.01px;
   text-overflow: "";
   color: #515151;
-  border-radius: 15px;
-  margin-left: 6px;
+  border-radius: 7px;
+  margin-left: 8px;
   padding: 6px;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); }
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  height: 45px;
+  font-size: 18px; }
 
 a {
   text-decoration: none; }
@@ -8697,38 +8703,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .item-radio input:checked ~ .radio-icon {
   visibility: visible;
   color: red; }
-
-/**
- * Platform
- * --------------------------------------------------
- * Platform specific tweaks
- */
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  height: auto; }
-
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-  _margin-top: 19px !important; }
-
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-  margin-top: 0px; }
-
-.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  _top: 64px; }
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  top: 0px; }
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  _top: 108px; }
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  _top: 113px; }
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  _top: 157px; }
-
-.platform-ios.platform-cordova.status-bar-hide {
-  _margin-bottom: 20px; }
 
 .ellipsis {
   text-overflow: ellipsis;
