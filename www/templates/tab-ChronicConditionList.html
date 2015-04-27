@@ -18,14 +18,14 @@
 <ion-item style="padding:11px; top: 0px;" class="search_home">
 
 		<span style="padding:11px; top: 0px;" class="search_home">
-
 			<label class="item-input popupSearch" style="margin-top: -19px;"  >
-					<input type="search" placeholder="Search" class="innerSearchPop" >
+					<input type="search" placeholder="Search" class="innerSearchPop" ng-model="data.searchQuery" style="color:#535353; font-weight:normal;" >
+					<i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
             </label>
 			
 		</span>
 
-		<ion-checkbox ng-repeat="item in chronicConditionList"
+		<ion-checkbox ng-repeat="item in chronicConditionList | filter: data.searchQuery"
 						  ng-model="item.checked" 
 						  ng-checked="item.checked" ng-click="OnSelectChronicCondition($index,PatientChronicCondition, item)" ng-disabled="checked" >
 			  <span style="font-size: 15px;">   {{ item.text }} </span>

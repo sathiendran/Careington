@@ -877,6 +877,12 @@ angular.module('starter.controllers', ['starter.services'])
         $scope.modal.hide();
     };
 	
+	 //$scope.IntakeLists = IntakeLists.all();
+ 
+	  $scope.clearSearch = function() {
+		$scope.data.searchQuery = '';
+	  };
+	
 	$scope.OnSelectPatientConcerns = function(position, devList) {
 	
 		
