@@ -1,10 +1,10 @@
 <div class="modal">
     <header class="bar bar-header bar-dark" style="height: 55px;">
 
-      <h1 class="title" style="top: 7px;">Chronic Conditions</h1>
+      <h1 class="title" style="top: 7px;font-size: 16px;">Chronic Conditions</h1>
 
 
-      <button class="button button-clear" ng-click="closeChronicCondition()" style="top: 7px;">Done</button>
+      <button class="button button-clear" ng-click="closeChronicCondition()" style="top: 7px;font-size: 15px;">Done</button>
 
 
     </header>
@@ -17,13 +17,13 @@
 
 <ion-item style="padding:11px; top: 0px;" class="search_home">
 
-		<ion-item style="padding:11px; top: 0px;" class="search_home">
+		<span style="padding:11px; top: 0px;" class="search_home">
 
-			<label class="item-input popupSearch"  >
+			<label class="item-input popupSearch" style="margin-top: -19px;"  >
 					<input type="search" placeholder="Search" class="innerSearchPop" >
             </label>
 			
-		</ion-item>
+		</span>
 
 		<ion-checkbox ng-repeat="item in chronicConditionList"
 						  ng-model="item.checked" 
