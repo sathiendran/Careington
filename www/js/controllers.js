@@ -480,7 +480,7 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 
-.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter) {
+.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $state) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
@@ -558,7 +558,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state) {
     
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
@@ -574,7 +574,8 @@ angular.module('starter.controllers', ['starter.services'])
     // Get list of primary concerns lists
     $scope.primaryConcernList = IntakeLists.getPrimaryConcerns();
     
-    $scope.PatientPrimaryConcern = "";
+    
+    $rootScope.PatientPrimaryConcern = "";
     
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
@@ -589,6 +590,12 @@ angular.module('starter.controllers', ['starter.services'])
             $scope.modal.show();
         }); 
     };
+    
+      
+    $scope.gotoChronicView =  function(){
+        $state.go('tab.ChronicCondition');
+    }
+      
 
     $scope.closePrimaryConcerns = function() {
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
@@ -648,7 +655,7 @@ angular.module('starter.controllers', ['starter.services'])
     };
     
     $scope.removePrimaryConcern = function(){
-        $scope.PatientPrimaryConcern = "";
+        $rootScope.PatientPrimaryConcern = "";
     }
 	
 	/*Primary concern End here*/
@@ -658,7 +665,7 @@ angular.module('starter.controllers', ['starter.services'])
     // Get list of Secondary concerns lists
     $scope.secondaryConcernList = IntakeLists.getSecondaryConcerns();
     
-    $scope.PatientSecondaryConcern = "";
+    $rootScope.PatientSecondaryConcern = "";
     
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
@@ -729,7 +736,7 @@ angular.module('starter.controllers', ['starter.services'])
     };
     
     $scope.removeSecondaryConcern = function(){
-        $scope.PatientSecondaryConcern = "";
+        $rootScope.PatientSecondaryConcern = "";
     }
 	
 	/*Secondary concern End here*/
@@ -740,9 +747,9 @@ angular.module('starter.controllers', ['starter.services'])
     // Get list of Chronic Condition lists
     $scope.chronicConditionList = IntakeLists.getChronics();
     
-    $scope.PatientChronicCondition = "";
+     $rootScope.patinentMedicationAllergies = [];
     
-    // Open primary concerns popup
+    // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
         $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
             scope: $scope,
@@ -755,7 +762,7 @@ angular.module('starter.controllers', ['starter.services'])
     };
 
     $scope.closeChronicCondition = function() {
-        $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
+      /*  $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
         $rootScope.PatientChronicCondition = [];
 		
 	   angular.forEach($scope.PatientChronicConditionItem, function(item, index) {
@@ -766,11 +773,14 @@ angular.module('starter.controllers', ['starter.services'])
 						'index': index,					
 					});
         });
-        $scope.modal.hide();
+        $scope.modal.hide(); */
+    $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
+    $rootScope.patinentMedicationAllergies = $scope.PatientChronicConditionItem;
+    $scope.modal.hide();    
     };
+      
     
-    
-    // Onchange of primary concerns
+    // Onchange of Chronic Condition
     $scope.OnSelectChronicCondition = function(position, PatientChronicCondition, item) {
         angular.forEach(PatientChronicCondition, function(item, index) {
             /*if (position != index) 
@@ -781,11 +791,59 @@ angular.module('starter.controllers', ['starter.services'])
         }
     }
 	
-    // Open text view for other primary concern
-	/*$scope.openOtherPrimaryConcernView = function(model) {
+   
+    
+    $scope.removeChronicCondition = function(){
+        $scope.PatientPrimaryConcern = "";
+    }
+	
+	/*Chronic Condition End here*/
+    
+    
+    
+  
+    /*Medication Allegies Start here*/
+	
+    // Get list of Medication Allegies List
+    $scope.MedicationAllegiesList = IntakeLists.getMedications();
+    
+    //$scope.MedicationAllegies = "";
+    
+    $rootScope.patinentMedicationAllergies = [];
+    
+    // Open Medication Allegies List popup
+    $scope.loadMedicationAllegies = function() {
+        
+        $ionicModal.fromTemplateUrl('templates/tab-MedicationAllegiesList.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            
+            $scope.modal.show();
+        }); 
+    };
+	
+     $scope.closeMedicationAllegies = function() {
+        $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
+        $rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
+        $scope.modal.hide();
+    };
+    
+      // Onchange of Medication Alligies
+    $scope.OnSelectMedicationAllegies = function(position, MedicationAllegiesList, item) {
+        if(item.text == "Other"){
+            $scope.openOtherMedicationAllgiesView();
+        }
+    }
+    
+    
+     // Open text view for  Medication Alligies
+	$scope.openOtherMedicationAllgiesView = function(model) {
 	   $scope.data = {}
        $ionicPopup.show({
-            template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+           template: '<textarea name="comment" id="comment-textarea" ng-model="data.medicationOther" class="textAreaPop">',
             title: 'Enter Concerns',
 			subTitle: '',
 			scope: $scope,
@@ -793,7 +851,7 @@ angular.module('starter.controllers', ['starter.services'])
 			  { 
                   text: 'Cancel',
                   onTap: function(e) {
-                      angular.forEach($scope.primaryConcernList, function(item, index) {
+                      angular.forEach($scope.MedicationAllegiesList, function(item, index) {
                         item.checked = false;
                       });
                     }
@@ -802,27 +860,36 @@ angular.module('starter.controllers', ['starter.services'])
 				text: '<b>Done</b>',
 				type: 'button-positive',
 				onTap: function(e) {
-				  if (!$scope.data.PrimaryConcernOther) {
+				  if (!$scope.data.MedicationAllegiesList) {
 					e.preventDefault();
 				  } else {
-                      angular.forEach($scope.primaryConcernList, function(item, index) {
+                      angular.forEach($scope.MedicationAllegiesList, function(item, index) {
                         item.checked = false;
                       });
-                      $scope.primaryConcernList.push({ text: $scope.data.PrimaryConcernOther, checked: true });
-					  return $scope.data.PrimaryConcernOther;
+                      $scope.MedicationAllegiesList.push({ text: $scope.data.medicationOther, checked: true });
+					  return $scope.data.medicationOther;
 				  }
 				}
 			  }
 			]
 		  });
-    };*/
+    };
     
-    $scope.removePrimaryConcern = function(){
-        $scope.PatientPrimaryConcern = "";
+    
+    $scope.removeMedicationAllegies = function(index, item){
+      $scope.patinentMedicationAllergies.splice(index, 1);
+      var indexPos = $scope.MedicationAllegiesList.indexOf(item);
+      $scope.MedicationAllegiesList[indexPos].checked = false;
     }
 	
-	/*Chronic Condition End here*/
-	
+	/*Medication Allegies End here*/
+    
+     //Search Query
+     $scope.clearSearch = function() {
+		$scope.data.searchQuery = '';
+     };
+    
+    
      $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
@@ -877,11 +944,12 @@ angular.module('starter.controllers', ['starter.services'])
         $scope.modal.hide();
     };
 	
-	 //$scope.IntakeLists = IntakeLists.all();
- 
-	  $scope.clearSearch = function() {
-		$scope.data.searchQuery = '';
-	  };
+	
+     // Search Query //
+     /*	  $scope.clearSearch = function() {
+            $scope.data.searchQuery = '';
+          }; */
+    
 	
 	$scope.OnSelectPatientConcerns = function(position, devList) {
 	

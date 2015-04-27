@@ -210,7 +210,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-MedicationAllegies.html',
-        controller: 'MedicationAllegiesCtrl'
+        controller: 'IntakeFormsCtrl'
       }
     }
   })

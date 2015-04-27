@@ -20,7 +20,7 @@
 				    <p style="margin-left: 19px;margin-bottom: 10px;">
                         List any chronic medical conditions.
                         <br/>
-                        Select up to four
+                        Select up to four {{PatientPrimaryConcern}}
                     </p>
 					<div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;">
 					<i class="ion-plus-circled addBtn">  </i>
@@ -30,7 +30,7 @@
             </div>
 		</ion-item>
         
-        <ion-item>
+       <!-- <ion-item>
 			<div>
 				<div class="intakeNote" style="width: 91%;">ADD or ADHD</div>
                 <i class="ion-close-circled delBtn" ></i>
@@ -52,6 +52,13 @@
 			<div>
 				<div class="intakeNote" style="width: 91%;">Shakes and Seizures</div>
                 <i class="ion-close-circled delBtn" ></i>
+			</div>
+		</ion-item> -->
+		
+		 <ion-item ng-repeat="item in PatientChronicCondition">
+			<div>
+				<p class="intakeNote" style="width: 91%;">{{item.text}} </p>
+                <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i>
 			</div>
 		</ion-item>
         
