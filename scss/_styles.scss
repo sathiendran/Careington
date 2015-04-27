@@ -708,7 +708,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .demo select {
-  border: 0 !important;  
+  //border: 0 !important;  
   -webkit-appearance: none;  
   -moz-appearance: none; 
   background: #ccc url(../img/select-arrow.png) no-repeat 95% center;
@@ -723,6 +723,12 @@ background: linear-gradient(#A0D18A, #91BE7B);
   height: 45px;
   font-size: 18px;
  }
+ select {
+    overflow:hidden; 
+    white-space:pre; 
+    text-overflow:ellipsis;
+}
+
  
  // from Sakthi
  
