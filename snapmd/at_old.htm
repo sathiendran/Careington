@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="apiTestApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+    <style>
+    .push-it-down {
+        margin-top: 60px;
+    }
+	.alert {
+		overflow: scroll;
+	}
+	.someTopSpace {
+		margin-top: 10px;
+	}
+    </style>
+<body ng-controller="apiTestController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">{{title}}</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container push-it-down">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Token
+                <a target="_blank" href="https://snap-dev.com/api/Help/Api/POST-Account-Token"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+            </div>
+            <div class="panel-body">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doGetToken();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get Token
+                </button>
+				<div class="alert {{tokenStatus}} someTopSpace" role="alert">{{accessToken}}</div>
+            </div>
+        </div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                Existing Consultation
+                <a target="_blank" href="https://snap-dev.com/api/Help/Api/GET-patientconsultation-consultionId-all"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+            </div>
+            <div class="panel-body">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doGetExistingConsulatation();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get Existing Consultation
+                </button>
+				<div>
+					<label>Consultation ID:</label>
+					<input ng-model="consultationId" class="form-control input-sm" type="text">
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{existingConsultation}}</textarea>
+					</p>
+				</div>
+            </div>
+        </div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                Consultation Report Details
+                <a target="_blank" href="https://snap-dev.com/api/Help/Api/GET-reports-consultationreportdetails-id"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+            </div>
+            <div class="panel-body">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doGetExistingConsulatationReport();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get Consultation Report
+                </button>
+				<div>
+					<label>Consultation ID:</label>
+					<input ng-model="consultationId" class="form-control input-sm" type="text">
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{existingConsultationReport}}</textarea>
+					</p>
+				</div>
+            </div>
+        </div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                Patient Payment Profiles
+                <a target="_blank" href="https://snap-dev.com/api/Help/Api/GET-v2-patients-profile-userId-payments_hospitalId"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+            </div>
+            <div class="panel-body" id="patientPaymentProfiles">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doGetPatientPaymentProfiles();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get Patient Payment Profiles
+                </button>
+				<div>
+					<label>Patient ID:</label>
+					<input ng-model="patientId" class="form-control input-sm" type="text">
+					<label>Hospital ID:</label>
+					<input ng-model="hospitalId" class="form-control input-sm" type="text">
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{patientPaymentProfiles}}</textarea>
+					</p>
+				</div>
+            </div>
+        </div>
+
+    </div><!-- /.container -->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="scripts/ui-bootstrap-tpls-0.12.1.min.js"></script>
+<script src="scripts/app.js"></script>
+</html>
