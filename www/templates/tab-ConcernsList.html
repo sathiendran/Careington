@@ -10,13 +10,13 @@
 <ion-content has-header="true" style="margin-top: 52px;">
       
     <ion-list>
-        <ion-item style="padding:11px; top: 0px;" class="search_home">  
-            <span style="padding:11px; top: 0px;" class="search_home">
+        <ion-item style="padding:11px 0px; top: 0px; border: 0px;" class="search_home">  
+            <div style="padding:20px 11px 16px 11px; top: 0px;" class="search_home">
 			<label class="item-input popupSearch" style="margin-top: -19px;"  >
-	        <input type="search" placeholder="Search" class="innerSearchPop" ng-model="data.searchQuery" style="color:#535353; font-weight:normal;" >
+	        <input type="search" placeholder="Search" class="innerSearchPop" ng-model="data.searchQuery" style="color:#535353; font-weight:normal;"   >
             <i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>
             </label>
-		   </span>   
+		   </div>   
         
         
 		  <ion-checkbox ng-repeat="item in primaryConcernList | filter: data.searchQuery"
