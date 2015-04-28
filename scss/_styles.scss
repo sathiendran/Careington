@@ -436,7 +436,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	margin-left: -3px;	
 }
 .bar .button.button-clear.icon-left:before {
-	font-size: 28px;
+	font-size: 20px;
     line-height: 28px;
     padding-right: 4px;
 }
@@ -1291,4 +1291,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
     font-size: 30px;
     cursor: pointer;
 	
+}
+.disabled {
+    color: #AAAAAA;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
 }

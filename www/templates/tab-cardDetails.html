@@ -2,14 +2,26 @@
 <form novalidate="novalidate" on-valid-submit="doPostPaymentProfileDetails()">
 <ion-view title="Card Details">
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height: 58px;" >
-		<div style="color: #fff; font-size: 17px; line-height: 3; margin-left: 15px; width: 25%;" >
+		<!--<div style="color: #fff; font-size: 17px; line-height: 3; margin-left: 15px; width: 25%;" >
 			<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/consultCharge" >Cancel</a>
-		</div>
+		</div>-->
+		<div class="buttons" style="margin-left: 15px;" >
+				<a style="padding-top: 14px; font-weight: bold;" class="button_new icon"  style="cursor: pointer;" ng-href="#/tab/consultCharge">
+				<span style="margin-top:7px; position:absolute;">Cancel</span>
+				</a>
+		 </div>
 		 <h1 class="title_patient"></h1>	
 		 
-		 <div style="color: #fff; font-size: 17px; line-height: 3; width: 91%; text-align: right; margin-right: 15px;" >
+		 <div class="buttons" style="width: 93%; margin-right: 50px;" >
+				<a style="padding-top: 14px; font-weight: bold; width: 100%; text-align: right; cursor: pointer;" class="button_new icon" ng-click="doPostPaymentProfileDetails()" >
+				<span style="margin-top:7px; position:absolute;">Next</span>
+				</a>
+		 </div>
+		 
+		 
+		 <!--<div style="color: #fff; font-size: 17px; line-height: 3; width: 91%; text-align: right; margin-right: 15px;" >
 			<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-click="doPostPaymentProfileDetails()" >Next</a>
-		</div>
+		</div>-->
 	</ion-header-bar>
 		
 	<ion-content class="planDetails_content" >

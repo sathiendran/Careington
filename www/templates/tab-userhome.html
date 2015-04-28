@@ -28,7 +28,7 @@
 <ion-view title="User Home">	
 <ion-content class="ContentHomeUser" style="margin-top: 70px">
  	<ion-list>
-	<a class=""  href="#/tab/uersearch">
+	<a class=""  href="#/tab/patientDetail">
 		<ion-item style="top: 1px;padding:11px;height: 104px;">
 			 <div class="HrefListView"> 
 				<div style="margin-top:-5px !important; margin-left: 0px;">
@@ -43,7 +43,7 @@
 		</a>
 		
 		<ion-item style="top: -2px;height: 66px;" class="ItemList">
-			  <a class="HrefListView" href="#/tab/uersearch" style="margin-left:10px;"> 
+			  <a class="HrefListView" href="#/tab/appoimentDetails" style="margin-left:10px;"> 
 			   <span class = "ListText" style="font-size: 16px;top: 1px;color: #888;  margin-left: -5px;">Next Appointment:</span>
 			   <h2 style="margin-left: 4px; margin-top: 2px;font-size:22px; color:#706A67;" class="DateFormateStyle"><b>OCT 12 </b> <span style="font-size:18px;"><sup>@</sup></span> <b>12:15</b><span style="font-size:14px;">PM</span></h2>
 			   <list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;  margin-right: 12px;"></list>
@@ -53,7 +53,7 @@
 		</ion-item>
 		
 		<ion-item style="padding:11px;  top: 0px;  height: 80px;" ng-repeat="dependentDetails in dependentDetails">
-			 <a class="HrefListView"  href="#/tab/patientDetail">   
+			 <a class="HrefListView"  href="#/tab/appoimentDetails">   
 				<img ng-src="img/IMG_2.png" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
