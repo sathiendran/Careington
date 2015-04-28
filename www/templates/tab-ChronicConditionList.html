@@ -27,7 +27,7 @@
 
 		  <ion-checkbox ng-repeat="item in chronicConditionList | filter: data.searchQuery"
 						  ng-model="item.checked" 
-						  ng-checked="item.checked" ng-click="OnSelectChronicCondition($index,PatientChronicCondition, item)" ng-disabled="checked" ng-change="checkChanged(item)" ng-disabled="checked==limit && !item.checked">
+						  ng-checked="item.checked" ng-click="OnSelectChronicCondition($index,PatientChronicCondition, item)"  ng-change="checkChanged(item)" ng-disabled="checkedChronic==limit && !item.checked">
 			  <span style="font-size: 15px;">   {{ item.text }} </span>
 
 

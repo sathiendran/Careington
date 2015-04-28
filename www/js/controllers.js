@@ -486,8 +486,8 @@ angular.module('starter.controllers', ['starter.services'])
     
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
-    $scope.limit = 2;
-    
+    $scope.limit = 4;
+    $scope.checkedChronic = 0;
     
     $scope.myGoBack = function() {
         $ionicHistory.goBack();
@@ -716,11 +716,12 @@ angular.module('starter.controllers', ['starter.services'])
           $scope.PatientChronicCondition.splice(index, 1);
           var indexPos = $scope.chronicConditionList.indexOf(item);
           $scope.chronicConditionList[indexPos].checked = false;
+          $scope.checkedChronic--;
     }
 	
     $scope.checkChanged = function(item){
-        if(item.checked) $scope.checked++;
-        else $scope.checked--;
+        if(item.checked) $scope.checkedChronic++;
+        else $scope.checkedChronic--;
     }
     
 	/*Chronic Condition End here*/
