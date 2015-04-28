@@ -488,6 +488,8 @@ angular.module('starter.controllers', ['starter.services'])
     //$rootScope.Appointment.primaryConcern = "Hell";
     $scope.limit = 4;
     $scope.checkedChronic = 0;
+    $scope.checkedAllergies = 0;
+    $scope.checkedMedication = 0;
     
     $scope.myGoBack = function() {
         $ionicHistory.goBack();
@@ -719,7 +721,7 @@ angular.module('starter.controllers', ['starter.services'])
           $scope.checkedChronic--;
     }
 	
-    $scope.checkChanged = function(item){
+    $scope.checkChangedChronic = function(item){
         if(item.checked) $scope.checkedChronic++;
         else $scope.checkedChronic--;
     }
@@ -769,8 +771,14 @@ angular.module('starter.controllers', ['starter.services'])
       $scope.patinentMedicationAllergies.splice(index, 1);
       var indexPos = $scope.MedicationAllegiesList.indexOf(item);
       $scope.MedicationAllegiesList[indexPos].checked = false;
+      $scope.checkedAllergies--;
     }
 	
+     $scope.checkChangedAllergies = function(item){
+        if(item.checked) $scope.checkedAllergies++;
+        else $scope.checkedAllergies--;
+    }
+     
 	/*Medication Allegies End here*/
     
     
@@ -848,8 +856,13 @@ angular.module('starter.controllers', ['starter.services'])
       $scope.patinentCurrentMedication.splice(index, 1);
       var indexPos = $scope.CurrentMedicationList.indexOf(item);
       $scope.CurrentMedicationList[indexPos].checked = false;
+      $scope.checkedMedication--;
     }
 	
+      $scope.checkChangedMedication = function(item){
+        if(item.checked) $scope.checkedMedication++;
+        else $scope.checkedMedication--;
+    }
 	/*Current Medication End here*/
     
     
