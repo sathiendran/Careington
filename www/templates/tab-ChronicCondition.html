@@ -57,8 +57,8 @@
 		
 		 <ion-item ng-repeat="item in PatientChronicCondition">
 			<div>
-				<p class="intakeNote" style="width: 91%;">{{item.text}} </p>
-                <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i>
+				<p class="intakeNote" style="width: 90%;">{{item.text}} </p>
+                <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i></div>
 			</div>
 		</ion-item>
         

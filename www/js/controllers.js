@@ -480,89 +480,15 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 
-.controller('PatientConcernCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $state) {
-  $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
-  $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
-  
- $scope.model = null;
- $scope.devList = IntakeLists.getConcerns();
- $scope.rightButtons = [
-        { 
-   type: 'button-positive',  
-   content: '<i class="icon ion-navicon"></i>',
-   tap: function(e) {
-    $scope.date = null;
-    $scope.modal.scope.model = {description :"",amount :""};
-    $scope.openModal();
-      
-	}
-        }
-    ]
-
-    $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', 
-        function(modal) {
-            $scope.modal = modal;
-	},
-        {
-            // Use our scope for the scope of the modal to keep it simple
-            scope: $scope, 
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
-
-        }
-    );
-    $scope.openModal = function() {
-        $scope.modal.show();
-    };
-    $scope.closeModal = function(model) {
-        $scope.modal.hide();
-    };
-	
-	$scope.OnSelectPatientConcerns = function(position, devList) {
-      angular.forEach(devList, function(item, index) {
-        if (position != index) 
-          item.checked = false;
-      });
-    }
-	
-	$scope.SaveDesc = function(model) {
-	$scope.data = {}
-        $ionicPopup.show({
-			template: '<input type="text" ng-model="data.wifi">',
-			title: '<div style="float:right;">Enter Concerns<div>',
-			subTitle: '',
-			scope: $scope,
-			buttons: [
-			  { text: 'Cancel' },
-			  {
-				text: '<b>Done</b>',
-				type: 'button-positive',
-				onTap: function(e) {
-				  if (!$scope.data.wifi) {
-					//don't allow the user to close unless he enters wifi password
-					e.preventDefault();
-				  } else {
-					return $scope.data.wifi;
-				  }
-				}
-			  }
-			]
-		  });
-    };
-})
-
-
 
 // Controller to be used by all intake forms
 .controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state) {
     
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
-   
+    $scope.limit = 2;
+    
+    
     $scope.myGoBack = function() {
         $ionicHistory.goBack();
     };
@@ -592,19 +518,17 @@ angular.module('starter.controllers', ['starter.services'])
     };
     
       
-    $scope.gotoChronicView =  function(){
-        $state.go('tab.ChronicCondition');
-    }
-      
-
     $scope.closePrimaryConcerns = function() {
+        $scope.isDone = !$scope.isDone;
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
         angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
             $scope.PatientPrimaryConcern = item.text;
         });
+        
+        $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
         $scope.modal.hide();
     };
-    
+   
     
     // Onchange of primary concerns
     $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList, item) {
@@ -617,6 +541,7 @@ angular.module('starter.controllers', ['starter.services'])
         }
     }
 	
+    
     // Open text view for other primary concern
 	$scope.openOtherPrimaryConcernView = function(model) {
 	   $scope.data = {}
@@ -655,9 +580,15 @@ angular.module('starter.controllers', ['starter.services'])
     };
     
     $scope.removePrimaryConcern = function(){
-        $rootScope.PatientPrimaryConcern = "";
+        $scope.PatientPrimaryConcern = "";
+        $rootScope.IsValue =  $scope.PatientPrimaryConcern.length;
     }
-	
+	//console.log($rootScope.IsValue)
+    
+    $scope.PatientConcernsDirectory = function(){
+    $state.go('tab.ChronicCondition');
+    }
+    
 	/*Primary concern End here*/
 	
 	/*Secondary concern Start here*/
@@ -736,7 +667,7 @@ angular.module('starter.controllers', ['starter.services'])
     };
     
     $scope.removeSecondaryConcern = function(){
-        $rootScope.PatientSecondaryConcern = "";
+    $scope.PatientSecondaryConcern = "";
     }
 	
 	/*Secondary concern End here*/
@@ -762,20 +693,8 @@ angular.module('starter.controllers', ['starter.services'])
     };
 
     $scope.closeChronicCondition = function() {
-      /*  $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
-        $rootScope.PatientChronicCondition = [];
-		
-	   angular.forEach($scope.PatientChronicConditionItem, function(item, index) {
-            //$scope.PatientChronicCondition = item.text;
-				$rootScope.PatientChronicCondition.push({
-						'text': item.text,
-						'checked': item.checked,
-						'index': index,					
-					});
-        });
-        $scope.modal.hide(); */
     $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
-    $rootScope.patinentMedicationAllergies = $scope.PatientChronicConditionItem;
+    $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
     $scope.modal.hide();    
     };
       
@@ -793,10 +712,17 @@ angular.module('starter.controllers', ['starter.services'])
 	
    
     
-    $scope.removeChronicCondition = function(){
-        $scope.PatientPrimaryConcern = "";
+    $scope.removeChronicCondition = function(index, item){
+          $scope.PatientChronicCondition.splice(index, 1);
+          var indexPos = $scope.chronicConditionList.indexOf(item);
+          $scope.chronicConditionList[indexPos].checked = false;
     }
 	
+    $scope.checkChanged = function(item){
+        if(item.checked) $scope.checked++;
+        else $scope.checked--;
+    }
+    
 	/*Chronic Condition End here*/
     
     
@@ -805,7 +731,7 @@ angular.module('starter.controllers', ['starter.services'])
     /*Medication Allegies Start here*/
 	
     // Get list of Medication Allegies List
-    $scope.MedicationAllegiesList = IntakeLists.getMedications();
+    $scope.MedicationAllegiesList = IntakeLists.getAllergies();
     
     //$scope.MedicationAllegies = "";
     
@@ -838,12 +764,54 @@ angular.module('starter.controllers', ['starter.services'])
         }
     }
     
+     $scope.removeMedicationAllegies = function(index, item){
+      $scope.patinentMedicationAllergies.splice(index, 1);
+      var indexPos = $scope.MedicationAllegiesList.indexOf(item);
+      $scope.MedicationAllegiesList[indexPos].checked = false;
+    }
+	
+	/*Medication Allegies End here*/
     
-     // Open text view for  Medication Alligies
-	$scope.openOtherMedicationAllgiesView = function(model) {
+    
+      /*Current Medication Start here*/
+	
+    // Get list of Current Medication  List
+    $scope.CurrentMedicationList = IntakeLists.getMedications();
+    
+    $rootScope.patinentCurrentMedication = [];
+    
+    // Open Current Medication popup
+    $scope.loadCurrentMedication = function() {
+        
+        $ionicModal.fromTemplateUrl('templates/tab-CurrentMedicationList.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            
+            $scope.modal.show();
+        }); 
+    };
+	
+     $scope.closeCurrentMedication = function() {
+        $scope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
+        $rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
+        $scope.modal.hide();
+    };
+    
+      // Onchange of Current Medication
+    $scope.OnSelectCurrentMedication = function(position, CurrentMedicationList, item) {
+        if(item.text == "Other"){
+            $scope.openOtherCurrentMedicationView();
+        }
+    }
+    
+    // Open text view for other Current Medication
+	$scope.openOtherCurrentMedicationView = function(model) {
 	   $scope.data = {}
        $ionicPopup.show({
-           template: '<textarea name="comment" id="comment-textarea" ng-model="data.medicationOther" class="textAreaPop">',
+           template: '<textarea name="comment" id="comment-textarea" ng-model="data.CurrentMedicationOther" class="textAreaPop">',
             title: 'Enter Concerns',
 			subTitle: '',
 			scope: $scope,
@@ -851,7 +819,7 @@ angular.module('starter.controllers', ['starter.services'])
 			  { 
                   text: 'Cancel',
                   onTap: function(e) {
-                      angular.forEach($scope.MedicationAllegiesList, function(item, index) {
+                      angular.forEach($scope.CurrentMedicationList, function(item, index) {
                         item.checked = false;
                       });
                     }
@@ -860,14 +828,14 @@ angular.module('starter.controllers', ['starter.services'])
 				text: '<b>Done</b>',
 				type: 'button-positive',
 				onTap: function(e) {
-				  if (!$scope.data.MedicationAllegiesList) {
+				  if (!$scope.data.CurrentMedicationOther) {
 					e.preventDefault();
 				  } else {
-                      angular.forEach($scope.MedicationAllegiesList, function(item, index) {
+                      angular.forEach($scope.CurrentMedicationList, function(item, index) {
                         item.checked = false;
                       });
-                      $scope.MedicationAllegiesList.push({ text: $scope.data.medicationOther, checked: true });
-					  return $scope.data.medicationOther;
+                      $scope.CurrentMedicationList.push({ text: $scope.data.CurrentMedicationOther, checked: true });
+					  return $scope.data.CurrentMedicationOther;
 				  }
 				}
 			  }
@@ -875,14 +843,16 @@ angular.module('starter.controllers', ['starter.services'])
 		  });
     };
     
-    
-    $scope.removeMedicationAllegies = function(index, item){
-      $scope.patinentMedicationAllergies.splice(index, 1);
-      var indexPos = $scope.MedicationAllegiesList.indexOf(item);
-      $scope.MedicationAllegiesList[indexPos].checked = false;
+    $scope.removeCurrentMedication = function(index, item){
+      $scope.patinentCurrentMedication.splice(index, 1);
+      var indexPos = $scope.CurrentMedicationList.indexOf(item);
+      $scope.CurrentMedicationList[indexPos].checked = false;
     }
 	
-	/*Medication Allegies End here*/
+	/*Current Medication End here*/
+    
+    
+    
     
      //Search Query
      $scope.clearSearch = function() {
@@ -894,102 +864,39 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicSideMenuDelegate.toggleLeft();
     };
 	
+}).directive('aDisabled', function() {
+    return {
+        compile: function(tElement, tAttrs, transclude) {
+            
+             return function (scope, iElement, iAttrs) {
+                scope.$watch(iAttrs["aDisabled"], function(newValue) {
+                    if (newValue !== undefined) {
+                        iElement.toggleClass("disabled", newValue);
+                    }
+                });
+
+               
+            };
+        }
+    };
+}).directive('aDisabled', function() {
+    return {
+        compile: function(tElement, tAttrs, transclude) {
+         
+            //Toggle "disabled" to class when aDisabled becomes true
+            return function (scope, iElement, iAttrs) {
+                scope.$watch(iAttrs["aDisabled"], function(newValue) {
+                    if (newValue !== undefined) {
+                        iElement.toggleClass("disabled", newValue);
+                    }
+                });
+
+               
+            };
+        }
+    };
 })
 
-
-.controller('ChronicConditionCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $rootScope, ChronicStocksSession) {
-  $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
-  $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
-  
- $scope.model = null;
- $scope.devList = [
-    { text: "This is a Chronic Conditions1", checked: false },
-    { text: "This is a Chronic Conditions2", checked: false },
-	{ text: "This is a Chronic Conditions3", checked: false },
-	{ text: "This is a Chronic Conditions4", checked: false }
-  ];	
- $scope.rightButtons = [
-        { 
-   type: 'button-positive',  
-   content: '<i class="icon ion-navicon"></i>',
-   tap: function(e) {
-    $scope.date = null;
-    $scope.modal.scope.model = {description :"",amount :""};
-    $scope.openModal();
-      
-	}
-        }
-    ]
-
-    $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', 
-        function(modal) {
-            $scope.modal = modal;
-	},
-        {
-            // Use our scope for the scope of the modal to keep it simple
-            scope: $scope, 
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
-
-        }
-    );
-    $scope.openModal = function() {
-        $scope.modal.show();
-    };
-    $scope.closeModal = function(model) {
-        $scope.modal.hide();
-    };
-	
-	
-     // Search Query //
-     /*	  $scope.clearSearch = function() {
-            $scope.data.searchQuery = '';
-          }; */
-    
-	
-	$scope.OnSelectPatientConcerns = function(position, devList) {
-	
-		
-		
-		$rootScope.PreviousChronicLoadedList = ChronicStocksSession.getChronicStocksSession();
-		
-		$rootScope.chronicpatlist = [];
-		/*angular.forEach(PreviousChronicLoadedList, function(item, index) {      
-				$rootScope.chronicpatlist.push({
-						'text': index.text,
-						'checked': index.checked,
-						'index': item,					
-					});
-		
-		  
-			});*/
-			
-			
-	
-      angular.forEach(devList, function(item, index) {
-       if (position == index) {
-          //item.checked = false;
-		 
-				$rootScope.chronicpatlist.push({
-						'text': item.text,
-						'checked': item.checked,
-						'index': index,					
-					});
-		}	
-		  
-      });
-	  
-	   ChronicStocksSession.setChronicStocksSession($rootScope.chronicpatlist);
-	   
-	  
-    }
-	
-		
-})
 
 
 .controller('PatientConcernsSelectCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicHistory) {
@@ -1013,107 +920,10 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('MedicationAllegiesCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
-	 $scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	  };
-  
-   $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
-  
- $scope.model = null;
- $scope.devList = [
-    { text: "This is a Medication Allergies", checked: false },
-    { text: "This is a Medication Allergies", checked: false },
-	{ text: "This is a Medication Allergies", checked: false },
-	{ text: "This is a Medication Allergies", checked: false }
-  ];	
- $scope.rightButtons = [
-        { 
-   type: 'button-positive',  
-   content: '<i class="icon ion-navicon"></i>',
-   tap: function(e) {
-    $scope.date = null;
-    $scope.modal.scope.model = {description :"",amount :""};
-    $scope.openModal();
-      
-	}
-        }
-    ]
-
-    $ionicModal.fromTemplateUrl('templates/tab-MedicationAllegiesList.html', 
-        function(modal) {
-            $scope.modal = modal;
-	},
-        {
-            // Use our scope for the scope of the modal to keep it simple
-            scope: $scope, 
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
-
-        }
-    );
-    $scope.openModal = function() {
-        $scope.modal.show();
-    };
-    $scope.closeModal = function(model) {
-        $scope.modal.hide();
-    };
- 
-})
 
 
-.controller('CurrentMedicationCtrl', function($scope, $ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory) {
- 	 $scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	  };
 
-  
-   $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  };
-  
- $scope.model = null;
- $scope.devList = [
-    { text: "This is a Current Medication", checked: false },
-    { text: "This is a Current Medication", checked: false },
-	{ text: "This is a Current Medication", checked: false },
-	{ text: "This is a Current Medication", checked: false }
-  ];	
- $scope.rightButtons = [
-        { 
-   type: 'button-positive',  
-   content: '<i class="icon ion-navicon"></i>',
-   tap: function(e) {
-    $scope.date = null;
-    $scope.modal.scope.model = {description :"",amount :""};
-    $scope.openModal();
-      
-	}
-        }
-    ]
 
-    $ionicModal.fromTemplateUrl('templates/tab-CurrentMedicationList.html', 
-        function(modal) {
-            $scope.modal = modal;
-	},
-        {
-            // Use our scope for the scope of the modal to keep it simple
-            scope: $scope, 
-            // The animation we want to use for the modal entrance
-            animation: 'slide-in-up'
-
-        }
-    );
-    $scope.openModal = function() {
-        $scope.modal.show();
-    };
-    $scope.closeModal = function(model) {
-        $scope.modal.hide();
-    };
- 
-})
 
 
 .controller('ConsentTreatCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {

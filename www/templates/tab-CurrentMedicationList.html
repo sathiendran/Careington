@@ -3,7 +3,7 @@
 	
 	<header class="bar bar-header bar-dark" style="height: 55px;">
       <h1 class="title" style="top: 7px;  font-size: 16px;">Current Medication</h1>
-     <button class="button button-clear" ng-click="closeModal()" style="top: 7px;  font-size: 15px;">Done</button>
+     <button class="button button-clear" ng-click="closeCurrentMedication()" style="top: 7px;  font-size: 15px;">Done</button>
     </header>
 	
 			<!-- End Header -->
@@ -20,9 +20,9 @@
 		   </span>   
 
 	<ion-list>
-			<ion-checkbox ng-repeat="item in devList | filter: data.searchQuery"
+			<ion-checkbox ng-repeat="item in CurrentMedicationList | filter: data.searchQuery"
 						  ng-model="item.checked" 
-						  ng-checked="item.checked" ng-click="!OnSelectPatientConcerns(item.text)" ng-disabled="checked" >
+						  ng-checked="item.checked" ng-click="OnSelectCurrentMedication($index,MedicationAllegiesList, item)" ng-disabled="checked" >
 			  {{ item.text }}
 			</ion-checkbox> 
 		</ion-item>
