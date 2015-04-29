@@ -902,6 +902,15 @@ angular.module('starter.controllers', ['starter.services'])
 		
         $scope.patientSurgeries.push($scope.surgery);
         console.log($scope.patientSurgeries);
+        
+       /* $scope.items.push({
+            Name: $scope.surgery.name,
+            Date: $scope.surgery.
+        });
+
+        // Clear input fields after push
+        $scope.itemAmount = "";
+        $scope.itemName = ""; */
 		
         
 		$state.go('tab.priorSurgeries');		
@@ -916,6 +925,17 @@ angular.module('starter.controllers', ['starter.services'])
      //Search Query
      $scope.clearSearch = function() {
 		$scope.data.searchQuery = '';
+     };
+    
+    //Search Query
+     $scope.clearRootScopeConce = function() {
+		$rootScope.PatientPrimaryConcern = "";
+        $rootScope.PatientSecondaryConcern = "";
+        $rootScope.PatientChronicCondition = "";
+        $rootScope.patinentCurrentMedication = "";
+        $rootScope.patinentMedicationAllergies = "";
+        $scope.CurrentMedicationList.checked = false;
+         $state.go('tab.patientDetail');
      };
     
     //Side Menu
