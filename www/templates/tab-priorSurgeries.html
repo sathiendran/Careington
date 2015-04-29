@@ -27,17 +27,16 @@
                     </div>
                 </ion-item>
 		
-		
-                <div class="list" style="margin-top: -3px;">
-                    <a class="item item-avatar" href="#" style="padding-left: 15px;" ng-repeat="surgery in StockSurgery" show-delete="data.showDelete">     
-                        <div style="float: left;">
-                            <div style="font-size: 20px;">{{surgery.SurgeryName}} {{surgery.id}}</div>
-                            <p style="padding-top: 5px; font-size: 17px;">{{date | date: 'MM/dd/yyyy'}}</p>	  
-                        </div>
-                        <div style="text-align: right; margin-right: 2px;" ng-click="deleteSurgeryItem($index)"><i class="ion-close-circled delBtn">  </i></div>
-                    </a>
-                </div>	
-    
+        {{patientSurgeriesPrior}}
+               
+
+        <ion-item ng-repeat="item in patientSurgeriesPrior">
+			<div>
+				<p class="intakeNote" style="width: 90%;">{{item.name}} </p>
+                <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i></div>
+			</div>
+		</ion-item>
+        
             </ion-content>
         </ion-view>
 </ion-side-menu-content>

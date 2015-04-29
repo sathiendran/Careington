@@ -313,7 +313,7 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: true
+            focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
@@ -446,7 +446,7 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: true
+            focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             
@@ -543,7 +543,7 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicModal.fromTemplateUrl('templates/tab-SecondaryConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: true
+            focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
@@ -627,7 +627,7 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: true
+            focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
@@ -719,7 +719,7 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicModal.fromTemplateUrl('templates/tab-MedicationAllegiesList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: true
+            focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             
@@ -886,56 +886,26 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: true
+            focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
+            $scope.surgery.name = '';
+            $scope.surgery.dateString = '';
             $scope.modal.show();
         }); 
     };
 	
-	$scope.surgery = {};
+	$scope.patientSurgeries = [];
+    $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {	
 	
-		$scope.PreviousSurgeryLoadedList = SurgeryStocksSession.getSurgeryStocksSession();
-				
-		$scope.StockSurgery = [];
 		
-		angular.forEach($scope.PreviousSurgeryLoadedList, function(index, item) {			
-			$scope.StockSurgery.push({
-				 SurgeryName: index.SurgeryName,
-				 SurgeryDate: index.surgeryDate
-			});
-		});	
+        $scope.patientSurgeries.push($scope.surgery);
+        console.log($scope.patientSurgeries);
 		
-	
-		$rootScope.surgeryName = $scope.surgery.name;
-		console.log($rootScope.surgeryName);
-		
-		 $scope.$watch('surgery.dateString', function (dateString)
-			{
-				$scope.date = new Date(dateString);
-				console.log('B', $scope.date, $scope.dateString);
-				$rootScope.surgeryDate = $scope.surgery.dateString;
-				
-			});
-		
-		$scope.StockSurgery.push({     
-			 id: $scope.StockSurgery.length + 1,
-            SurgeryName: $rootScope.surgeryName,
-			SurgeryDate: $rootScope.surgeryDate
-        });
-		SurgeryStocksSession.setSurgeryStocksSession($scope.StockSurgery);
-		
-		 $scope.deleteSurgeryItem = function (index) {
-			$scope.StockSurgery.splice(index, 1);
-			}
-		
-		
-       // $scope.modal.hide();
+        
 		$state.go('tab.priorSurgeries');		
-		 $scope.modal.hide();
-		 $scope.surgery.name = '';
-		// $scope.surgery.dateString = '';
+        $scope.modal.hide();
 		
     };
 	
