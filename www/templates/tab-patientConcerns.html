@@ -20,12 +20,21 @@
 			</div>
 			
 		</ion-item>
-        <ion-item ng-show="PatientPrimaryConcern != ''">
+       <!-- <ion-item ng-show="PatientPrimaryConcern != ''">
 			<div>
 				<div style="width: 92%;"><p class="intakeNote" >{{PatientPrimaryConcern}} </p></div>
                 <div style="float:right;left: 0px; position: relative;"><i class="ion-close-circled delBtn" ng-click="removePrimaryConcern();" ></i></div>
 			</div>
+		</ion-item> -->
+        
+         <ion-item ng-repeat="item in PatientPrimaryConcern">
+			<div>
+				<p class="intakeNote" style="width: 90%;">{{item.text}} </p>
+                <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removePrimaryConcern($index, item);" ></i></div>
+			</div>
 		</ion-item>
+        
+        
 		<ion-item style="padding: 1px;">
 			<!--<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div> -->
 			<div ng-click="loadSecondaryConcerns();"  style="cursor:pointer;">
@@ -41,12 +50,19 @@
 			</div>
 			
 		</ion-item>
-		 <ion-item ng-show="PatientSecondaryConcern != ''">
+		<!-- <ion-item ng-show="PatientSecondaryConcern != ''">
 			<div>
                 <div style="width: 92%;"><p class="intakeNote" >{{PatientSecondaryConcern}} </p></div>
 				<div style="float:right;left: 0px; position: relative;">
 					<i  class="ion-close-circled delBtn" ng-click="removeSecondaryConcern();"></i>
 				</div>
+			</div>
+		</ion-item> -->
+    
+     <ion-item ng-repeat="item in PatientSecondaryConcern">
+			<div>
+				<p class="intakeNote" style="width: 90%;">{{item.text}} </p>
+                <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removeSecondaryConcern($index, item);" ></i></div>
 			</div>
 		</ion-item>
 		

@@ -297,72 +297,7 @@ angular.module('starter.controllers', ['starter.services'])
 	
 
   
-/* Prior Surgery page START */
 
-	
-   $scope.getSurgeryPopup = function() {
-      
-        $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
-            scope: $scope,
-            animation: 'slide-in-up',
-            focusFirstInput: true
-        }).then(function(modal) {
-            $scope.modal = modal;
-            $scope.modal.show();
-        }); 
-    };
-	
-	
-	
-	$scope.surgery = {};
-    $scope.closeSurgeryPopup = function(model) {	
-	
-		$scope.PreviousSurgeryLoadedList = SurgeryStocksSession.getSurgeryStocksSession();
-				
-		$scope.StockSurgery = [];
-		
-		angular.forEach($scope.PreviousSurgeryLoadedList, function(index, item) {			
-			$scope.StockSurgery.push({
-				 SurgeryName: index.SurgeryName,
-				 SurgeryDate: index.surgeryDate
-			});
-		});	
-		
-	
-		$rootScope.surgeryName = $scope.surgery.name;
-		console.log($rootScope.surgeryName);
-		
-		 $scope.$watch('surgery.dateString', function (dateString)
-			{
-				$scope.date = new Date(dateString);
-				 //alert('c ' + $scope.date);
-				// alert('d '+ $scope.surgery.dateString);
-				console.log('B', $scope.date, $scope.dateString);
-				$rootScope.surgeryDate = $scope.surgery.dateString;
-				//alert($rootScope.surgeryDate);
-			});
-		
-		$scope.StockSurgery.push({     
-			 id: $scope.StockSurgery.length + 1,
-            SurgeryName: $rootScope.surgeryName,
-			SurgeryDate: $rootScope.surgeryDate
-        });
-		SurgeryStocksSession.setSurgeryStocksSession($scope.StockSurgery);
-		
-		 $scope.deleteSurgeryItem = function (index) {
-			$scope.StockSurgery.splice(index, 1);
-			}
-		
-		
-       // $scope.modal.hide();
-		$state.go('tab.priorSurgeries');		
-		 $scope.modal.hide();
-		 $scope.surgery.name = '';
-		// $scope.surgery.dateString = '';
-		
-    };
-	
-	/* Prior Surgery page END */
 	
 	/*Chronic condition start here*/
 	
@@ -482,7 +417,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state,SurgeryStocksSession) {
     
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
@@ -503,7 +438,7 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.primaryConcernList = IntakeLists.getPrimaryConcerns();
     
     
-    $rootScope.PatientPrimaryConcern = "";
+    //$rootScope.PatientPrimaryConcern = "";
     
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
@@ -521,10 +456,10 @@ angular.module('starter.controllers', ['starter.services'])
     
       
     $scope.closePrimaryConcerns = function() {
-        $scope.isDone = !$scope.isDone;
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
         angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
-            $scope.PatientPrimaryConcern = item.text;
+            //$scope.PatientPrimaryConcern = item.text;
+            $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
         });
         
         $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
@@ -581,9 +516,12 @@ angular.module('starter.controllers', ['starter.services'])
 		  });
     };
     
-    $scope.removePrimaryConcern = function(){
-        $scope.PatientPrimaryConcern = "";
-        $rootScope.IsValue =  $scope.PatientPrimaryConcern.length;
+    $scope.removePrimaryConcern = function(index, item){
+        //$scope.PatientPrimaryConcern = "";
+    $scope.PatientPrimaryConcern.splice(index, 1);
+    var indexPos = $scope.primaryConcernList.indexOf(item);
+    $scope.primaryConcernList[indexPos].checked = false;    
+    $rootScope.IsValue =  $scope.PatientPrimaryConcern.length;
     }
 	//console.log($rootScope.IsValue)
     
@@ -598,7 +536,7 @@ angular.module('starter.controllers', ['starter.services'])
     // Get list of Secondary concerns lists
     $scope.secondaryConcernList = IntakeLists.getSecondaryConcerns();
     
-    $rootScope.PatientSecondaryConcern = "";
+    //$rootScope.PatientSecondaryConcern = [];
     
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
@@ -615,7 +553,7 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.closeSecondaryConcerns = function() {
         $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {checked:true});
         angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
-            $scope.PatientSecondaryConcern = item.text;
+            $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
         });
         $scope.modal.hide();
     };
@@ -668,8 +606,10 @@ angular.module('starter.controllers', ['starter.services'])
 		  });
     };
     
-    $scope.removeSecondaryConcern = function(){
-    $scope.PatientSecondaryConcern = "";
+    $scope.removeSecondaryConcern = function(index, item){
+      $scope.PatientSecondaryConcern.splice(index, 1);
+      var indexPos = $scope.secondaryConcernList.indexOf(item);
+      $scope.secondaryConcernList[indexPos].checked = false;
     }
 	
 	/*Secondary concern End here*/
@@ -680,7 +620,7 @@ angular.module('starter.controllers', ['starter.services'])
     // Get list of Chronic Condition lists
     $scope.chronicConditionList = IntakeLists.getChronics();
     
-     $rootScope.patinentMedicationAllergies = [];
+    //$rootScope.PatientChronicCondition = [];
     
     // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
@@ -703,16 +643,49 @@ angular.module('starter.controllers', ['starter.services'])
     
     // Onchange of Chronic Condition
     $scope.OnSelectChronicCondition = function(position, PatientChronicCondition, item) {
-        angular.forEach(PatientChronicCondition, function(item, index) {
-            /*if (position != index) 
-              item.checked = false;*/
-        });
-        if(item.text == "Other"){
-            $scope.openOtherPrimaryConcernView();
+       if(item.text == "Other"){
+            $scope.openOtherChronicConditionView();
         }
     }
 	
    
+    // Open text view for other Chronic Condition
+	$scope.openOtherChronicConditionView = function(model) {
+	   $scope.data = {}
+       $ionicPopup.show({
+          //template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+			template: '<textarea name="comment" id="comment-textarea" ng-model="data.ChronicCondtionOther" class="textAreaPop">',
+            title: 'Enter Concerns',
+			subTitle: '',
+			scope: $scope,
+			buttons: [
+			  { 
+                  text: 'Cancel',
+                  onTap: function(e) {
+                      angular.forEach($scope.chronicConditionList, function(item, index) {
+                        item.checked = false;
+                      });
+                    }
+              },
+			  {
+				text: '<b>Done</b>',
+				type: 'button-positive',
+				onTap: function(e) {
+				  if (!$scope.data.ChronicCondtionOther) {
+					e.preventDefault();
+				  } else {
+                      angular.forEach($scope.chronicConditionList, function(item, index) {
+                        item.checked = false;
+                      });
+                      $scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
+					  return $scope.data.ChronicCondtionOther;
+				  }
+				}
+			  }
+			]
+		  });
+    };
+    
     
     $scope.removeChronicCondition = function(index, item){
           $scope.PatientChronicCondition.splice(index, 1);
@@ -738,7 +711,7 @@ angular.module('starter.controllers', ['starter.services'])
     
     //$scope.MedicationAllegies = "";
     
-    $rootScope.patinentMedicationAllergies = [];
+    //$rootScope.patinentMedicationAllergies = [];
     
     // Open Medication Allegies List popup
     $scope.loadMedicationAllegies = function() {
@@ -767,6 +740,45 @@ angular.module('starter.controllers', ['starter.services'])
         }
     }
     
+      // Open text view for other Medication Allergies
+	$scope.openOtherMedicationAllgiesView = function(model) {
+	   $scope.data = {}
+       $ionicPopup.show({
+          //template: '<input type="text" ng-model="data.PrimaryConcernOther">',
+			template: '<textarea name="comment" id="comment-textarea" ng-model="data.MedicationAllergiesOther" class="textAreaPop">',
+            title: 'Enter Concerns',
+			subTitle: '',
+			scope: $scope,
+			buttons: [
+			  { 
+                  text: 'Cancel',
+                  onTap: function(e) {
+                      angular.forEach($scope.MedicationAllegiesList, function(item, index) {
+                        item.checked = false;
+                      });
+                    }
+              },
+			  {
+				text: '<b>Done</b>',
+				type: 'button-positive',
+				onTap: function(e) {
+				  if (!$scope.data.MedicationAllergiesOther) {
+					e.preventDefault();
+				  } else {
+                      angular.forEach($scope.MedicationAllegiesList, function(item, index) {
+                        item.checked = false;
+                      });
+                      $scope.MedicationAllegiesList.push({ text: $scope.data.MedicationAllergiesOther, checked: true });
+					  return $scope.data.MedicationAllergiesOther;
+				  }
+				}
+			  }
+			]
+		  });
+    };
+    
+    
+    
      $scope.removeMedicationAllegies = function(index, item){
       $scope.patinentMedicationAllergies.splice(index, 1);
       var indexPos = $scope.MedicationAllegiesList.indexOf(item);
@@ -787,7 +799,7 @@ angular.module('starter.controllers', ['starter.services'])
     // Get list of Current Medication  List
     $scope.CurrentMedicationList = IntakeLists.getMedications();
     
-    $rootScope.patinentCurrentMedication = [];
+    //$rootScope.patinentCurrentMedication = [];
     
     // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
@@ -866,52 +878,82 @@ angular.module('starter.controllers', ['starter.services'])
 	/*Current Medication End here*/
     
     
-    
+    /* Prior Surgery page START */
+
+	
+   $scope.getSurgeryPopup = function() {
+      
+        $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: true
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        }); 
+    };
+	
+	$scope.surgery = {};
+    $scope.closeSurgeryPopup = function(model) {	
+	
+		$scope.PreviousSurgeryLoadedList = SurgeryStocksSession.getSurgeryStocksSession();
+				
+		$scope.StockSurgery = [];
+		
+		angular.forEach($scope.PreviousSurgeryLoadedList, function(index, item) {			
+			$scope.StockSurgery.push({
+				 SurgeryName: index.SurgeryName,
+				 SurgeryDate: index.surgeryDate
+			});
+		});	
+		
+	
+		$rootScope.surgeryName = $scope.surgery.name;
+		console.log($rootScope.surgeryName);
+		
+		 $scope.$watch('surgery.dateString', function (dateString)
+			{
+				$scope.date = new Date(dateString);
+				console.log('B', $scope.date, $scope.dateString);
+				$rootScope.surgeryDate = $scope.surgery.dateString;
+				
+			});
+		
+		$scope.StockSurgery.push({     
+			 id: $scope.StockSurgery.length + 1,
+            SurgeryName: $rootScope.surgeryName,
+			SurgeryDate: $rootScope.surgeryDate
+        });
+		SurgeryStocksSession.setSurgeryStocksSession($scope.StockSurgery);
+		
+		 $scope.deleteSurgeryItem = function (index) {
+			$scope.StockSurgery.splice(index, 1);
+			}
+		
+		
+       // $scope.modal.hide();
+		$state.go('tab.priorSurgeries');		
+		 $scope.modal.hide();
+		 $scope.surgery.name = '';
+		// $scope.surgery.dateString = '';
+		
+    };
+	
+	/* Prior Surgery page END */
+      
+      
     
      //Search Query
      $scope.clearSearch = function() {
 		$scope.data.searchQuery = '';
      };
     
-    
+    //Side Menu
      $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
 	
-}).directive('aDisabled', function() {
-    return {
-        compile: function(tElement, tAttrs, transclude) {
-            
-             return function (scope, iElement, iAttrs) {
-                scope.$watch(iAttrs["aDisabled"], function(newValue) {
-                    if (newValue !== undefined) {
-                        iElement.toggleClass("disabled", newValue);
-                    }
-                });
-
-               
-            };
-        }
-    };
-}).directive('aDisabled', function() {
-    return {
-        compile: function(tElement, tAttrs, transclude) {
-         
-            //Toggle "disabled" to class when aDisabled becomes true
-            return function (scope, iElement, iAttrs) {
-                scope.$watch(iAttrs["aDisabled"], function(newValue) {
-                    if (newValue !== undefined) {
-                        iElement.toggleClass("disabled", newValue);
-                    }
-                });
-
-               
-            };
-        }
-    };
 })
-
-
 
 .controller('PatientConcernsSelectCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicHistory) {
   $scope.toggleLeft = function() {

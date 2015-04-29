@@ -483,6 +483,7 @@ angular.module('starter.services', [])
         { text: "Diabetes", checked: false },
         { text: "Shakes and Seizures", checked: false },
         { text: "Sickle Cell Anemia", checked: false },
+        { text: "Other", checked: false },
     ];
     
     var allergies = [
@@ -491,6 +492,7 @@ angular.module('starter.services', [])
         { text: "Anticonvulsants", checked: false },
         { text: "Aspirin", checked: false },
         { text: "Insulin", checked: false },
+        { text: "Other", checked: false },
     ];
     
     var medications =[

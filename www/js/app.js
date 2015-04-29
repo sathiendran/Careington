@@ -190,7 +190,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-priorSurgeries.html',
-        controller: 'LoginCtrl'
+        controller: 'IntakeFormsCtrl'
       }
     }
   })
