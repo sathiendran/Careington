@@ -935,6 +935,7 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.patinentCurrentMedication = "";
         $rootScope.patinentMedicationAllergies = "";
         $scope.CurrentMedicationList.checked = false;
+        $state.go($state.current, {}, {reload: true});
          $state.go('tab.patientDetail');
      };
     
