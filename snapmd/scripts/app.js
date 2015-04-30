@@ -49,6 +49,8 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.Zip = 91302;
         $scope.Country = 'US';
         $scope.Cvv = 123;
+        
+        $scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 
         $scope.existingConsultationReport = '{ "message": "NO EXISTING CONSULTATION REPORT JSON" }';
         $scope.scheduledConsultationList = '{ "message": "NO EXISTING CONSULTATION LIST JSON" }';
@@ -223,6 +225,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
             var params = {
                 hospitalId: $scope.hospitalId,
                 accessToken: $scope.accessToken,
+                fields: $scope.codesFields,
                 success: function (data) {
                     $scope.hospitalCodesList = data;
                 },
@@ -429,9 +432,10 @@ app.service('apiComService', function ($http) {
     
     this.getCodesSet = function(params) {
         //sample uri: /api/v2/codesets?hospitalId=1&fields=medications
+        //"fields" is a comma-delimited list of the following: medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=medications,allergies',
+            url: 'https://snap-dev.com/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
             method: 'GET'    
         };
 
