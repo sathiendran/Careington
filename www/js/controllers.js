@@ -421,10 +421,10 @@ angular.module('starter.controllers', ['starter.services'])
     
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
-    $scope.limit = 4;
-    $scope.checkedChronic = 0;
-    $scope.checkedAllergies = 0;
-    $scope.checkedMedication = 0;
+    $rootScope.limit = 4;
+    $rootScope.checkedChronic = 0;
+    $rootScope.checkedAllergies = 0;
+    $rootScope.checkedMedication = 0;
     
     $scope.myGoBack = function() {
         $ionicHistory.goBack();
@@ -522,6 +522,7 @@ angular.module('starter.controllers', ['starter.services'])
     var indexPos = $scope.primaryConcernList.indexOf(item);
     $scope.primaryConcernList[indexPos].checked = false;    
     $rootScope.IsValue =  $scope.PatientPrimaryConcern.length;
+      $rootScope.IsValue =    $scope.primaryConcernList;
     }
 	//console.log($rootScope.IsValue)
     
@@ -642,9 +643,12 @@ angular.module('starter.controllers', ['starter.services'])
       
     
     // Onchange of Chronic Condition
-    $scope.OnSelectChronicCondition = function(position, PatientChronicCondition, item) {
-       if(item.text == "Other"){
+    $scope.OnSelectChronicCondition = function(item) {
+       if(item.checked) { $rootScope.checkedChronic++; }
+        else  { $rootScope.checkedChronic--; }
+        if(item.text == "Other"){
             $scope.openOtherChronicConditionView();
+            
         }
     }
 	
@@ -663,8 +667,11 @@ angular.module('starter.controllers', ['starter.services'])
                   text: 'Cancel',
                   onTap: function(e) {
                       angular.forEach($scope.chronicConditionList, function(item, index) {
-                        item.checked = false;
-                      });
+                        if(item.checked) { item.checked = true; }
+                         });
+                      
+                       $rootScope.limit = "";
+                      $rootScope.checkedChronic = "";
                     }
               },
 			  {
@@ -676,9 +683,9 @@ angular.module('starter.controllers', ['starter.services'])
 				  } else {
                       angular.forEach($scope.chronicConditionList, function(item, index) {
                         item.checked = false;
-                      });
                       $scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
 					  return $scope.data.ChronicCondtionOther;
+                     });  
 				  }
 				}
 			  }
@@ -691,14 +698,13 @@ angular.module('starter.controllers', ['starter.services'])
           $scope.PatientChronicCondition.splice(index, 1);
           var indexPos = $scope.chronicConditionList.indexOf(item);
           $scope.chronicConditionList[indexPos].checked = false;
-          $scope.checkedChronic--;
+          $rootScope.checkedChronic--;
     }
 	
-    $scope.checkChangedChronic = function(item){
-        if(item.checked) $scope.checkedChronic++;
-        else $scope.checkedChronic--;
-    }
-    
+    /*$scope.checkChangedChronic = function(item){
+        if(item.checked) $rootScope.checkedChronic++;
+        else $rootScope.checkedChronic--;
+    } */
 	/*Chronic Condition End here*/
     
     
@@ -783,12 +789,12 @@ angular.module('starter.controllers', ['starter.services'])
       $scope.patinentMedicationAllergies.splice(index, 1);
       var indexPos = $scope.MedicationAllegiesList.indexOf(item);
       $scope.MedicationAllegiesList[indexPos].checked = false;
-      $scope.checkedAllergies--;
+      $rootScope.checkedAllergies--;
     }
 	
      $scope.checkChangedAllergies = function(item){
         if(item.checked) $scope.checkedAllergies++;
-        else $scope.checkedAllergies--;
+        else $rootScope.checkedAllergies--;
     }
      
 	/*Medication Allegies End here*/
@@ -807,7 +813,7 @@ angular.module('starter.controllers', ['starter.services'])
         $ionicModal.fromTemplateUrl('templates/tab-CurrentMedicationList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: true
+            focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             
@@ -868,12 +874,12 @@ angular.module('starter.controllers', ['starter.services'])
       $scope.patinentCurrentMedication.splice(index, 1);
       var indexPos = $scope.CurrentMedicationList.indexOf(item);
       $scope.CurrentMedicationList[indexPos].checked = false;
-      $scope.checkedMedication--;
+      $rootScope.checkedMedication--;
     }
 	
       $scope.checkChangedMedication = function(item){
         if(item.checked) $scope.checkedMedication++;
-        else $scope.checkedMedication--;
+        else $rootScope.checkedMedication--;
     }
 	/*Current Medication End here*/
     
@@ -895,28 +901,31 @@ angular.module('starter.controllers', ['starter.services'])
         }); 
     };
 	
-	$scope.patientSurgeries = [];
+	$rootScope.patientSurgeries = [];
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {	
-	
-		
-        $scope.patientSurgeries.push($scope.surgery);
-        console.log($scope.patientSurgeries);
         
-       /* $scope.items.push({
-            Name: $scope.surgery.name,
-            Date: $scope.surgery.
-        });
-
+        $rootScope.patientSurgeries.push({
+                Name: $scope.surgery.name,
+                Date: $scope.surgery.dateString
+            });
         // Clear input fields after push
-        $scope.itemAmount = "";
-        $scope.itemName = ""; */
-		
+        $scope.surgery.name = "";
+        $scope.surgery.dateString = ""; 
+		$rootScope.IsToPriorCount = $rootScope.patientSurgeries.length
+        //console.log($rootScope.patientSurgeries.length);
         
-		$state.go('tab.priorSurgeries');		
+		//$state.go('tab.priorSurgeries');		
         $scope.modal.hide();
 		
     };
+     $scope.removePriorSurgeries = function(index, item){
+      $scope.patientSurgeries.splice(index, 1);
+      var indexPos = $scope.patientSurgeries.indexOf(item);
+      $rootScope.IsToPriorCount--;
+      console.log($rootScope.IsToPriorCount--);
+    }
+    
 	
 	/* Prior Surgery page END */
       
@@ -934,9 +943,9 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.PatientChronicCondition = "";
         $rootScope.patinentCurrentMedication = "";
         $rootScope.patinentMedicationAllergies = "";
-        $scope.IsValue = "";
+        $rootScope.IsValue = "";
         $state.go('tab.patientDetail');
-        $location.$$compose();
+        
      };
     
     //Side Menu

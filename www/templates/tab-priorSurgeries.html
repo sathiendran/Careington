@@ -8,7 +8,8 @@
     <ion-content class="ContentHomeUser" style="margin-top: 100px;">
               <ion-item style="top: 0px;padding: 2px;">
                 <div style="color:#888;float:right;margin-right: 10px; margin-top: 20px;">Step <b>3</b> of <b>7</b></div>
-                    <div ng-click="getSurgeryPopup();" style="cursor:pointer;">
+                    
+                  <div ng-if="IsToPriorCount != 4" ng-click="getSurgeryPopup();" style="cursor:pointer;">
                         <div style="margin-top: 28px;">
 
                             <div style="margin-top: 30px;">
@@ -17,25 +18,56 @@
                                 <p style="margin-left: 19px;margin-bottom: 10px;">
                                     List any prior surgeries.
                                     <br/>
-                                    Enter up to four 
+                                    Enter up to four
                                 </p>
                                 <div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;">
-                                <i class="ion-plus-circled addBtn">  </i>
+                               
+                                <i ng-if="IsToPriorCount != 4" class="ion-plus-circled addBtn">  </i>    
                                 </div>
                             </div>
                         </div>
                     </div>
+                  
+                  <div ng-if="IsToPriorCount == 4"  style="cursor:pointer;">
+                        <div style="margin-top: 28px;">
+
+                            <div style="margin-top: 30px;">
+
+                                <h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px; width: 100%;">Prior Surgeries</h1>
+                                <p style="margin-left: 19px;margin-bottom: 10px;">
+                                    List any prior surgeries.
+                                    <br/>
+                                    Enter up to four
+                                </p>
+                                <div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;">
+                                <i class="ion-plus-circled addBtn disabled">  </i>
+                               
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  
                 </ion-item>
 		
-        {{patientSurgeriesPrior}}
+       
                
 
-        <ion-item ng-repeat="item in patientSurgeriesPrior">
+  <!--      <ion-item ng-repeat="item in patientSurgeries">
 			<div>
-				<p class="intakeNote" style="width: 90%;">{{item.name}} </p>
+				<p class="intakeNote" style="width: 90%;">{{item.Name}} </p>
                 <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i></div>
 			</div>
-		</ion-item>
+		</ion-item> -->
+        
+<div class="list" style="margin-top: -3px;">
+   <a class="item item-avatar" href="#" style="padding-left: 15px;" ng-repeat="surgery in patientSurgeries" show-delete="data.showDelete">     
+    <div style="float: left;">
+     <div style="font-size: 20px;">{{surgery.Name}}</div>
+     <div style="padding-top: 5px; font-size: 15px;">{{surgery.Date | date: "MM/dd/yyyy"}}</div>   
+    </div>
+    <div style="text-align: right; margin-right: -1px;" ng-click="removePriorSurgeries($index)"><img ng-src="img/delete1.png" ></div>
+   </a>
+</div>
         
             </ion-content>
         </ion-view>
