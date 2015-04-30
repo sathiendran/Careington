@@ -1,0 +1,440 @@
+var util = {
+	setHeaders: function(request, credentials) {
+		if (typeof credentials != 'undefined') {
+			request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+		}		
+		request.defaults.headers['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+		request.defaults.headers['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+		return request;
+	}
+}
+// Declare app level module which depends on views, and components
+var app = angular.module('apiTestApp', ['ui.bootstrap']);
+
+app.controller('apiTestController', ['$scope', 'apiComService', function($scope, apiComService) {
+    $scope.title = 'SnapMD API Test';
+	$scope.accessToken = 'No Token';
+	$scope.tokenStatus = 'alert-warning';
+	$scope.existingConsultation = '{ "message": "NO EXISITING CONSULTATION JSON" }';
+	$scope.consultationId = 2440;
+	$scope.patientId = 471;
+	$scope.hospitalId = 126;
+	$scope.userTypeId = 1;
+	$scope.profileId = 31867222;
+	$scope.Amount = 30;
+	$scope.paymentProfileId = 28804398;
+	
+	$scope.userId = 471;
+	$scope.BillingAddress = '123 chennai';
+	$scope.CardNumber = 4111111111111111;
+	$scope.City = 'chennai';
+	$scope.ExpiryMonth = 8;
+	$scope.ExpiryYear = 2019;
+	$scope.FirstName = 'Rin';
+	$scope.LastName = 'Soft';
+	$scope.State = 'Tamilnadu';
+	$scope.Zip = 91302;
+	$scope.Country = 'US';	
+	$scope.Cvv = 123;
+	
+	$scope.existingConsultationReport = '{ "message": "NO EXISTING CONSULTATION REPORT JSON" }';
+	$scope.scheduledConsultationList = '{ "message": "NO EXISTING CONSULTATION LIST JSON" }';
+	$scope.patientPaymentProfiles = '{ "message": "NO PATIENT PROFILE JSON" }';
+	$scope.patientFacilitiesList = '{ "message": "NO PATIENT FACILITIES LIST JSON" }';
+	$scope.hospitalCodesSet = '{ "message": "NO HOSPITAL CODESET JSON" }';
+	
+	$scope.emailAddress = 'ben.ross.310.95348@gmail.com';
+    
+$scope.doGetToken = function () {
+        var params = {
+            email: $scope.emailAddress, 
+            password: 'Password@123',
+            userTypeId: $scope.userTypeId,
+            hospitalId: $scope.hospitalId,
+            success: function (data) {
+                $scope.accessToken = data.access_token;
+				$scope.tokenStatus = 'alert-success';
+            },
+            error: function (data) {
+                $scope.accessToken = 'Error getting access token';
+				$scope.tokenStatus = 'alert-danger';
+				console.log(data);
+            }
+        };
+        
+        apiComService.getToken(params);
+    }
+	
+	$scope.doGetExistingConsulatation = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            consultationId: $scope.consultationId, 
+            accessToken: $scope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
+            },
+            error: function (data) {
+                $scope.existingConsultation = 'Error getting existing consultation';
+				console.log(data);
+            }
+        };
+        
+        apiComService.getExistingConsulatation(params);
+	}
+	
+	$scope.doGetExistingConsulatationReport = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            consultationId: $scope.consultationId, 
+            accessToken: $scope.accessToken,
+            success: function (data) {
+                $scope.existingConsultationReport = data;				
+            },
+            error: function (data) {
+                $scope.existingConsultationReport = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+        
+        apiComService.getConsultationFinalReport(params);
+	}
+	
+	$scope.doGetPatientPaymentProfiles = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            hospitalId: $scope.hospitalId, 
+			patientId: $scope.patientId,
+            accessToken: $scope.accessToken,
+            success: function (data) {
+                $scope.patientPaymentProfiles = data;				
+            },
+            error: function (data) {
+                $scope.patientPaymentProfiles = 'Error getting patient payment profiles';
+				console.log(data);
+            }
+        };
+        
+        apiComService.getPatientPaymentProfile(params);
+	}
+	
+	$scope.doPostCoPayDetails = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            profileId: $scope.profileId, 
+			emailAddress: $scope.emailAddress,
+			Amount: $scope.Amount,
+			consultationId: $scope.consultationId,
+			paymentProfileId: $scope.paymentProfileId,
+            accessToken: $scope.accessToken,
+            success: function (data) {
+                $scope.CreditCardDetails = data;				
+            },
+            error: function (data) {
+                $scope.CreditCardDetails = 'Error getting patient payment profiles';
+				console.log(data);
+            }
+        };
+        
+        apiComService.postCoPayDetails(params);
+	}
+	
+	$scope.doPostPaymentProfileDetails = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            userId: $scope.userId, 
+			BillingAddress: $scope.BillingAddress,
+			CardNumber: $scope.CardNumber,
+			City: $scope.City,
+			ExpiryMonth: $scope.ExpiryMonth,
+			ExpiryYear: $scope.ExpiryYear,
+			FirstName: $scope.FirstName,
+			LastName: $scope.LastName,
+			State: $scope.State,
+			Zip: $scope.Zip,
+			Country: $scope.Country,
+			ProfileId: $scope.profileId,
+			Cvv: $scope.Cvv,		
+            accessToken: $scope.accessToken,
+			
+            success: function (data) {
+                $scope.PostPaymentDetails = data;				
+            },
+            error: function (data) {
+                $scope.PostPaymentDetails = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+        
+        apiComService.postPaymentProfileDetails(params);
+	}	
+	
+	$scope.doGetFacilitiesList = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            emailAddress: $scope.emailAddress, 
+			accessToken: $scope.accessToken,			
+            success: function (data) {
+                $scope.PostPaymentDetails = data;				
+            },
+            error: function (data) {
+                $scope.PostPaymentDetails = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+		
+		apiComService.getFacilitiesList(params);
+	}
+	
+	$scope.doGetScheduledConsulatation = function() {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            patientId: $scope.patientId,
+            accessToken: $scope.accessToken,
+            success: function (data) {
+                $scope.scheduledConsultationList = data;				
+            },
+            error: function (data) {
+                $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
+				console.log(data);
+            }
+        };
+        
+        apiComService.getScheduledConsulatation(params);
+	}
+
+	$scope.doGetCodesSet = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            hospitalId: $scope.hospitalId,
+            accessToken: $scope.accessToken,
+            success: function (data) {
+                $scope.hospitalCodesSet = data;				
+            },
+            error: function (data) {
+                $scope.hospitalCodesSet = 'Error getting hospital code set.';
+				console.log(data);
+            }
+	};
+	
+	apiComService.getCodesSet(params);
+	}
+    
+}]);
+
+app.service('apiComService', function($http){
+    /*
+        params: email, password, userTypeId, hospitalId
+                (event handlers): success, failure
+    */
+    this.getToken = function(params) {
+		util.setHeaders($http);
+        $http.
+			post('https://snap-dev.com/api/Account/Token', 
+			{
+				UserTypeId: params.userTypeId,
+				HospitalId: params.hospitalId,
+				Email: params.email,
+				Password: params.password
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    }
+	
+	this.getScheduledConsulatation = function(params) {
+		//https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}	
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId=' + params.patientId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+	
+	this.getExistingConsulatation = function(params) {
+		//https://snap-dev.com/api/v2/patients/consultations/2440/all
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/consultations/' + params.consultationId + '/all').
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+	
+	this.getConsultationFinalReport = function(params) {
+		//https://snap-dev.com/api/reports/consultationreportdetails/2440
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+	
+	this.getPatientPaymentProfile = function(params) {
+		//https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}	
+	
+	this.getFacilitiesList = function(params) {
+		//GET v2/patients/hospitals?email=<email>
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/v2/patients/hospitals?email=' + params.emailAddress).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+
+	this.getCodesSet = function(params) {
+		//sample uri: /api/v2/codesets?hospitalId=1&fields=medications
+		util.setHeaders($http, params);
+		
+		$http.
+			get('https://snap-dev.com/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=medications').
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+	}
+	
+	this.postCoPayDetails = function(params) {
+		util.setHeaders($http, params);
+		
+        $http.
+			post('https://snap-dev.com/api/patients/copay', 
+			{
+				ProfileId: params.profileId,
+				Email: params.emailAddress,
+				Amount: params.Amount,
+				ConsultationId: params.consultationId,
+				PaymentProfileId: params.paymentProfileId				
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success({
+						"transaction": "SUCCESSFUL"
+					});
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    }
+	
+	this.postPaymentProfileDetails = function(params) {
+		util.setHeaders($http, params);
+		
+        $http.
+			post('https://snap-dev.com/api/patients/' + params.userId + '/payments', 
+			{
+				userId: params.userId,
+				BillingAddress: params.BillingAddress,
+				CardNumber: params.CardNumber,
+				City: params.City,
+				ExpiryMonth: params.ExpiryMonth,
+				ExpiryYear: params.ExpiryYear,
+				FirstName: params.FirstName,
+				LastName: params.LastName,
+				State: params.State,
+				Zip: params.Zip,
+				Country: params.Country,
+				ProfileId: params.ProfileId,
+				Cvv: params.Cvv				
+			}).
+			success(function(data, status, headers, config) {
+				if(typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function(data, status, headers, config) {
+				if(typeof params.error != 'undefined') {
+					params.success(data);
+				}
+			});
+    }
+});

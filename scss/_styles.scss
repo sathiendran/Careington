@@ -1298,3 +1298,17 @@ form.ng-submitted input.ng-valid + i.icon.error {
     pointer-events: none;
     text-decoration: none;
 }
+
+/* Add the following classes to your stylesheet if you want to use data attributes for inserting your icons */
+.iconb:before, .icona:after {	
+	content: attr(data-icon);
+}
+
+.ion-close-round:before {
+	  color: #9C1C1C;
+}
+.aaa{
+background-image: url("/img/wait.png");
+background-repeat: no-repeat;
+background-position: center; 
+}

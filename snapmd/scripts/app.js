@@ -7,10 +7,22 @@ var util = {
         request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
         request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
         return request;
+    },
+    getHeaders: function (accessToken) {
+        var headers = {
+                'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+                'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+                'Content-Type': 'application/json; charset=utf-8'
+            };
+        if (typeof accessToken != 'undefined') {
+            headers['Authorization'] = 'Bearer ' + accessToken;
+        }
+        
+        return headers;
     }
 }
 // Declare app level module which depends on views, and components
-var app = angular.module('apiTestApp', ['ui.bootstrap']);
+var app = angular.module('apiTestApp', ['ui.bootstrap', 'ngLoadingSpinner']);
 
 app.controller('apiTestController', ['$scope', 'apiComService', function ($scope, apiComService) {
         $scope.title = 'SnapMD API Test';
@@ -42,6 +54,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.scheduledConsultationList = '{ "message": "NO EXISTING CONSULTATION LIST JSON" }';
         $scope.patientPaymentProfiles = '{ "message": "NO PATIENT PROFILE JSON" }';
         $scope.patientFacilitiesList = '{ "message": "NO PATIENT FACILITIES LIST JSON" }';
+        $scope.hospitalCodesList = '{ "message": "NO HOSPITAL CODES LIST JSON" }';
 
         $scope.emailAddress = 'ben.ross.310.95348@gmail.com';
 
@@ -202,24 +215,24 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
             apiComService.getFacilitiesList(params);
         }
         
-        $scope.doGetScheduledConsulatation = function () {
+        $scope.doGetCodesSet = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
-                patientId: $scope.patientId,
+                hospitalId: $scope.hospitalId,
                 accessToken: $scope.accessToken,
                 success: function (data) {
-                    $scope.scheduledConsultationList = data;
+                    $scope.hospitalCodesList = data;
                 },
                 error: function (data) {
-                    $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
+                    $scope.hospitalCodesList = 'Error getting hospital codes list';
                     console.log(data);
                 }
             };
 
-            apiComService.getScheduledConsulatation(params);
+            apiComService.getCodesSet(params);
         }
 
         $scope.doGetScheduledConsulatation = function () {
@@ -249,42 +262,16 @@ app.service('apiComService', function ($http) {
      (event handlers): success, failure
      */
     this.getToken = function (params) {
-        util.setHeaders($http);
-        $http.
-                post('https://snap-dev.com/api/Account/Token',
-                        {
-                            UserTypeId: params.userTypeId,
-                            HospitalId: params.hospitalId,
-                            Email: params.email,
-                            Password: params.password
-                        }).
-                success(function (data, status, headers, config) {
-                    if (typeof params.success != 'undefined') {
-                        params.success(data);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                        params.success(data);
-                    }
-                });
-                
-                return;
         var requestInfo = {
-            headers: {
-                'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-                'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            },
+            headers: util.getHeaders(),
             url: 'https://snap-dev.com/api/Account/Token',
-            withCredentials: true,
             method: 'POST',
-            data: $.param({
+            data: {
                 UserTypeId: params.userTypeId,
                 HospitalId: params.hospitalId,
                 Email: params.email,
                 Password: params.password
-            })           
+            }         
         };
         
         $http(requestInfo).
@@ -302,10 +289,14 @@ app.service('apiComService', function ($http) {
 
     this.getScheduledConsulatation = function (params) {
         //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}	
-        util.setHeaders($http, params);
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId=' + params.patientId,
+            method: 'GET'   
+        };
 
-        $http.
-                get('https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId=' + params.patientId).
+        $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
                         params.success(data);
@@ -320,10 +311,14 @@ app.service('apiComService', function ($http) {
 
     this.getExistingConsulatation = function (params) {
         //https://snap-dev.com/api/v2/patients/consultations/2440/all
-        util.setHeaders($http, params);
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/v2/patients/consultations/' + params.consultationId + '/all',
+            method: 'GET'   
+        };
 
-        $http.
-                get('https://snap-dev.com/api/v2/patients/consultations/' + params.consultationId + '/all').
+        $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
                         params.success(data);
@@ -338,10 +333,14 @@ app.service('apiComService', function ($http) {
 
     this.getConsultationFinalReport = function (params) {
         //https://snap-dev.com/api/reports/consultationreportdetails/2440
-        util.setHeaders($http, params);
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId,
+            method: 'GET'   
+        };
 
-        $http.
-                get('https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId).
+        $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
                         params.success(data);
@@ -356,10 +355,14 @@ app.service('apiComService', function ($http) {
 
     this.getPatientPaymentProfile = function (params) {
         //https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
-        util.setHeaders($http, params);
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+            method: 'GET'   
+        };
 
-        $http.
-                get('https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId).
+        $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
                         params.success(data);
@@ -374,10 +377,14 @@ app.service('apiComService', function ($http) {
 
     this.getFacilitiesList = function (params) {
         //GET v2/patients/hospitals?email=<email>
-        util.setHeaders($http, params);
-
-        $http.
-                get('https://snap-dev.com/api/v2/patients/hospitals?email=' + params.emailAddress).
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/v2/patients/hospitals?email=' + params.emailAddress,
+            method: 'GET'   
+        };
+        
+        $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
                         params.success(data);
@@ -391,17 +398,21 @@ app.service('apiComService', function ($http) {
     }
 
     this.postCoPayDetails = function (params) {
-        util.setHeaders($http, params);
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/patients/copay',
+            method: 'POST',
+            data: {
+                ProfileId: params.profileId,
+                Email: params.emailAddress,
+                Amount: params.Amount,
+                ConsultationId: params.consultationId,
+                PaymentProfileId: params.paymentProfileId
+            }         
+        };
 
-        $http.
-                post('https://snap-dev.com/api/patients/copay',
-                        {
-                            ProfileId: params.profileId,
-                            Email: params.emailAddress,
-                            Amount: params.Amount,
-                            ConsultationId: params.consultationId,
-                            PaymentProfileId: params.paymentProfileId
-                        }).
+        $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
                         params.success({
@@ -415,27 +426,52 @@ app.service('apiComService', function ($http) {
                     }
                 });
     }
+    
+    this.getCodesSet = function(params) {
+        //sample uri: /api/v2/codesets?hospitalId=1&fields=medications
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=medications,allergies',
+            method: 'GET'    
+        };
+
+        $http(requestInfo).
+                success(function(data, status, headers, config) {
+                        if(typeof params.success != 'undefined') {
+                                params.success(data);
+                        }
+                }).
+                error(function(data, status, headers, config) {
+                        if(typeof params.error != 'undefined') {
+                                params.success(data);
+                        }
+                });
+    }
 
     this.postPaymentProfileDetails = function (params) {
-        util.setHeaders($http, params);
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/patients/' + params.userId + '/payments',
+            method: 'POST',
+            data: {
+                userId: params.userId,
+                BillingAddress: params.BillingAddress,
+                CardNumber: params.CardNumber,
+                City: params.City,
+                ExpiryMonth: params.ExpiryMonth,
+                ExpiryYear: params.ExpiryYear,
+                FirstName: params.FirstName,
+                LastName: params.LastName,
+                State: params.State,
+                Zip: params.Zip,
+                Country: params.Country,
+                ProfileId: params.ProfileId,
+                Cvv: params.Cvv
+            }         
+        };
 
-        $http.
-                post('https://snap-dev.com/api/patients/' + params.userId + '/payments',
-                        {
-                            userId: params.userId,
-                            BillingAddress: params.BillingAddress,
-                            CardNumber: params.CardNumber,
-                            City: params.City,
-                            ExpiryMonth: params.ExpiryMonth,
-                            ExpiryYear: params.ExpiryYear,
-                            FirstName: params.FirstName,
-                            LastName: params.LastName,
-                            State: params.State,
-                            Zip: params.Zip,
-                            Country: params.Country,
-                            ProfileId: params.ProfileId,
-                            Cvv: params.Cvv
-                        }).
+        $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
                         params.success(data);
