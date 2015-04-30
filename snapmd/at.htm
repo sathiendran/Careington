@@ -18,6 +18,7 @@
 	}
     </style>
 <body ng-controller="apiTestController">
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -214,8 +215,10 @@
 				<div>
 					<label>Hospital ID:</label>
 					<input ng-model="hospitalId" class="form-control input-sm" type="text">
+                                        <label>Codes</label>
+                                        <input ng-model="codesFields" class="form-control input-sm" type="text">
 					<p class="someTopSpace">
-						<textarea class="form-control" rows="5">{{hospitalCodesSet}}</textarea>
+						<textarea class="form-control" rows="5">{{hospitalCodesList}}</textarea>
 					</p>
 				</div>
             </div>
@@ -240,10 +243,45 @@
             </div>
         </div>
 		
+        
+        <p>
+            <input type="button" value="jQuery Token" onclick="getToken();"/>
+        </p>
     </div><!-- /.container -->
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 <script src="scripts/ui-bootstrap-tpls-0.12.1.min.js"></script>
 <script src="scripts/app.js"></script>
+<script src="scripts/spin.min.js"></script>
+<script src="scripts/angular-spinner.min.js"></script>
+<script src="scripts/angular-loading-spinner.js"></script>
+
+<script>
+    function getToken() {
+        $.ajax({
+            url: 'https://snap-dev.com/api/Account/Token',
+            data: {
+                UserTypeId: 1,// params.userTypeId,
+                HospitalId: 126,// params.hospitalId,
+                Email: 'ben.ross.310.95348@gmail.com', //params.email,
+                Password: 'Password@123'//params.password
+            },
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+                'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5'
+            },
+            success: function (data) {
+                alert('Success!!');
+                console.log(data);
+            },
+            error: function (data) {
+                alert('Failed!!');
+                console.log(data);
+            }
+        });
+    }
+</script>
 </html>

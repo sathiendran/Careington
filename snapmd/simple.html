@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <input type="button" value="Get SnapMD Token" onclick="getToken();"/>
+    </body>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    <script>
+        
+        function getToken() {
+            $.ajax({
+                url: 'https://snap-dev.com/api/Account/Token',
+                data: $.param({
+                    UserTypeId: 1,// params.userTypeId,
+                    HospitalId: 126,// params.hospitalId,
+                    Email: 'ben.ross.310.95348@gmail.com', //params.email,
+                    Password: 'Password@123'//params.password
+                }),
+                method: 'POST',
+                headers: {
+                    'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+                    'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                success: function (data) {
+                    alert('Success!!');
+                    console.log(data);
+                },
+                error: function (data) {
+                    alert('Failed!!');
+                    console.log(data);
+                }
+            });
+        }
+        
+    </script>
+</html>
