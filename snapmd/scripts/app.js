@@ -204,10 +204,10 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
                 emailAddress: $scope.emailAddress,
                 accessToken: $scope.accessToken,
                 success: function (data) {
-                    $scope.PostPaymentDetails = data;
+                    $scope.patientFacilitiesList = data;
                 },
                 error: function (data) {
-                    $scope.PostPaymentDetails = 'Error getting consultation report';
+                    $scope.patientFacilitiesList = 'Error getting consultation report';
                     console.log(data);
                 }
             };
@@ -380,7 +380,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/hospitals?email=' + params.emailAddress,
+            url: 'https://snap-dev.com/api/v2/hospitals?patient=' + params.emailAddress,
             method: 'GET'   
         };
         
