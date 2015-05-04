@@ -425,6 +425,8 @@ angular.module('starter.controllers', ['starter.services'])
     $rootScope.checkedChronic = 0;
     $rootScope.checkedAllergies = 0;
     $rootScope.checkedMedication = 0;
+    $rootScope.Concernlimit = 1;
+    $rootScope.checkedPrimary = 0;
     
     $scope.myGoBack = function() {
         $ionicHistory.goBack();
@@ -455,7 +457,7 @@ angular.module('starter.controllers', ['starter.services'])
     };
     
       
-    $scope.closePrimaryConcerns = function() {
+   $scope.closePrimaryConcerns = function() {
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
         angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
             //$scope.PatientPrimaryConcern = item.text;
@@ -468,16 +470,34 @@ angular.module('starter.controllers', ['starter.services'])
    
     
     // Onchange of primary concerns
-    $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList, item) {
-        angular.forEach(primaryConcernList, function(item, index) {
-            if (position != index) 
+    $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList_V, item) {
+      angular.forEach(primaryConcernList_V, function(item, index) {
+         if (position != index) 
               item.checked = false;
-        });
+          });
         if(item.text == "Other"){
             $scope.openOtherPrimaryConcernView();
         }
-    }
+    } 
 	
+ /*    $scope.closePrimaryConcerns = function() {
+        $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
+        $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+        $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;     
+        $scope.modal.hide();    
+     };
+      
+    
+    // Onchange of primary concerns
+    $scope.OnSelectPatientPrimaryConcern = function(item) {
+       if(item.checked) { $rootScope.checkedPrimary++; }
+        else  { $rootScope.checkedPrimary--; }
+        if(item.text == "Other"){
+            $scope.openOtherPrimaryConcernView();
+            
+        }
+    } */
+    
     
     // Open text view for other primary concern
 	$scope.openOtherPrimaryConcernView = function(model) {
@@ -683,9 +703,9 @@ angular.module('starter.controllers', ['starter.services'])
 				  } else {
                       angular.forEach($scope.chronicConditionList, function(item, index) {
                         item.checked = false;
-                      $scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
+                      });  
+                       $scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
 					  return $scope.data.ChronicCondtionOther;
-                     });  
 				  }
 				}
 			  }
@@ -902,8 +922,8 @@ angular.module('starter.controllers', ['starter.services'])
     };
 	
 	$rootScope.patientSurgeries = [];
-    $scope.surgery = {};
-    $scope.closeSurgeryPopup = function(model) {	
+    $rootScope.surgery = {};
+    $scope.closeSurgeryPopup = function() {	
         
         $rootScope.patientSurgeries.push({
                 Name: $scope.surgery.name,
