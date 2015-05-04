@@ -430,8 +430,8 @@ angular.module('starter.controllers', ['starter.services'])
    
     
     // Onchange of primary concerns
-    $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList_V, item) {
-      angular.forEach(primaryConcernList_V, function(item, index) {
+    $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList, item) {
+      angular.forEach(primaryConcernList, function(item, index) {
          if (position != index) 
               item.checked = false;
           });
@@ -885,6 +885,8 @@ angular.module('starter.controllers', ['starter.services'])
 
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
+
+
         $rootScope.patientSurgeries.push({
                 Name: $scope.surgery.name,
                 Date: $scope.surgery.dateString
