@@ -28,7 +28,6 @@ $('#notifications-window-row-button').click(function(){
 	$("#Error_Message").append(top);
 	$("#notifications-top-center").addClass('animated ' + 'bounce');
 	refresh_close();
-	
 
 	
 });

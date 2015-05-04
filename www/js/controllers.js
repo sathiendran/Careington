@@ -24,6 +24,23 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
+	
+	$scope.validation = function() {
+		function refresh_close(){
+		$('.close').click(function(){$(this).parent().fadeOut(200);});
+		}
+		refresh_close();
+		
+		var top = '<div id="notifications-top-center" >Oops, something went wrong !<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+
+		//$('#notifications-window-row-button').click(function(){
+			$("#notifications-top-center").remove();
+			$("#Error_Message").append(top);
+			$("#notifications-top-center").addClass('animated ' + 'bounce');
+			refresh_close();
+		//});
+	};
+	
 
 	//Back Button	
 	$scope.myGoBack = function() {
@@ -37,7 +54,25 @@ angular.module('starter.controllers', ['starter.services'])
 		//$rootScope.email = $scope.userLogin.email;
 		$rootScope.UserEmail = $scope.UserEmail;
 		//console.log($rootScope.UserEmail);
-		$state.go('tab.provider');
+		
+		if($('#UserEmail').val() == ''){
+			function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div id="notifications-top-center" >Email ID cant be empty!<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$("#Error_Message").append(top);
+				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+		} else {
+			$state.go('tab.provider');
+		}
+		
     };
 	
 	//$rootScope.providerId = $stateParams.providerID;
@@ -57,29 +92,46 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	
 	$scope.doGetToken = function () {
-        var params = {
-            email: $rootScope.UserEmail, 
-            password: 'Password@123',
-            userTypeId: 1,
-            hospitalId: $rootScope.providerId,
-            success: function (data) {
-                $rootScope.accessToken = data.access_token;
-				console.log($scope.accessToken);
-				$scope.tokenStatus = 'alert-success';
-				$scope.doGetExistingConsulatation();
-				
-            },
-            error: function (data) {
-                $scope.accessToken = 'Error getting access token';
-				$scope.tokenStatus = 'alert-danger';
-				console.log(data);
-            }
-        };
-        
-        LoginService.getToken(params);
-		
-		$state.go('tab.userhome');
-		
+	
+		if($('#password').val() == ''){
+			function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div id="notifications-top-center" >Password cant be empty!<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$("#Error_Message").append(top);
+				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+		} else {
+			
+			var params = {
+				email: $rootScope.UserEmail, 
+				password: 'Password@123',
+				userTypeId: 1,
+				hospitalId: $rootScope.providerId,
+				success: function (data) {
+					$rootScope.accessToken = data.access_token;
+					console.log($scope.accessToken);
+					$scope.tokenStatus = 'alert-success';
+					$scope.doGetExistingConsulatation();
+					
+				},
+				error: function (data) {
+					$scope.accessToken = 'Error getting access token';
+					$scope.tokenStatus = 'alert-danger';
+					console.log(data);
+				}
+			};
+			
+			LoginService.getToken(params);
+			
+			$state.go('tab.userhome');
+		}
     }
 	
  
@@ -293,102 +345,10 @@ angular.module('starter.controllers', ['starter.services'])
         };
 		
 		LoginService.getFacilitiesList(params);
-	}
-	
-
-  
-
-	
-	/*Chronic condition start here*/
-	
-	 $scope.devList = [
-    { text: "This is a Chronic Conditions1", checked: false },
-    { text: "This is a Chronic Conditions2", checked: false },
-	{ text: "This is a Chronic Conditions3", checked: false },
-	{ text: "This is a Chronic Conditions4", checked: false }
-  ];
-	
-	$scope.getChronicConditionPopup = function() {
-      
-        $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
-            scope: $scope,
-            animation: 'slide-in-up',
-            focusFirstInput: false
-        }).then(function(modal) {
-            $scope.modal = modal;
-            $scope.modal.show();
-        }); 
-    };
-
-
-    $scope.closeChronicConditionPopup = function() {
-        $scope.modal.hide();
-    };
-
-
-	/*Chronic condition END here*/
+	}  
 	
 	
 })
-
-.directive('onValidSubmit', ['$parse', '$timeout', function($parse, $timeout) {
-    return {
-      require: '^form',
-      restrict: 'A',
-      link: function(scope, element, attrs, form) {
-        form.$submitted = false;
-        var fn = $parse(attrs.onValidSubmit);
-        element.on('submit', function(event) {
-          scope.$apply(function() {
-            element.addClass('ng-submitted');
-            form.$submitted = true;
-            if (form.$valid) {
-              if (typeof fn === 'function') {
-                fn(scope, {$event: event});
-              }
-            }
-          });
-        });
-      }
-    }
- 
-  }])
-  .directive('validated', ['$parse', function($parse) {
-    return {
-      restrict: 'AEC',
-      require: '^form',
-      link: function(scope, element, attrs, form) {
-        var inputs = element.find("*");
-        for(var i = 0; i < inputs.length; i++) {
-          (function(input){
-            var attributes = input.attributes;
-            if (attributes.getNamedItem('ng-model') != void 0 && attributes.getNamedItem('name') != void 0) {
-              var field = form[attributes.name.value];
-              if (field != void 0) {
-                angular.element(input).bind('blur',function(){
-                  scope.$apply(function(){
-                    field.$blurred = true;
-                  })
-                });
-                scope.$watch(function() {
-                  return form.$submitted + "_" + field.$valid + "_" + field.$blurred;
-                }, function() {console.log(arguments);
-                  if (!field.$blurred && form.$submitted != true) return;
-                  var inp = angular.element(input);
-                  if (inp.hasClass('ng-invalid')) {
-                    element.removeClass('has-success');
-                    element.addClass('has-error');
-                  } else {
-                    element.removeClass('has-error').addClass('has-success');
-                  }
-                });
-              }
-            }
-          })(inputs[i]);
-        }
-      }
-    }
-  }])
 
 .controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
 
@@ -922,9 +882,9 @@ angular.module('starter.controllers', ['starter.services'])
     };
 	
 	$rootScope.patientSurgeries = [];
-    $rootScope.surgery = {};
-    $scope.closeSurgeryPopup = function() {	
-        
+
+    $scope.surgery = {};
+    $scope.closeSurgeryPopup = function(model) {
         $rootScope.patientSurgeries.push({
                 Name: $scope.surgery.name,
                 Date: $scope.surgery.dateString
@@ -937,6 +897,7 @@ angular.module('starter.controllers', ['starter.services'])
         
 		//$state.go('tab.priorSurgeries');		
         $scope.modal.hide();
+		
 		
     };
      $scope.removePriorSurgeries = function(index, item){

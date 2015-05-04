@@ -17,12 +17,12 @@
 	<!-- Content Start-->
 	
 	<ion-content class="login_content">
-		 <form novalidate="novalidate" on-valid-submit="LoginFunction()">
+		 
 			<div class="login_home">	
 				<label class="item-input">
 					<!--<input type="email" placeholder="Email" ng-model="userLogin.email" >-->
-					<input type="email" placeholder="Email" ng-model="UserEmail" >
-					<i class="icon ion-alert-circled error col col-10"></i>  
+					<input type="email" placeholder="Email" ng-model="UserEmail" id="UserEmail" >
+					
 				</label>
 				
 				<div class="squaredCheckbox">
@@ -34,13 +34,13 @@
 				
 				<div class="continue">
 				<!--<a ng-href="#/tab/provider"> -->
-					<button type="submit" on-valid-submit="LoginFunction()" class="button button-outline button-positive" >
+					<button type="submit" ng-click="LoginFunction()" class="button button-outline button-positive" >
 						Continue
 					</button>
 				<!--</a> -->
 				</div>	
-				<div id="notifications" style="height: auto; display: none;">
-					<div id="notifications-window-row-button">Sample Error Alert</div>
+				<div id="notifications" style="height: auto;" >
+					<div id="notifications-window-row-button" ng-click="validation();">Sample Error Alert</div>
 				</div>
 					
 						
@@ -48,7 +48,7 @@
 				
 				
 			</div>
-		</form>
+		
 	</ion-content>
 	<!-- Content End-->
 	
