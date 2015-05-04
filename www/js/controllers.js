@@ -10,9 +10,10 @@ var util = {
 		if (typeof credentials != 'undefined') {
 			request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 		}		
-		request.defaults.headers['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-		request.defaults.headers['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
-		return request;
+        request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+        request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+        request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+        return request;
 	}
 }
 
