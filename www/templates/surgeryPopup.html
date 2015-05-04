@@ -1,9 +1,10 @@
- <form novalidate="novalidate" on-valid-submit="closeSurgeryPopup()">
+
 
 <div class="modal">
     <header class="bar bar-header bar-dark" style="height: 55px;">
+	
       <h1 class="title" style="top: 7px;  font-size: 16px;">Prior Surgeries</h1>
-      <button type="submit" class="button button-clear" on-valid-submit="closeSurgeryPopup()" style="top: 7px;  font-size: 15px;">Done</button>
+      <button type="submit" class="button button-clear" ng-click="closeSurgeryPopup()" style="top: 7px;  font-size: 15px;">Done</button>
     </header>
    
    <ion-content has-header="true" style="margin-top: 52px;">
@@ -12,8 +13,8 @@
 		
 		  <label class="item item-input validated">
             <span class="input-label">Surgery</span>
-            <input type="text" value=""  placeholder="Required" required="required" ng-model="surgery.name" name="name">
-			 <i class="icon ion-alert-circled error col col-10"></i>
+            <input type="text" value=""  placeholder="Required" required="required" ng-model="surgery.name" name="name" id="name">
+			
 		 </label>
 		 
 		  
@@ -21,8 +22,8 @@
 		  <label class="item item-input validated">
             <span class="input-label">Date</span>
             <!--<input ng-model="dateString" type="date" > -->
-			<input type="date" placeholder="Required" required="required" ng-model="surgery.dateString" name="dateString" />  
-			<i class="icon ion-alert-circled error col col-10"></i>       
+			<input type="date" placeholder="Required" required="required" ng-model="surgery.dateString" name="dateString" id="dateString" />  
+			    
           </label>
 		 
     </div>
