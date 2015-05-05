@@ -348,8 +348,7 @@ angular.module('starter.services', [])
 })
 
 .service('IntakeLists', function(){
-	
-    var primaryConcerns1 = [
+    var primaryConcerns = [
         { text: "Fever (100+)", checked: false },
         { text: "Cough", checked: false },
         { text: "Vomiting", checked: false },
@@ -412,10 +411,9 @@ angular.module('starter.services', [])
         { text: "Seizure Medications", checked: false },
         { text: "Other", checked: false },
     ];
-   
-    this.getPrimaryConcerns = function($a){
-        var primaryConcerns = $a;
-		return primaryConcerns;
+    
+    this.getPrimaryConcerns = function(){
+        return primaryConcerns;
     }
     
     this.getSecondaryConcerns = function(){

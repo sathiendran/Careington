@@ -23,14 +23,13 @@
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser">
   
-  <div class="buttons" >
-	<a class="button_new icon ion-chevron-left" ng-href="#/tab/userhome" style="padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;" >
-		<span style="margin-top:7px; position:absolute;">Back</span>
-	</a>				
+    <div class="buttons" >
+					<button class="button icon button-clear ion-navicon-round"
+							ng-click="toggleLeft()" style="color:#000;margin-top: 7px;"></button>
   </div>
-  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;">Patient</h1>
+  <h1 class="title_patient" style="font-size: 24px; text-align: center; width: 100%;  margin-left: -33px; ">Intake Form</h1>
   
-  
+
 
 <div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 65px;height: 87%">
 	<div style="margin-left:10px;">
@@ -39,8 +38,8 @@
 				</div>
 				<div class="subHeader_content" >
 					
-						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
-						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}</div>
+						<div style="font-size: 16px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
+						<div style="font-size: 9px;" class="PatintHeaderFontStyleSub">Age {{patientInfomation.age}} | Guardian {{patientInfomation.guardianName}}</div>
 					
 				</div>
 	</div>
