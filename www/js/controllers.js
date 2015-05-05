@@ -947,7 +947,7 @@ angular.module('starter.controllers', ['starter.services'])
                       angular.forEach($scope.CurrentMedicationList, function(item, index) {
                        if(item.checked) { if(item.text == "Other - (List below)") item.checked = false; }
                           });
-                      $rootScope.checkedAllergies--;
+                      $rootScope.checkedMedication--;
                     }
               },
 			  {
@@ -1048,6 +1048,9 @@ angular.module('starter.controllers', ['starter.services'])
 		//}
 		
     };
+	 $scope.RemoveSurgeryPopup = function(model) {
+        $scope.modal.hide();
+ };
      $scope.removePriorSurgeries = function(index, item){
       $scope.patientSurgeries.splice(index, 1);
       var indexPos = $scope.patientSurgeries.indexOf(item);
