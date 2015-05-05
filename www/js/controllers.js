@@ -67,7 +67,8 @@ angular.module('starter.controllers', ['starter.services'])
 		//$rootScope.email = $scope.userLogin.email;
 		$rootScope.UserEmail = $scope.UserEmail;
 		//console.log($rootScope.UserEmail);
-		
+		var EMAIL_REGEXP = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+        
 		if($('#UserEmail').val() == ''){
 			function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
@@ -82,7 +83,9 @@ angular.module('starter.controllers', ['starter.services'])
 				$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
-		} else {
+		} 
+        
+        else {
 			$scope.doGetFacilitiesList();
 			$state.go('tab.provider');
 		}
@@ -913,7 +916,7 @@ angular.module('starter.controllers', ['starter.services'])
                       angular.forEach($scope.CurrentMedicationList, function(item, index) {
                        if(item.checked) { if(item.text == "Other") item.checked = false; }
                           });
-                      $rootScope.checkedAllergies--;
+                      $rootScope.checkedMedication--;
                     }
               },
 			  {
@@ -969,10 +972,8 @@ angular.module('starter.controllers', ['starter.services'])
         }); 
     };
 	
-	if($rootScope.IsToPriorCount == 0) {
+	
     $rootScope.patientSurgeries = [];
-    }
-
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
 
@@ -986,12 +987,15 @@ angular.module('starter.controllers', ['starter.services'])
         $scope.surgery.dateString = ""; 
 		$rootScope.IsToPriorCount = $rootScope.patientSurgeries.length
        
-        
-		//$state.go('tab.priorSurgeries');		
         $scope.modal.hide();
 		
 		
     };
+    
+    $scope.closeSurgeryPopup = function(model) {
+        $scope.modal.hide();
+	};
+    
      $scope.removePriorSurgeries = function(index, item){
       $scope.patientSurgeries.splice(index, 1);
       var indexPos = $scope.patientSurgeries.indexOf(item);
@@ -1010,13 +1014,16 @@ angular.module('starter.controllers', ['starter.services'])
      };
     
     //Search Query
-     $scope.clearRootScopeConce = function() {
+     $scope.clearRootScopeConce = function(item) {
 		$rootScope.PatientPrimaryConcern = "";
         $rootScope.PatientSecondaryConcern = "";
         $rootScope.PatientChronicCondition = "";
         $rootScope.patinentCurrentMedication = "";
         $rootScope.patinentMedicationAllergies = "";
         $rootScope.IsValue = "";
+         
+        item.checked = false;
+      
         $state.go('tab.patientDetail');
         
      };
