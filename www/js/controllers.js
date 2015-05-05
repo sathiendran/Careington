@@ -38,20 +38,27 @@ angular.module('starter.controllers', ['starter.services'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.validation = function() {
+	
+	$rootScope.ValidationFunction = function($a){
 		function refresh_close(){
-		$('.close').click(function(){$(this).parent().fadeOut(200);});
-		}
-		refresh_close();
-		
-		var top = '<div id="notifications-top-center" >Oops, something went wrong !<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
-
-		//$('#notifications-window-row-button').click(function(){
-			$("#notifications-top-center").remove();
-			$("#Error_Message").append(top);
-			$("#notifications-top-center").addClass('animated ' + 'bounce');
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
 			refresh_close();
-		//});
+			
+			var top = '<div id="notifications-top-center" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$("#Error_Message").append(top);
+				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+	}
+	
+	$scope.validation = function() {
+		$scope.ErrorMessage = "Oops, something went wrong !";
+		$rootScope.ValidationFunction($scope.ErrorMessage);
+		
 	};
 	
 
@@ -60,7 +67,6 @@ angular.module('starter.controllers', ['starter.services'])
 		$ionicHistory.goBack();
 	};
 	$rootScope.UserEmail = 'ben.ross.310.95348@gmail.com';
-	
   
 	$scope.userLogin = {};
     $scope.LoginFunction = function(item,event){
@@ -68,23 +74,28 @@ angular.module('starter.controllers', ['starter.services'])
 		$rootScope.UserEmail = $scope.UserEmail;
 		//console.log($rootScope.UserEmail);
 		
-		if($('#UserEmail').val() == ''){
-			function refresh_close(){
-			$('.close').click(function(){$(this).parent().fadeOut(200);});
-			}
-			refresh_close();
+		if($('#UserEmail').val() == ''){			
+			$scope.ErrorMessage = "Email ID cant be empty!";
+			$rootScope.ValidationFunction($scope.ErrorMessage);
 			
-			var top = '<div id="notifications-top-center" >Email ID cant be empty!<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
-
-			//$('#notifications-window-row-button').click(function(){
-				$("#notifications-top-center").remove();
-				$("#Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
-				refresh_close();
-			//});
 		} else {
-			$scope.doGetFacilitiesList();
-			$state.go('tab.provider');
+			 $scope.ValidateEmail = function(email){
+				var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				return expr.test(email);
+			};
+			
+			if (!$scope.ValidateEmail($("#UserEmail").val())) {
+				$scope.ErrorMessage = "Invalid email address!";
+				$rootScope.ValidationFunction($scope.ErrorMessage);
+			}
+			else {
+				//alert("Valid email address.");
+				$scope.doGetFacilitiesList();
+				$state.go('tab.provider');
+			}
+			
+			
+			
 		}
 		
     };
@@ -934,7 +945,7 @@ angular.module('starter.controllers', ['starter.services'])
                   text: 'Cancel',
                   onTap: function(e) {
                       angular.forEach($scope.CurrentMedicationList, function(item, index) {
-                       if(item.checked) { if(item.text == "Other") item.checked = false; }
+                       if(item.checked) { if(item.text == "Other - (List below)") item.checked = false; }
                           });
                       $rootScope.checkedAllergies--;
                     }
@@ -992,13 +1003,35 @@ angular.module('starter.controllers', ['starter.services'])
         }); 
     };
 	
-	if($rootScope.IsToPriorCount == 0) {
+	
+	$rootScope.ValidationFunction1 = function($a){
+		function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div id="notifications-top-center" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$("#Error_Message").append(top);
+				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+	}
+	
+	
     $rootScope.patientSurgeries = [];
-    }
+    
 
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
-
+		
+		/*if($('#name').val() == '' || $('#dateString').val() == '' ){			
+			$scope.ErrorMessage = "Email ID cant be empty!";
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
+			
+		} else {*/
 
         $rootScope.patientSurgeries.push({
                 Name: $scope.surgery.name,
@@ -1012,7 +1045,7 @@ angular.module('starter.controllers', ['starter.services'])
         
 		//$state.go('tab.priorSurgeries');		
         $scope.modal.hide();
-		
+		//}
 		
     };
      $scope.removePriorSurgeries = function(index, item){
