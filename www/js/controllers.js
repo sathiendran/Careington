@@ -6,15 +6,27 @@ var indexOf = [].indexOf || function(item) {
 }
 
 var util = {
-	setHeaders: function(request, credentials) {
-		if (typeof credentials != 'undefined') {
-			request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
-		}		
+    setHeaders: function (request, credentials) {
+        if (typeof credentials != 'undefined') {
+            request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+        }
         request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
         request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
         request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
         return request;
-	}
+    },
+    getHeaders: function (accessToken) {
+        var headers = {
+                'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+                'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+                'Content-Type': 'application/json; charset=utf-8'
+            };
+        if (typeof accessToken != 'undefined') {
+            headers['Authorization'] = 'Bearer ' + accessToken;
+        }
+        
+        return headers;
+    }
 }
 
 angular.module('starter.controllers', ['starter.services'])
@@ -71,6 +83,7 @@ angular.module('starter.controllers', ['starter.services'])
 				refresh_close();
 			//});
 		} else {
+			$scope.doGetFacilitiesList();
 			$state.go('tab.provider');
 		}
 		
@@ -79,11 +92,11 @@ angular.module('starter.controllers', ['starter.services'])
 	//$rootScope.providerId = $stateParams.providerID;
 	//$rootScope.providerId ='126';
 	
-	$scope.ProviderFunction = function($ProviderID) {
+	$scope.ProviderFunction = function($hospitalId) {
 		
-		//$rootScope.providerId = $ProviderID;		
-		$rootScope.providerId = '126';		
-		//console.log($rootScope.providerId);			
+		//$rootScope.hospitalId = $hospitalId;		
+		$rootScope.hospitalId = '126';		
+		//console.log($rootScope.hospitalId);			
 		$state.go('tab.password');
 	}
 	
@@ -114,12 +127,12 @@ angular.module('starter.controllers', ['starter.services'])
 				email: $rootScope.UserEmail, 
 				password: 'Password@123',
 				userTypeId: 1,
-				hospitalId: $rootScope.providerId,
+				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
 					$scope.tokenStatus = 'alert-success';
-					$scope.doGetExistingConsulatation();
+					$scope.doGetExistingConsulatation();					
 					
 				},
 				error: function (data) {
@@ -152,7 +165,7 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.Country = 'US';	
 	$scope.Cvv = 123;
 	$scope.profileId = 31867222;
-	
+	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 	
 	
 	
@@ -185,7 +198,7 @@ angular.module('starter.controllers', ['starter.services'])
 				});
 			});	
 			
-			console.log($rootScope.dependentDetails)
+			console.log($rootScope.dependentDetails);
 				
             },
             error: function (data) {
@@ -231,7 +244,7 @@ angular.module('starter.controllers', ['starter.services'])
 		}
 		
 		var params = {
-            hospitalId: $rootScope.providerId, 
+            hospitalId: $rootScope.hospitalId, 
 			patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
             success: function (data) {
@@ -337,7 +350,19 @@ angular.module('starter.controllers', ['starter.services'])
             emailAddress: $rootScope.UserEmail, 
 			accessToken: $rootScope.accessToken,			
             success: function (data) {
-                $scope.PostPaymentDetails = data;				
+				//console.log(data);
+                $rootScope.PostPaymentDetails = data.data;	
+				
+				$rootScope.hospitalDetails = [];
+				angular.forEach(data.data, function(index, item) {	
+					$rootScope.hospitalDetails.push({
+						'id': index.$id,
+						'hospital': index.hospital,
+						'hospitalId': index.hospitalId,						
+					});
+				});	
+				
+				//console.log($rootScope.hospitalDetails);		
             },
             error: function (data) {
                 $scope.PostPaymentDetails = 'Error getting consultation report';
@@ -346,14 +371,57 @@ angular.module('starter.controllers', ['starter.services'])
         };
 		
 		LoginService.getFacilitiesList(params);
-	}  
+	}
+	
+	$scope.doGetCodesSet = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+			hospitalId: $rootScope.hospitalId,
+			accessToken: $rootScope.accessToken,
+			fields: $scope.codesFields,
+			success: function (data) {
+				$rootScope.hospitalCodesList = data;
+			},
+			error: function (data) {
+				$scope.hospitalCodesList = 'Error getting hospital codes list';
+				console.log(data);
+			}
+		};
+
+		LoginService.getCodesSet(params);
+		$state.go('tab.patientConcerns');
+	}
+
+        $scope.doGetScheduledConsulatation = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                patientId: $scope.patientId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+					console.log(data);
+                    $scope.scheduledConsultationList = data;
+                },
+                error: function (data) {
+                    $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
+                    console.log(data);
+                }
+            };
+
+            LoginService.getScheduledConsulatation(params);
+        }	
 	
 	
 })
 
 .controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
 
-    console.log($rootScope.providerId);
+    console.log($rootScope.hospitalId);
 	console.log($rootScope.UserEmail);
 	console.log($rootScope.password);
 

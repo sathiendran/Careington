@@ -20,12 +20,12 @@
 <ion-content class="ContentList_provider" style="" >
 			<form>
 				<ion-list>
-					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-click="ProviderFunction(12)">
-						Cedar Sinai
+					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-repeat="hospitalDetails in hospitalDetails" ng-click="ProviderFunction(12)">
+						{{hospitalDetails.hospital}}
 						<list class="ion-chevron-right ListLinkHref"></list>
 					</ion-item>
 					
-					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-click="ProviderFunction(13)">
+					<!--<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-click="ProviderFunction(13)">
 						UCLA Medical Center
 						<list class="ion-chevron-right ListLinkHref"></list>
 			  
@@ -39,7 +39,7 @@
 					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-click="ProviderFunction(15)">
 						Anheuser-Bush
 						<list class="ion-chevron-right ListLinkHref"></list>
-					</ion-item>
+					</ion-item>-->
 				</ion-list>
 			</form>
 		</ion-content>
