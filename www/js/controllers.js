@@ -451,7 +451,8 @@ angular.module('starter.controllers', ['starter.services'])
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
     $rootScope.limit = 4;
-    $rootScope.checkedChronic = 0;
+	
+	//$rootScope.checkedChronic = 0;
     $rootScope.checkedAllergies = 0;
     $rootScope.checkedMedication = 0;
     $rootScope.Concernlimit = 1;
@@ -674,6 +675,13 @@ angular.module('starter.controllers', ['starter.services'])
     
     // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
+	
+		if(typeof $rootScope.ChronicCount == 'undefined') { 
+			$rootScope.checkedChronic = 0;
+		} else {  
+		$rootScope.checkedChronic  = $rootScope.ChronicCount;  
+		}
+		
         $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -687,6 +695,7 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.closeChronicCondition = function() {
     $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
     $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
+	$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
     $scope.modal.hide();    
     };
       

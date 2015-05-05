@@ -20,7 +20,7 @@
 <ion-content class="ContentList_provider" style="" >
 			<form>
 				<ion-list>
-					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-repeat="hospitalDetails in hospitalDetails" ng-click="ProviderFunction(12)">
+					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-repeat="hospitalDetails in hospitalDetails" ng-click="ProviderFunction(hospitalDetails.hospitalId)">
 						{{hospitalDetails.hospital}}
 						<list class="ion-chevron-right ListLinkHref"></list>
 					</ion-item>
