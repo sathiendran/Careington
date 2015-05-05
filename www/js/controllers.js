@@ -32,7 +32,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services'])
 
 
-.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout) {
+.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -132,7 +132,8 @@ angular.module('starter.controllers', ['starter.services'])
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
 					$scope.tokenStatus = 'alert-success';
-					$scope.doGetExistingConsulatation();					
+					$scope.doGetExistingConsulatation();	
+					$state.go('tab.userhome');		
 					
 				},
 				error: function (data) {
@@ -143,8 +144,6 @@ angular.module('starter.controllers', ['starter.services'])
 			};
 			
 			LoginService.getToken(params);
-			
-			$state.go('tab.userhome');
 		}
     }
 	
@@ -224,7 +223,8 @@ angular.module('starter.controllers', ['starter.services'])
             consultationId: $rootScope.consultationId, 
             accessToken: $rootScope.accessToken,
             success: function (data) {
-                $rootScope.existingConsultationReport = data.data[0];				
+                $rootScope.existingConsultationReport = data.data[0];
+					$state.go('tab.waitingRoom');
             },
             error: function (data) {
                 $scope.existingConsultationReport = 'Error getting consultation report';
@@ -233,7 +233,7 @@ angular.module('starter.controllers', ['starter.services'])
         };
         
 		LoginService.getConsultationFinalReport(params);
-		$state.go('tab.waitingRoom');
+		
 	}
 	
 	$scope.doGetPatientPaymentProfiles = function () {
@@ -264,6 +264,7 @@ angular.module('starter.controllers', ['starter.services'])
 					'profileID': index.profileID,
 				});
 			});	
+			$state.go('tab.submitPayment');
 				
             },
             error: function (data) {
@@ -273,7 +274,7 @@ angular.module('starter.controllers', ['starter.services'])
         };
         
         LoginService.getPatientPaymentProfile(params);
-		$state.go('tab.submitPayment');
+		
 	}
 	
 	$scope.paymentProfileId = 28804398;
@@ -291,7 +292,8 @@ angular.module('starter.controllers', ['starter.services'])
 			paymentProfileId: $scope.paymentProfileId,
             accessToken: $rootScope.accessToken,
             success: function (data) {
-                $scope.CreditCardDetails = data;				
+                $scope.CreditCardDetails = data;	
+				$state.go('tab.receipt');				
             },
             error: function (data) {
                 $scope.CreditCardDetails = 'Error getting patient payment profiles';
@@ -300,8 +302,6 @@ angular.module('starter.controllers', ['starter.services'])
         };
         
         LoginService.postCoPayDetails(params);
-		
-		$state.go('tab.receipt');
 	}
 	
 	
@@ -329,6 +329,7 @@ angular.module('starter.controllers', ['starter.services'])
             success: function (data) {
                 $scope.PostPaymentDetails = data;	
 					console.log(data);
+					 $state.go('tab.verifyCard');  
             },
             error: function (data) {
                 $scope.PostPaymentDetails = 'Error getting consultation report';
@@ -337,7 +338,6 @@ angular.module('starter.controllers', ['starter.services'])
         };
         
         LoginService.postPaymentProfileDetails(params);
-		 $state.go('tab.verifyCard');  
 		
 	}
 	
@@ -383,7 +383,13 @@ angular.module('starter.controllers', ['starter.services'])
 			accessToken: $rootScope.accessToken,
 			fields: $scope.codesFields,
 			success: function (data) {
-				$rootScope.hospitalCodesList = data;
+			console.log(data.data[3].codes);
+				$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
+				$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
+				$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
+				$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
+				$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);		
+				$state.go('tab.patientConcerns');
 			},
 			error: function (data) {
 				$scope.hospitalCodesList = 'Error getting hospital codes list';
@@ -392,7 +398,6 @@ angular.module('starter.controllers', ['starter.services'])
 		};
 
 		LoginService.getCodesSet(params);
-		$state.go('tab.patientConcerns');
 	}
 
         $scope.doGetScheduledConsulatation = function () {
@@ -467,8 +472,8 @@ angular.module('starter.controllers', ['starter.services'])
 	/*Primary concern Start here*/
 	
     // Get list of primary concerns lists
-    $scope.primaryConcernList = IntakeLists.getPrimaryConcerns();
-    
+    $scope.primaryConcernList = $rootScope.hospitalCodesList;
+   console.log('ggggggggg', $scope.primaryConcernList);
     
     //$rootScope.PatientPrimaryConcern = "";
     
@@ -505,7 +510,7 @@ angular.module('starter.controllers', ['starter.services'])
          if (position != index) 
               item.checked = false;
           });
-        if(item.text == "Other"){
+        if(item.text == "Other (provide details below)"){
             $scope.openOtherPrimaryConcernView();
         }
     } 
@@ -585,8 +590,8 @@ angular.module('starter.controllers', ['starter.services'])
 	/*Secondary concern Start here*/
 	
     // Get list of Secondary concerns lists
-    $scope.secondaryConcernList = IntakeLists.getSecondaryConcerns();
-    
+    //$scope.secondaryConcernList = IntakeLists.getSecondaryConcerns();
+    $scope.secondaryConcernList = $rootScope.scondaryConcernsCodesList;
     //$rootScope.PatientSecondaryConcern = [];
     
     // Open Secondary concerns popup
@@ -616,7 +621,7 @@ angular.module('starter.controllers', ['starter.services'])
             if (position != index) 
               item.checked = false;
         });
-        if(item.text == "Other"){
+        if(item.text == "Other (provide details below)"){
             $scope.openOtherSecondaryConcernView();
         }
     }
@@ -669,7 +674,9 @@ angular.module('starter.controllers', ['starter.services'])
 	/*Chronic Condition Start here*/
 	
     // Get list of Chronic Condition lists
-    $scope.chronicConditionList = IntakeLists.getChronics();
+    //$scope.chronicConditionList = IntakeLists.getChronics();
+	$scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
+	
     
     //$rootScope.PatientChronicCondition = [];
     
@@ -770,6 +777,7 @@ angular.module('starter.controllers', ['starter.services'])
           var indexPos = $scope.chronicConditionList.indexOf(item);
           $scope.chronicConditionList[indexPos].checked = false;
           $rootScope.checkedChronic--;
+		  $rootScope.ChronicCount = $rootScope.checkedChronic;
     }
 	
     /*$scope.checkChangedChronic = function(item){
@@ -784,8 +792,9 @@ angular.module('starter.controllers', ['starter.services'])
     /*Medication Allegies Start here*/
 	
     // Get list of Medication Allegies List
-    $scope.MedicationAllegiesList = IntakeLists.getAllergies();
-    
+   // $scope.MedicationAllegiesList = IntakeLists.getAllergies();
+     $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
+	
     //$scope.MedicationAllegies = "";
     
     //$rootScope.patinentMedicationAllergies = [];
@@ -874,8 +883,10 @@ angular.module('starter.controllers', ['starter.services'])
       /*Current Medication Start here*/
 	
     // Get list of Current Medication  List
-    $scope.CurrentMedicationList = IntakeLists.getMedications();
+    //$scope.CurrentMedicationList = IntakeLists.getMedications();
     
+	 $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
+	
     //$rootScope.patinentCurrentMedication = [];
     
     // Open Current Medication popup
@@ -900,7 +911,7 @@ angular.module('starter.controllers', ['starter.services'])
     
       // Onchange of Current Medication
     $scope.OnSelectCurrentMedication = function(position, CurrentMedicationList, item) {
-        if(item.text == "Other"){
+        if(item.text == "Other - (List below)"){
             $scope.openOtherCurrentMedicationView();
         }
     }
