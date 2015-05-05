@@ -696,7 +696,7 @@ angular.module('starter.controllers', ['starter.services'])
        if(item.checked) { $rootScope.checkedChronic++; }
         else  { $rootScope.checkedChronic--; }
         if(item.text == "Other"){
-            $scope.openOtherChronicConditionView();
+            $scope.openOtherChronicConditionView(item);
             
         }
     }
@@ -716,8 +716,8 @@ angular.module('starter.controllers', ['starter.services'])
                   text: 'Cancel',
                   onTap: function(e) {
                       angular.forEach($scope.chronicConditionList, function(item, index) {
-                        if(item.checked) { item.checked = true; }
-                         });
+                        if(item.checked) { if(item.text == "Other") item.checked = false; }
+                          });
                       
                        $rootScope.limit = "";
                       $rootScope.checkedChronic = "";
@@ -731,10 +731,17 @@ angular.module('starter.controllers', ['starter.services'])
 					e.preventDefault();
 				  } else {
                       angular.forEach($scope.chronicConditionList, function(item, index) {
-                        item.checked = false;
-                      });  
+                        if(item.checked) { 
+                            $rootScope.checkedChronic++; 
+                            if(item.text == "Other") { item.checked = false; }
+                        } 
+                         else  { 
+                               $rootScope.checkedChronic--; 
+                           }
+                       });  
+                      
                        $scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
-					  return $scope.data.ChronicCondtionOther;
+                       return $scope.data.ChronicCondtionOther;
 				  }
 				}
 			  }
