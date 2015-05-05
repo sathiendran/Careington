@@ -693,11 +693,17 @@ angular.module('starter.controllers', ['starter.services'])
     
     // Onchange of Chronic Condition
     $scope.OnSelectChronicCondition = function(item) {
-       if(item.checked) { $rootScope.checkedChronic++; }
-        else  { $rootScope.checkedChronic--; }
+       if(item.checked == true) { 
+		$rootScope.checkedChronic++; 
+	  }  else  { 
+	  $rootScope.checkedChronic--; 
+	  }
         if(item.text == "Other"){
-            $scope.openOtherChronicConditionView(item);
-            
+			// $rootScope.checkedChronic--; 
+            $scope.openOtherChronicConditionView(item);          
+			//$rootScope.checkedChronic++;
+			//$rootScope.checkedChronic++;
+		  
         }
     }
 	
@@ -719,8 +725,8 @@ angular.module('starter.controllers', ['starter.services'])
                         if(item.checked) { if(item.text == "Other") item.checked = false; }
                           });
                       
-                       $rootScope.limit = "";
-                      $rootScope.checkedChronic = "";
+                      // $rootScope.limit = "";
+                      $rootScope.checkedChronic--;
                     }
               },
 			  {
@@ -732,11 +738,11 @@ angular.module('starter.controllers', ['starter.services'])
 				  } else {
                       angular.forEach($scope.chronicConditionList, function(item, index) {
                         if(item.checked) { 
-                            $rootScope.checkedChronic++; 
+                            //$rootScope.checkedChronic++; 
                             if(item.text == "Other") { item.checked = false; }
                         } 
                          else  { 
-                               $rootScope.checkedChronic--; 
+                              // $rootScope.checkedChronic--; 
                            }
                        });  
                       
