@@ -39,7 +39,7 @@ angular.module('starter.controllers', ['starter.services'])
 	};
 	
 	
-	$rootScope.ValidationFunction = function($a){
+	$rootScope.Validation = function($a){
 		function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
 			}
@@ -73,7 +73,7 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	$scope.validation = function() {
 		$scope.ErrorMessage = "Oops, something went wrong !";
-		$rootScope.ValidationFunction($scope.ErrorMessage);
+		$rootScope.Validation($scope.ErrorMessage);
 		
 	};
 	
@@ -91,8 +91,8 @@ angular.module('starter.controllers', ['starter.services'])
 		//console.log($rootScope.UserEmail);
 		
 		if($('#UserEmail').val() == ''){			
-			$scope.ErrorMessage = "Email ID cant be empty!";
-			$rootScope.ValidationFunction($scope.ErrorMessage);
+			$scope.ErrorMessage = "Email ID can't be empty!";
+			$rootScope.Validation($scope.ErrorMessage);
 			
 		} else {
 			 $scope.ValidateEmail = function(email){
@@ -102,7 +102,7 @@ angular.module('starter.controllers', ['starter.services'])
 			
 			if (!$scope.ValidateEmail($("#UserEmail").val())) {
 				$scope.ErrorMessage = "Invalid email address!";
-				$rootScope.ValidationFunction($scope.ErrorMessage);
+				$rootScope.Validation($scope.ErrorMessage);
 			}
 			else {
 				//alert("Valid email address.");
@@ -135,19 +135,8 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.doGetToken = function () {
 	
 		if($('#password').val() == ''){
-			function refresh_close(){
-			$('.close').click(function(){$(this).parent().fadeOut(200);});
-			}
-			refresh_close();
-			
-			var top = '<div id="notifications-top-center" >Password cant be empty!<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
-
-			//$('#notifications-window-row-button').click(function(){
-				$("#notifications-top-center").remove();
-				$("#Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
-				refresh_close();
-			//});
+			$scope.ErrorMessage = "Password can't be empty!";
+			$rootScope.Validation($scope.ErrorMessage);
 		} else {
 			
 			var params = {
@@ -266,7 +255,7 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.doGetPatientPaymentProfiles = function () {
 	
 		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
-			$scope.ErrorMessage = "Required fields cant be empty!";
+			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
 		} else {
@@ -342,7 +331,7 @@ angular.module('starter.controllers', ['starter.services'])
 		
 		
 		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
-			$scope.ErrorMessage = "Required fields cant be empty!";
+			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
 		} else {
@@ -482,7 +471,7 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.PlanDetailsValidation = function(model) {
 		
 		if($('#Provider').val() == '' || $('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){			
-			$scope.ErrorMessage = "Required fields cant be empty!";
+			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
 		} else {
@@ -492,7 +481,7 @@ angular.module('starter.controllers', ['starter.services'])
 	$scope.VerifyPlanDetailsValidation = function(model) {
 		
 		if($('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){			
-			$scope.ErrorMessage = "Required fields cant be empty!";
+			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
 		} else {
@@ -543,6 +532,22 @@ angular.module('starter.controllers', ['starter.services'])
     }; */
   
     $scope.model = null;
+	
+	
+	var today = new Date();
+			var dd = today.getDate()-1;
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();	
+				if(dd<10) {
+					dd='0'+dd;
+				} 
+
+				if(mm<10) {
+					mm='0'+mm;
+				} 
+
+			$rootScope.PreviousDate = yyyy+'-'+mm+'-'+dd;
+			console.log('dddd',$rootScope.PreviousDate);
     
 	/*Primary concern Start here*/
 	
@@ -1047,7 +1052,8 @@ angular.module('starter.controllers', ['starter.services'])
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: false
-        }).then(function(modal) {
+        }).then(function(modal) {		
+			
             $scope.modal = modal;
             $scope.surgery.name = '';
             $scope.surgery.dateString = '';
@@ -1077,10 +1083,10 @@ angular.module('starter.controllers', ['starter.services'])
     
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
-
+	$rootScope.LastName = $('#name').val();
 		
-		if($('#name').val() == '' || $('#dateString').val() == '' ){			
-			$scope.ErrorMessage = "Required fields cant be empty!";
+		if($rootScope.LastName == '' || $('#dateString').val() == '' ){			
+			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
 			
 		} else {
@@ -1088,7 +1094,8 @@ angular.module('starter.controllers', ['starter.services'])
         SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
         $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
         $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length
-        $scope.modal.hide();
+        $rootScope.LastName ='';
+		$scope.modal.hide();
 	}
     }
 	
