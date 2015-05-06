@@ -57,6 +57,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.patientPaymentProfiles = '{ "message": "NO PATIENT PROFILE JSON" }';
         $scope.patientFacilitiesList = '{ "message": "NO PATIENT FACILITIES LIST JSON" }';
         $scope.hospitalCodesList = '{ "message": "NO HOSPITAL CODES LIST JSON" }';
+        $scope.patientHealthPlanList = '{ "message": "NO PATIENT HEALTH PLAN JSON" }';
 
         $scope.emailAddress = 'ben.ross.310.95348@gmail.com';
 
@@ -257,6 +258,26 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 
             apiComService.getScheduledConsulatation(params);
         }
+        
+        $scope.doGetPatientHealthPlansList = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                patientId: $scope.patientId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.patientHealthPlanList = data;
+                },
+                error: function (data) {
+                    $scope.patientHealthPlanList = 'Error getting patient health plan list';
+                    console.log(data);
+                }
+            };
+
+            apiComService.getPatientHealthPlansList(params);
+        }
     }]);
 
 app.service('apiComService', function ($http) {
@@ -427,6 +448,26 @@ app.service('apiComService', function ($http) {
                     if (typeof params.error != 'undefined') {
                         params.success(data);
                     }
+                });
+    }
+    
+    this.getPatientHealthPlansList = function (params) {
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/HealthPlan?patientId=' + params.patientId ,
+            method: 'GET'    
+        };
+
+        $http(requestInfo).
+                success(function(data, status, headers, config) {
+                        if(typeof params.success != 'undefined') {
+                                params.success(data);
+                        }
+                }).
+                error(function(data, status, headers, config) {
+                        if(typeof params.error != 'undefined') {
+                                params.success(data);
+                        }
                 });
     }
     
