@@ -513,21 +513,17 @@ angular.module('starter.controllers', ['starter.services'])
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state,SurgeryStocksSession) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state,SurgeryStocksSession,SurgeryStocksListService) {
     
     //$rootScope.Appointment = {};
     //$rootScope.Appointment.primaryConcern = "Hell";
     $rootScope.limit = 4;
-	
-	//$rootScope.checkedChronic = 0;
-    //$rootScope.checkedAllergies = 0;
-    //$rootScope.checkedMedication = 0;
-    $rootScope.Concernlimit = 1;
+	$rootScope.Concernlimit = 1;
     $rootScope.checkedPrimary = 0;
     
-    $scope.myGoBack = function() {
+  /*  $scope.myGoBack = function() {
         $ionicHistory.goBack();
-    };
+    }; */
   
     $scope.model = null;
     
@@ -535,7 +531,7 @@ angular.module('starter.controllers', ['starter.services'])
 	
     // Get list of primary concerns lists
     $scope.primaryConcernList = $rootScope.hospitalCodesList;
-  // console.log('ggggggggg', $scope.primaryConcernList);
+   console.log('ggggggggg', $scope.primaryConcernList);
     
     //$rootScope.PatientPrimaryConcern = "";
     
@@ -557,24 +553,27 @@ angular.module('starter.controllers', ['starter.services'])
    $scope.closePrimaryConcerns = function() {
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
         angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
-            //$scope.PatientPrimaryConcern = item.text;
-            $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+           $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
         });
-        
+         
         $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
         $scope.modal.hide();
+        $scope.data.searchQuery = '';
     };
    
     
     // Onchange of primary concerns
-    $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList, item) {
+    $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList, items) {
       angular.forEach(primaryConcernList, function(item, index) {
-         if (position != index) 
-              item.checked = false;
+         if (item.text == items.text) 
+              item.checked = true;
+          else item.checked = false; 
           });
-        if(item.text == "Other (provide details below)"){
-            $scope.openOtherPrimaryConcernView();
-        }
+        
+      if(items.text == "Other (provide details below)")
+                $scope.openOtherPrimaryConcernView();
+                    item.checked = false;
+    
     } 
 	
   // Open text view for other primary concern
@@ -621,6 +620,7 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.primaryConcernList[indexPos].checked = false;    
     $rootScope.IsValue =  $scope.PatientPrimaryConcern.length;
       $rootScope.IsValue =    $scope.primaryConcernList;
+    $rootScope.IsValue = "";
     }
 	//console.log($rootScope.IsValue)
     
@@ -632,8 +632,7 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	/*Secondary concern Start here*/
 	
-    // Get list of Secondary concerns lists
-    //$scope.secondaryConcernList = IntakeLists.getSecondaryConcerns();
+    
     $scope.secondaryConcernList = $rootScope.scondaryConcernsCodesList;
     //$rootScope.PatientSecondaryConcern = [];
     
@@ -655,17 +654,22 @@ angular.module('starter.controllers', ['starter.services'])
             $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
         });
         $scope.modal.hide();
+        $scope.data.searchQuery = '';
     };
     
     
     // Onchange of Secondary concerns
-    $scope.OnSelectPatientSecondaryConcern = function(position, secondaryConcernList, item) {
+    $scope.OnSelectPatientSecondaryConcern = function(position, secondaryConcernList, items) {
         angular.forEach(secondaryConcernList, function(item, index) {
-            if (position != index) 
-              item.checked = false;
+           /* if (position != index) 
+              item.checked = false; */
+            if (item.text == items.text) 
+              item.checked = true;
+            else item.checked = false; 
         });
-        if(item.text == "Other (provide details below)"){
+        if(items.text == "Other (provide details below)"){
             $scope.openOtherSecondaryConcernView();
+            item.checked = false;
         }
     }
 	
@@ -717,13 +721,9 @@ angular.module('starter.controllers', ['starter.services'])
 	/*Chronic Condition Start here*/
 	
     // Get list of Chronic Condition lists
-    //$scope.chronicConditionList = IntakeLists.getChronics();
-	$scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
+   $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
 	
-    
-    //$rootScope.PatientChronicCondition = [];
-    
-    // Open Chronic Condition popup
+   // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
 	
 		if(typeof $rootScope.ChronicCount == 'undefined') { 
@@ -746,7 +746,8 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
     $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
 	$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
-    $scope.modal.hide();    
+    $scope.modal.hide(); 
+    $scope.data.searchQuery = '';    
     };
       
     
@@ -822,13 +823,8 @@ angular.module('starter.controllers', ['starter.services'])
     /*Medication Allegies Start here*/
 	
     // Get list of Medication Allegies List
-
-   // $scope.MedicationAllegiesList = IntakeLists.getAllergies();
-     $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
+    $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
 	
-    //$scope.MedicationAllegies = "";
-    
-    //$rootScope.patinentMedicationAllergies = [];
     
     // Open Medication Allegies List popup
 
@@ -856,6 +852,7 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
         $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
         $scope.modal.hide();
+        $scope.data.searchQuery = ''; 
     };
     
       // Onchange of Medication Alligies
@@ -921,26 +918,15 @@ angular.module('starter.controllers', ['starter.services'])
       $rootScope.checkedAllergies--;
     }
 	
-  /*   $scope.checkChangedAllergies = function(item){
-        if(item.checked) $scope.checkedAllergies++;
-        else $rootScope.checkedAllergies--;
-    } */
-     
-	/*Medication Allegies End here*/
+    /*Medication Allegies End here*/
     
     
       /*Current Medication Start here*/
 	
     // Get list of Current Medication  List
-    //$scope.CurrentMedicationList = IntakeLists.getMedications();
-    
-
-	 $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
+    $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
 	
-    //$rootScope.patinentCurrentMedication = [];
-    
-    // Open Current Medication popup
-
+   // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
         
          if(typeof $rootScope.MedicationCount == 'undefined') { 
@@ -965,6 +951,8 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
         $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
         $scope.modal.hide();
+        $scope.data.searchQuery = ''; 
+         
     };
     
       // Onchange of Current Medication
@@ -1010,7 +998,7 @@ angular.module('starter.controllers', ['starter.services'])
 				  } else {
                       angular.forEach($scope.CurrentMedicationList, function(item, index) {
                         if(item.checked) { 
-                            if(item.text == "Other") { item.checked = false; }
+                            if(item.text == "Other - (List below)") { item.checked = false; }
                         } 
                       });
                       $scope.CurrentMedicationList.push({ text: $scope.data.CurrentMedicationOther, checked: true });
@@ -1030,11 +1018,7 @@ angular.module('starter.controllers', ['starter.services'])
       $rootScope.checkedMedication--;
     }
 	
-   /*   $scope.checkChangedMedication = function(item){
-        if(item.checked) $scope.checkedMedication++;
-        else $rootScope.checkedMedication--;
-    } */
-	/*Current Medication End here*/
+   /*Current Medication End here*/
     
     
     /* Prior Surgery page START */
@@ -1073,11 +1057,10 @@ angular.module('starter.controllers', ['starter.services'])
 	}
 	
 	
-    $rootScope.patientSurgeries = [];
     
-
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
+
 		
 		if($('#name').val() == '' || $('#dateString').val() == '' ){			
 			$scope.ErrorMessage = "Required fields cant be empty!";
@@ -1085,29 +1068,21 @@ angular.module('starter.controllers', ['starter.services'])
 			
 		} else {
 
-        $rootScope.patientSurgeries.push({
-                Name: $scope.surgery.name,
-                Date: $scope.surgery.dateString
-            });
-        // Clear input fields after push
-        $scope.surgery.name = "";
-        $scope.surgery.dateString = ""; 
-		$rootScope.IsToPriorCount = $rootScope.patientSurgeries.length
-       
-        
-		//$state.go('tab.priorSurgeries');		
+        SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
+        $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
+        $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length
         $scope.modal.hide();
-		}
-		
-    };
+	}
+    }
+	
 	 $scope.RemoveSurgeryPopup = function(model) {
         $scope.modal.hide();
  };
      $scope.removePriorSurgeries = function(index, item){
-      $scope.patientSurgeries.splice(index, 1);
-      var indexPos = $scope.patientSurgeries.indexOf(item);
+      $scope.patientSurgeriess.splice(index, 1);
+      var indexPos = $scope.patientSurgeriess.indexOf(item);
       $rootScope.IsToPriorCount--;
-      console.log($rootScope.IsToPriorCount--);
+      //console.log($rootScope.IsToPriorCount--);
     }
     
 	
@@ -1127,6 +1102,8 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.PatientChronicCondition = "";
         $rootScope.patinentCurrentMedication = "";
         $rootScope.patinentMedicationAllergies = "";
+        $rootScope.patientSurgeriess = "";
+        $rootScope.checkedChronic = "undefined"; 
         $rootScope.IsValue = "";
         $state.go('tab.patientDetail');
         
