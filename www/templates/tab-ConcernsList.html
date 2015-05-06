@@ -17,7 +17,7 @@
         
         
 		  <ion-checkbox ng-repeat="item in primaryConcernList | filter: data.searchQuery"
-ng-model="item.checked" ng-checked="item.checked" ng-click="OnSelectPatientPrimaryConcern($index,primaryConcernList, item)" ng-disabled="checked" >
+ng-model="item.checked" ng-checked="item.checked" ng-click="OnSelectPatientPrimaryConcern(primaryConcernList,primaryConcernList, item)" ng-disabled="checked" >
 			  <p class="intakeNote"> {{ item.text }} </p>
 
 		  </ion-checkbox> 

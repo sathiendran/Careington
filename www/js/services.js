@@ -335,6 +335,24 @@ angular.module('starter.services', [])
     };
 })
 
+
+.service('SurgeryStocksListService', function () {
+var patientSurgeries = {
+        SurgeriesList: [],
+        addSurgery: function (SurgeryName,SurgeryDate) {
+            Surgery = {
+                   Name: SurgeryName,
+                   Date: SurgeryDate
+                };
+ 
+            this.SurgeriesList.push(Surgery);
+           
+        }
+    };
+ return patientSurgeries;
+})
+
+
 .service('ChronicStocksSession', function () {
     var ChronicStocksSession = {};
     return {
