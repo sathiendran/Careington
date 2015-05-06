@@ -57,8 +57,9 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.patientPaymentProfiles = '{ "message": "NO PATIENT PROFILE JSON" }';
         $scope.patientFacilitiesList = '{ "message": "NO PATIENT FACILITIES LIST JSON" }';
         $scope.hospitalCodesList = '{ "message": "NO HOSPITAL CODES LIST JSON" }';
-
-        $scope.emailAddress = 'ben.ross.310.95348@gmail.com';
+		$scope.patientHealthPlanList = '{ "message": "NO PATIENT HEALTH PLAN JSON" }';
+		$scope.ConsultationSave = '{ "message": "NO CONSULTATION SAVE JSON" }';
+	  $scope.emailAddress = 'ben.ross.310.95348@gmail.com';
 
         $scope.doGetToken = function () {
             var params = {
@@ -257,6 +258,51 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 
             apiComService.getScheduledConsulatation(params);
         }
+		
+		 $scope.doGetPatientHealthPlansList = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                patientId: $scope.patientId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.patientHealthPlanList = data;
+                },
+                error: function (data) {
+                    $scope.patientHealthPlanList = 'Error getting patient health plan list';
+                    console.log(data);
+                }
+            };
+
+            apiComService.getPatientHealthPlansList(params);
+        }
+		
+		 $scope.doPutConsultationSave = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                consultationId: $scope.consultationId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.ConsultationSave = data;
+                },
+                error: function (data) {
+                    $scope.ConsultationSave = 'Error getting patient Consultation Save';
+                    console.log(data);
+                }
+            };
+
+            apiComService.putConsultationSave(params);
+        }
+		
+		
+		
+		
+		
     }]);
 
 app.service('apiComService', function ($http) {
@@ -429,6 +475,27 @@ app.service('apiComService', function ($http) {
                     }
                 });
     }
+	
+	this.getPatientHealthPlansList = function (params) {
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/HealthPlan?patientId=' + params.patientId ,
+            method: 'get'       
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
     
     this.getCodesSet = function(params) {
         //sample uri: /api/v2/codesets?hospitalId=1&fields=medications
@@ -487,4 +554,27 @@ app.service('apiComService', function ($http) {
                     }
                 });
     }
+	this.putConsultationSave = function (params) {
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://snap-dev.com/api/v2/patients/consultations/' + params.consultationId + '/intake',
+            method: 'put'       
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+	
+	
 });
+	
