@@ -61,7 +61,7 @@ angular.module('starter.controllers', ['starter.services'])
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" style="height: 58px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div id="notifications-top-center" style="height: 58px; line-height: 58px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
