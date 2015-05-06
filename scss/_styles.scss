@@ -940,13 +940,15 @@ text-align:center;  color:#888;
 .primary {
  background-color: #d7d7d7;
    margin: -11px -15px 12px -12px;
-    padding: 5px;
+   padding: 5px;
+font-weight: bold;
 }
 
 .secondary {
  background-color: #d7d7d7;
    margin: 12px -15px 11px -12px;
     padding: 5px;
+	font-weight: bold;
 }
 .ptagprimary {
 	@include font($fontFamily_regular, normal, 20px);
@@ -957,6 +959,7 @@ text-align:center;  color:#888;
  background-color: #d7d7d7;
    margin: -11px -15px 11px -12px;
     padding: 5px;
+	font-weight: bold;
 }
 
 .optionList{

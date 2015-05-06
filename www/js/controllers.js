@@ -414,7 +414,7 @@ angular.module('starter.controllers', ['starter.services'])
 			accessToken: $rootScope.accessToken,
 			fields: $scope.codesFields,
 			success: function (data) {
-			console.log(data.data[3].codes);
+			//console.log(data.data[3].codes);
 				$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
 				$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
 				$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
