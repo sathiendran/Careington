@@ -5,7 +5,7 @@
 		<!--<div style="color: #fff; font-size: 17px; line-height: 3; margin-left: 15px; width: 25%;" >
 			<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/consultCharge" >Cancel</a>
 		</div>-->
-		
+		 <div id="Error_Message" style="position: fixed; z-index:2;" ></div>
 		 
 		 <div class="buttons" >
 			<a class="button_new icon" ng-href="#/tab/consultCharge" style="padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px;" >
@@ -14,6 +14,7 @@
 		  </div>
 		<h1 class="title_patient"></h1>
 		<div class="buttons" >
+		<!--ng-href="#/tab/applyPlan"-->
 			<a class="button_new icon" ng-click="doPostPaymentProfileDetails()" style="padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
 				<span style="margin-top:7px; position:absolute;">Next</span>
 			</a>				
@@ -39,20 +40,20 @@
 			<div class="list" >
 			  <label class="item item-input" >
 				<span class="input-label" >Name</span>
-				<input type="text" placeholder="Required" ng-model="FirstName" style="font-size: 18px;">
+				<input type="text" placeholder="Required" ng-model="FirstName" name="FirstName" id="FirstName" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input">
 				<span class="input-label" >Card Number</span>
-				<input type="number" placeholder="Required" ng-model="CardNumber" style="font-size: 18px;">
+				<input type="number" placeholder="Required" ng-model="CardNumber" name="CardNumber" id="CardNumber" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input" >
 				<span class="input-label" >Expiration Date</span>
 				<!--<input type="date" placeholder="Required"  style="font-size: 18px;">-->
-				<input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='date')"  id="date"> 
+				<input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='date')"  id="date" name="date"> 
 			  </label>
 				<label class="item item-input" >
 				<span class="input-label" >Security Code</span>
-				<input type="password" placeholder="Required" ng-model="Cvv" style="font-size: 18px;">
+				<input type="password" placeholder="Required" ng-model="Cvv" style="font-size: 18px;" name="Cvv" id="Cvv">
 			  </label>
 			</div>
 			

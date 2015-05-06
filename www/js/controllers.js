@@ -55,6 +55,22 @@ angular.module('starter.controllers', ['starter.services'])
 			//});
 	}
 	
+	$rootScope.CardValidation = function($a){
+		function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div id="notifications-top-center" style="height: 58px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$("#Error_Message").append(top);
+				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+	}
+	
 	$scope.validation = function() {
 		$scope.ErrorMessage = "Oops, something went wrong !";
 		$rootScope.ValidationFunction($scope.ErrorMessage);
@@ -248,44 +264,50 @@ angular.module('starter.controllers', ['starter.services'])
 	}
 	
 	$scope.doGetPatientPaymentProfiles = function () {
-		
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		
-		var params = {
-            hospitalId: $rootScope.hospitalId, 
-			patientId: $rootScope.patientId,
-            accessToken: $rootScope.accessToken,
-            success: function (data) {
-                $scope.patientPaymentProfiles = data;	
-
-					$rootScope.paymentProfiles123 = [];	
-			
-			angular.forEach(data.data.paymentProfiles, function(index, item) {	
 	
-				
-				$rootScope.paymentProfiles123.push({
-					'id': index.$id,
-					'billingAddress': angular.fromJson(index.billingAddress),
-					'cardExpiration': index.cardExpiration,
-					'cardNumber': index.cardNumber,
-					'isBusiness': index.isBusiness,
-					'profileID': index.profileID,
-				});
-			});	
-			$state.go('tab.submitPayment');
-				
-            },
-            error: function (data) {
-                $scope.patientPaymentProfiles = 'Error getting patient payment profiles';
-				console.log(data);
-            }
-        };
-        
-        LoginService.getPatientPaymentProfile(params);
+		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
+			$scope.ErrorMessage = "Required fields cant be empty!";
+			$rootScope.CardValidation($scope.ErrorMessage);
+			
+		} else {
 		
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			
+			var params = {
+				hospitalId: $rootScope.hospitalId, 
+				patientId: $rootScope.patientId,
+				accessToken: $rootScope.accessToken,
+				success: function (data) {
+					$scope.patientPaymentProfiles = data;	
+
+						$rootScope.paymentProfiles123 = [];	
+				
+				angular.forEach(data.data.paymentProfiles, function(index, item) {	
+		
+					
+					$rootScope.paymentProfiles123.push({
+						'id': index.$id,
+						'billingAddress': angular.fromJson(index.billingAddress),
+						'cardExpiration': index.cardExpiration,
+						'cardNumber': index.cardNumber,
+						'isBusiness': index.isBusiness,
+						'profileID': index.profileID,
+					});
+				});	
+				$state.go('tab.submitPayment');
+					
+				},
+				error: function (data) {
+					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
+					console.log(data);
+				}
+			};
+			
+			LoginService.getPatientPaymentProfile(params);
+		}
 	}
 	
 	$scope.paymentProfileId = 28804398;
@@ -317,6 +339,14 @@ angular.module('starter.controllers', ['starter.services'])
 	
 	
 	$scope.doPostPaymentProfileDetails = function () {
+		
+		
+		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
+			$scope.ErrorMessage = "Required fields cant be empty!";
+			$rootScope.CardValidation($scope.ErrorMessage);
+			
+		} else {
+					
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -350,6 +380,7 @@ angular.module('starter.controllers', ['starter.services'])
         
         LoginService.postPaymentProfileDetails(params);
 		
+		}
 	}
 	
 	$scope.doGetFacilitiesList = function () {
@@ -430,7 +461,27 @@ angular.module('starter.controllers', ['starter.services'])
             };
 
             LoginService.getScheduledConsulatation(params);
-        }	
+        }
+	$scope.PlanDetailsValidation = function(model) {
+		
+		if($('#Provider').val() == '' || $('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){			
+			$scope.ErrorMessage = "Required fields cant be empty!";
+			$rootScope.CardValidation($scope.ErrorMessage);
+			
+		} else {
+			$state.go('tab.verifyPlan');
+		}	
+	}
+	$scope.VerifyPlanDetailsValidation = function(model) {
+		
+		if($('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){			
+			$scope.ErrorMessage = "Required fields cant be empty!";
+			$rootScope.CardValidation($scope.ErrorMessage);
+			
+		} else {
+			$state.go('tab.applyPlan');
+		}	
+	}
 	
 	
 })
@@ -1010,14 +1061,15 @@ angular.module('starter.controllers', ['starter.services'])
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div class="notifications-top-center" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
-			//$('#notifications-window-row-button').click(function(){
+			
 				$("#notifications-top-center").remove();
-				$("#Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$( ".ppp" ).prepend( top );				
+				$(".Error_Message").append(top);
+				$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
-			//});
+		
 	}
 	
 	
@@ -1028,7 +1080,7 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.closeSurgeryPopup = function(model) {
 		
 		if($('#name').val() == '' || $('#dateString').val() == '' ){			
-			$scope.ErrorMessage = "Email ID cant be empty!";
+			$scope.ErrorMessage = "Required fields cant be empty!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
 			
 		} else {

@@ -201,6 +201,20 @@
 	font-weight: 600;
 	z-index:1;
 }
+.notifications-top-center {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	background-color: #FFD4AA;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	color: #9C1C1C;
+	font-size: 18px;
+	font-weight: 600;
+	z-index:1;
+}
 #notifications-top-center-close {
 	background-color: #FFD4AA;
 	float: right;

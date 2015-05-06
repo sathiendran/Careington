@@ -7,7 +7,7 @@
 		<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/consultCharge" >Cancel</a>
 	</div>-->
 	
-		 
+		 <div id="Error_Message" style="position: fixed; z-index:2;" ></div>
 		 <div class="buttons" >
 			<a class="button_new icon" ng-href="#/tab/consultCharge" style="padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px;" >
 				<span style="margin-top:7px; position:absolute;">Cancel</span>
@@ -15,7 +15,8 @@
 		  </div>
 		<h1 class="title_patient"></h1>
 		<div class="buttons" >
-			<a class="button_new icon" ng-href="#/tab/verifyPlan" style="padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
+		<!--ng-href="#/tab/verifyPlan"-->
+			<a class="button_new icon" ng-click="PlanDetailsValidation()"  style="padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
 				<span style="margin-top:7px; position:absolute;">Next</span>
 			</a>				
 		  </div>
@@ -41,7 +42,7 @@
 					<div class="provider">Select your provider</div>
 					<div class="addHealthPlan_header"  >					
 						<div class="demo" style="margin-left: 50px;">	
-							<select>
+							<select id="Provider">
 								<option style="padding:10px;"><b></b></option>
 								<option style="padding:10px;"><b>Blue Cross</b></option>
 								<option style="padding:10px;"><b>Anthem Cross</b></option>
@@ -55,15 +56,15 @@
 			<div class="list" >
 			  <label class="item item-input" >
 				<span class="input-label">First Name</span>
-				<input type="text" placeholder="Required" style="font-size: 18px;">
+				<input type="text" placeholder="Required" name="firstName" id="firstName" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input" >
 				<span class="input-label">Last Name</span>
-				<input type="text" placeholder="Required" style="font-size: 18px;">
+				<input type="text" placeholder="Required" name="lastName" id="lastName" style="font-size: 18px;">
 			  </label>
 			  <label class="item item-input">
 				<span class="input-label">Policy Number</span>
-				<input type="number" placeholder="Required" style="font-size: 18px;">
+				<input type="number" placeholder="Required" name="policyNumber" id="policyNumber" style="font-size: 18px;">
 			  </label>
 				<label class="item item-input" >
 				<span class="input-label"  >Date of Birth
