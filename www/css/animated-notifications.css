@@ -232,6 +232,23 @@
 	cursor: pointer;
 	background-color: #FFD4AA;
 }
+.notifications-top-center-close {
+	background-color: #FFD4AA;
+	float: right;
+	height: 50px;
+	width: 50px;
+	font-size: 20px;
+	color: rgba(255,255,255,1);
+	font-weight: 400;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.notifications-top-center-close:hover {
+	cursor: pointer;
+	background-color: #FFD4AA;
+}
 #notifications-full{
 	-moz-box-shadow: 0px 0px 50px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0px 0px 50px rgba(0,0,0,0.1);

@@ -1047,6 +1047,8 @@ angular.module('starter.controllers', ['starter.services'])
 
 	
    $scope.getSurgeryPopup = function() {
+		$rootScope.LastName1 = '';
+		$rootScope.datestr = '';
       
         $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
             scope: $scope,
@@ -1083,9 +1085,10 @@ angular.module('starter.controllers', ['starter.services'])
     
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
-	$rootScope.LastName = $('#name').val();
+		//$rootScope.LastName1 = $('#name').val();
+		//$rootScope.datestr = $('#dateString').val();
 		
-		if($rootScope.LastName == '' || $('#dateString').val() == '' ){			
+		if($scope.surgery.name == '' || $scope.surgery.dateString == '' ){			
 			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
 			
@@ -1093,10 +1096,9 @@ angular.module('starter.controllers', ['starter.services'])
 
         SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
         $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
-        $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length
-        $rootScope.LastName ='';
+        $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
 		$scope.modal.hide();
-	}
+		}
     }
 	
 	 $scope.RemoveSurgeryPopup = function(model) {
