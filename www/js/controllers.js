@@ -484,7 +484,7 @@ angular.module('starter.controllers', ['starter.services'])
 	
     // Get list of primary concerns lists
     $scope.primaryConcernList = $rootScope.hospitalCodesList;
-   console.log('ggggggggg', $scope.primaryConcernList);
+  // console.log('ggggggggg', $scope.primaryConcernList);
     
     //$rootScope.PatientPrimaryConcern = "";
     
@@ -1027,11 +1027,11 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
 		
-		/*if($('#name').val() == '' || $('#dateString').val() == '' ){			
+		if($('#name').val() == '' || $('#dateString').val() == '' ){			
 			$scope.ErrorMessage = "Email ID cant be empty!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
 			
-		} else {*/
+		} else {
 
         $rootScope.patientSurgeries.push({
                 Name: $scope.surgery.name,
@@ -1045,7 +1045,7 @@ angular.module('starter.controllers', ['starter.services'])
         
 		//$state.go('tab.priorSurgeries');		
         $scope.modal.hide();
-		//}
+		}
 		
     };
 	 $scope.RemoveSurgeryPopup = function(model) {
