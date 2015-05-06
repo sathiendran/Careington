@@ -438,8 +438,25 @@ angular.module('starter.controllers', ['starter.services'])
 				console.log(data);
 			}
 		};
-
-		LoginService.getCodesSet(params);
+        
+       $rootScope.PatientPrimaryConcern = "";
+        $rootScope.PatientSecondaryConcern = "";
+        $rootScope.PatientChronicCondition = "";
+        $rootScope.patinentCurrentMedication = "";
+        $rootScope.patinentMedicationAllergies = "";
+        $rootScope.patientSurgeriess = "";
+        $rootScope.MedicationCount == 'undefined'
+        $rootScope.checkedChronic = 0;  
+        $rootScope.ChronicCount = "";
+        $rootScope.AllegiesCount = "";
+        $rootScope.checkedAllergies = 0;
+        $rootScope.MedicationCount = ""; 
+        $rootScope.checkedMedication = 0; 
+        $rootScope.IsValue = "";
+         $rootScope.IsToPriorCount = "";
+         $rootScope.IsToPriorCount = "";
+       
+        LoginService.getCodesSet(params);
 	}
 
         $scope.doGetScheduledConsulatation = function () {
@@ -1103,8 +1120,15 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.patinentCurrentMedication = "";
         $rootScope.patinentMedicationAllergies = "";
         $rootScope.patientSurgeriess = "";
-        $rootScope.checkedChronic = "undefined"; 
+        $rootScope.MedicationCount == 'undefined'
+        $rootScope.checkedChronic = 0;  
+        $rootScope.ChronicCount = "";
+        $rootScope.AllegiesCount = "";
+        $rootScope.checkedAllergies = 0;
+        $rootScope.MedicationCount = ""; 
+        $rootScope.checkedMedication = 0; 
         $rootScope.IsValue = "";
+        $rootScope.IsToPriorCount = "" 
         $state.go('tab.patientDetail');
         
      };
