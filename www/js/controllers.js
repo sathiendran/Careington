@@ -32,7 +32,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services'])
 
 
-.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout) {
+.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -78,9 +78,9 @@ angular.module('starter.controllers', ['starter.services'])
 	
 
 	//Back Button	
-	$scope.myGoBack = function() {
+	/*$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	};
+	}; */
 	$rootScope.UserEmail = 'ben.ross.310.95348@gmail.com';
   
 	$scope.userLogin = {};
@@ -442,8 +442,8 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.checkedMedication = 0; 
         $rootScope.IsValue = "";
          $rootScope.IsToPriorCount = "";
-         $rootScope.IsToPriorCount = "";
-       
+        $rootScope.IsToPriorCount = "";
+        SurgeryStocksListService.ClearSurgery();
         LoginService.getCodesSet(params);
 	}
 
@@ -516,9 +516,9 @@ angular.module('starter.controllers', ['starter.services'])
  $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
-  $scope.myGoBack = function() {
+ /* $scope.myGoBack = function() {
     $ionicHistory.goBack();
-  };
+  }; */
 })
 
 .controller('UsersearchCtrl', function($scope,$ionicSideMenuDelegate, $ionicHistory) {
@@ -567,11 +567,9 @@ angular.module('starter.controllers', ['starter.services'])
 	
     // Get list of primary concerns lists
     $scope.primaryConcernList = $rootScope.hospitalCodesList;
-   console.log('ggggggggg', $scope.primaryConcernList);
+  
     
-    //$rootScope.PatientPrimaryConcern = "";
-    
-    // Open primary concerns popup
+      // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
         
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
@@ -1136,7 +1134,7 @@ angular.module('starter.controllers', ['starter.services'])
      };
     
     //Search Query
-     $scope.clearRootScopeConce = function() {
+     $scope.clearRootScopeConce = function(model) {
 		$rootScope.PatientPrimaryConcern = "";
         $rootScope.PatientSecondaryConcern = "";
         $rootScope.PatientChronicCondition = "";
@@ -1151,7 +1149,8 @@ angular.module('starter.controllers', ['starter.services'])
         $rootScope.MedicationCount = ""; 
         $rootScope.checkedMedication = 0; 
         $rootScope.IsValue = "";
-        $rootScope.IsToPriorCount = "" 
+        $rootScope.IsToPriorCount = "";
+        SurgeryStocksListService.ClearSurgery();
         $state.go('tab.patientDetail');
         
      };
@@ -1167,9 +1166,9 @@ angular.module('starter.controllers', ['starter.services'])
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
-  $scope.myGoBack = function() {
+  /*$scope.myGoBack = function() {
     $ionicHistory.goBack();
-  };
+  }; */
 })
 
 
@@ -1195,9 +1194,9 @@ angular.module('starter.controllers', ['starter.services'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.myGoBack = function() {
+	/*$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	};
+	}; */
 })
 
 .controller('addHealthPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
