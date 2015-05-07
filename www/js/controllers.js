@@ -29,7 +29,7 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 
 .controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService) {
@@ -109,9 +109,6 @@ angular.module('starter.controllers', ['starter.services'])
 				$scope.doGetFacilitiesList();
 				$state.go('tab.provider');
 			}
-			
-			
-			
 		}
 		
     };
