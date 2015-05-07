@@ -1315,3 +1315,11 @@ background-image: url("/img/wait.png");
 background-repeat: no-repeat;
 background-position: center; 
 }
+
+.spinner svg {
+ width: 28px;
+  height: 28px;
+  stroke: #444;
+  fill: #444;
+}
+

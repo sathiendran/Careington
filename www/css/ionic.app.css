@@ -4621,13 +4621,16 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .loading-container.active {
     opacity: 1; }
   .loading-container .loading {
-    padding: 20px;
-    border-radius: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
+    /*padding: $loading-padding;
+
+    border-radius: $loading-border-radius;
+    background-color: $loading-bg-color;
+
+    color: $loading-text-color;
+
     text-align: center;
     text-overflow: ellipsis;
-    font-size: 15px; }
+    font-size: $loading-font-size;*/ }
     .loading-container .loading h1, .loading-container .loading h2, .loading-container .loading h3, .loading-container .loading h4, .loading-container .loading h5, .loading-container .loading h6 {
       color: #fff; }
 
@@ -8834,3 +8837,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
   background-image: url("/img/wait.png");
   background-repeat: no-repeat;
   background-position: center; }
+
+.spinner svg {
+  width: 28px;
+  height: 28px;
+  stroke: #444;
+  fill: #444; }
