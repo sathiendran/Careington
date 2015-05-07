@@ -337,7 +337,8 @@ angular.module('starter.services', [])
 
 
 .service('SurgeryStocksListService', function () {
-var patientSurgeries = {
+    var patientSurgeries={};
+     patientSurgeries = {
         SurgeriesList: [],
         addSurgery: function (SurgeryName,SurgeryDate) {
             Surgery = {
@@ -346,10 +347,13 @@ var patientSurgeries = {
                 };
  
             this.SurgeriesList.push(Surgery);
-           
-        }
+            
+        },
+        ClearSurgery: function () {
+            this.SurgeriesList=[];
+          }
     };
- return patientSurgeries;
+  return patientSurgeries;
 })
 
 
