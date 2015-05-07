@@ -38,7 +38,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	
 	$rootScope.Validation = function($a){
 		function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
@@ -465,6 +464,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
             LoginService.getScheduledConsulatation(params);
         }
+		$rootScope.PlanDisplay = "block";
+		$rootScope.verifyPlanDisplay = "none;";
+		
 	$scope.PlanDetailsValidation = function(model) {
 		
 		if($('#Provider').val() == '' || $('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){			
@@ -472,7 +474,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
 		} else {
-			$state.go('tab.verifyPlan');
+			//$state.go('tab.verifyPlan');
+			$rootScope.verifyPlanDisplay = "block";
+			$rootScope.PlanDisplay = "none;";
+			
+			$ionicLoading.show({
+				template: '<ion-spinner icon="bubbles"></ion-spinner>',
+				
+			});
+			$timeout(function() {
+				$ionicLoading.hide(); //close the popup after 3 seconds for some reason
+				$state.go('tab.applyPlan');
+			}, 5000);
+			
 		}	
 	}
 	$scope.VerifyPlanDetailsValidation = function(model) {
@@ -1256,4 +1270,5 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
   $scope.settings = {
     enableFriends: true
   };
-});
+})
+
