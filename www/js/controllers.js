@@ -322,7 +322,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
         LoginService.postCoPayDetails(params);
 	}
 	
-	
+	$rootScope.verifyCardDisplay = "none";
+	$rootScope.cardDisplay = "block;";
+		
 	$scope.doPostPaymentProfileDetails = function () {
 		
 		
@@ -331,6 +333,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
 		} else {
+		
+		$rootScope.verifyCardDisplay = "block";
+		$rootScope.cardDisplay = "none;";
 					
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
@@ -355,7 +360,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
             success: function (data) {
                 $scope.PostPaymentDetails = data;	
 					console.log(data);
-					 $state.go('tab.verifyCard');  
+				$scope.doGetPatientPaymentProfiles();
+				$state.go('tab.submitPayment');
             },
             error: function (data) {
                 $scope.PostPaymentDetails = 'Error getting consultation report';
@@ -479,7 +485,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			$rootScope.PlanDisplay = "none;";
 			
 			$ionicLoading.show({
-				template: '<ion-spinner icon="bubbles"></ion-spinner>',
+				template: '<ion-spinner icon="ios"></ion-spinner>',
 				
 			});
 			$timeout(function() {
