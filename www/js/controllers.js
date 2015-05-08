@@ -32,12 +32,22 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 
-.controller('LoginCtrl', function($scope,$ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService) {
+.controller('LoginCtrl', function($scope, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
+	$rootScope.StateList = StateLists.getStateDetails();
+	$scope.currentYear = new Date().getFullYear()
+      $scope.currentMonth = new Date().getMonth() + 1
+      $scope.months = $locale.DATETIME_FORMATS.MONTH
+      $scope.ccinfo = {type:undefined}
+      $scope.save = function(data){
+        if ($scope.paymentForm.$valid){
+          console.log(data) // valid data saving stuff here
+        }
+      }
 	
 	$rootScope.Validation = function($a){
 		function refresh_close(){
@@ -329,7 +339,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	$scope.doPostPaymentProfileDetails = function () {
 		
 		
-		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
+		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' || $('#Provider').val() == ''|| $('#Zip').val() == '' ){			
 			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
@@ -1301,3 +1311,77 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
   };
 })
 
+.directive('inputMaxLengthNumber', function() {
+  return {
+    require: 'ngModel',
+    restrict: 'A',
+    link: function (scope, element, attrs, ngModelCtrl) {
+      function fromUser(text) {
+        var maxlength = Number(attrs.maxlength);
+        if (String(text).length > maxlength) {
+          ngModelCtrl.$setViewValue(ngModelCtrl.$modelValue);
+          ngModelCtrl.$render();
+          return ngModelCtrl.$modelValue;
+        }
+        return text;
+      }
+      ngModelCtrl.$parsers.push(fromUser);
+    }
+  };
+})
+
+
+.directive
+  ( 'creditCardType'
+  , function(){
+      var directive =
+        { require: 'ngModel'
+        , link: function(scope, elm, attrs, ctrl){
+            ctrl.$parsers.unshift(function(value){
+              scope.ccinfo.type =
+                (/^5[1-5]/.test(value)) ? "mastercard"
+                : (/^4/.test(value)) ? "visa"
+                : (/^3[47]/.test(value)) ? 'amex'
+                : (/^6011|65|64[4-9]|622(1(2[6-9]|[3-9]\d)|[2-8]\d{2}|9([01]\d|2[0-5]))/.test(value)) ? 'discover'
+                : undefined
+              ctrl.$setValidity('invalid',!!scope.ccinfo.type)
+              return value
+            })
+          }
+        }
+      return directive
+      }
+    )
+	
+	.directive
+  ( 'cardExpiration'
+  , function(){
+      var directive =
+        { require: 'ngModel'
+        , link: function(scope, elm, attrs, ctrl){
+            scope.$watch('[ccinfo.month,ccinfo.year]',function(value){
+              ctrl.$setValidity('invalid',true)
+              if ( scope.ccinfo.year == scope.currentYear
+                   && scope.ccinfo.month <= scope.currentMonth
+                 ) {
+                ctrl.$setValidity('invalid',false)
+              }
+              return value
+            },true)
+          }
+        }
+      return directive
+      }
+    )
+
+	.filter
+  ( 'range'
+  , function() {
+      var filter = 
+        function(arr, lower, upper) {
+          for (var i = lower; i <= upper; i++) arr.push(i)
+          return arr
+        }
+      return filter
+    }
+  )
