@@ -1,5 +1,7 @@
 {
     "jscodehints.detectedExclusions": [
-        "C:/Development/ionic/SnapMD/www/js/services.js"
+        "C:/Development/ionic/SnapMD/www/js/services.js",
+        "C:/Users/RINSOFT/workspace/SourceTree/SnapMD_V/www/js/app.js",
+        "C:/Users/RINSOFT/workspace/SourceTree/SnapMD_V/www/js/services.js"
     ]
 }
