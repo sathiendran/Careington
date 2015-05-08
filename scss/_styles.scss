@@ -1349,3 +1349,38 @@ form.ng-submitted input.ng-valid + i.icon.error {
     margin-right: 10px;
     cursor: pointer;
 }
+.UserHme {
+	.UserHmeSub {	
+				padding: 0 12%;
+				.item-input {
+					border: 1px solid $Altoa;
+					border-radius: 8px;
+					::-webkit-input-placeholder { /* WebKit browsers */
+						color:    $Tundora !important;
+						font-size: 18px !important;
+						padding-top: 3px !important;
+					}
+					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+						   color:    $Tundora !important;
+						  font-size: 18px !important;
+							padding-top: 3px !important;
+						   opacity:  1;
+						}
+					::-moz-placeholder { /* Mozilla Firefox 19+ */
+						   color:    $Tundora !important;
+						  font-size: 18px !important;
+						padding-top: 3px !important;
+						   opacity:  1;
+						}
+					:-ms-input-placeholder { /* Internet Explorer 10+ */
+						   color:    $Tundora !important;
+						   font-size: 18px !important;
+						padding-top: 3px !important;
+						}
+					input {
+					font-size: 17px;
+					}
+
+				}
+		}
+}

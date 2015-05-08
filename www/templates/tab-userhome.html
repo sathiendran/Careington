@@ -26,16 +26,17 @@
 
 
 <ion-view title="User Home">	
-<ion-content class="ContentHomeUser" style="margin-top: 70px">
- 	<ion-list>
-       
-        <ion-item style="padding:10px;" class="search_home" ng-show="showDetails">
+<ion-content class="ContentHomeUser UserHme" style="margin-top: 70px">
+
+ <div class="UserHmeSub" style="padding:10px;" ng-show="showDetails">
+        
 			<label class="item-input" style="margin-top: -2px;background: #E6E6E6; margin-left: 5px;margin-right: 5px;border-radius: 9px;" >
 					<input type="search" placeholder="Search" ng-model="data.searchQuery" style="color:#000;height: 26px;  margin-top: 0px;" >
             </label>
-			
-		</ion-item>
-       
+	   </div>
+
+ 	<ion-list>
+      
 	<a class=""  href="#/tab/patientDetail">
 		<ion-item style="top: 1px;padding:11px;height: 104px;">
 			 <div class="HrefListView"> 
