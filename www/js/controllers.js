@@ -661,8 +661,30 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
     }
 	//console.log($rootScope.IsValue)
     
+    
+    $rootScope.ConcernsValidation = function($a){
+		function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div class="notifications-top-center" style="height: 59px;line-height: 59px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+
+			$("#notifications-top-center").remove();
+				//$( ".ppp" ).prepend( top );				
+				$(".Error_Message").append(top);
+				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+		
+	}
+    
     $scope.PatientConcernsDirectory = function(){
-    $state.go('tab.ChronicCondition');
+        if($rootScope.IsValue == 0 || $rootScope.IsValue == undefined) {
+            $scope.ErrorMessage = "Primary Concern Can't be Empty!";
+			$rootScope.ConcernsValidation($scope.ErrorMessage);
+            } else { $state.go('tab.ChronicCondition');
+            }
+        
     }
     
 	/*Primary concern End here*/
