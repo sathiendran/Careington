@@ -337,7 +337,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-waitingRoom.html',
-        controller: 'LoginCtrl'
+        controller: 'ConferenceCtrl'
       }
     }
   })  

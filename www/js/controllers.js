@@ -1188,6 +1188,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	
 })
 
+.controller('ConferenceCtrl', function($scope, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
+    console.log("ConferenceCtrl");
+
+})
 .controller('PatientConcernsSelectCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicHistory) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
