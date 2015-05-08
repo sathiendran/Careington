@@ -8837,10 +8837,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
   background: url(../img/wait.png) no-repeat;
   background-position: center center;
   background-attachment: scroll;
-  -webkit-background-size: 50% auto;
-  -moz-background-size: 50% auto;
-  -o-background-size: 50% auto;
-  background-size: 50% auto; }
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  -o-background-size: auto;
+  background-size: auto; }
 
 .spinner svg {
   width: 28px;
