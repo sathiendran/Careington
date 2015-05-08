@@ -1198,6 +1198,101 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	
 })
 
+
+.controller('WaitingRoomCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
+    
+})
+
+
+
+.controller('ConferenceCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
+    
+    $scope.myVideoHeight = $window.innerHeight - 40;
+    $scope.myVideoWidth = $window.innerWidth;
+    $scope.otherVideoTop = $window.innerHeight - 150;
+    $scope.controlsStyle = false;
+    
+    $scope.cameraPosition = "front";
+    $scope.publishAudio = true;
+    apiKey = "45217062"; 
+      sessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
+      token = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
+    
+    var session = OT.initSession(apiKey, sessionId);
+    var publisher;
+    // Subscribe to a newly created stream
+    session.on('streamCreated', function(event) {
+        session.subscribe(event.stream, 'subscriber', {
+            insertMode: 'append',
+            subscribeToAudio: true,
+            subscribeToVideo: true
+        });
+        //alert(' streamCreated ');
+        OT.updateViews();
+    });
+
+    // Handler for sessionDisconnected event
+    session.on('sessionDisconnected', function(event) {
+        console.log('You were disconnected from the session.', event.reason);
+    });
+
+    // Connect to the Session
+    session.connect(token, function(error) {
+        // If the connection is successful, initialize a publisher and publish to the session
+        if (!error) {
+            publisher = OT.initPublisher('publisher', {
+            });
+            $timeout(function(){
+                $scope.controlsStyle = true;
+            }, 100);
+            session.publish(publisher);
+            OT.updateViews();
+
+        } else {
+            alert('There was an error connecting to the session: ' + error.message);
+        }
+
+    });
+    
+    $scope.toggleCamera = function(){
+        if($scope.cameraPosition == "front"){
+            $scope.newCamPosition = "back";
+        }else{
+            $scope.newCamPosition = "front";
+        }
+        $scope.cameraPosition = $scope.newCamPosition;
+        publisher.setCameraPosition($scope.newCamPosition);
+        OT.updateViews();
+    };
+    
+    $scope.toggleMute = function(){
+        if($scope.publishAudio){
+            $scope.newPublishAudio = false;
+        }else{
+            $scope.newPublishAudio = true;
+        }
+        $scope.publishAudio = $scope.newPublishAudio;
+        publisher.publishAudio($scope.newPublishAudio);
+        OT.updateViews();
+    };
+    
+    $scope.toggleSpeaker = function(){
+        
+    };
+    
+    $scope.turnOffCamera = function(){
+        
+    };
+    
+    $scope.disconnectConference = function(){
+        session.unpublish(publisher)
+        publisher.destroy();
+        session.disconnect();
+        $state.go('tab.ReportScreen');
+    };
+    
+})
+
 .controller('PatientConcernsSelectCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicHistory) {
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();

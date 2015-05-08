@@ -1,0 +1,18 @@
+
+<ion-view title="">	
+    <ion-content style="margin: auto;">
+        <div id="publisher" style="top: {{otherVideoTop}}px; display: {{callDivDisplay}};"></div>
+        <div id="subscriber" style="height: {{myVideoHeight}}px; width: {{myVideoWidth}}px; display: {{callDivDisplay}};">
+            <div style="padding-top: 25px; color: #CECECE; font-size: 20px; text-align: center;">
+                Please wait! The Clinician will be with you Shortly!
+            </div>
+        </div>
+    </ion-content>
+</ion-view>	>
+<ion-footer-bar class="footer" ng-show="controlsStyle">
+    <div style="width:100%; margin: auto; text-align: center; ">
+        <i class="ion-ios-mic callIcons" ng-click="toggleMute();"></i>
+        <i class="ion-ios-reverse-camera callIcons" ng-click="toggleCamera();"></i>
+        <i class="ion-power callIcons" style="font-color: red;" ng-click="disconnectConference();"></i>
+    <div>
+</ion-footer-bar>	

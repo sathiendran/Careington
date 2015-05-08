@@ -335,14 +335,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
    .state('tab.waitingRoom', {
     url: '/waitingRoom',
     views: {
-      'tab-login': {
+      'tab-account': {
         templateUrl: 'templates/tab-waitingRoom.html',
-        controller: 'LoginCtrl'
+        controller: 'WaitingRoomCtrl'
       }
     }
   })  
   
-
+  .state('tab.videoConference', {
+    url: '/videoConference',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-videoConference.html',
+        controller: 'ConferenceCtrl'
+      }
+    }
+  })  
   
    .state('tab.ReportScreen', {
     url: '/ReportScreen',
