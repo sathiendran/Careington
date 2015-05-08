@@ -38,6 +38,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
+	
+	
 	$rootScope.Validation = function($a){
 		function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
