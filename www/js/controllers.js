@@ -509,7 +509,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	
 })
 
-.controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
+/*.controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
 
     console.log($rootScope.hospitalId);
 	console.log($rootScope.UserEmail);
@@ -521,8 +521,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
   };
  /* $scope.myGoBack = function() {
     $ionicHistory.goBack();
-  }; */
-})
+  }; 
+}) */
 
 .controller('UsersearchCtrl', function($scope,$ionicSideMenuDelegate, $ionicHistory) {
   $scope.toggleLeft = function() {
@@ -530,8 +530,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
   };
   $scope.myGoBack = function() {
     $ionicHistory.goBack();
-  };
-})
+  }; 
+}) 
 
 
 
