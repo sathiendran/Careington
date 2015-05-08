@@ -1331,3 +1331,23 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 
+#publisher, .OT_mirrored OT_root OT_publisher OT_fit-mode-cover {
+    float: left;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: 3000;
+    right: 10px;
+}
+#subscriber {
+    position: relative;
+    z-index: 30;
+    float: left;
+}
+.callIcons{
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
