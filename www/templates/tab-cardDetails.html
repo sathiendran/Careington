@@ -28,58 +28,77 @@
 		
 	<ion-content class="planDetails_content" >
 	 
-		  <form novalidate name="paymentForm">
-    <input
-      type="text"
-      name="creditCard"
-      ng-model="ccinfo.number"
-      required
-      data-credit-card-type
-      data-ng-pattern="/^[0-9]+$/"
-      data-ng-minlength="15"
-      maxlength="19"
-      placeholder="Card Number" >{{ccinfo.type}}
-    <br/>
-    <ul ng-show="paymentForm.submitAttempt && !paymentForm.$valid">
-      <li ng-show="paymentForm.creditCard.$error.minlength">Credit card must be 15-19 digits</li>
-      <li ng-show="paymentForm.creditCard.$error.pattern">Credit card must consist of only numbers</li>
-      <li ng-show="paymentForm.creditCard.$error.invalid">Credit card must be a valid Amex, Visa, Discover, or Master Card</li>
-      <li ng-show="paymentForm.creditCard.$error.required">Credit card required</li>
-    </ul>
-    <input
-      type="text"
-      name="securityCode"
-      ng-model="ccinfo.securityCode"
-      placeholder="CCV"
-      required
-      data-ng-pattern="/^[0-9]+$/"
-      data-ng-minlength="3"
-      maxlength="4">
-    <br/>
-    <ul ng-show="paymentForm.submitAttempt && !paymentForm.$valid">
-      <li ng-show="paymentForm.securityCode.$error.pattern">Security code must contain only numbers</li>
-      <li ng-show="paymentForm.securityCode.$error.minlength">Security code must be 3-4 digits</li>
-      <li ng-show="paymentForm.securityCode.$error.required">Security code required</li>
-    </ul>
-    <select ng-model="ccinfo.month" name="month" data-card-expiration required>
-      <option disabled selected value="">Month</option>
-      <option ng-repeat="month in months" value="{{$index+1}}" > {{$index+1}} - {{month}}</li>
-    </select>
-    <br/>
-    <ul ng-show="paymentForm.submitAttempt && !paymentForm.$valid">
-      <li ng-show="paymentForm.month.$error.required">Expiration month required</li>
-    </ul>
-    <select ng-model="ccinfo.year" name="year" required>
-      <option disabled selected value="">Year</option>
-      <option ng-repeat="year in [] | range:currentYear:currentYear+13">{{year}}</li>
-    </select>
-    <br/>
-    <ul ng-show="paymentForm.submitAttempt && !paymentForm.$valid">
-      <li ng-show="paymentForm.year.$error.required">Expiration year required</li>
-      <li ng-show="paymentForm.month.$error.invalid">Provided expiration date is invalid</li>
-    </ul>
-    <button ng-click="paymentForm.submitAttempt=true;save(ccinfo)" type="submit">Submit</button>
+		<div>		
+			<div class="healthPlan_text" style="padding-top: 35px; display: {{cardDisplay}}">
+				Card Details			
+			</div>		
+			
+			<div style="padding-top: 30px; padding-bottom: 20px; color: #5C5C5C; text-align: center; font-size: 20px; font-weight: bold; display: {{cardDisplay}}" >
+				Enter your card information below
+			</div>
+			
+			<div class="healthPlan_text" style="padding-top: 35px; display: {{verifyCardDisplay}}">
+				Verifying Card			
+			</div>			
+			
+			<div style="padding-top: 30px; padding-bottom: 20px; display: {{verifyCardDisplay}}" >		
+			</div>
+			
+			
+			<div class="list" >
+			  <label class="item item-input" >
+				<span class="input-label" >Name</span>
+				<input type="text" placeholder="Required" ng-model="FirstName" name="FirstName" id="FirstName" style="font-size: 18px;">
+			  </label>
+			  <label class="item item-input">
+				<span class="input-label" >Card Number</span>
+				<input type="number" placeholder="Required" ng-model="CardNumber" name="CardNumber" id="CardNumber" style="font-size: 18px;">
+			  </label>
+			  <label class="item item-input" >
+				<span class="input-label" >Expiration Date</span>
+				<!--<input type="date" placeholder="Required"  style="font-size: 18px;">-->
+				<input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='month')"   id="datepicker" name="date"> 
+				</label>			 
+			  
+				<label class="item item-input" >
+				<span class="input-label" >Security Code</span>
+				<input type="password" placeholder="Required" ng-model="Cvv" style="font-size: 18px;" name="Cvv" id="Cvv">
+			  </label>
+			  
+			  <label class="item item-input" >
+				<span class="input-label" >Billing Address</span>
+				<input type="text" placeholder="Required" ng-model="BillingAddress" style="font-size: 18px;" name="BillingAddress" id="BillingAddress">
+			  </label>
+			  
+			   <label class="item item-input" >
+				<span class="input-label" >State</span>
+					<div class="demo"  >	
+							<select id="Provider" style="border: 0px; margin-left: -10px; width: auto; background: none; box-shadow: none; color:#111;">
+								<option style="padding:10px;" value=""  >Select your state</option>
+								<option ng-repeat="StateList in StateList" style="padding:10px; color: #111;" value="StateList.abbreviation"><b>{{StateList.state}}</b></option>
+								
+							</select>
+						</div>
+			  </label>
+			  <label class="item item-input" >
+				<span class="input-label" >Zip</span>
+			<!--<input type="number" ng-model="input3" maxlength="5" input-max-length-number/>
+ -->
+				<input type="number" placeholder="Required" ng-model="Zip" style="font-size: 18px;" name="Zip" id="Zip" maxlength="5" input-max-length-number>
+			
 
+
+			 </label>
+			  
+			</div>
+			
+			<div class="planDetails"  >
+				<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
+			</div>
+			<div class="privacy" >About Connected Care Privacy</div>
+		</div>
+		
+		
 		
 	</ion-content>
 

@@ -492,6 +492,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			
 		} else {
 			//$state.go('tab.verifyPlan');
+			$rootScope.providerName = $('#Provider').val();
 			$rootScope.verifyPlanDisplay = "block";
 			$rootScope.PlanDisplay = "none;";
 			
