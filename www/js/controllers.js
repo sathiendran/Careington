@@ -1124,7 +1124,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			
 				$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
-				$(".Error_Message").append(top);
+				$(".ErrorMessage").append(top);
 				$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 		
@@ -1202,6 +1202,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 .controller('WaitingRoomCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
     
+    //Side Menu
+     $scope.toggleLeft = function() {
+        $ionicSideMenuDelegate.toggleLeft();
+    };
 })
 
 
