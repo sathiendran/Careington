@@ -1219,6 +1219,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
     
     $scope.cameraPosition = "front";
     $scope.publishAudio = true;
+    
+    
+    $scope.muteIconClass = 'ion-ios-mic callIcons';
+    
     apiKey = "45217062"; 
       sessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
       token = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
@@ -1273,8 +1277,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
     $scope.toggleMute = function(){
         if($scope.publishAudio){
             $scope.newPublishAudio = false;
+            $scope.muteIconClass = 'ion-ios-mic-off callIcons activeCallIcon';
         }else{
             $scope.newPublishAudio = true;
+            $scope.muteIconClass = 'ion-ios-mic callIcons';
         }
         $scope.publishAudio = $scope.newPublishAudio;
         publisher.publishAudio($scope.newPublishAudio);
