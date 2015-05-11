@@ -8866,3 +8866,38 @@ form.ng-submitted input.ng-valid + i.icon.error {
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer; }
+
+.activeCallIcon {
+  color: red; }
+
+.UserHme {
+  padding: 0 0%; }
+  .UserHme .UserHmeSub {
+    padding: 0 12%; }
+    .UserHme .UserHmeSub .item-input {
+      border: 1px solid #DADADA;
+      border-radius: 8px; }
+      .UserHme .UserHmeSub .item-input ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 3px !important; }
+      .UserHme .UserHmeSub .item-input :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 3px !important;
+        opacity: 1; }
+      .UserHme .UserHmeSub .item-input ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 3px !important;
+        opacity: 1; }
+      .UserHme .UserHmeSub .item-input :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 3px !important; }
+      .UserHme .UserHmeSub .item-input input {
+        font-size: 17px; }

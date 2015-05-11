@@ -1350,6 +1350,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
     margin-right: 10px;
     cursor: pointer;
 }
+.activeCallIcon{
+    color: red;
+}
 .UserHme {
 	padding: 0 0%;
 	.UserHmeSub {	
