@@ -504,6 +504,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 				$ionicLoading.hide(); //close the popup after 3 seconds for some reason
 				$state.go('tab.applyPlan');
 			}, 5000);
+            
+            
 			
 		}	
 	}
@@ -1202,13 +1204,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 })
 
 
-.controller('WaitingRoomCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
-    
-    //Side Menu
-     $scope.toggleLeft = function() {
+.controller('WaitingRoomCtrl', function($scope, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
+    $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
-})
+}) 
 
 
 
@@ -1403,15 +1403,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	};
 })
 
-.controller('waitingRoomCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+/*.controller('WaitingRoomCtrl', function($scope,$ionicSideMenuDelegate) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
-	
-	$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	};
-})
+}) */
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
