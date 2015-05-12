@@ -37,6 +37,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
+    
+    $scope.changeformatExpiry = function () {
+        alert('hi');
+        $scope.requestedDate = new Date();
+       console.log($scope.requestedDate);
+        $scope.requestedDates = $filter('date')($scope.requestedDate, "mm/yyyy");
+         alert($scope.requestedDates);
+    }
+    
+     $scope.$watch(function(){
+        return $scope.a.b;
+      }, function(newvalue, oldvalue){
+         $rootScope.requestedDates.b = $filter('date')(newvalue, "mm/yyyy");
+         //alert("newvalue: " + newvalue);
+         alert($rootScope.requestedDates.b);
+      },true);
+    
 	
 	$rootScope.StateList = StateLists.getStateDetails();
 	$scope.currentYear = new Date().getFullYear()

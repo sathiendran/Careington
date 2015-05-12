@@ -57,8 +57,16 @@
 			  <label class="item item-input" >
 				<span class="input-label" >Expiration Date</span>
 				<!--<input type="date" placeholder="Required"  style="font-size: 18px;">-->
-				<input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='month')"   id="datepicker" name="date"> 
-				</label>			 
+				<!--<input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='month')"   id="datepicker" name="date" on-change="changeformatExpiry();"> -->
+                  
+                  <input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='month')"   id="datepicker"  ng-model="requestedDates.b" name="requestedDates.b">
+                
+               
+                </label>	
+                
+                 <label class="item item-input" style="margin:10px;margin-top: -60px;width: 156px;  margin-left: 152px;border: none;" >
+			<input type="text" placeholder="Required" ng-model="requestedDates.b" name="requestedDates.b" id="requestedDates.b" style="font-size: 18px;">  
+               </label>	
 			  
 				<label class="item item-input" >
 				<span class="input-label" >Security Code</span>
