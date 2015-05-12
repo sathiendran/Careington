@@ -775,7 +775,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
                       angular.forEach($scope.secondaryConcernList, function(item, index) {
                         item.checked = false;
                       });
-                      $scope.secondaryConcernList.push({ text: $scope.data.SecondaryConcernOther, checked: true });
+                     var newSecodaryConcernItem = { text: $scope.data.SecondaryConcernOther, checked: true };
+                      $scope.secondaryConcernList.splice(1, 0, newSecodaryConcernItem);
+                      
+                      // $scope.secondaryConcernList.push({ text: $scope.data.SecondaryConcernOther, checked: true });
 					  return $scope.data.SecondaryConcernOther;
 				  }
 				}
@@ -871,7 +874,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
                         
                        });  
                       
-                       $scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
+                       var newchronicConditionItem = { text: $scope.data.ChronicCondtionOther, checked: true };
+                      $scope.chronicConditionList.splice(1, 0, newchronicConditionItem);
+                      
+                       //$scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
                        return $scope.data.ChronicCondtionOther;
 				  }
 				}
@@ -974,7 +980,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
                             if(item.text == "Other") { item.checked = false; }
                         } 
                       });
-                      $scope.MedicationAllegiesList.push({ text: $scope.data.MedicationAllergiesOther, checked: true });
+                     
+                       var newMedicationAllegiesItem = { text: $scope.data.MedicationAllergiesOther, checked: true };
+                      $scope.MedicationAllegiesList.splice(1, 0, newMedicationAllegiesItem);
+        
+                      // $scope.MedicationAllegiesList.push({ text: $scope.data.MedicationAllergiesOther, checked: true });
 					  return $scope.data.MedicationAllergiesOther;
 				  }
 				}
@@ -1076,7 +1086,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
                             if(item.text == "Other - (List below)") { item.checked = false; }
                         } 
                       });
-                      $scope.CurrentMedicationList.push({ text: $scope.data.CurrentMedicationOther, checked: true });
+                     
+                          var newCurrentMedicationItem = { text: $scope.data.CurrentMedicationOther, checked: true };
+                      $scope.CurrentMedicationList.splice(1, 0, newCurrentMedicationItem);
+                      
+                      // $scope.CurrentMedicationList.push({ text: $scope.data.CurrentMedicationOther, checked: true });
 					  return $scope.data.CurrentMedicationOther;
 				  }
 				}
