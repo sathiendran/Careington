@@ -653,7 +653,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
                       angular.forEach($scope.primaryConcernList, function(item, index) {
                         item.checked = false;
                       });
-                      $scope.primaryConcernList.push({ text: $scope.data.PrimaryConcernOther, checked: true });
+                      var newPrimaryConcernItem = { text: $scope.data.PrimaryConcernOther, checked: true };
+                      $scope.primaryConcernList.splice(1, 0, newPrimaryConcernItem);
+                      //$scope.primaryConcernList.push({ text: $scope.data.PrimaryConcernOther, checked: true });
 					  return $scope.data.PrimaryConcernOther;
 				  }
 				}
