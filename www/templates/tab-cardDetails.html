@@ -57,7 +57,7 @@
 			  <label class="item item-input" >
 				<span class="input-label" >Expiration Date</span>
 				<!--<input type="date" placeholder="Required"  style="font-size: 18px;">-->
-				<input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='month')"   id="datepicker" name="date" on-change="changeformatExpiry();"> 
+				<input placeholder="Required" style="font-size: 18px;" type="text"  id="datepicker" name="date" ng-Model="ccexpiry" credit-card-expiration-entry> 
                  </label>	
                 
                 <label class="item item-input" >
@@ -82,13 +82,8 @@
 			  </label>
 			  <label class="item item-input" >
 				<span class="input-label" >Zip</span>
-			<!--<input type="number" ng-model="input3" maxlength="5" input-max-length-number/>
- -->
-				<input type="number" placeholder="Required" ng-model="Zip" style="font-size: 18px;" name="Zip" id="Zip" maxlength="5" input-max-length-number >
-			
-
-
-			 </label>
+			         <input type="number" placeholder="Required" ng-model="Zip" style="font-size: 18px;" name="Zip" id="Zip" maxlength="5" input-max-length-number >
+			     </label>
 			  
 			</div>
 			

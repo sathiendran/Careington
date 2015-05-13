@@ -550,9 +550,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
   $scope.toggleLeft = function() {
     $ionicSideMenuDelegate.toggleLeft();
   };
-  $scope.myGoBack = function() {
+ /* $scope.myGoBack = function() {
     $ionicHistory.goBack();
-  }; 
+  }; */
 }) 
 
 
@@ -560,15 +560,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 // Controller to be used by all intake forms
 .controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state,SurgeryStocksSession,SurgeryStocksListService) {
     
-    //$rootScope.Appointment = {};
-    //$rootScope.Appointment.primaryConcern = "Hell";
+   
     $rootScope.limit = 4;
 	$rootScope.Concernlimit = 1;
     $rootScope.checkedPrimary = 0;
     
-  /*  $scope.myGoBack = function() {
-        $ionicHistory.goBack();
-    }; */
+ 
   
     $scope.model = null;
 	
@@ -1198,7 +1195,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$scope.data.searchQuery = '';
      };
     
-    //Search Query
+    
      $scope.clearRootScopeConce = function(model) {
 		$rootScope.PatientPrimaryConcern = "";
         $rootScope.PatientSecondaryConcern = "";
@@ -1353,10 +1350,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 
 
-
-
-
-
 .controller('ConsentTreatCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -1372,9 +1365,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.myGoBack = function() {
+	/* $scope.myGoBack = function() {
 	$ionicHistory.goBack();
-	};
+	}; */
 })
 
 .controller('applyPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
@@ -1382,9 +1375,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.myGoBack = function() {
+	/*$scope.myGoBack = function() {
 	$ionicHistory.goBack();
-	};
+	}; */
 })
 
 .controller('addCardCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
@@ -1392,9 +1385,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.myGoBack = function() {
+	/*$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	};
+	};*/
 })
 
 .controller('consultChargeNoPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
@@ -1402,9 +1395,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.myGoBack = function() {
+	/*$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	};
+	};*/
 })
 
 .controller('submitPaymentCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
@@ -1412,12 +1405,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	$scope.myGoBack = function() {
+	/*$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	};
+	}; */
 })
 
-.controller('receiptCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+/*.controller('receiptCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
@@ -1425,7 +1418,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	$scope.myGoBack = function() {
 		$ionicHistory.goBack();
 	};
-})
+}) */
 
 /*.controller('WaitingRoomCtrl', function($scope,$ionicSideMenuDelegate) {
 	$scope.toggleLeft = function() {
@@ -1514,3 +1507,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
       return filter
     }
   )
+
+.directive('creditCardExpirationEntry', function() {
+  return {
+    require: 'ngModel',
+    restrict: 'A',
+    link: function (scope, element, attrs, ngModelCtrl) {
+      function fromUser(text) {
+        var newVal = String(text);
+        if(typeof oldLength != "undefined"){
+            if(oldLength != 3 && String(text).length == 2){
+                newVal = newVal.substr(0,2) + "/" + newVal.substr(2, newVal.length);// String(text) + "/";
+            }
+        }
+        if(String(text).length == 1){
+            oldLength = 0;
+        }else{
+            oldLength = String(text).length;
+        }
+        ngModelCtrl.$setViewValue(newVal);
+        ngModelCtrl.$render();
+        return ngModelCtrl.newVal;
+      }
+      ngModelCtrl.$parsers.push(fromUser);
+    }
+  };
+})
