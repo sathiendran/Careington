@@ -1447,9 +1447,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
       function fromUser(text) {
         var maxlength = Number(attrs.maxlength);
         if (String(text).length > maxlength) {
-          ngModelCtrl.$setViewValue(ngModelCtrl.$modelValue);
+          var newString = String(text).substr(0, maxlength);
+          ngModelCtrl.$setViewValue(newString);
           ngModelCtrl.$render();
-          return ngModelCtrl.$modelValue;
+          return ngModelCtrl.newString;
         }
         return text;
       }
