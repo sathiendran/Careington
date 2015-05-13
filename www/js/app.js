@@ -335,7 +335,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
    .state('tab.waitingRoom', {
     url: '/waitingRoom',
     views: {
-      'tab-account': {
+      'tab-login': {
         templateUrl: 'templates/tab-waitingRoom.html',
         controller: 'WaitingRoomCtrl'
       }
