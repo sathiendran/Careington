@@ -345,13 +345,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	$rootScope.cardDisplay = "block;";
 		
 	$scope.doPostPaymentProfileDetails = function () {
-		
-		
-		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' || $('#Provider').val() == ''|| $('#Zip').val() == '' ){			
+		var zipCount = $('#Zip').val().length;
+        var ExpiryDate = $('#datepicker').val().split("/");
+      
+        if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' || $('#Provider').val() == ''|| $('#Zip').val() == '' ){			
 			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
-		} else {
+		} else if(zipCount <= 4) {
+			$scope.ErrorMessage = "Verify Zip!";
+			$rootScope.CardValidation($scope.ErrorMessage);
+        } else if(ExpiryDate[0].length <= 1 || ExpiryDate[1].length <= 3 || ExpiryDate[0] >= 13) {
+            $scope.ErrorMessage = "Verify Expiry Date!";
+			$rootScope.CardValidation($scope.ErrorMessage);
+        }
+        else {
 		
 		$rootScope.verifyCardDisplay = "block";
 		$rootScope.cardDisplay = "none;";
@@ -1517,11 +1525,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
         var newVal = String(text);
         if(typeof oldLength != "undefined"){
             if(oldLength != 3 && String(text).length == 2){
-                newVal = newVal.substr(0,2) + "/" + newVal.substr(2, newVal.length);// String(text) + "/";
+                //newVal = newVal.substr(0,2) + "/" + newVal.substr(2, newVal.length);// 
+                newVal = String(text) + "/";
             }
         }
         if(String(text).length == 1){
-            oldLength = 0;
+            oldLength = 7;
         }else{
             oldLength = String(text).length;
         }
