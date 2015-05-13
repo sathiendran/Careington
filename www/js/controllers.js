@@ -1169,15 +1169,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
     
     $scope.surgery = {};
     $scope.closeSurgeryPopup = function(model) {
-		//$rootScope.LastName1 = $('#name').val();
-		//$rootScope.datestr = $('#dateString').val();
-		
-		if($scope.surgery.name == '' || $scope.surgery.dateString == '' ){			
-			$scope.ErrorMessage = "Required fields can't be empty!";
+         $scope.surgery.name;
+		/*$rootScope.LastName1 = $('#name').val();
+		$rootScope.datestr = $('#dateString').val(); */
+        $scope.surgery.dateString;
+		if($scope.surgery.name == '' || $scope.surgery.dateString == ''){
+            $scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
-			
-		} else {
-
+        } else if(($scope.surgery.name == undefined || $scope.surgery.dateString == undefined)) {
+             $scope.ErrorMessage = "Required fields can't be empty!";
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
+        } else {
         SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
         $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
         $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
