@@ -350,11 +350,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
         
            
         var currentTime = new Date()
-        var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
-        var year = CurrentDate[2];
-        var month = CurrentDate[0];
-        var day  = CurrentDate[1];
+        var ExpiryDateCheck = new Date();
+        //var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
         
+        ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
       
         if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' || $('#Provider').val() == ''|| $('#Zip').val() == '' ){			
 			$scope.ErrorMessage = "Required fields can't be empty!";
@@ -366,8 +365,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
         } else if(ExpiryDate[0].length <= 1 || ExpiryDate[1].length <= 3 || ExpiryDate[0] >= 13) {
             $scope.ErrorMessage = "Verify Expiry Date!";
 			$rootScope.CardValidation($scope.ErrorMessage);
-        } else if((year.toString() > ExpiryDate[1] && month.toString() > ExpiryDate[0])) {
-             $scope.ErrorMessage = "This is previouse year!";
+        } else if(ExpiryDateCheck < currentTime) {
+             $scope.ErrorMessage = "The expiry date is before today's date. Please select a valid expiry date!";
 			 $rootScope.CardValidation($scope.ErrorMessage);
         }
         else {
