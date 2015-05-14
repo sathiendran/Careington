@@ -604,16 +604,21 @@ $dark:                            #444 !default;
   content: "\f120"; }
 
 .ion-checkmark-round:before {
-  content: "\f121"; }
+  content: "\f121";
+ }
 
 .ion-chevron-down:before {
   content: "\f123"; }
 
 .ion-chevron-left:before {
-  content: "\f124"; }
+  content: "\f124";
+  font-size: 22px;
+  }
 
 .ion-chevron-right:before {
-  content: "\f125"; }
+  content: "\f125";
+  font-size: 22px;
+  }
 
 .ion-chevron-up:before {
   content: "\f126"; }
@@ -8099,7 +8104,7 @@ body {
   border-bottom: 1px solid #b9b8b8;
   color: #565656;
   height: auto;
-  margin-top: 118px; }
+  margin-top: 113px; }
 
 .patientCalendar_watch {
   padding: 10px;
@@ -8107,7 +8112,7 @@ body {
   margin-top: 2px; }
 
 .patientCalendar_text {
-  padding: 15px;
+  padding: 17px;
   color: #383838;
   font-size: 20px;
   font-weight: bold; }
@@ -8901,3 +8906,30 @@ form.ng-submitted input.ng-valid + i.icon.error {
         padding-top: 3px !important; }
       .UserHme .UserHmeSub .item-input input {
         font-size: 17px; }
+
+.HeaderList {
+  font-size: 22px;
+  text-align: center;
+  width: 100%;
+  margin-left: -32px;
+  top: 4px; }
+
+.subHeaderTop {
+  top: 86px; }
+
+#BackButtonIcon {
+  color: #000;
+  margin-top: 10px; }
+
+#WhoNeeds {
+  font-size: 23px;
+  width: 85%; }
+
+.BackButton {
+  padding-top: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 68px;
+  position: absolute;
+  z-index: 1;
+  top: 10px; }

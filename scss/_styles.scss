@@ -517,7 +517,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	border-bottom: 1px solid #b9b8b8;
 	color: #565656; 
 	height: auto; 
-	margin-top: 118px;
+	margin-top: 113px;
 }
 .patientCalendar_watch {
 	padding: 10px;
@@ -525,7 +525,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	margin-top: 2px;
 }
 .patientCalendar_text {
-	padding: 15px;
+	padding: 17px;
 	color: $MineShaft;
 	font-size: 20px;
 	font-weight: bold;
@@ -1389,4 +1389,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
 				}
 		}
 }
+
+.HeaderList {
+font-size: 22px; text-align: center; width: 100%;  margin-left: -32px; top:4px;
+}
+.subHeaderTop { top: 86px; }
+#BackButtonIcon { color:#000; margin-top: 10px;}
+#WhoNeeds { font-size: 23px;  width: 85%; }
+.BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}
 
