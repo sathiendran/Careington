@@ -100,12 +100,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	/*$scope.myGoBack = function() {
 		$ionicHistory.goBack();
 	}; */
-	$rootScope.UserEmail = 'ben.ross.310.95348@gmail.com';
+	//$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
   
 	$scope.userLogin = {};
     $scope.LoginFunction = function(item,event){
 		//$rootScope.email = $scope.userLogin.email;
-		$rootScope.UserEmail = $scope.UserEmail;
+		$rootScope.UserEmail = $scope.userLogin.UserEmail;
 		//console.log($rootScope.UserEmail);
 		
 		if($('#UserEmail').val() == ''){			
@@ -124,28 +124,65 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			}
 			else {
 				//alert("Valid email address.");
-				$scope.doGetFacilitiesList();
-				$state.go('tab.provider');
+				$scope.doGetFacilitiesList();			
 			}
 		}
 		
     };
+	
+	
+	$scope.doGetFacilitiesList = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            emailAddress: $rootScope.UserEmail, 
+			accessToken: $rootScope.accessToken,			
+            success: function (data) {
+				//console.log(data);
+                $rootScope.PostPaymentDetails = data.data;
+				if(data.data == "")	 {
+					$scope.ErrorMessage = "Invalid Mail ID";
+					$rootScope.Validation($scope.ErrorMessage);
+				} else {				
+					$rootScope.hospitalDetails = [];
+					angular.forEach(data.data, function(index, item) {	
+						$rootScope.hospitalDetails.push({
+							'id': index.$id,
+							'hospital': index.hospital,
+							'hospitalId': index.hospitalId,						
+						});
+					});	
+						$state.go('tab.provider');
+				}
+				
+				//console.log($rootScope.hospitalDetails);		
+            },
+            error: function (data) {
+                $scope.PostPaymentDetails = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+		
+		LoginService.getFacilitiesList(params);
+	}
 	
 	//$rootScope.providerId = $stateParams.providerID;
 	//$rootScope.providerId ='126';
 	
 	$scope.ProviderFunction = function($hospitalId) {
 		
-		//$rootScope.hospitalId = $hospitalId;		
-		$rootScope.hospitalId = '126';		
+		$rootScope.hospitalId = $hospitalId;		
+		//$rootScope.hospitalId = '126';		
 		//console.log($rootScope.hospitalId);			
 		$state.go('tab.password');
 	}
 	
 	//Password functionality
 
-	$rootScope.password = 'Password@123';
-	
+	//$scope.password = 'Password@123';
+	$scope.pass = {};
 	
 	$scope.doGetToken = function () {
 	
@@ -153,19 +190,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			$scope.ErrorMessage = "Password can't be empty!";
 			$rootScope.Validation($scope.ErrorMessage);
 		} else {
-			
+			console.log($scope.password);
 			var params = {
 				email: $rootScope.UserEmail, 
-				password: 'Password@123',
+				password: $scope.pass.password,
 				userTypeId: 1,
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
-					$scope.tokenStatus = 'alert-success';
-					$scope.doGetExistingConsulatation();	
-					$state.go('tab.userhome');		
-					
+					if(typeof data.access_token == 'undefined') {
+						$scope.ErrorMessage = "Invalid password!";
+						$rootScope.Validation($scope.ErrorMessage);
+					} else {
+						$scope.tokenStatus = 'alert-success';
+						$scope.doGetExistingConsulatation();	
+						$state.go('tab.userhome');		
+					}
 				},
 				error: function (data) {
 					$scope.accessToken = 'Error getting access token';
@@ -401,37 +442,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		}
 	}
 	
-	$scope.doGetFacilitiesList = function () {
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		var params = {
-            emailAddress: $rootScope.UserEmail, 
-			accessToken: $rootScope.accessToken,			
-            success: function (data) {
-				//console.log(data);
-                $rootScope.PostPaymentDetails = data.data;	
-				
-				$rootScope.hospitalDetails = [];
-				angular.forEach(data.data, function(index, item) {	
-					$rootScope.hospitalDetails.push({
-						'id': index.$id,
-						'hospital': index.hospital,
-						'hospitalId': index.hospitalId,						
-					});
-				});	
-				
-				//console.log($rootScope.hospitalDetails);		
-            },
-            error: function (data) {
-                $scope.PostPaymentDetails = 'Error getting consultation report';
-				console.log(data);
-            }
-        };
-		
-		LoginService.getFacilitiesList(params);
-	}
+	
 	
 	$scope.doGetCodesSet = function () {
 		if ($scope.accessToken == 'No Token') {

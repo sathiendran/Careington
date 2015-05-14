@@ -64,7 +64,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.doGetToken = function () {
             var params = {
                 email: $scope.emailAddress,
-                password: 'Password@123',
+                password: 'Password@12345',
                 userTypeId: $scope.userTypeId,
                 hospitalId: $scope.hospitalId,
                 success: function (data) {
