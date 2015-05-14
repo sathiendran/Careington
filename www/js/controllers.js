@@ -32,7 +32,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 
-.controller('LoginCtrl', function($scope, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService) {
+.controller('LoginCtrl', function($scope, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -347,6 +347,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	$scope.doPostPaymentProfileDetails = function () {
 		var zipCount = $('#Zip').val().length;
         var ExpiryDate = $('#datepicker').val().split("/");
+        
+           
+        var currentTime = new Date()
+        var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
+        var year = CurrentDate[2];
+        var month = CurrentDate[0];
+        var day  = CurrentDate[1];
+        
       
         if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' || $('#Provider').val() == ''|| $('#Zip').val() == '' ){			
 			$scope.ErrorMessage = "Required fields can't be empty!";
@@ -358,6 +366,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
         } else if(ExpiryDate[0].length <= 1 || ExpiryDate[1].length <= 3 || ExpiryDate[0] >= 13) {
             $scope.ErrorMessage = "Verify Expiry Date!";
 			$rootScope.CardValidation($scope.ErrorMessage);
+        } else if((year.toString() > ExpiryDate[1] && month.toString() > ExpiryDate[0])) {
+             $scope.ErrorMessage = "This is previouse year!";
+			 $rootScope.CardValidation($scope.ErrorMessage);
         }
         else {
 		
@@ -1328,7 +1339,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
     
     $scope.disconnectConference = function(){
         session.unpublish(publisher)
-        publisher.destroy();
+        //publisher.destroy();
         session.disconnect();
         $state.go('tab.ReportScreen');
     };
