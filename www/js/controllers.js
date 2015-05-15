@@ -474,7 +474,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
             $scope.ErrorMessage = "Verify Expiry Date!";
 			$rootScope.CardValidation($scope.ErrorMessage);
         } else if(ExpiryDateCheck < currentTime) {
-             $scope.ErrorMessage = "The expiry date is before today's date. Please select a valid expiry date!";
+             $scope.ErrorMessage = "Verify month & year!";
 			 $rootScope.CardValidation($scope.ErrorMessage);
         }
         else {
