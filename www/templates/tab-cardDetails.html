@@ -1,6 +1,7 @@
 
 
 <ion-view title="Card Details">
+    <form ng-submit="doPostPaymentProfileDetails()">
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height: 58px;" >
 		<!--<div style="color: #fff; font-size: 17px; line-height: 3; margin-left: 15px; width: 25%;" >
 			<a style="padding-top: 10px; cursor: pointer; color: #fff;" ng-href="#/tab/consultCharge" >Cancel</a>
@@ -15,9 +16,15 @@
 		<!--<h1 class="title_patient"></h1> -->
 		<div class="buttons" >
 		<!--ng-href="#/tab/applyPlan"-->
-			<a class="button_new icon" ng-click="doPostPaymentProfileDetails()" style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
+			<!--<a class="button_new icon" ng-click="doPostPaymentProfileDetails()" style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
                 <span style="margin-top:7px; position:absolute;left: 15px;"> Next </span>
-			</a>				
+			</a> -->	
+            
+              <button type="submit" class="button_new icon" style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;background: none;
+  border: none;">
+						<span style="margin-top:-7px; position:absolute;left: 15px;">Next</span>
+              </button>
+            
 		  </div>
 		 
 		 
@@ -96,6 +103,5 @@
 		
 		
 	</ion-content>
-
-	
+</form>
 </ion-view>
