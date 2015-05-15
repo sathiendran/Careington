@@ -32,20 +32,44 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 
-.controller('LoginCtrl', function($scope, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter) {
+.controller('LoginCtrl', function($scope, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
-    
-   /* $scope.changeformatExpiry = function () {
-        alert('hi');
-        $scope.requestedDate = new Date();
-       console.log($scope.requestedDate);
-        $scope.requestedDates = $filter('date')($scope.requestedDate, "mm/yyyy");
-         alert($scope.requestedDates);
-    } */
-    
+	
+    $scope.toggleLeft1 = function() {
+		todayStocks.all().then(function (results) {	
+					$scope.patientPaymentProfiles = results;	
+
+						$rootScope.paymentProfiles123 = [];	
+				
+				angular.forEach(results.data.data.paymentProfiles, function(index, item) {	
+		
+					
+					$rootScope.paymentProfiles123.push({
+						'id': index.$id,
+						'billingAddress': angular.fromJson(index.billingAddress),
+						'cardExpiration': index.cardExpiration,
+						'cardNumber': index.cardNumber,
+						'isBusiness': index.isBusiness,
+						'profileID': index.profileID,
+					});
+				});	
+				if(results.data.data.paymentProfiles.length != '0') {
+					$rootScope.enableSubmitpayment = "block";
+					$rootScope.disableSubmitpayment = "none;";
+					//$rootScope.addPaymentCard = "none;";
+				} else if(results.data.data.paymentProfiles.length == '0') {
+					$rootScope.enableSubmitpayment = "none";
+					$rootScope.disableSubmitpayment = "block;";
+					//$rootScope.addPaymentCard = "block;";
+				}
+				$state.go('tab.consultChargeNoPlan');
+					
+				});
+	}
+
     $rootScope.StateList = StateLists.getStateDetails();
 	$scope.currentYear = new Date().getFullYear()
       $scope.currentMonth = new Date().getMonth() + 1
@@ -94,6 +118,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		$rootScope.Validation($scope.ErrorMessage);
 		
 	};
+	
 	
 
 	//Back Button	
@@ -308,13 +333,69 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		
 	}
 	
+	 $("#addNewCard").change(function() {
+        console.log( $('option:selected', this).text() );
+		if($('option:selected', this).text() == 'Add a new card') {
+			$state.go('tab.cardDetails');
+		}
+    });
+	$scope.doGetPatientPaymentProfilesConsultCharge = function () {
+		if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			
+			var params = {
+				hospitalId: $rootScope.hospitalId, 
+				patientId: $rootScope.patientId,
+				accessToken: $rootScope.accessToken,
+				success: function (data) {
+					$scope.patientPaymentProfiles = data;	
+
+						$rootScope.paymentProfiles123 = [];	
+				
+				angular.forEach(data.data.paymentProfiles, function(index, item) {	
+		
+					
+					$rootScope.paymentProfiles123.push({
+						'id': index.$id,
+						'billingAddress': angular.fromJson(index.billingAddress),
+						'cardExpiration': index.cardExpiration,
+						'cardNumber': index.cardNumber,
+						'isBusiness': index.isBusiness,
+						'profileID': index.profileID,
+					});
+				});	
+				if(data.data.paymentProfiles.length > 0) {
+					$rootScope.enableSubmitpayment = "block";
+					$rootScope.disableSubmitpayment = "none;";
+					//$rootScope.addPaymentCard = "none;";
+				} else if(data.data.paymentProfiles.length == 0) {
+					$rootScope.enableSubmitpayment = "none";
+					$rootScope.disableSubmitpayment = "block;";
+					//$rootScope.addPaymentCard = "block;";
+				}
+				$state.go('tab.consultChargeNoPlan');
+					
+				},
+				error: function (data) {
+					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
+					console.log(data);
+				}
+			};
+			
+			LoginService.getPatientPaymentProfile(params);
+		
+	}
+	
+	
 	$scope.doGetPatientPaymentProfiles = function () {
 	
-		if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
+		/*if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
 			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
-		} else {
+		} else {*/
 		
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -342,7 +423,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 						'profileID': index.profileID,
 					});
 				});	
-				$state.go('tab.submitPayment');
+				if(data.data.paymentProfiles.length > 0) {
+					$rootScope.enableSubmitpayment = "block";
+					$rootScope.disableSubmitpayment = "none;";
+					//$rootScope.addPaymentCard = "none;";
+				} else if(data.data.paymentProfiles.length == 0) {
+					$rootScope.enableSubmitpayment = "none";
+					$rootScope.disableSubmitpayment = "block;";
+					//$rootScope.addPaymentCard = "block;";
+				}
+				//$state.go('tab.submitPayment');
+				$state.go('tab.addCard');
 					
 				},
 				error: function (data) {
@@ -352,35 +443,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			};
 			
 			LoginService.getPatientPaymentProfile(params);
-		}
+		//}
 	}
 	
 	$scope.paymentProfileId = 28804398;
 	
-	$scope.doPostCoPayDetails = function () {
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		var params = {
-            profileId: $scope.profileId, 
-			emailAddress: $rootScope.UserEmail,
-			Amount: 30,
-			consultationId: $rootScope.consultationId,
-			paymentProfileId: $scope.paymentProfileId,
-            accessToken: $rootScope.accessToken,
-            success: function (data) {
-                $scope.CreditCardDetails = data;	
-				$state.go('tab.receipt');				
-            },
-            error: function (data) {
-                $scope.CreditCardDetails = 'Error getting patient payment profiles';
-				console.log(data);
-            }
-        };
-        
-        LoginService.postCoPayDetails(params);
-	}
 	
 	$rootScope.verifyCardDisplay = "none";
 	$rootScope.cardDisplay = "block;";
@@ -438,7 +505,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
             success: function (data) {
                 $scope.PostPaymentDetails = data;	
 					console.log(data);
-				$scope.doGetPatientPaymentProfiles();
+				//$scope.doGetPatientPaymentProfiles();
 				$state.go('tab.submitPayment');
             },
             error: function (data) {
@@ -555,6 +622,39 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		} else {
 			$state.go('tab.applyPlan');
 		}	
+	}
+	
+	$scope.doPostCoPayDetails = function () {
+		
+		if($('#addNewCard').val() == 'Choose Your Card'){			
+			$scope.ErrorMessage = "Please Choose Your Card!";
+			$rootScope.CardValidation($scope.ErrorMessage);
+			
+		} else {
+	
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			var params = {
+				profileId: $scope.profileId, 
+				emailAddress: $rootScope.UserEmail,
+				Amount: 30,
+				consultationId: $rootScope.consultationId,
+				paymentProfileId: $scope.paymentProfileId,
+				accessToken: $rootScope.accessToken,
+				success: function (data) {
+					$scope.CreditCardDetails = data;	
+					$state.go('tab.receipt');				
+				},
+				error: function (data) {
+					$scope.CreditCardDetails = 'Error getting patient payment profiles';
+					console.log(data);
+				}
+			};
+			
+			LoginService.postCoPayDetails(params);
+		}
 	}
 	
 	
@@ -1389,55 +1489,55 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	}; */
 })
 
-.controller('addHealthPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+/*.controller('addHealthPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	/* $scope.myGoBack = function() {
+	 $scope.myGoBack = function() {
 	$ionicHistory.goBack();
-	}; */
-})
+	}; 
+})*/
 
-.controller('applyPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+/*.controller('applyPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	/*$scope.myGoBack = function() {
+	$scope.myGoBack = function() {
 	$ionicHistory.goBack();
-	}; */
-})
+	}; 
+})*/
 
-.controller('addCardCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+/*.controller('addCardCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	/*$scope.myGoBack = function() {
+	$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	};*/
-})
+	};
+})*/
 
-.controller('consultChargeNoPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+/*.controller('consultChargeNoPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	/*$scope.myGoBack = function() {
+	$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	};*/
-})
+	};
+})*/
 
-.controller('submitPaymentCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
+/*.controller('submitPaymentCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-	/*$scope.myGoBack = function() {
+	$scope.myGoBack = function() {
 		$ionicHistory.goBack();
-	}; */
-})
+	}; 
+})*/
 
 /*.controller('receiptCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
 	$scope.toggleLeft = function() {

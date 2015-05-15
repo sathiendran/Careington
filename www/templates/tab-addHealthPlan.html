@@ -17,21 +17,50 @@
 				<div class="consultation_number" style="color:#666666;"> $60*</div>
 			</div>
 			
-			<div class="healthPlan_header" style="padding-top: 60px;" >
-				<div class="healthPlan_text" style="margin-left: -117px;" >Select health plan</div>
+			
+			<div class="healthPlan_header" style="padding-top: 40px; color: #5C5C5C; text-align: center;  display: none; " >
+				
+				<div class="healthPlan_text" style="margin-left: 20px; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;">Select Health Plan</div>
+					<div class="addHealthPlan_header" style="text-align:left; " >					
+						<div class="demo" style="margin-left: 50px;">
+							
+							<select>
+								<option style="padding:10px;" class="ellipsis"><b>Blue Cross Blue ...0054</b></option>
+								<option style="padding:10px;" class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
+								<option style="padding:10px;" class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
+							</select>
+						</div>
+					</div>
+			</div>
+			
+			
+			
+			<div style="padding-top: 15px; padding-bottom: 5px;  display: none;">
+				<!--<a ng-href="#/tab/addCard">-->
+					<button type="submit" ng-click="doGetPatientPaymentProfiles()" class="button button-block button-balanced">
+						<span style="position: relative;top: 3px;">Apply Plan</span>
+					</button>
+				<!--</a>-->
+			</div>
+			
+			<div class="healthPlan_header" style="padding-top: 30px; padding-bottom: 5px;" >
+				<!--<div class="healthPlan_text" style="margin-left: -117px;" >Select health plan</div>-->
 				<a ng-href="#/tab/planDetails"><div class="addHealthPlan_header" >
 					<img ng-src="img/add.png" style="width: 30px; height: 30px;" ><span class="addHealthPlan_text" >Add A Health Plan</span>
 				</div></a>
 			</div>
 			
 			<div style="padding-top: 15px;">
-				<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">
-					<button class="button button-block button-royal" >
+				
+				
+				<!--<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">-->
+					<button class="button button-block button-royal"  type="submit" ng-click="doGetPatientPaymentProfilesConsultCharge()"  >
 						<span style="position: relative;top: 3px;"> Skip to Payment</span>
 					</button>
-				</a>
+				<!--</a>-->
+				
 			</div>
-			<div class="scheduled_appointments_text" >
+			<div class="scheduled_appointments_text" style=" display: none;" >
 				Don't add a health plan, pay full charge directly.
 			</div>
 		</div>

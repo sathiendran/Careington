@@ -465,3 +465,22 @@ angular.module('starter.services', [])
 })
 
 
+.factory('todayStocks', function ($http) {
+
+
+
+	return {
+		all: function () {
+		    var promise = $http({method: 'GET', url: 'http://private-98763-snapmd.apiary-mock.com/api/paymentDetails'})
+			//var promise = $http({method: 'GET', url: 'http://25.61.110.5/chartapi/api/equitypattern/datewiseByType?date=' + today, params:{limit: $a, signalType: $b}})
+		   // var promise = $http({ method: 'GET', url: 'stock.json' })
+				.success(function (data, status, headers, config) {
+					return data;
+				})
+				.error(function (data, status, headers, config) {
+					return {"status": false};
+				});
+			return promise;
+		}
+	}
+})
