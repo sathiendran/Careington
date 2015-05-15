@@ -1,5 +1,5 @@
 <ion-view title="Plan Details">
-	
+	 <form ng-submit="PlanDetailsValidation()">
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height: 58px;" >
 	
 		<div id="Error_Message" style="position: fixed; z-index:2;" ></div>
@@ -8,11 +8,17 @@
 				<span style="margin-top:7px; position:absolute;">Cancel</span>
 			</a>				
 		  </div>
+        
 		<!--<h1 class="title_patient"></h1>--->
 		<div class="buttons" >		
-			<a class="button_new icon" ng-click="PlanDetailsValidation()"  style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
+			<!--<a class="button_new icon" ng-click="PlanDetailsValidation()"  style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
 				<span style="margin-top:7px; position:absolute;left: 15px;">Next</span>
-			</a>				
+			</a> -->
+             <button type="submit" class="button_new icon" style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;background: none;
+  border: none;">
+						<span style="margin-top:-7px; position:absolute;left: 15px;">Next</span>
+					</button>
+            
 		  </div>
 		
 	</ion-header-bar>
@@ -77,9 +83,10 @@
 			</div>
 			<div class="privacy" >About Connected Care Privacy</div>
 		</div>
+       
 	</ion-content>
 	
-	
+    </form>
 
 	
 </ion-view>

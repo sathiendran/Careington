@@ -474,7 +474,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
             $scope.ErrorMessage = "Verify Expiry Date!";
 			$rootScope.CardValidation($scope.ErrorMessage);
         } else if(ExpiryDateCheck < currentTime) {
-             $scope.ErrorMessage = "The expiry date is before today's date. Please select a valid expiry date!";
+             $scope.ErrorMessage = "Verify month & year!";
 			 $rootScope.CardValidation($scope.ErrorMessage);
         }
         else {
@@ -818,7 +818,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			}
 			refresh_close();
 			
-			var top = '<div class="notifications-top-center" style="height: 59px;line-height: 59px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div class="notifications-top-center" style="height: 55px;line-height: 70px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
