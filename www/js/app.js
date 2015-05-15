@@ -239,7 +239,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-addHealthPlan.html',
-        controller: 'addHealthPlanCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -269,7 +269,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-applyPlan.html',
-        controller: 'applyPlanCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -279,7 +279,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-addCard.html',
-        controller: 'addCardCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -289,7 +289,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-consultChargeNoPlan.html',
-        controller: 'consultChargeNoPlanCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })

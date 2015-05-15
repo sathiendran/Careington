@@ -20,10 +20,10 @@
 				<div class="healthPlan_text" style="margin-left: 20px; padding-top: 30px; font-size: 16px; color: #888585;">Pay Using</div>
 					<div class="addHealthPlan_header"  >					
 						<div class="demo" style="margin-left: 50px;">
-							<select>
-								<option style="padding:10px;"><b> </b></option>
+							<select  id="addNewCard" name="addNewCard">
+								<option style="padding:10px;"><b>Choose Your Card</b></option>
 								<option style="padding:10px;" ng-repeat="paymentProfiles123 in paymentProfiles123"  ><b>{{paymentProfiles123.cardNumber}}</b></option>
-								<a ng-href="#/tab/addCard"><option style="padding:10px;"><b>Add a new card</b></option></a>
+								<option style="padding:10px;"><b>Add a new card</b></option>
 							</select>
 						</div>
 					</div>

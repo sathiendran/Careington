@@ -17,7 +17,34 @@
 				<div class="consultation_number" style="color:#666666;"> $60*</div>	
 			</div>
 			
-			<div class="healthPlan_header" style="padding-top: 60px;" >
+			<div class="healthPlan_header" style=" color: #5C5C5C; text-align: center; display: {{enableSubmitpayment}} " >
+				
+				<div class="healthPlan_text" style="margin-left: 20px; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;">Pay Using</div>
+					<div class="addHealthPlan_header" style="text-align:left; " >					
+						<div class="demo" style="margin-left: 50px;">
+							<select id="addNewCard" name="addNewCard">
+								<option style="padding:10px;"><b>Choose Your Card</b></option>
+								<option style="padding:10px;" ng-repeat="paymentProfiles123 in paymentProfiles123"  ><b>{{paymentProfiles123.cardNumber}}</b></option>
+								<option style="padding:10px;"><b>Add a new card</b></option>
+							</select>
+						</div>
+					</div>
+			</div>
+			
+			
+			<div style="padding-top: 15px; padding-bottom: 5px; display: {{enableSubmitpayment}}">
+				<!--<a ng-href="#/tab/receipt">-->
+				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
+				  <span style="position: relative;top: 3px;">Submit Payment</span>
+				</button>
+				
+				<!--</a>-->
+			</div>
+			
+			
+			
+			
+			<div class="healthPlan_header" style="padding-top: 60px; display:{{disableSubmitpayment}}" >
 				<div class="healthPlan_text" style="margin-left: -160px;" >Pay Using</div>
 				<a ng-href="#/tab/cardDetails">
 					<div class="addHealthPlan_header" style="margin-left: 0px;" >
@@ -26,7 +53,7 @@
 				</a>
 			</div>
 			
-			<div style="padding-top: 15px; padding-bottom: 5px;">
+			<div style="padding-top: 15px; padding-bottom: 5px; display:{{disableSubmitpayment}}">
 				<!--<a ng-href="#/tab/cardDetails"><button class="button button-block button-royal">
 				  Submit Payment
 				</button></a>-->
