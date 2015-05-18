@@ -32,7 +32,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 
-.controller('LoginCtrl', function($scope, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter) {
+.controller('LoginCtrl', function($scope, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter,$localstorage) {
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -125,12 +125,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	/*$scope.myGoBack = function() {
 		$ionicHistory.goBack();
 	}; */
+    
 	//$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
-  
+    $rootScope.userLogin.UserEmail = $localstorage.get('username');
 	$scope.userLogin = {};
     $scope.LoginFunction = function(item,event){
 		//$rootScope.email = $scope.userLogin.email;
-		$rootScope.UserEmail = $scope.userLogin.UserEmail;
+		//$rootScope.UserEmail = $scope.userLogin.UserEmail;
 		//console.log($rootScope.UserEmail);
 		
 		if($('#UserEmail').val() == ''){			
@@ -148,7 +149,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 				$rootScope.Validation($scope.ErrorMessage);
 			}
 			else {
-				//alert("Valid email address.");
+				
+             if($scope.userLogin.remember) {
+                    $localstorage.set('username', $("#UserEmail").val()); 
+                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
+
+               } else { 
+                   $rootScope.UserEmail = $scope.userLogin.UserEmail;
+                    $localstorage.set('username', ""); 
+               }
+                
 				$scope.doGetFacilitiesList();			
 			}
 		}
