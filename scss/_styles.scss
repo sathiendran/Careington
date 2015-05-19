@@ -1108,7 +1108,7 @@ margin-left: 16px;
 font-family: $fontFamily_bold;
 }
 .PatintHeaderFontStyleInner { 
-font-family: $fontFamily_thin;
+font-family: $fontFamily_thin important!;
 }
 .PatintHeaderFontStyleSub { 
 font-family: $fontFamily_thin;

@@ -1,13 +1,16 @@
 	<ion-side-menu side="left">
-        
+         <a ng-href="#/tab/userhome" style="">
 				<ion-list>
-                    
-					<ion-item style="margin-top:15px; border-top:none;"><a ng-href="#/tab/userhome" style="color:#706A67;">Home</a></ion-item>
-                   
-				</ion-list>
+                    <ion-item style="margin-top:15px; border:none;color:#706A67;font-family: Glober regular !important;" class="  button icon-left ion-home">
+                      <span style="top: 3px; position:relative;">Home</span> 
+                    </ion-item>
+                 </ion-list></a>
+        <a ng-href="#/tab/login" style="color:#706A67;">
 				<ion-list>
-					<ion-item><a ng-href="#/tab/login" style="color:#706A67;">Log Out</a></ion-item>
+                    <ion-item class="ion-log-out" style="color:#706A67;margin-left: -4px;font-family: Glober regular !important;">
+					<span style=" position: relative;">Log Out</span> </ion-item>
 				</ion-list>
+            </a>
 				
 	</ion-side-menu>
 </ion-side-menus>
