@@ -4304,6 +4304,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
 
 @media (min-width: 680px) {
   .modal {
+    top: 20%;
     right: 20%;
     bottom: 20%;
     left: 20%;
@@ -4621,16 +4622,13 @@ ion-tabs.tabs-color-active-dark .tab-item {
   .loading-container.active {
     opacity: 1; }
   .loading-container .loading {
-    /*padding: $loading-padding;
-
-    border-radius: $loading-border-radius;
-    background-color: $loading-bg-color;
-
-    color: $loading-text-color;
-
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
     text-align: center;
     text-overflow: ellipsis;
-    font-size: $loading-font-size;*/ }
+    font-size: 15px; }
     .loading-container .loading h1, .loading-container .loading h2, .loading-container .loading h3, .loading-container .loading h4, .loading-container .loading h5, .loading-container .loading h6 {
       color: #fff; }
 
@@ -7442,24 +7440,23 @@ a.button {
  * Platform specific tweaks
  */
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
-  _height: 64px;
-  height: auto; }
+  height: 64px; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper {
-    _margin-top: 19px !important; }
+    margin-top: 19px !important; }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > * {
-    _margin-top: 20px; }
+    margin-top: 20px; }
 .platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top {
-  _top: 64px; }
+  top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader {
-  _top: 64px; }
+  top: 64px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  _top: 108px; }
+  top: 108px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-tabs-top {
-  _top: 113px; }
+  top: 113px; }
 .platform-ios.platform-cordova:not(.fullscreen) .has-header.has-subheader.has-tabs-top {
-  _top: 157px; }
+  top: 157px; }
 .platform-ios.platform-cordova.status-bar-hide {
-  _margin-bottom: 20px; }
+  margin-bottom: 20px; }
 
 @media (orientation: landscape) {
   .platform-ios.platform-browser.platform-ipad {
@@ -8104,13 +8101,14 @@ body {
 .patientCalendar_watch {
   padding: 10px;
   float: left;
-  margin-top: 2px; }
+  margin-top: 4px; }
 
 .patientCalendar_text {
   padding: 17px;
   color: #383838;
-  font-size: 20px;
-  font-weight: bold; }
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: -8px; }
 
 .patientCalendar_Content {
   margin: 122px 0 0 0; }
@@ -8140,7 +8138,9 @@ body {
   .BackPatientViewDetails .icon.ion-chevron-right {
     line-height: 3;
     font-size: 15px;
-    padding-left: 5px; }
+    padding-left: 5px;
+    position: relative;
+    top: 5px; }
 
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
@@ -8487,13 +8487,17 @@ a {
   background-color: #d7d7d7;
   margin: -11px -15px 12px -12px;
   padding: 5px;
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 18px;
+  color: #706A67; }
 
 .secondary {
   background-color: #d7d7d7;
   margin: 12px -15px 11px -12px;
   padding: 5px;
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 18px;
+  color: #706A67; }
 
 .ptagprimary {
   font-family: 'Glober Regular';
@@ -8505,7 +8509,9 @@ a {
   background-color: #d7d7d7;
   margin: -11px -15px 11px -12px;
   padding: 5px;
-  font-weight: bold; }
+  font-weight: bold;
+  font-size: 18px;
+  color: #706A67; }
 
 .optionList {
   position: absolute;

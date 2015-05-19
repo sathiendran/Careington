@@ -34,7 +34,7 @@
   // inset mode is when the modal doesn't fill the entire
   // display but instead is centered within a large display
   .modal {
-   // top: $modal-inset-mode-top;
+    top: $modal-inset-mode-top;
     right: $modal-inset-mode-right;
     bottom: $modal-inset-mode-bottom;
     left: $modal-inset-mode-left;

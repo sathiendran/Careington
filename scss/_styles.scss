@@ -944,7 +944,9 @@ text-align:center;  color:#888;
  background-color: #d7d7d7;
    margin: -11px -15px 12px -12px;
    padding: 5px;
-font-weight: bold;
+   font-weight: bold;
+   font-size: 18px;
+    color: #706A67;
 }
 
 .secondary {
@@ -952,6 +954,8 @@ font-weight: bold;
    margin: 12px -15px 11px -12px;
     padding: 5px;
 	font-weight: bold;
+    font-size: 18px;
+    color: #706A67;
 }
 .ptagprimary {
 	@include font($fontFamily_regular, normal, 20px);
@@ -963,6 +967,8 @@ font-weight: bold;
    margin: -11px -15px 11px -12px;
     padding: 5px;
 	font-weight: bold;
+     font-size: 18px;
+     color: #706A67;
 }
 
 .optionList{

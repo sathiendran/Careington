@@ -29,11 +29,13 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'ngStorage'])
 
 
-.controller('LoginCtrl', function($scope, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter,$localstorage) {
+.controller('LoginCtrl', function($scope, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage, $sessionStorage) {
  
+    $scope.$storage = $localStorage;
+    
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
@@ -121,10 +123,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 	
     //$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
     
-    //$rootScope.userLogin.UserEmail = $localstorage.get('username');
-    $('#UserEmail').val($localstorage.get('username'));
+    
+    
     
 	$scope.userLogin = {};
+    $scope.userLogin.UserEmail = $localStorage.oldEmail;
     $scope.LoginFunction = function(item,event){
 		
 		//$rootScope.UserEmail = $scope.userLogin.UserEmail;
@@ -147,12 +150,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			else {
 				
              if($scope.userLogin.remember) {
-                    $localstorage.set('username', $("#UserEmail").val()); 
+                    $localStorage.oldEmail = $scope.userLogin.UserEmail;
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
 
                } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
-                   $localstorage.set('username', ""); 
+                   $localStorage.oldEmail = '';
                }
                 
 				$scope.doGetFacilitiesList();
@@ -344,6 +347,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			$state.go('tab.cardDetails');
 		}
     });
+    
 	$scope.doGetPatientPaymentProfilesConsultCharge = function () {
 		if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -371,6 +375,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 						'profileID': index.profileID,
 					});
 				});	
+                $rootScope.paymentCardCount = $rootScope.paymentProfiles123.length;
+                    
+                    $scope.AddNewCardDetails = function() {
+                    if($rootScope.paymentCardCount != 10) {
+                     $state.go('tab.cardDetails');
+                    } else {  }
+                    }
+                    
+                    
 				if(data.data.paymentProfiles.length > 0) {
 					$rootScope.enableSubmitpayment = "block";
 					$rootScope.disableSubmitpayment = "none;";
