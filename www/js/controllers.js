@@ -29,13 +29,53 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'ngStorage'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer'])
 
 
-.controller('LoginCtrl', function($scope, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, IntakeLists, StateLists, $state, $rootScope, $stateParams, SurgeryStocksSession, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage, $sessionStorage) {
+.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
  
-    $scope.$storage = $localStorage;
-    
+	
+	
+	var dtNow = new Date("2015-05-19T09:57:04.268Z");
+	
+	$rootScope.time = dtNow.getTime();
+	
+	
+	$rootScope.patientDisplay1 = 'none';
+	
+	$scope.$on('timer-tick', function (event, args){
+        $timeout(function() {
+		console.log(args.minutes + ' - ' + args.seconds );
+            if(args.millis < 100){
+               // $rootScope.timeNew = 'Completed';
+				$rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			   $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay1 = 'block';
+				console.log($rootScope.timeNew);
+            }
+            else if(args.millis < 600000){
+			//$rootScope.timeNew = 'below 10 minutes!';
+               $rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			    $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay1 = 'block';
+			   console.log('below 10 minutes!');
+			   
+            }else{
+               // $rootScope.timeNew = 'More than 10 minutes!';
+				$rootScope.timeNew = 'block';
+			   $rootScope.timeNew1 = 'none';
+			    $rootScope.patientDisplay = 'block';
+			   $rootScope.patientDisplay1 = 'none';
+				console.log('More than 10 minutes!');
+            }
+            
+        });
+    });
+	
+	
+ 
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
@@ -105,7 +145,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" style="height: 60px; line-height: 77px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div id="notifications-top-center" style="height: 58px; line-height: 70px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -121,17 +161,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 		
 	};
 	
-    //$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
+
+//$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
     
-    
-    
+    //$rootScope.userLogin.UserEmail = $localstorage.get('username');
+   // $('#UserEmail').val($localstorage.get('username'));
     
 	$scope.userLogin = {};
-    $scope.userLogin.UserEmail = $localStorage.oldEmail;
     $scope.LoginFunction = function(item,event){
 		
-		//$rootScope.UserEmail = $scope.userLogin.UserEmail;
+		$rootScope.UserEmail = $scope.userLogin.UserEmail;
 		
+
 		
 		if($('#UserEmail').val() == ''){			
 			$scope.ErrorMessage = "Email ID can't be empty!";
@@ -139,7 +180,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 			
 		} else {
 			 $scope.ValidateEmail = function(email){
-				var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 				return expr.test(email);
 			};
 			
@@ -148,18 +189,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 				$rootScope.Validation($scope.ErrorMessage);
 			}
 			else {
+
+						
+
 				
              if($scope.userLogin.remember) {
-                    $localStorage.oldEmail = $scope.userLogin.UserEmail;
+                    $localstorage.set('username', $("#UserEmail").val()); 
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
 
                } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
-                   $localStorage.oldEmail = '';
+                   $localstorage.set('username', ""); 
                }
                 
 				$scope.doGetFacilitiesList();
                 
+
 			}
 		}
 		
@@ -347,7 +392,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 			$state.go('tab.cardDetails');
 		}
     });
-    
 	$scope.doGetPatientPaymentProfilesConsultCharge = function () {
 		if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -375,15 +419,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 						'profileID': index.profileID,
 					});
 				});	
-                $rootScope.paymentCardCount = $rootScope.paymentProfiles123.length;
-                    
-                    $scope.AddNewCardDetails = function() {
-                    if($rootScope.paymentCardCount != 10) {
-                     $state.go('tab.cardDetails');
-                    } else {  }
-                    }
-                    
-                    
 				if(data.data.paymentProfiles.length > 0) {
 					$rootScope.enableSubmitpayment = "block";
 					$rootScope.disableSubmitpayment = "none;";
@@ -468,7 +503,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 	
 	
 	$rootScope.verifyCardDisplay = "none";
-	$rootScope.cardDisplay = "block;";
+	$rootScope.cardDisplay = "inherit;";
 		
 	$scope.doPostPaymentProfileDetails = function () {
 		var zipCount = $('#Zip').val().length;
@@ -603,7 +638,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 
             LoginService.getScheduledConsulatation(params);
         }
-		$rootScope.PlanDisplay = "block";
+		$rootScope.PlanDisplay = "inherit";
 		$rootScope.verifyPlanDisplay = "none;";
 		
 	$scope.PlanDetailsValidation = function(model) {
@@ -678,34 +713,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 	
 })
 
-/*.controller('UserhomeCtrl', function($scope, $ionicSideMenuDelegate, $ionicHistory, $rootScope) {
 
-    console.log($rootScope.hospitalId);
-	console.log($rootScope.UserEmail);
-	console.log($rootScope.password);
-
-
- $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
- /* $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  }; 
-}) */
-
-.controller('UsersearchCtrl', function($scope,$ionicSideMenuDelegate, $ionicHistory) {
-  $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
- /* $scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  }; */
-}) 
 
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory,PatientConcernsListService, IntakeLists, $filter, $rootScope, $state,SurgeryStocksSession,SurgeryStocksListService) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService) {
     
    
     $rootScope.limit = 4;
@@ -1337,10 +1350,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
       
       
     
-     //Search Query
-     $scope.clearSearch = function() {
-		$scope.data.searchQuery = '';
-     };
+    
     
     
      $scope.clearRootScopeConce = function(model) {
@@ -1372,15 +1382,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
 })
 
 
-.controller('WaitingRoomCtrl', function($scope, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
-    $scope.toggleLeft = function() {
-        $ionicSideMenuDelegate.toggleLeft();
-    };
-}) 
 
 
 
-.controller('ConferenceCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, PatientConcernsListService, IntakeLists, $filter, $rootScope, $state, SurgeryStocksSession, SurgeryStocksListService) {
+
+.controller('ConferenceCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService) {
     
     $scope.myVideoHeight = $window.innerHeight - 40;
     $scope.myVideoWidth = $window.innerWidth;
@@ -1474,110 +1480,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'n
     
 })
 
-.controller('PatientConcernsSelectCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicHistory) {
-  $scope.toggleLeft = function() {
-    $ionicSideMenuDelegate.toggleLeft();
-  };
-  /*$scope.myGoBack = function() {
-    $ionicHistory.goBack();
-  }; */
-})
 
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-
-
-.controller('ConsentTreatCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
-	/*$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	}; */
-})
-
-/*.controller('addHealthPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
-	 $scope.myGoBack = function() {
-	$ionicHistory.goBack();
-	}; 
-})*/
-
-/*.controller('applyPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
-	$scope.myGoBack = function() {
-	$ionicHistory.goBack();
-	}; 
-})*/
-
-/*.controller('addCardCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
-	$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	};
-})*/
-
-/*.controller('consultChargeNoPlanCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
-	$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	};
-})*/
-
-/*.controller('submitPaymentCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
-	$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	}; 
-})*/
-
-/*.controller('receiptCtrl', function($scope,$ionicSideMenuDelegate,$ionicHistory) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
-	$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	};
-}) */
-
-/*.controller('WaitingRoomCtrl', function($scope,$ionicSideMenuDelegate) {
-	$scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
-}) */
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-})
 
 .directive('inputMaxLengthNumber', function() {
   return {
