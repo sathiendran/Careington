@@ -522,13 +522,14 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .patientCalendar_watch {
 	padding: 10px;
 	float: left;
-	margin-top: 2px;
+	margin-top: 4px;
 }
 .patientCalendar_text {
 	padding: 17px;
 	color: $MineShaft;
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: bold;
+    margin-bottom: -8px;
 }
 .patientCalendar_Content {
 	margin: 122px 0 0 0;
@@ -567,6 +568,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			line-height: 3;
 			font-size: 15px;
 			padding-left: 5px;
+            position: relative;
+            top:5px;
 		}
 }
 

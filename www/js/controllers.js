@@ -87,7 +87,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div id="notifications-top-center" style="line-height: 75px;" >'+ $a +'<div id="notifications-top-center-close" class="close" style=""><span class="ion-close-round" ></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -103,7 +103,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" style="height: 58px; line-height: 58px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div id="notifications-top-center" style="height: 58px; line-height: 70px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -119,20 +119,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 		
 	};
 	
-	
-
-	//Back Button	
-	/*$scope.myGoBack = function() {
-		$ionicHistory.goBack();
-	}; */
+    //$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
     
-	//$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
-    $rootScope.userLogin.UserEmail = $localstorage.get('username');
+    //$rootScope.userLogin.UserEmail = $localstorage.get('username');
+    $('#UserEmail').val($localstorage.get('username'));
+    
 	$scope.userLogin = {};
     $scope.LoginFunction = function(item,event){
-		//$rootScope.email = $scope.userLogin.email;
+		
 		//$rootScope.UserEmail = $scope.userLogin.UserEmail;
-		//console.log($rootScope.UserEmail);
+		
 		
 		if($('#UserEmail').val() == ''){			
 			$scope.ErrorMessage = "Email ID can't be empty!";
@@ -156,10 +152,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
                } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
-                    $localstorage.set('username', ""); 
+                   $localstorage.set('username', ""); 
                }
                 
-				$scope.doGetFacilitiesList();			
+				$scope.doGetFacilitiesList();
+                
 			}
 		}
 		
@@ -253,9 +250,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			LoginService.getToken(params);
 		}
     }
-	
- 
-	
+
 	$rootScope.patientId = 471;
 	$rootScope.consultationId = 2440;
 	$scope.userId = 471;
@@ -823,12 +818,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
     
     
     $rootScope.ConcernsValidation = function($a){
-		function refresh_close(){
+        function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
 			}
 			refresh_close();
 			
-			var top = '<div class="notifications-top-center" style="height: 55px;line-height: 70px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div class="notifications-top-center" style="height: 56px;line-height: 72px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
@@ -1281,7 +1276,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			}
 			refresh_close();
 			
-			var top = '<div class="notifications-top-center" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div class="notifications-top-center" style="line-height: 64px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
 			
 				$("#notifications-top-center").remove();
