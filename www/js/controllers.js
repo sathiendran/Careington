@@ -29,14 +29,14 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer', 'ngStorage'])
 
 
-.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
+.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter,$localStorage, $sessionStorage) {
  
 	
 	
-	var dtNow = new Date("2015-05-19T09:57:04.268Z");
+	var dtNow = new Date("2015-05-19T11:20:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
@@ -76,6 +76,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	
  
+	$scope.$storage = $localStorage;
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
@@ -168,9 +169,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    // $('#UserEmail').val($localstorage.get('username'));
     
 	$scope.userLogin = {};
+	 $scope.userLogin.UserEmail = $localStorage.oldEmail;
     $scope.LoginFunction = function(item,event){
 		
-		$rootScope.UserEmail = $scope.userLogin.UserEmail;
+	//	$rootScope.UserEmail = $scope.userLogin.UserEmail;
 		
 
 		
@@ -180,7 +182,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 		} else {
 			 $scope.ValidateEmail = function(email){
-				var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+				var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 				return expr.test(email);
 			};
 			
@@ -194,12 +196,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 				
              if($scope.userLogin.remember) {
-                    $localstorage.set('username', $("#UserEmail").val()); 
+                    $localStorage.oldEmail = $scope.userLogin.UserEmail;
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
 
                } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
-                   $localstorage.set('username', ""); 
+                  $localStorage.oldEmail = '';
                }
                 
 				$scope.doGetFacilitiesList();
@@ -419,6 +421,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						'profileID': index.profileID,
 					});
 				});	
+				 $rootScope.paymentCardCount = $rootScope.paymentProfiles123.length;
+                    
+                    $scope.AddNewCardDetails = function() {
+                    if($rootScope.paymentCardCount != 10) {
+                     $state.go('tab.cardDetails');
+                    } else {  }
+                    }
 				if(data.data.paymentProfiles.length > 0) {
 					$rootScope.enableSubmitpayment = "block";
 					$rootScope.disableSubmitpayment = "none;";
