@@ -20,6 +20,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+	
+
+	
+	var connectionString = "Endpoint=sb://connectedcare-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=qMFtw3/ecY08ZGE0ivHJFNiNWlRYLSSic+1IFVDqFGY=",
+	notificationHubPath = "connected",
+	sender_id = "125596182239";
+	var hub = new WindowsAzure.Messaging.NotificationHub(notificationHubPath, connectionString, sender_id);
+	hub.registerApplicationAsync().then(function (result) {
+	//alert("Registration successful: " + result.registrationId);
+	},
+	function (error) {
+		alert(JSON.stringify(error));
+	});
+	hub.onPushNotificationReceived = function (msg) {
+		alert(msg.message);
+		//console.warn(msg.message);
+	};
+	
+	
+	
   });
 })
 
@@ -104,25 +124,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
-  .state('tab.uersearch', {
-    url: '/uersearch',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-uersearch.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
-  
-  .state('tab.PatientConcernsSelect', {
-    url: '/PatientConcernsSelect',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-PatientConcernsSelect.html',
-        controller: 'PatientConcernsSelectCtrl'
-      }
-    }
-  })
+
   
   
   .state('tab.patientDetail', {
@@ -155,15 +157,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
-   .state('tab.appoimentDetails_wait', {
-    url: '/appoimentDetails_wait',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-appoimentDetails_wait.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
+   
   
    .state('tab.patientConcerns', {
     url: '/patientConcerns',
@@ -219,7 +213,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-ConsentTreat.html',
-        controller: 'ConsentTreatCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -254,15 +248,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
-  .state('tab.verifyPlan', {
-    url: '/verifyPlan',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-verifyPlan.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
+  
   
     .state('tab.applyPlan', {
     url: '/applyPlan',
@@ -303,15 +289,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   
-  .state('tab.verifyCard', {
-    url: '/verifyCard',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-verifyCard.html',
-        controller: 'LoginCtrl'
-      }
-    }
-  })
+ 
   .state('tab.submitPayment', {
     url: '/submitPayment',
     views: {
@@ -337,7 +315,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-waitingRoom.html',
-        controller: 'WaitingRoomCtrl'
+        controller: 'LoginCtrl'
       }
     }
   })  
@@ -363,35 +341,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
-
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
-
+  
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/login');
 
