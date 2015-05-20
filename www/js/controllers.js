@@ -29,7 +29,7 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 
 
 .controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
