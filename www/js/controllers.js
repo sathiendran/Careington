@@ -29,14 +29,14 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','timer'])
 
 
 .controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
  
 	
 	
-	var dtNow = new Date("2015-05-19T09:57:04.268Z");
+	var dtNow = new Date("2015-05-20T08:35:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
