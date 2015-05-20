@@ -63,7 +63,7 @@
    <a class="item item-avatar" href="#" style="padding-left: 15px;" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
     <div style="float: left;">
      <div style="font-size: 20px;">{{surgery.Name}}</div>
-     <div style="padding-top: 5px; font-size: 15px;">{{surgery.Date | date: "MM/dd/yyyy"}}</div>   
+     <div style="padding-top: 5px; font-size: 15px;">{{surgery.Date | date: "MM/yyyy"}}</div>   
     </div>
     <div style="text-align: right; margin-right: -1px;" ><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
     </a>
