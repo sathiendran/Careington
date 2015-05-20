@@ -301,3 +301,8 @@
 	line-height: 24px;
 	color: #404040;
 }
+
+.notificationError { height:auto !important;line-height: normal !important;font-size: 15px; }
+.ErrorContent { text-align: center;width: 93% !important;margin-top: 32px;  margin-bottom: -30px; }
+.NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px !important ; }
+.noticationIcon { left: 0px;position: relative;top: 19px  !important; }
