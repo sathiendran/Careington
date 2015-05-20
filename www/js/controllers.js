@@ -29,14 +29,14 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','timer'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer'])
 
 
 .controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
  
 	
 	
-	var dtNow = new Date("2015-05-20T09:40:04.268Z");
+	var dtNow = new Date("2015-05-19T09:57:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
@@ -771,7 +771,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','ti
 					mm='0'+mm;
 				} 
 
-			$rootScope.PreviousDate = yyyy+'-'+mm+'-'+dd;
+			//$rootScope.PreviousDate = yyyy+'-'+mm+'-'+dd; //Previous Date
+            $rootScope.PreviousDate = yyyy+'-'+mm; //Previous Month
 			console.log('dddd',$rootScope.PreviousDate);
     
 	/*Primary concern Start here*/
@@ -1350,11 +1351,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','ti
 		/*$rootScope.LastName1 = $('#name').val();
 		$rootScope.datestr = $('#dateString').val(); */
         $scope.surgery.dateString;
-		if($scope.surgery.name == '' || $scope.surgery.dateString == ''){
+		/*if($scope.surgery.name == '' || $scope.surgery.dateString == ''){
             $scope.ErrorMessage = "Please provide a name/description for this surgery!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
         } else if(($scope.surgery.name == undefined || $scope.surgery.dateString == undefined)) {
              $scope.ErrorMessage = "Please provide a name/description for this surgery!";
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
+        } */
+        if($scope.surgery.name == '' || $scope.surgery.name == undefined){
+            $scope.ErrorMessage = "Please provide a name/description for this surgery!";
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
+        } else if(($scope.surgery.dateString == '' || $scope.surgery.dateString == undefined)) {
+             $scope.ErrorMessage = "Please enter the date as MM/YYYY!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
         } else {
         SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
