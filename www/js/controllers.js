@@ -849,7 +849,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner'])
 			}
 			refresh_close();
 			
-			var top = '<div class="notifications-top-center" style="height: 56px;line-height: 40px; padding:20px;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
+			var top = '<div class="notifications-top-center" style="height: 62px;line-height: 74px; padding:0px; margin-top: 0px !important;margin-left: 0px !important;  margin-right: 0px !important;" >'+ $a +'<div id="notifications-top-center-close" class="close"><span class="ion-close-round" ></span></div></div>';
 
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
