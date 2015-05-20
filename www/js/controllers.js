@@ -36,7 +36,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','ti
  
 	
 	
-	var dtNow = new Date("2015-05-20T08:35:04.268Z");
+	var dtNow = new Date("2015-05-20T09:40:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
