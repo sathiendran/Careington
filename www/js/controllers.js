@@ -299,9 +299,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','ti
 		}
     }
 
-	$rootScope.patientId = 471;
+	//$rootScope.patientId = 471;
+	$rootScope.patientId = 3056;
 	$rootScope.consultationId = 2440;
-	$scope.userId = 471;
+	//$scope.userId = 471;
+	$scope.userId = 3056;
 	$scope.BillingAddress = '123 chennai';
 	$scope.CardNumber = 4111111111111111;
 	$scope.City = 'chennai';
@@ -403,32 +405,41 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','ti
 				patientId: $rootScope.patientId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					$scope.patientPaymentProfiles = data;	
+					if(data != '') {
+						$scope.patientPaymentProfiles = data;	
 
 						$rootScope.paymentProfiles123 = [];	
-				
-				angular.forEach(data.data.paymentProfiles, function(index, item) {	
-		
 					
-					$rootScope.paymentProfiles123.push({
-						'id': index.$id,
-						'billingAddress': angular.fromJson(index.billingAddress),
-						'cardExpiration': index.cardExpiration,
-						'cardNumber': index.cardNumber,
-						'isBusiness': index.isBusiness,
-						'profileID': index.profileID,
-					});
-				});	
-				if(data.data.paymentProfiles.length > 0) {
-					$rootScope.enableSubmitpayment = "block";
-					$rootScope.disableSubmitpayment = "none;";
-					//$rootScope.addPaymentCard = "none;";
-				} else if(data.data.paymentProfiles.length == 0) {
-					$rootScope.enableSubmitpayment = "none";
-					$rootScope.disableSubmitpayment = "block;";
-					//$rootScope.addPaymentCard = "block;";
-				}
-				$state.go('tab.consultChargeNoPlan');
+						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+				
+							
+							$rootScope.paymentProfiles123.push({
+								'id': index.$id,
+								'billingAddress': angular.fromJson(index.billingAddress),
+								'cardExpiration': index.cardExpiration,
+								'cardNumber': index.cardNumber,
+								'isBusiness': index.isBusiness,
+								'profileID': index.profileID,
+							});
+						});	
+						$rootScope.enableSubmitpayment = "block";
+						$rootScope.disableSubmitpayment = "none;";
+						
+						/*if(data.data.paymentProfiles.length > 0) {
+							$rootScope.enableSubmitpayment = "block";
+							$rootScope.disableSubmitpayment = "none;";
+							//$rootScope.addPaymentCard = "none;";
+						} else if(data.data.paymentProfiles.length == 0) {
+							$rootScope.enableSubmitpayment = "none";
+							$rootScope.disableSubmitpayment = "block;";
+							//$rootScope.addPaymentCard = "block;";
+						}*/
+						$state.go('tab.consultChargeNoPlan');
+					} else {
+						$rootScope.enableSubmitpayment = "none";
+						$rootScope.disableSubmitpayment = "block;";
+						$state.go('tab.consultChargeNoPlan');
+					}		
 					
 				},
 				error: function (data) {
@@ -460,33 +471,41 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner','ti
 				patientId: $rootScope.patientId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					$scope.patientPaymentProfiles = data;	
+					if(data != 0) {
+						$scope.patientPaymentProfiles = data;	
 
 						$rootScope.paymentProfiles123 = [];	
-				
-				angular.forEach(data.data.paymentProfiles, function(index, item) {	
-		
 					
-					$rootScope.paymentProfiles123.push({
-						'id': index.$id,
-						'billingAddress': angular.fromJson(index.billingAddress),
-						'cardExpiration': index.cardExpiration,
-						'cardNumber': index.cardNumber,
-						'isBusiness': index.isBusiness,
-						'profileID': index.profileID,
-					});
-				});	
-				if(data.data.paymentProfiles.length > 0) {
-					$rootScope.enableSubmitpayment = "block";
-					$rootScope.disableSubmitpayment = "none;";
-					//$rootScope.addPaymentCard = "none;";
-				} else if(data.data.paymentProfiles.length == 0) {
-					$rootScope.enableSubmitpayment = "none";
-					$rootScope.disableSubmitpayment = "block;";
-					//$rootScope.addPaymentCard = "block;";
-				}
-				//$state.go('tab.submitPayment');
-				$state.go('tab.addCard');
+						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+				
+							
+							$rootScope.paymentProfiles123.push({
+								'id': index.$id,
+								'billingAddress': angular.fromJson(index.billingAddress),
+								'cardExpiration': index.cardExpiration,
+								'cardNumber': index.cardNumber,
+								'isBusiness': index.isBusiness,
+								'profileID': index.profileID,
+							});
+						});	
+						/*if(data.data.paymentProfiles.length > 0) {
+							$rootScope.enableSubmitpayment = "block";
+							$rootScope.disableSubmitpayment = "none;";
+							//$rootScope.addPaymentCard = "none;";
+						} else if(data.data.paymentProfiles.length == 0) {
+							$rootScope.enableSubmitpayment = "none";
+							$rootScope.disableSubmitpayment = "block;";
+							//$rootScope.addPaymentCard = "block;";
+						}*/
+						//$state.go('tab.submitPayment');
+						$rootScope.enableSubmitpayment = "block";
+						$rootScope.disableSubmitpayment = "none;";						
+						$state.go('tab.addCard');
+					} else if(data == 0) {
+						$rootScope.enableSubmitpayment = "none";
+						$rootScope.disableSubmitpayment = "block;";
+						$state.go('tab.addCard');
+					}
 					
 				},
 				error: function (data) {
