@@ -8949,7 +8949,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .notificationError {
   height: auto !important;
   line-height: normal !important;
-  font-size: 15px; }
+  font-size: 18px; }
 
 .ErrorContent {
   text-align: center;
