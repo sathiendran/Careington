@@ -8945,3 +8945,25 @@ form.ng-submitted input.ng-valid + i.icon.error {
   content: "\f125";
   font-size: 25px;
   margin-top: -2px; }
+
+.notificationError {
+  height: auto !important;
+  line-height: normal !important;
+  font-size: 18px; }
+
+.ErrorContent {
+  text-align: center;
+  width: 93% !important;
+  margin-top: 32px;
+  margin-bottom: -30px; }
+
+.NoticationClose {
+  position: relative;
+  width: 7% !important;
+  float: right !important;
+  margin-top: -10px !important; }
+
+.noticationIcon {
+  left: 0px;
+  position: relative;
+  top: 19px !important; }

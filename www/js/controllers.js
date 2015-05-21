@@ -36,7 +36,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
  
 	
 	
-	var dtNow = new Date("2015-05-19T09:57:04.268Z");
+	var dtNow = new Date("2015-05-21T09:57:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
@@ -58,7 +58,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$rootScope.timeNew = 'below 10 minutes!';
                $rootScope.timeNew = 'none';
 			   $rootScope.timeNew1 = 'block';
-			    $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay = 'none';
 			   $rootScope.patientDisplay1 = 'block';
 			   console.log('below 10 minutes!');
 			   
@@ -304,18 +304,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.consultationId = 2440;
 	//$scope.userId = 471;
 	$scope.userId = 3056;
-	$scope.BillingAddress = '123 chennai';
-	$scope.CardNumber = 4111111111111111;
-	$scope.City = 'chennai';
-	$scope.ExpiryMonth = 8;
-	$scope.ExpiryYear = 2019;
-	$scope.FirstName = 'Rin';
-	$scope.LastName = 'Soft';
-	$scope.State = 'Tamilnadu';
-	$scope.Zip = 91302;
-	$scope.Country = 'US';	
-	$scope.Cvv = 123;
-	$scope.profileId = 31867222;
+	//$scope.BillingAddress = '123 chennai';
+	//$scope.CardNumber = 4111111111111111;
+	//$scope.City = 'chennai';
+	//$scope.ExpiryMonth = 8;
+	//$scope.ExpiryYear = 2019;
+	//$scope.FirstName = 'Rin';
+	//$scope.LastName = 'Soft';
+	//$scope.State = 'Tamilnadu';
+	//$scope.Zip = 91302;
+	//$scope.Country = 'US';	
+	//$scope.Cvv = 123;
+	//$scope.profileId = 31867222;
 	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 	
 	
@@ -452,6 +452,64 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
 	
+	$scope.doGetPatientPaymentProfilesCardDetails = function () {
+		if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			
+			var params = {
+				hospitalId: $rootScope.hospitalId, 
+				patientId: $rootScope.patientId,
+				accessToken: $rootScope.accessToken,
+				success: function (data) {
+					if(data != '') {
+						$scope.patientPaymentProfiles = data;	
+
+						$rootScope.paymentProfiles123 = [];	
+					
+						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+				
+							
+							$rootScope.paymentProfiles123.push({
+								'id': index.$id,
+								'billingAddress': angular.fromJson(index.billingAddress),
+								'cardExpiration': index.cardExpiration,
+								'cardNumber': index.cardNumber,
+								'isBusiness': index.isBusiness,
+								'profileID': index.profileID,
+							});
+						});	
+						$rootScope.enableSubmitpayment = "block";
+						$rootScope.disableSubmitpayment = "none;";
+						
+						/*if(data.data.paymentProfiles.length > 0) {
+							$rootScope.enableSubmitpayment = "block";
+							$rootScope.disableSubmitpayment = "none;";
+							//$rootScope.addPaymentCard = "none;";
+						} else if(data.data.paymentProfiles.length == 0) {
+							$rootScope.enableSubmitpayment = "none";
+							$rootScope.disableSubmitpayment = "block;";
+							//$rootScope.addPaymentCard = "block;";
+						}*/
+						//$state.go('tab.consultChargeNoPlan');
+					} else {
+						$rootScope.enableSubmitpayment = "none";
+						$rootScope.disableSubmitpayment = "block;";
+						//$state.go('tab.consultChargeNoPlan');
+					}		
+					
+				},
+				error: function (data) {
+					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
+					console.log(data);
+				}
+			};
+			
+			LoginService.getPatientPaymentProfile(params);
+		
+	}
+	
 	
 	$scope.doGetPatientPaymentProfiles = function () {
 	
@@ -523,19 +581,58 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$rootScope.verifyCardDisplay = "none";
 	$rootScope.cardDisplay = "inherit;";
-		
+	
+	$scope.getCardDetails = {};  
+	
 	$scope.doPostPaymentProfileDetails = function () {
-		var zipCount = $('#Zip').val().length;
-        var ExpiryDate = $('#datepicker').val().split("/");
-        
+	
+	/*$scope.BillingAddress = '123 chennai';
+	$scope.CardNumber = 4111111111111111;
+	$scope.City = 'chennai';
+	$scope.ExpiryMonth = 8;
+	$scope.ExpiryYear = 2019;
+	$scope.FirstName = 'Rin';
+	$scope.LastName = 'Soft';
+	$scope.State = 'Tamilnadu';
+	$scope.Zip = 91302;
+	$scope.Country = 'US';	
+	$scope.Cvv = 123;*/
+	
+	var zipCount = $('#Zip').val().length;
+    var ExpiryDate = $('#datepicker').val().split("/");        
            
-        var currentTime = new Date()
-        var ExpiryDateCheck = new Date();
+    var currentTime = new Date()
+    var ExpiryDateCheck = new Date();
         //var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
         
-        ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
+    ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
+	
+	$scope.Country = 'US';
+	$scope.profileId = 31867222;
+	
+	
+	
+		
+	$rootScope.FirstName = $scope.getCardDetails.FirstName;
+	$rootScope.LastName = $scope.getCardDetails.LastName;
+	$rootScope.CardNumber = $scope.getCardDetails.CardNumber;
+	$rootScope.ccexpiry = $scope.getCardDetails.ccexpiry;
+	$rootScope.Cvv = $scope.getCardDetails.Cvv;
+	$rootScope.BillingAddress = $scope.getCardDetails.BillingAddress;
+	$rootScope.City = $scope.getCardDetails.City;
+	$rootScope.State = $scope.getCardDetails.State;	
+	$rootScope.Zip = $('#Zip').val();
+	$rootScope.ExpiryMonth = ExpiryDate[0];
+	$rootScope.ExpiryYear = ExpiryDate[1];
+	
+	
+	//$rootScope.Country = $scope.getCardDetails.;	
+	
+	
+	
+		
       
-       if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' || $('#Provider').val() == ''|| $('#Zip').val() == '' )  {			
+      if($('#FirstName').val() == '' || $('#LastName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' ||  $('#City').val() == '' || $('#State').val() == ''|| $('#Zip').val() == '' )  {			
 			$scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 			
@@ -577,7 +674,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             success: function (data) {
                 $scope.PostPaymentDetails = data;	
 					console.log(data);
-				//$scope.doGetPatientPaymentProfiles();
+				$scope.doGetPatientPaymentProfilesCardDetails();
 				$state.go('tab.submitPayment');
             },
             error: function (data) {
