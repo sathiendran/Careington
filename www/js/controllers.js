@@ -586,17 +586,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.doPostPaymentProfileDetails = function () {
 	
-	//$scope.BillingAddress = '123 chennai';
-	//$scope.CardNumber = 4111111111111111;
-	//$scope.City = 'chennai';
-//	$scope.ExpiryMonth = 8;
-	//$scope.ExpiryYear = 2019;
-//	$scope.FirstName = 'Rin';
-	//$scope.LastName = 'Soft';
+	/*$scope.BillingAddress = '123 chennai';
+	$scope.CardNumber = 4111111111111111;
+	$scope.City = 'chennai';
+	$scope.ExpiryMonth = 8;
+	$scope.ExpiryYear = 2019;
+	$scope.FirstName = 'Rin';
+	$scope.LastName = 'Soft';
 	$scope.State = 'Tamilnadu';
 	$scope.Zip = 91302;
 	$scope.Country = 'US';	
-	$scope.Cvv = 123;
+	$scope.Cvv = 123;*/
 	
 	var zipCount = $('#Zip').val().length;
     var ExpiryDate = $('#datepicker').val().split("/");        
@@ -616,18 +616,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.FirstName = $scope.getCardDetails.FirstName;
 	$rootScope.LastName = $scope.getCardDetails.LastName;
 	$rootScope.CardNumber = $scope.getCardDetails.CardNumber;
+	$rootScope.ccexpiry = $scope.getCardDetails.ccexpiry;
+	$rootScope.Cvv = $scope.getCardDetails.Cvv;
 	$rootScope.BillingAddress = $scope.getCardDetails.BillingAddress;
 	$rootScope.City = $scope.getCardDetails.City;
+	$rootScope.State = $scope.getCardDetails.State;	
+	$rootScope.Zip = $('#Zip').val();
 	$rootScope.ExpiryMonth = ExpiryDate[0];
 	$rootScope.ExpiryYear = ExpiryDate[1];
 	
-	
-/*	$rootScope.ccexpiry = $scope.getCardDetails.ccexpiry;
-	$rootScope.Cvv = $scope.getCardDetails.Cvv;	
-	$rootScope.State = $scope.getCardDetails.State;	
-	$rootScope.Zip = $('#Zip').val();
-	
-	*/
 	
 	//$rootScope.Country = $scope.getCardDetails.;	
 	
@@ -651,8 +648,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
         else {
 		
-		$rootScope.verifyCardDisplay = "block";
-		$rootScope.cardDisplay = "none;";
+		
 					
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
@@ -675,10 +671,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             accessToken: $rootScope.accessToken,
 			
             success: function (data) {
-                $scope.PostPaymentDetails = data;	
+                $scope.PostPaymentDetails = data;
+				if(data.message != "")	{
+					$scope.ErrorMessage = data.message;
+					$rootScope.CardValidation($scope.ErrorMessage);
+					$state.go('tab.cardDetails');
+				} else {				
 					console.log(data);
-				$scope.doGetPatientPaymentProfilesCardDetails();
-				$state.go('tab.submitPayment');
+					$rootScope.verifyCardDisplay = "block";
+					$rootScope.cardDisplay = "none;";
+					$scope.doGetPatientPaymentProfilesCardDetails();
+					$state.go('tab.submitPayment');
+				}
             },
             error: function (data) {
                 $scope.PostPaymentDetails = 'Error getting consultation report';
