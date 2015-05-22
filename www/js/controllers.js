@@ -40,7 +40,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$rootScope.time = dtNow.getTime();
 	
-	
 	$rootScope.patientDisplay1 = 'none';
 	
 	$scope.$on('timer-tick', function (event, args){
@@ -576,8 +575,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		//}
 	}
 	
-	$scope.paymentProfileId = 28804398;
-	
+	$scope.paymentProfileId = 28804398;	
 	
 	$rootScope.verifyCardDisplay = "none";
 	$rootScope.cardDisplay = "inherit;";
@@ -828,6 +826,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				refresh_close();
 			//});
 	}
+
+	$scope.ReceiptTimeout = function() {
+	
+		var currentTimeReceipt = new Date();
+		
+		currentTimeReceipt.setSeconds(currentTimeReceipt.getSeconds() + 10);
+		
+		$rootScope.ReceiptTime = currentTimeReceipt.getTime();
+		
+		setTimeout(function(){ $state.go('tab.waitingRoom');	 }, 10000);
+	}
+	
     
     $scope.doPostCoPayDetails = function () {
 		
@@ -849,8 +859,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				paymentProfileId: $scope.paymentProfileId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					$scope.CreditCardDetails = data;	
-					$state.go('tab.receipt');				
+					$scope.CreditCardDetails = data;					
+					$state.go('tab.receipt');	
+					$scope.ReceiptTimeout();						
 				},
 				error: function (data) {
 					$scope.CreditCardDetails = 'Error getting patient payment profiles';

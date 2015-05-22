@@ -26,10 +26,16 @@
 				<!--<a ng-href="#/tab/waitingRoom">-->
 				<button type="submit" on-touch ='doGetExistingConsulatationReport()' class="button button-block button-balanced">
 				  <span style="position: relative;top: 3px;">Enter the Waiting Room</span>
-				</button>
+				</button>				
+						
 				<!--</a>-->
 			</div>
 			
+				<div style="font-size: 12px; color: black; text-align: center;">
+					You will be redirected to waiting room in 
+					<b><timer end-time="ReceiptTime"  >{{seconds}} Sec</timer></b>
+				</div>	
+				
 		</div>
 	</ion-content>
 </ion-side-menu-content>	
