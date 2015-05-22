@@ -32,7 +32,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer'])
 
 
-.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
+.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout) {
  
 	
 	
@@ -110,20 +110,30 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				});
 	}
-    $rootScope.CountryLists = CountryList.getCountryDetails();
     $rootScope.StateText = "Select your state";
-    $scope.CountryChange = function (code) {
-        
-        if($('#State').val() == 'US') {
+    $rootScope.CountryLists = CountryList.getCountryDetails();
+    $scope.CountryChange = function () {
+        if($('#country').val() == 'US') {
+            $rootScope.StateList = {};
             $rootScope.StateList = StateLists.getStateDetails();
             $rootScope.StateText = "Select your state";
-        }else if($('#State').val() == 'UK') {
+        }else if($('#country').val() == 'UK') {
+            $rootScope.StateList = {};
              $rootScope.StateList = UKStateList.getUkStateDetails();
             $rootScope.StateText = "Select your County";
         } else { 
             $rootScope.StateText = "Select your state";
-            $rootScope.StateList = StateLists.getStateDetails(); }
+            $rootScope.StateList = StateLists.getStateDetails(); 
+        }
+        $timeout(function(){
+            $('select option').filter(function() {
+                return this.value.indexOf('?') >= 0;
+            }).remove();
+        }, 100);
+        
     }
+    
+ 
     
     //$rootScope.StateList = StateLists.getStateDetails();
 	$scope.currentYear = new Date().getFullYear()

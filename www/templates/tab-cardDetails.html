@@ -79,7 +79,7 @@
                  <label class="item item-input" >
 				<span class="input-label" >Country</span>
 					<div class="demo"  >	
-							<select id="State" ng-Model="getCardDetails.Country" style="border: 0px; margin-left: -10px; width: auto; background: none; box-shadow: none; color:#111;" ng-change="CountryChange()">
+							<select id="country" ng-Model="getCardDetails.Country" style="border: 0px; margin-left: -10px; width: auto; background: none; box-shadow: none; color:#111;" ng-change="CountryChange()">
                                 <option style="padding:10px;" value=""  >Select your Country</option>
 								<option ng-repeat="CountryList in CountryLists" style="padding:10px; color: #111;" value="{{CountryList.code}}"><b>{{CountryList.country}}</b></option>
 								
