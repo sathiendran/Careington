@@ -102,7 +102,7 @@
 					<div class="demo"  >	
 							<select id="State" ng-Model="getCardDetails.State" style="border: 0px; margin-left: -10px; width: auto; background: none; box-shadow: none; color:#111;">
 				<option style="padding:10px;" value=""  >{{StateText}}</option> 
-								<option ng-repeat="StateList in StateList" style="padding:10px; color: #111;" value="{{StateList.code}}"><b>{{StateList.state}}</b></option>
+								<option ng-repeat="StateList in StateList" style="padding:10px; color: #111;" value="{{StateList.state}}"><b>{{StateList.state}}</b></option>
 								
 							</select>
 						</div>
@@ -110,7 +110,7 @@
                 
 			  <label class="item item-input" >
 				<span class="input-label" >Zip</span>
-			         <input type="number" placeholder="Required" ng-model="getCardDetails.Zip" style="font-size: 18px;" name="Zip" id="Zip" maxlength="5" input-max-length-number >
+			         <input type="number" placeholder="Required" ng-model="getCardDetails.CardZipCode" style="font-size: 18px;" name="Zip" id="Zip" maxlength="5" input-max-length-number >
 			     </label>
                 
              </div>

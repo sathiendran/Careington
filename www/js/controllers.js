@@ -36,7 +36,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
  
 	
 	
-	var dtNow = new Date("2015-05-19T09:57:04.268Z");
+	var dtNow = new Date("2015-05-22T10:57:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
@@ -619,7 +619,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
     ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
 	
-	$scope.Country = 'US';
+	
 	$scope.profileId = 31867222;
 	
 	
@@ -633,9 +633,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.BillingAddress = $scope.getCardDetails.BillingAddress;
 	$rootScope.City = $scope.getCardDetails.City;
 	$rootScope.State = $scope.getCardDetails.State;	
-	$rootScope.Zip = $('#Zip').val();
+	$rootScope.Zip = $scope.getCardDetails.CardZipCode;
 	$rootScope.ExpiryMonth = ExpiryDate[0];
 	$rootScope.ExpiryYear = ExpiryDate[1];
+	$scope.Country = $scope.getCardDetails.Country;
 	
 	
 	//$rootScope.Country = $scope.getCardDetails.;	
