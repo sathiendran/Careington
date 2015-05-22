@@ -9,10 +9,13 @@ angular.module('starter.services', [])
         params: email, password, userTypeId, hospitalId
                 (event handlers): success, failure
     */
+		
+		var apiCommonURL = 'https://snap-dev.com';
+	
 	 this.getToken = function (params) {
         var requestInfo = {
             headers: util.getHeaders(),
-            url: 'https://snap-dev.com/api/Account/Token',
+            url: apiCommonURL + '/api/Account/Token',
             method: 'POST',
             data: {
                 UserTypeId: params.userTypeId,
@@ -40,7 +43,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId=' + params.patientId,
+            url: apiCommonURL + '/api/v2/patients/scheduledconsultations?patientId=' + params.patientId,
             method: 'GET'   
         };
 
@@ -62,7 +65,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/consultations/' + params.consultationId + '/all',
+            url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/all',
             method: 'GET'   
         };
 
@@ -84,7 +87,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId,
+            url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
             method: 'GET'   
         };
 
@@ -106,7 +109,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+            url: apiCommonURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
             method: 'GET'   
         };
 
@@ -128,7 +131,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/hospitals?patient=' + params.emailAddress,
+            url: apiCommonURL + '/api/v2/hospitals?patient=' + params.emailAddress,
             method: 'GET'   
         };
         
@@ -149,7 +152,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/patients/copay',
+            url: apiCommonURL + '/api/patients/copay',
             method: 'POST',
             data: {
                 ProfileId: params.profileId,
@@ -180,7 +183,7 @@ angular.module('starter.services', [])
         //"fields" is a comma-delimited list of the following: medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
+            url: apiCommonURL + '/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
             method: 'GET'    
         };
 
@@ -201,7 +204,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/patients/' + params.userId + '/payments',
+            url: apiCommonURL + '/api/patients/' + params.userId + '/payments',
             method: 'POST',
             data: {
                 userId: params.userId,

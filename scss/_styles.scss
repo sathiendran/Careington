@@ -880,7 +880,7 @@ text-align:center
 	font-family:$fontFamily_regular;
 }
 .listImgView {
-width:55px; height:55px;
+width:55px; height:55px; border-radius: 50%;
 }
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
