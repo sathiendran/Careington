@@ -83,12 +83,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		todayStocks.all().then(function (results) {	
 					$scope.patientPaymentProfiles = results;	
 
-						$rootScope.paymentProfiles123 = [];	
+						$rootScope.PaymentProfile = [];	
 				
 				angular.forEach(results.data.data.paymentProfiles, function(index, item) {	
 		
 					
-					$rootScope.paymentProfiles123.push({
+					$rootScope.PaymentProfile.push({
 						'id': index.$id,
 						'billingAddress': angular.fromJson(index.billingAddress),
 						'cardExpiration': index.cardExpiration,
@@ -421,12 +421,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != '') {
 						$scope.patientPaymentProfiles = data;	
 
-						$rootScope.paymentProfiles123 = [];	
+						$rootScope.PaymentProfile = [];	
 					
 						angular.forEach(data.data.paymentProfiles, function(index, item) {	
 				
 							
-							$rootScope.paymentProfiles123.push({
+							$rootScope.PaymentProfile.push({
 								'id': index.$id,
 								'billingAddress': angular.fromJson(index.billingAddress),
 								'cardExpiration': index.cardExpiration,
@@ -479,12 +479,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != '') {
 						$scope.patientPaymentProfiles = data;	
 
-						$rootScope.paymentProfiles123 = [];	
+						$rootScope.PaymentProfile = [];	
 					
 						angular.forEach(data.data.paymentProfiles, function(index, item) {	
 				
 							
-							$rootScope.paymentProfiles123.push({
+							$rootScope.PaymentProfile.push({
 								'id': index.$id,
 								'billingAddress': angular.fromJson(index.billingAddress),
 								'cardExpiration': index.cardExpiration,
@@ -545,12 +545,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != 0) {
 						$scope.patientPaymentProfiles = data;	
 
-						$rootScope.paymentProfiles123 = [];	
+						$rootScope.PaymentProfile = [];	
 					
 						angular.forEach(data.data.paymentProfiles, function(index, item) {	
 				
 							
-							$rootScope.paymentProfiles123.push({
+							$rootScope.PaymentProfile.push({
 								'id': index.$id,
 								'billingAddress': angular.fromJson(index.billingAddress),
 								'cardExpiration': index.cardExpiration,
@@ -685,17 +685,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
             success: function (data) {
                 $scope.PostPaymentDetails = data;
-				if(data.message != "")	{
-					$scope.ErrorMessage = data.message;
-					$rootScope.CardValidation($scope.ErrorMessage);
-					$state.go('tab.cardDetails');
-				} else {				
+				
+				if(data.message == "Success")	{			
 					console.log(data);
 					$rootScope.verifyCardDisplay = "block";
 					$rootScope.cardDisplay = "none;";
 					$scope.doGetPatientPaymentProfilesCardDetails();
 					$state.go('tab.submitPayment');
+				} else {					
+					$scope.ErrorMessage = data.message;
+					$rootScope.CardValidation($scope.ErrorMessage);
+					$state.go('tab.cardDetails');
 				}
+				
             },
             error: function (data) {
                 $scope.PostPaymentDetails = 'Error getting consultation report';
