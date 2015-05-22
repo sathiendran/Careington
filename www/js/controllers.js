@@ -32,7 +32,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer'])
 
 
-.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
+.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter) {
  
 	
 	
@@ -111,8 +111,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				});
 	}
-
-    $rootScope.StateList = StateLists.getStateDetails();
+    $rootScope.CountryLists = CountryList.getCountryDetails();
+    $rootScope.StateText = "Select your state";
+    $scope.CountryChange = function (code) {
+        
+        if($('#State').val() == 'US') {
+            $rootScope.StateList = StateLists.getStateDetails();
+            $rootScope.StateText = "Select your state";
+        }else if($('#State').val() == 'UK') {
+             $rootScope.StateList = UKStateList.getUkStateDetails();
+            $rootScope.StateText = "Select your County";
+        } else { 
+            $rootScope.StateText = "Select your state";
+            $rootScope.StateList = StateLists.getStateDetails(); }
+    }
+    
+    //$rootScope.StateList = StateLists.getStateDetails();
 	$scope.currentYear = new Date().getFullYear()
       $scope.currentMonth = new Date().getMonth() + 1
       $scope.months = $locale.DATETIME_FORMATS.MONTH
