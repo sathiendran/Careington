@@ -972,6 +972,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
         $state.go('tab.consultCharge'); 
     }
+   
 })
 
 
