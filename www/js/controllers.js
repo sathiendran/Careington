@@ -341,6 +341,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$scope.profileId = 31867222;
 	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 	
+	$rootScope.APICommonURL = 'https://snap-dev.com';
 	
 	
 	$scope.doGetExistingConsulatation = function () {
@@ -355,20 +356,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             success: function (data) {
                 $scope.existingConsultation = data;
 			
-			$rootScope.consultionInformation = data.data.consultionInfo;
-			$rootScope.patientInfomation = data.data.patientInfomation;	
-			$rootScope.inTakeForm = data.data.inTakeForm;
-			$rootScope.depedentInformation = data.data.depedentInformation;
+			$rootScope.consultionInformation = data.data[0].consultationInfo;
+			$rootScope.patientInfomation = data.data[0].patientInformation;	
+			$rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+			$rootScope.inTakeForm = data.data[0].intakeForm;
+			$rootScope.depedentInformation = data.data[0].dependentInformation;
 			
 			$rootScope.dependentDetails = [];	
 			
-			angular.forEach(data.data.depedentInformation, function(index, item) {	
+			angular.forEach(data.data[0].dependentInformation, function(index, item) {	
 				$rootScope.dependentDetails.push({
 					'id': index.$id,
-					'patientName': index.patientName,
+					'patientName': index.fullName,
 					'lastName': index.lastName,
 					'age': index.age,
 					'guardianName': index.guardianName,
+					'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
 				});
 			});	
 			
@@ -490,6 +493,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$scope.patientPaymentProfiles = data;	
 
 						$rootScope.PaymentProfile = [];	
+						
+						
+						$rootScope.PaymentDetailsList = data.data.paymentProfiles;
+						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.paymentProfiles.length - 2];
+						
+						
+						$rootScope.PaymentDetailsList.push({
+							'cardNumber': 'Add a new card'
+						});
 					
 						angular.forEach(data.data.paymentProfiles, function(index, item) {	
 				

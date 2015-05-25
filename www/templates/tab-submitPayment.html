@@ -20,11 +20,12 @@
 				<div class="healthPlan_text" style="margin-left: 20px; padding-top: 30px; font-size: 16px; color: #888585;">Pay Using</div>
 					<div class="addHealthPlan_header"  >					
 						<div class="demo" style="margin-left: 50px;" >
-							<select  id="addNewCard" name="addNewCard">
+							<!--<select  id="addNewCard" name="addNewCard">
 								<option style="padding:10px;"><b>Choose Your Card</b></option>
 								<option style="padding:10px;" ng-repeat="PaymentProfile in PaymentProfile"  ><b>{{PaymentProfile.cardNumber}}</b></option>
 								 <option style="padding:10px;"><b>Add a new card</b></option>
-							</select>
+							</select>-->
+							<select id="addNewCard" name="addNewCard" data-ng-options="PaymentCard.cardNumber for PaymentCard in PaymentDetailsList" data-ng-model="SelectedPaymentDetails" value="PaymentCard.cardNumber"></select>
 						</div>
 					</div>
 			</div>
