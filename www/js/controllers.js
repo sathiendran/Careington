@@ -911,6 +911,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.postCoPayDetails(params);
 		}
 	}
+    
+    $scope.GoToAppoimentDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        $state.go('tab.patientDetail'); 
+    }
 	
 	
 })

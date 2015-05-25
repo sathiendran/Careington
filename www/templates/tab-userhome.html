@@ -36,7 +36,7 @@
 
  	<ion-list>
       
-	<a class=""  href="#/tab/patientDetail">
+	<a class=""  ng-click = "GoToAppoimentDetails(PatientImage,patientInfomation.fullName,patientInfomation.lastName,patientInfomation.age,patientInfomation.guardianName)" style="cursor:pointer;">
 		<ion-item style="top: 1px;padding:11px;height: 104px;">
 			 <div class="HrefListView"> 
 				<div style="margin-top:-5px !important; margin-left: 0px;">
@@ -50,7 +50,7 @@
 		</ion-item>
 		</a>
 		
-		<ion-item style="top: -2px;height: 66px;" class="ItemList">
+		<ion-item style="top: -2px;height: 66px;" class="ItemList" ng-hide="data.searchQuery">
 			  <a class="HrefListView" href="#/tab/appoimentDetails" style="margin-left:10px;"> 
 			   <span class = "ListText" style="font-size: 16px;top: 1px;color: #888;  margin-left: -5px;">Next Appointment:</span>
 			   <h2 style="margin-left: 4px; margin-top: 2px;font-size:22px; color:#706A67;" class="DateFormateStyle"><b>OCT 12 </b> <span style="font-size:18px;"><sup>@</sup></span> <b>12:15</b><span style="font-size:14px;">PM</span></h2>
@@ -61,44 +61,15 @@
 		</ion-item>
 		
 		<ion-item style="padding:11px;  top: 0px;  height: 80px;" ng-repeat="dependentDetails in dependentDetails | filter: data.searchQuery">
-			 <a class="HrefListView"  href="#/tab/appoimentDetails">   
+			 <a class="HrefListView"  ng-click = "GoToAppoimentDetails(dependentDetails.profileImagePath,dependentDetails.patientName,dependentDetails.lastName,dependentDetails.age,dependentDetails.guardianName)" style="cursor:pointer;">   
 				<img ng-src="{{dependentDetails.profileImagePath}}" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
-				<!--<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>-->
+				
 			 </a>
 		</ion-item> 
 		
-		<!--<ion-item style="" ng-repeat="dependentDetails in dependentDetails" >
-			 <a class="HrefListView"  href="#/tab/uersearch">   
-			 <div style="/*margin-top:-11px !important;*/ height: 66px;  margin-left: 20px;">
-				<img ng-src="img/IMG_2.png" class="listImgView">
-				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
-				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
-				<!--<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list> 
-			 </div>
-			 </a>
-		</ion-item >-->
-		<!--<ion-item style="padding:11px;height: 104px;">
-			 <a class="HrefListView"  href="#/tab/uersearch"> 
-				<div style="margin-top:-11px !important;">			 
-				<img ng-src="img/IMG_2.png" class="listImgView">
-				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Ariadnae</span></span>
-				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
-				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
-			</div>			
-			</a>
-		</ion-item>
-		<ion-item style="padding:11px;height: 104px;">
-			 <a class="HrefListView"  href="#/tab/uersearch">  
-				<div style="margin-top:-11px !important;">			 
-				<img ng-src="img/IMG_2.png" class="listImgView">
-				<span class = "ListText"><b>Elizabeth</b> <span class="SubTitleSpan">Sinai</span></span>
-				<p class="ListHomeUser_p DateFormateStyle">Age 14 | Guardain : Banjamin Ross</p>
-				<list class="ion-chevron-right ListLinkHref" style="color:#888;margin-top: -33px;"></list>
-			 </div>
-			 </a>
-		</ion-item>-->
+		
 		
 	</ion-list>
 </ion-content>
@@ -106,7 +77,3 @@
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
 </ion-view>	>
-<!--
-<ion-footer-bar align-title="left" class="bar-assertive" style="background-color:#fff; border-color:#fff;border-bottom: none;">
- 
-</ion-footer-bar> -->
