@@ -3,31 +3,31 @@
 	<ion-side-menu-content> 
 		<div ng-include src="'templates/intakeHeader.html'"></div> 
 	
-	<div class="consultCharge_subHeader PatintHeaderFontStyle" style="top:-15px;" >
-		<span style="color:#666666;font-size:27px;margin-top:-16px;">Payment</span>
+	<div class="consultCharge_subHeader PatintHeaderFontStyle"  >
+		<span>Payment</span>
 	</div>
 	
 	
 	
-	<ion-content style="margin: 176px 0 0 0; padding-top: 25px;" >
+	<ion-content class="consultChargeNoPlanContent" >
 		<div class="password_home">
 		
-			<div class="consultation_head RegularFontStyle" style="padding-top: 5px;" >
-				<div style="color:#000000;">Consultation Charge</div>
-				<div class="consultation_number" style="color:#666666;"> $60*</div>
+			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+				<div class="consultTittle">Consultation Charge</div>
+				<div class="consultation_number"> $60*</div>
 			</div>
 			
 			
-			<div class="healthPlan_header" style="padding-top: 40px; color: #5C5C5C; text-align: center;  display: none; " >
+			<div class="healthPlan_header" style="display: none;" >
 				
-				<div class="healthPlan_text" style="margin-left: 20px; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;">Select Health Plan</div>
-					<div class="addHealthPlan_header" style="text-align:left; " >					
-						<div class="demo" style="margin-left: 50px;">
+				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
+					<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
+						<div class="demo" >
 							
 							<select>
-								<option style="padding:10px;" class="ellipsis"><b>Blue Cross Blue ...0054</b></option>
-								<option style="padding:10px;" class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
-								<option style="padding:10px;" class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
+								<option class="ellipsis"><b>Blue Cross Blue ...0054</b></option>
+								<option class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
+								<option class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
 							</select>
 						</div>
 					</div>
@@ -35,10 +35,10 @@
 			
 			
 			
-			<div style="padding-top: 15px; padding-bottom: 5px;  display: none;">
+			<div class="SkipToPayment" style="display: none;">
 				<!--<a ng-href="#/tab/addCard">-->
 					<button type="submit" ng-click="doGetPatientPaymentProfiles()" class="button button-block button-balanced">
-						<span style="position: relative;top: 3px;">Apply Plan</span>
+						<span>Apply Plan</span>
 					</button>
 				<!--</a>-->
 			</div>
@@ -52,23 +52,23 @@
 				</a>
 			</div>-->
 			
-			<div class="healthPlan_header" style="padding-top: 40px; color: #5C5C5C; text-align: center; " >
-				<div class="healthPlan_text" style=" padding-top: 30px; font-size: 16px; color: #888585;" >Select health plan</div>
+			<div class="healthPlan_header AddCardNoPlan"  >
+				<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
 				<a ng-href="#/tab/planDetails">
-					<div class="addHealthPlan_header" style="margin-left: 0px;" >
-						<img ng-src="img/add.png" style="width: 30px; height: 30px;" ><span class="addHealthPlan_text" >Add A Health Plan</span>
+					<div class="addHealthPlan_header AddCard" >
+						<img ng-src="img/add.png"  ><span class="addHealthPlan_text" >Add A Health Plan</span>
 					</div>
 				</a>
 			</div>
 			
 			
 			
-			<div style="padding-top: 15px;padding-bottom: 5px;">
+			<div class="SkipToPayment">
 				
 				
 				<!--<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">-->
 					<button class="button button-block button-royal"  type="submit" ng-click="doGetPatientPaymentProfilesConsultCharge()"  >
-						<span style="position: relative;top: 3px;"> Skip to Payment</span>
+						<span> Skip to Payment</span>
 					</button>
 				<!--</a>-->
 				
@@ -82,21 +82,24 @@
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
 
-	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div> -->
-	
-<div class="hide-on-keyboard-open">
-		<ion-footer-bar align-title="left" class="footer">
-			<div style="width:100%;">
-				<div class="" style="float:left; width:33%">
-                    <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" style="cursor: pointer;"><span style="  top: -2px;position: relative;">Back</span></a>
-			</div>
+	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div> -->	
+
+
+		<div class="hide-on-keyboard-open">
+		<ion-footer-bar align-title="left" class="footer">			
+			<div class="ConsultChargeFooter">
+				<div class="ConsultChargeBack" >
+                    <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" >
+						<span>Back</span>
+					</a>
+				</div>
 						
-			<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
-				<a class="button_new icon" href="#/tab/userhome" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
-			</div>
+				<div class="ConsultChargeCancel" >
+					<a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+				</div>
 						
 			</div>
-			
 		</ion-footer-bar> 
-</div>
+	</div>
+
 </ion-view>	

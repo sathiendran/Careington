@@ -797,24 +797,31 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	.NoPlanHeader {
 		color: #5C5C5C; text-align: center;
 	}
-	.healthPlan_text {
-		margin-left: 20px !important; padding-top: 30px; text-align: left;		
+	.NoPlanText { 
+		margin-left: 20px !important; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;
 	}
-	.addHealthPlan_header {
-		text-align:left !important;  
-		.demo {
-			margin-left: 50px;
-			option {
-				padding:10px;
+	.NoPlanAddCardDropdown {
+			text-align:left; 
+			.demo { 
+				margin-left: 50px;
+				option {
+					padding:10px;
+				}
 			}
-		}	
-	}
+		}
+	
 	.AddCardNoPlan {
 		padding-top: 60px; 
+			.healthPlan_text {
+				margin-left: -160px;
+			}
 			.AddCard {
-				margin-left: 20px;
+				margin-left: 0px;
 				img {
 					width: 30px; height: 30px;
+				}
+				span {
+					margin-left:0px;
 				}
 			}
 	}
@@ -826,10 +833,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
 //add health plan
 
 .healthPlan_header {
-	padding-top: 15px;
+	padding-top: 40px;
 	text-align: center;
 	color: #5C5C5C;
-		.healthPlan_text {
+		.healthPlan_text { 
 			font-size: 16px;
 			color: #888585;
 			margin-left: -100px;

@@ -5,27 +5,27 @@
         
 		<div ng-include src="'templates/intakeHeader.html'"></div> 
 	
-	<div class="consultCharge_subHeader PatintHeaderFontStyle" >
+	<div class="consultCharge_subHeader PatintHeaderFontStyle"  >
 		<span>Payment</span>
 	</div>
 	
 	
-	<ion-content class="consultChargeNoPlanContent"  >
+	<ion-content class="consultChargeNoPlanContent" >
 		<div class="password_home">
 			
-			<div class="consultation_head RegularFontStyle consultChargeNoPlanText">
+			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
 				<div class="consultTittle">Consultation Charge</div>
-				<div class="consultation_number"> $60*</div>	
+				<div class="consultation_number"> $60*</div>
 			</div>
 			
 			<div class="healthPlan_header" style="display: {{enableSubmitpayment}} " >
 				
-				<div class="healthPlan_text" >Pay Using</div>
-				<div class="addHealthPlan_header" >					
-					<div class="demo">
+				<div class="healthPlan_text NoPlanText" >Pay Using</div>
+				<div class="addHealthPlan_header NoPlanAddCardDropdown">					
+					<div class="demo" >
 						<select id="addNewCard" name="addNewCard">
 							<option><b>Choose Your Card</b></option>
-							<option ng-repeat="PaymentProfile in PaymentProfile" ><b>{{PaymentProfile.cardNumber}}</b></option>
+							<option  ng-repeat="PaymentProfile in PaymentProfile" ><b>{{PaymentProfile.cardNumber}}</b></option>
 							<option><b>Add a new card</b></option>
 						</select>
 					</div>
@@ -33,7 +33,7 @@
 			</div>
 			
 			
-			<div  class="SkipToPayment" style="display: {{enableSubmitpayment}}">
+			<div class="SkipToPayment" style=" display: {{enableSubmitpayment}}">
 				<!--<a ng-href="#/tab/receipt">-->
 				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
 				  <span>Submit Payment</span>
@@ -45,21 +45,22 @@
 			<div class="healthPlan_header AddCardNoPlan" style="display:{{disableSubmitpayment}}" > 
 			
 			<!--<div class="healthPlan_header" style="padding-top: 60px;" >-->
-				<div class="healthPlan_text"  >Pay Using</div>
+				<div class="healthPlan_text" >Pay Using</div>
 				<a ng-href="#/tab/cardDetails">
-					<div class="addHealthPlan_header AddCard" >
-						<img ng-src="img/add.png" >
+					<div class="addHealthPlan_header AddCard"  >
+						<img ng-src="img/add.png"  >
 						<span class="addHealthPlan_text" >Add A Payment Card</span>
 					</div>
 				</a>
 			</div>
 			
 			
-			<div class="SkipToPayment" style="display:{{disableSubmitpayment}}">			
-		
-				<button class="button button-block button-royal" style="background-color: #DADADA; border-color: #DADADA; background-image: linear-gradient(0deg, #DADADA, #DADADA 50%, transparent 50%);">
+			<div class="SkipToPayment" style="display:{{disableSubmitpayment}}">
+			
+			
+				<button class="button button-block button-royal" >
 						<span>  Submit Payment</span>
-				</button>
+					</button>
 				
 			</div>
 			<div class="scheduled_appointments_text NoPlanBottomText"  >
@@ -73,7 +74,6 @@
 
 	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div>-->
 	
-		
 	<div class="hide-on-keyboard-open">
 		<ion-footer-bar align-title="left" class="footer">			
 			<div class="ConsultChargeFooter">

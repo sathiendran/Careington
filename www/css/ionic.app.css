@@ -8392,29 +8392,35 @@ body {
   .consultChargeNoPlanContent .NoPlanHeader {
     color: #5C5C5C;
     text-align: center; }
-  .consultChargeNoPlanContent .healthPlan_text {
+  .consultChargeNoPlanContent .NoPlanText {
     margin-left: 20px !important;
     padding-top: 30px;
+    font-size: 16px;
+    color: #888585;
     text-align: left; }
-  .consultChargeNoPlanContent .addHealthPlan_header {
-    text-align: left !important; }
-    .consultChargeNoPlanContent .addHealthPlan_header .demo {
+  .consultChargeNoPlanContent .NoPlanAddCardDropdown {
+    text-align: left; }
+    .consultChargeNoPlanContent .NoPlanAddCardDropdown .demo {
       margin-left: 50px; }
-      .consultChargeNoPlanContent .addHealthPlan_header .demo option {
+      .consultChargeNoPlanContent .NoPlanAddCardDropdown .demo option {
         padding: 10px; }
   .consultChargeNoPlanContent .AddCardNoPlan {
     padding-top: 60px; }
+    .consultChargeNoPlanContent .AddCardNoPlan .healthPlan_text {
+      margin-left: -160px; }
     .consultChargeNoPlanContent .AddCardNoPlan .AddCard {
-      margin-left: 20px; }
+      margin-left: 0px; }
       .consultChargeNoPlanContent .AddCardNoPlan .AddCard img {
         width: 30px;
         height: 30px; }
+      .consultChargeNoPlanContent .AddCardNoPlan .AddCard span {
+        margin-left: 0px; }
   .consultChargeNoPlanContent .NoPlanBottomText {
     text-align: justify;
     padding-bottom: 50px; }
 
 .healthPlan_header {
-  padding-top: 15px;
+  padding-top: 40px;
   text-align: center;
   color: #5C5C5C; }
   .healthPlan_header .healthPlan_text {
