@@ -17,29 +17,13 @@
 			<!-- End Header -->
 			
 			<!-- Start Content -->
-<ion-content class="ContentList_provider" style="" >
+		<ion-content class="ContentList_provider"  >
 			<form>
 				<ion-list>
-					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-repeat="hospitalDetails in hospitalDetails" ng-click="ProviderFunction(hospitalDetails.hospitalId)">
+					<ion-item class="provider_item" ng-repeat="hospitalDetails in hospitalDetails" ng-click="ProviderFunction(hospitalDetails.hospitalId)">
 						{{hospitalDetails.hospital}}
 						<list class="ion-chevron-right ListLinkHref"></list>
-					</ion-item>
-					
-					<!--<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-click="ProviderFunction(13)">
-						UCLA Medical Center
-						<list class="ion-chevron-right ListLinkHref"></list>
-			  
-					</ion-item>
-		
-					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-click="ProviderFunction(14)">
-						Coca-Cola
-						<list class="ion-chevron-right ListLinkHref"></list>
-					</ion-item>
-					
-					<ion-item style="color:#888; font-size: 18px; cursor: pointer;" ng-click="ProviderFunction(15)">
-						Anheuser-Bush
-						<list class="ion-chevron-right ListLinkHref"></list>
-					</ion-item>-->
+					</ion-item>					
 				</ion-list>
 			</form>
 		</ion-content>
@@ -51,7 +35,7 @@
 			<ion-footer-bar align-title="left" class="footer">
 					  <div class="buttons">
 						<!--<a class="button_new icon ion-chevron-left" href="#/tab/login"> Back </a>-->
-						<a style="margin-left: 20px; font-weight: bold;" class="button_new icon ion-chevron-left" ng-href="#/tab/login" style="cursor: pointer;"><span style="  top: -2px;position: relative;">Back</span></a>
+						<a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span>Back</span></a>
 					  </div>
 			</ion-footer-bar>	
 			<!-- End Footer -->

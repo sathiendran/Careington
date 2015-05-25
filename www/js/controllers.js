@@ -322,11 +322,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
     }
 
-	$rootScope.patientId = 471;
-	//$rootScope.patientId = 3056;
+	//$rootScope.patientId = 471;
+	$rootScope.patientId = 3056;
 	$rootScope.consultationId = 2440;
-	$scope.userId = 471;
-	//$scope.userId = 3056;
+	//$scope.userId = 471;
+	$scope.userId = 3056;
 	//$scope.BillingAddress = '123 chennai';
 	//$scope.CardNumber = 4111111111111111;
 	//$scope.City = 'chennai';

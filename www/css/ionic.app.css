@@ -7874,9 +7874,25 @@ body {
     text-align: right;
     width: 49%;
     margin: 5px 0 0 0; }
+    .footer .powerdBySnapMD a {
+      color: #fff;
+      text-decoration: none; }
 
 .bar-footer {
   background-position: 0px 40px; }
+
+.terms_footer_a {
+  margin-left: 20px !important;
+  font-weight: bold !important;
+  cursor: pointer; }
+  .terms_footer_a span {
+    top: -2px;
+    position: relative; }
+
+.provider_item {
+  color: #888 !important;
+  font-size: 18px !important;
+  cursor: pointer; }
 
 .password {
   background-color: #A80532;
@@ -7967,6 +7983,17 @@ body {
 }*/
 .password_home {
   padding: 0 12%; }
+
+.password_home_top {
+  margin-top: -20px; }
+
+.password_icon {
+  float: left;
+  margin: 8px 10px 0 0; }
+
+.pass_reset_content {
+  text-align: justify;
+  font-size: 17px; }
 
 .login {
   text-align: center;
@@ -8092,6 +8119,45 @@ body {
   background-color: #A2D28A;
   border-color: #A2D28A; }
 
+.calendarBack {
+  padding-top: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 68px;
+  position: absolute;
+  z-index: 1;
+  top: 10px; }
+  .calendarBack span {
+    margin-top: 7px;
+    position: relative;
+    margin-left: -6px;
+    top: -2px; }
+
+.calendarTitle {
+  font-size: 22px;
+  text-align: center;
+  width: 100%;
+  top: 4px; }
+
+.calendar_subHeader_height {
+  top: 65px !important;
+  height: 87% !important; }
+  .calendar_subHeader_height .calendar_subHeader {
+    margin-left: 10px; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_image {
+      margin-left: -15px;
+      margin-top: -13px; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
+        width: 42px; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
+      font-size: 18px; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
+        font-weight: bold; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientLastName {
+        font-weight: normal; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_age {
+      font-size: 11px; }
+
 .patientCalendar_subHeader {
   background-color: #e6e6e6;
   border-bottom: 1px solid #b9b8b8;
@@ -8103,6 +8169,8 @@ body {
   padding: 10px;
   float: left;
   margin-top: 4px; }
+  .patientCalendar_watch img {
+    width: 20px; }
 
 .patientCalendar_text {
   padding: 17px;
@@ -8112,7 +8180,8 @@ body {
   margin-bottom: -8px; }
 
 .patientCalendar_Content {
-  margin: 122px 0 0 0; }
+  margin: 122px 0 0 0;
+  top: 37px; }
   .patientCalendar_Content .list .item {
     padding: 10px; }
 
@@ -8124,13 +8193,13 @@ body {
     font-size: 22px;
     color: #706A67 !important; }
     .patient_appointment .appointment_text_time span {
-      font-size: 16px; }
+      font-size: 18px; }
   .patient_appointment .appointment_time {
     font-size: 22px;
     color: #706A67 !important;
     margin-top: 10px; }
     .patient_appointment .appointment_time span {
-      font-size: 16px; }
+      font-size: 18px; }
 
 .BackPatientViewDetails {
   text-align: right;
