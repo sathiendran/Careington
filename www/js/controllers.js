@@ -274,9 +274,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$rootScope.providerId = $stateParams.providerID;
 	//$rootScope.providerId ='126';
 	
-	$scope.ProviderFunction = function($hospitalId) {
+	$scope.ProviderFunction = function($hospitalId,Hopital) {
 		
-		$rootScope.hospitalId = $hospitalId;		
+		$rootScope.hospitalId = $hospitalId;
+        $rootScope.Hopital = Hopital;
 		//$rootScope.hospitalId = '126';		
 		//console.log($rootScope.hospitalId);			
 		$state.go('tab.password');
@@ -392,7 +393,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.doGetExistingConsulatationReport = function () {		
 		
-		if ($scope.accessToken == 'No Token') {
+		 if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
@@ -420,8 +421,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$state.go('tab.cardDetails');
 		}
     });
-	$scope.doGetPatientPaymentProfilesConsultCharge = function () {
-		if ($scope.accessToken == 'No Token') {
+	$scope.doGetPatientPaymentProfilesConsultCharge = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Guardian) {
+		
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        
+        if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
@@ -956,7 +964,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
         $state.go('tab.waitingRoom'); 
     }
-	
+	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        $state.go('tab.consultCharge'); 
+    }
 })
 
 
