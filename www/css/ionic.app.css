@@ -8148,7 +8148,8 @@ body {
       margin-left: -15px;
       margin-top: -13px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
-        width: 42px; }
+        width: 50px;
+        margin-top: -4px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
       font-size: 18px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
@@ -8270,12 +8271,37 @@ body {
   border: none !important;
   box-shadow: 0 0px 8px 3px #333 !important;
   background-size: 100% 0 !important; }
+  .enterAppoinment .EnterText {
+    font-size: 25px;
+    margin-top: 2px;
+    font-weight: bold; }
 
 .AvailableIn {
   background-color: #FFC609 !important;
   border: none !important;
   box-shadow: 0 0px 8px 3px #333 !important;
   background-size: 100% 0 !important; }
+  .AvailableIn .availableImage {
+    font-size: 22px;
+    margin-top: 2px; }
+    .AvailableIn .availableImage .AvailableText {
+      float: left;
+      text-align: right;
+      width: 50%; }
+    .AvailableIn .availableImage .AvailableTimer {
+      float: left;
+      text-align: left;
+      width: 45%;
+      padding-left: 10px; }
+
+.ErrorMessageDiv {
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  left: 0px; }
+
+.intakeTittle {
+  margin-left: -33px; }
 
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
@@ -8335,7 +8361,8 @@ body {
       top: 3px; }
 
 .SkipToPayment {
-  padding-top: 15px; }
+  padding-top: 15px;
+  padding-bottom: 5px; }
   .SkipToPayment span {
     position: relative;
     top: 3px; }
@@ -8356,6 +8383,35 @@ body {
     margin-top: 7px; }
     .ConsultChargeFooter .ConsultChargeCancel a {
       color: #b8b8b8; }
+
+.consultChargeNoPlanContent {
+  margin: 176px 0 0 0;
+  padding-top: 25px; }
+  .consultChargeNoPlanContent .consultChargeNoPlanText {
+    padding-top: 5px; }
+  .consultChargeNoPlanContent .NoPlanHeader {
+    color: #5C5C5C;
+    text-align: center; }
+  .consultChargeNoPlanContent .healthPlan_text {
+    margin-left: 20px !important;
+    padding-top: 30px;
+    text-align: left; }
+  .consultChargeNoPlanContent .addHealthPlan_header {
+    text-align: left !important; }
+    .consultChargeNoPlanContent .addHealthPlan_header .demo {
+      margin-left: 50px; }
+      .consultChargeNoPlanContent .addHealthPlan_header .demo option {
+        padding: 10px; }
+  .consultChargeNoPlanContent .AddCardNoPlan {
+    padding-top: 60px; }
+    .consultChargeNoPlanContent .AddCardNoPlan .AddCard {
+      margin-left: 20px; }
+      .consultChargeNoPlanContent .AddCardNoPlan .AddCard img {
+        width: 30px;
+        height: 30px; }
+  .consultChargeNoPlanContent .NoPlanBottomText {
+    text-align: justify;
+    padding-bottom: 50px; }
 
 .healthPlan_header {
   padding-top: 15px;

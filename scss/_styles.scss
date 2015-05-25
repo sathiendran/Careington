@@ -552,7 +552,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.subHeader_image{
 			margin-left: -15px;  margin-top: -13px;
 			img {
-				width:42px;
+				width:50px;
+				margin-top: -4px; 
 			}
 		}
 		.subHeader_content{
@@ -681,12 +682,31 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	border:none !important;
 	box-shadow: 0 0px 8px 3px #333 !important;
 	background-size: 100% 0 !important;
+	.EnterText {
+		font-size: 25px;margin-top: 2px; font-weight: bold;
+	}
 }
 .AvailableIn {
 	background-color:#FFC609 !important;
 	border:none !important;
 	box-shadow: 0 0px 8px 3px #333 !important;
 	background-size: 100% 0 !important;
+		.availableImage {
+			font-size: 22px;margin-top: 2px;
+			.AvailableText {
+				float: left; text-align: right; width: 50%;
+			}
+			.AvailableTimer {
+				float: left; text-align: left; width: 45%; padding-left: 10px;
+			}
+		}
+}
+
+.ErrorMessageDiv {
+	position: fixed; z-index:2; top:0px; left:0px;
+}
+.intakeTittle {
+	margin-left: -33px;
 }
 
 //Consult Charge page
@@ -749,6 +769,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .SkipToPayment {
 	padding-top: 15px;
+	padding-bottom: 5px;
 	span {
 		position: relative;top: 3px;
 	}
@@ -765,6 +786,40 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		a {
 			color:#b8b8b8;
 		}
+	}
+}
+//consultChargeNoPlan
+.consultChargeNoPlanContent {
+	margin: 176px 0 0 0; padding-top: 25px;
+	.consultChargeNoPlanText {
+		padding-top: 5px;
+	}
+	.NoPlanHeader {
+		color: #5C5C5C; text-align: center;
+	}
+	.healthPlan_text {
+		margin-left: 20px !important; padding-top: 30px; text-align: left;		
+	}
+	.addHealthPlan_header {
+		text-align:left !important;  
+		.demo {
+			margin-left: 50px;
+			option {
+				padding:10px;
+			}
+		}	
+	}
+	.AddCardNoPlan {
+		padding-top: 60px; 
+			.AddCard {
+				margin-left: 20px;
+				img {
+					width: 30px; height: 30px;
+				}
+			}
+	}
+	.NoPlanBottomText {
+		text-align: justify; padding-bottom: 50px;
 	}
 }
 

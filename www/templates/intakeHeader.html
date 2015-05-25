@@ -1,34 +1,32 @@
 
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser">
-    <div id="ErrorMessages"  style="position: fixed; z-index:2; top:0px; left:0px;" ></div>
- <div class="Error_Message"  style="position: fixed; z-index:2; top:0px; left:0px;" ></div>
+    <div id="ErrorMessages"  class="ErrorMessageDiv" ></div>
+	<div class="Error_Message ErrorMessageDiv" ></div>
        
   
-  <div class="buttons" >
-					<button class="button icon button-clear ion-navicon-round" id="BackButtonIcon"
-							ng-click="toggleLeft()"></button>
-  </div>
-  <h1 class="title_patient HeaderList" style="margin-left: -33px; ">Intake Form</h1>
-  
-
-
-<div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 65px;height: 87%">
-	<div style="margin-left:10px;">
-				<div class="subHeader_image" style="margin-left: -15px;  margin-top: -13px;">
-				<img src="{{PatientImageSelectUser}}" style="margin-top: -4px;" class="listImgView" />
-				</div>
-			
-        
-        <div class="subHeader_content" >
-					
-						<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{PatientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{PatientLastName}}</span></div>
-						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{PatientAge}} | Guardian: {{PatientGuardian}} </div>
-					
-        </div>
-        
+	<div class="buttons" >
+		<button class="button icon button-clear ion-navicon-round" id="BackButtonIcon"
+				ng-click="toggleLeft()"></button>
 	</div>
-</div> 
+	
+	<h1 class="title_patient HeaderList intakeTittle">Intake Form</h1>  
+
+
+	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+		<div class="calendar_subHeader" >
+			<div class="subHeader_image" >
+				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
+			</div>
+			<div class="subHeader_content" >					
+				<div class="subHeader_content_name" >
+					<span class="PatintHeaderFontStyle patientName">{{PatientName}}</span>
+					<span class="PatintHeaderFontStyleInner patientLastName">{{PatientLastName}}</span>
+				</div>
+				<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge}} | Guardian {{PatientGuardian}}</div>
+			</div>
+		</div>
+	</div>	
 
    
 </ion-header-bar>

@@ -69,18 +69,23 @@
 		
 	<ion-footer-bar  align-title="left" class="bar-assertive AvailableIn" style="display: {{timeNew}}" >
 		<div>		
-		<div class="title" style="font-size: 22px;margin-top: 2px;">
-			<div style=" float: left; text-align: right; width: 50%;"><img ng-src="img/clk.png" > Available in</div>
-			<div style=" float: left; text-align: left; width: 45%; padding-left: 10px;">	<b><timer end-time="time"  >{{hhours}}:{{mminutes}}:{{sseconds}}</timer></b></div>
-		</div>		
+			<div class="title availableImage" >
+				<div class="AvailableText">
+					<img ng-src="img/clk.png" > Available in
+				</div>
+				<div class="AvailableTimer">
+					<b><timer end-time="time"  >{{hhours}}:{{mminutes}}:{{sseconds}}</timer></b>
+				</div>
+			</div>		
 		</div>
 		
 	</ion-footer-bar>
 		
 	<ion-footer-bar align-title="left" class="bar-assertive enterAppoinment" style=" display: {{timeNew1}}" >
-			<a ng-href="#/tab/waitingRoom"  ng-click="doToWaitingRoom(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)"><div class="">		
-				<div class="title" style="font-size: 25px;margin-top: 2px; font-weight: bold;">Enter Appointment</div>
-			</div>
+			<a ng-href="#/tab/waitingRoom"  ng-click="doToWaitingRoom(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
+				<div >		
+					<div class="title EnterText">Enter Appointment</div>
+				</div>
 			</a>
 	</ion-footer-bar>
 
