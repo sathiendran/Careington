@@ -930,23 +930,31 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $state.go('tab.patientDetail'); 
     }
     
-    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
-        $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
-        $rootScope.PatientLastName = P_Lname;
-        $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
-        $state.go('tab.patientDetail'); 
-    }
-	
-    
-    $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+     $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $state.go('tab.patientCalendar'); 
+    }
+	
+    $scope.doToAppoimentDetails  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        $state.go('tab.appoimentDetails'); 
+    }
+    
+    $scope.doToWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        $state.go('tab.waitingRoom'); 
     }
 	
 })
