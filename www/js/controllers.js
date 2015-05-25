@@ -734,7 +734,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	
 	
-	$scope.doGetCodesSet = function () {
+	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        
+        // Start Intake Sub Header Information 
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        // End Intake Sub Header Information 
+        
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -912,7 +921,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	}
     
-    $scope.GoToAppoimentDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        $state.go('tab.patientDetail'); 
+    }
+    
+    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -921,6 +939,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $state.go('tab.patientDetail'); 
     }
 	
+    
+    $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        $state.go('tab.patientCalendar'); 
+    }
 	
 })
 
