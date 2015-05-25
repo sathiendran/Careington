@@ -8286,10 +8286,11 @@ body {
   line-height: 3;
   color: #666666; }
   .consultCharge_subHeader span {
+    color: #666666;
+    font-size: 27px;
+    top: -16px;
     position: relative;
-    left: 10px;
-    font-size: 23px;
-    top: -15px; }
+    left: 10px; }
 
 .consultCharge_content {
   margin: 133px 0 0 0;
@@ -8320,7 +8321,41 @@ body {
     font-weight: bold;
     padding-top: 15px;
     font-size: 30px;
-    font-family: 'Glober Heavy'; }
+    font-family: 'Glober Heavy';
+    color: #666666; }
+  .consultation_head .consultTittle {
+    color: #000000; }
+
+.UseHealthPlan {
+  padding-top: 45px; }
+  .UseHealthPlan a {
+    text-decoration: none; }
+    .UseHealthPlan a span {
+      position: relative;
+      top: 3px; }
+
+.SkipToPayment {
+  padding-top: 15px; }
+  .SkipToPayment span {
+    position: relative;
+    top: 3px; }
+
+.ConsultChargeFooter {
+  width: 100%;
+  cursor: pointer; }
+  .ConsultChargeFooter .ConsultChargeBack {
+    float: left;
+    width: 33%; }
+    .ConsultChargeFooter .ConsultChargeBack a span {
+      top: -2px;
+      position: relative; }
+  .ConsultChargeFooter .ConsultChargeCancel {
+    text-align: center;
+    float: left;
+    width: 33%;
+    margin-top: 7px; }
+    .ConsultChargeFooter .ConsultChargeCancel a {
+      color: #b8b8b8; }
 
 .healthPlan_header {
   padding-top: 15px;

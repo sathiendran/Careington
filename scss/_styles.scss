@@ -699,11 +699,13 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	font-weight: bold;
 	line-height: 3;
 	color:#666666;
-	 span {
+	 span { 
+		color:#666666;
+		font-size:27px;
+		top:-16px;
 		position: relative;
 		left: 10px;
-		font-size: 23px;
-		top: -15px;
+		
 	 }
 }
 
@@ -730,7 +732,40 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			padding-top: 15px;
 			font-size: 30px;
 			font-family: $fontFamily_heavy;
+			color:#666666;
 		}
+		.consultTittle {
+			color:#000000;
+		}
+}
+.UseHealthPlan {
+	padding-top: 45px;
+	a {
+		text-decoration: none;
+		span {
+			position: relative;top: 3px;
+		}
+	}
+}
+.SkipToPayment {
+	padding-top: 15px;
+	span {
+		position: relative;top: 3px;
+	}
+}
+.ConsultChargeFooter {
+	width:100%;
+	cursor: pointer;
+	.ConsultChargeBack {
+		float:left; width:33%;
+		a { span { top: -2px;position: relative; } }
+	}
+	.ConsultChargeCancel { 
+		text-align:center;float:left;width:33%;  margin-top: 7px;
+		a {
+			color:#b8b8b8;
+		}
+	}
 }
 
 //add health plan
