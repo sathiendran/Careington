@@ -8151,13 +8151,13 @@ body {
         width: 55px;
         margin-top: -4px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
-      font-size: 18px; }
+      font-size: 21px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
         font-weight: bold; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientLastName {
         font-weight: normal; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_age {
-      font-size: 11px; }
+      font-size: 12px; }
 
 .patientCalendar_subHeader {
   background-color: #e6e6e6;

@@ -36,11 +36,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
  
 	
 	
-	var dtNow = new Date("2015-05-22T10:57:04.268Z");
+	var dtNow = new Date("2015-05-26T13:20:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
 	$rootScope.patientDisplay1 = 'none';
+	$rootScope.patientDisplay = 'block';
 	
 	$scope.$on('timer-tick', function (event, args){
         $timeout(function() {
