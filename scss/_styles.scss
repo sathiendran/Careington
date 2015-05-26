@@ -1052,6 +1052,109 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}
 	}
 }
+
+//Patient ConcernsContent
+
+.ConcernsContent{
+	margin-top: 100px !important;
+	.PrimaryList {
+		top:8px;padding: 1px;cursor:pointer;
+		.Step1 {
+			color:#888;float:right;margin-right: 10px; margin-top: 10px;
+		}
+		.PrimaryContent {
+			margin-top: 30px;
+			h1 {
+				font-size: 25px;  margin-bottom: 2px; width: 100%;
+			}
+			p {
+				margin-left: 19px;margin-bottom: 10px;
+			}
+			div {
+				float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;
+			}
+		}
+	}
+	.PrimaryConcernList {
+		p {
+			width: 90%;
+		}
+		div {
+			float:right;left: 0px; position: relative;
+		}
+	}
+	.SecondaryList {
+		padding: 1px;
+		cursor:pointer;
+		.SecondaryContent {
+			margin-top: 10px;
+			h1 {
+				font-size: 25px;  margin-bottom: 2px;
+			}
+			p {
+				margin-left: 19px;margin-bottom: 10px;
+			}
+			div {
+				float:right;left: -15px; position: relative; margin-top: -55px;
+			}
+		}
+	}
+	
+}
+.ConcernsFooter {
+	width:100%;
+	.FooterLeft {
+		float:left; width:33%;
+		a {
+			color:#b8b8b8;
+		}
+		span {
+			top: -2px;position: relative;
+		}
+	}
+	.FooterCenter {
+		text-align:center;float:left;width:33%;  margin-top: 7px;
+		a {
+			color:#b8b8b8;
+		}
+	}
+	.FooterRight {
+		text-align:right;margin-top: 3px;float:left;width:33%;
+		a {
+			cursor:pointer;			
+		}
+		.ConcernFooterNext {
+			margin-left: -58px;margin-right: 25px;position: relative;top: -4px;
+		}
+	}
+}
+.concernListHeader {
+	height: 55px;
+	.concernListTitle {
+		top: 12px; font-size:16px;
+	}
+	.concernListDone {
+		top: 12px;font-size:15px;
+	}
+}
+.concernListContent {
+	margin-top: 52px;
+	.concernListSearch {
+		padding:11px 0px; top: 0px; border: 0px;
+		.concernListSearchHome {
+			padding:20px 11px 16px 11px; top: 0px;
+			.SearchLabel {
+				margin-top: -19px;
+				.SearchBox {
+					color:#535353; font-weight:normal;margin-top: 0px;
+				}
+			}
+		}
+	}
+	.concernListDetails {
+		font-size: 15px;
+	}
+}
  
  // from Sakthi
  

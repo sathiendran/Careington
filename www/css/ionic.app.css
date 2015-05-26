@@ -8625,6 +8625,112 @@ select {
     .SidemenuLogOut .LogOutText span {
       position: relative; }
 
+.ConcernsContent {
+  margin-top: 100px !important; }
+  .ConcernsContent .PrimaryList {
+    top: 8px;
+    padding: 1px;
+    cursor: pointer; }
+    .ConcernsContent .PrimaryList .Step1 {
+      color: #888;
+      float: right;
+      margin-right: 10px;
+      margin-top: 10px; }
+    .ConcernsContent .PrimaryList .PrimaryContent {
+      margin-top: 30px; }
+      .ConcernsContent .PrimaryList .PrimaryContent h1 {
+        font-size: 25px;
+        margin-bottom: 2px;
+        width: 100%; }
+      .ConcernsContent .PrimaryList .PrimaryContent p {
+        margin-left: 19px;
+        margin-bottom: 10px; }
+      .ConcernsContent .PrimaryList .PrimaryContent div {
+        float: right;
+        left: -15px;
+        position: relative;
+        margin-top: -55px;
+        cursor: pointer; }
+  .ConcernsContent .PrimaryConcernList p {
+    width: 90%; }
+  .ConcernsContent .PrimaryConcernList div {
+    float: right;
+    left: 0px;
+    position: relative; }
+  .ConcernsContent .SecondaryList {
+    padding: 1px;
+    cursor: pointer; }
+    .ConcernsContent .SecondaryList .SecondaryContent {
+      margin-top: 10px; }
+      .ConcernsContent .SecondaryList .SecondaryContent h1 {
+        font-size: 25px;
+        margin-bottom: 2px; }
+      .ConcernsContent .SecondaryList .SecondaryContent p {
+        margin-left: 19px;
+        margin-bottom: 10px; }
+      .ConcernsContent .SecondaryList .SecondaryContent div {
+        float: right;
+        left: -15px;
+        position: relative;
+        margin-top: -55px; }
+
+.ConcernsFooter {
+  width: 100%; }
+  .ConcernsFooter .FooterLeft {
+    float: left;
+    width: 33%; }
+    .ConcernsFooter .FooterLeft a {
+      color: #b8b8b8; }
+    .ConcernsFooter .FooterLeft span {
+      top: -2px;
+      position: relative; }
+  .ConcernsFooter .FooterCenter {
+    text-align: center;
+    float: left;
+    width: 33%;
+    margin-top: 7px; }
+    .ConcernsFooter .FooterCenter a {
+      color: #b8b8b8; }
+  .ConcernsFooter .FooterRight {
+    text-align: right;
+    margin-top: 3px;
+    float: left;
+    width: 33%; }
+    .ConcernsFooter .FooterRight a {
+      cursor: pointer; }
+    .ConcernsFooter .FooterRight .ConcernFooterNext {
+      margin-left: -58px;
+      margin-right: 25px;
+      position: relative;
+      top: -4px; }
+
+.concernListHeader {
+  height: 55px; }
+  .concernListHeader .concernListTitle {
+    top: 12px;
+    font-size: 16px; }
+  .concernListHeader .concernListDone {
+    top: 12px;
+    font-size: 15px; }
+
+.concernListContent {
+  margin-top: 52px; }
+  .concernListContent .concernListSearch {
+    padding: 11px 0px;
+    top: 0px;
+    border: 0px; }
+    .concernListContent .concernListSearch .concernListSearchHome {
+      padding: 20px 11px 16px 11px;
+      top: 0px; }
+      .concernListContent .concernListSearch .concernListSearchHome .SearchLabel {
+        margin-top: -19px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel .SearchBox {
+          color: #535353;
+          font-weight: normal;
+          margin-top: 0px; }
+  .concernListContent .concernListDetails {
+    font-size: 15px; }
+
 a {
   text-decoration: none; }
 
