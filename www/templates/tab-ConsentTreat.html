@@ -3,68 +3,48 @@
 	<ion-side-menu-content> 
 		<div ng-include src="'templates/intakeHeader.html'"></div>
 <ion-view title="Appointment Details">
-
-<!--<ion-header-bar align-title="left" class="bar-positiveHomeUser" >
 		
-		<div ng-include src="'templates/intakeHeader.html'"></div>-->
-		
-		<div style="">
-			<div style="color:#888;float:right;margin-right: 15px; margin-top: -10px; font-size: 16px;">Step <b>6</b> of <b>7</b></div>
+		<div>
+			<div class="ConsentSteps" >Step <b>6</b> of <b>7</b></div>
 			<div>
-				<h1 class="ChronicCondition" style="margin-top: 136px; font-size: 25px;  margin-left: 15px; width:100%; padding-top: 7px;">Consent to Treat</h1>
-				<p style=" margin-top: -8px;margin-left: 16px;padding-bottom: 0px; color:#888;">Read, Acknowledge, and Agree (Scroll to Bottom)</p>
+				<h1 class="ChronicCondition consentTitle">Consent to Treat</h1>
+				<p class="consentSubTitle">Read, Acknowledge, and Agree (Scroll to Bottom)</p>
 			</div> 
-			 <div style=" border-bottom: 1px solid #ddd;"></div>
+			 <div class="consentLine"></div>
 	   </div>
-	   
-<!--</ion-header-bar>-->
 
-<!--<div>
-			<div style="color:#888;float:right;margin-right: 10px; margin-top: 20px;">Step <b>6</b> of <b>7</b></div>
-			<div style="cursor:pointer;">
-                
-                <div style="margin-top: 12px;">
-                        <h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px; width: 100%;">Consent to Treat</h1>
-                    </div>
-                    <p style="margin-left: 19px;">Read, Acknowledge, and Agree(Scroll to Bottom)
-                        </p>
-                 
-			</div>
-		
-		</div>-->
- 
-
-
-<ion-content class="ContentHomeUser" style="margin-top: 205px;">
+<ion-content class="ContentHomeUser ConsentContent">
 	
 
 
-<div style="border-bottom: 1px solid #ddd; margin: 12px 10px 10px 10px;">
-<p  class="PragraphContent"  style="text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#000;">
+<div class="ConsentMessageFirst" >
+<p  class="PragraphContent">
  I, Or guardian,give/s permission to <b>Emerald HealthCare Group </b> to perform the medical service that the physician and other non-physician providers and assistants may deem to be necessary. In addition, I, or authorize/s <b> Emerald Healthcare Group</b> to realse any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.
 </p>	
 </div>	
 
-<div style="border-bottom: 1px solid #ddd; margin: 10px 10px 10px 10px;">
-<p class="PragraphContent"   style="text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#595959;"  >
+<div class="ConsentMessageSecond">
+<p class="PragraphContent">
   SnapMd terms & Conditions, Privacy Police and Consent to Treat. <br>These Terms and Conditions define the obligation of SnapMd. its authorized agent and me. the service subscriber, and they establish the basic rules of safe and the basic rules of safe and fair use of SnapMd and its authorized agents re-serve the right to immediately and withot advance notice terminate the service and deny access to individuals who do not abide by the Terms and conditions.
-</div>	
+</p>
+  </div>	
 
 
-<div style=" margin: 10px  10px 10px 10px;">
-<p  class="PragraphContent" style="text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#919191; font-weight: bold; font-size: 13px;" >
+<div class="ConsentMessageAgree">
+<p  class="PragraphContent" >
 By clicking "I Agree", I acknowledge and agree to the Terms and Conditions and Consent To treatment as-stated above.
+</p>
 </div>	
 
-  <div style=" margin: 10px  10px 10px 10px;"> 
+  <div  class="ConsentMessageAgree" > 
     <!--<ion-option-button class="button-positive" ng-hrf="#/tab/consultCharge" style="background-color:#A2D28A; border-color:#A2D28A;width: 100%; color:#fff;" ><b>I Agree</b></ion-option-button>-->
 	<button class="button button-block button-balanced" ng-click="GoToConsultCharge(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
 				  I Agree
 				</button>
    </div>	
-   <div style=" margin: 10px  10px 10px 10px;"> 
-   <a ng-href="#/tab/userhome"><button class="button-block button-balanced" style="background-color:#fff; border:none;">
-				<b style="font-size:16px;color:#ccc;"> Cancel </b>
+   <div class="ConsentMessageAgree" > 
+   <a ng-href="#/tab/userhome"><button class="button-block button-balanced ConsentCancel">
+				<b> Cancel </b>
 				</button></a>
    </div>	
 

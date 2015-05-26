@@ -1,14 +1,14 @@
 
 
 <div class="modal">
-    <header class="bar bar-header bar-dark" style="height: 50px;">
-	<div class="ErrorMessage" style="position: fixed; z-index:2; top:0px; left:0px;" ></div>
-	<button type="submit" class="button button-clear" ng-click="RemoveSurgeryPopup()" style="top: 5px;  font-size: 15px; ">Cancel</button>
-      <h1 class="title" style="top: 12px;  font-size: 16px;">Prior Surgeries</h1>
-      <button type="submit" class="button button-clear" ng-click="closeSurgeryPopup()" style="top: 12px;  font-size: 15px;">Done</button>
-    </header>
+    <header class="bar bar-header bar-dark SurgeryHeader">
+		<div class="ErrorMessage ErrorMessageDiv"  ></div>
+		<button type="submit" class="button button-clear SurgeryCancel" ng-click="RemoveSurgeryPopup()">Cancel</button>
+		<h1 class="title SurgeryTitle">Prior Surgeries</h1>
+		<button type="submit" class="button button-clear SurgeryDone" ng-click="closeSurgeryPopup()">Done</button>
+	</header>
    
-   <ion-content has-header="true" style="margin-top: 48px;">
+   <ion-content has-header="true" class="SurgeryContent">
      
     <div class="list">
 		
