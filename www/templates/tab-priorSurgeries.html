@@ -5,49 +5,39 @@
 
 
 <ion-view title="Prior Surgeries">
-    <ion-content class="ContentHomeUser" style="margin-top: 100px;">
-              <ion-item style="top: 0px;padding: 2px;">
-                <div style="color:#888;float:right;margin-right: 10px; margin-top: 20px;">Step <b>3</b> of <b>7</b></div>
+    <ion-content class="ContentHomeUser ConcernsContent" >
+        <ion-list>
+			<ion-item class="PrimaryList">
+                <div class="Step1">Step <b>3</b> of <b>7</b></div>
                     
-                  <div ng-if="IsToPriorCount != 4" ng-click="getSurgeryPopup();" style="cursor:pointer;">
-                        <div style="margin-top: 28px;">
-
-                            <div style="margin-top: 30px;">
-
-                                <h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px; width: 100%;">Prior Surgeries</h1>
-                                <p style="margin-left: 19px;margin-bottom: 10px;">
-                                    List any prior surgeries.
-                                    <br/>
-                                    Enter up to four
-                                </p>
-                                <div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;">
-                               
-                                <i ng-if="IsToPriorCount != 4" class="ion-plus-circled addBtn">  </i>    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+				<div ng-if="IsToPriorCount != 4" ng-click="getSurgeryPopup();" >
+					<div class="PrimaryContent">
+						<h1 class="title ChronicCondition" >Prior Surgeries</h1>
+						<p>
+							List any prior surgeries.
+							<br/>
+							Enter up to four
+						</p>
+						<div> <i ng-if="IsToPriorCount != 4" class="ion-plus-circled addBtn">  </i>    
+						</div>
+					</div>
+				</div>
+			</ion-item>
                   
-                  <div ng-if="IsToPriorCount == 4"  style="cursor:pointer;">
-                        <div style="margin-top: 28px;">
-
-                            <div style="margin-top: 30px;">
-
-                                <h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px; width: 100%;">Prior Surgeries</h1>
-                                <p style="margin-left: 19px;margin-bottom: 10px;">
-                                    List any prior surgeries.
-                                    <br/>
-                                    Enter up to four
-                                </p>
-                                <div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;">
-                                <i class="ion-plus-circled addBtn disabled">  </i>
-                               
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+			<div ng-if="IsToPriorCount == 4" >				
+				<div class="PrimaryContent">
+					<h1 class="title ChronicCondition">Prior Surgeries</h1>
+					<p>
+						List any prior surgeries.
+						<br/>
+						Enter up to four
+					</p>
+					<div><i class="ion-plus-circled addBtn disabled">  </i>
+					</div>
+				</div>				
+			</div>
                   
-                </ion-item>
+                
 		
        
                
@@ -59,15 +49,15 @@
 			</div>
 		</ion-item> -->
         
-<div class="list" style="margin-top: -3px;">
-   <a class="item item-avatar" href="#" style="padding-left: 15px;" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
-    <div style="float: left;">
-     <div style="font-size: 20px;">{{surgery.Name}}</div>
-     <div style="padding-top: 5px; font-size: 15px;">{{surgery.Date | date: "MMM, yyyy"}}</div>   
-    </div>
-    <div style="text-align: right; margin-right: -1px;" ><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
-    </a>
-</div>
+	<div class="list surgeryList">
+	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
+			<div class="surgeryDetails">
+				<div class="surgeryName">{{surgery.Name}}</div>
+				<div class="surgeryDate">{{surgery.Date | date: "MMM, yyyy"}}</div>   
+			</div>
+			<div class="surgerydelete"><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
+		</a>
+	</div>
         
             </ion-content>
         </ion-view>
@@ -77,26 +67,27 @@
 
 
 	
-<ion-footer-bar  class="footer">
-		
-    
-    	<div style="width:100%;">
+	<ion-footer-bar  class="footer">
+		<div class="ConcernsFooter">
 					 
-					 <div class="" style="float:left; width:33%">
-							<a class="button_new icon ion-chevron-left" href="#/tab/ChronicCondition" style="cursor: pointer;"><span style="  top: -2px;position: relative;">Back</span></a>
-						</div>
-						
-						<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
-							<a class="button_new icon" ng-click="clearRootScopeConce()" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
-						</div>
-						   
-						<div class="" style="text-align:right;margin-top: 3px;float:left;width:33%">
-							<a class="button_new icon ion-chevron-right"   href="#/tab/MedicationAllegies"> <span style="margin-left: -58px;margin-right: 25px;position: relative;top: -4px;">Next<span> </a>
-						</div>
+		 <div class="FooterLeft" >
+				<a class="button_new icon ion-chevron-left" href="#/tab/ChronicCondition" ><span>Back</span></a>
+			</div>
+			
+			<div class="FooterCenter">
+				<a class="button_new icon" ng-click="clearRootScopeConce()">Cancel</a>
+			</div>
+			   
+			<div class="FooterRight" >
+				<a class="button_new icon ion-chevron-right"   href="#/tab/MedicationAllegies"> <span class="ConcernFooterNext" >Next<span> </a>
+			</div>
 						  
-			<div>
-    
-</ion-footer-bar>	
+		<div>
+		
+	</ion-footer-bar>	
+
+
+
 		
 		
 

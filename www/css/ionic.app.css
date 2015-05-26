@@ -7891,7 +7891,7 @@ body {
 
 .provider_item {
   color: #888 !important;
-  font-size: 18px !important;
+  font-size: 20px !important;
   cursor: pointer; }
 
 .password {
@@ -8673,14 +8673,26 @@ select {
         left: -15px;
         position: relative;
         margin-top: -55px; }
+  .ConcernsContent .surgeryList {
+    margin-top: 8px; }
+    .ConcernsContent .surgeryList a {
+      padding-left: 15px; }
+      .ConcernsContent .surgeryList a .surgeryDetails {
+        float: left; }
+        .ConcernsContent .surgeryList a .surgeryDetails .surgeryName {
+          font-size: 20px; }
+        .ConcernsContent .surgeryList a .surgeryDetails .surgeryDate {
+          padding-top: 5px;
+          font-size: 15px; }
+      .ConcernsContent .surgeryList a .surgerydelete {
+        text-align: right;
+        margin-right: -1px; }
 
 .ConcernsFooter {
   width: 100%; }
   .ConcernsFooter .FooterLeft {
     float: left;
     width: 33%; }
-    .ConcernsFooter .FooterLeft a {
-      color: #b8b8b8; }
     .ConcernsFooter .FooterLeft span {
       top: -2px;
       position: relative; }
@@ -8730,6 +8742,81 @@ select {
           margin-top: 0px; }
   .concernListContent .concernListDetails {
     font-size: 15px; }
+
+.SurgeryHeader {
+  height: 50px; }
+  .SurgeryHeader .SurgeryCancel {
+    top: 5px !important;
+    font-size: 15px !important; }
+  .SurgeryHeader .SurgeryTitle {
+    top: 12px;
+    font-size: 16px; }
+  .SurgeryHeader .SurgeryDone {
+    top: 12px !important;
+    font-size: 15px !important; }
+
+.SurgeryContent {
+  margin-top: 48px; }
+
+.ConsentSteps {
+  color: #888;
+  float: right;
+  margin-right: 15px;
+  margin-top: -10px;
+  font-size: 16px; }
+
+.consentTitle {
+  margin-top: 136px !important;
+  font-size: 25px !important;
+  margin-left: 15px !important;
+  width: 100%;
+  padding-top: 7px; }
+
+.consentSubTitle {
+  margin-top: -8px;
+  margin-left: 16px;
+  padding-bottom: 0px;
+  color: #888; }
+
+.consentLine {
+  border-bottom: 1px solid #ddd; }
+
+.ConsentContent {
+  margin-top: 205px !important; }
+  .ConsentContent .ConsentMessageFirst {
+    border-bottom: 1px solid #ddd;
+    margin: 12px 10px 10px 10px; }
+    .ConsentContent .ConsentMessageFirst p {
+      text-overflow: clip;
+      white-space: normal;
+      text-align: justify;
+      padding: 0.5em 0 0.5em 0;
+      color: #000; }
+  .ConsentContent .ConsentMessageSecond {
+    border-bottom: 1px solid #ddd;
+    margin: 10px 10px 10px 10px; }
+    .ConsentContent .ConsentMessageSecond p {
+      text-overflow: clip;
+      white-space: normal;
+      text-align: justify;
+      padding: 0.5em 0 0.5em 0;
+      color: #595959; }
+  .ConsentContent .ConsentMessageAgree {
+    margin: 10px 10px 10px 10px; }
+    .ConsentContent .ConsentMessageAgree p {
+      text-overflow: clip;
+      white-space: normal;
+      text-align: justify;
+      padding: 0.5em 0 0.5em 0;
+      color: #919191;
+      font-weight: bold;
+      font-size: 13px; }
+    .ConsentContent .ConsentMessageAgree .ConsentCancel {
+      background-color: #fff;
+      border: none; }
+      .ConsentContent .ConsentMessageAgree .ConsentCancel b {
+        font-size: 16px;
+        color: #ccc; }
 
 a {
   text-decoration: none; }
@@ -9338,9 +9425,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
   float: left; }
 
 .callIcons {
-  font-size: 25px;
-  margin-left: 10px;
-  margin-right: 10px;
+  font-size: 35px;
+  margin-left: 20px;
+  margin-right: 20px;
   cursor: pointer; }
 
 .activeCallIcon {

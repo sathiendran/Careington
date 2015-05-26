@@ -1099,15 +1099,30 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			}
 		}
 	}
+	.surgeryList {
+		margin-top: 8px;
+		a{
+			padding-left: 15px;
+			.surgeryDetails { 
+				float: left;
+				.surgeryName {
+					font-size: 20px;
+				}
+				.surgeryDate {
+					padding-top: 5px; font-size: 15px;
+				}
+			}
+			.surgerydelete {
+				text-align: right; margin-right: -1px;
+			}
+		}
+	}
 	
 }
 .ConcernsFooter {
 	width:100%;
 	.FooterLeft {
-		float:left; width:33%;
-		a {
-			color:#b8b8b8;
-		}
+		float:left; width:33%;		
 		span {
 			top: -2px;position: relative;
 		}
@@ -1155,6 +1170,63 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		font-size: 15px;
 	}
 }
+
+.SurgeryHeader {
+	height: 50px;
+	.SurgeryCancel {
+		top: 5px !important;  font-size: 15px !important; 
+	}
+	.SurgeryTitle {
+		top: 12px;  font-size: 16px;
+	}
+	.SurgeryDone {
+		top: 12px !important;  font-size: 15px !important;
+	}
+}
+.SurgeryContent {
+	margin-top: 48px;
+}
+
+.ConsentSteps {
+	color:#888;float:right;margin-right: 15px; margin-top: -10px; font-size: 16px;
+}
+.consentTitle {
+	margin-top: 136px !important; font-size: 25px !important;  margin-left: 15px !important; width:100%; padding-top: 7px;
+}
+.consentSubTitle {
+	margin-top: -8px;margin-left: 16px;padding-bottom: 0px; color:#888;
+}
+.consentLine {
+	border-bottom: 1px solid #ddd;
+}
+.ConsentContent {
+	margin-top: 205px !important;
+	.ConsentMessageFirst {
+		border-bottom: 1px solid #ddd; margin: 12px 10px 10px 10px;
+		p {
+			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#000;
+		}
+	}
+	.ConsentMessageSecond {
+		border-bottom: 1px solid #ddd; margin: 10px 10px 10px 10px;
+		p {
+			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#595959;
+		}
+	}
+	.ConsentMessageAgree {
+		margin: 10px  10px 10px 10px;
+		p {
+			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#919191; font-weight: bold; font-size: 13px;
+		}
+		.ConsentCancel {
+			background-color:#fff; border:none;
+			b {
+				font-size:16px;color:#ccc;
+			}
+		}
+	}
+}
+
  
  // from Sakthi
  
