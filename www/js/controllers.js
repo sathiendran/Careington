@@ -1768,7 +1768,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
         $scope.publishAudio = $scope.newPublishAudio;
         publisher.publishAudio($scope.newPublishAudio);
-        OT.updateViews();
+        //OT.updateViews();
     };
     
     $scope.toggleSpeaker = function(){
