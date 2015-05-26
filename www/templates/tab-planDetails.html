@@ -1,90 +1,85 @@
 <ion-view title="Plan Details">
 	 <form ng-submit="PlanDetailsValidation()">
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height: 58px;" >
-	
-		<div id="Error_Message" style="position: fixed; z-index:2; top:0px; left:0px;" ></div>
-		 <div class="buttons" style="display: {{PlanDisplay}}">
-			<a class="button_new icon" ng-href="#/tab/consultCharge" style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px;" >
-				<span style="margin-top:7px; position:absolute;">Cancel</span>
-			</a>				
-		  </div>
-        
-		<!--<h1 class="title_patient"></h1>--->
-		<div class="buttons" style="display: {{PlanDisplay}}" >		
-			<!--<a class="button_new icon" ng-click="PlanDetailsValidation()"  style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;" >
-				<span style="margin-top:7px; position:absolute;left: 15px;">Next</span>
-			</a> -->
-             <button type="submit" class="button_new icon" style="padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;background: none;
-  border: none;">
-						<span style="margin-top:-7px; position:absolute;left: 15px;">Next</span>
-					</button>
-            
-		  </div>
+		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" >
 		
-	</ion-header-bar>
-		
-	<ion-content class="planDetails_content"  >
-		<div>		
-			<div class="healthPlan_text" style="display: {{PlanDisplay}}">
-				Health Plan				
-			</div>			
+			<div id="Error_Message" class="ErrorMessageDiv" ></div>
+			<div class="buttons" style="display: {{PlanDisplay}}">
+				<a class="button_new icon PlanCancel" ng-href="#/tab/consultCharge" >
+					<span>Cancel</span>
+				</a>				
+			 </div>
 			
-			<div class="healthPlan_header" style="display: {{PlanDisplay}}"  >
-				<div class="planInformation"  >
-				Enter your health plan information			
-				</div>
-					
+			<!--<h1 class="title_patient"></h1>--->
+			<div class="buttons" style="display: {{PlanDisplay}}" >		
+				<button type="submit" class="button_new icon PlanNext" >
+							<span>Next</span>
+				</button>				
+			</div>			
+		</ion-header-bar>
+		
+		
+		<ion-content class="planDetails_content"  >
+			<div>		
+				<div class="healthPlan_text" style="display: {{PlanDisplay}}">
+					Health Plan				
+				</div>			
+				
+				<div class="healthPlan_header" style="display: {{PlanDisplay}}"  >
+					<div class="planInformation"  >
+					Enter your health plan information			
+					</div>
+						
 					<div class="provider">Select your provider</div>
 					<div class="addHealthPlan_header"  >					
-						<div class="demo" style="margin-left: 50px;">	
+						<div class="demo ProviderList">	
 							<select id="Provider">
-								<option style="padding:10px;" value=""><b>Plan Provider</b></option>
-				<option style="padding:10px;"  value="Blue Cross"><b>Blue Cross</b></option>
-                <option style="padding:10px;" value="Anthem Cross"><b>Anthem Cross</b></option>
-				<option style="padding:10px;" value="Blue Cross Blue shield"><b>Blue Cross Blue shield</b></option>
+								<option value=""><b>Plan Provider</b></option>
+								<option value="Blue Cross"><b>Blue Cross</b></option>
+								<option value="Anthem Cross"><b>Anthem Cross</b></option>
+								<option value="Blue Cross Blue shield"><b>Blue Cross Blue shield</b></option>
 							</select>
 						</div>
 					</div>
+					
+				</div>
 				
+				<div class="healthPlan_text verifyPlanHeading" style="display: {{verifyPlanDisplay}}">
+					Verifying Plan				
+				</div>			
+				
+				<div class="verifyPlan_subHeader ellipsis" style="display: {{verifyPlanDisplay}}" >
+					{{providerName}}
+				</div>
+				
+				
+				<div class="list" >
+					<label class="item item-input" >
+						<span class="input-label">First Name</span>
+						<input  type="text" placeholder="Required" name="firstName" id="firstName">
+					</label>
+					<label class="item item-input" >
+						<span class="input-label">Last Name</span>
+						<input type="text" placeholder="Required" name="lastName" id="lastName" >
+					</label>
+					<label class="item item-input">
+						<span class="input-label">Policy Number</span>
+						<input type="number" placeholder="Required" name="policyNumber" id="policyNumber">
+					</label>
+					<label class="item item-input" >
+						<span class="input-label"  >Date of Birth
+							<div style="font-size: 10px;">for the policy holder</div></span>
+					<!--<input type="date" placeholder="Required" style="font-size: 18px;">-->
+						<input placeholder="Required" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}"> 
+					</label>
+				</div>
+				
+				<div class="planDetails"  >
+					<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
+				</div>
+				<div class="privacy" >About Connected Care Privacy</div>
 			</div>
-			
-			<div class="healthPlan_text" style="padding-top: 35px; display: {{verifyPlanDisplay}}">
-				Verifying Plan				
-			</div>			
-			
-			<div class="verifyPlan_subHeader ellipsis" style="display: {{verifyPlanDisplay}}" >
-				{{providerName}}
-			</div>
-			
-			
-			<div class="list" >
-			  <label class="item item-input" >
-				<span class="input-label">First Name</span>
-				<input type="text" placeholder="Required" name="firstName" id="firstName" style="font-size: 18px;">
-			  </label>
-			  <label class="item item-input" >
-				<span class="input-label">Last Name</span>
-				<input type="text" placeholder="Required" name="lastName" id="lastName" style="font-size: 18px;">
-			  </label>
-			  <label class="item item-input">
-				<span class="input-label">Policy Number</span>
-				<input type="number" placeholder="Required" name="policyNumber" id="policyNumber" style="font-size: 18px;">
-			  </label>
-				<label class="item item-input" >
-				<span class="input-label"  >Date of Birth
-						<div style="font-size: 10px;">for the policy holder</div></span>
-				<!--<input type="date" placeholder="Required" style="font-size: 18px;">-->
-				<input placeholder="Required" style="font-size: 18px;" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}"> 
-			  </label>
-			</div>
-			
-			<div class="planDetails"  >
-				<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
-			</div>
-			<div class="privacy" >About Connected Care Privacy</div>
-		</div>
-       
-	</ion-content>
+		   
+		</ion-content>
 	
     </form>
 

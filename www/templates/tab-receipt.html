@@ -5,33 +5,32 @@
 		<div ng-include src="'templates/receiptHeader.html'"></div> 
 	
 	
-	<ion-content style="margin: 117px 0 0 0; padding-top: 40px;" >
+	<ion-content class="ReceiptContent"  >
 		<div>
 			<div class="healthPlan_header"  >
 				<img ng-src="img/success.png">				
 			</div>
-			<div style="font-size: 35px; text-align: center; padding-top: 50px;">
+			<div class="PaymentSuccess">
 				Payment Successful
-				<div style="font-size: 20px;  padding-top: 20px; color: #F3795D; ">
+				<div class="PaymentConfirmation" >
 					Confirmation #12345678912345
-						<div style="font-size: 12px;  color: black;">
+						<div class="ConfirmationReceipt">
 							A receipt has been sent to you via email
 						</div>
 				</div>
-			</div>
+			</div>			
 			
 			
-			
-			<div style="padding: 50px 8% 25px 8%;">
+			<div class="EnterWaitingRoom">
 				<!--<a ng-href="#/tab/waitingRoom">-->
 				<button type="submit" on-touch ='doGetExistingConsulatationReport()' class="button button-block button-balanced">
-				  <span style="position: relative;top: 3px;">Enter the Waiting Room</span>
+				  <span>Enter the Waiting Room</span>
 				</button>				
 						
 				<!--</a>-->
 			</div>
 			
-				<div style="font-size: 12px; color: black; text-align: center;">
+				<div class="ReceiptRedirect">
 					You will be redirected to waiting room in 
 					<b><timer end-time="ReceiptTime"  >{{seconds}} Sec</timer></b>
 				</div>	

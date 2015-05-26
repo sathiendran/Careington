@@ -8148,7 +8148,7 @@ body {
       margin-left: -15px;
       margin-top: -13px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
-        width: 50px;
+        width: 55px;
         margin-top: -4px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
       font-size: 18px; }
@@ -8349,8 +8349,14 @@ body {
     font-size: 30px;
     font-family: 'Glober Heavy';
     color: #666666; }
+    .consultation_head .consultation_number span {
+      text-decoration: line-through;
+      color: red; }
   .consultation_head .consultTittle {
     color: #000000; }
+  .consultation_head .Plancovers {
+    font-size: 12px;
+    color: #C2C2C2; }
 
 .UseHealthPlan {
   padding-top: 45px; }
@@ -8392,29 +8398,49 @@ body {
   .consultChargeNoPlanContent .NoPlanHeader {
     color: #5C5C5C;
     text-align: center; }
-  .consultChargeNoPlanContent .healthPlan_text {
+  .consultChargeNoPlanContent .NoPlanText {
     margin-left: 20px !important;
     padding-top: 30px;
+    font-size: 16px;
+    color: #888585;
     text-align: left; }
-  .consultChargeNoPlanContent .addHealthPlan_header {
-    text-align: left !important; }
-    .consultChargeNoPlanContent .addHealthPlan_header .demo {
+  .consultChargeNoPlanContent .NoPlanAddCardDropdown {
+    text-align: left; }
+    .consultChargeNoPlanContent .NoPlanAddCardDropdown .demo {
       margin-left: 50px; }
-      .consultChargeNoPlanContent .addHealthPlan_header .demo option {
+      .consultChargeNoPlanContent .NoPlanAddCardDropdown .demo option {
         padding: 10px; }
   .consultChargeNoPlanContent .AddCardNoPlan {
     padding-top: 60px; }
+    .consultChargeNoPlanContent .AddCardNoPlan .healthPlan_text {
+      margin-left: -160px; }
     .consultChargeNoPlanContent .AddCardNoPlan .AddCard {
-      margin-left: 20px; }
+      margin-left: 0px; }
       .consultChargeNoPlanContent .AddCardNoPlan .AddCard img {
         width: 30px;
         height: 30px; }
+      .consultChargeNoPlanContent .AddCardNoPlan .AddCard span {
+        margin-left: 0px; }
+  .consultChargeNoPlanContent .AddCardDetails .healthPlan_text {
+    margin-left: -160px; }
+  .consultChargeNoPlanContent .AddCardDetails .AddCard {
+    margin-left: 0px; }
+    .consultChargeNoPlanContent .AddCardDetails .AddCard img {
+      width: 30px;
+      height: 30px; }
+    .consultChargeNoPlanContent .AddCardDetails .AddCard span {
+      margin-left: 0px; }
   .consultChargeNoPlanContent .NoPlanBottomText {
     text-align: justify;
     padding-bottom: 50px; }
 
+.cardSubmitPayment {
+  background-color: #DADADA !important;
+  border-color: #DADADA !important;
+  background-image: linear-gradient(0deg, #DADADA, #DADADA 50%, transparent 50%) !important; }
+
 .healthPlan_header {
-  padding-top: 15px;
+  padding-top: 40px;
   text-align: center;
   color: #5C5C5C; }
   .healthPlan_header .healthPlan_text {
@@ -8438,6 +8464,30 @@ body {
   margin-top: 7px;
   width: 25px; }
 
+.PlanHeader {
+  height: 58px; }
+  .PlanHeader .PlanCancel {
+    padding-top: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 68px; }
+    .PlanHeader .PlanCancel span {
+      margin-top: 7px;
+      position: absolute; }
+  .PlanHeader .PlanNext {
+    padding-top: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 68px;
+    position: absolute;
+    right: 0px;
+    background: none;
+    border: none; }
+    .PlanHeader .PlanNext span {
+      margin-top: -7px;
+      position: absolute;
+      left: 15px; }
+
 .planDetails_content {
   padding-top: 32px;
   margin-top: 12px; }
@@ -8455,6 +8505,14 @@ body {
     padding-top: 20px;
     font-size: 15px;
     text-align: left; }
+  .planDetails_content .ProviderList {
+    margin-left: 50px; }
+    .planDetails_content .ProviderList option {
+      padding: 10px; }
+  .planDetails_content .verifyPlanHeading {
+    padding-top: 35px; }
+  .planDetails_content input[type="text"], .planDetails_content input[type="number"], .planDetails_content input[type="password"] {
+    font-size: 18px; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
     text-align: left;
@@ -8472,6 +8530,28 @@ body {
     font-weight: bold;
     font-size: 18px;
     width: 50%; }
+  .planDetails_content .cardDetailsHeading {
+    padding-top: 35px; }
+  .planDetails_content .CardInformation {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    color: #5C5C5C;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold; }
+  .planDetails_content .verifyCardDisplay {
+    padding-top: 30px;
+    padding-bottom: 20px; }
+  .planDetails_content .CountryDetails {
+    border: 0px;
+    margin-left: -10px;
+    width: auto;
+    background: none;
+    box-shadow: none;
+    color: #111; }
+    .planDetails_content .CountryDetails option {
+      padding: 10px;
+      color: #111; }
 
 .verifyPlan_subHeader {
   padding-top: 40px;
@@ -8502,6 +8582,48 @@ select {
   overflow: hidden;
   white-space: pre;
   text-overflow: ellipsis; }
+
+.ReceiptContent {
+  margin: 117px 0 0 0;
+  padding-top: 40px; }
+  .ReceiptContent .PaymentSuccess {
+    font-size: 35px;
+    text-align: center;
+    padding-top: 50px; }
+    .ReceiptContent .PaymentSuccess .PaymentConfirmation {
+      font-size: 20px;
+      padding-top: 20px;
+      color: #F3795D; }
+      .ReceiptContent .PaymentSuccess .PaymentConfirmation .ConfirmationReceipt {
+        font-size: 12px;
+        color: black; }
+  .ReceiptContent .EnterWaitingRoom {
+    padding: 50px 8% 25px 8%; }
+    .ReceiptContent .EnterWaitingRoom span {
+      position: relative;
+      top: 3px; }
+  .ReceiptContent .ReceiptRedirect {
+    font-size: 12px;
+    color: black;
+    text-align: center; }
+
+.SidemenuHome {
+  margin-top: 15px;
+  border: none;
+  color: #706A67;
+  font-family: Glober regular !important; }
+  .SidemenuHome span {
+    top: 0px;
+    position: relative; }
+
+.SidemenuLogOut {
+  color: #706A67; }
+  .SidemenuLogOut .LogOutText {
+    color: #706A67;
+    margin-left: -4px;
+    font-family: Glober regular !important; }
+    .SidemenuLogOut .LogOutText span {
+      position: relative; }
 
 a {
   text-decoration: none; }
@@ -9073,7 +9195,22 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -webkit-background-size: auto;
   -moz-background-size: auto;
   -o-background-size: auto;
-  background-size: auto; }
+  background-size: auto;
+  margin: 117px 0 0 0;
+  padding-top: 100px; }
+  .waitingRoomImage .WaitingContent {
+    color: #858585; }
+    .waitingRoomImage .WaitingContent .WaitingMessage {
+      font-size: 32px;
+      text-align: center;
+      padding-top: 40px; }
+      .waitingRoomImage .WaitingContent .WaitingMessage .ClinicianMessage {
+        padding-top: 25px;
+        line-height: normal; }
+      .waitingRoomImage .WaitingContent .WaitingMessage .ThankyouMessage {
+        padding-top: 25px;
+        color: #CECECE;
+        font-size: 20px; }
 
 .spinner svg {
   width: 28px;
