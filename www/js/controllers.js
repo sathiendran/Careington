@@ -29,10 +29,10 @@ var util = {
     }
 }
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
 
 
-.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout) {
+.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage) {
  
 	
 	
@@ -73,7 +73,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         });
     });
 	
-	
+    $scope.$storage = $localStorage;
  
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -188,12 +188,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 //$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
     
     //$rootScope.userLogin.UserEmail = $localstorage.get('username');
-   // $('#UserEmail').val($localstorage.get('username'));
+    $('#UserEmail').val($localstorage.get('username'));
     
 	$scope.userLogin = {};
+    $scope.userLogin.UserEmail = $localStorage.oldEmail;
     $scope.LoginFunction = function(item,event){
 		
-		$rootScope.UserEmail = $scope.userLogin.UserEmail;
+		//$rootScope.UserEmail = $scope.userLogin.UserEmail;
 		
 
 		
@@ -217,11 +218,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 				
              if($scope.userLogin.remember) {
-                    $localstorage.set('username', $("#UserEmail").val()); 
+                    $localstorage.set('username', $("#UserEmail").val());
+                    $localStorage.oldEmail = $scope.userLogin.UserEmail;  
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
 
                } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
+                   $localStorage.oldEmail = '';
                    $localstorage.set('username', ""); 
                }
                 
