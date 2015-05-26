@@ -344,7 +344,34 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$rootScope.APICommonURL = 'https://snap-dev.com';
 	
-	
+    $rootScope.searchPatientList = {};
+    $scope.searched = false;
+    
+    
+    $scope.$watch('data.searchQuery', function(searchKey){
+        if(searchKey != '' && typeof searchKey != 'undefined'){
+            $rootScope.patientSearchKey = searchKey;
+            var loggedInPatient = {
+                'patientName': $rootScope.patientInfomation.fullName,
+                'lastName': $rootScope.patientInfomation.lastName,
+                'age': $rootScope.patientInfomation.age,
+                'guardianName': $rootScope.patientInfomation.guardianName,
+                'profileImagePath': $rootScope.PatientImage
+            };
+            if(!$scope.searched){
+                //$rootScope.dependentDetails.push(loggedInPatient);
+                $rootScope.dependentDetails.splice(0, 0, loggedInPatient);
+            }
+            $scope.searched = true;
+        }else{
+            if($scope.searched){
+                $rootScope.dependentDetails.shift();
+                $scope.searched = false;
+            }
+        }
+    });
+    
+    
 	$scope.doGetExistingConsulatation = function () {
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
@@ -357,27 +384,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             success: function (data) {
                 $scope.existingConsultation = data;
 			
-			$rootScope.consultionInformation = data.data[0].consultationInfo;
-			$rootScope.patientInfomation = data.data[0].patientInformation;	
-			$rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
-			$rootScope.inTakeForm = data.data[0].intakeForm;
-			$rootScope.depedentInformation = data.data[0].dependentInformation;
-			
-			$rootScope.dependentDetails = [];	
-			
-			angular.forEach(data.data[0].dependentInformation, function(index, item) {	
-				$rootScope.dependentDetails.push({
-					'id': index.$id,
-					'patientName': index.fullName,
-					'lastName': index.lastName,
-					'age': index.age,
-					'guardianName': index.guardianName,
-					'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
-				});
-			});	
-			
-			console.log($rootScope.dependentDetails);
-				
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+                $rootScope.patientInfomation = data.data[0].patientInformation;	
+                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+                $rootScope.inTakeForm = data.data[0].intakeForm;
+                $rootScope.depedentInformation = data.data[0].dependentInformation;
+
+                $rootScope.dependentDetails = [];	
+
+
+                angular.forEach(data.data[0].dependentInformation, function(index, item) {	
+                    $rootScope.dependentDetails.push({
+                        'id': index.$id,
+                        'patientName': index.fullName,
+                        'lastName': index.lastName,
+                        'age': index.age,
+                        'guardianName': index.guardianName,
+                        'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+                    });
+                });	
+                $rootScope.searchPatientList = $rootScope.dependentDetails;
+            	
             },
             error: function (data) {
                 $scope.existingConsultation = 'Error getting existing consultation';
@@ -930,6 +957,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
     
     $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        if($rootScope.patientSearchKey != ''){
+            $rootScope.dependentDetails.shift();
+            $scope.searched = false;
+        }
+        
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientName = P_Fname;
         $rootScope.PatientLastName = P_Lname;

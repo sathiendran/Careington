@@ -26,11 +26,10 @@
 
 
 <ion-view title="User Home">	
-<ion-content class="ContentHomeUser UserHme" style="margin-top: 70px;border-color:#000;">
-
+<ion-content class="ContentHomeUser UserHme" ng-controller="LoginCtrl" style="margin-top: 70px;border-color:#000;">
  <div class="UserHmeSub" style="padding:10px;" ng-show="showDetails">
         <label class="item-input" style="margin-top: 5px;background: #E6E6E6; margin-left: 5px;margin-right: 5px;border-radius: 9px;" >
-					<input type="search" placeholder="Search" ng-model="data.searchQuery" style="color:#000;height: 26px;  margin-top: -4px;" >
+            <input type="search" placeholder="Search" id="searchQuery" ng-model="data.searchQuery" style="color:#000;height: 26px;  margin-top: -4px;" >
             </label>
 	   </div>
 
@@ -60,12 +59,11 @@
 			  </a>	
 		</ion-item>
 		
-		<ion-item style="padding:11px;  top: 0px;  height: 80px;" ng-repeat="dependentDetails in dependentDetails | filter: data.searchQuery">
+		<ion-item style="padding:11px;  top: -2px;  height: 80px;" ng-repeat="dependentDetails in dependentDetails | filter: data.searchQuery">
 			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientName,dependentDetails.lastName,dependentDetails.age,dependentDetails.guardianName)" style="cursor:pointer;">   
 				<img ng-src="{{dependentDetails.profileImagePath}}" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle" style="margin-left: 83px;">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
-				
 			 </a>
 		</ion-item> 
 		
