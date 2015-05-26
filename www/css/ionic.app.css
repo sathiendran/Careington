@@ -8444,6 +8444,30 @@ body {
   margin-top: 7px;
   width: 25px; }
 
+.PlanHeader {
+  height: 58px; }
+  .PlanHeader .PlanCancel {
+    padding-top: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 68px; }
+    .PlanHeader .PlanCancel span {
+      margin-top: 7px;
+      position: absolute; }
+  .PlanHeader .PlanNext {
+    padding-top: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 68px;
+    position: absolute;
+    right: 0px;
+    background: none;
+    border: none; }
+    .PlanHeader .PlanNext span {
+      margin-top: -7px;
+      position: absolute;
+      left: 15px; }
+
 .planDetails_content {
   padding-top: 32px;
   margin-top: 12px; }
@@ -8461,6 +8485,14 @@ body {
     padding-top: 20px;
     font-size: 15px;
     text-align: left; }
+  .planDetails_content .ProviderList {
+    margin-left: 50px; }
+    .planDetails_content .ProviderList option {
+      padding: 10px; }
+  .planDetails_content .verifyPlanHeading {
+    padding-top: 35px; }
+  .planDetails_content input[type="text"], .planDetails_content input[type="number"] {
+    font-size: 18px; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
     text-align: left;

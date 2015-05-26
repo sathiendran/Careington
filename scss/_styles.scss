@@ -865,6 +865,22 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 //plan details page
 
+.PlanHeader {
+	height: 58px;
+	.PlanCancel {
+		padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px;
+		span {
+			margin-top:7px; position:absolute;
+		}
+	}
+	.PlanNext {
+		padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;background: none; border: none;
+		span {
+			margin-top:-7px; position:absolute;left: 15px;
+		}
+	}
+}
+
 .planDetails_content {	
 	padding-top: 32px;
 	margin-top: 12px;
@@ -884,6 +900,18 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			padding-top: 20px;
 			font-size: 15px;
 			text-align: left;
+		}
+		.ProviderList {
+			margin-left: 50px;
+			option {
+				padding:10px;
+			}
+		}
+		.verifyPlanHeading{
+			padding-top: 35px;
+		}
+		input[type="text"], input[type="number"] {
+			font-size: 18px;
 		}
 		.planDetails {
 			padding:0 5px 0 15px;
