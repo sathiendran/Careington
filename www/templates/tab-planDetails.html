@@ -1,5 +1,5 @@
 <ion-view title="Plan Details">
-	 <form ng-submit="PlanDetailsValidation()">
+	 <form  ng-submit="PlanDetailsValidation()" name="HealthForm"  novalidate>
 		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" >
 		
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
@@ -10,10 +10,20 @@
 			 </div>
 			
 			<!--<h1 class="title_patient"></h1>--->
-			<div class="buttons" style="display: {{PlanDisplay}}" >		
-				<button type="submit" class="button_new icon PlanNext" >
-							<span>Next</span>
-				</button>				
+			<div class="buttons" style="display: {{PlanDisplay}}" >	
+                
+                <div ng-if="HealthForm.$invalid" class="disabled" >
+                    <button type="submit" class="button_new icon PlanNext" >
+                                <span style="color:#999;">Next</span> 
+                    </button>   
+                </div>
+                <div ng-if="!HealthForm.$invalid">    
+                    <button type="submit" class="button_new icon PlanNext" >
+                              <span>Next</span>  
+                    </button>
+                </div>
+                    
+               
 			</div>			
 		</ion-header-bar>
 		
@@ -32,7 +42,7 @@
 					<div class="provider">Select your provider</div>
 					<div class="addHealthPlan_header"  >					
 						<div class="demo ProviderList">	
-							<select id="Provider">
+							<select id="Provider" ng-model="Provider" required>
 								<option value=""><b>Plan Provider</b></option>
 								<option value="Blue Cross"><b>Blue Cross</b></option>
 								<option value="Anthem Cross"><b>Anthem Cross</b></option>
@@ -55,21 +65,20 @@
 				<div class="list" >
 					<label class="item item-input" >
 						<span class="input-label">First Name</span>
-						<input  type="text" placeholder="Required" name="firstName" id="firstName">
+                    <input  type="text" placeholder="Required" ng-model="firstName" name="firstName" id="firstName" required>
 					</label>
 					<label class="item item-input" >
 						<span class="input-label">Last Name</span>
-						<input type="text" placeholder="Required" name="lastName" id="lastName" >
+				<input type="text" placeholder="Required" ng-model="lastName" name="lastName" id="lastName" required >
 					</label>
 					<label class="item item-input">
 						<span class="input-label">Policy Number</span>
-						<input type="number" placeholder="Required" name="policyNumber" id="policyNumber">
+				<input type="number" placeholder="Required" name="policyNumber" ng-model="policyNumber" id="policyNumber" required>
 					</label>
 					<label class="item item-input" >
 						<span class="input-label"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
-					<!--<input type="date" placeholder="Required" style="font-size: 18px;">-->
-						<input placeholder="Required" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}"> 
+					<input placeholder="Required" ng-model="date" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}" required> 
 					</label>
 				</div>
 				
