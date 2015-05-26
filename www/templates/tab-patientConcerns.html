@@ -5,102 +5,88 @@
 	<div ng-include src="'templates/intakeHeader.html'"></div>
 	
 <ion-view title="Patient Concerns">
-<ion-content class="ContentHomeUser" style="margin-top: 100px;">
- 	<ion-list>
-		<ion-item style="top:8px;padding: 1px;">
-			<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div>
-			<div ng-click="loadPrimaryConcerns();"  style="cursor:pointer;">
-			    <div style="margin-top: 30px;">
-					<h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px; width: 100%;">Primary Concerns</h1>
-				    <p style="margin-left: 19px;margin-bottom: 10px;">What is reason(s) for todays visit?</p>
-					<div style="float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;">
-					<i class="ion-plus-circled addBtn">  </i>
+	<ion-content class="ContentHomeUser ConcernsContent" >
+		<ion-list>
+			<ion-item class="PrimaryList">
+				<div class="Step1">Step <b>1</b> of <b>7</b></div>
+				<div ng-click="loadPrimaryConcerns();" >
+					<div class="PrimaryContent">
+						<h1 class="title ChronicCondition">Primary Concerns</h1>
+						<p>What is reason(s) for todays visit?</p>
+						<div>
+							<i class="ion-plus-circled addBtn">  </i>
+						</div>
+					</div>
+				</div>				
+			</ion-item>
+		   <!-- <ion-item ng-show="PatientPrimaryConcern != ''">
+				<div>
+					<div style="width: 92%;"><p class="intakeNote" >{{PatientPrimaryConcern}} </p></div>
+					<div style="float:right;left: 0px; position: relative;"><i class="ion-close-circled delBtn" ng-click="removePrimaryConcern();" ></i></div>
+				</div>
+			</ion-item> -->
+			
+			 <ion-item ng-repeat="item in PatientPrimaryConcern">
+				<div class="PrimaryConcernList">
+					<p class="intakeNote">{{item.text}} </p>
+					<div> <i class="ion-close-circled delBtn" ng-click="removePrimaryConcern($index, item);" ></i></div>
+				</div>
+			</ion-item>
+			
+			
+			<ion-item class="SecondaryList">
+				<!--<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div> -->
+				<div ng-click="loadSecondaryConcerns();" >
+					<div class="SecondaryContent">					
+						<h1 class="title ChronicCondition">Secondary Concerns</h1>
+						<p>What is reason(s) for todays visit?</p>
+						<div>
+							<i class="ion-plus-circled addBtn">  </i>
+						</div>
 					</div>
 				</div>
-			</div>
-			
-		</ion-item>
-       <!-- <ion-item ng-show="PatientPrimaryConcern != ''">
-			<div>
-				<div style="width: 92%;"><p class="intakeNote" >{{PatientPrimaryConcern}} </p></div>
-                <div style="float:right;left: 0px; position: relative;"><i class="ion-close-circled delBtn" ng-click="removePrimaryConcern();" ></i></div>
-			</div>
-		</ion-item> -->
-        
-         <ion-item ng-repeat="item in PatientPrimaryConcern">
-			<div>
-				<p class="intakeNote" style="width: 90%;">{{item.text}} </p>
-                <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removePrimaryConcern($index, item);" ></i></div>
-			</div>
-		</ion-item>
-        
-        
-		<ion-item style="padding: 1px;">
-			<!--<div style="color:#888;float:right;margin-right: 10px; margin-top: 10px;">Step <b>1</b> of <b>7</b></div> -->
-			<div ng-click="loadSecondaryConcerns();"  style="cursor:pointer;">
-			<div style="margin-top: 10px;">
 				
-					<h1 class="title ChronicCondition" style="font-size: 25px;  margin-bottom: 2px;">Secondary Concerns</h1>
-				</a>
-				<p style="margin-left: 19px;margin-bottom: 10px;">What is reason(s) for todays visit?</p>
-				 <div style="float:right;left: -15px; position: relative; margin-top: -55px;">
-					<i class="ion-plus-circled addBtn">  </i>
+			</ion-item>
+			<!-- <ion-item ng-show="PatientSecondaryConcern != ''">
+				<div>
+					<div style="width: 92%;"><p class="intakeNote" >{{PatientSecondaryConcern}} </p></div>
+					<div style="float:right;left: 0px; position: relative;">
+						<i  class="ion-close-circled delBtn" ng-click="removeSecondaryConcern();"></i>
+					</div>
 				</div>
+			</ion-item> -->
+		
+		 <ion-item ng-repeat="item in PatientSecondaryConcern">
+				<div class="PrimaryConcernList">
+					<p class="intakeNote" >{{item.text}} </p>
+					<div> <i class="ion-close-circled delBtn" ng-click="removeSecondaryConcern($index, item);" ></i></div>
 				</div>
-			</div>
+			</ion-item>
 			
-		</ion-item>
-		<!-- <ion-item ng-show="PatientSecondaryConcern != ''">
-			<div>
-                <div style="width: 92%;"><p class="intakeNote" >{{PatientSecondaryConcern}} </p></div>
-				<div style="float:right;left: 0px; position: relative;">
-					<i  class="ion-close-circled delBtn" ng-click="removeSecondaryConcern();"></i>
-				</div>
-			</div>
-		</ion-item> -->
-    
-     <ion-item ng-repeat="item in PatientSecondaryConcern">
-			<div>
-				<p class="intakeNote" style="width: 90%;">{{item.text}} </p>
-                <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removeSecondaryConcern($index, item);" ></i></div>
-			</div>
-		</ion-item>
-		
-		
-	</ion-list>
-</ion-content>
+			
+		</ion-list>
+	</ion-content>
 </ion-side-menu-content>
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
 </ion-view>
 
 	<ion-footer-bar  class="footer">
-			<div style="width:100%;">
-					 
-					 <div class="" style="text-align:center;float:left; width:33%">
-							<a class="button_new icon" href="#/tab/patientDetail" style=" color:#b8b8b8;"></a>
-						</div>
-						
-						<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
-							<a class="button_new icon" ng-click="clearRootScopeConce()" style=" color:#b8b8b8;">Cancel</a>
-						</div>
-						   
-						<div class="" style="text-align:right;margin-top: 3px;float:left;width:33%">
-							
-                            <!--<a ng-if="IsValue == undefined" class="button_new icon ion-chevron-right disabled "  style="cursor:pointer"  ng-click="PatientConcernsDirectory()"  > 
-                            <span style="margin-left: -58px;margin-right: 25px;">Next<span> </a>
-                                    
-                            <a ng-if=IsValue != 0 class="button_new icon ion-chevron-right"  style="cursor:pointer"  ng-click="PatientConcernsDirectory()"  > 
-                            <span style="margin-left: -58px;margin-right: 25px;">Next<span> </a>
-                                
-                              <a ng-if="IsValue == 0" class="button_new icon ion-chevron-right disabled"  style="cursor:pointer"  ng-click="PatientConcernsDirectory()"  > 
-                            <span style="margin-left: -58px;margin-right: 25px;">Next<span> </a>   ---> 
-                            
-                            <a class="button_new icon ion-chevron-right"  style="cursor:pointer"  ng-click="PatientConcernsDirectory()"  > 
-                           <span style="margin-left: -58px;margin-right: 25px;position: relative;top: -4px;">Next<span> </a>
-                                    
-						</div>
-						  
-			<div>
+		<div class="ConcernsFooter">				 
+			<div class="FooterLeft">
+				<a class="button_new icon" href="#/tab/patientDetail" ></a>
+			</div>
+					
+			<div class="FooterCenter">
+				<a class="button_new icon" ng-click="clearRootScopeConce()" >Cancel</a>
+			</div>
+					   
+			<div class="FooterRight">
+				<a class="button_new icon ion-chevron-right"  ng-click="PatientConcernsDirectory()"  > 
+					<span class="ConcernFooterNext">Next<span>
+				</a>
+			</div>
+					  
+		<div>
 	</ion-footer-bar>	
 
