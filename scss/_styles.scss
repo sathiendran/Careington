@@ -1015,6 +1015,28 @@ background: linear-gradient(#A0D18A, #91BE7B);
     white-space:pre; 
     text-overflow:ellipsis;
 }
+//Receipt
+.ReceiptContent {
+	margin: 117px 0 0 0; padding-top: 40px;
+	.PaymentSuccess {
+		font-size: 35px; text-align: center; padding-top: 50px;
+		.PaymentConfirmation {
+			font-size: 20px;  padding-top: 20px; color: #F3795D;
+			.ConfirmationReceipt {
+				font-size: 12px;  color: black;
+			}
+		}
+	}
+	.EnterWaitingRoom {
+		padding: 50px 8% 25px 8%;
+		span {
+			position: relative;top: 3px;
+		}
+	}
+	.ReceiptRedirect {
+		font-size: 12px; color: black; text-align: center;
+	}
+}
 
  
  // from Sakthi
