@@ -8607,6 +8607,24 @@ select {
     color: black;
     text-align: center; }
 
+.SidemenuHome {
+  margin-top: 15px;
+  border: none;
+  color: #706A67;
+  font-family: Glober regular !important; }
+  .SidemenuHome span {
+    top: 0px;
+    position: relative; }
+
+.SidemenuLogOut {
+  color: #706A67; }
+  .SidemenuLogOut .LogOutText {
+    color: #706A67;
+    margin-left: -4px;
+    font-family: Glober regular !important; }
+    .SidemenuLogOut .LogOutText span {
+      position: relative; }
+
 a {
   text-decoration: none; }
 
@@ -9177,7 +9195,22 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -webkit-background-size: auto;
   -moz-background-size: auto;
   -o-background-size: auto;
-  background-size: auto; }
+  background-size: auto;
+  margin: 117px 0 0 0;
+  padding-top: 100px; }
+  .waitingRoomImage .WaitingContent {
+    color: #858585; }
+    .waitingRoomImage .WaitingContent .WaitingMessage {
+      font-size: 32px;
+      text-align: center;
+      padding-top: 40px; }
+      .waitingRoomImage .WaitingContent .WaitingMessage .ClinicianMessage {
+        padding-top: 25px;
+        line-height: normal; }
+      .waitingRoomImage .WaitingContent .WaitingMessage .ThankyouMessage {
+        padding-top: 25px;
+        color: #CECECE;
+        font-size: 20px; }
 
 .spinner svg {
   width: 28px;
