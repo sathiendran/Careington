@@ -3,27 +3,30 @@
 <ion-header-bar align-title="left" class="bar-positiveHomeUser">
   
   <div class="buttons" >
-	<a class="button_new icon ion-chevron-left" ng-href="#/tab/userhome" style="padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;" >
-		<span style="margin-top:7px;position: relative;margin-left: -6px;top: -2px;">Back</span>
+	<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/userhome"  >
+		<span>Back</span>
 	</a>				
   </div>
-  <h1 class="title_patient" style="font-size: 22px; text-align: center; width: 100%; top:4px;">Patient</h1>
+  <h1 class="title_patient calendarTitle">Patient</h1>
   
   
 
-<div class="bar bar-subheaderHomeUser patient_subHeader" style="top: 65px;height: 87%">
-	<div style="margin-left:10px;">
-				<div class="subHeader_image" style="margin-left: -15px;  margin-top: -13px;">
-					<img src="{{PatientImageSelectUser}}" style="margin-top: -4px;" class="listImgView" />
+<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+	<div class="calendar_subHeader" >
+				<div class="subHeader_image" >
+					<img src="{{PatientImageSelectUser}}" class="listImgView" />
 				</div>
 				<div class="subHeader_content ellipsis" >
 					
-			<!--	<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
-						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}</div>
-				</div> -->
+				<!--	<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
+							<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}</div>
+					</div> -->
         
-        <div style="font-size: 18px;" class="ellipsis"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{PatientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{PatientLastName}}</span></div>
-						<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{PatientAge}} | Guardian {{PatientGuardian}}</div>
+					<div class="ellipsis subHeader_content_name">
+						<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientName}}</span> 
+						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+					</div>
+					<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge}} | Guardian {{PatientGuardian}}</div>
 				</div>
         
 	</div>
@@ -35,20 +38,20 @@
 	
 	
 	<ion-content class="patient_content" >
-		<div class="password_home" style="padding-left: 7%;">	
+		<div class="password_home PatientDetailsHome">	
 			
-				<a style="text-decoration: none;" ng-click="doToPatientCalendar(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
+				<a ng-click="doToPatientCalendar(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
 				<button class="button button-block button-energized">
-				 <span style="position: relative;top: 3px;"> View Appointments </span>
+				 <span> View Appointments </span>
 				</button></a>
 			
 			<div class="scheduled_appointments_text" >
 				See all your scheduled appointments. 
 			</div>
-			<div style="padding-top: 40px;">
+			<div class="PatientNextAvailable">
 				<!--<a style="text-decoration: none;"  ng-href="#/tab/patientConcerns">-->
 				<button type="submit" ng-click="doGetCodesSet(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)" class="button button-block button-balanced" >
-				  <span style="position: relative;top: 3px;">Next Available</span>
+				  <span>Next Available</span>
 				</button>
 				<!--</a>-->
 			</div>

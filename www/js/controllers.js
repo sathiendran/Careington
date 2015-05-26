@@ -36,11 +36,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
  
 	
 	
-	var dtNow = new Date("2015-05-22T10:57:04.268Z");
+	var dtNow = new Date("2015-05-26T13:20:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
 	$rootScope.patientDisplay1 = 'none';
+	$rootScope.patientDisplay = 'block';
 	
 	$scope.$on('timer-tick', function (event, args){
         $timeout(function() {
@@ -961,8 +962,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         if($rootScope.patientSearchKey != ''){
-            $rootScope.dependentDetails.shift();
-            $scope.searched = false;
+            //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
+            if($rootScope.patientInfomation.fullName == $rootScope.dependentDetails[0].patientName){
+                $rootScope.dependentDetails.shift();
+                $scope.searched = false;
+            }
         }
         
         $rootScope.PatientImageSelectUser = P_img;
@@ -1765,7 +1769,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
         $scope.publishAudio = $scope.newPublishAudio;
         publisher.publishAudio($scope.newPublishAudio);
-        OT.updateViews();
+        //OT.updateViews();
     };
     
     $scope.toggleSpeaker = function(){

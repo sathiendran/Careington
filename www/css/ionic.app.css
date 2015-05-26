@@ -8151,13 +8151,13 @@ body {
         width: 55px;
         margin-top: -4px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
-      font-size: 18px; }
+      font-size: 21px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
         font-weight: bold; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientLastName {
         font-weight: normal; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_age {
-      font-size: 11px; }
+      font-size: 12px; }
 
 .patientCalendar_subHeader {
   background-color: #e6e6e6;
@@ -8302,6 +8302,14 @@ body {
 
 .intakeTittle {
   margin-left: -33px; }
+
+.PatientDetailsHome {
+  padding-left: 7%; }
+  .PatientDetailsHome span {
+    position: relative;
+    top: 3px; }
+  .PatientDetailsHome .PatientNextAvailable {
+    padding-top: 40px; }
 
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
@@ -8817,6 +8825,16 @@ select {
       .ConsentContent .ConsentMessageAgree .ConsentCancel b {
         font-size: 16px;
         color: #ccc; }
+
+.UserHomeIcon {
+  margin-top: 15px; }
+
+.UserNeeds {
+  border-bottom: 1.65px solid #ccc; }
+  .UserNeeds .SearchImage {
+    width: 10%; }
+    .UserNeeds .SearchImage img {
+      width: 20px; }
 
 a {
   text-decoration: none; }
@@ -9434,12 +9452,18 @@ form.ng-submitted input.ng-valid + i.icon.error {
   color: red; }
 
 .UserHme {
-  padding: 0 0%; }
+  padding: 0 0%;
+  margin-top: 70px;
+  border-color: #000; }
   .UserHme .UserHmeSub {
-    padding: 0 12%; }
+    padding: 10px; }
     .UserHme .UserHmeSub .item-input {
-      border: 1px solid #DADADA;
-      border-radius: 8px; }
+      margin-top: 5px;
+      background: #E6E6E6;
+      margin-left: 5px;
+      margin-right: 5px;
+      border-radius: 9px;
+      border: 1px solid #DADADA; }
       .UserHme .UserHmeSub .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #484848 !important;
@@ -9463,7 +9487,64 @@ form.ng-submitted input.ng-valid + i.icon.error {
         font-size: 18px !important;
         padding-top: 3px !important; }
       .UserHme .UserHmeSub .item-input input {
-        font-size: 17px; }
+        font-size: 17px;
+        color: #000;
+        height: 26px;
+        margin-top: -4px; }
+
+.UserHomePatient {
+  cursor: pointer; }
+  .UserHomePatient .UserHomeHeader {
+    top: 1px;
+    padding: 11px;
+    height: 104px; }
+    .UserHomePatient .UserHomeHeader .UserhmePatientDetails {
+      margin-top: -5px !important;
+      margin-left: 0px; }
+      .UserHomePatient .UserHomeHeader .UserhmePatientDetails div, .UserHomePatient .UserHomeHeader .UserhmePatientDetails p {
+        width: 67%; }
+      .UserHomePatient .UserHomeHeader .UserhmePatientDetails .UserHomeIcon {
+        color: #888;
+        margin-top: -33px; }
+
+.UserHomeNextAppointment {
+  top: -2px;
+  height: 66px; }
+  .UserHomeNextAppointment a {
+    margin-left: 10px; }
+    .UserHomeNextAppointment a .UHomeNextAppoinment {
+      font-size: 16px;
+      top: 1px;
+      color: #888;
+      margin-left: -5px; }
+    .UserHomeNextAppointment a h2 {
+      margin-left: 4px;
+      margin-top: 2px;
+      font-size: 22px;
+      color: #706A67; }
+      .UserHomeNextAppointment a h2 .NextAppointTime {
+        font-size: 18px; }
+      .UserHomeNextAppointment a h2 .NextAppointAMorPM {
+        font-size: 14px; }
+    .UserHomeNextAppointment a .nextList {
+      color: #888;
+      margin-top: -33px;
+      margin-right: 12px; }
+    .UserHomeNextAppointment a .AppointmentView {
+      float: right;
+      font-size: 16px;
+      margin-right: 30px;
+      color: #888;
+      margin-top: -33px; }
+
+.DependentList {
+  padding: 11px;
+  top: -2px;
+  height: 80px; }
+  .DependentList a {
+    cursor: pointer; }
+    .DependentList a p {
+      margin-left: 83px; }
 
 .HeaderList {
   font-size: 22px;
