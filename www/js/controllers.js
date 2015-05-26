@@ -961,8 +961,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         if($rootScope.patientSearchKey != ''){
-            $rootScope.dependentDetails.shift();
-            $scope.searched = false;
+            //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
+            if($rootScope.patientInfomation.fullName == $rootScope.dependentDetails[0].patientName){
+                $rootScope.dependentDetails.shift();
+                $scope.searched = false;
+            }
         }
         
         $rootScope.PatientImageSelectUser = P_img;
