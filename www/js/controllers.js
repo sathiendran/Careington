@@ -455,6 +455,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     });
     
     
+    
 	$scope.doGetExistingConsulatation = function () {
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
@@ -1889,7 +1890,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 
-.directive('inputMaxLengthNumber', function() {
+/*.directive('inputMaxLengthNumber', function() {
   return {
     require: 'ngModel',
     restrict: 'A',
@@ -1907,8 +1908,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       ngModelCtrl.$parsers.push(fromUser);
     }
   };
-})
+}) */
 
+
+.directive('numbersOnly', function(){
+   return {
+     require: 'ngModel',
+     link: function(scope, element, attrs, modelCtrl) {
+       modelCtrl.$parsers.push(function (inputValue) {
+           if (inputValue == undefined) return '' 
+           var transformedInput = inputValue.replace(/[^0-9]/g, ''); 
+           if (transformedInput!=inputValue) {
+              modelCtrl.$setViewValue(transformedInput);
+              modelCtrl.$render();
+           }         
+           return transformedInput;         
+       });
+     }
+   };
+})
 
 
 /*
