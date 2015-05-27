@@ -1049,6 +1049,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
 	/*Primary concern Start here*/
 	
+	  $rootScope.PopupValidation = function($a){
+        function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
+
+			$("#notifications-top-center").remove();
+				//$( ".ppp" ).prepend( top );				
+				$(".PopupError_Message").append(top);
+				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+		
+	}
+	
+	
     // Get list of primary concerns lists
     $scope.primaryConcernList = $rootScope.hospitalCodesList;
   
@@ -1099,7 +1116,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	   $scope.data = {}
        $ionicPopup.show({
           //template: '<input type="text" ng-model="data.PrimaryConcernOther">',
-			template: '<textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
+			template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
             title: 'Enter Concerns',
 			subTitle: '',
 			scope: $scope,
@@ -1117,6 +1134,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				type: 'button-positive',
 				onTap: function(e) {
 				  if (!$scope.data.PrimaryConcernOther) {
+					$scope.ErrorMessages = "Please enter the primary reason for today's visit.";
+					$rootScope.PopupValidation($scope.ErrorMessages);
 					e.preventDefault();
 				  } else {
                       angular.forEach($scope.primaryConcernList, function(item, index) {
