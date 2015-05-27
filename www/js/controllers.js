@@ -75,7 +75,86 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     });
 	
     $scope.$storage = $localStorage;
- 
+    
+    $scope.setValidccexpiry = function (value) {
+        $scope.validccexpiry = value;
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    };
+    // Start Validation CardDetails //
+    $scope.$watch('getCardDetails.FirstName',function(value){
+        if(typeof value != "undefined" && value != ""){
+            $scope.validFirstName = true;
+        }else { $scope.validFirstName = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+    $scope.$watch('getCardDetails.LastName',function(value){
+        if(typeof value != "undefined" && value != ""){
+            $scope.validLastName = true;
+        }else { $scope.validLastName = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+    $scope.$watch('getCardDetails.CardNumber',function(value){
+       if(typeof value != "undefined" && value != ""){
+            $scope.validCardNumber = true;
+        }else { $scope.validCardNumber = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+    $scope.$watch('getCardDetails.Cvv',function(value){
+       if(typeof value != "undefined" && value != ""){
+            $scope.validCvv = true;
+        }else { $scope.validCvv = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+    $scope.$watch('getCardDetails.Country',function(value){
+       if(typeof value != "undefined" && value != ""){
+            $scope.validCountry = true;
+        }else { $scope.validCountry = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+   
+     $scope.$watch('getCardDetails.BillingAddress',function(value){
+       if(typeof value != "undefined" && value != ""){
+            $scope.validBillingAddress = true;
+        }else { $scope.validBillingAddress = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+     $scope.$watch('getCardDetails.City',function(value){
+       if(typeof value != "undefined" && value != ""){
+            $scope.validCity = true;
+        }else { $scope.validCity = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+     $scope.$watch('getCardDetails.State',function(value){
+       if(typeof value != "undefined" && value != ""){
+            $scope.validState = true;
+        }else { $scope.validState = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+     $scope.$watch('getCardDetails.CardZipCode',function(value){
+       if(typeof value != "undefined" && value != ""){
+            $scope.validCardZipCode = true;
+        }else { $scope.validCardZipCode = false; }
+        $timeout(function(){$scope.updateCCFormValid();}, 100);
+    });
+    
+    
+    $scope.ccFormValid = false;
+    $scope.updateCCFormValid = function(){
+        if($scope.validFirstName && $scope.validLastName && $scope.validCardNumber && $scope.validccexpiry && $scope.validCvv && $scope.validCountry && $scope.validBillingAddress && $scope.validCity && $scope.validState && $scope.validCardZipCode){
+            $scope.ccFormValid = true;
+        }else{
+            $scope.ccFormValid = false;
+        }
+    };
+    // End Validation CardDetails //
+    
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
@@ -672,7 +751,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.Cvv = 123;*/
 	
 	var zipCount = $('#Zip').val().length;
-    var ExpiryDate = $('#datepicker').val().split("/");        
+    var ExpiryDate = $('#ExpireDate').val().split("/");        
            
     var currentTime = new Date()
     var ExpiryDateCheck = new Date();
@@ -1812,61 +1891,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 
-.directive
-  ( 'creditCardType'
-  , function(){
-      var directive =
-        { require: 'ngModel'
-        , link: function(scope, elm, attrs, ctrl){
-            ctrl.$parsers.unshift(function(value){
-              scope.ccinfo.type =
-                (/^5[1-5]/.test(value)) ? "mastercard"
-                : (/^4/.test(value)) ? "visa"
-                : (/^3[47]/.test(value)) ? 'amex'
-                : (/^6011|65|64[4-9]|622(1(2[6-9]|[3-9]\d)|[2-8]\d{2}|9([01]\d|2[0-5]))/.test(value)) ? 'discover'
-                : undefined
-              ctrl.$setValidity('invalid',!!scope.ccinfo.type)
-              return value
-            })
-          }
-        }
-      return directive
-      }
-    )
-	
-	.directive
-  ( 'cardExpiration'
-  , function(){
-      var directive =
-        { require: 'ngModel'
-        , link: function(scope, elm, attrs, ctrl){
-            scope.$watch('[ccinfo.month,ccinfo.year]',function(value){
-              ctrl.$setValidity('invalid',true)
-              if ( scope.ccinfo.year == scope.currentYear
-                   && scope.ccinfo.month <= scope.currentMonth
-                 ) {
-                ctrl.$setValidity('invalid',false)
-              }
-              return value
-            },true)
-          }
-        }
-      return directive
-      }
-    )
 
-	.filter
-  ( 'range'
-  , function() {
-      var filter = 
-        function(arr, lower, upper) {
-          for (var i = lower; i <= upper; i++) arr.push(i)
-          return arr
-        }
-      return filter
-    }
-  )
-
+/*
 .directive('creditCardExpirationEntry', function() {
   return {
     require: 'ngModel',
@@ -1893,3 +1919,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
   };
 })
+*/
+.directive('creditCardExpirationEntry', function() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function (scope, element, attr, ngModelCtrl) {
+              function fromUser(text) {
+                var newVal = String(text);
+                if(typeof oldLength != "undefined"){
+                    if(oldLength != 3 && String(text).length == 2){
+                       newVal = String(text) + "/";
+                    }
+                }
+                if(String(text).length == 1){
+                    oldLength = 7;
+                }else{
+                    oldLength = String(text).length;
+                }
+                  
+                if(typeof newVal != "undefined" && newVal != ""){
+                    scope.setValidccexpiry(true);
+                }else { scope.setValidccexpiry(false); }
+                scope.$apply();
+                
+                  
+                ngModelCtrl.$setViewValue(newVal);
+                ngModelCtrl.$render();
+                return ngModelCtrl.newVal;
+              }
+              ngModelCtrl.$parsers.push(fromUser);
+            }
+        };
+    })

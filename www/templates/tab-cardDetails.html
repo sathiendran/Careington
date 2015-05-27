@@ -12,9 +12,21 @@
 			</div>
 			
 			<div class="buttons" style="display: {{cardDisplay}}" >			
-				<button type="submit" class="button_new icon PlanNext" >
+			<!--	<button type="submit" class="button_new icon PlanNext" >
 					<span>Next</span>
-				</button>				
+				</button>	--->	
+                 <div ng-if="!ccFormValid" class="disabled" >
+                    <button type="submit" class="button_new icon PlanNext" >
+                                <span style="color:#999;">Next</span> 
+                    </button>   
+                </div>
+                <div ng-if="ccFormValid">    
+                    <button type="submit" class="button_new icon PlanNext" >
+                              <span>Next</span>  
+                    </button>
+                </div>
+                    
+                
 			</div>
 		</ion-header-bar>
 		
@@ -40,23 +52,26 @@
 			<div class="list" >
 				<label class="item item-input" >
 					<span class="input-label" >First Name</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName" >
+					<input type="text" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName">
 				</label>
 				
 				<label class="item item-input" >
 					<span class="input-label" >Last Name</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" >
+					<input type="text" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName">
 				</label>
 				
 				<label class="item item-input">
 					<span class="input-label" >Card Number</span>
-					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" >
+					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber">
 				</label>
 				
 				<label class="item item-input" >
 					<span class="input-label" >Expiration Date</span>
 					<!--<input type="date" placeholder="Required"  style="font-size: 18px;">-->
-					<input placeholder="Required"  type="text"  id="datepicker" name="date" maxlength="7" ng-Model="getCardDetails.ccexpiry" credit-card-expiration-entry> 
+				<!--	<input placeholder="Required"  type="text"  id="ccexpiry" name="ccexpiry" maxlength="7" ng-Model="getCardDetails.ccexpiry"  credit-card-expiration-entry> -->
+                    
+                    <input type="text" placeholder="Required" ng-model="getCardDetails.ExpireDate" name="ExpireDate" maxlength="7" id="ExpireDate" credit-card-expiration-entry>
+                    
 			    </label>	
                 
                 <label class="item item-input" >
