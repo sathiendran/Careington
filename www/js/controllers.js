@@ -908,7 +908,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
-				$("#ErrorMessages").append(top);
+				$(".Error_Message").append(top);
 				$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});

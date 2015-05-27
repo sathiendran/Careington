@@ -310,10 +310,14 @@ app.service('apiComService', function ($http) {
      params: email, password, userTypeId, hospitalId
      (event handlers): success, failure
      */
+	 
+	 //var CommonAPIURL = 'https://snap-dev.com';
+	 var CommonAPIURL = 'https://sandbox.connectedcare.md';
+	 
     this.getToken = function (params) {
         var requestInfo = {
             headers: util.getHeaders(),
-            url: 'https://snap-dev.com/api/Account/Token',
+            url: CommonAPIURL + '/api/Account/Token',
             method: 'POST',
             data: {
                 UserTypeId: params.userTypeId,
@@ -341,7 +345,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId=' + params.patientId,
+            url: CommonAPIURL + '/api/v2/patients/scheduledconsultations?patientId=' + params.patientId,
             method: 'GET'   
         };
 
@@ -363,7 +367,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/consultations/' + params.consultationId + '/all',
+            url: CommonAPIURL + '/api/v2/patients/consultations/' + params.consultationId + '/all',
             method: 'GET'   
         };
 
@@ -385,7 +389,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/reports/consultationreportdetails/' + params.consultationId,
+            url: CommonAPIURL + '/api/reports/consultationreportdetails/' + params.consultationId,
             method: 'GET'   
         };
 
@@ -407,7 +411,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+            url: CommonAPIURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
             method: 'GET'   
         };
 
@@ -429,7 +433,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/hospitals?patient=' + params.emailAddress,
+            url: CommonAPIURL + '/api/v2/hospitals?patient=' + params.emailAddress,
             method: 'GET'   
         };
         
@@ -450,7 +454,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/patients/copay',
+            url: CommonAPIURL + '/api/patients/copay',
             method: 'POST',
             data: {
                 ProfileId: params.profileId,
@@ -480,7 +484,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/HealthPlan?patientId=' + params.patientId ,
+            url: CommonAPIURL + '/api/HealthPlan?patientId=' + params.patientId ,
             method: 'get'       
         };
 
@@ -502,7 +506,7 @@ app.service('apiComService', function ($http) {
         //"fields" is a comma-delimited list of the following: medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
+            url: CommonAPIURL + '/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
             method: 'GET'    
         };
 
@@ -523,7 +527,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/patients/' + params.userId + '/payments',
+            url: CommonAPIURL + '/api/patients/' + params.userId + '/payments',
             method: 'POST',
             data: {
                 userId: params.userId,
@@ -558,7 +562,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://snap-dev.com/api/v2/patients/consultations/' + params.consultationId + '/intake',
+            url: CommonAPIURL + '/api/v2/patients/consultations/' + params.consultationId + '/intake',
             method: 'put'       
         };
 

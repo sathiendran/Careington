@@ -8272,9 +8272,9 @@ body {
   box-shadow: 0 0px 8px 3px #333 !important;
   background-size: 100% 0 !important; }
   .enterAppoinment .EnterText {
-    font-size: 25px;
-    margin-top: 2px;
-    font-weight: bold; }
+    font-size: 25px !important;
+    margin-top: 2px !important;
+    font-weight: bold !important; }
 
 .AvailableIn {
   background-color: #FFC609 !important;
@@ -8592,8 +8592,7 @@ select {
   text-overflow: ellipsis; }
 
 .ReceiptContent {
-  margin: 117px 0 0 0;
-  padding-top: 40px; }
+  margin: 117px 0 0 0; }
   .ReceiptContent .PaymentSuccess {
     font-size: 35px;
     text-align: center;
@@ -8727,11 +8726,11 @@ select {
 .concernListHeader {
   height: 55px; }
   .concernListHeader .concernListTitle {
-    top: 12px;
-    font-size: 16px; }
+    top: 12px !important;
+    font-size: 16px !important; }
   .concernListHeader .concernListDone {
-    top: 12px;
-    font-size: 15px; }
+    top: 12px !important;
+    font-size: 15px !important; }
 
 .concernListContent {
   margin-top: 52px; }
@@ -8757,8 +8756,8 @@ select {
     top: 5px !important;
     font-size: 15px !important; }
   .SurgeryHeader .SurgeryTitle {
-    top: 12px;
-    font-size: 16px; }
+    top: 12px !important;
+    font-size: 16px !important; }
   .SurgeryHeader .SurgeryDone {
     top: 12px !important;
     font-size: 15px !important; }
