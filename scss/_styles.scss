@@ -683,7 +683,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	box-shadow: 0 0px 8px 3px #333 !important;
 	background-size: 100% 0 !important;
 	.EnterText {
-		font-size: 25px;margin-top: 2px; font-weight: bold;
+		font-size: 25px !important;margin-top: 2px !important; font-weight: bold !important;
 	}
 }
 .AvailableIn {
@@ -1026,7 +1026,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 //Receipt
 .ReceiptContent {
-	margin: 117px 0 0 0; padding-top: 40px;
+	margin: 117px 0 0 0; 
 	.PaymentSuccess {
 		font-size: 35px; text-align: center; padding-top: 50px;
 		.PaymentConfirmation {
@@ -1155,10 +1155,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .concernListHeader {
 	height: 55px;
 	.concernListTitle {
-		top: 12px; font-size:16px;
+		top: 12px !important; font-size:16px !important; 
 	}
 	.concernListDone {
-		top: 12px;font-size:15px;
+		top: 12px !important;font-size:15px !important;
 	}
 }
 .concernListContent {
@@ -1186,7 +1186,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		top: 5px !important;  font-size: 15px !important; 
 	}
 	.SurgeryTitle {
-		top: 12px;  font-size: 16px;
+		top: 12px !important;  font-size: 16px !important;
 	}
 	.SurgeryDone {
 		top: 12px !important;  font-size: 15px !important;
