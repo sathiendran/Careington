@@ -2,7 +2,7 @@
 		
 		
     <div class="backButtonDiv">
-       <a ng-href="#/tab/userhome"> <Span  style="float:left;margin: 13px 0 0 17px;font-size:20px;color:#fff;"><B>Done</B></Span></a>
+       <a ng-click="EnableBackButton()"> <Span  style="float:left;margin: 13px 0 0 17px;font-size:20px;color:#fff;"><B>Done</B></Span></a>
 		</div>
 		 <h1 class="title_patient" style="font-size: 24px;">Intake Form</h1>
 		<div class="bar patient_subHeader">
@@ -237,17 +237,17 @@
      
      <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
       file attachement
-    </p>
+    </p> 
 
 </div> 
 
-<a ng-href="#/tab/userhome">
-<div style="height: 100%; position: relative;top: -98px;margin: 10px;background-color:#fff;padding:10px;">
+
+<div ng-click="EnableBackButton()" style="height: 100%; position: relative;top: -98px;margin: 10px;background-color:#fff;padding:10px;">
 				<button class="button button-block button-balanced" style="background-color:#A2D28A;border:#A2D28A">
 				<B>Done</B>  
 				</button>
 </div>
-</a>
+
 </ion-content>
 
 </ion-view>

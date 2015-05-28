@@ -32,8 +32,23 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
 
 
-.controller('LoginCtrl', function($scope, $localstorage, $interval, todayStocks, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage) {
+.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage) {
  
+	$rootScope.currState = $state;
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+        if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
+            ){ 
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states. 
+                // Do nothing here to disable H/W back button.
+            } else { 
+                // For all other states, the H/W BACK button is enabled
+                navigator.app.backHistory(); 
+            }
+        }, 100); 
+	
 	
 	
 	var dtNow = new Date("2015-05-26T13:20:04.268Z");
@@ -159,37 +174,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-    $scope.toggleLeft1 = function() {
-		todayStocks.all().then(function (results) {	
-					$scope.patientPaymentProfiles = results;	
-
-						$rootScope.PaymentProfile = [];	
-				
-				angular.forEach(results.data.data.paymentProfiles, function(index, item) {	
-		
-					
-					$rootScope.PaymentProfile.push({
-						'id': index.$id,
-						'billingAddress': angular.fromJson(index.billingAddress),
-						'cardExpiration': index.cardExpiration,
-						'cardNumber': index.cardNumber,
-						'isBusiness': index.isBusiness,
-						'profileID': index.profileID,
-					});
-				});	
-				if(results.data.data.paymentProfiles.length != '0') {
-					$rootScope.enableSubmitpayment = "block";
-					$rootScope.disableSubmitpayment = "none;";
-					//$rootScope.addPaymentCard = "none;";
-				} else if(results.data.data.paymentProfiles.length == '0') {
-					$rootScope.enableSubmitpayment = "none";
-					$rootScope.disableSubmitpayment = "block;";
-					//$rootScope.addPaymentCard = "block;";
-				}
-				$state.go('tab.consultChargeNoPlan');
-					
-				});
-	}
+   
     $rootScope.StateText = "Select your state";
     $rootScope.CountryLists = CountryList.getCountryDetails();
     $scope.CountryChange = function () {
@@ -505,8 +490,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
 	
-	$scope.doGetExistingConsulatationReport = function () {		
+	$scope.doGetExistingConsulatationReport = function () {	
 		
+			
 		 if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -526,8 +512,32 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         };
         
 		LoginService.getConsultationFinalReport(params);
+	}
+	
+	$scope.doGetExistingConsulatationReportReceipt = function () {	
+		
+		
+		 if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $rootScope.existingConsultationReport = data.data[0];				
+            },
+            error: function (data) {
+                $scope.existingConsultationReport = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+        
+		LoginService.getConsultationFinalReport(params);
 		
 	}
+	
 	
 	 $("#addNewCard").change(function() {
         console.log( $('option:selected', this).text() );
@@ -1031,7 +1041,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					$scope.CreditCardDetails = data;					
 					$state.go('tab.receipt');	
-					$scope.ReceiptTimeout();						
+					$scope.ReceiptTimeout();
+					$scope.doGetExistingConsulatationReportReceipt();	
 				},
 				error: function (data) {
 					$scope.CreditCardDetails = 'Error getting patient payment profiles';
@@ -1094,6 +1105,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
         $state.go('tab.consultCharge'); 
     }
+	
+	$rootScope.EnableBackButton = function () {     
+        $state.go('tab.userhome');			
+    };
    
 })
 
@@ -1799,7 +1814,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 .controller('ConferenceCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService) {
     
-    $scope.myVideoHeight = $window.innerHeight - 40;
+	$scope.myVideoHeight = $window.innerHeight - 40;
     $scope.myVideoWidth = $window.innerWidth;
     $scope.otherVideoTop = $window.innerHeight - 150;
     $scope.controlsStyle = false;
