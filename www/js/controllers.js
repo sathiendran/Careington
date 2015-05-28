@@ -91,7 +91,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     $scope.$storage = $localStorage;
     // Start Validation CardDetails //
-    $scope.setValidccexpiry = function (value) {
+ /*   $scope.setValidccexpiry = function (value) {
         $scope.validccexpiry = value;
         $timeout(function(){$scope.updateCCFormValid();}, 100);
     };
@@ -103,7 +103,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $timeout(function(){$scope.updateCCFormValid();}, 100);
     });
     
-    $scope.$watch('getCardDetails.LastName',function(value){
+   $scope.$watch('getCardDetails.LastName',function(value){
         if(typeof value != "undefined" && value != ""){
             $scope.validLastName = true;
         }else { $scope.validLastName = false; }
@@ -159,6 +159,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $timeout(function(){$scope.updateCCFormValid();}, 100);
     });
     
+      $scope.$watch('getCardDetails.CardExpireDates',function(value){
+       alert(value);
+    });
+    
     
     $scope.ccFormValid = false;
     $scope.updateCCFormValid = function(){
@@ -167,7 +171,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }else{
             $scope.ccFormValid = false;
         }
-    };
+    }; */
     // End Validation CardDetails //
     
 	$scope.toggleLeft = function() {
@@ -1968,7 +1972,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 
-/*
+
 .directive('creditCardExpirationEntry', function() {
   return {
     require: 'ngModel',
@@ -1989,17 +1993,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
         ngModelCtrl.$setViewValue(newVal);
         ngModelCtrl.$render();
-        return ngModelCtrl.newVal;
+        return newVal;
       }
       ngModelCtrl.$parsers.push(fromUser);
     }
   };
 })
-*/
-.directive('creditCardExpirationEntry', function() {
+/*.directive('creditCardExpirationEntry', function() {
         return {
-            restrict: 'A',
-            require: 'ngModel',
+           require: 'ngModel',
+           restrict: 'A',
             link: function (scope, element, attr, ngModelCtrl) {
               function fromUser(text) {
                 var newVal = String(text);
@@ -2027,4 +2030,5 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
               ngModelCtrl.$parsers.push(fromUser);
             }
         };
-    })
+    }) */
+

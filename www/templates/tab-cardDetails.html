@@ -2,7 +2,7 @@
 
 <ion-view title="Card Details">
     
-    <form ng-submit="doPostPaymentProfileDetails()">
+    <form ng-submit="doPostPaymentProfileDetails()" name="CardForm" novalidate=''>
     
         
 		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" >			
@@ -15,19 +15,27 @@
 			</div>
 			
 			<div class="buttons" style="display: {{cardDisplay}}" >			
-			<!--	<button type="submit" class="button_new icon PlanNext" >
-					<span>Next</span>
-				</button>	--->	
-                 <div ng-if="!ccFormValid" class="disabled" >
+				<div ng-if="CardForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext" style="color:#999;"  ng-disabled="CardForm.$invalid" >
+                        Next
+                    </button>	
+                </div>
+                <div ng-if="!CardForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid" >                   Next
+                    </button>
+                </div>
+                
+                <!-- <div ng-if="CardForm.$invalid" class="disabled" >
                     <button type="submit" class="button_new icon PlanNext" >
                                 <span style="color:#999;">Next</span> 
                     </button>   
                 </div>
-                <div ng-if="ccFormValid">    
+                <div ng-if="!CardForm.$invalid">    
                     <button type="submit" class="button_new icon PlanNext" >
                               <span>Next</span>  
                     </button>
-                </div>
+                </div> -->
+                    
                     
                 
 			</div>
@@ -55,37 +63,36 @@
 			<div class="list" >
 				<label class="item item-input" >
 					<span class="input-label" >First Name</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName">
+					<input type="text" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName" required>
 				</label>
 				
 				<label class="item item-input" >
 					<span class="input-label" >Last Name</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName">
+					<input type="text" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" required>
 				</label>
 				
 				<label class="item item-input">
 					<span class="input-label" >Card Number</span>
-					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber">
+					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" required>
 				</label>
 				
 				<label class="item item-input" >
 					<span class="input-label" >Expiration Date</span>
-					<!--<input type="date" placeholder="Required"  style="font-size: 18px;">-->
-				<!--	<input placeholder="Required"  type="text"  id="ccexpiry" name="ccexpiry" maxlength="7" ng-Model="getCardDetails.ccexpiry"  credit-card-expiration-entry> -->
+					<input placeholder="Required"  type="text"  id="ExpireDate" name="ExpireDates" maxlength="7" ng-Model="getCardDetails.CardExpireDates"  credit-card-expiration-entry required> 
                     
-                    <input type="text" placeholder="Required" ng-model="getCardDetails.ExpireDate" name="ExpireDate" maxlength="7" id="ExpireDate" credit-card-expiration-entry>
+                  <!--  <input type="text" placeholder="Required" ng-model="getCardDetails.ExpireDate" name="ExpireDate" maxlength="7" id="ExpireDate" credit-card-expiration-entry> --->
                     
 			    </label>	
                 
                 <label class="item item-input" >
 					<span class="input-label" >Security Code</span>
-					<input type="password" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv">
+					<input type="password" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
 				</label>
                 
                 <label class="item item-input" >
 				<span class="input-label" >Country</span>
 				<div class="demo"  >	
-					<select id="country" ng-Model="getCardDetails.Country" class="CountryDetails" ng-change="CountryChange()">
+					<select id="country" ng-Model="getCardDetails.Country" class="CountryDetails" ng-change="CountryChange()" required>
 						<option value=""  >Select your Country</option>
 						<option ng-repeat="CountryList in CountryLists" value="{{CountryList.code}}"><b>{{CountryList.country}}</b></option>
 					</select>
@@ -94,18 +101,18 @@
 			  
 				<label class="item item-input" >
 					<span class="input-label" >Billing Address</span>
-					<input type="text" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress">
+					<input type="text" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
 				</label>
                 
                 <label class="item item-input" >
 					<span class="input-label" >City</span>
-			         <input type="text" placeholder="Required" ng-model="getCardDetails.City"  name="City" id="City">
+			         <input type="text" placeholder="Required" ng-model="getCardDetails.City"  name="City" id="City" required>
 			    </label>
 			  
 				<label class="item item-input" >
 					<span class="input-label" >State</span>
 					<div class="demo"  >	
-						<select id="State" ng-Model="getCardDetails.State" class="CountryDetails" >
+						<select id="State" ng-Model="getCardDetails.State" class="CountryDetails" required>
 							<option value=""  >{{StateText}}</option> 
 							<option ng-repeat="StateList in StateList" value="{{StateList.state}}"><b>{{StateList.state}}</b></option>
 						</select>
@@ -114,9 +121,7 @@
                 
 				<label class="item item-input" >
 					<span class="input-label" >Zip</span>
-			        <!-- <input type="number" placeholder="Required" ng-model="getCardDetails.CardZipCode"  name="Zip" id="Zip" maxlength="5" input-max-length-number > -->
-                 
-                     <input type="number" placeholder="Required"  ng-model="getCardDetails.CardZipCode" required="required" input-max-length-number maxlength="5" name="Zip" id="Zip" />
+			    <input type="number" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  input-max-length-number maxlength="5" name="Zip" id="Zip" required/>
                     
 				</label>
             
