@@ -8632,6 +8632,82 @@ select {
     .SidemenuLogOut .LogOutText span {
       position: relative; }
 
+.ReportTittle {
+  margin-left: 22px !important; }
+
+.ReportDone {
+  padding-top: 21px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 68px;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  margin-left: 16px; }
+
+.ReportContent {
+  margin: 81px 0 0 0;
+  font-family: 'Glober Regular'; }
+  .ReportContent .HospitalDetails {
+    height: 212px;
+    width: 100%; }
+    .ReportContent .HospitalDetails .HospitalLogo {
+      float: left;
+      width: 20%; }
+      .ReportContent .HospitalDetails .HospitalLogo img {
+        float: left;
+        margin: 7px 0 0 7px;
+        width: 120px; }
+    .ReportContent .HospitalDetails .HospitalAddress {
+      margin-right: -41px;
+      line-height: 20px;
+      width: 70%;
+      float: right; }
+      .ReportContent .HospitalDetails .HospitalAddress .ReportAddress {
+        float: right;
+        margin-right: 55px; }
+        .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .AddressDetails {
+          text-overflow: clip;
+          white-space: normal;
+          text-align: justify;
+          padding: 0.5em 0 0.5em 0;
+          color: #000; }
+        .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails {
+          float: right; }
+          .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails .OrganizationName {
+            float: left;
+            margin-left: 32px; }
+          .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails .OrganizationLocation {
+            float: left;
+            margin-left: 126px; }
+          .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails .LocationName {
+            margin-left: 18px; }
+  .ReportContent .ConnectedCareDetails {
+    border-bottom: 2px solid #ccc;
+    position: relative;
+    margin: 12px; }
+    .ReportContent .ConnectedCareDetails .ConnectedCareTitle {
+      width: 100%;
+      float: left;
+      margin-top: -48px; }
+    .ReportContent .ConnectedCareDetails .CCAttachment {
+      float: right;
+      margin-top: -50px; }
+      .ReportContent .ConnectedCareDetails .CCAttachment img {
+        margin: 0 -8px 7px -14px;
+        width: 31px; }
+      .ReportContent .ConnectedCareDetails .CCAttachment p {
+        color: #fff;
+        margin: -45px 0 0 8px; }
+  .ReportContent .PatientPersonalDetails {
+    height: 50px; }
+    .ReportContent .PatientPersonalDetails .ReportPatientName {
+      float: left;
+      margin-left: 10px; }
+    .ReportContent .PatientPersonalDetails .EncounterDate {
+      float: right;
+      margin-right: 18px; }
+
 .ConcernsContent {
   margin-top: 100px !important; }
   .ConcernsContent .PrimaryList {
