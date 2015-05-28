@@ -1914,7 +1914,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 }) */
 
 
-.directive('numbersOnly', function(){
+/*.directive('numbersOnly', function(){
    return {
      require: 'ngModel',
      link: function(scope, element, attrs, modelCtrl) {
@@ -1929,6 +1929,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        });
      }
    };
+}) */
+
+
+.directive('inputMaxLengthNumber', function() {
+  return {
+    require: 'ngModel',
+    restrict: 'A',
+    link: function (scope, element, attrs, ngModelCtrl) {
+      function fromUser(text) {
+        var maxlength = Number(attrs.maxlength);
+        if (String(text).length >= maxlength) {
+        var newString = String(text).substr(0, maxlength);
+          ngModelCtrl.$setViewValue(newString);
+          ngModelCtrl.$render();
+          return ngModelCtrl.$modelValue;
+        }
+        return text;
+      }
+      ngModelCtrl.$parsers.push(fromUser);
+    }
+  };
 })
 
 

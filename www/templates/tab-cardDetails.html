@@ -3,10 +3,10 @@
 <ion-view title="Card Details">
     <div ng-if="!ccFormValid">
     <form>
-        </div>
-        <div ng-if="ccFormValid" class="disabled" >
+    </div>
+    <div ng-if="ccFormValid">
     <form ng-submit="doPostPaymentProfileDetails()">
-        </div>
+    </div>
         
 		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" >			
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
@@ -118,7 +118,9 @@
 				<label class="item item-input" >
 					<span class="input-label" >Zip</span>
 			        <!-- <input type="number" placeholder="Required" ng-model="getCardDetails.CardZipCode"  name="Zip" id="Zip" maxlength="5" input-max-length-number > -->
-                     <input type="text" placeholder="Required"  ng-model="getCardDetails.CardZipCode" required="required" numbers-only="numbers-only" maxlength="5" name="Zip" id="Zip" /> 
+                 
+                     <input type="number" placeholder="Required"  ng-model="getCardDetails.CardZipCode" required="required" input-max-length-number maxlength="5" name="Zip" id="Zip" />
+                    
 				</label>
             
                 
