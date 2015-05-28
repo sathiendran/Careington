@@ -10,7 +10,9 @@ angular.module('starter.services', [])
                 (event handlers): success, failure
     */
 		
-		var apiCommonURL = 'https://snap-dev.com';
+		//var apiCommonURL = 'https://snap-dev.com';
+		
+		var apiCommonURL = 'https://sandbox.connectedcare.md';
 	
 	 this.getToken = function (params) {
         var requestInfo = {

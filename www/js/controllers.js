@@ -75,12 +75,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     });
 	
     $scope.$storage = $localStorage;
-    
+    // Start Validation CardDetails //
     $scope.setValidccexpiry = function (value) {
         $scope.validccexpiry = value;
         $timeout(function(){$scope.updateCCFormValid();}, 100);
     };
-    // Start Validation CardDetails //
+    
     $scope.$watch('getCardDetails.FirstName',function(value){
         if(typeof value != "undefined" && value != ""){
             $scope.validFirstName = true;
@@ -328,22 +328,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             success: function (data) {
 				//console.log(data);
                 $rootScope.PostPaymentDetails = data.data;
-				if(data.data == "")	 {
+				if($rootScope.PostPaymentDetails == "")	 {
 					$scope.ErrorMessage = "We did not find an account associated with the email you entered.  Please try again!";
 					$rootScope.Validation($scope.ErrorMessage);
 				} else {				
-					$rootScope.hospitalDetails = [];
-					angular.forEach(data.data, function(index, item) {	
-						$rootScope.hospitalDetails.push({
+					$rootScope.hospitalDetailsList = [];
+					angular.forEach($rootScope.PostPaymentDetails, function(index, item) {	
+						$rootScope.hospitalDetailsList.push({							
 							'id': index.$id,
-							'hospital': index.hospital,
-							'hospitalId': index.hospitalId,						
+							'domainName': index.domainName,
+							'logo': index.logo,
+							'name': index.name,
+							'operatingHours': index.operatingHours,
+							'providerId': index.providerId,	
 						});
 					});	
 						$state.go('tab.provider');
 				}
 				
-				//console.log($rootScope.hospitalDetails);		
+				//console.log($rootScope.hospitalDetailsList);		
             },
             error: function (data) {
                 $scope.PostPaymentDetails = 'Error getting consultation report';

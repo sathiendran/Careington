@@ -20,8 +20,8 @@
 		<ion-content class="ContentList_provider"  >
 			<form>
 				<ion-list>
-                    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetails" ng-click="ProviderFunction(hospitalDetails.hospitalId,hospitalDetails.hospital)">
-                        {{hospitalDetails.hospital}}
+                    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails.providerId,hospitalDetails.name)">
+                        {{hospitalDetails.name}}
                         <i class="icon ion-chevron-right icon-accessory"></i>
 
                         
