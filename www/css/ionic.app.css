@@ -8707,6 +8707,80 @@ select {
     .ReportContent .PatientPersonalDetails .EncounterDate {
       float: right;
       margin-right: 18px; }
+  .ReportContent .PatientStatistics {
+    height: 132px;
+    background-color: #E5E5E5;
+    position: relative;
+    top: 100px;
+    margin: 10px; }
+    .ReportContent .PatientStatistics span {
+      margin-left: -125px;
+      padding: 0px;
+      font-size: 18px;
+      position: relative;
+      top: 10px;
+      Color: #4D4D4D; }
+    .ReportContent .PatientStatistics .PatientAgeGender {
+      float: left;
+      margin-left: -118px;
+      margin-top: 45px; }
+      .ReportContent .PatientStatistics .PatientAgeGender b {
+        Color: #4D4D4D;
+        font-size: 18px; }
+      .ReportContent .PatientStatistics .PatientAgeGender input[type="text"] {
+        background-color: #CCCCCC;
+        position: relative;
+        left: 80px;
+        top: -25px;
+        width: 70px; }
+      .ReportContent .PatientStatistics .PatientAgeGender .PatientGender {
+        margin-top: -23px; }
+    .ReportContent .PatientStatistics .PatientHeightWeight {
+      float: right;
+      margin-right: -50px;
+      margin-top: 45px; }
+      .ReportContent .PatientStatistics .PatientHeightWeight b {
+        Color: #4D4D4D;
+        font-size: 18px; }
+      .ReportContent .PatientStatistics .PatientHeightWeight input[type="text"] {
+        background-color: #CCCCCC;
+        position: relative;
+        left: 76px;
+        top: -25px;
+        width: 70px; }
+      .ReportContent .PatientStatistics .PatientHeightWeight .PatientWeight {
+        margin-top: -23px; }
+  .ReportContent .ReportPatientConcern {
+    height: 40px;
+    position: relative;
+    top: 110px;
+    margin: 10px;
+    background-color: #E5E5E5;
+    padding: 10px; }
+    .ReportContent .ReportPatientConcern span {
+      font-size: 20px;
+      margin-left: 0px; }
+  .ReportContent .ReportPatientConcernDetails {
+    height: 100%;
+    position: relative;
+    top: 110px;
+    margin: 10px;
+    background-color: #FFF;
+    padding: 7px; }
+    .ReportContent .ReportPatientConcernDetails .ConcernNo1 {
+      padding: 5px;
+      background-color: #E5E5E5;
+      font-size: 20px; }
+    .ReportContent .ReportPatientConcernDetails .ConcernNo1Details {
+      padding: 10px;
+      font-size: 20px; }
+    .ReportContent .ReportPatientConcernDetails .ConcernNo2 {
+      padding: 5px;
+      background-color: #ccc;
+      font-size: 20px; }
+    .ReportContent .ReportPatientConcernDetails .ConcernNo2Details {
+      padding: 10px;
+      font-size: 20px; }
 
 .ConcernsContent {
   margin-top: 100px !important; }
