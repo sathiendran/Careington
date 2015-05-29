@@ -460,6 +460,141 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
 	
+	$scope.GetHealthPlanList = function () {
+		$scope.doGetPatientHealthPlansList()
+	}
+	
+	
+	$scope.doGetPatientHealthPlansList = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+			patientId: $scope.otherPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {
+				//$scope.patientHealthPlanList = data;
+				
+				if(data != '') {
+						$rootScope.patientHealthPlanList = [];	
+						angular.forEach(data.data, function(index, item) {	
+							$rootScope.patientHealthPlanList.push({
+								'id': index.$id,
+								'healthPlanId': index.healthPlanId,
+								'familyGroupId': index.familyGroupId,
+								'patientId': index.patientId,
+								'insuranceCompany': index.insuranceCompany,
+								'isDefaultPlan': index.isDefaultPlan,
+								'insuranceCompanyPhone': index.insuranceCompanyPhone,
+								'memberName': index.memberName,
+								'subsciberId': index.subsciberId,
+								'payerId': index.payerId,
+								'policyNumber': index.policyNumber.substring(index.policyNumber.length-4, index.policyNumber.length),
+							});
+						});							
+					
+						
+						if($rootScope.currState.$current.name=="tab.consultCharge")
+						{
+							$rootScope.enableAddHealthPlan = "block";
+							$rootScope.disableAddHealthPlan = "none;";					
+							$state.go('tab.addHealthPlan');
+						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
+							$rootScope.ApplyPlanPatientHealthPlanList = $rootScope.patientHealthPlanList;
+							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 2];
+							
+							$rootScope.ApplyPlanPatientHealthPlanList.push({
+								'insuranceCompany': 'Add a new health plan'
+							});
+							$state.go('tab.applyPlan');						
+							
+						}
+					} else {
+						if($rootScope.currState.$current.name=="tab.consultCharge")
+						{
+							$rootScope.enableAddHealthPlan = "none";
+							$rootScope.disableAddHealthPlan = "block;";
+							$state.go('tab.addHealthPlan');
+						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
+							$state.go('tab.applyPlan');
+						}
+					}	
+				
+				
+			},
+			error: function (data) {
+				$scope.patientHealthPlanList = 'Error getting patient health plan list';
+				console.log(data);
+			}
+		};
+
+		LoginService.getPatientHealthPlansList(params);
+	}
+	
+	
+	 $("#addHealthPlan").change(function() {
+        console.log( $('option:selected', this).text() );
+		if($('option:selected', this).text() == 'Add a new health plan') {
+			$state.go('tab.planDetails');
+		}
+    });
+	
+	$scope.healthPlanID = 124;
+		//patientId
+		$scope.insuranceCompany = "aaa bbb";
+		$scope.insuranceCompanyNameId = 1;
+		$scope.isDefaultPlan = 'Y';
+		$scope.insuranceCompanyPhone = '8888888888';
+		$scope.memberName = 'Rinsoft';
+		$scope.subsciberId = '505';
+		$scope.policyNumber = '987654321';
+		$scope.subscriberFirstName = 'Rin';
+		$scope.subscriberLastName = 'Soft';
+		$scope.subscriberDob = '2015-05-27T17:00:15.7010698-05:00';
+		$scope.isActive = 'A';
+		$scope.payerId = '471';
+	
+	$scope.doPostNewHealthPlan = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $rootScope.accessToken,
+				healthPlanID: $scope.healthPlanID,
+				insuranceCompany: $scope.insuranceCompany,
+				insuranceCompanyNameId: $scope.insuranceCompanyNameId,
+				isDefaultPlan: $scope.isDefaultPlan,
+				insuranceCompanyPhone: $scope.insuranceCompanyPhone,
+				memberName: $scope.memberName,
+				subsciberId: $scope.subsciberId,
+				policyNumber: $scope.policyNumber,
+				subscriberFirstName: $scope.subscriberFirstName,
+				subscriberLastName: $scope.subscriberLastName,
+				subscriberDob: $scope.subscriberDob,
+				isActive: $scope.isActive,
+				payerId: $scope.payerId,
+				success: function (data) {
+					$scope.NewHealthPlan = data;
+					if($scope.NewHealthPlan.healthPlanID != '')	{			
+						console.log(data);						
+						$scope.doGetPatientHealthPlansList();						
+					} else {					
+						$scope.ErrorMessage = data.message;
+						$rootScope.CardValidation($scope.ErrorMessage);
+						$state.go('tab.planDetails');
+					}
+				},
+				error: function (data) {
+					$scope.NewHealthPlan = 'Error posting Patient Profile';
+					console.log(data);
+				}
+			};
+			
+			LoginService.postNewHealthPlan(params);
+		}
+	
 	
 	$scope.doGetExistingConsulatationReport = function () {	
 		
@@ -950,22 +1085,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $scope.ErrorMessage = "Required fields can't be empty!";
 			$rootScope.CardValidation($scope.ErrorMessage);
 		} else {
-			//$state.go('tab.verifyPlan');
-			$rootScope.providerName = $('#Provider').val();
 			$rootScope.verifyPlanDisplay = "block";
-			$rootScope.PlanDisplay = "none;";
-			
-			$ionicLoading.show({
-				template: '<ion-spinner icon="ios"></ion-spinner>',
-				
-			});
-			$timeout(function() {
-				$ionicLoading.hide(); //close the popup after 3 seconds for some reason
-				$state.go('tab.applyPlan');
-			}, 5000);
-            
-            
-			
+			$rootScope.PlanDisplay = "none;";			
+			$scope.doPostNewHealthPlan();	
 		}	
 	}
 	$scope.VerifyPlanDetailsValidation = function(model) {

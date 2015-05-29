@@ -19,11 +19,13 @@
 				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
 				<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
 					<div class="demo" >							
-						<select>
-							<option class="ellipsis"><b>Blue Cross Blue ...0054</b></option>
-							<option class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
-							<option class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
-						</select>
+						<!--<select id="addHealthPlan" name="addHealthPlan" class="ellipsis">
+								<option><b>Choose Your Health Plan</b></option>
+								<option  ng-repeat="GetPlanList in patientHealthPlanList"><b><span class="ellipsis">{{GetPlanList.insuranceCompany}}</span><span class="ellipsis"> {{GetPlanList.policyNumber}}</span></b></option>
+								<option><b>Add a new health plan</b></option>
+						</select>-->
+						<select id="addNewCard" name="addNewCard" data-ng-options="GetHealthPlan.insuranceCompany, GetHealthPlan.policyNumber for GetHealthPlan in ApplyPlanPatientHealthPlanList" data-ng-model="SelectedHealthPlan" value="GetHealthPlan.insuranceCompany"></select>
+						
 					</div>
 				</div>
 			</div>			
