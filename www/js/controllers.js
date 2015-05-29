@@ -270,10 +270,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$rootScope.providerId ='126';
 	
 	$scope.ProviderFunction = function(hospitalDetailsDatas) {
-    //$scope.ProviderFunction = function($hospitalId,Hopital) {
-    /*$rootScope.hospitalId = $hospitalId;
-     $rootScope.Hopital = Hopital; */
-        
         $rootScope.hospitalId = hospitalDetailsDatas.providerId;
         $rootScope.Hopital = hospitalDetailsDatas.name;
         $rootScope.logo = hospitalDetailsDatas.logo;
