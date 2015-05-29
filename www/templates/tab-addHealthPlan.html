@@ -18,16 +18,15 @@
 			</div>
 			
 			
-			<div class="healthPlan_header" style="display: none;" >
+			<div class="healthPlan_header" style="display: {{enableAddHealthPlan}} " >
 				
 				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
 					<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
 						<div class="demo" >
-							
-							<select>
-								<option class="ellipsis"><b>Blue Cross Blue ...0054</b></option>
-								<option class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
-								<option class="ellipsis"><b>Blue Cross Blue shield...0054</b></option>
+							<select id="addHealthPlan" name="addHealthPlan" class="ellipsis">
+								<option><b>Choose Your Health Plan</b></option>
+								<option  ng-repeat="GetPlanList in patientHealthPlanList"><b><span class="ellipsis">{{GetPlanList.insuranceCompany}}</span><span class="ellipsis"> {{GetPlanList.policyNumber}}</span></b></option>
+								<option><b>Add a new health plan</b></option>
 							</select>
 						</div>
 					</div>
@@ -35,7 +34,7 @@
 			
 			
 			
-			<div class="SkipToPayment" style="display: none;">
+			<div class="SkipToPayment" style="display: {{enableAddHealthPlan}} ">
 				<!--<a ng-href="#/tab/addCard">-->
 					<button type="submit" ng-click="doGetPatientPaymentProfiles()" class="button button-block button-balanced">
 						<span>Apply Plan</span>
@@ -52,7 +51,7 @@
 				</a>
 			</div>-->
 			
-			<div class="healthPlan_header AddCardNoPlan"  >
+			<div class="healthPlan_header AddCardNoPlan"  style="display:{{disableAddHealthPlan}}" >
 				<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
 				<a ng-href="#/tab/planDetails">
 					<div class="addHealthPlan_header AddCard" >
@@ -63,7 +62,7 @@
 			
 			
 			
-			<div class="SkipToPayment">
+			<div class="SkipToPayment" style="display:{{disableAddHealthPlan}}">
 				
 				
 				<!--<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">-->

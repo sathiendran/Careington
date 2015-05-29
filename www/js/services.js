@@ -105,6 +105,65 @@ angular.module('starter.services', [])
                     }
                 });
     }
+	
+	this.getPatientHealthPlansList = function (params) {
+        //util.setHeaders($http, params);
+
+		var requestInfo = {
+			headers: util.getHeaders(params.accessToken),
+			url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
+			method: 'get'       
+		};
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+	
+	this.postNewHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/healthplan',
+            method: 'POST',
+			data: {
+                healthPlanId: params.healthPlanID,
+				patientId: params.patientID,
+				insuranceCompany: params.insuranceCompany,
+				insuranceCompanyNameId: params.insuranceCompanyNameId,
+				isDefaultPlan: params.isDefaultPlan,
+				insuranceCompanyPhone: params.insuranceCompanyPhone,
+				memberName: params.memberName,
+				subsciberId: params.subsciberId,
+				policyNumber: params.policyNumber,
+				subscriberFirstName: params.subscriberFirstName,
+				subscriberLastName: params.subscriberLastName,
+				subscriberDob: params.subscriberDob,
+				isActive: params.isActive,
+				payerId: params.payerId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
 
     this.getConsultationFinalReport = function (params) {
         //https://snap-dev.com/api/reports/consultationreportdetails/2440
@@ -133,7 +192,8 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+           // url: apiCommonURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+		    url: apiCommonURL + '/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
             method: 'GET'   
         };
 
