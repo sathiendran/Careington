@@ -57,7 +57,7 @@
 		</ion-item>
 		
 		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery">
-			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientName,dependentDetails.lastName,dependentDetails.age,dependentDetails.guardianName)" >   
+			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientName,dependentDetails.lastName,dependentDetails.age,dependentDetails.guardianName,dependentDetails.patientId)" >   
 				<img ng-src="{{dependentDetails.profileImagePath}}" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
