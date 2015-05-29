@@ -58,7 +58,10 @@
 <a class="item"  href="#/tab/appoimentDetails" ng-repeat="scheduledListData in scheduledList">
     
 		<div class="patient_appointment" >						
-            <div class="appointment_time" >{{scheduledListData.scheduledTime}} <span><sup>@</sup></span> 1:35<span>PM</span></div>
+            <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM yy"}}
+                <span><sup>@</sup></span> 
+                {{scheduledListData.scheduledTime | date: "h,mm"}}    
+                <span>PM</span></div>
         </div>
             <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
         
