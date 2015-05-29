@@ -86,46 +86,42 @@
     
   
    
-    <div  style="height: 132px; background-color:#E5E5E5;position: relative;top: 100px;margin: 10px;">
+    <div class="PatientStatistics">
         
-         <span style="margin-left: -125px; padding:0px; font-size:18px;position:relative; top:10px;Color:#4D4D4D;"><b>Patient Statistics</b></span>
+         <span><b>Patient Statistics</b></span>
         
-        <div style="float:left;margin-left: -118px;margin-top: 45px;">
-			<p> 
-			<b style="Color:#4D4D4D;font-size:18px;"> Age : </b>   <input type="text" style="background-color:#CCCCCC;position: relative;left: 80px;top: -25px; width:70px;" readonly value="{{existingConsultationReport.AgeString}}">
+        <div class="PatientAgeGender">
+			<p><b> Age : </b>   <input type="text" style="" readonly value="{{existingConsultationReport.AgeString}}">
 			</p> 
             
-            <p style="margin-top:-23px;"> 
-			<b style="Color:#4D4D4D;font-size:18px;"> Gender : </b>  <input type="text" style="background-color:#CCCCCC;position: relative;left: 80px;top: -25px; width:70px;" readonly value="{{existingConsultationReport.Gender}}">
+            <p class="PatientGender"> 
+			<b> Gender : </b>  <input type="text" readonly value="{{existingConsultationReport.Gender}}">
 			</p>
-            
-            
 		</div>
-		<div style="float:right;margin-right: -50px;margin-top: 45px;">
+		<div class="PatientHeightWeight">
 			<p> 
-          <b style="Color:#4D4D4D;font-size:18px;">  Height : </b> 
-           <input type="text" style="background-color:#CCCCCC;position: relative;left: 76px;top: -25px; width:70px;" readonly value="6.1">
+          <b>  Height : </b> 
+           <input type="text" readonly value="6.1">
 			</p>
             
-            <p  style="margin-top:-23px;"> 
-           <b style="Color:#4D4D4D;font-size:18px;"> Weight :  </b>
-           <input type="text" style="background-color:#CCCCCC;position: relative;left: 76px;top: -25px; width:70px;" readonly value="195 Ibs">
+            <p class="PatientWeight" > 
+           <b> Weight :  </b>
+           <input type="text"  readonly value="195 Ibs">
 			</p>
             
 		</div>
 	</div>
     
-      <div style="height: 40px; position: relative;top: 110px;margin: 10px;background-color:#E5E5E5;padding:10px;">
-          <span style="font-size: 20px;margin-left: 0px;"><b>Patient Concerns</b></span>
+      <div class="ReportPatientConcern">
+          <span><b>Patient Concerns</b></span>
       </div>
     
-     <div style="height: 100%; position: relative;top: 110px;margin: 10px;background-color:#FFF;padding:7px;">
-       <p>  <span style="padding:5px;background-color:#E5E5E5;font-size: 20px;">1</span> <span style="padding:10px;font-size: 20px;">Temprature Over 100⁰</b></span></p>
-<br>
+    <div class="ReportPatientConcernDetails">
+		<p>  <span class="ConcernNo1">1</span> <span class="ConcernNo1Details">Temprature Over 100⁰</b></span></p>
+		<br>
+		<p>  <span class="ConcernNo2">2</span> <span class="ConcernNo2Details">{{existingConsultationReport.PrimaryConcern}}</b></span></p>
 
- <p>  <span style="padding:5px;background-color:#ccc;font-size: 20px;">2</span> <span style="padding:10px;font-size: 20px;">{{existingConsultationReport.PrimaryConcern}}</b></span></p>
-
-      </div> 
+    </div> 
 
 
 <div style="height: 35px; position: relative;top: 120px;margin: 10px;background-color:#fff;padding:10px; border-bottom:2px solid #ccc;">

@@ -38,10 +38,13 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.hospitalId = 126;
         $scope.userTypeId = 1;
         $scope.profileId = 31867222;
-		$scope.patientEmail = 'ben.ross.310.95348@gmail.com';
+		$scope.patientEmail = 'ben.ross.310.95348@gmail.com';//'austin@rinsoft.com';
+		$scope.emailAddress = 'ben.ross.310.95348@gmail.com';//'austin@rinsoft.com';
+		$scope.userPassword = 'Password@123';//'Austinhg#1';
 		$scope.emailType = 'resetpassword';
         $scope.Amount = 30;
         $scope.paymentProfileId = 28804398;
+
 
         $scope.userId = 471;
         $scope.BillingAddress = '123 chennai';
@@ -65,10 +68,11 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 		$scope.insuranceCompanyName = "test";
 		$scope.insurancePolicyNumber = "test";
 		
-		$scope.healthPlanID = 111;
+		$scope.healthPlanID = 124;
+		//patientId
 		$scope.insuranceCompany = "testCompany";
 		$scope.insuranceCompanyNameId = 1;
-		$scope.isDefaultPlan = 'T';
+		$scope.isDefaultPlan = 'Y';
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = 'Rinsoft';
 		$scope.subsciberId = '505';
@@ -76,7 +80,13 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 		$scope.subscriberFirstName = 'Rin';
 		$scope.subscriberLastName = 'Soft';
 		$scope.subscriberDob = '2015-05-27T17:00:15.7010698-05:00';
-		$scope.isActive = 'T';
+		$scope.isActive = 'A';
+		$scope.payerId = '471';
+		
+		$scope.insuranceCompanyNameApply = 'testCompany2';
+		$scope.policyNumberApply = '111111111';
+		$scope.consultationIdApply = 2440;
+		$scope.healthPlanIdApply = 3166;
 		
         $scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 
@@ -87,12 +97,11 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.hospitalCodesList = '{ "message": "NO HOSPITAL CODES LIST JSON" }';
 		$scope.patientHealthPlanList = '{ "message": "NO PATIENT HEALTH PLAN JSON" }';
 		$scope.ConsultationSave = '{ "message": "NO CONSULTATION SAVE JSON" }';
-		$scope.emailAddress = 'ben.ross.310.95348@gmail.com';
 
         $scope.doGetToken = function () {
             var params = {
                 email: $scope.emailAddress,
-                password: 'Password@123',
+                password: $scope.userPassword,
                 userTypeId: $scope.userTypeId,
                 hospitalId: $scope.hospitalId,
                 success: function (data) {
@@ -456,48 +465,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 			
 			apiComService.getRelatedPatientProfiles(params);
 		}
-		
-		$scope.doGetHealthPlanList = function() {
-			if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			}
-			 var params = {
-                patientID: $scope.otherPatientId,
-                accessToken: $scope.accessToken,
-				success: function (data) {
-					$scope.HealthPlanList = data;
-				},
-				error: function (data) {
-					$scope.HealthPlanList = 'Error getting Health Plan List';
-					console.log(data);
-				}
-			};
-			
-			apiComService.getHealthPlanList(params);
-		}	
-/*		
-		$scope.doGetCreditCardDetailsList = function() {
-			if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			}
-			 var params = {
-                patientID: $scope.patientId,
-				hospitalID: $scope.hospitalId,
-                accessToken: $scope.accessToken,
-				success: function (data) {
-					$scope.CreditCardDetailsList = data;
-				},
-				error: function (data) {
-					$scope.CreditCardDetailsList = 'Error getting Credit Card Details';
-					console.log(data);
-				}
-			};
-			
-			apiComService.getCreditCardDetailsList(params);
-		}
-*/
+
 		$scope.doPostApplyHealthPlan = function() {
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -505,7 +473,10 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 			}
 			 var params = {
                 accessToken: $scope.accessToken,
-				patientEmail: $scope.patientEmail,
+				insuranceCompanyName: $scope.insuranceCompanyNameApply,
+				policyNumber: $scope.policyNumberApply,
+				consultationId: $scope.consultationIdApply,
+				healthPlanId: $scope.healthPlanIdApply,
 				success: function (data) {
 					$scope.ApplyHealthPlan = data;
 				},
@@ -537,6 +508,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 				subscriberLastName: $scope.subscriberLastName,
 				subscriberDob: $scope.subscriberDob,
 				isActive: $scope.isActive,
+				payerId: $scope.payerId,
 				success: function (data) {
 					$scope.NewHealthPlan = data;
 				},
@@ -547,6 +519,27 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 			};
 			
 			apiComService.postNewHealthPlan(params);
+		}
+		
+		$scope.doPostCodeSets = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $scope.accessToken,
+				patientEmail: $scope.patientEmail,
+				healthPlanID: $scope.healthPlanID,
+				success: function (data) {
+					$scope.CodeSets = data;
+				},
+				error: function (data) {
+					$scope.CodeSets = 'Error posting Patient Profile';
+					console.log(data);
+				}
+			};
+			
+			apiComService.postCodeSets(params);
 		}
 		
     }]);
@@ -726,11 +719,12 @@ app.service('apiComService', function ($http) {
 	
 	this.getPatientHealthPlansList = function (params) {
         //util.setHeaders($http, params);
-        var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/HealthPlan?patientId=' + params.patientId ,
-            method: 'get'       
-        };
+
+		var requestInfo = {
+			headers: util.getHeaders(params.accessToken),
+			url: 'https://sandbox.connectedcare.md/api/v2/healthplans',
+			method: 'get'       
+		};
 
         $http(requestInfo).
                 success(function (data, status, headers, config) {
@@ -956,53 +950,15 @@ app.service('apiComService', function ($http) {
 		});
 	}
 	
-	this.getHealthPlanList = function(params) {
-		var confirmHealthPlanList = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/healthplan?patientId=' + params.patientID,
-            method: 'GET'
-		};
-		
-		$http(confirmHealthPlanList).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
-/*
-	this.getCreditCardDetailsList = function(params) {
-		var confirmCreditCardDetails = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/' + params.patientID + '/payments?hospitalId=' + params.hospitalID,
-            method: 'GET'
-		};
-		
-		$http(confirmCreditCardDetails).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
-*/	
 	this.postApplyHealthPlan = function(params) {
 		var confirmPatientProfile = {
 			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/healthplan/' + params.healthPlanID + '/apply',
+            url: 'https://sandbox.connectedcare.md/api/healthplan/' + params.healthPlanId + '/apply',
             method: 'POST',
 			data: {
-                emailAddress: params.patientEmail
+                insuranceCompanyName: params.insuranceCompanyName,
+				policyNumber: params.policyNumber,
+				consultationId: params.consultationId
             }
 		};
 		
@@ -1025,23 +981,46 @@ app.service('apiComService', function ($http) {
             url: 'https://sandbox.connectedcare.md/api/healthplan',
             method: 'POST',
 			data: {
-                HealthPlanId: params.healthPlanID,
-				PatientId: params.patientID,
-				InsuranceCompany: params.insuranceCompany,
-				InsuranceCompanyNameId: params.insuranceCompanyNameId,
-				IsDefaultPlan: params.isDefaultPlan,
-				InsuranceCompanyPhone: params.insuranceCompanyPhone,
-				MemberName: params.memberName,
-				SubsciberId: params.subsciberId,
-				PolicyNumber: params.policyNumber,
-				SubscriberFirstName: params.subscriberFirstName,
-				SubscriberLastName: params.subscriberLastName,
-				SubscriberDob: params.subscriberDob,
-				IsActive: params.isActive
+                healthPlanId: params.healthPlanID,
+				patientId: params.patientID,
+				insuranceCompany: params.insuranceCompany,
+				insuranceCompanyNameId: params.insuranceCompanyNameId,
+				isDefaultPlan: params.isDefaultPlan,
+				insuranceCompanyPhone: params.insuranceCompanyPhone,
+				memberName: params.memberName,
+				subsciberId: params.subsciberId,
+				policyNumber: params.policyNumber,
+				subscriberFirstName: params.subscriberFirstName,
+				subscriberLastName: params.subscriberLastName,
+				subscriberDob: params.subscriberDob,
+				isActive: params.isActive,
+				payerId: params.payerId
             }
 		};
 		
 		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.postCodeSets = function(params) {
+
+		var confirmPostCodeSet = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/code/add',
+            method: 'POST',
+			data: codesetData
+		};
+		
+		$http(confirmPostCodeSet).
 			success(function (data, status, headers, config) {
 				if (typeof params.success != 'undefined') {
 					params.success(data);
