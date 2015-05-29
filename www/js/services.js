@@ -39,6 +39,28 @@ angular.module('starter.services', [])
                     }
                 });
     }
+	
+	this.getRelatedPatientProfiles = function(params) {
+		var confirmHealthPlanList = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/familyprofiles/' + /*params.patientID +*/ 'dependents',
+            method: 'GET'
+		};
+		
+		$http(confirmHealthPlanList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	
 
     this.getScheduledConsulatation = function (params) {
         //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}	

@@ -223,6 +223,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
     };
 	
+	$rootScope.APICommonURL = 'https://snap-dev.com';
 	
 	$scope.doGetFacilitiesList = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -244,10 +245,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.hospitalDetailsList.push({							
 							'id': index.$id,
 							'domainName': index.domainName,
-							'logo': index.logo,
+							'logo': $rootScope.APICommonURL + index.logo,
 							'name': index.name,
 							'operatingHours': index.operatingHours,
 							'providerId': index.providerId,	
+							'brandColor': index.brandColor,
 						});
 					});	
 						$state.go('tab.provider');
@@ -302,6 +304,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					} else {
 						$scope.tokenStatus = 'alert-success';
 						$scope.doGetExistingConsulatation();	
+						$scope.doGetRelatedPatientProfiles();
 						$state.go('tab.userhome');		
 					}
 				},
@@ -335,7 +338,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$scope.profileId = 31867222;
 	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 	
-	$rootScope.APICommonURL = 'https://snap-dev.com';
+	
 	
     $rootScope.searchPatientList = {};
     $scope.searched = false;
@@ -363,6 +366,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         }
     });
+	
+	
+	$scope.doGetRelatedPatientProfiles = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                patientID: $rootScope.patientId,
+                accessToken: $rootScope.accessToken,
+				success: function (data) {
+					$scope.RelatedPatientProfiles = data;
+				},
+				error: function (data) {
+					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
+					console.log(data);
+				}
+			};
+			
+			LoginService.getRelatedPatientProfiles(params);
+		}
     
     
     
