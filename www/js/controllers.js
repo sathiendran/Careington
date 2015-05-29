@@ -327,6 +327,31 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getToken(params);
 		}
     }
+	$scope.emailType = 'resetpassword';
+	
+	$scope.doPostSendPasswordResetEmail = function() {
+			if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+			 var params = {
+                patientEmail: $rootScope.UserEmail,
+				emailType: $scope.emailType,
+                accessToken: $rootScope.accessToken,
+                success: function (data) {
+					console.log(data);
+                    $scope.PasswordResetEmail = data;
+					$state.go('tab.resetPassword');	
+                },
+                error: function (data) {
+                    $scope.PasswordResetEmail = 'Error sending reset email';
+                    console.log(data);
+                }
+            };
+			
+			LoginService.postSendPasswordResetEmail(params);
+		}	
+	
 
 	$rootScope.patientId = 471;
 	//$rootScope.patientId = 3056;
@@ -507,7 +532,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$rootScope.ApplyPlanPatientHealthPlanList = $rootScope.patientHealthPlanList;
-							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 2];
+							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
 							
 							$rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
@@ -739,7 +764,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 						
 						$rootScope.PaymentDetailsList = data.data.paymentProfiles;
-						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.paymentProfiles.length - 2];
+						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.paymentProfiles.length - 1];
 						
 						
 						$rootScope.PaymentDetailsList.push({
