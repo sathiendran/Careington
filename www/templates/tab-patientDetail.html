@@ -1,6 +1,6 @@
 <ion-view title="Patient Details">
 	
-<ion-header-bar align-title="left" class="bar-positiveHomeUser">
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
   
   <div class="buttons" >
 	<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/userhome"  >
@@ -40,10 +40,10 @@
 	<ion-content class="patient_content" >
 		<div class="password_home PatientDetailsHome">	
 			
-				<a ng-click="doToPatientCalendar(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
-				<button class="button button-block button-energized">
+			<!--	<a ng-click="doToPatientCalendar(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)"> -->
+				<button class="button button-block button-energized" ng-click="doGetScheduledConsulatation(PatientId)">
 				 <span> View Appointments </span>
-				</button></a>
+				</button> <!--</a> -->
 			
 			<div class="scheduled_appointments_text" >
 				See all your scheduled appointments. 

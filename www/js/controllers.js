@@ -270,10 +270,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$rootScope.providerId ='126';
 	
 	$scope.ProviderFunction = function(hospitalDetailsDatas) {
-    //$scope.ProviderFunction = function($hospitalId,Hopital) {
-    /*$rootScope.hospitalId = $hospitalId;
-     $rootScope.Hopital = Hopital; */
-        
         $rootScope.hospitalId = hospitalDetailsDatas.providerId;
         $rootScope.Hopital = hospitalDetailsDatas.name;
         $rootScope.logo = hospitalDetailsDatas.logo;
@@ -415,7 +411,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.RelatedPatientProfiles = [];	
 					
 						angular.forEach(data.data, function(index, item) {		
-							
 							$rootScope.RelatedPatientProfiles.push({
 								'id': index.$id,
 								'addresses': angular.fromJson(index.addresses),
@@ -1055,17 +1050,35 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         LoginService.getCodesSet(params);
 	}
 
-        $scope.doGetScheduledConsulatation = function () {
+        $scope.doGetScheduledConsulatation = function (PatientId) {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
+             $rootScope.scheduledConsultationList = [];
             var params = {
-                patientId: $scope.patientId,
-                accessToken: $scope.accessToken,
+                patientId: PatientId,
+                accessToken: $rootScope.accessToken,
                 success: function (data) {
 					console.log(data);
-                    $scope.scheduledConsultationList = data;
+                    $scope.scheduledConsultationList = data.data;
+                    if(data != "")
+                    $rootScope.scheduledList = [];
+                    angular.forEach($scope.scheduledConsultationList, function(index, item) {	
+						  $rootScope.scheduledList.push({							
+							'id': index.$id,
+							'scheduledTime': index.scheduledTime,
+							'consultantUserId': index.consultantUserId,
+							'consultationId': index.consultationId,
+							'firstName': index.firstName,
+							'lastName': index.lastName,	
+							'assignedDoctorName': index.assignedDoctorName,
+                            'patientName': index.patientName,
+                            'patientUserId': index.patientUserId,
+                            'scheduledId': index.scheduledId,    
+						});
+					});	
+                    $state.go('tab.patientCalendar');
                 },
                 error: function (data) {
                     $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
@@ -1177,10 +1190,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	}
     
-    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id) {
         if($rootScope.patientSearchKey != ''){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
-            if($rootScope.patientInfomation.fullName == $rootScope.RelatedPatientProfiles[0].patientName){
+        if($rootScope.patientInfomation.fullName == $rootScope.RelatedPatientProfiles[0].patientName){
                 $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
             }
@@ -1191,6 +1204,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientId = P_Id;
         $state.go('tab.patientDetail'); 
     }
     

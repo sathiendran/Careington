@@ -1,6 +1,6 @@
 <ion-view title="Patient Calender">	
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser">	  
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">	  
 		<div class="buttons" >
 			<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/patientDetail"  >
 				<span>Back</span>
@@ -43,6 +43,8 @@
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
+            
+            
 			<a class="item" style=" background-color: #E1FCD4;  display: {{patientDisplay1}}"  ng-click="doToAppoimentDetails(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
 				<div class="patient_appointment" >
 					<div class="appointment_text">Next Appointment:</div>
@@ -51,7 +53,18 @@
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
 			
-			<a class="item"  href="#/tab/appoimentDetails">
+            
+            
+<a class="item"  href="#/tab/appoimentDetails" ng-repeat="scheduledListData in scheduledList">
+    
+		<div class="patient_appointment" >						
+            <div class="appointment_time" >{{scheduledListData.scheduledTime}} <span><sup>@</sup></span> 1:35<span>PM</span></div>
+        </div>
+            <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
+        
+</a>
+			
+		<!--	<a class="item"  href="#/tab/appoimentDetails">
 				<div class="patient_appointment" >						
 					<div class="appointment_time" >Oct 18 <span><sup>@</sup></span> 1:35<span>PM</span></div>
 				</div>
@@ -70,14 +83,7 @@
 					<div class="appointment_time" >Oct 18 <span><sup>@</sup></span> 1:35<span>PM</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
-			</a>
-			
-			<a class="item"  href="#/tab/appoimentDetails">
-				<div class="patient_appointment" >						
-					<div class="appointment_time" >Oct 18 <span><sup>@</sup></span> 1:35<span>PM</span></div>
-				</div>
-				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
-			</a>
+			</a> -->
 			
 			
 		</div>
