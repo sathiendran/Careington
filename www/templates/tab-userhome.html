@@ -56,7 +56,7 @@
 		    </a>	
 		</ion-item>
 		
-		<ion-item class="DependentList" ng-repeat="dependentDetails in dependentDetails | filter: data.searchQuery">
+		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery">
 			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientName,dependentDetails.lastName,dependentDetails.age,dependentDetails.guardianName)" >   
 				<img ng-src="{{dependentDetails.profileImagePath}}" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>

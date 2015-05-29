@@ -356,12 +356,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             };
             if(!$scope.searched){
                 //$rootScope.dependentDetails.push(loggedInPatient);
-                $rootScope.dependentDetails.splice(0, 0, loggedInPatient);
+                $rootScope.RelatedPatientProfiles.splice(0, 0, loggedInPatient);
             }
             $scope.searched = true;
         }else{
             if($scope.searched){
-                $rootScope.dependentDetails.shift();
+                $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
             }
         }
@@ -377,7 +377,28 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 patientID: $rootScope.patientId,
                 accessToken: $rootScope.accessToken,
 				success: function (data) {
-					$scope.RelatedPatientProfiles = data;
+					//$scope.RelatedPatientProfiles = data.data;
+					$rootScope.RelatedPatientProfiles = [];	
+					
+						angular.forEach(data.data, function(index, item) {		
+							
+							$rootScope.RelatedPatientProfiles.push({
+								'id': index.$id,
+								'addresses': angular.fromJson(index.addresses),
+								'birthdate': index.birthdate,
+								'isAuthorized': index.isAuthorized,
+								'patientId': index.patientId,
+								'patientName': index.patientName,
+								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+								'relationCode': index.relationCode,
+								'lastName': 'Test',
+								'age': '25',
+								'guardianName': 'TestGuardian',
+							});
+						});	
+						
+						 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+						
 				},
 				error: function (data) {
 					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
@@ -406,7 +427,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.patientInfomation = data.data[0].patientInformation;	
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
                 $rootScope.inTakeForm = data.data[0].intakeForm;
-                $rootScope.depedentInformation = data.data[0].dependentInformation;
+               /* $rootScope.depedentInformation = data.data[0].dependentInformation;
 
                 $rootScope.dependentDetails = [];	
 
@@ -422,7 +443,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     });
                 });	
                 $rootScope.searchPatientList = $rootScope.dependentDetails;
-            	
+            	*/
             },
             error: function (data) {
                 $scope.existingConsultation = 'Error getting existing consultation';
@@ -1003,8 +1024,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         if($rootScope.patientSearchKey != ''){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
-            if($rootScope.patientInfomation.fullName == $rootScope.dependentDetails[0].patientName){
-                $rootScope.dependentDetails.shift();
+            if($rootScope.patientInfomation.fullName == $rootScope.RelatedPatientProfiles[0].patientName){
+                $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
             }
         }
