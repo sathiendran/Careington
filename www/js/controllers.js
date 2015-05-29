@@ -269,10 +269,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$rootScope.providerId = $stateParams.providerID;
 	//$rootScope.providerId ='126';
 	
-	$scope.ProviderFunction = function($hospitalId,Hopital) {
-		
-		$rootScope.hospitalId = $hospitalId;
-        $rootScope.Hopital = Hopital;
+	$scope.ProviderFunction = function(hospitalDetailsDatas) {
+    //$scope.ProviderFunction = function($hospitalId,Hopital) {
+    /*$rootScope.hospitalId = $hospitalId;
+     $rootScope.Hopital = Hopital; */
+        
+        $rootScope.hospitalId = hospitalDetailsDatas.providerId;
+        $rootScope.Hopital = hospitalDetailsDatas.name;
+        $rootScope.logo = hospitalDetailsDatas.logo;
+        $rootScope.operatingHours = hospitalDetailsDatas.operatingHours;
+        $rootScope.id = hospitalDetailsDatas.id;
+        $rootScope.brandColor = hospitalDetailsDatas.brandColor;
+       // console.log($rootScope.hospitalId + ', ' + hospitalDetailsDatas.name + ', ' + hospitalDetailsDatas.logo + ', ' + hospitalDetailsDatas.operatingHours + ', ' + hospitalDetailsDatas.id + ', ' + hospitalDetailsDatas.brandColor)
+        
 		//$rootScope.hospitalId = '126';		
 		//console.log($rootScope.hospitalId);			
 		$state.go('tab.password');
