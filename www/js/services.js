@@ -40,6 +40,26 @@ angular.module('starter.services', [])
                 });
     }
 	
+	this.postSendPasswordResetEmail = function(params) {
+		var confirmSendPasswordResetEmail = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType,
+            method: 'POST'
+		};
+		
+		$http(confirmSendPasswordResetEmail).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
 	this.getRelatedPatientProfiles = function(params) {
 		var confirmHealthPlanList = {
 			headers: util.getHeaders(params.accessToken),
