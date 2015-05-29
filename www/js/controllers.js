@@ -90,89 +90,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     });
 	
     $scope.$storage = $localStorage;
-    // Start Validation CardDetails //
- /*   $scope.setValidccexpiry = function (value) {
-        $scope.validccexpiry = value;
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    };
-    
-    $scope.$watch('getCardDetails.FirstName',function(value){
-        if(typeof value != "undefined" && value != ""){
-            $scope.validFirstName = true;
-        }else { $scope.validFirstName = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-   $scope.$watch('getCardDetails.LastName',function(value){
-        if(typeof value != "undefined" && value != ""){
-            $scope.validLastName = true;
-        }else { $scope.validLastName = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-    $scope.$watch('getCardDetails.CardNumber',function(value){
-       if(typeof value != "undefined" && value != ""){
-            $scope.validCardNumber = true;
-        }else { $scope.validCardNumber = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-    $scope.$watch('getCardDetails.Cvv',function(value){
-       if(typeof value != "undefined" && value != ""){
-            $scope.validCvv = true;
-        }else { $scope.validCvv = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-    $scope.$watch('getCardDetails.Country',function(value){
-       if(typeof value != "undefined" && value != ""){
-            $scope.validCountry = true;
-        }else { $scope.validCountry = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
    
-     $scope.$watch('getCardDetails.BillingAddress',function(value){
-       if(typeof value != "undefined" && value != ""){
-            $scope.validBillingAddress = true;
-        }else { $scope.validBillingAddress = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-     $scope.$watch('getCardDetails.City',function(value){
-       if(typeof value != "undefined" && value != ""){
-            $scope.validCity = true;
-        }else { $scope.validCity = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-     $scope.$watch('getCardDetails.State',function(value){
-       if(typeof value != "undefined" && value != ""){
-            $scope.validState = true;
-        }else { $scope.validState = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-     $scope.$watch('getCardDetails.CardZipCode',function(value){
-       if(typeof value != "undefined" && value != ""){
-            $scope.validCardZipCode = true;
-        }else { $scope.validCardZipCode = false; }
-        $timeout(function(){$scope.updateCCFormValid();}, 100);
-    });
-    
-      $scope.$watch('getCardDetails.CardExpireDates',function(value){
-       alert(value);
-    });
-    
-    
-    $scope.ccFormValid = false;
-    $scope.updateCCFormValid = function(){
-        if($scope.validFirstName && $scope.validLastName && $scope.validCardNumber && $scope.validccexpiry && $scope.validCvv && $scope.validCountry && $scope.validBillingAddress && $scope.validCity && $scope.validState && $scope.validCardZipCode){
-            $scope.ccFormValid = true;
-        }else{
-            $scope.ccFormValid = false;
-        }
-    }; */
-    // End Validation CardDetails //
     
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
@@ -1909,46 +1827,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
     
 })
-
-
-
-/*.directive('inputMaxLengthNumber', function() {
-  return {
-    require: 'ngModel',
-    restrict: 'A',
-    link: function (scope, element, attrs, ngModelCtrl) {
-      function fromUser(text) {
-        var maxlength = Number(attrs.maxlength);
-        if (String(text).length > maxlength) {
-          var newString = String(text).substr(0, maxlength);
-          ngModelCtrl.$setViewValue(newString);
-          ngModelCtrl.$render();
-          return ngModelCtrl.newString;
-        }
-        return text;
-      }
-      ngModelCtrl.$parsers.push(fromUser);
-    }
-  };
-}) */
-
-
-/*.directive('numbersOnly', function(){
-   return {
-     require: 'ngModel',
-     link: function(scope, element, attrs, modelCtrl) {
-       modelCtrl.$parsers.push(function (inputValue) {
-           if (inputValue == undefined) return '' 
-           var transformedInput = inputValue.replace(/[^0-9]/g, ''); 
-           if (transformedInput!=inputValue) {
-              modelCtrl.$setViewValue(transformedInput);
-              modelCtrl.$render();
-           }         
-           return transformedInput;         
-       });
-     }
-   };
-}) */
 
 
 .directive('inputMaxLengthNumber', function() {
