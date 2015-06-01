@@ -36,32 +36,31 @@
 		<div class="list">		
 	
 		
-			<a class="item" style=" background-color: #FEEFE8;  display: {{patientDisplay}}" href="#/tab/appoimentDetails">
-				<div class="patient_appointment" >
+			<a class="item" style=" background-color: #FEEFE8;  display: {{patientDisplay}}"  ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+				<div class="patient_appointment">
 					<div class="appointment_text">Next Appointment:</div>
-					<div class="appointment_text_time" >Oct 12 <span><sup>@</sup></span> 12:15<span>PM</span></div>
+					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
             
             
-			<a class="item" style=" background-color: #E1FCD4;  display: {{patientDisplay1}}"  ng-click="doToAppoimentDetails(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
+			<a class="item" style=" background-color: #E1FCD4;  display: {{patientDisplay1}}"  ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 				<div class="patient_appointment" >
 					<div class="appointment_text">Next Appointment:</div>
-					<div class="appointment_text_time" >Oct 12 <span><sup>@</sup></span> 12:15<span>PM</span></div>
+					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
 			
             
             
-<a class="item"  href="#/tab/appoimentDetails" ng-repeat="scheduledListData in scheduledList">
+<a class="item" href="#/tab/appoimentDetails" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
     
-		<div class="patient_appointment" >						
-            <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM yy"}}
+		<div class="patient_appointment">						
+            <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}}
                 <span><sup>@</sup></span> 
-                {{scheduledListData.scheduledTime | date: "h,mm"}}    
-                <span>PM</span></div>
+                {{scheduledListData.scheduledTime | date: "hh:mm"}}<span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
         </div>
             <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
         
