@@ -1078,7 +1078,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                             'scheduledId': index.scheduledId,    
 						});
 					});	
-                    $state.go('tab.patientCalendar');
+                     $state.go('tab.patientCalendar');
                 },
                 error: function (data) {
                     $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
