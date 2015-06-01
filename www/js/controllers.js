@@ -1242,6 +1242,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
         $state.go('tab.consultCharge'); 
     }
+     
+     $scope.GoToappoimentDetails = function(scheduledListData) {
+       $rootScope.scheduledListDatas =scheduledListData;     
+       $state.go('tab.appoimentDetails'); 
+     };
 	
 	$rootScope.EnableBackButton = function () {     
         $state.go('tab.userhome');			

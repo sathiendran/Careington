@@ -55,13 +55,13 @@
 			
             
             
-<a class="item"  href="#/tab/appoimentDetails" ng-repeat="scheduledListData in scheduledList">
+<a class="item" href="#/tab/appoimentDetails" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)">
     
 		<div class="patient_appointment" >						
             <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM yy"}}
                 <span><sup>@</sup></span> 
-                {{scheduledListData.scheduledTime | date: "h,mm"}}    
-                <span>PM</span></div>
+                {{scheduledListData.scheduledTime | date: "hh:mm"}}    
+                <span><!--PM --></span></div>
         </div>
             <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
         
