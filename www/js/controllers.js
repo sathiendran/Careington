@@ -397,6 +397,47 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
     });
 	
+	$scope.doGetPatientProfiles = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $rootScope.accessToken,
+				success: function (data) {
+					//$scope.RelatedPatientProfiles = data.data;
+					$rootScope.RelatedPatientProfiles = [];	
+					
+						angular.forEach(data.data, function(index, item) {		
+							$rootScope.RelatedPatientProfiles.push({
+								'id': index.$id,
+								'patientId': index.patientId,
+								'patientName': index.patientName,
+								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+								'relationCode': index.relationCode,
+								'isAuthorized': index.isAuthorized,
+								'birthdate': new Date(index.birthdate),
+								'addresses': angular.fromJson(index.addresses),
+								'patientFirstName': index.patientFirstName,
+								'patientLastName': index.patientLastName,
+								'guardianFirstName': index.guardianFirstName,
+								'guardianLastName': index.guardianLastName,
+								'guardianName': index.guardianName,
+							});
+						});	
+						
+						 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+						
+				},
+				error: function (data) {
+					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
+					console.log(data);
+				}
+			};
+			
+			LoginService.getPatientProfiles(params);
+		}
+	
 	
 	$scope.doGetRelatedPatientProfiles = function() {
 			if ($scope.accessToken == 'No Token') {
@@ -413,16 +454,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						angular.forEach(data.data, function(index, item) {		
 							$rootScope.RelatedPatientProfiles.push({
 								'id': index.$id,
-								'addresses': angular.fromJson(index.addresses),
-								'birthdate': index.birthdate,
-								'isAuthorized': index.isAuthorized,
 								'patientId': index.patientId,
 								'patientName': index.patientName,
 								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
 								'relationCode': index.relationCode,
-								'lastName': 'Test',
-								'age': '25',
-								'guardianName': 'TestGuardian',
+								'isAuthorized': index.isAuthorized,
+								'birthdate': new Date(index.birthdate),
+								'addresses': angular.fromJson(index.addresses),
+								'patientFirstName': index.patientFirstName,
+								'patientLastName': index.patientLastName,
+								'guardianFirstName': index.guardianFirstName,
+								'guardianLastName': index.guardianLastName,
+								'guardianName': index.guardianName,
 							});
 						});	
 						
@@ -1200,8 +1243,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
         
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
-        $rootScope.PatientLastName = P_Lname;
+        $rootScope.patientFirstName = P_Fname;
+        $rootScope.patientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.PatientId = P_Id;
@@ -1210,7 +1253,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
      $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
+        $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -1219,7 +1262,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     $scope.doToAppoimentDetails  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
+        $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -1228,7 +1271,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.doToWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
+        $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -1236,7 +1279,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
+        $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -2097,6 +2140,42 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
   };
 })
+
+
+.filter('ageFilter', function() {
+     function calculateAge(birthday) { // birthday is a date
+         var ageDifMs = Date.now() - birthday.getTime();
+         var ageDate = new Date(ageDifMs); // miliseconds from epoch
+         return Math.abs(ageDate.getUTCFullYear() - 1970);
+     }
+     
+     function monthDiff(d1, d2) {
+       if (d1 < d2){
+			if(d2.getMonth() > d1.getMonth())
+			{
+				var months = d2.getMonth() - d1.getMonth();
+				//return months <= 0 ? 0 : months;
+				return Math.abs(months <= 0 ? 0 : months);
+			} else if(d2.getMonth() < d1.getMonth()) {
+				var months = (12 - d1.getMonth()) + d2.getMonth();
+				//return months <= 0 ? 0 : months;
+				return Math.abs(months <= 0 ? 0 : months);
+			}
+       }
+	  
+       return 0;
+     }
+
+
+     return function(birthdate) { 
+           var age = calculateAge(birthdate);
+           if (age == 0) {
+             return '0.' + monthDiff(birthdate, new Date()) + ' months';			
+			} 
+			return age;
+     }; 
+})
+
 /*.directive('creditCardExpirationEntry', function() {
         return {
            require: 'ngModel',
