@@ -61,7 +61,7 @@
             <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM yy"}}
                 <span><sup>@</sup></span> 
                 {{scheduledListData.scheduledTime | date: "hh:mm"}}    
-                <span><!--PM --></span></div>
+                <span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
         </div>
             <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
         
