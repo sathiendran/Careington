@@ -32,14 +32,14 @@
 
  	<ion-list>
       
-	<a class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,patientInfomation.fullName,patientInfomation.lastName,patientInfomation.age,patientInfomation.guardianName)">
+	<a class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,patientName,patientInfomation.lastName,patientInfomation.age,patientInfomation.guardianName)">
 		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery">
 			 <div class="HrefListView"> 
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{PatientImage}}" class="listImgView">
-					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{patientInfomation.fullName}} </b><span class="SubTitleSpan ellipsis"> {{patientInfomation.lastName}}</span></div> 
+					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{patientName}} </b><span class="SubTitleSpan ellipsis"> {{patientInfomation.lastName}}</span></div> 
 					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{patientInfomation.age}} | Guardain : {{patientInfomation.guardianName}}</p>
+					<p class="ListHomeUser_pTitle DateFormateStyle">Age{{dob}} {{dob | ageFilter}} | Guardain : {{patientInfomation.guardianName}}</p>
 					<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>
 				</div>
 			 </div>
@@ -57,10 +57,10 @@
 		</ion-item>
 		
 		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery">
-			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientName,dependentDetails.lastName,dependentDetails.age,dependentDetails.guardianName,dependentDetails.patientId)" >   
+			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId)" >   
 				<img ng-src="{{dependentDetails.profileImagePath}}" class="listImgView">
-				<span class = "ListText"><b>{{dependentDetails.patientName}}</b> <span class="SubTitleSpan">{{dependentDetails.lastName}}</span></span>
-				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.age}} | Guardain : {{dependentDetails.guardianName}}</p>
+				<span class = "ListText"><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></span>
+				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} | Guardain : {{dependentDetails.guardianName}}</p>
 			 </a>
 		</ion-item> 
 		
