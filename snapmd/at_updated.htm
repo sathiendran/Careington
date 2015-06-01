@@ -282,8 +282,40 @@
 		
 		<div class="panel panel-default">
             <div class="panel-heading">
+               POST /Soapnotes/Post <!--/patientconsultation/soapnote-->
+            </div>
+            <div class="panel-body" id="patientPaymentProfiles">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doPostPatientSoapNote();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Post Soap Note
+                </button>
+				<div>
+					<label>ConsultationID:</label>
+					<input ng-model="soap_consult_id" class="form-control input-sm" type="text" value="147">
+					<label>PatientID:</label>
+					<input ng-model="patientId" class="form-control input-sm" type="text">
+					<label>UserID:</label>
+					<input ng-model="userId" class="form-control input-sm" type="text">
+					<label>Subjective:</label>
+					<input ng-model="soap_subjective_note" class="form-control input-sm" type="text">
+					<label>Objective:</label>
+					<input ng-model="soap_objective_note" class="form-control input-sm" type="text">
+					<label>Assessment:</label>
+					<input ng-model="soap_assessment_note" class="form-control input-sm" type="text">
+					<label>Plan:</label>
+					<input ng-model="soap_plan_note" class="form-control input-sm" type="text">
+					<!--<label>CptCode:</label>
+					<input ng-model="soap_CptCode" class="form-control input-sm" type="text">	-->						
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{Soap_Note}}</textarea>
+					</p>
+				</div>
+            </div>
+        </div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
                 POST /v2/patients/consultations/{consultationId}/intake
-                <a target="_blank" href="https://sandbox.connectedcare.md/api/Help/Api/PUT-v2-patients-consultations-consultationId-intake"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+                <a target="_blank" href="https://sandbox.connectedcare.md/api/Help/Api/GET-healthplan-provider"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
             </div>
             <div class="panel-body" id="ConsultationSave">
                 <button type="button" class="btn btn-default btn-lg" ng-click="doPutConsultationSave();">
@@ -298,6 +330,25 @@
 				</div>
             </div>
         </div>
+		
+				
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                GET /healthplan/provider
+                <a target="_blank" href="https://sandbox.connectedcare.md/api/Help/Api/GET-healthplan-provider"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+            </div>
+            <div class="panel-body" id="ConsultationSave">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doGetHealthPlanProvider();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get health plan providers
+                </button>
+				<div>
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{HealthPlanProvider}}</textarea>
+					</p>
+				</div>
+            </div>
+        </div>
+		
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Post /healthplan
@@ -407,10 +458,23 @@
             </div>
         </div>
 		
-		
-	<!--	
-
-	-->
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                GET patients/profile/{patientID}
+            </div>
+            <div class="panel-body" id="patientPaymentProfiles">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doGetPatientsProfile();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get patient profile
+                </button>
+				<div>
+					<label>Patient Id:</label>
+					<input ng-model="patientId" class="form-control input-sm" type="text">
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{PatientsProfile}}</textarea>
+					</p>
+				</div>
+            </div>
+        </div>
 <!--	
 		<div class="panel panel-default">
             <div class="panel-heading">
@@ -431,37 +495,7 @@
         </div>
 		-->
 <!--		
-		<div class="panel panel-default">
-            <div class="panel-heading">
-               POST /patientconsultation/soapnote
-            </div>
-            <div class="panel-body" id="patientPaymentProfiles">
-                <button type="button" class="btn btn-default btn-lg" ng-click="doPostPatientSoapNote();">
-                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Soap Note
-                </button>
-				<div>
-					<label>ConsultationID:</label>
-					<input ng-model="soap_consult_id" class="form-control input-sm" type="text" value="147">
-					<label>PatientID:</label>
-					<input ng-model="patientId" class="form-control input-sm" type="text">
-					<label>UserID:</label>
-					<input ng-model="userId" class="form-control input-sm" type="text">
-					<label>Subjective:</label>
-					<input ng-model="soap_subjective_note" class="form-control input-sm" type="text">
-					<label>Objective:</label>
-					<input ng-model="soap_objective_note" class="form-control input-sm" type="text">
-					<label>Assessment:</label>
-					<input ng-model="soap_assessment_note" class="form-control input-sm" type="text">
-					<label>Plan:</label>
-					<input ng-model="soap_plan_note" class="form-control input-sm" type="text">
-					<label>CptCode:</label>
-					<input ng-model="soap_CptCode" class="form-control input-sm" type="text">							
-					<p class="someTopSpace">
-						<textarea class="form-control" rows="5">{{Soap_Note}}</textarea>
-					</p>
-				</div>
-            </div>
-        </div>
+
 -->
 <!--		
 		<div class="panel panel-default">
