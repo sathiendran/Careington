@@ -308,7 +308,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
 						$scope.tokenStatus = 'alert-success';
-						$scope.doGetExistingConsulatation();	
+						//$scope.doGetExistingConsulatation();
+						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
 						$state.go('tab.userhome');		
 					}
@@ -372,16 +373,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     $rootScope.searchPatientList = {};
     $scope.searched = false;
-    
+    $rootScope.age = 25;
     
     $scope.$watch('data.searchQuery', function(searchKey){
         if(searchKey != '' && typeof searchKey != 'undefined'){
             $rootScope.patientSearchKey = searchKey;
             var loggedInPatient = {
-                'patientName': $rootScope.patientInfomation.fullName,
-                'lastName': $rootScope.patientInfomation.lastName,
-                'age': $rootScope.patientInfomation.age,
-                'guardianName': $rootScope.patientInfomation.guardianName,
+                'patientFirstName': $rootScope.patientName,
+                'lastName': $rootScope.patientName,
+                'age': $rootScope.age,
+                'guardianName': $rootScope.patientName,
                 'profileImagePath': $rootScope.PatientImage
             };
             if(!$scope.searched){
@@ -405,32 +406,61 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			 var params = {
                 accessToken: $rootScope.accessToken,
 				success: function (data) {
-					//$scope.RelatedPatientProfiles = data.data;
-					$rootScope.RelatedPatientProfiles = [];	
+					
+					$rootScope.patientInfomation = data.data[0];
+					$rootScope.patientAccount = data.data[0].account;	
+					$rootScope.patientAddresses = data.data[0].addresses;	
+					$rootScope.patientAnatomy = data.data[0].anatomy;
+					$rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
+					$rootScope.patientPhysicianDetails = data.data[0].physicianDetails;	
+					
+					$rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath;
+					$rootScope.address = data.data[0].address;
+					$rootScope.city = data.data[0].city;
+					$rootScope.createDate = data.data[0].createDate;
+					$rootScope.dob = data.data[0].dob;
+					$rootScope.gender = data.data[0].gender;
+					$rootScope.homePhone = data.data[0].homePhone;
+					$rootScope.location = data.data[0].location;
+					$rootScope.mobilePhone = data.data[0].mobilePhone;
+					$rootScope.organization = data.data[0].organization;
+					$rootScope.patientName = data.data[0].patientName;
+					$rootScope.state = data.data[0].state;
+					$rootScope.zipCode = data.data[0].zipCode;
+					
+					
+					
+					/*$rootScope.patientInfomation = [];	
 					
 						angular.forEach(data.data, function(index, item) {		
-							$rootScope.RelatedPatientProfiles.push({
+							$rootScope.patientInfomation.push({
 								'id': index.$id,
-								'patientId': index.patientId,
-								'patientName': index.patientName,
-								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
-								'relationCode': index.relationCode,
-								'isAuthorized': index.isAuthorized,
-								'birthdate': new Date(index.birthdate),
+								'account': angular.fromJson(index.account),
+								'address': index.address,
 								'addresses': angular.fromJson(index.addresses),
-								'patientFirstName': index.patientFirstName,
-								'patientLastName': index.patientLastName,
-								'guardianFirstName': index.guardianFirstName,
-								'guardianLastName': index.guardianLastName,
-								'guardianName': index.guardianName,
+								'anatomy': angular.fromJson(index.anatomy),
+								'city': index.city,
+								'createDate': index.createDate,
+								'dob': index.dob,
+								'gender': index.gender,
+								'homePhone': index.homePhone,
+								'location': index.location,
+								'mobilePhone': index.mobilePhone,
+								'organization': index.organization,
+								'patientName': index.patientName,
+								'pharmacyDetails': angular.fromJson(index.pharmacyDetails),
+								'physicianDetails': angular.fromJson(index.physicianDetails),
+								'state': index.state,
+								'zipCode': index.zipCode,
 							});
-						});	
+						});	*/
 						
-						 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+						console.log($rootScope.patientInfomation);
+				
 						
 				},
 				error: function (data) {
-					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
+					$scope.patientInfomation = 'Error getting Related Patient Profiles';
 					console.log(data);
 				}
 			};
@@ -1236,7 +1266,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id) {
         if($rootScope.patientSearchKey != ''){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
-        if($rootScope.patientInfomation.fullName == $rootScope.RelatedPatientProfiles[0].patientName){
+        if($rootScope.patientName == $rootScope.RelatedPatientProfiles[0].patientName){
                 $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
             }
