@@ -104,6 +104,29 @@ angular.module('starter.services', [])
                 });
     }
 
+    this.getHealthPlanProvidersList = function (params) {
+        //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}	
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/healthplan/providers',
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+    
+    
     this.getExistingConsulatation = function (params) {
         //https://snap-dev.com/api/v2/patients/consultations/2440/all
         //util.setHeaders($http, params);
@@ -175,6 +198,7 @@ angular.module('starter.services', [])
 			success(function (data, status, headers, config) {
 				if (typeof params.success != 'undefined') {
 					params.success(data);
+                    return data;
 				}
 			}).
 			error(function (data, status, headers, config) {
