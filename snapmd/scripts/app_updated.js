@@ -681,7 +681,7 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/scheduledconsultations?patientId=' + params.patientId,
+            url: 'https://sandbox.connectedcare.md/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 			//url: 'https://sandbox.connectedcare.md/api/patients/consultations?userId=' + params.userId,
             method: 'GET'   
         };
