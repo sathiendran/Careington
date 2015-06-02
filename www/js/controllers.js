@@ -350,7 +350,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}	
 	
 
-	$rootScope.patientId = 471;
+	//$rootScope.patientId = 471;
 	//$rootScope.patientId = 3056;
 	$rootScope.consultationId = 2440;
 	$scope.userId = 471;
@@ -427,8 +427,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.patientName = data.data[0].patientName;
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
-					
-					
+					$rootScope.patientId = $rootScope.patientAccount.patientId;
+					console.log($rootScope.patientId);
 					
 					/*$rootScope.patientInfomation = [];	
 					
@@ -468,7 +468,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getPatientProfiles(params);
 		}
 	
-	
+	console.log($rootScope.patientId);
 	$scope.doGetRelatedPatientProfiles = function() {
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -1185,7 +1185,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
              $rootScope.scheduledConsultationList = [];
             var params = {
-                patientId: PatientId,
+                Id: PatientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
 					console.log(data);
