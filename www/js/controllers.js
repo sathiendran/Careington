@@ -692,26 +692,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				return;
 			}
         
-    /*    angular.forEach($scope.ProviderList, function(index, item) {	
-				    if($scope.ProviderList.payerId == $scope.AddHealth.Provider)
-                    {
-                     $rootScope.payerName = $scope.ProviderList.payerName;
-                    $rootScope.payerID = $scope.ProviderList.id;       
-                    }
-		}); */
+        //Provider List Data's
+        var HealthPlanProviders =  $scope.AddHealth.Provider.split("@");
+        $scope.insuranceCompany = HealthPlanProviders[0];
+        $scope.insuranceCompanyNameId = HealthPlanProviders[1];
+        $scope.payerId = HealthPlanProviders[2];
+        //End
         
-        $scope.insuranceCompany = $scope.AddHealth.Provider;
-		$scope.insuranceCompanyNameId = 1;
-		$scope.isDefaultPlan =  $scope.AddHealth.DefaultPlan;
+        $scope.insuranceCompany = $scope.insuranceCompany;
+		$scope.insuranceCompanyNameId =  $scope.insuranceCompanyNameId;
+		$scope.isDefaultPlan =  'Y';
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
-		$scope.subsciberId = '505'; // patient id
+		$scope.subsciberId = $rootScope.patientId // patient id
 		$scope.policyNumber = $scope.AddHealth.policyNumber;; //P20
 		$scope.subscriberFirstName = $scope.AddHealth.firstName;
 		$scope.subscriberLastName =  $scope.AddHealth.lastName;
 		$scope.subscriberDob = $scope.AddHealth.dateBirth;
 		$scope.isActive = 'A';
-		$scope.payerId = '471'; 
+		$scope.payerId = $scope.payerId; 
         
 			 var params = {
                 accessToken: $rootScope.accessToken,
