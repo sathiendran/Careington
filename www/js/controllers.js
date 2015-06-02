@@ -697,7 +697,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $scope.insuranceCompany = HealthPlanProviders[0];
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
         $scope.payerId = HealthPlanProviders[2];
-        //End
+        //End 
         
         $scope.insuranceCompany = $scope.insuranceCompany;
 		$scope.insuranceCompanyNameId =  $scope.insuranceCompanyNameId;
