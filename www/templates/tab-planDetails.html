@@ -49,16 +49,24 @@
 					<div class="planInformation"  >
 					Enter your health plan information			
 					</div>
-						
+       
+                    
 					<div class="provider">Select your provider</div>
 					<div class="addHealthPlan_header"  >					
 						<div class="demo ProviderList">	
-							<select id="Provider" ng-model="Provider" required>
+							<!--<select id="Provider" ng-model="AddHealth.Provider" required>
 								<option value=""><b>Plan Provider</b></option>
 								<option value="Blue Cross"><b>Blue Cross</b></option>
 								<option value="Anthem Cross"><b>Anthem Cross</b></option>
 								<option value="Blue Cross Blue shield"><b>Blue Cross Blue shield</b></option>
-							</select>
+							</select> -->
+                            
+             <select id="Provider" ng-model="AddHealth.Provider" required>
+								<option value=""><b>Plan Provider</b></option>
+				<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName}}"><b>{{ProviderData.payerName}}</b></option>
+								
+			</select> 
+                            
 						</div>
 					</div>
 					
@@ -76,20 +84,20 @@
 				<div class="list" >
 					<label class="item item-input" >
 						<span class="input-label">First Name</span>
-                    <input  type="text" placeholder="Required" ng-model="firstName" name="firstName" id="firstName" required>
+                    <input  type="text" placeholder="Required" ng-model="AddHealth.firstName" name="firstName" id="firstName" required>
 					</label>
 					<label class="item item-input" >
 						<span class="input-label">Last Name</span>
-				<input type="text" placeholder="Required" ng-model="lastName" name="lastName" id="lastName" required >
+				<input type="text" placeholder="Required" ng-model="AddHealth.lastName" name="lastName" id="lastName" required >
 					</label>
 					<label class="item item-input">
 						<span class="input-label">Policy Number</span>
-				<input type="number" placeholder="Required" name="policyNumber" ng-model="policyNumber" id="policyNumber" required>
+				<input type="text" placeholder="Required" name="policyNumber" ng-model="AddHealth.policyNumber" id="policyNumber" required>
 					</label>
 					<label class="item item-input" >
 						<span class="input-label"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
-					<input placeholder="Required" ng-model="date" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}" required> 
+					<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}" required> 
 					</label>
 				</div>
 				

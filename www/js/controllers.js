@@ -632,32 +632,87 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	
 	 $("#addHealthPlan").change(function() {
-        console.log( $('option:selected', this).text() );
+        //console.log( $('option:selected', this).text() );
 		if($('option:selected', this).text() == 'Add a new health plan') {
-			$state.go('tab.planDetails');
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+             $rootScope.HealthPlanProvidersList = [];
+            var params = {
+                patientId: $rootScope.patientId,
+                accessToken: $rootScope.accessToken,
+                success: function (data) {
+					console.log(data);
+                    $scope.HealthPlanProvidersList = data.data;
+                    if(data != "")
+                    $rootScope.ProviderList = [];
+                    angular.forEach($scope.HealthPlanProvidersList, function(index, item) {	
+						  $rootScope.ProviderList.push({							
+							'id': index.$id,
+							'id': index.id,
+							'payerId': index.payerId,
+							'payerName': index.payerName,
+							    
+						});
+					});	
+                    $state.go('tab.planDetails');
+                },
+                error: function (data) {
+                $scope.HealthPlanProvidersList = 'Error getting Health Plan Providers list';
+                    console.log(data);
+                }
+            };
+            LoginService.getHealthPlanProvidersList(params);
+            
+			//$state.go('tab.planDetails');
 		}
     });
 	
 	$scope.healthPlanID = 124;
 		//patientId
-		$scope.insuranceCompany = "aaa bbb";
+	/*	$scope.insuranceCompany = "aaa bbb";
 		$scope.insuranceCompanyNameId = 1;
 		$scope.isDefaultPlan = 'Y';
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = 'Rinsoft';
 		$scope.subsciberId = '505';
-		$scope.policyNumber = '987654321';
+		$scope.policyNumber = '987654321'; //P20
 		$scope.subscriberFirstName = 'Rin';
 		$scope.subscriberLastName = 'Soft';
 		$scope.subscriberDob = '2015-05-27T17:00:15.7010698-05:00';
 		$scope.isActive = 'A';
-		$scope.payerId = '471';
-	
-	$scope.doPostNewHealthPlan = function() {
+		$scope.payerId = '471';  */
+    
+    
+    $scope.AddHealth = {};
+    $scope.doPostNewHealthPlan = function() {
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
+        
+    /*    angular.forEach($scope.ProviderList, function(index, item) {	
+				    if($scope.ProviderList.payerId == $scope.AddHealth.Provider)
+                    {
+                     $rootScope.payerName = $scope.ProviderList.payerName;
+                    $rootScope.payerID = $scope.ProviderList.id;       
+                    }
+		}); */
+        
+        $scope.insuranceCompany = $scope.AddHealth.Provider;
+		$scope.insuranceCompanyNameId = 1;
+		$scope.isDefaultPlan =  $scope.AddHealth.DefaultPlan;
+		$scope.insuranceCompanyPhone = '8888888888';
+		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
+		$scope.subsciberId = '505'; // patient id
+		$scope.policyNumber = $scope.AddHealth.policyNumber;; //P20
+		$scope.subscriberFirstName = $scope.AddHealth.firstName;
+		$scope.subscriberLastName =  $scope.AddHealth.lastName;
+		$scope.subscriberDob = $scope.AddHealth.dateBirth;
+		$scope.isActive = 'A';
+		$scope.payerId = '471'; 
+        
 			 var params = {
                 accessToken: $rootScope.accessToken,
 				healthPlanID: $scope.healthPlanID,
