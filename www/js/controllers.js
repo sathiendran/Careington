@@ -308,7 +308,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
 						$scope.tokenStatus = 'alert-success';
-						//$scope.doGetExistingConsulatation();
+						$scope.doGetExistingConsulatation();
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
 						$state.go('tab.userhome');		
@@ -350,7 +350,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}	
 	
 
-	$rootScope.patientId = 471;
+	//$rootScope.patientId = 471;
 	//$rootScope.patientId = 3056;
 	$rootScope.consultationId = 2440;
 	$scope.userId = 471;
@@ -427,8 +427,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.patientName = data.data[0].patientName;
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
-					
-					
+					$rootScope.patientId = $rootScope.patientAccount.patientId;
+					console.log($rootScope.patientId);
 					
 					/*$rootScope.patientInfomation = [];	
 					
@@ -468,7 +468,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getPatientProfiles(params);
 		}
 	
-	
+	console.log($rootScope.patientId);
 	$scope.doGetRelatedPatientProfiles = function() {
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -529,6 +529,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.patientInfomation = data.data[0].patientInformation;	
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
                 $rootScope.inTakeForm = data.data[0].intakeForm;
+				
+				console.log($rootScope.consultionInformation.primaryConcern);
+				
                /* $rootScope.depedentInformation = data.data[0].dependentInformation;
 
                 $rootScope.dependentDetails = [];	
@@ -692,19 +695,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				return;
 			}
         
+
         //Provider List Data's
         var HealthPlanProviders =  $scope.AddHealth.Provider.split("@");
         $scope.insuranceCompany = HealthPlanProviders[0];
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
         $scope.payerId = HealthPlanProviders[2];
         //End 
+
         
         $scope.insuranceCompany = $scope.insuranceCompany;
-		$scope.insuranceCompanyNameId =  $scope.insuranceCompanyNameId;
+		$scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
 		$scope.isDefaultPlan =  'Y';
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
-		$scope.subsciberId = $rootScope.patientId // patient id
+		$scope.subsciberId = $rootScope.patientId; // patient id
 		$scope.policyNumber = $scope.AddHealth.policyNumber;; //P20
 		$scope.subscriberFirstName = $scope.AddHealth.firstName;
 		$scope.subscriberLastName =  $scope.AddHealth.lastName;
@@ -784,7 +789,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             consultationId: $rootScope.consultationId, 
             accessToken: $rootScope.accessToken,
             success: function (data) {
-                $rootScope.existingConsultationReport = data.data[0];				
+                $rootScope.existingConsultationReport = data.data[0];
+				$rootScope.ReportHospitalImage = $rootScope.existingConsultationReport.HospitalImage;	
             },
             error: function (data) {
                 $scope.existingConsultationReport = 'Error getting consultation report';

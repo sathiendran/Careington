@@ -108,7 +108,8 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/patients/scheduledconsultations?patientId=' + params.patientId,
+            //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
+			url: apiCommonURL + '/api/patients/consultations/' + params.patientId +'/availableconsultation',
             method: 'GET'   
         };
 
