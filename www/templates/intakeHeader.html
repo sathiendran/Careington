@@ -20,10 +20,10 @@
 			</div>
 			<div class="subHeader_content ellipsis" >					
 				<div class="ellipsis subHeader_content_name" >
-					<span class="PatintHeaderFontStyle patientName ellipsis">{{patientFirstName}}</span>
+					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 				</div>
-				<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge}} | Guardian {{PatientGuardian}}</div>
+				<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian {{PatientGuardian}}</div>
 			</div>
 		</div>
 	</div>	

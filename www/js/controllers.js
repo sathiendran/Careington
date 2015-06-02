@@ -1273,8 +1273,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
         
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.patientFirstName = P_Fname;
-        $rootScope.patientLastName = P_Lname;
+        $rootScope.PatientFirstName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.PatientId = P_Id;
