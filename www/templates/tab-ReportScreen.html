@@ -37,12 +37,12 @@
 <ion-content class="ReportContent">
 	<div class="HospitalDetails">
 		<div class="HospitalLogo" >
-			<img ng-src="img/IMG_logo.png">
+			<img ng-src="{{ReportHospitalImage}}">
 		</div>
 		<div class="HospitalAddress">
 			<div class="ReportAddress">
 				<p  class="PragraphContent AddressDetails" >
-					100 W California Blvd pasadena,CA 91105 | 555 345 3454  </p>
+					{{existingConsultationReport.HOSAddress}} | 555 345 3454  </p>
 				<p class="OrganizationDetails">
 					<b class="OrganizationName">Organization:</b> Coca-cola <br>
 					<b class="OrganizationLocation">Location</b> <br>
@@ -77,9 +77,9 @@
 		</div>
 		<div class="EncounterDate">
 			<p><b>Encounter Date:</b> <br>
-				May 15,2014 <br>
+				{{existingConsultationReport.ConsultationDate}} <br>
 			<b>physician:</b> <br>
-			patricia McGrath, M.D
+			{{existingConsultationReport.DOCFirstName}} {{existingConsultationReport.DOCLastName}}
 			</p>
 		</div>
 	</div>
@@ -117,115 +117,186 @@
       </div>
     
     <div class="ReportPatientConcernDetails">
-		<p>  <span class="ConcernNo1">1</span> <span class="ConcernNo1Details">Temprature Over 100⁰</b></span></p>
+		<p>  <span class="ConcernNo1">1</span> <span class="ConcernNo1Details">{{existingConsultationReport.PrimaryConcern}}</b></span></p>
 		<br>
-		<p>  <span class="ConcernNo2">2</span> <span class="ConcernNo2Details">{{existingConsultationReport.PrimaryConcern}}</b></span></p>
+		<p>  <span class="ConcernNo2">2</span> <span class="ConcernNo2Details">{{existingConsultationReport.SecondaryConsern}}</b></span></p>
 
     </div> 
 
 
-<div style="height: 35px; position: relative;top: 120px;margin: 10px;background-color:#fff;padding:10px; border-bottom:2px solid #ccc;">
-          <span style="font-size: 20px;margin-left: -6px;"><b>SUBJECTIVE</b></span>
+<div class="ReportSubjective">
+          <span><b>SUBJECTIVE</b></span>
  </div>
 
-<div style="height: 80px; position: relative;top: 120px;margin: 10px;background-color:#E5E5E5;padding:10px;">
-    <div style="border-bottom:2px solid #CCC;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>Intake Form Information</b></span></div>
+<div class="IntakeInformation">
+    <div>     
+		<span><b>Intake Form Information</b></span>
+	</div>
 </div>
 
-<div style="height: 100%; position: relative;top: 78px;margin: 10px;background-color:#E5E5E5;padding:10px;">
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>Current Medication</b></span></div>
+<div class="ReportMedication">
+    <div>     
+		<span><b>Current Medication</b></span>
+	</div>
      
-     <p style="margin-top:15px;background-color: #CCCCCC;padding: 5px;">  
-         <span style="font-size: 20px;">1</span> <span style="padding:10px;font-size: 20px;">Zantac 75</b></span></p>
+    <p ng-if="existingConsultationReport.TakingMedication1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.TakingMedication1}}</b></span>
+	</p>
 
- <p style="margin-top:-7px;background-color: #CCCCCC;padding: 5px;">  
-         <span style="font-size: 20px;">2</span> <span style="padding:10px;font-size: 20px;">Lipator</b></span></p>
+	<p ng-if="existingConsultationReport.TakingMedication2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.TakingMedication2}}</b></span>
+	</p>
 
- <p style="margin-top:-7px;background-color: #CCCCCC;padding: 5px;">  
-         <span style="font-size: 20px;">3</span> <span style="padding:10px;font-size: 20px;">Fluoxitine</b></span></p>
-</div>   
-    
+	<p ng-if="existingConsultationReport.TakingMedication3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.TakingMedication3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.TakingMedication4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.TakingMedication4}}</b></span>
+	</p>		 
+</div> 
 
-<div style="height: 100%; position: relative;top: 51px;margin: 10px;background-color:#E5E5E5;padding:10px;">
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>Medication Allergies</b></span></div>
+<div class="ReportMedication Conditions" >
+    <div>     
+		<span><b>Chronic Medication</b></span>
+	</div>
      
-     <p style="margin-top:15px;background-color: #CCCCCC;padding: 5px;">  
-         <span style="font-size: 20px;">1</span> <span style="padding:10px;font-size: 20px;">Dilaudid</b></span></p>
+    <p ng-if="existingConsultationReport.MedicalCondition1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.MedicalCondition1}}</b></span>
+	</p>
 
- <p style="margin-top:-6px;background-color: #CCCCCC;padding: 3px;">  
-         <span style="font-size: 20px;">2</span> <span style="padding:10px;font-size: 20px;">Steriod</b></span></p>
+	<p ng-if="existingConsultationReport.MedicalCondition2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.MedicalCondition2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.MedicalCondition3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.MedicalCondition3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.MedicalCondition4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.MedicalCondition4}}</b></span>
+	</p> 
+</div> 
+
+<div class="ReportMedication Conditions" >
+    <div>     
+		<span><b>Prior Surgeries</b></span>
+	</div>
+     
+    <p ng-if="existingConsultationReport.PriorSurgeory1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory1}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.PriorSurgeory2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.PriorSurgeory3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.PriorSurgeory4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory4}}</b></span>
+	</p> 
+</div> 
+
+<div class="ReportMedication Conditions" >
+    <div>     
+		<span><b>Medication Allergies</b></span>
+	</div>
+     
+    <p ng-if="existingConsultationReport.AllergicMedication1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.AllergicMedication1}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.AllergicMedication2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.AllergicMedication2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.AllergicMedication3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.AllergicMedication3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.AllergicMedication4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.AllergicMedication4}}</b></span>
+	</p> 
+</div> 
+
+
+
+
+<div class="ReportScreenSubjective">
+     <p class="PragraphContent">  
+      {{existingConsultationReport.Subjective}}
+    </p>
+</div> 
+
+
+<div class="ReportAbjective">
+    <div>     
+		<span><b>ABJECTIVE</b></span>
+	</div>
+     
+     <p class="PragraphContent">  
+     {{existingConsultationReport.Objective}}
+    </p>
+</div> 
+
+<div class="ReportAbjective assessment" >
+   
+    <div>     
+		<span><b>ASSESSMENT</b></span>
+	</div>
+     
+     <p class="PragraphContent" >  
+       {{existingConsultationReport.Assessment}}
+    </p>
 
 </div> 
 
-<div style="height: 100%; position: relative;top: 40px;margin: 10px;background-color:#fff;padding:10px;">
-   
-     
-     <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
-       Ere nonescil erum dolor rem cus moque iusanditatem init molent voloribere nulla quiautas exerum volorropor mos qui to te nosam eaquuntio. Nequodisque nobit ut expliti tem. sedi solumet,sit,quo cum iumque estrum harum ex et iusae.Equidest entempo rrorro ipsam est aut reicipsam quis experum dest.
+<div class="ReportAbjective ReportPlan">
+    <div>     
+		<span><b>PLAN</b></span>
+	</div>
+	
+     <p class="PragraphContent">  
+       {{existingConsultationReport.Plan}}
     </p>
-
+</div>
  
-
-</div> 
-
-
-<div style="height: 100%; position: relative;top: 15px;margin: 10px;background-color:#fff;padding:10px;">
-   
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>ABJECTIVE</b></span></div>
+<div class="ReportAbjective ReportRX">
+    <div>     
+		<span><b>RX</b></span>
+	</div>
      
-     <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
-       Ere nonescil erum dolor rem cus moque iusanditatem init molent voloribere nulla quiautas exerum volorropor mos qui to te nosam eaquuntio. Nequodisque nobit ut expliti tem. sedi solumet,sit,quo cum iumque estrum harum ex et iusae.Equidest entempo rrorro ipsam est aut reicipsam quis experum dest.
+     <p class="PragraphContent" >  
+		  <b> Amoxicillin - Pot Clavulante 875-125 MG Oral Tablet;</b>
+		Take 1 TABLE EVERY 12 Hourse UNTIL GONE Qty : 20 R: 0; Rx <br>
+			 
+		  <b> Amoxicillin - Pot Clavulante 875-125 MG Oral Tablet;</b>
+		Take 1 TABLE EVERY 12 Hourse UNTIL GONE Qty : 20 R: 0; Rx <br>        
     </p>
-
 </div> 
 
-<div style="height: 100%; position: relative;top: -7px;margin: 10px;background-color:#fff;padding:10px;">
+<div class="ReportAbjective ReportChat">
    
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>ASSESSMENT</b></span></div>
+    <div>     
+		<span><b>CHAT TRANSCRIPT</b></span>
+	</div>
      
-     <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
-       Ere nonescil erum dolor rem cus moque iusanditatem init molent voloribere nulla quiautas exerum volorropor mos qui to te nosam eaquuntio. Nequodisque nobit ut expliti tem. sedi solumet,sit,quo cum iumque estrum harum ex et iusae.Equidest entempo rrorro ipsam est aut reicipsam quis experum dest.
-    </p>
-
-</div> 
-
-<div style="height: 100%; position: relative;top: -32px;margin: 10px;background-color:#fff;padding:10px;">
-   
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>PLAN</b></span></div>
-     
-     <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
-       Ere nonescil erum dolor rem cus moque iusanditatem init molent voloribere nulla quiautas exerum volorropor mos qui to te nosam eaquuntio. Nequodisque nobit ut expliti tem. sedi solumet,sit,quo cum iumque estrum harum ex et iusae.Equidest entempo rrorro ipsam est aut reicipsam quis experum dest.
-    </p>
-
-</div> 
-<div style="height: 100%; position: relative;top: -53px;margin: 10px;background-color:#fff;padding:10px;">
-   
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>RX</b></span></div>
-     
-     <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
-      <b> Amoxicillin - Pot Clavulante 875-125 MG Oral Tablet;</b>
-    Take 1 TABLE EVERY 12 Hourse UNTIL GONE Qty : 20 R: 0; Rx <br>
-         
-      <b> Amoxicillin - Pot Clavulante 875-125 MG Oral Tablet;</b>
-    Take 1 TABLE EVERY 12 Hourse UNTIL GONE Qty : 20 R: 0; Rx <br>    
-    
-    </p>
-
-</div> 
-
-<div style="height: 100%; position: relative;top: -74px;margin: 10px;background-color:#fff;padding:10px;">
-   
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>CHAT TRANSCRIPT</b></span></div>
-     
-     <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
+     <p class="PragraphContent" >  
       [2/13/14, 11:01:23 AM] Ben: Thought you might find this inte [2/13/14, 11:01:23 AM] Ben: Iam grabbing lunch.resing.
     [2/13/14, 11:01:23 PM] Ben: Iam grabbing lunch.
      [2/13/14, 11:01:23 PM] Ben:3 sound good?.
@@ -237,20 +308,21 @@
 </div> 
 
 
-<div style="height: 100%; position: relative;top: -95px;margin: 10px;background-color:#fff;padding:10px;">
+<div class="ReportAbjective ReportFileAttach">
    
-    <div style="border-bottom:2px solid #888;margin:3px;">     
-    <span style="font-size: 20px;margin-left: 3px;"><b>FILE  ATTACHMENT</b></span></div>
+    <div>     
+		<span><b>FILE  ATTACHMENT</b></span>
+	</div>
      
-     <p class="PragraphContent" style="margin-top:15px;background-color: #fff;">  
+     <p class="PragraphContent">  
       file attachement
     </p> 
 
 </div> 
 
 
-<div ng-click="EnableBackButton()" style="height: 100%; position: relative;top: -98px;margin: 10px;background-color:#fff;padding:10px;">
-				<button class="button button-block button-balanced" style="background-color:#A2D28A;border:#A2D28A">
+<div ng-click="EnableBackButton()" class="ReportAbjective ReportScreenDone">
+				<button class="button button-block button-balanced ReportButton">
 				<B>Done</B>  
 				</button>
 </div>

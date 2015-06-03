@@ -8737,7 +8737,7 @@ select {
         margin-top: -23px; }
     .ReportContent .PatientStatistics .PatientHeightWeight {
       float: right;
-      margin-right: -50px;
+      margin-right: -85px;
       margin-top: 45px; }
       .ReportContent .PatientStatistics .PatientHeightWeight b {
         Color: #4D4D4D;
@@ -8781,6 +8781,95 @@ select {
     .ReportContent .ReportPatientConcernDetails .ConcernNo2Details {
       padding: 10px;
       font-size: 20px; }
+  .ReportContent .ReportSubjective {
+    height: 35px;
+    position: relative;
+    top: 120px;
+    margin: 10px;
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 2px solid #ccc; }
+    .ReportContent .ReportSubjective span {
+      font-size: 20px;
+      margin-left: -6px; }
+  .ReportContent .IntakeInformation {
+    height: 80px;
+    position: relative;
+    top: 120px;
+    margin: 10px;
+    background-color: #E5E5E5;
+    padding: 10px; }
+    .ReportContent .IntakeInformation div {
+      border-bottom: 2px solid #CCC;
+      margin: 3px; }
+      .ReportContent .IntakeInformation div span {
+        font-size: 20px;
+        margin-left: 3px; }
+  .ReportContent .ReportMedication {
+    height: 100%;
+    position: relative;
+    top: 78px;
+    margin: 10px;
+    background-color: #E5E5E5;
+    padding: 10px; }
+    .ReportContent .ReportMedication div {
+      border-bottom: 2px solid #888;
+      margin: 3px; }
+      .ReportContent .ReportMedication div span {
+        font-size: 20px;
+        margin-left: 3px; }
+    .ReportContent .ReportMedication .MedicationFirst {
+      margin-top: 15px; }
+    .ReportContent .ReportMedication .MedicationSpan {
+      padding: 10px; }
+    .ReportContent .ReportMedication p {
+      margin-top: -7px;
+      background-color: #CCCCCC;
+      padding: 5px;
+      font-size: 20px; }
+  .ReportContent .Conditions {
+    top: 51px; }
+  .ReportContent .ReportScreenSubjective {
+    height: 100%;
+    position: relative;
+    top: 40px;
+    margin: 10px;
+    background-color: #fff;
+    padding: 10px; }
+    .ReportContent .ReportScreenSubjective p {
+      margin-top: 15px;
+      background-color: #fff; }
+  .ReportContent .ReportAbjective {
+    height: 100%;
+    position: relative;
+    top: 15px;
+    margin: 10px;
+    background-color: #fff;
+    padding: 10px; }
+    .ReportContent .ReportAbjective div {
+      border-bottom: 2px solid #888;
+      margin: 3px; }
+      .ReportContent .ReportAbjective div span {
+        font-size: 20px;
+        margin-left: 3px; }
+    .ReportContent .ReportAbjective p {
+      margin-top: 15px;
+      background-color: #fff; }
+  .ReportContent .assessment {
+    top: -7px; }
+  .ReportContent .ReportPlan {
+    top: -32px; }
+  .ReportContent .ReportRX {
+    top: -53px; }
+  .ReportContent .ReportChat {
+    top: -74px; }
+  .ReportContent .ReportFileAttach {
+    top: -95px; }
+  .ReportContent .ReportScreenDone {
+    top: -98px; }
+    .ReportContent .ReportScreenDone .ReportButton {
+      background-color: #A2D28A !important;
+      border: #A2D28A !important; }
 
 .ConcernsContent {
   margin-top: 100px !important; }

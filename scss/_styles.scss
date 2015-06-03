@@ -1152,7 +1152,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			}
 		}
 		.PatientHeightWeight {
-			float:right;margin-right: -50px;margin-top: 45px;
+			float:right;margin-right: -85px;margin-top: 45px;
 			b {
 				Color:#4D4D4D;font-size:18px;
 			}
@@ -1184,6 +1184,82 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.ConcernNo2Details {
 			padding:10px;font-size: 20px;
 		}
+	}
+	.ReportSubjective {
+		height: 35px; position: relative;top: 120px;margin: 10px;background-color:#fff;padding:10px; border-bottom:2px solid #ccc;
+		span {
+			font-size: 20px;margin-left: -6px;
+		}
+	}
+	.IntakeInformation {
+		height: 80px; position: relative;top: 120px;margin: 10px;background-color:#E5E5E5;padding:10px;
+		div {
+			border-bottom:2px solid #CCC;margin:3px;
+			span {	
+				font-size: 20px;margin-left: 3px;
+			}
+		}
+	}
+	.ReportMedication {
+		height: 100%; position: relative;top: 78px;margin: 10px;background-color:#E5E5E5;padding:10px;
+		div {
+			border-bottom:2px solid #888;margin:3px;
+			span {
+				font-size: 20px;margin-left: 3px;
+			}
+		}
+		.MedicationFirst {
+			margin-top:15px;			
+		}
+		.MedicationSpan {
+				padding:10px;
+			}
+		p {
+			margin-top:-7px;background-color: #CCCCCC;padding: 5px;font-size: 20px;
+		}
+	}
+	.Conditions {
+		top: 51px;
+	}
+	.ReportScreenSubjective {
+		height: 100%; position: relative;top: 40px;margin: 10px;background-color:#fff;padding:10px;
+		p {
+			margin-top:15px;background-color: #fff;
+		}
+	}
+	.ReportAbjective {
+		height: 100%; position: relative;top: 15px;margin: 10px;background-color:#fff;padding:10px;
+		div {
+			border-bottom:2px solid #888;margin:3px;
+			span {
+				font-size: 20px;margin-left: 3px;
+			}
+		}
+		p {
+			margin-top:15px;background-color: #fff;
+		}
+	}
+	.assessment {
+		top: -7px;
+	}
+	.ReportPlan {
+		top: -32px;
+	}
+	.ReportRX {
+		top: -53px;
+	}
+	.ReportChat {
+		top: -74px;
+	}
+	.ReportFileAttach {
+		top: -95px;
+	}
+	.ReportScreenDone {
+		top: -98px;
+		.ReportButton {
+			background-color:#A2D28A !important;
+			border:#A2D28A !important;
+		}	
 	}
 }
 

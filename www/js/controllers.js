@@ -790,8 +790,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             accessToken: $rootScope.accessToken,
             success: function (data) {
                 $rootScope.existingConsultationReport = data.data[0];
-				$rootScope.ReportHospitalImage = $rootScope.existingConsultationReport.HospitalImage;	
-            },
+				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.HospitalImage;	
+           },
             error: function (data) {
                 $scope.existingConsultationReport = 'Error getting consultation report';
 				console.log(data);
@@ -1198,7 +1198,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(data != "")
                     $rootScope.scheduledList = [];
                     angular.forEach($scope.scheduledConsultationList, function(index, item) {	
-						  $rootScope.scheduledList.push({							
+						 $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'scheduledTime': index.scheduledTime,
 							'consultantUserId': index.consultantUserId,
@@ -1210,6 +1210,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                             'patientUserId': index.patientUserId,
                             'scheduledId': index.scheduledId,    
 						});
+						 /*$rootScope.scheduledList.push({							
+							'id': index.$id,
+							'isTimeConverted': index.isTimeConverted,
+							'consultantUserId': index.consultantUserId,
+							'consultationId': index.consultationId,
+							'createdDate': index.createdDate,
+							'expireDate': index.expireDate,	
+							'expireDateInfo': index.expireDateInfo,
+                            'consultationDateInfo': index.consultationDateInfo,
+                            'patientId': index.patientId,                              
+						});*/
 					});	
                      $state.go('tab.patientCalendar');
                 },
