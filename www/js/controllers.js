@@ -514,7 +514,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
 								'relationCode': index.relationCode,
 								'isAuthorized': index.isAuthorized,
-								'birthdate': new Date(index.birthdate),
+								'birthdate': index.birthdate,
 								'addresses': angular.fromJson(index.addresses),
 								'patientFirstName': index.patientFirstName,
 								'patientLastName': index.patientLastName,
@@ -1223,7 +1223,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(data != "")
                     $rootScope.scheduledList = [];
                     angular.forEach($scope.scheduledConsultationList, function(index, item) {	
-						 $rootScope.scheduledList.push({							
+						/* $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'scheduledTime': index.scheduledTime,
 							'consultantUserId': index.consultantUserId,
@@ -1234,8 +1234,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                             'patientName': index.patientName,
                             'patientUserId': index.patientUserId,
                             'scheduledId': index.scheduledId,    
-						});
-						 /*$rootScope.scheduledList.push({							
+						});*/
+						 $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'isTimeConverted': index.isTimeConverted,
 							'consultantUserId': index.consultantUserId,
@@ -1245,7 +1245,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'expireDateInfo': index.expireDateInfo,
                             'consultationDateInfo': index.consultationDateInfo,
                             'patientId': index.patientId,                              
-						});*/
+						});
 					});	
                      $state.go('tab.patientCalendar');
                 },
@@ -2269,69 +2269,91 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 .filter('ageFilter', function() {
-     function calculateAge(birthday) { // birthday is a date
-         var ageDifMs = Date.now() - birthday.getTime();
-         var ageDate = new Date(ageDifMs); // miliseconds from epoch
-         return Math.abs(ageDate.getUTCFullYear() - 1970);
-     }
-     
-     function monthDiff(d1, d2) {
-       if (d1 < d2){
-			if(d2.getMonth() > d1.getMonth())
-			{
-				var months = d2.getMonth() - d1.getMonth();
-				//return months <= 0 ? 0 : months;
-				return Math.abs(months <= 0 ? 0 : months);
-			} else if(d2.getMonth() < d1.getMonth()) {
-				var months = (12 - d1.getMonth()) + d2.getMonth();
-				//return months <= 0 ? 0 : months;
-				return Math.abs(months <= 0 ? 0 : months);
-			}
-       }
+    function getAge(dateString) {
+	  var now = new Date();
+	  var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+	  var yearNow = now.getYear();
+	  var monthNow = now.getMonth();
+	  var dateNow = now.getDate();
+
+	  var dob = new Date(dateString.substring(6,10),
+						 dateString.substring(0,2)-1,                   
+						 dateString.substring(3,5)                  
+						 );
+
+	  var yearDob = dob.getYear();
+	  var monthDob = dob.getMonth();
+	  var dateDob = dob.getDate();
+	  var age = {};
+	  var ageString = "";
+	  var yearString = "";
+	  var monthString = "";
+	  var dayString = "";
+
+
+	  yearAge = yearNow - yearDob;
+
+	  if (monthNow >= monthDob)
+		var monthAge = monthNow - monthDob;
+	  else {
+		yearAge--;
+		var monthAge = 12 + monthNow -monthDob;
+	  }
+
+	  if (dateNow >= dateDob)
+		var dateAge = dateNow - dateDob;
+	  else {
+		monthAge--;
+		var dateAge = 31 + dateNow - dateDob;
+
+		if (monthAge < 0) {
+		  monthAge = 11;
+		  yearAge--;
+		}
+	  }
+
+	  age = {
+		  years: yearAge,
+		  months: monthAge,
+		  days: dateAge
+		  };
+
+	  if ( age.years > 1 ) yearString = " years";
+	  else yearString = " year";
+	  if ( age.months> 1 ) monthString = " months";
+	  else monthString = " month";
+	  if ( age.days > 1 ) dayString = " days";
+	  else dayString = " day";
+
 	  
-       return 0;
-     }
+	   if(age.years == 0 ) {  
+			if(age.days <= 15) {
+				return ageString = '0.' + age.months; 
+			} else if (age.days > 15) {
+				 return ageString = '0.' + (age.months + 1); 
+			}
+	   }
+		if (age.years > 0) { return ageString = age.years; }
 
+	  
+	}
 
-     return function(birthdate) { 
-           var age = calculateAge(birthdate);
-           if (age == 0) {
-             return '0.' + monthDiff(birthdate, new Date()) + ' months';			
-			} 
-			return age;
+     return function(birthdate) {
+			var BirthDate = new Date(birthdate);
+
+			var year = BirthDate.getFullYear();
+			var month = BirthDate.getMonth() + 1;
+			if(month < 10) { month = '0' + month; } else { month = month; }
+			var date = BirthDate.getDate();
+			if(date < 10) { date = '0' + date; } else { date = date; }
+			
+			var newDate = month + '/' + date + '/' + year;
+
+           var age = getAge(newDate);
+		   return age;
      }; 
 })
 
-/*.directive('creditCardExpirationEntry', function() {
-        return {
-           require: 'ngModel',
-           restrict: 'A',
-            link: function (scope, element, attr, ngModelCtrl) {
-              function fromUser(text) {
-                var newVal = String(text);
-                if(typeof oldLength != "undefined"){
-                    if(oldLength != 3 && String(text).length == 2){
-                       newVal = String(text) + "/";
-                    }
-                }
-                if(String(text).length == 1){
-                    oldLength = 7;
-                }else{
-                    oldLength = String(text).length;
-                }
-                  
-                if(typeof newVal != "undefined" && newVal != ""){
-                    scope.setValidccexpiry(true);
-                }else { scope.setValidccexpiry(false); }
-                scope.$apply();
-                
-                  
-                ngModelCtrl.$setViewValue(newVal);
-                ngModelCtrl.$render();
-                return ngModelCtrl.newVal;
-              }
-              ngModelCtrl.$parsers.push(fromUser);
-            }
-        };
-    }) */
+
 
