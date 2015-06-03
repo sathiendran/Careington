@@ -101,27 +101,42 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
  
     
-     // Open Country List popup
+    
+     //Start Open Country List popup
     $scope.loadCountriesList = function() {
 	
-	   $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
-            scope: $scope,
-            animation: 'slide-in-up',
-            focusFirstInput: false
-        }).then(function(modal) {
-            $scope.modal = modal;
-            $scope.modal.show();
-        }); 
-        
-    $rootScope.CountryLists = CountryList.getCountryDetails();
-    //console.log($rootScope.CountryLists);
-        
-    $scope.closeCountryList = function() {
-        $scope.modal.hide();
-        $scope.data.searchQuery = '';
-        };
+           $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
+                scope: $scope,
+                animation: 'slide-in-up',
+                focusFirstInput: false
+            }).then(function(modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+            }); 
     };
     
+    // Onchange of Contries
+    $scope.OnSelectContryData = function(CountriesList, items) {
+         angular.forEach(CountriesList, function(item, index) {
+             if (item.Name == items.Name){
+                 item.checked = true;
+                 $rootScope.SelectedCountry={							
+                    'CountryName': items.Name,
+                    'CountryCode': items.CountryCodes.iso2,
+                 };
+             }
+             else {
+                 item.checked = false; 
+             }
+         });
+    };
+    
+    $scope.closeCountryList = function() {
+        $rootScope.SelectedCountry;
+	    $scope.modal.hide(); 
+        $scope.data.searchCountry = '';    
+    };
+   //End Countries 
    
     
     $scope.CountryChange = function () {
@@ -336,6 +351,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$scope.doGetExistingConsulatation();
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
+                         $rootScope.CountryLists = CountryList.getCountryDetails();
 						$state.go('tab.userhome');		
 					}
 				},
@@ -2301,6 +2317,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			return age;
      }; 
 })
+
+// Array Of Countries Filter
+.filter('arrayContries', function() {
+  return function(items,reverse) {
+    var filtered = [];
+    angular.forEach(items, function(item) {
+      filtered.push(item);
+    });
+    if(reverse) filtered.reverse();
+     return filtered;
+  };
+});
 
 /*.directive('creditCardExpirationEntry', function() {
         return {
