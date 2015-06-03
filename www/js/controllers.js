@@ -98,7 +98,32 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
    
     $rootScope.StateText = "Select your state";
+    
+ 
+    
+     // Open Country List popup
+    $scope.loadCountriesList = function() {
+	
+	   $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: false
+        }).then(function(modal) {
+            $scope.modal = modal;
+            $scope.modal.show();
+        }); 
+        
     $rootScope.CountryLists = CountryList.getCountryDetails();
+    //console.log($rootScope.CountryLists);
+        
+    $scope.closeCountryList = function() {
+        $scope.modal.hide();
+        $scope.data.searchQuery = '';
+        };
+    };
+    
+   
+    
     $scope.CountryChange = function () {
         if($('#country').val() == 'US') {
             $rootScope.StateList = {};

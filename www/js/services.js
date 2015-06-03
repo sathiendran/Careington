@@ -425,14 +425,29 @@ angular.module('starter.services', [])
    
 })
 
-.service('CountryList', function(){
-    var CountryDetails = [{"code": "US","country": "United States"},{"code": "UK","country": "United Kingdom"}];
+.service('CountryList', function($http){
+   /* var CountryDetails = [{"code": "US","country": "United States"},{"code": "UK","country": "United Kingdom"}];
     
     this.getCountryDetails = function(){
         return CountryDetails;
-    }
+    } */
+    
+this.getCountryDetails = function () {  
+    var obj = {Countries:null};
+
+    $http.get('jsonFile/Countries.json').success(function(data) {
+      obj.Countries = data;
+    });    
+
+    return obj;   
+  }
    
 })
+
+
+ 
+
+
 
 .service('UKStateList', function(){
     var UkStateDetails = [
