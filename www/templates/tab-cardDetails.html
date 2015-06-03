@@ -88,14 +88,20 @@
 					<input type="password" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
 				</label>
                 
-                <label class="item item-input" >
+                <label class="item item-input" ng-click="loadCountriesList();" >
 				<span class="input-label" >Country</span>
-				<div class="demo"  >	
+				<div class="demo">	
 				<!--	<select id="country" ng-Model="getCardDetails.Country" class="CountryDetails" ng-change="CountryChange()" required>
 						<option value=""  >Select your Country</option>
 						<option ng-repeat="CountryList in CountryLists" value="{{CountryList.code}}"><b>{{CountryList.country}}</b></option>
 					</select> -->
-                    <input type="text" placeholder="Click Here" ng-model="getCardDetails.Country"  name="Country" id="Country" required readonly ng-click="loadCountriesList();" >
+                    <!--<input type="text" placeholder="Click Here"  ng-model="CountryName"  name="CountryName" id="Country" value="{{SelectedCountry.CountryName}}"  required readonly  ng-click="loadCountriesList();" > ----->
+                    <span ng-if="SelectedCountry.CountryName">
+                     {{ SelectedCountry.CountryName }}
+                    </span>
+                    <span style="color:#999" ng-if="!SelectedCountry.CountryName">
+                    Click Here
+                    </span>
 				</div>
 			    </label>
 			  
@@ -106,7 +112,7 @@
                 
                 <label class="item item-input" >
 					<span class="input-label" >City</span>
-			         <input type="text" placeholder="Required" ng-model="getCardDetails.City"  name="City" id="City" required>
+			         <input type="text" placeholder="Required"  ng-model="getCardDetails.City"  name="City" id="City" required>
 			    </label>
 			  
 				<label class="item item-input" >
