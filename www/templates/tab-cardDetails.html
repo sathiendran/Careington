@@ -118,10 +118,11 @@
 				<label class="item item-input" >
 					<span class="input-label" >State</span>
 					<div class="demo"  >	
-						<select id="State" ng-Model="getCardDetails.State" class="CountryDetails" required>
+					<!--	<select id="State" ng-Model="getCardDetails.State" class="CountryDetails" required>
 							<option value=""  >{{StateText}}</option> 
 							<option ng-repeat="StateList in StateList" value="{{StateList.state}}"><b>{{StateList.state}}</b></option>
-						</select>
+						</select> -->
+                       <google-places location=location></google-places>
 					</div>
 				</label>
                 

@@ -2371,6 +2371,24 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
      }; 
 })
 
+ .directive('googlePlaces', function(){
+                return {
+                    restrict:'E',
+                    replace:true,
+                    // transclude:true,
+                    scope: {location:'='},
+                    template: '<input id="google_places_ac" name="google_places_ac" ng-model="google_places_ac" type="text" class="input-block-level" required  />',
+                    link: function($scope, elm, attrs){
+                var input = document.getElementById('google_places_ac');        
+                var autocomplete = new google.maps.places.Autocomplete(input, {types: ['(regions)'],componentRestrictions: { country: "US" }});
+                        google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                            var place  = autocomplete.getPlace();
+                            $scope.location = place.geometry.location.lat() + ',' + place.geometry.location.lng();
+                            $scope.$apply();
+                        });
+                    }
+                }
+})
 
 // Array Of Countries Filter
 .filter('arrayContries', function() {
