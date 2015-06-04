@@ -475,6 +475,25 @@
 				</div>
             </div>
         </div>
+		
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                POST v2/patients/consultations
+				<a target="_blank" href="https://sandbox.connectedcare.md/api/Help/Api/POST-v2-patients-consultations"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+            </div>
+            <div class="panel-body" id="patientPaymentProfiles">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doPostOnDemandConsultation();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Post On-Demand Request
+                </button>
+				<div>
+					<label>Patient Id:</label>
+					<input ng-model="patientId" class="form-control input-sm" type="text">
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{OnDemandConsultationSaveResult}}</textarea>
+					</p>
+				</div>
+            </div>
+        </div>
 <!--	
 		<div class="panel panel-default">
             <div class="panel-heading">
