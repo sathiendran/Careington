@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }, 100); 
 	
 	
-	
+	/*
 	var dtNow = new Date("2015-05-26T13:20:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
@@ -88,7 +88,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             
         });
     });
-	
+	*/
     $scope.$storage = $localStorage;
    
     
@@ -873,7 +873,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 						$rootScope.PaymentProfile = [];	
 					
-						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+						angular.forEach(data.data, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({
@@ -932,15 +932,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.PaymentProfile = [];	
 						
 						
-						$rootScope.PaymentDetailsList = data.data.paymentProfiles;
-						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.paymentProfiles.length - 1];
+						$rootScope.PaymentDetailsList = data.data;
+						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.length - 1];
 						
 						
 						$rootScope.PaymentDetailsList.push({
 							'cardNumber': 'Add a new card'
 						});
 					
-						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+						angular.forEach(data.data, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({
@@ -1006,7 +1006,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 						$rootScope.PaymentProfile = [];	
 					
-						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+						angular.forEach(data.data, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({
@@ -1239,7 +1239,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(data != "")
                     $rootScope.scheduledList = [];
                     angular.forEach($scope.scheduledConsultationList, function(index, item) {	
-						/* $rootScope.scheduledList.push({							
+						 $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'scheduledTime': index.scheduledTime,
 							'consultantUserId': index.consultantUserId,
@@ -1250,8 +1250,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                             'patientName': index.patientName,
                             'patientUserId': index.patientUserId,
                             'scheduledId': index.scheduledId,    
-						});*/
-						 $rootScope.scheduledList.push({							
+						});
+						/* $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'isTimeConverted': index.isTimeConverted,
 							'consultantUserId': index.consultantUserId,
@@ -1261,7 +1261,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'expireDateInfo': index.expireDateInfo,
                             'consultationDateInfo': index.consultationDateInfo,
                             'patientId': index.patientId,                              
-						});
+						});*/
 					});	
                      $state.go('tab.patientCalendar');
                 },
@@ -1427,11 +1427,57 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
         $state.go('tab.consultCharge'); 
     }
+	
+	$rootScope.patientDisplay1 = 'none';
+	$rootScope.patientDisplay = 'block';
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
        $rootScope.scheduledListDatas =scheduledListData;     
+	
+	$rootScope.dtNow = new Date("2015-07-04T06:27:04.268Z");
+	
+	 $rootScope.time = $rootScope.dtNow.getTime();
+	
        $state.go('tab.appoimentDetails'); 
      };
+	// $rootScope.dtNow = new Date("2015-06-04T07:10:04.268Z"); 
+	// $rootScope.time = $rootScope.dtNow.getTime();
+	
+	//$rootScope.patientDisplay1 = 'none';
+	//$rootScope.patientDisplay = 'block';
+	
+	$scope.$on('timer-tick', function (event, args){
+        $timeout(function() {
+		console.log(args.minutes + ' - ' + args.seconds );
+            if(args.millis < 100){
+               // $rootScope.timeNew = 'Completed';
+				$rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			   $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay1 = 'block';
+				console.log($rootScope.timeNew);
+            }
+            else if(args.millis < 600000){
+			//$rootScope.timeNew = 'below 10 minutes!';
+               $rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			   $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay1 = 'block';
+			   console.log('below 10 minutes!');
+			   
+            }else{
+               // $rootScope.timeNew = 'More than 10 minutes!';
+				$rootScope.timeNew = 'block';
+			   $rootScope.timeNew1 = 'none';
+			    $rootScope.patientDisplay = 'block';
+			   $rootScope.patientDisplay1 = 'none';
+				console.log('More than 10 minutes!');
+            }
+            
+        });
+    });
+	   
+	 
 	
 	$rootScope.EnableBackButton = function () {     
         $state.go('tab.userhome');			

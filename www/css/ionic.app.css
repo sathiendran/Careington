@@ -9844,3 +9844,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
   left: 0px;
   position: relative;
   top: 19px !important; }
+
+.pac-item > span:last-child {
+  display: none; }

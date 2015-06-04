@@ -37,16 +37,16 @@
 			<ion-item class="doctor_details">
 				 <a class="HrefListView"  href="#" >   
 					<img ng-src="img/IMG_2.png" class="listImgView">
-					<span class = "ListText doctorName" ><b>Dr.</b> <span class="SubTitleSpan">Doctor Name</span></span>				
+					<span class = "ListText doctorName" ><b>Dr.</b> <span class="SubTitleSpan">{{scheduledListDatas.assignedDoctorName}}</span></span>				
 					<list class="ion-chevron-right ListLinkHref doctorArrow" ></list>
 				 </a>
 			</ion-item >
 			
 			<ion-item class="appointmentTimeDetails">
 				<div class = "title" >			  
-					<span class="appinmentTime">{{scheduledListDatas.expireDateInfo | date: "hh:mm"}}</span><span class="appinmentTimeAM">{{scheduledListDatas.expireDateInfo | date: "a"}}</span>  <br>
+					<span class="appinmentTime">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}</span><span class="appinmentTimeAM">{{scheduledListDatas.scheduledTime | date: "a"}}</span>  <br>
 					<span class="appinmentTimeDate"> 
-						{{scheduledListDatas.expireDateInfo | date: "EEEE,MMMM dd"}}
+						{{scheduledListDatas.scheduledTime | date: "EEEE,MMMM dd"}}
 					</span>
 				</div>
 			</ion-item>
