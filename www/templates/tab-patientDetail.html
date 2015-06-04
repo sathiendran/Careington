@@ -26,7 +26,7 @@
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span> 
 						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 					</div>
-					<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian {{PatientGuardian}}</div>
+					<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian: {{PatientGuardian}}</div>
 				</div>
         
 	</div>
@@ -40,7 +40,7 @@
 	<ion-content class="patient_content" >
 		<div class="password_home PatientDetailsHome">	
 			
-			<!--	<a ng-click="doToPatientCalendar(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)"> -->
+			<!--	<a ng-click="doToPatientCalendar(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)"> -->
 				<button class="button button-block button-energized" ng-click="doGetScheduledConsulatation(PatientId)">
 				 <span> View Appointments </span>
 				</button> <!--</a> -->
@@ -50,7 +50,7 @@
 			</div>
 			<div class="PatientNextAvailable">
 				<!--<a style="text-decoration: none;"  ng-href="#/tab/patientConcerns">-->
-				<button type="submit" ng-click="doGetCodesSet(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)" class="button button-block button-balanced" >
+				<button type="submit" ng-click="doGetCodesSet(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)" class="button button-block button-balanced" >
 				  <span>Next Available</span>
 				</button>
 				<!--</a>-->

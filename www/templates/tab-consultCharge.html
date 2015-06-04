@@ -20,7 +20,7 @@
 					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 				</div>
-				<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge}} | Guardian {{PatientGuardian}}</div>
+				<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian: {{PatientGuardian}}</div>
 				</div>
 			</div>
 		</div>			
@@ -57,7 +57,7 @@
 			<!--	<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">
 				<button class="button button-block button-royal"  type="submit" ng-click="doGetPatientPaymentProfilesConsultCharge()"  >
 					<button class="button button-block button-royal"  type="submit" ng-click="toggleLeft1()"  >-->
-					<button class="button button-block button-royal"  type="submit" ng-click="doGetPatientPaymentProfilesConsultCharge(PatientImageSelectUser, PatientName, PatientLastName, PatientAge, PatientGuardian)"  >
+					<button class="button button-block button-royal"  type="submit" ng-click="doGetPatientPaymentProfilesConsultCharge(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian)"  >
 						<span> Skip to Payment</span>
 					</button>
 				<!--</a>-->
