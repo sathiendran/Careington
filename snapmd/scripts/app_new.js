@@ -192,6 +192,108 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 
             apiComService.getToken(params);
         }
+		
+		 $scope.doGetFacilitiesList = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                emailAddress: $scope.emailAddress,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.patientFacilitiesList = data;
+                },
+                error: function (data) {
+                    $scope.patientFacilitiesList = 'Error getting consultation report';
+                    console.log(data);
+                }
+            };
+
+            apiComService.getFacilitiesList(params);
+        }
+		
+		$scope.doPostSendPasswordResetEmail = function() {
+			if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+			 var params = {
+                patientEmail: $scope.patientEmail,
+				emailType: $scope.emailType,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.PasswordResetEmail = data;
+                },
+                error: function (data) {
+                    $scope.PasswordResetEmail = 'Error sending reset email';
+                    console.log(data);
+                }
+            };
+			
+			apiComService.postSendPasswordResetEmail(params);
+		}
+		
+		$scope.doGetPatientProfiles = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $scope.accessToken,
+				success: function (data) {
+					$scope.patientInfomation = data;
+				},
+				error: function (data) {
+					$scope.patientInfomation = 'Error getting Patient Profiles';
+					console.log(data);
+				}
+			};
+			
+			apiComService.getPatientProfiles(params);
+		}
+		
+		$scope.doGetRelatedPatientProfiles = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                patientID: $scope.otherPatientId,
+                accessToken: $scope.accessToken,
+				success: function (data) {
+					$scope.RelatedPatientProfiles = data;
+				},
+				error: function (data) {
+					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
+					console.log(data);
+				}
+			};
+			
+			apiComService.getRelatedPatientProfiles(params);
+		}
+		
+		$scope.doGetScheduledConsulatation = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                patientId: $scope.patientId,
+				userId: $scope.userId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.scheduledConsultationList = data;
+                },
+                error: function (data) {
+                    $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
+                    console.log(data);
+                }
+            };
+
+            apiComService.getScheduledConsulatation(params);
+        }
+		
 
         $scope.doGetExistingConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
@@ -212,73 +314,167 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 
             apiComService.getExistingConsulatation(params);
         }
-
-        $scope.doGetExistingConsulatationReport = function () {
-            if ($scope.accessToken == 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-            var params = {
-                consultationId: $scope.consultationId,
-                accessToken: $scope.accessToken,
-                success: function (data) {
-                    $scope.existingConsultationReport = data;
-                },
-                error: function (data) {
-                    $scope.existingConsultationReport = 'Error getting consultation report';
-                    console.log(data);
-                }
-            };
-
-            apiComService.getConsultationFinalReport(params);
-        }
-
-        $scope.doGetPatientPaymentProfiles = function () {
+		
+		$scope.doGetCodesSet = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
                 hospitalId: $scope.hospitalId,
-                patientId: $scope.patientId,
                 accessToken: $scope.accessToken,
+                fields: $scope.codesFields,
                 success: function (data) {
-                    $scope.patientPaymentProfiles = data;
+                    $scope.hospitalCodesList = data;
                 },
                 error: function (data) {
-                    $scope.patientPaymentProfiles = 'Error getting patient payment profiles';
+                    $scope.hospitalCodesList = 'Error getting hospital codes list';
                     console.log(data);
                 }
             };
 
-            apiComService.getPatientPaymentProfile(params);
+            apiComService.getCodesSet(params);
         }
-
-        $scope.doPostCoPayDetails = function () {
+		
+		$scope.doPostOnDemandConsultation = function() {
+				if ($scope.accessToken == 'No Token') {
+					alert('No token.  Get token first then attempt operation.');
+					return;
+				}
+				 var params = {
+					accessToken: $scope.accessToken,
+					OnDemandConsultationData: $scope.OnDemandConsultationSaveData,
+					patientID: $scope.patientId,
+					success: function (data) {
+						$scope.OnDemandConsultationSaveResult = data;
+					},
+					error: function (data) {
+						$scope.OnDemandConsultationSaveResult = 'Error posting On Demand Consultation';
+						console.log(data);
+					}
+				};
+				
+				apiComService.postOnDemandConsultation (params);
+		};
+		
+		 $scope.doPutConsultationSave = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
-                profileId: $scope.profileId,
-                emailAddress: $scope.emailAddress,
-                Amount: $scope.Amount,
                 consultationId: $scope.consultationId,
-                paymentProfileId: $scope.paymentProfileId,
                 accessToken: $scope.accessToken,
+				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {
-                    $scope.CreditCardDetails = data;
+                    //$scope.ConsultationSave = data;
+					$scope.ConsultationSave = "success";
                 },
                 error: function (data) {
-                    $scope.CreditCardDetails = 'Error getting patient payment profiles';
+                    $scope.ConsultationSave = 'Error getting patient Consultation Save';
                     console.log(data);
                 }
             };
 
-            apiComService.postCoPayDetails(params);
+            apiComService.putConsultationSave(params);
         }
+		
+		$scope.doGetHealthPlanProvider = function() {
+				if ($scope.accessToken == 'No Token') {
+					alert('No token.  Get token first then attempt operation.');
+					return;
+				}
+				 var params = {
+					accessToken: $scope.accessToken,
+					success: function (data) {
+						$scope.HealthPlanProvider = data;
+					},
+					error: function (data) {
+						$scope.HealthPlanProvider = 'Error posting Patient Profile';
+						console.log(data);
+					}
+				};
+				
+				apiComService.getHealthPlanProvider (params);
+		};
+		
+		
+		$scope.doPostNewHealthPlan = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $scope.accessToken,
+				healthPlanID: $scope.healthPlanID,
+				insuranceCompany: $scope.insuranceCompany,
+				insuranceCompanyNameId: $scope.insuranceCompanyNameId,
+				isDefaultPlan: $scope.isDefaultPlan,
+				insuranceCompanyPhone: $scope.insuranceCompanyPhone,
+				memberName: $scope.memberName,
+				subsciberId: $scope.subsciberId,
+				policyNumber: $scope.policyNumber,
+				subscriberFirstName: $scope.subscriberFirstName,
+				subscriberLastName: $scope.subscriberLastName,
+				subscriberDob: $scope.subscriberDob,
+				isActive: $scope.isActive,
+				payerId: $scope.payerId,
+				success: function (data) {
+					$scope.NewHealthPlan = data;
+				},
+				error: function (data) {
+					$scope.NewHealthPlan = 'Error posting Patient Profile';
+					console.log(data);
+				}
+			};
+			
+			apiComService.postNewHealthPlan(params);
+		}
+		
+		$scope.doGetPatientHealthPlansList = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                patientId: $scope.otherPatientId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.patientHealthPlanList = data;
+                },
+                error: function (data) {
+                    $scope.patientHealthPlanList = 'Error getting patient health plan list';
+                    console.log(data);
+                }
+            };
 
-        $scope.doPostPaymentProfileDetails = function () {
+            apiComService.getPatientHealthPlansList(params);
+        }
+		
+		$scope.doPostApplyHealthPlan = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $scope.accessToken,
+				insuranceCompanyName: $scope.insuranceCompanyNameApply,
+				policyNumber: $scope.policyNumberApply,
+				consultationId: $scope.consultationIdApply,
+				healthPlanId: $scope.healthPlanIdApply,
+				success: function (data) {
+					$scope.ApplyHealthPlan = data;
+				},
+				error: function (data) {
+					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
+					console.log(data);
+				}
+			};
+			
+			apiComService.postApplyHealthPlan(params);
+		}
+		
+		 $scope.doPostPaymentProfileDetails = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -309,90 +505,55 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 
             apiComService.postPaymentProfileDetails(params);
         }
-
-        $scope.doGetFacilitiesList = function () {
-            if ($scope.accessToken == 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-            var params = {
-                emailAddress: $scope.emailAddress,
-                accessToken: $scope.accessToken,
-                success: function (data) {
-                    $scope.patientFacilitiesList = data;
-                },
-                error: function (data) {
-                    $scope.patientFacilitiesList = 'Error getting consultation report';
-                    console.log(data);
-                }
-            };
-
-            apiComService.getFacilitiesList(params);
-        }
         
-        $scope.doGetCodesSet = function () {
+
+        $scope.doGetPatientPaymentProfiles = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
                 hospitalId: $scope.hospitalId,
-                accessToken: $scope.accessToken,
-                fields: $scope.codesFields,
-                success: function (data) {
-                    $scope.hospitalCodesList = data;
-                },
-                error: function (data) {
-                    $scope.hospitalCodesList = 'Error getting hospital codes list';
-                    console.log(data);
-                }
-            };
-
-            apiComService.getCodesSet(params);
-        }
-
-        $scope.doGetScheduledConsulatation = function () {
-            if ($scope.accessToken == 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-            var params = {
                 patientId: $scope.patientId,
-				userId: $scope.userId,
                 accessToken: $scope.accessToken,
                 success: function (data) {
-                    $scope.scheduledConsultationList = data;
+                    $scope.patientPaymentProfiles = data;
                 },
                 error: function (data) {
-                    $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
+                    $scope.patientPaymentProfiles = 'Error getting patient payment profiles';
                     console.log(data);
                 }
             };
 
-            apiComService.getScheduledConsulatation(params);
-        }
+            apiComService.getPatientPaymentProfile(params);
+        }		
 		
-		 $scope.doGetPatientHealthPlansList = function () {
+
+        $scope.doPostCoPayDetails = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
-                patientId: $scope.otherPatientId,
+                profileId: $scope.profileId,
+                emailAddress: $scope.emailAddress,
+                Amount: $scope.Amount,
+                consultationId: $scope.consultationId,
+                paymentProfileId: $scope.paymentProfileId,
                 accessToken: $scope.accessToken,
                 success: function (data) {
-                    $scope.patientHealthPlanList = data;
+                    $scope.CreditCardDetails = data;
                 },
                 error: function (data) {
-                    $scope.patientHealthPlanList = 'Error getting patient health plan list';
+                    $scope.CreditCardDetails = 'Error getting patient payment profiles';
                     console.log(data);
                 }
             };
 
-            apiComService.getPatientHealthPlansList(params);
+            apiComService.postCoPayDetails(params);
         }
-		
-		 $scope.doPutConsultationSave = function () {
+
+       $scope.doGetExistingConsulatationReport = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -400,19 +561,18 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
             var params = {
                 consultationId: $scope.consultationId,
                 accessToken: $scope.accessToken,
-				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {
-                    //$scope.ConsultationSave = data;
-					$scope.ConsultationSave = "success";
+                    $scope.existingConsultationReport = data;
                 },
                 error: function (data) {
-                    $scope.ConsultationSave = 'Error getting patient Consultation Save';
+                    $scope.existingConsultationReport = 'Error getting consultation report';
                     console.log(data);
                 }
             };
 
-            apiComService.putConsultationSave(params);
+            apiComService.getConsultationFinalReport(params);
         }
+
 		
 		$scope.doGetPatientsConsultations = function() {
 			if ($scope.accessToken == 'No Token') {
@@ -481,162 +641,10 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 			
 			apiComService.getPatientsSoapNotes(params);
 		}
-/*
-		$scope.doGetPatientsHospitalList = function() {
-			if ($scope.accessToken == 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-			 var params = {
-                patientID: $scope.patientId,
-                accessToken: $scope.accessToken,
-                success: function (data) {
-                    $scope.PatientsHospitalList = data;
-                },
-                error: function (data) {
-                    $scope.PatientsHospitalList = 'Error getting patient hospital List';
-                    console.log(data);
-                }
-            };
-			
-			apiComService.getPatientsHospitalList(params);
-		}
-*/
-		$scope.doPostSendPasswordResetEmail = function() {
-			if ($scope.accessToken == 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-			 var params = {
-                patientEmail: $scope.patientEmail,
-				emailType: $scope.emailType,
-                accessToken: $scope.accessToken,
-                success: function (data) {
-                    $scope.PasswordResetEmail = data;
-                },
-                error: function (data) {
-                    $scope.PasswordResetEmail = 'Error sending reset email';
-                    console.log(data);
-                }
-            };
-			
-			apiComService.postSendPasswordResetEmail(params);
-		}				
-	
-		$scope.doGetRelatedPatientProfiles = function() {
-			if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			}
-			 var params = {
-                patientID: $scope.otherPatientId,
-                accessToken: $scope.accessToken,
-				success: function (data) {
-					$scope.RelatedPatientProfiles = data;
-				},
-				error: function (data) {
-					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
-					console.log(data);
-				}
-			};
-			
-			apiComService.getRelatedPatientProfiles(params);
-		}
 
-		$scope.doPostApplyHealthPlan = function() {
-			if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			}
-			 var params = {
-                accessToken: $scope.accessToken,
-				insuranceCompanyName: $scope.insuranceCompanyNameApply,
-				policyNumber: $scope.policyNumberApply,
-				consultationId: $scope.consultationIdApply,
-				healthPlanId: $scope.healthPlanIdApply,
-				success: function (data) {
-					$scope.ApplyHealthPlan = data;
-				},
-				error: function (data) {
-					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
-					console.log(data);
-				}
-			};
-			
-			apiComService.postApplyHealthPlan(params);
-		}
 		
-		$scope.doPostNewHealthPlan = function() {
-			if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			}
-			 var params = {
-                accessToken: $scope.accessToken,
-				healthPlanID: $scope.healthPlanID,
-				insuranceCompany: $scope.insuranceCompany,
-				insuranceCompanyNameId: $scope.insuranceCompanyNameId,
-				isDefaultPlan: $scope.isDefaultPlan,
-				insuranceCompanyPhone: $scope.insuranceCompanyPhone,
-				memberName: $scope.memberName,
-				subsciberId: $scope.subsciberId,
-				policyNumber: $scope.policyNumber,
-				subscriberFirstName: $scope.subscriberFirstName,
-				subscriberLastName: $scope.subscriberLastName,
-				subscriberDob: $scope.subscriberDob,
-				isActive: $scope.isActive,
-				payerId: $scope.payerId,
-				success: function (data) {
-					$scope.NewHealthPlan = data;
-				},
-				error: function (data) {
-					$scope.NewHealthPlan = 'Error posting Patient Profile';
-					console.log(data);
-				}
-			};
-			
-			apiComService.postNewHealthPlan(params);
-		}
 		
-		$scope.doPostCodeSets = function() {
-			if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			}
-			 var params = {
-                accessToken: $scope.accessToken,
-				patientEmail: $scope.patientEmail,
-				healthPlanID: $scope.healthPlanID,
-				success: function (data) {
-					$scope.CodeSets = data;
-				},
-				error: function (data) {
-					$scope.CodeSets = 'Error posting Patient Profile';
-					console.log(data);
-				}
-			};
-			
-			apiComService.postCodeSets (params);
-		};
 		
-		$scope.doGetHealthPlanProvider = function() {
-				if ($scope.accessToken == 'No Token') {
-					alert('No token.  Get token first then attempt operation.');
-					return;
-				}
-				 var params = {
-					accessToken: $scope.accessToken,
-					success: function (data) {
-						$scope.HealthPlanProvider = data;
-					},
-					error: function (data) {
-						$scope.HealthPlanProvider = 'Error posting Patient Profile';
-						console.log(data);
-					}
-				};
-				
-				apiComService.getHealthPlanProvider (params);
-		};
 		
 		$scope.doGetPatientsProfile = function() {
 				if ($scope.accessToken == 'No Token') {
@@ -658,26 +666,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 				apiComService.getPatientsProfile (params);
 		};
 		
-		$scope.doPostOnDemandConsultation = function() {
-				if ($scope.accessToken == 'No Token') {
-					alert('No token.  Get token first then attempt operation.');
-					return;
-				}
-				 var params = {
-					accessToken: $scope.accessToken,
-					OnDemandConsultationData: $scope.OnDemandConsultationSaveData,
-					patientID: $scope.patientId,
-					success: function (data) {
-						$scope.OnDemandConsultationSaveResult = data;
-					},
-					error: function (data) {
-						$scope.OnDemandConsultationSaveResult = 'Error posting On Demand Consultation';
-						console.log(data);
-					}
-				};
-				
-				apiComService.postOnDemandConsultation (params);
-		};
+		
 		
     }]);
 
@@ -686,10 +675,13 @@ app.service('apiComService', function ($http) {
      params: email, password, userTypeId, hospitalId
      (event handlers): success, failure
      */
+	 
+	 var apiCommonURL = 'https://sandbox.connectedcare.md';
+	 
     this.getToken = function (params) {
         var requestInfo = {
             headers: util.getHeaders(),
-            url: 'https://sandbox.connectedcare.md/api/Account/Token',
+            url: apiCommonURL + '/api/Account/Token',
             method: 'POST',
             data: {
                 UserTypeId: params.userTypeId,
@@ -711,13 +703,97 @@ app.service('apiComService', function ($http) {
                     }
                 });
     }
+	
+	this.getFacilitiesList = function (params) {
+        //GET v2/patients/hospitals?email=<email>
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/hospitals?patient=' + params.emailAddress,
+            method: 'GET'   
+        };
+        
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+	
+	this.postSendPasswordResetEmail = function(params) {
+		var confirmSendPasswordResetEmail = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType,
+            method: 'POST'
+		};
+		
+		$http(confirmSendPasswordResetEmail).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}	
+	
+	
+	this.getPatientProfiles = function(params) {
+		var PatientDetailsList = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+            method: 'GET'
+		};
+		
+		$http(PatientDetailsList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.getRelatedPatientProfiles = function(params) {
+		var confirmHealthPlanList = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/familyprofiles/' + /*params.patientID +*/ 'dependents',
+            method: 'GET'
+		};
+		
+		$http(confirmHealthPlanList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
 
     this.getScheduledConsulatation = function (params) {
         //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}	
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
+            url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 			//url: 'https://sandbox.connectedcare.md/api/patients/consultations?userId=' + params.userId,
             method: 'GET'   
         };
@@ -740,7 +816,238 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations/' + params.consultationId + '/all',
+            url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/all',
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+	
+	this.getCodesSet = function(params) {
+        //sample uri: /api/v2/codesets?hospitalId=1&fields=medications
+        //"fields" is a comma-delimited list of the following: medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
+            method: 'GET'    
+        };
+
+        $http(requestInfo).
+                success(function(data, status, headers, config) {
+                        if(typeof params.success != 'undefined') {
+                                params.success(data);
+                        }
+                }).
+                error(function(data, status, headers, config) {
+                        if(typeof params.error != 'undefined') {
+                                params.success(data);
+                        }
+                });
+    }
+	
+	this.postOnDemandConsultation = function(params) {
+
+		var confirmOnDemandConsultationSave = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations',
+            method: 'POST',
+			data: params.OnDemandConsultationData
+		};
+		
+		$http(confirmOnDemandConsultationSave).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.putConsultationSave = function (params) {
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations/' + params.consultationId + '/intake',
+            method: 'PUT',
+			data: params.ConsultationSaveData
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+	
+	this.getHealthPlanProvider = function(params) {
+
+		var confirmHealthPlanProviders = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/v2/healthplan/providers',
+            method: 'GET'
+		};
+		
+		$http(confirmHealthPlanProviders).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.postNewHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/healthplan',
+            method: 'POST',
+			data: {
+                healthPlanId: params.healthPlanID,
+				patientId: params.patientID,
+				insuranceCompany: params.insuranceCompany,
+				insuranceCompanyNameId: params.insuranceCompanyNameId,
+				isDefaultPlan: params.isDefaultPlan,
+				insuranceCompanyPhone: params.insuranceCompanyPhone,
+				memberName: params.memberName,
+				subsciberId: params.subsciberId,
+				policyNumber: params.policyNumber,
+				subscriberFirstName: params.subscriberFirstName,
+				subscriberLastName: params.subscriberLastName,
+				subscriberDob: params.subscriberDob,
+				isActive: params.isActive,
+				payerId: params.payerId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.getPatientHealthPlansList = function (params) {
+        //util.setHeaders($http, params);
+
+		var requestInfo = {
+			headers: util.getHeaders(params.accessToken),
+			url: 'https://sandbox.connectedcare.md/api/v2/healthplans',
+			method: 'get'       
+		};
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+	
+	this.postApplyHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/v2/healthplan/' + params.healthPlanId + '/apply',
+            method: 'POST',
+			data: {
+                insuranceCompanyName: params.insuranceCompanyName,
+				policyNumber: params.policyNumber,
+				consultationId: params.consultationId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.postPaymentProfileDetails = function (params) {
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/patients/' + params.userId + '/payments',
+            method: 'POST',
+            data: {
+                userId: params.userId,
+                BillingAddress: params.BillingAddress,
+                CardNumber: params.CardNumber,
+                City: params.City,
+                ExpiryMonth: params.ExpiryMonth,
+                ExpiryYear: params.ExpiryYear,
+                FirstName: params.FirstName,
+                LastName: params.LastName,
+                State: params.State,
+                Zip: params.Zip,
+                Country: params.Country,
+                ProfileId: params.ProfileId,
+                Cvv: params.Cvv
+            }         
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }	
+
+    
+
+    this.getPatientPaymentProfile = function (params) {
+        //https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+           // url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+		    url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
             method: 'GET'   
         };
 
@@ -766,51 +1073,6 @@ app.service('apiComService', function ($http) {
             method: 'GET'   
         };
 
-        $http(requestInfo).
-                success(function (data, status, headers, config) {
-                    if (typeof params.success != 'undefined') {
-                        params.success(data);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                        params.success(data);
-                    }
-                });
-    }
-
-    this.getPatientPaymentProfile = function (params) {
-        //https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
-        //util.setHeaders($http, params);
-        var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-           // url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
-		    url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
-            method: 'GET'   
-        };
-
-        $http(requestInfo).
-                success(function (data, status, headers, config) {
-                    if (typeof params.success != 'undefined') {
-                        params.success(data);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                        params.success(data);
-                    }
-                });
-    }
-
-    this.getFacilitiesList = function (params) {
-        //GET v2/patients/hospitals?email=<email>
-        //util.setHeaders($http, params);
-        var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/hospitals?patient=' + params.emailAddress,
-            method: 'GET'   
-        };
-        
         $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
@@ -853,108 +1115,13 @@ app.service('apiComService', function ($http) {
                         params.success(data);
                     }
                 });
-    }
+    }	
 	
-	this.getPatientHealthPlansList = function (params) {
-        //util.setHeaders($http, params);
-
-		var requestInfo = {
-			headers: util.getHeaders(params.accessToken),
-			url: 'https://sandbox.connectedcare.md/api/v2/healthplans',
-			method: 'get'       
-		};
-
-        $http(requestInfo).
-                success(function (data, status, headers, config) {
-                    if (typeof params.success != 'undefined') {
-                        params.success(data);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                        params.success(data);
-                    }
-                });
-    }
     
-    this.getCodesSet = function(params) {
-        //sample uri: /api/v2/codesets?hospitalId=1&fields=medications
-        //"fields" is a comma-delimited list of the following: medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns
-        var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
-            method: 'GET'    
-        };
+    
 
-        $http(requestInfo).
-                success(function(data, status, headers, config) {
-                        if(typeof params.success != 'undefined') {
-                                params.success(data);
-                        }
-                }).
-                error(function(data, status, headers, config) {
-                        if(typeof params.error != 'undefined') {
-                                params.success(data);
-                        }
-                });
-    }
-
-    this.postPaymentProfileDetails = function (params) {
-        //util.setHeaders($http, params);
-        var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/patients/' + params.userId + '/payments',
-            method: 'POST',
-            data: {
-                userId: params.userId,
-                BillingAddress: params.BillingAddress,
-                CardNumber: params.CardNumber,
-                City: params.City,
-                ExpiryMonth: params.ExpiryMonth,
-                ExpiryYear: params.ExpiryYear,
-                FirstName: params.FirstName,
-                LastName: params.LastName,
-                State: params.State,
-                Zip: params.Zip,
-                Country: params.Country,
-                ProfileId: params.ProfileId,
-                Cvv: params.Cvv
-            }         
-        };
-
-        $http(requestInfo).
-                success(function (data, status, headers, config) {
-                    if (typeof params.success != 'undefined') {
-                        params.success(data);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                        params.success(data);
-                    }
-                });
-    }
-	this.putConsultationSave = function (params) {
-        //util.setHeaders($http, params);
-        var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations/' + params.consultationId + '/intake',
-            method: 'PUT',
-			data: params.ConsultationSaveData
-        };
-
-        $http(requestInfo).
-                success(function (data, status, headers, config) {
-                    if (typeof params.success != 'undefined') {
-                        params.success(data);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                        params.success(data);
-                    }
-                });
-    }
+    
+	
 	
 	this.getPatientsConsultations = function (params) {
 		        //util.setHeaders($http, params);
@@ -1028,170 +1195,13 @@ app.service('apiComService', function ($http) {
 		});
 		
 	}
-/*	
-	this.getPatientsHospitalList = function(params) {
-		var confirmPatientHospitalList = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/hospitals?patient=' + params.patientID,
-            method: 'GET'
-		};
-		
-		$http(confirmPatientHospitalList).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
-*/	
-	this.postSendPasswordResetEmail = function(params) {
-		var confirmSendPasswordResetEmail = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType,
-            method: 'POST'
-		};
-		
-		$http(confirmSendPasswordResetEmail).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
-	
-	this.getRelatedPatientProfiles = function(params) {
-		var confirmHealthPlanList = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/familyprofiles/' + /*params.patientID +*/ 'dependents',
-            method: 'GET'
-		};
-		
-		$http(confirmHealthPlanList).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
-	
-	this.postApplyHealthPlan = function(params) {
-		var confirmPatientProfile = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/healthplan/' + params.healthPlanId + '/apply',
-            method: 'POST',
-			data: {
-                insuranceCompanyName: params.insuranceCompanyName,
-				policyNumber: params.policyNumber,
-				consultationId: params.consultationId
-            }
-		};
-		
-		$http(confirmPatientProfile).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
-	
-	this.postNewHealthPlan = function(params) {
-		var confirmPatientProfile = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/healthplan',
-            method: 'POST',
-			data: {
-                healthPlanId: params.healthPlanID,
-				patientId: params.patientID,
-				insuranceCompany: params.insuranceCompany,
-				insuranceCompanyNameId: params.insuranceCompanyNameId,
-				isDefaultPlan: params.isDefaultPlan,
-				insuranceCompanyPhone: params.insuranceCompanyPhone,
-				memberName: params.memberName,
-				subsciberId: params.subsciberId,
-				policyNumber: params.policyNumber,
-				subscriberFirstName: params.subscriberFirstName,
-				subscriberLastName: params.subscriberLastName,
-				subscriberDob: params.subscriberDob,
-				isActive: params.isActive,
-				payerId: params.payerId
-            }
-		};
-		
-		$http(confirmPatientProfile).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
-	
-	this.postCodeSets = function(params) {
 
-		var confirmPostCodeSet = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/code/add',
-            method: 'POST',
-			data: codesetData
-		};
-		
-		$http(confirmPostCodeSet).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
 	
-	this.getHealthPlanProvider = function(params) {
-
-		var confirmHealthPlanProviders = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/healthplan/provider',
-            method: 'GET'
-		};
-		
-		$http(confirmHealthPlanProviders).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
+	
+	
+	
+	
+	
 	
 	this.getPatientsProfile = function(params) {
 
@@ -1214,27 +1224,7 @@ app.service('apiComService', function ($http) {
 		});
 	}
 	
-	this.postOnDemandConsultation = function(params) {
-
-		var confirmOnDemandConsultationSave = {
-			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations',
-            method: 'POST',
-			data: params.OnDemandConsultationData
-		};
-		
-		$http(confirmOnDemandConsultationSave).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.success(data);
-				}
-		});
-	}
+	
 	
 	
 });
