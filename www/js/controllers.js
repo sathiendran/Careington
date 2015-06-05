@@ -225,7 +225,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$("#Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
+			//	$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
 	}
@@ -241,7 +241,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$("#Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
 	}
@@ -647,6 +647,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
 	
+	
+	
 	$scope.GetHealthPlanList = function () {
 		$scope.doGetPatientHealthPlansList()
 	}
@@ -658,7 +660,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			return;
 		}
 		var params = {
-			patientId: $scope.otherPatientId,
+			patientId: $rootScope.patientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {
 				//$scope.patientHealthPlanList = data;
@@ -1219,56 +1221,63 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	
 	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+		
+		if($rootScope.P_Authorized == true) {
+	
         
-        // Start Intake Sub Header Information 
-        $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientFirstName = P_Fname;
-        $rootScope.PatientLastName = P_Lname;
-        $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
-        // End Intake Sub Header Information 
-        
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		var params = {
-			hospitalId: $rootScope.hospitalId,
-			accessToken: $rootScope.accessToken,
-			fields: $scope.codesFields,
-			success: function (data) {
-			//console.log(data.data[3].codes);
-				$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
-				$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
-				$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
-				$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
-				$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);		
-				$state.go('tab.patientConcerns');
-			},
-			error: function (data) {
-				$scope.hospitalCodesList = 'Error getting hospital codes list';
-				console.log(data);
+			// Start Intake Sub Header Information 
+			$rootScope.PatientImageSelectUser = P_img;
+			$rootScope.PatientFirstName = P_Fname;
+			$rootScope.PatientLastName = P_Lname;
+			$rootScope.PatientAge = P_Age;
+			$rootScope.PatientGuardian = P_Guardian;
+			// End Intake Sub Header Information 
+			
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
 			}
-		};
-        
-       $rootScope.PatientPrimaryConcern = "";
-        $rootScope.PatientSecondaryConcern = "";
-        $rootScope.PatientChronicCondition = "";
-        $rootScope.patinentCurrentMedication = "";
-        $rootScope.patinentMedicationAllergies = "";
-        $rootScope.patientSurgeriess = "";
-        $rootScope.MedicationCount == 'undefined'
-        $rootScope.checkedChronic = 0;  
-        $rootScope.ChronicCount = "";
-        $rootScope.AllegiesCount = "";
-        $rootScope.checkedAllergies = 0;
-        $rootScope.MedicationCount = ""; 
-        $rootScope.checkedMedication = 0; 
-        $rootScope.IsValue = "";
-         $rootScope.IsToPriorCount = "";
-        $rootScope.IsToPriorCount = "";
-        SurgeryStocksListService.ClearSurgery();
-        LoginService.getCodesSet(params);
+			var params = {
+				hospitalId: $rootScope.hospitalId,
+				accessToken: $rootScope.accessToken,
+				fields: $scope.codesFields,
+				success: function (data) {
+				//console.log(data.data[3].codes);
+					$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
+					$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
+					$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
+					$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
+					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);		
+					$state.go('tab.patientConcerns');
+				},
+				error: function (data) {
+					$scope.hospitalCodesList = 'Error getting hospital codes list';
+					console.log(data);
+				}
+			};
+			
+		   $rootScope.PatientPrimaryConcern = "";
+			$rootScope.PatientSecondaryConcern = "";
+			$rootScope.PatientChronicCondition = "";
+			$rootScope.patinentCurrentMedication = "";
+			$rootScope.patinentMedicationAllergies = "";
+			$rootScope.patientSurgeriess = "";
+			$rootScope.MedicationCount == 'undefined'
+			$rootScope.checkedChronic = 0;  
+			$rootScope.ChronicCount = "";
+			$rootScope.AllegiesCount = "";
+			$rootScope.checkedAllergies = 0;
+			$rootScope.MedicationCount = ""; 
+			$rootScope.checkedMedication = 0; 
+			$rootScope.IsValue = "";
+			 $rootScope.IsToPriorCount = "";
+			$rootScope.IsToPriorCount = "";
+			SurgeryStocksListService.ClearSurgery();
+			LoginService.getCodesSet(params);
+		} else {
+			$scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName; 
+			$rootScope.SubmitCardValidation($scope.ErrorMessage);
+		}
 	}
 
         $scope.doGetScheduledConsulatation = function (PatientId) {
@@ -1373,7 +1382,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$(".Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
 	}
@@ -1425,7 +1434,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	}
     
-    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id) {
+    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_Authorized) {
         if($rootScope.patientSearchKey != ''){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
         if($rootScope.patientName == $rootScope.RelatedPatientProfiles[0].patientName){
@@ -1440,6 +1449,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.PatientId = P_Id;
+		$rootScope.P_Authorized = P_Authorized;
         $state.go('tab.patientDetail'); 
     }
     
@@ -1540,7 +1550,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService) {
     
    
     $rootScope.limit = 4;
@@ -1583,7 +1593,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
 				$(".PopupError_Message").append(top);
-				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				//$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 		
 	}
@@ -1619,12 +1629,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 					else {
 					$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+					$rootScope.PrimaryConcernText = $rootScope.PatientPrimaryConcern[0].text;
+				
 					 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
 					$scope.modal.hide();
 					$scope.data.searchQuery = '';
 					}
 			} else {
 				$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+				$rootScope.PrimaryConcernText = $rootScope.PatientPrimaryConcern[0].text;
+				
 				 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
 				$scope.modal.hide();
 				$scope.data.searchQuery = '';
@@ -1725,7 +1739,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
 				$(".Error_Message").append(top);
-				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				//$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 		
 	}
@@ -1736,7 +1750,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Primary Concern Can't be Empty!";
 				$rootScope.ConcernsValidation($scope.ErrorMessage);
 			}
-        } else { $state.go('tab.ChronicCondition');
+        } else { 
+		$scope.doPostOnDemandConsultation();
+		$state.go('tab.ChronicCondition');
         }
         
     }
@@ -1771,11 +1787,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 					else {
 					$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
+					$rootScope.SecondaryConcernText = $scope.PatientSecondaryConcernItem[0].text;
 					 $scope.modal.hide();
 					$scope.data.searchQuery = '';	
 					}
 			} else {
 				$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
+				$rootScope.SecondaryConcernText = $scope.PatientSecondaryConcernItem[0].text;
 				 $scope.modal.hide();
 				$scope.data.searchQuery = '';
 			}
@@ -1846,6 +1864,46 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 	
 	/*Secondary concern End here*/
+
+	$scope.OnDemandConsultationSaveData ={
+											  "concerns": [
+												
+											  ],
+											  "phone": "+10123456789",
+											  "patientId": $rootScope.PatientId
+										}	
+			
+	
+	$scope.doPostOnDemandConsultation = function() {
+	
+			$scope.OnDemandConsultationSaveData.concerns.push(
+				{isPrimary: true, description: $rootScope.PrimaryConcernText},
+				{isPrimary: false, description: $rootScope.SecondaryConcernText}
+			);		
+	
+	
+				if ($rootScope.accessToken == 'No Token') {
+					alert('No token.  Get token first then attempt operation.');
+					return;
+				}
+				 var params = {
+					accessToken: $rootScope.accessToken,
+					OnDemandConsultationData: $scope.OnDemandConsultationSaveData,
+					patientID: $rootScope.PatientId,
+					success: function (data) {
+						$rootScope.OnDemandConsultationSaveResult = data.data[0];
+						$rootScope.consultationAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
+						$rootScope.consultationId1 = $rootScope.OnDemandConsultationSaveResult.consultationId;
+						console.log(data);
+					},
+					error: function (data) {
+						$scope.OnDemandConsultationSaveResult = 'Error posting On Demand Consultation';
+						console.log(data);
+					}
+				};
+				
+				LoginService.postOnDemandConsultation (params);
+		};
 	
 	
 	/*Chronic Condition Start here*/
@@ -2195,7 +2253,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
 				$(".ErrorMessage").append(top);
-				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				//$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 		
 	}
@@ -2241,8 +2299,90 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
 	
 	/* Prior Surgery page END */
+	
+	$scope.ConsultationSaveData = 	{
+									  "medicationAllergies": [
+										{
+										  "code": 1,
+										  "description": "med 352"
+										},
+										{
+										  "code": 2,
+										  "description": "med 3537"
+										}
+									  ],
+									  "surgeries": [
+										{
+										  "description": "ankle",
+										  "month": 2,
+										  "year": 2015
+										},
+										{
+										  "description": "elbow",
+										  "month": 2,
+										  "year": 2015
+										}
+									  ],
+									  "medicalConditions": [
+										{
+										  "code": 4,
+										  "description": "cancer"
+										},
+										{
+										  "code": 5,
+										  "description": "other"
+										}
+									  ],
+									  "medications": [
+										{
+										  "code": 6,
+										  "description": "med 123"
+										},
+										{
+										  "code": 7,
+										  "description": "med 345"
+										}
+									  ],
+									  "infantData": {
+										"fullTerm": "T",
+										"vaginalBirth": "T",
+										"dischargedWithMother": "T",
+										"vaccinationsCurrent": "T"
+									  },
+									  "concerns": [
+										{
+										  "isPrimary": true,
+										  "description": "runny nose"
+										},
+										{
+										  "isPrimary": false,
+										  "description": "watery eyes"
+										}
+									  ]
+									};
+	
       
-      
+      $scope.doPutConsultationSave = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                consultationId: $rootScope.consultationId1,
+                accessToken: $rootScope.accessToken,
+				ConsultationSaveData: $scope.ConsultationSaveData,
+                success: function (data) {
+                    //$scope.ConsultationSave = data;
+					$scope.ConsultationSave = "success";
+                },
+                error: function (data) {
+                    $scope.ConsultationSave = 'Error getting patient Consultation Save';
+                    console.log(data);
+                }
+            };
+
+            apiComService.putConsultationSave(params);
+        }
     
     
     

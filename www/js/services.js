@@ -125,6 +125,50 @@ angular.module('starter.services', [])
                     }
                 });
     }
+	
+	this.postOnDemandConsultation = function(params) {
+
+		var confirmOnDemandConsultationSave = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/consultations',
+            method: 'POST',
+			data: params.OnDemandConsultationData
+		};
+		
+		$http(confirmOnDemandConsultationSave).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.putConsultationSave = function (params) {
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/intake',
+            method: 'PUT',
+			data: params.ConsultationSaveData
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
 
     this.getHealthPlanProvidersList = function (params) {
         //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}	
