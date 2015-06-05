@@ -679,6 +679,26 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 				apiComService.postOnDemandConsultation (params);
 		};
 		
+		$scope.doGetConsultationKey = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                consultationId: $scope.consultationId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.ConsultationKey = data;
+                },
+                error: function (data) {
+                    $scope.ConsultationKey = 'Error getting consultation key';
+                    console.log(data);
+                }
+            };
+
+            apiComService.getConsultationKey(params);
+        }
+		
     }]);
 
 app.service('apiComService', function ($http) {
@@ -741,6 +761,7 @@ app.service('apiComService', function ($http) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations/' + params.consultationId + '/all',
+			//url: 'https://sandbox.connectedcare.md/api/v2/physicians/appointments/' + params.consultationId + '/videokey',
             method: 'GET'   
         };
 
@@ -1236,6 +1257,28 @@ app.service('apiComService', function ($http) {
 		});
 	}
 	
+	this.getConsultationKey = function (params) {
+        //https://snap-dev.com/api/v2/patients/consultations/2440/all
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            //url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations/' + params.consultationId + '/all',
+			url: 'https://sandbox.connectedcare.md/api/v2/physicians/appointments/' + params.consultationId + '/videokey',
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
 	
 });
 	
