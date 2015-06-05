@@ -37,6 +37,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.currState = $state;
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){ 
@@ -48,10 +49,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 navigator.app.backHistory(); 
             }
         }, 100); 
-	
-	
-	/*
-	var dtNow = new Date("2015-05-26T13:20:04.268Z");
+		
+		
+
+/*	var dtNow = new Date("2015-05-26T13:20:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
 	
@@ -1258,6 +1259,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                             'patientUserId': index.patientUserId,
                             'scheduledId': index.scheduledId,    
 						});
+						console.log('Schduled List');
+						console.log(data);
+						
 						/* $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'isTimeConverted': index.isTimeConverted,
@@ -2498,5 +2502,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     if(reverse) filtered.reverse();
      return filtered;
   };
-});
+})
 
+.directive('siteHeader', function () {
+    return {
+        restrict: 'E',
+        template: '<a class="button_new icon ion-chevron-left"><span>{{back}}</span></a>',
+        scope: {
+            back: '@back',           
+            icons: '@icons'
+        },
+        link: function(scope, element, attrs) {
+            $(element[0]).on('click', function() {
+                history.back();
+                scope.$apply();
+            });          
+        }
+    };
+})
