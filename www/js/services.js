@@ -446,15 +446,35 @@ this.getCountryDetails = function () {
 
 
  .service('StateList', function($http){    
-    this.getStateDetails = function (params) { 
+    this.getStateDetails = function (params) {
+        var googlePlacesUrl = 'http://maps.google.com/maps/api/geocode/json?address=' + params.SearchKeys + '&sensor=false&components=country:' + params.CountryCode;
     var obj = {State:null};
-      
-       $http.get('http://maps.google.com/maps/api/geocode/json?address=' + params.SearchKeys + '&sensor  =false&components=country:' + params.CountryCode).success(function(data) {
+       $http.get(googlePlacesUrl).success(function(data) {
           obj.State = data;
+            return obj; 
         });    
-
-        return obj;   
+          
       } 
+    
+/*var request = {
+            headers: util.getHeaders(params.accessToken),
+            url: 'http://maps.google.com/maps/api/geocode/json?address=' + params.SearchKeys + '&sensor  =false&components=country:' + params.CountryCode,
+            method: 'GET'   
+        };
+        
+        $http(request).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+    */
 })
 
  

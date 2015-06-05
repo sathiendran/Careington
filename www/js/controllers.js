@@ -136,7 +136,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.closeCountryList = function() {
         $rootScope.SelectedCountry;
 	    $scope.modal.hide(); 
-        $scope.data.searchCountry = '';    
+        //$scope.data.searchCountry = '';    
     };
    //End Countries 
    
@@ -154,22 +154,37 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        //console.log($rootScope.CountryCode,'kkkkkkkkkkkkkkk');
     };
     $scope.stateList = '';
-    $scope.StateSelect = function() {
-        var stateValue = $('#states').val();
-        var CountryCode = $rootScope.CountryCode;
-        if(stateValue.length >= 3) {
-        $scope.StateKeys =  stateValue;
-        var params = { SearchKeys: $scope.StateKeys,CountryCode: CountryCode};
-        $rootScope.stateList = StateList.getStateDetails(params);
-        console.log($rootScope.stateList);
-            /*angular.forEach($rootScope.stateList, function(index, item) { 
-                $rootScope.StateListData.push({
-                    'scheduledTime': index.address_components.,
-                });
-            }); */
+    
+    
+    
+    
+    $scope.StateSelect = function($a) {
+        if($a.length >= 3){
             
+            $timeout(function(){
+                var params = { SearchKeys: $a, CountryCode: $rootScope.CountryCode};
+                //$rootScope.stateList = StateList.getStateDetails(params);
+                var config = { 'params': { 'callback': 'JSON_CALLBACK'} };
+                
+                var googlePlacesUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?callback=angular.callbacks._0&input=' + $a + '&types=(cities)&language=en&components=country:'+$rootScope.CountryCode+'&key=AIzaSyCjq4bTUhjvIxSFJBA6Ekk3DPdA_VrU9Zs';
+               
+                var googlePlacesResponsePromise = $http.jsonp(googlePlacesUrl,{ 'params': { 'callback': 'JSON_CALLBACK'} });
+                
+                googlePlacesResponsePromise.success(function(data, status, headers, config) {
+                    $rootScope.stateList = JSON.stringify(data);
+                });
+                
+                googlePlacesResponsePromise.error(function(data, status, headers, config) {
+                    alert("AJAX failed!");
+                });
+                
+            }, 1000);
+            
+            console.log($rootScope.stateList);
+        }else{
+            $rootScope.stateList = {};
         }
-    }
+    };
   
    $scope.closeStateList = function() {
      $rootScope.stateList;
