@@ -21,7 +21,7 @@
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 					</div>
-					<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian {{PatientGuardian}}</div>
+					<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian: {{PatientGuardian}}</div>
 				</div>
 			</div>
 		</div>
@@ -37,16 +37,16 @@
 			<ion-item class="doctor_details">
 				 <a class="HrefListView"  href="#" >   
 					<img ng-src="img/IMG_2.png" class="listImgView">
-					<span class = "ListText doctorName" ><b>Dr.</b> <span class="SubTitleSpan">Doctor Name</span></span>				
+					<span class = "ListText doctorName" ><b>Dr.</b> <span class="SubTitleSpan">{{scheduledListDatas.assignedDoctorName}}</span></span>				
 					<list class="ion-chevron-right ListLinkHref doctorArrow" ></list>
 				 </a>
 			</ion-item >
 			
 			<ion-item class="appointmentTimeDetails">
 				<div class = "title" >			  
-					<span class="appinmentTime">{{scheduledListDatas.expireDateInfo | date: "hh:mm"}}</span><span class="appinmentTimeAM">{{scheduledListDatas.expireDateInfo | date: "a"}}</span>  <br>
+					<span class="appinmentTime">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}</span><span class="appinmentTimeAM">{{scheduledListDatas.scheduledTime | date: "a"}}</span>  <br>
 					<span class="appinmentTimeDate"> 
-						{{scheduledListDatas.expireDateInfo | date: "EEEE,MMMM dd"}}
+						{{scheduledListDatas.scheduledTime | date: "EEEE,MMMM dd"}}
 					</span>
 				</div>
 			</ion-item>
@@ -81,7 +81,7 @@
 	</ion-footer-bar>
 		
 	<ion-footer-bar align-title="left" class="bar-assertive enterAppoinment" style=" display: {{timeNew1}}" >
-			<a ng-href="#/tab/waitingRoom"  ng-click="doToWaitingRoom(PatientImageSelectUser,PatientName,PatientLastName,PatientAge,PatientGuardian)">
+			<a ng-href="#/tab/waitingRoom"  ng-click="doToWaitingRoom(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)">
 				<div >		
 					<div class="title EnterText">Enter Appointment</div>
 				</div>

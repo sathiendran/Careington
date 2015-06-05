@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }, 100); 
 	
 	
-	
+	/*
 	var dtNow = new Date("2015-05-26T13:20:04.268Z");
 	
 	$rootScope.time = dtNow.getTime();
@@ -88,7 +88,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             
         });
     });
-	
+	*/
     $scope.$storage = $localStorage;
    
     
@@ -169,6 +169,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       $scope.ccinfo = {type:undefined}
       $scope.save = function(data){
         if ($scope.paymentForm.$valid){
+			console.log('valid data saving stuff here');
           console.log(data) // valid data saving stuff here
         }
       }
@@ -299,6 +300,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             },
             error: function (data) {
                 $scope.PostPaymentDetails = 'Error getting consultation report';
+				console.log('line no 303');
 				console.log(data);
             }
         };
@@ -358,6 +360,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				error: function (data) {
 					$scope.accessToken = 'Error getting access token';
 					$scope.tokenStatus = 'alert-danger';
+					console.log('line no 363');
 					console.log(data);
 				}
 			};
@@ -377,6 +380,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				emailType: $scope.emailType,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
+				console.log('dopostsentpass');
 					console.log(data);
                     $scope.PasswordResetEmail = data;
 					$state.go('tab.resetPassword');	
@@ -469,6 +473,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.patientId = $rootScope.patientAccount.patientId;
+					console.log('doGetPatientProfiles');
 					console.log($rootScope.patientId);
 					
 					/*$rootScope.patientInfomation = [];	
@@ -495,7 +500,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'zipCode': index.zipCode,
 							});
 						});	*/
-						
+						console.log('rootScopepatientInfomation');
 						console.log($rootScope.patientInfomation);
 				
 						
@@ -509,7 +514,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getPatientProfiles(params);
 		}
 	
-	console.log($rootScope.patientId);
+	
 	$scope.doGetRelatedPatientProfiles = function() {
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -570,8 +575,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.patientInfomation = data.data[0].patientInformation;	
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
                 $rootScope.inTakeForm = data.data[0].intakeForm;
-				
-				console.log($rootScope.consultionInformation.primaryConcern);
+				console.log('patientInformation');
+				console.log(data.data[0].patientInformation);
 				
                /* $rootScope.depedentInformation = data.data[0].dependentInformation;
 
@@ -687,6 +692,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 patientId: $rootScope.patientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
+				console.log('addHealthPlan');
 					console.log(data);
                     $scope.HealthPlanProvidersList = data.data;
                     if(data != "")
@@ -743,7 +749,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
         $scope.payerId = HealthPlanProviders[2];
         //End 
-
+		$rootScope.providerName = HealthPlanProviders[0];
         
         $scope.insuranceCompany = $scope.insuranceCompany;
 		$scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
@@ -775,7 +781,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				payerId: $scope.payerId,
 				success: function (data) {
 					$scope.NewHealthPlan = data;
-					if($scope.NewHealthPlan.healthPlanID != '')	{			
+					if($scope.NewHealthPlan.healthPlanID != '')	{	
+			console.log('doPostNewHealthPlan');						
 						console.log(data);						
 						$scope.doGetPatientHealthPlansList();						
 					} else {					
@@ -850,10 +857,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$state.go('tab.cardDetails');
 		}
     });
-	$scope.doGetPatientPaymentProfilesConsultCharge = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Guardian) {
+	$scope.doGetPatientPaymentProfilesConsultCharge = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
 		
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -873,7 +880,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 						$rootScope.PaymentProfile = [];	
 					
-						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+						angular.forEach(data.data, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({
@@ -932,15 +939,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.PaymentProfile = [];	
 						
 						
-						$rootScope.PaymentDetailsList = data.data.paymentProfiles;
-						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.paymentProfiles.length - 1];
+						$rootScope.PaymentDetailsList = data.data;
+						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.length - 1];
 						
 						
 						$rootScope.PaymentDetailsList.push({
 							'cardNumber': 'Add a new card'
 						});
 					
-						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+						angular.forEach(data.data, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({
@@ -1006,7 +1013,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 						$rootScope.PaymentProfile = [];	
 					
-						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+						angular.forEach(data.data, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({
@@ -1175,7 +1182,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
         // Start Intake Sub Header Information 
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientName = P_Fname;
+        $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -1239,7 +1246,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(data != "")
                     $rootScope.scheduledList = [];
                     angular.forEach($scope.scheduledConsultationList, function(index, item) {	
-						/* $rootScope.scheduledList.push({							
+						 $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'scheduledTime': index.scheduledTime,
 							'consultantUserId': index.consultantUserId,
@@ -1250,8 +1257,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                             'patientName': index.patientName,
                             'patientUserId': index.patientUserId,
                             'scheduledId': index.scheduledId,    
-						});*/
-						 $rootScope.scheduledList.push({							
+						});
+						/* $rootScope.scheduledList.push({							
 							'id': index.$id,
 							'isTimeConverted': index.isTimeConverted,
 							'consultantUserId': index.consultantUserId,
@@ -1261,7 +1268,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'expireDateInfo': index.expireDateInfo,
                             'consultationDateInfo': index.consultationDateInfo,
                             'patientId': index.patientId,                              
-						});
+						});*/
 					});	
                      $state.go('tab.patientCalendar');
                 },
@@ -1296,7 +1303,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.CardValidation($scope.ErrorMessage);
 		} else {
 			$rootScope.verifyPlanDisplay = "block";
-			$rootScope.PlanDisplay = "none;";			
+			$rootScope.PlanDisplay = "none;";	 		
 			$scope.doPostNewHealthPlan();	
 		}	
 	}
@@ -1427,11 +1434,57 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
         $state.go('tab.consultCharge'); 
     }
+	
+	$rootScope.patientDisplay1 = 'none';
+	$rootScope.patientDisplay = 'block';
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
        $rootScope.scheduledListDatas =scheduledListData;     
+	
+	$rootScope.dtNow = new Date("2015-07-04T06:27:04.268Z");
+	
+	 $rootScope.time = $rootScope.dtNow.getTime();
+	
        $state.go('tab.appoimentDetails'); 
      };
+	// $rootScope.dtNow = new Date("2015-06-04T07:10:04.268Z"); 
+	// $rootScope.time = $rootScope.dtNow.getTime();
+	
+	//$rootScope.patientDisplay1 = 'none';
+	//$rootScope.patientDisplay = 'block';
+	
+	$scope.$on('timer-tick', function (event, args){
+        $timeout(function() {
+		console.log(args.minutes + ' - ' + args.seconds );
+            if(args.millis < 100){
+               // $rootScope.timeNew = 'Completed';
+				$rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			   $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay1 = 'block';
+				console.log($rootScope.timeNew);
+            }
+            else if(args.millis < 600000){
+			//$rootScope.timeNew = 'below 10 minutes!';
+               $rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			   $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay1 = 'block';
+			   console.log('below 10 minutes!');
+			   
+            }else{
+               // $rootScope.timeNew = 'More than 10 minutes!';
+				$rootScope.timeNew = 'block';
+			   $rootScope.timeNew1 = 'none';
+			    $rootScope.patientDisplay = 'block';
+			   $rootScope.patientDisplay1 = 'none';
+				console.log('More than 10 minutes!');
+            }
+            
+        });
+    });
+	   
+	 
 	
 	$rootScope.EnableBackButton = function () {     
         $state.go('tab.userhome');			
@@ -1476,10 +1529,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	  $rootScope.PopupValidation = function($a){
         function refresh_close(){
-			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			$('.close').click(function(){$(this).parent().fadeOut(200);
+			$rootScope.PrimaryPopup = $rootScope.PrimaryPopup - 1;
+			});
 			}
 			refresh_close();
-			
+			$rootScope.PrimaryPopup = $rootScope.PrimaryPopup + 1;
 			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
 
 			$("#notifications-top-center").remove();
@@ -1512,13 +1567,32 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       
    $scope.closePrimaryConcerns = function() {
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
-        angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
-           $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
-        });
+        //angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
+           //$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+		   if(typeof $rootScope.PatientSecondaryConcern[0] != 'undefined') {
+					if($scope.PatientPrimaryConcernItem[0].text == $rootScope.PatientSecondaryConcern[0].text) {			
+						$scope.ErrorMessage = "Primary and Secondary Concerns must be different.";
+						$rootScope.ValidationFunction1($scope.ErrorMessage);
+					}
+					else {
+					$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+					 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
+					$scope.modal.hide();
+					$scope.data.searchQuery = '';
+					}
+			} else {
+				$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+				 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
+				$scope.modal.hide();
+				$scope.data.searchQuery = '';
+			}
+		   
+		   
+		   
+		   
+        //});
          
-        $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
-        $scope.modal.hide();
-        $scope.data.searchQuery = '';
+       
     };
    
     
@@ -1535,7 +1609,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     //item.checked = false;
     
     } 
-	
+	$rootScope.PrimaryPopup = 0;
   // Open text view for other primary concern
 	$scope.openOtherPrimaryConcernView = function(model) {
 	   $scope.data = {}
@@ -1559,9 +1633,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				type: 'button-positive',
 				onTap: function(e) {
 				  if (!$scope.data.PrimaryConcernOther) {
-					$scope.ErrorMessages = "Please enter the primary reason for today's visit.";
-					$rootScope.PopupValidation($scope.ErrorMessages);
-					e.preventDefault();
+					if($rootScope.PrimaryPopup == 0) {
+						$scope.ErrorMessages = "Please enter the primary reason for today's visit.";
+						$rootScope.PopupValidation($scope.ErrorMessages);
+					}
+						e.preventDefault();
 				  } else {
                       angular.forEach($scope.primaryConcernList, function(item, index) {
                         item.checked = false;
@@ -1588,12 +1664,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 	//console.log($rootScope.IsValue)
     
+	$rootScope.PrimaryNext = 0;
     
     $rootScope.ConcernsValidation = function($a){
         function refresh_close(){
-			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			$('.close').click(function(){$(this).parent().fadeOut(200);
+				$rootScope.PrimaryNext = $rootScope.PrimaryNext - 1;
+			});
+			
 			}
 			refresh_close();
+			
+			$rootScope.PrimaryNext = $rootScope.PrimaryNext + 1;
 			
 			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
 
@@ -1607,10 +1689,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.PatientConcernsDirectory = function(){
         if($rootScope.IsValue == 0 || $rootScope.IsValue == undefined) {
-            $scope.ErrorMessage = "Primary Concern Can't be Empty!";
-			$rootScope.ConcernsValidation($scope.ErrorMessage);
-            } else { $state.go('tab.ChronicCondition');
-            }
+			if($rootScope.PrimaryNext == 0) {
+				$scope.ErrorMessage = "Primary Concern Can't be Empty!";
+				$rootScope.ConcernsValidation($scope.ErrorMessage);
+			}
+        } else { $state.go('tab.ChronicCondition');
+        }
         
     }
     
@@ -1636,11 +1720,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
     $scope.closeSecondaryConcerns = function() {
         $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {checked:true});
-        angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
-            $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
-        });
-        $scope.modal.hide();
-        $scope.data.searchQuery = '';
+      //  angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
+			if(typeof $rootScope.PatientPrimaryConcern[0] != 'undefined') {
+					if($scope.PatientSecondaryConcernItem[0].text == $rootScope.PatientPrimaryConcern[0].text) {			
+						$scope.ErrorMessage = "Primary and Secondary Concerns must be different.";
+						$rootScope.ValidationFunction1($scope.ErrorMessage);
+					}
+					else {
+					$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
+					 $scope.modal.hide();
+					$scope.data.searchQuery = '';	
+					}
+			} else {
+				$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
+				 $scope.modal.hide();
+				$scope.data.searchQuery = '';
+			}
+			
+       // });
+       
     };
     
     

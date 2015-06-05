@@ -33,7 +33,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.tokenStatus = 'alert-warning';
         $scope.existingConsultation = '{ "message": "NO EXISITING CONSULTATION JSON" }';
         $scope.consultationId = 2440;//2440
-        $scope.patientId = 471;
+        $scope.patientId = 452;
 		$scope.otherPatientId = 505;
         $scope.hospitalId = 126;
         $scope.userTypeId = 1;
@@ -156,7 +156,22 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 										  "description": "watery eyes"
 										}
 									  ]
-									}
+									};
+		
+		$scope.OnDemandConsultationSaveData ={
+											  "concerns": [
+												{
+												  "isPrimary": true,
+												  "description": "w/e"
+												},
+												{
+												  "isPrimary": false,
+												  "description": "r/n"
+												}
+											  ],
+											  "phone": "+10123456789",
+											  "patientId": $scope.patientId
+											}
 
         $scope.doGetToken = function () {
             var params = {
@@ -643,6 +658,47 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 				apiComService.getPatientsProfile (params);
 		};
 		
+		$scope.doPostOnDemandConsultation = function() {
+				if ($scope.accessToken == 'No Token') {
+					alert('No token.  Get token first then attempt operation.');
+					return;
+				}
+				 var params = {
+					accessToken: $scope.accessToken,
+					OnDemandConsultationData: $scope.OnDemandConsultationSaveData,
+					patientID: $scope.patientId,
+					success: function (data) {
+						$scope.OnDemandConsultationSaveResult = data;
+					},
+					error: function (data) {
+						$scope.OnDemandConsultationSaveResult = 'Error posting On Demand Consultation';
+						console.log(data);
+					}
+				};
+				
+				apiComService.postOnDemandConsultation (params);
+		};
+		
+		$scope.doGetConsultationKey = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                consultationId: $scope.consultationId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.ConsultationKey = data;
+                },
+                error: function (data) {
+                    $scope.ConsultationKey = 'Error getting consultation key';
+                    console.log(data);
+                }
+            };
+
+            apiComService.getConsultationKey(params);
+        }
+		
     }]);
 
 app.service('apiComService', function ($http) {
@@ -705,6 +761,7 @@ app.service('apiComService', function ($http) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations/' + params.consultationId + '/all',
+			//url: 'https://sandbox.connectedcare.md/api/v2/physicians/appointments/' + params.consultationId + '/videokey',
             method: 'GET'   
         };
 
@@ -1178,6 +1235,50 @@ app.service('apiComService', function ($http) {
 		});
 	}
 	
+	this.postOnDemandConsultation = function(params) {
+
+		var confirmOnDemandConsultationSave = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations',
+            method: 'POST',
+			data: params.OnDemandConsultationData
+		};
+		
+		$http(confirmOnDemandConsultationSave).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
+	this.getConsultationKey = function (params) {
+        //https://snap-dev.com/api/v2/patients/consultations/2440/all
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            //url: 'https://sandbox.connectedcare.md/api/v2/patients/consultations/' + params.consultationId + '/all',
+			url: 'https://sandbox.connectedcare.md/api/v2/physicians/appointments/' + params.consultationId + '/videokey',
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
 	
 });
 	

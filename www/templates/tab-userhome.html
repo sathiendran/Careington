@@ -32,7 +32,7 @@
 
  	<ion-list>
       
-	<a class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,patientName,patientInfomation.lastName,patientInfomation.age,patientInfomation.guardianName)">
+	<a class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,patientName,patientInfomation.lastName,patientInfomation.age,patientInfomation.guardianName,patientId)">
 		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery">
 			 <div class="HrefListView"> 
 				<div class="UserhmePatientDetails">
@@ -57,7 +57,7 @@
 		</ion-item>
 		
 		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery">
-			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,'452')" >   
+			 <a class="HrefListView"  ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId)" >   
 				<img ng-src="{{dependentDetails.profileImagePath}}" class="listImgView">
 				<span class = "ListText"><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></span>
 				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} | Guardain : {{dependentDetails.guardianName}}</p>
