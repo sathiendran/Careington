@@ -16,9 +16,9 @@
 			    </div>   
 			
 			
-			  <ion-checkbox ng-repeat="Countries in CountryLists.Countries.Results | arrayContries | orderBy:'Name' | filter: data.searchCountry"
-	ng-model="Countries.checked" ng-checked="Countries.checked" ng-click="OnSelectContryData(CountryLists.Countries.Results, Countries)" ng-disabled="checked" >
-				 <span class="ng-binding concernListDetails" >{{ Countries.Name}} </span>
+			 <ion-checkbox ng-repeat="StateListData in stateList"
+	ng-model="StateListData.checked" ng-checked="StateListData.checked" ng-click="OnSelectContryData(stateList.results, StateListData)" ng-disabled="checked" >
+				 <span class="ng-binding concernListDetails" >{{ StateListData.State.results[0].address_components[0].long_name}} </span>
         </ion-checkbox> 
 			</ion-item>
 		</ion-list>	

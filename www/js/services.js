@@ -445,7 +445,20 @@ this.getCountryDetails = function () {
 })
 
 
+ .service('StateList', function($http){    
+    this.getStateDetails = function (params) { 
+    var obj = {State:null};
+      
+       $http.get('http://maps.google.com/maps/api/geocode/json?address=' + params.SearchKeys + '&sensor  =false&components=country:' + params.CountryCode).success(function(data) {
+          obj.State = data;
+        });    
+
+        return obj;   
+      } 
+})
+
  
+  
 
 
 

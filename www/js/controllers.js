@@ -32,7 +32,7 @@ var util = {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
 
 
-.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage) {
+.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
  
 	$rootScope.currState = $state;
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
@@ -113,6 +113,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.modal = modal;
                 $scope.modal.show();
             }); 
+        $rootScope.CountryLists = CountryList.getCountryDetails();
     };
     
     // Onchange of Contries
@@ -138,6 +139,44 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
    //End Countries 
    
+    //Start Open State List popup
+    $scope.loadStateList = function(CountryCode) {
+	 $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
+                scope: $scope,
+                animation: 'slide-in-up',
+                focusFirstInput: false
+            }).then(function(modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+            }); 
+         $rootScope.CountryCode = CountryCode;
+       //console.log($rootScope.CountryCode,'kkkkkkkkkkkkkkk');
+    };
+    $scope.stateList = '';
+    $scope.StateSelect = function() {
+        var stateValue = $('#states').val();
+        var CountryCode = $rootScope.CountryCode;
+        if(stateValue.length >= 3) {
+        $scope.StateKeys =  stateValue;
+        var params = { SearchKeys: $scope.StateKeys,CountryCode: CountryCode};
+        $rootScope.stateList = StateList.getStateDetails(params);
+        console.log($rootScope.stateList);
+            /*angular.forEach($rootScope.stateList, function(index, item) { 
+                $rootScope.StateListData.push({
+                    'scheduledTime': index.address_components.,
+                });
+            }); */
+            
+        }
+    }
+  
+   $scope.closeStateList = function() {
+     $rootScope.stateList;
+     $rootScope.stateList;
+     $scope.modal.hide(); 
+    };
+   //End State 
+    
     
     $scope.CountryChange = function () {
         if($('#country').val() == 'US') {
@@ -353,7 +392,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$scope.doGetExistingConsulatation();
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
-                         $rootScope.CountryLists = CountryList.getCountryDetails();
+                         //$rootScope.CountryLists = CountryList.getCountryDetails();
 						$state.go('tab.userhome');		
 					}
 				},
