@@ -452,7 +452,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	//$rootScope.patientId = 471;
 	//$rootScope.patientId = 3056;
-	$rootScope.consultationId = 2440;
+	//$rootScope.consultationId = 2440;
 	$scope.userId = 471;
 	//$scope.userId = 3056;
 	//$scope.BillingAddress = '123 chennai';
@@ -1560,9 +1560,31 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    
 })
 
-
-
-
+.controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
+ 
+	$rootScope.currState = $state;
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+        if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") || 	
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
+            ){ 
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states. 
+                // Do nothing here to disable H/W back button.
+            } else { 
+                // For all other states, the H/W BACK button is enabled
+                navigator.app.backHistory(); 
+            }
+        }, 100); 
+		 $scope.$storage = $localStorage;
+   
+    
+	$scope.toggleLeft = function() {
+		$ionicSideMenuDelegate.toggleLeft();
+	};
+	
+})
 
 // Controller to be used by all intake forms
 .controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService) {
@@ -1908,7 +1930,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					success: function (data) {
 						$rootScope.OnDemandConsultationSaveResult = data.data[0];
 						$rootScope.consultationAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
-						$rootScope.consultationId1 = $rootScope.OnDemandConsultationSaveResult.consultationId;
+						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
 					},
 					error: function (data) {
@@ -1949,6 +1971,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
     $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
 	$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
+	console.log($rootScope.ChronicCount);
+	console.log($rootScope.PatientChronicCondition);
     $scope.modal.hide(); 
     $scope.data.searchQuery = '';    
     };
@@ -2365,25 +2389,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 										"vaccinationsCurrent": "T"
 									  },
 									  "concerns": [
-										{
-										  "isPrimary": true,
-										  "description": "runny nose"
-										},
-										{
-										  "isPrimary": false,
-										  "description": "watery eyes"
-										}
 									  ]
 									};
-	
-      
+
       $scope.doPutConsultationSave = function () {
+	  
+			$scope.ConsultationSaveData.concerns.push(
+				{isPrimary: true, description: $rootScope.PrimaryConcernText},
+				{isPrimary: false, description: $rootScope.SecondaryConcernText}
+			);	
+	  
+	  
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
-                consultationId: $rootScope.consultationId1,
+                consultationId: $rootScope.consultationId,
                 accessToken: $rootScope.accessToken,
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {
@@ -2396,7 +2418,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 }
             };
 
-            apiComService.putConsultationSave(params);
+            LoginService.putConsultationSave(params);
         }
     
     
