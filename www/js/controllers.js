@@ -151,8 +151,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.modal.show();
             }); 
          $rootScope.CountryCode = CountryCode;
-       //console.log($rootScope.CountryCode,'kkkkkkkkkkkkkkk');
-    };
+ };
     $scope.stateList = '';
     
     
@@ -732,6 +731,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		};
 
 		LoginService.getPatientHealthPlansList(params);
+        
 	}
 	
 	
@@ -996,7 +996,40 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
 	
-	
+	//Come to this issues : value="? undefined:undefined ?". Use this following Function //
+      $timeout(function(){
+            $('select option').filter(function() {
+                return this.value.indexOf('?') >= 0;
+            }).remove();
+        }, 100);
+    //value="? undefined:undefined ?"//
+    
+    
+    $scope.doPostApplyHealthPlan = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $scope.accessToken,
+				insuranceCompanyName: $scope.insuranceCompanyNameApply,
+				policyNumber: $scope.policyNumberApply,
+				consultationId: $scope.consultationIdApply,
+				healthPlanId: $scope.healthPlanIdApply,
+				success: function (data) {
+					$scope.ApplyHealthPlan = data;
+				},
+				error: function (data) {
+					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
+					console.log(data);
+				}
+			};
+			
+			apiComService.postApplyHealthPlan(params);
+		}
+    
+    
+    $scope.Health = [];
 	$scope.doGetPatientPaymentProfiles = function () {
 	
 		/*if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
@@ -1060,6 +1093,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 			LoginService.getPatientPaymentProfile(params);
 		//}
+        $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+        
 	}
 	
 	$scope.paymentProfileId = 28804398;	

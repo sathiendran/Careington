@@ -429,6 +429,33 @@ angular.module('starter.services', [])
                     }
                 });
     }
+    
+    this.postApplyHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/healthplan/' + params.healthPlanId + '/apply',
+            method: 'POST',
+			data: {
+                insuranceCompanyName: params.insuranceCompanyName,
+				policyNumber: params.policyNumber,
+				consultationId: params.consultationId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+    
+    
 })
 
 
