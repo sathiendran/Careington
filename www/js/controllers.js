@@ -1004,20 +1004,30 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }, 100);
     //value="? undefined:undefined ?"//
     
-    
+    $scope.Health = [];
     $scope.doPostApplyHealthPlan = function() {
+        alert($scope.Health.addHealthPlan);
+         $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+          var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+         var InsuranceCompany = healthInsurance[0];
+         var PolicyNumber = healthInsurance[1];
+         // console.log(InsuranceCompany + ' ' + PolicyNumber);
+        $scope.consultationIdApply = 2556;
+        $scope.healthPlanIdApply = 3166;  
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
 			 var params = {
                 accessToken: $scope.accessToken,
-				insuranceCompanyName: $scope.insuranceCompanyNameApply,
-				policyNumber: $scope.policyNumberApply,
+				insuranceCompanyName: InsuranceCompany,
+				policyNumber: PolicyNumber,
 				consultationId: $scope.consultationIdApply,
 				healthPlanId: $scope.healthPlanIdApply,
 				success: function (data) {
 					$scope.ApplyHealthPlan = data;
+                    $scope.doGetPatientPaymentProfiles();
+                    $state.go('tab.addCard');
 				},
 				error: function (data) {
 					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
@@ -1029,7 +1039,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
     
     
-    $scope.Health = [];
+   
 	$scope.doGetPatientPaymentProfiles = function () {
 	
 		/*if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
@@ -1093,9 +1103,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 			LoginService.getPatientPaymentProfile(params);
 		//}
-        $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
-        
-	}
+    }
 	
 	$scope.paymentProfileId = 28804398;	
 	
