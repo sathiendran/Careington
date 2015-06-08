@@ -433,7 +433,7 @@ angular.module('starter.services', [])
     this.postApplyHealthPlan = function(params) {
 		var confirmPatientProfile = {
 			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/healthplan/' + params.healthPlanId + '/apply',
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/apply',
             method: 'POST',
 			data: {
                 insuranceCompanyName: params.insuranceCompanyName,

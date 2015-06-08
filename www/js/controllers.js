@@ -1004,28 +1004,34 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }, 100);
     //value="? undefined:undefined ?"//
     
-    $scope.Health = [];
+    $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
-        alert($scope.Health.addHealthPlan);
-         $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+      //  alert($scope.Health.addHealthPlan);
+		if(typeof $scope.Health.addHealthPlan != 'undefined') {
+			$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+		} else {
+			$rootScope.SelectedHealthPlans = $('#addNewCard').val();
+		}
           var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
          var InsuranceCompany = healthInsurance[0];
          var PolicyNumber = healthInsurance[1];
+		 var healthPlanIdApply = healthInsurance[2];
          // console.log(InsuranceCompany + ' ' + PolicyNumber);
-        $scope.consultationIdApply = 2556;
-        $scope.healthPlanIdApply = 3166;  
+        //$scope.consultationIdApply = 2556;
+       // $scope.healthPlanIdApply = 3166;  
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
 			 var params = {
-                accessToken: $scope.accessToken,
+                accessToken: $rootScope.accessToken,
 				insuranceCompanyName: InsuranceCompany,
 				policyNumber: PolicyNumber,
-				consultationId: $scope.consultationIdApply,
-				healthPlanId: $scope.healthPlanIdApply,
+				consultationId: $rootScope.consultationId,
+				healthPlanId: healthPlanIdApply,
 				success: function (data) {
 					$scope.ApplyHealthPlan = data;
+					console.log($scope.ApplyHealthPlan);
                     $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
 				},
@@ -1035,7 +1041,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 			};
 			
-			apiComService.postApplyHealthPlan(params);
+			LoginService.postApplyHealthPlan(params);
 		}
     
     
