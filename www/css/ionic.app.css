@@ -7910,10 +7910,11 @@ body {
   text-align: center;
   width: 100%;
   border-color: #B03A21;
-  border-width: 0px 0px 3px 0px; }
-  .header_image img {
-    width: 135px;
-    height: 75px; }
+  border-width: 0px 0px 3px 0px;
+  /*img {
+			width: 135px;
+			height: 75px;
+		}*/ }
 
 .password_sub_header {
   margin-top: 96px;
@@ -8148,8 +8149,7 @@ body {
       margin-left: -15px;
       margin-top: -13px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
-        width: 55px;
-        margin-top: -4px; }
+        width: 45px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
       font-size: 21px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
@@ -9205,8 +9205,8 @@ a {
   font-family: 'Glober Regular'; }
 
 .listImgView {
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%; }
 
 .HrefListView {
@@ -9737,8 +9737,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
     padding: 11px;
     height: 104px; }
     .UserHomePatient .UserHomeHeader .UserhmePatientDetails {
-      margin-top: -5px !important;
-      margin-left: 0px; }
+      margin-left: 0px;
+      margin-top: 23px; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails div, .UserHomePatient .UserHomeHeader .UserhmePatientDetails p {
         width: 67%; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails .UserHomeIcon {

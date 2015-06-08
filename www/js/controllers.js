@@ -240,7 +240,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$("#Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
 	}
@@ -256,7 +256,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$("#Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
 	}
@@ -1340,7 +1340,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$(".Error_Message").append(top);
-				$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
 	}
@@ -1573,7 +1573,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
 				$(".PopupError_Message").append(top);
-				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				//$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 		
 	}
@@ -1717,7 +1717,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
 				$(".Error_Message").append(top);
-				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				//$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 		
 	}
@@ -2242,7 +2242,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
 				$(".ErrorMessage").append(top);
-				$(".notifications-top-center").addClass('animated ' + 'bounce');
+				//$(".notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 		
 	}

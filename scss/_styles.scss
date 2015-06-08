@@ -321,10 +321,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	border-color: #B03A21;
 	border-width: 0px 0px 3px 0px;
 	
-		img {
+		/*img {
 			width: 135px;
 			height: 75px;
-		}
+		}*/
 }
 .password_sub_header {
 	@extend .login_sub_header;
@@ -552,8 +552,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.subHeader_image{
 			margin-left: -15px;  margin-top: -13px;
 			img {
-				width:55px;
-				margin-top: -4px; 
+				width:45px;
+				
 			}
 		}
 		.subHeader_content{
@@ -1597,7 +1597,7 @@ text-align:center
 	font-family:$fontFamily_regular;
 }
 .listImgView {
-width:55px; height:55px; border-radius: 50%;
+width:45px; height:45px; border-radius: 50%;
 }
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
@@ -2137,7 +2137,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	.UserHomeHeader {
 		top: 1px;padding:11px;height: 104px;
 		.UserhmePatientDetails {
-			margin-top:-5px !important; margin-left: 0px;
+			 margin-left: 0px;
+			 margin-top: 23px;
 			div, p {
 				width:67%;
 			}
