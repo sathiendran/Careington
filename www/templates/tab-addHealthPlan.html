@@ -25,7 +25,7 @@
 						<div class="demo" >
 							<select id="addHealthPlan" name="addHealthPlan" class="ellipsis">
 								<option><b>Choose Your Health Plan</b></option>
-								<option  ng-repeat="GetPlanList in patientHealthPlanList"><b><span class="ellipsis">{{GetPlanList.insuranceCompany}}</span><span class="ellipsis"> {{GetPlanList.policyNumber}}</span></b></option>
+								<option  ng-repeat="GetPlanList in patientHealthPlanList"><b><span class="ellipsis">{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:15}}</span></b></option>
 								<option><b>Add a new health plan</b></option>
 							</select>
 						</div>

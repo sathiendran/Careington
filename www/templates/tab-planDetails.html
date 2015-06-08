@@ -63,7 +63,7 @@
                             
              <select id="Provider" ng-model="AddHealth.Provider" required>
 								<option value=""><b>Plan Provider</b></option>
-				<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
+				<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName | truncate:15}}</b></option>
 								
 			</select> 
                             

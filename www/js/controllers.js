@@ -2706,6 +2706,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
   };
 })
 
+
+.filter('truncate', function () {
+    return function (input, characters) {
+        if (input.length > characters) {
+            return input.substr(0, characters) + '...';
+        }
+
+        return input;
+    };
+}) 
+
 .directive('siteHeader', function () {
     return {
         restrict: 'E',
