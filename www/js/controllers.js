@@ -529,7 +529,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.patientId = $rootScope.patientAccount.patientId;
 					console.log('doGetPatientProfiles');
-					console.log($rootScope.patientId);
+					console.log(data.data[0]);
 					
 					/*$rootScope.patientInfomation = [];	
 					
@@ -1441,7 +1441,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        $state.go('tab.consultCharge'); 
+		$rootScope.doPutConsultationSave();       
     }
 	
 	$rootScope.patientDisplay1 = 'none';
@@ -1530,7 +1530,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService) {
     
    
     $rootScope.limit = 4;
@@ -1599,7 +1599,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
       
    $scope.closePrimaryConcerns = function() {
-        $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
+        $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});		
+		$rootScope.PrimaryConcernText = $scope.PatientPrimaryConcernItem[0].text;		
+		
         //angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
            //$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
 		   if(typeof $rootScope.PatientSecondaryConcern[0] != 'undefined') {
@@ -1726,7 +1728,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Primary Concern Can't be Empty!";
 				$rootScope.ConcernsValidation($scope.ErrorMessage);
 			}
-        } else { $state.go('tab.ChronicCondition');
+        } else { 
+			$scope.doPostOnDemandConsultation();			
         }
         
     }
@@ -1753,6 +1756,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
     $scope.closeSecondaryConcerns = function() {
         $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {checked:true});
+		$rootScope.SecondaryConcernText = $scope.PatientSecondaryConcernItem[0].text;
+		
       //  angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
 			if(typeof $rootScope.PatientPrimaryConcern[0] != 'undefined') {
 					if($scope.PatientSecondaryConcernItem[0].text == $rootScope.PatientPrimaryConcern[0].text) {			
@@ -1841,10 +1846,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.OnDemandConsultationSaveData ={
 											  "concerns": [
 												
-											  ],
-											  "phone": "+10123456789",
+											  ],											  
 											  "patientId": $rootScope.PatientId
 										}	
+										
+
+					if($rootScope.mobilePhone != '') {
+						$scope.OnDemandConsultationSaveData["phone"] = $rootScope.mobilePhone;
+					} else if($rootScope.mobilePhone == '') {
+						$scope.OnDemandConsultationSaveData["phone"] = $rootScope.homePhone;
+					}
+					
 			
 	
 	$scope.doPostOnDemandConsultation = function() {
@@ -1868,6 +1880,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.consultationAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
+						$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
 						$scope.OnDemandConsultationSaveResult = 'Error posting On Demand Consultation';
@@ -2279,64 +2292,65 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.ConsultationSaveData = 	{
 									  "medicationAllergies": [
-										{
-										  "code": 1,
-										  "description": "med 352"
-										},
-										{
-										  "code": 2,
-										  "description": "med 3537"
-										}
 									  ],
 									  "surgeries": [
-										{
-										  "description": "ankle",
-										  "month": 2,
-										  "year": 2015
-										},
-										{
-										  "description": "elbow",
-										  "month": 2,
-										  "year": 2015
-										}
 									  ],
 									  "medicalConditions": [
-										{
-										  "code": 4,
-										  "description": "cancer"
-										},
-										{
-										  "code": 5,
-										  "description": "other"
-										}
 									  ],
 									  "medications": [
-										{
-										  "code": 6,
-										  "description": "med 123"
-										},
-										{
-										  "code": 7,
-										  "description": "med 345"
-										}
 									  ],
 									  "infantData": {
-										"fullTerm": "T",
-										"vaginalBirth": "T",
-										"dischargedWithMother": "T",
-										"vaccinationsCurrent": "T"
+										"fullTerm": "",
+										"vaginalBirth": "",
+										"dischargedWithMother": "",
+										"vaccinationsCurrent": ""
 									  },
 									  "concerns": [
 									  ]
 									};
 
-      $scope.doPutConsultationSave = function () {
+      $rootScope.doPutConsultationSave = function () {
+	  
+			for (var i = 0; i < $rootScope.AllegiesCount; i++) {
+				$scope.ConsultationSaveData.medicationAllergies.push(
+					{code: $rootScope.patinentMedicationAllergies[i].codeId, description: $rootScope.patinentMedicationAllergies[i].text}
+				);
+			}
+			
+			for (var i = 0; i < $rootScope.IsToPriorCount; i++) {
+				
+				date1 = new Date ($rootScope.patientSurgeriess[i].Date );		 
+				year = date1.getFullYear();
+				month = (date1.getMonth()) + 1;
+				
+				$scope.ConsultationSaveData.surgeries.push(
+					{description: $rootScope.patientSurgeriess[i].Name, month: month, year: year}
+				);
+			}	
+
+			for (var i = 0; i < $rootScope.ChronicCount; i++) {
+				$scope.ConsultationSaveData.medicalConditions.push(
+					{code: $rootScope.PatientChronicCondition[i].codeId, description: $rootScope.PatientChronicCondition[i].text}
+				);
+			}	
+
+			for (var i = 0; i < $rootScope.MedicationCount; i++) {
+				$scope.ConsultationSaveData.medications.push(
+					{code: $rootScope.patinentCurrentMedication[i].codeId, description: $rootScope.patinentCurrentMedication[i].text}
+				);
+			}	
+	  
 	  
 			$scope.ConsultationSaveData.concerns.push(
 				{isPrimary: true, description: $rootScope.PrimaryConcernText},
 				{isPrimary: false, description: $rootScope.SecondaryConcernText}
 			);	
-	  
+			
+
+			console.log($rootScope.patientSurgeriess);
+			console.log($rootScope.IsToPriorCount);
+		
+		console.log($scope.ConsultationSaveData);
 	  
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
@@ -2346,9 +2360,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 consultationId: $rootScope.consultationId,
                 accessToken: $rootScope.accessToken,
 				ConsultationSaveData: $scope.ConsultationSaveData,
-                success: function (data) {
-                    //$scope.ConsultationSave = data;
-					$scope.ConsultationSave = "success";
+                success: function (data) {                    
+					$scope.ConsultationSave = "success";					
+					 $state.go('tab.consultCharge'); 
                 },
                 error: function (data) {
                     $scope.ConsultationSave = 'Error getting patient Consultation Save';
