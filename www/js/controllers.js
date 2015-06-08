@@ -858,54 +858,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	
 	
-	$scope.doGetExistingConsulatationReport = function () {	
-		
-			
-		 if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		
-		var params = {
-            consultationId: $rootScope.consultationId, 
-            accessToken: $rootScope.accessToken,
-            success: function (data) {
-                $rootScope.existingConsultationReport = data.data[0];
-					$state.go('tab.waitingRoom');
-            },
-            error: function (data) {
-                $scope.existingConsultationReport = 'Error getting consultation report';
-				console.log(data);
-            }
-        };
-        
-		LoginService.getConsultationFinalReport(params);
-	}
-	
-	$scope.doGetExistingConsulatationReportReceipt = function () {	
-		
-		
-		 if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		
-		var params = {
-            consultationId: $rootScope.consultationId, 
-            accessToken: $rootScope.accessToken,
-            success: function (data) {
-                $rootScope.existingConsultationReport = data.data[0];
-				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.HospitalImage;	
-           },
-            error: function (data) {
-                $scope.existingConsultationReport = 'Error getting consultation report';
-				console.log(data);
-            }
-        };
-        
-		LoginService.getConsultationFinalReport(params);
-		
-	}
 	
 	
 	 $("#addNewCard").change(function() {
@@ -1436,8 +1388,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					$scope.CreditCardDetails = data;					
 					$state.go('tab.receipt');	
-					$scope.ReceiptTimeout();
-					$scope.doGetExistingConsulatationReportReceipt();	
+					$scope.ReceiptTimeout();						
 				},
 				error: function (data) {
 					$scope.CreditCardDetails = 'Error getting patient payment profiles';
@@ -1552,7 +1503,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         });
     });
 	   
-	 
+	  $scope.doGetWaitingRoom = function() {
+			$state.go('tab.waitingRoom');					
+		}
 	
 	$rootScope.EnableBackButton = function () {     
         $state.go('tab.userhome');			
@@ -2457,7 +2410,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 
-.controller('ConferenceCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService) {
+.controller('ConferenceCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
 	$scope.myVideoHeight = $window.innerHeight - 40;
     $scope.myVideoWidth = $window.innerWidth;
@@ -2541,12 +2494,38 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.turnOffCamera = function(){
         
     };
+	
+	$scope.doGetExistingConsulatationReport = function () {	
+		
+			
+		 if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $rootScope.existingConsultationReport = data.data[0];		
+				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.HospitalImage;					
+				 $state.go('tab.ReportScreen');
+		   },
+            error: function (data) {
+                $scope.existingConsultationReport = 'Error getting consultation report';
+				console.log(data);
+            }
+        };
+        
+		LoginService.getConsultationFinalReport(params);
+	}
+	
     
     $scope.disconnectConference = function(){
         session.unpublish(publisher)
         //publisher.destroy();
         session.disconnect();
-        $state.go('tab.ReportScreen');
+		$scope.doGetExistingConsulatationReport();       
     };
     
 })
