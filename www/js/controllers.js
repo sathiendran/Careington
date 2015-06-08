@@ -151,8 +151,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.modal.show();
             }); 
          $rootScope.CountryCode = CountryCode;
-       //console.log($rootScope.CountryCode,'kkkkkkkkkkkkkkk');
-    };
+ };
     $scope.stateList = '';
     
     
@@ -732,6 +731,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		};
 
 		LoginService.getPatientHealthPlansList(params);
+        
 	}
 	
 	
@@ -996,7 +996,50 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
 	
-	
+	//Come to this issues : value="? undefined:undefined ?". Use this following Function //
+      $timeout(function(){
+            $('select option').filter(function() {
+                return this.value.indexOf('?') >= 0;
+            }).remove();
+        }, 100);
+    //value="? undefined:undefined ?"//
+    
+    $scope.Health = [];
+    $scope.doPostApplyHealthPlan = function() {
+        alert($scope.Health.addHealthPlan);
+         $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+          var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+         var InsuranceCompany = healthInsurance[0];
+         var PolicyNumber = healthInsurance[1];
+         // console.log(InsuranceCompany + ' ' + PolicyNumber);
+        $scope.consultationIdApply = 2556;
+        $scope.healthPlanIdApply = 3166;  
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $scope.accessToken,
+				insuranceCompanyName: InsuranceCompany,
+				policyNumber: PolicyNumber,
+				consultationId: $scope.consultationIdApply,
+				healthPlanId: $scope.healthPlanIdApply,
+				success: function (data) {
+					$scope.ApplyHealthPlan = data;
+                    $scope.doGetPatientPaymentProfiles();
+                    $state.go('tab.addCard');
+				},
+				error: function (data) {
+					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
+					console.log(data);
+				}
+			};
+			
+			apiComService.postApplyHealthPlan(params);
+		}
+    
+    
+   
 	$scope.doGetPatientPaymentProfiles = function () {
 	
 		/*if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
@@ -1060,7 +1103,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 			LoginService.getPatientPaymentProfile(params);
 		//}
-	}
+    }
 	
 	$scope.paymentProfileId = 28804398;	
 	
