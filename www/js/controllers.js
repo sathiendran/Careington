@@ -748,7 +748,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
-		if($('option:selected', this).text() == 'Add a new health plan') {
+		if($('option:selected', this).text() == 'Add a new healt...') {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -1042,6 +1042,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
                     if(!data.message) {
 					$scope.ApplyHealthPlan = data;
+					$rootScope.copayAmount = data.copayAmount;
 					console.log($scope.ApplyHealthPlan);
                     $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
@@ -1554,8 +1555,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				if(args.days == 0) {
 					$rootScope.DaysDisplay = 'none';				
 				} else if(args.days > 0) {
-					$rootScope.DaysDisplay = 'initial';	
-					//$rootScope.DaysDisplay = 'none';
+					//$rootScope.DaysDisplay = 'initial';	
+					$rootScope.DaysDisplay = 'none';
 					if(args.days == 1) {
 						$rootScope.days = args.days + ' day ';
 					} else {
