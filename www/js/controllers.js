@@ -29,6 +29,13 @@ var util = {
     }
 }
 
+var REVIEW_CONSULTATION_CODE = 116;
+var STARTED_CONSULTATION_CODE = 117;
+var STOPPED_CONSULTATION_CODE = 118;
+var ENDED_CONSULTATION_CODE = 119;
+var WAITING_CONSULTATION_CODE = 120;
+var JOIN_CONSULTATION_CODE = 121;
+
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
 
 
@@ -1475,7 +1482,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $state.go('tab.appoimentDetails'); 
     }
     
-    $scope.doToWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+    $scope.enterWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
