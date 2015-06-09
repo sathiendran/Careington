@@ -774,7 +774,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
     });
 	
-	$scope.healthPlanID = 124;
+	
 		//patientId
 	/*	$scope.insuranceCompany = "aaa bbb";
 		$scope.insuranceCompanyNameId = 1;
@@ -799,10 +799,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 
         //Provider List Data's
+        //$scope.healthPlanID = 124;
         var HealthPlanProviders =  $scope.AddHealth.Provider.split("@");
         $scope.insuranceCompany = HealthPlanProviders[0];
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
         $scope.payerId = HealthPlanProviders[2];
+        $scope.ProviderId = HealthPlanProviders[3];
+        $scope.healthPlanID = $scope.ProviderId;
+        console.log($scope.healthPlanID);
         //End 
 		$rootScope.providerName = HealthPlanProviders[0];
         
@@ -1006,19 +1010,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
-      //  alert($scope.Health.addHealthPlan);
-		if(typeof $scope.Health.addHealthPlan != 'undefined') {
-			$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
-		} else {
-			$rootScope.SelectedHealthPlans = $('#addNewCard').val();
-		}
-          var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+     //alert($scope.Health.addHealthPlan);
+		 $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+		 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
          var InsuranceCompany = healthInsurance[0];
          var PolicyNumber = healthInsurance[1];
 		 var healthPlanIdApply = healthInsurance[2];
-         // console.log(InsuranceCompany + ' ' + PolicyNumber);
-        //$scope.consultationIdApply = 2556;
-       // $scope.healthPlanIdApply = 3166;  
+         $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -1030,10 +1028,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				consultationId: $rootScope.consultationId,
 				healthPlanId: healthPlanIdApply,
 				success: function (data) {
+                    if(!data.message) {
 					$scope.ApplyHealthPlan = data;
 					console.log($scope.ApplyHealthPlan);
                     $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
+                    } else {
+                    $scope.ErrorMessage = "Bad Request Please check it!";
+			        $rootScope.CardValidation($scope.ErrorMessage);
+                    }
 				},
 				error: function (data) {
 					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
