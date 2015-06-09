@@ -1021,9 +1021,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
-
-     //alert($scope.Health.addHealthPlan);
-		 $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+        if(typeof $scope.Health.addHealthPlan != 'undefined') {
+            $rootScope.NewHealth = $scope.Health.addHealthPlan;
+            $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+        console.log($scope.Health.addHealthPlan);
+        } else {
+          $rootScope.NewHealth ;
+          $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+        }
+		 //$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
 		 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
          var InsuranceCompany = healthInsurance[0];
          var PolicyNumber = healthInsurance[1];
