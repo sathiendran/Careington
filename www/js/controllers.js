@@ -1298,37 +1298,46 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 success: function (data) {
 					console.log(data);
                     $scope.scheduledConsultationList = data.data;
-                    if(data != "")
-                    $rootScope.scheduledList = [];
-                    angular.forEach($scope.scheduledConsultationList, function(index, item) {	
-						 $rootScope.scheduledList.push({							
-							'id': index.$id,
-							'scheduledTime': index.scheduledTime,
-							'consultantUserId': index.consultantUserId,
-							'consultationId': index.consultationId,
-							'firstName': index.firstName,
-							'lastName': index.lastName,	
-							'assignedDoctorName': index.assignedDoctorName,
-                            'patientName': index.patientName,
-                            'patientUserId': index.patientUserId,
-                            'scheduledId': index.scheduledId,    
-						});
-						console.log('Schduled List');
-						console.log(data);
+					if(data != "") {
+						$rootScope.scheduledList = [];
+						 var TodayDate = new Date();						 
+						year = TodayDate.getFullYear();
+						month = (TodayDate.getMonth()) + 1;
+						date = TodayDate.getDate();
+						//2014-09-16T00:00:00
+						if(date<10) {
+							date='0'+date;
+						} 
+
+						if(month<10) {
+							month='0'+month;
+						} 
 						
-						/* $rootScope.scheduledList.push({							
-							'id': index.$id,
-							'isTimeConverted': index.isTimeConverted,
-							'consultantUserId': index.consultantUserId,
-							'consultationId': index.consultationId,
-							'createdDate': index.createdDate,
-							'expireDate': index.expireDate,	
-							'expireDateInfo': index.expireDateInfo,
-                            'consultationDateInfo': index.consultationDateInfo,
-                            'patientId': index.patientId,                              
-						});*/
-					});	
-                     $state.go('tab.patientCalendar');
+						$rootScope.TodayDate = year+'-'+month+'-'+date;
+						
+						angular.forEach($scope.scheduledConsultationList, function(index, item) {
+							console.log($rootScope.TodayDate);	
+							console.log(index.scheduledTime);	
+							if($rootScope.TodayDate < index.scheduledTime) {
+								 $rootScope.scheduledList.push({							
+									'id': index.$id,
+									'scheduledTime': index.scheduledTime,
+									'consultantUserId': index.consultantUserId,
+									'consultationId': index.consultationId,
+									'firstName': index.firstName,
+									'lastName': index.lastName,	
+									'assignedDoctorName': index.assignedDoctorName,
+									'patientName': index.patientName,
+									'patientUserId': index.patientUserId,
+									'scheduledId': index.scheduledId,    
+								});
+								console.log('Schduled List');
+								console.log(data);	
+							}		
+							
+						});	
+						 $state.go('tab.patientCalendar');
+					}
                 },
                 error: function (data) {
                     $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
@@ -1496,19 +1505,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.patientDisplay = 'block';
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
-       $rootScope.scheduledListDatas =scheduledListData;     
-	
-	$rootScope.dtNow = new Date("2015-07-04T06:27:04.268Z");
-	
-	 $rootScope.time = $rootScope.dtNow.getTime();
-	
-       $state.go('tab.appoimentDetails'); 
+		$rootScope.scheduledListDatas =scheduledListData;     
+		   //console.log($rootScope.scheduledListDatas);
+		
+		$rootScope.dtNow = new Date($rootScope.scheduledListDatas.scheduledTime + "Z");
+		
+		$rootScope.time = $rootScope.dtNow.getTime();
+		
+		   $state.go('tab.appoimentDetails'); 
      };
-	// $rootScope.dtNow = new Date("2015-06-04T07:10:04.268Z"); 
-	// $rootScope.time = $rootScope.dtNow.getTime();
 	
-	//$rootScope.patientDisplay1 = 'none';
-	//$rootScope.patientDisplay = 'block';
 	
 	$scope.$on('timer-tick', function (event, args){
         $timeout(function() {
@@ -1517,8 +1523,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                // $rootScope.timeNew = 'Completed';
 				$rootScope.timeNew = 'none';
 			   $rootScope.timeNew1 = 'block';
-			   $rootScope.patientDisplay = 'none';
-			   $rootScope.patientDisplay1 = 'block';
+			  // $rootScope.patientDisplay = 'none';
+			  // $rootScope.patientDisplay1 = 'block';
 				console.log($rootScope.timeNew);
             }
             else if(args.millis < 600000){
@@ -1533,8 +1539,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                // $rootScope.timeNew = 'More than 10 minutes!';
 				$rootScope.timeNew = 'block';
 			   $rootScope.timeNew1 = 'none';
-			    $rootScope.patientDisplay = 'block';
-			   $rootScope.patientDisplay1 = 'none';
+			   // $rootScope.patientDisplay = 'block';
+			   //$rootScope.patientDisplay1 = 'none';
 				console.log('More than 10 minutes!');
             }
             
