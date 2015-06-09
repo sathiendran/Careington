@@ -2470,6 +2470,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
     $scope.muteIconClass = 'ion-ios-mic callIcons';
+    $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
     apiKey = "45217062"; 
       sessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
@@ -2514,8 +2515,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.toggleCamera = function(){
         if($scope.cameraPosition == "front"){
             $scope.newCamPosition = "back";
+            $scope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
         }else{
             $scope.newCamPosition = "front";
+            $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
         }
         $scope.cameraPosition = $scope.newCamPosition;
         publisher.setCameraPosition($scope.newCamPosition);
