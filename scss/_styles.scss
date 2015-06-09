@@ -552,7 +552,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.subHeader_image{
 			margin-left: -15px;  margin-top: -13px;
 			img {
-				width:45px;
+				width:30px;
 				
 			}
 		}
@@ -645,7 +645,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	a {
 		margin: -4px;
 		.doctorName {
-			top: -18px;margin-left: 3px;
+			top: -5px;margin-left: 3px;
 		}
 		.doctorArrow {
 			color:#888;margin-top: 22px;
@@ -1018,6 +1018,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
   box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
   height: 45px;
   font-size: 18px;
+  border: none;
  }
  select {
     overflow:hidden; 
@@ -1597,7 +1598,10 @@ text-align:center
 	font-family:$fontFamily_regular;
 }
 .listImgView {
-width:45px; height:45px; border-radius: 50%;
+width:30px; height:30px; border-radius: 50%;margin-top: 10px; margin-left: 8px;
+}
+.UserHmelistImgView {
+width:55px; height:55px; border-radius: 50%;
 }
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
@@ -2138,7 +2142,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 		top: 1px;padding:11px;height: 104px;
 		.UserhmePatientDetails {
 			 margin-left: 0px;
-			 margin-top: 23px;
+			 margin-top: -5px !important;
 			div, p {
 				width:67%;
 			}

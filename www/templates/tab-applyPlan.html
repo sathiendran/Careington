@@ -24,7 +24,7 @@
 								<option  ng-repeat="GetPlanList in patientHealthPlanList"><b><span class="ellipsis">{{GetPlanList.insuranceCompany}}</span><span class="ellipsis"> {{GetPlanList.policyNumber}}</span></b></option>
 								<option><b>Add a new health plan</b></option>
 						</select>-->
-						<select id="addNewCard" name="addNewCard"  data-ng-options="GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:15 for GetHealthPlan in ApplyPlanPatientHealthPlanList" data-ng-model="SelectedHealthPlan" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" style="border: none;"></select>
+						<select id="addHealthPlan" name="addHealthPlan"  data-ng-options="GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:15 for GetHealthPlan in ApplyPlanPatientHealthPlanList" data-ng-model="SelectedHealthPlan" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" style="border: none;"></select>
 						
 					</div>
 				</div>

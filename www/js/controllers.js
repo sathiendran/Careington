@@ -332,7 +332,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//console.log(data);
                 $rootScope.PostPaymentDetails = data.data;
 				if($rootScope.PostPaymentDetails == "")	 {
-					$scope.ErrorMessage = "We did not find an account associated with the email you entered.  Please try again!";
+					$scope.ErrorMessage = "No account associated with this email.  Please try again.";
 					$rootScope.Validation($scope.ErrorMessage);
 				} else {				
 					$rootScope.hospitalDetailsList = [];
@@ -400,7 +400,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
 					if(typeof data.access_token == 'undefined') {
-						$scope.ErrorMessage = "The password you entered is incorrect.Please try again!";
+						$scope.ErrorMessage = "Incorrect Password. Please try again.";
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
 						$scope.tokenStatus = 'alert-success';
@@ -1010,7 +1010,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if(typeof $scope.Health.addHealthPlan != 'undefined') {
 			$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
 		} else {
-			$rootScope.SelectedHealthPlans = $('#addNewCard').val();
+			$rootScope.SelectedHealthPlans = $('#addHealthPlan').val();
 		}
           var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
          var InsuranceCompany = healthInsurance[0];
@@ -1032,8 +1032,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					$scope.ApplyHealthPlan = data;
 					console.log($scope.ApplyHealthPlan);
-                    $scope.doGetPatientPaymentProfiles();
-                    $state.go('tab.addCard');
+                    $scope.doGetPatientPaymentProfiles();                    
 				},
 				error: function (data) {
 					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
@@ -1409,7 +1408,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.doPostCoPayDetails = function () {
 		
 		if($('#addNewCard').val() == 'Choose Your Card'){			
-			$scope.ErrorMessages = "Please select the credit card to be used for payment today!";
+			$scope.ErrorMessages = "Please select the card to use for payment.!";
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 			
 		} else {
@@ -1718,7 +1717,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				onTap: function(e) {
 				  if (!$scope.data.PrimaryConcernOther) {
 					if($rootScope.PrimaryPopup == 0) {
-						$scope.ErrorMessages = "Please enter the primary reason for today's visit.";
+						$scope.ErrorMessages = "Please enter a reason for today's visit.";
 						$rootScope.PopupValidation($scope.ErrorMessages);
 					}
 						e.preventDefault();
