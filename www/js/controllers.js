@@ -785,7 +785,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
     });
 	
-	$scope.healthPlanID = 124;
+	
 		//patientId
 	/*	$scope.insuranceCompany = "aaa bbb";
 		$scope.insuranceCompanyNameId = 1;
@@ -810,10 +810,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 
         //Provider List Data's
+        //$scope.healthPlanID = 124;
         var HealthPlanProviders =  $scope.AddHealth.Provider.split("@");
         $scope.insuranceCompany = HealthPlanProviders[0];
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
         $scope.payerId = HealthPlanProviders[2];
+        $scope.ProviderId = HealthPlanProviders[3];
+        $scope.healthPlanID = $scope.ProviderId;
+        console.log($scope.healthPlanID);
         //End 
 		$rootScope.providerName = HealthPlanProviders[0];
         
@@ -1017,19 +1021,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
-      //  alert($scope.Health.addHealthPlan);
-		if(typeof $scope.Health.addHealthPlan != 'undefined') {
-			$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
-		} else {
-			$rootScope.SelectedHealthPlans = $('#addHealthPlan').val();
-		}
-          var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+
+     //alert($scope.Health.addHealthPlan);
+		 $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+		 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
          var InsuranceCompany = healthInsurance[0];
          var PolicyNumber = healthInsurance[1];
 		 var healthPlanIdApply = healthInsurance[2];
-         // console.log(InsuranceCompany + ' ' + PolicyNumber);
-        //$scope.consultationIdApply = 2556;
-       // $scope.healthPlanIdApply = 3166;  
+         $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -1041,9 +1040,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				consultationId: $rootScope.consultationId,
 				healthPlanId: healthPlanIdApply,
 				success: function (data) {
+                    if(!data.message) {
 					$scope.ApplyHealthPlan = data;
 					console.log($scope.ApplyHealthPlan);
-                    $scope.doGetPatientPaymentProfiles();                    
+                    $scope.doGetPatientPaymentProfiles();
+                    $state.go('tab.addCard');
+                    } else {
+                    $scope.ErrorMessage = "Bad Request Please check it!";
+			        $rootScope.CardValidation($scope.ErrorMessage);
+                    }
+                    
+
 				},
 				error: function (data) {
 					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
@@ -1309,37 +1316,46 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 success: function (data) {
 					console.log(data);
                     $scope.scheduledConsultationList = data.data;
-                    if(data != "")
-                    $rootScope.scheduledList = [];
-                    angular.forEach($scope.scheduledConsultationList, function(index, item) {	
-						 $rootScope.scheduledList.push({							
-							'id': index.$id,
-							'scheduledTime': index.scheduledTime,
-							'consultantUserId': index.consultantUserId,
-							'consultationId': index.consultationId,
-							'firstName': index.firstName,
-							'lastName': index.lastName,	
-							'assignedDoctorName': index.assignedDoctorName,
-                            'patientName': index.patientName,
-                            'patientUserId': index.patientUserId,
-                            'scheduledId': index.scheduledId,    
-						});
-						console.log('Schduled List');
-						console.log(data);
+					if(data != "") {
+						$rootScope.scheduledList = [];
+						 var TodayDate = new Date();						 
+						year = TodayDate.getFullYear();
+						month = (TodayDate.getMonth()) + 1;
+						date = TodayDate.getDate();
+						//2014-09-16T00:00:00
+						if(date<10) {
+							date='0'+date;
+						} 
+
+						if(month<10) {
+							month='0'+month;
+						} 
 						
-						/* $rootScope.scheduledList.push({							
-							'id': index.$id,
-							'isTimeConverted': index.isTimeConverted,
-							'consultantUserId': index.consultantUserId,
-							'consultationId': index.consultationId,
-							'createdDate': index.createdDate,
-							'expireDate': index.expireDate,	
-							'expireDateInfo': index.expireDateInfo,
-                            'consultationDateInfo': index.consultationDateInfo,
-                            'patientId': index.patientId,                              
-						});*/
-					});	
-                     $state.go('tab.patientCalendar');
+						$rootScope.TodayDate = year+'-'+month+'-'+date;
+						
+						angular.forEach($scope.scheduledConsultationList, function(index, item) {
+							console.log($rootScope.TodayDate);	
+							console.log(index.scheduledTime);	
+							if($rootScope.TodayDate < index.scheduledTime) {
+								 $rootScope.scheduledList.push({							
+									'id': index.$id,
+									'scheduledTime': index.scheduledTime,
+									'consultantUserId': index.consultantUserId,
+									'consultationId': index.consultationId,
+									'firstName': index.firstName,
+									'lastName': index.lastName,	
+									'assignedDoctorName': index.assignedDoctorName,
+									'patientName': index.patientName,
+									'patientUserId': index.patientUserId,
+									'scheduledId': index.scheduledId,    
+								});
+								console.log('Schduled List');
+								console.log(data);	
+							}		
+							
+						});	
+						 $state.go('tab.patientCalendar');
+					}
                 },
                 error: function (data) {
                     $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
@@ -1412,9 +1428,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		$rootScope.ReceiptTime = currentTimeReceipt.getTime();
 		
-		//setTimeout(function(){ $state.go('tab.waitingRoom');	 }, 10000);
-        setTimeout(function(){ $scope.doGetWaitingRoom(); }, 10000);
-        
+		setTimeout(function(){ $state.go('tab.waitingRoom');	 }, 10000);
 	}
 	
     
@@ -1523,19 +1537,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.patientDisplay = 'block';
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
-       $rootScope.scheduledListDatas =scheduledListData;     
-	
-	$rootScope.dtNow = new Date("2015-07-04T06:27:04.268Z");
-	
-	 $rootScope.time = $rootScope.dtNow.getTime();
-	
-       $state.go('tab.appoimentDetails'); 
+		$rootScope.scheduledListDatas =scheduledListData;     
+		   //console.log($rootScope.scheduledListDatas);
+		
+		$rootScope.dtNow = new Date($rootScope.scheduledListDatas.scheduledTime + "Z");
+		
+		$rootScope.time = $rootScope.dtNow.getTime();
+		
+		   $state.go('tab.appoimentDetails'); 
      };
-	// $rootScope.dtNow = new Date("2015-06-04T07:10:04.268Z"); 
-	// $rootScope.time = $rootScope.dtNow.getTime();
 	
-	//$rootScope.patientDisplay1 = 'none';
-	//$rootScope.patientDisplay = 'block';
 	
 	$scope.$on('timer-tick', function (event, args){
         $timeout(function() {
@@ -1544,9 +1555,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                // $rootScope.timeNew = 'Completed';
 				$rootScope.timeNew = 'none';
 			   $rootScope.timeNew1 = 'block';
-			   $rootScope.patientDisplay = 'none';
-			   $rootScope.patientDisplay1 = 'block';
-
+			  // $rootScope.patientDisplay = 'none';
+			  // $rootScope.patientDisplay1 = 'block';
+				console.log($rootScope.timeNew);
             }
             else if(args.millis < 600000){
 			//$rootScope.timeNew = 'below 10 minutes!';
@@ -1554,20 +1565,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			   $rootScope.timeNew1 = 'block';
 			   $rootScope.patientDisplay = 'none';
 			   $rootScope.patientDisplay1 = 'block';
+			   console.log('below 10 minutes!');
 			   
             }else{
                // $rootScope.timeNew = 'More than 10 minutes!';
 				$rootScope.timeNew = 'block';
 			   $rootScope.timeNew1 = 'none';
-			    $rootScope.patientDisplay = 'block';
-			   $rootScope.patientDisplay1 = 'none';
+			   // $rootScope.patientDisplay = 'block';
+			   //$rootScope.patientDisplay1 = 'none';
+				console.log('More than 10 minutes!');
             }
             
         });
     });
 	   
     $scope.doGetWaitingRoom = function() {
-        var params = {
+			var params = {
             accessToken: $rootScope.accessToken,
             consultationID: $rootScope.consultationId,
             eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
@@ -1612,47 +1625,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
-    
-    // We will have to call this function every two seconds to check whether the physician started the conf or not.
-    $scope.checkIfPhysicianStartedConference = function(){
-        var params = {
-            consultationId: $rootScope.consultationId,
-            accessToken: $rootScope.accessToken,
-            success: function (data) {	
-                //$scope.consultationEventStatus = data.data[0].consultationInfo.consultationStatus;
-                $scope.getConferenceKeys();
-            },
-            error: function (data) {
-                $scope.hospitalCodesList = 'Error getting hospital codes list';
-                console.log(data);
-            }
-        };
-        LoginService.getExistingConsulatation(params);
-    };
-    
-    $scope.getConferenceKeys = function(){
-        var videoKeyParams = {
-        consultationId: $rootScope.consultationId,
-        accessToken: $rootScope.accessToken,
-        success: function (data) {
-            $rootScope.videoSessionId = data.sessionId;
-            $rootScope.videoApiKey = data.sessionId;
-            $rootScope.videoToken = data.sessionId;
-            
-            if($rootScope.videoSessionId != "" && $rootScope.videoToken != ""){
-                $state.go('tab.videoConference');
-            }
-        },
-        error: function (data) {
-            
-        }
-    };
-    
-    LoginService.getVideoConferenceKeys(videoKeyParams);
-        
-    };
-    
-    
+	
 })
 
 // Controller to be used by all intake forms
@@ -2550,25 +2523,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.muteIconClass = 'ion-ios-mic callIcons';
     $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
-    /*
     apiKey = "45217062"; 
       sessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
       token = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
-    */
-    
-    apiKey = $rootScope.videoSessionId;
-    sessionId = $rootScope.videoApiKey;
-    token = $rootScope.videoToken;
     
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
-
+    // Subscribe to a newly created stream
     session.on('streamCreated', function(event) {
         session.subscribe(event.stream, 'subscriber', {
             insertMode: 'append',
             subscribeToAudio: true,
             subscribeToVideo: true
         });
+        //alert(' streamCreated ');
         OT.updateViews();
     });
 
@@ -2594,6 +2562,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
 
     });
+    
     $scope.toggleCamera = function(){
         if($scope.cameraPosition == "front"){
             $scope.newCamPosition = "back";
