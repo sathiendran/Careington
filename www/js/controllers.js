@@ -36,6 +36,10 @@ var ENDED_CONSULTATION_CODE = 119;
 var WAITING_CONSULTATION_CODE = 120;
 var JOIN_CONSULTATION_CODE = 121;
 
+var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
+var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
+
+
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
 
 
@@ -1488,7 +1492,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        $state.go('tab.waitingRoom'); 
+        
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationID: $rootScope.consultationId,
+            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            eventID: WAITING_CONSULTATION_CODE,
+            success: function (data) {
+                $state.go('tab.waitingRoom');                  
+            },
+            error: function (data) {
+                
+            }
+        };
+        LoginService.updateConsultationEvent(params);
+        
     }
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -1548,9 +1566,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         });
     });
 	   
-	  $scope.doGetWaitingRoom = function() {
-			$state.go('tab.waitingRoom');					
-		}
+    $scope.doGetWaitingRoom = function() {
+			var params = {
+            accessToken: $rootScope.accessToken,
+            consultationID: $rootScope.consultationId,
+            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            eventID: WAITING_CONSULTATION_CODE,
+            success: function (data) {
+                $state.go('tab.waitingRoom');                  
+            },
+            error: function (data) {
+                
+            }
+        };
+        LoginService.updateConsultationEvent(params);					
+    }
 	
 	$rootScope.EnableBackButton = function () {     
         $state.go('tab.userhome');			
@@ -1561,6 +1591,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
  
 	$rootScope.currState = $state;
+    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
