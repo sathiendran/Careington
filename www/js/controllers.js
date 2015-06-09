@@ -1043,16 +1043,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(!data.message) {
 					$scope.ApplyHealthPlan = data;
 					console.log($scope.ApplyHealthPlan);
-<<<<<<< HEAD
                     $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
                     } else {
                     $scope.ErrorMessage = "Bad Request Please check it!";
 			        $rootScope.CardValidation($scope.ErrorMessage);
                     }
-=======
-                    $scope.doGetPatientPaymentProfiles();                    
->>>>>>> 16eccbeafa077aeebef92588aad0339b0bf0d068
+                    
+
 				},
 				error: function (data) {
 					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
