@@ -282,7 +282,7 @@ var timerModule = angular.module('timer', [])
             $scope.$digest();
           }, $scope.interval - adjustment);
 
-          $scope.$emit('timer-tick', {timeoutId: $scope.timeoutId, millis: $scope.millis, minutes: $scope.minutes, seconds: $scope.seconds});
+          $scope.$emit('timer-tick', {timeoutId: $scope.timeoutId, millis: $scope.millis, minutes: $scope.minutes, seconds: $scope.seconds, hours: $scope.hours, days: $scope.days});
 
           if ($scope.countdown > 0) {
             $scope.countdown--;
