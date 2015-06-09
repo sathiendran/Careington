@@ -29,6 +29,17 @@ var util = {
     }
 }
 
+var REVIEW_CONSULTATION_CODE = 116;
+var STARTED_CONSULTATION_CODE = 117;
+var STOPPED_CONSULTATION_CODE = 118;
+var ENDED_CONSULTATION_CODE = 119;
+var WAITING_CONSULTATION_CODE = 120;
+var JOIN_CONSULTATION_CODE = 121;
+
+var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
+var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
+
+
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
 
 
@@ -774,7 +785,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
     });
 	
-	$scope.healthPlanID = 124;
+	
 		//patientId
 	/*	$scope.insuranceCompany = "aaa bbb";
 		$scope.insuranceCompanyNameId = 1;
@@ -799,10 +810,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 
         //Provider List Data's
+        //$scope.healthPlanID = 124;
         var HealthPlanProviders =  $scope.AddHealth.Provider.split("@");
         $scope.insuranceCompany = HealthPlanProviders[0];
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
         $scope.payerId = HealthPlanProviders[2];
+        $scope.ProviderId = HealthPlanProviders[3];
+        $scope.healthPlanID = $scope.ProviderId;
+        console.log($scope.healthPlanID);
         //End 
 		$rootScope.providerName = HealthPlanProviders[0];
         
@@ -1006,19 +1021,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
-      //  alert($scope.Health.addHealthPlan);
-		if(typeof $scope.Health.addHealthPlan != 'undefined') {
-			$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
-		} else {
-			$rootScope.SelectedHealthPlans = $('#addHealthPlan').val();
-		}
-          var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+
+     //alert($scope.Health.addHealthPlan);
+		 $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+		 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
          var InsuranceCompany = healthInsurance[0];
          var PolicyNumber = healthInsurance[1];
 		 var healthPlanIdApply = healthInsurance[2];
-         // console.log(InsuranceCompany + ' ' + PolicyNumber);
-        //$scope.consultationIdApply = 2556;
-       // $scope.healthPlanIdApply = 3166;  
+         $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -1030,9 +1040,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				consultationId: $rootScope.consultationId,
 				healthPlanId: healthPlanIdApply,
 				success: function (data) {
+                    if(!data.message) {
 					$scope.ApplyHealthPlan = data;
 					console.log($scope.ApplyHealthPlan);
-                    $scope.doGetPatientPaymentProfiles();                    
+                    $scope.doGetPatientPaymentProfiles();
+                    $state.go('tab.addCard');
+                    } else {
+                    $scope.ErrorMessage = "Bad Request Please check it!";
+			        $rootScope.CardValidation($scope.ErrorMessage);
+                    }
+                    
+
 				},
 				error: function (data) {
 					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
@@ -1484,13 +1502,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $state.go('tab.appoimentDetails'); 
     }
     
-    $scope.doToWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+    $scope.enterWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        $state.go('tab.waitingRoom'); 
+        
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationID: $rootScope.consultationId,
+            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            eventID: WAITING_CONSULTATION_CODE,
+            success: function (data) {
+                $state.go('tab.waitingRoom');                  
+            },
+            error: function (data) {
+                
+            }
+        };
+        LoginService.updateConsultationEvent(params);
+        
     }
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -1547,9 +1579,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         });
     });
 	   
-	  $scope.doGetWaitingRoom = function() {
-			$state.go('tab.waitingRoom');					
-		}
+    $scope.doGetWaitingRoom = function() {
+			var params = {
+            accessToken: $rootScope.accessToken,
+            consultationID: $rootScope.consultationId,
+            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            eventID: WAITING_CONSULTATION_CODE,
+            success: function (data) {
+                $state.go('tab.waitingRoom');                  
+            },
+            error: function (data) {
+                
+            }
+        };
+        LoginService.updateConsultationEvent(params);					
+    }
 	
 	$rootScope.EnableBackButton = function () {     
         $state.go('tab.userhome');			
@@ -1560,6 +1604,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
  
 	$rootScope.currState = $state;
+    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
