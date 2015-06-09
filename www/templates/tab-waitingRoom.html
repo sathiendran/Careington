@@ -7,14 +7,21 @@
 	
 	<ion-content class="waitingRoomImage">
 		<div>		
-			<a ng-href="#/tab/videoConference" class="WaitingContent">
+			<div class="WaitingContent">
 				<div class="WaitingMessage" >
 					<div class="ClinicianMessage">The Clinician will be with you Shortly</div> 
 					<div class="ThankyouMessage">Thank you for your patience.</div>
 				</div>
-			</a>
-			
+			</div>
 		</div>
+        <p style="margin: auto; text-align: center; font-size: 15px;">
+            <br/><br/>
+            Click below to join Conference if doc already started the conf from web app. (For testing only) </span>
+            <br/>
+            <button type="submit" on-touch ='checkIfPhysicianStartedConference()' class="button">
+              <span>Join Conference</span>
+            </button>
+        </p>
 	</ion-content>
 	
 </ion-side-menu-content>	

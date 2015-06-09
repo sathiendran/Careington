@@ -1412,7 +1412,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		$rootScope.ReceiptTime = currentTimeReceipt.getTime();
 		
-		setTimeout(function(){ $state.go('tab.waitingRoom');	 }, 10000);
+		//setTimeout(function(){ $state.go('tab.waitingRoom');	 }, 10000);
+        setTimeout(function(){ $scope.doGetWaitingRoom(); }, 10000);
+        
 	}
 	
     
@@ -1544,7 +1546,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			   $rootScope.timeNew1 = 'block';
 			   $rootScope.patientDisplay = 'none';
 			   $rootScope.patientDisplay1 = 'block';
-				console.log($rootScope.timeNew);
+
             }
             else if(args.millis < 600000){
 			//$rootScope.timeNew = 'below 10 minutes!';
@@ -1552,7 +1554,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			   $rootScope.timeNew1 = 'block';
 			   $rootScope.patientDisplay = 'none';
 			   $rootScope.patientDisplay1 = 'block';
-			   console.log('below 10 minutes!');
 			   
             }else{
                // $rootScope.timeNew = 'More than 10 minutes!';
@@ -1560,14 +1561,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			   $rootScope.timeNew1 = 'none';
 			    $rootScope.patientDisplay = 'block';
 			   $rootScope.patientDisplay1 = 'none';
-				console.log('More than 10 minutes!');
             }
             
         });
     });
 	   
     $scope.doGetWaitingRoom = function() {
-			var params = {
+        var params = {
             accessToken: $rootScope.accessToken,
             consultationID: $rootScope.consultationId,
             eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
@@ -1612,7 +1612,47 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
-	
+    
+    // We will have to call this function every two seconds to check whether the physician started the conf or not.
+    $scope.checkIfPhysicianStartedConference = function(){
+        var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function (data) {	
+                //$scope.consultationEventStatus = data.data[0].consultationInfo.consultationStatus;
+                $scope.getConferenceKeys();
+            },
+            error: function (data) {
+                $scope.hospitalCodesList = 'Error getting hospital codes list';
+                console.log(data);
+            }
+        };
+        LoginService.getExistingConsulatation(params);
+    };
+    
+    $scope.getConferenceKeys = function(){
+        var videoKeyParams = {
+        consultationId: $rootScope.consultationId,
+        accessToken: $rootScope.accessToken,
+        success: function (data) {
+            $rootScope.videoSessionId = data.sessionId;
+            $rootScope.videoApiKey = data.sessionId;
+            $rootScope.videoToken = data.sessionId;
+            
+            if($rootScope.videoSessionId != "" && $rootScope.videoToken != ""){
+                $state.go('tab.videoConference');
+            }
+        },
+        error: function (data) {
+            
+        }
+    };
+    
+    LoginService.getVideoConferenceKeys(videoKeyParams);
+        
+    };
+    
+    
 })
 
 // Controller to be used by all intake forms
@@ -2510,20 +2550,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.muteIconClass = 'ion-ios-mic callIcons';
     $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
+    /*
     apiKey = "45217062"; 
       sessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
       token = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
+    */
+    
+    apiKey = $rootScope.videoSessionId;
+    sessionId = $rootScope.videoApiKey;
+    token = $rootScope.videoToken;
     
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
-    // Subscribe to a newly created stream
+
     session.on('streamCreated', function(event) {
         session.subscribe(event.stream, 'subscriber', {
             insertMode: 'append',
             subscribeToAudio: true,
             subscribeToVideo: true
         });
-        //alert(' streamCreated ');
         OT.updateViews();
     });
 
@@ -2549,7 +2594,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
 
     });
-    
     $scope.toggleCamera = function(){
         if($scope.cameraPosition == "front"){
             $scope.newCamPosition = "back";
