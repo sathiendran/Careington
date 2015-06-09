@@ -455,6 +455,30 @@ angular.module('starter.services', [])
 		});
 	}
     
+    this.updateConsultationEvent = function(params) {
+		var updatedConsultationEvent = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/patientconsultation/updateconsultationevent',
+            method: 'POST',
+			data: {
+				eventTypeID: params.eventTypeID,
+                consultationID: params.consultationID,
+				eventID: params.eventID
+            }
+		};
+		
+		$http(updatedConsultationEvent).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
     
 })
 

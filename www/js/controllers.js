@@ -29,6 +29,17 @@ var util = {
     }
 }
 
+var REVIEW_CONSULTATION_CODE = 116;
+var STARTED_CONSULTATION_CODE = 117;
+var STOPPED_CONSULTATION_CODE = 118;
+var ENDED_CONSULTATION_CODE = 119;
+var WAITING_CONSULTATION_CODE = 120;
+var JOIN_CONSULTATION_CODE = 121;
+
+var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
+var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
+
+
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
 
 
@@ -332,7 +343,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//console.log(data);
                 $rootScope.PostPaymentDetails = data.data;
 				if($rootScope.PostPaymentDetails == "")	 {
-					$scope.ErrorMessage = "We did not find an account associated with the email you entered.  Please try again!";
+					$scope.ErrorMessage = "No account associated with this email.  Please try again.";
 					$rootScope.Validation($scope.ErrorMessage);
 				} else {				
 					$rootScope.hospitalDetailsList = [];
@@ -400,7 +411,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
 					if(typeof data.access_token == 'undefined') {
-						$scope.ErrorMessage = "The password you entered is incorrect.Please try again!";
+						$scope.ErrorMessage = "Incorrect Password. Please try again.";
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
 						$scope.tokenStatus = 'alert-success';
@@ -1010,6 +1021,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
+
      //alert($scope.Health.addHealthPlan);
 		 $rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
 		 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
@@ -1031,12 +1043,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(!data.message) {
 					$scope.ApplyHealthPlan = data;
 					console.log($scope.ApplyHealthPlan);
+<<<<<<< HEAD
                     $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
                     } else {
                     $scope.ErrorMessage = "Bad Request Please check it!";
 			        $rootScope.CardValidation($scope.ErrorMessage);
                     }
+=======
+                    $scope.doGetPatientPaymentProfiles();                    
+>>>>>>> 16eccbeafa077aeebef92588aad0339b0bf0d068
 				},
 				error: function (data) {
 					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
@@ -1412,7 +1428,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.doPostCoPayDetails = function () {
 		
 		if($('#addNewCard').val() == 'Choose Your Card'){			
-			$scope.ErrorMessages = "Please select the credit card to be used for payment today!";
+			$scope.ErrorMessages = "Please select the card to use for payment.!";
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 			
 		} else {
@@ -1479,13 +1495,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $state.go('tab.appoimentDetails'); 
     }
     
-    $scope.doToWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+    $scope.enterWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        $state.go('tab.waitingRoom'); 
+        
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationID: $rootScope.consultationId,
+            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            eventID: WAITING_CONSULTATION_CODE,
+            success: function (data) {
+                $state.go('tab.waitingRoom');                  
+            },
+            error: function (data) {
+                
+            }
+        };
+        LoginService.updateConsultationEvent(params);
+        
     }
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -1545,9 +1575,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         });
     });
 	   
-	  $scope.doGetWaitingRoom = function() {
-			$state.go('tab.waitingRoom');					
-		}
+    $scope.doGetWaitingRoom = function() {
+			var params = {
+            accessToken: $rootScope.accessToken,
+            consultationID: $rootScope.consultationId,
+            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            eventID: WAITING_CONSULTATION_CODE,
+            success: function (data) {
+                $state.go('tab.waitingRoom');                  
+            },
+            error: function (data) {
+                
+            }
+        };
+        LoginService.updateConsultationEvent(params);					
+    }
 	
 	$rootScope.EnableBackButton = function () {     
         $state.go('tab.userhome');			
@@ -1558,6 +1600,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
  
 	$rootScope.currState = $state;
+    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -1721,7 +1764,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				onTap: function(e) {
 				  if (!$scope.data.PrimaryConcernOther) {
 					if($rootScope.PrimaryPopup == 0) {
-						$scope.ErrorMessages = "Please enter the primary reason for today's visit.";
+						$scope.ErrorMessages = "Please enter a reason for today's visit.";
 						$rootScope.PopupValidation($scope.ErrorMessages);
 					}
 						e.preventDefault();
@@ -2474,6 +2517,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
     $scope.muteIconClass = 'ion-ios-mic callIcons';
+    $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
     apiKey = "45217062"; 
       sessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
@@ -2518,8 +2562,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.toggleCamera = function(){
         if($scope.cameraPosition == "front"){
             $scope.newCamPosition = "back";
+            $scope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
         }else{
             $scope.newCamPosition = "front";
+            $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
         }
         $scope.cameraPosition = $scope.newCamPosition;
         publisher.setCameraPosition($scope.newCamPosition);

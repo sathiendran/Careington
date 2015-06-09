@@ -9,10 +9,18 @@
         </div>
     </ion-content>
 </ion-view>	>
-<ion-footer-bar class="footer" ng-show="controlsStyle">
+  
+<ion-footer-bar class="footer">
     <div style="width:100%; margin: auto; text-align: center; ">
-        <i class="{{muteIconClass}}" ng-click="toggleMute();"></i>
-        <i class="ion-ios-reverse-camera callIcons" ng-click="toggleCamera();"></i>
-        <i class="ion-power callIcons activeCallIcon" style="font-color: red;" ng-click="disconnectConference();"></i>
+        <div class="confCamera">
+            <i class="{{cameraIconClass}}" ng-click="toggleCamera();"></i>
+        </div>
+        <div class='confEndCall' ng-click="disconnectConference();">
+            End Call
+        </div>
+        <div class="confMute">
+            <i class="{{muteIconClass}}" ng-click="toggleMute();"></i>
+        </div>
     <div>
 </ion-footer-bar>	
+
