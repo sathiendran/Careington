@@ -108,125 +108,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
-   
-    $rootScope.StateText = "Select your state";
-    
- 
-    
-    
-     //Start Open Country List popup
-    $scope.loadCountriesList = function() {
-	
-           $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
-                scope: $scope,
-                animation: 'slide-in-up',
-                focusFirstInput: false
-            }).then(function(modal) {
-                $scope.modal = modal;
-                $scope.modal.show();
-            }); 
-        //$rootScope.CountryLists = CountryList.getCountryDetails();
-    };
-    
-    // Onchange of Contries
-    $scope.OnSelectContryData = function(CountriesList, items) {
-         angular.forEach(CountriesList, function(item, index) {
-             if (item.Name == items.Name){
-                 item.checked = true;
-                 $rootScope.SelectedCountry={							
-                    'CountryName': items.Name,
-                    'CountryCode': items.CountryCodes.iso2,
-                 };
-             }
-             else {
-                 item.checked = false; 
-             }
-         });
-    };
-    
-    $scope.closeCountryList = function() {
-        $rootScope.SelectedCountry;
-	    $scope.modal.hide(); 
-        //$scope.data.searchCountry = '';    
-    };
-   //End Countries 
-   
-    //Start Open State List popup
-    $scope.loadStateList = function(CountryCode) {
-	 $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
-                scope: $scope,
-                animation: 'slide-in-up',
-                focusFirstInput: false
-            }).then(function(modal) {
-                $scope.modal = modal;
-                $scope.modal.show();
-            }); 
-         $rootScope.CountryCode = CountryCode;
- };
-    $scope.stateList = '';
-    
-    
-    
-    
-    $scope.StateSelect = function($a) {
-        if($a.length >= 3){
-            
-            $timeout(function(){
-                var params = { SearchKeys: $a, CountryCode: $rootScope.CountryCode};
-                //$rootScope.stateList = StateList.getStateDetails(params);
-                var config = { 'params': { 'callback': 'JSON_CALLBACK'} };
-                
-                var googlePlacesUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?callback=angular.callbacks._&input=' + $a + '&types=(cities)&language=en&components=country:'+$rootScope.CountryCode+'&key=AIzaSyCjq4bTUhjvIxSFJBA6Ekk3DPdA_VrU9Zs';
-               
-                var googlePlacesResponsePromise = $http.jsonp(googlePlacesUrl,{ 'params': { 'callback': 'JSON_CALLBACK'} });
-                
-                googlePlacesResponsePromise.success(function(data, status, headers, config) {
-                    $rootScope.stateList = JSON.stringify(data);
-                });
-                
-                googlePlacesResponsePromise.error(function(data, status, headers, config) {
-                    alert("AJAX failed!");
-                });
-                
-            }, 1000);
-            
-            console.log($rootScope.stateList);
-        }else{
-            $rootScope.stateList = {};
-        }
-    };
-  
-   $scope.closeStateList = function() {
-     $rootScope.stateList;
-     $rootScope.stateList;
-     $scope.modal.hide(); 
-    };
-   //End State 
-    
-    
-    $scope.CountryChange = function () {
-        if($('#country').val() == 'US') {
-            $rootScope.StateList = {};
-            $rootScope.StateList = StateLists.getStateDetails();
-            $rootScope.StateText = "Select your state";
-        }else if($('#country').val() == 'UK') {
-            $rootScope.StateList = {};
-             $rootScope.StateList = UKStateList.getUkStateDetails();
-            $rootScope.StateText = "Select your County";
-        } else { 
-            $rootScope.StateText = "Select your state";
-            $rootScope.StateList = StateLists.getStateDetails(); 
-        }
-        $timeout(function(){
-            $('select option').filter(function() {
-                return this.value.indexOf('?') >= 0;
-            }).remove();
-        }, 100);
-        
-    }
-    
- 
-    
+
     //$rootScope.StateList = StateLists.getStateDetails();
 	$scope.currentYear = new Date().getFullYear()
       $scope.currentMonth = new Date().getMonth() + 1
@@ -358,7 +240,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'brandColor': index.brandColor,
 						});
 					});	
-						$state.go('tab.provider');
+					$rootScope.CountryLists = CountryList.getCountryDetails();	
+                    $state.go('tab.provider');
 				}
 				
 				//console.log($rootScope.hospitalDetailsList);		
@@ -418,7 +301,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$scope.doGetExistingConsulatation();
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
-                        $rootScope.CountryLists = CountryList.getCountryDetails();
+                        //$rootScope.CountryLists = CountryList.getCountryDetails();
 						$state.go('tab.userhome');		
 					}
 				},
@@ -745,7 +628,122 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 	}
 	
-	
+    /* country and State */
+    
+        $rootScope.StateText = "Select your state";
+
+         //Start Open Country List popup
+        $scope.loadCountriesList = function() {
+
+               $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
+                    scope: $scope,
+                    animation: 'slide-in-up',
+                    focusFirstInput: false
+                }).then(function(modal) {
+                    $scope.modal = modal;
+                    $scope.modal.show();
+                }); 
+            //$rootScope.CountryLists = CountryList.getCountryDetails();
+        };
+    
+        // Onchange of Contries
+        $scope.OnSelectContryData = function(CountriesList, items) {
+             angular.forEach(CountriesList, function(item, index) {
+                 if (item.Name == items.Name){
+                     item.checked = true;
+                     $rootScope.SelectedCountry={							
+                        'CountryName': items.Name,
+                        'CountryCode': items.CountryCodes.iso2,
+                     };
+                 }
+                 else {
+                     item.checked = false; 
+                 }
+             });
+        };
+
+        $scope.closeCountryList = function() {
+            $rootScope.SelectedCountry;
+            $scope.modal.hide(); 
+            //$scope.data.searchCountry = '';    
+        };
+       //End Countries 
+   
+        //Start Open State List popup
+        $scope.loadStateList = function(CountryCode) {
+         $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
+                    scope: $scope,
+                    animation: 'slide-in-up',
+                    focusFirstInput: false
+          }).then(function(modal) {
+                    $scope.modal = modal;
+                    $scope.modal.show();
+             }); 
+        $rootScope.CountryCode = CountryCode;
+        };
+        $scope.stateList = '';
+    
+    
+    
+    
+    $scope.StateSelect = function($a) {
+        if($a.length >= 3){
+            
+            $timeout(function(){
+                var params = { SearchKeys: $a, CountryCode: $rootScope.CountryCode};
+                //$rootScope.stateList = StateList.getStateDetails(params);
+                var config = { 'params': { 'callback': 'JSON_CALLBACK'} };
+                
+                var googlePlacesUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?callback=angular.callbacks._&input=' + $a + '&types=(cities)&language=en&components=country:'+$rootScope.CountryCode+'&key=AIzaSyCjq4bTUhjvIxSFJBA6Ekk3DPdA_VrU9Zs';
+               
+                var googlePlacesResponsePromise = $http.jsonp(googlePlacesUrl,{ 'params': { 'callback': 'JSON_CALLBACK'} });
+                
+                googlePlacesResponsePromise.success(function(data, status, headers, config) {
+                    $rootScope.stateList = JSON.stringify(data);
+                });
+                
+                googlePlacesResponsePromise.error(function(data, status, headers, config) {
+                    alert("AJAX failed!");
+                });
+                
+            }, 1000);
+            
+            console.log($rootScope.stateList);
+        }else{
+            $rootScope.stateList = {};
+        }
+    };
+  
+   $scope.closeStateList = function() {
+     $rootScope.stateList;
+     $rootScope.stateList;
+     $scope.modal.hide(); 
+    };
+   //End State 
+    
+    
+    $scope.CountryChange = function () {
+        if($('#country').val() == 'US') {
+            $rootScope.StateList = {};
+            $rootScope.StateList = StateLists.getStateDetails();
+            $rootScope.StateText = "Select your state";
+        }else if($('#country').val() == 'UK') {
+            $rootScope.StateList = {};
+             $rootScope.StateList = UKStateList.getUkStateDetails();
+            $rootScope.StateText = "Select your County";
+        } else { 
+            $rootScope.StateText = "Select your state";
+            $rootScope.StateList = StateLists.getStateDetails(); 
+        }
+        $timeout(function(){
+            $('select option').filter(function() {
+                return this.value.indexOf('?') >= 0;
+            }).remove();
+        }, 100);
+        
+     }
+    /* country and State */
+    
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
 		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new health plan')) {
