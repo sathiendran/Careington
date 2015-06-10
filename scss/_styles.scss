@@ -2210,3 +2210,18 @@ font-size: 22px; text-align: center; width: 100%;  margin-left: -32px; top:4px;
 .pac-item > span:last-child {
     display: none;
 }
+.confCamera{
+	width: 30%;
+	float: left;
+	border-right: 1px solid gray;
+}
+.confEndCall{
+	width: 39%;
+	float: left;
+	border-right: 1px solid gray;
+	font-size: 18px;
+}
+.confMute{
+	width: 39%;
+	float: right;
+}
