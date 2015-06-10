@@ -9855,16 +9855,17 @@ form.ng-submitted input.ng-valid + i.icon.error {
   display: none; }
 
 .confCamera {
-  width: 30%;
   float: left;
+  width: 30%;
   border-right: 1px solid gray; }
 
 .confEndCall {
   width: 39%;
-  float: left;
   border-right: 1px solid gray;
-  font-size: 18px; }
+  float: left;
+  font-size: 18px;
+  margin-top: 2px; }
 
 .confMute {
-  width: 39%;
-  float: right; }
+  width: 30%;
+  float: left; }
