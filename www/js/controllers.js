@@ -40,7 +40,7 @@ var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
 var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
 
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
 .controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
@@ -1052,56 +1052,60 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	
 	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
-        
-        // Start Intake Sub Header Information 
-        $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientFirstName = P_Fname;
-        $rootScope.PatientLastName = P_Lname;
-        $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
-        // End Intake Sub Header Information 
-        
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		var params = {
-			hospitalId: $rootScope.hospitalId,
-			accessToken: $rootScope.accessToken,
-			fields: $scope.codesFields,
-			success: function (data) {
-			//console.log(data.data[3].codes);
-				$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
-				$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
-				$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
-				$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
-				$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);		
-				$state.go('tab.patientConcerns');
-			},
-			error: function (data) {
-				$scope.hospitalCodesList = 'Error getting hospital codes list';
-				console.log(data);
+       if($rootScope.P_isAuthorized == true) {
+			// Start Intake Sub Header Information 
+			$rootScope.PatientImageSelectUser = P_img;
+			$rootScope.PatientFirstName = P_Fname;
+			$rootScope.PatientLastName = P_Lname;
+			$rootScope.PatientAge = P_Age;
+			$rootScope.PatientGuardian = P_Guardian;
+			// End Intake Sub Header Information 
+			
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
 			}
-		};
-        
-       $rootScope.PatientPrimaryConcern = "";
-        $rootScope.PatientSecondaryConcern = "";
-        $rootScope.PatientChronicCondition = "";
-        $rootScope.patinentCurrentMedication = "";
-        $rootScope.patinentMedicationAllergies = "";
-        $rootScope.patientSurgeriess = "";
-        $rootScope.MedicationCount == 'undefined'
-        $rootScope.checkedChronic = 0;  
-        $rootScope.ChronicCount = "";
-        $rootScope.AllegiesCount = "";
-        $rootScope.checkedAllergies = 0;
-        $rootScope.MedicationCount = ""; 
-        $rootScope.checkedMedication = 0; 
-        $rootScope.IsValue = "";
-         $rootScope.IsToPriorCount = "";
-        $rootScope.IsToPriorCount = "";
-        SurgeryStocksListService.ClearSurgery();
-        LoginService.getCodesSet(params);
+			var params = {
+				hospitalId: $rootScope.hospitalId,
+				accessToken: $rootScope.accessToken,
+				fields: $scope.codesFields,
+				success: function (data) {
+				//console.log(data.data[3].codes);
+					$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
+					$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
+					$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
+					$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
+					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);		
+					$state.go('tab.patientConcerns');
+				},
+				error: function (data) {
+					$scope.hospitalCodesList = 'Error getting hospital codes list';
+					console.log(data);
+				}
+			};
+			
+		   $rootScope.PatientPrimaryConcern = "";
+			$rootScope.PatientSecondaryConcern = "";
+			$rootScope.PatientChronicCondition = "";
+			$rootScope.patinentCurrentMedication = "";
+			$rootScope.patinentMedicationAllergies = "";
+			$rootScope.patientSurgeriess = "";
+			$rootScope.MedicationCount == 'undefined'
+			$rootScope.checkedChronic = 0;  
+			$rootScope.ChronicCount = "";
+			$rootScope.AllegiesCount = "";
+			$rootScope.checkedAllergies = 0;
+			$rootScope.MedicationCount = ""; 
+			$rootScope.checkedMedication = 0; 
+			$rootScope.IsValue = "";
+			 $rootScope.IsToPriorCount = "";
+			$rootScope.IsToPriorCount = "";
+			SurgeryStocksListService.ClearSurgery();
+			LoginService.getCodesSet(params);
+		} else {
+		    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName; 
+            $rootScope.SubmitCardValidation($scope.ErrorMessage);
+		}	
 	}
 
         $scope.doGetScheduledConsulatation = function (PatientId) {
@@ -1233,7 +1237,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 	}
 	
-    
+    $scope.cardPaymentId = [];	
     $scope.doPostCoPayDetails = function () {		
 		
 		if($('#addNewCard').val() == 'Choose Your Card'){			
@@ -1241,20 +1245,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 			
 		} else {
+		
+			 $rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
 	
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
 			var params = {
-				profileId: $rootScope.patientprofileID, 
+				profileId: parseInt($rootScope.patientprofileID), 
 				emailAddress: $rootScope.UserEmail,
 				Amount: $rootScope.copayAmount,
 				consultationId: $rootScope.consultationId,
-				paymentProfileId: $scope.paymentProfileId,
+				paymentProfileId: parseInt($rootScope.paymentProfileId),
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					$rootScope.paymentConfirmationNumber = data;
+					$rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
 					$scope.CreditCardDetails = data;					
 					$state.go('tab.receipt');	
 					$scope.ReceiptTimeout();						
@@ -1269,7 +1275,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	}
     
-    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id) {
+    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
         if($rootScope.patientSearchKey != ''){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
         if($rootScope.patientName == $rootScope.RelatedPatientProfiles[0].patientName){
@@ -1284,6 +1290,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.PatientId = P_Id;
+		$rootScope.P_isAuthorized = P_isAuthorized
         $state.go('tab.patientDetail'); 
     }
     
