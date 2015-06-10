@@ -748,7 +748,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
-		if($('option:selected', this).text() == 'Add a new healt...') {
+		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new healt plan')) {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -1049,6 +1049,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(!data.message) {
 					$scope.ApplyHealthPlan = data;
 					$rootScope.copayAmount = data.copayAmount;
+					$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
 					console.log($scope.ApplyHealthPlan);
                     $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
@@ -1166,7 +1167,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
 	
 	
-	$scope.profileId = 31867222;
+	$rootScope.profileId = 31867222;
 	
 	
 	
@@ -1225,7 +1226,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			State: $scope.State,
 			Zip: $scope.Zip,
 			Country: $scope.Country,
-			ProfileId: $scope.profileId,
+			ProfileId: $rootScope.profileId,
 			Cvv: $scope.Cvv,		
             accessToken: $rootScope.accessToken,
 			
@@ -1441,7 +1442,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
     
-    $scope.doPostCoPayDetails = function () {
+    $scope.doPostCoPayDetails = function () {		
 		
 		if($('#addNewCard').val() == 'Choose Your Card'){			
 			$scope.ErrorMessages = "Please select the card to use for payment.!";
@@ -1454,13 +1455,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				return;
 			}
 			var params = {
-				profileId: $scope.profileId, 
+				profileId: 31867222, 
 				emailAddress: $rootScope.UserEmail,
-				Amount: 30,
+				Amount: $rootScope.copayAmount,
 				consultationId: $rootScope.consultationId,
 				paymentProfileId: $scope.paymentProfileId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
+					$rootScope.paymentConfirmationNumber = data;
 					$scope.CreditCardDetails = data;					
 					$state.go('tab.receipt');	
 					$scope.ReceiptTimeout();						
@@ -2043,6 +2045,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					success: function (data) {
 						$rootScope.OnDemandConsultationSaveResult = data.data[0];
 						$rootScope.consultationAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
+						$rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
 						$state.go('tab.ChronicCondition');
