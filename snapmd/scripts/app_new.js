@@ -33,7 +33,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.tokenStatus = 'alert-warning';
         $scope.existingConsultation = '{ "message": "NO EXISITING CONSULTATION JSON" }';
         $scope.consultationId = 2440;//2440
-        $scope.patientId = 452;
+        $scope.patientId = 505;
 		$scope.otherPatientId = 505;
         $scope.hospitalId = 126;
         $scope.userTypeId = 1;

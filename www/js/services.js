@@ -347,7 +347,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/patients/copay',
+            url: apiCommonURL + '/api/v2/patients/copay',
             method: 'POST',
             data: {
                 ProfileId: params.profileId,
@@ -361,9 +361,10 @@ angular.module('starter.services', [])
         $http(requestInfo).
                 success(function (data, status, headers, config) {
                     if (typeof params.success != 'undefined') {
-                        params.success({
+                        /*params.success({
                             "transaction": "SUCCESSFUL"
-                        });
+                        });*/
+						params.success(data);
                     }
                 }).
                 error(function (data, status, headers, config) {
