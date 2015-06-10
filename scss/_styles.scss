@@ -2211,17 +2211,18 @@ font-size: 22px; text-align: center; width: 100%;  margin-left: -32px; top:4px;
     display: none;
 }
 .confCamera{
-	width: 30%;
-	float: left;
-	border-right: 1px solid gray;
+    float: left;
+    width: 30%;
+    border-right: 1px solid gray;
 }
 .confEndCall{
-	width: 39%;
-	float: left;
-	border-right: 1px solid gray;
-	font-size: 18px;
+    width: 39%;
+    border-right: 1px solid gray;
+    float: left;
+    font-size: 18px;
+    margin-top: 2px;
 }
 .confMute{
-	width: 39%;
-	float: right;
+    width: 30%;
+    float: left;
 }
