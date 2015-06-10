@@ -1444,10 +1444,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 navigator.app.backHistory(); 
             }
         }, 100); 
-		 $scope.$storage = $localStorage;
-   
-    
-	$scope.toggleLeft = function() {
+    $scope.$storage = $localStorage;
+     
+    $scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
