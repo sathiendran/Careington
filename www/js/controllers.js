@@ -842,7 +842,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         if(typeof $scope.Health.addHealthPlan != 'undefined') {
             $rootScope.NewHealth = $scope.Health.addHealthPlan;
             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-        console.log($scope.Health.addHealthPlan);
+            //console.log($scope.Health.addHealthPlan);
         } else {
           $rootScope.NewHealth ;
           $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
