@@ -63,56 +63,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		
 
-/*	var dtNow = new Date("2015-05-26T13:20:04.268Z");
-	
-	$rootScope.time = dtNow.getTime();
-	
-	$rootScope.patientDisplay1 = 'none';
-	$rootScope.patientDisplay = 'block';
-	
-	$scope.$on('timer-tick', function (event, args){
-        $timeout(function() {
-		console.log(args.minutes + ' - ' + args.seconds );
-            if(args.millis < 100){
-               // $rootScope.timeNew = 'Completed';
-				$rootScope.timeNew = 'none';
-			   $rootScope.timeNew1 = 'block';
-			   $rootScope.patientDisplay = 'none';
-			   $rootScope.patientDisplay1 = 'block';
-				console.log($rootScope.timeNew);
-            }
-            else if(args.millis < 600000){
-			//$rootScope.timeNew = 'below 10 minutes!';
-               $rootScope.timeNew = 'none';
-			   $rootScope.timeNew1 = 'block';
-			   $rootScope.patientDisplay = 'none';
-			   $rootScope.patientDisplay1 = 'block';
-			   console.log('below 10 minutes!');
-			   
-            }else{
-               // $rootScope.timeNew = 'More than 10 minutes!';
-				$rootScope.timeNew = 'block';
-			   $rootScope.timeNew1 = 'none';
-			    $rootScope.patientDisplay = 'block';
-			   $rootScope.patientDisplay1 = 'none';
-				console.log('More than 10 minutes!');
-            }
-            
-        });
-    });
-	*/
+/*	var dtNow = new Date("2015-05-26T13:20:04.268Z");	*/
+
     $scope.$storage = $localStorage;
    
     
 	$scope.toggleLeft = function() {
 		$ionicSideMenuDelegate.toggleLeft();
-	};
-	
+	};	
    
-    $rootScope.StateText = "Select your state";
-    
- 
-    
+    $rootScope.StateText = "Select your state";  
     
      //Start Open Country List popup
     $scope.loadCountriesList = function() {
@@ -162,7 +122,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.modal.show();
             }); 
          $rootScope.CountryCode = CountryCode;
- };
+	};
     $scope.stateList = '';
     
     
@@ -278,19 +238,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	};
 	
 
-//$rootScope.userLogin.UserEmail = 'ben.ross.310.95348@gmail.com';
-    
-    //$rootScope.userLogin.UserEmail = $localstorage.get('username');
     $('#UserEmail').val($localstorage.get('username'));
     
 	$scope.userLogin = {};
     $scope.userLogin.UserEmail = $localStorage.oldEmail;
     $scope.LoginFunction = function(item,event){
-		
-		//$rootScope.UserEmail = $scope.userLogin.UserEmail;
-		
-
-		
 		if($('#UserEmail').val() == ''){			
 			$scope.ErrorMessage = "Please enter your email!";
 			$rootScope.Validation($scope.ErrorMessage);
@@ -305,25 +257,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Please enter a valid email address!";
 				$rootScope.Validation($scope.ErrorMessage);
 			}
-			else {
-
-						
-
-				
-             if($scope.userLogin.remember) {
+			else {	
+				if($scope.userLogin.remember) {
                     $localstorage.set('username', $("#UserEmail").val());
                     $localStorage.oldEmail = $scope.userLogin.UserEmail;  
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
 
-               } else { 
+                } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
                    $localStorage.oldEmail = '';
                    $localstorage.set('username', ""); 
-               }
-                
+                }                
 				$scope.doGetFacilitiesList();
-                
-
 			}
 		}
 		
@@ -373,8 +318,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		LoginService.getFacilitiesList(params);
 	}
 	
-	//$rootScope.providerId = $stateParams.providerID;
-	//$rootScope.providerId ='126';
+	
 	
 	$scope.ProviderFunction = function(hospitalDetailsDatas) {
         $rootScope.hospitalId = hospitalDetailsDatas.providerId;
@@ -382,17 +326,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.logo = hospitalDetailsDatas.logo;
         $rootScope.operatingHours = hospitalDetailsDatas.operatingHours;
         $rootScope.id = hospitalDetailsDatas.id;
-        $rootScope.brandColor = hospitalDetailsDatas.brandColor;
-       // console.log($rootScope.hospitalId + ', ' + hospitalDetailsDatas.name + ', ' + hospitalDetailsDatas.logo + ', ' + hospitalDetailsDatas.operatingHours + ', ' + hospitalDetailsDatas.id + ', ' + hospitalDetailsDatas.brandColor)
-        
-		//$rootScope.hospitalId = '126';		
-		//console.log($rootScope.hospitalId);			
+        $rootScope.brandColor = hospitalDetailsDatas.brandColor;       		
 		$state.go('tab.password');
 	}
 	
-	//Password functionality
-
-	//$scope.password = 'Password@123';
+	//Password functionality	
 	$scope.pass = {};
 	
 	$scope.doGetToken = function () {
@@ -537,37 +475,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.patientName = data.data[0].patientName;
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
-					$rootScope.patientId = $rootScope.patientAccount.patientId;
-					console.log('doGetPatientProfiles');
-					console.log(data.data[0]);
-					
-					/*$rootScope.patientInfomation = [];	
-					
-						angular.forEach(data.data, function(index, item) {		
-							$rootScope.patientInfomation.push({
-								'id': index.$id,
-								'account': angular.fromJson(index.account),
-								'address': index.address,
-								'addresses': angular.fromJson(index.addresses),
-								'anatomy': angular.fromJson(index.anatomy),
-								'city': index.city,
-								'createDate': index.createDate,
-								'dob': index.dob,
-								'gender': index.gender,
-								'homePhone': index.homePhone,
-								'location': index.location,
-								'mobilePhone': index.mobilePhone,
-								'organization': index.organization,
-								'patientName': index.patientName,
-								'pharmacyDetails': angular.fromJson(index.pharmacyDetails),
-								'physicianDetails': angular.fromJson(index.physicianDetails),
-								'state': index.state,
-								'zipCode': index.zipCode,
-							});
-						});	*/
-						console.log('rootScopepatientInfomation');
-						console.log($rootScope.patientInfomation);
-				
+					$rootScope.patientId = $rootScope.patientAccount.patientId;					
 						
 				},
 				error: function (data) {
@@ -640,26 +548,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.patientInfomation = data.data[0].patientInformation;	
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
                 $rootScope.inTakeForm = data.data[0].intakeForm;
-				console.log('patientInformation');
-				console.log(data.data[0].patientInformation);
-				
-               /* $rootScope.depedentInformation = data.data[0].dependentInformation;
-
-                $rootScope.dependentDetails = [];	
-
-
-                angular.forEach(data.data[0].dependentInformation, function(index, item) {	
-                    $rootScope.dependentDetails.push({
-                        'id': index.$id,
-                        'patientName': index.fullName,
-                        'lastName': index.lastName,
-                        'age': index.age,
-                        'guardianName': index.guardianName,
-                        'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
-                    });
-                });	
-                $rootScope.searchPatientList = $rootScope.dependentDetails;
-            	*/
+               
             },
             error: function (data) {
                 $scope.existingConsultation = 'Error getting existing consultation';
@@ -683,7 +572,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			return;
 		}
 		var params = {
-			patientId: $scope.otherPatientId,
+			patientId: $rootScope.patientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {
 				//$scope.patientHealthPlanList = data;
@@ -748,7 +637,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
-		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new healt plan')) {
+		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new health plan')) {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -879,99 +768,40 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$state.go('tab.cardDetails');
 		}
     });
-	$scope.doGetPatientPaymentProfilesConsultCharge = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
 		
+    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {		
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        
-        if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			}
-			
-			var params = {
-				hospitalId: $rootScope.hospitalId, 
-				patientId: $rootScope.patientId,
-				accessToken: $rootScope.accessToken,
-				success: function (data) {
-					if(data != '') {
-						$scope.patientPaymentProfiles = data;	
-
-						$rootScope.PaymentProfile = [];	
-					
-						angular.forEach(data.data, function(index, item) {	
-				
-							
-							$rootScope.PaymentProfile.push({
-								'id': index.$id,
-								'billingAddress': angular.fromJson(index.billingAddress),
-								'cardExpiration': index.cardExpiration,
-								'cardNumber': index.cardNumber,
-								'isBusiness': index.isBusiness,
-								'profileID': index.profileID,
-							});
-						});	
-						$rootScope.enableSubmitpayment = "block";
-						$rootScope.disableSubmitpayment = "none;";
-						
-						/*if(data.data.paymentProfiles.length > 0) {
-							$rootScope.enableSubmitpayment = "block";
-							$rootScope.disableSubmitpayment = "none;";
-							//$rootScope.addPaymentCard = "none;";
-						} else if(data.data.paymentProfiles.length == 0) {
-							$rootScope.enableSubmitpayment = "none";
-							$rootScope.disableSubmitpayment = "block;";
-							//$rootScope.addPaymentCard = "block;";
-						}*/
-						$state.go('tab.consultChargeNoPlan');
-					} else {
-						$rootScope.enableSubmitpayment = "none";
-						$rootScope.disableSubmitpayment = "block;";
-						$state.go('tab.consultChargeNoPlan');
-					}		
-					
-				},
-				error: function (data) {
-					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
-					console.log(data);
-				}
-			};
-			
-			LoginService.getPatientPaymentProfile(params);
-		
+		$state.go('tab.consultChargeNoPlan');
 	}
 	
 	$scope.doGetPatientPaymentProfilesCardDetails = function () {
 		if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
-			}
-			
+			}			
 			var params = {
 				hospitalId: $rootScope.hospitalId, 
 				patientId: $rootScope.patientId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					if(data != '') {
-						$scope.patientPaymentProfiles = data;	
+					if(data != '') {						
 
 						$rootScope.PaymentProfile = [];	
+						$rootScope.patientprofileID = data.data.profileID;
 						
-						
-						$rootScope.PaymentDetailsList = data.data;
-						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.length - 1];
+						$rootScope.PaymentDetailsList = data.data.paymentProfiles;
+						$rootScope.SelectedPaymentDetails = $rootScope.PaymentDetailsList[data.data.paymentProfiles.length - 1];
 						
 						
 						$rootScope.PaymentDetailsList.push({
 							'cardNumber': 'Add a new card'
 						});
 					
-						angular.forEach(data.data, function(index, item) {	
-				
-							
+						angular.forEach(data.data.paymentProfiles, function(index, item) {
 							$rootScope.PaymentProfile.push({
 								'id': index.$id,
 								'billingAddress': angular.fromJson(index.billingAddress),
@@ -983,21 +813,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						});	
 						$rootScope.enableSubmitpayment = "block";
 						$rootScope.disableSubmitpayment = "none;";
-						
-						/*if(data.data.paymentProfiles.length > 0) {
-							$rootScope.enableSubmitpayment = "block";
-							$rootScope.disableSubmitpayment = "none;";
-							//$rootScope.addPaymentCard = "none;";
-						} else if(data.data.paymentProfiles.length == 0) {
-							$rootScope.enableSubmitpayment = "none";
-							$rootScope.disableSubmitpayment = "block;";
-							//$rootScope.addPaymentCard = "block;";
-						}*/
-						//$state.go('tab.consultChargeNoPlan');
 					} else {
 						$rootScope.enableSubmitpayment = "none";
-						$rootScope.disableSubmitpayment = "block;";
-						//$state.go('tab.consultChargeNoPlan');
+						$rootScope.disableSubmitpayment = "block;";						
 					}		
 					
 				},
@@ -1071,13 +889,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
    
-	$scope.doGetPatientPaymentProfiles = function () {
-	
-		/*if($('#FirstName').val() == '' || $('#CardNumber').val() == '' || $('#date').val() == '' || $('#Cvv').val() == '' ){			
-			$scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
-			
-		} else {*/
+	$scope.doGetPatientPaymentProfiles = function () {	
 		
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -1089,12 +901,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				patientId: $rootScope.patientId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					if(data != 0) {
-						$scope.patientPaymentProfiles = data;	
+					if(data != 0) {				
+						
+						$rootScope.patientprofileID = data.data.profileID;	
 
 						$rootScope.PaymentProfile = [];	
 					
-						angular.forEach(data.data, function(index, item) {	
+						angular.forEach(data.data.paymentProfiles, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({
@@ -1105,24 +918,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'isBusiness': index.isBusiness,
 								'profileID': index.profileID,
 							});
-						});	
-						/*if(data.data.paymentProfiles.length > 0) {
-							$rootScope.enableSubmitpayment = "block";
-							$rootScope.disableSubmitpayment = "none;";
-							//$rootScope.addPaymentCard = "none;";
-						} else if(data.data.paymentProfiles.length == 0) {
-							$rootScope.enableSubmitpayment = "none";
-							$rootScope.disableSubmitpayment = "block;";
-							//$rootScope.addPaymentCard = "block;";
-						}*/
-						//$state.go('tab.submitPayment');
+						});							
 						$rootScope.enableSubmitpayment = "block";
 						$rootScope.disableSubmitpayment = "none;";						
-						$state.go('tab.addCard');
+						//$state.go('tab.addCard');
 					} else if(data == 0) {
 						$rootScope.enableSubmitpayment = "none";
 						$rootScope.disableSubmitpayment = "block;";
-						$state.go('tab.addCard');
+						//$state.go('tab.addCard');
 					}
 					
 				},
@@ -1132,8 +935,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 			};
 			
-			LoginService.getPatientPaymentProfile(params);
-		//}
+			LoginService.getPatientPaymentProfile(params);		
     }
 	
 	$scope.paymentProfileId = 28804398;	
@@ -1165,12 +967,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         //var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
         
     ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
-	
-	
-	$rootScope.profileId = 31867222;
-	
-	
-	
 		
 	$rootScope.FirstName = $scope.getCardDetails.FirstName;
 	$rootScope.LastName = $scope.getCardDetails.LastName;
@@ -1184,12 +980,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.ExpiryMonth = ExpiryDate[0];
 	$rootScope.ExpiryYear = ExpiryDate[1];
 	$scope.Country = $scope.getCardDetails.Country;
-	
-	
-	//$rootScope.Country = $scope.getCardDetails.;	
-	
-	
-	
 		
       
       if($('#FirstName').val() == '' || $('#LastName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' ||  $('#City').val() == '' || $('#State').val() == ''|| $('#Zip').val() == '' )  {			
@@ -1216,18 +1006,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		var params = {
             userId: $scope.userId, 
-			BillingAddress: $scope.BillingAddress,
-			CardNumber: $scope.CardNumber,
-			City: $scope.City,
-			ExpiryMonth: $scope.ExpiryMonth,
-			ExpiryYear: $scope.ExpiryYear,
-			FirstName: $scope.FirstName,
-			LastName: $scope.LastName,
-			State: $scope.State,
-			Zip: $scope.Zip,
+			BillingAddress: $rootScope.BillingAddress,
+			CardNumber: $rootScope.CardNumber,
+			City: $rootScope.City,
+			ExpiryMonth: $rootScope.ExpiryMonth,
+			ExpiryYear: $rootScope.ExpiryYear,
+			FirstName: $rootScope.FirstName,
+			LastName: $rootScope.LastName,
+			State: $rootScope.State,
+			Zip: $rootScope.Zip,
 			Country: $scope.Country,
-			ProfileId: $rootScope.profileId,
-			Cvv: $scope.Cvv,		
+			ProfileId: $rootScope.patientprofileID,
+			Cvv: $rootScope.Cvv,		
             accessToken: $rootScope.accessToken,
 			
             success: function (data) {
@@ -1455,7 +1245,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				return;
 			}
 			var params = {
-				profileId: 31867222, 
+				profileId: $rootScope.patientprofileID, 
 				emailAddress: $rootScope.UserEmail,
 				Amount: $rootScope.copayAmount,
 				consultationId: $rootScope.consultationId,
@@ -1541,6 +1331,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
+		$scope.doGetPatientPaymentProfiles();
 		$rootScope.doPutConsultationSave();       
     }
 	
