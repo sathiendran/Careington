@@ -645,7 +645,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	a {
 		margin: -4px;
 		.doctorName {
-			top: -5px;margin-left: 3px;
+			top: -11px;margin-left: 3px;
 		}
 		.doctorArrow {
 			color:#888;margin-top: 22px;
@@ -1644,7 +1644,7 @@ padding: 8px; background-color:#FEEFE8;
 	/*font-family: $fontFamily_thin; */
 }
 .SubTitleSpan {
-@include font($fontFamily_regular, normal, 21px);
+@include font($fontFamily_regular, normal, 22px);
 color:#706A67;
 }
 
@@ -2225,4 +2225,8 @@ font-size: 22px; text-align: center; width: 100%;  margin-left: -32px; top:4px;
 .confMute{
     width: 30%;
     float: left;
+}
+.doctorImgeSize {
+ width: 44px;
+ height: 41px;   
 }
