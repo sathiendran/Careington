@@ -40,7 +40,7 @@ var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
 var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
 
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
 .controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
