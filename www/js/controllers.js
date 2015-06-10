@@ -748,7 +748,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
-		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new healt plan')) {
+		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new health plan')) {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -1024,7 +1024,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         if(typeof $scope.Health.addHealthPlan != 'undefined') {
             $rootScope.NewHealth = $scope.Health.addHealthPlan;
             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-        console.log($scope.Health.addHealthPlan);
+            //console.log($scope.Health.addHealthPlan);
         } else {
           $rootScope.NewHealth ;
           $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
