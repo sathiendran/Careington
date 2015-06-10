@@ -64,7 +64,6 @@
              <select id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
 								<option value=""><b>Plan Provider</b></option>
 				<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName | truncate:22}}</b></option>
-								
 			</select> 
                             
 						</div>
@@ -99,7 +98,7 @@
 					<label class="item item-input" >
 						<span class="input-label"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
-					<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}" required> 
+					<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="(this.type='date')"  id="date" max="{{PreviousDate}}" required style="font-size:18px;"> 
 					</label>
 				</div>
 				
