@@ -1445,7 +1445,9 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	border-bottom: 1.65px solid #ccc;
 	.SearchImage {
 		width:10%;
-		img {
+		margin-right: 10px;
+		.searchIcon {
+			float: right;
 			width: 20px;
 		}
 	}

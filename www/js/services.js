@@ -220,7 +220,8 @@ angular.module('starter.services', [])
 
 		var requestInfo = {
 			headers: util.getHeaders(params.accessToken),
-			url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
+			//url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
+			url: apiCommonURL + '/api/v2/healthplans',
 			method: 'get'       
 		};
 

@@ -91,7 +91,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon"></span></div></div>';
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 25px;"></i> '+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -101,7 +101,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//});
 	}
 	
-	$rootScope.CardValidation = function($a){
+	/*$rootScope.CardValidation = function($a){
 		function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
 			}
@@ -115,7 +115,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
-	}
+	}*/
 	
 	$scope.validation = function() {
 		$scope.ErrorMessage = "Oops, something went wrong !";
@@ -749,7 +749,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$scope.doGetPatientHealthPlansList();						
 					} else {					
 						$scope.ErrorMessage = data.message;
-						$rootScope.CardValidation($scope.ErrorMessage);
+						$rootScope.Validation($scope.ErrorMessage);
 						$state.go('tab.planDetails');
 					}
 				},
@@ -876,7 +876,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $state.go('tab.addCard');
                     } else {
                     $scope.ErrorMessage = "Bad Request Please check it!";
-			        $rootScope.CardValidation($scope.ErrorMessage);
+			        $rootScope.Validation($scope.ErrorMessage);
                     }
                     
 
@@ -987,17 +987,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       
       if($('#FirstName').val() == '' || $('#LastName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' ||  $('#City').val() == '' || $('#State').val() == ''|| $('#Zip').val() == '' )  {			
 			$scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
 			
 		} else if(zipCount <= 4) {
 			$scope.ErrorMessage = "Verify Zip!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
         } else if(ExpiryDate[0].length <= 1 || ExpiryDate[1].length <= 3 || ExpiryDate[0] >= 13) {
             $scope.ErrorMessage = "Verify Expiry Date!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
         } else if(ExpiryDateCheck < currentTime) {
              $scope.ErrorMessage = "Verify month & year!";
-			 $rootScope.CardValidation($scope.ErrorMessage);
+			 $rootScope.Validation($scope.ErrorMessage);
         }
         else {
 		
@@ -1034,7 +1034,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$state.go('tab.submitPayment');
 				} else {					
 					$scope.ErrorMessage = data.message;
-					$rootScope.CardValidation($scope.ErrorMessage);
+					$rootScope.Validation($scope.ErrorMessage);
 					$state.go('tab.cardDetails');
 				}
 				
@@ -1178,19 +1178,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		/*if($('#Provider').val() == '' || $('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){ */
         if($('#Provider').val() == '') {
 			$scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
         } else if($('#firstName').val() == '') {
             $scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
         } else if($('#lastName').val() == '') {
             $scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
 		} else if($('#policyNumber').val() == '') {
             $scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
 		} else if($('#date').val() == '') {
             $scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
 		} else {
 			$rootScope.verifyPlanDisplay = "block";
 			$rootScope.PlanDisplay = "none;";	 		
@@ -1201,7 +1201,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		if($('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){			
 			$scope.ErrorMessage = "Required fields can't be empty!";
-			$rootScope.CardValidation($scope.ErrorMessage);
+			$rootScope.Validation($scope.ErrorMessage);
 			
 		} else {
 			$state.go('tab.applyPlan');
@@ -1215,7 +1215,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
+			var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 25px;"></i>'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -1351,6 +1351,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
      $scope.GoToappoimentDetails = function(scheduledListData) {
 		$rootScope.scheduledListDatas =scheduledListData;     
 		   //console.log($rootScope.scheduledListDatas);
+		   
+		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
+		  
+		$scope.doGetExistingConsulatation();  
 		
 		$rootScope.dtNow = new Date($rootScope.scheduledListDatas.scheduledTime + "Z");
 		
@@ -1362,10 +1366,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$timeout(function() {
 				console.log(args.minutes + ' - ' + args.seconds + '-' + args.days );
 				if(args.days == 0) {
-					$rootScope.DaysDisplay = 'none';				
+					$rootScope.DaysDisplay = 'none';	
+					$rootScope.days = 0;	
 				} else if(args.days > 0) {
-					//$rootScope.DaysDisplay = 'initial';	
-					$rootScope.DaysDisplay = 'none';
+					$rootScope.DaysDisplay = 'initial';	
 					if(args.days == 1) {
 						$rootScope.days = args.days + ' day ';
 					} else {
@@ -1535,7 +1539,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			$rootScope.PrimaryPopup = $rootScope.PrimaryPopup + 1;
-			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
+			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 25px;"></i> '+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
 
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
@@ -1679,7 +1683,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 			$rootScope.PrimaryNext = $rootScope.PrimaryNext + 1;
 			
-			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
+			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 25px;"></i> '+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
 
 			$("#notifications-top-center").remove();
 				//$( ".ppp" ).prepend( top );				
@@ -2204,7 +2208,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
-			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
+			var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 25px;"></i> '+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
 
 			
 				$("#notifications-top-center").remove();

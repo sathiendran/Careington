@@ -188,57 +188,64 @@
 	margin-top: 5px;
 }
 #notifications-top-center {
+	opacity: 0.85;
 	position: fixed;
 	left: 0px;
 	top: 0px;
 	width: 100%;
-	background-color: #FFD4AA;
+	background-color: black;
 	height: 55px;
 	text-align: center;
 	line-height: 70px;
-	color: #9C1C1C;
+	color: white;
 	font-size: 18px;
 	font-weight: 600;
 	z-index:1;
 }
 .notifications-top-center {
+	opacity: 0.85;
 	position: fixed;
 	left: 0px;
 	top: 0px;
 	width: 100%;
-	background-color: #FFD4AA;
+	background-color: black;
 	height: 50px;
 	text-align: center;
 	line-height: 50px;
-	color: #9C1C1C;
+	color: white;
 	font-size: 18px;
 	font-weight: 600;
 	z-index:1;
 }
 #notifications-top-center-close {
-	background-color: #FFD4AA;
+	opacity: 0.85;
+	background-color: black;
 	float: right;
 	height: 50px;
 	width: 50px;
 	font-size: 20px;
-	color: rgba(255,255,255,1);
+	color: white;
 	font-weight: 400;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
+	margin-right: 10px;
+	padding-top: 10px;
 }
 #notifications-top-center-close:hover {
 	cursor: pointer;
-	background-color: #FFD4AA;
+	background-color: black;
+	opacity: 0.85;
 }
 .notifications-top-center-close {
-	background-color: #FFD4AA;
+	opacity: 0.85;
+	background-color: black;
 	float: right;
 	height: 50px;
 	width: 50px;
 	font-size: 20px;
-	color: rgba(255,255,255,1);
+	color: white;
 	font-weight: 400;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -247,7 +254,8 @@
 }
 .notifications-top-center-close:hover {
 	cursor: pointer;
-	background-color: #FFD4AA;
+	background-color: black;
+	opacity: 0.85;
 }
 #notifications-full{
 	-moz-box-shadow: 0px 0px 50px rgba(0,0,0,0.1);

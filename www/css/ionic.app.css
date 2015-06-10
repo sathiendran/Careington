@@ -8226,7 +8226,7 @@ body {
   .doctor_details a {
     margin: -4px; }
     .doctor_details a .doctorName {
-      top: -5px;
+      top: -11px;
       margin-left: 3px; }
     .doctor_details a .doctorArrow {
       color: #888;
@@ -9071,8 +9071,10 @@ select {
 .UserNeeds {
   border-bottom: 1.65px solid #ccc; }
   .UserNeeds .SearchImage {
-    width: 10%; }
-    .UserNeeds .SearchImage img {
+    width: 10%;
+    margin-right: 10px; }
+    .UserNeeds .SearchImage .searchIcon {
+      float: right;
       width: 20px; }
 
 a {
@@ -9273,7 +9275,7 @@ a {
 .SubTitleSpan {
   font-family: 'Glober Regular';
   font-weight: normal;
-  font-size: 21px;
+  font-size: 22px;
   color: #706A67; }
 
 .ion-search::before {
@@ -9869,3 +9871,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .confMute {
   width: 30%;
   float: left; }
+
+.doctorImgeSize {
+  width: 44px;
+  height: 41px; }
