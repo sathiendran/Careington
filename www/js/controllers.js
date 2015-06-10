@@ -240,7 +240,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
 						$scope.tokenStatus = 'alert-success';
-						$scope.doGetExistingConsulatation();
+					//	$scope.doGetExistingConsulatation();
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
@@ -640,11 +640,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
 		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new health plan')) {
-            if ($scope.accessToken == 'No Token') {
+            if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
-             $rootScope.HealthPlanProvidersList = [];
+            $scope.doGetHealthPlanProvider();
+		}
+    });
+	
+	$scope.doGetHealthPlanProvider = function() {
+		$rootScope.HealthPlanProvidersList = [];
             var params = {
                 patientId: $rootScope.patientId,
                 accessToken: $rootScope.accessToken,
@@ -670,12 +675,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     console.log(data);
                 }
             };
-            LoginService.getHealthPlanProvidersList(params);
-            
-			//$state.go('tab.planDetails');
-		}
-    });
-	
+        LoginService.getHealthPlanProvidersList(params);
+	}
 	
 		//patientId
 	/*	$scope.insuranceCompany = "aaa bbb";
