@@ -29,7 +29,7 @@
 								<option value=""><b>Choose Your Health Plan</b></option>
 								<!--<option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber}}" ng-if="SelectedHealthPlans" selected><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:15}}</span></b></option> -->
                                 
-                                <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == SelectInsuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:15}}</span></b></option>
+                                <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == SelectInsuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:22}}</span></b></option>
                                 
 								<option><b>Add a new health plan</b></option>
 							</select>
@@ -72,7 +72,7 @@
 				
 				
 				<!--<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">-->
-					<button class="button button-block button-royal"  type="submit" ng-click="doGetPatientPaymentProfilesConsultCharge()"  >
+					<button class="button button-block button-royal"  type="submit" ng-click="GetConsultChargeNoPlan()"  >
 						<span> Skip to Payment</span>
 					</button>
 				<!--</a>-->

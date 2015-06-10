@@ -25,7 +25,7 @@
 					<div class="demo" >
 						<select id="addNewCard" name="addNewCard">
 							<option><b>Choose Your Card</b></option>
-							<option  ng-repeat="PaymentProfile in PaymentProfile" ><b>{{PaymentProfile.cardNumber}}</b></option>
+							<option  ng-repeat="PaymentProfile in PaymentProfile" ><b><span class="ellipsis">{{PaymentProfile.cardNumber}}</span></b></option>
 							<option><b>Add a new card</b></option>
 						</select>
 					</div>
