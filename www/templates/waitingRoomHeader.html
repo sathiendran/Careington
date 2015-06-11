@@ -2,11 +2,11 @@
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
   
-  <div class="buttons" >
+  <div class="buttons" id="BackButtonIcon" >
 				<!--	<button class="button icon button-clear ion-navicon-round" id="BackButtonIcon"
 							ng-click="toggleLeft()"></button> -->
   </div>
-  <h1 class="title_patient HeaderList intakeTittle" >Waiting Room</h1>
+  <h1 class="title_patient HeaderList intakeTittle" style="margin-left: 6px !important;" >Waiting Room</h1>
   
 
 
@@ -20,7 +20,7 @@
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 					</div>
-					<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian: {{PatientGuardian}}</div>
+                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
 				</div>
 	</div>
 </div> 
