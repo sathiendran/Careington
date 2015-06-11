@@ -220,8 +220,8 @@ angular.module('starter.services', [])
 
 		var requestInfo = {
 			headers: util.getHeaders(params.accessToken),
-			//url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
-			url: apiCommonURL + '/api/v2/healthplans',
+			url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
+			//url: apiCommonURL + '/api/v2/healthplans',
 			method: 'get'       
 		};
 
@@ -281,7 +281,9 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
+          //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
+		   // url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		    url: apiCommonURL + '/api/v2/reports/consultation/2440?include=',
             method: 'GET'   
         };
 
@@ -297,6 +299,28 @@ angular.module('starter.services', [])
                     }
                 });
     }
+	
+	this.getPatientsSoapNotes = function (params) {
+		var confirmSoapPost = {
+			headers: util.getHeaders(params.accessToken),
+           // url: apiCommonURL + '/api/patients/consultations/' + params.consultationID + '/soapnote',
+		    url: apiCommonURL + '/api/patients/consultations/2440/soapnote',
+            method: 'GET'
+		};
+		
+		$http(confirmSoapPost).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+		
+	}
 
     this.getPatientPaymentProfile = function (params) {
         //https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
