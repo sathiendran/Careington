@@ -45,7 +45,7 @@
 					{{existingConsultationReport.hospitalAddress}} | 555 345 3454  </p>
 				<p class="OrganizationDetails">
 					<b class="OrganizationName" ng-if="existingConsultationReport.organization != ''">Organization:</b> {{existingConsultationReport.organization}} <br>
-					<b class="OrganizationLocation" ng-if="existingConsultationReport.location != ''">Location:</b> <br>
+					<b class="OrganizationLocation">Location:</b> <br>
 					<span class="LocationName" ng-if="existingConsultationReport.location != ''">{{existingConsultationReport.location}} </span><span></span>
 				</p>
 			</div>
@@ -119,14 +119,14 @@
 		<p>  <span class="ConcernNo2">2</span> <span class="ConcernNo2Details">{{secondaryConcern[1]}}</b></span></p>
 
     </div> 
-
+{{medicalConditions}}
 
 <div class="ReportSubjective">
           <span><b>SUBJECTIVE</b></span>
  </div>
 
-<div class="IntakeInformation" >
-    <div>    
+<div class="IntakeInformation" ng-repeat="medicalConditions in medicalConditions">
+    <div>    {{medicalConditions.code}}{{medicalConditions.description}} 
 		<span><b>Intake Form Information</b></span>
 	</div>
 </div>
@@ -136,22 +136,49 @@
 		<span><b>Current Medication</b></span>
 	</div>
      
-    <p ng-repeat="getMedicationList in ReportMedications" class="MedicationFirst">  
-         <span>{{getMedicationList.Number}}</span> 
-		 <span class="MedicationSpan">{{getMedicationList.description}}</b></span>
+    <p ng-if="intake.medications != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.TakingMedication1}}</b></span>
 	</p>
 
-			 
+	<p ng-if="existingConsultationReport.TakingMedication2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.TakingMedication2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.TakingMedication3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.TakingMedication3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.TakingMedication4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.TakingMedication4}}</b></span>
+	</p>		 
 </div> 
 
 <div class="ReportMedication Conditions" ng-if="intake.medicalConditions != ''" >
     <div>     
 		<span><b>Chronic Medication</b></span>
-	</div>     
-    <p ng-repeat="getmedicalConditionsList in ReportMedicalConditions" class="MedicationFirst">  
-         <span>{{getmedicalConditionsList.Number}}</span> 
-		 <span class="MedicationSpan">{{getmedicalConditionsList.description}}</b></span>
-	</p>	
+	</div>
+     
+    <p ng-if="existingConsultationReport.MedicalCondition1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.MedicalCondition1}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.MedicalCondition2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.MedicalCondition2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.MedicalCondition3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.MedicalCondition3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.MedicalCondition4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.MedicalCondition4}}</b></span>
+	</p> 
 </div> 
 
 <div class="ReportMedication Conditions" ng-if="intake.surgeries != ''">
@@ -159,12 +186,24 @@
 		<span><b>Prior Surgeries</b></span>
 	</div>
      
-    <p ng-repeat="getSurgeryList in ReportSurgeries" class="MedicationFirst">  
-         <span>{{getSurgeryList.Number}}</span> 
-		 <span class="MedicationSpan">{{getSurgeryList.description}}</b></span>
+    <p ng-if="existingConsultationReport.PriorSurgeory1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory1}}</b></span>
 	</p>
 
-	
+	<p ng-if="existingConsultationReport.PriorSurgeory2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.PriorSurgeory3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.PriorSurgeory4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory4}}</b></span>
+	</p> 
 </div> 
 
 <div class="ReportMedication Conditions" ng-if="intake.medicationAllergies != ''">
@@ -172,12 +211,24 @@
 		<span><b>Medication Allergies</b></span>
 	</div>
      
-    <p ng-repeat="getAllergyList in ReportMedicationAllergies" class="MedicationFirst">  
-          <span>{{getAllergyList.Number}}</span> 
-		 <span class="MedicationSpan">{{getAllergyList.description}}</b></span>
+    <p ng-if="existingConsultationReport.AllergicMedication1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.AllergicMedication1}}</b></span>
 	</p>
 
-	
+	<p ng-if="existingConsultationReport.AllergicMedication2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.AllergicMedication2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.AllergicMedication3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.AllergicMedication3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.AllergicMedication4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.AllergicMedication4}}</b></span>
+	</p> 
 </div> 
 
 
