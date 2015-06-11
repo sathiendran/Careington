@@ -28,7 +28,7 @@
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span> 
 						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 					</div>
-					<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian: {{PatientGuardian}}</div>
+                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}}</span></div>
 				</div>
         
 	</div>
@@ -57,7 +57,7 @@
 				</button>
 				<!--</a>-->
 			</div>
-			<div class="scheduled_appointments_text" >
+			<div class="scheduled_appointments_text">
 				Don't have an appointment? <br/>
 				See the next available clincian.
 			</div>
