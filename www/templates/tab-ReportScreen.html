@@ -34,24 +34,18 @@
  
 <ion-view title="Report Details">
 
-<ion-content class="ReportContent">
-	<div class="HospitalDetails">
-		<div class="HospitalLogo" >
-			<img ng-src="{{ReportHospitalImage}}">
+<ion-content class="ReportContent" >
+	<div>
+		<div style= "width: 50%;  float: left;">
+			<img src="https://snap-dev.com/UploadedImages/h_126/ch_emerald_city03.png" style="width: 140px;">
 		</div>
-		<div class="HospitalAddress">
-			<div class="ReportAddress">
-				<p  class="PragraphContent AddressDetails" >
-					{{existingConsultationReport.hospitalAddress}} | 555 345 3454  </p>
-				<p class="OrganizationDetails">
-					<b class="OrganizationName" ng-if="existingConsultationReport.organization != ''">Organization:</b> {{existingConsultationReport.organization}} <br>
-					<b class="OrganizationLocation" ng-if="existingConsultationReport.location != ''">Location:</b> <br>
-					<span class="LocationName" ng-if="existingConsultationReport.location != ''">{{existingConsultationReport.location}} </span><span></span>
-				</p>
-			</div>
-		</div>
+		<div style="text-align: right; ">
+			<div>2211 M Second Street\n New York, New York 67676 | 66636657</div>
+			<div  style= "padding-top: 10px;"><b>Organization:</b> Coca-Cola</div>
+			<div><b>Location</b> </div>
+			<div>Chennai</div>
+		</div>		
 	</div>
-	<br>
 	<div class="ConnectedCareDetails" >
 		<div class="ConnectedCareTitle">
 			<h1 class="ReportTitle">CONNECTED CARE CONSULTATION REPORT</h1>
@@ -61,214 +55,42 @@
 			<img ng-src="img/attached.png">
 			<p><b>3</b></p>
 		</div>
+		<div style="border-bottom: 2px solid #ccc; position: relative; top: -37px; ">&nbsp </div>
 	</div>
-	
-	<div class="PatientPersonalDetails">
-		<div class="ReportPatientName">
-			<p><b>Patient:</b><br> 
-			{{existingConsultationReport.patientName}} {{existingConsultationReport.lastName}} <br>
-			{{existingConsultationReport.patientAddress}}<br>
-			Home: {{existingConsultationReport.homePhone}}  <br>
-			Cell: {{existingConsultationReport.mobilePhone}}  <br>
-			</p>
-		</div>
-		<div class="EncounterDate">
-			<p><b>Encounter Date:</b> <br>
-				{{existingConsultationReport.consultationDate | date:'MMM dd, yyyy'}} <br>
-			<b>physician:</b> <br>
-			{{existingConsultationReport.doctorFirstName}} {{existingConsultationReport.doctorLastName}}
-			</p>
-		</div>
+	<div style="margin-top: -20px; ">
+		<div style= "width: 55%;  float: left; padding-right: 35px;">
+			<div><b>Patient :</b></div>
+			<div>Poomani </div>
+			<div>121, Chennai</div>
+			<div>Home: 434546456</div>
+			<div>Caell: 46434546456</div>
+		</div>		
+		<div style="padding-left: 20px" >
+			<div><b>Encounter Date:</b></div>
+			<div>May 15, 2014</div>
+			<div><b>Physician</b> </div>
+			<div>Doctor Name</div>
+		</div>		
 	</div>
-    
-  
-   
-    <div class="PatientStatistics">
-        
-         <span><b>Patient Statistics</b></span>
-        
-        <div class="PatientAgeGender">
-			<p><b> Age : </b>   <input type="text" style="" readonly value="{{existingConsultationReport.dob  | ageFilter}}">
-			</p> 
-            
-            <p class="PatientGender"> 
-			<b> Gender : </b>  <input type="text" readonly value="{{existingConsultationReport.gender}}">
-			</p>
-		</div>
-		<div class="PatientHeightWeight">
-			<p> 
-          <b>  Height : </b> 
-           <input type="text" readonly value="{{existingConsultationReport.height}} {{existingConsultationReport.heightUnit}} ">
-			</p>
-            
-            <p class="PatientWeight" > 
-           <b> Weight :  </b>
-           <input type="text"  readonly value="{{existingConsultationReport.weight}} {{existingConsultationReport.weightUnit}}">
-			</p>
-            
+	<div style="clear: both; padding-top: 20px;">
+		<div style=" background-color: #E5E5E5; padding: 10px;">
+			<div style="border-bottom: 1px #DBDBDB; font-size: 20px"><b>Patient Statistics</b></div>
+			<div>
+				<div class="PatientAgeGender" style="float: left; margin-right: 20px; width: 45%" >
+					<div style="float: left; position: relative; top: 10px; margin-right: 15px;"><b>Age:</b></div>
+					<div style="width: 160px;"><input type="text" style="" readonly value="dfgdfg"></div>
+				</div>
+				<div class="PatientAgeGender" >
+					<div style="float: left; position: relative; top: 10px; margin-right: 15px;"><b>Age:</b></div>
+					<div><input type="text" style="" readonly value="dfgdfg"></div>
+				</div>
+			</div>
+			
 		</div>
 	</div>
-    
-      <div class="ReportPatientConcern">
-          <span><b>Patient Concerns</b></span>
-      </div>
-    
-    <div class="ReportPatientConcernDetails">
-		<p>  <span class="ConcernNo1">1</span> <span class="ConcernNo1Details">{{primaryConcern[1]}}</b></span></p>
-		<br>
-		<p>  <span class="ConcernNo2">2</span> <span class="ConcernNo2Details">{{secondaryConcern[1]}}</b></span></p>
-
-    </div> 
-
-
-<div class="ReportSubjective">
-          <span><b>SUBJECTIVE</b></span>
- </div>
-
-<div class="IntakeInformation" >
-    <div>    
-		<span><b>Intake Form Information</b></span>
-	</div>
-</div>
-
-<div class="ReportMedication" ng-if="intake.medications != ''">
-    <div>     
-		<span><b>Current Medication</b></span>
-	</div>
-     
-    <p ng-repeat="getMedicationList in ReportMedications" class="MedicationFirst">  
-         <span>{{getMedicationList.Number}}</span> 
-		 <span class="MedicationSpan">{{getMedicationList.description}}</b></span>
-	</p>
-
-			 
-</div> 
-
-<div class="ReportMedication Conditions" ng-if="intake.medicalConditions != ''" >
-    <div>     
-		<span><b>Chronic Medication</b></span>
-	</div>     
-    <p ng-repeat="getmedicalConditionsList in ReportMedicalConditions" class="MedicationFirst">  
-         <span>{{getmedicalConditionsList.Number}}</span> 
-		 <span class="MedicationSpan">{{getmedicalConditionsList.description}}</b></span>
-	</p>	
-</div> 
-
-<div class="ReportMedication Conditions" ng-if="intake.surgeries != ''">
-    <div>     
-		<span><b>Prior Surgeries</b></span>
-	</div>
-     
-    <p ng-repeat="getSurgeryList in ReportSurgeries" class="MedicationFirst">  
-         <span>{{getSurgeryList.Number}}</span> 
-		 <span class="MedicationSpan">{{getSurgeryList.description}}</b></span>
-	</p>
-
 	
-</div> 
-
-<div class="ReportMedication Conditions" ng-if="intake.medicationAllergies != ''">
-    <div>     
-		<span><b>Medication Allergies</b></span>
-	</div>
-     
-    <p ng-repeat="getAllergyList in ReportMedicationAllergies" class="MedicationFirst">  
-          <span>{{getAllergyList.Number}}</span> 
-		 <span class="MedicationSpan">{{getAllergyList.description}}</b></span>
-	</p>
-
 	
-</div> 
-
-
-
-
-<div class="ReportScreenSubjective">
-     <p class="PragraphContent">  
-      {{SoapNote.subjective}}
-    </p>
-</div> 
-
-
-<div class="ReportAbjective">
-    <div>     
-		<span><b>OBJECTIVE</b></span>
-	</div>
-     
-     <p class="PragraphContent">  
-      {{SoapNote.objective}}
-    </p>
-</div> 
-
-<div class="ReportAbjective assessment" >
-   
-    <div>     
-		<span><b>ASSESSMENT</b></span>
-	</div>
-     
-     <p class="PragraphContent" >  
-       {{SoapNote.assessment}}
-    </p>
-
-</div> 
-
-<div class="ReportAbjective ReportPlan">
-    <div>     
-		<span><b>PLAN</b></span>
-	</div>
 	
-     <p class="PragraphContent">  
-       {{SoapNote.plan}}
-    </p>
-</div>
- 
-<div class="ReportAbjective ReportRX">
-    <div>     
-		<span><b>RX</b></span>
-	</div>
-     
-     <p class="PragraphContent" >  
-		{{existingConsultationReport.rx}}       
-    </p>
-</div> 
-
-<div class="ReportAbjective ReportChat">
-   
-    <div>     
-		<span><b>CHAT TRANSCRIPT</b></span>
-	</div>
-     
-     <p class="PragraphContent" >  
-      [2/13/14, 11:01:23 AM] Ben: Thought you might find this inte [2/13/14, 11:01:23 AM] Ben: Iam grabbing lunch.resing.
-    [2/13/14, 11:01:23 PM] Ben: Iam grabbing lunch.
-     [2/13/14, 11:01:23 PM] Ben:3 sound good?.
-     [2/13/14, 11:01:23 PM] Ben:Report Patrick:grab some for me too :(
-    [2/13/14, 11:01:23 PM] Ben:Report Patrick:grab some for me too :(
-         
-    </p>
-
-</div> 
-
-
-<div class="ReportAbjective ReportFileAttach">
-   
-    <div>     
-		<span><b>FILE  ATTACHMENT</b></span>
-	</div>
-     
-     <p class="PragraphContent">  
-      file attachement
-    </p> 
-
-</div> 
-
-
-<div ng-click="EnableBackButton()" class="ReportAbjective ReportScreenDone">
-				<button class="button button-block button-balanced ReportButton">
-				<B>Done</B>  
-				</button>
-</div>
-
 </ion-content>
 
 </ion-view>

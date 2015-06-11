@@ -1079,7 +1079,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .ReportContent {
-	margin: 81px 0 0 0;
+	margin: 81px 20px 0 20px;
 	font-family: 'Glober Regular';
 	.HospitalDetails {
 		height: 212px; width:100%;
@@ -1112,17 +1112,17 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}
 	}
 	.ConnectedCareDetails {
-		border-bottom:2px solid #ccc;position: relative; margin: 12px;
+		//border-bottom:2px solid #ccc;position: relative; margin: 12px;
 		.ConnectedCareTitle {
-			width:100%;float:left;margin-top: -48px;
+			width:100%;float:left;margin-top: 10px;
 		}
 		.CCAttachment {
 			float:right;margin-top: -50px;
 			img {
-				margin: 0 -8px 7px -14px; width:31px;
+				margin: 0 -8px 7px -14px; width:25px;
 			}
 			p {
-				color: #fff;margin: -45px 0 0 8px;
+				color: #fff;margin: -40px 0 0 8px;
 			}
 		}
 	}
@@ -1135,11 +1135,20 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			float:right;margin-right: 18px;
 		}
 	}
+	
+	.PatientAgeGender {
+			padding-top: 15px;
+			input[type="text"] {
+				background-color:#CCCCCC;
+				width: 100px;
+			}
+		}
 	.PatientStatistics {
 		height: 132px; background-color:#E5E5E5;position: relative;top: 100px;margin: 10px;
 		span {
 			margin-left: -125px; padding:0px; font-size:18px;position:relative; top:10px;Color:#4D4D4D;
 		}
+		
 		.PatientAgeGender {
 			float:left;margin-left: -118px;margin-top: 45px;
 			b {
@@ -1718,8 +1727,10 @@ margin-left: 16px;
 
 .ReportTitle {
 @include font($fontFamily_regular, Bold, 22px);
+	width: 85%;
+	position: relative;
 }
-.Roundcircle { width: 25px; height: 21px; background: #000; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; }
+.Roundcircle { position: relative; width: 25px; height: 23px; background: #000; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; }
 
 .patientstatics {
 	background-color: #ccc;

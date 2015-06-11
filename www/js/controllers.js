@@ -187,8 +187,24 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'operatingHours': index.operatingHours,
 							'providerId': index.providerId,	
 							'brandColor': index.brandColor,
+							'contactNumber':index.contactNumber,
+							'appointmentsContactNumber': index.appointmentsContactNumber,
 						});
-					});	
+					});
+					
+					$rootScope.contactNumber = $rootScope.hospitalDetailsList[0].contactNumber;
+					$rootScope.appointmentsContactNumber = $rootScope.hospitalDetailsList[0].appointmentsContactNumber;
+					
+					if(typeof $rootScope.contactNumber != 'undefined') {
+						$rootScope.contactNumber = $rootScope.contactNumber;
+					} else if(typeof $rootScope.contactNumber == 'undefined') {
+						if(typeof $rootScope.appointmentsContactNumber != 'undefined') {
+							$rootScope.contactNumber = $rootScope.appointmentsContactNumber;
+						} else if(typeof $rootScope.appointmentsContactNumber == 'undefined') {
+							$rootScope.contactNumber = '';
+						}
+					}
+					
 					$rootScope.CountryLists = CountryList.getCountryDetails();	
                     $state.go('tab.provider');
 				}
@@ -2486,9 +2502,57 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             consultationId: $rootScope.consultationId, 
             accessToken: $rootScope.accessToken,
             success: function (data) {
-                $rootScope.existingConsultationReport = data.data[0];		
-				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.HospitalImage;					
-				 $state.go('tab.ReportScreen');
+                $rootScope.existingConsultationReport = data.data[0].details[0]	;
+				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
+				$rootScope.primaryConcern = $rootScope.existingConsultationReport.primaryConcern;
+				$rootScope.primaryConcern = $rootScope.primaryConcern.split("?");
+				$rootScope.secondaryConcern = $rootScope.existingConsultationReport.secondaryConcern;
+				$rootScope.secondaryConcern = $rootScope.secondaryConcern.split("?");
+				$rootScope.intake = $rootScope.existingConsultationReport.intake;
+				
+				
+					$rootScope.ReportMedicalConditions = [];
+					angular.forEach($rootScope.intake.medicalConditions, function(index, item) {	
+						$rootScope.ReportMedicalConditions.push({	
+							'Number':item + 1,
+							'id': index.$id,
+							'code': index.code,
+							'description': index.description,
+						});
+					});	
+					
+					$rootScope.ReportMedicationAllergies = [];
+					angular.forEach($rootScope.intake.medicationAllergies, function(index, item) {	
+						$rootScope.ReportMedicationAllergies.push({	
+							'Number':item + 1,
+							'id': index.$id,
+							'code': index.code,
+							'description': index.description,
+						});
+					});	
+					
+					$rootScope.ReportMedications = [];
+					angular.forEach($rootScope.intake.medications, function(index, item) {	
+						$rootScope.ReportMedications.push({	
+							'Number':item + 1,
+							'id': index.$id,
+							'code': index.code,
+							'description': index.description,
+						});
+					});
+					
+					$rootScope.ReportSurgeries = [];
+					angular.forEach($rootScope.intake.surgeries, function(index, item) {	
+						$rootScope.ReportSurgeries.push({	
+							'Number':item + 1,
+							'id': index.$id,
+							'description': index.description,
+							'month': index.month,
+							'year': index.year,
+						});
+					});
+				
+				$state.go('tab.ReportScreen');
 		   },
             error: function (data) {
                 $scope.existingConsultationReport = 'Error getting consultation report';
@@ -2499,11 +2563,32 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		LoginService.getConsultationFinalReport(params);
 	}
 	
+	$scope.doGetPatientsSoapNotes = function() {
+			if ($rootScope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+			 var params = {
+                consultationID: $rootScope.consultationId, 
+                accessToken: $rootScope.accessToken,
+                success: function (data) {
+                    $rootScope.SoapNote = data.data.soapNote;
+                },
+                error: function (data) {
+                    $scope.SoapNote = 'Error getting patient Soap Note';
+                    console.log(data);
+                }
+            };
+			
+			LoginService.getPatientsSoapNotes(params);
+		}
+	
     
     $scope.disconnectConference = function(){
         session.unpublish(publisher)
         //publisher.destroy();
         session.disconnect();
+		$scope.doGetPatientsSoapNotes();
 		$scope.doGetExistingConsulatationReport();       
     };
     

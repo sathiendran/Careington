@@ -8647,7 +8647,7 @@ select {
   margin-left: 16px; }
 
 .ReportContent {
-  margin: 81px 0 0 0;
+  margin: 81px 20px 0 20px;
   font-family: 'Glober Regular'; }
   .ReportContent .HospitalDetails {
     height: 212px;
@@ -8683,23 +8683,19 @@ select {
             margin-left: 126px; }
           .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails .LocationName {
             margin-left: 18px; }
-  .ReportContent .ConnectedCareDetails {
-    border-bottom: 2px solid #ccc;
-    position: relative;
-    margin: 12px; }
-    .ReportContent .ConnectedCareDetails .ConnectedCareTitle {
-      width: 100%;
-      float: left;
-      margin-top: -48px; }
-    .ReportContent .ConnectedCareDetails .CCAttachment {
-      float: right;
-      margin-top: -50px; }
-      .ReportContent .ConnectedCareDetails .CCAttachment img {
-        margin: 0 -8px 7px -14px;
-        width: 31px; }
-      .ReportContent .ConnectedCareDetails .CCAttachment p {
-        color: #fff;
-        margin: -45px 0 0 8px; }
+  .ReportContent .ConnectedCareDetails .ConnectedCareTitle {
+    width: 100%;
+    float: left;
+    margin-top: 10px; }
+  .ReportContent .ConnectedCareDetails .CCAttachment {
+    float: right;
+    margin-top: -50px; }
+    .ReportContent .ConnectedCareDetails .CCAttachment img {
+      margin: 0 -8px 7px -14px;
+      width: 25px; }
+    .ReportContent .ConnectedCareDetails .CCAttachment p {
+      color: #fff;
+      margin: -40px 0 0 8px; }
   .ReportContent .PatientPersonalDetails {
     height: 50px; }
     .ReportContent .PatientPersonalDetails .ReportPatientName {
@@ -8708,6 +8704,11 @@ select {
     .ReportContent .PatientPersonalDetails .EncounterDate {
       float: right;
       margin-right: 18px; }
+  .ReportContent .PatientAgeGender {
+    padding-top: 15px; }
+    .ReportContent .PatientAgeGender input[type="text"] {
+      background-color: #CCCCCC;
+      width: 100px; }
   .ReportContent .PatientStatistics {
     height: 132px;
     background-color: #E5E5E5;
@@ -9208,10 +9209,10 @@ a {
   font-family: 'Glober Regular'; }
 
 .listImgView {
-  width: 30px;
-  height: 30px;
+  width: 35px !important;
+  height: 35px;
   border-radius: 50%;
-  margin-top: 10px;
+  margin-top: 6px;
   margin-left: 8px; }
 
 .UserHmelistImgView {
@@ -9345,11 +9346,14 @@ a {
 .ReportTitle {
   font-family: 'Glober Regular';
   font-weight: Bold;
-  font-size: 22px; }
+  font-size: 22px;
+  width: 85%;
+  position: relative; }
 
 .Roundcircle {
+  position: relative;
   width: 25px;
-  height: 21px;
+  height: 23px;
   background: #000;
   -moz-border-radius: 50px;
   -webkit-border-radius: 50px;
