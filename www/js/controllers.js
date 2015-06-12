@@ -125,7 +125,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}*/
 	
 	$scope.validation = function() {
-		$scope.ErrorMessage = "Oops, something went wrong !";
+		$scope.ErrorMessage = "Oops, something went wrong!";
 		$rootScope.Validation($scope.ErrorMessage);
 		
 	};
@@ -259,7 +259,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
 					if(typeof data.access_token == 'undefined') {
-						$scope.ErrorMessage = "Incorrect Password. Please try again.";
+						$scope.ErrorMessage = "Incorrect Password. Please try again!";
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
 						$scope.tokenStatus = 'alert-success';
@@ -1136,7 +1136,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			SurgeryStocksListService.ClearSurgery();
 			LoginService.getCodesSet(params);
 		} else {
-		    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName; 
+		    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName+'!'; 
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
 		}	
 	}
@@ -1274,7 +1274,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.doPostCoPayDetails = function () {		
 		
 		if($('#addNewCard').val() == 'Choose Your Card'){			
-			$scope.ErrorMessages = "Please select the card to use for payment.!";
+			$scope.ErrorMessages = "Please select the card to use for payment!";
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 			
 		} else {
@@ -1670,7 +1670,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				onTap: function(e) {
 				  if (!$scope.data.PrimaryConcernOther) {
 					if($rootScope.PrimaryPopup == 0) {
-						$scope.ErrorMessages = "Please enter a reason for today's visit.";
+						$scope.ErrorMessages = "Please enter a reason for today's visit!";
 						$rootScope.PopupValidation($scope.ErrorMessages);
 					}
 						e.preventDefault();
