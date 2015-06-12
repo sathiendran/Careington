@@ -507,6 +507,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$rootScope.ApplyPlanPatientHealthPlanList = $rootScope.patientHealthPlanList;
 							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
+                            $rootScope.SelectedHealthPlan['healthPlanId'];
+                            console.log($rootScope.SelectedHealthPlan['healthPlanId']);
 							
 							$rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
