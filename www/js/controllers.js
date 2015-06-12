@@ -1513,8 +1513,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
-                $rootScope.videoSessionId = data.apiKey;
-                $rootScope.videoApiKey = data.sessionId;
+                $rootScope.videoSessionId = data.sessionId;
+                $rootScope.videoApiKey = data.apiKey;
                 $rootScope.videoToken = data.token;
                 if($rootScope.videoSessionId != "" && $rootScope.videoToken != ""){
                     $state.go('tab.videoConference');
