@@ -1088,36 +1088,18 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .ReportContent {
-	margin: 81px 20px 0 20px;
+	margin: 81px 10px 0 10px;
 	font-family: 'Glober Regular';
-	.HospitalDetails {
-		height: 212px; width:100%;
-		.HospitalLogo {
-			float:left;width:20%;
-			img {
-				float:left;margin: 7px 0 0 7px; width: 120px;
-			}
+	.reportLogo {
+		//width: 50%;  float: left;
+		img {
+			//width: 140px;
 		}
-		.HospitalAddress {
-			margin-right: -41px;line-height: 20px;width:70%;float:right;
-			.ReportAddress {
-				float:right;margin-right: 55px;
-				.AddressDetails {
-					text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#000;
-				}
-				.OrganizationDetails {
-					float:right;
-					.OrganizationName {
-						float:left;margin-left: 32px;
-					}
-					.OrganizationLocation {
-						float:left;margin-left: 126px;
-					}
-					.LocationName {
-						margin-left: 18px;
-					}
-				}
-			}
+	}
+	.providerAddress {
+		text-align: right;
+		.reportOrganization {
+			padding-top: 10px;
 		}
 	}
 	.ConnectedCareDetails {
@@ -1134,153 +1116,119 @@ background: linear-gradient(#A0D18A, #91BE7B);
 				color: #fff;margin: -40px 0 0 8px;
 			}
 		}
-	}
-	.PatientPersonalDetails {
-		height:50px;
-		.ReportPatientName {
-			float:left;margin-left: 10px;
-		}
-		.EncounterDate {
-			float:right;margin-right: 18px;
+		.attachmentSpace {
+			border-bottom: 2px solid #ccc; position: relative; top: -37px; 
 		}
 	}
-	
-	.PatientAgeGender {
-			padding-top: 15px;
+	.reportPatientDetails {
+		margin-top: -20px;
+		.reportPatient {
+			width: 55%;  float: left; padding-right: 35px;
+		}
+		.reportEncounter {
+			padding-left: 20px;
+		}
+	}
+	.reportPatientStatistics {
+		clear: both; padding-top: 20px;
+		.PatientStatistic {
+			background-color: #E5E5E5;width: 100%; font-size: 18px; 
 			input[type="text"] {
 				background-color:#CCCCCC;
-				width: 100px;
+				width: 67px;
+				font-size: 18px;
+				height: 30px;
+				font-weight: bold;
+				
 			}
-		}
-	.PatientStatistics {
-		height: 132px; background-color:#E5E5E5;position: relative;top: 100px;margin: 10px;
-		span {
-			margin-left: -125px; padding:0px; font-size:18px;position:relative; top:10px;Color:#4D4D4D;
-		}
-		
-		.PatientAgeGender {
-			float:left;margin-left: -118px;margin-top: 45px;
-			b {
-				Color:#4D4D4D;font-size:18px;
+			.statisticsTitle {
+				padding: 7px;
+				div {
+					border-bottom: 1px solid #ccc; position: relative; top: -5px;
+				}
 			}
-			input[type="text"] {
-				background-color:#CCCCCC;position: relative;left: 80px;top: -25px; width:70px;
+			.statisticAge {
+				padding-left: 7px;
 			}
-			.PatientGender {
-				margin-top:-23px;
-			}
-		}
-		.PatientHeightWeight {
-			float:right;margin-right: -85px;margin-top: 45px;
-			b {
-				Color:#4D4D4D;font-size:18px;
-			}
-			input[type="text"] {
-				background-color:#CCCCCC;position: relative;left: 76px;top: -25px; width:70px;
-			}
-			.PatientWeight {
-				margin-top:-23px;
+			.statisticGender {	
+				padding-left: 7px; padding-top: 10px; padding-bottom: 7px;
 			}
 		}
 	}
-	.ReportPatientConcern {
-		height: 40px; position: relative;top: 110px;margin: 10px;background-color:#E5E5E5;padding:10px;
-		span {
-			font-size: 20px;margin-left: 0px;
+	.reportPatientConcerns {
+		padding-top: 20px; font-size: 20px;
+		.concernTitle {
+			background-color: #E5E5E5; padding-top: 7px;padding-bottom: 0px;
 		}
-	}
-	.ReportPatientConcernDetails {
-		height: 100%; position: relative;top: 110px;margin: 10px;background-color:#FFF;padding:7px;
-		.ConcernNo1 {
-			padding:5px;background-color:#E5E5E5;font-size: 20px;
+		.concernUnderline {
+			border-bottom: 1px solid; position: relative; top: -4px;
 		}
-		.ConcernNo1Details {	
-			padding:10px;font-size: 20px;
-		}
-		.ConcernNo2 {
-			padding:5px;background-color:#ccc;font-size: 20px;
-		}
-		.ConcernNo2Details {
-			padding:10px;font-size: 20px;
-		}
-	}
-	.ReportSubjective {
-		height: 35px; position: relative;top: 120px;margin: 10px;background-color:#fff;padding:10px; border-bottom:2px solid #ccc;
-		span {
-			font-size: 20px;margin-left: -6px;
-		}
-	}
-	.IntakeInformation {
-		height: 80px; position: relative;top: 120px;margin: 10px;background-color:#E5E5E5;padding:10px;
-		div {
-			border-bottom:2px solid #CCC;margin:3px;
-			span {	
-				font-size: 20px;margin-left: 3px;
+		.reportConcerns {
+			padding-top: 20px; font-weight: bold;
+			.concernNumber {
+				float: left;
+				span {
+					background-color: #ccc; padding: 4px 7px 0px 7px;
+				}
+			}
+			.primaryConcernText {
+				position: relative;  top: 3px;  left: 20px;
 			}
 		}
 	}
-	.ReportMedication {
-		height: 100%; position: relative;top: 78px;margin: 10px;background-color:#E5E5E5;padding:10px;
-		div {
-			border-bottom:2px solid #888;margin:3px;
-			span {
-				font-size: 20px;margin-left: 3px;
+	.reportSubjective {
+		padding-top: 20px; font-size: 18px;
+		.subjectiveTitle {
+			padding-top: 7px;
+		}
+		.subjectiveUnderline {
+			border-bottom: 2px solid #CCC; position: relative; top: -4px;
+		}
+		.intakeTitle {
+			background-color: #E5E5E5; padding: 10px 7px 7px 7px;
+			.intakeUnderline {
+				border-bottom: 1px solid #ccc; position: relative; top: -5px;
 			}
 		}
-		.MedicationFirst {
-			margin-top:15px;			
-		}
-		.MedicationSpan {
-				padding:10px;
+		.intakeMedication {
+			background-color: #E5E5E5; padding: 10px 7px 7px 7px; font-size: 16px;
+			.medicationTitle {
+				font-style: italic;
 			}
-		p {
-			margin-top:-7px;background-color: #CCCCCC;padding: 5px;font-size: 20px;
-		}
-	}
-	.Conditions {
-		top: 51px;
-	}
-	.ReportScreenSubjective {
-		height: 100%; position: relative;top: 40px;margin: 10px;background-color:#fff;padding:10px;
-		p {
-			margin-top:15px;background-color: #fff;
-		}
-	}
-	.ReportAbjective {
-		height: 100%; position: relative;top: 15px;margin: 10px;background-color:#fff;padding:10px;
-		div {
-			border-bottom:2px solid #888;margin:3px;
-			span {
-				font-size: 20px;margin-left: 3px;
+			.medicationUnderline {
+				border-bottom: 1px solid #ccc; position: relative; top: -5px;
+			}
+			.medicationList {
+				background-color: #ccc; padding-left: 7px; padding-top: 5px; margin-bottom: 5px;
+			}
+			.medicationNone {
+				padding-top: 10px; padding-left: 10px;
 			}
 		}
-		p {
-			margin-top:15px;background-color: #fff;
+		.intakeParagraph {
+			text-align: justify; font-size: 14px; padding-top: 10px;
 		}
 	}
-	.assessment {
-		top: -7px;
+	.reportObjective {
+		padding-top: 10px; font-size: 18px;
+			.objectiveTitle {
+				padding-top: 7px;
+			}
+			.objectiveUnderline {
+				border-bottom: 2px solid #CCC; position: relative; top: -4px;
+			}
+			p {
+				text-align: justify; font-size: 14px; padding-top: 10px;
+			}
 	}
-	.ReportPlan {
-		top: -32px;
+	.reportDOne {
+		padding-bottom: 10px; padding-top: 10px;
 	}
-	.ReportRX {
-		top: -53px;
-	}
-	.ReportChat {
-		top: -74px;
-	}
-	.ReportFileAttach {
-		top: -95px;
-	}
-	.ReportScreenDone {
-		top: -98px;
-		.ReportButton {
-			background-color:#A2D28A !important;
-			border:#A2D28A !important;
-		}	
-	}
+	
+	
 }
+
+
 
 //Patient ConcernsContent
 

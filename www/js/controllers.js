@@ -2510,6 +2510,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.secondaryConcern = $rootScope.secondaryConcern.split("?");
 				$rootScope.intake = $rootScope.existingConsultationReport.intake;
 				
+				$rootScope.fullTerm = $rootScope.intake.infantData.fullTerm;
+					if($rootScope.fullTerm == 'N') { $rootScope.fullTerm = 'No'; } else if($rootScope.fullTerm == 'T') { $rootScope.fullTerm = 'True'; } 
+				
+				$rootScope.vaginalBirth = $rootScope.intake.infantData.vaginalBirth;
+					if($rootScope.vaginalBirth == 'N') { $rootScope.vaginalBirth = 'No'; } else if($rootScope.vaginalBirth == 'T') { $rootScope.vaginalBirth = 'True'; } 
+				
+				$rootScope.dischargedWithMother = $rootScope.intake.infantData.dischargedWithMother;
+					if($rootScope.dischargedWithMother == 'N') { $rootScope.dischargedWithMother = 'No'; } else if($rootScope.dischargedWithMother == 'T') { $rootScope.dischargedWithMother = 'True'; } 
+				
+				$rootScope.vaccinationsCurrent = $rootScope.intake.infantData.vaccinationsCurrent;
+					if($rootScope.vaccinationsCurrent == 'N') { $rootScope.vaccinationsCurrent = 'No'; } else if($rootScope.vaccinationsCurrent == 'T') { $rootScope.vaccinationsCurrent = 'True'; } 
+				
+				
+				
+				$rootScope.gender = data.data[0].details[0].gender;
+				if($rootScope.gender == 'M') { $rootScope.gender = 'Male'; } else if($rootScope.gender == 'F') { $rootScope.gender = 'Female'; } 
+				
 				
 					$rootScope.ReportMedicalConditions = [];
 					angular.forEach($rootScope.intake.medicalConditions, function(index, item) {	
@@ -2551,6 +2568,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'year': index.year,
 						});
 					});
+					
+					
 				
 				$state.go('tab.ReportScreen');
 		   },

@@ -7920,8 +7920,9 @@ body {
   margin-top: 96px;
   color: #A80532; }
   .password_sub_header .password_header_content {
-    position: relative;
-    top: 45px; }
+    /*position: relative;
+			top: 45px;*/
+    margin-top: 96px; }
     .password_sub_header .password_header_content span {
       color: #C4C4C4;
       font-size: 12px;
@@ -7937,32 +7938,40 @@ body {
     border: 1px solid #DADADA;
     border-radius: 8px;
     height: 45px;
+    line-height: normal;
     font-weight: bold;
     background-color: #999999; }
     .password_content .item-input ::-webkit-input-placeholder {
       /* WebKit browsers */
       color: #484848 !important;
-      font-size: 17px !important;
-      padding-top: 3px !important; }
+      font-size: 25px !important;
+      line-height: 1em;
+      padding-top: 2px !important;
+      opacity: 1; }
     .password_content .item-input :-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
       color: #484848 !important;
-      font-size: 17px !important;
-      padding-top: 3px !important;
+      font-size: 25px !important;
+      line-height: 1em;
+      padding-top: 2px !important;
       opacity: 1; }
     .password_content .item-input ::-moz-placeholder {
       /* Mozilla Firefox 19+ */
       color: #484848 !important;
-      font-size: 17px !important;
-      padding-top: 3px !important;
+      font-size: 25px !important;
+      padding-top: 2px !important;
+      line-height: 1em;
       opacity: 1; }
     .password_content .item-input :-ms-input-placeholder {
       /* Internet Explorer 10+ */
       color: #484848 !important;
-      font-size: 17px !important;
-      padding-top: 3px !important; }
+      font-size: 25px !important;
+      line-height: 1em;
+      padding-top: 2px !important;
+      opacity: 1; }
     .password_content .item-input input {
-      font-size: 17px; }
+      font-size: 25px;
+      line-height: 1em; }
 
 /*.item-input {
 	background-color: $Mercury;
@@ -8149,7 +8158,7 @@ body {
       margin-left: -15px;
       margin-top: -13px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
-        width: 30px; }
+        width: 34px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
       font-size: 21px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
@@ -8647,42 +8656,12 @@ select {
   margin-left: 16px; }
 
 .ReportContent {
-  margin: 81px 20px 0 20px;
+  margin: 81px 10px 0 10px;
   font-family: 'Glober Regular'; }
-  .ReportContent .HospitalDetails {
-    height: 212px;
-    width: 100%; }
-    .ReportContent .HospitalDetails .HospitalLogo {
-      float: left;
-      width: 20%; }
-      .ReportContent .HospitalDetails .HospitalLogo img {
-        float: left;
-        margin: 7px 0 0 7px;
-        width: 120px; }
-    .ReportContent .HospitalDetails .HospitalAddress {
-      margin-right: -41px;
-      line-height: 20px;
-      width: 70%;
-      float: right; }
-      .ReportContent .HospitalDetails .HospitalAddress .ReportAddress {
-        float: right;
-        margin-right: 55px; }
-        .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .AddressDetails {
-          text-overflow: clip;
-          white-space: normal;
-          text-align: justify;
-          padding: 0.5em 0 0.5em 0;
-          color: #000; }
-        .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails {
-          float: right; }
-          .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails .OrganizationName {
-            float: left;
-            margin-left: 32px; }
-          .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails .OrganizationLocation {
-            float: left;
-            margin-left: 126px; }
-          .ReportContent .HospitalDetails .HospitalAddress .ReportAddress .OrganizationDetails .LocationName {
-            margin-left: 18px; }
+  .ReportContent .providerAddress {
+    text-align: right; }
+    .ReportContent .providerAddress .reportOrganization {
+      padding-top: 10px; }
   .ReportContent .ConnectedCareDetails .ConnectedCareTitle {
     width: 100%;
     float: left;
@@ -8696,182 +8675,120 @@ select {
     .ReportContent .ConnectedCareDetails .CCAttachment p {
       color: #fff;
       margin: -40px 0 0 8px; }
-  .ReportContent .PatientPersonalDetails {
-    height: 50px; }
-    .ReportContent .PatientPersonalDetails .ReportPatientName {
+  .ReportContent .ConnectedCareDetails .attachmentSpace {
+    border-bottom: 2px solid #ccc;
+    position: relative;
+    top: -37px; }
+  .ReportContent .reportPatientDetails {
+    margin-top: -20px; }
+    .ReportContent .reportPatientDetails .reportPatient {
+      width: 55%;
       float: left;
-      margin-left: 10px; }
-    .ReportContent .PatientPersonalDetails .EncounterDate {
-      float: right;
-      margin-right: 18px; }
-  .ReportContent .PatientAgeGender {
-    padding-top: 15px; }
-    .ReportContent .PatientAgeGender input[type="text"] {
-      background-color: #CCCCCC;
-      width: 100px; }
-  .ReportContent .PatientStatistics {
-    height: 132px;
-    background-color: #E5E5E5;
-    position: relative;
-    top: 100px;
-    margin: 10px; }
-    .ReportContent .PatientStatistics span {
-      margin-left: -125px;
-      padding: 0px;
-      font-size: 18px;
-      position: relative;
-      top: 10px;
-      Color: #4D4D4D; }
-    .ReportContent .PatientStatistics .PatientAgeGender {
-      float: left;
-      margin-left: -118px;
-      margin-top: 45px; }
-      .ReportContent .PatientStatistics .PatientAgeGender b {
-        Color: #4D4D4D;
-        font-size: 18px; }
-      .ReportContent .PatientStatistics .PatientAgeGender input[type="text"] {
-        background-color: #CCCCCC;
-        position: relative;
-        left: 80px;
-        top: -25px;
-        width: 70px; }
-      .ReportContent .PatientStatistics .PatientAgeGender .PatientGender {
-        margin-top: -23px; }
-    .ReportContent .PatientStatistics .PatientHeightWeight {
-      float: right;
-      margin-right: -85px;
-      margin-top: 45px; }
-      .ReportContent .PatientStatistics .PatientHeightWeight b {
-        Color: #4D4D4D;
-        font-size: 18px; }
-      .ReportContent .PatientStatistics .PatientHeightWeight input[type="text"] {
-        background-color: #CCCCCC;
-        position: relative;
-        left: 76px;
-        top: -25px;
-        width: 70px; }
-      .ReportContent .PatientStatistics .PatientHeightWeight .PatientWeight {
-        margin-top: -23px; }
-  .ReportContent .ReportPatientConcern {
-    height: 40px;
-    position: relative;
-    top: 110px;
-    margin: 10px;
-    background-color: #E5E5E5;
-    padding: 10px; }
-    .ReportContent .ReportPatientConcern span {
-      font-size: 20px;
-      margin-left: 0px; }
-  .ReportContent .ReportPatientConcernDetails {
-    height: 100%;
-    position: relative;
-    top: 110px;
-    margin: 10px;
-    background-color: #FFF;
-    padding: 7px; }
-    .ReportContent .ReportPatientConcernDetails .ConcernNo1 {
-      padding: 5px;
+      padding-right: 35px; }
+    .ReportContent .reportPatientDetails .reportEncounter {
+      padding-left: 20px; }
+  .ReportContent .reportPatientStatistics {
+    clear: both;
+    padding-top: 20px; }
+    .ReportContent .reportPatientStatistics .PatientStatistic {
       background-color: #E5E5E5;
-      font-size: 20px; }
-    .ReportContent .ReportPatientConcernDetails .ConcernNo1Details {
-      padding: 10px;
-      font-size: 20px; }
-    .ReportContent .ReportPatientConcernDetails .ConcernNo2 {
-      padding: 5px;
-      background-color: #ccc;
-      font-size: 20px; }
-    .ReportContent .ReportPatientConcernDetails .ConcernNo2Details {
-      padding: 10px;
-      font-size: 20px; }
-  .ReportContent .ReportSubjective {
-    height: 35px;
-    position: relative;
-    top: 120px;
-    margin: 10px;
-    background-color: #fff;
-    padding: 10px;
-    border-bottom: 2px solid #ccc; }
-    .ReportContent .ReportSubjective span {
-      font-size: 20px;
-      margin-left: -6px; }
-  .ReportContent .IntakeInformation {
-    height: 80px;
-    position: relative;
-    top: 120px;
-    margin: 10px;
-    background-color: #E5E5E5;
-    padding: 10px; }
-    .ReportContent .IntakeInformation div {
+      width: 100%;
+      font-size: 18px; }
+      .ReportContent .reportPatientStatistics .PatientStatistic input[type="text"] {
+        background-color: #CCCCCC;
+        width: 67px;
+        font-size: 18px;
+        height: 30px;
+        font-weight: bold; }
+      .ReportContent .reportPatientStatistics .PatientStatistic .statisticsTitle {
+        padding: 7px; }
+        .ReportContent .reportPatientStatistics .PatientStatistic .statisticsTitle div {
+          border-bottom: 1px solid #ccc;
+          position: relative;
+          top: -5px; }
+      .ReportContent .reportPatientStatistics .PatientStatistic .statisticAge {
+        padding-left: 7px; }
+      .ReportContent .reportPatientStatistics .PatientStatistic .statisticGender {
+        padding-left: 7px;
+        padding-top: 10px;
+        padding-bottom: 7px; }
+  .ReportContent .reportPatientConcerns {
+    padding-top: 20px;
+    font-size: 20px; }
+    .ReportContent .reportPatientConcerns .concernTitle {
+      background-color: #E5E5E5;
+      padding-top: 7px;
+      padding-bottom: 0px; }
+    .ReportContent .reportPatientConcerns .concernUnderline {
+      border-bottom: 1px solid;
+      position: relative;
+      top: -4px; }
+    .ReportContent .reportPatientConcerns .reportConcerns {
+      padding-top: 20px;
+      font-weight: bold; }
+      .ReportContent .reportPatientConcerns .reportConcerns .concernNumber {
+        float: left; }
+        .ReportContent .reportPatientConcerns .reportConcerns .concernNumber span {
+          background-color: #ccc;
+          padding: 4px 7px 0px 7px; }
+      .ReportContent .reportPatientConcerns .reportConcerns .primaryConcernText {
+        position: relative;
+        top: 3px;
+        left: 20px; }
+  .ReportContent .reportSubjective {
+    padding-top: 20px;
+    font-size: 18px; }
+    .ReportContent .reportSubjective .subjectiveTitle {
+      padding-top: 7px; }
+    .ReportContent .reportSubjective .subjectiveUnderline {
       border-bottom: 2px solid #CCC;
-      margin: 3px; }
-      .ReportContent .IntakeInformation div span {
-        font-size: 20px;
-        margin-left: 3px; }
-  .ReportContent .ReportMedication {
-    height: 100%;
-    position: relative;
-    top: 78px;
-    margin: 10px;
-    background-color: #E5E5E5;
-    padding: 10px; }
-    .ReportContent .ReportMedication div {
-      border-bottom: 2px solid #888;
-      margin: 3px; }
-      .ReportContent .ReportMedication div span {
-        font-size: 20px;
-        margin-left: 3px; }
-    .ReportContent .ReportMedication .MedicationFirst {
-      margin-top: 15px; }
-    .ReportContent .ReportMedication .MedicationSpan {
-      padding: 10px; }
-    .ReportContent .ReportMedication p {
-      margin-top: -7px;
-      background-color: #CCCCCC;
-      padding: 5px;
-      font-size: 20px; }
-  .ReportContent .Conditions {
-    top: 51px; }
-  .ReportContent .ReportScreenSubjective {
-    height: 100%;
-    position: relative;
-    top: 40px;
-    margin: 10px;
-    background-color: #fff;
-    padding: 10px; }
-    .ReportContent .ReportScreenSubjective p {
-      margin-top: 15px;
-      background-color: #fff; }
-  .ReportContent .ReportAbjective {
-    height: 100%;
-    position: relative;
-    top: 15px;
-    margin: 10px;
-    background-color: #fff;
-    padding: 10px; }
-    .ReportContent .ReportAbjective div {
-      border-bottom: 2px solid #888;
-      margin: 3px; }
-      .ReportContent .ReportAbjective div span {
-        font-size: 20px;
-        margin-left: 3px; }
-    .ReportContent .ReportAbjective p {
-      margin-top: 15px;
-      background-color: #fff; }
-  .ReportContent .assessment {
-    top: -7px; }
-  .ReportContent .ReportPlan {
-    top: -32px; }
-  .ReportContent .ReportRX {
-    top: -53px; }
-  .ReportContent .ReportChat {
-    top: -74px; }
-  .ReportContent .ReportFileAttach {
-    top: -95px; }
-  .ReportContent .ReportScreenDone {
-    top: -98px; }
-    .ReportContent .ReportScreenDone .ReportButton {
-      background-color: #A2D28A !important;
-      border: #A2D28A !important; }
+      position: relative;
+      top: -4px; }
+    .ReportContent .reportSubjective .intakeTitle {
+      background-color: #E5E5E5;
+      padding: 10px 7px 7px 7px; }
+      .ReportContent .reportSubjective .intakeTitle .intakeUnderline {
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        top: -5px; }
+    .ReportContent .reportSubjective .intakeMedication {
+      background-color: #E5E5E5;
+      padding: 10px 7px 7px 7px;
+      font-size: 16px; }
+      .ReportContent .reportSubjective .intakeMedication .medicationTitle {
+        font-style: italic; }
+      .ReportContent .reportSubjective .intakeMedication .medicationUnderline {
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        top: -5px; }
+      .ReportContent .reportSubjective .intakeMedication .medicationList {
+        background-color: #ccc;
+        padding-left: 7px;
+        padding-top: 5px;
+        margin-bottom: 5px; }
+      .ReportContent .reportSubjective .intakeMedication .medicationNone {
+        padding-top: 10px;
+        padding-left: 10px; }
+    .ReportContent .reportSubjective .intakeParagraph {
+      text-align: justify;
+      font-size: 14px;
+      padding-top: 10px; }
+  .ReportContent .reportObjective {
+    padding-top: 10px;
+    font-size: 18px; }
+    .ReportContent .reportObjective .objectiveTitle {
+      padding-top: 7px; }
+    .ReportContent .reportObjective .objectiveUnderline {
+      border-bottom: 2px solid #CCC;
+      position: relative;
+      top: -4px; }
+    .ReportContent .reportObjective p {
+      text-align: justify;
+      font-size: 14px;
+      padding-top: 10px; }
+  .ReportContent .reportDOne {
+    padding-bottom: 10px;
+    padding-top: 10px; }
 
 .ConcernsContent {
   margin-top: 100px !important; }
@@ -9879,3 +9796,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .doctorImgeSize {
   width: 44px;
   height: 41px; }
+
+.passwordSubHeader {
+  height: auto;
+  line-height: 1em;
+  padding-top: 55px; }
