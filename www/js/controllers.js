@@ -29,15 +29,22 @@ var util = {
     }
 }
 
-var REVIEW_CONSULTATION_CODE = 116;
-var STARTED_CONSULTATION_CODE = 117;
-var STOPPED_CONSULTATION_CODE = 118;
-var ENDED_CONSULTATION_CODE = 119;
-var WAITING_CONSULTATION_CODE = 120;
-var JOIN_CONSULTATION_CODE = 121;
+var REVIEW_CONSULTATION_EVENT_CODE = 116;
+var STARTED_CONSULTATION_EVENT_CODE = 117;
+var STOPPED_CONSULTATION_EVENT_CODE = 118;
+var ENDED_CONSULTATION_EVENT_CODE = 119;
+var WAITING_CONSULTATION_EVENT_CODE = 120;
+var JOIN_CONSULTATION_EVENT_CODE = 121;
 
 var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
 var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
+
+var REVIEW_CONSULTATION_STATUS_CODE = 69;
+var STARTED_CONSULTATION_STATUS_CODE = 117;
+var STOPPED_CONSULTATION_STATUS_CODE = 118;
+var ENDED_CONSULTATION_STATUS_CODE = 119;
+var WAITING_CONSULTATION_STATUS_CODE = 68;
+var JOIN_CONSULTATION_STATUS_CODE = 121;
 
 
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
@@ -505,10 +512,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.disableAddHealthPlan = "none;";					
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
-							$rootScope.ApplyPlanPatientHealthPlanList = $rootScope.patientHealthPlanList;
+							$rootScope.ApplyPlanPatientHealthPlanList =          $rootScope.patientHealthPlanList;
 							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
-							
-							$rootScope.ApplyPlanPatientHealthPlanList.push({
+                            $rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
 							});
 							$state.go('tab.applyPlan');						
@@ -726,8 +732,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $scope.ProviderId = HealthPlanProviders[3];
         $scope.healthPlanID = $scope.ProviderId;
         console.log($scope.healthPlanID);
-        //End 
+       //End 
 		$rootScope.providerName = HealthPlanProviders[0];
+        $rootScope.PolicyNo = $scope.AddHealth.policyNumber;
         
         $scope.insuranceCompany = $scope.insuranceCompany;
 		$scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
@@ -735,7 +742,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
 		$scope.subsciberId = $rootScope.patientId; // patient id
-		$scope.policyNumber = $scope.AddHealth.policyNumber;; //P20
+		$scope.policyNumber = $scope.AddHealth.policyNumber; //P20
 		$scope.subscriberFirstName = $scope.AddHealth.firstName;
 		$scope.subscriberLastName =  $scope.AddHealth.lastName;
 		$scope.subscriberDob = $scope.AddHealth.dateBirth;
@@ -760,8 +767,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					$scope.NewHealthPlan = data;
 					if($scope.NewHealthPlan.healthPlanID != '')	{	
-			console.log('doPostNewHealthPlan');						
-						console.log(data);						
+			             //console.log('doPostNewHealthPlan');						
+						//console.log(data);
+                        $rootScope.HealthPlanIdGet = data.healthPlanID;
 						$scope.doGetPatientHealthPlansList();						
 					} else {					
 						$scope.ErrorMessage = data.message;
@@ -859,19 +867,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
         if(typeof $scope.Health.addHealthPlan != 'undefined') {
-            $rootScope.NewHealth = $scope.Health.addHealthPlan;
-            $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-            //console.log($scope.Health.addHealthPlan);
-        } else {
+             $rootScope.NewHealth = $scope.Health.addHealthPlan;
+             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+             var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+             var InsuranceCompany = healthInsurance[0];
+             var PolicyNumber = healthInsurance[1];
+             var healthPlanIdApply = healthInsurance[2];
+             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+            alert($rootScope.SelectedHealthPlans);
+            
+        }  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
+             var InsuranceCompany = $rootScope.providerName;
+             var PolicyNumber = $rootScope.PolicyNo;
+             var healthPlanIdApply = $rootScope.HealthPlanIdGet;
+             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+           
+        } /*else {
           $rootScope.NewHealth ;
           $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-        }
+        } */
 		 //$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
-		 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-         var InsuranceCompany = healthInsurance[0];
-         var PolicyNumber = healthInsurance[1];
-		 var healthPlanIdApply = healthInsurance[2];
-         $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+		 
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -1335,21 +1351,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        
-        var params = {
-            accessToken: $rootScope.accessToken,
-            consultationID: $rootScope.consultationId,
-            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
-            eventID: WAITING_CONSULTATION_CODE,
-            success: function (data) {
-                $state.go('tab.waitingRoom');                  
-            },
-            error: function (data) {
-                
-            }
-        };
-        LoginService.updateConsultationEvent(params);
-        
+        $scope.doGetWaitingRoom();
+               
     }
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -1436,8 +1439,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         var params = {
             accessToken: $rootScope.accessToken,
             consultationID: $rootScope.consultationId,
-            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
-            eventID: WAITING_CONSULTATION_CODE,
+            eventType: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            event: WAITING_CONSULTATION_EVENT_CODE,
             success: function (data) {
                 $state.go('tab.waitingRoom');                  
             },
@@ -1478,29 +1481,40 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
+    $scope.isPhysicianStartedConsultaion = false;
+            
+    consultationStatusCheck = $interval(function(){
+         if(!$scope.isPhysicianStartedConsultaion){
+              $scope.checkIfPhysicianStartedConference();
+         }
+    }, 5000);
+            
     $scope.checkIfPhysicianStartedConference = function(){
         var params = {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
-                //Check here for the status
-                $scope.getConferenceKeys();
-                
+                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
+                      $interval.cancel(consultationStatusCheck);
+                      $scope.isPhysicianStartedConsultaion = true;
+                      $scope.getConferenceKeys();
+                      return;
+                 }
             },
             error: function (data) {
-                
+            
             }
         };
         LoginService.getExistingConsulatation(params);
-    };
+     };
     
     $scope.getConferenceKeys = function(){
         var params = {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
-                $rootScope.videoSessionId = data.apiKey;
-                $rootScope.videoApiKey = data.sessionId;
+                $rootScope.videoSessionId = data.sessionId;
+                $rootScope.videoApiKey = data.apiKey;
                 $rootScope.videoToken = data.token;
                 if($rootScope.videoSessionId != "" && $rootScope.videoToken != ""){
                     $state.go('tab.videoConference');
