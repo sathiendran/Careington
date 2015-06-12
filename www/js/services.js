@@ -283,7 +283,7 @@ angular.module('starter.services', [])
             headers: util.getHeaders(params.accessToken),
           //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
 		   // url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
-		    url: apiCommonURL + '/api/v2/reports/consultation/2440?include=',
+		    url: apiCommonURL + '/api/v2/reports/consultation/2538?include=',
             method: 'GET'   
         };
 
@@ -304,7 +304,7 @@ angular.module('starter.services', [])
 		var confirmSoapPost = {
 			headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/patients/consultations/' + params.consultationID + '/soapnote',
-		    url: apiCommonURL + '/api/patients/consultations/2440/soapnote',
+		    url: apiCommonURL + '/api/patients/consultations/2538/soapnote',
             method: 'GET'
 		};
 		
