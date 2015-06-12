@@ -1368,6 +1368,50 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.patientDisplay = 'block';
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
+	 
+		$scope.$on('timer-tick', function (event, args){
+			
+			console.log(args.minutes + ' - ' + args.seconds + '-' + args.days );
+			if(args.days == 0) {
+				$rootScope.DaysDisplay = 'none';	
+				$rootScope.days = 0;	
+			} else if(args.days > 0) {
+				$rootScope.DaysDisplay = 'initial';	
+				if(args.days == 1) {
+					$rootScope.availableDays = args.days + ' day ';
+				} else {
+					$rootScope.availableDays = args.days + ' days ';
+				}
+			}
+			
+		
+			if(args.millis < 100){
+			   // $rootScope.timeNew = 'Completed';
+				$rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			  // $rootScope.patientDisplay = 'none';
+			  // $rootScope.patientDisplay1 = 'block';
+				console.log($rootScope.timeNew);
+			}
+			else if(args.millis < 600000){
+			//$rootScope.timeNew = 'below 10 minutes!';
+			   $rootScope.timeNew = 'none';
+			   $rootScope.timeNew1 = 'block';
+			   $rootScope.patientDisplay = 'none';
+			   $rootScope.patientDisplay1 = 'block';
+			   console.log('below 10 minutes!');
+			   
+			}else{
+			   // $rootScope.timeNew = 'More than 10 minutes!';
+				$rootScope.timeNew = 'block';
+			   $rootScope.timeNew1 = 'none';
+			   // $rootScope.patientDisplay = 'block';
+			   //$rootScope.patientDisplay1 = 'none';
+				console.log('More than 10 minutes!');
+			}
+			
+		});
+	 
 		$rootScope.scheduledListDatas =scheduledListData;     
 		   //console.log($rootScope.scheduledListDatas);
 		   
@@ -1379,53 +1423,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		$rootScope.time = $rootScope.dtNow.getTime();
 		
-		$state.go('tab.appoimentDetails'); 
-		   
-		$scope.$on('timer-tick', function (event, args){
-			$timeout(function() {
-				console.log(args.minutes + ' - ' + args.seconds + '-' + args.days );
-				if(args.days == 0) {
-					$rootScope.DaysDisplay = 'none';	
-					$rootScope.days = 0;	
-				} else if(args.days > 0) {
-					$rootScope.DaysDisplay = 'initial';	
-					if(args.days == 1) {
-						$rootScope.days = args.days + ' day ';
-					} else {
-						$rootScope.days = args.days + ' days ';
-					}
-				}
-				
-			
-				if(args.millis < 100){
-				   // $rootScope.timeNew = 'Completed';
-					$rootScope.timeNew = 'none';
-				   $rootScope.timeNew1 = 'block';
-				  // $rootScope.patientDisplay = 'none';
-				  // $rootScope.patientDisplay1 = 'block';
-					console.log($rootScope.timeNew);
-				}
-				else if(args.millis < 600000){
-				//$rootScope.timeNew = 'below 10 minutes!';
-				   $rootScope.timeNew = 'none';
-				   $rootScope.timeNew1 = 'block';
-				   $rootScope.patientDisplay = 'none';
-				   $rootScope.patientDisplay1 = 'block';
-				   console.log('below 10 minutes!');
-				   
-				}else{
-				   // $rootScope.timeNew = 'More than 10 minutes!';
-					$rootScope.timeNew = 'block';
-				   $rootScope.timeNew1 = 'none';
-				   // $rootScope.patientDisplay = 'block';
-				   //$rootScope.patientDisplay1 = 'none';
-					console.log('More than 10 minutes!');
-				}
-				
-			});
+		//$scope.$broadcast('timer-start');
+		
+		
+		$timeout(function() {   
+			document.getElementsByTagName('timer')[0].start();
 		});
+		
+		 $state.go('tab.appoimentDetails');	
 		   
      };
+	 
 	 
 	// var dtNow = new Date("2015-06-11T13:58:04.268Z");
 	//$rootScope.time = dtNow.getTime();

@@ -55,7 +55,7 @@
 			
             
             
-<a class="item" href="#/tab/appoimentDetails" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+<a class="item"  ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
     
 		<div class="patient_appointment">						
             <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}}
