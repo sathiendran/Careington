@@ -382,7 +382,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.location = data.data[0].location;
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
-					$rootScope.patientName = data.data[0].patientName;
+					$rootScope.primaryPatientName = data.data[0].patientName;
+					$rootScope.primaryPatientLastName = '';
+					$rootScope.primaryPatientGuardianName = '';
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;					
@@ -487,7 +489,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			success: function (data) {
 				//$scope.patientHealthPlanList = data;
 				
-				if(data != '') {
+				if(data.data != '') {
 						$rootScope.patientHealthPlanList = [];	
 						angular.forEach(data.data, function(index, item) {	
 							$rootScope.patientHealthPlanList.push({
@@ -512,7 +514,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.disableAddHealthPlan = "none;";					
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
-							$rootScope.ApplyPlanPatientHealthPlanList =          $rootScope.patientHealthPlanList;
+							$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
 							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
                             $rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
@@ -875,19 +877,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
              var PolicyNumber = healthInsurance[1];
              var healthPlanIdApply = healthInsurance[2];
              $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
-            //alert($rootScope.SelectedHealthPlans);
             
-        }  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
-             var InsuranceCompany = $rootScope.providerName;
-             var PolicyNumber = $rootScope.PolicyNo;
-             var healthPlanIdApply = $rootScope.HealthPlanIdGet;
-             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
-           
-        } /*else {
-          $rootScope.NewHealth ;
-          $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-        } */
-		 //$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+        
 		 
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -921,7 +912,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			};
 			
 			LoginService.postApplyHealthPlan(params);
-		}
+		}  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
+            $scope.ErrorMessages = "Please select your Plan!";
+			$rootScope.Validation($scope.ErrorMessages);
+           
+        } 
+			
+	}
     
     
    
