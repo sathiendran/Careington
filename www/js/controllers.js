@@ -743,7 +743,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.isDefaultPlan =  'Y';
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
-		$scope.subsciberId = $rootScope.patientHealthPlanList.length + 1; // patient id
+		$scope.subsciberId = $rootScope.patientHealthPlanList.length + 1 // patient id
 		$scope.policyNumber = $scope.AddHealth.policyNumber; //P20
 		$scope.subscriberFirstName = $scope.AddHealth.firstName;
 		$scope.subscriberLastName =  $scope.AddHealth.lastName;
