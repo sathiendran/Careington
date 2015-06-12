@@ -485,12 +485,12 @@ angular.module('starter.services', [])
     this.updateConsultationEvent = function(params) {
 		var updatedConsultationEvent = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/patientconsultation/updateconsultationevent',
+            url: apiCommonURL + '/api/v2/consultations/events',
             method: 'POST',
 			data: {
-				eventTypeID: params.eventTypeID,
+				eventType: params.eventType,
                 consultationID: params.consultationID,
-				eventID: params.eventID
+				event: params.event
             }
 		};
 		

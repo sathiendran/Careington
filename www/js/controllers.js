@@ -29,15 +29,22 @@ var util = {
     }
 }
 
-var REVIEW_CONSULTATION_CODE = 116;
-var STARTED_CONSULTATION_CODE = 117;
-var STOPPED_CONSULTATION_CODE = 118;
-var ENDED_CONSULTATION_CODE = 119;
-var WAITING_CONSULTATION_CODE = 120;
-var JOIN_CONSULTATION_CODE = 121;
+var REVIEW_CONSULTATION_EVENT_CODE = 116;
+var STARTED_CONSULTATION_EVENT_CODE = 117;
+var STOPPED_CONSULTATION_EVENT_CODE = 118;
+var ENDED_CONSULTATION_EVENT_CODE = 119;
+var WAITING_CONSULTATION_EVENT_CODE = 120;
+var JOIN_CONSULTATION_EVENT_CODE = 121;
 
 var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
 var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
+
+var REVIEW_CONSULTATION_STATUS_CODE = 69;
+var STARTED_CONSULTATION_STATUS_CODE = 117;
+var STOPPED_CONSULTATION_STATUS_CODE = 118;
+var ENDED_CONSULTATION_STATUS_CODE = 119;
+var WAITING_CONSULTATION_STATUS_CODE = 68;
+var JOIN_CONSULTATION_STATUS_CODE = 121;
 
 
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
@@ -1337,21 +1344,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        
-        var params = {
-            accessToken: $rootScope.accessToken,
-            consultationID: $rootScope.consultationId,
-            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
-            eventID: WAITING_CONSULTATION_CODE,
-            success: function (data) {
-                $state.go('tab.waitingRoom');                  
-            },
-            error: function (data) {
-                
-            }
-        };
-        LoginService.updateConsultationEvent(params);
-        
+        $scope.doGetWaitingRoom();
+               
     }
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -1438,8 +1432,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         var params = {
             accessToken: $rootScope.accessToken,
             consultationID: $rootScope.consultationId,
-            eventTypeID: PATIENT_CONSULTATION_EVENT_TYPE_ID,
-            eventID: WAITING_CONSULTATION_CODE,
+            eventType: PATIENT_CONSULTATION_EVENT_TYPE_ID,
+            event: WAITING_CONSULTATION_EVENT_CODE,
             success: function (data) {
                 $state.go('tab.waitingRoom');                  
             },
@@ -1480,21 +1474,32 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$ionicSideMenuDelegate.toggleLeft();
 	};
 	
+    $scope.isPhysicianStartedConsultaion = false;
+            
+    consultationStatusCheck = $interval(function(){
+         if(!$scope.isPhysicianStartedConsultaion){
+              $scope.checkIfPhysicianStartedConference();
+         }
+    }, 5000);
+            
     $scope.checkIfPhysicianStartedConference = function(){
         var params = {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
-                //Check here for the status
-                $scope.getConferenceKeys();
-                
+                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
+                      $interval.cancel(consultationStatusCheck);
+                      $scope.isPhysicianStartedConsultaion = true;
+                      $scope.getConferenceKeys();
+                      return;
+                 }
             },
             error: function (data) {
-                
+            
             }
         };
         LoginService.getExistingConsulatation(params);
-    };
+     };
     
     $scope.getConferenceKeys = function(){
         var params = {
