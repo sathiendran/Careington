@@ -874,7 +874,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
              var PolicyNumber = healthInsurance[1];
              var healthPlanIdApply = healthInsurance[2];
              $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
-            alert($rootScope.SelectedHealthPlans);
+            //alert($rootScope.SelectedHealthPlans);
             
         }  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
              var InsuranceCompany = $rootScope.providerName;
