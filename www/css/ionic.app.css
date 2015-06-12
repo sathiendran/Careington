@@ -7920,47 +7920,51 @@ body {
   margin-top: 96px;
   color: #A80532; }
   .password_sub_header .password_header_content {
-    position: relative;
-    top: 45px; }
+    /*position: relative;
+			top: 45px;*/
+    margin-top: 96px; }
     .password_sub_header .password_header_content span {
       color: #C4C4C4;
       font-size: 12px;
       position: relative;
-      top: -4px;
+      top: -10px;
       font-family: 'Glober SemiBold';
       font-weight: bold; }
 
 .password_content {
   margin: 220px 0 0 0;
-  padding-top: 60px; }
+  padding-top: 85px; }
   .password_content .item-input {
     border: 1px solid #DADADA;
     border-radius: 8px;
     height: 45px;
+    line-height: normal;
     font-weight: bold;
     background-color: #999999; }
     .password_content .item-input ::-webkit-input-placeholder {
       /* WebKit browsers */
       color: #484848 !important;
       font-size: 17px !important;
-      padding-top: 3px !important; }
+      padding-top: 2px !important;
+      opacity: 1; }
     .password_content .item-input :-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
       color: #484848 !important;
       font-size: 17px !important;
-      padding-top: 3px !important;
+      padding-top: 2px !important;
       opacity: 1; }
     .password_content .item-input ::-moz-placeholder {
       /* Mozilla Firefox 19+ */
       color: #484848 !important;
       font-size: 17px !important;
-      padding-top: 3px !important;
+      padding-top: 2px !important;
       opacity: 1; }
     .password_content .item-input :-ms-input-placeholder {
       /* Internet Explorer 10+ */
       color: #484848 !important;
       font-size: 17px !important;
-      padding-top: 3px !important; }
+      padding-top: 2px !important;
+      opacity: 1; }
     .password_content .item-input input {
       font-size: 17px; }
 
@@ -8149,7 +8153,7 @@ body {
       margin-left: -15px;
       margin-top: -13px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
-        width: 30px; }
+        width: 34px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
       font-size: 21px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
@@ -9879,3 +9883,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .doctorImgeSize {
   width: 44px;
   height: 41px; }
+
+.passwordSubHeader {
+  height: auto;
+  line-height: 1em;
+  padding-top: 47px; }
