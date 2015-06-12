@@ -512,12 +512,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.disableAddHealthPlan = "none;";					
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
-							$rootScope.ApplyPlanPatientHealthPlanList = $rootScope.patientHealthPlanList;
+							$rootScope.ApplyPlanPatientHealthPlanList =          $rootScope.patientHealthPlanList;
 							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
-                            $rootScope.SelectedHealthPlan['healthPlanId'];
-                            console.log($rootScope.SelectedHealthPlan['healthPlanId']);
-							
-							$rootScope.ApplyPlanPatientHealthPlanList.push({
+                            $rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
 							});
 							$state.go('tab.applyPlan');						
@@ -735,8 +732,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $scope.ProviderId = HealthPlanProviders[3];
         $scope.healthPlanID = $scope.ProviderId;
         console.log($scope.healthPlanID);
-        //End 
+       //End 
 		$rootScope.providerName = HealthPlanProviders[0];
+        $rootScope.PolicyNo = $scope.AddHealth.policyNumber;
         
         $scope.insuranceCompany = $scope.insuranceCompany;
 		$scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
@@ -744,7 +742,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
 		$scope.subsciberId = $rootScope.patientId; // patient id
-		$scope.policyNumber = $scope.AddHealth.policyNumber;; //P20
+		$scope.policyNumber = $scope.AddHealth.policyNumber; //P20
 		$scope.subscriberFirstName = $scope.AddHealth.firstName;
 		$scope.subscriberLastName =  $scope.AddHealth.lastName;
 		$scope.subscriberDob = $scope.AddHealth.dateBirth;
@@ -769,8 +767,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					$scope.NewHealthPlan = data;
 					if($scope.NewHealthPlan.healthPlanID != '')	{	
-			console.log('doPostNewHealthPlan');						
-						console.log(data);						
+			             //console.log('doPostNewHealthPlan');						
+						//console.log(data);
+                        $rootScope.HealthPlanIdGet = data.healthPlanID;
 						$scope.doGetPatientHealthPlansList();						
 					} else {					
 						$scope.ErrorMessage = data.message;
@@ -868,19 +867,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
         if(typeof $scope.Health.addHealthPlan != 'undefined') {
-            $rootScope.NewHealth = $scope.Health.addHealthPlan;
-            $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-            //console.log($scope.Health.addHealthPlan);
-        } else {
+             $rootScope.NewHealth = $scope.Health.addHealthPlan;
+             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+             var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+             var InsuranceCompany = healthInsurance[0];
+             var PolicyNumber = healthInsurance[1];
+             var healthPlanIdApply = healthInsurance[2];
+             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+            alert($rootScope.SelectedHealthPlans);
+            
+        }  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
+             var InsuranceCompany = $rootScope.providerName;
+             var PolicyNumber = $rootScope.PolicyNo;
+             var healthPlanIdApply = $rootScope.HealthPlanIdGet;
+             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+           
+        } /*else {
           $rootScope.NewHealth ;
           $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-        }
+        } */
 		 //$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
-		 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-         var InsuranceCompany = healthInsurance[0];
-         var PolicyNumber = healthInsurance[1];
-		 var healthPlanIdApply = healthInsurance[2];
-         $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+		 
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
