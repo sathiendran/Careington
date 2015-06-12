@@ -385,7 +385,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.patientName = data.data[0].patientName;
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
-					$rootScope.patientId = $rootScope.patientAccount.patientId;					
+					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;					
 						
 				},
 				error: function (data) {
@@ -404,7 +404,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				return;
 			}
 			 var params = {
-                patientID: $rootScope.patientId,
+                patientId: $rootScope.patientId,
                 accessToken: $rootScope.accessToken,
 				success: function (data) {
 					//$scope.RelatedPatientProfiles = data.data;
@@ -741,7 +741,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.isDefaultPlan =  'Y';
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
-		$scope.subsciberId = $rootScope.patientId; // patient id
+		$scope.subsciberId = $rootScope.patientHealthPlanList.length + 1; // patient id
 		$scope.policyNumber = $scope.AddHealth.policyNumber; //P20
 		$scope.subscriberFirstName = $scope.AddHealth.firstName;
 		$scope.subscriberLastName =  $scope.AddHealth.lastName;
@@ -751,6 +751,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 			 var params = {
                 accessToken: $rootScope.accessToken,
+                PatientId: $rootScope.patientId,
 				healthPlanID: $scope.healthPlanID,
 				insuranceCompany: $scope.insuranceCompany,
 				insuranceCompanyNameId: $scope.insuranceCompanyNameId,
@@ -1084,7 +1085,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	
 	
-	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_id) {
        if($rootScope.P_isAuthorized == true) {
 			// Start Intake Sub Header Information 
 			$rootScope.PatientImageSelectUser = P_img;
@@ -1092,6 +1093,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.PatientLastName = P_Lname;
 			$rootScope.PatientAge = P_Age;
 			$rootScope.PatientGuardian = P_Guardian;
+            $rootScope.patientId = P_id;
 			// End Intake Sub Header Information 
 			
 			if ($scope.accessToken == 'No Token') {
@@ -1141,14 +1143,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}	
 	}
 
-        $scope.doGetScheduledConsulatation = function (PatientId) {
+        $scope.doGetScheduledConsulatation = function (patientId) {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
              $rootScope.scheduledConsultationList = [];
             var params = {
-                patientId: PatientId,
+                patientId: patientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
 					console.log(data);
@@ -1322,7 +1324,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-        $rootScope.PatientId = P_Id;
+        $rootScope.patientId = P_Id;
 		$rootScope.P_isAuthorized = P_isAuthorized
         $state.go('tab.patientDetail'); 
     }
@@ -1848,7 +1850,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 											  "concerns": [
 												
 											  ],											  
-											  "patientId": $rootScope.PatientId
+											  "patientId": $rootScope.patientId
 										}	
 										
 
@@ -1875,7 +1877,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				 var params = {
 					accessToken: $rootScope.accessToken,
 					OnDemandConsultationData: $scope.OnDemandConsultationSaveData,
-					patientID: $rootScope.PatientId,
+					patientId: $rootScope.patientId,
 					success: function (data) {
 						$rootScope.OnDemandConsultationSaveResult = data.data[0];
 						$rootScope.consultationAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
