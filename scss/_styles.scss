@@ -540,13 +540,13 @@ background: linear-gradient(#A0D18A, #91BE7B);
 //Patient Calendar page
 
 .calendarBack {
-	padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
+	padding-top: 6px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
 	span {
 		margin-top:7px;position: relative;margin-left: -6px;top: -2px;
 	}
 }
 .calendarTitle {
-	font-size: 22px; text-align: center; width: 100%; top:4px;
+	font-size: 22px; text-align: center; width: 100%;
 }
 .calendar_subHeader_height { 
 	top: 65px !important;
@@ -711,6 +711,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .intakeTittle {
 	margin-left: -33px;
+	top: -4px !important;
 }
 .PatientDetailsHome {
 	padding-left: 7%;
@@ -1069,6 +1070,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 .ReportTittle {
 	margin-left: 22px !important;
+	  top: -4px !important;
 }
 
 .ReportDone {
@@ -1078,7 +1080,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	width: 68px;
 	position: absolute;
 	z-index: 1;
-	top: 10px;
+	top: 3px;
 	margin-left: 16px;
 }
 
@@ -1324,10 +1326,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .concernListHeader {
 	height: 55px;
 	.concernListTitle {
-		top: 12px !important; font-size:16px !important; 
+		top: 6px !important; font-size:16px !important; 
 	}
 	.concernListDone {
-		top: 12px !important;font-size:15px !important;
+		top: 6px !important;font-size:15px !important;
 	}
 }
 .concernListContent {
@@ -1500,6 +1502,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
     min-height: 31px;
     line-height: 35px;
 	color: #fff;
+	position: relative;
+	top: -4px;
 }
 
 .ListLinkHref{
@@ -2156,7 +2160,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 .HeaderList {
-font-size: 22px; text-align: center; width: 100%;  margin-left: -32px; top:4px;
+font-size: 22px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 }
 .subHeaderTop { top: 86px; }
 #BackButtonIcon { color:#000; margin-top: 15px;}

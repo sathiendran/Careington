@@ -8125,7 +8125,7 @@ body {
   border-color: #A2D28A; }
 
 .calendarBack {
-  padding-top: 14px;
+  padding-top: 6px;
   font-weight: bold;
   cursor: pointer;
   width: 68px;
@@ -8141,8 +8141,7 @@ body {
 .calendarTitle {
   font-size: 22px;
   text-align: center;
-  width: 100%;
-  top: 4px; }
+  width: 100%; }
 
 .calendar_subHeader_height {
   top: 65px !important;
@@ -8305,7 +8304,8 @@ body {
   left: 0px; }
 
 .intakeTittle {
-  margin-left: -33px; }
+  margin-left: -33px;
+  top: -4px !important; }
 
 .PatientDetailsHome {
   padding-left: 7%; }
@@ -8638,7 +8638,8 @@ select {
       position: relative; }
 
 .ReportTittle {
-  margin-left: 22px !important; }
+  margin-left: 22px !important;
+  top: -4px !important; }
 
 .ReportDone {
   padding-top: 21px;
@@ -8647,7 +8648,7 @@ select {
   width: 68px;
   position: absolute;
   z-index: 1;
-  top: 10px;
+  top: 3px;
   margin-left: 16px; }
 
 .ReportContent {
@@ -8885,10 +8886,10 @@ select {
 .concernListHeader {
   height: 55px; }
   .concernListHeader .concernListTitle {
-    top: 12px !important;
+    top: 6px !important;
     font-size: 16px !important; }
   .concernListHeader .concernListDone {
-    top: 12px !important;
+    top: 6px !important;
     font-size: 15px !important; }
 
 .concernListContent {
@@ -9065,7 +9066,9 @@ a {
 .bar .buttons > .button {
   min-height: 31px;
   line-height: 35px;
-  color: #fff; }
+  color: #fff;
+  position: relative;
+  top: -4px; }
 
 .ListLinkHref {
   float: right; }
@@ -9719,7 +9722,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   text-align: center;
   width: 100%;
   margin-left: -32px;
-  top: 4px; }
+  top: -1px; }
 
 .subHeaderTop {
   top: 86px; }
