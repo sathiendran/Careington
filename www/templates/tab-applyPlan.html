@@ -30,7 +30,7 @@
                         
                  <!--  	<select id="addNewCard" name="addNewCard"  data-ng-options="GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:15 for GetHealthPlan in ApplyPlanPatientHealthPlanList" data-ng-model="SelectedHealthPlan" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" style="border: none;"></select>  -->
                         
-                  <select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;"> <option  ng-repeat="GetHealthPlan in ApplyPlanPatientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:15}}</span></b></option> </select>	
+                  <select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;"> <option  ng-repeat="GetHealthPlan in ApplyPlanPatientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:20}}</span></b></option> </select>	
 
 					</div>
 				</div>

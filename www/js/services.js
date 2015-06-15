@@ -245,7 +245,7 @@ angular.module('starter.services', [])
             method: 'POST',
 			data: {
                 healthPlanId: params.healthPlanID,
-				patientId: params.patientID,
+				patientId: params.PatientId,
 				insuranceCompany: params.insuranceCompany,
 				insuranceCompanyNameId: params.insuranceCompanyNameId,
 				isDefaultPlan: params.isDefaultPlan,
