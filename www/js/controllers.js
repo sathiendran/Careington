@@ -702,20 +702,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         LoginService.getHealthPlanProvidersList(params);
 	}
 	
-		//patientId
-	/*	$scope.insuranceCompany = "aaa bbb";
-		$scope.insuranceCompanyNameId = 1;
-		$scope.isDefaultPlan = 'Y';
-		$scope.insuranceCompanyPhone = '8888888888';
-		$scope.memberName = 'Rinsoft';
-		$scope.subsciberId = '505';
-		$scope.policyNumber = '987654321'; //P20
-		$scope.subscriberFirstName = 'Rin';
-		$scope.subscriberLastName = 'Soft';
-		$scope.subscriberDob = '2015-05-27T17:00:15.7010698-05:00';
-		$scope.isActive = 'A';
-		$scope.payerId = '471';  */
-    
+
     
     $scope.AddHealth = {};
     $scope.doPostNewHealthPlan = function() {
@@ -724,9 +711,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				return;
 			}
         
-
-        //Provider List Data's
-        //$scope.healthPlanID = 124;
         var HealthPlanProviders =  $scope.AddHealth.Provider.split("@");
         $scope.insuranceCompany = HealthPlanProviders[0];
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
@@ -737,13 +721,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        //End 
 		$rootScope.providerName = HealthPlanProviders[0];
         $rootScope.PolicyNo = $scope.AddHealth.policyNumber;
+       
+        if(typeof $rootScope.patientHealthPlanList != 'undefined') { 
+                var subsciberNewID = $rootScope.patientHealthPlanList.length + 1;
+            } else {
+                var subsciberNewID = 1;
+            }
         
         $scope.insuranceCompany = $scope.insuranceCompany;
 		$scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
 		$scope.isDefaultPlan =  'Y';
 		$scope.insuranceCompanyPhone = '8888888888';
 		$scope.memberName = $scope.AddHealth.firstName + $scope.AddHealth.lastName;
-		$scope.subsciberId = $rootScope.patientHealthPlanList.length + 1 // patient id
+		$scope.subsciberId = subsciberNewID // patient id
 		$scope.policyNumber = $scope.AddHealth.policyNumber; //P20
 		$scope.subscriberFirstName = $scope.AddHealth.firstName;
 		$scope.subscriberLastName =  $scope.AddHealth.lastName;
@@ -754,7 +744,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			 var params = {
                 accessToken: $rootScope.accessToken,
                 PatientId: $rootScope.patientId,
-				healthPlanID: $scope.healthPlanID,
 				insuranceCompany: $scope.insuranceCompany,
 				insuranceCompanyNameId: $scope.insuranceCompanyNameId,
 				isDefaultPlan: $scope.isDefaultPlan,
@@ -770,9 +759,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					$scope.NewHealthPlan = data;
 					if($scope.NewHealthPlan.healthPlanID != '')	{	
-			             //console.log('doPostNewHealthPlan');						
-						//console.log(data);
-                        $rootScope.HealthPlanIdGet = data.healthPlanID;
+			            $rootScope.HealthPlanIdGet = data.healthPlanID;
 						$scope.doGetPatientHealthPlansList();						
 					} else {					
 						$scope.ErrorMessage = data.message;
@@ -869,6 +856,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
+        console.log($scope.Health.addHealthPlan);
+    if($scope.Health.addHealthPlan != 'Add a new health plan@@') {  
         if(typeof $scope.Health.addHealthPlan != 'undefined') {
              $rootScope.NewHealth = $scope.Health.addHealthPlan;
              $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
@@ -923,11 +912,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			};
 			
 			LoginService.postApplyHealthPlan(params);
-		}  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
+   		}  else  {
             $scope.ErrorMessages = "Please select your Plan!";
 			$rootScope.Validation($scope.ErrorMessages);
            
-        } 
+        }
 			
 	}
     
