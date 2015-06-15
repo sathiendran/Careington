@@ -8838,15 +8838,21 @@ select {
     .ConcernsContent .surgeryList a {
       padding-left: 15px; }
       .ConcernsContent .surgeryList a .surgeryDetails {
-        float: left; }
+        float: left;
+        width: 80%; }
         .ConcernsContent .surgeryList a .surgeryDetails .surgeryName {
           font-size: 20px; }
+          .ConcernsContent .surgeryList a .surgeryDetails .surgeryName p {
+            font-size: 20px;
+            color: #000;
+            white-space: pre-wrap; }
         .ConcernsContent .surgeryList a .surgeryDetails .surgeryDate {
           padding-top: 5px;
           font-size: 15px; }
       .ConcernsContent .surgeryList a .surgerydelete {
         text-align: right;
-        margin-right: -1px; }
+        margin-right: -1px;
+        margin-top: 10px; }
 
 .ConcernsFooter {
   width: 100%; }

@@ -52,7 +52,7 @@
 	<div class="list surgeryList">
 	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
 			<div class="surgeryDetails">
-				<div class="surgeryName">{{surgery.Name}}</div>
+				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
 				<div class="surgeryDate">{{surgery.Date | date: "MMM, yyyy"}}</div>   
 			</div>
 			<div class="surgerydelete"><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
