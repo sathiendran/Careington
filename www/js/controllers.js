@@ -516,8 +516,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
 							//$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
-                           // $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
-                            //console.log($rootScope.HealthPlanListCount);
+                            $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
+                            console.log($rootScope.HealthPlanListCount);
                             if($rootScope.primaryPatientId == $rootScope.patientId) {
                             $rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
