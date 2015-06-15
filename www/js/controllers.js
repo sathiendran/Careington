@@ -877,8 +877,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
              var PolicyNumber = healthInsurance[1];
              var healthPlanIdApply = healthInsurance[2];
              $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+            //alert($rootScope.SelectedHealthPlans);
             
-        
+        }  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
+             var InsuranceCompany = $rootScope.providerName;
+             var PolicyNumber = $rootScope.PolicyNo;
+             var healthPlanIdApply = $rootScope.HealthPlanIdGet;
+             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+           
+        } /*else {
+          $rootScope.NewHealth ;
+          $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+        } */
+		 //$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
 		 
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');

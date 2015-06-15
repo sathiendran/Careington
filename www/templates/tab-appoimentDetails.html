@@ -70,13 +70,13 @@
 		<div>		
 			<div class="title availableImage" >
 				<div class="AvailableText">
-					<img ng-src="img/clk.png" > Available in {{availableDays}}
+					<img ng-src="img/clk.png" > Available in 
 				</div>
-				<div class="AvailableTimer" ng-if="availableDays == 0">
+				<div class="AvailableTimer" style="display: {{hourDisplay}}" >
 					<b><timer end-time="time">  {{hhours}}:{{mminutes}}:{{sseconds}}</timer></b>
 				</div>
-				<div class="AvailableTimer" ng-if="availableDays > 0">
-					<b><timer end-time="time">{{availableDays}}</timer></b>
+				<div class="AvailableTimer" style="display: {{daysDisplay}}">
+					<b><timer end-time="time">{{days}} <span style="display: {{availableDays}}">days</span><span style="display: {{availableDay}}">day</span></timer></b>
 				</div>
 			</div>		
 		</div>
