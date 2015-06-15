@@ -515,10 +515,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
-							$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
+							//$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
+                           // $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
+                            //console.log($rootScope.HealthPlanListCount);
+                            if($rootScope.primaryPatientId == $rootScope.patientId) {
                             $rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
 							});
+                            }
 							$state.go('tab.applyPlan');						
 							
 						}
@@ -663,7 +667,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
-		if(($('option:selected', this).text() == 'Add a new healt...') || ($('option:selected', this).text() == 'Add a new health plan')) {
+		if(($('option:selected', this).text() == 'Add a new health p...') || ($('option:selected', this).text() == 'Add a new health plan')) {
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -857,7 +861,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.Health = [];	
     $scope.doPostApplyHealthPlan = function() {
         console.log($scope.Health.addHealthPlan);
-    if($scope.Health.addHealthPlan != 'Add a new health plan@@') {  
+    //if($scope.Health.addHealthPlan != 'Add a new health plan@@') {  
         if(typeof $scope.Health.addHealthPlan != 'undefined') {
              $rootScope.NewHealth = $scope.Health.addHealthPlan;
              $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
@@ -912,11 +916,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			};
 			
 			LoginService.postApplyHealthPlan(params);
-   		}  else  {
+   	   /*	}  else  {
             $scope.ErrorMessages = "Please select your Plan!";
 			$rootScope.Validation($scope.ErrorMessages);
            
-        }
+        } */
 
 			
 	}
