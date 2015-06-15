@@ -55,7 +55,7 @@
 				 <div class="primary"><span>1 </span> Primary Concern</div>
 				 <p class="ptagprimary" >{{consultionInformation.primaryConcern}}</p>
 				 <div class="secondary"><span>2 </span>Secondary Concern</div>
-				 <p class="ptagprimary" >{{consultionInformation.secondaryConsern}}</p>
+				 <p class="ptagprimary" >{{consultionInformation.secondaryConcern}}</p>
 			</ion-item>
 			
 			<ion-item class="concernsItem">
@@ -76,7 +76,10 @@
 					<b><timer end-time="time">  {{hhours}}:{{mminutes}}:{{sseconds}}</timer></b>
 				</div>
 				<div class="AvailableTimer" style="display: {{daysDisplay}}">
-					<b><timer end-time="time">{{days}} <span style="display: {{availableDays}}">days</span><span style="display: {{availableDay}}">day</span></timer></b>
+					<b><timer end-time="time">{{days}} days</timer></b>
+				</div>
+				<div class="AvailableTimer" style="display: {{dayDisplay}}">
+					<b><timer end-time="time">{{days}} day</timer></b>
 				</div>
 			</div>		
 		</div>
