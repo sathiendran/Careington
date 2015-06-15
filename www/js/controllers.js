@@ -181,7 +181,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//console.log(data);
                 $rootScope.PostPaymentDetails = data.data;
 				if($rootScope.PostPaymentDetails == "")	 {
-					$scope.ErrorMessage = "No account associated with this email.  Please try again.";
+					$scope.ErrorMessage = "No account associated with this email.  Please try again!";
 					$rootScope.Validation($scope.ErrorMessage);
 				} else {				
 					$rootScope.hospitalDetailsList = [];
