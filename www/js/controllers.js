@@ -311,7 +311,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$rootScope.patientId = 471;
 	//$rootScope.patientId = 3056;
 	//$rootScope.consultationId = 2440;
-	$scope.userId = 471;
+	//$scope.userId = 471;
 	//$scope.userId = 3056;
 	//$scope.BillingAddress = '123 chennai';
 	//$scope.CardNumber = 4111111111111111;
@@ -1043,7 +1043,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			return;
 		}
 		var params = {
-            userId: $scope.userId, 
+            userId: $rootScope.primaryPatientId, 
 			BillingAddress: $rootScope.BillingAddress,
 			CardNumber: $rootScope.CardNumber,
 			City: $rootScope.City,

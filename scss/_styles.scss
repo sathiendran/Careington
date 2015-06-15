@@ -1277,15 +1277,21 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			padding-left: 15px;
 			.surgeryDetails { 
 				float: left;
+				width: 80%;
 				.surgeryName {
 					font-size: 20px;
+					p {
+						font-size: 20px;
+						color: #000;
+						  white-space: pre-wrap;
+					}
 				}
 				.surgeryDate {
 					padding-top: 5px; font-size: 15px;
 				}
 			}
 			.surgerydelete {
-				text-align: right; margin-right: -1px;
+				text-align: right; margin-right: -1px; margin-top: 10px;
 			}
 		}
 	}
