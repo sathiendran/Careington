@@ -673,3 +673,47 @@ this.getCountryDetails = function () {
   }
 }])
 
+ 
+.service('CustomCalendar', function(){
+    var months = [
+        {"value" : "", "text" : "Month", "selected" : true},
+        {"value" : "01", "text" : "01 (Jan)", "selected" : false},
+        {"value" : "02", "text" : "02 (Feb)", "selected" : false},
+        {"value" : "03", "text" : "03 (Mar)", "selected" : false},
+        {"value" : "04", "text" : "04 (Apr)", "selected" : false},
+        {"value" : "05", "text" : "05 (May)", "selected" : false},
+        {"value" : "06", "text" : "06 (Jun)", "selected" : false},
+        {"value" : "07", "text" : "07 (Jul)", "selected" : false},
+        {"value" : "08", "text" : "08 (Aug)", "selected" : false},
+        {"value" : "09", "text" : "09 (Sep)", "selected" : false},
+        {"value" : "10", "text" : "10 (Oct)", "selected" : false},
+        {"value" : "11", "text" : "11 (Nov)", "selected" : false},
+        {"value" : "12", "text" : "12 (Dec)", "selected" : false}
+    ];
+    
+    
+    this.getMonthsList = function(){
+        return months;
+    },
+    
+    this.getSurgeryYearsList = function(dateOfBirth){
+        var years = [];
+        var now = new Date();
+        var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+	  var yearNow = now.getFullYear();
+	  var monthNow = now.getMonth();
+	  var dateNow = now.getDate();
+
+	  var dob = new Date(dateOfBirth);
+        var birthYear = dob.getFullYear();
+        years.push({ value: '', text: 'Year', selected: true});
+        for(var i = birthYear; i <= yearNow; i++){
+            years.push({ value: i, text: i });
+        }
+        return years;
+    }
+    
+    
+}) 
+
