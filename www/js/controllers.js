@@ -40,7 +40,7 @@ var CLINICIAN_CONSULTATION_EVENT_TYPE_ID = 22;
 var PATIENT_CONSULTATION_EVENT_TYPE_ID = 23;
 
 var REVIEW_CONSULTATION_STATUS_CODE = 69;
-var STARTED_CONSULTATION_STATUS_CODE = 117;
+var STARTED_CONSULTATION_STATUS_CODE = 70;
 var STOPPED_CONSULTATION_STATUS_CODE = 118;
 var ENDED_CONSULTATION_STATUS_CODE = 119;
 var WAITING_CONSULTATION_STATUS_CODE = 68;
@@ -1187,7 +1187,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
 					$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
 					$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
-					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);		
+					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
+                    $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
 					$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
@@ -1585,7 +1586,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
-                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
+                 if(data.data[0].consultationInfo.consultationStatus == STARTED_CONSULTATION_STATUS_CODE){
                       $interval.cancel(consultationStatusCheck);
                       $scope.isPhysicianStartedConsultaion = true;
                       $scope.getConferenceKeys();
