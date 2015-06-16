@@ -922,6 +922,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 
             }
         } 
+        
+       
        
         
         if($rootScope.currState.$current.name=="tab.addHealthPlan") {
@@ -936,7 +938,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                        } else {
                         if(typeof $scope.Health.addHealthPlan == 'undefined') {
                              if(!$rootScope.NewHealth) {
-                             $scope.ErrorMessages = "Bad Request Please select it";
+                             $scope.ErrorMessages = "Select your health plan";
 			                 $rootScope.Validation($scope.ErrorMessages);
                              }
                              $rootScope.NewHealth ;
@@ -978,8 +980,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
                     } else {
+                        if($scope.Health.addHealthPlan != ''){
                     $scope.ErrorMessage = "Bad Request Please check it";
 			        $rootScope.Validation($scope.ErrorMessage);
+                        } else {
+                    $scope.ErrorMessages = "Select your health plan";
+			        $rootScope.Validation($scope.ErrorMessages);
+                        }
                     }
                     
 
