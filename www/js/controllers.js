@@ -50,9 +50,10 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
+.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar) {
  
 	$rootScope.currState = $state;
+    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -382,12 +383,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.location = data.data[0].location;
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
-					$rootScope.primaryPatientName = data.data[0].patientName;					
+					$rootScope.primaryPatientName = data.data[0].patientName;
+					$rootScope.primaryPatientLastName = '';
 					$rootScope.primaryPatientGuardianName = '';
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;					
-					$scope.doGetPrimaryPatientLastName();	
+						
 				},
 				error: function (data) {
 					$scope.patientInfomation = 'Error getting Related Patient Profiles';
@@ -1620,7 +1622,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar) {
+    
+    $rootScope.monthsList = CustomCalendar.getMonthsList();
     
    
     $rootScope.limit = 4;
@@ -2316,7 +2320,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $scope.modal = modal;
             $scope.surgery.name = '';
             $scope.surgery.dateString = '';
+            $scope.surgery.dateStringMonth = '';
+            $scope.surgery.dateStringYear = '';
             $scope.modal.show();
+            $timeout(function(){
+                $('option').filter(function() {
+                    return this.value.indexOf('?') >= 0;
+                }).remove();
+            }, 100);
         }); 
     };
 	
@@ -2353,17 +2364,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
              $scope.ErrorMessage = "Please provide a name/description for this surgery!";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
         } */
+        
+        var selectedSurgeryDate = new Date($scope.surgery.dateStringYear, $scope.surgery.dateStringMonth-1, 01);
+        $scope.surgery.dateString = selectedSurgeryDate;
+        var patientBirthDateStr = new Date($rootScope.PatientAge);
+        
+        var isSurgeryDateValid = true;
+        if(selectedSurgeryDate < patientBirthDateStr){
+            isSurgeryDateValid = false;
+        }
         if($scope.surgery.name == '' || $scope.surgery.name == undefined){
             $scope.ErrorMessage = "Please provide a name/description for this surgery";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
-        } else if(($scope.surgery.dateString == '' || $scope.surgery.dateString == undefined)) {
+        } else if(($scope.surgery.dateStringMonth == '' || $scope.surgery.dateStringMonth == undefined || $scope.surgery.dateStringYear == '' || $scope.surgery.dateStringYear == undefined)) {
              $scope.ErrorMessage = "Please enter the date as MM/YYYY";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
-        } else {
-        SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
-        $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
-        $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
-		$scope.modal.hide();
+        }else if(!isSurgeryDateValid){
+            $scope.ErrorMessage = "Sugery date should not be before your birthdate";
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
+        }else {
+            SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
+            $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
+            $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
+            $scope.modal.hide();
 		}
     }
 	
@@ -2493,6 +2516,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
      $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
     };
+    
+    
 	
 })
 

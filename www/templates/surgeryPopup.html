@@ -24,9 +24,18 @@
             <span class="input-label">Date</span>
             <!--<input ng-model="dateString" type="date" > -->
 			<!--<input type="date" placeholder="Required" required="required" ng-model="surgery.dateString" name="dateString" id="dateString" max="{{PreviousDate}}" />  -->
-              
-              <input type="month" placeholder="Required" required="required" ng-model="surgery.dateString" name="dateString" id="dateString" max="{{PreviousDate}}" /> 
-			    
+              <!--<input type="month" placeholder="Required" required="required" ng-model="surgery.dateString" name="dateString" id="dateString" max="{{PreviousDate}}" /> -->
+              <select id="dateStringMonth" name="dateStringMonth" ng-model="surgery.dateStringMonth" style="appearance: none; -webkit-appearance: none; border: none;">
+                  <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
+                      <b><span>{{month.text}}</span></b></option> 
+              </select>
+            /
+              <select id="dateStringYear" name="dateStringYear" ng-model="surgery.dateStringYear" style="appearance: none; -webkit-appearance: none; border: none;">
+                  <option ng-repeat="surgeryYear in surgeryYearsList" value="{{surgeryYear.value}}">
+                      <b><span>{{surgeryYear.text}}</span></b>
+                  </option> 
+              </select>
+			
           </label>
 		 
     </div>
