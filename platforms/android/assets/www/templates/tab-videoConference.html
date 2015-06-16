@@ -1,0 +1,26 @@
+
+<ion-view title="">	
+    <ion-content style="margin: auto;">
+        <div id="publisher" style="top: {{otherVideoTop}}px; display: {{callDivDisplay}};"></div>
+        <div id="subscriber" style="height: {{myVideoHeight}}px; width: {{myVideoWidth}}px; display: {{callDivDisplay}};">
+            <div style="padding-top: 25px; color: #CECECE; font-size: 20px; text-align: center; margin: 10px;">
+                Please wait while we are setting up Video call for you!
+            </div>
+        </div>
+    </ion-content>
+</ion-view>	>
+  
+<ion-footer-bar class="footer">
+    <div style="width:100%; margin: auto; text-align: center; ">
+        <div class="confCamera">
+            <i class="{{cameraIconClass}}" ng-click="toggleCamera();"></i>
+        </div>
+        <div class='confEndCall' ng-click="disconnectConference();">
+            End Call
+        </div>
+        <div class="confMute">
+            <i class="{{muteIconClass}}" ng-click="toggleMute();"></i>
+        </div>
+    <div>
+</ion-footer-bar>	
+

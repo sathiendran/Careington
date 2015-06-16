@@ -1,0 +1,74 @@
+<ion-side-menus>
+	<ion-side-menu-content> 
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
+	  
+		<div class="buttons" >
+			<button class="button icon button-clear ion-navicon-round UserHomeIcon" id="BackButtonIcon" ng-click="toggleLeft()" ></button>
+		</div>
+		<h1 class="title_patient HeaderList">Patient List</h1>	  
+
+		<a href="" ng-click="showDetails = ! showDetails"> 
+			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
+				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who needs care today?</div>
+				<div class="SearchImage">
+					<i class="ion-search" style="float: right; font-size: 26px;color: #000;"></i>
+				</div>
+
+			</div> 
+		</a>
+	   
+	</ion-header-bar> 
+
+
+
+
+<ion-view title="User Home">	
+<ion-content class="ContentHomeUser UserHme" ng-controller="LoginCtrl" >
+	<div class="UserHmeSub" ng-show="showDetails">
+        <label class="item-input"  >
+            <input type="search" placeholder="Search" id="searchQuery" ng-model="data.searchQuery"  >
+        </label>
+	</div>
+
+ 	<ion-list>
+      
+	<a class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
+		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery">
+			 <div class="HrefListView"> 
+				<div class="UserhmePatientDetails">
+					<img ng-src="{{PatientImage}}" class="UserHmelistImgView">
+					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div> 
+					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
+					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dob | ageFilter}} <span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span></p>
+					<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>
+				</div>
+			 </div>
+		</ion-item>
+	</a>
+		
+		<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
+			<a class="HrefListView"  > 
+			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
+			   <h2 class="DateFormateStyle"><b>OCT 12 </b> <span class="NextAppointTime"><sup>@</sup></span> <b>12:15</b><span class="NextAppointAMorPM">PM</span></h2>
+			   <list class="ion-chevron-right ListLinkHref nextList"></list>
+			   <span class="DateFormateStyle AppointmentView" >View Details</span>
+				
+		    </a>	
+		</ion-item>
+		
+		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
+			 <a class="HrefListView">   
+				<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
+				<span class = "ListText"><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></span>
+				<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} | Guardain : {{dependentDetails.guardianName}}</p>
+			 </a>
+		</ion-item> 
+		
+		
+		
+	</ion-list>
+</ion-content>
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>	

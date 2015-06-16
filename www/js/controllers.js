@@ -1261,6 +1261,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'consultationId': index.consultationId,
 									'firstName': index.firstName,
 									'lastName': index.lastName,	
+									'patientId': index.patientId,
 									'assignedDoctorName': index.assignedDoctorName,
 									'patientName': index.patientName,
 									'patientUserId': index.patientUserId,

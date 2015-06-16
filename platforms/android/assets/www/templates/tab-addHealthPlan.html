@@ -1,0 +1,109 @@
+<ion-view title="Add Health Plan">
+     <div id="Error_Message" class="ErrorMessageDiv" ></div>
+<ion-side-menus>
+	<ion-side-menu-content> 
+       
+		<div ng-include src="'templates/intakeHeader.html'"></div> 
+	
+	<div class="consultCharge_subHeader PatintHeaderFontStyle"  >
+		<span>Payment</span>
+	</div>
+	
+	
+	
+	<ion-content class="consultChargeNoPlanContent" >
+		<div class="password_home">
+		
+			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+				<div class="consultTittle">Consultation Charge</div>
+				<div class="consultation_number"> ${{consultationAmount}}*</div>
+			</div>
+			
+			
+			<div class="healthPlan_header" style="display: {{enableAddHealthPlan}} " >
+				
+				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
+					<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
+						<div class="demo" >
+							<select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
+								<option value=""><b>Choose Your Health Plan</b></option>
+								<!--<option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber}}" ng-if="SelectedHealthPlans" selected><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:15}}</span></b></option> -->
+                                
+                                <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == SelectInsuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:20}}</span></b></option>
+                                
+							<!--	<option ng-if="primaryPatientId == patientId"><b>Add a new health plan</b></option>  -->
+							</select>
+						</div>
+					</div>
+			</div>
+			
+			
+			
+			<div class="SkipToPayment" style="display: {{enableAddHealthPlan}} ">
+				<!--<a ng-href="#/tab/addCard">-->
+					<!-- <button type="submit" ng-click="doGetPatientPaymentProfiles()" class="button button-block button-balanced"> --->
+                <button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced">
+						<span>Apply Plan</span>
+					</button>
+				<!--</a>-->
+			</div>
+			
+			<!--<div class="healthPlan_header" style="padding-top: 40px; color: #5C5C5C; text-align: center; " >
+				<div class="healthPlan_text" style="margin-left: 20px; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;" >Select health plan</div>
+				<a ng-href="#/tab/planDetails">
+					<div class="addHealthPlan_header" style="text-align: left; margin-left: 20px;" >
+						<img ng-src="img/add.png" style="width: 30px; height: 30px;" ><span class="addHealthPlan_text" >Add A Health Plan</span>
+					</div>
+				</a>
+			</div>-->
+			
+			<div class="healthPlan_header AddCardNoPlan"  style="display:{{disableAddHealthPlan}}" >
+				<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
+				<a ng-click="doGetHealthPlanProvider()">
+					<div class="addHealthPlan_header AddCard" >
+						<img ng-src="img/add.png"  ><span class="addHealthPlan_text" >Add A Health Plan</span>
+					</div>
+				</a>
+			</div>
+			
+			
+			
+			<div class="SkipToPayment" style="display:{{disableAddHealthPlan}}">
+				
+				
+				<!--<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">-->
+					<button class="button button-block button-royal"  type="submit" ng-click="GetConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian)"  >
+						<span> Skip to Payment</span>
+					</button>
+				<!--</a>-->
+				
+			</div>
+			<div class="scheduled_appointments_text" style="" >
+				Don't add a health plan, pay full charge directly.
+			</div>
+		</div>
+	</ion-content>
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+
+	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div> -->	
+
+
+		<div class="hide-on-keyboard-open">
+		<ion-footer-bar align-title="left" class="footer">			
+			<div class="ConsultChargeFooter">
+				<div class="ConsultChargeBack" >
+                   <!-- <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span>Back</span></a>-->
+				   <site-header back="Back"></site-header>
+				</div>
+						
+				<div class="ConsultChargeCancel" >
+					<a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+				</div>
+						
+			</div>
+		</ion-footer-bar> 
+	</div>
+
+</ion-view>	
