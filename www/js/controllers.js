@@ -383,12 +383,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.location = data.data[0].location;
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
-					$rootScope.primaryPatientName = data.data[0].patientName;
-					$rootScope.primaryPatientLastName = '';
+					$rootScope.primaryPatientName = data.data[0].patientName;					
 					$rootScope.primaryPatientGuardianName = '';
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
-					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;					
+					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;	
+					$scope.doGetPrimaryPatientLastName();	
 						
 				},
 				error: function (data) {
