@@ -540,13 +540,13 @@ background: linear-gradient(#A0D18A, #91BE7B);
 //Patient Calendar page
 
 .calendarBack {
-	padding-top: 6px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
+	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
 	span {
 		margin-top:7px;position: relative;margin-left: -6px;top: -2px;
 	}
 }
 .calendarTitle {
-	font-size: 22px; text-align: center; width: 100%;
+	font-size: 20px; text-align: center; width: 100%;
 }
 .calendar_subHeader_height { 
 	top: 65px !important;
@@ -698,7 +698,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.availableImage {
 			font-size: 22px;margin-top: 2px;
 			.AvailableText {
-				float: left; text-align: right; width: 53%;
+				float: left; text-align: right; width: 54%;
 			}
 			.AvailableTimer {
 				float: left; text-align: left; width: 45%; padding-left: 10px;
@@ -909,13 +909,13 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .PlanHeader { 
 	height: 58px;
 	.PlanCancel {
-		padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px;
+		padding-top: 12px; font-weight: bold; cursor: pointer; width: 68px;
 		span {
 			margin-top:7px; position:absolute;
 		}
 	}
 	.PlanNext { 
-		padding-top: 18px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;background: none; border: none;
+		padding-top: 12px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;background: none; border: none;
 		span {
 			margin-top:-7px; position:absolute;left: 15px;
 		}
@@ -1354,13 +1354,13 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .SurgeryHeader {
 	height: 50px;
 	.SurgeryCancel {
-		top: 5px !important;  font-size: 15px !important; 
+		top: 1px !important;  font-size: 15px !important; 
 	}
 	.SurgeryTitle {
-		top: 12px !important;  font-size: 16px !important;
+		top: 4px !important;  font-size: 16px !important;
 	}
 	.SurgeryDone {
-		top: 12px !important;  font-size: 15px !important;
+		top: 1px !important;  font-size: 15px !important;
 	}
 }
 .SurgeryContent {
@@ -2160,7 +2160,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 .HeaderList {
-font-size: 22px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
+font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 }
 .subHeaderTop { top: 86px; }
 #BackButtonIcon { color:#000; margin-top: 15px;}

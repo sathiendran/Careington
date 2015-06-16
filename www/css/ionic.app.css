@@ -8125,7 +8125,7 @@ body {
   border-color: #A2D28A; }
 
 .calendarBack {
-  padding-top: 6px;
+  padding-top: 7px;
   font-weight: bold;
   cursor: pointer;
   width: 68px;
@@ -8139,7 +8139,7 @@ body {
     top: -2px; }
 
 .calendarTitle {
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
   width: 100%; }
 
@@ -8290,7 +8290,7 @@ body {
     .AvailableIn .availableImage .AvailableText {
       float: left;
       text-align: right;
-      width: 53%; }
+      width: 54%; }
     .AvailableIn .availableImage .AvailableTimer {
       float: left;
       text-align: left;
@@ -8479,7 +8479,7 @@ body {
 .PlanHeader {
   height: 58px; }
   .PlanHeader .PlanCancel {
-    padding-top: 18px;
+    padding-top: 12px;
     font-weight: bold;
     cursor: pointer;
     width: 68px; }
@@ -8487,7 +8487,7 @@ body {
       margin-top: 7px;
       position: absolute; }
   .PlanHeader .PlanNext {
-    padding-top: 18px;
+    padding-top: 12px;
     font-weight: bold;
     cursor: pointer;
     width: 68px;
@@ -8913,13 +8913,13 @@ select {
 .SurgeryHeader {
   height: 50px; }
   .SurgeryHeader .SurgeryCancel {
-    top: 5px !important;
+    top: 1px !important;
     font-size: 15px !important; }
   .SurgeryHeader .SurgeryTitle {
-    top: 12px !important;
+    top: 4px !important;
     font-size: 16px !important; }
   .SurgeryHeader .SurgeryDone {
-    top: 12px !important;
+    top: 1px !important;
     font-size: 15px !important; }
 
 .SurgeryContent {
@@ -9718,7 +9718,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
       margin-left: 83px; }
 
 .HeaderList {
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
   width: 100%;
   margin-left: -32px;
