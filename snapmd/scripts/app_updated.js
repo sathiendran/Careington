@@ -32,21 +32,21 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.accessToken = 'No Token';
         $scope.tokenStatus = 'alert-warning';
         $scope.existingConsultation = '{ "message": "NO EXISITING CONSULTATION JSON" }';
-        $scope.consultationId = 2440;//2440
-        $scope.patientId = 452;
-		$scope.otherPatientId = 505;
+        $scope.consultationId = 2440;//2591;//3030;
+        $scope.patientId = 452;//505;////// ////
+		$scope.otherPatientId = 452;//2752;//505;
         $scope.hospitalId = 126;
         $scope.userTypeId = 1;
         $scope.profileId = 31867222;
-		$scope.patientEmail = 'ben.ross.310.95348@gmail.com';//'austin@rinsoft.com';
-		$scope.emailAddress = 'ben.ross.310.95348@gmail.com';//'austin@rinsoft.com';
-		$scope.userPassword = 'Password@123';//'Austinhg#1';
+		$scope.patientEmail = /*'austin@rinsoft.com';//*/'ben.ross.310.95348@gmail.com';
+		$scope.emailAddress = /*'austin@rinsoft.com';//*/'ben.ross.310.95348@gmail.com';
+		$scope.userPassword = 'Password@123';
 		$scope.emailType = 'resetpassword';
         $scope.Amount = 30;
         $scope.paymentProfileId = 28804398;
 
 
-        $scope.userId = 471;
+        $scope.userId = 471;//505;////471;
         $scope.BillingAddress = '123 chennai';
         $scope.CardNumber = 4111111111111111;
         $scope.City = 'chennai';
@@ -87,6 +87,11 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 		$scope.policyNumberApply = '111111111';
 		$scope.consultationIdApply = 2440;
 		$scope.healthPlanIdApply = 3166;
+		
+		$scope.paymentProfileId = 4;
+		
+		$scope.consultationEvent = 120;
+		$scope.consultationEventType = 23;
 		
         $scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 
@@ -679,6 +684,26 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 				apiComService.postOnDemandConsultation (params);
 		};
 		
+		$scope.doDeletePaymentProfile = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                PaymentProfileId: $scope.paymentProfileId,
+                accessToken: $scope.accessToken,
+                success: function (data) {
+                    $scope.PaymentProfileRemoved = data;
+                },
+                error: function (data) {
+                    $scope.PaymentProfileRemoved = 'Error getting consultation key';
+                    console.log(data);
+                }
+            };
+
+            apiComService.deletePaymentProfile(params);
+        }
+		
 		$scope.doGetConsultationKey = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
@@ -697,6 +722,28 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
             };
 
             apiComService.getConsultationKey(params);
+        }
+		
+		$scope.doPostConsultationEvent = function () {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                ConsultationId: $scope.consultationId,
+                accessToken: $scope.accessToken,
+				ConsultationEvent: $scope.consultationEvent,
+				ConsultationEventType: $scope.consultationEventType,
+                success: function (data) {
+                    $scope.ConsultationEvent = data;
+                },
+                error: function (data) {
+                    $scope.ConsultationEvent = 'Error getting consultation key';
+                    console.log(data);
+                }
+            };
+
+            apiComService.postConsultationEvent(params);
         }
 		
     }]);
@@ -1218,7 +1265,8 @@ app.service('apiComService', function ($http) {
 
 		var confirmGetPatientsProfile = {
 			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/patients/profile/' + params.patientID,
+			//url: 'https://sandbox.connectedcare.md/api/v2/patients?include={AccountDetails}',
+            url: 'https://sandbox.connectedcare.md/api/v2/patients/profiles/' + params.patientID,
             method: 'GET'
 		};
 		
@@ -1280,5 +1328,49 @@ app.service('apiComService', function ($http) {
                 });
     }
 	
+	this.deletePaymentProfile = function (params) {
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+			url: 'https://sandbox.connectedcare.md/api/Payments/Delete/' + params.PaymentProfileId,
+            method: 'DELETE'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                        params.success(data);
+                    }
+                });
+    }
+	
+	this.postConsultationEvent = function(params) {
+		var confirmConsultationEvent = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/v2/consultations/events',
+            method: 'POST',
+			data: {
+				ConsultationId: params.ConsultationId,
+				Event: params.ConsultationEvent,
+				EventType: params.ConsultationEventType
+			}
+		};
+		
+		$http(confirmConsultationEvent).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
 });
 	
