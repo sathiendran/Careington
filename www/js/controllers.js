@@ -860,8 +860,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = {};	
     $scope.doPostApplyHealthPlan = function() {
-        console.log($scope.Health.addHealthPlan);
-    
+        //console.log($scope.Health.addHealthPlan);
+        
         if($rootScope.currState.$current.name=="tab.applyPlan") {
             if(typeof $scope.Health.addHealthPlan != 'undefined') {
                  $rootScope.NewHealth = $scope.Health.addHealthPlan;
@@ -884,27 +884,38 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        
         
         if($rootScope.currState.$current.name=="tab.addHealthPlan") {
-              if(typeof $scope.Health.addHealthPlan != 'undefined') {
-                     $rootScope.NewHealth = $scope.Health.addHealthPlan;
-                     $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-                     var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-                     var InsuranceCompany = healthInsurance[0];
-                     var PolicyNumber = healthInsurance[1];
-                     var healthPlanIdApply = healthInsurance[2];
-                     $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
-                    //alert($rootScope.NewHealth + 'is undefined');
-
-                } else {
-                      $rootScope.NewHealth ;
-                      $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-                         var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-                         var InsuranceCompany = healthInsurance[0];
-                         var PolicyNumber = healthInsurance[1];
-                         var healthPlanIdApply = healthInsurance[2];
-                         $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
-                      //alert($rootScope.SelectedHealthPlans + ' ' + $rootScope.SelectInsuranceCompany);
-                    }   
-             }
+                       if(typeof $scope.Health.addHealthPlan != 'undefined') {
+                                 $rootScope.NewHealth = $scope.Health.addHealthPlan;
+                                 $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+                                 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+                                 var InsuranceCompany = healthInsurance[0];
+                                 var PolicyNumber = healthInsurance[1];
+                                 var healthPlanIdApply = healthInsurance[2];
+                                 $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                       } else {
+                        if(typeof $scope.Health.addHealthPlan == 'undefined') {
+                             if(!$rootScope.NewHealth) {
+                             $scope.ErrorMessages = "Bad Request Please select it";
+			                 $rootScope.Validation($scope.ErrorMessages);
+                             }
+                             $rootScope.NewHealth ;
+                             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+                             var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+                             var InsuranceCompany = healthInsurance[0];
+                             var PolicyNumber = healthInsurance[1];
+                             var healthPlanIdApply = healthInsurance[2];
+                             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                        } else {
+                             $rootScope.NewHealth ;
+                             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+                             var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+                             var InsuranceCompany = healthInsurance[0];
+                             var PolicyNumber = healthInsurance[1];
+                             var healthPlanIdApply = healthInsurance[2];
+                             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                            }
+                       }   
+         }
             
 		 
 			if ($scope.accessToken == 'No Token') {
