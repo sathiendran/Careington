@@ -383,12 +383,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.location = data.data[0].location;
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
-					$rootScope.primaryPatientName = data.data[0].patientName;					
+					$rootScope.primaryPatientName = data.data[0].patientName;
+					$rootScope.primaryPatientLastName = '';
 					$rootScope.primaryPatientGuardianName = '';
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
-					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;	
-					$scope.doGetPrimaryPatientLastName();	
+					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;					
 						
 				},
 				error: function (data) {
@@ -1586,7 +1586,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
-                 if(data.data[0].consultationInfo.consultationStatus == STARTED_CONSULTATION_STATUS_CODE){
+                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
                       $interval.cancel(consultationStatusCheck);
                       $scope.isPhysicianStartedConsultaion = true;
                       $scope.getConferenceKeys();
