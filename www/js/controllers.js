@@ -382,13 +382,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.location = data.data[0].location;
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
-					$rootScope.primaryPatientName = data.data[0].patientName;
-					$rootScope.primaryPatientLastName = '';
+					$rootScope.primaryPatientName = data.data[0].patientName;					
 					$rootScope.primaryPatientGuardianName = '';
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;					
-						
+					$scope.doGetPrimaryPatientLastName();	
 				},
 				error: function (data) {
 					$scope.patientInfomation = 'Error getting Related Patient Profiles';
@@ -398,6 +397,46 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 			LoginService.getPatientProfiles(params);
 		}
+		
+	$scope.doGetPrimaryPatientLastName = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                patientId: $rootScope.primaryPatientId,
+                accessToken: $rootScope.accessToken,
+				success: function (data) {
+					//$scope.RelatedPatientProfiles = data.data;
+					$rootScope.primaryPatientLastName = [];	
+						angular.forEach(data.data, function(index, item) {		
+							$rootScope.primaryPatientLastName.push({
+								'id': index.$id,
+								'patientName': index.patientName,
+								'lastName': index.lastName,
+								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+								'mobilePhone': index.mobilePhone,
+								'homePhone': index.homePhone,
+								'primaryPhysician': index.primaryPhysician,								
+								'primaryPhysicianContact': index.primaryPhysicianContact,
+								'physicianSpecialist': index.physicianSpecialist,
+								'physicianSpecialistContact': index.physicianSpecialistContact,
+								'organization': index.organization,
+								'location': index.location,
+							});
+						});	
+					$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName;	
+						 
+						
+				},
+				error: function (data) {
+					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
+					console.log(data);
+				}
+			};
+			
+			LoginService.getPrimaryPatientLastName(params);
+		}	
 	
 	
 	$scope.doGetRelatedPatientProfiles = function() {
@@ -976,7 +1015,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getPatientPaymentProfile(params);		
     }
 	
-	$scope.paymentProfileId = 28804398;	
+	
 	
 	$rootScope.verifyCardDisplay = "none";
 	$rootScope.cardDisplay = "inherit;";

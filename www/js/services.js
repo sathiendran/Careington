@@ -80,6 +80,26 @@ angular.module('starter.services', [])
 		});
 	}
 	
+	this.getPrimaryPatientLastName = function(params) {
+		var PatientDetailsList = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/profiles/' + params.patientId,
+            method: 'GET'
+		};
+		
+		$http(PatientDetailsList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	
 	
 	this.getRelatedPatientProfiles = function(params) {
 		var confirmHealthPlanList = {
