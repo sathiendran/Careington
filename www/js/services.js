@@ -119,7 +119,7 @@ angular.module('starter.services', [])
 					params.success(data);
 				}
 		});
-	}
+	} 
 	
 	
 
