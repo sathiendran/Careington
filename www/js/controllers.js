@@ -901,11 +901,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                          var InsuranceCompany = healthInsurance[0];
                          var PolicyNumber = healthInsurance[1];
                          var healthPlanIdApply = healthInsurance[2];
-                      $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
-                      alert($rootScope.SelectedHealthPlans + ' ' + $rootScope.SelectInsuranceCompany);
+                         $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                      //alert($rootScope.SelectedHealthPlans + ' ' + $rootScope.SelectInsuranceCompany);
                     }   
              }
-            //$rootScope.SelectedHealthPlans = $scope.Health.addHealthPlan;
+            
 		 
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
