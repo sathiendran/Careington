@@ -66,7 +66,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states. 
                 // Do nothing here to disable H/W back button.
-            } else { 
+            }else if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else { 
                 // For all other states, the H/W BACK button is enabled
                 navigator.app.backHistory(); 
             }
@@ -1625,6 +1627,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
+                console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
                  if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
                       $interval.cancel(consultationStatusCheck);
                       $scope.isPhysicianStartedConsultaion = true;
