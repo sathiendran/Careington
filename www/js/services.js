@@ -769,4 +769,49 @@ this.getCountryDetails = function () {
     }
     
 }) 
-
+.service('CreditCardValidations', function(){
+    
+    this.luhn = function luhn(num) {
+	    num = (num + '').replace(/\D+/g, '').split('').reverse();
+	    if (!num.length) {
+	        return false;
+	    }
+	    var total = 0, i;
+	    for (i = 0; i < num.length; i++) {
+	        num[i] = parseInt(num[i])
+	        total += i % 2 ? 2 * num[i] - (num[i] > 4 ? 9 : 0) : num[i];
+	    }
+	    return (total % 10) == 0 ? true : false;
+	},
+        
+    this.validCreditCard = function(card_number) {
+        card_number = String(card_number);
+	    var firstnumber = parseInt(String(card_number).substr(0,1));
+	    switch (firstnumber)
+	    {
+	        case 3:
+	            if (!card_number.match(/^3\d{3}[ \-]?\d{6}[ \-]?\d{5}$/)) {
+	                return false;
+	            }
+	            break;
+	        case 4:
+	            if (!card_number.match(/^4\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/)) {
+	                return false;
+	            }
+	            break;
+	        case 5:
+	            if (!card_number.match(/^5\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/)) {
+	                return false;
+	            }
+	            break;
+	        case 6:
+	            if (!card_number.match(/^6011[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/)) {
+	                return false;
+	            }
+	            break;
+	        default:
+	            return false;
+	    }
+	    return this.luhn(card_number);
+	}
+})
