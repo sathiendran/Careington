@@ -36,7 +36,7 @@
 			
 			<ion-item class="doctor_details">
 				 <a class="HrefListView"  href="#" >   
-				     <img ng-src="https://snap-dev.com/images/Patient-Male.gif" class="listImgView doctorImgeSize">
+				     <img ng-src="{{doctorImage}}" class="listImgView doctorImgeSize">
 					<span class = "ListText doctorName" ><b style="font-size: 22px;">Dr.</b> <span class="SubTitleSpan">{{scheduledListDatas.assignedDoctorName}}</span></span>				
 					<list class="ion-chevron-right ListLinkHref doctorArrow" ></list>
 				 </a>
@@ -87,7 +87,7 @@
 	</ion-footer-bar>
 		
 	<ion-footer-bar align-title="left" class="bar-assertive enterAppoinment" style=" display: {{timeNew1}}" >
-			<a ng-href="#/tab/waitingRoom"  ng-click="enterWaitingRoom(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)">
+			<a ng-click="enterWaitingRoom(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)">
 				<div >		
 					<div class="title EnterText">Enter Appointment</div>
 				</div>

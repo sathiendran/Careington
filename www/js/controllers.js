@@ -284,8 +284,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					//	$scope.doGetExistingConsulatation();
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
-                        //$rootScope.CountryLists = CountryList.getCountryDetails();
-						$state.go('tab.userhome');		
+                        //$rootScope.CountryLists = CountryList.getCountryDetails();							
 					}
 				},
 				error: function (data) {
@@ -368,7 +367,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.searched = false;
             }
         }
-    });
+    });  
 	
 	$scope.doGetPatientProfiles = function() {
 			if ($scope.accessToken == 'No Token') {
@@ -483,6 +482,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						});	
 						
 						 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+						 $state.go('tab.userhome');	
 						
 				},
 				error: function (data) {
@@ -496,6 +496,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
 	$scope.doGetExistingConsulatation = function () {
+		$rootScope.consultionInformation = '';
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -511,6 +512,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.patientInfomation = data.data[0].patientInformation;	
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
                 $rootScope.inTakeForm = data.data[0].intakeForm;
+				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctorId;
+				$scope.doGetDoctorDetails();
                
             },
             error: function (data) {
@@ -518,8 +521,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         };
         
-        LoginService.getExistingConsulatation(params);
+        LoginService.getExistingConsulatation(params);	
 		
+	}
+	
+	$scope.doGetDoctorDetails = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            doctorId: $rootScope.assignedDoctorId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+				$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;	
+				$state.go('tab.appoimentDetails');
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getDoctorDetails(params);	
 		
 	}
 	
@@ -1502,8 +1526,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		   //console.log($rootScope.scheduledListDatas);
 		   
 		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
-		  
-		$scope.doGetExistingConsulatation();  
 		
 		$rootScope.dtNow = new Date($rootScope.scheduledListDatas.scheduledTime + "Z");
 		
@@ -1512,14 +1534,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.time = $rootScope.dtNow.getTime();
 		
 		//$scope.$broadcast('timer-start');
-		
-		
 		$timeout(function() {   
 			document.getElementsByTagName('timer')[0].start();
 		});
 		
-		 $state.go('tab.appoimentDetails');	
-		   
+		$scope.doGetExistingConsulatation();  
      };
 	 
 	 
