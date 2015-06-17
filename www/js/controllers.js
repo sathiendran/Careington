@@ -50,8 +50,8 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar) {
- 
+.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+    
 	$rootScope.currState = $state;
     
     $rootScope.monthsList = CustomCalendar.getMonthsList();
@@ -1091,7 +1091,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.cardDisplay = "inherit;";
 	
 	$scope.getCardDetails = {};  
-	
+
+    $scope.ccCvvLength = 3;
+    $scope.$watch('getCardDetails.CardNumber', function(cardNumber){
+        var ccn1 = String(cardNumber).substr(0,1); 
+        if(typeof ccn1 != undefined){
+            if(ccn1 == 3){
+                $scope.ccCvvLength = 4;
+            }else{
+                $scope.ccCvvLength = 3;
+                $scope.getCardDetails.Cvv = String($scope.getCardDetails.Cvv).substr(0,3);
+            }
+        }
+    });
+    
 	$scope.doPostPaymentProfileDetails = function () {
 	
         /*$scope.BillingAddress = '123 chennai';
@@ -1139,53 +1152,56 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         } else if(ExpiryDateCheck < currentTime) {
              $scope.ErrorMessage = "Verify month & year";
 			 $rootScope.Validation($scope.ErrorMessage);
+        }else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
+            $scope.ErrorMessage = "Invalid Card Number";
+            $rootScope.Validation($scope.ErrorMessage);
         }
-        else {
-		
-		
-					
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		var params = {
-            userId: $rootScope.primaryPatientId, 
-			BillingAddress: $rootScope.BillingAddress,
-			CardNumber: $rootScope.CardNumber,
-			City: $rootScope.City,
-			ExpiryMonth: $rootScope.ExpiryMonth,
-			ExpiryYear: $rootScope.ExpiryYear,
-			FirstName: $rootScope.FirstName,
-			LastName: $rootScope.LastName,
-			State: $rootScope.State,
-			Zip: $rootScope.Zip,
-			Country: $scope.Country,
-			ProfileId: $rootScope.patientprofileID,
-			Cvv: $rootScope.Cvv,		
-            accessToken: $rootScope.accessToken,
-			
-            success: function (data) {
-                $scope.PostPaymentDetails = data;
-				
-				if(data.message == "Success")	{			
-					console.log(data);
-					$rootScope.verifyCardDisplay = "block";
-					$rootScope.cardDisplay = "none;";
-					$scope.doGetPatientPaymentProfilesCardDetails();
-					$state.go('tab.submitPayment');
-				} else {					
-					$scope.ErrorMessage = data.message;
-					$rootScope.Validation($scope.ErrorMessage);
-					$state.go('tab.cardDetails');
-				}
-				
-            },
-            error: function (data) {
-                $rootScope.serverErrorMessageValidation();
+        else {		
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
             }
-        };
-        
-        LoginService.postPaymentProfileDetails(params);
+            $rootScope.cardDisplay = "none;";
+            $rootScope.verifyCardDisplay = "block";
+            var params = {
+                userId: $rootScope.primaryPatientId, 
+                BillingAddress: $rootScope.BillingAddress,
+                CardNumber: $rootScope.CardNumber,
+                City: $rootScope.City,
+                ExpiryMonth: $rootScope.ExpiryMonth,
+                ExpiryYear: $rootScope.ExpiryYear,
+                FirstName: $rootScope.FirstName,
+                LastName: $rootScope.LastName,
+                State: $rootScope.State,
+                Zip: $rootScope.Zip,
+                Country: $scope.Country,
+                ProfileId: $rootScope.patientprofileID,
+                Cvv: $rootScope.Cvv,		
+                accessToken: $rootScope.accessToken,
+
+                success: function (data) {
+                    $scope.PostPaymentDetails = data;
+                    
+                    if(data.message == "Success")	{
+                        console.log(data);
+                        $scope.doGetPatientPaymentProfilesCardDetails();
+                        $state.go('tab.submitPayment');
+                    } else {	
+                        $scope.ErrorMessage = data.message;
+                        $rootScope.Validation($scope.ErrorMessage);
+                        $state.go('tab.cardDetails');
+                    }
+                    $rootScope.cardDisplay = "block;";
+                    $rootScope.verifyCardDisplay = "none";
+                },
+                error: function (data) {
+                    $rootScope.cardDisplay = "block;";
+                    $rootScope.verifyCardDisplay = "none";
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+
+            LoginService.postPaymentProfileDetails(params);
 		
 		}
 	}
@@ -1526,6 +1542,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		   //console.log($rootScope.scheduledListDatas);
 		   
 		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
+		  
+		$scope.doGetExistingConsulatation();  
 		
 		$rootScope.dtNow = new Date($rootScope.scheduledListDatas.scheduledTime + "Z");
 		
@@ -1534,11 +1552,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.time = $rootScope.dtNow.getTime();
 		
 		//$scope.$broadcast('timer-start');
+		
+		
 		$timeout(function() {   
 			document.getElementsByTagName('timer')[0].start();
 		});
 		
-		$scope.doGetExistingConsulatation();  
+		 $state.go('tab.appoimentDetails');	
+		   
      };
 	 
 	 

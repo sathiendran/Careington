@@ -30,7 +30,7 @@
 					<p>
 						List any prior surgeries.
 						<br/>
-						Enter up to four
+						Enter up to three
 					</p>
 					<div><i class="ion-plus-circled addBtn disabled">  </i>
 					</div>
@@ -53,7 +53,7 @@
 	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
 			<div class="surgeryDetails">
 				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
-				<div class="surgeryDate">{{surgery.Date | date: "MM, yyyy"}}</div>   
+				<div class="surgeryDate">{{surgery.Date | date: "MMM, yyyy"}}</div>   
 			</div>
 			<div class="surgerydelete"><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
 		</a>
