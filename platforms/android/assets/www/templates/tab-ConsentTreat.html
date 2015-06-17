@@ -1,0 +1,55 @@
+
+<ion-side-menus>
+	<ion-side-menu-content> 
+		<div ng-include src="'templates/intakeHeader.html'"></div>
+<ion-view title="Appointment Details">
+		
+		<div>
+			<div class="ConsentSteps" >Step <b>6</b> of <b>7</b></div>
+			<div>
+				<h1 class="ChronicCondition consentTitle">Consent to Treat</h1>
+				<p class="consentSubTitle">Read, Acknowledge, and Agree (Scroll to Bottom)</p>
+			</div> 
+			 <div class="consentLine"></div>
+	   </div>
+
+<ion-content class="ContentHomeUser ConsentContent">
+	
+
+
+<div class="ConsentMessageFirst" >
+<p  class="PragraphContent">
+ I, Or guardian,give/s permission to <b>{{Hopital}}</b> to perform the medical service that the physician and other non-physician providers and assistants may deem to be necessary. In addition, I, or authorize/s <b>{{Hopital}}</b> to realse any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.
+</p>	
+</div>	
+
+<div class="ConsentMessageSecond">
+<p class="PragraphContent">
+  SnapMd terms & Conditions, Privacy Police and Consent to Treat. <br>These Terms and Conditions define the obligation of SnapMd. its authorized agent and me. the service subscriber, and they establish the basic rules of safe and the basic rules of safe and fair use of SnapMd and its authorized agents re-serve the right to immediately and withot advance notice terminate the service and deny access to individuals who do not abide by the Terms and conditions.
+</p>
+  </div>	
+
+
+<div class="ConsentMessageAgree">
+<p  class="PragraphContent" >
+By clicking "I Agree", I acknowledge and agree to the Terms and Conditions and Consent To treatment as-stated above.
+</p>
+</div>	
+
+  <div  class="ConsentMessageAgree" > 
+    <!--<ion-option-button class="button-positive" ng-hrf="#/tab/consultCharge" style="background-color:#A2D28A; border-color:#A2D28A;width: 100%; color:#fff;" ><b>I Agree</b></ion-option-button>-->
+	<button class="button button-block button-balanced" ng-click="GoToConsultCharge(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)">
+				  I Agree
+				</button>
+   </div>	
+   <div class="ConsentMessageAgree" > 
+   <a ng-href="#/tab/userhome"><button class="button-block button-balanced ConsentCancel">
+				<b> Cancel </b>
+				</button></a>
+   </div>	
+
+</ion-content>
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>

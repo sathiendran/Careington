@@ -1,0 +1,329 @@
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};" >
+		
+		
+    <!--<div class="backButtonDiv">
+       <a ng-click="EnableBackButton()"> <Span  style="float:left;margin: 13px 0 0 17px;font-size:20px;color:#fff;"><B>Done</B></Span></a>
+		</div>-->
+		
+		 <div class="buttons" >
+				<a class="button_new icon ReportDone" ng-click="EnableBackButton()"  >
+					<span>Done</span>
+				</a>				
+		  </div>
+		
+		<h1 class="title_patient HeaderList ReportTittle">Intake Form</h1>  
+
+
+	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+		<div class="calendar_subHeader" >
+			<div class="subHeader_image" >
+				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
+			</div>
+			<div class="subHeader_content ellipsis" >					
+				<div class="ellipsis subHeader_content_name" >
+					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+				</div>
+				<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} | Guardian: {{PatientGuardian}}</div>
+			</div>
+		</div>
+	</div>
+		
+	   
+</ion-header-bar>
+ 
+<ion-view title="Report Details">
+
+<ion-content class="ReportContent">
+	<div class="HospitalDetails">
+		<div class="HospitalLogo" >
+			<img ng-src="{{ReportHospitalImage}}">
+		</div>
+		<div class="HospitalAddress">
+			<div class="ReportAddress">
+				<p  class="PragraphContent AddressDetails" >
+					{{existingConsultationReport.hospitalAddress}} | 555 345 3454  </p>
+				<p class="OrganizationDetails">
+					<b class="OrganizationName" ng-if="existingConsultationReport.organization != ''">Organization:</b> {{existingConsultationReport.organization}} <br>
+					<b class="OrganizationLocation">Location:</b> <br>
+					<span class="LocationName" ng-if="existingConsultationReport.location != ''">{{existingConsultationReport.location}} </span><span></span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="ConnectedCareDetails" >
+		<div class="ConnectedCareTitle">
+			<h1 class="ReportTitle">CONNECTED CARE CONSULTATION REPORT</h1>
+		</div>
+	
+		<div class="Roundcircle CCAttachment">
+			<img ng-src="img/attached.png">
+			<p><b>3</b></p>
+		</div>
+	</div>
+	
+	<div class="PatientPersonalDetails">
+		<div class="ReportPatientName">
+			<p><b>Patient:</b><br> 
+			{{existingConsultationReport.patientName}} {{existingConsultationReport.lastName}} <br>
+			{{existingConsultationReport.patientAddress}}<br>
+			Home: {{existingConsultationReport.homePhone}}  <br>
+			Cell: {{existingConsultationReport.mobilePhone}}  <br>
+			</p>
+		</div>
+		<div class="EncounterDate">
+			<p><b>Encounter Date:</b> <br>
+				{{existingConsultationReport.consultationDate | date:'MMM dd, yyyy'}} <br>
+			<b>physician:</b> <br>
+			{{existingConsultationReport.doctorFirstName}} {{existingConsultationReport.doctorLastName}}
+			</p>
+		</div>
+	</div>
+    
+  
+   
+    <div class="PatientStatistics">
+        
+         <span><b>Patient Statistics</b></span>
+        
+        <div class="PatientAgeGender">
+			<p><b> Age : </b>   <input type="text" style="" readonly value="{{existingConsultationReport.dob  | ageFilter}}">
+			</p> 
+            
+            <p class="PatientGender"> 
+			<b> Gender : </b>  <input type="text" readonly value="{{existingConsultationReport.gender}}">
+			</p>
+		</div>
+		<div class="PatientHeightWeight">
+			<p> 
+          <b>  Height : </b> 
+           <input type="text" readonly value="{{existingConsultationReport.height}} {{existingConsultationReport.heightUnit}} ">
+			</p>
+            
+            <p class="PatientWeight" > 
+           <b> Weight :  </b>
+           <input type="text"  readonly value="{{existingConsultationReport.weight}} {{existingConsultationReport.weightUnit}}">
+			</p>
+            
+		</div>
+	</div>
+    
+      <div class="ReportPatientConcern">
+          <span><b>Patient Concerns</b></span>
+      </div>
+    
+    <div class="ReportPatientConcernDetails">
+		<p>  <span class="ConcernNo1">1</span> <span class="ConcernNo1Details">{{primaryConcern[1]}}</b></span></p>
+		<br>
+		<p>  <span class="ConcernNo2">2</span> <span class="ConcernNo2Details">{{secondaryConcern[1]}}</b></span></p>
+
+    </div> 
+{{medicalConditions}}
+
+<div class="ReportSubjective">
+          <span><b>SUBJECTIVE</b></span>
+ </div>
+
+<div class="IntakeInformation" ng-repeat="medicalConditions in medicalConditions">
+    <div>    {{medicalConditions.code}}{{medicalConditions.description}} 
+		<span><b>Intake Form Information</b></span>
+	</div>
+</div>
+
+<div class="ReportMedication" ng-if="intake.medications != ''">
+    <div>     
+		<span><b>Current Medication</b></span>
+	</div>
+     
+    <p ng-if="intake.medications != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.TakingMedication1}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.TakingMedication2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.TakingMedication2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.TakingMedication3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.TakingMedication3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.TakingMedication4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.TakingMedication4}}</b></span>
+	</p>		 
+</div> 
+
+<div class="ReportMedication Conditions" ng-if="intake.medicalConditions != ''" >
+    <div>     
+		<span><b>Chronic Medication</b></span>
+	</div>
+     
+    <p ng-if="existingConsultationReport.MedicalCondition1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.MedicalCondition1}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.MedicalCondition2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.MedicalCondition2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.MedicalCondition3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.MedicalCondition3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.MedicalCondition4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.MedicalCondition4}}</b></span>
+	</p> 
+</div> 
+
+<div class="ReportMedication Conditions" ng-if="intake.surgeries != ''">
+    <div>     
+		<span><b>Prior Surgeries</b></span>
+	</div>
+     
+    <p ng-if="existingConsultationReport.PriorSurgeory1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory1}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.PriorSurgeory2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.PriorSurgeory3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.PriorSurgeory4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.PriorSurgeory4}}</b></span>
+	</p> 
+</div> 
+
+<div class="ReportMedication Conditions" ng-if="intake.medicationAllergies != ''">
+    <div>     
+		<span><b>Medication Allergies</b></span>
+	</div>
+     
+    <p ng-if="existingConsultationReport.AllergicMedication1 != null" class="MedicationFirst">  
+         <span>1</span> 
+		 <span class="MedicationSpan">{{existingConsultationReport.AllergicMedication1}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.AllergicMedication2 != null">  
+        <span>2</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.AllergicMedication2}}</b></span>
+	</p>
+
+	<p ng-if="existingConsultationReport.AllergicMedication3 != null">  
+         <span>3</span>
+		 <span class="MedicationSpan">{{existingConsultationReport.AllergicMedication3}}</b></span>
+	</p>
+	<p ng-if="existingConsultationReport.AllergicMedication4 != null">  
+        <span>4</span> 
+		<span class="MedicationSpan">{{existingConsultationReport.AllergicMedication4}}</b></span>
+	</p> 
+</div> 
+
+
+
+
+<div class="ReportScreenSubjective">
+     <p class="PragraphContent">  
+      {{SoapNote.subjective}}
+    </p>
+</div> 
+
+
+<div class="ReportAbjective">
+    <div>     
+		<span><b>OBJECTIVE</b></span>
+	</div>
+     
+     <p class="PragraphContent">  
+      {{SoapNote.objective}}
+    </p>
+</div> 
+
+<div class="ReportAbjective assessment" >
+   
+    <div>     
+		<span><b>ASSESSMENT</b></span>
+	</div>
+     
+     <p class="PragraphContent" >  
+       {{SoapNote.assessment}}
+    </p>
+
+</div> 
+
+<div class="ReportAbjective ReportPlan">
+    <div>     
+		<span><b>PLAN</b></span>
+	</div>
+	
+     <p class="PragraphContent">  
+       {{SoapNote.plan}}
+    </p>
+</div>
+ 
+<div class="ReportAbjective ReportRX">
+    <div>     
+		<span><b>RX</b></span>
+	</div>
+     
+     <p class="PragraphContent" >  
+		{{existingConsultationReport.rx}}       
+    </p>
+</div> 
+
+<div class="ReportAbjective ReportChat">
+   
+    <div>     
+		<span><b>CHAT TRANSCRIPT</b></span>
+	</div>
+     
+     <p class="PragraphContent" >  
+      [2/13/14, 11:01:23 AM] Ben: Thought you might find this inte [2/13/14, 11:01:23 AM] Ben: Iam grabbing lunch.resing.
+    [2/13/14, 11:01:23 PM] Ben: Iam grabbing lunch.
+     [2/13/14, 11:01:23 PM] Ben:3 sound good?.
+     [2/13/14, 11:01:23 PM] Ben:Report Patrick:grab some for me too :(
+    [2/13/14, 11:01:23 PM] Ben:Report Patrick:grab some for me too :(
+         
+    </p>
+
+</div> 
+
+
+<div class="ReportAbjective ReportFileAttach">
+   
+    <div>     
+		<span><b>FILE  ATTACHMENT</b></span>
+	</div>
+     
+     <p class="PragraphContent">  
+      file attachement
+    </p> 
+
+</div> 
+
+
+<div ng-click="EnableBackButton()" class="ReportAbjective ReportScreenDone">
+				<button class="button button-block button-balanced ReportButton">
+				<B>Done</B>  
+				</button>
+</div>
+
+</ion-content>
+
+</ion-view>
+		
+
+
+
