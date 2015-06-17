@@ -50,8 +50,8 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar) {
- 
+.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+    
 	$rootScope.currState = $state;
     
     $rootScope.monthsList = CustomCalendar.getMonthsList();
@@ -66,7 +66,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states. 
                 // Do nothing here to disable H/W back button.
-            } else { 
+            }else if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else { 
                 // For all other states, the H/W BACK button is enabled
                 navigator.app.backHistory(); 
             }
@@ -126,23 +128,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
-	}
+	}	
 	
-	/*$rootScope.CardValidation = function($a){
-		function refresh_close(){
-			$('.close').click(function(){$(this).parent().fadeOut(200);});
-			}
-			refresh_close();
-			
-			var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
-
-			//$('#notifications-window-row-button').click(function(){
-				$("#notifications-top-center").remove();
-				$("#Error_Message").append(top);
-				//$("#notifications-top-center").addClass('animated ' + 'bounce');
-				refresh_close();
-			//});
-	}*/
 	
 	$scope.validation = function() {
 		$scope.ErrorMessage = "Oops, something went wrong";
@@ -284,8 +271,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					//	$scope.doGetExistingConsulatation();
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
-                        //$rootScope.CountryLists = CountryList.getCountryDetails();
-						$state.go('tab.userhome');		
+                        //$rootScope.CountryLists = CountryList.getCountryDetails();							
 					}
 				},
 				error: function (data) {
@@ -368,7 +354,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.searched = false;
             }
         }
-    });
+    });  
 	
 	$scope.doGetPatientProfiles = function() {
 			if ($scope.accessToken == 'No Token') {
@@ -402,6 +388,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;	
 					$scope.doGetPrimaryPatientLastName();	
+					 $scope.doGetScheduledConsulatation();
 						
 				},
 				error: function (data) {
@@ -483,6 +470,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						});	
 						
 						 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+						 $state.go('tab.userhome');	
 						
 				},
 				error: function (data) {
@@ -496,6 +484,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
 	$scope.doGetExistingConsulatation = function () {
+		$rootScope.consultionInformation = '';
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -511,6 +500,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.patientInfomation = data.data[0].patientInformation;	
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
                 $rootScope.inTakeForm = data.data[0].intakeForm;
+				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctorId;
+				$rootScope.appointmentsPatientFirstName = $rootScope.inTakeForm.patientFirstName;
+				$rootScope.appointmentsPatientLastName = $rootScope.inTakeForm.patientLastName;
+				$rootScope.appointmentsPatientDOB = $rootScope.inTakeForm.dateOfBirth;
+				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.gardianName;
+				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+				$scope.doGetDoctorDetails();
                
             },
             error: function (data) {
@@ -518,8 +514,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         };
         
-        LoginService.getExistingConsulatation(params);
+        LoginService.getExistingConsulatation(params);	
 		
+	}
+	
+	$scope.doGetDoctorDetails = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            doctorId: $rootScope.assignedDoctorId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+				$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;	
+				$state.go('tab.appoimentDetails');
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getDoctorDetails(params);	
 		
 	}
 	
@@ -1067,7 +1084,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.cardDisplay = "inherit;";
 	
 	$scope.getCardDetails = {};  
-	
+
+    $scope.ccCvvLength = 3;
+    $scope.$watch('getCardDetails.CardNumber', function(cardNumber){
+        var ccn1 = String(cardNumber).substr(0,1); 
+        if(typeof ccn1 != undefined){
+            if(ccn1 == 3){
+                $scope.ccCvvLength = 4;
+            }else{
+                $scope.ccCvvLength = 3;
+                $scope.getCardDetails.Cvv = String($scope.getCardDetails.Cvv).substr(0,3);
+            }
+        }
+    });
+    
 	$scope.doPostPaymentProfileDetails = function () {
 	
         /*$scope.BillingAddress = '123 chennai';
@@ -1115,53 +1145,56 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         } else if(ExpiryDateCheck < currentTime) {
              $scope.ErrorMessage = "Verify month & year";
 			 $rootScope.Validation($scope.ErrorMessage);
+        }else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
+            $scope.ErrorMessage = "Invalid Card Number";
+            $rootScope.Validation($scope.ErrorMessage);
         }
-        else {
-		
-		
-					
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		var params = {
-            userId: $rootScope.primaryPatientId, 
-			BillingAddress: $rootScope.BillingAddress,
-			CardNumber: $rootScope.CardNumber,
-			City: $rootScope.City,
-			ExpiryMonth: $rootScope.ExpiryMonth,
-			ExpiryYear: $rootScope.ExpiryYear,
-			FirstName: $rootScope.FirstName,
-			LastName: $rootScope.LastName,
-			State: $rootScope.State,
-			Zip: $rootScope.Zip,
-			Country: $scope.Country,
-			ProfileId: $rootScope.patientprofileID,
-			Cvv: $rootScope.Cvv,		
-            accessToken: $rootScope.accessToken,
-			
-            success: function (data) {
-                $scope.PostPaymentDetails = data;
-				
-				if(data.message == "Success")	{			
-					console.log(data);
-					$rootScope.verifyCardDisplay = "block";
-					$rootScope.cardDisplay = "none;";
-					$scope.doGetPatientPaymentProfilesCardDetails();
-					$state.go('tab.submitPayment');
-				} else {					
-					$scope.ErrorMessage = data.message;
-					$rootScope.Validation($scope.ErrorMessage);
-					$state.go('tab.cardDetails');
-				}
-				
-            },
-            error: function (data) {
-                $rootScope.serverErrorMessageValidation();
+        else {		
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
             }
-        };
-        
-        LoginService.postPaymentProfileDetails(params);
+            $rootScope.cardDisplay = "none;";
+            $rootScope.verifyCardDisplay = "block";
+            var params = {
+                userId: $rootScope.primaryPatientId, 
+                BillingAddress: $rootScope.BillingAddress,
+                CardNumber: $rootScope.CardNumber,
+                City: $rootScope.City,
+                ExpiryMonth: $rootScope.ExpiryMonth,
+                ExpiryYear: $rootScope.ExpiryYear,
+                FirstName: $rootScope.FirstName,
+                LastName: $rootScope.LastName,
+                State: $rootScope.State,
+                Zip: $rootScope.Zip,
+                Country: $scope.Country,
+                ProfileId: $rootScope.patientprofileID,
+                Cvv: $rootScope.Cvv,		
+                accessToken: $rootScope.accessToken,
+
+                success: function (data) {
+                    $scope.PostPaymentDetails = data;
+                    
+                    if(data.message == "Success")	{
+                        console.log(data);
+                        $scope.doGetPatientPaymentProfilesCardDetails();
+                        $state.go('tab.submitPayment');
+                    } else {	
+                        $scope.ErrorMessage = data.message;
+                        $rootScope.Validation($scope.ErrorMessage);
+                        $state.go('tab.cardDetails');
+                    }
+                    $rootScope.cardDisplay = "block;";
+                    $rootScope.verifyCardDisplay = "none";
+                },
+                error: function (data) {
+                    $rootScope.cardDisplay = "block;";
+                    $rootScope.verifyCardDisplay = "none";
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+
+            LoginService.postPaymentProfileDetails(params);
 		
 		}
 	}
@@ -1225,15 +1258,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
 		}	
 	}
+	
+	
 
-        $scope.doGetScheduledConsulatation = function (patientId) {
+        $scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
              $rootScope.scheduledConsultationList = [];
             var params = {
-                patientId: patientId,
+                patientId: $rootScope.primaryPatientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
 					console.log(data);
@@ -1255,9 +1290,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 						$rootScope.TodayDate = year+'-'+month+'-'+date;
 						
-						angular.forEach($scope.scheduledConsultationList, function(index, item) {
-							console.log($rootScope.TodayDate);	
-							console.log(index.scheduledTime);	
+						angular.forEach($scope.scheduledConsultationList, function(index, item) {							
 							if($rootScope.TodayDate < index.scheduledTime) {
 								 $rootScope.scheduledList.push({							
 									'id': index.$id,
@@ -1272,12 +1305,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'patientUserId': index.patientUserId,
 									'scheduledId': index.scheduledId,    
 								});
-								console.log('Schduled List');
-								console.log(data);	
-							}		
-							
+							}	
 						});	
-						 $state.go('tab.patientCalendar');
+						 
 					}
                 },
                 error: function (data) {
@@ -1287,6 +1317,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
             LoginService.getScheduledConsulatation(params);
         }
+		
+	$scope.getScheduledDetails = function (patientId) {
+		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
+		$state.go('tab.patientCalendar');
+	}
+		
+		
 		$rootScope.PlanDisplay = "inherit";
 		$rootScope.verifyPlanDisplay = "none;";
 		
@@ -1590,6 +1627,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
+                console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
                  if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
                       $interval.cancel(consultationStatusCheck);
                       $scope.isPhysicianStartedConsultaion = true;
