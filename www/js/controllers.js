@@ -54,6 +54,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
  
 	$rootScope.currState = $state;
     
+    $rootScope.monthsList = CustomCalendar.getMonthsList();
+    $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
+    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -236,9 +239,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//console.log($rootScope.hospitalDetailsList);		
             },
             error: function (data) {
-                $scope.PostPaymentDetails = 'Error getting consultation report';
-				console.log('line no 303');
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
 		
@@ -288,10 +289,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 				},
 				error: function (data) {
-					$scope.accessToken = 'Error getting access token';
-					$scope.tokenStatus = 'alert-danger';
-					console.log('line no 363');
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -316,8 +314,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$state.go('tab.resetPassword');	
                 },
                 error: function (data) {
-                    $scope.PasswordResetEmail = 'Error sending reset email';
-                    console.log(data);
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
 			
@@ -408,8 +405,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 				},
 				error: function (data) {
-					$scope.patientInfomation = 'Error getting Related Patient Profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -448,8 +444,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 				},
 				error: function (data) {
-					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -491,8 +486,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 				},
 				error: function (data) {
-					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -520,8 +514,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                
             },
             error: function (data) {
-                $scope.existingConsultation = 'Error getting existing consultation';
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
         
@@ -597,8 +590,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				
 			},
 			error: function (data) {
-				$scope.patientHealthPlanList = 'Error getting patient health plan list';
-				console.log(data);
+				$rootScope.serverErrorMessageValidation();
 			}
 		};
 
@@ -756,8 +748,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $state.go('tab.planDetails');
                 },
                 error: function (data) {
-                $scope.HealthPlanProvidersList = 'Error getting Health Plan Providers list';
-                    console.log(data);
+					$rootScope.serverErrorMessageValidation();
                 }
             };
         LoginService.getHealthPlanProvidersList(params);
@@ -829,8 +820,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 				},
 				error: function (data) {
-					$scope.NewHealthPlan = 'Error posting Patient Profile';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -898,8 +888,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1008,8 +997,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 				},
 				error: function (data) {
-					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1066,8 +1054,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1083,39 +1070,39 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.doPostPaymentProfileDetails = function () {
 	
-	/*$scope.BillingAddress = '123 chennai';
-	$scope.CardNumber = 4111111111111111;
-	$scope.City = 'chennai';
-	$scope.ExpiryMonth = 8;
-	$scope.ExpiryYear = 2019;
-	$scope.FirstName = 'Rin';
-	$scope.LastName = 'Soft';
-	$scope.State = 'Tamilnadu';
-	$scope.Zip = 91302;
-	$scope.Country = 'US';	
-	$scope.Cvv = 123;*/
-	
-	var zipCount = $('#Zip').val().length;
-    var ExpiryDate = $('#ExpireDate').val().split("/");        
-           
-    var currentTime = new Date()
-    var ExpiryDateCheck = new Date();
-        //var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
-        
-    ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
-		
-	$rootScope.FirstName = $scope.getCardDetails.FirstName;
-	$rootScope.LastName = $scope.getCardDetails.LastName;
-	$rootScope.CardNumber = $scope.getCardDetails.CardNumber;
-	$rootScope.ccexpiry = $scope.getCardDetails.ccexpiry;
-	$rootScope.Cvv = $scope.getCardDetails.Cvv;
-	$rootScope.BillingAddress = $scope.getCardDetails.BillingAddress;
-	$rootScope.City = $scope.getCardDetails.City;
-	$rootScope.State = $scope.getCardDetails.State;	
-	$rootScope.Zip = $scope.getCardDetails.CardZipCode;
-	$rootScope.ExpiryMonth = ExpiryDate[0];
-	$rootScope.ExpiryYear = ExpiryDate[1];
-	$scope.Country = $scope.getCardDetails.Country;
+        /*$scope.BillingAddress = '123 chennai';
+        $scope.CardNumber = 4111111111111111;
+        $scope.City = 'chennai';
+        $scope.ExpiryMonth = 8;
+        $scope.ExpiryYear = 2019;
+        $scope.FirstName = 'Rin';
+        $scope.LastName = 'Soft';
+        $scope.State = 'Tamilnadu';
+        $scope.Zip = 91302;
+        $scope.Country = 'US';	
+        $scope.Cvv = 123;*/
+
+        var zipCount = $('#Zip').val().length;
+        //var ExpiryDate = $('#ExpireDate').val().split("/");        
+
+        var currentTime = new Date()
+        var ExpiryDateCheck = new Date();
+            //var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
+
+        ExpiryDateCheck.setFullYear($scope.getCardDetails.CardExpireDatesYear, $scope.getCardDetails.CardExpireDatesMonth, 1);
+
+        $rootScope.FirstName = $scope.getCardDetails.FirstName;
+        $rootScope.LastName = $scope.getCardDetails.LastName;
+        $rootScope.CardNumber = $scope.getCardDetails.CardNumber;
+        $rootScope.ccexpiry = $scope.getCardDetails.CardExpireDates;
+        $rootScope.Cvv = $scope.getCardDetails.Cvv;
+        $rootScope.BillingAddress = $scope.getCardDetails.BillingAddress;
+        $rootScope.City = $scope.getCardDetails.City;
+        $rootScope.State = $scope.getCardDetails.State;	
+        $rootScope.Zip = $scope.getCardDetails.CardZipCode;
+        $rootScope.ExpiryMonth = $scope.getCardDetails.CardExpireDatesMonth;
+        $rootScope.ExpiryYear = $scope.getCardDetails.CardExpireDatesYear;
+        $scope.Country = $scope.getCardDetails.Country;
 		
       
       if($('#FirstName').val() == '' || $('#LastName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' ||  $('#City').val() == '' || $('#State').val() == ''|| $('#Zip').val() == '' )  {			
@@ -1124,9 +1111,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 		} else if(zipCount <= 4) {
 			$scope.ErrorMessage = "Verify Zip";
-			$rootScope.Validation($scope.ErrorMessage);
-        } else if(ExpiryDate[0].length <= 1 || ExpiryDate[1].length <= 3 || ExpiryDate[0] >= 13) {
-            $scope.ErrorMessage = "Verify Expiry Date";
 			$rootScope.Validation($scope.ErrorMessage);
         } else if(ExpiryDateCheck < currentTime) {
              $scope.ErrorMessage = "Verify month & year";
@@ -1173,8 +1157,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				
             },
             error: function (data) {
-                $scope.PostPaymentDetails = 'Error getting consultation report';
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
         
@@ -1215,8 +1198,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
-					$scope.hospitalCodesList = 'Error getting hospital codes list';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1299,8 +1281,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
                 },
                 error: function (data) {
-                    $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
-                    console.log(data);
+                   $rootScope.serverErrorMessageValidation();
                 }
             };
 
@@ -1403,8 +1384,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$scope.ReceiptTimeout();						
 				},
 				error: function (data) {
-					$scope.CreditCardDetails = 'Error getting patient payment profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1561,7 +1541,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $state.go('tab.waitingRoom');                  
             },
             error: function (data) {
-                
+                $rootScope.serverErrorMessageValidation();
             }
         };
         LoginService.updateConsultationEvent(params);					
@@ -1618,7 +1598,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                  }
             },
             error: function (data) {
-            
+				$rootScope.serverErrorMessageValidation();
             }
         };
         LoginService.getExistingConsulatation(params);
@@ -1638,7 +1618,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
             },
             error: function (data) {
-                
+               $rootScope.serverErrorMessageValidation(); 
             }
         };
         LoginService.getVideoConferenceKeys(params);
@@ -1650,37 +1630,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar) {
     
     $rootScope.monthsList = CustomCalendar.getMonthsList();
-    
-    $scope.doGetExistingConsulatation = function () {
-		if ($scope.accessToken == 'No Token') {
-			alert('No token.  Get token first then attempt operation.');
-			return;
-		}
-		
-		var params = {
-            consultationId: $rootScope.consultationId, 
-            accessToken: $rootScope.accessToken,
-            success: function (data) {
-                $scope.existingConsultation = data;
-			
-                $rootScope.consultionInformation = data.data[0].consultationInfo;
-                $rootScope.patientInfomation = data.data[0].patientInformation;	
-                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
-                $rootScope.inTakeForm = data.data[0].intakeForm;
-               
-            },
-            error: function (data) {
-                $scope.existingConsultation = 'Error getting existing consultation';
-				console.log(data);
-            }
-        };
-        
-        LoginService.getExistingConsulatation(params);
-		
-		
-	}
-    
-    
+    $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
    
     $rootScope.limit = 4;
 	$rootScope.Concernlimit = 1;
@@ -2030,12 +1980,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
-                        $scope.doGetExistingConsulatation();
 						$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
-						$scope.OnDemandConsultationSaveResult = 'Error posting On Demand Consultation';
-						console.log(data);
+						$rootScope.serverErrorMessageValidation();
 					}
 				};
 				
@@ -2408,6 +2356,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     
     $scope.surgery = {};
+    
     $scope.closeSurgeryPopup = function(model) {
          $scope.surgery.name;
 		/*$rootScope.LastName1 = $('#name').val();
@@ -2535,8 +2484,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					 $state.go('tab.consultCharge'); 
                 },
                 error: function (data) {
-                    $scope.ConsultationSave = 'Error getting patient Consultation Save';
-                    console.log(data);
+                   $rootScope.serverErrorMessageValidation();
                 }
             };
 
@@ -2758,8 +2706,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$state.go('tab.ReportScreen');
 		   },
             error: function (data) {
-                $scope.existingConsultationReport = 'Error getting consultation report';
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
         
@@ -2778,8 +2725,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.SoapNote = data.data.soapNote;
                 },
                 error: function (data) {
-                    $scope.SoapNote = 'Error getting patient Soap Note';
-                    console.log(data);
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
 			
