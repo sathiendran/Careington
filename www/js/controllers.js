@@ -1628,7 +1628,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 // Controller to be used by all intake forms
 .controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar) {
-    
+    $rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
    
@@ -1636,11 +1636,39 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.Concernlimit = 1;
     $rootScope.checkedPrimary = 0;
     
- 
+     
+    $scope.doGetExistingConsulatation = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = { 
+            consultationId: 2440, // consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
+			
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+                $rootScope.patientInfomation = data.data[0].patientInformation;	
+                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+                $rootScope.inTakeForm = data.data[0].intakeForm;
+                $rootScope.inTakeFormCurrentMedication = $rootScope.inTakeForm.takingMedications;
+                $rootScope.inTakeFormChronicCondition = $rootScope.inTakeForm.medicalCondition;
+                $rootScope.inTakeFormPriorSurgeories = $rootScope.inTakeForm.priorSurgeories;
+                $rootScope.inTakeFormMedicationAllergies = $rootScope.inTakeForm.medicationAllergies;
+            },
+            error: function (data) {
+                $scope.existingConsultation = 'Error getting existing consultation';
+				console.log(data);
+            }
+        };
+        
+        LoginService.getExistingConsulatation(params);
+	}
+    
   
     $scope.model = null;
-	
-	
 	var today = new Date();
 			var dd = today.getDate()-1;
 			var mm = today.getMonth()+1; //January is 0!
@@ -1980,6 +2008,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
+                        $scope.doGetExistingConsulatation();
 						$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
@@ -2207,8 +2236,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       /*Current Medication Start here*/
 	
     // Get list of Current Medication  List
+     
     $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
-	
+    if($rootScope.currState.$current.name=="tab.CurrentMedication") {  
+    angular.forEach($rootScope.inTakeFormCurrentMedication, function(index, item) { 
+        $scope.CurrentMedicationList.push({
+            $id: index.$id,
+            codeId: index.id,
+            displayOrder: 0,
+            text: index.value,
+
+        });
+    }); 
+    }
+      console.log($scope.CurrentMedicationList);
+      console.log($rootScope.inTakeFormCurrentMedication);
    // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
         
@@ -2239,8 +2281,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
     
       // Onchange of Current Medication
-
-    
     $scope.OnSelectCurrentMedication = function(item) {
         if(item.checked == true) { 
                 $rootScope.checkedMedication++; 

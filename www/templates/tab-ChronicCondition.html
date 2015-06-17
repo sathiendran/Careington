@@ -27,10 +27,19 @@ w<ion-side-menus> >
 			
 			 <ion-item ng-repeat="item in PatientChronicCondition">
 				<div class="PrimaryConcernList">
-					<p class="intakeNote">{{item.text}} {{inTakeForm.medicalcondition[0].value + 'hello'}}</p>
+					<p class="intakeNote">{{item.text}}</p>
 					<div> <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i></div>
 				</div>
 			</ion-item>
+            
+            
+            <ion-item ng-repeat="item in inTakeFormChronicCondition">
+				<div class="PrimaryConcernList">
+					<p class="intakeNote">{{item.value}}</p>
+					<div> <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i></div>
+				</div>
+			</ion-item>
+            
 			
 		</ion-list>
 	</ion-content>
