@@ -513,6 +513,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
                 $rootScope.inTakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctorId;
+				$rootScope.appointmentsPatientFirstName = $rootScope.inTakeForm.patientFirstName;
+				$rootScope.appointmentsPatientLastName = $rootScope.inTakeForm.patientLastName;
+				$rootScope.appointmentsPatientDOB = $rootScope.inTakeForm.dateOfBirth;
+				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.gardianName;
+				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
 				$scope.doGetDoctorDetails();
                
             },
@@ -1279,9 +1284,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 						$rootScope.TodayDate = year+'-'+month+'-'+date;
 						
-						angular.forEach($scope.scheduledConsultationList, function(index, item) {
-							console.log($rootScope.TodayDate);	
-							console.log(index.scheduledTime);	
+						angular.forEach($scope.scheduledConsultationList, function(index, item) {							
 							if($rootScope.TodayDate < index.scheduledTime) {
 								 $rootScope.scheduledList.push({							
 									'id': index.$id,
@@ -1296,10 +1299,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'patientUserId': index.patientUserId,
 									'scheduledId': index.scheduledId,    
 								});
-								console.log('Schduled List');
-								console.log(data);	
-							}		
-							
+							}	
 						});	
 						 $state.go('tab.patientCalendar');
 					}

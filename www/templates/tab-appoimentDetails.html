@@ -14,14 +14,14 @@
 		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
 			<div class="calendar_subHeader">
 				<div class="subHeader_image" >
-					<img src="{{PatientImageSelectUser}}"  class="listImgView"   />
+					<img src="{{appointmentsPatientImage}}"  class="listImgView"   />
 				</div>
 				<div class="subHeader_content ellipsis" >					
 					<div class="subHeader_content_name ellipsis" >
-						<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
-						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+						<span class="PatintHeaderFontStyle patientName ellipsis">{{appointmentsPatientFirstName}}</span>
+						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{appointmentsPatientLastName}}</span>
 					</div>
-                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
+                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{appointmentsPatientDOB | ageFilter}} <span ng-if="appointmentsPatientGurdianName"> | Guardian: {{appointmentsPatientGurdianName}} </span></div>
 				</div>
 			</div>
 		</div>
