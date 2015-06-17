@@ -1,0 +1,128 @@
+
+
+<ion-view title="Card Details">
+    
+    <form ng-submit="doPostPaymentProfileDetails()" name="CardForm" novalidate=''>
+    
+       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};" >			
+			<div id="Error_Message" class="ErrorMessageDiv" ></div>
+			 
+			<div class="buttons" style="display: {{cardDisplay}}" >
+				<a class="button_new icon PlanCancel" ng-href="#/tab/consultCharge" >
+					<span>Cancel</span>
+				</a>				
+			</div>
+			
+			<div class="buttons" style="display: {{cardDisplay}}" >			
+				<div ng-if="CardForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext" style="color:#999;"  ng-disabled="CardForm.$invalid" >
+                        Next
+                    </button>	
+                </div>
+                <div ng-if="!CardForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid" >                   Next
+                    </button>
+                </div>
+                
+                <!-- <div ng-if="CardForm.$invalid" class="disabled" >
+                    <button type="submit" class="button_new icon PlanNext" >
+                                <span style="color:#999;">Next</span> 
+                    </button>   
+                </div>
+                <div ng-if="!CardForm.$invalid">    
+                    <button type="submit" class="button_new icon PlanNext" >
+                              <span>Next</span>  
+                    </button>
+                </div> -->
+                    
+                    
+                
+			</div>
+		</ion-header-bar>
+		
+	<ion-content class="planDetails_content" >
+	 
+		<div>		
+			<div class="healthPlan_text cardDetailsHeading" style="display: {{cardDisplay}}">
+				Card Details			
+			</div>		
+			
+			<div class="CardInformation" style="display: {{cardDisplay}}" >
+				Enter your card information below
+			</div>
+			
+			<div class="healthPlan_text verifyPlanHeading" style="display: {{verifyCardDisplay}}">
+				Verifying Card			
+			</div>			
+			
+			<div class="verifyCardDisplay" style="display: {{verifyCardDisplay}}" >		
+			</div>
+			
+            
+			<div class="list" >
+                
+                <label class="item item-input" >
+					<span class="input-label" >First Name</span>
+					<input type="text" placeholder="Required" ng-model="getCardDetails.FirstName" name="FirstName" id="FirstName" required>
+				</label>
+                
+				<label class="item item-input" >
+					<span class="input-label" >Last Name</span>
+					<input type="text" placeholder="Required" ng-model="getCardDetails.LastName" name="LastName" id="LastName" required>
+				</label>
+				
+				<label class="item item-input">
+					<span class="input-label" >Card Number</span>
+					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" required>
+				</label>
+				
+				<label class="item item-input" >
+					<span class="input-label" >Expiration Date</span>
+					<input placeholder="Required"  type="text"  id="ExpireDate" name="ExpireDates" maxlength="7" ng-Model="getCardDetails.CardExpireDates"  credit-card-expiration-entry required> 
+                 
+			    </label>	
+                
+                <label class="item item-input" >
+					<span class="input-label" >Security Code</span>
+					<input type="password" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
+				</label>
+                	  
+				<label class="item item-input" >
+					<span class="input-label" >Billing Address</span>
+					<input type="text" placeholder="Required" ng-model="getCardDetails.BillingAddress"  name="BillingAddress" id="BillingAddress" required>
+				</label>
+                
+                
+                <label class="item item-input" >
+					<span class="input-label" >City</span>
+			         <ion-google-place placeholder="Required" ng-model="getCardDetails.City" />
+			    </label>
+			  
+			<label class="item item-input">
+					<span class="input-label" >State</span>
+					
+                         <input type="text" placeholder="Required"  ng-model="getCardDetails.State"  name="State" id="State" required>
+				</label>
+                
+                <label class="item item-input" >
+					<span class="input-label" >Country</span>
+					<input type="text" placeholder="Required" ng-model="getCardDetails.Country"  name="Country" id="Country" required>
+				</label>
+				<label class="item item-input" >
+					<span class="input-label" >Zip</span>
+			    <input type="number" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  input-max-length-number maxlength="5" name="Zip" id="Zip" required/>
+				</label>
+            
+                
+               
+            </div>
+			
+			<div class="planDetails"  >
+				<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
+			</div>
+			<div class="privacy" >About Connected Care Privacy</div>
+		</div>
+		
+	</ion-content>
+</form>
+</ion-view>

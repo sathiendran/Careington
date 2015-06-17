@@ -56,6 +56,17 @@
 		    </a>	
 		</ion-item>
 		
+		            <!--<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList | orderBy:'scheduledTime'"  ng-click="GoToappoimentDetails(scheduledListData)" ng-if="$first">
+            <a class="HrefListView"  > 
+               <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
+               <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM">{{scheduledListData.scheduledTime | date: "a"}}</span></h2>
+               <list class="ion-chevron-right ListLinkHref nextList"></list>
+               <span class="DateFormateStyle AppointmentView" >View Details</span>
+                
+            </a>    
+        </ion-item>-->
+
+		
 		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
 			 <a class="HrefListView">   
 				<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">

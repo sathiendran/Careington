@@ -1,0 +1,74 @@
+<ion-view title="Submit Payment">
+<ion-side-menus>
+	<ion-side-menu-content> 
+		<div ng-include src="'templates/intakeHeader.html'"></div> 
+	
+	<div class="consultCharge_subHeader PatintHeaderFontStyle">
+		<span>Payment</span>
+	</div>
+	
+	<ion-content class="consultChargeNoPlanContent" >
+	<form>
+		<div class="password_home">
+		
+			<div class="consultation_head RegularFontStyle consultChargeNoPlanText"  >
+				<div class="consultTittle">Consultation Charge</div>
+				<div class="consultation_number"> ${{consultationAmount}}*</div>
+			</div>
+			
+			<div class="healthPlan_header"  >
+				<div class="healthPlan_text NoPlanText" >Pay Using</div>
+					<div class="addHealthPlan_header NoPlanAddCardDropdown"  >					
+						<div class="demo" >
+							<!--<select  id="addNewCard" name="addNewCard">
+								<option style="padding:10px;"><b>Choose Your Card</b></option>
+								<option style="padding:10px;" ng-repeat="PaymentProfile in PaymentProfile"  ><b>{{PaymentProfile.cardNumber}}</b></option>
+								 <option style="padding:10px;"><b>Add a new card</b></option>
+							</select>
+							<select id="addNewCard" name="addNewCard" data-ng-options="PaymentCard.cardNumber for PaymentCard in PaymentDetailsList" data-ng-model="SelectedPaymentDetails" value="PaymentCard.cardNumber"></select>-->
+<select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
+ <option  ng-repeat="getPayment in PaymentDetailsList" value="{{getPayment.profileID}}"><b><span>{{getPayment.cardNumber}}</span></b></option> 
+ </select>							
+						</div>
+					</div>
+			</div>
+		
+			
+			<div class="SkipToPayment">
+				<!--<a ng-href="#/tab/receipt">-->
+				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
+				  <span>Submit Payment</span>
+				</button>
+				
+				<!--</a>-->
+			</div>
+			<div class="scheduled_appointments_text NoPlanBottomText" >
+				<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
+			</div>
+		</div>
+	</ion-content>
+	</form>
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+		
+	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div>-->
+	
+	
+	<div class="hide-on-keyboard-open">
+		<ion-footer-bar align-title="left" class="footer">			
+			<div class="ConsultChargeFooter">
+				<div class="ConsultChargeBack" >
+                    <!--<a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span>Back</span></a>-->
+					<site-header back="Back"></site-header>
+				</div>
+						
+				<div class="ConsultChargeCancel" >
+					<a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+				</div>
+						
+			</div>
+		</ion-footer-bar> 
+	</div>
+	
+</ion-view>

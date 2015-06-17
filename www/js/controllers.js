@@ -112,6 +112,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//});
 	}
 	
+	$rootScope.serverErrorMessageValidation = function(){
+		function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Server Error! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$(".Server_Error").append(top);
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+	}
+	
 	/*$rootScope.CardValidation = function($a){
 		function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
@@ -387,11 +403,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
 					$rootScope.primaryPatientName = data.data[0].patientName;
-					$rootScope.primaryPatientLastName = '';
 					$rootScope.primaryPatientGuardianName = '';
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
-					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;					
+					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;	
+					$scope.doGetPrimaryPatientLastName();	
 						
 				},
 				error: function (data) {
@@ -1268,6 +1284,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'consultationId': index.consultationId,
 									'firstName': index.firstName,
 									'lastName': index.lastName,	
+									'patientId': index.patientId,
 									'assignedDoctorName': index.assignedDoctorName,
 									'patientName': index.patientName,
 									'patientUserId': index.patientUserId,

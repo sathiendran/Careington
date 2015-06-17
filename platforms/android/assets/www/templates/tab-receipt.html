@@ -1,0 +1,43 @@
+
+<ion-view title="Receipt">
+<ion-side-menus>
+	<ion-side-menu-content> 
+		<div ng-include src="'templates/receiptHeader.html'"></div> 
+	
+	
+	<ion-content class="ReceiptContent"  >
+		<div>
+			<div class="healthPlan_header"  >
+				<img ng-src="img/success.png">				
+			</div>
+			<div class="PaymentSuccess">
+				Payment Successful
+				<div class="PaymentConfirmation" >
+					Confirmation #{{paymentConfirmationNumber}}
+						<div class="ConfirmationReceipt">
+							A receipt has been sent to you via email
+						</div>
+				</div>
+			</div>			
+			
+			
+			<div class="EnterWaitingRoom">
+				<!--<a ng-href="#/tab/waitingRoom">-->
+				<button type="submit" on-touch ='doGetWaitingRoom()' class="button button-block button-balanced">
+				  <span>Enter the Waiting Room</span>
+				</button>				
+						
+				<!--</a>-->
+			</div>
+			
+				<div class="ReceiptRedirect">
+					You will be redirected to waiting room in 
+					<b><timer end-time="ReceiptTime"  >{{seconds}} Sec</timer></b>
+				</div>	
+				
+		</div>
+	</ion-content>
+</ion-side-menu-content>	
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>	
