@@ -236,9 +236,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//console.log($rootScope.hospitalDetailsList);		
             },
             error: function (data) {
-                $scope.PostPaymentDetails = 'Error getting consultation report';
-				console.log('line no 303');
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
 		
@@ -288,10 +286,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 				},
 				error: function (data) {
-					$scope.accessToken = 'Error getting access token';
-					$scope.tokenStatus = 'alert-danger';
-					console.log('line no 363');
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -316,8 +311,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$state.go('tab.resetPassword');	
                 },
                 error: function (data) {
-                    $scope.PasswordResetEmail = 'Error sending reset email';
-                    console.log(data);
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
 			
@@ -408,8 +402,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 				},
 				error: function (data) {
-					$scope.patientInfomation = 'Error getting Related Patient Profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -448,8 +441,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 				},
 				error: function (data) {
-					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -491,8 +483,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 				},
 				error: function (data) {
-					$scope.RelatedPatientProfiles = 'Error getting Related Patient Profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -520,8 +511,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                
             },
             error: function (data) {
-                $scope.existingConsultation = 'Error getting existing consultation';
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
         
@@ -597,8 +587,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				
 			},
 			error: function (data) {
-				$scope.patientHealthPlanList = 'Error getting patient health plan list';
-				console.log(data);
+				$rootScope.serverErrorMessageValidation();
 			}
 		};
 
@@ -756,8 +745,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $state.go('tab.planDetails');
                 },
                 error: function (data) {
-                $scope.HealthPlanProvidersList = 'Error getting Health Plan Providers list';
-                    console.log(data);
+					$rootScope.serverErrorMessageValidation();
                 }
             };
         LoginService.getHealthPlanProvidersList(params);
@@ -829,8 +817,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 				},
 				error: function (data) {
-					$scope.NewHealthPlan = 'Error posting Patient Profile';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -898,8 +885,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1008,8 +994,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 				},
 				error: function (data) {
-					$scope.ApplyHealthPlan = 'Error posting Patient Profile';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1066,8 +1051,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$scope.patientPaymentProfiles = 'Error getting patient payment profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1173,8 +1157,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				
             },
             error: function (data) {
-                $scope.PostPaymentDetails = 'Error getting consultation report';
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
         
@@ -1215,8 +1198,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
-					$scope.hospitalCodesList = 'Error getting hospital codes list';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1299,8 +1281,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
                 },
                 error: function (data) {
-                    $scope.scheduledConsultationList = 'Error getting patient scheduled consultaion list';
-                    console.log(data);
+                   $rootScope.serverErrorMessageValidation();
                 }
             };
 
@@ -1403,8 +1384,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$scope.ReceiptTimeout();						
 				},
 				error: function (data) {
-					$scope.CreditCardDetails = 'Error getting patient payment profiles';
-					console.log(data);
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1561,7 +1541,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $state.go('tab.waitingRoom');                  
             },
             error: function (data) {
-                
+                $rootScope.serverErrorMessageValidation();
             }
         };
         LoginService.updateConsultationEvent(params);					
@@ -1618,7 +1598,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                  }
             },
             error: function (data) {
-            
+				$rootScope.serverErrorMessageValidation();
             }
         };
         LoginService.getExistingConsulatation(params);
@@ -1638,7 +1618,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
             },
             error: function (data) {
-                
+               $rootScope.serverErrorMessageValidation(); 
             }
         };
         LoginService.getVideoConferenceKeys(params);
@@ -2003,8 +1983,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
-						$scope.OnDemandConsultationSaveResult = 'Error posting On Demand Consultation';
-						console.log(data);
+						$rootScope.serverErrorMessageValidation();
 					}
 				};
 				
@@ -2504,8 +2483,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					 $state.go('tab.consultCharge'); 
                 },
                 error: function (data) {
-                    $scope.ConsultationSave = 'Error getting patient Consultation Save';
-                    console.log(data);
+                   $rootScope.serverErrorMessageValidation();
                 }
             };
 
@@ -2727,8 +2705,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$state.go('tab.ReportScreen');
 		   },
             error: function (data) {
-                $scope.existingConsultationReport = 'Error getting consultation report';
-				console.log(data);
+                $rootScope.serverErrorMessageValidation();
             }
         };
         
@@ -2747,8 +2724,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.SoapNote = data.data.soapNote;
                 },
                 error: function (data) {
-                    $scope.SoapNote = 'Error getting patient Soap Note';
-                    console.log(data);
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
 			
