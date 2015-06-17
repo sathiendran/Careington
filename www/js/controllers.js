@@ -54,6 +54,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
  
 	$rootScope.currState = $state;
     
+    $rootScope.monthsList = CustomCalendar.getMonthsList();
+    $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
+    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -1067,39 +1070,39 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.doPostPaymentProfileDetails = function () {
 	
-	/*$scope.BillingAddress = '123 chennai';
-	$scope.CardNumber = 4111111111111111;
-	$scope.City = 'chennai';
-	$scope.ExpiryMonth = 8;
-	$scope.ExpiryYear = 2019;
-	$scope.FirstName = 'Rin';
-	$scope.LastName = 'Soft';
-	$scope.State = 'Tamilnadu';
-	$scope.Zip = 91302;
-	$scope.Country = 'US';	
-	$scope.Cvv = 123;*/
-	
-	var zipCount = $('#Zip').val().length;
-    var ExpiryDate = $('#ExpireDate').val().split("/");        
-           
-    var currentTime = new Date()
-    var ExpiryDateCheck = new Date();
-        //var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
-        
-    ExpiryDateCheck.setFullYear(ExpiryDate[1], ExpiryDate[0], 1);
-		
-	$rootScope.FirstName = $scope.getCardDetails.FirstName;
-	$rootScope.LastName = $scope.getCardDetails.LastName;
-	$rootScope.CardNumber = $scope.getCardDetails.CardNumber;
-	$rootScope.ccexpiry = $scope.getCardDetails.ccexpiry;
-	$rootScope.Cvv = $scope.getCardDetails.Cvv;
-	$rootScope.BillingAddress = $scope.getCardDetails.BillingAddress;
-	$rootScope.City = $scope.getCardDetails.City;
-	$rootScope.State = $scope.getCardDetails.State;	
-	$rootScope.Zip = $scope.getCardDetails.CardZipCode;
-	$rootScope.ExpiryMonth = ExpiryDate[0];
-	$rootScope.ExpiryYear = ExpiryDate[1];
-	$scope.Country = $scope.getCardDetails.Country;
+        /*$scope.BillingAddress = '123 chennai';
+        $scope.CardNumber = 4111111111111111;
+        $scope.City = 'chennai';
+        $scope.ExpiryMonth = 8;
+        $scope.ExpiryYear = 2019;
+        $scope.FirstName = 'Rin';
+        $scope.LastName = 'Soft';
+        $scope.State = 'Tamilnadu';
+        $scope.Zip = 91302;
+        $scope.Country = 'US';	
+        $scope.Cvv = 123;*/
+
+        var zipCount = $('#Zip').val().length;
+        //var ExpiryDate = $('#ExpireDate').val().split("/");        
+
+        var currentTime = new Date()
+        var ExpiryDateCheck = new Date();
+            //var CurrentDate = $filter('date')(currentTime, 'MM-dd-yyyy').split("-");
+
+        ExpiryDateCheck.setFullYear($scope.getCardDetails.CardExpireDatesYear, $scope.getCardDetails.CardExpireDatesMonth, 1);
+
+        $rootScope.FirstName = $scope.getCardDetails.FirstName;
+        $rootScope.LastName = $scope.getCardDetails.LastName;
+        $rootScope.CardNumber = $scope.getCardDetails.CardNumber;
+        $rootScope.ccexpiry = $scope.getCardDetails.CardExpireDates;
+        $rootScope.Cvv = $scope.getCardDetails.Cvv;
+        $rootScope.BillingAddress = $scope.getCardDetails.BillingAddress;
+        $rootScope.City = $scope.getCardDetails.City;
+        $rootScope.State = $scope.getCardDetails.State;	
+        $rootScope.Zip = $scope.getCardDetails.CardZipCode;
+        $rootScope.ExpiryMonth = $scope.getCardDetails.CardExpireDatesMonth;
+        $rootScope.ExpiryYear = $scope.getCardDetails.CardExpireDatesYear;
+        $scope.Country = $scope.getCardDetails.Country;
 		
       
       if($('#FirstName').val() == '' || $('#LastName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' ||  $('#City').val() == '' || $('#State').val() == ''|| $('#Zip').val() == '' )  {			
@@ -1108,9 +1111,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 		} else if(zipCount <= 4) {
 			$scope.ErrorMessage = "Verify Zip";
-			$rootScope.Validation($scope.ErrorMessage);
-        } else if(ExpiryDate[0].length <= 1 || ExpiryDate[1].length <= 3 || ExpiryDate[0] >= 13) {
-            $scope.ErrorMessage = "Verify Expiry Date";
 			$rootScope.Validation($scope.ErrorMessage);
         } else if(ExpiryDateCheck < currentTime) {
              $scope.ErrorMessage = "Verify month & year";
@@ -1601,7 +1601,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                  }
             },
             error: function (data) {
-            
+                
+                
             }
         };
         LoginService.getExistingConsulatation(params);
@@ -1633,7 +1634,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar) {
     
     $rootScope.monthsList = CustomCalendar.getMonthsList();
-    
+    $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
    
     $rootScope.limit = 4;
 	$rootScope.Concernlimit = 1;
@@ -2360,6 +2361,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     
     $scope.surgery = {};
+    
     $scope.closeSurgeryPopup = function(model) {
          $scope.surgery.name;
 		/*$rootScope.LastName1 = $('#name').val();

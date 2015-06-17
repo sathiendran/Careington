@@ -676,7 +676,23 @@ this.getCountryDetails = function () {
  
 .service('CustomCalendar', function(){
     var months = [
-        {"value" : "", "text" : "Month", "selected" : true},
+        {"value" : "", "text" : "MM", "selected" : true},
+        {"value" : "01", "text" : "01", "selected" : false},
+        {"value" : "02", "text" : "02", "selected" : false},
+        {"value" : "03", "text" : "03", "selected" : false},
+        {"value" : "04", "text" : "04", "selected" : false},
+        {"value" : "05", "text" : "05", "selected" : false},
+        {"value" : "06", "text" : "06", "selected" : false},
+        {"value" : "07", "text" : "07", "selected" : false},
+        {"value" : "08", "text" : "08", "selected" : false},
+        {"value" : "09", "text" : "09", "selected" : false},
+        {"value" : "10", "text" : "10", "selected" : false},
+        {"value" : "11", "text" : "11", "selected" : false},
+        {"value" : "12", "text" : "12", "selected" : false}
+    ];
+    
+    var monthsAll = [
+        {"value" : "", "text" : "MM", "selected" : true},
         {"value" : "01", "text" : "01 (Jan)", "selected" : false},
         {"value" : "02", "text" : "02 (Feb)", "selected" : false},
         {"value" : "03", "text" : "03 (Mar)", "selected" : false},
@@ -712,8 +728,23 @@ this.getCountryDetails = function () {
             years.push({ value: i, text: i });
         }
         return years;
-    }
+    },
     
+    this.getCCYearsList = function(dateOfBirth){
+        var years = [];
+        var now = new Date();
+        var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+	  var yearNow = now.getFullYear();
+	  var monthNow = now.getMonth();
+	  var dateNow = now.getDate();
+
+	  years.push({ value: '', text: 'YYYY', selected: true});
+        for(var i = yearNow; i <= yearNow + 10; i++){
+            years.push({ value: i, text: i });
+        }
+        return years;
+    }
     
 }) 
 
