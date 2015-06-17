@@ -1,0 +1,116 @@
+<ion-view title="Plan Details">
+	 <form  ng-submit="PlanDetailsValidation()" name="HealthForm"  novalidate>
+		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};" >
+		
+			<div id="Error_Message" class="ErrorMessageDiv" ></div>
+			<div class="buttons" style="display: {{PlanDisplay}}">
+				<a class="button_new icon PlanCancel" ng-href="#/tab/consultCharge" >
+					<span>Cancel</span>
+				</a>				
+			 </div>
+			
+			<!--<h1 class="title_patient"></h1>--->
+			<div class="buttons" style="display: {{PlanDisplay}}" >	
+                
+              <!--  <div ng-if="HealthForm.$invalid" class="disabled" >
+                    <button type="submit" class="button_new icon PlanNext" >
+                                <span style="color:#999;">Next</span> 
+                    </button>   
+                </div>
+                <div ng-if="!HealthForm.$invalid">    
+                    <button type="submit" class="button_new icon PlanNext" >
+                              <span>Next</span>  
+                    </button>
+                </div> --->
+                
+                			
+		<div ng-if="HealthForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext" style="color:#999;"  ng-disabled="HealthForm.$invalid" >
+                        Next
+                    </button>	
+         </div>
+        <div ng-if="!HealthForm.$invalid">
+            <button type="submit" class="button_new icon PlanNext"   ng-disabled="HealthForm.$invalid" > Next
+            </button>
+         </div>
+                    
+               
+			</div>			
+		</ion-header-bar>
+		
+		
+		<ion-content class="planDetails_content"  >
+			<div>		
+				<div class="healthPlan_text" style="display: {{PlanDisplay}}">
+					Health Plan				
+				</div>			
+				
+				<div class="healthPlan_header" style="display: {{PlanDisplay}}"  >
+					<div class="planInformation"  >
+					Enter your health plan information			
+					</div>
+       
+                    
+					<div class="provider">Select your provider</div>
+					<div class="addHealthPlan_header"  >					
+						<div class="demo ProviderList">	
+							<!--<select id="Provider" ng-model="AddHealth.Provider" required>
+								<option value=""><b>Plan Provider</b></option>
+								<option value="Blue Cross"><b>Blue Cross</b></option>
+								<option value="Anthem Cross"><b>Anthem Cross</b></option>
+								<option value="Blue Cross Blue shield"><b>Blue Cross Blue shield</b></option>
+							</select> -->
+                            
+             <select id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
+								<option value=""><b>Plan Provider</b></option>
+				<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName | truncate:22}}</b></option>
+			</select> 
+                            
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="healthPlan_text verifyPlanHeading" style="display: {{verifyPlanDisplay}}">
+					Verifying Plan				
+				</div>			
+				
+				<div class="verifyPlan_subHeader" style="line-height: 30px; display: {{verifyPlanDisplay}}" >
+					{{providerName}}
+				</div>
+				
+				
+				<div class="list" >
+					<label class="item item-input" >
+						<span class="input-label">First Name</span>
+                    <input  type="text" placeholder="Required" ng-model="AddHealth.firstName" name="firstName" id="firstName" required>
+					</label>
+					<label class="item item-input" >
+						<span class="input-label">Last Name</span>
+				<input type="text" placeholder="Required" ng-model="AddHealth.lastName" name="lastName" id="lastName" required >
+					</label>
+					
+                    <label class="item item-input">
+						<span class="input-label">Policy Number</span>
+				<input type="text" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
+					</label>
+                    
+					<label class="item item-input" >
+						<span class="input-label"  >Date of Birth
+							<div style="font-size: 10px;">for the policy holder</div></span>
+					<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();"  id="date" max="{{PreviousDate}}" required style="font-size:18px;"> 
+					</label>
+				</div>
+				
+				<div class="planDetails"  >
+					<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
+				</div>
+				<div class="privacy" >About Connected Care Privacy</div>
+			</div>
+		   
+		</ion-content>
+	
+    </form>
+
+	
+</ion-view>

@@ -1,0 +1,95 @@
+<ion-side-menus>
+	<ion-side-menu-content> 
+		<div ng-include src="'templates/intakeHeader.html'"></div>
+
+
+
+<ion-view title="Prior Surgeries">
+    <ion-content class="ContentHomeUser ConcernsContent" >
+        <ion-list>
+			<ion-item class="PrimaryList">
+                <div class="Step1">Step <b>3</b> of <b>7</b></div>
+                    
+				<div ng-if="IsToPriorCount != 3" ng-click="getSurgeryPopup();" >
+					<div class="PrimaryContent">
+						<h1 class="title ChronicCondition" >Prior Surgeries</h1>
+						<p>
+							List any prior surgeries.
+							<br/>
+							Enter up to three
+						</p>
+						<div> <i ng-if="IsToPriorCount != 3" class="ion-plus-circled addBtn">  </i>    
+						</div>
+					</div>
+				</div>
+			
+                  
+			<div ng-if="IsToPriorCount == 3" >				
+				<div class="PrimaryContent">
+					<h1 class="title ChronicCondition">Prior Surgeries</h1>
+					<p>
+						List any prior surgeries.
+						<br/>
+						Enter up to four
+					</p>
+					<div><i class="ion-plus-circled addBtn disabled">  </i>
+					</div>
+				</div>				
+			</div>
+                  
+              </ion-item>  
+		
+       
+               
+
+  <!--      <ion-item ng-repeat="item in patientSurgeries">
+			<div>
+				<p class="intakeNote" style="width: 90%;">{{item.Name}} </p>
+                <div style="float:right;left: 0px; position: relative;"> <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i></div>
+			</div>
+		</ion-item> -->
+        
+	<div class="list surgeryList">
+	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
+			<div class="surgeryDetails">
+				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
+				<div class="surgeryDate">{{surgery.Date | date: "MM, yyyy"}}</div>   
+			</div>
+			<div class="surgerydelete"><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
+		</a>
+	</div>
+        
+            </ion-content>
+        </ion-view>
+</ion-side-menu-content>
+	<!-- Side Menu File Include --->
+	<div ng-include src="'templates/SideMenu.html'"></div>
+
+
+	
+	<ion-footer-bar  class="footer">
+		<div class="ConcernsFooter">
+					 
+		 <div class="FooterLeft" >
+				<a class="button_new icon ion-chevron-left" href="#/tab/ChronicCondition" ><span>Back</span></a>
+			</div>
+			
+			<div class="FooterCenter">
+				<a class="button_new icon" ng-click="clearRootScopeConce()">Cancel</a>
+			</div>
+			   
+			<div class="FooterRight" >
+				<a class="button_new icon ion-chevron-right"   href="#/tab/MedicationAllegies"> <span class="ConcernFooterNext" >Next<span> </a>
+			</div>
+						  
+		<div>
+		
+	</ion-footer-bar>	
+
+
+
+		
+		
+
+
+

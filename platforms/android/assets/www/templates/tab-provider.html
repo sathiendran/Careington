@@ -1,0 +1,47 @@
+<ion-view  title="Home">
+			<!-- Start Header -->
+	<ion-header-bar align-title="left" class="bar-positiveLess">
+		  
+		<div class="bar bar-headerLess">
+		  
+		</div>
+		
+		<div class="bar bar-subheaderLess">
+		  <h2 class="head_titleLess">Connected Care</h2>
+		</div>
+		
+		<div class="bar bar-TitleLess">
+		  <h2 class="TitleLess">Select Your Provider</h2>
+		</div>		  
+	</ion-header-bar>
+			<!-- End Header -->
+			
+			<!-- Start Content -->
+		<ion-content class="ContentList_provider"  >
+			<form>
+				<ion-list>
+                 <!--   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails.providerId,hospitalDetails.name)"> -->
+                    <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)">
+                        {{hospitalDetails.name}}
+                        <i class="icon ion-chevron-right icon-accessory"></i>
+
+                        
+                      </ion-item>
+                    
+				</ion-list>
+			</form>
+		</ion-content>
+
+			<!-- End Content -->
+	
+	
+			<!-- Start Footer -->
+			<ion-footer-bar align-title="left" class="footer">
+					  <div class="buttons">
+						<!--<a class="button_new icon ion-chevron-left" href="#/tab/login"> Back </a>-->
+						<a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span>Back</span></a>
+					  </div>
+			</ion-footer-bar>	
+			<!-- End Footer -->
+
+</ion-view>
