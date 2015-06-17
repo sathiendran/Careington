@@ -1634,6 +1634,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     
+    $scope.doGetExistingConsulatation = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
+			
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+                $rootScope.patientInfomation = data.data[0].patientInformation;	
+                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+                $rootScope.inTakeForm = data.data[0].intakeForm;
+               
+            },
+            error: function (data) {
+                $scope.existingConsultation = 'Error getting existing consultation';
+				console.log(data);
+            }
+        };
+        
+        LoginService.getExistingConsulatation(params);
+		
+		
+	}
+    
+    
    
     $rootScope.limit = 4;
 	$rootScope.Concernlimit = 1;
@@ -1983,6 +2013,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
+                        $scope.doGetExistingConsulatation();
 						$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
