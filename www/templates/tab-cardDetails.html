@@ -73,7 +73,7 @@
 				
 				<label class="item item-input">
 					<span class="input-label" >Card Number</span>
-					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" required>
+					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required>
 				</label>
 				<!--
 				<label class="item item-input" >
@@ -88,7 +88,7 @@
                           <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
                               <b><span>{{month.text}}</span></b></option> 
                       </select>
-                      /&nbsp;&nbsp;
+                      /{{validCC}}
                       <select id="CardExpireDatesYear" name="CardExpireDatesYear" ng-model="getCardDetails.CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;" required>
                           <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}">
                               <b><span>{{ccYear.text }}</span></b>
@@ -97,7 +97,7 @@
                 </div>
                 <label class="item item-input" >
 					<span class="input-label" >Security Code</span>
-					<input type="password" placeholder="Required" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
+					<input type="password" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
 				</label>
                 	  
 				<label class="item item-input" >
