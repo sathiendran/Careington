@@ -35,7 +35,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -141,7 +141,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -185,7 +185,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -207,7 +207,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -230,7 +230,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -253,7 +253,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                      params.error(data);
                     }
                 });
     }
@@ -315,7 +315,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -361,7 +361,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -383,7 +383,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -414,7 +414,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                        params.error(data);
                     }
                 });
     }
@@ -436,7 +436,7 @@ angular.module('starter.services', [])
                 }).
                 error(function(data, status, headers, config) {
                         if(typeof params.error != 'undefined') {
-                                params.success(data);
+                               params.error(data);
                         }
                 });
     }
@@ -472,7 +472,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -542,7 +542,7 @@ angular.module('starter.services', [])
             }).
             error(function(data, status, headers, config) {
                     if(typeof params.error != 'undefined') {
-                            params.success(data);
+                           params.error(data);
                     }
             });
     }

@@ -8913,7 +8913,6 @@ select {
 .SurgeryHeader {
   height: 50px; }
   .SurgeryHeader .SurgeryCancel {
-    top: 1px !important;
     font-size: 15px !important; }
   .SurgeryHeader .SurgeryTitle {
     top: 4px !important;
