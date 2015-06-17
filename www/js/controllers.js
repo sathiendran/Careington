@@ -126,23 +126,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
-	}
+	}	
 	
-	/*$rootScope.CardValidation = function($a){
-		function refresh_close(){
-			$('.close').click(function(){$(this).parent().fadeOut(200);});
-			}
-			refresh_close();
-			
-			var top = '<div id="notifications-top-center" class="notificationError" ><div class="ErrorContent">'+ $a +'</div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-close-round noticationIcon" ></span></div></div>';
-
-			//$('#notifications-window-row-button').click(function(){
-				$("#notifications-top-center").remove();
-				$("#Error_Message").append(top);
-				//$("#notifications-top-center").addClass('animated ' + 'bounce');
-				refresh_close();
-			//});
-	}*/
 	
 	$scope.validation = function() {
 		$scope.ErrorMessage = "Oops, something went wrong";
@@ -401,6 +386,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;	
 					$scope.doGetPrimaryPatientLastName();	
+					 $scope.doGetScheduledConsulatation();
 						
 				},
 				error: function (data) {
@@ -1270,15 +1256,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
 		}	
 	}
+	
+	
 
-        $scope.doGetScheduledConsulatation = function (patientId) {
+        $scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
              $rootScope.scheduledConsultationList = [];
             var params = {
-                patientId: patientId,
+                patientId: $rootScope.primaryPatientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
 					console.log(data);
@@ -1317,7 +1305,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								});
 							}	
 						});	
-						 $state.go('tab.patientCalendar');
+						 
 					}
                 },
                 error: function (data) {
@@ -1327,6 +1315,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
             LoginService.getScheduledConsulatation(params);
         }
+		
+	$scope.getScheduledDetails = function (patientId) {
+		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
+		$state.go('tab.patientCalendar');
+	}
+		
+		
 		$rootScope.PlanDisplay = "inherit";
 		$rootScope.verifyPlanDisplay = "none;";
 		
