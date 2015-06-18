@@ -9769,7 +9769,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .ErrorContent {
   text-align: center;
   width: 93% !important;
-  margin-top: 32px;
+  margin-top: 22px;
   margin-bottom: -30px; }
 
 .NoticationClose {

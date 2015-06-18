@@ -100,8 +100,8 @@ angular.module('ion-google-place', [])
 
                         var onCancel = function(e){
                             scope.gPlaceSearchQuery = '';
-                            $ionicBackdrop.release();
-                            el.element.css('display', 'none');
+                           $ionicBackdrop.release();  
+                           el.element.css('display', 'none');
                         };
 
                         element.bind('click', onClick);

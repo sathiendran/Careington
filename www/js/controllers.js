@@ -50,8 +50,9 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('LoginCtrl', function($scope, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
+	
 	$rootScope.currState = $state;
     
     $rootScope.monthsList = CustomCalendar.getMonthsList();
@@ -70,12 +71,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 navigator.app.exitApp();
             }else { 
                 // For all other states, the H/W BACK button is enabled
+				$ionicBackdrop.release(); 
+				$(".ion-google-place-container").css({"display": "none"});		
                 navigator.app.backHistory(); 
             }
-        }, 100); 
+        }, 100); 		
 		
-		
-
+	
 /*	var dtNow = new Date("2015-05-26T13:20:04.268Z");	*/
 
     $scope.$storage = $localStorage;
@@ -1784,7 +1786,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: false
+            focusFirstInput: false,
+			backdropClickToClose: false
         }).then(function(modal) {
             $scope.modal = modal;
             
@@ -1942,7 +1945,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $ionicModal.fromTemplateUrl('templates/tab-SecondaryConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: false
+            focusFirstInput: false,
+			backdropClickToClose: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
@@ -2106,7 +2110,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $ionicModal.fromTemplateUrl('templates/tab-ChronicConditionList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: false
+            focusFirstInput: false,
+			backdropClickToClose: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
@@ -2215,7 +2220,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $ionicModal.fromTemplateUrl('templates/tab-MedicationAllegiesList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: false
+            focusFirstInput: false,
+			backdropClickToClose: false
         }).then(function(modal) {
             $scope.modal = modal;
             
@@ -2331,7 +2337,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $ionicModal.fromTemplateUrl('templates/tab-CurrentMedicationList.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: false
+            focusFirstInput: false,
+			backdropClickToClose: false
         }).then(function(modal) {
             $scope.modal = modal;
             
@@ -2426,7 +2433,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
             scope: $scope,
             animation: 'slide-in-up',
-            focusFirstInput: false
+            focusFirstInput: false,
+			backdropClickToClose: false
         }).then(function(modal) {		
 			
             $scope.modal = modal;

@@ -29,6 +29,14 @@
 			</div>
 		</ion-item>
         
+         <ion-item ng-repeat="item in inTakeFormCurrentMedication">
+			<div class="PrimaryConcernList">
+				<p class="intakeNote">{{item.value}} </p>
+                <div><i class="ion-close-circled delBtn" ng-click="removeCurrentMedication($index, item);" ></i></div>
+
+			</div>
+		</ion-item>
+        
 	</ion-list>
 </ion-content>
 </ion-side-menu-content>	
