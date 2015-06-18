@@ -1095,12 +1095,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.ccCvvLength = 3;
     $scope.$watch('getCardDetails.CardNumber', function(cardNumber){
         var ccn1 = String(cardNumber).substr(0,1); 
-        if(typeof ccn1 != undefined){
+        if(typeof cardNumber != "undefined"){
             if(ccn1 == 3){
                 $scope.ccCvvLength = 4;
             }else{
                 $scope.ccCvvLength = 3;
-                $scope.getCardDetails.Cvv = String($scope.getCardDetails.Cvv).substr(0,3);
+                if($scope.getCardDetails.Cvv.length > 0){
+                    $scope.getCardDetails.Cvv = String($scope.getCardDetails.Cvv).substr(0,3);
+                }
             }
         }
     });
@@ -1154,6 +1156,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			 $rootScope.Validation($scope.ErrorMessage);
         }else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
             $scope.ErrorMessage = "Invalid Card Number";
+            $rootScope.Validation($scope.ErrorMessage);
+        }else if($rootScope.Cvv.length != $scope.ccCvvLength){
+            $scope.ErrorMessage = "Security code must be " + $scope.ccCvvLength + " numbers";
             $rootScope.Validation($scope.ErrorMessage);
         }
         else {		
@@ -2627,16 +2632,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.muteIconClass = 'ion-ios-mic callIcons';
     $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
+    
+    $rootScope.videoApiKey = "45217062"; 
+      $rootScope.videoSessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
+      $rootScope.videoToken = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
     /*
-    apiKey = "45217062"; 
-      sessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
-      token = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
-    */
     
-    apiKey = $rootScope.videoSessionId;
-    sessionId = $rootScope.videoApiKey;
+    apiKey = $rootScope.videoApiKey;
+    sessionId = $rootScope.videoSessionId;
     token = $rootScope.videoToken;
-    
+    */
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
 
