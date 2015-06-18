@@ -122,7 +122,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Server Error! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please come back later. </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
