@@ -35,7 +35,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -55,7 +55,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	}
@@ -75,7 +75,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	}
@@ -95,7 +95,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	}
@@ -116,7 +116,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	} 
@@ -141,7 +141,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -163,7 +163,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	}
@@ -185,7 +185,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -207,7 +207,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -230,7 +230,29 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.error(data);
+                       params.error(data);
+                    }
+                });
+    }
+	
+	
+	 this.getDoctorDetails = function (params) {
+        
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/clinicianprofiles/' + params.doctorId,
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                       params.error(data);
                     }
                 });
     }
@@ -253,7 +275,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                      params.error(data);
                     }
                 });
     }
@@ -290,7 +312,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	}
@@ -315,7 +337,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -336,7 +358,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 		
@@ -361,7 +383,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -383,7 +405,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -414,7 +436,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                        params.error(data);
                     }
                 });
     }
@@ -436,7 +458,7 @@ angular.module('starter.services', [])
                 }).
                 error(function(data, status, headers, config) {
                         if(typeof params.error != 'undefined') {
-                                params.success(data);
+                               params.error(data);
                         }
                 });
     }
@@ -472,7 +494,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.success(data);
+                       params.error(data);
                     }
                 });
     }
@@ -497,7 +519,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	}
@@ -522,7 +544,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.success(data);
+					params.error(data);
 				}
 		});
 	}
@@ -542,7 +564,7 @@ angular.module('starter.services', [])
             }).
             error(function(data, status, headers, config) {
                     if(typeof params.error != 'undefined') {
-                            params.success(data);
+                           params.error(data);
                     }
             });
     }
@@ -676,7 +698,23 @@ this.getCountryDetails = function () {
  
 .service('CustomCalendar', function(){
     var months = [
-        {"value" : "", "text" : "Month", "selected" : true},
+        {"value" : "", "text" : "MM", "selected" : true},
+        {"value" : "01", "text" : "01", "selected" : false},
+        {"value" : "02", "text" : "02", "selected" : false},
+        {"value" : "03", "text" : "03", "selected" : false},
+        {"value" : "04", "text" : "04", "selected" : false},
+        {"value" : "05", "text" : "05", "selected" : false},
+        {"value" : "06", "text" : "06", "selected" : false},
+        {"value" : "07", "text" : "07", "selected" : false},
+        {"value" : "08", "text" : "08", "selected" : false},
+        {"value" : "09", "text" : "09", "selected" : false},
+        {"value" : "10", "text" : "10", "selected" : false},
+        {"value" : "11", "text" : "11", "selected" : false},
+        {"value" : "12", "text" : "12", "selected" : false}
+    ];
+    
+    var monthsAll = [
+        {"value" : "", "text" : "MM", "selected" : true},
         {"value" : "01", "text" : "01 (Jan)", "selected" : false},
         {"value" : "02", "text" : "02 (Feb)", "selected" : false},
         {"value" : "03", "text" : "03 (Mar)", "selected" : false},
@@ -712,8 +750,68 @@ this.getCountryDetails = function () {
             years.push({ value: i, text: i });
         }
         return years;
+    },
+    
+    this.getCCYearsList = function(dateOfBirth){
+        var years = [];
+        var now = new Date();
+        var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+	  var yearNow = now.getFullYear();
+	  var monthNow = now.getMonth();
+	  var dateNow = now.getDate();
+
+	  years.push({ value: '', text: 'YYYY', selected: true});
+        for(var i = yearNow; i <= yearNow + 10; i++){
+            years.push({ value: i, text: i });
+        }
+        return years;
     }
     
-    
 }) 
-
+.service('CreditCardValidations', function(){
+    
+    this.luhn = function luhn(num) {
+	    num = (num + '').replace(/\D+/g, '').split('').reverse();
+	    if (!num.length) {
+	        return false;
+	    }
+	    var total = 0, i;
+	    for (i = 0; i < num.length; i++) {
+	        num[i] = parseInt(num[i])
+	        total += i % 2 ? 2 * num[i] - (num[i] > 4 ? 9 : 0) : num[i];
+	    }
+	    return (total % 10) == 0 ? true : false;
+	},
+        
+    this.validCreditCard = function(card_number) {
+        card_number = String(card_number);
+	    var firstnumber = parseInt(String(card_number).substr(0,1));
+	    switch (firstnumber)
+	    {
+	        case 3:
+	            if (!card_number.match(/^3\d{3}[ \-]?\d{6}[ \-]?\d{5}$/)) {
+	                return false;
+	            }
+	            break;
+	        case 4:
+	            if (!card_number.match(/^4\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/)) {
+	                return false;
+	            }
+	            break;
+	        case 5:
+	            if (!card_number.match(/^5\d{3}[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/)) {
+	                return false;
+	            }
+	            break;
+	        case 6:
+	            if (!card_number.match(/^6011[ \-]?\d{4}[ \-]?\d{4}[ \-]?\d{4}$/)) {
+	                return false;
+	            }
+	            break;
+	        default:
+	            return false;
+	    }
+	    return this.luhn(card_number);
+	}
+})

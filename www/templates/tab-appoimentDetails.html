@@ -21,7 +21,7 @@
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{appointmentsPatientFirstName}}</span>
 						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{appointmentsPatientLastName}}</span>
 					</div>
-                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{appointmentsPatientDOB | ageFilter}} <span ng-if="appointmentsPatientGurdianName"> | Guardian: {{appointmentsPatientGurdianName}} </span></div>
+                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{appointmentsPatientDOB | ageFilter}} <span ng-if="primaryPatientId != appointmentsPatientId"> | Guardian: {{appointmentsPatientGurdianName}} </span></div>
 				</div>
 			</div>
 		</div>

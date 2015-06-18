@@ -275,7 +275,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 				},
 				error: function (data) {
-					$rootScope.serverErrorMessageValidation();
+					$scope.ErrorMessage = "Incorrect Password. Please try again";
+					$rootScope.Validation($scope.ErrorMessage);
 				}
 			};
 			
@@ -485,6 +486,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
 	$scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
+		$rootScope.appointmentsPatientFirstName = '';
+		$rootScope.appointmentsPatientLastName = '';
+		$rootScope.appointmentsPatientDOB = '';
+		$rootScope.appointmentsPatientGurdianName = '';
+		$rootScope.appointmentsPatientImage = '';
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -505,6 +511,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.appointmentsPatientLastName = $rootScope.inTakeForm.patientLastName;
 				$rootScope.appointmentsPatientDOB = $rootScope.inTakeForm.dateOfBirth;
 				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.gardianName;
+				$rootScope.appointmentsPatientId = $rootScope.inTakeForm.patientId;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
 				$scope.doGetDoctorDetails();
                
@@ -1539,8 +1546,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		   //console.log($rootScope.scheduledListDatas);
 		   
 		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
-		  
-		$scope.doGetExistingConsulatation();  
 		
 		$rootScope.dtNow = new Date($rootScope.scheduledListDatas.scheduledTime + "Z");
 		
@@ -1555,7 +1560,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			document.getElementsByTagName('timer')[0].start();
 		});
 		
-		 $state.go('tab.appoimentDetails');	
+		$scope.doGetExistingConsulatation();  
 		   
      };
 	 
