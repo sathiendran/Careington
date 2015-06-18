@@ -1006,7 +1006,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.copayAmount = data.copayAmount;
 					$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
 					console.log($scope.ApplyHealthPlan);
-                    $scope.doGetPatientPaymentProfiles();
+                    $rootScope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
                     } else {
                         if($scope.Health.addHealthPlan != ''){
@@ -1037,7 +1037,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
    
-	$scope.doGetPatientPaymentProfiles = function () {	
+	$rootScope.doGetPatientPaymentProfiles = function () {	
 		
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -1314,6 +1314,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								});
 							}	
 						});	
+						var d = new Date();
+						d.setHours(d.getHours() + 12);
+						$scope.getTwelveHours = $filter('date')(d, "yyyy-MM-ddThh:mm:ss");
+						$rootScope.nextAppointmentDisplay = 'none';
+								console.log($rootScope.scheduledList[0].scheduledTime);
+								console.log($scope.getTwelveHours);
+						if($rootScope.scheduledList[0].scheduledTime <= $scope.getTwelveHours) {
+							console.log('scheduledTime <= getTwelveHours UserHome');
+							$rootScope.nextAppointmentDisplay = 'block';
+						}
 						 
 					}
                 },
@@ -1327,6 +1337,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	$scope.getScheduledDetails = function (patientId) {
 		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
+			//$rootScope.getIndividualScheduleDetails123 = '2015-06-19T02:09:14';
+		var d = new Date();
+		d.setHours(d.getHours() + 12);
+		$scope.getTwelveHours = $filter('date')(d, "yyyy-MM-ddThh:mm:ss");
+		$rootScope.patientDisplay1 = 'none';
+		$rootScope.patientDisplay = 'none';
+				console.log($rootScope.getIndividualScheduleDetails[0].scheduledTime);
+				console.log($scope.getTwelveHours);
+		if($rootScope.getIndividualScheduleDetails[0].scheduledTime <= $scope.getTwelveHours) {
+			console.log('scheduledTime <= getTwelveHours');
+			$rootScope.patientDisplay = 'block';
+		}
 		$state.go('tab.patientCalendar');
 	}
 		
@@ -1487,13 +1509,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
-		$scope.doGetPatientPaymentProfiles();
+        $rootScope.PatientGuardian = P_Guardian;		
 		$rootScope.doPutConsultationSave();       
     }
 	
-	$rootScope.patientDisplay1 = 'none';
-	$rootScope.patientDisplay = 'block';
+	
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
 	 
@@ -2563,7 +2583,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 accessToken: $rootScope.accessToken,
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {                    
-					$scope.ConsultationSave = "success";					
+					$scope.ConsultationSave = "success";	
+					$rootScope.doGetPatientPaymentProfiles();	
 					 $state.go('tab.consultCharge'); 
                 },
                 error: function (data) {
