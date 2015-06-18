@@ -8145,12 +8145,14 @@ body {
 
 .calendar_subHeader_height {
   top: 65px !important;
-  height: 87% !important; }
+  height: auto !important; }
   .calendar_subHeader_height .calendar_subHeader {
     margin-left: 10px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_image {
       margin-left: -15px;
-      margin-top: -13px; }
+      margin-top: -13px;
+      position: relative;
+      top: 4px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
         width: 34px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
@@ -8623,7 +8625,7 @@ select {
     text-align: center; }
 
 .SidemenuHome {
-  margin-top: 15px;
+  margin-top: 10px;
   border: none;
   color: #706A67;
   font-family: Glober regular !important; }
@@ -8790,7 +8792,7 @@ select {
     padding-top: 10px; }
 
 .ConcernsContent {
-  margin-top: 100px !important; }
+  margin-top: 114px !important; }
   .ConcernsContent .PrimaryList {
     top: 8px;
     padding: 1px;
@@ -8916,6 +8918,7 @@ select {
 .SurgeryHeader {
   height: 50px; }
   .SurgeryHeader .SurgeryCancel {
+    top: -1px;
     font-size: 15px !important; }
   .SurgeryHeader .SurgeryTitle {
     top: 4px !important;
@@ -8931,7 +8934,7 @@ select {
   color: #888;
   float: right;
   margin-right: 15px;
-  margin-top: -10px;
+  margin-top: -3px;
   font-size: 16px; }
 
 .consentTitle {
