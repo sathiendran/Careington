@@ -56,6 +56,7 @@
 			   <span class="DateFormateStyle AppointmentView" >View Details</span>
 		    </a>	
 		</ion-item>--> 
+		<div style="display: none;"><timer end-time="time"  ></timer></div>
 		
 		<ion-item style="display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-if="$first">
 			<a class="HrefListView"  > 

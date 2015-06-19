@@ -512,7 +512,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.appointmentsPatientFirstName = $rootScope.inTakeForm.patientFirstName;
 				$rootScope.appointmentsPatientLastName = $rootScope.inTakeForm.patientLastName;
 				$rootScope.appointmentsPatientDOB = $rootScope.inTakeForm.dateOfBirth;
-				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.guardianName;
+				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.gardianName;
 				$rootScope.appointmentsPatientId = $rootScope.inTakeForm.patientId;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
 				$scope.doGetDoctorDetails();
@@ -863,23 +863,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
     });
 		
-    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {		
+    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {		
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-		$rootScope.BackPage = P_Page;
 		$state.go('tab.consultChargeNoPlan');
 	}
-	$scope.goToNextPage = function() {
-		if ($rootScope.BackPage=="consultCharge") {
-			$state.go('tab.consultCharge');
-		} else if($rootScope.BackPage=="addHealthPlan") {
-			$state.go('tab.addHealthPlan');
-		}
-	}
-	
 	
 	$scope.doGetPatientPaymentProfilesCardDetails = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -1178,7 +1169,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 return;
             }
             $rootScope.cardDisplay = "none;";
-            $rootScope.verifyCardDisplay = "inherit";
+            $rootScope.verifyCardDisplay = "block";
             var params = {
                 userId: $rootScope.primaryPatientId, 
                 BillingAddress: $rootScope.BillingAddress,
@@ -1207,11 +1198,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                         $rootScope.Validation($scope.ErrorMessage);
                         $state.go('tab.cardDetails');
                     }
-                    $rootScope.cardDisplay = "inherit;";
+                    $rootScope.cardDisplay = "block;";
                     $rootScope.verifyCardDisplay = "none";
                 },
                 error: function (data) {
-                    $rootScope.cardDisplay = "inherit;";
+                    $rootScope.cardDisplay = "block;";
                     $rootScope.verifyCardDisplay = "none";
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -1391,7 +1382,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $scope.ErrorMessage = "Required fields can't be empty";
 			$rootScope.Validation($scope.ErrorMessage);
 		} else {
-			$rootScope.verifyPlanDisplay = "inherit";
+			$rootScope.verifyPlanDisplay = "block";
 			$rootScope.PlanDisplay = "none;";	 		
 			$scope.doPostNewHealthPlan();	
 		}	

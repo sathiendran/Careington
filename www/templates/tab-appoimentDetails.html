@@ -2,10 +2,14 @@
 
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
 	 
-		<div class="buttons" >
+		<!--<div class="buttons" >
 			<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/patientCalendar"  >
 				<span>Back</span>
 			</a>				
+		</div>-->
+		
+		<div >
+			<site-header1 back="Back"></site-header1>
 		</div>
 		<h1 class="title_patient calendarTitle" >Appt Details</h1>
 	  
@@ -19,7 +23,7 @@
 				<div class="subHeader_content ellipsis" >					
 					<div class="subHeader_content_name ellipsis" >
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{appointmentsPatientFirstName}}</span>
-						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{appointmentsPatientLastName}}</span>
+						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{appointmentsPatientLastName}}</span> 
 					</div>
                     <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{appointmentsPatientDOB | ageFilter}} <span ng-if="primaryPatientId != appointmentsPatientId"> | Guardian: {{appointmentsPatientGurdianName}} </span></div>
 				</div>

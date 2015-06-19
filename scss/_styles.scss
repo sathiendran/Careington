@@ -1404,7 +1404,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		.ConsentCancel {
 			background-color:#fff; border:none;
 			b {
-				font-size:16px;color:#ccc;
+				font-size:16px;color:#B2B2B2;
 			}
 		}
 	}
@@ -1453,7 +1453,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .bar-subheaderLess {
 	display: block;
-	height: 70px;
+	height: 82px;
 	top: 47px;
 	-moz-box-shadow: 0px 2px 9px #ADABAB;
 	-webkit-box-shadow: 0px 2px 9px #ADABAB;
@@ -1465,14 +1465,14 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	text-align: center;
 	color: $Flamingo;
 	position:relative; 
-	top: 12px;		
+	top: 19px;		
 }
 
 .bar-TitleLess{
 	display: block;
 	background-color: #f2f2f2;
 	height: 63px;
-    top: 120px;
+    top: 132px;
 }
 
 .TitleLess {
@@ -2125,7 +2125,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 				width:67%;
 			}
 			.UserHomeIcon {
-				color:#888;margin-top: -33px;
+				color:#888;margin-top: -34px;
 			}
 		}
 	}
@@ -2150,7 +2150,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 			color:#888;margin-top: -33px;  margin-right: 12px;
 		}
 		.AppointmentView {
-			float: right;font-size: 16px; margin-right: 30px; color:#888;margin-top: -33px;
+			float: right;font-size: 16px; margin-right: 30px; color:#888;margin-top: -31px;
 		}
 	}
 }
@@ -2215,4 +2215,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
   height: auto;
   line-height: 1.0em;
   padding-top: 47px;       
+}
+.consentIAgree {
+	position: relative; top: 3px;
 }
