@@ -54,6 +54,17 @@
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
 			
+		<a class="item" style="display: {{patientDisplay2}}" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+    
+			<div class="patient_appointment">						
+				<div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}}
+					<span><sup>@</sup></span> 
+					{{scheduledListData.scheduledTime | date: "hh:mm"}}<span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+				</div>
+            <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
+        
+		</a>	
+			
         <!--scheduledListData in getIndividualScheduleDetails | orderBy:'scheduledTime'  -->
             
 <a class="item" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">

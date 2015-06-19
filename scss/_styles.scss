@@ -1656,7 +1656,9 @@ text-align:center;  color:#888;
 }
 .ptagprimary {
 	@include font($fontFamily_regular, normal, 20px);
-	 margin-left: 32px;
+	 margin-left: 10px;
+	 margin-right: 10px;
+	
  }
  
  .pre_consultant {

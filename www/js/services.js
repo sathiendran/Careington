@@ -218,7 +218,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/all',
+            url: apiCommonURL + '/api/patients/consultations/' + params.consultationId + '/all',
             method: 'GET'   
         };
 
@@ -696,7 +696,7 @@ this.getCountryDetails = function () {
 }])
 
  
-.service('CustomCalendar', function(){
+.service('CustomCalendar', function($filter){
     var months = [
         {"value" : "", "text" : "MM", "selected" : true},
         {"value" : "01", "text" : "01", "selected" : false},
@@ -766,6 +766,12 @@ this.getCountryDetails = function () {
             years.push({ value: i, text: i });
         }
         return years;
+    }
+	
+	this.getLocalTime = function(dateTime){
+       var utcTime = moment.utc(dateTime).toDate();
+		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss')
+        return localTime;
     }
     
 }) 
