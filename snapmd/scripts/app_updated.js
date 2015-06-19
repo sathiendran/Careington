@@ -32,15 +32,15 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.accessToken = 'No Token';
         $scope.tokenStatus = 'alert-warning';
         $scope.existingConsultation = '{ "message": "NO EXISITING CONSULTATION JSON" }';
-        $scope.consultationId = 2440;//2591;//3030;
-        $scope.patientId = 452;//505;////// ////
+        $scope.consultationId = 3388;//2591;//3030;
+        $scope.patientId = /*505;//*/452
 		$scope.otherPatientId = 452;//2752;//505;
         $scope.hospitalId = 126;
         $scope.userTypeId = 1;
         $scope.profileId = 31867222;
 		$scope.patientEmail = /*'austin@rinsoft.com';//*/'ben.ross.310.95348@gmail.com';
 		$scope.emailAddress = /*'austin@rinsoft.com';//*/'ben.ross.310.95348@gmail.com';
-		$scope.userPassword = 'Password@123';
+		$scope.userPassword = /*'Austinhg#1'//*/'Password@123';
 		$scope.emailType = 'resetpassword';
         $scope.Amount = 30;
         $scope.paymentProfileId = 28804398;
@@ -289,7 +289,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
                 return;
             }
             var params = {
-                userId: $scope.userId,
+                email: $scope.patientEmail,
                 BillingAddress: $scope.BillingAddress,
                 CardNumber: $scope.CardNumber,
                 City: $scope.City,
@@ -855,6 +855,7 @@ app.service('apiComService', function ($http) {
            // url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
 		   // url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
 			 url: 'https://sandbox.connectedcare.md/api/patients/' + params.patientId + '/payments',
+			 //url: 'https://sandbox.connectedcare.md/api/patients/v2/patients/profile/payments',
 		   method: 'GET'   
         };
 
@@ -972,10 +973,11 @@ app.service('apiComService', function ($http) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/patients/' + params.userId + '/payments',
+            //url: 'https://sandbox.connectedcare.md/api/patients/' + params.userId + '/payments',
+			url: 'https://sandbox.connectedcare.md/api/v2/patients/payments',
             method: 'POST',
             data: {
-                userId: params.userId,
+                EmailId: params.email,
                 BillingAddress: params.BillingAddress,
                 CardNumber: params.CardNumber,
                 City: params.City,

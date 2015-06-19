@@ -8792,7 +8792,7 @@ select {
     padding-top: 10px; }
 
 .ConcernsContent {
-  margin-top: 114px !important; }
+  margin-top: 112px !important; }
   .ConcernsContent .PrimaryList {
     top: 8px;
     padding: 1px;
@@ -9769,7 +9769,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .ErrorContent {
   text-align: center;
   width: 93% !important;
-  margin-top: 32px;
+  margin-top: 22px;
   margin-bottom: -30px; }
 
 .NoticationClose {
