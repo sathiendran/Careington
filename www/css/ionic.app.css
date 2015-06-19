@@ -8124,6 +8124,9 @@ body {
   background-color: #A2D28A;
   border-color: #A2D28A; }
 
+.platform-ios .calendarBack {
+  opacity: 2; }
+
 .calendarBack {
   padding-top: 7px;
   font-weight: bold;
@@ -8161,6 +8164,13 @@ body {
         font-weight: bold; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientLastName {
         font-weight: normal; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .platform-ios .patientLastName {
+        font-weight: 600; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .platform-ios .subHeader_content_age {
+        font-size: 12px;
+        font-weight: 600; }
+        .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .platform-ios .subHeader_content_age span {
+          font-weight: 600; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_age {
       font-size: 12px; }
 
@@ -8169,7 +8179,7 @@ body {
   border-bottom: 1px solid #b9b8b8;
   color: #565656;
   height: auto;
-  margin-top: 113px; }
+  margin-top: 121px; }
 
 .patientCalendar_watch {
   padding: 10px;
@@ -8186,7 +8196,7 @@ body {
   margin-bottom: -8px; }
 
 .patientCalendar_Content {
-  margin: 122px 0 0 0;
+  margin: 128px 0 0 0;
   top: 37px; }
   .patientCalendar_Content .list .item {
     padding: 10px; }
@@ -8221,7 +8231,7 @@ body {
 .Appointment_heading {
   top: 12px;
   border-color: #9e9e9e;
-  margin-top: -30px; }
+  margin-top: -19px; }
 
 .doctor_details {
   padding: 8px;
@@ -8794,7 +8804,7 @@ select {
 .ConcernsContent {
   margin-top: 112px !important; }
   .ConcernsContent .PrimaryList {
-    top: 8px;
+    top: 3px;
     padding: 1px;
     cursor: pointer; }
     .ConcernsContent .PrimaryList .Step1 {
@@ -8859,6 +8869,10 @@ select {
         text-align: right;
         margin-right: -1px;
         margin-top: 10px; }
+
+.platform-ios .ConcernsFooter {
+  opacity: 2;
+  font-weight: 600; }
 
 .ConcernsFooter {
   width: 100%; }
@@ -9056,7 +9070,7 @@ a {
   Color: #4D4D4D; }
 
 .ContentList_provider {
-  margin: 138px 0 0 0; }
+  margin: 149px 0 0 0; }
   .ContentList_provider .item {
     padding: 25px 16px 16px 35px;
     Color: #4D4D4D;
