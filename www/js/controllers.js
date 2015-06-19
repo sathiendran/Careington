@@ -1006,7 +1006,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.copayAmount = data.copayAmount;
 					$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
 					console.log($scope.ApplyHealthPlan);
-                    $rootScope.doGetPatientPaymentProfiles();
+                    $scope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
                     } else {
                         if($scope.Health.addHealthPlan != ''){
@@ -1037,7 +1037,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
    
-	$rootScope.doGetPatientPaymentProfiles = function () {	
+	$scope.doGetPatientPaymentProfiles = function () {	
 		
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -1319,16 +1319,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								});
 							}	
 						});	
-						var d = new Date();
-						d.setHours(d.getHours() + 12);
-						$scope.getTwelveHours = $filter('date')(d, "yyyy-MM-ddThh:mm:ss");
-						$rootScope.nextAppointmentDisplay = 'none';
-								console.log($rootScope.scheduledList[0].scheduledTime);
-								console.log($scope.getTwelveHours);
-						if($rootScope.scheduledList[0].scheduledTime <= $scope.getTwelveHours) {
-							console.log('scheduledTime <= getTwelveHours UserHome');
-							$rootScope.nextAppointmentDisplay = 'block';
-						}
 						 
 					}
                 },
@@ -1342,18 +1332,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	$scope.getScheduledDetails = function (patientId) {
 		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
-			//$rootScope.getIndividualScheduleDetails123 = '2015-06-19T02:09:14';
-		var d = new Date();
-		d.setHours(d.getHours() + 12);
-		$scope.getTwelveHours = $filter('date')(d, "yyyy-MM-ddThh:mm:ss");
-		$rootScope.patientDisplay1 = 'none';
-		$rootScope.patientDisplay = 'none';
-				console.log($rootScope.getIndividualScheduleDetails[0].scheduledTime);
-				console.log($scope.getTwelveHours);
-		if($rootScope.getIndividualScheduleDetails[0].scheduledTime <= $scope.getTwelveHours) {
-			console.log('scheduledTime <= getTwelveHours');
-			$rootScope.patientDisplay = 'block';
-		}
 		$state.go('tab.patientCalendar');
 	}
 		
@@ -1514,11 +1492,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.patientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;		
+        $rootScope.PatientGuardian = P_Guardian;
+		$scope.doGetPatientPaymentProfiles();
 		$rootScope.doPutConsultationSave();       
     }
 	
-	
+	$rootScope.patientDisplay1 = 'none';
+	$rootScope.patientDisplay = 'block';
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
 	 
@@ -2588,8 +2568,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 accessToken: $rootScope.accessToken,
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {                    
-					$scope.ConsultationSave = "success";	
-					$rootScope.doGetPatientPaymentProfiles();	
+					$scope.ConsultationSave = "success";					
 					 $state.go('tab.consultCharge'); 
                 },
                 error: function (data) {
@@ -2646,23 +2625,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.otherVideoTop = $window.innerHeight - 150;
     $scope.controlsStyle = false;
     
+    $scope.myVideoTopPos = $window.innerHeight - 210;
+    
     $scope.cameraPosition = "front";
     $scope.publishAudio = true;
     
     
     $scope.muteIconClass = 'ion-ios-mic callIcons';
     $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
-    
-    
-    $rootScope.videoApiKey = "45217062"; 
-      $rootScope.videoSessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
-      $rootScope.videoToken = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
     /*
+    $rootScope.videoApiKey = "45217062"; 
+    $rootScope.videoSessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
+    $rootScope.videoToken = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
+    */
+    
+    $rootScope.videoApiKey = "45253782"; 
+    $rootScope.videoSessionId = "1_MX40NTI1Mzc4Mn5-MTQzNDYyOTk2ODMwMH5mYmhiT2ZjOEY4VUxISlg4Y2t2Y3lvRkJ-fg"; 
+    $rootScope.videoToken = "T1==cGFydG5lcl9pZD00NTI1Mzc4MiZzaWc9OTQ5NGVmN2NjZjYwOWM3OGQyZjI4YmMwZTM3MTgwZWJkZjIyODE3Yjpyb2xlPXN1YnNjcmliZXImc2Vzc2lvbl9pZD0xX01YNDBOVEkxTXpjNE1uNS1NVFF6TkRZeU9UazJPRE13TUg1bVltaGlUMlpqT0VZNFZVeElTbGc0WTJ0MlkzbHZSa0otZmcmY3JlYXRlX3RpbWU9MTQzNDYzMDEzOSZub25jZT0wLjYzMTA4NjUzMjUyMzc3MDQmZXhwaXJlX3RpbWU9MTQzNzIyMTM5NyZjb25uZWN0aW9uX2RhdGE9"; 
+    
     
     apiKey = $rootScope.videoApiKey;
     sessionId = $rootScope.videoSessionId;
     token = $rootScope.videoToken;
-    */
+ 
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
 
@@ -2673,8 +2658,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             subscribeToVideo: true
         });
         OT.updateViews();
+        
     });
-
+    
+    
     // Handler for sessionDisconnected event
     session.on('sessionDisconnected', function(event) {
         console.log('You were disconnected from the session.', event.reason);
@@ -2697,7 +2684,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
 
     });
+    
+    
     $scope.toggleCamera = function(){
+        $('#publisher').find('*').each(function(){
+            //$(this).unbind('click');
+            alert($(this).attr('class'));
+        });
         if($scope.cameraPosition == "front"){
             $scope.newCamPosition = "back";
             $scope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';

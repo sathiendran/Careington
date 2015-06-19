@@ -550,11 +550,11 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .calendar_subHeader_height { 
 	top: 65px !important;
-	height: auto !important;
+	height: 87% !important;
 	.calendar_subHeader {
 		margin-left:10px;
 		.subHeader_image{
-			margin-left: -15px;  margin-top: -13px; position: relative; top: 4px;
+			margin-left: -15px;  margin-top: -13px;
 			img {
 				width:34px;
 				
@@ -1056,7 +1056,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	}
 }
 .SidemenuHome {
-	margin-top:10px; border:none;color:#706A67;font-family: Glober regular !important;
+	margin-top:15px; border:none;color:#706A67;font-family: Glober regular !important;
 	span {
 		top: 0px; position:relative;
 	}
@@ -1233,7 +1233,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 //Patient ConcernsContent
 
 .ConcernsContent{
-	margin-top: 114px !important;
+	margin-top: 100px !important;
 	.PrimaryList {
 		top:8px;padding: 1px;cursor:pointer;
 		.Step1 {
@@ -1252,7 +1252,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			}
 		}
 	}
-	.PrimaryConcernList { 
+	.PrimaryConcernList {
 		p {
 			width: 90%;
 		}
@@ -1356,8 +1356,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 .SurgeryHeader {
 	height: 50px;
-	.SurgeryCancel { 
-		 top: -1px; font-size: 15px !important; 
+	.SurgeryCancel {
+		 font-size: 15px !important; 
 	}
 	.SurgeryTitle {
 		top: 4px !important;  font-size: 16px !important;
@@ -1371,7 +1371,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .ConsentSteps {
-	color:#888;float:right;margin-right: 15px; margin-top: -3px; font-size: 16px;
+	color:#888;float:right;margin-right: 15px; margin-top: -10px; font-size: 16px;
 }
 .consentTitle {
 	margin-top: 136px !important; font-size: 25px !important;  margin-left: 15px !important; width:100%; padding-top: 7px;
@@ -2052,7 +2052,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 
-#publisher, .OT_mirrored OT_root OT_publisher OT_fit-mode-cover {
+#publisher, OT_video-container, .OT_mirrored OT_root OT_publisher OT_fit-mode-cover {
     float: left;
     width: 100px;
     height: 100px;
