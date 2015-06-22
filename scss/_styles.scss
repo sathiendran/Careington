@@ -326,11 +326,58 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			height: 75px;
 		}*/
 }
-.password_sub_header {
+
+.header_imageIOS {
+	margin-top: 26px;
+	text-align: center;
+	width: 100%;
+	border-color: #B03A21;
+	border-width: 0px 0px 3px 0px;
+	
+		/*img {
+			width: 135px;
+			height: 75px;
+		}*/
+}
+
+.header_imageAndroid {
+	margin-top: 23px;
+	text-align: center;
+	width: 100%;
+	border-color: #B03A21;
+	border-width: 0px 0px 3px 0px;
+	
+		/*img {
+			width: 135px;
+			height: 75px;
+		}*/
+}
+
+.password_sub_headerIOS {
+	@extend .login_sub_header;
+	margin-top: 99px;
+	color: $Shiraz;
+		.password_header_contentIOS {
+			/*position: relative;
+			top: 45px;*/
+            margin-top: 99px;
+			span {
+				color: #C4C4C4;
+				font-size: 12px;
+				position: relative;
+				top: -10px;
+				font-family: $fontFamily_semibold;
+				font-weight: bold;
+			}
+		}
+		
+}
+
+.password_sub_headerAndroid {
 	@extend .login_sub_header;
 	margin-top: 96px;
 	color: $Shiraz;
-		.password_header_content {
+		.password_header_contentAndroid {
 			/*position: relative;
 			top: 45px;*/
             margin-top: 96px;
@@ -345,6 +392,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}
 		
 }
+
 .password_content {
 	@extend .login_content;
 	margin: 220px 0 0 0;
@@ -468,6 +516,39 @@ background: linear-gradient(#A0D18A, #91BE7B);
     padding-right: 4px;
 }
 .title_patient {
+	@include font($fontFamily_semibold, bold, 25px);
+	/*@include font($fontFamily_xBold, bold,30px);*/
+	color: #fff;
+	text-align: center;
+	left: 0px;
+	right: 0px;	
+   /* height: 45px;*/
+    /*line-height: 61px;*/
+    /*margin: 7px 10px;*/
+    min-width: 30px;   
+    position: relative;
+    text-align: center;    
+    top: -4px;
+}
+
+.title_patientIOS {
+	@include font($fontFamily_semibold, bold, 25px);
+	/*@include font($fontFamily_xBold, bold,30px);*/
+	color: #fff;
+	text-align: center;
+	left: 0px;
+	right: 0px;	
+   /* height: 45px;*/
+    /*line-height: 61px;*/
+    /*margin: 7px 10px;*/
+    min-width: 30px;   
+    position: relative;
+    text-align: center;    
+    top: -4px;
+    margin-top: 23px;
+}
+
+.title_patientAndroid {
 	@include font($fontFamily_semibold, bold, 25px);
 	/*@include font($fontFamily_xBold, bold,30px);*/
 	color: #fff;
@@ -1464,7 +1545,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	}
 	
 	
-.bar-headerLess {
+.bar-headerLessAndroid {
 	border-bottom-width: 0px;
 	border-top-width: 0;
 	top: 0;
@@ -1476,7 +1557,30 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	-moz-box-shadow: 0px 3px 2px #B03A21;
   -webkit-box-shadow: 0px 3px 2px #B03A21;
 }
-.bar-subheaderLess {
+
+.bar-headerLessIOS {
+	border-bottom-width: 0px;
+	border-top-width: 0;
+	top: 0;
+	background-color: #f0502c;
+	background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
+	/*border-color: #B03A21;
+	border-width: 0px 0px 3px 0px;*/
+	box-shadow: 0px 3px 2px #B03A21;
+	-moz-box-shadow: 0px 3px 2px #B03A21;
+  -webkit-box-shadow: 0px 3px 2px #B03A21;
+}
+
+.bar-subheaderLessAndroid {
+	display: block;
+	height: 85px;
+	top: 47px;
+	-moz-box-shadow: 0px 2px 9px #ADABAB;
+	-webkit-box-shadow: 0px 2px 9px #ADABAB;
+	box-shadow: 0px 2px 9px #ADABAB;
+}
+
+.bar-subheaderLessIOS {
 	display: block;
 	height: 82px;
 	top: 47px;
@@ -1485,7 +1589,15 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	box-shadow: 0px 2px 9px #ADABAB;
 }
 	
-.head_titleLess {
+.head_titleLessAndroid {
+	@include font($fontFamily_xBold, bold, 30px);
+	text-align: center;
+	color: $Flamingo;
+	position:relative; 
+	top: 20px;		
+}
+
+.head_titleLessIOS {
 	@include font($fontFamily_xBold, bold, 30px);
 	text-align: center;
 	color: $Flamingo;
@@ -1500,7 +1612,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
     top: 132px;
 }
 
-.TitleLess {
+.TitleLess{
 		@include font($fontFamily_bold, normal, 21px);
 		text-align: left;
 		position:relative; 
@@ -2189,7 +2301,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	}
 }
 
-.HeaderList {
+.HeaderListIOS {
+font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top: 4px;
+}
+.HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 }
 .subHeaderTop { top: 86px; }

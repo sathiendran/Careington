@@ -9,7 +9,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform,$rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,7 +26,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
 
-	
+	$rootScope.IOSDevice = ionic.Platform.isIOS();
+	$rootScope.AndroidDevice = ionic.Platform.isAndroid();
+	$rootScope.WindowsPhone = ionic.Platform.isWindowsPhone();
+    $rootScope.isWebView = ionic.Platform.isWebView();
+    $rootScope.isIPad = ionic.Platform.isIPad();
+    $rootScope.isWindow = true;
+     
+    if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
+        $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
+        $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
+        $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
+        $rootScope.password_sub_header = "password_sub_headerIOS";
+        $rootScope.password_header_content = "password_header_contentIOS";
+        $rootScope.header_image = "header_imageIOS";
+        $rootScope.title_patient = "title_patientIOS";
+        $rootScope.HeaderList = "HeaderListIOS";
+        
+     } else if ($rootScope.AndroidDevice == true || $rootScope.isWindow == true) {
+        $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
+        $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
+        $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
+        $rootScope.password_sub_header = "password_sub_headerAndroid";
+        $rootScope.password_header_content = "password_header_contentAndroid";
+         $rootScope.header_image = "header_imageAndroid";
+         $rootScope.title_patient = "title_patientAndroid";
+         $rootScope.HeaderList = "HeaderListAndroid";
+      
+    }
 	
   });
 })
