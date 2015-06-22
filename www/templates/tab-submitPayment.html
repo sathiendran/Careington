@@ -21,6 +21,8 @@
 				<div class="healthPlan_text NoPlanText" >Pay Using</div>
 					<div class="addHealthPlan_header NoPlanAddCardDropdown"  >					
 						<div class="demo" >
+						
+						
 							<!--<select  id="addNewCard" name="addNewCard">
 								<option style="padding:10px;"><b>Choose Your Card</b></option>
 								<option style="padding:10px;" ng-repeat="PaymentProfile in PaymentProfile"  ><b>{{PaymentProfile.cardNumber}}</b></option>
@@ -28,7 +30,7 @@
 							</select>
 							<select id="addNewCard" name="addNewCard" data-ng-options="PaymentCard.cardNumber for PaymentCard in PaymentDetailsList" data-ng-model="SelectedPaymentDetails" value="PaymentCard.cardNumber"></select>-->
 <select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
- <option  ng-repeat="getPayment in PaymentDetailsList" value="{{getPayment.profileID}}"><b><span>{{getPayment.cardNumber}}</span></b></option> 
+ <option  ng-repeat="getPayment in PaymentDetailsList" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>{{getPayment.cardNumber}}</span></b></option> 
  </select>							
 						</div>
 					</div>
