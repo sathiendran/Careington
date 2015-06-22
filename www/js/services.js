@@ -463,7 +463,7 @@ angular.module('starter.services', [])
                 });
     }
 
-    this.postPaymentProfileDetails = function (params) {
+    this.postPaymentProfileDetails = function (params) { 
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),

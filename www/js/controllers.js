@@ -1197,7 +1197,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
                 success: function (data) {
                     $scope.PostPaymentDetails = data;
-					$rootScope.userCardDetails = data.data.paymentProfileId;
+					$rootScope.userCardDetails = data.data.paymentProfileId; 
                     
                     if(data.message == "Success")	{
                         console.log(data);
