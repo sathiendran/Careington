@@ -9830,3 +9830,13 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .consentIAgree {
   position: relative;
   top: 3px; }
+
+.dateclass.placeholderclass::before {
+  width: 100%;
+  content: attr(placeholder);
+  background-color: #FFFFFF;
+  color: #A9A5A5;
+  font-size: 18px; }
+
+.dateclass.placeholderclass:hover::before {
+  width: 100%; }
