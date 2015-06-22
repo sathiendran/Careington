@@ -7688,7 +7688,7 @@ body {
   border-width: 0px 0px 3px 0px;
   border-style: solid; }
 
-.login_sub_header, .password_sub_header {
+.login_sub_header, .password_sub_headerIOS, .password_sub_headerAndroid {
   /*@include measurement(0, 38px 0 0 0, auto, 78px);	*/
   padding: 0;
   margin: 0;
@@ -7704,7 +7704,7 @@ body {
     -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;*/
   box-shadow: 0px 2px 9px #ADABAB; }
-  .login_sub_header after, .login_sub_header .password_sub_header {
+  .login_sub_header after, .login_sub_header .password_sub_headerIOS, .login_sub_header .password_sub_headerAndroid {
     right: 10px;
     left: auto;
     -webkit-transform: skew(8deg) rotate(3deg);
@@ -7712,11 +7712,11 @@ body {
     -ms-transform: skew(8deg) rotate(3deg);
     -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg); }
-  .login_sub_header div, .login_sub_header .password_sub_header {
+  .login_sub_header div, .login_sub_header .password_sub_headerIOS, .login_sub_header .password_sub_headerAndroid {
     position: relative;
     top: 62px; }
 
-.login_sub_header:before, .password_sub_header:before, .login_sub_header:after, .password_sub_header:after {
+.login_sub_header:before, .password_sub_headerIOS:before, .password_sub_headerAndroid:before, .login_sub_header:after, .password_sub_headerIOS:after, .password_sub_headerAndroid:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -7916,14 +7916,51 @@ body {
 			height: 75px;
 		}*/ }
 
-.password_sub_header {
+.header_imageIOS {
+  margin-top: 26px;
+  text-align: center;
+  width: 100%;
+  border-color: #B03A21;
+  border-width: 0px 0px 3px 0px;
+  /*img {
+			width: 135px;
+			height: 75px;
+		}*/ }
+
+.header_imageAndroid {
+  margin-top: 23px;
+  text-align: center;
+  width: 100%;
+  border-color: #B03A21;
+  border-width: 0px 0px 3px 0px;
+  /*img {
+			width: 135px;
+			height: 75px;
+		}*/ }
+
+.password_sub_headerIOS {
+  margin-top: 99px;
+  color: #A80532; }
+  .password_sub_headerIOS .password_header_contentIOS {
+    /*position: relative;
+			top: 45px;*/
+    margin-top: 99px; }
+    .password_sub_headerIOS .password_header_contentIOS span {
+      color: #C4C4C4;
+      font-size: 12px;
+      position: relative;
+      top: -10px;
+      font-family: 'Glober SemiBold';
+      font-weight: bold; }
+
+.password_sub_headerAndroid {
   margin-top: 96px;
   color: #A80532; }
-  .password_sub_header .password_header_content {
+  .password_sub_headerAndroid .password_header_contentAndroid {
     /*position: relative;
 			top: 45px;*/
     margin-top: 96px; }
-    .password_sub_header .password_header_content span {
+    .password_sub_headerAndroid .password_header_contentAndroid span {
       color: #C4C4C4;
       font-size: 12px;
       position: relative;
@@ -8045,6 +8082,41 @@ body {
   padding-right: 4px; }
 
 .title_patient {
+  font-family: 'Glober SemiBold';
+  font-weight: bold;
+  font-size: 25px;
+  /*@include font($fontFamily_xBold, bold,30px);*/
+  color: #fff;
+  text-align: center;
+  left: 0px;
+  right: 0px;
+  /* height: 45px;*/
+  /*line-height: 61px;*/
+  /*margin: 7px 10px;*/
+  min-width: 30px;
+  position: relative;
+  text-align: center;
+  top: -4px; }
+
+.title_patientIOS {
+  font-family: 'Glober SemiBold';
+  font-weight: bold;
+  font-size: 25px;
+  /*@include font($fontFamily_xBold, bold,30px);*/
+  color: #fff;
+  text-align: center;
+  left: 0px;
+  right: 0px;
+  /* height: 45px;*/
+  /*line-height: 61px;*/
+  /*margin: 7px 10px;*/
+  min-width: 30px;
+  position: relative;
+  text-align: center;
+  top: -4px;
+  margin-top: 23px; }
+
+.title_patientAndroid {
   font-family: 'Glober SemiBold';
   font-weight: bold;
   font-size: 25px;
@@ -9024,7 +9096,7 @@ a {
   background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
   border-color: #f0502c; }
 
-.bar-headerLess {
+.bar-headerLessAndroid {
   border-bottom-width: 0px;
   border-top-width: 0;
   top: 0;
@@ -9036,7 +9108,27 @@ a {
   -moz-box-shadow: 0px 3px 2px #B03A21;
   -webkit-box-shadow: 0px 3px 2px #B03A21; }
 
-.bar-subheaderLess {
+.bar-headerLessIOS {
+  border-bottom-width: 0px;
+  border-top-width: 0;
+  top: 0;
+  background-color: #f0502c;
+  background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
+  /*border-color: #B03A21;
+	border-width: 0px 0px 3px 0px;*/
+  box-shadow: 0px 3px 2px #B03A21;
+  -moz-box-shadow: 0px 3px 2px #B03A21;
+  -webkit-box-shadow: 0px 3px 2px #B03A21; }
+
+.bar-subheaderLessAndroid {
+  display: block;
+  height: 85px;
+  top: 47px;
+  -moz-box-shadow: 0px 2px 9px #ADABAB;
+  -webkit-box-shadow: 0px 2px 9px #ADABAB;
+  box-shadow: 0px 2px 9px #ADABAB; }
+
+.bar-subheaderLessIOS {
   display: block;
   height: 82px;
   top: 47px;
@@ -9044,7 +9136,16 @@ a {
   -webkit-box-shadow: 0px 2px 9px #ADABAB;
   box-shadow: 0px 2px 9px #ADABAB; }
 
-.head_titleLess {
+.head_titleLessAndroid {
+  font-family: 'Glober xBold';
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  color: #F0502C;
+  position: relative;
+  top: 20px; }
+
+.head_titleLessIOS {
   font-family: 'Glober xBold';
   font-weight: bold;
   font-size: 30px;
@@ -9737,7 +9838,14 @@ form.ng-submitted input.ng-valid + i.icon.error {
     .DependentList a p {
       margin-left: 83px; }
 
-.HeaderList {
+.HeaderListIOS {
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  margin-left: -32px;
+  top: 4px; }
+
+.HeaderListAndroid {
   font-size: 20px;
   text-align: center;
   width: 100%;

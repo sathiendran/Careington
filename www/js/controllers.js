@@ -52,12 +52,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 .controller('LoginCtrl', function($scope, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
-	$rootScope.IOSDevice = ionic.Platform.isIOS();
-	$rootScope.AndroidDevice = ionic.Platform.isAndroid();
-	$rootScope.WindowsPhone = ionic.Platform.isWindowsPhone();
-    $rootScope.isWebView = ionic.Platform.isWebView();
-    $rootScope.isIPad = ionic.Platform.isIPad();
-    
 	$rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
