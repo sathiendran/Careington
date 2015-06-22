@@ -776,6 +776,38 @@ this.getCountryDetails = function () {
     }
     
 }) 
+
+.service('CustomCalendarMonth', function(){ 
+  this.getMonthName = function(PriorSurgerymonth) {
+      if(PriorSurgerymonth == 'Jan') {
+          return 01; 
+      } else if(PriorSurgerymonth == 'Feb') {
+       return 02;   
+      } else if(PriorSurgerymonth == 'Mar') {
+       return 03;   
+      } else if(PriorSurgerymonth == 'Apr') {
+       return 04;   
+      } else if(PriorSurgerymonth == 'May') {
+       return 05;   
+      } else if(PriorSurgerymonth == 'Jun') {
+       return 06;   
+      } else if(PriorSurgerymonth == 'Jul') {
+       return 07;   
+      } else if(PriorSurgerymonth == 'Aug') {
+       return 08;   
+      } else if(PriorSurgerymonth == 'Sep') {
+       return 09;   
+      } else if(PriorSurgerymonth == 'Oct') {
+       return 10;   
+      } else if(PriorSurgerymonth == 'Nov') {
+       return 11;   
+      } else if(PriorSurgerymonth == 'Dec') {
+       return 12;   
+      }
+  }
+
+})
+
 .service('CreditCardValidations', function(){
     
     this.luhn = function luhn(num) {

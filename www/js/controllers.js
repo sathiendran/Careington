@@ -1702,11 +1702,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
     $rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
-   
     $rootScope.limit = 4;
 	$rootScope.Concernlimit = 1;
     $rootScope.checkedPrimary = 0;
@@ -1719,22 +1718,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		
 		var params = { 
-            consultationId: 2440, // consultationId: $rootScope.consultationId,
+            consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
             success: function (data) {
                 $scope.existingConsultation = data;
 			
-                $rootScope.consultionInformation = data.data[0].consultationInfo;
-                $rootScope.patientInfomation = data.data[0].patientInformation;	
+                $rootScope.consultionInformation = data.data.consultationInfo;
+                $rootScope.patientInfomation = data.data.patientInformation;	
                 $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
-                $rootScope.inTakeForm = data.data[0].intakeForm;
+                //$rootScope.inTakeForm = data.data[0].intakeForm;
+                //Pre Populated //
+                $rootScope.inTakeForm = data.data.intakeForm;
                 $rootScope.inTakeFormCurrentMedication = $rootScope.inTakeForm.takingMedications;
-                $rootScope.inTakeFormChronicCondition = $rootScope.inTakeForm.medicalCondition;
+                $rootScope.inTakeFormChronicConditions = $rootScope.inTakeForm.medicalCondition;
                 $rootScope.inTakeFormPriorSurgeories = $rootScope.inTakeForm.priorSurgeories;
                 $rootScope.inTakeFormMedicationAllergies = $rootScope.inTakeForm.medicationAllergies;
+                //Pre Populated //
+                $state.go('tab.ChronicCondition');
             },
             error: function (data) {
                 $scope.existingConsultation = 'Error getting existing consultation';
+                
+                 /*   $rootScope.inTakeFormChronicConditions = [{$id: "1", Id: 1,displayOrder: 0, value: "Chronic Rinsoft"},{$id: "2", Id: 2,displayOrder: 0, value: "Chronic Software"}];
+                
+                 $rootScope.inTakeFormMedicationAllergies = [{$id: "1", Id: 1,displayOrder: 0, value: "Medication AllergiesRinsoft"},{$id: "2", Id: 2,displayOrder: 0, value: "Medication Allergies Software"}];
+                
+                 $rootScope.inTakeFormCurrentMedication = [{$id: "1", Id: 1,displayOrder: 0, value: "Current Medication Rinsoft"},{$id: "2", Id: 2,displayOrder: 0, value: "Current Medication Software"}];
+                
+                $rootScope.inTakeFormPriorSurgeories = [{$id: "1", Id: 1,displayOrder: 0, value: "Demo PriorSurgry",month: "Mar",year: "2016"},{$id: "2", Id: 2,displayOrder: 0, value: "Test PriorSurgry",month: "Feb",year: "2015"}]; 
+                $state.go('tab.ChronicCondition'); */
+                
 				console.log(data);
             }
         };
@@ -1925,8 +1938,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
     
-    $scope.PatientConcernsDirectory = function(){
-        if($rootScope.IsValue == 0 || $rootScope.IsValue == undefined) {
+   $scope.PatientConcernsDirectory = function(ChronicValid){
+        $rootScope.ChronicValid = ChronicValid; // pre populated valid value
+       if($rootScope.IsValue == 0 || $rootScope.IsValue == undefined) {
 			if($rootScope.PrimaryNext == 0) {
 				$scope.ErrorMessage = "Primary Concern Can't be Empty";
 				$rootScope.ConcernsValidation($scope.ErrorMessage);
@@ -2086,7 +2100,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
                         $scope.doGetExistingConsulatation();
-						$state.go('tab.ChronicCondition');
+						//$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
 						$rootScope.serverErrorMessageValidation();
@@ -2100,8 +2114,34 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	/*Chronic Condition Start here*/
 	
+    $scope.BackToChronicCondition = function(ChronicValid) {
+        $rootScope.ChronicValid = ChronicValid;
+        $state.go('tab.ChronicCondition');
+    }
+    
     // Get list of Chronic Condition lists
    $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
+    
+     // Get list of Chronic Condition Pre populated
+    if($rootScope.currState.$current.name=="tab.ChronicCondition") { 
+        if(typeof $rootScope.ChronicValid == 'undefined' ||  $rootScope.ChronicValid == 0) {
+             angular.forEach($rootScope.inTakeFormChronicConditions, function(index, item) { 
+               $scope.chronicConditionList.push({
+                    $id: index.$id,
+                    codeId: index.id,
+                    displayOrder: 0,
+                    text: index.value,
+                    checked: true,
+                });
+
+            }); 
+    $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
+    $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
+            if($rootScope.PatientChronicCondition) {
+                $rootScope.ChronicCountValidCount = $rootScope.PatientChronicCondition.length; 
+            }
+        } 
+    }
 	
    // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
@@ -2210,8 +2250,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     // Get list of Medication Allegies List
     $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-	
     
+     // Get list of Medication Allegies Pre populated
+    $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
+        $rootScope.AllegiesCountValid = AllegiesCountValid;
+    if(typeof $rootScope.AllegiesCountValid == 'undefined' ||  $rootScope.AllegiesCountValid == '') { 
+        angular.forEach($rootScope.inTakeFormMedicationAllergies, function(index, item) { 
+               $scope.MedicationAllegiesList.push({
+                    $id: index.$id,
+                    codeId: index.id,
+                    displayOrder: 0,
+                    text: index.value,
+                    checked: true,
+                });
+
+            }); 
+        
+      $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
+      $rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
+          if($rootScope.patinentMedicationAllergies) {
+              $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length; 
+              $rootScope.AllegiesCountValid = $rootScope.AllegiesCount;
+         } 
+            $state.go('tab.MedicationAllegies');    
+        } else { 
+            $state.go('tab.MedicationAllegies');
+        }
+         
+    }
+	
+    console.log('MedicationAllergies: ' + $rootScope.inTakeFormMedicationAllergies);
     // Open Medication Allegies List popup
 
     $scope.loadMedicationAllegies = function() {
@@ -2315,21 +2383,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       /*Current Medication Start here*/
 	
     // Get list of Current Medication  List
-     
-    $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
-    if($rootScope.currState.$current.name=="tab.CurrentMedication") {  
+       $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
+    
+    // Get list of Current Medication Pre populated
+    $scope.GoToCurrentMedication = function(MedicationCountValid) { 
+        $rootScope.MedicationCountValid = MedicationCountValid;
+if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.MedicationCountValid == '') { 
     angular.forEach($rootScope.inTakeFormCurrentMedication, function(index, item) { 
-        $scope.CurrentMedicationList.push({
-            $id: index.$id,
-            codeId: index.id,
-            displayOrder: 0,
-            text: index.value,
+               $scope.CurrentMedicationList.push({
+                    $id: index.$id,
+                    codeId: index.id,
+                    displayOrder: 0,
+                    text: index.value,
+                    checked: true,
+                });
 
-        });
-    }); 
+            }); 
+        
+    $scope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
+    $rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
+    if($rootScope.patinentCurrentMedication) {
+              $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
+              $rootScope.MedicationCountValid = $rootScope.MedicationCount;
+         } 
+            $state.go('tab.CurrentMedication');    
+        } else { 
+           $state.go('tab.CurrentMedication');
+        }
+         
     }
-      console.log($scope.CurrentMedicationList);
-      console.log($rootScope.inTakeFormCurrentMedication);
+    console.log('CurrentMedication: ' + $rootScope.inTakeFormCurrentMedication);
    // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
         
@@ -2429,6 +2512,28 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
     /* Prior Surgery page START */
+    
+    // Prior Surgery pre-populated
+    $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
+        if(typeof PriorSurgeryValid == 'undefined' || PriorSurgeryValid == '') {
+              angular.forEach($rootScope.inTakeFormPriorSurgeories, function (Priorvalue, index) {
+                  var surgeryMonthName = CustomCalendarMonth.getMonthName(Priorvalue.month);
+                  var PriorSurgeryDate = new Date(Priorvalue.year, surgeryMonthName-1, 01);
+                  var dateString = PriorSurgeryDate;
+                  var surgeryName = Priorvalue.value;
+                  var stockSurgery = SurgeryStocksListService.addSurgery(surgeryName, dateString);
+                 $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
+                 $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
+             });
+               $rootScope.PriorSurgeryValidCount = $rootScope.IsToPriorCount ;
+               $state.go('tab.priorSurgeries');
+         
+        } else { 
+            $state.go('tab.priorSurgeries');
+        }
+    }
+    
+    
 
 	
    $scope.getSurgeryPopup = function() {
@@ -2633,6 +2738,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.checkedMedication = 0; 
         $rootScope.IsValue = "";
         $rootScope.IsToPriorCount = "";
+        $rootScope.ChronicCountValidCount = "";
+        $rootScope.PriorSurgeryValidCount = ""; 
+        $rootScope.AllegiesCountValid = "";
+        $rootScope.MedicationCountValid = ""; 
         SurgeryStocksListService.ClearSurgery();
         $state.go('tab.patientDetail');
         
