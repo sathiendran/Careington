@@ -1180,7 +1180,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $rootScope.cardDisplay = "none;";
             $rootScope.verifyCardDisplay = "inherit";
             var params = {
-                userId: $rootScope.primaryPatientId, 
+                EmailId: $rootScope.UserEmail, 
                 BillingAddress: $rootScope.BillingAddress,
                 CardNumber: $rootScope.CardNumber,
                 City: $rootScope.City,

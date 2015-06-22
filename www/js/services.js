@@ -467,10 +467,11 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/patients/' + params.userId + '/payments',
+           // url: apiCommonURL + '/api/patients/' + params.userId + '/payments',
+		    url: apiCommonURL + '/api/v2/patients/payments',
             method: 'POST',
             data: {
-                userId: params.userId,
+                EmailId: params.EmailId,
                 BillingAddress: params.BillingAddress,
                 CardNumber: params.CardNumber,
                 City: params.City,
@@ -770,7 +771,7 @@ this.getCountryDetails = function () {
 	
 	this.getLocalTime = function(dateTime){
        var utcTime = moment.utc(dateTime).toDate();
-		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss')
+		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss');
         return localTime;
     }
     

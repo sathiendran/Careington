@@ -592,8 +592,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
 							//$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
-                            $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
-                            console.log($rootScope.HealthPlanListCount);
+                           // $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
+                          //  console.log($rootScope.HealthPlanListCount);
                           /*  if($rootScope.primaryPatientId == $rootScope.patientId) {
                             $rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
@@ -1180,7 +1180,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $rootScope.cardDisplay = "none;";
             $rootScope.verifyCardDisplay = "inherit";
             var params = {
-                userId: $rootScope.primaryPatientId, 
+                EmailId: $rootScope.UserEmail, 
                 BillingAddress: $rootScope.BillingAddress,
                 CardNumber: $rootScope.CardNumber,
                 City: $rootScope.City,
@@ -1197,6 +1197,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
                 success: function (data) {
                     $scope.PostPaymentDetails = data;
+					$rootScope.userCardDetails = data.data.paymentProfileId;
                     
                     if(data.message == "Success")	{
                         console.log(data);
