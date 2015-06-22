@@ -49,7 +49,7 @@
 			</div>
 		</ion-item> -->
         
-	<div class="list surgeryList">
+	<div class="list surgeryList" style="margin-top: 3px;">
 	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
 			<div class="surgeryDetails">
 				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
@@ -74,7 +74,7 @@
 		<div class="ConcernsFooter">
 					 
 		 <div class="FooterLeft" >
-				<a class="button_new icon ion-chevron-left" href="#/tab/ChronicCondition" ><span>Back</span></a>
+				<a class="button_new icon ion-chevron-left" ng-click="BackToChronicCondition(ChronicCountValidCount);" ><span>Back</span></a>
 			</div>
 			
 			<div class="FooterCenter">
@@ -82,7 +82,7 @@
 			</div>
 			   
 			<div class="FooterRight" >
-				<a class="button_new icon ion-chevron-right"   href="#/tab/MedicationAllegies"> <span class="ConcernFooterNext" >Next<span> </a>
+				<a class="button_new icon ion-chevron-right"   ng-click="GoToMedicationAllegies(AllegiesCountValid)"> <span class="ConcernFooterNext" >Next<span> </a>
 			</div>
 						  
 		<div>
