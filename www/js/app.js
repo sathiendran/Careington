@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     $rootScope.isIPad = ionic.Platform.isIPad();
     //$rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
+    if($rootScope.IOSDevice == true) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -53,7 +53,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
          $rootScope.title_patient = "title_patientAndroid";
          $rootScope.HeaderList = "HeaderListAndroid";
       
-    }
+    } else if($rootScope.isIPad == true) {
+        $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
+        $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
+        $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
+        $rootScope.password_sub_header = "password_sub_headerIOS";
+        $rootScope.password_header_content = "password_header_contentIOS";
+        $rootScope.header_image = "header_imageIOS";
+        $rootScope.title_patient = "title_patientIOS";
+        $rootScope.HeaderList = "HeaderListIOS";
+        
+     }
 	
   });
 })
