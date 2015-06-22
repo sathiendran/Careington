@@ -1,14 +1,14 @@
 
-<!--<div class="bar bar-headerLess">
+<div class="bar bar-headerLess">
     <div id="Error_Message" ></div>
 	<div class="Server_Error" ></div>
-</div> -->
+</div>
 
 <ion-view title="Login">
 	
 	<!-- Header Start---->
 	<ion-header-bar align-title="left" class="bar-positiveLess">
-        <div ng-if="AndroidDevice">
+		 <div ng-if="AndroidDevice">
             <div class="bar bar-headerLess">
                 <!--<div id="Error_Message" ></div>-->
             </div>
@@ -23,11 +23,29 @@
             </div>
 
             <div class="bar bar-subheaderLess" style="margin-top: 17px;">
-                <h2 class="head_titleLess">Connected Care {{AndroidDevice + 'Ios'}}</h2>
+                <h2 class="head_titleLess">Connected Care {{IOSDevice + 'Ios'}}</h2>
             </div>
-         </div>  
-          
-        </div>  
+         </div>
+        <div ng-if="isWebView">
+            <div class="bar bar-headerLess" style="height: 60px;">
+                <!--<div id="Error_Message" ></div>-->
+            </div>
+
+            <div class="bar bar-subheaderLess" style="margin-top: 17px;">
+                <h2 class="head_titleLess">Connected Care {{isWebView + 'Ios'}}</h2>
+            </div>
+         </div>
+        
+        <div ng-if="isIPad">
+            <div class="bar bar-headerLess" style="height: 60px;">
+                <!--<div id="Error_Message" ></div>-->
+            </div>
+
+            <div class="bar bar-subheaderLess" style="margin-top: 17px;">
+                <h2 class="head_titleLess">Connected Care {{isIPad + 'IPAD'}}</h2>
+            </div>
+         </div>
+        
 	</ion-header-bar>
 	<!-- Header end-->
 	
