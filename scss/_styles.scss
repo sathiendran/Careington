@@ -2245,3 +2245,19 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 	position: relative; top: 3px;
 }
 
+.dateclass{
+    
+}
+
+.dateclass.placeholderclass::before{
+    width:100%;
+    content:attr(placeholder);
+    background-color:#FFFFFF;
+	color: #A9A5A5;
+	font-size: 18px;
+}
+
+.dateclass.placeholderclass:hover::before{
+    width:100%;
+   
+}
