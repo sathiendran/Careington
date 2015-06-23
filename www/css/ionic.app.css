@@ -9880,11 +9880,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .subHeaderTop {
   top: 86px; }
 
-.BackButtonIconIOS {
-  color: #000;
-  margin-top: 15px; }
-
-.BackButtonIconAndroid {
+#BackButtonIcon {
   color: #000;
   margin-top: 15px; }
 
