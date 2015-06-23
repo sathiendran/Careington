@@ -8069,7 +8069,6 @@ body {
 .bar-positiveHomeUser {
   background-color: #A80532;
   background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%);
-  border-color: #f0502c;
   height: auto; }
 
 .backButtonDiv {
@@ -8080,23 +8079,6 @@ body {
   font-size: 20px;
   line-height: 28px;
   padding-right: 4px; }
-
-.title_patient {
-  font-family: 'Glober SemiBold';
-  font-weight: bold;
-  font-size: 25px;
-  /*@include font($fontFamily_xBold, bold,30px);*/
-  color: #fff;
-  text-align: center;
-  left: 0px;
-  right: 0px;
-  /* height: 45px;*/
-  /*line-height: 61px;*/
-  /*margin: 7px 10px;*/
-  min-width: 30px;
-  position: relative;
-  text-align: center;
-  top: -4px; }
 
 .title_patientIOS {
   font-family: 'Glober SemiBold';
@@ -8113,7 +8095,7 @@ body {
   min-width: 30px;
   position: relative;
   text-align: center;
-  top: -4px;
+  top: 4px;
   margin-top: 23px; }
 
 .title_patientAndroid {
@@ -8199,7 +8181,21 @@ body {
 .platform-ios .calendarBack {
   opacity: 2; }
 
-.calendarBack {
+.calendarBackIOS {
+  padding-top: 7px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 68px;
+  position: absolute;
+  z-index: 1;
+  top: 18px; }
+  .calendarBackIOS span {
+    margin-top: 7px;
+    position: relative;
+    margin-left: -6px;
+    top: -2px; }
+
+.calendarBackAndroid {
   padding-top: 7px;
   font-weight: bold;
   cursor: pointer;
@@ -8207,13 +8203,19 @@ body {
   position: absolute;
   z-index: 1;
   top: 10px; }
-  .calendarBack span {
+  .calendarBackAndroid span {
     margin-top: 7px;
     position: relative;
     margin-left: -6px;
     top: -2px; }
 
-.calendarTitle {
+.calendarTitleIOS {
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  margin-top: 23px; }
+
+.calendarTitleAndroid {
   font-size: 20px;
   text-align: center;
   width: 100%; }
@@ -8390,9 +8392,13 @@ body {
   top: 0px;
   left: 0px; }
 
-.intakeTittle {
+.intakeTittleAndroid {
   margin-left: -33px;
   top: -4px !important; }
+
+.intakeTittleIOS {
+  margin-left: -33px;
+  top: 7px !important; }
 
 .PatientDetailsHome {
   padding-left: 7%; }
@@ -8706,12 +8712,21 @@ select {
     color: black;
     text-align: center; }
 
-.SidemenuHome {
+#SidemenuHomeAndroid {
   margin-top: 10px;
   border: none;
   color: #706A67;
   font-family: Glober regular !important; }
-  .SidemenuHome span {
+  #SidemenuHomeAndroid span {
+    top: 0px;
+    position: relative; }
+
+#SidemenuHomeIOS {
+  margin-top: 18px;
+  border: none;
+  color: #706A67;
+  font-family: Glober regular !important; }
+  #SidemenuHomeIOS span {
     top: 0px;
     position: relative; }
 
@@ -9158,7 +9173,7 @@ a {
   display: block;
   background-color: #f2f2f2;
   height: 63px;
-  top: 132px; }
+  top: 137px; }
 
 .TitleLess {
   font-family: 'Glober Bold';
@@ -9228,11 +9243,17 @@ a {
   top: 7px;
   margin-left: -55px; }
 
-.bar-subheaderHomeUser {
+.bar-subheaderHomeUserAndroid {
   /*display: block;*/
   height: 60%;
   top: 80px;
   margin-top: -6px; }
+
+.bar-subheaderHomeUserIOS {
+  /*display: block;*/
+  height: 60%;
+  top: 80px;
+  margin-top: 0px; }
 
 .TitleHomeUser_Sub {
   font-family: 'Glober SemiBold';
@@ -9843,7 +9864,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   text-align: center;
   width: 100%;
   margin-left: -32px;
-  top: 4px; }
+  top: 5px; }
 
 .HeaderListAndroid {
   font-size: 20px;
@@ -9852,10 +9873,18 @@ form.ng-submitted input.ng-valid + i.icon.error {
   margin-left: -32px;
   top: -1px; }
 
+.menuiconIOS {
+  position: relative;
+  top: 4px; }
+
 .subHeaderTop {
   top: 86px; }
 
-#BackButtonIcon {
+.BackButtonIconIOS {
+  color: #000;
+  margin-top: 15px; }
+
+.BackButtonIconAndroid {
   color: #000;
   margin-top: 15px; }
 
@@ -9938,13 +9967,3 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .consentIAgree {
   position: relative;
   top: 3px; }
-
-.dateclass.placeholderclass::before {
-  width: 100%;
-  content: attr(placeholder);
-  background-color: #FFFFFF;
-  color: #A9A5A5;
-  font-size: 18px; }
-
-.dateclass.placeholderclass:hover::before {
-  width: 100%; }

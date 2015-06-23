@@ -327,7 +327,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}*/
 }
 
-.header_imageIOS {
+.header_imageIOS { 
 	margin-top: 26px;
 	text-align: center;
 	width: 100%;
@@ -340,7 +340,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}*/
 }
 
-.header_imageAndroid {
+.header_imageAndroid { 
 	margin-top: 23px;
 	text-align: center;
 	width: 100%;
@@ -353,11 +353,11 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}*/
 }
 
-.password_sub_headerIOS {
+.password_sub_headerIOS { 
 	@extend .login_sub_header;
 	margin-top: 99px;
 	color: $Shiraz;
-		.password_header_contentIOS {
+		.password_header_contentIOS { 
 			/*position: relative;
 			top: 45px;*/
             margin-top: 99px;
@@ -373,11 +373,11 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		
 }
 
-.password_sub_headerAndroid {
+.password_sub_headerAndroid { 
 	@extend .login_sub_header;
 	margin-top: 96px;
 	color: $Shiraz;
-		.password_header_contentAndroid {
+		.password_header_contentAndroid { 
 			/*position: relative;
 			top: 45px;*/
             margin-top: 96px;
@@ -515,24 +515,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
     line-height: 28px;
     padding-right: 4px;
 }
- /*.title_patient {
-	@include font($fontFamily_semibold, bold, 25px);
-	/*@include font($fontFamily_xBold, bold,30px);
-	color: #fff;
-	text-align: center;
-	left: 0px;
-	right: 0px;	
-   height: 45px;
-    /*line-height: 61px;
-    /*margin: 7px 10px;
-    min-width: 30px;   
-    position: relative;
-    text-align: center;    
-    top: -4px; */
-}
+ 
 
 
-.title_patientIOS {
+.title_patientIOS { 
 	@include font($fontFamily_semibold, bold, 25px);
 	/*@include font($fontFamily_xBold, bold,30px);*/
 	color: #fff;
@@ -549,7 +535,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
     margin-top: 23px;
 }
 
-.title_patientAndroid {
+.title_patientAndroid { 
 	@include font($fontFamily_semibold, bold, 25px);
 	/*@include font($fontFamily_xBold, bold,30px);*/
 	color: #fff;
@@ -623,29 +609,29 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 //Patient Calendar page
-.platform-ios {
+.platform-ios { 
 	.calendarBack {
 		opacity: 2;
 	}
 }
 
-.calendarBackIOS {
+.calendarBackIOS {  
 	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:18px;
 	span {
 		margin-top:7px;position: relative;margin-left: -6px;top: -2px;
 	}
 }
-.calendarBackAndroid {
+.calendarBackAndroid {   
 	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
-	span {
-		margin-top:7px;position: relative;margin-left: -6px;top: -2px;
+	span { 
+		margin-top:7px;position: relative;margin-left: -6px;top: -2px; 
 	}
 }
 
-.calendarTitleIOS {
+.calendarTitleIOS {  
 	font-size: 20px; text-align: center; width: 100%;margin-top: 23px;
 }
-.calendarTitleAndroid {
+.calendarTitleAndroid {   
 	font-size: 20px; text-align: center; width: 100%; 
 }
 .calendar_subHeader_height { 
@@ -669,7 +655,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 				.patientLastName {
 					font-weight: normal;
 				}
-				.platform-ios {
+				.platform-ios { 
 					.patientLastName {
 						font-weight: 600;
 					}
@@ -824,11 +810,11 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .ErrorMessageDiv {
 	position: fixed; z-index:2; top:0px; left:0px;
 }
-.intakeTittleAndroid {
+.intakeTittleAndroid { 
 	margin-left: -33px;
 	top: -4px !important;
 }
-.intakeTittleIOS {
+.intakeTittleIOS { 
 	margin-left: -33px;
 	top: 7px !important;
 }
@@ -1172,14 +1158,14 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		font-size: 12px; color: black; text-align: center;
 	}
 }
-#SidemenuHomeAndroid {
+#SidemenuHomeAndroid { 
 	margin-top:10px; border:none;color:#706A67;font-family: Glober regular !important;
 	span {
 		top: 0px; position:relative;
 	}
 }
 
-#SidemenuHomeIOS {
+#SidemenuHomeIOS { 
 	margin-top:18px; border:none;color:#706A67;font-family: Glober regular !important;
 	span {
 		top: 0px; position:relative;
@@ -1428,7 +1414,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	
 }
 
-.platform-ios {	
+.platform-ios {	 
 	.ConcernsFooter {
 		opacity: 2;
 		font-weight: 600;
@@ -1572,7 +1558,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	}
 	
 	
-.bar-headerLessAndroid {
+.bar-headerLessAndroid { 
 	border-bottom-width: 0px;
 	border-top-width: 0;
 	top: 0;
@@ -1585,7 +1571,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
   -webkit-box-shadow: 0px 3px 2px #B03A21;
 }
 
-.bar-headerLessIOS {
+.bar-headerLessIOS { 
 	border-bottom-width: 0px;
 	border-top-width: 0;
 	top: 0;
@@ -1598,7 +1584,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
   -webkit-box-shadow: 0px 3px 2px #B03A21;
 }
 
-.bar-subheaderLessAndroid {
+.bar-subheaderLessAndroid { 
 	display: block;
 	height: 85px;
 	top: 47px;
@@ -1607,7 +1593,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	box-shadow: 0px 2px 9px #ADABAB;
 }
 
-.bar-subheaderLessIOS {
+.bar-subheaderLessIOS { 
 	display: block;
 	height: 82px;
 	top: 47px;
@@ -1616,7 +1602,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	box-shadow: 0px 2px 9px #ADABAB;
 }
 	
-.head_titleLessAndroid {
+.head_titleLessAndroid { 
 	@include font($fontFamily_xBold, bold, 30px);
 	text-align: center;
 	color: $Flamingo;
@@ -1624,7 +1610,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	top: 20px;		
 }
 
-.head_titleLessIOS {
+.head_titleLessIOS { 
 	@include font($fontFamily_xBold, bold, 30px);
 	text-align: center;
 	color: $Flamingo;
@@ -1636,7 +1622,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	display: block;
 	background-color: #f2f2f2;
 	height: 63px;
-    top: 132px;
+    top: 137px;
 }
 
 .TitleLess{
@@ -1718,14 +1704,14 @@ text-align:center
 	margin-left: -55px;
 }
 
-.bar-subheaderHomeUserAndroid {
+.bar-subheaderHomeUserAndroid { 
 	/*display: block;*/
 	height: 60%;
     top: 80px;
 	margin-top:-6px;
 }
 
-.bar-subheaderHomeUserIOS {
+.bar-subheaderHomeUserIOS { 
 	/*display: block;*/
 	height: 60%;
     top: 80px;
@@ -2127,7 +2113,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   height: 100%;
   margin-top: -10%;
   margin-left: 0%;
-  border-width: 2px;
+  border-width: 2px; 
 }  
 
 .grade-c .checkbox input:after, .grade-c .checkbox-icon:after {
@@ -2336,18 +2322,18 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	}
 }
 
-.HeaderListIOS {
+.HeaderListIOS { 
 font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top: 5px;
 }
-.HeaderListAndroid {
+.HeaderListAndroid { 
 font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 }
 
-.menuiconIOS { position: relative;top: 4px; }
+.menuiconIOS {  position: relative;top: 4px; }
 
 .subHeaderTop { top: 86px; }
-.BackButtonIconIOS { color:#000; margin-top: 15px;}
-.BackButtonIconAndroid { color:#000; margin-top: 15px;}
+.BackButtonIconIOS {  color:#000; margin-top: 15px;}
+.BackButtonIconAndroid {   color:#000; margin-top: 15px;}
 #WhoNeeds { font-size: 23px;  width: 85%; }
 .BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}
 

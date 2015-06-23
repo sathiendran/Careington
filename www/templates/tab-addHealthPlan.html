@@ -30,7 +30,7 @@
 								<option value=""><b>Choose Your Health Plan</b></option>
 								<!--<option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber}}" ng-if="SelectedHealthPlans" selected><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:15}}</span></b></option> -->
                                 
-                                <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == SelectInsuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:20}}</span></b></option>
+                                <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == SelectInsuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber}}</span></b></option>
                                 
 							<!--	<option ng-if="primaryPatientId == patientId"><b>Add a new health plan</b></option>  -->
 							</select>

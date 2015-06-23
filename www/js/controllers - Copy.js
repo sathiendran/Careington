@@ -52,11 +52,42 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 .controller('LoginCtrl', function($scope, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
-	
 	$rootScope.currState = $state;
-    
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
+    
+    $rootScope.IOSDevice = ionic.Platform.isIOS();
+	$rootScope.AndroidDevice = ionic.Platform.isAndroid();
+	$rootScope.WindowsPhone = ionic.Platform.isWindowsPhone();
+    $rootScope.isWebView = ionic.Platform.isWebView();
+    $rootScope.isIPad = ionic.Platform.isIPad();
+    $rootScope.isWindow = true;
+     
+    if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
+        $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
+        $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
+        $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
+        $rootScope.password_sub_header = "password_sub_headerIOS";
+        $rootScope.password_header_content = "password_header_contentIOS";
+        $rootScope.header_image = "header_imageIOS";
+        $rootScope.title_patient = "title_patientIOS";
+        $rootScope.HeaderList = "HeaderListIOS";
+        $rootScope.menuiconIOS = "menuiconIOS";
+        $rootScope.sidemenuHome = "SidemenuHomeIOS";
+        
+     } else if($rootScope.AndroidDevice == true) {
+        $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
+        $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
+        $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
+        $rootScope.password_sub_header = "password_sub_headerAndroid";
+        $rootScope.password_header_content = "password_header_contentAndroid";
+        $rootScope.header_image = "header_imageAndroid";
+        $rootScope.title_patient = "title_patientAndroid";
+        $rootScope.HeaderList = "HeaderListAndroid";
+        $rootScope.sidemenuHome = "SidemenuHomeAndroid";
+      
+    }
+    
     
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
@@ -505,16 +536,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.existingConsultation = data;
 			
                 $rootScope.consultionInformation = data.data.consultationInfo;
-                $rootScope.patientInfomation = data.data.patientInformation;	
-                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+                $rootScope.patientExistInfomation = data.data.patientInformation;	
                 $rootScope.inTakeForm = data.data.intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctorId;
 				$rootScope.appointmentsPatientFirstName = $rootScope.inTakeForm.patientFirstName;
 				$rootScope.appointmentsPatientLastName = $rootScope.inTakeForm.patientLastName;
 				$rootScope.appointmentsPatientDOB = $rootScope.inTakeForm.dateOfBirth;
-				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.gardianName;
+				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.guardianName;
 				$rootScope.appointmentsPatientId = $rootScope.inTakeForm.patientId;
-				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
 				$scope.doGetDoctorDetails();
                
             },
@@ -592,8 +622,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
 							//$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
-                            $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
-                            console.log($rootScope.HealthPlanListCount);
+                           // $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
+                          //  console.log($rootScope.HealthPlanListCount);
                           /*  if($rootScope.primaryPatientId == $rootScope.patientId) {
                             $rootScope.ApplyPlanPatientHealthPlanList.push({
 								'insuranceCompany': 'Add a new health plan'
@@ -863,14 +893,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
     });
 		
-    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian) {		
+    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {		
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
+		$rootScope.BackPage = P_Page;
 		$state.go('tab.consultChargeNoPlan');
 	}
+	$scope.goToNextPage = function() {
+		if ($rootScope.BackPage=="consultCharge") {
+			$state.go('tab.consultCharge');
+		} else if($rootScope.BackPage=="addHealthPlan") {
+			$state.go('tab.addHealthPlan');
+		}
+	}
+	
 	
 	$scope.doGetPatientPaymentProfilesCardDetails = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -1169,9 +1208,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 return;
             }
             $rootScope.cardDisplay = "none;";
-            $rootScope.verifyCardDisplay = "block";
+            $rootScope.verifyCardDisplay = "inherit";
             var params = {
-                userId: $rootScope.primaryPatientId, 
+                EmailId: $rootScope.UserEmail, 
                 BillingAddress: $rootScope.BillingAddress,
                 CardNumber: $rootScope.CardNumber,
                 City: $rootScope.City,
@@ -1188,6 +1227,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
                 success: function (data) {
                     $scope.PostPaymentDetails = data;
+					$rootScope.userCardDetails = data.data.paymentProfileId;
                     
                     if(data.message == "Success")	{
                         console.log(data);
@@ -1198,11 +1238,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                         $rootScope.Validation($scope.ErrorMessage);
                         $state.go('tab.cardDetails');
                     }
-                    $rootScope.cardDisplay = "block;";
+                    $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
                 },
                 error: function (data) {
-                    $rootScope.cardDisplay = "block;";
+                    $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -1312,16 +1352,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								});
 							}	
 						});
-						console.log($rootScope.scheduledList);	
+						//console.log($rootScope.scheduledList);	
 						
 						var d = new Date();
-						var getDateTime = $filter('date')(d, "yyyy-MM-ddTHH:mm:ss");
+						var getDateTime = $filter('date')(d, "yyyy-MM-dd HH:mm:ss");
 						d.setHours(d.getHours() + 12);						
 						$rootScope.nextAppointmentDisplay = 'none';
 						
+						
 						if($rootScope.scheduledList != '')
 						{
-							if((new Date($rootScope.scheduledList[0].scheduledTime).getTime()) <= (new Date(d).getTime())) {
+							var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+						
+							if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
 							}
@@ -1341,19 +1384,35 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
 			//$rootScope.getIndividualScheduleDetails123 = '2015-06-19T02:09:14';
 		var d = new Date();
-		var getDateTime = $filter('date')(d, "yyyy-MM-ddTHH:mm:ss");
+		var getDateTime = $filter('date')(d, "yyyy-MM-dd HH:mm:ss");
 		d.setHours(d.getHours() + 12);
-		$rootScope.patientDisplay1 = 'none';
-		$rootScope.patientDisplay = 'none';
-		$rootScope.patientDisplay2 = 'block';
-				//console.log($rootScope.getIndividualScheduleDetails[0].scheduledTime);
-				//console.log($scope.getTwelveHours);
+		//d.setHours(d.getHours() + 1);
+		//d.setMinutes(d.getMinutes() + 50);
+		
+		
+			
 		if($rootScope.getIndividualScheduleDetails !='') {		
-			//if($rootScope.getIndividualScheduleDetails[0].scheduledTime <= $scope.getTwelveHours) {
-			if((new Date($rootScope.scheduledList[0].scheduledTime).getTime()) <= (new Date(d).getTime())) {
-				console.log('scheduledTime <= getTwelveHours');
-				$rootScope.patientDisplay = 'block';
-				$rootScope.patientDisplay2 = 'none';
+			var getReplaceTime = ($rootScope.getIndividualScheduleDetails[0].scheduledTime).replace("T"," ");			
+			if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {				
+					var d1 = new Date();
+					var getDateTime1 = $filter('date')(d1, "yyyy-MM-dd HH:mm:ss");				
+					d1.setHours(d1.getHours() + 11);
+					d1.setMinutes(d1.getMinutes() + 50);
+						if((new Date(getReplaceTime).getTime()) <= (new Date(d1).getTime())) {	
+							$rootScope.patientDisplay = 'block';
+							$rootScope.patientDisplay2 = 'none';
+							$rootScope.patientDisplay1 = 'none';
+						} else if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {	
+							$rootScope.patientDisplay = 'none';
+							$rootScope.patientDisplay2 = 'block';
+							$rootScope.patientDisplay1 = 'none';
+						}
+				
+			} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+				console.log('scheduledTime <= getTwelveHours');				
+					$rootScope.patientDisplay = 'none';
+					$rootScope.patientDisplay2 = 'block';
+					$rootScope.patientDisplay1 = 'none';
 			}
 		}
 		$state.go('tab.patientCalendar');
@@ -1382,7 +1441,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $scope.ErrorMessage = "Required fields can't be empty";
 			$rootScope.Validation($scope.ErrorMessage);
 		} else {
-			$rootScope.verifyPlanDisplay = "block";
+			$rootScope.verifyPlanDisplay = "inherit";
 			$rootScope.PlanDisplay = "none;";	 		
 			$scope.doPostNewHealthPlan();	
 		}	
@@ -1562,9 +1621,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}else{
 			   // $rootScope.timeNew = 'More than 10 minutes!';
 				$rootScope.timeNew = 'block';
-			   $rootScope.timeNew1 = 'none';
-			   // $rootScope.patientDisplay = 'block';
-			   //$rootScope.patientDisplay1 = 'none';
+			   $rootScope.timeNew1 = 'none';				
 				console.log('More than 10 minutes!');
 			}
 			
@@ -1575,7 +1632,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		   
 		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
 		
-		$rootScope.time = new Date($rootScope.scheduledListDatas.scheduledTime).getTime();
+		var getReplaceTime = ($rootScope.scheduledListDatas.scheduledTime).replace("T"," ");	
+		
+		$rootScope.time = new Date(getReplaceTime).getTime();
 		
 		
 		$timeout(function() {   
@@ -1692,11 +1751,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
     $rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
-   
     $rootScope.limit = 4;
 	$rootScope.Concernlimit = 1;
     $rootScope.checkedPrimary = 0;
@@ -1709,22 +1767,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		
 		var params = { 
-            consultationId: 2440, // consultationId: $rootScope.consultationId,
+            consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
             success: function (data) {
                 $scope.existingConsultation = data;
 			
-                $rootScope.consultionInformation = data.data[0].consultationInfo;
-                $rootScope.patientInfomation = data.data[0].patientInformation;	
-                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
-                $rootScope.inTakeForm = data.data[0].intakeForm;
+                $rootScope.consultionInformation = data.data.consultationInfo;
+               // $rootScope.patientInfomation = data.data.patientInformation;	
+               // $rootScope.PatientImage1 = $rootScope.APICommonURL + $rootScope.patientInfomation1.profileImagePath;
+                //$rootScope.inTakeForm = data.data[0].intakeForm;
+                //Pre Populated //
+                $rootScope.inTakeForm = data.data.intakeForm;
                 $rootScope.inTakeFormCurrentMedication = $rootScope.inTakeForm.takingMedications;
-                $rootScope.inTakeFormChronicCondition = $rootScope.inTakeForm.medicalCondition;
+                $rootScope.inTakeFormChronicConditions = $rootScope.inTakeForm.medicalCondition;
                 $rootScope.inTakeFormPriorSurgeories = $rootScope.inTakeForm.priorSurgeories;
                 $rootScope.inTakeFormMedicationAllergies = $rootScope.inTakeForm.medicationAllergies;
+                //Pre Populated //
+                $state.go('tab.ChronicCondition');
             },
             error: function (data) {
                 $scope.existingConsultation = 'Error getting existing consultation';
+                
+                 /*   $rootScope.inTakeFormChronicConditions = [{$id: "1", Id: 1,displayOrder: 0, value: "Chronic Rinsoft"},{$id: "2", Id: 2,displayOrder: 0, value: "Chronic Software"}];
+                
+                 $rootScope.inTakeFormMedicationAllergies = [{$id: "1", Id: 1,displayOrder: 0, value: "Medication AllergiesRinsoft"},{$id: "2", Id: 2,displayOrder: 0, value: "Medication Allergies Software"}];
+                
+                 $rootScope.inTakeFormCurrentMedication = [{$id: "1", Id: 1,displayOrder: 0, value: "Current Medication Rinsoft"},{$id: "2", Id: 2,displayOrder: 0, value: "Current Medication Software"}];
+                
+                $rootScope.inTakeFormPriorSurgeories = [{$id: "1", Id: 1,displayOrder: 0, value: "Demo PriorSurgry",month: "Mar",year: "2016"},{$id: "2", Id: 2,displayOrder: 0, value: "Test PriorSurgry",month: "Feb",year: "2015"}]; 
+                $state.go('tab.ChronicCondition'); */
+                
 				console.log(data);
             }
         };
@@ -1747,7 +1819,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				} 
 
 			//$rootScope.PreviousDate = yyyy+'-'+mm+'-'+dd; //Previous Date
-            $rootScope.PreviousDate = yyyy+'-'+mm; //Previous Month
+            $rootScope.PreviousDate = yyyy+'-'+mm+'-'+dd; //Previous Month 2015-06-23
 			console.log('dddd',$rootScope.PreviousDate);
     
 	/*Primary concern Start here*/
@@ -1915,8 +1987,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
     
-    $scope.PatientConcernsDirectory = function(){
-        if($rootScope.IsValue == 0 || $rootScope.IsValue == undefined) {
+   $scope.PatientConcernsDirectory = function(ChronicValid){
+        $rootScope.ChronicValid = ChronicValid; // pre populated valid value
+       if($rootScope.IsValue == 0 || $rootScope.IsValue == undefined) {
 			if($rootScope.PrimaryNext == 0) {
 				$scope.ErrorMessage = "Primary Concern Can't be Empty";
 				$rootScope.ConcernsValidation($scope.ErrorMessage);
@@ -2076,7 +2149,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
                         $scope.doGetExistingConsulatation();
-						$state.go('tab.ChronicCondition');
+						//$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
 						$rootScope.serverErrorMessageValidation();
@@ -2090,8 +2163,34 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	/*Chronic Condition Start here*/
 	
+    $scope.BackToChronicCondition = function(ChronicValid) {
+        $rootScope.ChronicValid = ChronicValid;
+        $state.go('tab.ChronicCondition');
+    }
+    
     // Get list of Chronic Condition lists
    $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
+    
+     // Get list of Chronic Condition Pre populated
+    if($rootScope.currState.$current.name=="tab.ChronicCondition") { 
+        if(typeof $rootScope.ChronicValid == 'undefined' ||  $rootScope.ChronicValid == 0) {
+             angular.forEach($rootScope.inTakeFormChronicConditions, function(index, item) { 
+               $scope.chronicConditionList.push({
+                    $id: index.$id,
+                    codeId: index.id,
+                    displayOrder: 0,
+                    text: index.value,
+                    checked: true,
+                });
+
+            }); 
+    $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
+    $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
+            if($rootScope.PatientChronicCondition) {
+                $rootScope.ChronicCountValidCount = $rootScope.PatientChronicCondition.length; 
+            }
+        } 
+    }
 	
    // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
@@ -2200,8 +2299,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     // Get list of Medication Allegies List
     $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-	
     
+     // Get list of Medication Allegies Pre populated
+    $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
+        $rootScope.AllegiesCountValid = AllegiesCountValid;
+    if(typeof $rootScope.AllegiesCountValid == 'undefined' ||  $rootScope.AllegiesCountValid == '') { 
+        angular.forEach($rootScope.inTakeFormMedicationAllergies, function(index, item) { 
+               $scope.MedicationAllegiesList.push({
+                    $id: index.$id,
+                    codeId: index.id,
+                    displayOrder: 0,
+                    text: index.value,
+                    checked: true,
+                });
+
+            }); 
+        
+      $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
+      $rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
+          if($rootScope.patinentMedicationAllergies) {
+              $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length; 
+              $rootScope.AllegiesCountValid = $rootScope.AllegiesCount;
+         } 
+            $state.go('tab.MedicationAllegies');    
+        } else { 
+            $state.go('tab.MedicationAllegies');
+        }
+         
+    }
+	
+    console.log('MedicationAllergies: ' + $rootScope.inTakeFormMedicationAllergies);
     // Open Medication Allegies List popup
 
     $scope.loadMedicationAllegies = function() {
@@ -2305,21 +2432,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       /*Current Medication Start here*/
 	
     // Get list of Current Medication  List
-     
-    $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
-    if($rootScope.currState.$current.name=="tab.CurrentMedication") {  
+       $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
+    
+    // Get list of Current Medication Pre populated
+    $scope.GoToCurrentMedication = function(MedicationCountValid) { 
+        $rootScope.MedicationCountValid = MedicationCountValid;
+if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.MedicationCountValid == '') { 
     angular.forEach($rootScope.inTakeFormCurrentMedication, function(index, item) { 
-        $scope.CurrentMedicationList.push({
-            $id: index.$id,
-            codeId: index.id,
-            displayOrder: 0,
-            text: index.value,
+               $scope.CurrentMedicationList.push({
+                    $id: index.$id,
+                    codeId: index.id,
+                    displayOrder: 0,
+                    text: index.value,
+                    checked: true,
+                });
 
-        });
-    }); 
+            }); 
+        
+    $scope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
+    $rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
+    if($rootScope.patinentCurrentMedication) {
+              $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
+              $rootScope.MedicationCountValid = $rootScope.MedicationCount;
+         } 
+            $state.go('tab.CurrentMedication');    
+        } else { 
+           $state.go('tab.CurrentMedication');
+        }
+         
     }
-      console.log($scope.CurrentMedicationList);
-      console.log($rootScope.inTakeFormCurrentMedication);
+    console.log('CurrentMedication: ' + $rootScope.inTakeFormCurrentMedication);
    // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
         
@@ -2419,6 +2561,28 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
     /* Prior Surgery page START */
+    
+    // Prior Surgery pre-populated
+    $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
+        if(typeof PriorSurgeryValid == 'undefined' || PriorSurgeryValid == '') {
+              angular.forEach($rootScope.inTakeFormPriorSurgeories, function (Priorvalue, index) {
+                  var surgeryMonthName = CustomCalendarMonth.getMonthName(Priorvalue.month);
+                  var PriorSurgeryDate = new Date(Priorvalue.year, surgeryMonthName-1, 01);
+                  var dateString = PriorSurgeryDate;
+                  var surgeryName = Priorvalue.value;
+                  var stockSurgery = SurgeryStocksListService.addSurgery(surgeryName, dateString);
+                 $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
+                 $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
+             });
+               $rootScope.PriorSurgeryValidCount = $rootScope.IsToPriorCount ;
+               $state.go('tab.priorSurgeries');
+         
+        } else { 
+            $state.go('tab.priorSurgeries');
+        }
+    }
+    
+    
 
 	
    $scope.getSurgeryPopup = function() {
@@ -2623,6 +2787,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.checkedMedication = 0; 
         $rootScope.IsValue = "";
         $rootScope.IsToPriorCount = "";
+        $rootScope.ChronicCountValidCount = "";
+        $rootScope.PriorSurgeryValidCount = ""; 
+        $rootScope.AllegiesCountValid = "";
+        $rootScope.MedicationCountValid = ""; 
         SurgeryStocksListService.ClearSurgery();
         $state.go('tab.patientDetail');
         
