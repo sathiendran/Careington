@@ -503,8 +503,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.existingConsultation = data;
 			
                 $rootScope.consultionInformation = data.data.consultationInfo;
-                $rootScope.patientInfomation = data.data.patientInformation;	
-                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+                $rootScope.patientExistInfomation = data.data.patientInformation;	
                 $rootScope.inTakeForm = data.data.intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctorId;
 				$rootScope.appointmentsPatientFirstName = $rootScope.inTakeForm.patientFirstName;
@@ -512,7 +511,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.appointmentsPatientDOB = $rootScope.inTakeForm.dateOfBirth;
 				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.guardianName;
 				$rootScope.appointmentsPatientId = $rootScope.inTakeForm.patientId;
-				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
 				$scope.doGetDoctorDetails();
                
             },
@@ -1320,16 +1319,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								});
 							}	
 						});
-						console.log($rootScope.scheduledList);	
+						//console.log($rootScope.scheduledList);	
 						
 						var d = new Date();
-						var getDateTime = $filter('date')(d, "yyyy-MM-ddTHH:mm:ss");
+						var getDateTime = $filter('date')(d, "yyyy-MM-dd HH:mm:ss");
 						d.setHours(d.getHours() + 12);						
 						$rootScope.nextAppointmentDisplay = 'none';
 						
+						
 						if($rootScope.scheduledList != '')
 						{
-							if((new Date($rootScope.scheduledList[0].scheduledTime).getTime()) <= (new Date(d).getTime())) {
+							var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+						
+							if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
 							}
@@ -1349,19 +1351,35 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
 			//$rootScope.getIndividualScheduleDetails123 = '2015-06-19T02:09:14';
 		var d = new Date();
-		var getDateTime = $filter('date')(d, "yyyy-MM-ddTHH:mm:ss");
+		var getDateTime = $filter('date')(d, "yyyy-MM-dd HH:mm:ss");
 		d.setHours(d.getHours() + 12);
-		$rootScope.patientDisplay1 = 'none';
-		$rootScope.patientDisplay = 'none';
-		$rootScope.patientDisplay2 = 'block';
-				//console.log($rootScope.getIndividualScheduleDetails[0].scheduledTime);
-				//console.log($scope.getTwelveHours);
+		//d.setHours(d.getHours() + 1);
+		//d.setMinutes(d.getMinutes() + 50);
+		
+		
+			
 		if($rootScope.getIndividualScheduleDetails !='') {		
-			//if($rootScope.getIndividualScheduleDetails[0].scheduledTime <= $scope.getTwelveHours) {
-			if((new Date($rootScope.scheduledList[0].scheduledTime).getTime()) <= (new Date(d).getTime())) {
-				console.log('scheduledTime <= getTwelveHours');
-				$rootScope.patientDisplay = 'block';
-				$rootScope.patientDisplay2 = 'none';
+			var getReplaceTime = ($rootScope.getIndividualScheduleDetails[0].scheduledTime).replace("T"," ");			
+			if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {				
+					var d1 = new Date();
+					var getDateTime1 = $filter('date')(d1, "yyyy-MM-dd HH:mm:ss");				
+					d1.setHours(d1.getHours() + 11);
+					d1.setMinutes(d1.getMinutes() + 50);
+						if((new Date(getReplaceTime).getTime()) <= (new Date(d1).getTime())) {	
+							$rootScope.patientDisplay = 'block';
+							$rootScope.patientDisplay2 = 'none';
+							$rootScope.patientDisplay1 = 'none';
+						} else if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {	
+							$rootScope.patientDisplay = 'none';
+							$rootScope.patientDisplay2 = 'block';
+							$rootScope.patientDisplay1 = 'none';
+						}
+				
+			} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+				console.log('scheduledTime <= getTwelveHours');				
+					$rootScope.patientDisplay = 'none';
+					$rootScope.patientDisplay2 = 'block';
+					$rootScope.patientDisplay1 = 'none';
 			}
 		}
 		$state.go('tab.patientCalendar');
@@ -1570,9 +1588,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}else{
 			   // $rootScope.timeNew = 'More than 10 minutes!';
 				$rootScope.timeNew = 'block';
-			   $rootScope.timeNew1 = 'none';
-			   // $rootScope.patientDisplay = 'block';
-			   //$rootScope.patientDisplay1 = 'none';
+			   $rootScope.timeNew1 = 'none';				
 				console.log('More than 10 minutes!');
 			}
 			
@@ -1583,7 +1599,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		   
 		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
 		
-		$rootScope.time = new Date($rootScope.scheduledListDatas.scheduledTime).getTime();
+		var getReplaceTime = ($rootScope.scheduledListDatas.scheduledTime).replace("T"," ");	
+		
+		$rootScope.time = new Date(getReplaceTime).getTime();
 		
 		
 		$timeout(function() {   
@@ -1722,8 +1740,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.existingConsultation = data;
 			
                 $rootScope.consultionInformation = data.data.consultationInfo;
-                $rootScope.patientInfomation = data.data.patientInformation;	
-                $rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientInfomation.profileImagePath;
+               // $rootScope.patientInfomation = data.data.patientInformation;	
+               // $rootScope.PatientImage1 = $rootScope.APICommonURL + $rootScope.patientInfomation1.profileImagePath;
                 //$rootScope.inTakeForm = data.data[0].intakeForm;
                 //Pre Populated //
                 $rootScope.inTakeForm = data.data.intakeForm;
@@ -1768,7 +1786,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				} 
 
 			//$rootScope.PreviousDate = yyyy+'-'+mm+'-'+dd; //Previous Date
-            $rootScope.PreviousDate = yyyy+'-'+mm; //Previous Month
+            $rootScope.PreviousDate = yyyy+'-'+mm+'-'+dd; //Previous Month 2015-06-23
 			console.log('dddd',$rootScope.PreviousDate);
     
 	/*Primary concern Start here*/

@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 	$rootScope.WindowsPhone = ionic.Platform.isWindowsPhone();
     $rootScope.isWebView = ionic.Platform.isWebView();
     $rootScope.isIPad = ionic.Platform.isIPad();
-    //$rootScope.isWindow = true;
+    $rootScope.isWindow = true;
      
     if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         $rootScope.title_patient = "title_patientIOS";
         $rootScope.HeaderList = "HeaderListIOS";
         
-     } else if ($rootScope.AndroidDevice == true) {
+     } else if ($rootScope.AndroidDevice == true || $rootScope.isWindow == true ) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
