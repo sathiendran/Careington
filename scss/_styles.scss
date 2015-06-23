@@ -515,22 +515,6 @@ background: linear-gradient(#A0D18A, #91BE7B);
     line-height: 28px;
     padding-right: 4px;
 }
- /*.title_patient {
-	@include font($fontFamily_semibold, bold, 25px);
-	/*@include font($fontFamily_xBold, bold,30px);
-	color: #fff;
-	text-align: center;
-	left: 0px;
-	right: 0px;	
-   height: 45px;
-    /*line-height: 61px;
-    /*margin: 7px 10px;
-    min-width: 30px;   
-    position: relative;
-    text-align: center;    
-    top: -4px; */
-}
-
 
 .title_patientIOS {
 	@include font($fontFamily_semibold, bold, 25px);
@@ -2346,8 +2330,8 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 .menuiconIOS { position: relative;top: 4px; }
 
 .subHeaderTop { top: 86px; }
-.BackButtonIconIOS { color:#000; margin-top: 15px;}
-.BackButtonIconAndroid { color:#000; margin-top: 15px;}
+#BackButtonIcon { color:#000; margin-top: 15px;}
+
 #WhoNeeds { font-size: 23px;  width: 85%; }
 .BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}
 

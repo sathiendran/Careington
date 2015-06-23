@@ -87,6 +87,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
          $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
         $rootScope.appoinmentStyle = "  margin-top: 6px;";
+        $rootScope.MenuIconBottom = "top: 1px;";
         
          
         
