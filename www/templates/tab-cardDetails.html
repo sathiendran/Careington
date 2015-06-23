@@ -7,19 +7,19 @@
        <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};" >			
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
 			 <div class="Server_Error ErrorMessageDiv" ></div>
-			<div class="buttons" style="display: {{cardDisplay}}" >
+			<div class="buttons" style="width: 50%; display: {{cardDisplay}};" >
 				<a class="button_new icon PlanCancel" ng-href="#/tab/consultChargeNoPlan" >
 					<span>Cancel</span>
 				</a>				
 			</div>
 			
-			<div class="buttons" style="width: 100px; display: {{cardDisplay}}" >			
-				<div ng-if="CardForm.$invalid">
+			<div class="buttons" style="width: 50%; display: {{cardDisplay}};" >			
+				<div style="width: 100%;" ng-if="CardForm.$invalid">
                     <button type="submit" class="button_new icon PlanNext" style="color:#999;"  ng-disabled="CardForm.$invalid" >
                         Next
                     </button>	
                 </div>
-                <div ng-if="!CardForm.$invalid">
+                <div style="width: 100%;" ng-if="!CardForm.$invalid">
                     <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid" >                   Next
                     </button>
                 </div>
