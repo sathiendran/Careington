@@ -56,6 +56,39 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
     
+    $rootScope.IOSDevice = ionic.Platform.isIOS();
+	$rootScope.AndroidDevice = ionic.Platform.isAndroid();
+	$rootScope.WindowsPhone = ionic.Platform.isWindowsPhone();
+    $rootScope.isWebView = ionic.Platform.isWebView();
+    $rootScope.isIPad = ionic.Platform.isIPad();
+    $rootScope.isWindow = true;
+     
+    if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
+        $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
+        $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
+        $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
+        $rootScope.password_sub_header = "password_sub_headerIOS";
+        $rootScope.password_header_content = "password_header_contentIOS";
+        $rootScope.header_image = "header_imageIOS";
+        $rootScope.title_patient = "title_patientIOS";
+        $rootScope.HeaderList = "HeaderListIOS";
+        $rootScope.menuiconIOS = "menuiconIOS";
+        $rootScope.sidemenuHome = "SidemenuHomeIOS";
+        
+     } else if($rootScope.AndroidDevice == true) {
+        $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
+        $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
+        $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
+        $rootScope.password_sub_header = "password_sub_headerAndroid";
+        $rootScope.password_header_content = "password_header_contentAndroid";
+        $rootScope.header_image = "header_imageAndroid";
+        $rootScope.title_patient = "title_patientAndroid";
+        $rootScope.HeaderList = "HeaderListAndroid";
+        $rootScope.sidemenuHome = "SidemenuHomeAndroid";
+      
+    }
+    
+    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -1681,7 +1714,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             consultationId: $rootScope.consultationId,
             success: function (data) {
                 console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
-                 if(data.data[0].consultationInfo.consultationStatus == STARTED_CONSULTATION_STATUS_CODE){
+                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
                       $interval.cancel(consultationStatusCheck);
                       $scope.isPhysicianStartedConsultaion = true;
                       $scope.getConferenceKeys();
@@ -2791,16 +2824,16 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     $scope.muteIconClass = 'ion-ios-mic callIcons';
     $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
-    /*
+    
     $rootScope.videoApiKey = "45217062"; 
       $rootScope.videoSessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
       $rootScope.videoToken = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
+    /*
     
-    */
     apiKey = $rootScope.videoApiKey;
     sessionId = $rootScope.videoSessionId;
     token = $rootScope.videoToken;
-    
+    */
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
 
