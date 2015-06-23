@@ -3,15 +3,15 @@
 	
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
   
-		  <div class="buttons" >
+		  <div class="buttons" style="{{BackBotton}}" >
 				<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/ConsentTreat"  >
 					<span>Back</span>
 				</a>				
 		  </div>
-		  <h1 class="title_patient calendarTitle" >Patient</h1>
+		  <h1 class="{{title_patient}} calendarTitle" >Patient</h1>
 	  
 	  
-		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{PatientCalentarInnerStyle}}" >
 			<div class="calendar_subHeader">
 				<div class="subHeader_image">					
 					<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
@@ -30,7 +30,7 @@
 	
 	
 	
-	<div class="consultCharge_subHeader PatintHeaderFontStyle"  >
+	<div class="consultCharge_subHeader PatintHeaderFontStyle"  style="{{PaymentStyle}}">
 		<span>Payment</span>
 	</div>
 	

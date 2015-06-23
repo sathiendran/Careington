@@ -1,10 +1,10 @@
 <ion-view title="Plan Details">
 	 <form  ng-submit="PlanDetailsValidation()" name="HealthForm"  novalidate>
-		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};" >
+		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};  {{HeadercardDetails}}" >
 		
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
 			<div class="Server_Error ErrorMessageDiv" ></div>
-			<div class="buttons" style="width: 50%; display: {{PlanDisplay}}">
+			<div class="buttons" style="width: 50%; display: {{PlanDisplay}}; {{HeadercardDetailsBack}}">
 				<a class="button_new icon PlanCancel" ng-href="#/tab/addHealthPlan" >
 					<span>Cancel</span>
 				</a>				
@@ -26,12 +26,12 @@
                 
                 			
 		<div style="width: 100%;" ng-if="HealthForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext" style="color:#999;"  ng-disabled="HealthForm.$invalid" >
+                    <button type="submit" class="button_new icon PlanNext" style="color:#999;{{HeadercardDetailsNext}}"  ng-disabled="HealthForm.$invalid" >
                         Next
                     </button>	
          </div>
         <div style="width: 100%;" ng-if="!HealthForm.$invalid">
-            <button type="submit" class="button_new icon PlanNext"   ng-disabled="HealthForm.$invalid" > Next
+            <button type="submit" class="button_new icon PlanNext" style="{{HeadercardDetailsNext}}"   ng-disabled="HealthForm.$invalid" > Next
             </button>
          </div>
                     
@@ -42,11 +42,11 @@
 		
 		<ion-content class="planDetails_content"  >
 			<div>		
-				<div class="healthPlan_text" style="display: {{PlanDisplay}}">
+				<div class="healthPlan_text" style="display: {{PlanDisplay}}; {{PlanDetails}}">
 					Health Plan				
 				</div>			
 				
-				<div class="healthPlan_header" style="display: {{PlanDisplay}}"  >
+				<div class="healthPlan_header" style="display: {{PlanDisplay}}; {{PlanDetails}};"  >
 					<div class="planInformation"  >
 					Enter your health plan information			
 					</div>

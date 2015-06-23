@@ -614,25 +614,19 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	}
 }
 
-.calendarBackIOS {  
-	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:18px;
-	span {
-		margin-top:7px;position: relative;margin-left: -6px;top: -2px;
-	}
-}
-.calendarBackAndroid {   
+
+.calendarBack {   
 	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
 	span { 
 		margin-top:7px;position: relative;margin-left: -6px;top: -2px; 
 	}
 }
 
-.calendarTitleIOS {  
-	font-size: 20px; text-align: center; width: 100%;margin-top: 23px;
-}
-.calendarTitleAndroid {   
+
+.calendarTitle {   
 	font-size: 20px; text-align: center; width: 100%; 
 }
+
 .calendar_subHeader_height { 
 	top: 65px !important;
 	height: auto !important;
@@ -1703,18 +1697,11 @@ text-align:center
 	margin-left: -55px;
 }
 
-.bar-subheaderHomeUserAndroid { 
+.bar-subheaderHomeUser { 
 	/*display: block;*/
 	height: 60%;
     top: 80px;
 	margin-top:-6px;
-}
-
-.bar-subheaderHomeUserIOS { 
-	/*display: block;*/
-	height: 60%;
-    top: 80px;
-	margin-top:0px;
 }
 
 .TitleHomeUser_Sub {
