@@ -5,16 +5,16 @@
 	
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
   
-  <div class="buttons" >
-	<a class="button_new icon ion-chevron-left {{calendarBack}}" ng-href="#/tab/userhome"  >
+  <div class="buttons" style="{{BackBotton}}">
+	<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/userhome"  >
 		<span>Back</span>
 	</a>				
   </div>
-  <h1 class="{{title_patient}} {{calendarTitle}}">Patient</h1>
+  <h1 class="{{title_patient}} calendarTitle">Patient</h1>
   
   
 
-<div class="bar {{barsubheaderHomeUser}} patient_subHeader calendar_subHeader_height" >
+<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patientsubHeaderInnerStyle}}">
 	<div class="calendar_subHeader" >
 				<div class="subHeader_image" >
 					<img src="{{PatientImageSelectUser}}" class="listImgView" />

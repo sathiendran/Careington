@@ -76,7 +76,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.sidemenuHome = "SidemenuHomeIOS";
         $rootScope.calendarTitle = "calendarTitleIOS";
         $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserIOS";
-        $rootScope.calendarBack = "calendarBackIOS";
         $rootScope.patient_subHeaderTopMove = "margin-top: 2px !important;";
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
@@ -87,11 +86,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
          $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
         $rootScope.appoinmentStyle = "  margin-top: 6px;";
-        $rootScope.MenuIconBottom = "top: 1px;";
+        $rootScope.MenuIconBottom = "top: 2px;";
+        $rootScope.patientsubHeaderInnerStyle = "margin-top: 2px;";
+        $rootScope.BackBotton = "top: 7px; position: relative;";
+        $rootScope.Appoinmentwaitcenter = "left: -27px;";
+        $rootScope.PaymentStyle = "top: 6px;position: relative;";
+        $rootScope.HeadercardDetails = "height: 69px;";
+        $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
+        $rootScope.HeadercardDetailsNext = "margin-top: 16px";
+        $rootScope.ReportScreen = " top: 1px; position: relative;";
+         $rootScope.PlanDetails= "margin-top: 33px;";
         
-         
         
-     } else if($rootScope.AndroidDevice == true) {
+      } else if($rootScope.AndroidDevice == true) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
