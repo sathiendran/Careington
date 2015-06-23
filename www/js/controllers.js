@@ -1373,19 +1373,24 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								});
 							}	
 						});
-						//console.log($rootScope.scheduledList);	
-						
-						var d = new Date();
+						//console.log($rootScope.scheduledList);							
+						/*var d = new Date();
 						var getDateTime = $filter('date')(d, "yyyy-MM-dd HH:mm:ss");
-						d.setHours(d.getHours() + 12);						
+						d.setHours(d.getHours() + 12);
+						var CustomCalendar.getLocalTime(*/
+						
 						$rootScope.nextAppointmentDisplay = 'none';
 						
+						var d = new Date();
+						d.setHours(d.getHours() + 12);
+						var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 						
 						if($rootScope.scheduledList != '')
 						{
 							var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
-						
-							if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {
+							var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+							
+							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
 							}
@@ -1405,21 +1410,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
 			//$rootScope.getIndividualScheduleDetails123 = '2015-06-19T02:09:14';
 		var d = new Date();
-		var getDateTime = $filter('date')(d, "yyyy-MM-dd HH:mm:ss");
 		d.setHours(d.getHours() + 12);
-		//d.setHours(d.getHours() + 1);
-		//d.setMinutes(d.getMinutes() + 50);
-		
+		var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 		
 			
 		if($rootScope.getIndividualScheduleDetails !='') {		
 			var getReplaceTime = ($rootScope.getIndividualScheduleDetails[0].scheduledTime).replace("T"," ");			
-			if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {				
-					var d1 = new Date();
-					var getDateTime1 = $filter('date')(d1, "yyyy-MM-dd HH:mm:ss");				
-					d1.setHours(d1.getHours() + 11);
-					d1.setMinutes(d1.getMinutes() + 50);
-						if((new Date(getReplaceTime).getTime()) <= (new Date(d1).getTime())) {	
+			var currentUserHomeDate = currentUserHomeDate.replace("T"," ");			
+			if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {				
+					/*var d1 = new Date(getReplaceTime);
+					d1.setMinutes(d1.getMinutes() - 10);
+					var currentUserDate = CustomCalendar.getLocalTime(d1);			
+					var currentUserDate1 = currentUserDate.replace("T"," ");		
+						if((new Date(currentUserDate1).getTime()) <= (new Date(getReplaceTime).getTime())) {	
 							$rootScope.patientDisplay = 'block';
 							$rootScope.patientDisplay2 = 'none';
 							$rootScope.patientDisplay1 = 'none';
@@ -1427,7 +1430,60 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.patientDisplay = 'none';
 							$rootScope.patientDisplay2 = 'block';
 							$rootScope.patientDisplay1 = 'none';
-						}
+						}*/					
+					
+					
+						$scope.$on('timer-tick', function (event, args){
+							if(args.days == 0) {
+								$rootScope.hourDisplay = 'initial';
+								$rootScope.daysDisplay = 'none';
+								$rootScope.dayDisplay = 'none';		
+							} else if(args.days == 1) {
+								$rootScope.daysDisplay = 'none';	
+								$rootScope.hourDisplay = 'none';
+								$rootScope.dayDisplay = 'initial';		
+							} else if(args.days > 1) {
+								$rootScope.daysDisplay = 'initial';	
+								$rootScope.hourDisplay = 'none';
+								$rootScope.dayDisplay = 'none';	
+							}
+							
+						
+							if(args.millis < 100){
+							   // $rootScope.timeNew = 'Completed';
+								$rootScope.timeNew = 'none';
+							   $rootScope.timeNew1 = 'block';
+							  // $rootScope.patientDisplay = 'none';
+							  // $rootScope.patientDisplay1 = 'block';
+								console.log($rootScope.timeNew);
+							}
+							else if(args.millis < 600000){
+							//$rootScope.timeNew = 'below 10 minutes!';
+							   $rootScope.timeNew = 'none';
+							   $rootScope.timeNew1 = 'block';
+							   $rootScope.patientDisplay = 'none';
+							   $rootScope.patientDisplay1 = 'block';
+								$rootScope.patientDisplay2 = 'none';
+							   console.log('below 10 minutes!');
+							   
+							}else{
+							   // $rootScope.timeNew = 'More than 10 minutes!';
+								$rootScope.timeNew = 'block';
+							   $rootScope.timeNew1 = 'none';
+								$rootScope.patientDisplay = 'block';
+							   $rootScope.patientDisplay1 = 'none';
+								$rootScope.patientDisplay2 = 'none';
+								console.log('More than 10 minutes!');
+							}
+							
+						});
+					$rootScope.time = new Date(getReplaceTime).getTime();
+					
+					 $timeout(function() {   
+						document.getElementsByTagName('timer')[0].start();
+					});
+						
+						
 				
 			} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
 				console.log('scheduledTime <= getTwelveHours');				
