@@ -6,14 +6,15 @@
        
   
 	<div class="buttons" >
-		<button class="button icon button-clear ion-navicon-round" id="BackButtonIcon" style="top: -8px;"
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}}"
 				ng-click="toggleLeft()"></button>
 	</div>
 	
-	<h1 class="title_patient HeaderList intakeTittle">Intake Form</h1>  
+	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Intake Form</h1>  
 
 
-	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+        
 		<div class="calendar_subHeader" >
 			<div class="subHeader_image" >
 				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
@@ -26,6 +27,7 @@
                 <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
 			</div>
 		</div>
+        
 	</div>	
 
    

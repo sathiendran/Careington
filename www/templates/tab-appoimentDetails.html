@@ -8,14 +8,12 @@
 			</a>				
 		</div>-->
 		
-		<div >
+       <div class=" {{calendarBack}}">
 			<site-header1 back="Back"></site-header1>
-		</div>
-		<h1 class="title_patient calendarTitle" >Appt Details</h1>
+		</div>  
+		<h1 class="{{title_patient}} {{calendarTitle}}" >Appt Details</h1>
 	  
-	  
-
-		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+        <div class="bar bar-subheaderHomeUser patient_subHeader {{calendar_subHeader_height}}" style="{{PatientCalentarInnerStyleDetail}}" >
 			<div class="calendar_subHeader">
 				<div class="subHeader_image" >
 					<img src="{{appointmentsPatientImage}}"  class="listImgView"   />
@@ -34,8 +32,8 @@
 
 	<ion-content class="ContentHomeUser">
 		<ion-list>
-			<ion-item class="Appointment_heading" >
-				 <h1 class="title appointment_with">Appointment with</h1>
+			<ion-item class="Appointment_heading" style="{{PatientCalentarInnerStyleAppointmentWith}}">
+				 <h1 class="title appointment_with" style="{{appoinmentStyle}}">Appointment with</h1>
 			</ion-item>
 			
 			<ion-item class="doctor_details">

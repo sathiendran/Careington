@@ -74,6 +74,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.HeaderList = "HeaderListIOS";
         $rootScope.menuiconIOS = "menuiconIOS";
         $rootScope.sidemenuHome = "SidemenuHomeIOS";
+        $rootScope.calendarTitle = "calendarTitleIOS";
+        $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserIOS";
+        $rootScope.calendarBack = "calendarBackIOS";
+        $rootScope.patient_subHeaderTopMove = "margin-top: 2px !important;";
+        $rootScope.intakeTittle = "intakeTittleIOS";
+        $rootScope.MenuInnerStyle = "top: 0px;";
+        $rootScope.IntakeFormInnerStyle = "margin-top: 11px;";
+        $rootScope.PatientCalentarInnerStyle = "margin-top: 2px;";
+        $rootScope.PatientCalentarSchedule = "top: 9px;position: relative;";
+        $rootScope.PatientCalentarScheduleItem = "top: 48px;"
+         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
+        $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
+        $rootScope.appoinmentStyle = "  margin-top: 6px;";
+        
+         
         
      } else if($rootScope.AndroidDevice == true) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -85,7 +100,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.title_patient = "title_patientAndroid";
         $rootScope.HeaderList = "HeaderListAndroid";
         $rootScope.sidemenuHome = "SidemenuHomeAndroid";
-      
+        $rootScope.calendarTitle = "calendarTitleAndroid";
+        $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserAndroid";
+        $rootScope.calendarBack = "calendarBackAndroid";
+        $rootScope.intakeTittle = "intakeTittleAndroid"; 
+        $rootScope.MenuInnerStyle = "top: -8px;"; 
+       
     }
     
     

@@ -515,21 +515,22 @@ background: linear-gradient(#A0D18A, #91BE7B);
     line-height: 28px;
     padding-right: 4px;
 }
-.title_patient {
+ /*.title_patient {
 	@include font($fontFamily_semibold, bold, 25px);
-	/*@include font($fontFamily_xBold, bold,30px);*/
+	/*@include font($fontFamily_xBold, bold,30px);
 	color: #fff;
 	text-align: center;
 	left: 0px;
 	right: 0px;	
-   /* height: 45px;*/
-    /*line-height: 61px;*/
-    /*margin: 7px 10px;*/
+   height: 45px;
+    /*line-height: 61px;
+    /*margin: 7px 10px;
     min-width: 30px;   
     position: relative;
     text-align: center;    
-    top: -4px;
+    top: -4px; */
 }
+
 
 .title_patientIOS {
 	@include font($fontFamily_semibold, bold, 25px);
@@ -544,7 +545,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
     min-width: 30px;   
     position: relative;
     text-align: center;    
-    top: -4px;
+    top: 4px;
     margin-top: 23px;
 }
 
@@ -562,6 +563,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
     position: relative;
     text-align: center;    
     top: -4px;
+   
 }
 
 .patient_subHeader {
@@ -593,6 +595,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			}
 		}
 }
+
+
 .patient_content {
 	margin: 40px 0 0 4%;
 	padding-top: 95px;
@@ -625,14 +629,24 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	}
 }
 
-.calendarBack {
+.calendarBackIOS {
+	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:18px;
+	span {
+		margin-top:7px;position: relative;margin-left: -6px;top: -2px;
+	}
+}
+.calendarBackAndroid {
 	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
 	span {
 		margin-top:7px;position: relative;margin-left: -6px;top: -2px;
 	}
 }
-.calendarTitle {
-	font-size: 20px; text-align: center; width: 100%;
+
+.calendarTitleIOS {
+	font-size: 20px; text-align: center; width: 100%;margin-top: 23px;
+}
+.calendarTitleAndroid {
+	font-size: 20px; text-align: center; width: 100%; 
 }
 .calendar_subHeader_height { 
 	top: 65px !important;
@@ -810,10 +824,15 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .ErrorMessageDiv {
 	position: fixed; z-index:2; top:0px; left:0px;
 }
-.intakeTittle {
+.intakeTittleAndroid {
 	margin-left: -33px;
 	top: -4px !important;
 }
+.intakeTittleIOS {
+	margin-left: -33px;
+	top: 7px !important;
+}
+
 .PatientDetailsHome {
 	padding-left: 7%;
 	span {
@@ -1699,12 +1718,20 @@ text-align:center
 	margin-left: -55px;
 }
 
-.bar-subheaderHomeUser {
+.bar-subheaderHomeUserAndroid {
 	/*display: block;*/
 	height: 60%;
     top: 80px;
 	margin-top:-6px;
 }
+
+.bar-subheaderHomeUserIOS {
+	/*display: block;*/
+	height: 60%;
+    top: 80px;
+	margin-top:0px;
+}
+
 .TitleHomeUser_Sub {
 	@include font($fontFamily_semibold, bold, 25px);
 	position:relative; 
@@ -2319,7 +2346,8 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 .menuiconIOS { position: relative;top: 4px; }
 
 .subHeaderTop { top: 86px; }
-#BackButtonIcon { color:#000; margin-top: 15px;}
+.BackButtonIconIOS { color:#000; margin-top: 15px;}
+.BackButtonIconAndroid { color:#000; margin-top: 15px;}
 #WhoNeeds { font-size: 23px;  width: 85%; }
 .BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}
 
