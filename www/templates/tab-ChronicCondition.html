@@ -25,10 +25,10 @@ w<ion-side-menus> >
 			
 		  
 			
-			 <ion-item ng-repeat="item in PatientChronicCondition">
+			 <ion-item ng-repeat="item in PatientChronicCondition" ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;">
 				<div class="PrimaryConcernList">
 					<p class="intakeNote">{{item.text}}</p>
-					<div> <i class="ion-close-circled delBtn" ng-click="removeChronicCondition($index, item);" ></i></div>
+					<div> <i class="ion-close-circled delBtn"  ></i></div>
 				</div>
 			</ion-item>
             
@@ -51,12 +51,14 @@ w<ion-side-menus> >
 				<a class="button_new icon ion-chevron-left" href="#/tab/patientConcerns" style="cursor: pointer;"><span>Back</span></a>
 			</div>
 			
-			<div class="FooterCenter">
-				<a class="button_new icon" ng-click="clearRootScopeConce()">Cancel</a>
+			<div class="FooterCenter" ng-click="clearRootScopeConce()">
+				<a class="button_new icon" >Cancel</a>
 			</div>
 			   
-			<div class="FooterRight">
-				<a class="button_new icon ion-chevron-right"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)"> <span class="ConcernFooterNext">Next<span> </a>
+			<div class="FooterRight"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
+				<a class="button_new icon ion-chevron-right">  
+                    <span class="ConcernFooterNext">Next<span> 
+                </a>
 			</div>
 					  
 		<div>

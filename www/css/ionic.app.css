@@ -8070,7 +8070,8 @@ body {
 .bar-positiveHomeUser {
   background-color: #A80532;
   background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%);
-  height: auto; }
+  height: auto;
+  border-bottom: none; }
 
 .backButtonDiv {
   float: left;
@@ -8399,7 +8400,7 @@ body {
     left: 10px; }
 
 .consultCharge_content {
-  margin: 133px 0 0 0;
+  margin: 140px 0 0 0;
   padding-bottom: 30px;
   padding-top: 15px; }
 
@@ -8472,7 +8473,7 @@ body {
       font-weight: bold; }
 
 .consultChargeNoPlanContent {
-  margin: 176px 0 0 0;
+  margin: 187px 0 0 0;
   padding-top: 25px; }
   .consultChargeNoPlanContent .consultChargeNoPlanText {
     padding-top: 5px; }
@@ -8968,7 +8969,8 @@ select {
       margin-left: -58px;
       margin-right: 25px;
       position: relative;
-      top: -4px; }
+      top: -4px;
+      left: -3px; }
 
 .concernListHeader {
   height: 55px; }
