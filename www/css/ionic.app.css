@@ -8180,9 +8180,6 @@ body {
   background-color: #A2D28A;
   border-color: #A2D28A; }
 
-.platform-ios .calendarBack {
-  opacity: 2; }
-
 .calendarBack {
   padding-top: 7px;
   font-weight: bold;
@@ -8196,6 +8193,9 @@ body {
     position: relative;
     margin-left: -6px;
     top: -2px; }
+
+.AppointBack {
+  top: 0px; }
 
 .calendarTitle {
   font-size: 20px;
@@ -8952,16 +8952,18 @@ select {
     text-align: center;
     float: left;
     width: 33%;
-    margin-top: 7px; }
+    position: relative;
+    top: 7px; }
     .ConcernsFooter .FooterCenter a {
       /*color:#b8b8b8;*/
       cursor: pointer;
       font-weight: bold; }
   .ConcernsFooter .FooterRight {
     text-align: right;
-    margin-top: 3px;
     float: left;
-    width: 33%; }
+    width: 33%;
+    position: relative;
+    top: 4px; }
     .ConcernsFooter .FooterRight a {
       cursor: pointer;
       font-weight: bold; }
@@ -9171,7 +9173,7 @@ a {
 .ContentList_provider {
   margin: 149px 0 0 0; }
   .ContentList_provider .item {
-    padding: 25px 16px 16px 35px;
+    padding: 29px 16px 16px 35px;
     Color: #4D4D4D;
     font-size: 20px; }
     .ContentList_provider .item .ion-chevron-right.ListLinkHref {

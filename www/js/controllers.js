@@ -103,7 +103,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
         
 
-      } else if($rootScope.AndroidDevice) {
+      } else if($rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -118,7 +118,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.calendarBack = "calendarBackAndroid";
         $rootScope.intakeTittle = "intakeTittleAndroid"; 
         $rootScope.MenuInnerStyle = "top: -8px;"; 
-        $rootScope.MenuIconBottomRecipt = "top: -8px;";
+        $rootScope.MenuIconBottomRecipt = "top: -8px;";		
        
     }
     
@@ -972,9 +972,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						});	
 						$rootScope.enableSubmitpayment = "block";
 						$rootScope.disableSubmitpayment = "none;";
+						 $state.go('tab.submitPayment');
 					} else {
 						$rootScope.enableSubmitpayment = "none";
 						$rootScope.disableSubmitpayment = "block;";						
+						 $state.go('tab.submitPayment');
 					}		
 					
 				},
@@ -1260,12 +1262,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
                 success: function (data) {
                     $scope.PostPaymentDetails = data;
-					$rootScope.userCardDetails = data.data.paymentProfileId;
+					
                     
                     if(data.message == "Success")	{
-                        console.log(data);
-                        $scope.doGetPatientPaymentProfilesCardDetails();
-                        $state.go('tab.submitPayment');
+                       $rootScope.userCardDetails = data.data.paymentProfileId;
+                        $scope.doGetPatientPaymentProfilesCardDetails();                       
                     } else {	
                         $scope.ErrorMessage = data.message;
                         $rootScope.Validation($scope.ErrorMessage);

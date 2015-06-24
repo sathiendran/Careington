@@ -610,11 +610,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 //Patient Calendar page
-.platform-ios { 
-	.calendarBack {
-		opacity: 2;
-	}
-}
+
 
 
 .calendarBack {   
@@ -623,7 +619,9 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		margin-top:7px;position: relative;margin-left: -6px;top: -2px; 
 	}
 }
-
+.AppointBack {
+	top: 0px;
+}
 
 .calendarTitle {   
 	font-size: 20px; text-align: center; width: 100%; 
@@ -1415,7 +1413,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}
 	}
 	.FooterCenter {
-		text-align:center;float:left;width:33%;  margin-top: 7px;
+		text-align:center;float:left;width:33%; position: relative; top: 7px;
 		a {
 			/*color:#b8b8b8;*/
 			cursor:pointer;
@@ -1423,7 +1421,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}
 	}
 	.FooterRight {
-		text-align:right;margin-top: 3px;float:left;width:33%;
+		text-align:right; float:left;width:33%; position: relative; top: 4px;
 		a {
 			cursor:pointer;
 			font-weight: bold;		
@@ -1624,7 +1622,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .ContentList_provider {
 	margin: 149px 0 0 0;
 	.item {
-		  padding: 25px 16px 16px 35px;
+		  padding: 29px 16px 16px 35px;
 		   Color: #4D4D4D;
 		   font-size: 20px;
 		   .ion-chevron-right.ListLinkHref {
