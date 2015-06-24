@@ -24,16 +24,22 @@
 			<div class="healthPlan_header" style="display: {{enableAddHealthPlan}} " >
 				
 				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
-					<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
-						<div class="demo" >
+					<div class="addHealthPlan_header NoPlanAddCardDropdown" >				
+						<div class="demo" ng-if="providerName == ''" >
 							<select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
 								<option value=""><b>Choose Your Health Plan</b></option>
 								<!--<option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber}}" ng-if="SelectedHealthPlans" selected><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber | truncate:15}}</span></b></option> -->
                                 
-                                <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == SelectInsuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber}}</span></b></option>
+                                <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == providerName + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber}}</span></b></option>
                                 
 							<!--	<option ng-if="primaryPatientId == patientId"><b>Add a new health plan</b></option>  -->
 							</select>
+						</div>	
+						<div class="demo" ng-if="providerName != ''" >
+							 <select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;"> 
+								<option value=""><b>Choose Your Health Plan</b></option>
+								<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:18}}</span></b></option>
+							</select>	
 						</div>
 					</div>
 			</div>
@@ -56,9 +62,9 @@
 						<img ng-src="img/add.png" style="width: 30px; height: 30px;" ><span class="addHealthPlan_text" >Add A Health Plan</span>
 					</div>
 				</a>
-			</div>-->
+			</div> style="display:{{disableAddHealthPlan}}" -->
 			
-			<div class="healthPlan_header AddCardNoPlan"  style="display:{{disableAddHealthPlan}}" >
+			<div class="healthPlan_header AddCardNoPlan" style="display:{{disableAddHealthPlan}}" >
 				<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
 				<a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
 					<div class="addHealthPlan_header AddCard" >
@@ -69,7 +75,7 @@
 			
 			
 			
-			<div class="SkipToPayment" style="display:{{disableAddHealthPlan}}">
+			<div class="SkipToPayment" >
 				
 				
 				<!--<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">-->
