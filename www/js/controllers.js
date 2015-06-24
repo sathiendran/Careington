@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
+    if($rootScope.IOSDevice == false || $rootScope.isIPad == false) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
