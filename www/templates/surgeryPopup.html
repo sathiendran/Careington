@@ -4,8 +4,8 @@
     <header class="bar bar-header bar-dark SurgeryHeader">
 		<div class="ErrorMessage ErrorMessageDiv"  ></div>
 		<button type="submit" class="button button-clear SurgeryCancel" ng-click="RemoveSurgeryPopup()" style="margin-top: 6px;">Cancel</button>
-		<h1 class="title SurgeryTitle">Prior Surgeries</h1>
-		<button type="submit" class="button button-clear SurgeryDone" ng-click="closeSurgeryPopup()" style="margin-top: 6px;">Done</button>
+		<h1 class="title SurgeryTitle" style="{{PrimaryConcernPopupTitle}};">Prior Surgeries</h1>
+		<button type="submit" style="{{PrimaryConcernPopupTitle}};" class="button button-clear SurgeryDone" ng-click="closeSurgeryPopup()" style="margin-top: 6px;">Done</button>
 	</header>
    
    <ion-content has-header="true" class="SurgeryContent">
