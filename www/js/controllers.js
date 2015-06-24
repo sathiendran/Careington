@@ -98,7 +98,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
          $rootScope.PlanDetails= "margin-top: 33px;";
         
         
-      } else if($rootScope.AndroidDevice == true) {
+      } else if($rootScope.AndroidDevice == false) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -192,11 +192,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}	
 	
 	
-	$scope.validation = function() {
-		$scope.ErrorMessage = "Oops, something went wrong";
-		$rootScope.Validation($scope.ErrorMessage);
-		
-	};
 	
 
     $('#UserEmail').val($localstorage.get('username'));
@@ -639,7 +634,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'payerId': index.payerId,
 								'policyNumber': index.policyNumber.substring(index.policyNumber.length-4, index.policyNumber.length),
 							});
-						});							
+						});	
+						if(typeof $rootScope.providerName == 'undefined')	
+						{
+							$rootScope.providerName = '';
+						}
 					
 						
 						if($rootScope.currState.$current.name=="tab.consultCharge")
@@ -648,15 +647,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.disableAddHealthPlan = "none;";					
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
-							$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
-							//$rootScope.SelectedHealthPlan = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length - 1];
-                           // $rootScope.HealthPlanListCount = $rootScope.ApplyPlanPatientHealthPlanList[data.data.length];
-                          //  console.log($rootScope.HealthPlanListCount);
-                          /*  if($rootScope.primaryPatientId == $rootScope.patientId) {
-                            $rootScope.ApplyPlanPatientHealthPlanList.push({
-								'insuranceCompany': 'Add a new health plan'
-							});
-                            }  */
+							//$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
 							$state.go('tab.applyPlan');						
 							
 						}
@@ -852,8 +843,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $scope.insuranceCompanyNameId = HealthPlanProviders[1];
         $scope.payerId = HealthPlanProviders[2];
         $scope.ProviderId = HealthPlanProviders[3];
-        $scope.healthPlanID = $scope.ProviderId;
-        console.log($scope.healthPlanID);
+        //$scope.healthPlanID = $scope.ProviderId;
+       // console.log($scope.healthPlanID);
        //End 
 		$rootScope.providerName = HealthPlanProviders[0];
         $rootScope.PolicyNo = $scope.AddHealth.policyNumber;
@@ -895,7 +886,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					$scope.NewHealthPlan = data;
 					if($scope.NewHealthPlan.healthPlanID != '')	{	
-			            $rootScope.HealthPlanIdGet = data.healthPlanID;
+			            $rootScope.healthPlanID = data.healthPlanID;
 						$scope.doGetPatientHealthPlansList();						
 					} else {					
 						$scope.ErrorMessage = data.message;
@@ -1006,17 +997,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                  $rootScope.NewHealth = $scope.Health.addHealthPlan;
                  $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
                  var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-                 var InsuranceCompany = healthInsurance[0];
-                 var PolicyNumber = healthInsurance[1];
-                 var healthPlanIdApply = healthInsurance[2];
-                 $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                 $rootScope.providerName = healthInsurance[0];
+                 $rootScope.PolicyNo = healthInsurance[1];
+                 $rootScope.healthPlanID = healthInsurance[2];
+                 //$rootScope.providerName   =  InsuranceCompany;
                
             
             }  else if(typeof $scope.Health.addHealthPlan == 'undefined') {
-                 var InsuranceCompany = $rootScope.providerName;
-                 var PolicyNumber = $rootScope.PolicyNo;
-                 var healthPlanIdApply = $rootScope.HealthPlanIdGet;
-                 $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                 $rootScope.providerName = $rootScope.providerName;
+                 $rootScope.PolicyNo = $rootScope.PolicyNo;
+                 $rootScope.healthPlanID = $rootScope.healthPlanID;
+                 //$rootScope.providerName   =  InsuranceCompany;
                 
             }
         } 
@@ -1029,31 +1020,38 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                                  $rootScope.NewHealth = $scope.Health.addHealthPlan;
                                  $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
                                  var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-                                 var InsuranceCompany = healthInsurance[0];
-                                 var PolicyNumber = healthInsurance[1];
-                                 var healthPlanIdApply = healthInsurance[2];
-                                 $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                                 $rootScope.providerName = healthInsurance[0];
+                                 $rootScope.PolicyNo = healthInsurance[1];
+                                 $rootScope.healthPlanID = healthInsurance[2];
+                                 //$rootScope.providerName   =  InsuranceCompany;
                        } else {
                         if(typeof $scope.Health.addHealthPlan == 'undefined') {
-                             if(!$rootScope.NewHealth) {
-                             $scope.ErrorMessages = "Select your health plan";
-			                 $rootScope.Validation($scope.ErrorMessages);
-                             }
-                             $rootScope.NewHealth ;
-                             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-                             var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-                             var InsuranceCompany = healthInsurance[0];
-                             var PolicyNumber = healthInsurance[1];
-                             var healthPlanIdApply = healthInsurance[2];
-                             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+							if(typeof $rootScope.providerName == 'undefined' || $rootScope.providerName == '') {
+								 if(!$rootScope.NewHealth) {
+								 $scope.ErrorMessages = "Select your health plan";
+								 $rootScope.Validation($scope.ErrorMessages);
+								 }
+								 $rootScope.NewHealth ;
+								 $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+								 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+								 $rootScope.providerName = healthInsurance[0];
+								 $rootScope.PolicyNo = healthInsurance[1];
+								 $rootScope.healthPlanID = healthInsurance[2];
+								// $rootScope.providerName   =  InsuranceCompany;
+							} else {
+								$rootScope.providerName = $rootScope.providerName;
+								$rootScope.PolicyNo = $rootScope.PolicyNo;
+								$rootScope.healthPlanID = $rootScope.healthPlanID;
+								 //$rootScope.providerName   =  InsuranceCompany;
+							}
                         } else {
                              $rootScope.NewHealth ;
                              $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
                              var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-                             var InsuranceCompany = healthInsurance[0];
-                             var PolicyNumber = healthInsurance[1];
-                             var healthPlanIdApply = healthInsurance[2];
-                             $rootScope.SelectInsuranceCompany   =  InsuranceCompany;
+                            $rootScope.providerName = healthInsurance[0];
+                            $rootScope.PolicyNo = healthInsurance[1];
+                            $rootScope.healthPlanID = healthInsurance[2];
+                            // $rootScope.providerName   =  InsuranceCompany;
                             }
                        }   
          }
@@ -1065,10 +1063,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			 var params = {
                 accessToken: $rootScope.accessToken,
-				insuranceCompanyName: InsuranceCompany,
-				policyNumber: PolicyNumber,
+				insuranceCompanyName: $rootScope.providerName,
+				policyNumber: $rootScope.PolicyNo,
 				consultationId: $rootScope.consultationId,
-				healthPlanId: healthPlanIdApply,
+				healthPlanId: $rootScope.healthPlanID,
 				success: function (data) {
                     if(!data.message) {
 					$scope.ApplyHealthPlan = data;
@@ -1609,12 +1607,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
     
     $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
-        if($rootScope.patientSearchKey != ''){
+        if($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined"){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
-        if($rootScope.patientName == $rootScope.RelatedPatientProfiles[0].patientName){
+		if($rootScope.RelatedPatientProfiles != '') {
+			if($rootScope.patientName == $rootScope.RelatedPatientProfiles[0].patientName){
                 $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
             }
+		}
         }
         
         $rootScope.PatientImageSelectUser = P_img;

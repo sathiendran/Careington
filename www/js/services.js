@@ -382,9 +382,15 @@ angular.module('starter.services', [])
                     }
                 }).
                 error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                       params.error(data);
-                    }
+					if(status == 404) {
+						if (typeof params.error != 'undefined') {
+							params.success(data);
+						}
+					} else {
+						if (typeof params.error != 'undefined') {
+						   params.error(data);
+						}
+					}
                 });
     }
 
