@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice == false || $rootScope.isIPad == false) {
+    if($rootScope.IOSDevice || $rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -99,9 +99,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientTitle= "  margin-top: 26px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";
         $rootScope.PatientConcerns = "margin-top: 90px;";
+        $rootScope.GoogleSearchStyle = "margin-top: 24px;";
         
         
-      } else if($rootScope.AndroidDevice == false) {
+
+      } else if($rootScope.AndroidDevice) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
