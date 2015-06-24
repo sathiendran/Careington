@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice == false || $rootScope.isIPad == false) {
+    if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -235,7 +235,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
     };
 	
-	$rootScope.APICommonURL = 'https://snap-dev.com';
+	$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 	
 	$scope.doGetFacilitiesList = function () {
 		if ($scope.accessToken == 'No Token') {
