@@ -50,12 +50,12 @@
 		</ion-item> -->
         
 	<div class="list surgeryList" style="margin-top: 3px;">
-	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
+	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete" ng-click="removePriorSurgeries($index)">     
 			<div class="surgeryDetails">
 				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
 				<div class="surgeryDate">{{surgery.Date | date: "MMM, yyyy"}}</div>   
 			</div>
-			<div class="surgerydelete"><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
+			<div class="surgerydelete"><i class="ion-close-circled delBtn"></i></div>
 		</a>
 	</div>
     
@@ -73,16 +73,16 @@
 	<ion-footer-bar  class="footer">
 		<div class="ConcernsFooter">
 					 
-		 <div class="FooterLeft" >
-				<a class="button_new icon ion-chevron-left" ng-click="BackToChronicCondition(ChronicCountValidCount);" ><span>Back</span></a>
+		 <div class="FooterLeft" ng-click="BackToChronicCondition(ChronicCountValidCount);">
+				<a class="button_new icon ion-chevron-left"  ><span>Back</span></a>
 			</div>
 			
-			<div class="FooterCenter">
-				<a class="button_new icon" ng-click="clearRootScopeConce()">Cancel</a>
+			<div class="FooterCenter" ng-click="clearRootScopeConce()">
+				<a class="button_new icon" >Cancel</a>
 			</div>
 			   
-			<div class="FooterRight" >
-				<a class="button_new icon ion-chevron-right"   ng-click="GoToMedicationAllegies(AllegiesCountValid)"> <span class="ConcernFooterNext" >Next<span> </a>
+			<div class="FooterRight" ng-click="GoToMedicationAllegies(AllegiesCountValid)">
+				<a class="button_new icon ion-chevron-right"  > <span class="ConcernFooterNext" >Next<span> </a>
 			</div>
 						  
 		<div>

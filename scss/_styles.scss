@@ -506,6 +506,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
     background-image: linear-gradient(0deg, $pinkPipe, $pinkPipe 50%, transparent 50%);
     //border-color: #f0502c;
 	height: auto;
+    border-bottom: none;
 }
 .backButtonDiv {
 	float: left;
@@ -833,7 +834,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .consultCharge_content {
-	margin: 133px 0 0 0;
+	margin: 140px 0 0 0; // 133px;
     padding-bottom: 30px;
     padding-top: 15px;
 }
@@ -900,7 +901,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 //consultChargeNoPlan
 .consultChargeNoPlanContent {
-	margin: 176px 0 0 0; padding-top: 25px;
+	margin: 187px 0 0 0; padding-top: 25px; //176px
 	.consultChargeNoPlanText {
 		padding-top: 5px;
 	}
@@ -1428,7 +1429,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			font-weight: bold;		
 		}
 		.ConcernFooterNext {
-			margin-left: -58px;margin-right: 25px;position: relative;top: -4px;
+			margin-left: -58px;margin-right: 25px;position: relative;top: -4px;left: -3px;
 		}
 	}
 }

@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice == true || $rootScope.isIPad == true) {
+    if($rootScope.IOSDevice == false || $rootScope.isIPad == false) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -76,11 +76,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.sidemenuHome = "SidemenuHomeIOS";
         $rootScope.calendarTitle = "calendarTitleIOS";
         $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserIOS";
-        $rootScope.patient_subHeaderTopMove = "margin-top: 2px !important;";
+        $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
         $rootScope.IntakeFormInnerStyle = "margin-top: 11px;";
-        $rootScope.PatientCalentarInnerStyle = "margin-top: 2px;";
+        $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 9px;position: relative;";
         $rootScope.PatientCalentarScheduleItem = "top: 48px;"
          $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
@@ -96,6 +96,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.HeadercardDetailsNext = "margin-top: 16px";
         $rootScope.ReportScreen = " top: 1px; position: relative;";
          $rootScope.PlanDetails= "margin-top: 33px;";
+        $rootScope.PatientTitle= "  margin-top: 26px;";
+        $rootScope.MenuIconBottomRecipt = "top: -4px;";
+        $rootScope.PatientConcerns = "margin-top: 90px;";
         
         
       } else if($rootScope.AndroidDevice == true) {
@@ -113,6 +116,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.calendarBack = "calendarBackAndroid";
         $rootScope.intakeTittle = "intakeTittleAndroid"; 
         $rootScope.MenuInnerStyle = "top: -8px;"; 
+        $rootScope.MenuIconBottomRecipt = "top: -8px;";
        
     }
     
@@ -302,7 +306,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.logo = hospitalDetailsDatas.logo;
         $rootScope.operatingHours = hospitalDetailsDatas.operatingHours;
         $rootScope.id = hospitalDetailsDatas.id;
-        $rootScope.brandColor = hospitalDetailsDatas.brandColor;       		
+        $rootScope.brandColor = hospitalDetailsDatas.brandColor;
+        $rootScope.backgroundimage = "background-image: none;"; 
 		$state.go('tab.password');
 	}
 	
