@@ -1590,8 +1590,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 			
 		} else {
-		
-			 $rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
+			
+			if(typeof $scope.cardPaymentId.addNewCard != 'undefined') {
+				$rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
+			} else if(typeof $scope.cardPaymentId.addNewCard == 'undefined') {
+				$rootScope.paymentProfileId = $rootScope.userCardDetails
+			} 
 	
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
