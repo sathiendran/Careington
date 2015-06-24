@@ -14,14 +14,15 @@
 			</div>
 			
 			<div class="buttons" style="width: 50%; display: {{cardDisplay}};" >			
-				<div style="width: 100%;" ng-if="CardForm.$invalid">
+
+				<div style="width: 100%; text-align: right;" ng-if="CardForm.$invalid">
                     <button type="submit" class="button_new icon PlanNext" style="color:#999; {{HeadercardDetailsNext}}"   ng-disabled="CardForm.$invalid" >
                         Next
                     </button>	
                 </div>
-                <div style="width: 100%;" ng-if="!CardForm.$invalid">
+                <div style="width: 100%; text-align: right;" ng-if="!CardForm.$invalid">
                     <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid" style="{{HeadercardDetailsNext}}"  >                   Next
-                    </button>
+</button>
                 </div>
                 
                 <!-- <div ng-if="CardForm.$invalid" class="disabled" >

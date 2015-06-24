@@ -480,7 +480,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .button_new {
-    @include font($fontFamily_thin, normal, 19px);
+    @include font($fontFamily_thin, bold, 19px);
  color: #fff;
  border-radius: 7px;
  width: 105px;
@@ -488,6 +488,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
  min-height: 38px;
  margin: 0 0 0 10px;
  text-decoration: none;
+ cursor: pointer;
  
 }
 
@@ -646,23 +647,12 @@ background: linear-gradient(#A0D18A, #91BE7B);
 					font-weight: bold;
 				}
 				.patientLastName {
-					font-weight: normal;
-				}
-				.platform-ios { 
-					.patientLastName {
-						font-weight: 600;
-					}
-					.subHeader_content_age {
-						font-size: 12px;
-						font-weight: 600;
-						span {
-							font-weight: 600;
-						}
-					}
-				}
+					font-weight: bold;
+				}				
 			}
 			.subHeader_content_age {
 				font-size: 12px;
+				font-weight: bold;
 			}
 		}
 	}
@@ -692,7 +682,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .patientCalendar_Content {
 	margin: 128px 0 0 0;
-	top: 37px;
+	top: 39px;
 	.list {
 		.item {
 			padding: 10px;
@@ -903,7 +893,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	.ConsultChargeCancel { 
 		text-align:center;float:left;width:33%;  margin-top: 7px;
 		a {
-			color:#b8b8b8;
+			/*color:#b8b8b8;*/
+			font-weight: bold;
 		}
 	}
 }
@@ -1014,7 +1005,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		}
 	}
 	.PlanNext { 
-		padding-top: 12px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; right: 0px;background: none; border: none;
+		padding-top: 12px; font-weight: bold; cursor: pointer; width: auto; position: relative; right: 10px;background: none; border: none;
 		span {
 			margin-top:-7px; position:absolute;left: 15px;
 		}
@@ -1417,21 +1408,24 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .ConcernsFooter {
 	width:100%;
 	.FooterLeft {
-		float:left; width:33%;		
+		float:left; width:33%;	cursor:pointer;	
 		span {
-			top: -2px;position: relative;
+			top: -2px;position: relative; 	font-weight: bold;
 		}
 	}
 	.FooterCenter {
 		text-align:center;float:left;width:33%;  margin-top: 7px;
 		a {
-			color:#b8b8b8;
+			/*color:#b8b8b8;*/
+			cursor:pointer;
+			font-weight: bold;
 		}
 	}
 	.FooterRight {
 		text-align:right;margin-top: 3px;float:left;width:33%;
 		a {
-			cursor:pointer;			
+			cursor:pointer;
+			font-weight: bold;		
 		}
 		.ConcernFooterNext {
 			margin-left: -58px;margin-right: 25px;position: relative;top: -4px;

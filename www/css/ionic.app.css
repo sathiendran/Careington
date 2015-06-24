@@ -8052,7 +8052,7 @@ body {
 
 .button_new {
   font-family: 'Glober Thin';
-  font-weight: normal;
+  font-weight: bold;
   font-size: 19px;
   color: #fff;
   border-radius: 7px;
@@ -8060,7 +8060,8 @@ body {
   /*line-height: 38px;*/
   min-height: 38px;
   margin: 0 0 0 10px;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 .ion-chevron-left::before {
   color: #fff;
@@ -8217,16 +8218,10 @@ body {
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
         font-weight: bold; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientLastName {
-        font-weight: normal; }
-      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .platform-ios .patientLastName {
-        font-weight: 600; }
-      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .platform-ios .subHeader_content_age {
-        font-size: 12px;
-        font-weight: 600; }
-        .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .platform-ios .subHeader_content_age span {
-          font-weight: 600; }
+        font-weight: bold; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_age {
-      font-size: 12px; }
+      font-size: 12px;
+      font-weight: bold; }
 
 .patientCalendar_subHeader {
   background-color: #e6e6e6;
@@ -8251,7 +8246,7 @@ body {
 
 .patientCalendar_Content {
   margin: 128px 0 0 0;
-  top: 37px; }
+  top: 39px; }
   .patientCalendar_Content .list .item {
     padding: 10px; }
 
@@ -8473,7 +8468,8 @@ body {
     width: 33%;
     margin-top: 7px; }
     .ConsultChargeFooter .ConsultChargeCancel a {
-      color: #b8b8b8; }
+      /*color:#b8b8b8;*/
+      font-weight: bold; }
 
 .consultChargeNoPlanContent {
   margin: 176px 0 0 0;
@@ -8563,9 +8559,9 @@ body {
     padding-top: 12px;
     font-weight: bold;
     cursor: pointer;
-    width: 68px;
-    position: absolute;
-    right: 0px;
+    width: auto;
+    position: relative;
+    right: 10px;
     background: none;
     border: none; }
     .PlanHeader .PlanNext span {
@@ -8945,24 +8941,29 @@ select {
   width: 100%; }
   .ConcernsFooter .FooterLeft {
     float: left;
-    width: 33%; }
+    width: 33%;
+    cursor: pointer; }
     .ConcernsFooter .FooterLeft span {
       top: -2px;
-      position: relative; }
+      position: relative;
+      font-weight: bold; }
   .ConcernsFooter .FooterCenter {
     text-align: center;
     float: left;
     width: 33%;
     margin-top: 7px; }
     .ConcernsFooter .FooterCenter a {
-      color: #b8b8b8; }
+      /*color:#b8b8b8;*/
+      cursor: pointer;
+      font-weight: bold; }
   .ConcernsFooter .FooterRight {
     text-align: right;
     margin-top: 3px;
     float: left;
     width: 33%; }
     .ConcernsFooter .FooterRight a {
-      cursor: pointer; }
+      cursor: pointer;
+      font-weight: bold; }
     .ConcernsFooter .FooterRight .ConcernFooterNext {
       margin-left: -58px;
       margin-right: 25px;
