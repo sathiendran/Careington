@@ -4,7 +4,7 @@
     
     <form ng-submit="doPostPaymentProfileDetails()" name="CardForm" novalidate=''>
     
-       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{HeadercardDetails}}" >			
+       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{backgroundimage}}; {{HeadercardDetails}}" >			
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
 			 <div class="Server_Error ErrorMessageDiv" ></div>
 			<div class="buttons" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
@@ -15,13 +15,13 @@
 			
 			<div class="buttons" style="width: 50%; display: {{cardDisplay}};" >			
 
-				<div style="width: 100%; text-align: right;margin-top: 16px" ng-if="CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext" style="color:#999;"   ng-disabled="CardForm.$invalid" >
+				<div style="width: 100%; text-align: right;margin-top: 16px;" ng-if="CardForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}}"   ng-disabled="CardForm.$invalid" >
                         Next
                     </button>	
                 </div>
                 <div style="width: 100%; text-align: right;margin-top: 16px" ng-if="!CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid"   >                   Next
+                    <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid" style="{{CardDetailsNextButton}}">                   Next
 </button>
                 </div>
                 

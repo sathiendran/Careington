@@ -99,9 +99,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientTitle= "  margin-top: 26px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";
         $rootScope.PatientConcerns = "margin-top: 90px;";
-        $rootScope.GoogleSearchStyle = "margin-top: 24px;";
-        
-        
+        $rootScope.GoogleSearchStyle = "top: 24px;";
+        $rootScope.BackgroundColorGoogle = "background-color: #fff;";
+        $rootScope.GoogleSearchContent = "top: 55px;";
+        $rootScope.NextButtonReduce = "right: 5px;";
+        $rootScope.FootNextButton = "left: -5px;";
+        $rootScope.CardDetailsNextButton = "left: 0px;";
+        $rootScope.PrimaryConcernPopupH = "height: 66px;";
+         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";        
 
       } else if($rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";

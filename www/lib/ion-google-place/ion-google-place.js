@@ -18,8 +18,9 @@ angular.module('ion-google-place', [])
                     var searchEventTimeout = undefined;
 
                     var POPUP_TPL = [
-                        '<div class="ion-google-place-container" style="{{GoogleSearchStyle}}">',
-                            '<div class="bar bar-header item-input-inset">',
+                        '<div class="ion-google-place-container">',
+                            '<div style=" {{BackgroundColorGoogle}}">',
+                             '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
                                 '<label class="item-input-wrapper">',
                                     '<i class="icon ion-ios7-search placeholder-icon"></i>',
                                     '<input class="google-place-search" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter a City or ZIP">',
@@ -27,8 +28,9 @@ angular.module('ion-google-place', [])
                                 '<button class="button button-clear">',
                                     'Cancel',
                                 '</button>',
-                            '</div>',
-                            '<ion-content class="has-header has-header">',
+                             '</div>',
+                           '</div>',
+                            '<ion-content class="has-header has-header" style="{{GoogleSearchContent}}">',
                                 '<ion-list>',
                                     '<ion-item ng-repeat="location in locations" type="item-text-wrap" ng-click="selectLocation(location)">',
                                         '{{location.formatted_address}}',
