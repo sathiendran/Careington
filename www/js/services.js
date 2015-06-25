@@ -218,7 +218,7 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/patients/consultations/' + params.consultationId + '/all',
+            url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/all',
             method: 'GET'   
         };
 
@@ -325,7 +325,7 @@ angular.module('starter.services', [])
             headers: util.getHeaders(params.accessToken),
           //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
 		   // url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
-		    url: apiCommonURL + '/api/v2/reports/consultation/2538?include=',
+		    url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
             method: 'GET'   
         };
 
@@ -346,7 +346,7 @@ angular.module('starter.services', [])
 		var confirmSoapPost = {
 			headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/patients/consultations/' + params.consultationID + '/soapnote',
-		    url: apiCommonURL + '/api/patients/consultations/2538/soapnote',
+		    url: apiCommonURL + '/api/patients/consultations/'+ params.consultationId +'/soapnote',
             method: 'GET'
 		};
 		

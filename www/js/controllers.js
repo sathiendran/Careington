@@ -583,16 +583,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             success: function (data) {
                 $scope.existingConsultation = data;
 			
-                $rootScope.consultionInformation = data.data.consultationInfo;
-                $rootScope.patientExistInfomation = data.data.patientInformation;	
-                $rootScope.inTakeForm = data.data.intakeForm;
-				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctorId;
-				$rootScope.appointmentsPatientFirstName = $rootScope.inTakeForm.patientFirstName;
-				$rootScope.appointmentsPatientLastName = $rootScope.inTakeForm.patientLastName;
-				$rootScope.appointmentsPatientDOB = $rootScope.inTakeForm.dateOfBirth;
-				$rootScope.appointmentsPatientGurdianName = $rootScope.inTakeForm.guardianName;
-				$rootScope.appointmentsPatientId = $rootScope.inTakeForm.patientId;
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+                $rootScope.patientExistInfomation = data.data[0].patientInformation;
+				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
+				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.age;
+				$rootScope.appointmentsPatientGurdianName = $rootScope.patientExistInfomation.guardianName;
+				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				$scope.doGetExistingPatientName();
 				$scope.doGetDoctorDetails();
                
             },
@@ -603,6 +601,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
         LoginService.getExistingConsulatation(params);	
 		
+	}
+	
+	$scope.doGetExistingPatientName = function () {
+		var params = {
+			patientId: $rootScope.appointmentsPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {				
+				$rootScope.appointmentsPatientFirstName = data.data[0].patientName;	
+				$rootScope.appointmentsPatientLastName = data.data[0].lastName;		 
+					
+			},
+			error: function (data) {
+				$rootScope.serverErrorMessageValidation();
+			}
+		};
+		
+		LoginService.getPrimaryPatientLastName(params);
 	}
 	
 	$scope.doGetDoctorDetails = function () {
@@ -933,6 +948,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	 $("#addNewCard").change(function() {
         console.log( $('option:selected', this).text() );
 		if($('option:selected', this).text() == 'Add a new card') {
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
+			console.log($rootScope.submitPayBack);
 			$state.go('tab.cardDetails');
 		}
     });
@@ -952,6 +969,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		} else if($rootScope.BackPage=="addHealthPlan") {
 			$state.go('tab.addHealthPlan');
 		}
+	}
+	
+	$scope.goToPreviosPage = function() {
+		if($rootScope.submitPayBack=="tab.addCard") {
+			$state.go('tab.applyPlan');
+		} else {
+			$state.go('tab.consultCharge');
+		}		
 	}
 	
 	
@@ -1886,12 +1911,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             success: function (data) {
                 $scope.existingConsultation = data;
 			
-                $rootScope.consultionInformation = data.data.consultationInfo;
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
                // $rootScope.patientInfomation = data.data.patientInformation;	
                // $rootScope.PatientImage1 = $rootScope.APICommonURL + $rootScope.patientInfomation1.profileImagePath;
                 //$rootScope.inTakeForm = data.data[0].intakeForm;
                 //Pre Populated //
-                $rootScope.inTakeForm = data.data.intakeForm;
+                $rootScope.inTakeForm = data.data[0].intakeForm;
                 $rootScope.inTakeFormCurrentMedication = $rootScope.inTakeForm.takingMedications;
                 $rootScope.inTakeFormChronicConditions = $rootScope.inTakeForm.medicalCondition;
                 $rootScope.inTakeFormPriorSurgeories = $rootScope.inTakeForm.priorSurgeories;
