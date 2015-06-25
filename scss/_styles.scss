@@ -998,13 +998,13 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .PlanHeader { 
 	height: 58px;
 	.PlanCancel {
-		padding-top: 12px; font-weight: bold; cursor: pointer; width: 68px;
+		padding-top: 10px; font-weight: bold; cursor: pointer; width: 68px;
 		span {
 			margin-top:7px; position:absolute;
 		}
 	}
 	.PlanNext { 
-		padding-top: 12px; font-weight: bold; cursor: pointer; width: auto; position: relative; right: 10px;background: none; border: none;
+		padding-top: 14px; font-weight: bold; cursor: pointer; width: auto; position: relative; right: 10px;background: none; border: none;
 		span {
 			margin-top:-7px; position:absolute;left: 15px;
 		}

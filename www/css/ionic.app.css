@@ -8549,7 +8549,7 @@ body {
 .PlanHeader {
   height: 58px; }
   .PlanHeader .PlanCancel {
-    padding-top: 12px;
+    padding-top: 10px;
     font-weight: bold;
     cursor: pointer;
     width: 68px; }
@@ -8557,7 +8557,7 @@ body {
       margin-top: 7px;
       position: absolute; }
   .PlanHeader .PlanNext {
-    padding-top: 12px;
+    padding-top: 14px;
     font-weight: bold;
     cursor: pointer;
     width: auto;
