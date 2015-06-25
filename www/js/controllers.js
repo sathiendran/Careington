@@ -104,7 +104,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.GoogleSearchContent = "top: 55px;";
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.FootNextButton = "left: -5px;";
-        $rootScope.CardDetailsNextButton = "left: 0px;";
+        $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 14px;";
+        $rootScope.CardDetailsCancelButton = "margin-top: 11px;";
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
          $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";        
