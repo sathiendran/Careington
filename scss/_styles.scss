@@ -99,11 +99,10 @@ body {
 	text-align: center;
 	color: $Flamingo;
 	position:relative;       
-    /*-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;*/
-	
-  box-shadow: 0px 2px 9px #ADABAB;
+    box-shadow:  0px 2px 9px #ADABAB;
+	-moz-box-shadow:  0px 2px 9px #ADABAB;
+	-webkit-box-shadow:  0px 2px 9px #ADABAB;
+
 		after
 		{
 			right:10px; 
@@ -246,8 +245,12 @@ body {
 	width: 105px;
 	line-height: 30px;
 	padding-top: 5px;
-background: linear-gradient(#A0D18A, #91BE7B); 
-	 box-shadow:1px 2px 13px rgba(0,0,0,0.3); 
+	background: linear-gradient(#A0D18A, #91BE7B); 
+	
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	/*-webkit-box-shadow:  1px 2px 13px rgba(0,0,0,0.3); */
    
 	 
 }
@@ -591,6 +594,9 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 .button.button-energized {
 	@include buttons($Sun, bold, 5px, 23px, 35px );	
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .scheduled_appointments_text {
 	/*margin-top: -7px;*/
@@ -601,7 +607,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 
 .button.button-balanced {
-	@include buttons($Feijoa, bold, 5px, 23px, 35px);	
+	@include buttons($Feijoa, bold, 5px, 23px, 35px);
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);	
 }
 
 .button.button-balanced.activated {
@@ -710,6 +719,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	}
 }
 .BackPatientViewDetails {
+	font-weight: normal;
 	text-align: right;
 	font-size: 15px;
 	color:#706A67 !important;
@@ -766,8 +776,10 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .enterAppoinment {
 	background-color:#A2D28A !important;
-	border:none !important;
+	border:none !important;	
 	box-shadow: 0 0px 8px 3px #333 !important;
+	-moz-box-shadow:  0 0px 8px 3px #333 !important;
+	-webkit-box-shadow:  0 0px 8px 3px #333 !important;	
 	background-size: 100% 0 !important;
 	.EnterText {
 		font-size: 25px !important;margin-top: 2px !important; font-weight: bold !important;
@@ -777,6 +789,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
 	background-color:#FFC609 !important;
 	border:none !important;
 	box-shadow: 0 0px 8px 3px #333 !important;
+	-moz-box-shadow:  0 0px 8px 3px #333 !important;
+	-webkit-box-shadow:  0 0px 8px 3px #333 !important;
 	background-size: 100% 0 !important;
 		.availableImage {
 			font-size: 22px;margin-top: 2px;
@@ -839,6 +853,9 @@ background: linear-gradient(#A0D18A, #91BE7B);
 
 .button.button-royal {
 	@include buttons($Nobel, bold, 5px, 23px, 35px );	
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .button.button-royal.activated {
 	background-color : $Nobel;	
@@ -884,16 +901,21 @@ background: linear-gradient(#A0D18A, #91BE7B);
 }
 .ConsultChargeFooter {
 	width:100%;
-	cursor: pointer;
 	.ConsultChargeBack {
 		float:left; width:33%;
-		a { span { top: -2px;position: relative; } }
+		a {
+			padding: 10px 10px 10px 0px;
+			span {
+				top: -2px;position: relative; 
+			} 
+		}
 	}
 	.ConsultChargeCancel { 
 		text-align:center;float:left;width:33%;  margin-top: 7px;
 		a {
 			/*color:#b8b8b8;*/
 			font-weight: bold;
+			padding: 10px;
 		}
 	}
 }
@@ -1110,6 +1132,8 @@ background: linear-gradient(#A0D18A, #91BE7B);
   margin-left: 8px;
   padding: 6px;
   box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+-moz-box-shadow:  inset 0 0 5px rgba(000,000,000, 0.5);
+-webkit-box-shadow:  inset 0 0 5px rgba(000,000,000, 0.5);
   height: 45px;
   font-size: 18px;
   border: none;
@@ -1411,6 +1435,9 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		span {
 			top: -2px;position: relative; 	font-weight: bold;
 		}
+		a {			
+			padding: 10px 10px 10px 0px;
+		}
 	}
 	.FooterCenter {
 		text-align:center;float:left;width:33%; position: relative; top: 7px;
@@ -1418,6 +1445,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 			/*color:#b8b8b8;*/
 			cursor:pointer;
 			font-weight: bold;
+			padding: 10px;
 		}
 	}
 	.FooterRight {
@@ -1425,6 +1453,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 		a {
 			cursor:pointer;
 			font-weight: bold;		
+			padding: 10px 0px 10px 47px;
 		}
 		.ConcernFooterNext {
 			margin-left: -58px;margin-right: 25px;position: relative;top: -4px;left: -3px;
@@ -1462,7 +1491,7 @@ background: linear-gradient(#A0D18A, #91BE7B);
 .SurgeryHeader {
 	height: 50px;
 	.SurgeryCancel { 
-		 top: -1px; font-size: 15px !important; 
+		 top: -2px; font-size: 15px !important; 
 	}
 	.SurgeryTitle {
 		top: 4px !important;  font-size: 16px !important;
@@ -1770,8 +1799,10 @@ color:#706A67;
 }
 
 .appointment_with {
-@include font($fontFamily_semibold, bold, 20px);
-text-align:center;  color:#888;
+	@include font($fontFamily_semibold, bold, 20px);
+	text-align:center;  color:#888;
+	position: relative;
+	top: -2px;
 }
 
 .primary {
