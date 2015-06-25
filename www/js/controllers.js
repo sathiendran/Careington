@@ -93,7 +93,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PaymentStyle = "top: 6px;position: relative;";
         $rootScope.HeadercardDetails = "height: 69px;";
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
-        $rootScope.HeadercardDetailsNext = "margin-top: 16px";
+        $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
+        $rootScope.AddHealthPlanCancel = "margin-top: 6px";
         $rootScope.ReportScreen = " top: 1px; position: relative;";
         $rootScope.PlanDetails= "margin-top: 33px;";
         $rootScope.PatientTitle= "  margin-top: 26px;";
@@ -113,14 +114,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 3px;";
         $rootScope.PriorSurgeryPopupDone = "margin-top: 11px;";
         $rootScope.PriorSurgeryPopupCancel = " margin-top: 11px;";
-        $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
-        $rootScope.ChronicConditionPopupDone = "margin-top: 9px;";
+        $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
+        $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
 
-      } else if($rootScope.AndroidDevice) { 
+        } else if($rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
