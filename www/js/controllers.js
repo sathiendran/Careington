@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -83,7 +83,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 9px;position: relative;";
         $rootScope.PatientCalentarScheduleItem = "top: 48px;"
-         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
+        $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
         $rootScope.appoinmentStyle = "  margin-top: 6px;";
         $rootScope.MenuIconBottom = "top: 2px;";
@@ -95,7 +95,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.HeadercardDetailsNext = "margin-top: 16px";
         $rootScope.ReportScreen = " top: 1px; position: relative;";
-         $rootScope.PlanDetails= "margin-top: 33px;";
+        $rootScope.PlanDetails= "margin-top: 33px;";
         $rootScope.PatientTitle= "  margin-top: 26px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";
         $rootScope.PatientConcerns = "margin-top: 90px;";
