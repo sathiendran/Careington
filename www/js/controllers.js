@@ -117,6 +117,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         }
+        if($rootScope.isIPad) {
+        $rootScope.PrimaryConcernPopupH = "height: 66px;";
+        $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
+        $rootScope.PrimaryConcernPopupDone = "margin-top: 11px;"; 
+        $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
+        $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 6px;";
+        $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
+        $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
+        }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
