@@ -7,7 +7,7 @@
        <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{backgroundimage}}; {{HeadercardDetails}}" >			
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
 			 <div class="Server_Error ErrorMessageDiv" ></div>
-			<div class="buttons" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
+<div class="buttons" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
 				<!--<a class="button_new icon PlanCancel" ng-href="#/tab/consultChargeNoPlan" >
 					<span>Cancel</span>
 				</a>-->
@@ -18,12 +18,12 @@
 			<div class="buttons" style="width: 50%; display: {{cardDisplay}};" >			
 
 				<div style="width: 100%; text-align: right;" ng-if="CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}}"   ng-disabled="CardForm.$invalid" >
+                    <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}};"   ng-disabled="CardForm.$invalid" >
                         Next
                     </button>	
                 </div>
                 <div style="width: 100%; text-align: right;" ng-if="!CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid" style="{{CardDetailsNextButton}}">                   Next
+                    <button type="submit" class="button_new icon PlanNext"  style="{{CardDetailsNextButton}}"  ng-disabled="CardForm.$invalid" >                   Next
 </button>
                 </div>
                 
@@ -87,12 +87,12 @@
                 -->
                 <div class="item item-input">
                     <span class="input-label">Expiration Date</span>
-                    <select id="CardExpireDatesMonth" name="CardExpireDatesMonth" ng-model="getCardDetails.CardExpireDatesMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;" required>
+                    <select id="CardExpireDatesMonth" name="CardExpireDatesMonth" ng-model="getCardDetails.CardExpireDatesMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{CardDetailmonth}}" required>
                           <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
                               <b><span>{{month.text}}</span></b></option> 
                       </select>
                      <span> /{{validCC}}</span>
-                      <select id="CardExpireDatesYear" name="CardExpireDatesYear" ng-model="getCardDetails.CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;" required>
+                      <select id="CardExpireDatesYear" name="CardExpireDatesYear" ng-model="getCardDetails.CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{CardDetailYear}}" required>
                           <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}">
                               <b><span>{{ccYear.text }}</span></b>
                           </option> 

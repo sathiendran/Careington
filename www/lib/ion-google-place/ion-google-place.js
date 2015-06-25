@@ -32,7 +32,7 @@ angular.module('ion-google-place', [])
                            '</div>',
                             '<ion-content class="has-header has-header" style="{{GoogleSearchContent}}">',
                                 '<ion-list>',
-                                    '<ion-item ng-repeat="location in locations" type="item-text-wrap" ng-click="selectLocation(location)">',
+                                    '<ion-item ng-repeat="location in locations" style="{{CountrySearchItem}}" type="item-text-wrap" ng-click="selectLocation(location)">',
                                         '{{location.formatted_address}}',
                                     '</ion-item>',
                                 '</ion-list>',

@@ -104,10 +104,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.GoogleSearchContent = "top: 55px;";
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.FootNextButton = "left: -5px;";
-        $rootScope.CardDetailsNextButton = "left: 0px;";
+        $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
+        if($rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
-         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";        
+        $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
+        $rootScope.PrimaryConcernPopupDone = "margin-top: 16px;"; 
+        $rootScope.PriorSurgeryPopupTitle = "margin-top: 3px;";
+        $rootScope.PriorSurgeryPopupDone = "margin-top: 11px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 11px;";
+        $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
+        $rootScope.ChronicConditionPopupDone = "margin-top: 9px;";
+        }
+        $rootScope.CardDetailYear = "padding-left: 11px;";
+        $rootScope.CardDetailmonth = "padding-right: 11px;";
+        $rootScope.CountrySearchItem = "top: 13px;";
 
       } else if($rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
