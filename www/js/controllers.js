@@ -3339,3 +3339,20 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
         }
     };
 })
+
+.directive('siteHeader2', function () {
+    return {
+        restrict: 'E',
+        template: '<a class="button_new icon PlanCancel" ><span>{{back}}</span></a>',
+        scope: {
+            back: '@back',           
+            icons: '@icons'
+        },
+        link: function(scope, element, attrs) {
+            $(element[0]).on('click', function() {
+                history.back();
+                scope.$apply();
+            });          
+        }
+    };
+})
