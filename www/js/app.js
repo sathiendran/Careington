@@ -13,7 +13,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-
+	if(window.Connection) {
+		if(navigator.connection.type == Connection.NONE) {
+			$ionicPopup.confirm({
+				title: "Internet Disconnected",
+				content: "The internet is disconnected on your device."
+			})
+			.then(function(result) {
+				if(!result) {
+					ionic.Platform.exitApp();
+				}
+			});
+		}
+     }
+	
 	setTimeout(function() {
         navigator.splashscreen.hide();
     }, 3000);
