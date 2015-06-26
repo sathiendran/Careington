@@ -2277,12 +2277,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 	
 	$scope.doPostOnDemandConsultation = function() {
-	
-			$scope.OnDemandConsultationSaveData.concerns.push(
-				{isPrimary: true, description: $rootScope.PrimaryConcernText},
-				{isPrimary: false, description: $rootScope.SecondaryConcernText}
-			);		
-	
+              if($rootScope.PrimaryConcernText != '') {
+               $scope.OnDemandConsultationSaveData.concerns.push(
+                {isPrimary: true, description: $rootScope.PrimaryConcernText}    
+               ); 
+              }
+              if($rootScope.SecondaryConcernText != '') {
+               $scope.OnDemandConsultationSaveData.concerns.push(    
+                {isPrimary: false, description: $rootScope.SecondaryConcernText}
+               ); 
+              }
 	
 				if ($rootScope.accessToken == 'No Token') {
 					alert('No token.  Get token first then attempt operation.');
