@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -106,16 +106,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.FootNextButton = "left: -5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
-        if($rootScope.IOSDevice) {
+        if(!$rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
         $rootScope.PrimaryConcernPopupDone = "margin-top: 16px;"; 
-        $rootScope.PriorSurgeryPopupTitle = "margin-top: 3px;";
-        $rootScope.PriorSurgeryPopupDone = "margin-top: 11px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 11px;";
+        $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
+        $rootScope.PriorSurgeryPopupDone = "  margin-top: 5px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 5px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
+        $rootScope.NextIntakeForm = "margin-left: -21px;";
         }
         if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -131,6 +132,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
+        $rootScope.ConstantTreat = "font-size: 16px;"
 
         } else if(!$rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";

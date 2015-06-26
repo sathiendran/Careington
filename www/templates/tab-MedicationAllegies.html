@@ -21,10 +21,12 @@
 	    </ion-item>
        
 		
-		 <ion-item ng-repeat="item in patinentMedicationAllergies" ng-click="removeMedicationAllegies($index, item);">
+		 <ion-item ng-repeat="item in patinentMedicationAllergies" >
 			<div class="PrimaryConcernList" >
 				<p class="intakeNote">{{item.text}} </p>
-                <div><i class="ion-close-circled delBtn" ></i></div>
+                <div ng-click="removeMedicationAllegies($index, item);">
+                    <i class="ion-close-circled delBtn"></i>
+                </div>
 
 			</div>
 		</ion-item>
@@ -51,7 +53,7 @@
 			<a class="button_new icon" >Cancel</a>
 		</div>
 		   
-		<div class="FooterRight" >
+		<div class="FooterRight" style="{{NextIntakeForm}};" >
 			<a class="button_new icon ion-chevron-right"   ng-click="GoToCurrentMedication(MedicationCountValid)"> <span class="ConcernFooterNext" style="{{FootNextButton}}">Next<span> </a>
 		</div>
 						  

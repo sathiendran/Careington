@@ -753,7 +753,7 @@ this.getCountryDetails = function () {
 
 	  var dob = new Date(dateOfBirth);
         var birthYear = dob.getFullYear();
-        years.push({ value: '', text: 'Year', selected: true});
+        years.push({ value: '', text: 'YYYY', selected: true});
         for(var i = birthYear; i <= yearNow; i++){
             years.push({ value: i, text: i });
         }

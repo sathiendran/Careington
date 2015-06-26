@@ -25,10 +25,12 @@ w<ion-side-menus> >
 			
 		  
 			
-			 <ion-item ng-repeat="item in PatientChronicCondition" ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;">
+			 <ion-item ng-repeat="item in PatientChronicCondition">
 				<div class="PrimaryConcernList">
 					<p class="intakeNote">{{item.text}}</p>
-					<div> <i class="ion-close-circled delBtn"  ></i></div>
+<div  ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;left: 0px;"> 
+                        <i class="ion-close-circled delBtn" style="padding: 0px;" ></i>
+                    </div>
 				</div>
 			</ion-item>
             
@@ -55,7 +57,7 @@ w<ion-side-menus> >
 				<a class="button_new icon" >Cancel</a>
 			</div>
 			   
-			<div class="FooterRight"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
+			<div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
 				<a class="button_new icon ion-chevron-right">  
                     <span class="ConcernFooterNext" style="{{FootNextButton}}">Next<span> 
                 </a>

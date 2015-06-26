@@ -27,10 +27,12 @@
 				</div>
 			</ion-item> -->
 			
-			 <ion-item ng-repeat="item in PatientPrimaryConcern" ng-click="removePrimaryConcern($index, item);" style=" cursor: pointer;">
+			 <ion-item ng-repeat="item in PatientPrimaryConcern">
 				<div class="PrimaryConcernList"  >
 					<p class="intakeNote">{{item.text}} </p>
-					<div> <i class="ion-close-circled delBtn" ></i></div>
+					<div  ng-click="removePrimaryConcern($index, item);"> 
+                         <i class="ion-close-circled delBtn" ></i>
+                     </div>
 				</div>
 			</ion-item>
 			
@@ -57,10 +59,14 @@
 				</div>
 			</ion-item> -->
 		
-		 <ion-item ng-repeat="item in PatientSecondaryConcern" ng-click="removeSecondaryConcern($index, item);" style=" cursor: pointer;">
+		 <ion-item ng-repeat="item in PatientSecondaryConcern">
 				<div class="PrimaryConcernList"  >
 					<p class="intakeNote" >{{item.text}} </p>
-					<div> <i class="ion-close-circled delBtn"></i></div>
+					<div  ng-click="removeSecondaryConcern($index, item);" style="left: 4px;" > 
+                        
+                            <i class="ion-close-circled delBtn" style="padding: 5px;"></i>
+                      
+                    </div>
 				</div>
 			</ion-item>
 		</ion-list>
@@ -80,7 +86,7 @@
 				<a class="button_new icon"  >Cancel</a>
 			</div>
 					   
-			<div class="FooterRight"  ng-click="PatientConcernsDirectory(ChronicCountValidCount)">
+			<div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="PatientConcernsDirectory(ChronicCountValidCount)">
                 <a class="button_new icon ion-chevron-right"> 
 					<span class="ConcernFooterNext" style="{{FootNextButton}}">Next<span>
 				</a>
