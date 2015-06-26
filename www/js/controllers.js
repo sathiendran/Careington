@@ -2891,10 +2891,22 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 			}	
 	  
 	  
-			$scope.ConsultationSaveData.concerns.push(
+			/*$scope.ConsultationSaveData.concerns.push(
 				{isPrimary: true, description: $rootScope.PrimaryConcernText},
 				{isPrimary: false, description: $rootScope.SecondaryConcernText}
-			);	
+			);*/
+
+			if(typeof $rootScope.PrimaryConcernText != 'undefined') {
+				$scope.ConsultationSaveData.concerns.push(
+					{isPrimary: true, description: $rootScope.PrimaryConcernText}				
+				);	
+			}
+			if(typeof $rootScope.SecondaryConcernText != 'undefined') {
+				$scope.ConsultationSaveData.concerns.push(		
+					{isPrimary: false, description: $rootScope.SecondaryConcernText}
+				);	
+			}	
+				
 			
 
 			console.log($rootScope.patientSurgeriess);
