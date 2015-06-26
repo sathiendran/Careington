@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
+    if($rootScope.IOSDevice || $rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -106,7 +106,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.FootNextButton = "left: -5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
-        if(!$rootScope.IOSDevice) {
+        if($rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
@@ -132,7 +132,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
 
-        } else if(!$rootScope.AndroidDevice) { 
+        } else if($rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -2328,7 +2328,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
     
      // Get list of Chronic Condition Pre populated
-    if($rootScope.currState.$current.name=="tab.ChronicCondition") { 
+  /*  if($rootScope.currState.$current.name=="tab.ChronicCondition") { 
         if(typeof $rootScope.ChronicValid == 'undefined' ||  $rootScope.ChronicValid == 0) {
              angular.forEach($rootScope.inTakeFormChronicConditions, function(index, item) { 
                $scope.chronicConditionList.push({
@@ -2347,7 +2347,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         } 
     }
-	
+	*/
+    
    // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
 	
@@ -2457,7 +2458,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
     
      // Get list of Medication Allegies Pre populated
-    $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
+  /*  $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
         $rootScope.AllegiesCountValid = AllegiesCountValid;
     if(typeof $rootScope.AllegiesCountValid == 'undefined' ||  $rootScope.AllegiesCountValid == '') { 
         angular.forEach($rootScope.inTakeFormMedicationAllergies, function(index, item) { 
@@ -2484,7 +2485,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
          
     }
 	
-    console.log('MedicationAllergies: ' + $rootScope.inTakeFormMedicationAllergies);
+    console.log('MedicationAllergies: ' + $rootScope.inTakeFormMedicationAllergies); */
+    $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
+            $state.go('tab.MedicationAllegies');
+        }
     // Open Medication Allegies List popup
 
     $scope.loadMedicationAllegies = function() {
@@ -2591,7 +2595,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
     
     // Get list of Current Medication Pre populated
-    $scope.GoToCurrentMedication = function(MedicationCountValid) { 
+ /*   $scope.GoToCurrentMedication = function(MedicationCountValid) { 
         $rootScope.MedicationCountValid = MedicationCountValid;
 if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.MedicationCountValid == '') { 
     angular.forEach($rootScope.inTakeFormCurrentMedication, function(index, item) { 
@@ -2617,7 +2621,12 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
         }
          
     }
-    console.log('CurrentMedication: ' + $rootScope.inTakeFormCurrentMedication);
+    console.log('CurrentMedication: ' + $rootScope.inTakeFormCurrentMedication); */
+    
+    $scope.GoToCurrentMedication = function(MedicationCountValid) {
+        $state.go('tab.CurrentMedication');
+    }
+    
    // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
         
@@ -2719,7 +2728,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     /* Prior Surgery page START */
     
     // Prior Surgery pre-populated
-    $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
+   /* $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         if(typeof PriorSurgeryValid == 'undefined' || PriorSurgeryValid == '') {
               angular.forEach($rootScope.inTakeFormPriorSurgeories, function (Priorvalue, index) {
                   var surgeryMonthName = CustomCalendarMonth.getMonthName(Priorvalue.month);
@@ -2736,10 +2745,12 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
         } else { 
             $state.go('tab.priorSurgeries');
         }
-    }
+    } */
     
     
-
+$scope.GoTopriorSurgery = function(PriorSurgeryValid) {
+    $state.go('tab.priorSurgeries');
+ }
 	
    $scope.getSurgeryPopup = function() {
 		$rootScope.LastName1 = '';
