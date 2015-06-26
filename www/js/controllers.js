@@ -2277,12 +2277,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 	
 	$scope.doPostOnDemandConsultation = function() {
-	
+		if(typeof $rootScope.PrimaryConcernText != 'undefined') {
 			$scope.OnDemandConsultationSaveData.concerns.push(
-				{isPrimary: true, description: $rootScope.PrimaryConcernText},
+				{isPrimary: true, description: $rootScope.PrimaryConcernText}				
+			);	
+		}
+		if(typeof $rootScope.SecondaryConcernText != 'undefined') {
+			$scope.OnDemandConsultationSaveData.concerns.push(				
 				{isPrimary: false, description: $rootScope.SecondaryConcernText}
-			);		
-	
+			);	
+		}	
 	
 				if ($rootScope.accessToken == 'No Token') {
 					alert('No token.  Get token first then attempt operation.');
