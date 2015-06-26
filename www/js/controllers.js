@@ -63,7 +63,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -106,7 +106,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.FootNextButton = "left: -5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
-        if($rootScope.IOSDevice) {
+        if(!$rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
@@ -2277,6 +2277,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 	
 	$scope.doPostOnDemandConsultation = function() {
+
 		if(typeof $rootScope.PrimaryConcernText != 'undefined') {
 			$scope.OnDemandConsultationSaveData.concerns.push(
 				{isPrimary: true, description: $rootScope.PrimaryConcernText}				
@@ -2287,6 +2288,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				{isPrimary: false, description: $rootScope.SecondaryConcernText}
 			);	
 		}	
+
 	
 				if ($rootScope.accessToken == 'No Token') {
 					alert('No token.  Get token first then attempt operation.');
