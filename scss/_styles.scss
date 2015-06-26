@@ -704,6 +704,9 @@ body {
 	float: left;
 	.appointment_text {
 		font-size: 15px;
+		color: #706A67 !important;
+		position: relative;
+		top: -2px;
 	}
 	.appointment_text_time {
 		font-size: 22px;color:#706A67 !important;
@@ -714,7 +717,7 @@ body {
 	.appointment_time {
 		font-size: 22px;
 		color:#706A67 !important;
-		margin-top: 10px;
+		margin-top: 16px;
 			span {
 				font-size: 18px;
 			}
