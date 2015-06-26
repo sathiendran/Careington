@@ -55,7 +55,9 @@
 				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
 				<div class="surgeryDate">{{surgery.Date | date: "MMM, yyyy"}}</div>   
 			</div>
-			<div class="surgerydelete" ng-click="removePriorSurgeries($index)"><i class="ion-close-circled delBtn"></i></div>
+			<div class="surgerydelete" ng-click="removePriorSurgeries($index)" >
+                <i class="ion-close-circled delBtn"></i>
+           </div>
 		</a>
 	</div>
     
@@ -81,7 +83,7 @@
 				<a class="button_new icon" >Cancel</a>
 			</div>
 			   
-			<div class="FooterRight" ng-click="GoToMedicationAllegies(AllegiesCountValid)">
+			<div class="FooterRight" style="{{NextIntakeForm}};" ng-click="GoToMedicationAllegies(AllegiesCountValid)">
 				<a class="button_new icon ion-chevron-right" > <span class="ConcernFooterNext" style="{{FootNextButton}}" >Next<span> </a>
 			</div>
 						  
