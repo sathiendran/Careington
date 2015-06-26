@@ -23,10 +23,18 @@
 				
 				<div class="healthPlan_text NoPlanText" >Pay Using</div>
 				<div class="addHealthPlan_header NoPlanAddCardDropdown">					
-					<div class="demo" >
+					<!--<div class="demo" >
 						<select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard">
 							<option><b>Choose Your Card</b></option>
 							<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span class="ellipsis">{{PaymentProfile.cardNumber}}</span></b></option>
+							<option><b>Add a new card</b></option>
+						</select>
+					</div>-->
+					<div  class="dropdownContainer">
+						<div class="cardViewport">Choose Your Card</div>							
+						<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
+							<option><b>Choose Your Card</b></option>
+							<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span>{{PaymentProfile.cardNumber}}</span></b></option>
 							<option><b>Add a new card</b></option>
 						</select>
 					</div>

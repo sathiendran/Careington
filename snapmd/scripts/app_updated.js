@@ -1247,7 +1247,7 @@ app.service('apiComService', function ($http) {
 
 		var confirmHealthPlanProviders = {
 			headers: util.getHeaders(params.accessToken),
-            url: 'https://sandbox.connectedcare.md/api/healthplan/provider',
+            url: 'https://sandbox.connectedcare.md/api/v2/healthplan/providers',
             method: 'GET'
 		};
 		

@@ -132,7 +132,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
 
-        } else if($rootScope.AndroidDevice) { 
+        } else if(!$rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -181,6 +181,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$ionicSideMenuDelegate.toggleLeft();
 
 	};
+	
+	
+	$('#addHealthPlan').change(function () {
+        $('div.viewport').text($("option:selected", this).text());
+    }); 
+	$('#Provider').change(function () {
+        $('div.viewport1').text($("option:selected", this).text());
+    }); 
 
     //$rootScope.StateList = StateLists.getStateDetails();
 	$scope.currentYear = new Date().getFullYear()
@@ -657,6 +665,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.doGetPatientHealthPlansList()
 	}
 	
+	if(typeof $rootScope.providerName == 'undefined')	
+		{
+			$rootScope.chooseHealthHide = 'initial';
+			$rootScope.chooseHealthShow = 'none';
+		} else if(typeof $rootScope.providerName != 'undefined') {
+			$rootScope.chooseHealthHide = 'none';
+			$rootScope.chooseHealthShow = 'initial';
+		}	
+	
 	
 	$scope.doGetPatientHealthPlansList = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -686,10 +703,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'policyNumber': index.policyNumber.substring(index.policyNumber.length-4, index.policyNumber.length),
 							});
 						});	
-						if(typeof $rootScope.providerName == 'undefined')	
-						{
-							$rootScope.providerName = '';
-						}
+						
 					
 						
 						if($rootScope.currState.$current.name=="tab.consultCharge")
@@ -962,7 +976,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
 			console.log($rootScope.submitPayBack);
 			$state.go('tab.cardDetails');
-		}
+		} else {
+			$('div.cardViewport').text($("option:selected", this).text());
+        }
     });
 		
     $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {		
@@ -990,7 +1006,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}		
 	}
 	
-	
+	/*
 	$scope.doGetPatientPaymentProfilesCardDetails = function () {
 		if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -1041,7 +1057,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 			LoginService.getPatientPaymentProfile(params);
 		
-	}
+	}*/
 	
 	//Come to this issues : value="? undefined:undefined ?". Use this following Function //
       $timeout(function(){
@@ -1320,7 +1336,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     
                     if(data.message == "Success")	{
                        $rootScope.userCardDetails = data.data.paymentProfileId;
-                        $scope.doGetPatientPaymentProfilesCardDetails();                       
+					   if(typeof $rootScope.CardNumber == 'undefined') {
+							$rootScope.choosePaymentShow = 'none';
+							$rootScope.choosePaymentHide = 'initial';
+					   } else if(typeof $rootScope.CardNumber != 'undefined') {
+							$rootScope.choosePaymentShow = 'initial';
+							$rootScope.choosePaymentHide = 'none';
+							$rootScope.userCardNumber = $rootScope.CardNumber;
+					   }
+                       // $scope.doGetPatientPaymentProfilesCardDetails();  
+						$rootScope.doGetPatientPaymentProfiles();
+						$state.go('tab.submitPayment');					   
                     } else {	
                         $scope.ErrorMessage = data.message;
                         $rootScope.Validation($scope.ErrorMessage);
@@ -2940,6 +2966,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 },
                 error: function (data) {
                    $rootScope.serverErrorMessageValidation();
+				   $rootScope.doGetPatientPaymentProfiles();	
+				   $state.go('tab.consultCharge'); 
                 }
             };
 

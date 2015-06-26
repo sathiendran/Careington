@@ -56,20 +56,22 @@
                     
 					<div class="provider">Select your provider</div>
 					<div class="addHealthPlan_header"  >					
-						<div class="demo ProviderList">	
-							<!--<select id="Provider" ng-model="AddHealth.Provider" required>
+						<!--<div class="demo ProviderList">	                            
+							 <select id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
 								<option value=""><b>Plan Provider</b></option>
-								<option value="Blue Cross"><b>Blue Cross</b></option>
-								<option value="Anthem Cross"><b>Anthem Cross</b></option>
-								<option value="Blue Cross Blue shield"><b>Blue Cross Blue shield</b></option>
-							</select> -->
-                            
-             <select id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
+								<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName | truncate:22}}</b></option>
+							</select>                             
+						</div>-->
+						
+						<div  class="dropdownContainer">
+							<div class="viewport1">Plan Provider</div>	
+							<select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
 								<option value=""><b>Plan Provider</b></option>
-				<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName | truncate:22}}</b></option>
-			</select> 
-                            
+								<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
+							</select>   
 						</div>
+						
+						
 					</div>
 					
 				</div>
