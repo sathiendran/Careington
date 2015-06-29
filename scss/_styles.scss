@@ -724,6 +724,8 @@ body {
 	}
 }
 .BackPatientViewDetails {
+	position: relative;
+	top: 3px;
 	font-weight: normal;
 	text-align: right;
 	font-size: 15px;
@@ -1025,7 +1027,7 @@ body {
 .PlanHeader { 
 	height: 58px;
 	.PlanCancel {
-		padding-top: 10px; font-weight: bold; cursor: pointer; width: 68px;
+		font-weight: bold; cursor: pointer; width: 68px;
 		span {
 			margin-top:17px; position:absolute;
 		}
