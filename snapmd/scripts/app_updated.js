@@ -102,7 +102,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
         $scope.hospitalCodesList = '{ "message": "NO HOSPITAL CODES LIST JSON" }';
 		$scope.patientHealthPlanList = '{ "message": "NO PATIENT HEALTH PLAN JSON" }';
 		$scope.ConsultationSave = '{ "message": "NO CONSULTATION SAVE JSON" }';
-		$scope.ConsultationSaveData = 	{
+		/*$scope.ConsultationSaveData = 	{
 									  "medicationAllergies": [
 										{
 										  "code": 1,
@@ -161,7 +161,28 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 										  "description": "watery eyes"
 										}
 									  ]
-									};
+									};*/
+									
+									{
+$scope.ConsultationSaveData = {
+								"medicationAllergies":
+									[{"code":11,"description":"m123"},
+									{"code":12,"description":"m456"}],
+								"surgeries":
+									[{"description":"ankle","month":4,"year":2015},
+									{"description":"sample string 1","month":4,"year":2015}],
+								"medicalConditions":
+									[{"code":31,"description":"cancer"},
+									{"code":32,"description":"other"}],
+								"medications":
+									[{"code":41,"description":"m789"},
+									{"code":42,"description":"m012"}],
+								"infantData":
+									{"patientAgeUnderOneYear":"T","fullTerm":"T","vaginalBirth":"T","dischargedWithMother":"T","vaccinationsCurrent":"T"},
+								"concerns":
+									[{"isPrimary":true,"description":"runny nose","customCode":{"code":51,"description":"runny nose"}},
+									{"isPrimary":false,"description":"watery eyes","customCode":{"code":52,"description":"watery eyes"}}]
+								}
 		
 		$scope.OnDemandConsultationSaveData ={
 											  "concerns": [
