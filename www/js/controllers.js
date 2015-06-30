@@ -667,11 +667,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.doGetPatientHealthPlansList()
 	}
 	
-	if(typeof $rootScope.providerName == 'undefined')	
+	if(typeof $rootScope.providerName == 'undefined' || $rootScope.providerName == "")	
 		{
 			$rootScope.chooseHealthHide = 'initial';
 			$rootScope.chooseHealthShow = 'none';
-		} else if(typeof $rootScope.providerName != 'undefined') {
+		} else if(typeof $rootScope.providerName != 'undefined' || $rootScope.providerName != "") {
 			$rootScope.chooseHealthHide = 'none';
 			$rootScope.chooseHealthShow = 'initial';
 		}	
@@ -1109,7 +1109,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                         if(typeof $scope.Health.addHealthPlan == 'undefined') {
 							if(typeof $rootScope.providerName == 'undefined' || $rootScope.providerName == '') {
 								 if(!$rootScope.NewHealth) {
-								 $scope.ErrorMessages = "Select your health plan";
+								 $scope.ErrorMessages = "Choose Your Health Plan!";
 								 $rootScope.Validation($scope.ErrorMessages);
 								 }
 								 $rootScope.NewHealth ;
@@ -1161,7 +1161,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $scope.ErrorMessage = "Bad Request Please check it";
 			        $rootScope.Validation($scope.ErrorMessage);
                         } else {
-                    $scope.ErrorMessages = "Select your health plan";
+                    $scope.ErrorMessages = "Choose Your Health Plan!";
 			        $rootScope.Validation($scope.ErrorMessages);
                         }
                     }
@@ -1711,6 +1711,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.searched = false;
             }
 		}
+		$rootScope.providerName = '';
+		$rootScope.PolicyNo = '';
         }
         
         $rootScope.PatientImageSelectUser = P_img;
