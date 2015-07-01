@@ -134,6 +134,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
+        $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
+        $rootScope.LoginContantDiv = " height: 86px;"; 
         }
         if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -149,9 +151,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
-        $rootScope.ConstantTreat = "font-size: 16px;"
+        $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if(!$rootScope.AndroidDevice) { 
+        } else if($rootScope.AndroidDevice) { 
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -1158,7 +1160,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
-			}
+			} else if (typeof $scope.Health.addHealthPlan != 'undefined' ||  $rootScope.NewHealth != '') {
 			 var params = {
                 accessToken: $rootScope.accessToken,
 				insuranceCompanyName: $rootScope.providerName,
@@ -1189,6 +1191,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.serverErrorMessageValidation();
 				}
 			};
+        }
 			
 			LoginService.postApplyHealthPlan(params);
    	   /*	}  else  {
@@ -1730,6 +1733,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		$rootScope.providerName = '';
 		$rootScope.PolicyNo = '';
+        $rootScope.NewHealth = '';    
         }
         
         $rootScope.PatientImageSelectUser = P_img;
