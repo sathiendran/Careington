@@ -163,7 +163,7 @@ app.controller('apiTestController', ['$scope', 'apiComService', function ($scope
 									  ]
 									};*/
 									
-									{
+									
 $scope.ConsultationSaveData = {
 								"medicationAllergies":
 									[{"code":11,"description":"m123"},
@@ -767,7 +767,7 @@ $scope.ConsultationSaveData = {
             apiComService.postConsultationEvent(params);
         }
 		
-    }]);
+    }])
 
 app.service('apiComService', function ($http) {
     /*

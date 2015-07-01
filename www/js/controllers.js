@@ -50,8 +50,25 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('LoginCtrl', function($scope, $window, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
+	/*$rootScope.online = navigator.onLine;	
+	
+	connectionCheck = $interval(function(){
+			if($rootScope.online) { 
+				$scope.networkError();
+			}
+    }, 1000);
+	
+	$scope.networkError = function(){				
+		$interval.cancel(connectionCheck);
+		$rootScope.online = true;
+	return alert('Network Disconnected');		
+	}
+	*/
+	
+	
+	
 	$rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -2048,6 +2065,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    $scope.closePrimaryConcerns = function() {
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});		
 		$rootScope.PrimaryConcernText = $scope.PatientPrimaryConcernItem[0].text;		
+		$rootScope.codeId = $scope.PatientPrimaryConcernItem[0].codeId;		
 		
         //angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
            //$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
@@ -2206,6 +2224,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.closeSecondaryConcerns = function() {
         $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {checked:true});
 		$rootScope.SecondaryConcernText = $scope.PatientSecondaryConcernItem[0].text;
+		$rootScope.SecondarycodeId = $scope.PatientSecondaryConcernItem[0].codeId;
 		
       //  angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
 			if(typeof $rootScope.PatientPrimaryConcern[0] != 'undefined') {
@@ -2305,20 +2324,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					} else if($rootScope.mobilePhone == '') {
 						$scope.OnDemandConsultationSaveData["phone"] = $rootScope.homePhone;
 					}
-					
+
 			
 	
 	$scope.doPostOnDemandConsultation = function() {
 
 		if(typeof $rootScope.PrimaryConcernText != 'undefined') {
-			$scope.OnDemandConsultationSaveData.concerns.push(
-				{isPrimary: true, description: $rootScope.PrimaryConcernText}				
-			);	
+			$scope.primaryFilter = $filter('filter')($scope.OnDemandConsultationSaveData.concerns, {description:$rootScope.PrimaryConcernText});
+			if($scope.primaryFilter.length == 0) {
+				$scope.OnDemandConsultationSaveData.concerns.push(
+					{isPrimary: true, description: $rootScope.PrimaryConcernText}				
+				);	
+			}	
 		}
 		if(typeof $rootScope.SecondaryConcernText != 'undefined') {
-			$scope.OnDemandConsultationSaveData.concerns.push(				
-				{isPrimary: false, description: $rootScope.SecondaryConcernText}
-			);	
+			$scope.sceondFilter = $filter('filter')($scope.OnDemandConsultationSaveData.concerns, {description:$rootScope.SecondaryConcernText});
+			if($scope.sceondFilter.length == 0) {
+				$scope.OnDemandConsultationSaveData.concerns.push(				
+					{isPrimary: false, description: $rootScope.SecondaryConcernText}
+				);	
+			}	
 		}	
 
 	
@@ -2893,21 +2918,26 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 									  "medications": [
 									  ],
 									  "infantData": {
+										"patientAgeUnderOneYear": "",
 										"fullTerm": "",
 										"vaginalBirth": "",
 										"dischargedWithMother": "",
 										"vaccinationsCurrent": ""
 									  },
-									  "concerns": [
-									  ]
+									  "concerns": [													
+										]
 									};
+		
 
       $rootScope.doPutConsultationSave = function () {
 	  
 			for (var i = 0; i < $rootScope.AllegiesCount; i++) {
-				$scope.ConsultationSaveData.medicationAllergies.push(
-					{code: $rootScope.patinentMedicationAllergies[i].codeId, description: $rootScope.patinentMedicationAllergies[i].text}
-				);
+				$scope.medFilter = $filter('filter')($scope.ConsultationSaveData.medicationAllergies, {code:$rootScope.patinentMedicationAllergies[i].codeId});
+				if($scope.medFilter.length == 0) {
+					$scope.ConsultationSaveData.medicationAllergies.push(
+						{code: $rootScope.patinentMedicationAllergies[i].codeId, description: $rootScope.patinentMedicationAllergies[i].text}
+					);
+				}
 			}
 			
 			for (var i = 0; i < $rootScope.IsToPriorCount; i++) {
@@ -2916,21 +2946,30 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				year = date1.getFullYear();
 				month = (date1.getMonth()) + 1;
 				
-				$scope.ConsultationSaveData.surgeries.push(
-					{description: $rootScope.patientSurgeriess[i].Name, month: month, year: year}
-				);
+				$scope.surgeryFilter = $filter('filter')($scope.ConsultationSaveData.surgeries, {description:$rootScope.patientSurgeriess[i].Name});
+				if($scope.surgeryFilter.length == 0) {				
+					$scope.ConsultationSaveData.surgeries.push(
+						{description: $rootScope.patientSurgeriess[i].Name, month: month, year: year}
+					);
+				}	
 			}	
 
 			for (var i = 0; i < $rootScope.ChronicCount; i++) {
-				$scope.ConsultationSaveData.medicalConditions.push(
-					{code: $rootScope.PatientChronicCondition[i].codeId, description: $rootScope.PatientChronicCondition[i].text}
-				);
+				$scope.chronicFilter = $filter('filter')($scope.ConsultationSaveData.medicalConditions, {code:$rootScope.PatientChronicCondition[i].codeId});
+				if($scope.chronicFilter.length == 0) {
+					$scope.ConsultationSaveData.medicalConditions.push(
+						{code: $rootScope.PatientChronicCondition[i].codeId, description: $rootScope.PatientChronicCondition[i].text}
+					);
+				}
 			}	
 
 			for (var i = 0; i < $rootScope.MedicationCount; i++) {
-				$scope.ConsultationSaveData.medications.push(
-					{code: $rootScope.patinentCurrentMedication[i].codeId, description: $rootScope.patinentCurrentMedication[i].text}
-				);
+				$scope.medicationFilter = $filter('filter')($scope.ConsultationSaveData.medications, {code:$rootScope.patinentCurrentMedication[i].codeId});
+				if($scope.medicationFilter.length == 0) {
+					$scope.ConsultationSaveData.medications.push(
+						{code: $rootScope.patinentCurrentMedication[i].codeId, description: $rootScope.patinentCurrentMedication[i].text}
+					);
+				}	
 			}	
 	  
 	  
@@ -2940,20 +2979,26 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			);*/
 
 			if(typeof $rootScope.PrimaryConcernText != 'undefined') {
-				$scope.ConsultationSaveData.concerns.push(
-					{isPrimary: true, description: $rootScope.PrimaryConcernText}				
-				);	
+				$scope.primaryFilter = $filter('filter')($scope.ConsultationSaveData.concerns, {description:$rootScope.PrimaryConcernText});
+				if($scope.primaryFilter.length == 0) {
+					$scope.ConsultationSaveData.concerns.push(
+						{isPrimary: true, description: $rootScope.PrimaryConcernText, customCode: {code: $rootScope.codeId, description: $rootScope.PrimaryConcernText}}				
+					);
+				}
 			}
 			if(typeof $rootScope.SecondaryConcernText != 'undefined') {
-				$scope.ConsultationSaveData.concerns.push(		
-					{isPrimary: false, description: $rootScope.SecondaryConcernText}
-				);	
+				$scope.sceondFilter = $filter('filter')($scope.ConsultationSaveData.concerns, {description:$rootScope.SecondaryConcernText});
+				if($scope.sceondFilter.length == 0) {
+					$scope.ConsultationSaveData.concerns.push(		
+						{isPrimary: false, description: $rootScope.SecondaryConcernText, customCode: {code: $rootScope.SecondarycodeId, description: $rootScope.SecondaryConcernText}}
+					);	
+				}
 			}	
 				
 			
 
-			console.log($rootScope.patientSurgeriess);
-			console.log($rootScope.IsToPriorCount);
+			//console.log($rootScope.patientSurgeriess);
+			//console.log($rootScope.IsToPriorCount);
 		
 		console.log($scope.ConsultationSaveData);
 	  
@@ -2972,8 +3017,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 },
                 error: function (data) {
                    $rootScope.serverErrorMessageValidation();
-				   $rootScope.doGetPatientPaymentProfiles();	
-				   $state.go('tab.consultCharge'); 
+				   //$rootScope.doGetPatientPaymentProfiles();	
+				  // $state.go('tab.consultCharge'); 
                 }
             };
 
