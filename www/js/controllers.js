@@ -173,7 +173,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuIconBottomRecipt = "top: -8px;";		
        
     }
-    
+   //alert($('#googleContainerId').css('display'));
+	if($rootScope.currState.$current.name=="tab.cardDetails"){
+				alert($('#googleContainerId').css('display'));
+				if(($('#googleContainerId').css('display')) == 'block')	{				
+					$("#googleContainerId").css({"display": "none"});	
+					$ionicBackdrop.release(); 
+					alert('bbb123');
+				}		
+               // navigator.app.backHistory(); 
+				//alert('aaa');								
+			}
+   
 
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
@@ -188,8 +199,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 navigator.app.exitApp();
             }else { 
                 // For all other states, the H/W BACK button is enabled
-				$ionicBackdrop.release(); 
-				$(".ion-google-place-container").css({"display": "none"});		
+				//$ionicBackdrop.release(); 
+				//$(".ion-google-place-container").css({"display": "none"});
+				alert('aaa123');		
                 navigator.app.backHistory(); 
             }
         }, 100); 	

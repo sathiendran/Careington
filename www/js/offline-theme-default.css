@@ -344,6 +344,8 @@
   top: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.1);
+  /* background: yellow;
+  color:#fff;*/ 
   text-decoration: none;
   color: inherit;
   line-height: 3.5em;
@@ -360,7 +362,9 @@
   animation: offline-fadeout-and-hide forwards 0.5s 2s;
   -webkit-backface-visibility: hidden;
   background: #d6e9c6;
-  color: #468847;
+  color: #468847; 
+ /*  background: blue;
+  color:#fff;*/
 }
 /* line 55, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down {
@@ -370,13 +374,21 @@
   -o-animation: offline-fadein 0.5s;
   animation: offline-fadein 0.5s;
   -webkit-backface-visibility: hidden;
-  background: #ec8787;
+ /* background: #ec8787;
   color: #551313;
+   background: green;
+  color:#fff;*/ 
+   background: #000;
+  color:#fff;
 }
 /* line 60, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down.offline-ui-connecting, .offline-ui.offline-ui-down.offline-ui-waiting {
-  background: #f8ecad;
-  color: #7c6d1f;
+  /*background: #f8ecad;
+  color: #7c6d1f; 
+  background: red;
+  color:#fff;*/  
+  background: #000;
+  color:#fff;
   padding-right: 3em;
 }
 /* line 65, ../sass/offline-theme-default.sass */
