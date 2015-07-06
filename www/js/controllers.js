@@ -207,7 +207,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	
 	$('#addHealthPlan').change(function () {
-        $('div.viewport').text($("option:selected", this).text());
+		if($('option:selected', this).text() == 'Add a new health plan') {
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
+			$state.go('tab.planDetails');
+		} else {
+			$('div.viewport').text($("option:selected", this).text());
+		}
     }); 
 	$('#Provider').change(function () {
         $('div.viewport1').text($("option:selected", this).text());
