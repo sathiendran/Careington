@@ -53,7 +53,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('LoginCtrl', function($scope, $window, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
 	/*$rootScope.online = navigator.onLine;	
-	
+	$rootScope.IsOnline = navigator.onLine;
+	alert($rootScope.online + 'aaa');
+	alert($rootScope.IsOnline + 'bbb');
 	connectionCheck = $interval(function(){
 			if($rootScope.online) { 
 				$scope.networkError();
@@ -153,7 +155,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if($rootScope.AndroidDevice) { 
+        } else if($rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -172,7 +174,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        
     }
     
-    
+
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -190,7 +192,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$(".ion-google-place-container").css({"display": "none"});		
                 navigator.app.backHistory(); 
             }
-        }, 100); 		
+        }, 100); 	
 		
 	
 /*	var dtNow = new Date("2015-05-26T13:20:04.268Z");	*/
@@ -1470,9 +1472,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						var currentDate = new Date();
 						var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 							
-						//"2015-06-19T09:40:00"2015-06-19T03:00:49
-						//$rootScope.TodayDate = year+'-'+month+'-'+date;
-						
+												
 						angular.forEach($scope.scheduledConsultationList, function(index, item) {							
 							if(getDateFormat < CustomCalendar.getLocalTime(index.scheduledTime)) {
 								 $rootScope.scheduledList.push({							
@@ -1490,11 +1490,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								});
 							}	
 						});
-						//console.log($rootScope.scheduledList);							
-						/*var d = new Date();
-						var getDateTime = $filter('date')(d, "yyyy-MM-dd HH:mm:ss");
-						d.setHours(d.getHours() + 12);
-						var CustomCalendar.getLocalTime(*/
+						
 						
 						$rootScope.nextAppointmentDisplay = 'none';
 						
@@ -1504,8 +1500,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 						if($rootScope.scheduledList != '')
 						{
-							var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
-							var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+							//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+							//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+							var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
+							var currentUserHomeDate = currentUserHomeDate;
 							
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
@@ -1532,23 +1530,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 			
 		if($rootScope.getIndividualScheduleDetails !='') {		
-			var getReplaceTime = ($rootScope.getIndividualScheduleDetails[0].scheduledTime).replace("T"," ");			
-			var currentUserHomeDate = currentUserHomeDate.replace("T"," ");			
+			//var getReplaceTime = ($rootScope.getIndividualScheduleDetails[0].scheduledTime).replace("T"," ");			
+			//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");	
+			var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+			var currentUserHomeDate = currentUserHomeDate;		
 			if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {				
-					/*var d1 = new Date(getReplaceTime);
-					d1.setMinutes(d1.getMinutes() - 10);
-					var currentUserDate = CustomCalendar.getLocalTime(d1);			
-					var currentUserDate1 = currentUserDate.replace("T"," ");		
-						if((new Date(currentUserDate1).getTime()) <= (new Date(getReplaceTime).getTime())) {	
-							$rootScope.patientDisplay = 'block';
-							$rootScope.patientDisplay2 = 'none';
-							$rootScope.patientDisplay1 = 'none';
-						} else if((new Date(getReplaceTime).getTime()) <= (new Date(d).getTime())) {	
-							$rootScope.patientDisplay = 'none';
-							$rootScope.patientDisplay2 = 'block';
-							$rootScope.patientDisplay1 = 'none';
-						}*/					
-					
 					
 						$scope.$on('timer-tick', function (event, args){
 							if(args.days == 0) {
@@ -1835,7 +1821,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		   
 		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
 		
-		var getReplaceTime = ($rootScope.scheduledListDatas.scheduledTime).replace("T"," ");	
+		//var getReplaceTime = ($rootScope.scheduledListDatas.scheduledTime).replace("T"," ");	
+		var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
 		
 		$rootScope.time = new Date(getReplaceTime).getTime();
 		
