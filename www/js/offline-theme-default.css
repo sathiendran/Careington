@@ -12,7 +12,8 @@
   background: white;
   z-index: 2000;
   margin: auto;
-  top: 0;
+  /*top: 0;*/
+  bottom: 0;
   left: 0;
   right: 0;
 }
@@ -317,8 +318,9 @@
   border-radius: 4px;
   font-family: "Helvetica Neue", sans-serif;
   padding: 1em;
-  top: 1em;
+  /*top: 1em;*/
   width: 38em;
+  bottom: 85px;
   max-width: 100%;
   overflow: hidden;
 }
@@ -330,7 +332,8 @@
     -ms-border-radius: 0;
     -o-border-radius: 0;
     border-radius: 0;
-    top: 0;
+   /* top: 0;*/
+  
   }
 }
 /* line 34, ../sass/offline-theme-default.sass */
@@ -338,7 +341,7 @@
   line-height: 1.25em;
 }
 /* line 37, ../sass/offline-theme-default.sass */
-.offline-ui .offline-ui-retry {
+.offline-ui .offline-ui-retry { 
   position: absolute;
   right: 3em;
   top: 0;
@@ -351,7 +354,7 @@
   line-height: 3.5em;
   height: 3.5em;
   margin: auto;
-  padding: 0 1em;
+  /*padding: 0 1em;*/
 }
 /* line 50, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-up {

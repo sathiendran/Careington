@@ -173,17 +173,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuIconBottomRecipt = "top: -8px;";		
        
     }
-   //alert($('#googleContainerId').css('display'));
-	if($rootScope.currState.$current.name=="tab.cardDetails"){
-				alert($('#googleContainerId').css('display'));
-				if(($('#googleContainerId').css('display')) == 'block')	{				
-					$("#googleContainerId").css({"display": "none"});	
-					$ionicBackdrop.release(); 
-					alert('bbb123');
-				}		
-               // navigator.app.backHistory(); 
-				//alert('aaa');								
-			}
+   
    
 
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
@@ -197,11 +187,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 // Do nothing here to disable H/W back button.
             }else if($rootScope.currState.$current.name=="tab.login"){
                 navigator.app.exitApp();
-            }else { 
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+				//alert($('#googleContainerId').css('display'));
+				//if(($('#googleContainerId').css('display')) == 'block')	{
+					$ionicBackdrop.release();
+					$("#googleContainerId").css({"display": "none"});						 
+					//alert('bbb123');
+				//}		
+               // navigator.app.backHistory(); 
+				//alert('aaa');								
+			}else { 
                 // For all other states, the H/W BACK button is enabled
 				//$ionicBackdrop.release(); 
 				//$(".ion-google-place-container").css({"display": "none"});
-				alert('aaa123');		
                 navigator.app.backHistory(); 
             }
         }, 100); 	
