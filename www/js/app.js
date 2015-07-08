@@ -25,12 +25,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		  // org.apache.cordova.statusbar required
 		  StatusBar.styleDefault();
 		}
-		if(window.Connection) {
-			if(navigator.connection.type == Connection.NONE) {
-            /*$ionicPopup.confirm({
-                title: "Internet Disconnected",
-                content: "The internet is disconnected on your device."
-            })*/
+	/*	if(window.Connection) {
+			if(navigator.connection.type == Connection.NONE) {            
             alert("The internet is disconnected on your device.")
             .then(function(result) {
                 if(!result) {
@@ -39,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             });
 			} 
 		}
-		
+	*/	
 		
   });
 })

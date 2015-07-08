@@ -12,8 +12,8 @@
   background: white;
   z-index: 2000;
   margin: auto;
-  /*top: 0;*/
-  bottom: 0;
+  top: 0;
+  /*bottom: 0;*/
   left: 0;
   right: 0;
 }
@@ -320,7 +320,7 @@
   padding: 1em;
   /*top: 1em;*/
   width: 38em;
-  bottom: 85px;
+  /*bottom: 85px;*/
   max-width: 100%;
   overflow: hidden;
 }
@@ -332,7 +332,7 @@
     -ms-border-radius: 0;
     -o-border-radius: 0;
     border-radius: 0;
-   /* top: 0;*/
+    top: 0;
   
   }
 }
@@ -354,6 +354,7 @@
   line-height: 3.5em;
   height: 3.5em;
   margin: auto;
+   opacity: 0.85;
   /*padding: 0 1em;*/
 }
 /* line 50, ../sass/offline-theme-default.sass */
@@ -366,6 +367,7 @@
   -webkit-backface-visibility: hidden;
   background: #d6e9c6;
   color: #468847; 
+   opacity: 0.85;
  /*  background: blue;
   color:#fff;*/
 }
@@ -383,6 +385,7 @@
   color:#fff;*/ 
    background: #000;
   color:#fff;
+   opacity: 0.85;
 }
 /* line 60, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down.offline-ui-connecting, .offline-ui.offline-ui-down.offline-ui-waiting {
@@ -393,6 +396,7 @@
   background: #000;
   color:#fff;
   padding-right: 3em;
+   opacity: 0.85;
 }
 /* line 65, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down.offline-ui-connecting:after, .offline-ui.offline-ui-down.offline-ui-waiting:after {
@@ -419,7 +423,8 @@
   border: 2px solid rgba(0, 0, 0, 0);
   border-top-color: #7c6d1f;
   border-left-color: #7c6d1f;
-  opacity: 0.7;
+  /*opacity: 0.7;*/
+  opacity: 0.85;
 }
 /* line 82, ../sass/offline-theme-default.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting {

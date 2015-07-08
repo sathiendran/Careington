@@ -465,7 +465,7 @@ body {
 	float: left; margin: 8px 10px 0 0;
 }
 .pass_reset_content {
-	text-align: justify; font-size: 17px;
+	text-align: justify; font-size: 19px; color: #4D4D4D;
 }
 
 .login {
@@ -745,10 +745,10 @@ body {
 	a {
 		margin: -4px;
 		.doctorName {
-			top: -20px;margin-left: 3px;
+			top: -25px;margin-left: 3px;
 		}
 		.doctorArrow {
-			color:#888;margin-top: 22px;
+			color:#888;margin-top: 18px;
 		}
 	}
 }
@@ -852,9 +852,9 @@ body {
 }
 
 .consultCharge_content {
-	margin: 140px 0 0 0; // 133px;
+	margin: 133px 0 0 0; // 133px;
     padding-bottom: 30px;
-    padding-top: 15px;
+    padding-top: 22px;
 }
 
 .button.button-royal {
@@ -927,7 +927,7 @@ body {
 }
 //consultChargeNoPlan
 .consultChargeNoPlanContent {
-	margin: 187px 0 0 0; padding-top: 25px; //176px
+	margin: 177px 0 0 0; padding-top: 35px; //176px
 	.consultChargeNoPlanText {
 		padding-top: 5px;
 	}
@@ -1644,7 +1644,7 @@ body {
 .ContentList_provider {
 	margin: 149px 0 0 0;
 	.item {
-		  padding: 29px 16px 16px 35px;
+		  padding: 36px 16px 27px 35px;
 		   Color: #4D4D4D;
 		   font-size: 20px;
 		   .ion-chevron-right.ListLinkHref {
@@ -2281,12 +2281,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
 		top: 1px;padding:11px;height: 104px;
 		.UserhmePatientDetails {
 			 margin-left: 0px;
-			 margin-top: -5px !important;
+			 margin-top: -2px !important;
 			div, p {
 				width:67%;
 			}
 			.UserHomeIcon {
-				color:#888;margin-top: -34px;
+				color:#888;margin-top: -37px;
 			}
 		}
 	}
@@ -2316,7 +2316,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	}
 }
 .DependentList {
-	padding:11px;  top: -2px;  height: 80px;
+	padding:11px;  top: -2px;  height: 104px;
 	a {
 		cursor: pointer;
 		p {
@@ -2439,7 +2439,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             font-size: 18px;
             padding: 6px;
 			left: 18px;
-			top: 12px;
+			top: 10px;
 			font-weight: bold;
         }
 		.viewport1 {
@@ -2457,7 +2457,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             font-size: 18px;
             padding: 6px;
 			left: 25px;
-			top: 12px;
+			top: 10px;
 			font-weight: bold;
 			text-align: left;
         }
@@ -2477,7 +2477,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             font-size: 18px;
             padding: 6px;
 			left: 18px;
-			top: 12px;
+			top: 10px;
 			font-weight: bold;
         }
 

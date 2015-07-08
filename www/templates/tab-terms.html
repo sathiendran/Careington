@@ -1,22 +1,29 @@
-<ion-view title="Terms">
-	<ion-header-bar align-title="left" class="bar-positiveLess" >
+<ion-view  title="Home">
+			<!-- Start Header -->
+	<ion-header-bar align-title="left" class="bar-positiveLess">
 		  
 		<div class="bar bar-headerLess">
 		  
 		</div>
 		
-		<div class="bar bar-subheaderLess">
-		  <h2 class="head_titleLess">Connected Care</h2>
+		<div class="bar {{SubHeaderLessDevice}}">
+		  <h2 class="{{HeadTitleLessDevice}}">Connected Care</h2>
 		</div>
 		
-		
+		<div class="bar bar-TitleLess">
+		  <h2 class="TitleLess">Terms & Conditions</h2>
+		</div>		  
 	</ion-header-bar>
-	
-	<ion-content class="login_content">
-		<p>Terms & Conditions</p>
-	</ion-content>
-	
+			<!-- End Header -->
 			
+			<!-- Start Content -->
+		<ion-content class="ContentList_provider" style="padding-top: 50px; text-indent: 50px; font-size: 19px; color: #4D4D4D;" >
+			<p>Terms & Conditions</p>
+		</ion-content>
+
+			<!-- End Content -->
+	
+	
 			<!-- Start Footer -->
 			<ion-footer-bar align-title="left" class="footer">
 					  <div class="buttons">
@@ -25,4 +32,6 @@
 					  </div>
 			</ion-footer-bar>	
 			<!-- End Footer -->
+
 </ion-view>
+
