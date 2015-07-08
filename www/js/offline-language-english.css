@@ -20,82 +20,98 @@
 }
 /* line 22, ../sass/_content.sass */
 .offline-ui.offline-ui-down .offline-ui-content:before {
-  content: "Your computer lost its internet connection.";
+  /*content: "Your computer lost its internet connection.";*/
+   content: "No Internet Connection !";
 }
 @media (max-width: 1024px) {
   /* line 22, ../sass/_content.sass */
   .offline-ui.offline-ui-down .offline-ui-content:before {
-    content: "Your device lost its internet connection.";
+   /* content: "Your device lost its internet connection.";*/
+    content: "No Internet Connection !";
   }
 }
 @media (max-width: 568px) {
   /* line 22, ../sass/_content.sass */
   .offline-ui.offline-ui-down .offline-ui-content:before {
-    content: "Your device isn't connected.";
+   /* content: "Your device isn't connected.";*/
+    content: "No Internet Connection !";
   }
 }
 /* line 33, ../sass/_content.sass */
 .offline-ui.offline-ui-down.offline-ui-connecting .offline-ui-content:before, .offline-ui.offline-ui-down.offline-ui-connecting-2s .offline-ui-content:before {
-  content: "Attempting to reconnect...";
+ /* content: "Attempting to reconnect...";*/
+  content: "No Internet Connection !";
 }
 /* line 42, ../sass/_content.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="second"]:before {
-  content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " seconds...";
+  /*content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " seconds...";*/
+  content: "No Internet Connection !";
 }
 @media (max-width: 568px) {
   /* line 42, ../sass/_content.sass */
   .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="second"]:before {
-    content: "Reconnecting in " attr(data-retry-in-value) "s...";
+    /*content: "Reconnecting in " attr(data-retry-in-value) "s...";*/
+	 content: "No Internet Connection !";
   }
 }
 /* line 50, ../sass/_content.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="second"][data-retry-in-value="1"]:before {
-  content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " second...";
+  /*content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " second...";*/
+   content: "No Internet Connection !";
 }
 @media (max-width: 568px) {
   /* line 50, ../sass/_content.sass */
   .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="second"][data-retry-in-value="1"]:before {
-    content: "Reconnecting in " attr(data-retry-in-value) "s...";
+    /*content: "Reconnecting in " attr(data-retry-in-value) "s...";*/
+	 content: "No Internet Connection !";
   }
 }
 /* line 58, ../sass/_content.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="minute"]:before {
-  content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " minutes...";
+ /* content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " minutes...";*/
+  content: "No Internet Connection !";
 }
 @media (max-width: 568px) {
   /* line 58, ../sass/_content.sass */
   .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="minute"]:before {
-    content: "Reconnecting in " attr(data-retry-in-value) "m...";
+    /*content: "Reconnecting in " attr(data-retry-in-value) "m...";*/
+	 content: "No Internet Connection !";
   }
 }
 /* line 66, ../sass/_content.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="minute"][data-retry-in-value="1"]:before {
-  content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " minute...";
+  /*content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " minute...";*/
+   content: "No Internet Connection !";
 }
 @media (max-width: 568px) {
   /* line 66, ../sass/_content.sass */
   .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="minute"][data-retry-in-value="1"]:before {
-    content: "Reconnecting in " attr(data-retry-in-value) "m...";
+    /*content: "Reconnecting in " attr(data-retry-in-value) "m...";*/
+	 content: "No Internet Connection !";
   }
 }
 /* line 74, ../sass/_content.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="hour"]:before {
-  content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " hours...";
+ /* content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " hours...";*/
+  content: "No Internet Connection !";
 }
 @media (max-width: 568px) {
   /* line 74, ../sass/_content.sass */
   .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="hour"]:before {
-    content: "Reconnecting in " attr(data-retry-in-value) "h...";
+    /*content: "Reconnecting in " attr(data-retry-in-value) "h...";*/
+	 content: "No Internet Connection !";
   }
 }
 /* line 82, ../sass/_content.sass */
 .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="hour"][data-retry-in-value="1"]:before {
-  content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " hour...";
+ /* content: "Connection lost. Reconnecting in " attr(data-retry-in-value) " hour...";*/
+  content: "No Internet Connection !";
 }
 @media (max-width: 568px) {
   /* line 82, ../sass/_content.sass */
   .offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-content[data-retry-in-unit="hour"][data-retry-in-value="1"]:before {
-    content: "Reconnecting in " attr(data-retry-in-value) "h...";
+    /*content: "Reconnecting in " attr(data-retry-in-value) "h...";*/
+	 content: "No Internet Connection !";
   }
 }
 /* line 90, ../sass/_content.sass */

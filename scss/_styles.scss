@@ -745,10 +745,10 @@ body {
 	a {
 		margin: -4px;
 		.doctorName {
-			top: -25px;margin-left: 3px;
+			top: -22px;margin-left: 10px;
 		}
 		.doctorArrow {
-			color:#888;margin-top: 18px;
+			color:#888;margin-top: 21px;
 		}
 	}
 }
@@ -1746,7 +1746,7 @@ color:#000; font-size: 21px; margin: 12px;
  position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_bold;
 }
 .ListTextTitle {
- position: relative; top: -50px;margin-left: 66px; font-family: $fontFamily_bold;
+ position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_bold;
 }
 .listTitle {
 position: relative;top: -48px;left: 68px;width: 67%;font-size:24px;
@@ -1775,12 +1775,18 @@ padding: 8px; background-color:#FEEFE8;
     font-size: 14px;
     margin-bottom: -1px;
     margin-left: 66px;
-    margin-top: -51px;
+    margin-top: -59px;
 	/*font-family: $fontFamily_thin; */
 }
 .SubTitleSpan {
 @include font($fontFamily_regular, normal, 23px);
 color:#706A67;
+}
+.docName {
+	width: 63%;  
+	position: relative;
+	top: -23px;
+	left: 110px;
 }
 
 .ion-search::before {
@@ -2055,7 +2061,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
    
 
-.ellipsis { text-overflow: ellipsis;  white-space: nowrap;
+.ellipsis { text-overflow: ellipsis;  white-space: nowrap; 
   overflow: hidden;  line-height: normal; }  
   
  .textAreaPop {
@@ -2281,12 +2287,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
 		top: 1px;padding:11px;height: 104px;
 		.UserhmePatientDetails {
 			 margin-left: 0px;
-			 margin-top: -2px !important;
+			 margin-top: 0px !important;
 			div, p {
 				width:67%;
 			}
 			.UserHomeIcon {
-				color:#888;margin-top: -37px;
+				color:#888;margin-top: -34px;
 			}
 		}
 	}
@@ -2376,9 +2382,9 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
     float: left;
 }
 .doctorImgeSize {
- width: 60px !important;
- height: 60px;  
- margin-top: 0px; 
+ width: 55px !important;
+ height: 55px;  
+ margin-top: 1px; 
 }
 .passwordSubHeader {
   height: auto;
