@@ -2,7 +2,7 @@
 <!--margin-top: 6px;-->
 <div class="modal">
     <ion-view  title="Prior Surgery">
-    <header class="bar bar-header bar-dark SurgeryHeader">
+    <header class="bar bar-header bar-dark SurgeryHeader" style="{{PrimaryConcernPopupH}}">
 		<div class="ErrorMessage ErrorMessageDiv"  ></div>
 		<button type="submit" class="button button-clear SurgeryCancel" ng-click="RemoveSurgeryPopup()" style="{{PriorSurgeryPopupCancel}};">Cancel</button>
 		<h1 class="title SurgeryTitle" style="{{PriorSurgeryPopupTitle}};">Prior Surgeries</h1>
@@ -11,7 +11,8 @@
    
    <ion-content has-header="true" class="SurgeryContent">
      
-    <div class="list">
+     <ion-list>
+    <div class="list" style="{{PriorSurgeryPopupTextBox}}">
 		
 		  <label class="item item-input validated">
             <span class="input-label">Surgery</span>
@@ -41,7 +42,7 @@
              </div>
     </div>
 		
-		
+       </ion-list>
       
     </ion-content>
         </ion-view>

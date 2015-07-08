@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -98,7 +98,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
-        $rootScope.IntakeFormInnerStyle = "margin-top: 11px;";
+        $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 9px;position: relative;";
         $rootScope.PatientCalentarScheduleItem = "top: 48px;"
@@ -125,19 +125,24 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.FootNextButton = "left: -5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
-        if($rootScope.IOSDevice) {
+        $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
+        if(!$rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
         $rootScope.PrimaryConcernPopupDone = "margin-top: 16px;"; 
-        $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
-        $rootScope.PriorSurgeryPopupDone = "  margin-top: 5px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 5px;";
+        $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
+        $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 21px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
         $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
         $rootScope.LoginContantDiv = " height: 86px;"; 
+        $rootScope.PasswordOverlop = "margin: 235px 0 0 0;"; 
+        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
+        $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
+        $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";       
         }
         if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -170,7 +175,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.calendarBack = "calendarBackAndroid";
         $rootScope.intakeTittle = "intakeTittleAndroid"; 
         $rootScope.MenuInnerStyle = "top: -8px;"; 
-        $rootScope.MenuIconBottomRecipt = "top: -8px;";		
+        $rootScope.MenuIconBottomRecipt = "top: -8px;";
+        $rootScope.AddhealthplanOverlop = "margin: 176px 0 0 0;";     
        
     }
    
