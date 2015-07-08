@@ -139,7 +139,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.NextIntakeForm = "margin-left: -21px;";
         $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
         $rootScope.LoginContantDiv = " height: 86px;"; 
-        $rootScope.PasswordOverlop = "margin: 235px 0 0 0;"; 
+        //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
+        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";       
