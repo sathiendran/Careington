@@ -75,8 +75,8 @@
 			 <div class="HrefListView"> 
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
-					<span class = "ListText"><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></span>
-					<p class="ListHomeUser_p DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} | Guardain : {{dependentDetails.guardianName}}</p>
+					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
+					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} | Guardain : {{dependentDetails.guardianName}}</p>
 				</div>
 			</div>
 			<!-- </a>-->
