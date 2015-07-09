@@ -414,8 +414,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$scope.ErrorMessage = "Incorrect Password. Please try again";
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
-						$scope.tokenStatus = 'alert-success';
-					//	$scope.doGetExistingConsulatation();
+						$scope.tokenStatus = 'alert-success';				
 						$scope.doGetPatientProfiles();	
 						$scope.doGetRelatedPatientProfiles();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();							
@@ -479,17 +478,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     $rootScope.searchPatientList = {};
     $scope.searched = false;
-    $rootScope.age = 25;
+    //$rootScope.age = 25;
     
     $scope.$watch('data.searchQuery', function(searchKey){
         if(searchKey != '' && typeof searchKey != 'undefined'){
             $rootScope.patientSearchKey = searchKey;
             var loggedInPatient = {
-                'patientFirstName': $rootScope.patientName,
-                'lastName': $rootScope.patientName,
-                'age': $rootScope.age,
-                'guardianName': $rootScope.patientName,
-                'profileImagePath': $rootScope.PatientImage
+                'patientFirstName': $rootScope.primaryPatientName,
+                'patientLastName': $rootScope.primaryPatientLastName,
+                'birthdate': $rootScope.dob,
+                'profileImagePath': $rootScope.PatientImage,
+				'patientName': $rootScope.primaryPatientFullName,
+				'patientId': $rootScope.primaryPatientId,
+				'isAuthorized': true
             };
             if(!$scope.searched){
                 //$rootScope.dependentDetails.push(loggedInPatient);
@@ -575,7 +576,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							});
 						});	
 					$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName;	
-						 
+					
+					$rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' '+$rootScope.primaryPatientLastName;					
 						
 				},
 				error: function (data) {
@@ -631,7 +633,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
     
-	$scope.doGetExistingConsulatation = function () {
+	/*$scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
 		$rootScope.appointmentsPatientFirstName = '';
 		$rootScope.appointmentsPatientLastName = '';
@@ -684,7 +686,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		};
 		
 		LoginService.getPrimaryPatientLastName(params);
-	}
+	}*/
 	
 	$scope.doGetDoctorDetails = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -706,6 +708,64 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
         LoginService.getDoctorDetails(params);	
 		
+	}
+	
+	$scope.doGetExistingConsulatationReport = function () {	
+	
+		$rootScope.appointmentsPatientFirstName = '';
+		$rootScope.appointmentsPatientLastName = '';
+		$rootScope.appointmentsPatientDOB = '';
+		$rootScope.appointmentsPatientGurdianName = '';
+		$rootScope.appointmentsPatientImage = '';
+			
+		 if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $rootScope.consultReport = data.data[0].details[0];				
+				$rootScope.reportScreenPrimaryConcern = $rootScope.consultReport.primaryConcern;
+				if(typeof $rootScope.reportScreenPrimaryConcern != 'undefined') {
+					$rootScope.reportScreenPrimaryConcern1 = $rootScope.reportScreenPrimaryConcern.split("?");
+					$rootScope.reportScreenPrimaryConcern = $rootScope.reportScreenPrimaryConcern1[1];
+				} else {
+					$rootScope.reportScreenPrimaryConcern = "";
+				}
+				$rootScope.reportScreenSecondaryConcern = $rootScope.consultReport.secondaryConcern;
+				if(typeof $rootScope.reportScreenSecondaryConcern != 'undefined') {
+					$rootScope.reportScreenSecondaryConcern1 = $rootScope.reportScreenSecondaryConcern.split("?");
+					$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern1[1];
+				} else {
+					$rootScope.reportScreenSecondaryConcern = "";
+				}
+				$rootScope.preConsultantNotes = $rootScope.consultReport.rx; 	
+				
+				//$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
+				$rootScope.appointmentsPatientDOB = $rootScope.consultReport.dob;
+				
+				$rootScope.appointmentsPatientId = $rootScope.consultReport.patientId;
+				
+				//$rootScope.appointmentsPatientGurdianName = $rootScope.consultReport.guardianName;
+				if($rootScope.appointmentsPatientId != $rootScope.primaryPatientId) {
+					$rootScope.appointmentsPatientGurdianName = $rootScope.primaryPatientName + ' '+ $rootScope.primaryPatientLastName;
+				}
+				
+				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.consultReport.profileImagePath;
+				$rootScope.appointmentsPatientFirstName = $rootScope.consultReport.patientName;	
+				$rootScope.appointmentsPatientLastName = $rootScope.consultReport.lastName;	
+				$state.go('tab.appoimentDetails');
+				
+		   },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+		LoginService.getConsultationFinalReport(params);
 	}
 	
 	$scope.GetHealthPlanList = function () {
@@ -1154,7 +1214,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                         if(typeof $scope.Health.addHealthPlan == 'undefined') {
 							if(typeof $rootScope.providerName == 'undefined' || $rootScope.providerName == '') {
 								 if(!$rootScope.NewHealth) {
-								 $scope.ErrorMessages = "Choose Your Health Plan!";
+								 $scope.ErrorMessages = "Choose Your Health Plan";
 								 $rootScope.Validation($scope.ErrorMessages);
 								 }
 								 $rootScope.NewHealth ;
@@ -1206,7 +1266,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $scope.ErrorMessage = "Bad Request Please check it";
 			        $rootScope.Validation($scope.ErrorMessage);
                         } else {
-                    $scope.ErrorMessages = "Choose Your Health Plan!";
+                    $scope.ErrorMessages = "Choose Your Health Plan";
 			        $rootScope.Validation($scope.ErrorMessages);
                         }
                     }
@@ -1504,12 +1564,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 									'consultantUserId': index.consultantUserId,
 									'consultationId': index.consultationId,
-									'firstName': index.firstName,
-									'lastName': index.lastName,	
+									'patientFirstName': index.patientFirstName,
+									'patientLastName': index.patientLastName,	
 									'patientId': index.patientId,
 									'assignedDoctorName': index.assignedDoctorName,
 									'patientName': index.patientName,
-									'patientUserId': index.patientUserId,
+									'consultationStatus': index.consultationStatus,
 									'scheduledId': index.scheduledId,    
 								});
 							}	
@@ -1736,7 +1796,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         if($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined"){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
 		if($rootScope.RelatedPatientProfiles != '') {
-			if($rootScope.patientName == $rootScope.RelatedPatientProfiles[0].patientName){
+			if($rootScope.primaryPatientFullName == $rootScope.RelatedPatientProfiles[0].patientName){
                 $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
             }
@@ -1758,7 +1818,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
      $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.patientFirstName = P_Fname;
+        $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -1767,7 +1827,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     $scope.doToAppoimentDetails  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.patientFirstName = P_Fname;
+        $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -1776,7 +1836,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.enterWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.patientFirstName = P_Fname;
+        $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
@@ -1785,7 +1845,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.patientFirstName = P_Fname;
+        $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;		
@@ -1855,7 +1915,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			document.getElementsByTagName('timer')[0].start();
 		});
 		
-		$scope.doGetExistingConsulatation();  
+		//$scope.doGetExistingConsulatation();  
+		$scope.doGetExistingConsulatationReport();
 		   
      };
 	 
@@ -3189,10 +3250,20 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             success: function (data) {
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
 				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
-				$rootScope.primaryConcern = $rootScope.existingConsultationReport.primaryConcern;
-				$rootScope.primaryConcern = $rootScope.primaryConcern.split("?");
-				$rootScope.secondaryConcern = $rootScope.existingConsultationReport.secondaryConcern;
-				$rootScope.secondaryConcern = $rootScope.secondaryConcern.split("?");
+				$rootScope.reportScreenPrimaryConcern = $rootScope.existingConsultationReport.primaryConcern;
+				if(typeof $rootScope.reportScreenPrimaryConcern != 'undefined') {
+					$rootScope.reportScreenPrimaryConcern1 = $rootScope.reportScreenPrimaryConcern.split("?");
+					$rootScope.reportScreenPrimaryConcern = $rootScope.reportScreenPrimaryConcern1[1];
+				} else {
+					$rootScope.reportScreenPrimaryConcern = "";
+				}
+				$rootScope.reportScreenSecondaryConcern = $rootScope.existingConsultationReport.secondaryConcern;
+				if(typeof $rootScope.reportScreenSecondaryConcern != 'undefined') {
+					$rootScope.reportScreenSecondaryConcern1 = $rootScope.reportScreenSecondaryConcern.split("?");
+					$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern1[1];
+				} else {
+					$rootScope.reportScreenSecondaryConcern = "";
+				}
 				$rootScope.intake = $rootScope.existingConsultationReport.intake;
 				
 				$rootScope.fullTerm = $rootScope.intake.infantData.fullTerm;

@@ -23,7 +23,7 @@
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{appointmentsPatientFirstName}}</span>
 						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{appointmentsPatientLastName}}</span> <!--{{appointmentsPatientDOB | ageFilter}}-->
 					</div>
-                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{appointmentsPatientDOB}} <span ng-if="primaryPatientId != appointmentsPatientId"> | Guardian: {{appointmentsPatientGurdianName}} </span></div>
+                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{appointmentsPatientDOB | ageFilter}} <span ng-if="primaryPatientId != appointmentsPatientId"> | Guardian: {{appointmentsPatientGurdianName}} </span></div>
 				</div>
 			</div>
 		</div>
@@ -38,7 +38,8 @@
 			
 			<ion-item class="doctor_details">
 				 <a class="HrefListView"  href="#" >   
-				     <img ng-src="{{doctorImage}}" class="listImgView doctorImgeSize">
+				   <!--  <img ng-src="{{doctorImage}}" class="listImgView doctorImgeSize">-->
+				   <img class="listImgView" src="https://sandbox.connectedcare.md/images/Patient-Male.gif">
 					<span class = "ListText doctorName" ><span style="font-size: 22px; font-family: Glober xBold;">Dr.</span>
 						<div class="SubTitleSpan docName ellipsis">{{scheduledListDatas.assignedDoctorName}}</div>								
 						<list style="top: -69px; position: relative;" class="ion-chevron-right ListLinkHref doctorArrow" ></list>
@@ -57,14 +58,14 @@
 			
 			<ion-item class="concernsItem" >
 				 <div class="primary"><span>1 </span> Primary Concern</div>
-				 <p class="ptagprimary" >{{consultionInformation.primaryConcern}}</p>
+				 <p class="ptagprimary" >{{reportScreenPrimaryConcern}}</p>
 				 <div class="secondary"><span>2 </span>Secondary Concern</div>
-				 <p class="ptagprimary" >{{consultionInformation.secondaryConcern}}</p>
+				 <p class="ptagprimary" >{{reportScreenSecondaryConcern}}</p>
 			</ion-item>
 			
 			<ion-item class="concernsItem">
 				<div class="pre_consultant"><span></span>Pre consultant Notes</div>
-				 <p class="ptagprimary" >{{consultionInformation.note}} </p>
+				 <p class="ptagprimary" >{{preConsultantNotes}} </p>
 			</ion-item>
 			
 	</ion-content>
@@ -91,7 +92,7 @@
 	</ion-footer-bar>
 		
 	<ion-footer-bar align-title="left" class="bar-assertive enterAppoinment" style=" display: {{timeNew1}}" >
-			<a ng-click="enterWaitingRoom(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)">
+			<a ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName)">
 				<div >		
 					<div class="title EnterText">Enter Appointment</div>
 				</div>

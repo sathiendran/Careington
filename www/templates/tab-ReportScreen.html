@@ -106,13 +106,13 @@
 		<div class="concernTitle"><b>PATIENT CONCERNS</b></div>
 		<div class="concernUnderline" >	</div>	
 	
-		<div class="reportConcerns" >
+		<div class="reportConcerns" ng-if="reportScreenPrimaryConcern != ''">
 			<div class="concernNumber"> <span>1</span> </div>
-			<div class="primaryConcernText"> {{primaryConcern[1]}}</div>
+			<div class="primaryConcernText"> {{reportScreenPrimaryConcern}}</div>
 		</div>
-		<div class="reportConcerns" >
+		<div class="reportConcerns" ng-if="reportScreenSecondaryConcern != ''" >
 			<div class="concernNumber"> <span>2</span> </div>
-			<div class="primaryConcernText"> {{secondaryConcern[1]}}</div>
+			<div class="primaryConcernText"> {{reportScreenSecondaryConcern}}</div>
 		</div>
 		
 	</div>
