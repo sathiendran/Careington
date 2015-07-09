@@ -50,7 +50,7 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $window, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('LoginCtrl', function($scope, $window, ageFilter, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
 	/*$rootScope.online = navigator.onLine;	
 	$rootScope.IsOnline = navigator.onLine;
@@ -226,14 +226,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	};
 	
 	
-	$('#addHealthPlan').change(function () {
-		if($('option:selected', this).text() == 'Add a new health plan') {
-			$rootScope.submitPayBack = $rootScope.currState.$current.name;
-			$state.go('tab.planDetails');
-		} else {
-			$('div.viewport').text($("option:selected", this).text());
-		}
-    }); 
+	
 	$('#Provider').change(function () {
         $('div.viewport1').text($("option:selected", this).text());
     }); 
@@ -488,6 +481,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 'patientFirstName': $rootScope.primaryPatientName,
                 'patientLastName': $rootScope.primaryPatientLastName,
                 'birthdate': $rootScope.dob,
+				'ageBirthDate': $rootScope.ageBirthDate,
                 'profileImagePath': $rootScope.PatientImage,
 				'patientName': $rootScope.primaryPatientFullName,
 				'patientId': $rootScope.primaryPatientId,
@@ -527,6 +521,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.city = data.data[0].city;
 					$rootScope.createDate = data.data[0].createDate;
 					$rootScope.dob = data.data[0].dob;
+					$rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
 					$rootScope.gender = data.data[0].gender;
 					$rootScope.homePhone = data.data[0].homePhone;
 					$rootScope.location = data.data[0].location;
@@ -611,6 +606,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'relationCode': index.relationCode,
 								'isAuthorized': index.isAuthorized,
 								'birthdate': index.birthdate,
+								'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
 								'addresses': angular.fromJson(index.addresses),
 								'patientFirstName': index.patientFirstName,
 								'patientLastName': index.patientLastName,
@@ -964,14 +960,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
 	 $("#addHealthPlan").change(function() {
         //console.log( $('option:selected', this).text() );
-		if(($('option:selected', this).text() == 'Add a new health p...') || ($('option:selected', this).text() == 'Add a new health plan')) {
+		if($('option:selected', this).text() == 'Add a new health plan') {
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
             $scope.doGetHealthPlanProvider();
+		} else {
+			$('div.viewport').text($("option:selected", this).text());
 		}
     });
+	
+	/*$('#addHealthPlan').change(function () {
+		if($('option:selected', this).text() == 'Add a new health plan') {
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
+			$state.go('tab.planDetails');
+		} else {
+			$('div.viewport').text($("option:selected", this).text());
+		}
+    }); */
 	
 	$scope.doGetHealthPlanProvider = function() {
 		$rootScope.HealthPlanProvidersList = [];
@@ -1930,7 +1938,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    
 })
 
-.controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList) {
+.controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
  
 	$rootScope.currState = $state;
     
