@@ -143,7 +143,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
-        $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";       
+        $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
+        $rootScope.PositionIOS = "position:fixed; top:105px;";    
         }
         if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -161,7 +162,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if($rootScope.AndroidDevice) {  
+        } else if(!$rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -1005,7 +1006,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.AddHealth = {};
     $scope.doPostNewHealthPlan = function() {
-			if ($scope.accessToken == 'No Token') {
+        if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
@@ -1176,7 +1177,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.Health = {};	
     $scope.doPostApplyHealthPlan = function() {
-        //console.log($scope.Health.addHealthPlan);
+         if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+        $scope.Choose = 'false';
+        console.log($scope.Health.addHealthPlan);
         
         if($rootScope.currState.$current.name=="tab.applyPlan") {
             if(typeof $scope.Health.addHealthPlan != 'undefined') {
@@ -1198,9 +1204,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         } 
         
-       
-       
-        
         if($rootScope.currState.$current.name=="tab.addHealthPlan") {
                        if(typeof $scope.Health.addHealthPlan != 'undefined') {
                                  $rootScope.NewHealth = $scope.Health.addHealthPlan;
@@ -1210,44 +1213,24 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                                  $rootScope.PolicyNo = healthInsurance[1];
                                  $rootScope.healthPlanID = healthInsurance[2];
                                  //$rootScope.providerName   =  InsuranceCompany;
+                       } if(typeof $scope.Health.addHealthPlan == 'undefined' || $scope.Health.addHealthPlan == 'Choose Your Health Plan') {
+                            $scope.Choose = 'true';
+			              
                        } else {
-                        if(typeof $scope.Health.addHealthPlan == 'undefined') {
-							if(typeof $rootScope.providerName == 'undefined' || $rootScope.providerName == '') {
-								 if(!$rootScope.NewHealth) {
-								 $scope.ErrorMessages = "Choose Your Health Plan";
-								 $rootScope.Validation($scope.ErrorMessages);
-								 }
-								 $rootScope.NewHealth ;
-								 $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-								 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-								 $rootScope.providerName = healthInsurance[0];
-								 $rootScope.PolicyNo = healthInsurance[1];
-								 $rootScope.healthPlanID = healthInsurance[2];
-								// $rootScope.providerName   =  InsuranceCompany;
-							} else {
-								$rootScope.providerName = $rootScope.providerName;
-								$rootScope.PolicyNo = $rootScope.PolicyNo;
-								$rootScope.healthPlanID = $rootScope.healthPlanID;
-								 //$rootScope.providerName   =  InsuranceCompany;
-							}
-                        } else {
-                             $rootScope.NewHealth ;
-                             $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-                             var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+
+                            $rootScope.NewHealth ;
+                            $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+                            var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+
                             $rootScope.providerName = healthInsurance[0];
                             $rootScope.PolicyNo = healthInsurance[1];
                             $rootScope.healthPlanID = healthInsurance[2];
                             // $rootScope.providerName   =  InsuranceCompany;
                             }
-                       }   
-         }
-            
-		 
-			if ($scope.accessToken == 'No Token') {
-				alert('No token.  Get token first then attempt operation.');
-				return;
-			} else if (typeof $scope.Health.addHealthPlan != 'undefined' ||  $rootScope.NewHealth != '') {
-			 var params = {
+                       
+                    }
+        if($scope.Choose != 'true') {
+         var params = {
                 accessToken: $rootScope.accessToken,
 				insuranceCompanyName: $rootScope.providerName,
 				policyNumber: $rootScope.PolicyNo,
@@ -1277,17 +1260,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.serverErrorMessageValidation();
 				}
 			};
+        } else {
+            $scope.ErrorMessages = "Choose Your Health Plan!";
+            $rootScope.Validation($scope.ErrorMessages);
         }
-			
+        
 			LoginService.postApplyHealthPlan(params);
-   	   /*	}  else  {
-            $scope.ErrorMessages = "Please select your Plan!";
-			$rootScope.Validation($scope.ErrorMessages);
-           
-        } */
-
-			
-	}
+   	 }
     
     
    

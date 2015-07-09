@@ -8040,7 +8040,8 @@ body {
 
 .pass_reset_content {
   text-align: justify;
-  font-size: 17px; }
+  font-size: 19px;
+  color: #4D4D4D; }
 
 .login {
   text-align: center;
@@ -8308,11 +8309,11 @@ body {
   .doctor_details a {
     margin: -4px; }
     .doctor_details a .doctorName {
-      top: -20px;
-      margin-left: 3px; }
+      top: -22px;
+      margin-left: 10px; }
     .doctor_details a .doctorArrow {
       color: #888;
-      margin-top: 22px; }
+      margin-top: 21px; }
 
 .appointmentTimeDetails {
   padding: 25px;
@@ -8421,9 +8422,9 @@ body {
     left: 10px; }
 
 .consultCharge_content {
-  margin: 140px 0 0 0;
+  margin: 133px 0 0 0;
   padding-bottom: 30px;
-  padding-top: 15px; }
+  padding-top: 22px; }
 
 .button.button-royal {
   background-color: #B3B3B3;
@@ -8499,8 +8500,8 @@ body {
       padding: 10px; }
 
 .consultChargeNoPlanContent {
-  margin: 187px 0 0 0;
-  padding-top: 25px; }
+  margin: 177px 0 0 0;
+  padding-top: 35px; }
   .consultChargeNoPlanContent .consultChargeNoPlanText {
     padding-top: 5px; }
   .consultChargeNoPlanContent .NoPlanHeader {
@@ -8919,7 +8920,8 @@ select {
         margin-top: -55px;
         cursor: pointer; }
   .ConcernsContent .PrimaryConcernList p {
-    width: 90%; }
+    width: 90%;
+    padding-top: 6px; }
   .ConcernsContent .PrimaryConcernList div {
     float: right;
     left: 0px;
@@ -8952,7 +8954,8 @@ select {
           .ConcernsContent .surgeryList a .surgeryDetails .surgeryName p {
             font-size: 20px;
             color: #000;
-            white-space: pre-wrap; }
+            white-space: pre-wrap;
+            padding-top: 1px; }
         .ConcernsContent .surgeryList a .surgeryDetails .surgeryDate {
           padding-top: 5px;
           font-size: 15px; }
@@ -8999,11 +9002,11 @@ select {
       font-weight: bold;
       padding: 10px 0px 10px 47px; }
     .ConcernsFooter .FooterRight .ConcernFooterNext {
-      margin-left: -58px;
+      margin-left: -44px;
       margin-right: 25px;
       position: relative;
       top: -4px;
-      left: -3px; }
+      left: -20px; }
 
 .concernListHeader {
   height: 55px; }
@@ -9192,7 +9195,7 @@ a {
 .ContentList_provider {
   margin: 149px 0 0 0; }
   .ContentList_provider .item {
-    padding: 29px 16px 16px 35px;
+    padding: 36px 16px 27px 35px;
     Color: #4D4D4D;
     font-size: 20px; }
     .ContentList_provider .item .ion-chevron-right.ListLinkHref {
@@ -9296,7 +9299,7 @@ a {
 
 .ListTextTitle {
   position: relative;
-  top: -50px;
+  top: -54px;
   margin-left: 66px;
   font-family: 'Glober Bold'; }
 
@@ -9330,7 +9333,7 @@ a {
   font-size: 14px;
   margin-bottom: -1px;
   margin-left: 66px;
-  margin-top: -51px;
+  margin-top: -59px;
   /*font-family: $fontFamily_thin; */ }
 
 .SubTitleSpan {
@@ -9338,6 +9341,12 @@ a {
   font-weight: normal;
   font-size: 23px;
   color: #706A67; }
+
+.docName {
+  width: 63%;
+  position: relative;
+  top: -23px;
+  left: 110px; }
 
 .ion-search::before {
   margin-left: 10px; }
@@ -9813,7 +9822,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     height: 104px; }
     .UserHomePatient .UserHomeHeader .UserhmePatientDetails {
       margin-left: 0px;
-      margin-top: -5px !important; }
+      margin-top: 0px !important; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails div, .UserHomePatient .UserHomeHeader .UserhmePatientDetails p {
         width: 67%; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails .UserHomeIcon {
@@ -9853,7 +9862,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .DependentList {
   padding: 11px;
   top: -2px;
-  height: 80px; }
+  height: 104px; }
   .DependentList a {
     cursor: pointer; }
     .DependentList a p {
@@ -9951,9 +9960,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
   float: left; }
 
 .doctorImgeSize {
-  width: 60px !important;
-  height: 60px;
-  margin-top: 0px; }
+  width: 55px !important;
+  height: 55px;
+  margin-top: 1px; }
 
 .passwordSubHeader {
   height: auto;
@@ -10008,7 +10017,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 18px;
   padding: 6px;
   left: 18px;
-  top: 12px;
+  top: 10px;
   font-weight: bold; }
 
 .viewport1 {
@@ -10026,7 +10035,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 18px;
   padding: 6px;
   left: 25px;
-  top: 12px;
+  top: 10px;
   font-weight: bold;
   text-align: left; }
 
@@ -10045,7 +10054,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 18px;
   padding: 6px;
   left: 18px;
-  top: 12px;
+  top: 10px;
   font-weight: bold; }
 
 .healthPlanDropDown option {
