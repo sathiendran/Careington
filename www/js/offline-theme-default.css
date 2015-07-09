@@ -29,7 +29,7 @@
   display: none;
 }
 /* line 24, ../sass/_offline-theme-base.sass */
-.offline-ui .offline-ui-retry:before {
+.offline-ui :before {
   display: inline;
 }
 /* line 29, ../sass/_offline-theme-base.sass */
@@ -41,7 +41,7 @@
   display: block;
 }
 /* line 37, ../sass/_offline-theme-base.sass */
-.offline-ui.offline-ui-down.offline-ui-waiting .offline-ui-retry {
+.offline-ui.offline-ui-down.offline-ui-waiting  {
   display: block;
 }
 /* line 42, ../sass/_offline-theme-base.sass */
