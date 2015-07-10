@@ -176,16 +176,16 @@
 			
 			<div class="intakeMedication" >
 				<div>
-					<div class="medicationTitle"><b>InfantData</b></div>
+					<div class="medicationTitle"><b>Birth Info</b></div>
 					<div class="medicationUnderline"></div>
 				</div>
-				<div class="medicationList" >					
+				<div class="medicationList" ng-if="userReportDOB < 1" >					
 					<span>Child born at full term : {{fullTerm}}</span><br>
 					<span>Child born vaginally : {{vaginalBirth}}</span><br>
 					<span>Child discharged with mother : {{dischargedWithMother}}</span><br>
 					<span>Child vaccinations up-to-date : {{vaccinationsCurrent}}</span><br>
 				</div>
-				<div ng-if="intake.medicationAllergies == ''" class="medicationNone" >None Reported</div>
+				<div ng-if="userReportDOB >= 1" class="medicationNone" >None Reported</div>
 			</div>
 			
 		</div>
@@ -231,7 +231,7 @@
 		<div class="objectiveTitle" ><b>CHAT TRANSCRIPT</b></div>
 		<div class="objectiveUnderline">	</div>		
 		<div>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+			<p></p>
 		</div>		
 	</div>	
 
@@ -239,7 +239,7 @@
 		<div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
 		<div class="objectiveUnderline">	</div>		
 		<div>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+			<p></p>
 		</div>		
 	</div>	
 	

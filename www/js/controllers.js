@@ -632,7 +632,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
     
-	/*$scope.doGetExistingConsulatation = function () {
+	$scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
 		$rootScope.appointmentsPatientFirstName = '';
 		$rootScope.appointmentsPatientLastName = '';
@@ -652,11 +652,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 $rootScope.patientExistInfomation = data.data[0].patientInformation;
+				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
 				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.age;
 				$rootScope.appointmentsPatientGurdianName = $rootScope.patientExistInfomation.guardianName;
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				$rootScope.reportScreenPrimaryConcern = $rootScope.intakeForm.concerns[0].customCode.description;
+				$rootScope.reportScreenSecondaryConcern = $rootScope.intakeForm.concerns[1].customCode.description;
 				$scope.doGetExistingPatientName();
 				$scope.doGetDoctorDetails();
                
@@ -685,7 +688,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		};
 		
 		LoginService.getPrimaryPatientLastName(params);
-	}*/
+	}
 	
 	$scope.doGetDoctorDetails = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -709,7 +712,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	}
 	
-	$scope.doGetExistingConsulatationReport = function () {	
+	/*$scope.doGetExistingConsulatationReport = function () {	
 	
 		$rootScope.appointmentsPatientFirstName = '';
 		$rootScope.appointmentsPatientLastName = '';
@@ -765,7 +768,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         };
         
 		LoginService.getConsultationFinalReport(params);
-	}
+	}*/
 	
 	$scope.GetHealthPlanList = function () {
 		$scope.doGetPatientHealthPlansList()
@@ -1106,6 +1109,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
 		$rootScope.BackPage = P_Page;
+		$rootScope.copayAmount = $rootScope.consultationAmount;
 		$state.go('tab.consultChargeNoPlan');
 	}
 	$scope.goToNextPage = function() {
@@ -1273,7 +1277,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.copayAmount = data.copayAmount;
 					if($rootScope.consultationAmount > $rootScope.copayAmount) {
 						$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
-					} else {
+					} else  {
 						$rootScope.PlanCoversAmount = '';
 					}
 					console.log($scope.ApplyHealthPlan);
@@ -1336,11 +1340,34 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							});
 						});							
 						$rootScope.enableSubmitpayment = "block";
-						$rootScope.disableSubmitpayment = "none;";						
+						$rootScope.disableSubmitpayment = "none";
+						$rootScope.enablePaymentSuccess = "block";	
+						if($rootScope.copayAmount != 0) {
+							$rootScope.enableSubmitpaymentAddCard =	"block";
+							$rootScope.disableSubmitpaymentAddCard = "none";	
+							$rootScope.continueAddCard = "none";
+							$rootScope.textAddCard = "block";
+						} else {
+							$rootScope.enableSubmitpaymentAddCard =	"none";
+							$rootScope.disableSubmitpaymentAddCard = "none";	
+							$rootScope.continueAddCard = "block";
+							$rootScope.textAddCard = "none";
+						}	
 						//$state.go('tab.addCard');
 					} else if(data == 0) {
 						$rootScope.enableSubmitpayment = "none";
-						$rootScope.disableSubmitpayment = "block;";
+						$rootScope.disableSubmitpayment = "block";
+						if($rootScope.copayAmount != 0) {
+							$rootScope.enableSubmitpaymentAddCard =	"none";
+							$rootScope.disableSubmitpaymentAddCard = "block;";
+							$rootScope.continueAddCard = "none";
+							$rootScope.textAddCard = "block";
+						} else {
+							$rootScope.enableSubmitpaymentAddCard =	"none";
+							$rootScope.disableSubmitpaymentAddCard = "none";	
+							$rootScope.continueAddCard = "block";
+							$rootScope.textAddCard = "none";
+						}		
 						//$state.go('tab.addCard');
 					}
 					
@@ -1352,6 +1379,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 			LoginService.getPatientPaymentProfile(params);		
     }
+	
+	$scope.doGetReceipt = function () {
+		$rootScope.enablePaymentSuccess = "none";
+		$state.go('tab.receipt');
+		$scope.ReceiptTimeout();
+	}
 	
 	
 	
@@ -1929,8 +1962,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			document.getElementsByTagName('timer')[0].start();
 		});
 		
-		//$scope.doGetExistingConsulatation();  
-		$scope.doGetExistingConsulatationReport();
+		$scope.doGetExistingConsulatation();  
+		//$scope.doGetExistingConsulatationReport();
 		   
      };
 	 
@@ -1969,7 +2002,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
- 
+	window.plugins.insomnia.keepAwake();
 	$rootScope.currState = $state;
     
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
@@ -3202,7 +3235,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 
 
-.controller('ConferenceCtrl', function($scope, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+.controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
 	$scope.myVideoHeight = $window.innerHeight - 40;
     $scope.myVideoWidth = $window.innerWidth;
@@ -3330,7 +3363,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				$rootScope.vaccinationsCurrent = $rootScope.intake.infantData.vaccinationsCurrent;
 					if($rootScope.vaccinationsCurrent == 'N') { $rootScope.vaccinationsCurrent = 'No'; } else if($rootScope.vaccinationsCurrent == 'T') { $rootScope.vaccinationsCurrent = 'True'; } 
 				
-				
+				$rootScope.userReportDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
+								
 				
 				$rootScope.gender = data.data[0].details[0].gender;
 				if($rootScope.gender == 'M') { $rootScope.gender = 'Male'; } else if($rootScope.gender == 'F') { $rootScope.gender = 'Female'; } 
@@ -3395,10 +3429,10 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 return;
             }
 			 var params = {
-                consultationID: $rootScope.consultationId, 
+                consultationId: $rootScope.consultationId, 
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
-                    $rootScope.SoapNote = data.data.soapNote;
+                    $rootScope.SoapNote = data.data;
                 },
                 error: function (data) {
                     $rootScope.serverErrorMessageValidation();
@@ -3414,7 +3448,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         //publisher.destroy();
         session.disconnect();
 		$scope.doGetPatientsSoapNotes();
-		$scope.doGetExistingConsulatationReport();       
+		$scope.doGetExistingConsulatationReport(); 
+		window.plugins.insomnia.allowSleepAgain();	
     };
     
 })

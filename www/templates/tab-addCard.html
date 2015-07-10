@@ -20,7 +20,7 @@
 			</div>
 			
 			
-			<div class="healthPlan_header" style="display: {{enableSubmitpayment}} " >
+			<div class="healthPlan_header" style="display: {{enableSubmitpaymentAddCard}} " >
 				
 				<div class="healthPlan_text NoPlanText" >Pay Using</div>
 					<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
@@ -43,7 +43,7 @@
 			</div>
 			
 			
-			<div class="SkipToPayment" style="display: {{enableSubmitpayment}}">
+			<div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}">
 				<!--<a ng-href="#/tab/receipt">-->
 				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
 				  <span>Submit Payment</span>
@@ -51,9 +51,18 @@
 				
 				<!--</a>-->
 			</div>
+			
+			<div class="SkipToPayment" style="padding-top: 133px; display: {{continueAddCard}}">
+				<!--<a ng-href="#/tab/receipt">-->
+				<button type="submit" ng-click='doGetReceipt()'  class="button button-block button-balanced">
+				  <span>Continue</span>
+				</button>
+				
+				<!--</a>-->
+			</div>
 		
 			
-			<div class="healthPlan_header AddCardDetails" style="display:{{disableSubmitpayment}}" >				
+			<div class="healthPlan_header AddCardDetails" style="display:{{disableSubmitpaymentAddCard}}" >				
 				<div class="healthPlan_text"  >Pay Using</div>
 				<a ng-href="#/tab/cardDetails" >
 					<div class="addHealthPlan_header AddCard" >
@@ -63,7 +72,7 @@
 				</a>				
 			</div>
 			
-			<div class="SkipToPayment" style="display: {{disableSubmitpayment}}">
+			<div class="SkipToPayment" style="display: {{disableSubmitpaymentAddCard}}">
 				<!--<a ng-href="#/tab/consultChargeNoPlan">-->
 					<button class="button button-block button-royal cardSubmitPayment">
 						<span>  Submit Payment</span>
@@ -93,7 +102,7 @@
 			
 			
 			
-			<div class="scheduled_appointments_text NoPlanBottomText"  >
+			<div class="scheduled_appointments_text NoPlanBottomText" style="display: {{textAddCard}}" >
 				*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed. 
 			</div>
 		</div>
