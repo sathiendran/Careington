@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if($rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -153,16 +153,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
-        $rootScope.PrimaryConcernPopupDone = "margin-top: 11px;"; 
+        $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
         $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 6px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px; padding-right: 0px; padding-left: 0px;padding: 0px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
         /*$rootScope.FootNextButtonRight = "margin-left: -61px !important;"; */
         $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
         $rootScope.FootNextButton = "left: 22px;";
-        $rootScope.FootNextButtonPatient = "left: 3px;";     
+        $rootScope.FootNextButtonPatient = "left: 3px;"; 
+        $rootScope.PriorSurgeryContant = "margin-top: 64px;";     
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
