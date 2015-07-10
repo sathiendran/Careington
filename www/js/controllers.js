@@ -163,7 +163,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if($rootScope.AndroidDevice) {  
+        } else if(!$rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -1314,11 +1314,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					if(data != 0) {				
 						
-						$rootScope.patientprofileID = data.data.profileID;	
+						$rootScope.patientprofileID = data.data[0].profileID;	
 
 						$rootScope.PaymentProfile = [];	
 					
-						angular.forEach(data.data.paymentProfiles, function(index, item) {	
+						angular.forEach(data.data[0].paymentProfiles, function(index, item) {	
 				
 							
 							$rootScope.PaymentProfile.push({

@@ -372,7 +372,8 @@ angular.module('starter.services', [])
             headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
 		   // url: apiCommonURL + '/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
-		    url: apiCommonURL + '/api/patients/' + params.patientId + '/payments',
+		   // url: apiCommonURL + '/api/patients/' + params.patientId + '/payments',
+		    url: apiCommonURL + '/api/v2/patients/payments',
             method: 'GET'   
         };
 
