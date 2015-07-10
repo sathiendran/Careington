@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || !$rootScope.isIPad) {
+    if($rootScope.IOSDevice || $rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -163,7 +163,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
         $rootScope.FootNextButton = "left: 22px;";
         $rootScope.FootNextButtonPatient = "left: 3px;"; 
-        $rootScope.PriorSurgeryContant = "margin-top: 64px;";     
+        $rootScope.PriorSurgeryContant = "margin-top: 56px;";     
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
