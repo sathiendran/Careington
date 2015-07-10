@@ -123,7 +123,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.BackgroundColorGoogle = "background-color: #fff;";
         $rootScope.GoogleSearchContent = "top: 55px;";
         $rootScope.NextButtonReduce = "right: 5px;";
-        $rootScope.FootNextButton = "left: -5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
         if($rootScope.IOSDevice) {
@@ -145,7 +144,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: 77px;";     
+        $rootScope.MarginHomeTop = "margin-top: 77px;";  
+        $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
+        $rootScope.FootNextButton = "left: 24px;";
+           
         }
         if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -157,7 +159,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PriorSurgeryPopupCancel = " margin-top: 6px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
-        $rootScope.FootNextButton = "left: 0px;";    
+        $rootScope.FootNextButtonRight = "margin-left: -61px !important;"; 
+        $rootScope.FootNextButtonRight = "margin-left: -64px !important;";
+        $rootScope.FootNextButton = "left: 3px;";
+        $rootScope.FootNextButtonPatient = "left: 3px;";     
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
