@@ -187,7 +187,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.intakeTittle = "intakeTittleAndroid"; 
         $rootScope.MenuInnerStyle = "top: -8px;"; 
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
-        $rootScope.AddhealthplanOverlop = "margin: 176px 0 0 0;";     
+        $rootScope.AddhealthplanOverlop = "margin: 176px 0 0 0;";  
+         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
        
     }
    
