@@ -1271,7 +1271,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     if(!data.message) {
 					$scope.ApplyHealthPlan = data;
 					$rootScope.copayAmount = data.copayAmount;
-					$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
+					if($rootScope.consultationAmount > $rootScope.copayAmount) {
+						$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
+					} else {
+						$rootScope.PlanCoversAmount = '';
+					}
 					console.log($scope.ApplyHealthPlan);
                     $rootScope.doGetPatientPaymentProfiles();
                     $state.go('tab.addCard');
