@@ -2062,11 +2062,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     */
     
     $scope.waitingMsg="The Clinician will be with you Shortly.";
-	var initHub = function () {
+	var initWaitingRoomHub = function () {
          var connection = $.hubConnection();
          debugger;
          var conHub = connection.createHubProxy('consultationHub');
-         connection.url = "https://sandbox.connectedcare.md/api/signalR/";
+         connection.url = $rootScope.APICommonURL + "/api/signalR/";
          var consultationWatingId = +$rootScope.consultationId;
          
            // var conHub = $.connection.consultationHub;
@@ -2078,16 +2078,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             };
             conHub.on("onConsultationReview", function () {
                 $scope.waitingMsg = "The clinician is now reviewing the intake form.";
-                $scope.$digest();
+                //$scope.$digest();
             });
             conHub.on("onCustomerDefaultWaitingInformation",function () {
                 $scope.waitingMsg = "Please Wait....";
                 $scope.$digest ()
             });
             conHub.on("onConsultationStarted",function () {
-               $scope.waitingMsg = "Started ";
+               $scope.waitingMsg = "Please wait...";
                 $scope.$digest ();
-                //connection.close();
+                $.connection.hub.stop();
                 getConferenceKeys();
             });
          connection.logging = true;
@@ -2095,10 +2095,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 withCredentials :false
             }).then(function(){
                 $scope.waitingMsg="The Clinician will be with you Shortly.";
-                $scope.$digest(); 
+                //$scope.$digest(); 
             });
     };
-    initHub();
+    initWaitingRoomHub();
     
     var getConferenceKeys = function(){
         var params = {
@@ -3243,17 +3243,52 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 .controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
-	$scope.myVideoHeight = $window.innerHeight - 40;
-    $scope.myVideoWidth = $window.innerWidth;
-    $scope.otherVideoTop = $window.innerHeight - 150;
-    $scope.controlsStyle = false;
     
-    $scope.cameraPosition = "front";
-    $scope.publishAudio = true;
+    var initConferenceRoomHub = function () {
+         var connection = $.hubConnection();
+         debugger;
+         var conHub = connection.createHubProxy('consultationHub');
+         connection.url = $rootScope.APICommonURL + "/api/signalR/";
+         var consultationWatingId = +$rootScope.consultationId;
+         
+           // var conHub = $.connection.consultationHub;
+           connection.qs = {
+                "Bearer": $rootScope.accessToken,
+                "consultationId": consultationWatingId,
+                "isMobile" : true
+            };
+            conHub.on("onConsultationReview", function () {
+                $rootScope.waitingMsg = "The clinician is now reviewing the intake form.";
+            });
+            conHub.on("onCustomerDefaultWaitingInformation",function () {
+                $rootScope.waitingMsg = "Please Wait....";
+            });
+            conHub.on("onConsultationStarted",function () {
+               $rootScope.waitingMsg = "Please wait...";
+            });
+            connection.logging = true;
+            connection.start({
+                withCredentials :false
+            }).then(function(){
+                $rootScope.waitingMsg="The Clinician will be with you Shortly.";
+            });
+            conHub.on("onConsultationEnded",function () {
+                $scope.disconnectConference();
+            });
+    };
+    initConferenceRoomHub();
+    
+	$rootScope.myVideoHeight = $window.innerHeight - 40;
+    $rootScope.myVideoWidth = $window.innerWidth;
+    $rootScope.otherVideoTop = $window.innerHeight - 150;
+    $rootScope.controlsStyle = false;
+    
+    $rootScope.cameraPosition = "front";
+    $rootScope.publishAudio = true;
     
     
-    $scope.muteIconClass = 'ion-ios-mic callIcons';
-    $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
+    $rootScope.muteIconClass = 'ion-ios-mic callIcons';
+    $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
     var apiKey = $rootScope.videoApiKey;
     var sessionId = $rootScope.videoSessionId;
@@ -3295,11 +3330,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     });
     $scope.toggleCamera = function(){
         if($scope.cameraPosition == "front"){
-            $scope.newCamPosition = "back";
-            $scope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
+            $rootScope.newCamPosition = "back";
+            $rootScope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
         }else{
-            $scope.newCamPosition = "front";
-            $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
+            $rootScope.newCamPosition = "front";
+            $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
         }
         $scope.cameraPosition = $scope.newCamPosition;
         publisher.setCameraPosition($scope.newCamPosition);
@@ -3308,14 +3343,14 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     
     $scope.toggleMute = function(){
         if($scope.publishAudio){
-            $scope.newPublishAudio = false;
-            $scope.muteIconClass = 'ion-ios-mic-off callIcons activeCallIcon';
+            $rootScope.newPublishAudio = false;
+            $rootScope.muteIconClass = 'ion-ios-mic-off callIcons activeCallIcon';
         }else{
-            $scope.newPublishAudio = true;
-            $scope.muteIconClass = 'ion-ios-mic callIcons';
+            $rootScope.newPublishAudio = true;
+            $rootScope.muteIconClass = 'ion-ios-mic callIcons';
         }
-        $scope.publishAudio = $scope.newPublishAudio;
-        publisher.publishAudio($scope.newPublishAudio);
+        $rootScope.publishAudio = $rootScope.newPublishAudio;
+        publisher.publishAudio($rootScope.newPublishAudio);
         //OT.updateViews();
     };
     
