@@ -123,17 +123,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.BackgroundColorGoogle = "background-color: #fff;";
         $rootScope.GoogleSearchContent = "top: 55px;";
         $rootScope.NextButtonReduce = "right: 5px;";
-        $rootScope.FootNextButton = "left: -5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
         if($rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
-        $rootScope.PrimaryConcernPopupDone = "margin-top: 16px;"; 
+        $rootScope.PrimaryConcernPopupDone = "margin-top: 16px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
         $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 21px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 8px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
@@ -145,19 +144,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: 77px;";     
+        $rootScope.MarginHomeTop = "margin-top: 77px;";  
+        $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
+        $rootScope.FootNextButton = "left: 24px;";
+           
         }
         if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
-        $rootScope.PrimaryConcernPopupDone = "margin-top: 11px;"; 
+        $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
         $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 6px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px; padding-right: 0px; padding-left: 0px;padding: 0px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
-        $rootScope.FootNextButton = "left: 0px;";    
+        /*$rootScope.FootNextButtonRight = "margin-left: -61px !important;"; */
+        $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
+        $rootScope.FootNextButton = "left: 22px;";
+        $rootScope.FootNextButtonPatient = "left: 3px;"; 
+        $rootScope.PriorSurgeryContant = "margin-top: 53px;";     
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";

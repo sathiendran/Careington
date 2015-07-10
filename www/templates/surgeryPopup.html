@@ -2,14 +2,21 @@
 <!--margin-top: 6px;-->
 <div class="modal">
     <ion-view  title="Prior Surgery">
-    <header class="bar bar-header bar-dark SurgeryHeader" style="{{PrimaryConcernPopupH}}">
+   <!-- <header class="bar bar-header bar-dark SurgeryHeader" style="{{PrimaryConcernPopupH}}">
 		<div class="ErrorMessage ErrorMessageDiv"  ></div>
 		<button type="submit" class="button button-clear SurgeryCancel" ng-click="RemoveSurgeryPopup()" style="{{PriorSurgeryPopupCancel}};">Cancel</button>
 		<h1 class="title SurgeryTitle" style="{{PriorSurgeryPopupTitle}};">Prior Surgeries</h1>
 		<button type="submit" style="{{PriorSurgeryPopupDone}};" class="button button-clear SurgeryDone" ng-click="closeSurgeryPopup()" style="margin-top: 6px;">Done</button>
-	</header>
+	</header> -->
+        
+<header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};">
+    <div class="ErrorMessage ErrorMessageDiv"  ></div>
+     <button class="button button-clear concernListDone" style="{{PriorSurgeryPopupCancel}};" ng-click="RemoveSurgeryPopup()" >Cancel</button>
+	<h1 class="title concernListTitle" style="{{PrimaryConcernPopupTitle}};">Prior Surgeries</h1>
+      <button class="button button-clear concernListDone" style="{{PrimaryConcernPopupDone}};" ng-click="closeSurgeryPopup()" >Done</button>
+</header>
    
-   <ion-content has-header="true" class="SurgeryContent">
+   <ion-content has-header="true" class="SurgeryContent" style="{{PriorSurgeryContant}}">
      
      <ion-list>
     <div class="list" style="{{PriorSurgeryPopupTextBox}}">
