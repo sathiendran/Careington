@@ -171,7 +171,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if(!$rootScope.AndroidDevice) {  
+        } else if($rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
