@@ -17,7 +17,7 @@
 				<div class="consultation_number"> ${{consultationAmount}}*</div>
 			</div>
 			
-			<div class="healthPlan_header"  >
+			<div class="healthPlan_header" style="display: {{enableSubmitpaymentAddCard}}" >
 				<div class="healthPlan_text NoPlanText" >Pay Using</div>
 					<div class="addHealthPlan_header NoPlanAddCardDropdown"  >					
 						<!--<div class="demo" >
@@ -37,7 +37,7 @@
 			</div>
 		
 			
-			<div class="SkipToPayment">
+			<div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}">
 				<!--<a ng-href="#/tab/receipt">-->
 				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
 				  <span>Submit Payment</span>
@@ -45,10 +45,21 @@
 				
 				<!--</a>-->
 			</div>
-			<div class="scheduled_appointments_text NoPlanBottomText" >
+			<div class="scheduled_appointments_text NoPlanBottomText" style="display: {{textAddCard}}">
 				<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
 			</div>
+			
+			<div class="SkipToPayment" style="padding-top: 133px; display: {{continueAddCard}}">
+				<!--<a ng-href="#/tab/receipt">-->
+				<button type="submit" ng-click='doGetReceipt()'  class="button button-block button-balanced">
+				  <span>Continue</span>
+				</button>
+				
+				<!--</a>-->
+			</div>
+			
 		</div>
+		
 	</ion-content>
 	</form>
 </ion-side-menu-content>	
