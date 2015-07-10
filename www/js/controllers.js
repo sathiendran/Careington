@@ -171,7 +171,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if($rootScope.AndroidDevice) {  
+        } else if(!$rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -187,12 +187,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.intakeTittle = "intakeTittleAndroid"; 
         $rootScope.MenuInnerStyle = "top: -8px;"; 
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
-        $rootScope.AddhealthplanOverlop = "margin: 176px 0 0 0;";     
+        $rootScope.AddhealthplanOverlop = "margin: 176px 0 0 0;";  
+         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
        
     }
    
-   
-
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -3675,6 +3674,13 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         return input;
     };
 }) 
+// Special Charctor Remove Filter //
+.filter('filterHtmlChars', function(){
+  return function(html) {
+    var filtered = angular.element('<div>').html(html).text(); 
+   return filtered;
+  }
+})
 
 .directive('siteHeader', function () {
     return {
