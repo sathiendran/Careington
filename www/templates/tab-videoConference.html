@@ -12,14 +12,14 @@
   
 <ion-footer-bar class="footer">
     <div style="width:100%; margin: auto; text-align: center; ">
-        <div class="confCamera">
-            <i class="{{cameraIconClass}}" ng-click="toggleCamera();"></i>
+        <div class="confCamera" ng-click="toggleCamera();">
+            <i class="{{cameraIconClass}}"></i>&nbsp;
         </div>
         <div class='confEndCall' ng-click="disconnectConference();">
-            End Call
+            <i class="ion-ios-telephone callIcons activeCallIcon" style="display: inline-block; -webkit-transform: rotate(135deg);"></i>
         </div>
-        <div class="confMute">
-            <i class="{{muteIconClass}}" ng-click="toggleMute();"></i>
+        <div class="confMute" ng-click="toggleMute();">
+            <i class="{{muteIconClass}}"></i>&nbsp;
         </div>
     <div>
 </ion-footer-bar>	
