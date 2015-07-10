@@ -1940,6 +1940,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	   
     $scope.doGetWaitingRoom = function() {
+        /*
         var params = {
             accessToken: $rootScope.accessToken,
             consultationID: $rootScope.consultationId,
@@ -1952,7 +1953,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.serverErrorMessageValidation();
             }
         };
-        LoginService.updateConsultationEvent(params);					
+        LoginService.updateConsultationEvent(params);
+        */
+        $state.go('tab.waitingRoom');				
     }
 	
 	$rootScope.EnableBackButton = function () {     
@@ -1986,7 +1989,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	};
 	
     $scope.isPhysicianStartedConsultaion = false;
-            
+    
+    /*        
     consultationStatusCheck = $interval(function(){
          if(!$scope.isPhysicianStartedConsultaion){
               $scope.checkIfPhysicianStartedConference();
@@ -2012,8 +2016,48 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         };
         LoginService.getExistingConsulatation(params);
      };
+    */
     
-    $scope.getConferenceKeys = function(){
+    $scope.waitingMsg="The Clinician will be with you Shortly.";
+	var initHub = function () {
+         var connection = $.hubConnection();
+         debugger;
+         var conHub = connection.createHubProxy('consultationHub');
+         connection.url = "https://sandbox.connectedcare.md/api/signalR/";
+         var consultationWatingId = +$rootScope.consultationId;
+         
+           // var conHub = $.connection.consultationHub;
+           connection.qs = {
+                "Bearer": $rootScope.accessToken,
+                "consultationId": consultationWatingId,
+                "waitingroom":1,
+                "isMobile" : true
+            };
+            conHub.on("onConsultationReview", function () {
+                $scope.waitingMsg = "The clinician is now reviewing the intake form.";
+                $scope.$digest();
+            });
+            conHub.on("onCustomerDefaultWaitingInformation",function () {
+                $scope.waitingMsg = "Please Wait....";
+                $scope.$digest ()
+            });
+            conHub.on("onConsultationStarted",function () {
+               $scope.waitingMsg = "Started ";
+                $scope.$digest ();
+                //connection.close();
+                getConferenceKeys();
+            });
+         connection.logging = true;
+            connection.start({
+                withCredentials :false
+            }).then(function(){
+                $scope.waitingMsg="The Clinician will be with you Shortly.";
+                $scope.$digest(); 
+            });
+    };
+    initHub();
+    
+    var getConferenceKeys = function(){
         var params = {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
@@ -3168,16 +3212,10 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     $scope.muteIconClass = 'ion-ios-mic callIcons';
     $scope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
     
+    var apiKey = $rootScope.videoApiKey;
+    var sessionId = $rootScope.videoSessionId;
+    var token = $rootScope.videoToken;
     
-    $rootScope.videoApiKey = "45217062"; 
-      $rootScope.videoSessionId = "2_MX40NTIxNzA2Mn5-MTQzMDI5NDIzNjAxOX5qbnI1b0NLSjZXQXZ0VjJGOFhZckFzNjJ-fg"; 
-      $rootScope.videoToken = "T1==cGFydG5lcl9pZD00NTIxNzA2MiZzaWc9NTFhMjcwNzY4MzRhNTk3YTViZjlhNThlMDRmNDU2N2U5ODQzZWFjNjpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5USXhOekEyTW41LU1UUXpNREk1TkRJek5qQXhPWDVxYm5JMWIwTkxTalpYUVhaMFZqSkdPRmhaY2tGek5qSi1mZyZjcmVhdGVfdGltZT0xNDMwMjk0MjQ5Jm5vbmNlPTAuOTgxMzMwNzQ5MDM0MTQ0OSZleHBpcmVfdGltZT0xNDMyODg0NzA2JmNvbm5lY3Rpb25fZGF0YT0="; 
-    /*
-    
-    apiKey = $rootScope.videoApiKey;
-    sessionId = $rootScope.videoSessionId;
-    token = $rootScope.videoToken;
-    */
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
 
