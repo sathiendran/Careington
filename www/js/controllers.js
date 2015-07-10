@@ -2062,7 +2062,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
      };
     */
     
-    $rootScope.waitingMsg="The Clinician will be with you Shortly.";
+    $scope.waitingMsg="The Clinician will be with you Shortly.";
 	var initWaitingRoomHub = function () {
          var connection = $.hubConnection();
          debugger;
@@ -2078,16 +2078,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 "isMobile" : true
             };
             conHub.on("onConsultationReview", function () {
-                $rootScope.waitingMsg = "The clinician is now reviewing the intake form.";
-                //$scope.$digest();
+                $scope.waitingMsg = "The clinician is now reviewing the intake form.";
+                $scope.$digest();
             });
             conHub.on("onCustomerDefaultWaitingInformation",function () {
-                $rootScope.waitingMsg = "Please Wait....";
-                //$scope.$digest();
+                $scope.waitingMsg = "Please Wait....";
+                $scope.$digest();
             });
             conHub.on("onConsultationStarted",function () {
-               $rootScope.waitingMsg = "Please wait...";
-                //$scope.$digest();;
+               $scope.waitingMsg = "Please wait...";
+                $scope.$digest();;
                 $.connection.hub.stop();
                 getConferenceKeys();
             });
@@ -2095,8 +2095,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             connection.start({
                 withCredentials :false
             }).then(function(){
-                $rootScope.waitingMsg="The Clinician will be with you Shortly.";
-                //$scope.$digest(); 
+                $scope.waitingMsg="The Clinician will be with you Shortly.";
+                $scope.$digest(); 
             });
     };
     initWaitingRoomHub();
