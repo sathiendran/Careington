@@ -24,15 +24,24 @@
 							<select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
 								<option  ng-repeat="getPayment in PaymentDetailsList" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>{{getPayment.cardNumber}}</span></b></option> 
 							</select>							
-						</div>-->
+						</div>
 						<div  class="dropdownContainer">
-							<div style = "display: {{choosePaymentHide}};" class="viewport">Choose Your Health Plan</div>
+							<div style = "display: {{choosePaymentHide}};" class="viewport">Choose Your Card</div>
 							<div style = "display: {{choosePaymentShow}};" class="viewport">{{userCardNumber}}</div>
 							 						
 							<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
-								<option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>{{getPayment.cardNumber}}</span></b></option> 
+								<option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>Card ending in...{{getPayment.cardNumber}}</span></b></option> 
+							</select>
+						</div>-->
+						<div  class="dropdownContainer">
+							<div class="cardViewport">Choose Your Card</div>							
+							<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
+								<option><b>Choose Your Card</b></option>
+								<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
+								<option><b>Add a new card</b></option>
 							</select>
 						</div>
+						
 					</div>
 			</div>
 		

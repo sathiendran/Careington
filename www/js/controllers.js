@@ -50,7 +50,7 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $window, ageFilter, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('LoginCtrl', function($scope, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
 	/*$rootScope.online = navigator.onLine;	
 	$rootScope.IsOnline = navigator.onLine;
@@ -666,6 +666,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
 				$rootScope.reportScreenPrimaryConcern = $rootScope.intakeForm.concerns[0].customCode.description;
 				$rootScope.reportScreenSecondaryConcern = $rootScope.intakeForm.concerns[1].customCode.description;
+				$rootScope.preConsultantNotes = $rootScope.consultionInformation.note;				
 				$scope.doGetExistingPatientName();
 				$scope.doGetDoctorDetails();
                
@@ -1340,7 +1341,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'id': index.$id,
 								'billingAddress': angular.fromJson(index.billingAddress),
 								'cardExpiration': index.cardExpiration,
-								'cardNumber': index.cardNumber,
+								'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
 								'isBusiness': index.isBusiness,
 								'profileID': index.profileID,
 							});
@@ -2123,7 +2124,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate,$ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
+.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
     $rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -3343,15 +3344,25 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
 				$rootScope.reportScreenPrimaryConcern = $rootScope.existingConsultationReport.primaryConcern;
 				if(typeof $rootScope.reportScreenPrimaryConcern != 'undefined') {
-					$rootScope.reportScreenPrimaryConcern1 = $rootScope.reportScreenPrimaryConcern.split("?");
-					$rootScope.reportScreenPrimaryConcern = $rootScope.reportScreenPrimaryConcern1[1];
+					var n = $rootScope.reportScreenPrimaryConcern.indexOf("?");
+					if(n < 0) {
+						$rootScope.reportScreenPrimaryConcern = $rootScope.reportScreenPrimaryConcern;
+					} else {
+						$rootScope.reportScreenPrimaryConcern1 = $rootScope.reportScreenPrimaryConcern.split("?");
+						$rootScope.reportScreenPrimaryConcern = $rootScope.reportScreenPrimaryConcern1[1];
+					}
 				} else {
 					$rootScope.reportScreenPrimaryConcern = "";
 				}
 				$rootScope.reportScreenSecondaryConcern = $rootScope.existingConsultationReport.secondaryConcern;
 				if(typeof $rootScope.reportScreenSecondaryConcern != 'undefined') {
-					$rootScope.reportScreenSecondaryConcern1 = $rootScope.reportScreenSecondaryConcern.split("?");
-					$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern1[1];
+					var n = $rootScope.reportScreenSecondaryConcern.indexOf("?");
+					if(n < 0) {
+						$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern;
+					} else {
+						$rootScope.reportScreenSecondaryConcern1 = $rootScope.reportScreenSecondaryConcern.split("?");
+						$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern1[1];
+					}
 				} else {
 					$rootScope.reportScreenSecondaryConcern = "";
 				}

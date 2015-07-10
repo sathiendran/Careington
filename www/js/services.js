@@ -816,6 +816,14 @@ this.getCountryDetails = function () {
 
 })
 
+.service('replaceCardNumber', function(){ 
+	this.getCardNumber = function(cardNo) {
+		var str = cardNo;
+		var res = str.replace("XXXX", '');
+		return res;
+     }; 
+})
+
 .service('ageFilter', function(){ 
   //this.getAge = function(dateString) {
 //.filter('ageFilter', function() {
