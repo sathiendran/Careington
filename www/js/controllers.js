@@ -159,9 +159,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PriorSurgeryPopupCancel = " margin-top: 6px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
-        $rootScope.FootNextButtonRight = "margin-left: -61px !important;"; 
-        $rootScope.FootNextButtonRight = "margin-left: -64px !important;";
-        $rootScope.FootNextButton = "left: 3px;";
+        /*$rootScope.FootNextButtonRight = "margin-left: -61px !important;"; */
+        $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
+        $rootScope.FootNextButton = "left: 22px;";
         $rootScope.FootNextButtonPatient = "left: 3px;";     
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
