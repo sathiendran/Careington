@@ -157,6 +157,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PriorSurgeryPopupCancel = " margin-top: 6px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
+        $rootScope.FootNextButton = "left: 0px;";    
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
