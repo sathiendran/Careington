@@ -147,6 +147,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MarginHomeTop = "margin-top: 77px;";  
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
+        $rootScope.PriorSurgeryContant = "margin-top: 43px;";    
            
         }
         if($rootScope.isIPad) {
