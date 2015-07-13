@@ -1041,6 +1041,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        //End 
 		$rootScope.providerName = HealthPlanProviders[0];
         $rootScope.PolicyNo = $scope.AddHealth.policyNumber;
+		$rootScope.healthPlanID = HealthPlanProviders[1];
        
         if(typeof $rootScope.patientHealthPlanList != 'undefined') { 
                 var subsciberNewID = $rootScope.patientHealthPlanList.length + 1;
@@ -1857,6 +1858,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		$rootScope.providerName = '';
 		$rootScope.PolicyNo = '';
+		$rootScope.healthPlanID = '';
         $rootScope.NewHealth = '';    
         }
         
