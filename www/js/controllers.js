@@ -148,7 +148,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
         $rootScope.PriorSurgeryContant = "margin-top: 43px;";    
-           
+        $rootScope.reportDone = "padding-top: 26px;"; 
+        $rootScope.reportTitletop = "top:4px !important;";    
         }
         if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
