@@ -1,20 +1,20 @@
-<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};" >
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
 		
 		
     <!--<div class="backButtonDiv">
        <a ng-click="EnableBackButton()"> <Span  style="float:left;margin: 13px 0 0 17px;font-size:20px;color:#fff;"><B>Done</B></Span></a>
 		</div>-->
 		
-		 <div class="buttons" style="{{ReportScreen}}">
-				<a class="button_new icon ReportDone" ng-click="EnableBackButton()"  >
+		 <div class="buttons" style="{{ReportScreen}};">
+				<a class="button_new icon ReportDone" style="{{reportDone}}" ng-click="EnableBackButton()"  >
 					<span>Done</span>
 				</a>				
 		  </div>
 		
-		<h1 class="{{title_patient}} {{HeaderList}} ReportTittle">Intake Form</h1>  
+		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} ReportTittle" style="{{reportTitletop}};">Intake Form</h1>  
 
 
-	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
 		<div class="calendar_subHeader" >
 			<div class="subHeader_image" >
 				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
@@ -53,7 +53,7 @@
 			<h1 class="ReportTitle">CONNECTED CARE CONSULTATION REPORT</h1>
 		</div>
 	
-		<div class="Roundcircle CCAttachment">
+		<div class="Roundcircle CCAttachment" style="display:none;">
 			<img ng-src="img/attached.png">
 			<p><b>3</b></p>
 		</div>
