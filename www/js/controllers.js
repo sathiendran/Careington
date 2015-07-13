@@ -1640,10 +1640,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 						if($rootScope.scheduledList != '')
 						{
-							//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
-							//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
-							var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
-							var currentUserHomeDate = currentUserHomeDate;
+							var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+							var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+							//var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
+							//var currentUserHomeDate = currentUserHomeDate;
 							
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
@@ -1670,10 +1670,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 			
 		if($rootScope.getIndividualScheduleDetails !='') {		
-			//var getReplaceTime = ($rootScope.getIndividualScheduleDetails[0].scheduledTime).replace("T"," ");			
-			//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");	
-			var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
-			var currentUserHomeDate = currentUserHomeDate;		
+			var getReplaceTime = ($rootScope.getIndividualScheduleDetails[0].scheduledTime).replace("T"," ");			
+			var currentUserHomeDate = currentUserHomeDate.replace("T"," ");	
+			//var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+			//var currentUserHomeDate = currentUserHomeDate;		
 			if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {				
 					
 						$scope.$on('timer-tick', function (event, args){
@@ -1962,8 +1962,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		   
 		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
 		
-		//var getReplaceTime = ($rootScope.scheduledListDatas.scheduledTime).replace("T"," ");	
-		var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
+		var getReplaceTime = ($rootScope.scheduledListDatas.scheduledTime).replace("T"," ");	
+		//var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
 		
 		$rootScope.time = new Date(getReplaceTime).getTime();
 		
