@@ -2308,7 +2308,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 				color:#888;margin-top: -34px;
 			}
 			.ion-chevron-right:before {
-			  content: "\f125
+			  content: "\f125";
 			  font-size: 20px;
 			  margin-top: -2px;
 			  Color: #898989;     
@@ -2372,8 +2372,8 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
   margin-top: 0px;          
 }
 .ion-chevron-right:before {
-  content: "\f125
-  font-size: 27px;
+  content: "\f125";
+  font-size: 27px; 
   margin-top: -2px;
   Color: #898989;     
 }
