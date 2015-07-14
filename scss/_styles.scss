@@ -1717,19 +1717,19 @@ text-align:center
 
 .bar-subheaderHomeUser { 
 	/*display: block;*/
-	height: 60%;
+	height: 63%;
     top: 80px;
 	margin-top:-6px;
 }
 
 .TitleHomeUser_Sub {
-	@include font($fontFamily_semibold, bold, 25px);
+	@include font($fontFamily_bold, bold, 25px);
 	position:relative; 
 	/*margin: 1px 7px 25px;*/
 	margin-left: 7px;
 	top: 3px;
 	width:90%;
-	color:#000;
+	color:#616462;
 }
 .ContentHomeUser {
 	margin: 81px 0 0 0;
@@ -1743,13 +1743,17 @@ width:55px; height:55px; border-radius: 50%;
 }
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
-color:#000; font-size: 21px; margin: 12px;
+color:#000; font-size: 21px; margin: 9px 12px 6px 12px;
+}
+.HrefListViewDependent {
+@include font($fontFamily_thin, normal, 21px);
+color:#000; font-size: 21px; margin: 6px 12px 6px 12px;
 }
 .ListText {
- position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_bold;
+ position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_regular;
 }
 .ListTextTitle {
- position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_bold;
+ position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_xBold; color: #616462;
 }
 .listTitle {
 position: relative;top: -48px;left: 68px;width: 67%;font-size:24px;
@@ -1782,7 +1786,7 @@ padding: 8px; background-color:#FEEFE8;
 	/*font-family: $fontFamily_thin; */
 }
 .SubTitleSpan {
-@include font($fontFamily_regular, normal, 23px);
+@include font($fontFamily_regular, normal, 100%);
 color:#706A67;
 }
 .docName {
@@ -2249,35 +2253,36 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	margin-top: 70px;
 	border-color:#000;
 	.UserHmeSub {				
-				padding:10px;
+				padding:12px 10px 1px 10px;
 				.item-input {
-					margin-top: 5px;background: #E6E6E6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
-					border: 1px solid $Altoa;					
+					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+					border: 1px solid $Altoa; 				
 					::-webkit-input-placeholder { /* WebKit browsers */
 						color:    $Tundora !important;
 						font-size: 18px !important;
-						padding-top: 3px !important;
+						padding-top: 5px !important;
 					}
 					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 						   color:    $Tundora !important;
 						  font-size: 18px !important;
-							padding-top: 3px !important;
+							padding-top: 5px !important;
 						   opacity:  1;
 						}
 					::-moz-placeholder { /* Mozilla Firefox 19+ */
 						   color:    $Tundora !important;
 						  font-size: 18px !important;
-						padding-top: 3px !important;
+						padding-top: 5px !important;
 						   opacity:  1;
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
 						   color:    $Tundora !important;
 						   font-size: 18px !important;
-						padding-top: 3px !important;
+						padding-top: 5px !important;
 						}
 					input {
 					font-size: 17px;
-					color:#000;height: 26px;  margin-top: -4px;
+					color:#616462;height: 26px;  margin-top: 0px;
+					font-family: $fontFamily_regular;	
 					}
 
 				}
@@ -2287,7 +2292,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .UserHomePatient {
 	cursor:pointer;
 	.UserHomeHeader {
-		top: 1px;padding:11px;height: 104px;
+		top: 5px;padding:11px;height: 104px;
 		.UserhmePatientDetails {
 			 margin-left: 0px;
 			 margin-top: 0px !important;
@@ -2301,11 +2306,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	}
 }
 .UserHomeNextAppointment {
-	top: -2px;height: 66px;
+	top: -2px;height: 64px;
 	a {
 		margin-left:10px;
 		.UHomeNextAppoinment {
-			font-size: 16px;top: 1px;color: #888;  margin-left: -5px;
+			font-size: 14px;top: 1px;color: #888;  margin-left: -5px;
 		}
 		h2 {
 			margin-left: 4px; margin-top: 2px;font-size:22px; color:#706A67;
@@ -2317,15 +2322,15 @@ form.ng-submitted input.ng-valid + i.icon.error {
 			}
 		}
 		.nextList {
-			color:#888;margin-top: -33px;  margin-right: 12px;
+			color:#888;margin-top: -35px;  margin-right: 12px;
 		}
 		.AppointmentView {
-			float: right;font-size: 16px; margin-right: 30px; color:#888;margin-top: -31px;
+			float: right;font-size: 14px; margin-right: 30px; color:#888;margin-top: -35px;
 		}
 	}
 }
 .DependentList {
-	padding:11px;  top: -2px;  height: 104px;
+	padding:11px;  top: -2px;  height: 91px;
 	a {
 		cursor: pointer;
 		p {
@@ -2357,7 +2362,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 }
 .ion-chevron-right:before {
   content: "\f125";
-  font-size: 25px;
+  font-size: 20px;
   margin-top: -2px;
 }
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
@@ -2495,3 +2500,8 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 				color: #515151;
 			}
 		}
+		
+	.bar .button.button-clear.icon:before {
+		font-size: 40px;
+	}
+		

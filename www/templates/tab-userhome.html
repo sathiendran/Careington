@@ -13,7 +13,7 @@
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
 				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who needs care today?</div>
 				<div class="SearchImage">
-					<i class="ion-search" style="float: right; font-size: 26px;color: #000;"></i>
+					<i class="ion-search" style="float: right; font-size: 26px;color: #616462;"></i>
 				</div>
 
 			</div> 
@@ -72,7 +72,7 @@
 		
 		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
 			<!-- <a class="HrefListView">   -->
-			 <div class="HrefListView"> 
+			 <div class="HrefListViewDependent"> 
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
 					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
