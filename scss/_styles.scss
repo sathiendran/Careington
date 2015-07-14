@@ -137,7 +137,7 @@ body {
 } 
 
 .login_content {
-	margin: 70px 0 0 0;
+	margin: 80px 0 0 0;
 	padding-top: 100px;
 		.login_home {	
 				padding: 0 12%;
@@ -145,33 +145,34 @@ body {
 				.item-input {
 					border: 1px solid $Altoa;
 					border-radius: 8px;
-					height: 45px;
+					height: 50px;
 					font-weight: bold;
 					background-color: #999999;
+                    padding: 6px 0 7px 16px;
 					::-webkit-input-placeholder { /* WebKit browsers */
 						color:    $Tundora !important;
-						font-size: 17px !important;
-						padding-top: 3px !important;
+						font-size: 20px !important;
+						padding-top: 5px !important;
 					}
 					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 						   color:    $Tundora !important;
-						  font-size: 17px !important;
-							padding-top: 3px !important;
+						  font-size: 20px !important;
+							padding-top: 5px !important;
 						   opacity:  1;
 						}
 					::-moz-placeholder { /* Mozilla Firefox 19+ */
 						   color:    $Tundora !important;
-						  font-size: 17px !important;
-						padding-top: 3px !important;
+						  font-size: 20px !important;
+						padding-top: 5px !important;
 						   opacity:  1;
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
 						   color:    $Tundora !important;
-						   font-size: 17px !important;
-						padding-top: 3px !important;
+						   font-size: 20px !important;
+						padding-top: 5px !important;
 						}
 					input {
-					font-size: 17px;
+					font-size: 20px;
 					}
 
 				}
@@ -244,7 +245,7 @@ body {
 	@include buttons($Feijoa, normal, 7px, 19px, 35px );	
 	color: #fff;
 	width: 105px;
-	line-height: 30px;
+	line-height: 35px;
 	padding-top: 5px;
 	background: linear-gradient(#A0D18A, #91BE7B); 
 	
@@ -263,27 +264,27 @@ body {
 
 .footer {
 	color: #fff;	
-	background-color: #4D4D4D;
-	border-color: #4D4D4D;
-	height: 40px;
-	@include font($fontFamily_thin, bold, 9px);
+	background-color: #4D4D4D !important;
+	border-color: #4D4D4D !important;
+	height: 50px;
+	@include font($fontFamily_thin, bold, 11px);
 	border-top-width: -1px;
 	border-top: -1px;
 		.terms {
-		@include font($fontFamily_thin, bold, 9px);
+		@include font($fontFamily_thin, bold, 11px);
 			text-align: left;
 			width: 50%;
-			margin: 5px 0 0 1%;
+			margin: 13px 0 0 1%;
 				a {
 					text-decoration: none;
 					color: #fff;	
 				}
 		}
 		.powerdBySnapMD {
-		@include font($fontFamily_thin, bold, 9px);
+		@include font($fontFamily_thin, bold, 11px);
 			text-align: right; 
-			width: 49%;
-			margin: 5px 0 0 0;
+			width: 50%;
+			margin: 13px 0 0 0;
 			a {
 			color: #fff; text-decoration: none;
 			}
@@ -401,34 +402,36 @@ body {
 	@extend .login_content;
 	margin: 220px 0 0 0;
 	padding-top: 85px;
+    background-color: #EFEFED;
 	.item-input {
 		border: 1px solid $Altoa;
 		border-radius: 8px;
-		height: 45px;
+		height: 50px;
         line-height: normal;
 		font-weight: bold;
-		background-color: #999999;
+		background-color: #E6E6E2;
+        padding: 6px 0 7px 16px;
 		::-webkit-input-placeholder { /* WebKit browsers */
 			color:    $Tundora !important;
-			font-size: 17px !important;
+			font-size: 20px !important;
             padding-top: 2px !important;
             opacity:  1;
 		}
 		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-						   color:    $Tundora !important;
-						 font-size: 17px !important;
+						   color:    $TundoraPWD !important;
+						 font-size: 20px !important;
                          padding-top: 2px !important;
 						   opacity:  1;
 						}
 		::-moz-placeholder { /* Mozilla Firefox 19+ */
-						   color:    $Tundora !important;
-						  font-size: 17px !important;
+						   color:    $TundoraPWD !important;
+						  font-size: 20px !important;
 			              padding-top: 2px !important;
                           opacity:  1;
 						}
 		:-ms-input-placeholder { /* Internet Explorer 10+ */
-						  color:    $Tundora !important;
-						  font-size: 17px !important;
+						  color:    $TundoraPWD !important;
+						  font-size: 20px !important;
                           padding-top: 2px !important;
                           opacity:  1;
 						}
@@ -1576,9 +1579,9 @@ body {
    }
    
 .bar.bar-positiveLess {
-    background-color: #f0502c;
-    background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
-    border-color: #f0502c;
+    background-color: #F04E29;
+    background-image: linear-gradient(0deg, #F04E29, #F04E29 50%, transparent 50%);
+    border-color: #F04E29;
 	}
 	
 	
@@ -1586,31 +1589,31 @@ body {
 	border-bottom-width: 0px;
 	border-top-width: 0;
 	top: 0;
-	background-color: #f0502c;
-	background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
+	background-color: #F04E29;
+	background-image: linear-gradient(0deg, #F04E29, #F04E29 50%, transparent 50%);
 	/*border-color: #B03A21;
 	border-width: 0px 0px 3px 0px;*/
-	box-shadow: 0px 3px 2px #B03A21;
-	-moz-box-shadow: 0px 3px 2px #B03A21;
-  -webkit-box-shadow: 0px 3px 2px #B03A21;
+	box-shadow: 0px 4px 2px #BD6E5D;
+	-moz-box-shadow: 0px 5px 2px #BD6E5D;
+  -webkit-box-shadow: 0px 5px 2px #BD6E5D;
 }
 
 .bar-subheaderLessAndroid { 
 	display: block;
 	height: 85px;
 	top: 47px;
-	-moz-box-shadow: 0px 2px 9px #ADABAB;
-	-webkit-box-shadow: 0px 2px 9px #ADABAB;
-	box-shadow: 0px 2px 9px #ADABAB;
+	-moz-box-shadow: 0px 4px 9px #ADABAB;
+	-webkit-box-shadow: 0px 4px 9px #ADABAB;
+	box-shadow: 0px 4px 9px #ADABAB;
 }
 
 .bar-subheaderLessIOS { 
 	display: block;
 	height: 82px;
-	top: 47px;
-	-moz-box-shadow: 0px 2px 9px #ADABAB;
-	-webkit-box-shadow: 0px 2px 9px #ADABAB;
-	box-shadow: 0px 2px 9px #ADABAB;
+	top: 48px;
+	-moz-box-shadow: 0px 4px 9px #ADABAB;
+	-webkit-box-shadow: 0px 4px 9px #ADABAB;
+	box-shadow: 0px 4px 9px #ADABAB;
 }
 	
 .head_titleLessAndroid { 
@@ -1631,13 +1634,13 @@ body {
 
 .bar-TitleLess{
 	display: block;
-	background-color: #f2f2f2;
+	background-color: #EFEFED;
 	height: 63px;
     top: 137px;
 }
 
 .TitleLess{
-		@include font($fontFamily_bold, normal, 21px);
+		@include font($fontFamily_bold, normal, 23px);
 		text-align: left;
 		position:relative; 
 		top: 25px;	
@@ -1646,10 +1649,12 @@ body {
 }		
 .ContentList_provider {
 	margin: 149px 0 0 0;
+      background-color: #EFEFED;
 	.item {
 		  padding: 36px 16px 27px 35px;
-		   Color: #4D4D4D;
-		   font-size: 20px;
+		   //Color: #4D4D4D;
+           Color: #898989;
+		   font-size: 22px;
 		   .ion-chevron-right.ListLinkHref {
 			font-size: 28px;
 			margin-top: -8px;
@@ -2302,6 +2307,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
 			.UserHomeIcon {
 				color:#888;margin-top: -34px;
 			}
+			.ion-chevron-right:before {
+			  content: "\f125
+			  font-size: 20px;
+			  margin-top: -2px;
+			  Color: #898989;     
+			}
 		}
 	}
 }
@@ -2361,10 +2372,13 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
   margin-top: 0px;          
 }
 .ion-chevron-right:before {
-  content: "\f125";
-  font-size: 20px;
+  content: "\f125
+  font-size: 27px;
   margin-top: -2px;
+  Color: #898989;     
 }
+
+
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
 .ErrorContent { text-align: center;width: 93% !important;margin-top: 22px;  margin-bottom: -30px; }
@@ -2500,8 +2514,27 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 				color: #515151;
 			}
 		}
+
 		
 	.bar .button.button-clear.icon:before {
 		font-size: 40px;
 	}
 		
+
+
+.BacgroundColorContent {
+    background-color: #EFEFED;
+ }
+.NeedanAcount {
+ text-align: center;
+ font-family: $fontFamily_bold;    
+}
+.needanaccountPragraph {
+ font-family: $fontFamily_regular;
+ margin-left: -10px;      
+}
+.footerBackButton {
+ top: 12px;
+  position: absolute;   
+}
+
