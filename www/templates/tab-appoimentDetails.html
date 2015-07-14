@@ -65,9 +65,9 @@
 			</ion-item>
 			
 			<ion-item class="concernsItem">
-				<div class="pre_consultant"><span></span>Pre consultant Notes</div>
+				<div class="pre_consultant"><span></span>Pre-Consult Notes:</div>
 	<!-- <p class="ptagprimary" >{{preConsultantNotes}} </p>-->
-				 <p class="ptagprimary" >{{consultionInformation.note | filterHtmlChars}} </p>
+				 <p class="ptagprimary" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>
 			</ion-item>
 			
 	</ion-content>
@@ -77,7 +77,7 @@
 		<div>		
 			<div class="title availableImage" >
 				<div class="AvailableText">
-					<i class="ion-clock" style=" font-size: 18px; padding-right: 7px;"></i> Available in: 
+					<i class="ion-clock" style=" font-size: 18px; padding-right: 7px;"></i> Can enter in: 
 				</div>
 				<div class="AvailableTimer" style="display: {{hourDisplay}}" >
 					<b><timer end-time="time">  {{hhours}}:{{mminutes}}:{{sseconds}}</timer></b>
