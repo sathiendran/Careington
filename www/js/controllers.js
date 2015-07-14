@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -125,7 +125,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
-        if($rootScope.IOSDevice) {
+        if(!$rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
@@ -137,7 +137,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
         $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
-        $rootScope.LoginContantDiv = " height: 86px;"; 
+        $rootScope.LoginContantDiv = " height: 96px;"; 
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
         $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
