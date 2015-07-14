@@ -631,7 +631,7 @@ body {
 .calendarBack {   
 	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
 	span { 
-		margin-top:7px;position: relative;margin-left: -6px;top: -2px; 
+		margin-top:7px;position: relative;margin-left: -1px;top: -2px; 
 	}
 }
 .AppointBack {
@@ -752,7 +752,13 @@ body {
 	a {
 		margin: -4px;
 		.doctorName {
-			top: -22px;margin-left: 10px;
+			top: -18px;margin-left: 10px;
+			.ion-chevron-right:before {
+			  content: "\f125";
+			  font-size: 20px;
+			  margin-top: 2px;
+			  Color: #898989;
+			}
 		}
 		.doctorArrow {
 			color:#888;margin-top: 21px;
@@ -760,27 +766,29 @@ body {
 	}
 }
 .appointmentTimeDetails {
-	padding:25px; top: -2px;text-align: center;height: 100px;border-color: #9e9e9e;
+	padding:25px; top: -5px;text-align: center;height: 100px;border-color: #9e9e9e;
 	div {
-		margin-top: 7px;
+		margin-top: 4px;
 		.appinmentTime {
-			margin-top: -9px; font-size:55px;color: #706A67;
+			margin-top: -9px; font-size:45px;color: #706A67; font-family: $fontFamily_semibold;
 		}
 		.appinmentTimeAM {
-			color: #706A67 !important; font-size:37px;
+			color: #706A67 !important; font-size:29px; font-family: $fontFamily_semibold;
 		}
 		.appinmentTimeDate {
-			color:#706A67;position: relative;top: 5px;font-size: 25px;
+			color:#706A67;position: relative;top: 5px;font-size: 20px;
 		}
 	}
 }
 .concernsItem {
-	padding:11px;top: -2px;border-color: #9e9e9e;
+	padding:11px;top: -12px;border-color: #9e9e9e;
 	p {
-		font-size:16px;
+		font-size:18px;
 		text-overflow: unset;
 		white-space: normal;
 		text-align: justify;
+		margin-left: 32px;
+		color: #000;
 	}
 	span {
 		margin-right:13px;margin-left: 14px;
@@ -808,7 +816,7 @@ body {
 		.availableImage {
 			font-size: 22px;margin-top: 2px;
 			.AvailableText {
-				float: left; text-align: right; width: 54%;
+				float: left; text-align: right; width: 54%;  font-family: Glober Thin;
 			}
 			.AvailableTimer {
 				float: left; text-align: left; width: 45%; padding-left: 10px;
@@ -849,9 +857,9 @@ body {
 	line-height: 3;
 	color:#666666;
 	 span { 
-		color:#666666;
-		font-size:27px;
-		top:-16px;
+		color:#616462;
+		font-size:26px;
+		top:-13px;
 		position: relative;
 		left: 10px;
 		
@@ -915,20 +923,25 @@ body {
 .ConsultChargeFooter {
 	width:100%;
 	.ConsultChargeBack {
-		float:left; width:33%;
+		float:left; width:33%;position: relative;  top: 8px;
 		a {
 			padding: 10px 10px 10px 0px;
 			span {
-				top: -2px;position: relative; 
+				top: -2px;position: relative;   font-size: 17px;
 			} 
 		}
+		.ion-chevron-left:before {
+		  content: "\f124";
+		  font-size: 22px;
+		  margin-top: 0px;
+		  }
 	}
 	.ConsultChargeCancel { 
-		text-align:center;float:left;width:33%;  margin-top: 7px;
+		text-align:center;float:left;width:33%;  margin-top: 12px;
 		a {
-			/*color:#b8b8b8;*/
+			color:#b8b8b8;
 			font-weight: bold;
-			padding: 10px;
+			padding: 10px;font-size: 17px;
 		}
 	}
 }
@@ -1793,6 +1806,7 @@ padding: 8px; background-color:#FEEFE8;
     margin-left: 66px;
     margin-top: -59px;
 	/*font-family: $fontFamily_thin; */
+	padding-top: 5px;
 }
 .SubTitleSpan {
 @include font($fontFamily_regular, normal, 100%);
@@ -1814,28 +1828,26 @@ color:#706A67;
 }
 
 .appointment_with {
-	@include font($fontFamily_semibold, bold, 20px);
+	@include font($fontFamily_semibold, bold, 18px);
 	text-align:center;  color:#888;
 	position: relative;
 	top: -2px;
 }
 
 .primary {
- background-color: #d7d7d7;
+ background-color: #F2F0EE;
    margin: -11px -15px 12px -12px;
-   padding: 5px;
-   font-weight: bold;
-   font-size: 19px;
-    color: #706A67;
+   padding: 5px;   
+   font-size: 16px;
+    color: #777A78;
 }
 
 .secondary {
- background-color: #d7d7d7;
+ background-color: #F2F0EE;
    margin: 12px -15px 11px -12px;
-    padding: 5px;
-	font-weight: bold;
-    font-size: 19px;
-    color: #706A67;
+    padding: 5px;	
+    font-size: 16px;
+    color: #777A78;
 }
 .ptagprimary {
 	@include font($fontFamily_regular, normal, 20px);
@@ -1845,12 +1857,11 @@ color:#706A67;
  }
  
  .pre_consultant {
- background-color: #d7d7d7;
+ background-color: #F2F0EE;
    margin: -11px -15px 11px -12px;
-    padding: 5px;
-	font-weight: bold;
-     font-size: 19px;
-     color: #706A67;
+    padding: 5px;	
+     font-size: 16px;
+     color: #777A78;
 }
 
 .optionList{
@@ -2262,7 +2273,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	margin-top: 70px;
 	border-color:#000;
 	.UserHmeSub {				
-				padding:12px 10px 1px 10px;
+				padding:12px 10px 5px 10px;
 				.item-input {
 					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
 					border: 1px solid $Altoa; 				
@@ -2375,13 +2386,19 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
   font-size: 25px;
   margin-top: 0px;          
 }
-.ion-chevron-right:before {
-  content: "\f125";
-  font-size: 27px; 
-  margin-top: -2px;
-  Color: #898989;     
+.providerIcon {
+	.ion-chevron-right:before { 
+	  content: "\f125";
+	  font-size: 27px; 
+	  margin-top: -2px;
+	  Color: #898989;     
+	}
 }
-
+.ion-chevron-right:before { 
+	  content: "\f125";
+	  font-size: 25px; 
+	  margin-top: -2px;	       
+	}
 
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
@@ -2408,8 +2425,8 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
     float: left;
 }
 .doctorImgeSize {
- width: 55px !important;
- height: 55px;  
+ width: 50px !important;
+ height: 50px;  
  margin-top: 1px; 
 }
 .passwordSubHeader {
