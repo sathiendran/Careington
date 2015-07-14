@@ -15,7 +15,7 @@
   
 
 <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patientsubHeaderInnerStyle}}">
-	<div class="calendar_subHeader" >
+	<div class="calendar_subHeader subheaderTitle"  >
 				<div class="subHeader_image" >
 					<img src="{{PatientImageSelectUser}}" class="listImgView" />
 				</div>
@@ -35,30 +35,38 @@
 	</div>
 </div> 
 
-   
+   <div class="bar" style="margin-top:134px;margin-top: 127px;text-align: center;height: 50px;">
+				<div class="TitleHomeUser_Sub" style="margin-left:15px;margin-top:10px;">What Would we like do to?</div>
+   </div> 
+    
 </ion-header-bar>
 	
 	
 	<div style="display: none;"><timer end-time="time"  ></timer></div>
-	<ion-content class="patient_content" >
-		<div class="password_home PatientDetailsHome">	
+	<ion-content class="patient_content" style="padding-top: 140px; padding-left:0px;">
+		<div class="password_home PatientDetailsHome" style="padding: 0 4%;  margin-left: -25px;">	
 			
 			<!--	<a ng-click="doToPatientCalendar(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)"> -->
-				<button class="button button-block button-energized" ng-click="getScheduledDetails(patientId)">
-				 <span> View Appointments </span>
-				</button> <!--</a> -->
-			
-			<div class="scheduled_appointments_text" >
-				See all your scheduled appointments. 
-			</div>
-			<div class="PatientNextAvailable">
-				<!--<a style="text-decoration: none;"  ng-href="#/tab/patientConcerns">-->
+        <div style="border-style: 1px solid; background-color:#EFEFED; padding:30px;">
+                <h4 style="text-align: center;margin-top: -14px">Your Calendar</h4>
+                    <button class="button button-block button-energized" ng-click="getScheduledDetails(patientId)">
+                     <span> View Appointments </span>
+                    </button> <!--</a> -->
+
+                <div class="scheduled_appointments_text" style="margin-bottom: -14px;margin-top: 16px;">
+                    Access all current and future scheduled visits. 
+                </div>
+           </div>
+            
+            
+                
+			<div class="PatientNextAvailable" style="margin-bottom: -14px;margin-top: 16px;border-style: 1px solid; background-color:#EFEFED; padding:30px;">
+				 <h4 style="text-align: center;margin-top: -14px">Walk-in visit</h4>
 				<button type="submit" ng-click="doGetCodesSet(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian,patientId)" class="button button-block button-balanced" >
 				  <span>Next Available</span>
 				</button>
 				<!--</a>-->
-			</div>
-			<div class="scheduled_appointments_text">
+			<div class="scheduled_appointments_text" style="margin-bottom: -14px;margin-top: 16px;">
 				Don't have an appointment? <br/>
 				See the next available clincian.
 			</div>

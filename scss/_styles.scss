@@ -574,7 +574,8 @@ body {
 		}
 		.subHeader_content {
 			margin-left: 45px;
-			margin-top: 7px;
+			//margin-top: 7px;
+            margin-top: 1px;
 			.sub_username{
 				 font-family: $fontFamily_bold;
 			}
@@ -604,7 +605,8 @@ body {
 }
 .scheduled_appointments_text {
 	/*margin-top: -7px;*/
-	color: $Silver_Chalice;
+	//color: $Silver_Chalice;
+    color: #747474;
 	font-size: 14px; 
 	text-align: center;	
 	font-family: $fontFamily_regular;
@@ -646,7 +648,7 @@ body {
 	.calendar_subHeader {
 		margin-left:10px;
 		.subHeader_image{
-			margin-left: -15px;  margin-top: -13px; position: relative; top: 4px;
+			margin-left: -15px;  margin-top: -20px; position: relative; top: 11px;
 			img {
 				width:34px;
 				
@@ -655,6 +657,7 @@ body {
 		.subHeader_content{
 			.subHeader_content_name {
 				font-size: 21px;
+                 margin-left: 7px;
 				.patientName {
 					font-weight: bold;
 				}
@@ -665,6 +668,7 @@ body {
 			.subHeader_content_age {
 				font-size: 12px;
 				font-weight: bold;
+                  margin-left: 7px;
 			}
 		}
 	}
@@ -1754,7 +1758,7 @@ text-align:center
 	font-family:$fontFamily_regular;
 }
 .listImgView {
-width:35px !important; height:35px; border-radius: 50%;margin-top: 6px; margin-left: 8px;
+width:45px !important; height:45px; border-radius: 50%;margin-top: 1px; margin-left: 8px;
 }
 .UserHmelistImgView { 
 width:55px; height:55px; border-radius: 50%;
@@ -2553,5 +2557,9 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 .footerBackButton {
  top: 12px;
   position: absolute;   
+}
+.subheaderTitle {
+ margin-top: 3px;
+  margin-left: 7px   
 }
 
