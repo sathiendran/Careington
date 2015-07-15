@@ -270,6 +270,7 @@ body {
 	@include font($fontFamily_thin, bold, 11px);
 	border-top-width: -1px;
 	border-top: -1px;
+	background-image: none;
         .terms {
 		@include font($fontFamily_thin, bold, 11px);
 			text-align: left;
@@ -807,6 +808,7 @@ body {
 		text-align: justify;
 		margin-left: 32px;
 		color: #000;
+		line-height: 25px;
 	}
 	span {
 		margin-right:13px;margin-left: 14px;
@@ -834,7 +836,8 @@ body {
 		.availableImage {
 			font-size: 22px;margin-top: 2px;
 			.AvailableText {
-				float: left; text-align: right; width: 54%;  font-family: $fontFamily_light;
+				float: left; text-align: right; width: 54%;  font-family: $fontFamily_light; font-weight: bold;
+  color: #fff;
 			}
 			.AvailableTimer {
 				float: left; text-align: left; width: 45%; padding-left: 10px;
@@ -1765,7 +1768,7 @@ text-align:center
 	margin-top:-6px;
 }
 
-.TitleHomeUser_Sub {
+.TitleHomeUser_Sub { 
 	@include font($fontFamily_bold, bold, 23px);
 	position:relative; 
 	/*margin: 1px 7px 25px;*/
