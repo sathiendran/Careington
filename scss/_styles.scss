@@ -1404,7 +1404,7 @@ body {
 	.PrimaryList {
 		top:3px;padding: 1px;cursor:pointer;
 		.Step1 {
-			color:#888;float:right;margin-right: 10px; margin-top: 10px;
+			color:#888;float:right;margin-right: 10px; margin-top: 14px;
 		}
 		.PrimaryContent {
 			margin-top: 30px;
@@ -1598,13 +1598,14 @@ body {
 	margin-top: 136px !important; font-size: 25px !important;  margin-left: 15px !important; width:100%; padding-top: 7px;
 }
 .consentSubTitle {
-	margin-top: -8px;margin-left: 16px;padding-bottom: 0px; color:#888;
+	margin-top: -8px;margin-left: 16px;padding-bottom: 0px; color:#535353;
 }
 .consentLine {
 	border-bottom: 1px solid #ddd;
 }
 .ConsentContent {
 	margin-top: 205px !important;
+    background-color: #EFEFED;
 	.ConsentMessageFirst {
 		border-bottom: 1px solid #ddd; margin: 12px 10px 10px 10px;
 		p {
@@ -1614,7 +1615,7 @@ body {
 	.ConsentMessageSecond {
 		border-bottom: 1px solid #ddd; margin: 10px 10px 10px 10px;
 		p {
-			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#595959;
+			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#424141;
 		}
 	}
 	.ConsentMessageAgree {
@@ -1623,9 +1624,9 @@ body {
 			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#919191; font-weight: bold; font-size: 13px;
 		}
 		.ConsentCancel {
-			background-color:#fff; border:none;
+			background-color:#EFEFED; border:none;
 			b {
-				font-size:16px;color:#B2B2B2;
+				font-size:16px;color:#535353;
 			}
 		}
 	}
@@ -2635,4 +2636,7 @@ font-family: $fontFamily_bold;
 }
 .patientConternFontStyleSubTitle { 
 font-family: $fontFamily_regular; 
+}
+.ConstanttreetFont { 
+font-family: $fontFamily_xBold; 
 }
