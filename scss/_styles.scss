@@ -266,7 +266,7 @@ body {
 	color: #fff;	
 	background-color: #4D4D4D !important;
 	border-color: #4D4D4D !important;
-	height: 50px;
+	padding: 20px 0px 20px 0px;
 	@include font($fontFamily_thin, bold, 11px);
 	border-top-width: -1px;
 	border-top: -1px;
@@ -277,7 +277,10 @@ body {
 			margin: 13px 0 0 1%;
 				a {
 					text-decoration: none;
-					color: #fff;	
+					color: #fff;
+					  position: relative;
+					top: -19px;	
+					padding-left: 10px;
 				}
 		}
 		.powerdBySnapMD {
@@ -287,12 +290,16 @@ body {
 			margin: 13px 0 0 0;
 			a {
 			color: #fff; text-decoration: none;
+			position: relative;
+		  top: -19px;
+		  padding-right: 10px;
 			}
 		}
 }
 
+
 .bar-footer {
-	background-position: 0px 40px;
+	background-position: 0px 40px;  
 }
 .terms_footer_a {
 	margin-left: 20px !important; font-weight: bold !important;cursor: pointer;
@@ -404,6 +411,7 @@ body {
 	padding-top: 85px;
     background-color: #EFEFED;
 	.item-input {
+		
 		border: 1px solid $Altoa;
 		border-radius: 8px;
 		height: 50px;
@@ -437,6 +445,7 @@ body {
 						}
 		input {
 		font-size: 17px;
+		line-height: 30px;
         }
 	}
 }
@@ -496,6 +505,7 @@ body {
  margin: 0 0 0 10px;
  text-decoration: none;
  cursor: pointer;
+
  
 }
 
@@ -646,7 +656,7 @@ body {
 	top: 65px !important;
 	height: auto !important;
 	.calendar_subHeader {
-		margin-left:10px;
+		margin:7px 7px 7px 10px;
 		.subHeader_image{
 			margin-left: -15px;  margin-top: -20px; position: relative; top: 11px;
 			img {
@@ -816,7 +826,7 @@ body {
 		.availableImage {
 			font-size: 22px;margin-top: 2px;
 			.AvailableText {
-				float: left; text-align: right; width: 54%;  font-family: Glober Thin;
+				float: left; text-align: right; width: 54%;  font-family: $fontFamily_light;
 			}
 			.AvailableTimer {
 				float: left; text-align: left; width: 45%; padding-left: 10px;
@@ -850,7 +860,7 @@ body {
 
 .consultCharge_subHeader {
 	border-bottom: 1px solid #C5C5C5;
-    height: 52px;
+    height: 60px;
     margin-top: 125px;	
 	font-size: 20px;
 	font-weight: bold;
@@ -859,7 +869,7 @@ body {
 	 span { 
 		color:#616462;
 		font-size:26px;
-		top:-13px;
+		top:-8px;
 		position: relative;
 		left: 10px;
 		
@@ -891,7 +901,7 @@ body {
 			font-weight: bold;
 			padding-top: 15px;
 			font-size: 30px;
-			font-family: $fontFamily_heavy;
+			font-family: $fontFamily_bold;
 			color:#666666;
 			span {
 				text-decoration: line-through; color: red;
@@ -923,11 +933,11 @@ body {
 .ConsultChargeFooter {
 	width:100%;
 	.ConsultChargeBack {
-		float:left; width:33%;position: relative;  top: 8px;
+		float:left; width:33%;position: relative;  top: -10px;
 		a {
 			padding: 10px 10px 10px 0px;
 			span {
-				top: -2px;position: relative;   font-size: 17px;
+				top: -2px;position: relative;   font-size: 17px; 
 			} 
 		}
 		.ion-chevron-left:before {
@@ -937,7 +947,7 @@ body {
 		  }
 	}
 	.ConsultChargeCancel { 
-		text-align:center;float:left;width:33%;  margin-top: 12px;
+		text-align:center;float:left;width:33%;  margin-top: -6px;
 		a {
 			color:#b8b8b8;
 			font-weight: bold;
@@ -1016,10 +1026,10 @@ body {
 	text-align: center;
 	color: #5C5C5C;
 		.healthPlan_text { 
-			font-size: 16px;
+			font-size: 15px;
 			color: #888585;
 			margin-left: -100px;
-			font-weight: bold;
+			/*font-weight: bold;*/
 		}
 		.addHealthPlan_header {
 			//padding-top: 10px;
@@ -1091,6 +1101,7 @@ body {
 		}
 		input[type="text"], input[type="number"], input[type="password"] {
 			font-size: 18px;
+			line-height: 30px;
 		}
 		.planDetails {
 			padding:0 5px 0 15px;
@@ -1378,7 +1389,7 @@ body {
 //Patient ConcernsContent
 
 .ConcernsContent{
-	margin-top: 112px !important;
+	margin-top: 110px !important;
 	.PrimaryList {
 		top:3px;padding: 1px;cursor:pointer;
 		.Step1 {
@@ -1459,7 +1470,7 @@ body {
 .ConcernsFooter {
 	width:100%;
 	.FooterLeft {
-		float:left; width:33%;	cursor:pointer;	
+		float:left; width:33%;	cursor:pointer;	 position: relative; top: -13px;
 		span {
 			top: -2px;position: relative; 	font-weight: bold;
 		}
@@ -1468,7 +1479,7 @@ body {
 		}
 	}
 	.FooterCenter {
-		text-align:center;float:left;width:33%; position: relative; top: 7px;
+		text-align:center;float:left;width:33%; position: relative; top: -8px;
 		a {
 			/*color:#b8b8b8;*/
 			cursor:pointer;
@@ -1477,7 +1488,7 @@ body {
 		}
 	}
 	.FooterRight {
-		text-align:right; float:left;width:33%; position: relative; top: 4px;
+		text-align:right; float:left;width:33%; position: relative; top: -10px;
 		a {
 			cursor:pointer;
 			font-weight: bold;		
@@ -1702,11 +1713,6 @@ body {
 }
 
 
-.footer {
-	@include font($fontFamily_thin, bold, 11px);
-	color: #fff;;
-	background-color: #484848;
-}
 
 
 .bar .title {
@@ -1745,7 +1751,7 @@ text-align:center
 }
 
 .TitleHomeUser_Sub {
-	@include font($fontFamily_bold, bold, 25px);
+	@include font($fontFamily_semibold, bold, 25px);
 	position:relative; 
 	/*margin: 1px 7px 25px;*/
 	margin-left: 7px;
@@ -1775,7 +1781,7 @@ color:#000; font-size: 21px; margin: 6px 12px 6px 12px;
  position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_regular;
 }
 .ListTextTitle {
- position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_xBold; color: #616462;
+ position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_bold; color: #616462;
 }
 .listTitle {
 position: relative;top: -48px;left: 68px;width: 67%;font-size:24px;
@@ -2000,7 +2006,7 @@ margin-left: 16px;
 }
 
 .PatintHeaderFontStyle { 
-font-family: $fontFamily_bold;
+font-family: $fontFamily_semibold;
 }
 .PatintHeaderFontStyleInner { 
 font-family: $fontFamily_thin;
@@ -2445,7 +2451,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             position: relative;
 			-webkit-appearance: none;  
 			  -moz-appearance: none; 
-			  background: #ccc url(../img/select-arrow.png) no-repeat 95% center;
+			  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
 			  width: 93%; 
 			  text-indent: 0.01px; 
 			  text-overflow: ""; 
@@ -2453,9 +2459,9 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 			  border-radius: 7px;
 			  margin-left: 8px;
 			  padding: 6px;
-			  box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
-			-moz-box-shadow:  inset 0 0 5px rgba(000,000,000, 0.5);
-			-webkit-box-shadow:  inset 0 0 5px rgba(000,000,000, 0.5);
+			  box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
+			-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
+			-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
 			  height: 45px;
 			  font-size: 18px;
 			  border: none;
@@ -2475,7 +2481,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 
         .viewport {
 			 pointer-events: none;
-			  color: #515151;
+			  color: #5D6678;
             position: absolute;
             width: 75%;
             height: 100%;
@@ -2489,11 +2495,11 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             padding: 6px;
 			left: 18px;
 			top: 10px;
-			font-weight: bold;
+			/*font-weight: bold;*/
         }
 		.viewport1 {
 			 pointer-events: none;
-			  color: #515151;
+			  color: #5D6678;
             position: absolute;
             width: 75%;
             height: 100%;
@@ -2507,13 +2513,13 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             padding: 6px;
 			left: 25px;
 			top: 10px;
-			font-weight: bold;
+			/*font-weight: bold;*/
 			text-align: left;
         }
 		
 		.cardViewport {
 			 pointer-events: none;
-			  color: #515151;
+			  color: #5D6678;
             position: absolute;
             width: 75%;
             height: 100%;
@@ -2527,12 +2533,12 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             padding: 6px;
 			left: 18px;
 			top: 10px;
-			font-weight: bold;
+			/*font-weight: bold;*/
         }
 
         .healthPlanDropDown {
 			option {
-				color: #515151;
+				color: #5D6678;
 			}
 		}
 
@@ -2555,7 +2561,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
  margin-left: -10px;      
 }
 .footerBackButton {
- top: 12px;
+ top: 8px;
   position: absolute;   
 }
 .subheaderTitle {
@@ -2566,3 +2572,6 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
  font-family: $fontFamily_bold;      
 }
 
+input, button, select, textarea {
+	 font-family: $fontFamily_regular; 
+}
