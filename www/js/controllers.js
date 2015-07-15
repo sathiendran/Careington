@@ -3192,9 +3192,14 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 accessToken: $rootScope.accessToken,
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {                    
-					$scope.ConsultationSave = "success";	
-					$rootScope.doGetPatientPaymentProfiles();	
-					 $state.go('tab.consultCharge'); 
+					$scope.ConsultationSave = "success";
+					if($rootScope.consultationAmount > 0)	{
+						$rootScope.doGetPatientPaymentProfiles();	
+						$state.go('tab.consultCharge'); 
+					} else {
+						$state.go('tab.receipt'); 
+						$scope.ReceiptTimeout();
+					}	
                 },
                 error: function (data) {
                    $rootScope.serverErrorMessageValidation();
@@ -3206,7 +3211,18 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             LoginService.putConsultationSave(params);
         }
 
-    
+    $scope.ReceiptTimeout = function() {
+	
+		var currentTimeReceipt = new Date();
+		
+		currentTimeReceipt.setSeconds(currentTimeReceipt.getSeconds() + 10);
+		
+		$rootScope.ReceiptTime = currentTimeReceipt.getTime();
+		
+		//setTimeout(function(){ $state.go('tab.waitingRoom');	 }, 10000);
+        setTimeout(function(){ $state.go('tab.waitingRoom'); }, 10000);
+        
+	}
     
     
     
