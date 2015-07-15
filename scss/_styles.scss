@@ -305,7 +305,7 @@ body {
 .terms_footer_a {
 	margin-left: 20px !important; font-weight: bold !important;cursor: pointer;
 	span {
-		top: -2px;position: relative;
+		top: -2px;position: relative; font-size: 17px; padding-left: 3px;
 	}
 }
 
@@ -631,6 +631,7 @@ body {
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);	
+	  background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%);
 }
 
 .button.button-balanced.activated {
@@ -720,6 +721,7 @@ body {
 	.list {
 		.item {
 			padding: 10px;
+			height: 64px;
 		}
 	}
 }
@@ -727,8 +729,8 @@ body {
 .patient_appointment {
 	float: left;
 	.appointment_text {
-		font-size: 15px;
-		color: #706A67 !important;
+		font-size: 14px;
+		color: #888 !important;
 		position: relative;
 		top: -2px;
 	}
@@ -752,8 +754,8 @@ body {
 	top: 3px;
 	font-weight: normal;
 	text-align: right;
-	font-size: 15px;
-	color:#706A67 !important;
+	font-size: 14px;
+	color:#888 !important;
 		.icon.ion-chevron-right {
 			line-height: 3;
 			font-size: 15px;
@@ -762,9 +764,15 @@ body {
             position: relative;
             top:5px;
 		}
+		.ion-chevron-right:before {
+		  content: "\f125";
+		  font-size: 19px;
+		 position: relative;
+		top: -2px;
+		}
 }
 .Appointment_heading {
-	top: 12px; border-color: #9e9e9e; margin-top: -19px;
+	top: 12px; border-color: #9e9e9e; margin-top: -15px;
 }
 .doctor_details {
 	padding:8px;top: -2px; border-color: #9e9e9e; height:75px;
@@ -808,10 +816,11 @@ body {
 		text-align: justify;
 		margin-left: 32px;
 		color: #000;
-		line-height: 25px;
+		line-height: 25px; 
 	}
 	span {
-		margin-right:13px;margin-left: 14px;
+		margin-right:13px;margin-left: 14px;  font-family: Glober xBold;
+  font-size: 21px; color: #989998;
 	}
 	.pre_consultant { span { margin-right:27px;margin-left: 14px; }}
 }
@@ -955,6 +964,7 @@ body {
 		  content: "\f124";
 		  font-size: 22px;
 		  margin-top: 0px;
+		    padding-left: 28px;
 		  }
 	}
 	.ConsultChargeCancel { 
@@ -968,7 +978,7 @@ body {
 }
 //consultChargeNoPlan
 .consultChargeNoPlanContent {
-	margin: 177px 0 0 0; padding-top: 35px; //176px
+	margin: 185px 0 0 0; padding-top: 35px; //176px
 	.consultChargeNoPlanText {
 		padding-top: 5px;
 	}
@@ -1118,12 +1128,14 @@ body {
 			padding:0 5px 0 15px;
 			text-align: left;
 			font-size: 13px;
+			font-weight: bold;
 		}
 		.privacy {
 			color: $Scooter;
 			font-size: 13px;
 			padding:0 5px 50px 15px;
 			margin-top: -10px;
+			font-weight: bold;
 		}
 		.list {
 			padding-top: 12px;
@@ -1140,7 +1152,7 @@ body {
 			padding-top: 35px;
 		}
 		.CardInformation {
-			padding-top: 30px; padding-bottom: 20px; color: #5C5C5C; text-align: center; font-size: 20px; font-weight: bold;
+			padding-top: 27px; padding-bottom: 20px; color: #5C5C5C; text-align: center; font-size: 20px; 
 		}
 		.verifyCardDisplay {
 			padding-top: 30px; padding-bottom: 20px;
@@ -1196,7 +1208,7 @@ body {
 .ReceiptContent {
 	margin: 117px 0 0 0; 
 	.PaymentSuccess {
-		font-size: 35px; text-align: center; padding-top: 50px;
+		font-size: 35px; text-align: center; padding-top: 50px; color: #60605D;
 		.PaymentConfirmation {
 			font-size: 20px;  padding-top: 20px; color: #F3795D;
 			.ConfirmationReceipt {
@@ -1481,32 +1493,46 @@ body {
 .ConcernsFooter {
 	width:100%;
 	.FooterLeft {
-		float:left; width:33%;	cursor:pointer;	 position: relative; top: -13px;
+		.ion-chevron-left:before {
+		  content: "\f124";
+		  font-size: 22px;
+		  margin-top: 0px;
+		  }
+		float:left; width:33%;	cursor:pointer;	 position: relative; top: -10px; left: 10px;
 		span {
 			top: -2px;position: relative; 	font-weight: bold;
 		}
 		a {			
 			padding: 10px 10px 10px 0px;
+			font-size: 17px;
 		}
 	}
 	.FooterCenter {
-		text-align:center;float:left;width:33%; position: relative; top: -8px;
+		text-align:center;float:left;width:33%; position: relative; top: -6px;
 		a {
 			/*color:#b8b8b8;*/
 			cursor:pointer;
 			font-weight: bold;
 			padding: 10px;
+			font-size: 17px;
+			color: #b8b8b8;
 		}
 	}
 	.FooterRight {
-		text-align:right; float:left;width:33%; position: relative; top: -10px;
+			.ion-chevron-right:before { 
+			  content: "\f125";
+			  font-size: 22px; 
+			  margin-top: -2px;  
+			}
+		text-align:right; float:left;width:33%; position: relative; top: -8px;
 		a {
 			cursor:pointer;
 			font-weight: bold;		
 			padding: 10px 0px 10px 47px;
+			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -58px;margin-right: 25px;position: relative;top: -4px;left: -3px;
+			margin-left: -18px; position: relative;top: -4px;left: -38px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
@@ -1769,7 +1795,7 @@ text-align:center
 }
 
 .TitleHomeUser_Sub { 
-	@include font($fontFamily_bold, bold, 23px);
+	@include font($fontFamily_semibold, bold, 23px);
 	position:relative; 
 	/*margin: 1px 7px 25px;*/
 	margin-left: 7px;
@@ -1790,13 +1816,19 @@ width:55px; height:55px; border-radius: 50%;
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
 color:#000; font-size: 21px; margin: 9px 12px 6px 12px;
+	.ion-chevron-right:before {
+			  content: "\f125";
+			  font-size: 19px;
+			  margin-top: -2px;
+			 
+			}
 }
 .HrefListViewDependent {
 @include font($fontFamily_thin, normal, 21px);
 color:#000; font-size: 21px; margin: 6px 12px 6px 12px;
 }
 .ListText {
- position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_regular;
+ position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_semibold;
 }
 .ListTextTitle {
  position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_bold; color: #616462;
@@ -1808,7 +1840,7 @@ position: relative;top: -48px;left: 68px;width: 67%;font-size:24px;
 font-family: $fontFamily_regular;
 }
 .ItemList {
-padding: 8px; background-color:#FEEFE8;
+padding: 8px; background-color:#FEEDE1;
 -webkit-box-shadow: inset 0 20px 12px -20px rgba(0,0,0,0.8);
     -moz-box-shadow: inset 0 20px 12px -20px rgba(0,0,0,0.8);
     box-shadow: inset 0 20px 12px -20px rgba(0,0,0,0.8);
@@ -2024,7 +2056,7 @@ margin-left: 16px;
 }
 
 .PatintHeaderFontStyle { 
-font-family: $fontFamily_semibold;
+font-family: $fontFamily_bold;
 }
 .PatintHeaderFontStyleInner { 
 font-family: $fontFamily_thin;
@@ -2348,9 +2380,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 			}
 			.ion-chevron-right:before {
 			  content: "\f125";
-			  font-size: 20px;
+			  font-size: 19px;
 			  margin-top: -2px;
-			  Color: #898989;     
 			}
 		}
 	}
@@ -2407,7 +2438,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 
 .ion-chevron-left:before {
   content: "\f124";
-  font-size: 25px;
+  font-size: 22px;
   margin-top: 0px;          
 }
 .providerIcon {
@@ -2480,7 +2511,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 			  box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
 			-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
 			-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
-			  height: 45px;
+			  height: 48px;
 			  font-size: 18px;
 			  border: none;
         }
@@ -2499,7 +2530,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 
         .viewport {
 			 pointer-events: none;
-			  color: #5D6678;
+			  color: #60605D;
             position: absolute;
             width: 75%;
             height: 100%;
@@ -2509,7 +2540,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             -ms-text-overflow: ellipsis;
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
-            font-size: 18px;
+            font-size: 19px;
             padding: 6px;
 			left: 18px;
 			top: 10px;
@@ -2517,7 +2548,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
         }
 		.viewport1 {
 			 pointer-events: none;
-			  color: #5D6678;
+			  color: #60605D;
             position: absolute;
             width: 75%;
             height: 100%;
@@ -2527,7 +2558,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             -ms-text-overflow: ellipsis;
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
-            font-size: 18px;
+            font-size: 19px;
             padding: 6px;
 			left: 25px;
 			top: 10px;
@@ -2537,7 +2568,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 		
 		.cardViewport {
 			 pointer-events: none;
-			  color: #5D6678;
+			  color: #60605D;
             position: absolute;
             width: 75%;
             height: 100%;
@@ -2547,7 +2578,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
             -ms-text-overflow: ellipsis;
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
-            font-size: 18px;
+            font-size: 19px;
             padding: 6px;
 			left: 18px;
 			top: 10px;
@@ -2556,7 +2587,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 
         .healthPlanDropDown {
 			option {
-				color: #5D6678;
+				color: #60605D;
 			}
 		}
 
@@ -2593,3 +2624,6 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 input, button, select, textarea {
 	 font-family: $fontFamily_regular; 
 }
+.item {
+  border-color: #A9ABA7;
+  }
