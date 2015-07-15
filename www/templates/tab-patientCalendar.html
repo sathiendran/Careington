@@ -40,7 +40,7 @@
 			<a class="item" style=" background-color: #FEEFE8;  display: {{patientDisplay}}"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 				<div class="patient_appointment">
 					<div class="appointment_text">Next Appointment:</div>
-					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span style="top: 3px;position: relative;"><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
@@ -49,7 +49,7 @@
 			<a class="item" style=" background-color: #E1FCD4;  display: {{patientDisplay1}}"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 				<div class="patient_appointment" >
 					<div class="appointment_text">Next Appointment:</div>
-					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span style="top: 3px;position: relative;"><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
@@ -58,7 +58,7 @@
     
 			<div class="patient_appointment">						
 				<div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}}
-					<span><sup>@</sup></span> 
+					<span style="top: 3px;position: relative;"><sup>@</sup></span> 
 					{{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
 				</div>
             <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
@@ -71,7 +71,7 @@
     
 		<div class="patient_appointment">						
             <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}}
-                <span><sup>@</sup></span> 
+                <span style="top: 3px;position: relative;"><sup>@</sup></span> 
                 {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
         </div>
             <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>

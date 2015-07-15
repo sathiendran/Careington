@@ -231,7 +231,7 @@ body {
 .remember {
 	padding-top: 20px;
 	color: #7A7A7A;
-	font-size: 13px;
+	font-size: 14px;//13px;
 	font-family: $fontFamily_semibold;
 }
 .continue {
@@ -270,7 +270,7 @@ body {
 	@include font($fontFamily_thin, bold, 11px);
 	border-top-width: -1px;
 	border-top: -1px;
-		.terms {
+        .terms {
 		@include font($fontFamily_thin, bold, 11px);
 			text-align: left;
 			width: 50%;
@@ -465,7 +465,8 @@ body {
 	margin-top:-20px;
 }
 .password_icon { 
-	float: left; margin: 8px 10px 0 0;
+	//float: left; margin: 8px 10px 0 0;
+    float: left; margin: 8px 20px 0 0;
 }
 .pass_reset_content {
 	text-align: justify; font-size: 19px; color: #4D4D4D;
@@ -473,7 +474,8 @@ body {
 
 .login {
 	text-align: center;
-	padding-top: 30px;
+	//padding-top: 30px;
+    padding-top: 40px;
 	margin-bottom: 10px;		
 }
 .forgot_password_text {
@@ -482,7 +484,8 @@ body {
 	a{
 		text-decoration: none;
 		color:$Viking;
-		font-size: 12px;
+		//font-size: 12px;
+        font-size: 14px;
 	}
 }
 
@@ -679,7 +682,8 @@ body {
 	border-bottom: 1px solid #b9b8b8;
 	color: #565656; 
 	height: auto; 
-	margin-top: 121px;
+	//margin-top: 121px;
+    margin-top: 114px;
 }
 .patientCalendar_watch {
 	padding: 10px;
@@ -692,12 +696,15 @@ body {
 .patientCalendar_text {
 	padding: 17px;
 	color: $MineShaft;
-	font-size: 22px;
+	//font-size: 22px;
+    font-size: 21px;
 	font-weight: bold;
     margin-bottom: -8px;
+    font-family: $fontFamily_semibold;
 }
 .patientCalendar_Content {
-	margin: 128px 0 0 0;
+	//margin: 128px 0 0 0;
+    margin: 121px 0 0 0;
 	top: 39px;
 	.list {
 		.item {
@@ -739,7 +746,8 @@ body {
 		.icon.ion-chevron-right {
 			line-height: 3;
 			font-size: 15px;
-			padding-left: 5px;
+			//padding-left: 5px;
+            padding-left: 7px;
             position: relative;
             top:5px;
 		}
@@ -1608,33 +1616,39 @@ body {
 	top: 0;
 	background-color: #F04E29;
 	background-image: linear-gradient(0deg, #F04E29, #F04E29 50%, transparent 50%);
-	/*border-color: #B03A21;
-	border-width: 0px 0px 3px 0px;*/
-	box-shadow: 0px 4px 2px #BD6E5D;
+	
+/*	box-shadow: 0px 4px 2px #BD6E5D;
 	-moz-box-shadow: 0px 5px 2px #BD6E5D;
-  -webkit-box-shadow: 0px 5px 2px #BD6E5D;
+  -webkit-box-shadow: 0px 5px 2px #BD6E5D; */
+    box-shadow: 0px 4px 2px #a75847;
+	-moz-box-shadow: 0px 4px 2px #a75847;
+  -webkit-box-shadow: 0px 4px 2px #a75847;
 }
 
 .bar-subheaderLessAndroid { 
 	display: block;
 	height: 85px;
 	top: 47px;
-	-moz-box-shadow: 0px 4px 9px #ADABAB;
+	-moz-box-shadow: 0px 4px 3px #ADABAB;
+	-webkit-box-shadow: 0px 4px 3px #ADABAB;
+	box-shadow: 0px 4px 3px #ADABAB;
+    /*
+    -moz-box-shadow: 0px 4px 9px #ADABAB;
 	-webkit-box-shadow: 0px 4px 9px #ADABAB;
-	box-shadow: 0px 4px 9px #ADABAB;
+	box-shadow: 0px 4px 9px #ADABAB;*/
 }
 
 .bar-subheaderLessIOS { 
 	display: block;
 	height: 82px;
 	top: 48px;
-	-moz-box-shadow: 0px 4px 9px #ADABAB;
-	-webkit-box-shadow: 0px 4px 9px #ADABAB;
-	box-shadow: 0px 4px 9px #ADABAB;
+	-moz-box-shadow: 0px 4px 3px #ADABAB;
+	-webkit-box-shadow: 0px 4px 3px #ADABAB;
+	box-shadow: 0px 4px 3px #ADABAB;
 }
 	
 .head_titleLessAndroid { 
-	@include font($fontFamily_xBold, bold, 30px);
+	@include font($fontFamily_bold, bold, 30px);
 	text-align: center;
 	color: $Flamingo;
 	position:relative; 
@@ -1670,8 +1684,9 @@ body {
 	.item {
 		  padding: 36px 16px 27px 35px;
 		   //Color: #4D4D4D;
-           Color: #898989;
+           Color: #787878;
 		   font-size: 22px;
+           font-family:$fontFamily_regular;
 		   .ion-chevron-right.ListLinkHref {
 			font-size: 28px;
 			margin-top: -8px;
@@ -1745,7 +1760,7 @@ text-align:center
 }
 
 .TitleHomeUser_Sub {
-	@include font($fontFamily_bold, bold, 25px);
+	@include font($fontFamily_bold, bold, 23px);
 	position:relative; 
 	/*margin: 1px 7px 25px;*/
 	margin-left: 7px;
@@ -2563,6 +2578,6 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
   margin-left: 7px   
 }
 .PatientDetailsYor {
- font-family: $fontFamily_bold;      
+ font-family: $fontFamily_regular;      
 }
 
