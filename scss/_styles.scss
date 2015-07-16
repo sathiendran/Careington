@@ -267,12 +267,12 @@ body {
 	background-color: #4D4D4D !important;
 	border-color: #4D4D4D !important;
 	padding: 20px 0px 20px 0px;
-	@include font($fontFamily_thin, bold, 11px);
+	@include font($fontFamily_light, bold, 11px);
 	border-top-width: -1px;
 	border-top: -1px;
 	background-image: none;
         .terms {
-		@include font($fontFamily_thin, bold, 11px);
+		@include font($fontFamily_light, bold, 11px);
 			text-align: left;
 			width: 50%;			
 				a {
@@ -284,7 +284,7 @@ body {
 				}
 		}
 		.powerdBySnapMD {
-		@include font($fontFamily_thin, bold, 11px);
+		@include font($fontFamily_light, bold, 11px);
 			text-align: right; 
 			width: 50%;
 			
@@ -693,7 +693,7 @@ body {
 	/*border-bottom: 1px solid #b9b8b8;*/
 	color: #565656; 
 	height: auto; 
-	margin-top: 121px;
+	margin-top: 123px;
     //margin-top: 114px;
 }
 .patientCalendar_watch {
@@ -815,12 +815,15 @@ body {
 		text-align: justify;
 		margin-left: 32px;
 		color: #000;
-		line-height: 25px; 
-		  margin-top: -9px;
+		line-height: 25px;
+		
 	}
 	span {
 		margin-right:13px;margin-left: 14px;  font-family: Glober xBold;
-  font-size: 21px; color: #989998;
+  font-size: 21px; color: #989998;float: left;position: relative;  top: 3px;
+	}
+	div {
+		position: relative;  top: 3px;
 	}
 	.pre_consultant { span { margin-right:27px;margin-left: 14px; }}
 }
@@ -1207,6 +1210,7 @@ body {
 //Receipt
 .ReceiptContent {
 	margin: 117px 0 0 0; 
+	padding-top: 30px;
 	.PaymentSuccess {
 		font-size: 35px; text-align: center; padding-top: 50px; color: #60605D;
 		.PaymentConfirmation {
@@ -1533,7 +1537,7 @@ body {
 			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -18px; position: relative;top: -4px;left: -38px;
+			margin-left: -38px; position: relative;top: -4px;left: -20px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
@@ -1765,7 +1769,8 @@ body {
 	display: block;
 	background-color: #EFEFED;
 	height: 63px;
-    top: 133px;
+    position: relative;
+	top: 130px;
 }
 
 .TitleLess{
@@ -1777,7 +1782,7 @@ body {
 		 Color: #4D4D4D;
 }		
 .ContentList_provider {
-	margin: 152px 0 0 0;
+	margin: 154px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
@@ -1930,7 +1935,7 @@ color:#706A67;
 	width: 63%;  
 	position: relative;
 	top: -23px;
-	left: 110px;
+	left: 102px;
 }
 
 .ion-search::before {
@@ -1950,7 +1955,7 @@ color:#706A67;
 
 .primary {
  background-color: #F2F0EE;
-   margin: -11px -15px 12px -12px;
+   margin: -13px -15px 12px -12px;
    padding: 5px;   
    font-size: 16px;
     color: #777A78;
@@ -1973,7 +1978,7 @@ color:#706A67;
  
  .pre_consultant {
  background-color: #F2F0EE;
-   margin: -11px -15px 11px -12px;
+   margin: -13px -15px 11px -12px;
     padding: 5px;	
      font-size: 16px;
      color: #777A78;
@@ -2116,7 +2121,7 @@ margin-left: 16px;
 }
 
 .PatintHeaderFontStyle { 
-font-family: $fontFamily_bold;
+font-family: $fontFamily_xBold;
 }
 .PatintHeaderFontStyleInner { 
 font-family: $fontFamily_thin;
@@ -2393,28 +2398,28 @@ form.ng-submitted input.ng-valid + i.icon.error {
 					border: 1px solid $Altoa; 				
 					::-webkit-input-placeholder { /* WebKit browsers */
 						color:    $Tundora !important;
-						font-size: 18px !important;
+						font-size: 19px !important;
 						padding-top: 5px !important;
 					}
 					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 						   color:    $Tundora !important;
-						  font-size: 18px !important;
+						  font-size: 19px !important;
 							padding-top: 5px !important;
 						   opacity:  1;
 						}
 					::-moz-placeholder { /* Mozilla Firefox 19+ */
 						   color:    $Tundora !important;
-						  font-size: 18px !important;
+						  font-size: 19px !important;
 						padding-top: 5px !important;
 						   opacity:  1;
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
 						   color:    $Tundora !important;
-						   font-size: 18px !important;
+						   font-size: 19px !important;
 						padding-top: 5px !important;
 						}
 					input {
-					font-size: 17px;
+					font-size: 19px;
 					color:#616462;height: 26px;  margin-top: 0px;
 					font-family: $fontFamily_regular;	
 					}

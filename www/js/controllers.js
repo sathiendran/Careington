@@ -126,12 +126,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
 		$rootScope.loginLineHeight = "top: 2px; position: relative;";
-		$rootScope.passwordLineHeight = "top: 2px; position: relative;";	
+		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
+		$rootScope.resetContent = "margin: 170px 0 0 0;";	
+		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
+		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;";	
+    if($rootScope.IOSDevice) {
+
         $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
         $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
         $rootScope.concernListDoneStyle = "concernListDone-ios";
-
-    if(!$rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px; font-family: 'Glober SemiBold'; ";
@@ -145,7 +148,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
         $rootScope.LoginContantDiv = " height: 96px;"; 
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
-        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
+        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";  
+        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";

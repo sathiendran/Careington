@@ -7858,14 +7858,14 @@ body {
   background-color: #4D4D4D !important;
   border-color: #4D4D4D !important;
   padding: 20px 0px 20px 0px;
-  font-family: 'Glober Thin';
+  font-family: 'Glober Light';
   font-weight: bold;
   font-size: 11px;
   border-top-width: -1px;
   border-top: -1px;
   background-image: none; }
   .footer .terms {
-    font-family: 'Glober Thin';
+    font-family: 'Glober Light';
     font-weight: bold;
     font-size: 11px;
     text-align: left;
@@ -7877,7 +7877,7 @@ body {
       top: -5px;
       padding: 10px; }
   .footer .powerdBySnapMD {
-    font-family: 'Glober Thin';
+    font-family: 'Glober Light';
     font-weight: bold;
     font-size: 11px;
     text-align: right;
@@ -8258,7 +8258,7 @@ body {
   /*border-bottom: 1px solid #b9b8b8;*/
   color: #565656;
   height: auto;
-  margin-top: 121px; }
+  margin-top: 123px; }
 
 .patientCalendar_watch {
   padding: 10px;
@@ -8378,14 +8378,19 @@ body {
     text-align: justify;
     margin-left: 32px;
     color: #000;
-    line-height: 25px;
-    margin-top: -9px; }
+    line-height: 25px; }
   .concernsItem span {
     margin-right: 13px;
     margin-left: 14px;
     font-family: Glober xBold;
     font-size: 21px;
-    color: #989998; }
+    color: #989998;
+    float: left;
+    position: relative;
+    top: 3px; }
+  .concernsItem div {
+    position: relative;
+    top: 3px; }
   .concernsItem .pre_consultant span {
     margin-right: 27px;
     margin-left: 14px; }
@@ -8747,7 +8752,8 @@ select {
   text-overflow: ellipsis; }
 
 .ReceiptContent {
-  margin: 117px 0 0 0; }
+  margin: 117px 0 0 0;
+  padding-top: 30px; }
   .ReceiptContent .PaymentSuccess {
     font-size: 35px;
     text-align: center;
@@ -8956,7 +8962,7 @@ select {
       color: #888;
       float: right;
       margin-right: 10px;
-      margin-top: 10px; }
+      margin-top: 14px; }
     .ConcernsContent .PrimaryList .PrimaryContent {
       margin-top: 30px; }
       .ConcernsContent .PrimaryList .PrimaryContent h1 {
@@ -9073,19 +9079,29 @@ select {
       padding: 10px 0px 10px 47px;
       font-size: 17px; }
     .ConcernsFooter .FooterRight .ConcernFooterNext {
-      margin-left: -18px;
+      margin-left: -38px;
       position: relative;
       top: -4px;
-      left: -38px; }
+      left: -20px; }
 
 .concernListHeader {
   height: 55px; }
   .concernListHeader .concernListTitle {
     top: 6px !important;
-    font-size: 16px !important; }
+    font-size: 16px !important;
+    font-family: 'Glober SemiBold'; }
   .concernListHeader .concernListDone {
     top: 6px !important;
-    font-size: 15px !important; }
+    font-size: 15px !important;
+    font-family: 'Glober SemiBold'; }
+  .concernListHeader .concernListTitle-ios {
+    top: 17px !important;
+    font-size: 16px !important;
+    font-family: 'Glober SemiBold'; }
+  .concernListHeader .concernListDone-ios {
+    top: 18px !important;
+    font-size: 15px !important;
+    font-family: 'Glober SemiBold'; }
 
 .concernListContent {
   margin-top: 52px; }
@@ -9300,7 +9316,8 @@ a {
   display: block;
   background-color: #EFEFED;
   height: 63px;
-  top: 133px; }
+  position: relative;
+  top: 130px; }
 
 .TitleLess {
   font-family: 'Glober Bold';
@@ -9313,7 +9330,7 @@ a {
   Color: #4D4D4D; }
 
 .ContentList_provider {
-  margin: 152px 0 0 0;
+  margin: 154px 0 0 0;
   background-color: #EFEFED; }
   .ContentList_provider .item {
     padding: 42px 18px 27px 35px;
@@ -9475,7 +9492,7 @@ a {
   width: 63%;
   position: relative;
   top: -23px;
-  left: 110px; }
+  left: 102px; }
 
 .ion-search::before {
   margin-left: 10px; }
@@ -9494,7 +9511,7 @@ a {
 
 .primary {
   background-color: #F2F0EE;
-  margin: -11px -15px 12px -12px;
+  margin: -13px -15px 12px -12px;
   padding: 5px;
   font-size: 16px;
   color: #777A78;
@@ -9516,7 +9533,7 @@ a {
 
 .pre_consultant {
   background-color: #F2F0EE;
-  margin: -11px -15px 11px -12px;
+  margin: -13px -15px 11px -12px;
   padding: 5px;
   font-size: 16px;
   color: #777A78;
@@ -9656,7 +9673,7 @@ a {
       font-size: 19px; }
 
 .PatintHeaderFontStyle {
-  font-family: 'Glober Bold'; }
+  font-family: 'Glober xBold'; }
 
 .PatintHeaderFontStyleInner {
   font-family: 'Glober Thin'; }
@@ -9916,27 +9933,27 @@ form.ng-submitted input.ng-valid + i.icon.error {
       .UserHme .UserHmeSub .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #484848 !important;
-        font-size: 18px !important;
+        font-size: 19px !important;
         padding-top: 5px !important; }
       .UserHme .UserHmeSub .item-input :-moz-placeholder {
         /* Mozilla Firefox 4 to 18 */
         color: #484848 !important;
-        font-size: 18px !important;
+        font-size: 19px !important;
         padding-top: 5px !important;
         opacity: 1; }
       .UserHme .UserHmeSub .item-input ::-moz-placeholder {
         /* Mozilla Firefox 19+ */
         color: #484848 !important;
-        font-size: 18px !important;
+        font-size: 19px !important;
         padding-top: 5px !important;
         opacity: 1; }
       .UserHme .UserHmeSub .item-input :-ms-input-placeholder {
         /* Internet Explorer 10+ */
         color: #484848 !important;
-        font-size: 18px !important;
+        font-size: 19px !important;
         padding-top: 5px !important; }
       .UserHme .UserHmeSub .item-input input {
-        font-size: 17px;
+        font-size: 19px;
         color: #616462;
         height: 26px;
         margin-top: 0px;
@@ -10243,6 +10260,10 @@ input, button, select, textarea {
 
 .patientConternFontStyle {
   font-family: 'Glober Bold'; }
+
+.patientConternFontStyle-ios {
+  font-family: 'Glober Bold';
+  font-size: 15px; }
 
 .patientConternFontStyleSubTitle {
   font-family: 'Glober Regular'; }
