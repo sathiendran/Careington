@@ -57,15 +57,15 @@
 			</ion-item>
 			
 			<ion-item class="concernsItem" >
-				 <div class="primary"><span>1 </span> Primary Concern</div>
+				 <div class="primary"><span>1 </span> <div>Primary Concern</div></div>
 				 <p class="ptagprimary" >{{reportScreenPrimaryConcern}}</p>				
 
-				 <div class="secondary"><span>2 </span>Secondary Concern</div>
+				 <div class="secondary"><span>2 </span><div>Secondary Concern</div></div>
 				 <p class="ptagprimary" >{{reportScreenSecondaryConcern}}</p>
 			</ion-item>
 			
 			<ion-item class="concernsItem">
-				<div class="pre_consultant"><span></span>Pre-Consult Notes:</div>
+				<div class="pre_consultant"><span></span><div style="left: 38px;">Pre-Consult Notes:</div></div>
 	<!-- <p class="ptagprimary" >{{preConsultantNotes}} </p>-->
 				 <p class="ptagprimary" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>
 			</ion-item>
