@@ -10209,9 +10209,16 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .BacgroundColorContent {
   background-color: #EFEFED; }
 
-.NeedanAcount {
+.NeedanAcount_android {
   text-align: center;
   font-family: 'Glober Bold'; }
+
+.NeedanAcount_ios {
+  text-align: center;
+  font-family: 'Glober Bold';
+  top: 20px;
+  float: none;
+  position: relative; }
 
 .needanaccountPragraph {
   font-family: 'Glober Regular';

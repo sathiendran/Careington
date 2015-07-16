@@ -46,7 +46,7 @@
 }
 @font-face {
   font-family: 'Glober Regular Italic';
-  src: url("Glober Regular Italic.otf");
+  src: url("Glober Regular Italic.otf"); 
 }
 @font-face {
   font-family: 'Glober Regular';
@@ -2652,9 +2652,16 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 .BacgroundColorContent {
     background-color: #EFEFED;
  }
-.NeedanAcount {
+.NeedanAcount_android {
  text-align: center;
  font-family: $fontFamily_bold;    
+}
+.NeedanAcount_ios {
+ text-align: center;
+ font-family: $fontFamily_bold;
+    top: 20px;
+  float: none;
+  position: relative;
 }
 .needanaccountPragraph {
  font-family: $fontFamily_regular;

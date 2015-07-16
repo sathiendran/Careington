@@ -126,7 +126,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
 		$rootScope.loginLineHeight = "top: 2px; position: relative;";
-		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
+		$rootScope.passwordLineHeight = "top: 2px; position: relative;";		
     if($rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
@@ -173,7 +173,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
-
+		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
     } else if($rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -194,6 +194,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
          $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
        $rootScope.PasswordOverlop = "margin: 250px 0 0 0;"; 
 	   $rootScope.resetContent = "margin: 250px 0 0 0;";
+	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
     }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
