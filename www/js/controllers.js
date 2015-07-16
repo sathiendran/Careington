@@ -126,11 +126,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
 		$rootScope.loginLineHeight = "top: 2px; position: relative;";
-		$rootScope.passwordLineHeight = "top: 2px; position: relative;";		
+		$rootScope.passwordLineHeight = "top: 2px; position: relative;";	
+        $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
+        $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
+        $rootScope.concernListDoneStyle = "concernListDone-ios";
+
     if(!$rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px; font-family: 'Glober SemiBold'; ";
         $rootScope.PrimaryConcernPopupDone = "margin-top: 16px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
         $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
@@ -142,7 +146,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.LoginContantDiv = " height: 96px;"; 
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
         $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
-        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
+        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
@@ -156,7 +160,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     if(!$rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px; font-family: 'Glober SemiBold'; ";
         $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
         $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
@@ -197,6 +201,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	   $rootScope.resetContent = "margin: 250px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
+        $rootScope.patientConternFontStyle = "patientConternFontStyle";
+        $rootScope.concernListTitleStyle = "concernListTitle"; 
+        $rootScope.concernListDoneStyle = "concernListDone";
     }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	

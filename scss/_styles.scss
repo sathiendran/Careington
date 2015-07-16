@@ -1416,7 +1416,7 @@ body {
 	.PrimaryList {
 		top:3px;padding: 1px;cursor:pointer;
 		.Step1 {
-			color:#888;float:right;margin-right: 10px; margin-top: 10px;
+			color:#888;float:right;margin-right: 10px; margin-top: 14px;
 		}
 		.PrimaryContent {
 			margin-top: 30px;
@@ -1542,9 +1542,19 @@ body {
 	height: 55px;
 	.concernListTitle {
 		top: 6px !important; font-size:16px !important; 
+        font-family: $fontFamily_semibold;
 	}
 	.concernListDone {
 		top: 6px !important;font-size:15px !important;
+        font-family: $fontFamily_semibold;
+	}
+    .concernListTitle-ios {
+		top: 17px !important; font-size:16px !important; 
+        font-family: $fontFamily_semibold;
+	}
+	.concernListDone-ios {
+		top: 18px !important;font-size:15px !important;
+        font-family: $fontFamily_semibold;
 	}
 }
 .concernListContent {
@@ -2689,6 +2699,10 @@ input, button, select, textarea {
 
 .patientConternFontStyle { 
 font-family: $fontFamily_bold; 
+}
+.patientConternFontStyle-ios { 
+font-family: $fontFamily_bold; 
+    font-size: 15px;
 }
 .patientConternFontStyleSubTitle { 
 font-family: $fontFamily_regular; 
