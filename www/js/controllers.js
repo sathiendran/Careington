@@ -125,8 +125,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
-		$rootScope.loginLineHeight = "top: 5px; position: relative;";
-        if($rootScope.IOSDevice) {
+		$rootScope.loginLineHeight = "top: 2px; position: relative;";
+		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
+    if($rootScope.IOSDevice) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
@@ -151,8 +152,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PriorSurgeryContant = "margin-top: 43px;";    
         $rootScope.reportDone = "padding-top: 26px;"; 
         $rootScope.reportTitletop = "top:4px !important;";    
-        }
-        if($rootScope.isIPad) {
+    }
+    if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
@@ -167,13 +168,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.FootNextButton = "left: 22px;";
         $rootScope.FootNextButtonPatient = "left: 3px;"; 
         $rootScope.PriorSurgeryContant = "margin-top: 53px;";     
-        }
+    }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if($rootScope.AndroidDevice) {  
+    } else if($rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";

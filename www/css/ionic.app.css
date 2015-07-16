@@ -8071,7 +8071,7 @@ body {
     font-size: 14px; }
 
 .button_new {
-  font-family: 'Glober Thin';
+  font-family: 'Glober Light';
   font-weight: bold;
   font-size: 19px;
   color: #fff;
@@ -9300,7 +9300,7 @@ a {
   display: block;
   background-color: #EFEFED;
   height: 63px;
-  top: 139px; }
+  top: 133px; }
 
 .TitleLess {
   font-family: 'Glober Bold';
@@ -9313,7 +9313,7 @@ a {
   Color: #4D4D4D; }
 
 .ContentList_provider {
-  margin: 157px 0 0 0;
+  margin: 152px 0 0 0;
   background-color: #EFEFED; }
   .ContentList_provider .item {
     padding: 42px 18px 27px 35px;
@@ -10043,10 +10043,15 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 22px;
   margin-top: 0px; }
 
+.providerName {
+  width: 85%;
+  position: relative;
+  top: -5px; }
+
 .providerIcon .ion-chevron-right:before {
   content: "\f125";
   font-size: 27px;
-  margin-top: -2px;
+  margin-top: -4px;
   Color: #898989; }
 
 .ion-chevron-right:before {
