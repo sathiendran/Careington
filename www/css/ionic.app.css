@@ -8962,7 +8962,7 @@ select {
       color: #888;
       float: right;
       margin-right: 10px;
-      margin-top: 10px; }
+      margin-top: 14px; }
     .ConcernsContent .PrimaryList .PrimaryContent {
       margin-top: 30px; }
       .ConcernsContent .PrimaryList .PrimaryContent h1 {
@@ -9088,10 +9088,20 @@ select {
   height: 55px; }
   .concernListHeader .concernListTitle {
     top: 6px !important;
-    font-size: 16px !important; }
+    font-size: 16px !important;
+    font-family: 'Glober SemiBold'; }
   .concernListHeader .concernListDone {
     top: 6px !important;
-    font-size: 15px !important; }
+    font-size: 15px !important;
+    font-family: 'Glober SemiBold'; }
+  .concernListHeader .concernListTitle-ios {
+    top: 17px !important;
+    font-size: 16px !important;
+    font-family: 'Glober SemiBold'; }
+  .concernListHeader .concernListDone-ios {
+    top: 18px !important;
+    font-size: 15px !important;
+    font-family: 'Glober SemiBold'; }
 
 .concernListContent {
   margin-top: 52px; }
@@ -10250,6 +10260,10 @@ input, button, select, textarea {
 
 .patientConternFontStyle {
   font-family: 'Glober Bold'; }
+
+.patientConternFontStyle-ios {
+  font-family: 'Glober Bold';
+  font-size: 15px; }
 
 .patientConternFontStyleSubTitle {
   font-family: 'Glober Regular'; }

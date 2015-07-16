@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -105,7 +105,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
         $rootScope.appoinmentStyle = "  margin-top: 6px;";
-        $rootScope.MenuIconBottom = "top: 2px;";
+        $rootScope.MenuIconBottom = "top: 4px;";
         $rootScope.patientsubHeaderInnerStyle = "margin-top: 2px;";
         $rootScope.BackBotton = "top: 7px; position: relative;";
         $rootScope.Appoinmentwaitcenter = "left: -27px;";
@@ -126,14 +126,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
 		$rootScope.loginLineHeight = "top: 2px; position: relative;";
-		$rootScope.passwordLineHeight = "top: 2px; position: relative;";	
+		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
 		$rootScope.resetContent = "margin: 170px 0 0 0;";	
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
 		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;";	
     if($rootScope.IOSDevice) {
+
+        $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
+        $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
+        $rootScope.concernListDoneStyle = "concernListDone-ios";
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px; font-family: 'Glober SemiBold'; ";
         $rootScope.PrimaryConcernPopupDone = "margin-top: 16px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
         $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
@@ -144,8 +148,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
         $rootScope.LoginContantDiv = " height: 96px;"; 
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
-        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
-        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";        
+        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";  
+        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  
+        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
+        $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
         $rootScope.MarginHomeTop = "margin-top: 77px;";  
@@ -155,10 +161,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.reportDone = "padding-top: 26px;"; 
         $rootScope.reportTitletop = "top:4px !important;";    
     }
-    if($rootScope.isIPad) {
+    if(!$rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px; font-family: 'Glober SemiBold'; ";
         $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
         $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
@@ -176,6 +182,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
+        $rootScope.calendarBackStyle = "top: 13px !important;";
     } else if($rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -197,6 +204,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        $rootScope.PasswordOverlop = "margin: 250px 0 0 0;"; 
 	   $rootScope.resetContent = "margin: 250px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
+        $rootScope.calendarBackStyle = "";
+        $rootScope.patientConternFontStyle = "patientConternFontStyle";
+        $rootScope.concernListTitleStyle = "concernListTitle"; 
+        $rootScope.concernListDoneStyle = "concernListDone";
     }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
@@ -3742,7 +3753,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 .directive('siteHeader1', function () {
     return {
         restrict: 'E',
-        template: '<a class="button_new icon ion-chevron-left calendarBack" ><span style="margin-left: 3px;">{{back}}</span></a>',
+        template: '<a class="button_new icon ion-chevron-left calendarBack"><span style="margin-left: 3px;">{{back}}</span></a>',
         scope: {
             back: '@back',           
             icons: '@icons'
@@ -3756,6 +3767,22 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     };
 })
 
+.directive('siteHeaderIos', function () {
+    return {
+        restrict: 'E',
+        template: '<a class="button_new icon ion-chevron-left calendarBack" style="top: 13px !important;"><span style="margin-left: 3px;">{{back}}</span></a>',
+        scope: {
+            back: '@back',           
+            icons: '@icons'
+        },
+        link: function(scope, element, attrs) {
+            $(element[0]).on('click', function() {
+                history.back();
+                scope.$apply();
+            });          
+        }
+    };
+})
 .directive('siteHeader2', function () {
     return {
         restrict: 'E',
