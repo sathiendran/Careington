@@ -8255,10 +8255,10 @@ body {
 
 .patientCalendar_subHeader {
   background-color: #e6e6e6;
-  border-bottom: 1px solid #b9b8b8;
+  /*border-bottom: 1px solid #b9b8b8;*/
   color: #565656;
   height: auto;
-  margin-top: 124px; }
+  margin-top: 121px; }
 
 .patientCalendar_watch {
   padding: 10px;
@@ -9313,7 +9313,7 @@ a {
   Color: #4D4D4D; }
 
 .ContentList_provider {
-  margin: 149px 0 0 0;
+  margin: 157px 0 0 0;
   background-color: #EFEFED; }
   .ContentList_provider .item {
     padding: 42px 18px 27px 35px;
@@ -9854,15 +9854,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .waitingRoomImage {
   background: url(../img/wait.png) no-repeat;
   background-position: center center;
-  background-attachment: scroll;
-  width: 200px;
-  height: 300px;
-  -webkit-background-size: auto;
-  -moz-background-size: auto;
-  -o-background-size: auto;
-  background-size: auto;
-  margin: 117px 0 0 0;
-  padding-top: 100px; }
+  /*background-attachment:scroll; 	*/
+  -webkit-background-size: 200px 300px;
+  -moz-background-size: 200px 300px;
+  -o-background-size: 200px 300px;
+  background-size: 200px 300px;
+  padding-top: 220px; }
   .waitingRoomImage .WaitingContent {
     color: #858585; }
     .waitingRoomImage .WaitingContent .WaitingMessage {

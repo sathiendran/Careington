@@ -12,7 +12,7 @@
 		  <h2 class="{{HeadTitleLessDevice}}">Connected Care</h2>
 		</div>
 		
-		<div class="bar bar-TitleLess" style="border-bottom-color: #A9ABA7;">
+		<div class="bar bar-TitleLess" style="border-bottom: none;">
 		  <h2 class="TitleLess">Select Your Provider</h2>
 		</div>		  
 	</ion-header-bar>
@@ -24,7 +24,7 @@
 				<ion-list>
                  <!--   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails.providerId,hospitalDetails.name)"> -->
                     <ion-item class="item-remove-animate item-avatar item-icon-right providerIcon" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)"style="border-color: #A9ABA7;">
-                        <div class="ellipsis" style="width: 87%;">{{hospitalDetails.name}}</div>
+                        <div class="ellipsis" style="width: 85%;">{{hospitalDetails.name}}</div>
                         <i class="icon ion-chevron-right icon-accessory" style="top: 3px;"></i>                        
                       </ion-item>					  
                     
