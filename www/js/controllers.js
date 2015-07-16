@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if($rootScope.IOSDevice || $rootScope.isIPad) {
+    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -126,74 +126,78 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
 		$rootScope.loginLineHeight = "top: 5px; position: relative;";
-        if($rootScope.IOSDevice) {
-        $rootScope.PrimaryConcernPopupH = "height: 66px;";
-        $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
-        $rootScope.PrimaryConcernPopupDone = "margin-top: 16px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
-        $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
-        $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 8px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
-        $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
-        $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
-        $rootScope.NextIntakeForm = "margin-left: -21px;";
-        $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
-        $rootScope.LoginContantDiv = " height: 96px;"; 
-        //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
-        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
-        $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
-        $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
-        $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
-        $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: 77px;";  
-        $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
-        $rootScope.FootNextButton = "left: 24px;";
-        $rootScope.PriorSurgeryContant = "margin-top: 43px;";    
-        $rootScope.reportDone = "padding-top: 26px;"; 
-        $rootScope.reportTitletop = "top:4px !important;";    
+        if(!$rootScope.IOSDevice) {
+            $rootScope.PrimaryConcernPopupH = "height: 66px;";
+            $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
+            $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px;";
+            $rootScope.PrimaryConcernPopupDone = "margin-top: 16px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
+            $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
+            $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
+            $rootScope.PriorSurgeryPopupCancel = " margin-top: 8px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
+            $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
+            $rootScope.NextIntakeForm = "margin-left: -21px;";
+            $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
+            $rootScope.LoginContantDiv = " height: 96px;"; 
+            //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
+            $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";    
+            $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
+            $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
+            $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
+            $rootScope.PositionIOS = "position:fixed; top:105px;";
+            $rootScope.MarginHomeTop = "margin-top: 77px;";  
+            $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
+            $rootScope.FootNextButton = "left: 24px;";
+            $rootScope.PriorSurgeryContant = "margin-top: 43px;";    
+            $rootScope.reportDone = "padding-top: 26px;"; 
+            $rootScope.reportTitletop = "top:4px !important;";    
         }
-        if($rootScope.isIPad) {
-        $rootScope.PrimaryConcernPopupH = "height: 66px;";
-        $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
-        $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
-        $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
-        $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px; padding-right: 0px; padding-left: 0px;padding: 0px;";
-        $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
-        $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
-        /*$rootScope.FootNextButtonRight = "margin-left: -61px !important;"; */
-        $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
-        $rootScope.FootNextButton = "left: 22px;";
-        $rootScope.FootNextButtonPatient = "left: 3px;"; 
-        $rootScope.PriorSurgeryContant = "margin-top: 53px;";     
+        if(!$rootScope.isIPad) {
+            $rootScope.PrimaryConcernPopupH = "height: 66px;";
+            $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
+            $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px;";
+            $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
+            $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
+            $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
+            $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
+            $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
+            /*$rootScope.FootNextButtonRight = "margin-left: -61px !important;"; */
+            $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
+            $rootScope.FootNextButton = "left: 22px;";
+            $rootScope.FootNextButtonPatient = "left: 3px;"; 
+            $rootScope.PriorSurgeryContant = "margin-top: 53px;";     
         }
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
+        $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
+
 
         } else if($rootScope.AndroidDevice) {  
-        $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
-        $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
-        $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
-        $rootScope.password_sub_header = "password_sub_headerAndroid";
-        $rootScope.password_header_content = "password_header_contentAndroid";
-        $rootScope.header_image = "header_imageAndroid";
-        $rootScope.title_patient = "title_patientAndroid";
-        $rootScope.HeaderList = "HeaderListAndroid";
-        $rootScope.sidemenuHome = "SidemenuHomeAndroid";
-        $rootScope.calendarTitle = "calendarTitleAndroid";
-        $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserAndroid";
-        $rootScope.calendarBack = "calendarBackAndroid";
-        $rootScope.intakeTittle = "intakeTittleAndroid"; 
-        $rootScope.MenuInnerStyle = "top: -8px;"; 
-        $rootScope.MenuIconBottomRecipt = "top: -8px;";
-        $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
-         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
-       $rootScope.PasswordOverlop = "margin: 250px 0 0 0;"; 
-	   $rootScope.resetContent = "margin: 250px 0 0 0;";
-    }
+            $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
+            $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
+            $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
+            $rootScope.password_sub_header = "password_sub_headerAndroid";
+            $rootScope.password_header_content = "password_header_contentAndroid";
+            $rootScope.header_image = "header_imageAndroid";
+            $rootScope.title_patient = "title_patientAndroid";
+            $rootScope.HeaderList = "HeaderListAndroid";
+            $rootScope.sidemenuHome = "SidemenuHomeAndroid";
+            $rootScope.calendarTitle = "calendarTitleAndroid";
+            $rootScope.barsubheaderHomeUser = "bar-subheaderHomeUserAndroid";
+            $rootScope.calendarBack = "calendarBackAndroid";
+            $rootScope.intakeTittle = "intakeTittleAndroid"; 
+            $rootScope.MenuInnerStyle = "top: -8px;"; 
+            $rootScope.MenuIconBottomRecipt = "top: -8px;";
+            $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
+             $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
+           $rootScope.PasswordOverlop = "margin: 250px 0 0 0;"; 
+           $rootScope.resetContent = "margin: 250px 0 0 0;";
+            $rootScope.NeedanAcountStyle = "NeedanAcount_android";
+
+        }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
