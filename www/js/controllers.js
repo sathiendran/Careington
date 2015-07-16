@@ -172,7 +172,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.CountrySearchItem = "top: 13px;";
         $rootScope.ConstantTreat = "font-size: 16px;";
 
-        } else if($rootScope.AndroidDevice) {  
+        } else if(!$rootScope.AndroidDevice) {  
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
         $rootScope.HeadTitleLessDevice = "head_titleLessAndroid";
@@ -188,9 +188,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.intakeTittle = "intakeTittleAndroid"; 
         $rootScope.MenuInnerStyle = "top: -8px;"; 
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
-        $rootScope.AddhealthplanOverlop = "margin: 176px 0 0 0;";  
+        $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
          $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
-       
+       $rootScope.PasswordOverlop = "margin: 250px 0 0 0;"; 
+	   $rootScope.resetContent = "margin: 250px 0 0 0;";
     }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
@@ -3736,7 +3737,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 .directive('siteHeader1', function () {
     return {
         restrict: 'E',
-        template: '<a class="button_new icon ion-chevron-left calendarBack" ><span style="margin-left: 0px;">{{back}}</span></a>',
+        template: '<a class="button_new icon ion-chevron-left calendarBack" ><span style="margin-left: 3px;">{{back}}</span></a>',
         scope: {
             back: '@back',           
             icons: '@icons'
