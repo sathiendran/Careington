@@ -130,7 +130,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.loginLineHeight = "top: 2px; position: relative;";
 		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
-		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;";	
+		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;"; 	
     if($rootScope.IOSDevice) {
         $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
         $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
