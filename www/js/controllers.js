@@ -116,7 +116,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.AddHealthPlanCancel = "margin-top: 6px";
         $rootScope.ReportScreen = " top: 1px; position: relative;";
-        $rootScope.PlanDetails= "margin-top: 33px;";
+        $rootScope.PlanDetails= "margin-top: 17px;";
+        $rootScope.SubDetailsPlanDetails= "margin-top: -16px;";
         $rootScope.PatientTitle= "  margin-top: 26px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";
         $rootScope.PatientConcerns = "margin-top: 90px;";
@@ -128,7 +129,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
 		$rootScope.loginLineHeight = "top: 2px; position: relative;";
 		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
-		$rootScope.resetContent = "margin: 170px 0 0 0;";	
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
 		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;";	
     if($rootScope.IOSDevice) {
@@ -154,12 +154,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: 77px;";  
+        $rootScope.MarginHomeTop = "margin-top: 115px;";  
+        $rootScope.concernsItemDivs = "top: 5px;"; 
+        $rootScope.primaryContent = "margin: -22px -15px 12px -12px;"; 
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
         $rootScope.PriorSurgeryContant = "margin-top: 43px;";    
         $rootScope.reportDone = "padding-top: 26px;"; 
-        $rootScope.reportTitletop = "top:4px !important;";    
+        $rootScope.reportTitletop = "top:4px !important;"; 
+        $rootScope.resetContent = "margin: -46px 0 0 0;";
     }
     if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";

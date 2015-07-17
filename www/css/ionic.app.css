@@ -7736,7 +7736,7 @@ body {
   .login_content .login_home, .login_content .password_content, .login_content .ContentSearchHomeUser {
     padding: 0 12%; }
     .login_content .login_home .item-input, .login_content .login_home .password_content, .login_content .login_home .ContentSearchHomeUser {
-      border: 1px solid #DADADA;
+      border: 1px solid #CDCACA;
       border-radius: 8px;
       height: 52px;
       font-weight: bold;
@@ -7987,7 +7987,7 @@ body {
   padding-top: 85px;
   background-color: #EFEFED; }
   .password_content .item-input {
-    border: 2px solid #DADADA;
+    border: 2px solid #CDCACA;
     border-radius: 8px;
     height: 50px;
     line-height: normal;
@@ -9164,7 +9164,7 @@ select {
       margin-left: 5px;
       margin-right: 5px;
       border-radius: 9px;
-      border: 1px solid #DADADA; }
+      border: 1px solid #CDCACA; }
       .concernListContent .UserHmeSub .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #484848 !important;
@@ -9699,7 +9699,7 @@ a {
 .ContentSearchHomeUser {
   margin: -20px 0 0 0; }
   .ContentSearchHomeUser .item-input {
-    border: 1px solid #DADADA;
+    border: 1px solid #CDCACA;
     border-radius: 8px;
     height: 45px;
     font-weight: bold;
@@ -9989,7 +9989,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
       margin-left: 5px;
       margin-right: 5px;
       border-radius: 9px;
-      border: 1px solid #DADADA; }
+      border: 1px solid #CDCACA; }
       .UserHme .UserHmeSub-Android .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #484848 !important;
@@ -10026,7 +10026,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
       margin-left: 5px;
       margin-right: 5px;
       border-radius: 9px;
-      border: 1px solid #DADADA; }
+      border: 1px solid #CDCACA; }
       .UserHme .UserHmeSub-IOS .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #484848 !important;
