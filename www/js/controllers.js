@@ -144,8 +144,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
-        $rootScope.LoginContant = "  margin: 30px 0 0 0 !important;  padding-top: 50px !important;";
-        $rootScope.LoginContantDiv = " height: 96px;"; 
+        $rootScope.LoginContant = "padding-top: 50px !important;"; //margin: 30px 0 0 0 remove
+        $rootScope.LoginContantDiv = " height: 50px;";  //95px
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
         $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  

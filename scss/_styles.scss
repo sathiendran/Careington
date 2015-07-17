@@ -244,7 +244,7 @@ body {
 .button.button-positive.button-outline {	
 	@include buttons($Feijoa, normal, 7px, 19px, 35px );	
 	color: #fff;
-	width: 105px;
+	width: 111px;
 	line-height: 35px;
 	padding-top: 5px;
 	background: linear-gradient(#9BCA83, #93C07E); 
@@ -1742,11 +1742,11 @@ body {
 
 .bar-subheaderLessIOS { 
 	display: block;
-	height: 82px;
+	height: 88px;
 	top: 48px;
-	-moz-box-shadow: 0px 4px 3px #A8A6A6;
-	-webkit-box-shadow: 0px 4px 3px #A8A6A6;
-	box-shadow: 0px 4px 3px #A8A6A6;
+	-moz-box-shadow: 0px 3px 3px #9E9E9E;
+	-webkit-box-shadow: 0px 3px 3px #9E9E9E;
+	box-shadow: 0px 3px 3px #9E9E9E;
 }
 	
 .head_titleLessAndroid { 
@@ -2674,7 +2674,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 .NeedanAcount_ios {
  text-align: center;
  font-family: $fontFamily_bold;
-    top: 20px;
+    top: 25px;
   float: none;
   position: relative;
 }
