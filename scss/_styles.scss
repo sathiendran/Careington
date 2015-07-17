@@ -101,9 +101,9 @@ body {
 	text-align: center;
 	color: $Flamingo;
 	position:relative;       
-    box-shadow:  0px 2px 9px #ADABAB;
-	-moz-box-shadow:  0px 2px 9px #ADABAB;
-	-webkit-box-shadow:  0px 2px 9px #ADABAB;
+    box-shadow:  0px 3px 3px #ADABAB;
+	-moz-box-shadow:  0px 3px 3px #ADABAB;
+	-webkit-box-shadow:  0px 3px 3px #ADABAB;
 
 		after
 		{
@@ -413,7 +413,7 @@ body {
     background-color: #EFEFED;
 	.item-input {
 		
-		border: 2px solid $Altoa;
+		border: 1px solid $Altoa;
 		border-radius: 8px;
 		height: 50px;
         line-height: normal;
@@ -854,7 +854,7 @@ body {
   font-size: 21px; color: #989998;float: left;position: relative;  top: 3px;
 	}
 	div {
-		position: relative;  top: 3px;
+		position: relative;  top: 5px;
 	}
 	.pre_consultant { span { margin-right:27px;margin-left: 14px; }}
 }
@@ -879,7 +879,7 @@ body {
 		.availableImage {
 			font-size: 22px;margin-top: 2px;
 			.AvailableText {
-				float: left; text-align: right; width: 54%;  font-family: $fontFamily_light; font-weight: bold;
+				float: left; text-align: right; width: 54%;  font-family: $fontFamily_semibold; font-weight: bold;
   color: #fff;
 			}
 			.AvailableTimer {
@@ -1156,7 +1156,7 @@ body {
 			padding-top: 35px;
 		}
 		input[type="text"], input[type="number"], input[type="password"] {
-			font-size: 19px;
+			font-size: 20px;
 			line-height: 30px;
 		}
 		.planDetails {
@@ -1180,7 +1180,7 @@ body {
 		}
 		.input-label {
 			font-weight: bold;
-			font-size: 19px;
+			font-size: 20px;
 			width: 50%;
 		}
 		.cardDetailsHeading {
@@ -2931,4 +2931,7 @@ font-family: $fontFamily_bold;
 font-family: $fontFamily_regular; 
 }  
 
-
+.concernsItempTag  {
+  top: 8px;
+  position: relative; 
+}
