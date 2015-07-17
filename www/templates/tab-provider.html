@@ -12,14 +12,15 @@
 		  <h2 class="{{HeadTitleLessDevice}}">Connected Care</h2>
 		</div>
 		
-		<div class="bar bar-TitleLess" style="border-bottom: none;">
+		<div class="bar bar-TitleLess-{{deviceName}}" style="border-bottom: none;">
 		  <h2 class="TitleLess">Select Your Provider</h2>
 		</div>		  
 	</ion-header-bar>
 			<!-- End Header -->
 			
 			<!-- Start Content -->
-		<ion-content class="ContentList_provider"  >
+		<ion-content class="ContentList_provider-{{deviceName}} scroll-content ionic-scroll  has-header has-footer"  >
+		
 			<form>
 				<ion-list>
                  <!--   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails.providerId,hospitalDetails.name)"> -->
