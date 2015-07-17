@@ -1765,7 +1765,14 @@ body {
 	top: 23px;		
 }
 
-.bar-TitleLess{
+.bar-TitleLess-Android{
+	display: block;
+	background-color: #EFEFED;
+	height: 63px;
+    position: relative;
+	top: 136px;
+}
+.bar-TitleLess-IOS{
 	display: block;
 	background-color: #EFEFED;
 	height: 63px;
@@ -1781,7 +1788,25 @@ body {
 		 margin: 12px;	
 		 Color: #4D4D4D;
 }		
-.ContentList_provider {
+.ContentList_provider-Android {
+	margin: 160px 0 0 0;
+      background-color: #EFEFED;
+	.item {
+		  padding: 42px 18px 27px 35px;
+		   //Color: #4D4D4D;
+           Color: #787878;
+		   font-size: 22px;
+           font-family:$fontFamily_regular;
+		   .ion-chevron-right.ListLinkHref {
+			font-size: 28px;
+			margin-top: -8px;
+		   }
+	}
+
+}
+	
+
+.ContentList_provider-IOS {
 	margin: 154px 0 0 0;
       background-color: #EFEFED;
 	.item {
@@ -1796,7 +1821,7 @@ body {
 		   }
 	}
 
-}	
+}
 
 .ContentList {
 	margin: 138px 0 0 0;	
