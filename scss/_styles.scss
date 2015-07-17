@@ -1569,7 +1569,7 @@ body {
 			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -38px; position: relative;top: -4px;left: -21px;
+			margin-left: -42px; position: relative;top: -4px;left: -15px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
@@ -1604,6 +1604,36 @@ body {
 				.SearchBox {
 					color:#535353; font-weight:normal;margin-top: 0px;
 				}
+				::-webkit-input-placeholder { /* WebKit browsers */
+						color:    $Tundora !important;
+						font-size: 19px !important;
+						padding-top: 5px !important;
+						position: relative;
+						top: 2px;
+					}
+					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+						   color:    $Tundora !important;
+						  font-size: 19px !important;
+							padding-top: 5px !important;
+						   opacity:  1;
+						   position: relative;
+							top: 2px;
+						}
+					::-moz-placeholder { /* Mozilla Firefox 19+ */
+						   color:    $Tundora !important;
+						  font-size: 19px !important;
+						padding-top: 5px !important;
+						   opacity:  1;
+						   position: relative;
+							top: 2px;
+						}
+					:-ms-input-placeholder { /* Internet Explorer 10+ */
+						   color:    $Tundora !important;
+						   font-size: 19px !important;
+						padding-top: 5px !important;
+							position: relative;
+							top: 2px;
+						}
 			}
 		}
 	}
@@ -2826,7 +2856,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 		font-size: 19px;
 		padding: 6px;
 		left: 18px;
-		top: 13px;
+		top: 11px;
 		/*font-weight: bold;*/
 	}
 	.viewport1 {
@@ -2844,7 +2874,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 		font-size: 19px;
 		padding: 6px;
 		left: 25px;
-		top: 13px;
+		top: 11px;
 		/*font-weight: bold;*/
 		text-align: left;
 	}
@@ -2864,7 +2894,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 		font-size: 19px;
 		padding: 6px;
 		left: 18px;
-		top: 13px;
+		top: 11px;
 		/*font-weight: bold;*/
 	}
 
