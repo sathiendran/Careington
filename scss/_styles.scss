@@ -668,7 +668,7 @@ body {
 				
 			}
 		}
-		.subHeader_content{
+		.subHeader_content-Android{
 			.subHeader_content_name {
 				font-size: 21px;
                  margin-left: 7px;
@@ -685,6 +685,37 @@ body {
                   margin-left: 7px;
 			}
 		}
+		.subHeader_content-IOS{
+			.subHeader_content_name {
+				font-size: 22px;
+                 margin-left: 7px;
+				.patientName {
+					font-weight: bold;
+				}
+				.patientLastName {
+					font-weight: bold;
+				}				
+			}
+			.subHeader_content_age {
+				font-size: 12px;
+				font-weight: bold;
+                  margin-left: 7px;
+				  margin-top: -3px;
+			}
+		}
+	}
+}
+.patientDo-Android {
+	margin-top:134px;margin-top: 122px;text-align: center;height: 48px;border-bottom: 1px solid #A9ABA7;
+	.patient_Do_sub-Android {
+		margin-left:18px;margin-top:10px;
+	}
+}	
+
+.patientDo-IOS {
+	margin-top:134px;margin-top: 122px;text-align: center;height: 53px;border-bottom: 1px solid #A9ABA7;
+	.patient_Do_sub-IOS {
+		margin-left:18px;margin-top:15px;
 	}
 }
 
@@ -895,6 +926,7 @@ body {
 		top:-8px;
 		position: relative;
 		left: 10px;
+		font-family: $fontFamily_bold;
 		
 	 }
 }
@@ -922,7 +954,7 @@ body {
 	color:#2A2A2A;
 		.consultation_number {
 			font-weight: bold;
-			padding-top: 15px;
+			padding-top: 18px;
 			font-size: 30px;
 			font-family: $fontFamily_bold;
 			color:#666666;
@@ -1212,7 +1244,7 @@ body {
 	margin: 117px 0 0 0; 
 	padding-top: 30px;
 	.PaymentSuccess {
-		font-size: 35px; text-align: center; padding-top: 50px; color: #60605D;
+		font-size: 35px; text-align: center; padding-top: 41px; color: #60605D;
 		.PaymentConfirmation {
 			font-size: 20px;  padding-top: 20px; color: #F3795D;
 			.ConfirmationReceipt {
@@ -1425,10 +1457,10 @@ body {
 		.PrimaryContent {
 			margin-top: 30px;
 			h1 {
-				font-size: 25px;  margin-bottom: 2px; width: 100%;
+				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px;
 			}
 			p {
-				margin-left: 19px;margin-bottom: 10px;
+				margin-left: 19px;margin-bottom: 10px; font-size: 15px; margin-top: -7px;
 			}
 			div {
 				float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;
@@ -1452,7 +1484,7 @@ body {
 				font-size: 25px;  margin-bottom: 2px;
 			}
 			p {
-				margin-left: 19px;margin-bottom: 10px;
+				margin-left: 19px;margin-bottom: 10px;font-size: 15px;
 			}
 			div {
 				float:right;left: -15px; position: relative; margin-top: -55px;
@@ -1537,7 +1569,7 @@ body {
 			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -38px; position: relative;top: -4px;left: -23px;
+			margin-left: -38px; position: relative;top: -4px;left: -21px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
@@ -1649,7 +1681,7 @@ body {
 	margin-top: 136px !important; font-size: 25px !important;  margin-left: 15px !important; width:100%; padding-top: 7px;
 }
 .consentSubTitle {
-	margin-top: -8px;margin-left: 16px;padding-bottom: 0px; color:#888;
+	margin-top: -8px;margin-left: 16px;padding-bottom: 0px; color:#5E5F5D;
 }
 .consentLine {
 	border-bottom: 1px solid #A9ABA7;
@@ -1686,7 +1718,7 @@ body {
 	margin-top: 15px;
 }
 .UserNeeds {
-	border-bottom: 1px solid #A9ABA7;
+	border-bottom: 1px solid #9D9E9C;
 	.SearchImage {
 		width:10%;
 		margin-right: 10px;
@@ -1881,6 +1913,7 @@ text-align:center
 	height: 63%;
     top: 80px;
 	margin-top:-6px;
+	background-image: none;
 }
 
 .TitleHomeUser_Sub { 
@@ -2409,6 +2442,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .callIcons{
     font-size: 30px;
     cursor: pointer;
+	margin-bottom: 15px;
+	position: relative;
+	top: 10px;
 }
 .activeCallIcon{
     color: red;
@@ -2417,7 +2453,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	padding: 0 0%;
 	margin-top: 70px;
 	border-color:#000;
-	.UserHmeSub {				
+	.UserHmeSub-Android {				
 				padding:12px 10px 5px 10px;
 				.item-input {
 					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
@@ -2447,6 +2483,50 @@ form.ng-submitted input.ng-valid + i.icon.error {
 					input {
 					font-size: 19px;
 					color:#616462;height: 26px;  margin-top: 0px;
+					font-family: $fontFamily_regular;	
+					}
+
+				}
+		}
+		
+		.UserHmeSub-IOS {				
+				padding:12px 10px 5px 10px;
+				.item-input {
+					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+					border: 1px solid $Altoa; 				
+					::-webkit-input-placeholder { /* WebKit browsers */
+						color:    $Tundora !important;
+						font-size: 19px !important;
+						padding-top: 5px !important;
+						position: relative;
+						top: 2px;
+					}
+					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+						   color:    $Tundora !important;
+						  font-size: 19px !important;
+							padding-top: 5px !important;
+						   opacity:  1;
+						   position: relative;
+							top: 2px;
+						}
+					::-moz-placeholder { /* Mozilla Firefox 19+ */
+						   color:    $Tundora !important;
+						  font-size: 19px !important;
+						padding-top: 5px !important;
+						   opacity:  1;
+						   position: relative;
+							top: 2px;
+						}
+					:-ms-input-placeholder { /* Internet Explorer 10+ */
+						   color:    $Tundora !important;
+						   font-size: 19px !important;
+						padding-top: 5px !important;
+							position: relative;
+							top: 2px;
+						}
+					input {
+					font-size: 19px;
+					color:#616462;height: 21px;  margin-top: 0px;
 					font-family: $fontFamily_regular;	
 					}
 
@@ -2559,17 +2639,26 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
     float: left;
     width: 30%;
     border-right: 1px solid gray;
+	margin-top: -20px;
+	margin-bottom: 13px;
+	cursor: pointer;
 }
 .confEndCall{
     width: 39%;
     border-right: 1px solid gray;
     float: left;
     font-size: 18px;
-    margin-top: 2px;
+    /*margin-top: 2px;*/
+	margin-top: -20px;
+	margin-bottom: 13px;
+	cursor: pointer;
 }
 .confMute{
     width: 30%;
     float: left;
+	margin-top: -20px;
+	margin-bottom: 13px;
+	cursor: pointer;
 }
 .doctorImgeSize {
  width: 50px !important;
@@ -2584,104 +2673,207 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 .consentIAgree {
 	position: relative; top: 3px;
 }
+.noPlanContainer-Android {
+	.dropdownContainer {
+		 .healthPlanDropDown {
+				width: 100%;
+				z-index: 2;
+				position: relative;
+				-webkit-appearance: none;  
+				  -moz-appearance: none; 
+				  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
+				  width: 93%; 
+				  text-indent: 0.01px; 
+				  text-overflow: ""; 
 
-.dropdownContainer {
-	 .healthPlanDropDown {
-            width: 100%;
-            z-index: 2;
-            position: relative;
-			-webkit-appearance: none;  
-			  -moz-appearance: none; 
-			  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
-			  width: 93%; 
-			  text-indent: 0.01px; 
-			  text-overflow: ""; 
-
-			  border-radius: 7px;
-			  margin-left: 8px;
-			  padding: 6px;
-			  box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
-			-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
-			-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
-			  height: 48px;
-			  font-size: 18px;
-			  border: none;
-        }
-}
-        .healthPlanDropDown {
-            color: transparent;
-            background: none;
-			
-        }
-
-        .dropdownContainer {
-            position: relative;
-			height: 50px;
-			margin-left: 50px;
-        }
-
-        .viewport {
-			 pointer-events: none;
-			  color: #60605D;
-            position: absolute;
-            width: 75%;
-            height: 100%;
-            z-index: 15;
-            overflow: hidden;
-            white-space: nowrap;
-            -ms-text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            text-overflow: ellipsis;
-            font-size: 19px;
-            padding: 6px;
-			left: 18px;
-			top: 10px;
-			/*font-weight: bold;*/
-        }
-		.viewport1 {
-			 pointer-events: none;
-			  color: #60605D;
-            position: absolute;
-            width: 75%;
-            height: 100%;
-            z-index: 15;
-            overflow: hidden;
-            white-space: nowrap;
-            -ms-text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            text-overflow: ellipsis;
-            font-size: 19px;
-            padding: 6px;
-			left: 25px;
-			top: 10px;
-			/*font-weight: bold;*/
-			text-align: left;
-        }
-		
-		.cardViewport {
-			 pointer-events: none;
-			  color: #60605D;
-            position: absolute;
-            width: 75%;
-            height: 100%;
-            z-index: 15;
-            overflow: hidden;
-            white-space: nowrap;
-            -ms-text-overflow: ellipsis;
-            -o-text-overflow: ellipsis;
-            text-overflow: ellipsis;
-            font-size: 19px;
-            padding: 6px;
-			left: 18px;
-			top: 10px;
-			/*font-weight: bold;*/
-        }
-
-        .healthPlanDropDown {
-			option {
-				color: #60605D;
+				  border-radius: 7px;
+				  margin-left: 8px;
+				  padding: 6px;
+				 /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
+				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
+				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
+				border: 1px solid #CDCACA !important;
+				  height: 48px;
+				  font-size: 18px;
+				  border: none;
 			}
+	}
+	.healthPlanDropDown {
+		color: transparent;
+		background: none;
+		
+	}
+
+	.dropdownContainer {
+		position: relative;
+		height: 50px;
+		margin-left: 50px;
+	}
+
+	.viewport {
+		 pointer-events: none;
+		  color: #60605D;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden;
+		white-space: nowrap;
+		-ms-text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		font-size: 19px;
+		padding: 6px;
+		left: 18px;
+		top: 10px;
+		/*font-weight: bold;*/
+	}
+	.viewport1 {
+		 pointer-events: none;
+		  color: #60605D;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden;
+		white-space: nowrap;
+		-ms-text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		font-size: 19px;
+		padding: 6px;
+		left: 25px;
+		top: 10px;
+		/*font-weight: bold;*/
+		text-align: left;
+	}
+	
+	.cardViewport {
+		 pointer-events: none;
+		  color: #60605D;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden;
+		white-space: nowrap;
+		-ms-text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		font-size: 19px;
+		padding: 6px;
+		left: 18px;
+		top: 10px;
+		/*font-weight: bold;*/
+	}
+
+	.healthPlanDropDown {
+		option {
+			color: #60605D;
 		}
+	}
+}
+
+.noPlanContainer-IOS {
+	.dropdownContainer {
+		 .healthPlanDropDown {
+				width: 100%;
+				z-index: 2;
+				position: relative;
+				-webkit-appearance: none;  
+				  -moz-appearance: none; 
+				  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
+				  width: 93%; 
+				  text-indent: 0.01px; 
+				  text-overflow: ""; 
+
+				  border-radius: 7px;
+				  margin-left: 8px;
+				  padding: 6px;
+				 /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
+				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
+				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
+				border: 1px solid #CDCACA !important;
+				  height: 48px;
+				  font-size: 18px;
+				  border: none;
+			}
+	}
+	.healthPlanDropDown {
+		color: transparent;
+		background: none;
+		
+	}
+
+	.dropdownContainer {
+		position: relative;
+		height: 50px;
+		margin-left: 50px;
+	}
+
+	.viewport {
+		 pointer-events: none;
+		  color: #60605D;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden;
+		white-space: nowrap;
+		-ms-text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		font-size: 19px;
+		padding: 6px;
+		left: 18px;
+		top: 13px;
+		/*font-weight: bold;*/
+	}
+	.viewport1 {
+		 pointer-events: none;
+		  color: #60605D;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden;
+		white-space: nowrap;
+		-ms-text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		font-size: 19px;
+		padding: 6px;
+		left: 25px;
+		top: 13px;
+		/*font-weight: bold;*/
+		text-align: left;
+	}
+	
+	.cardViewport {
+		 pointer-events: none;
+		  color: #60605D;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden;
+		white-space: nowrap;
+		-ms-text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		font-size: 19px;
+		padding: 6px;
+		left: 18px;
+		top: 13px;
+		/*font-weight: bold;*/
+	}
+
+	.healthPlanDropDown {
+		option {
+			color: #60605D;
+		}
+	}
+}
 
 		
 	.bar .button.button-clear.icon:before {
@@ -2725,7 +2917,7 @@ input, button, select, textarea {
 }
 
 .item  {
-  border-color: #A9ABA7;
+  border-color: #C4C5C3;
   }
 
 .patientConternFontStyle { 

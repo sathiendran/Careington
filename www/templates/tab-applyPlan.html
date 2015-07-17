@@ -19,7 +19,7 @@
 			
 			<div class="healthPlan_header" >				
 				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
-				<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
+				<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >					
 					<!--<div class="demo" >	
 						<select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
 							<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:18}}</span></b></option>

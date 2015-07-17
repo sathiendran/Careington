@@ -7840,7 +7840,7 @@ body {
   text-decoration: none;
   font-family: 'Glober Bold';
   color: #fff;
-  width: 105px;
+  width: 111px;
   line-height: 35px;
   padding-top: 5px;
   background: linear-gradient(#9BCA83, #93C07E);
@@ -8241,17 +8241,49 @@ body {
       top: 11px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
         width: 34px; }
-    .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name {
       font-size: 21px;
       margin-left: 7px; }
-      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientName {
         font-weight: bold; }
-      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientLastName {
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientLastName {
         font-weight: bold; }
-    .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_age {
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_age {
       font-size: 12px;
       font-weight: bold;
       margin-left: 7px; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name {
+      font-size: 22px;
+      margin-left: 7px; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name .patientName {
+        font-weight: bold; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name .patientLastName {
+        font-weight: bold; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_age {
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 7px;
+      margin-top: -3px; }
+
+.patientDo-Android {
+  margin-top: 134px;
+  margin-top: 122px;
+  text-align: center;
+  height: 48px;
+  border-bottom: 1px solid #A9ABA7; }
+  .patientDo-Android .patient_Do_sub-Android {
+    margin-left: 18px;
+    margin-top: 10px; }
+
+.patientDo-IOS {
+  margin-top: 134px;
+  margin-top: 122px;
+  text-align: center;
+  height: 53px;
+  border-bottom: 1px solid #A9ABA7; }
+  .patientDo-IOS .patient_Do_sub-IOS {
+    margin-left: 18px;
+    margin-top: 15px; }
 
 .patientCalendar_subHeader {
   background-color: #e6e6e6;
@@ -8465,7 +8497,8 @@ body {
     font-size: 26px;
     top: -8px;
     position: relative;
-    left: 10px; }
+    left: 10px;
+    font-family: 'Glober Bold'; }
 
 .consultCharge_content {
   margin: 140px 0 0 0;
@@ -8497,7 +8530,7 @@ body {
   color: #2A2A2A; }
   .consultation_head .consultation_number {
     font-weight: bold;
-    padding-top: 15px;
+    padding-top: 18px;
     font-size: 30px;
     font-family: 'Glober Bold';
     color: #666666; }
@@ -8757,7 +8790,7 @@ select {
   .ReceiptContent .PaymentSuccess {
     font-size: 35px;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 41px;
     color: #60605D; }
     .ReceiptContent .PaymentSuccess .PaymentConfirmation {
       font-size: 20px;
@@ -8968,10 +9001,14 @@ select {
       .ConcernsContent .PrimaryList .PrimaryContent h1 {
         font-size: 25px;
         margin-bottom: 2px;
-        width: 100%; }
+        width: 100%;
+        position: relative;
+        top: -6px; }
       .ConcernsContent .PrimaryList .PrimaryContent p {
         margin-left: 19px;
-        margin-bottom: 10px; }
+        margin-bottom: 10px;
+        font-size: 15px;
+        margin-top: -7px; }
       .ConcernsContent .PrimaryList .PrimaryContent div {
         float: right;
         left: -15px;
@@ -8997,7 +9034,8 @@ select {
         margin-bottom: 2px; }
       .ConcernsContent .SecondaryList .SecondaryContent p {
         margin-left: 19px;
-        margin-bottom: 10px; }
+        margin-bottom: 10px;
+        font-size: 15px; }
       .ConcernsContent .SecondaryList .SecondaryContent div {
         float: right;
         left: -15px;
@@ -9082,7 +9120,7 @@ select {
       margin-left: -38px;
       position: relative;
       top: -4px;
-      left: -20px; }
+      left: -21px; }
 
 .concernListHeader {
   height: 55px; }
@@ -9199,7 +9237,7 @@ select {
   margin-top: -8px;
   margin-left: 16px;
   padding-bottom: 0px;
-  color: #888; }
+  color: #5E5F5D; }
 
 .consentLine {
   border-bottom: 1px solid #A9ABA7; }
@@ -9245,7 +9283,7 @@ select {
   margin-top: 15px; }
 
 .UserNeeds {
-  border-bottom: 1px solid #A9ABA7; }
+  border-bottom: 1px solid #9D9E9C; }
   .UserNeeds .SearchImage {
     width: 10%;
     margin-right: 10px; }
@@ -9288,11 +9326,11 @@ a {
 
 .bar-subheaderLessIOS {
   display: block;
-  height: 82px;
+  height: 95px;
   top: 48px;
-  -moz-box-shadow: 0px 4px 3px #A8A6A6;
-  -webkit-box-shadow: 0px 4px 3px #A8A6A6;
-  box-shadow: 0px 4px 3px #A8A6A6; }
+  -moz-box-shadow: 0px 3px 3px #9E9E9E;
+  -webkit-box-shadow: 0px 3px 3px #9E9E9E;
+  box-shadow: 0px 3px 3px #9E9E9E; }
 
 .head_titleLessAndroid {
   font-family: 'Glober xBold';
@@ -9306,18 +9344,24 @@ a {
 .head_titleLessIOS {
   font-family: 'Glober xBold';
   font-weight: bold;
-  font-size: 32px;
+  font-size: 33px;
   text-align: center;
   color: #DD472D;
   position: relative;
-  top: 23px; }
+  top: 26px; }
 
-.bar-TitleLess {
+.bar-TitleLess-Android {
   display: block;
   background-color: #EFEFED;
   height: 63px;
   position: relative;
-  top: 130px; }
+  top: 136px; }
+
+.bar-TitleLess-IOS {
+  display: block;
+  background-color: #EFEFED;
+  height: 63px;
+  margin-top: 142px; }
 
 .TitleLess {
   font-family: 'Glober Bold';
@@ -9329,15 +9373,27 @@ a {
   margin: 12px;
   Color: #4D4D4D; }
 
-.ContentList_provider {
-  margin: 154px 0 0 0;
+.ContentList_provider-Android {
+  margin: 160px 0 0 0;
   background-color: #EFEFED; }
-  .ContentList_provider .item {
+  .ContentList_provider-Android .item {
     padding: 42px 18px 27px 35px;
     Color: #787878;
     font-size: 22px;
     font-family: 'Glober Regular'; }
-    .ContentList_provider .item .ion-chevron-right.ListLinkHref {
+    .ContentList_provider-Android .item .ion-chevron-right.ListLinkHref {
+      font-size: 28px;
+      margin-top: -8px; }
+
+.ContentList_provider-IOS {
+  margin: 165px 0 0 0;
+  background-color: #EFEFED; }
+  .ContentList_provider-IOS .item {
+    padding: 42px 18px 27px 35px;
+    Color: #787878;
+    font-size: 22px;
+    font-family: 'Glober Regular'; }
+    .ContentList_provider-IOS .item .ion-chevron-right.ListLinkHref {
       font-size: 28px;
       margin-top: -8px; }
 
@@ -9386,7 +9442,8 @@ a {
   /*display: block;*/
   height: 63%;
   top: 80px;
-  margin-top: -6px; }
+  margin-top: -6px;
+  background-image: none; }
 
 .TitleHomeUser_Sub {
   font-family: 'Glober SemiBold';
@@ -9912,7 +9969,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .callIcons {
   font-size: 30px;
-  cursor: pointer; }
+  cursor: pointer;
+  margin-bottom: 15px;
+  position: relative;
+  top: 10px; }
 
 .activeCallIcon {
   color: red; }
@@ -9921,41 +9981,86 @@ form.ng-submitted input.ng-valid + i.icon.error {
   padding: 0 0%;
   margin-top: 70px;
   border-color: #000; }
-  .UserHme .UserHmeSub {
+  .UserHme .UserHmeSub-Android {
     padding: 12px 10px 5px 10px; }
-    .UserHme .UserHmeSub .item-input {
+    .UserHme .UserHmeSub-Android .item-input {
       margin-top: 5px;
       background: #E6E6E2;
       margin-left: 5px;
       margin-right: 5px;
       border-radius: 9px;
       border: 1px solid #DADADA; }
-      .UserHme .UserHmeSub .item-input ::-webkit-input-placeholder {
+      .UserHme .UserHmeSub-Android .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #484848 !important;
         font-size: 19px !important;
         padding-top: 5px !important; }
-      .UserHme .UserHmeSub .item-input :-moz-placeholder {
+      .UserHme .UserHmeSub-Android .item-input :-moz-placeholder {
         /* Mozilla Firefox 4 to 18 */
         color: #484848 !important;
         font-size: 19px !important;
         padding-top: 5px !important;
         opacity: 1; }
-      .UserHme .UserHmeSub .item-input ::-moz-placeholder {
+      .UserHme .UserHmeSub-Android .item-input ::-moz-placeholder {
         /* Mozilla Firefox 19+ */
         color: #484848 !important;
         font-size: 19px !important;
         padding-top: 5px !important;
         opacity: 1; }
-      .UserHme .UserHmeSub .item-input :-ms-input-placeholder {
+      .UserHme .UserHmeSub-Android .item-input :-ms-input-placeholder {
         /* Internet Explorer 10+ */
         color: #484848 !important;
         font-size: 19px !important;
         padding-top: 5px !important; }
-      .UserHme .UserHmeSub .item-input input {
+      .UserHme .UserHmeSub-Android .item-input input {
         font-size: 19px;
         color: #616462;
         height: 26px;
+        margin-top: 0px;
+        font-family: 'Glober Regular'; }
+  .UserHme .UserHmeSub-IOS {
+    padding: 12px 10px 5px 10px; }
+    .UserHme .UserHmeSub-IOS .item-input {
+      margin-top: 5px;
+      background: #E6E6E2;
+      margin-left: 5px;
+      margin-right: 5px;
+      border-radius: 9px;
+      border: 1px solid #DADADA; }
+      .UserHme .UserHmeSub-IOS .item-input ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #484848 !important;
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        position: relative;
+        top: 2px; }
+      .UserHme .UserHmeSub-IOS .item-input :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #484848 !important;
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        opacity: 1;
+        position: relative;
+        top: 2px; }
+      .UserHme .UserHmeSub-IOS .item-input ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #484848 !important;
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        opacity: 1;
+        position: relative;
+        top: 2px; }
+      .UserHme .UserHmeSub-IOS .item-input :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #484848 !important;
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        position: relative;
+        top: 2px; }
+      .UserHme .UserHmeSub-IOS .item-input input {
+        font-size: 19px;
+        color: #616462;
+        height: 21px;
         margin-top: 0px;
         font-family: 'Glober Regular'; }
 
@@ -10106,18 +10211,27 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .confCamera {
   float: left;
   width: 30%;
-  border-right: 1px solid gray; }
+  border-right: 1px solid gray;
+  margin-top: -20px;
+  margin-bottom: 13px;
+  cursor: pointer; }
 
 .confEndCall {
   width: 39%;
   border-right: 1px solid gray;
   float: left;
   font-size: 18px;
-  margin-top: 2px; }
+  /*margin-top: 2px;*/
+  margin-top: -20px;
+  margin-bottom: 13px;
+  cursor: pointer; }
 
 .confMute {
   width: 30%;
-  float: left; }
+  float: left;
+  margin-top: -20px;
+  margin-bottom: 13px;
+  cursor: pointer; }
 
 .doctorImgeSize {
   width: 50px !important;
@@ -10133,7 +10247,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   position: relative;
   top: 3px; }
 
-.dropdownContainer .healthPlanDropDown {
+.noPlanContainer-Android .dropdownContainer .healthPlanDropDown {
   width: 100%;
   z-index: 2;
   position: relative;
@@ -10146,23 +10260,21 @@ form.ng-submitted input.ng-valid + i.icon.error {
   border-radius: 7px;
   margin-left: 8px;
   padding: 6px;
-  box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
-  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.5);
+  /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
+				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
+				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
+  border: 1px solid #CDCACA !important;
   height: 48px;
   font-size: 18px;
   border: none; }
-
-.healthPlanDropDown {
+.noPlanContainer-Android .healthPlanDropDown {
   color: transparent;
   background: none; }
-
-.dropdownContainer {
+.noPlanContainer-Android .dropdownContainer {
   position: relative;
   height: 50px;
   margin-left: 50px; }
-
-.viewport {
+.noPlanContainer-Android .viewport {
   pointer-events: none;
   color: #60605D;
   position: absolute;
@@ -10179,8 +10291,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   left: 18px;
   top: 10px;
   /*font-weight: bold;*/ }
-
-.viewport1 {
+.noPlanContainer-Android .viewport1 {
   pointer-events: none;
   color: #60605D;
   position: absolute;
@@ -10198,8 +10309,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   top: 10px;
   /*font-weight: bold;*/
   text-align: left; }
-
-.cardViewport {
+.noPlanContainer-Android .cardViewport {
   pointer-events: none;
   color: #60605D;
   position: absolute;
@@ -10216,8 +10326,89 @@ form.ng-submitted input.ng-valid + i.icon.error {
   left: 18px;
   top: 10px;
   /*font-weight: bold;*/ }
+.noPlanContainer-Android .healthPlanDropDown option {
+  color: #60605D; }
 
-.healthPlanDropDown option {
+.noPlanContainer-IOS .dropdownContainer .healthPlanDropDown {
+  width: 100%;
+  z-index: 2;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
+  width: 93%;
+  text-indent: 0.01px;
+  text-overflow: "";
+  border-radius: 7px;
+  margin-left: 8px;
+  padding: 6px;
+  /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
+				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
+				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
+  border: 1px solid #CDCACA !important;
+  height: 48px;
+  font-size: 18px;
+  border: none; }
+.noPlanContainer-IOS .healthPlanDropDown {
+  color: transparent;
+  background: none; }
+.noPlanContainer-IOS .dropdownContainer {
+  position: relative;
+  height: 50px;
+  margin-left: 50px; }
+.noPlanContainer-IOS .viewport {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 18px;
+  top: 13px;
+  /*font-weight: bold;*/ }
+.noPlanContainer-IOS .viewport1 {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 25px;
+  top: 13px;
+  /*font-weight: bold;*/
+  text-align: left; }
+.noPlanContainer-IOS .cardViewport {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 18px;
+  top: 13px;
+  /*font-weight: bold;*/ }
+.noPlanContainer-IOS .healthPlanDropDown option {
   color: #60605D; }
 
 .bar .button.button-clear.icon:before {
@@ -10233,7 +10424,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .NeedanAcount_ios {
   text-align: center;
   font-family: 'Glober Bold';
-  top: 20px;
+  top: 25px;
   float: none;
   position: relative; }
 
@@ -10256,7 +10447,7 @@ input, button, select, textarea {
   font-family: 'Glober Regular'; }
 
 .item {
-  border-color: #A9ABA7; }
+  border-color: #C4C5C3; }
 
 .patientConternFontStyle {
   font-family: 'Glober Bold'; }
