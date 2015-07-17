@@ -19,7 +19,7 @@
 				<div class="subHeader_image" >
 					<img src="{{PatientImageSelectUser}}" class="listImgView" />
 				</div>
-				<div class="subHeader_content ellipsis" >
+				<div class="subHeader_content-{{deviceName}} ellipsis" >
 					
 				<!--	<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
 							<div style="font-size: 11px;" class="PatintHeaderFontStyleSub ellipsis">Age {{patientInfomation.guardianName}} | Guardian {{patientInfomation.guardianName}}</div>
@@ -35,8 +35,8 @@
 	</div>
 </div> 
 
-   <div class="bar" style="margin-top:134px;margin-top: 122px;text-align: center;height: 48px;border-bottom: 1px solid #A9ABA7;">
-				<div class="TitleHomeUser_Sub" style="margin-left:18px;margin-top:10px;">What would you like do to?</div>
+   <div class="bar patientDo-{{deviceName}}" >
+				<div class="TitleHomeUser_Sub patient_Do_sub-{{deviceName}}">What would you like do to?</div>
    </div> 
     
 </ion-header-bar>
