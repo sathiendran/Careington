@@ -82,7 +82,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
      
-    if(!$rootScope.IOSDevice || !$rootScope.isIPad) {
+    if($rootScope.IOSDevice || $rootScope.isIPad) {
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
@@ -161,7 +161,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.reportDone = "padding-top: 26px;"; 
         $rootScope.reportTitletop = "top:4px !important;";    
     }
-    if(!$rootScope.isIPad) {
+    if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px; font-family: 'Glober SemiBold'; ";
