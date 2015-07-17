@@ -1537,7 +1537,7 @@ body {
 			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -38px; position: relative;top: -4px;left: -20px;
+			margin-left: -38px; position: relative;top: -4px;left: -23px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
@@ -1758,7 +1758,7 @@ body {
 }
 
 .head_titleLessIOS { 
-	@include font($fontFamily_xBold, bold, 32px);
+	@include font($fontFamily_xBold, bold, 33px);
 	text-align: center;
 	color: $Flamingo;
 	position:relative; 

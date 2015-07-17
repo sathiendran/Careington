@@ -131,17 +131,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
 		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;";	
     if($rootScope.IOSDevice) {
-
         $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
         $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
         $rootScope.concernListDoneStyle = "concernListDone-ios";
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
-        $rootScope.PrimaryConcernPopupTitle = "margin-top: 13px; font-family: 'Glober SemiBold'; ";
-        $rootScope.PrimaryConcernPopupDone = "margin-top: 16px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
+        $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
+        $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
         $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 8px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 3px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
