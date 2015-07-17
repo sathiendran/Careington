@@ -1742,7 +1742,7 @@ body {
 
 .bar-subheaderLessIOS { 
 	display: block;
-	height: 88px;
+	height: 95px;
 	top: 48px;
 	-moz-box-shadow: 0px 3px 3px #9E9E9E;
 	-webkit-box-shadow: 0px 3px 3px #9E9E9E;
@@ -1762,7 +1762,7 @@ body {
 	text-align: center;
 	color: $Flamingo;
 	position:relative; 
-	top: 23px;		
+	top: 26px;		
 }
 
 .bar-TitleLess-Android{
@@ -1776,8 +1776,9 @@ body {
 	display: block;
 	background-color: #EFEFED;
 	height: 63px;
-    position: relative;
-	top: 130px;
+    //position: relative;
+	//top: 136px;
+    margin-top: 142px;
 }
 
 .TitleLess{
@@ -1807,7 +1808,7 @@ body {
 	
 
 .ContentList_provider-IOS {
-	margin: 154px 0 0 0;
+	margin: 165px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
