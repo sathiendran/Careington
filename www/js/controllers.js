@@ -163,6 +163,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.reportDone = "padding-top: 26px;"; 
         $rootScope.reportTitletop = "top:4px !important;"; 
         $rootScope.resetContent = "margin: -46px 0 0 0;";
+        $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -16px !important;";
     }
     if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
