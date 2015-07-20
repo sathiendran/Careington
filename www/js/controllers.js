@@ -214,7 +214,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.concernListTitleStyle = "concernListTitle"; 
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop  = "margin-top: -16px";
-         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -36px !important;";
+        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -36px !important;";
+        $rootScope.providerItamTop  = "top: 3px;";
     }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
