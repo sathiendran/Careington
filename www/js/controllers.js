@@ -141,7 +141,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;"; 
         $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
         $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
-        $rootScope.PriorSurgeryPopupCancel = " margin-top: 3px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
+        $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
@@ -206,13 +206,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
          $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
-       $rootScope.PasswordOverlop = "margin: 250px 0 0 0;"; 
-	   $rootScope.resetContent = "margin: 250px 0 0 0;";
+       $rootScope.PasswordOverlop = "margin: 246px 0 0 0;"; 
+	   $rootScope.resetContent = "margin: 202px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
         $rootScope.patientConternFontStyle = "patientConternFontStyle";
         $rootScope.concernListTitleStyle = "concernListTitle"; 
         $rootScope.concernListDoneStyle = "concernListDone";
+        $rootScope.PrimaryMarginTop  = "margin-top: -16px";
     }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
