@@ -70,7 +70,7 @@
 		
 		
 		
-		<ion-item class="DependentList" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
+		<ion-item class="DependentList" style="top: 5px;" ng-repeat="dependentDetails in RelatedPatientProfiles | filter: data.searchQuery" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
 			<!-- <a class="HrefListView">   -->
 			 <div class="HrefListViewDependent"> 
 				<div class="UserhmePatientDetails">
