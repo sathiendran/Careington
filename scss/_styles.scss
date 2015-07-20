@@ -249,9 +249,9 @@ body {
 	padding-top: 5px;
 	background: linear-gradient(#9BCA83, #93C07E); 
 	
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	/*-webkit-box-shadow:  1px 2px 13px rgba(0,0,0,0.3); */
    
 	 
@@ -606,7 +606,8 @@ body {
 
 
 .patient_content {
-	margin: 40px 0 0 4%;
+	//margin: 40px 0 0 4%;
+    margin: 17px 0 0 4%;
 	padding-top: 95px;
 }
 
@@ -2103,7 +2104,7 @@ margin-left: 16px;
 }	
 
 .PragraphContent {
-@include font($fontFamily_regular, normal,15px);
+@include font($fontFamily_regular, normal,16px);
 }
 
 .ReportTitle {
