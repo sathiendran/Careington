@@ -101,7 +101,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuInnerStyle = "top: 0px;";
         $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
-        $rootScope.PatientCalentarSchedule = "top: 8px;position: relative;";
+        $rootScope.PatientCalentarSchedule = "top: 9px;position: relative;";
         $rootScope.PatientCalentarScheduleItem = "top: 48px;"
         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
@@ -154,7 +154,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: 115px;";  
+        $rootScope.MarginHomeTop = "margin-top: 108px;";  
         $rootScope.concernsItemDivs = "top: 5px;"; 
         $rootScope.primaryContent = "margin: -22px -15px 12px -12px;"; 
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
@@ -253,9 +253,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    
     
 	$scope.toggleLeft = function() {
+		/* $('#BackButtonIcon').toggle(function() {
+			$(this).toggleClass("ion-navicon-round ion-close");
+			//$(this).removeClass("gridView").addClass("plainView"); 
+		}, function() { 
+			$(this).toggleClass("ion-close ion-navicon-round");
+			//$(this).removeClass("plainView").addClass("gridView"); 
+	   }); */
 		$ionicSideMenuDelegate.toggleLeft();
 
 	};
+	
+	  
 	
 	
 	

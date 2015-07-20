@@ -409,7 +409,7 @@ body {
 	@extend .login_content;
 	//margin: 220px 0 0 0;
     margin: 219px 0 0 0;
-	padding-top: 85px;
+	padding-top: 75px;
     background-color: #EFEFED;
 	.item-input {
 		
@@ -725,7 +725,7 @@ body {
 	/*border-bottom: 1px solid #b9b8b8;*/
 	color: #565656; 
 	height: auto; 
-	margin-top: 123px;
+	margin-top: 121px;
     //margin-top: 114px;
 }
 .patientCalendar_watch {
@@ -1264,26 +1264,36 @@ body {
 	}
 }
 #SidemenuHomeAndroid { 
-	margin-top:10px; border:none;color:#706A67;font-family: Glober regular !important;
+	margin-top:10px; border:none;color:#fff;font-family: Glober regular !important; background-color: #464644;
 	span {
 		top: 0px; position:relative;
 	}
 }
 
 #SidemenuHomeIOS { 
-	margin-top:18px; border:none;color:#706A67;font-family: Glober regular !important;
+	margin-top:18px; border:none;color:#fff;font-family: Glober regular !important; background-color: #464644;
 	span {
 		top: 0px; position:relative;
 	}
+	
+}
+.sidemenuContent {
+	position: absolute;
+	bottom: 51px;
 }
 
 .SidemenuLogOut {
-	color:#706A67;
+	color:#fff;
+	  bottom: 0px;
+	 position: absolute;
 	.LogOutText {
-		color:#706A67;margin-left: -4px;font-family: Glober regular !important;
+		color:#fff;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
 		span {
 			position: relative;
 		}
+	}
+	.item {
+	  border-color: #464644; 
 	}
 }
 
@@ -1461,7 +1471,7 @@ body {
 				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px;
 			}
 			p {
-				margin-left: 19px;margin-bottom: 10px; font-size: 17px; margin-top: -7px;
+				margin-left: 19px;margin-bottom: 10px; font-size: 16px; margin-top: -7px;
 			}
 			div {
 				float:right;left: -15px; position: relative; margin-top: -55px; cursor:pointer;
@@ -1485,7 +1495,7 @@ body {
 				font-size: 25px;  margin-bottom: 2px;
 			}
 			p {
-				margin-left: 19px;margin-bottom: 10px;font-size: 17px;
+				margin-left: 19px;margin-bottom: 10px;font-size: 16px;
 			}
 			div {
 				float:right;left: -15px; position: relative; margin-top: -55px;
@@ -1570,7 +1580,7 @@ body {
 			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -42px; position: relative;top: -4px;left: -15px;
+			margin-left: -42px; position: relative;top: -4px;left: -18px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
