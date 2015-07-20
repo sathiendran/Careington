@@ -1264,38 +1264,75 @@ body {
 	}
 }
 #SidemenuHomeAndroid { 
-	margin-top:10px; border:none;color:#fff;font-family: Glober regular !important; background-color: #464644;
+	margin-top:10px; border:none;color:#7E807E;font-family: Glober regular !important; background-color: #464644;
 	span {
-		top: 0px; position:relative;
+		top: 0px; position:relative; font-size: 23px; padding-left: 15px;
 	}
 }
 
 #SidemenuHomeIOS { 
-	margin-top:18px; border:none;color:#fff;font-family: Glober regular !important; background-color: #464644;
+	margin-top:18px; border:none;color:#7E807E;font-family: Glober regular !important; background-color: #464644;
 	span {
-		top: 0px; position:relative;
+		top: 0px; position:relative; font-size: 23px; padding-left: 15px;
 	}
 	
 }
 .sidemenuContent {
 	position: absolute;
 	bottom: 51px;
+	width: 100%;
+	.ion-ios-list:before {
+		font-size: 31px;
+	}
 }
 
 .SidemenuLogOut {
-	color:#fff;
+	width: 100%;
+	color:#7E807E;
 	  bottom: 0px;
 	 position: absolute;
 	.LogOutText {
-		color:#fff;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
+		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
 		span {
-			position: relative;
+			position: relative;  font-size: 23px; padding-left: 15px;
 		}
 	}
 	.item {
 	  border-color: #464644; 
 	}
+	.ion-power:before {
+	 font-size: 27px; 
+	}
 }
+
+.sidemenuContent1 {
+	position: absolute;
+	bottom: 113px;
+	width: 100%;
+	.ion-ios-list:before {
+		font-size: 31px;
+	}
+}
+
+.SidemenuLogOut1 {
+	width: 100%;
+	color:#7E807E;
+	  bottom: 47px;
+	 position: absolute;
+	.LogOutText {
+		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
+		span {
+			position: relative;  font-size: 23px; padding-left: 15px;
+		}
+	}
+	.item {
+	  border-color: #464644; 
+	}
+	.ion-power:before {
+	 font-size: 27px; 
+	}
+}
+
 
 .ReportTittle {
 	margin-left: 22px !important;
@@ -1863,7 +1900,7 @@ body {
 		 Color: #4D4D4D;
 }		
 .ContentList_provider-Android {
-	margin: 160px 0 0 0;
+	margin: 154px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
@@ -2641,7 +2678,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 
 .subHeaderTop { top: 86px; }
 
-#BackButtonIcon { color:#000; margin-top: 15px;}
+#BackButtonIcon { color:#000; margin-top: 15px; display: block !important;}
 
 #WhoNeeds { font-size: 23px;  width: 85%; }
 .BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}
@@ -2976,3 +3013,17 @@ font-family: $fontFamily_regular;
   top: 8px;
   position: relative; 
 }
+.ion-navicon-round:before {
+  content: "\f20d";
+  font-size: 40px;
+  color: #352D2D;
+}
+
+.ion-close:before {
+  content: "\f12a";
+  font-size: 33px !important;
+  color: #352D2D;
+}
+
+
+

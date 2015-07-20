@@ -252,19 +252,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.$storage = $localStorage;
    
     
-	$scope.toggleLeft = function() {
-		/* $('#BackButtonIcon').toggle(function() {
-			$(this).toggleClass("ion-navicon-round ion-close");
-			//$(this).removeClass("gridView").addClass("plainView"); 
-		}, function() { 
-			$(this).toggleClass("ion-close ion-navicon-round");
-			//$(this).removeClass("plainView").addClass("gridView"); 
-	   }); */
-		$ionicSideMenuDelegate.toggleLeft();
-
-	};
+	var checkAndChangeMenuIcon;
+    $interval.cancel(checkAndChangeMenuIcon);
+    
+    $scope.checkAndChangeMenuIcon = function(){
+        if (!$ionicSideMenuDelegate.isOpen(true)){
+          if($('#BackButtonIcon').hasClass("ion-close")){
+            $('#BackButtonIcon').removeClass("ion-close");
+            $('#BackButtonIcon').addClass("ion-navicon-round"); 
+          }
+        }else{
+            if($('#BackButtonIcon').hasClass("ion-navicon-round")){
+            $('#BackButtonIcon').removeClass("ion-navicon-round");
+            $('#BackButtonIcon').addClass("ion-close"); 
+          }
+        }
+    }
+    
+ $scope.toggleLeft = function() {
+  $ionicSideMenuDelegate.toggleLeft();
+        $scope.checkAndChangeMenuIcon();
+        if(checkAndChangeMenuIcon){
+            $interval.cancel(checkAndChangeMenuIcon);
+        }
+        checkAndChangeMenuIcon = $interval(function(){
+            $scope.checkAndChangeMenuIcon();
+        }, 300);
+ };
 	
-	  
+	
+    
 	
 	
 	
