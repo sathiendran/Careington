@@ -151,7 +151,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
-        $rootScope.ContentOverlop = "margin: 141px 0 0 0;";
+        $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
         $rootScope.MarginHomeTop = "margin-top: 108px;";  
