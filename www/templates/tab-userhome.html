@@ -89,5 +89,27 @@
 </ion-content>
 </ion-side-menu-content>	
  <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu1.html'"></div>
+<!--<div ng-include src="'templates/SideMenu.html'"></div>-->
+	<ion-side-menu side="left" style="background-color: #464644;">
+        <a ng-href="#/tab/userhome" class="sidemenuContent" >
+			<ion-list>
+				<ion-item class="ion-ios-list" id="{{sidemenuHome}}">
+					<span>  Patient List</span> 
+				</ion-item>
+			</ion-list>
+		</a>
+        <a ng-href="#/tab/login" class="SidemenuLogOut" >
+			<ion-list>
+				<ion-item class="ion-power LogOutText" >
+					<span>  Logout</span> 
+				</ion-item>
+			</ion-list>
+        </a>
+		
+		
+				
+	</ion-side-menu>
+</ion-side-menus>
+
+
 </ion-view>	
