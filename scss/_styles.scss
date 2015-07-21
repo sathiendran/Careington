@@ -613,9 +613,9 @@ body {
 
 .button.button-energized {
 	@include buttons($Sun, bold, 5px, 23px, 35px );	
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 .scheduled_appointments_text {
 	/*margin-top: -7px;*/
@@ -628,9 +628,9 @@ body {
 
 .button.button-balanced {
 	@include buttons($Feijoa, bold, 5px, 23px, 35px);
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);	
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);	
 	  background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%);
 }
 
@@ -942,9 +942,9 @@ body {
 
 .button.button-royal {
 	@include buttons($Nobel, bold, 5px, 23px, 35px );	
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow:  2px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 .button.button-royal.activated {
 	background-color : $Nobel;	
