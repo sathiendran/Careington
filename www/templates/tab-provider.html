@@ -24,7 +24,7 @@
 			<form>
 				<ion-list>
                  <!--   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails.providerId,hospitalDetails.name)"> -->
-                    <ion-item class="item-remove-animate item-avatar item-icon-right providerIcon" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)"style="border-color: #A9ABA7;">
+                    <ion-item class="item-remove-animate item-avatar item-icon-right providerIcon" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)"style="border-color: #A9ABA7;{{providerItamTop}};">
                         <div class="ellipsis providerName">{{hospitalDetails.name}}</div>
                         <i class="icon ion-chevron-right icon-accessory" style="top: 3px;"></i>                        
                       </ion-item>					  
