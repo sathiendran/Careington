@@ -2003,7 +2003,7 @@ body {
 
 }
 .ContentList_terms-Android {
-	margin: 161px 0 0 0;
+	margin: 160px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
@@ -2178,15 +2178,15 @@ color:#706A67;
 }
 
 .primary {
- background-color: #F2F0EE;
+ background-color: #F2F0EE; 
    margin: -13px -15px 12px -12px;
    padding: 5px;   
    font-size: 16px;
     color: #777A78;
 	padding-top: 8px;
-}
+} 
 
-.secondary {
+.secondary { 
  background-color: #F2F0EE;
    margin: 8px -15px 11px -12px;
     padding: 5px;	
@@ -2196,9 +2196,9 @@ color:#706A67;
 .ptagprimary {
 	@include font($fontFamily_regular, normal, 20px);
 	 margin-left: 10px;
-	 margin-right: 10px;
+	 margin-right: 10px; 
 	
- }
+ }  
  
  .pre_consultant {
  background-color: #F2F0EE;
