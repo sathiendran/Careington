@@ -58,17 +58,17 @@
 			</ion-item>
 			
 			<ion-item class="concernsItem">
-				 <div class="primary" style="{{primaryContent}};{{PrimaryMarginTop}}"><span>1 </span> <div>Primary Concern</div></div>
+				 <div class="primary" style="{{PrimaryMarginTop}}"><span>1 </span> <div>Primary Concern</div></div>
 				 <p class="ptagprimary concernsItempTag">{{reportScreenPrimaryConcern}} </p>				
 
-				 <div class="secondary" style="{{secondaryContent}}" ><span>2 </span><div>Secondary Concern</div></div>
+				 <div class="secondary"  ><span>2 </span><div>Secondary Concern</div></div>
 				 <p class="ptagprimary concernsItempTag" >{{reportScreenSecondaryConcern}} </p>
 			</ion-item>
 			
 			<ion-item class="concernsItem">
 				<div class="pre_consultant" style="margin-top: -16px;"><span></span><div style="left: 38px;">Pre-Consult Notes:</div></div>
 	<!-- <p class="ptagprimary" >{{preConsultantNotes}} </p>-->
-				 <p class="ptagprimary" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>
+				 <p class="ptagprimary" style="position: relative; top: 8px;" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>
 			</ion-item>
 			
 	</ion-content>
