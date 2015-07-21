@@ -646,7 +646,7 @@ body {
 .calendarBack {   
 	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:10px;
 	span { 
-		margin-top:7px;position: relative;margin-left: -1px;top: -2px; 
+		margin-top:7px;position: relative;margin-left: -1px;top: -1px; 
 	}
 }
 .AppointBack {
@@ -1649,8 +1649,11 @@ body {
 			padding:20px 11px 16px 11px; top: 0px;
 			.SearchLabel {
 				margin-top: -19px;
-				.SearchBox {
+				.SearchBox-Android {
 					color:#535353; font-weight:normal;margin-top: 0px;
+				}
+				.SearchBox-IOS {
+					color:#535353; font-weight:normal;margin-top: 0px; position: relative; top: 2px;
 				}
 				::-webkit-input-placeholder { /* WebKit browsers */
 						color:    $Tundora !important;
@@ -2605,7 +2608,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 					input {
 					font-size: 19px;
 					color:#616462;height: 21px;  margin-top: 0px;
-					font-family: $fontFamily_regular;	
+					font-family: $fontFamily_regular;	position: relative;
+  top: 2px;
 					}
 
 				}
