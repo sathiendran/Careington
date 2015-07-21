@@ -1647,15 +1647,44 @@ body {
 		padding:11px 0px; top: 0px; border: 0px;
 		.concernListSearchHome {
 			padding:20px 11px 16px 11px; top: 0px;
-			.SearchLabel {
+			.SearchLabel-Android {
 				margin-top: -19px;
-				.SearchBox-Android {
-					color:#535353; font-weight:normal;margin-top: 0px;
-				}
-				.SearchBox-IOS {
-					color:#535353; font-weight:normal;margin-top: 0px; position: relative; top: 2px;
+				.SearchBox {
+					color:#535353; font-weight:normal;margin-top: 0px;					
 				}
 				::-webkit-input-placeholder { /* WebKit browsers */
+						color:    $Tundora !important;
+						font-size: 19px !important;
+						padding-top: 5px !important;
+						
+					}
+					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+						   color:    $Tundora !important;
+						  font-size: 19px !important;
+							padding-top: 5px !important;
+						   opacity:  1;
+						   
+						}
+					::-moz-placeholder { /* Mozilla Firefox 19+ */
+						   color:    $Tundora !important;
+						  font-size: 19px !important;
+						padding-top: 5px !important;
+						   opacity:  1;
+						   
+						}
+					:-ms-input-placeholder { /* Internet Explorer 10+ */
+						   color:    $Tundora !important;
+						   font-size: 19px !important;
+						padding-top: 5px !important;
+							
+						}				
+			}
+			.SearchLabel-IOS {
+				margin-top: -19px;
+				.SearchBox {
+					color:#535353; font-weight:normal;margin-top: 0px; position: relative; top: 2px;
+				}	
+					::-webkit-input-placeholder { /* WebKit browsers */
 						color:    $Tundora !important;
 						font-size: 19px !important;
 						padding-top: 5px !important;
@@ -1685,6 +1714,7 @@ body {
 							position: relative;
 							top: 2px;
 						}
+				
 			}
 		}
 	}
