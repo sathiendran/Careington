@@ -179,8 +179,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.FootNextButtonRight = "margin-left: -87px !important;";
         $rootScope.FootNextButton = "left: 22px;";
         $rootScope.FootNextButtonPatient = "left: 3px;"; 
-        $rootScope.PriorSurgeryContant = "margin-top: 53px;";     
     }
+        $rootScope.PriorSurgeryContant = "margin-top: 53px;";     
         $rootScope.CardDetailYear = "padding-left: 11px;";
         $rootScope.CardDetailmonth = "padding-right: 11px;";
         $rootScope.CountrySearchItem = "top: 13px;";
@@ -2087,9 +2087,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }, 100); 
     $scope.$storage = $localStorage;
      
-    $scope.toggleLeft = function() {
-		$ionicSideMenuDelegate.toggleLeft();
-	};
+   
 	
     $scope.isPhysicianStartedConsultaion = false;
     
@@ -2183,7 +2181,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
+.controller('IntakeFormsCtrl', function($scope,$interval,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
     $rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -3304,9 +3302,33 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
      };
     
     //Side Menu
-     $scope.toggleLeft = function() {
-        $ionicSideMenuDelegate.toggleLeft();
-    };
+    var checkAndChangeMenuIcon;
+    $interval.cancel(checkAndChangeMenuIcon);
+    
+    $scope.checkAndChangeMenuIcon = function(){
+        if (!$ionicSideMenuDelegate.isOpen(true)){
+          if($('#BackButtonIcon').hasClass("ion-close")){
+            $('#BackButtonIcon').removeClass("ion-close");
+            $('#BackButtonIcon').addClass("ion-navicon-round"); 
+          }
+        }else{
+            if($('#BackButtonIcon').hasClass("ion-navicon-round")){
+            $('#BackButtonIcon').removeClass("ion-navicon-round");
+            $('#BackButtonIcon').addClass("ion-close"); 
+          }
+        }
+    } 
+    
+ $scope.toggleLeft = function() {
+  $ionicSideMenuDelegate.toggleLeft();
+        $scope.checkAndChangeMenuIcon();
+        if(checkAndChangeMenuIcon){
+            $interval.cancel(checkAndChangeMenuIcon);
+        }
+        checkAndChangeMenuIcon = $interval(function(){
+            $scope.checkAndChangeMenuIcon();
+        }, 300);
+ };
     
     
 	
