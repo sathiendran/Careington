@@ -155,9 +155,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
         $rootScope.MarginHomeTop = "margin-top: 108px;";  
-        $rootScope.concernsItemDivs = "top: 5px;"; 
-        $rootScope.primaryContent = "margin: -17px -15px 12px -12px;"; 
-		 $rootScope.secondaryContent = "margin: 0px -15px 12px -12px;";
+        $rootScope.concernsItemDivs = "top: 5px;";        
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
         $rootScope.PriorSurgeryContant = "margin-top: 43px;";    

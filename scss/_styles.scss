@@ -857,7 +857,7 @@ body {
   font-size: 21px; color: #989998;float: left;position: relative;  top: 3px;
 	}
 	div {
-		position: relative;  top: 5px;
+		position: relative;  top: 3px;
 	}
 	.pre_consultant { span { margin-right:27px;margin-left: 14px; }}
 }
@@ -1691,7 +1691,7 @@ body {
 						font-size: 19px !important;
 						padding-top: 5px !important;
 						position: relative;
-						top: 2px;
+						top: -1px;
 					}
 					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 						   color:    $Tundora !important;
@@ -1699,7 +1699,7 @@ body {
 							padding-top: 5px !important;
 						   opacity:  1;
 						   position: relative;
-							top: 2px;
+							top: -1px;
 						}
 					::-moz-placeholder { /* Mozilla Firefox 19+ */
 						   color:    $Tundora !important;
@@ -1707,14 +1707,14 @@ body {
 						padding-top: 5px !important;
 						   opacity:  1;
 						   position: relative;
-							top: 2px;
+							top: -1px;
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
 						   color:    $Tundora !important;
 						   font-size: 19px !important;
 						padding-top: 5px !important;
 							position: relative;
-							top: 2px;
+							top: -1px;
 						}
 				
 			}
@@ -2188,7 +2188,7 @@ color:#706A67;
 
 .secondary {
  background-color: #F2F0EE;
-   margin: 12px -15px 11px -12px;
+   margin: 8px -15px 11px -12px;
     padding: 5px;	
     font-size: 16px;
     color: #777A78;
