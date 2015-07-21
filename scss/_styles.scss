@@ -731,7 +731,7 @@ body {
 .patientCalendar_watch {
 	padding: 10px;
 	float: left;
-	margin-top: 4px;
+	margin-top: 8px;
 	img{
 		width:20px;
 	}
@@ -744,6 +744,8 @@ body {
 	font-weight: bold;
     margin-bottom: -8px;
     font-family: $fontFamily_semibold;
+	position: relative;
+	top: 6px;
 }
 .patientCalendar_Content {
 	margin: 128px 0 0 0;
@@ -1679,7 +1681,7 @@ body {
 							
 						}				
 			}
-			.SearchLabel-IOS {
+			.SearchLabel-IOS { 
 				margin-top: -19px;
 				.SearchBox {
 					color:#535353; font-weight:normal;margin-top: 0px; position: relative; top: 2px;
@@ -1913,7 +1915,7 @@ body {
 	background-color: #EFEFED;
 	height: 63px;
     position: relative;
-	top: 139px;
+	top: 141px;
 }
 .bar-TitleLess-IOS{
 	display: block;
@@ -1933,17 +1935,18 @@ body {
 		 Color: #4D4D4D;
 }		
 .ContentList_provider-Android {
-	margin: 154px 0 0 0;
+	margin: 153px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
 		   //Color: #4D4D4D;
            Color: #787878;
 		   font-size: 22px;
+		   
            font-family:$fontFamily_regular;
 		   .ion-chevron-right.ListLinkHref {
 			font-size: 28px;
-			margin-top: -8px;
+			margin-top: -8px;			
 		   }
 	}
 

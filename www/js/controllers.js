@@ -101,7 +101,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuInnerStyle = "top: 0px;";
         $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
-        $rootScope.PatientCalentarSchedule = "top: 9px;position: relative;";
+        $rootScope.PatientCalentarSchedule = "top: 7px;position: relative;";
         $rootScope.PatientCalentarScheduleItem = "top: 48px;"
         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
@@ -156,7 +156,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PositionIOS = "position:fixed; top:105px;";
         $rootScope.MarginHomeTop = "margin-top: 108px;";  
         $rootScope.concernsItemDivs = "top: 5px;"; 
-        $rootScope.primaryContent = "margin: -22px -15px 12px -12px;"; 
+        $rootScope.primaryContent = "margin: -17px -15px 12px -12px;"; 
+		 $rootScope.secondaryContent = "margin: 0px -15px 12px -12px;";
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
         $rootScope.PriorSurgeryContant = "margin-top: 43px;";    
@@ -188,7 +189,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConstantTreat = "font-size: 16px;";
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if($rootScope.AndroidDevice) {
+    } else if($rootScope.AndroidDevice) { 
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -216,7 +217,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop  = "margin-top: -16px";
         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -36px !important;";
-        $rootScope.providerItamTop  = "top: 3px;";
+        $rootScope.providerItamTop  = "top: 6px;";
         $rootScope.providerItamMarginTop  = "";
     }
    
