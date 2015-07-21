@@ -1910,7 +1910,7 @@ body {
 	top: 26px;		
 }
 
-.bar-TitleLess-Android{
+.bar-TitleLess-Android{ 
 	display: block;
 	background-color: #EFEFED;
 	height: 63px;
@@ -1918,6 +1918,22 @@ body {
 	top: 141px;
 }
 .bar-TitleLess-IOS{
+	display: block;
+	background-color: #EFEFED;
+	height: 63px;
+    //position: relative;
+	//top: 136px;
+    margin-top: 142px;
+}
+
+.bar-TitleLess-terms-Android{ 
+	display: block;
+	background-color: #EFEFED;
+	height: 63px;
+    position: relative;
+	top: 136px;
+}
+.bar-TitleLess-terms-IOS{
 	display: block;
 	background-color: #EFEFED;
 	height: 63px;
@@ -1969,6 +1985,41 @@ body {
 	}
 
 }
+
+.ContentList_terms-IOS {
+	margin: 166px 0 0 0;
+      background-color: #EFEFED;
+	.item {
+		  padding: 42px 18px 27px 35px;
+		   //Color: #4D4D4D;
+           Color: #787878;
+		   font-size: 22px;
+           font-family:$fontFamily_regular;
+		   .ion-chevron-right.ListLinkHref {
+			font-size: 28px;
+			margin-top: -8px;
+		   }
+	}
+
+}
+.ContentList_terms-Android {
+	margin: 161px 0 0 0;
+      background-color: #EFEFED;
+	.item {
+		  padding: 42px 18px 27px 35px;
+		   //Color: #4D4D4D;
+           Color: #787878;
+		   font-size: 22px;
+		   
+           font-family:$fontFamily_regular;
+		   .ion-chevron-right.ListLinkHref {
+			font-size: 28px;
+			margin-top: -8px;			
+		   }
+	}
+
+}
+
 
 .ContentList {
 	margin: 138px 0 0 0;	
