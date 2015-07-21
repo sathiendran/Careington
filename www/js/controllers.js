@@ -164,6 +164,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.reportTitletop = "top:4px !important;"; 
         $rootScope.resetContent = "margin: -46px 0 0 0;";
         $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -16px !important;";
+        $rootScope.providerItamMarginTop  = "top: 5px;";
     }
     if($rootScope.isIPad) {
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
@@ -215,7 +216,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop  = "margin-top: -16px";
         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -36px !important;";
-        $rootScope.providerItamTop  = "top: 3px;";
+        $rootScope.providerItamTop  = "top: -1px;";
+        $rootScope.providerItamMarginTop  = "margin-top: 5px;";
     }
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
