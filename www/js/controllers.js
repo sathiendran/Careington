@@ -2889,6 +2889,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                       $scope.MedicationAllegiesList.splice(1, 0, newMedicationAllegiesItem);
         
                       // $scope.MedicationAllegiesList.push({ text: $scope.data.MedicationAllergiesOther, checked: true });
+					  $scope.closeMedicationAllegies();
 					  return $scope.data.MedicationAllergiesOther;
 				  }
 				}
