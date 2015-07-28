@@ -1180,11 +1180,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$state.go('tab.consultChargeNoPlan');
 	}
 	$scope.goToNextPage = function() {
-		if ($rootScope.BackPage=="consultCharge") {
-			$state.go('tab.consultCharge');
-		} else if($rootScope.BackPage=="addHealthPlan") {
-			$state.go('tab.addHealthPlan');
-		}
+			$state.go($rootScope.BackPage);
 	}
 	
 	$scope.goToPreviosPage = function() {
@@ -1565,8 +1561,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.choosePaymentShow = 'initial';
 							$rootScope.choosePaymentHide = 'none';
 							var cardNo = $rootScope.CardNumber;
-							var getLastFour = cardNo.substr(cardNo.length - 4);
-							$rootScope.userCardNumber = "XXXX" + getLastFour;
+							var strCardNo = cardNo.toString();
+							var getLastFour = strCardNo.substr(strCardNo.length - 4);
+							$rootScope.userCardNumber = getLastFour;
 					   }
                        // $scope.doGetPatientPaymentProfilesCardDetails();  
 						$rootScope.doGetPatientPaymentProfiles();
@@ -2297,34 +2294,31 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       
    $scope.closePrimaryConcerns = function() {
         $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});		
-		$rootScope.PrimaryConcernText = $scope.PatientPrimaryConcernItem[0].text;		
-		$rootScope.codeId = $scope.PatientPrimaryConcernItem[0].codeId;		
-		
-        //angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
-           //$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
-		   if(typeof $rootScope.PatientSecondaryConcern[0] != 'undefined') {
-					if($scope.PatientPrimaryConcernItem[0].text == $rootScope.PatientSecondaryConcern[0].text) {			
-						$scope.ErrorMessage = "Primary and Secondary Concerns must be different";
-						$rootScope.ValidationFunction1($scope.ErrorMessage);
-					}
-					else {
+		if($scope.PatientPrimaryConcernItem != '') {
+			$rootScope.PrimaryConcernText = $scope.PatientPrimaryConcernItem[0].text;		
+			$rootScope.codeId = $scope.PatientPrimaryConcernItem[0].codeId;		
+			
+			//angular.forEach($scope.PatientPrimaryConcernItem, function(item, index) {
+			   //$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+			   if(typeof $rootScope.PatientSecondaryConcern[0] != 'undefined') {
+						if($scope.PatientPrimaryConcernItem[0].text == $rootScope.PatientSecondaryConcern[0].text) {			
+							$scope.ErrorMessage = "Primary and Secondary Concerns must be different";
+							$rootScope.ValidationFunction1($scope.ErrorMessage);
+						}
+						else {
+						$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
+						 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
+						$scope.modal.hide();
+						$scope.data.searchQuery = '';
+						}
+				} else {
 					$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
 					 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
 					$scope.modal.hide();
 					$scope.data.searchQuery = '';
-					}
-			} else {
-				$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
-				 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
-				$scope.modal.hide();
-				$scope.data.searchQuery = '';
-			}
-		   
-		   
-		   
-		   
-        //});
-         
+				}
+		}
+		  //});        
        
     };
    
@@ -2336,10 +2330,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
               item.checked = true;
           else item.checked = false; 
           });
-        
+       
       if(items.text == "Other (provide details below)")
                 $scope.openOtherPrimaryConcernView();
-                    //item.checked = false;
+         else  $scope.closePrimaryConcerns();
     
     } 
 	$rootScope.PrimaryPopup = 0;
@@ -2378,7 +2372,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                       var newPrimaryConcernItem = { text: $scope.data.PrimaryConcernOther, checked: true };
                       $scope.primaryConcernList.splice(1, 0, newPrimaryConcernItem);
                       //$scope.primaryConcernList.push({ text: $scope.data.PrimaryConcernOther, checked: true });
-					  return $scope.data.PrimaryConcernOther;
+						 $scope.closePrimaryConcerns();
+					 return $scope.data.PrimaryConcernOther;					 
 				  }
 				}
 			  }
@@ -2456,26 +2451,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
     $scope.closeSecondaryConcerns = function() {
         $scope.PatientSecondaryConcernItem = $filter('filter')($scope.secondaryConcernList, {checked:true});
-		$rootScope.SecondaryConcernText = $scope.PatientSecondaryConcernItem[0].text;
-		$rootScope.SecondarycodeId = $scope.PatientSecondaryConcernItem[0].codeId;
-		
-      //  angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
-			if(typeof $rootScope.PatientPrimaryConcern[0] != 'undefined') {
-					if($scope.PatientSecondaryConcernItem[0].text == $rootScope.PatientPrimaryConcern[0].text) {			
-						$scope.ErrorMessage = "Primary and Secondary Concerns must be different";
-						$rootScope.ValidationFunction1($scope.ErrorMessage);
-					}
-					else {
+		if($scope.PatientSecondaryConcernItem != '') {
+			$rootScope.SecondaryConcernText = $scope.PatientSecondaryConcernItem[0].text;
+			$rootScope.SecondarycodeId = $scope.PatientSecondaryConcernItem[0].codeId;
+			
+		  //  angular.forEach($scope.PatientSecondaryConcernItem, function(item, index) {
+				if(typeof $rootScope.PatientPrimaryConcern[0] != 'undefined') {
+						if($scope.PatientSecondaryConcernItem[0].text == $rootScope.PatientPrimaryConcern[0].text) {			
+							$scope.ErrorMessage = "Primary and Secondary Concerns must be different";
+							$rootScope.ValidationFunction1($scope.ErrorMessage);
+						}
+						else {
+						$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
+						 $scope.modal.hide();
+						$scope.data.searchQuery = '';	
+						}
+				} else {
 					$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
 					 $scope.modal.hide();
-					$scope.data.searchQuery = '';	
-					}
-			} else {
-				$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
-				 $scope.modal.hide();
-				$scope.data.searchQuery = '';
-			}
-			
+					$scope.data.searchQuery = '';
+				}
+		}	
        // });
        
     };
@@ -2493,7 +2489,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         if(items.text == "Other (provide details below)"){
             $scope.openOtherSecondaryConcernView();
             item.checked = false;
-        }
+        } else {
+			$scope.closeSecondaryConcerns();
+		}
     }
 	
     // Open text view for other Secondary concern
@@ -2527,7 +2525,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                       $scope.secondaryConcernList.splice(1, 0, newSecodaryConcernItem);
                       
                       // $scope.secondaryConcernList.push({ text: $scope.data.SecondaryConcernOther, checked: true });
-					  return $scope.data.SecondaryConcernOther;
+						$scope.closeSecondaryConcerns();
+					 return $scope.data.SecondaryConcernOther;
 				  }
 				}
 			  }
@@ -2661,12 +2660,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
     $scope.closeChronicCondition = function() {
     $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
-    $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
-	$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
-	console.log($rootScope.ChronicCount);
-	console.log($rootScope.PatientChronicCondition);
-    $scope.modal.hide(); 
-    $scope.data.searchQuery = '';    
+		if($scope.PatientChronicConditionItem != '') {	
+			$rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
+			$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
+			console.log($rootScope.ChronicCount);
+			console.log($rootScope.PatientChronicCondition);
+			$scope.modal.hide(); 
+			$scope.data.searchQuery = ''; 
+		}	
     };
       
     
@@ -2679,6 +2680,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	  }
         if(item.text == "Other"){
            $scope.openOtherChronicConditionView(item);          
+		 } else {
+			if($rootScope.checkedChronic == 4) {
+				$scope.closeChronicCondition();
+			}
 		 }
     }
 	
@@ -2803,10 +2808,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
      $scope.closeMedicationAllegies = function() {
         $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
-        $rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
-        $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
-        $scope.modal.hide();
-        $scope.data.searchQuery = ''; 
+			if($scope.MedicationAllegiesItem != '') {
+				$rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
+				$rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
+				$scope.modal.hide();
+				$scope.data.searchQuery = ''; 
+			}
     };
     
       // Onchange of Medication Alligies
@@ -2818,7 +2825,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
               }
         if(item.text == "Other"){
             $scope.openOtherMedicationAllgiesView(item);
-        }
+        } else {
+			if($rootScope.checkedAllergies == 4) {
+				$scope.closeMedicationAllegies();
+			}
+		}
     }
     
     
@@ -2940,11 +2951,12 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 	
      $scope.closeCurrentMedication = function() {
         $scope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
-        $rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
-        $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
-        $scope.modal.hide();
-        $scope.data.searchQuery = ''; 
-         
+			if($scope.CurrentMedicationItem != '') {
+				$rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
+				$rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
+				$scope.modal.hide();
+				$scope.data.searchQuery = ''; 
+			}
     };
     
       // Onchange of Current Medication
@@ -2957,8 +2969,11 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
          
         if(item.text == "Other - (List below)"){
             $scope.openOtherCurrentMedicationView(item);
-
-        }
+        } else {
+			if($rootScope.checkedMedication == 4) {
+				$scope.closeCurrentMedication();
+			}
+		}
     }
     
     // Open text view for other Current Medication
