@@ -2805,6 +2805,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     // Open Medication Allegies List popup
 
     $scope.loadMedicationAllegies = function() {
+		
+		 $scope.clearSelectionAndRebindSelectionList($scope.MedicationAllegiesItem, $scope.MedicationAllegiesList);
         
         if(typeof $rootScope.AllegiesCount == 'undefined') { 
 			$rootScope.checkedAllergies = 0;
@@ -2903,6 +2905,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       $scope.MedicationAllegiesList[indexPos].checked = false;
       $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
       $rootScope.checkedAllergies--;
+	   $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
     }
 	
     /*Medication Allegies End here*/
@@ -2948,6 +2951,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     
    // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
+	 $scope.clearSelectionAndRebindSelectionList($scope.CurrentMedicationItem, $scope.CurrentMedicationList);
         
          if(typeof $rootScope.MedicationCount == 'undefined') { 
 			$rootScope.checkedMedication = 0;
@@ -3043,6 +3047,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
       $scope.CurrentMedicationList[indexPos].checked = false;
       $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;    
       $rootScope.checkedMedication--;
+	   $scope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
     }
 	
    /*Current Medication End here*/
