@@ -2646,7 +2646,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
            if(selectedListItem.length > 0){
                angular.forEach(selectedListItem, function(value1, key1) {
                    angular.forEach(mainListItem, function(value2, key2) {
-                       if (value1.codeId == value2.codeId) {
+                       if (value1.text == value2.text) {
                            value2.checked = true;
                        }   
                    });
@@ -3034,7 +3034,10 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                       $scope.CurrentMedicationList.splice(1, 0, newCurrentMedicationItem);
                       
                       // $scope.CurrentMedicationList.push({ text: $scope.data.CurrentMedicationOther, checked: true });
-					  return $scope.data.CurrentMedicationOther;
+						if($rootScope.checkedMedication == 4) {
+							$scope.closeCurrentMedication();
+						}
+					 return $scope.data.CurrentMedicationOther;
 				  }
 				}
 			  }
