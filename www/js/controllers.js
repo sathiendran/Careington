@@ -2637,18 +2637,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         } 
     }
 	*/
-    $scope.ClearListSelection = function(listName){
-       angular.forEach(listName, function(item, key2) {
-           item.checked = false;
-       });
-    };
-   // Open Chronic Condition popup
-    $scope.loadChronicCondition = function() {
-	   if(!angular.isUndefined($scope.PatientChronicConditionsSelected)){
-           $scope.ClearListSelection($scope.chronicConditionList);
-           if($scope.PatientChronicConditionsSelected.length > 0){
-               angular.forEach($scope.PatientChronicConditionsSelected, function(value1, key1) {
-                   angular.forEach($scope.chronicConditionList, function(value2, key2) {
+    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
+        angular.forEach(mainListItem, function(item, key2) {
+               item.checked = false;
+           });
+        if(!angular.isUndefined(selectedListItem)){
+            
+           if(selectedListItem.length > 0){
+               angular.forEach(selectedListItem, function(value1, key1) {
+                   angular.forEach(mainListItem, function(value2, key2) {
                        if (value1.codeId == value2.codeId) {
                            value2.checked = true;
                        }   
@@ -2656,6 +2653,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                });
            }
        }
+    };
+   // Open Chronic Condition popup
+    $scope.loadChronicCondition = function() {
+        $scope.clearSelectionAndRebindSelectionList($scope.PatientChronicConditionsSelected, $scope.chronicConditionList);
 		if(typeof $rootScope.ChronicCount == 'undefined') { 
 			$rootScope.checkedChronic = 0;
 		} else {  
