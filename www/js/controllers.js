@@ -578,8 +578,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.patientAnatomy = data.data[0].anatomy;
 					$rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
 					$rootScope.patientPhysicianDetails = data.data[0].physicianDetails;	
-					
-					$rootScope.PatientImage = $rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath;
+					//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
+					$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
 					$rootScope.address = data.data[0].address;
 					$rootScope.city = data.data[0].city;
 					$rootScope.createDate = data.data[0].createDate;
@@ -591,6 +591,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
 					$rootScope.primaryPatientName = data.data[0].patientName;
+					$rootScope.userCountry = data.data[0].country;
+					if(typeof $rootScope.userCountry == 'undefined') {
+						$rootScope.userCountry = '';
+					}
 					$rootScope.primaryPatientGuardianName = '';
 					$rootScope.state = data.data[0].state;
 					$rootScope.zipCode = data.data[0].zipCode;
@@ -665,7 +669,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'id': index.$id,
 								'patientId': index.patientId,
 								'patientName': index.patientName,
-								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+								'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
 								'relationCode': index.relationCode,
 								'isAuthorized': index.isAuthorized,
 								'birthdate': index.birthdate,
@@ -1612,7 +1616,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 				//console.log(data.data[3].codes);
 					$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
+					$rootScope.primaryConcernDataList = angular.fromJson(data.data[3].codes);
+					$rootScope.getSecondaryConcernAPIList = angular.fromJson(data.data[4].codes);
+					if(angular.fromJson(data.data[4].codes) != "") {
 					$rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
+					} else {
+						$rootScope.scondaryConcernsCodesList = $rootScope.primaryConcernDataList;
+					}
 					$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
 					$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
 					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
@@ -2278,6 +2288,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
       // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
+		
+		if($rootScope.getSecondaryConcernAPIList == "") {
+			if(typeof $scope.PatientPrimaryConcernItem != 'undefined') {
+				if($rootScope.IsValue != '') {
+				$scope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {text:$rootScope.PrimaryConcernText});
+				$scope.getCheckedPrimaryConcern[0].checked = true;
+				}
+			}
+			
+			if(typeof $scope.PatientSecondaryConcernItem != 'undefined') {
+				$scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {text:$rootScope.SecondaryConcernText});
+				$scope.getCheckedSecondaryConcern[0].checked = false;
+			}
+		}		
         
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
             scope: $scope,
@@ -2383,10 +2407,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.removePrimaryConcern = function(index, item){
         //$scope.PatientPrimaryConcern = "";
-    $scope.PatientPrimaryConcern.splice(index, 1);
+    $rootScope.PatientPrimaryConcern.splice(index, 1);
     var indexPos = $scope.primaryConcernList.indexOf(item);
-    $scope.primaryConcernList[indexPos].checked = false;    
-    $rootScope.IsValue =  $scope.PatientPrimaryConcern.length;
+    $scope.primaryConcernList[indexPos].checked = false; 	
+    $rootScope.IsValue =  $rootScope.PatientPrimaryConcern.length;
       $rootScope.IsValue =    $scope.primaryConcernList;
     $rootScope.IsValue = "";
     }
@@ -2438,6 +2462,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
+		if($rootScope.getSecondaryConcernAPIList == "") {
+			//$scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});		
+			if($scope.PatientPrimaryConcernItem != '') {
+				$scope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {text:$rootScope.PrimaryConcernText});
+				$scope.getCheckedPrimaryConcern[0].checked = false;
+			}	
+
+			if(typeof $scope.PatientSecondaryConcernItem != 'undefined') {
+				if($rootScope.secondaryConcernLength != '') {
+				$scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {text:$rootScope.SecondaryConcernText});
+				$scope.getCheckedSecondaryConcern[0].checked = true;
+				}
+			}	
+		}
+	
         $ionicModal.fromTemplateUrl('templates/tab-SecondaryConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -2535,9 +2574,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
     
     $scope.removeSecondaryConcern = function(index, item){
-      $scope.PatientSecondaryConcern.splice(index, 1);
+      $rootScope.PatientSecondaryConcern.splice(index, 1);
       var indexPos = $scope.secondaryConcernList.indexOf(item);
       $scope.secondaryConcernList[indexPos].checked = false;
+	   $rootScope.secondaryConcernLength =  $rootScope.PatientSecondaryConcern.length;
+	   $rootScope.SecondaryConcernText = '';
     }
 	
 	/*Secondary concern End here*/
