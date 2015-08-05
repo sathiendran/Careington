@@ -1458,7 +1458,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$rootScope.serverErrorMessageValidationForPayment();
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			
@@ -1601,7 +1601,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 error: function (data) {
                     $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
-                    $rootScope.serverErrorMessageValidation();
+                    $rootScope.serverErrorMessageValidationForPayment();
                 }
             };
 
