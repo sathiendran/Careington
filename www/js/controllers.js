@@ -1590,10 +1590,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                        // $scope.doGetPatientPaymentProfilesCardDetails();  
 						$rootScope.doGetPatientPaymentProfiles();
 						$state.go('tab.submitPayment');					   
-                    } else {	
-                        $scope.ErrorMessage = data.message;
-                        $rootScope.Validation($scope.ErrorMessage);
-                        $state.go('tab.cardDetails');
+                    } else {
+						if(!angular.isUndefined(data.message)) {
+							$scope.ErrorMessage = data.message;
+							$rootScope.Validation($scope.ErrorMessage);
+							$state.go('tab.cardDetails');
+						} else {
+							$rootScope.serverErrorMessageValidationForPayment();
+						}
                     }
                     $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
