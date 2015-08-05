@@ -35,7 +35,7 @@
 						<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
 							<option><b>Choose Your Card</b></option>
 							<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
-							<option><b>Add a new card</b></option>
+							<option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
 						</select>
 					</div>
 				</div>

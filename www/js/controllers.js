@@ -336,6 +336,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//$("#notifications-top-center").addClass('animated ' + 'bounce');
 				refresh_close();
 			//});
+	}
+
+	$rootScope.serverErrorMessageValidationForPayment = function(){
+		function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Invalid card details. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$(".Server_Error").append(top);
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
 	}	
 	
 	
@@ -1405,7 +1421,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'isBusiness': index.isBusiness,
 								'profileID': index.profileID,
 							});
-						});							
+						});	
+						$rootScope.totalPaymentCard = $rootScope.PaymentProfile.length; 
+						
 						$rootScope.enableSubmitpayment = "block";
 						$rootScope.disableSubmitpayment = "none";
 						$rootScope.enablePaymentSuccess = "block";	
@@ -1440,7 +1458,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$rootScope.serverErrorMessageValidation();
+					$rootScope.serverErrorMessageValidationForPayment();
 				}
 			};
 			
