@@ -2718,7 +2718,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
-                        $scope.doGetExistingConsulatation();
+						 $state.go('tab.ChronicCondition');
+                        //$scope.doGetExistingConsulatation();
 						//$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
