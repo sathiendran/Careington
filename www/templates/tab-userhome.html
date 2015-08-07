@@ -34,7 +34,7 @@
 
  	<ion-list>
       
-	<a class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
+	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
 		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery">
 			 <div class="HrefListView"> 
 				<div class="UserhmePatientDetails">
@@ -98,7 +98,7 @@
 				</ion-item>
 			</ion-list>
 		</a>
-        <a ng-href="#/tab/login" class="SidemenuLogOut" >
+       <a ng-click="ClearRootScope()" class="SidemenuLogOut" >
 			<ion-list>
 				<ion-item class="ion-power LogOutText" >
 					<span>  Logout</span> 

@@ -648,6 +648,30 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				},
 				error: function (data) {
 					$rootScope.serverErrorMessageValidation();
+					$rootScope.patientInfomation = '';
+					$rootScope.patientAccount = '';	
+					$rootScope.patientAddresses = '';	
+					$rootScope.patientAnatomy = '';
+					$rootScope.patientPharmacyDetails = ''
+					$rootScope.patientPhysicianDetails = '';	
+					//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
+					$rootScope.PatientImage = '';
+					$rootScope.address = '';
+					$rootScope.city = '';
+					$rootScope.createDate = '';
+					$rootScope.dob = '';
+					$rootScope.ageBirthDate = '';
+					$rootScope.gender = '';
+					$rootScope.homePhone = '';
+					$rootScope.location = '';
+					$rootScope.mobilePhone = '';
+					$rootScope.organization = '';
+					$rootScope.primaryPatientName = '';
+					$rootScope.userCountry = '';					
+					$rootScope.primaryPatientGuardianName = '';
+					$rootScope.state = '';
+					$rootScope.zipCode = '';
+					$rootScope.primaryPatientId = '';
 				}
 			};
 			
