@@ -137,8 +137,8 @@ body {
 } 
 
 .login_content {
-	margin: 80px 0 0 0;
-	padding-top: 100px;
+	margin: 92px 0 0 0;
+	padding-top: 90px;
 		.login_home {	
 				padding: 0 12%;
 				
@@ -405,11 +405,35 @@ body {
 		
 }
 
-.password_content {
+/*.password_content {
 	@extend .login_content;
 	//margin: 220px 0 0 0;
     margin: 219px 0 0 0;
 	padding-top: 75px;
+    background-color: #EFEFED;
+	.item-input {
+		
+		border: 1px solid $Altoa;
+		border-radius: 8px;
+		height: 50px;
+        line-height: normal;
+		font-weight: bold;
+		background-color: #E6E6E2;
+        padding: 6px 0 7px 16px;
+		
+		input {
+		font-size: 17px;
+		line-height: 30px;
+        }
+	}
+}*/
+
+.password_content {
+	@extend .login_content;
+    margin: 120px 0 0 0;
+	padding-top: 75px;
+	position: relative;
+    top: 98px; 
     background-color: #EFEFED;
 	.item-input {
 		
@@ -450,29 +474,11 @@ body {
         }
 	}
 }
-/*.item-input {
-	background-color: $Mercury;
-	
-	border: 1px solid $Altoa;
-	border-radius: 8px;
-	@extend .item-input;
-	
-		input {
-			-moz-appearance: none;
-			-moz-box-flex: 1;
-			background-color: transparent;
-			border-radius: 0;
-			flex: 1 1 220px;
-			margin: 0;
-			padding-right: 24px;
-			font-size: 17px;			
-		}		
-}*/
 .password_home {
 			padding: 0 12%;
 }
 .password_home_top {
-	margin-top:-20px;
+	margin-top: 56px;
 }
 .password_icon { 
 	float: left; margin: 8px 10px 0 0;left:-12px;position: relative;
@@ -1931,7 +1937,7 @@ body {
 	background-color: #EFEFED;
 	height: 63px;
     position: relative;
-	top: 136px;
+	top: 141px;
 }
 .bar-TitleLess-terms-IOS{
 	display: block;
@@ -1939,7 +1945,7 @@ body {
 	height: 63px;
     //position: relative;
 	//top: 136px;
-    margin-top: 142px;
+    margin-top: 147px;
 }
 
 .TitleLess{
@@ -3113,5 +3119,11 @@ font-family: $fontFamily_regular;
   color: #352D2D;
 }
 
+.has-footer {
+	bottom: 48px;
+}
 
+.currMedicationList{
+	top: -5px !important;
+}
 
