@@ -151,13 +151,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
         $rootScope.LoginContantDiv = " height: 50px;";  //95px
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
-        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";  
+        $rootScope.PasswordOverlop = "margin: 120px 0 0 0 !important;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: 108px;";  
+        $rootScope.MarginHomeTop = "margin-top: -60px";  
         $rootScope.concernsItemDivs = "top: 5px;";        
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
@@ -209,7 +209,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
          $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
-       $rootScope.PasswordOverlop = "margin: 120px 0 0 0;"; 
+       $rootScope.PasswordOverlop = "margin: 120px 0 0 0; padding-top: 18px;"; 
 	   $rootScope.resetContent = "margin: 202px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
@@ -221,7 +221,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.providerItamTop  = "top: 6px;";
 		$rootScope.appointContent = "margin: 76px 0 0 0;";
 		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
-		 $rootScope.MarginHomeTop = "margin-top: 60px;"; 
+		 $rootScope.MarginHomeTop = "margin-top: -60px;"; 
         $rootScope.providerItamMarginTop  = "";
     }
    
@@ -1586,15 +1586,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.Validation($scope.ErrorMessage);
 			
 		} else if(zipCount <= 4) {
+			$scope.invalidZip = "border: 1px solid red;";
 			$scope.ErrorMessage = "Verify Zip";
 			$rootScope.Validation($scope.ErrorMessage);
         } else if(ExpiryDateCheck < currentTime) {
+			 $scope.invalidMonth = "border: 1px solid red;";	
              $scope.ErrorMessage = "Verify month & year";
 			 $rootScope.Validation($scope.ErrorMessage);
         }else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
+			$scope.invalidCard = "border: 1px solid red;";
             $scope.ErrorMessage = "Invalid Card Number";
             $rootScope.Validation($scope.ErrorMessage);
         }else if($rootScope.Cvv.length != $scope.ccCvvLength){
+			 $scope.invalidCVV = "border: 1px solid red;";	
             $scope.ErrorMessage = "Security code must be " + $scope.ccCvvLength + " numbers";
             $rootScope.Validation($scope.ErrorMessage);
         }
@@ -1603,6 +1607,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
+			$scope.invalidZip = "";
+			$scope.invalidMonth = "";
+			$scope.invalidCard = "";
+			$scope.invalidCVV = "";
+			
             $rootScope.cardDisplay = "none;";
             $rootScope.verifyCardDisplay = "inherit";
             var params = {

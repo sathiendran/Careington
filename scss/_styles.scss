@@ -429,11 +429,7 @@ body {
 }*/
 
 .password_content {
-	@extend .login_content;
-    margin: 120px 0 0 0;
-	padding-top: 75px;
-	position: relative;
-    top: 98px; 
+	/*@extend .login_content;   */
     background-color: #EFEFED;
 	.item-input {
 		
