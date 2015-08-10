@@ -18,5 +18,7 @@
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.network-information"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }
