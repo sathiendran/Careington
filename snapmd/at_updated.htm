@@ -49,6 +49,16 @@
                 <button type="button" class="btn btn-default btn-lg" ng-click="doGetToken();">
                   <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get Token
                 </button>
+				<div>
+					<label>UserType Id:</label>
+					<input ng-model="userTypeId" class="form-control input-sm" type="text">
+					<label>Hospital Id:</label>
+					<input ng-model="hospitalId" class="form-control input-sm" type="text">
+					<label>Email Id:</label>
+					<input ng-model="emailAddress" class="form-control input-sm" type="text">
+						<label>Password:</label>
+					<input ng-model="userPassword" class="form-control input-sm" type="text">
+				</div>	
 				<div class="alert {{tokenStatus}} someTopSpace" role="alert">{{accessToken}}</div>
             </div>
         </div>
@@ -88,6 +98,25 @@
 					<input ng-model="emailType" class="form-control input-sm" type="text">					
 					<p class="someTopSpace">
 						<textarea class="form-control" rows="5">{{PasswordResetEmail}}</textarea>
+					</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations
+				<a target="_blank" href="https://sandbox.connectedcare.md/api/Help/Api/GET-v2-patients_include"></span>Help</a>
+			</div>
+			<div class="panel-body" >
+				<button type="button" class="btn btn-default btn-lg" ng-click="doGetPatientProfiles();">
+				  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Patient Profiles
+				</button>
+				<div>
+					<!--<label>Patient ID:</label>
+					<input ng-model="otherPatientId" class="form-control input-sm" type="text">-->				
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{patientInfomation}}</textarea>
 					</p>
 				</div>
 			</div>

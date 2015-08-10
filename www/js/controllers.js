@@ -100,12 +100,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
         $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
+		$rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 7px;position: relative;";
         $rootScope.PatientCalentarScheduleItem = "top: 48px;"
         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
-        $rootScope.appoinmentStyle = "  margin-top: 6px;";
+        $rootScope.appoinmentStyle = "  margin-top: -5px;";
+		$rootScope.appointContent = "margin: 85px 0 0 0;";
         $rootScope.MenuIconBottom = "top: 4px;";
         $rootScope.patientsubHeaderInnerStyle = "margin-top: 2px;";
         $rootScope.BackBotton = "top: 7px; position: relative;";
@@ -131,6 +133,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
 		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;"; 	
+		$rootScope.currentMedicationContent = "margin-top: 125px !important;";
     if($rootScope.IOSDevice) {
         $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
         $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
@@ -145,16 +148,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
         $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
         $rootScope.NextIntakeForm = "margin-left: -21px;";
-        $rootScope.LoginContant = "padding-top: 50px !important;"; //margin: 30px 0 0 0 remove
+        $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
         $rootScope.LoginContantDiv = " height: 50px;";  //95px
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
-        $rootScope.PasswordOverlop = "margin: 0 0 0 0 !important;";  
+        $rootScope.PasswordOverlop = "margin: 120px 0 0 0 !important;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: 108px;";  
+        $rootScope.MarginHomeTop = "margin-top: -60px";  
         $rootScope.concernsItemDivs = "top: 5px;";        
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
@@ -206,7 +209,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
          $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
-       $rootScope.PasswordOverlop = "margin: 246px 0 0 0;"; 
+       $rootScope.PasswordOverlop = "margin: 120px 0 0 0; padding-top: 18px;"; 
 	   $rootScope.resetContent = "margin: 202px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
@@ -216,10 +219,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PrimaryMarginTop  = "margin-top: -16px";
         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -36px !important;";
         $rootScope.providerItamTop  = "top: 6px;";
+		$rootScope.appointContent = "margin: 76px 0 0 0;";
+		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
+		 $rootScope.MarginHomeTop = "margin-top: -60px;"; 
         $rootScope.providerItamMarginTop  = "";
     }
    
-	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+	/*$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.addCard") ||
 			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
@@ -243,11 +249,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					navigator.app.backHistory(); 
 				}
 												
-			}else { 
-                // For all other states, the H/W BACK button is enabled
-				//$ionicBackdrop.release(); 
-				//$(".ion-google-place-container").css({"display": "none"});
+			}else {                
                 navigator.app.backHistory(); 
+            }
+        }, 100); 	*/
+		
+		$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+			if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+				var gSearchLength = $('.ion-google-place-container').length;
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
+					$ionicBackdrop.release();					
+					$(".ion-google-place-container").css({"display": "none"});						 
+					
+				}else{		
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory(); 
+				}
+												
+			}else {                
+               
             }
         }, 100); 	
 		
@@ -286,7 +308,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
  };
 	
 	
-    
+	
+	$scope.ClearRootScope = function() {
+		$rootScope = $rootScope.$new(true);
+		$scope = $scope.$new(true);
+		 $state.go('tab.login');
+	}
 	
 	
 	
@@ -621,6 +648,30 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				},
 				error: function (data) {
 					$rootScope.serverErrorMessageValidation();
+					$rootScope.patientInfomation = '';
+					$rootScope.patientAccount = '';	
+					$rootScope.patientAddresses = '';	
+					$rootScope.patientAnatomy = '';
+					$rootScope.patientPharmacyDetails = ''
+					$rootScope.patientPhysicianDetails = '';	
+					//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
+					$rootScope.PatientImage = '';
+					$rootScope.address = '';
+					$rootScope.city = '';
+					$rootScope.createDate = '';
+					$rootScope.dob = '';
+					$rootScope.ageBirthDate = '';
+					$rootScope.gender = '';
+					$rootScope.homePhone = '';
+					$rootScope.location = '';
+					$rootScope.mobilePhone = '';
+					$rootScope.organization = '';
+					$rootScope.primaryPatientName = '';
+					$rootScope.userCountry = '';					
+					$rootScope.primaryPatientGuardianName = '';
+					$rootScope.state = '';
+					$rootScope.zipCode = '';
+					$rootScope.primaryPatientId = '';
 				}
 			};
 			
@@ -1533,25 +1584,45 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       if($('#FirstName').val() == '' || $('#LastName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' ||  $('#City').val() == '' || $('#State').val() == ''|| $('#Zip').val() == '' )  {			
 			$scope.ErrorMessage = "Required fields can't be empty";
 			$rootScope.Validation($scope.ErrorMessage);
-			
-		} else if(zipCount <= 4) {
-			$scope.ErrorMessage = "Verify Zip";
-			$rootScope.Validation($scope.ErrorMessage);
-        } else if(ExpiryDateCheck < currentTime) {
+		}else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
+			$scope.invalidZip = "";
+			$scope.invalidMonth = "";			
+			$scope.invalidCVV = "";
+			$scope.invalidCard = "border: 1px solid red;";
+            $scope.ErrorMessage = "Invalid Card Number";
+            $rootScope.Validation($scope.ErrorMessage);	
+		} else if(ExpiryDateCheck < currentTime) {
+			 $scope.invalidZip = "";			
+			$scope.invalidCard = "";
+			$scope.invalidCVV = "";	
+			 $scope.invalidMonth = "border: 1px solid red;";	
              $scope.ErrorMessage = "Verify month & year";
 			 $rootScope.Validation($scope.ErrorMessage);
-        }else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
-            $scope.ErrorMessage = "Invalid Card Number";
-            $rootScope.Validation($scope.ErrorMessage);
-        }else if($rootScope.Cvv.length != $scope.ccCvvLength){
+		  }else if($rootScope.Cvv.length != $scope.ccCvvLength){
+			$scope.invalidZip = "";
+			$scope.invalidMonth = "";
+			$scope.invalidCard = "";			
+			 $scope.invalidCVV = "border: 1px solid red;";	
             $scope.ErrorMessage = "Security code must be " + $scope.ccCvvLength + " numbers";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);  
+		} else if(zipCount <= 4) {			
+			$scope.invalidMonth = "";
+			$scope.invalidCard = "";
+			$scope.invalidCVV = "";
+			$scope.invalidZip = "border: 1px solid red;";
+			$scope.ErrorMessage = "Verify Zip";
+			$rootScope.Validation($scope.ErrorMessage);  
         }
         else {		
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
+			$scope.invalidZip = "";
+			$scope.invalidMonth = "";
+			$scope.invalidCard = "";
+			$scope.invalidCVV = "";
+			
             $rootScope.cardDisplay = "none;";
             $rootScope.verifyCardDisplay = "inherit";
             var params = {
@@ -2118,6 +2189,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }, 100); 
     $scope.$storage = $localStorage;
      
+	$scope.ClearRootScope = function() {
+		$rootScope = $rootScope.$new(true);
+		$scope = $scope.$new(true);
+		 $state.go('tab.login');
+	}
    
 	
     $scope.isPhysicianStartedConsultaion = false;
@@ -2220,6 +2296,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.Concernlimit = 1;
     $rootScope.checkedPrimary = 0;
     
+	
+	$scope.ClearRootScope = function() {
+		$rootScope = $rootScope.$new(true);
+		$scope = $scope.$new(true);
+		 $state.go('tab.login');
+	}
      
     $scope.doGetExistingConsulatation = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -2355,13 +2437,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
 						 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
 						$scope.modal.hide();
-						$scope.data.searchQuery = '';
+					//	$scope.data.searchQuery = '';
 						}
 				} else {
 					$rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
 					 $rootScope.IsValue =  $scope.PatientPrimaryConcernItem.length;
 					$scope.modal.hide();
-					$scope.data.searchQuery = '';
+				//	$scope.data.searchQuery = '';
 				}
 		}
 		  //});        
@@ -2525,12 +2607,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						else {
 						$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
 						 $scope.modal.hide();
-						$scope.data.searchQuery = '';	
+						//$scope.data.searchQuery = '';	
 						}
 				} else {
 					$rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
 					 $scope.modal.hide();
-					$scope.data.searchQuery = '';
+					//$scope.data.searchQuery = '';
 				}
 		}	
        // });
@@ -2656,7 +2738,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
-                        $scope.doGetExistingConsulatation();
+						 $state.go('tab.ChronicCondition');
+                        //$scope.doGetExistingConsulatation();
 						//$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
@@ -2746,7 +2829,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			console.log($rootScope.ChronicCount);
 			console.log($rootScope.PatientChronicCondition);
 			$scope.modal.hide(); 
-			$scope.data.searchQuery = ''; 
+			//$scope.data.searchQuery = ''; 
 		}	
     };
       
@@ -2895,7 +2978,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
 				$rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
 				$scope.modal.hide();
-				$scope.data.searchQuery = ''; 
+				//$scope.data.searchQuery = ''; 
 			}
     };
     
@@ -3041,7 +3124,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 				$rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
 				$rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
 				$scope.modal.hide();
-				$scope.data.searchQuery = ''; 
+				//$scope.data.searchQuery = ''; 
 			}
     };
     
@@ -3448,6 +3531,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 .controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
+	$scope.ClearRootScope = function() {
+		$rootScope = $rootScope.$new(true);
+		$scope = $scope.$new(true);
+		 $state.go('tab.login');
+	}
     
     var initConferenceRoomHub = function () {
          var connection = $.hubConnection();

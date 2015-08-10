@@ -7703,9 +7703,9 @@ body {
   text-align: center;
   color: #DD472D;
   position: relative;
-  box-shadow: 0px 2px 9px #ADABAB;
-  -moz-box-shadow: 0px 2px 9px #ADABAB;
-  -webkit-box-shadow: 0px 2px 9px #ADABAB; }
+  box-shadow: 0px 3px 3px #ADABAB;
+  -moz-box-shadow: 0px 3px 3px #ADABAB;
+  -webkit-box-shadow: 0px 3px 3px #ADABAB; }
   .login_sub_header after, .login_sub_header .password_sub_headerIOS, .login_sub_header .password_sub_headerAndroid {
     right: 10px;
     left: auto;
@@ -7844,9 +7844,9 @@ body {
   line-height: 35px;
   padding-top: 5px;
   background: linear-gradient(#9BCA83, #93C07E);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   /*-webkit-box-shadow:  1px 2px 13px rgba(0,0,0,0.3); */ }
 
 .button.button-outline.button-positive.activated {
@@ -7984,10 +7984,10 @@ body {
 
 .password_content {
   margin: 219px 0 0 0;
-  padding-top: 85px;
+  padding-top: 75px;
   background-color: #EFEFED; }
   .password_content .item-input {
-    border: 2px solid #CDCACA;
+    border: 1px solid #CDCACA;
     border-radius: 8px;
     height: 50px;
     line-height: normal;
@@ -8055,7 +8055,9 @@ body {
 .pass_reset_content {
   text-align: justify;
   font-size: 19px;
-  color: #4D4D4D; }
+  color: #4D4D4D;
+  padding-top: 12px;
+  line-height: 24px; }
 
 .login {
   text-align: center;
@@ -8164,7 +8166,7 @@ body {
       font-family: 'Glober Thin'; }
 
 .patient_content {
-  margin: 40px 0 0 4%;
+  margin: 17px 0 0 4%;
   padding-top: 95px; }
 
 .button.button-energized {
@@ -8177,9 +8179,9 @@ body {
   min-height: 35px;
   text-decoration: none;
   font-family: 'Glober Bold';
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); }
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
 
 .scheduled_appointments_text {
   /*margin-top: -7px;*/
@@ -8198,9 +8200,9 @@ body {
   min-height: 35px;
   text-decoration: none;
   font-family: 'Glober Bold';
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%); }
 
 .button.button-balanced.activated {
@@ -8219,7 +8221,7 @@ body {
     margin-top: 7px;
     position: relative;
     margin-left: -1px;
-    top: -2px; }
+    top: -1px; }
 
 .AppointBack {
   top: 0px; }
@@ -8290,12 +8292,12 @@ body {
   /*border-bottom: 1px solid #b9b8b8;*/
   color: #565656;
   height: auto;
-  margin-top: 123px; }
+  margin-top: 121px; }
 
 .patientCalendar_watch {
   padding: 10px;
   float: left;
-  margin-top: 4px; }
+  margin-top: 8px; }
   .patientCalendar_watch img {
     width: 20px; }
 
@@ -8305,7 +8307,9 @@ body {
   font-size: 19px;
   font-weight: bold;
   margin-bottom: -8px;
-  font-family: 'Glober SemiBold'; }
+  font-family: 'Glober SemiBold';
+  position: relative;
+  top: 6px; }
 
 .patientCalendar_Content {
   margin: 128px 0 0 0;
@@ -8453,14 +8457,16 @@ body {
       float: left;
       text-align: right;
       width: 54%;
-      font-family: 'Glober Light';
+      font-family: 'Glober SemiBold';
       font-weight: bold;
       color: #fff; }
     .AvailableIn .availableImage .AvailableTimer {
       float: left;
       text-align: left;
       width: 45%;
-      padding-left: 10px; }
+      padding-left: 10px;
+      font-family: 'Glober SemiBold';
+      font-weight: bold; }
 
 .ErrorMessageDiv {
   position: fixed;
@@ -8515,9 +8521,9 @@ body {
   min-height: 35px;
   text-decoration: none;
   font-family: 'Glober Bold';
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); }
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
 
 .button.button-royal.activated {
   background-color: #B3B3B3;
@@ -8708,7 +8714,7 @@ body {
   .planDetails_content .verifyPlanHeading {
     padding-top: 35px; }
   .planDetails_content input[type="text"], .planDetails_content input[type="number"], .planDetails_content input[type="password"] {
-    font-size: 19px;
+    font-size: 20px;
     line-height: 30px; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
@@ -8727,7 +8733,7 @@ body {
     padding: 10px 16px 10px 16px; }
   .planDetails_content .input-label {
     font-weight: bold;
-    font-size: 19px;
+    font-size: 20px;
     width: 50%; }
   .planDetails_content .cardDetailsHeading {
     padding-top: 35px; }
@@ -8812,29 +8818,78 @@ select {
 #SidemenuHomeAndroid {
   margin-top: 10px;
   border: none;
-  color: #706A67;
-  font-family: Glober regular !important; }
+  color: #7E807E;
+  font-family: Glober regular !important;
+  background-color: #464644; }
   #SidemenuHomeAndroid span {
     top: 0px;
-    position: relative; }
+    position: relative;
+    font-size: 23px;
+    padding-left: 15px; }
 
 #SidemenuHomeIOS {
   margin-top: 18px;
   border: none;
-  color: #706A67;
-  font-family: Glober regular !important; }
+  color: #7E807E;
+  font-family: Glober regular !important;
+  background-color: #464644; }
   #SidemenuHomeIOS span {
     top: 0px;
-    position: relative; }
+    position: relative;
+    font-size: 23px;
+    padding-left: 15px; }
+
+.sidemenuContent {
+  position: absolute;
+  bottom: 64px;
+  width: 100%; }
+  .sidemenuContent .ion-ios-list:before {
+    font-size: 31px; }
 
 .SidemenuLogOut {
-  color: #706A67; }
+  width: 100%;
+  color: #7E807E;
+  bottom: 0px;
+  position: absolute; }
   .SidemenuLogOut .LogOutText {
-    color: #706A67;
+    color: #7E807E;
     margin-left: -4px;
-    font-family: Glober regular !important; }
+    font-family: Glober regular !important;
+    background-color: #464644; }
     .SidemenuLogOut .LogOutText span {
-      position: relative; }
+      position: relative;
+      font-size: 23px;
+      padding-left: 15px; }
+  .SidemenuLogOut .item {
+    border-color: #464644; }
+  .SidemenuLogOut .ion-power:before {
+    font-size: 27px; }
+
+.sidemenuContent1 {
+  position: absolute;
+  bottom: 113px;
+  width: 100%; }
+  .sidemenuContent1 .ion-ios-list:before {
+    font-size: 31px; }
+
+.SidemenuLogOut1 {
+  width: 100%;
+  color: #7E807E;
+  bottom: 47px;
+  position: absolute; }
+  .SidemenuLogOut1 .LogOutText {
+    color: #7E807E;
+    margin-left: -4px;
+    font-family: Glober regular !important;
+    background-color: #464644; }
+    .SidemenuLogOut1 .LogOutText span {
+      position: relative;
+      font-size: 23px;
+      padding-left: 15px; }
+  .SidemenuLogOut1 .item {
+    border-color: #464644; }
+  .SidemenuLogOut1 .ion-power:before {
+    font-size: 27px; }
 
 .ReportTittle {
   margin-left: 22px !important;
@@ -9007,7 +9062,7 @@ select {
       .ConcernsContent .PrimaryList .PrimaryContent p {
         margin-left: 19px;
         margin-bottom: 10px;
-        font-size: 15px;
+        font-size: 16px;
         margin-top: -7px; }
       .ConcernsContent .PrimaryList .PrimaryContent div {
         float: right;
@@ -9035,7 +9090,9 @@ select {
       .ConcernsContent .SecondaryList .SecondaryContent p {
         margin-left: 19px;
         margin-bottom: 10px;
-        font-size: 15px; }
+        font-size: 16px;
+        width: 75%;
+        white-space: initial; }
       .ConcernsContent .SecondaryList .SecondaryContent div {
         float: right;
         left: -15px;
@@ -9117,10 +9174,10 @@ select {
       padding: 10px 0px 10px 47px;
       font-size: 17px; }
     .ConcernsFooter .FooterRight .ConcernFooterNext {
-      margin-left: -38px;
+      margin-left: -42px;
       position: relative;
       top: -4px;
-      left: -21px; }
+      left: -18px; }
 
 .concernListHeader {
   height: 55px; }
@@ -9150,12 +9207,72 @@ select {
     .concernListContent .concernListSearch .concernListSearchHome {
       padding: 20px 11px 16px 11px;
       top: 0px; }
-      .concernListContent .concernListSearch .concernListSearchHome .SearchLabel {
+      .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android {
         margin-top: -19px; }
-        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel .SearchBox {
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android .SearchBox {
           color: #535353;
           font-weight: normal;
           margin-top: 0px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android ::-webkit-input-placeholder {
+          /* WebKit browsers */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android :-ms-input-placeholder {
+          /* Internet Explorer 10+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important; }
+      .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS {
+        margin-top: -19px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS .SearchBox {
+          color: #535353;
+          font-weight: normal;
+          margin-top: 0px;
+          position: relative;
+          top: 2px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS ::-webkit-input-placeholder {
+          /* WebKit browsers */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          position: relative;
+          top: -1px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1;
+          position: relative;
+          top: -1px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1;
+          position: relative;
+          top: -1px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS :-ms-input-placeholder {
+          /* Internet Explorer 10+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          position: relative;
+          top: -1px; }
   .concernListContent .UserHmeSub {
     padding: 12px 10px 5px 10px; }
     .concernListContent .UserHmeSub .item-input {
@@ -9243,7 +9360,7 @@ select {
   border-bottom: 1px solid #A9ABA7; }
 
 .ConsentContent {
-  margin-top: 205px !important; }
+  margin-top: 204px !important; }
   .ConsentContent .ConsentMessageFirst {
     border-bottom: 1px solid #ddd;
     margin: 12px 10px 10px 10px; }
@@ -9355,9 +9472,22 @@ a {
   background-color: #EFEFED;
   height: 63px;
   position: relative;
-  top: 136px; }
+  top: 141px; }
 
 .bar-TitleLess-IOS {
+  display: block;
+  background-color: #EFEFED;
+  height: 63px;
+  margin-top: 142px; }
+
+.bar-TitleLess-terms-Android {
+  display: block;
+  background-color: #EFEFED;
+  height: 63px;
+  position: relative;
+  top: 136px; }
+
+.bar-TitleLess-terms-IOS {
   display: block;
   background-color: #EFEFED;
   height: 63px;
@@ -9374,7 +9504,7 @@ a {
   Color: #4D4D4D; }
 
 .ContentList_provider-Android {
-  margin: 160px 0 0 0;
+  margin: 153px 0 0 0;
   background-color: #EFEFED; }
   .ContentList_provider-Android .item {
     padding: 42px 18px 27px 35px;
@@ -9394,6 +9524,30 @@ a {
     font-size: 22px;
     font-family: 'Glober Regular'; }
     .ContentList_provider-IOS .item .ion-chevron-right.ListLinkHref {
+      font-size: 28px;
+      margin-top: -8px; }
+
+.ContentList_terms-IOS {
+  margin: 166px 0 0 0;
+  background-color: #EFEFED; }
+  .ContentList_terms-IOS .item {
+    padding: 42px 18px 27px 35px;
+    Color: #787878;
+    font-size: 22px;
+    font-family: 'Glober Regular'; }
+    .ContentList_terms-IOS .item .ion-chevron-right.ListLinkHref {
+      font-size: 28px;
+      margin-top: -8px; }
+
+.ContentList_terms-Android {
+  margin: 160px 0 0 0;
+  background-color: #EFEFED; }
+  .ContentList_terms-Android .item {
+    padding: 42px 18px 27px 35px;
+    Color: #787878;
+    font-size: 22px;
+    font-family: 'Glober Regular'; }
+    .ContentList_terms-Android .item .ion-chevron-right.ListLinkHref {
       font-size: 28px;
       margin-top: -8px; }
 
@@ -9576,7 +9730,7 @@ a {
 
 .secondary {
   background-color: #F2F0EE;
-  margin: 12px -15px 11px -12px;
+  margin: 8px -15px 11px -12px;
   padding: 5px;
   font-size: 16px;
   color: #777A78; }
@@ -9615,7 +9769,7 @@ a {
 .PragraphContent {
   font-family: 'Glober Regular';
   font-weight: normal;
-  font-size: 15px; }
+  font-size: 16px; }
 
 .ReportTitle {
   font-family: 'Glober Regular';
@@ -10062,7 +10216,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
         color: #616462;
         height: 21px;
         margin-top: 0px;
-        font-family: 'Glober Regular'; }
+        font-family: 'Glober Regular';
+        position: relative;
+        top: 2px; }
 
 .UserHomePatient {
   cursor: pointer; }
@@ -10145,7 +10301,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 #BackButtonIcon {
   color: #000;
-  margin-top: 15px; }
+  margin-top: 15px;
+  display: block !important; }
 
 #WhoNeeds {
   font-size: 23px;
@@ -10371,7 +10528,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 19px;
   padding: 6px;
   left: 18px;
-  top: 13px;
+  top: 11px;
   /*font-weight: bold;*/ }
 .noPlanContainer-IOS .viewport1 {
   pointer-events: none;
@@ -10388,7 +10545,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 19px;
   padding: 6px;
   left: 25px;
-  top: 13px;
+  top: 11px;
   /*font-weight: bold;*/
   text-align: left; }
 .noPlanContainer-IOS .cardViewport {
@@ -10406,7 +10563,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 19px;
   padding: 6px;
   left: 18px;
-  top: 13px;
+  top: 11px;
   /*font-weight: bold;*/ }
 .noPlanContainer-IOS .healthPlanDropDown option {
   color: #60605D; }
@@ -10458,3 +10615,17 @@ input, button, select, textarea {
 
 .patientConternFontStyleSubTitle {
   font-family: 'Glober Regular'; }
+
+.concernsItempTag {
+  top: 6px;
+  position: relative; }
+
+.ion-navicon-round:before {
+  content: "\f20d";
+  font-size: 40px;
+  color: #352D2D; }
+
+.ion-close:before {
+  content: "\f12a";
+  font-size: 33px !important;
+  color: #352D2D; }

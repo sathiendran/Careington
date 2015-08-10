@@ -745,6 +745,25 @@ $scope.ConsultationSaveData = {
             apiComService.getConsultationKey(params);
         }
 		
+		$scope.doGetPatientProfiles = function() {
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+                accessToken: $scope.accessToken,
+				success: function (data) {
+					$scope.patientInfomation = JSON.stringify(data, null, 2);
+				},
+				error: function (data) {
+					$scope.patientInfomation = 'Error getting Patient Profiles';
+					console.log(data);
+				}
+			};
+			
+			apiComService.getPatientProfiles(params);
+		}
+		
 		$scope.doPostConsultationEvent = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
@@ -1385,6 +1404,25 @@ app.service('apiComService', function ($http) {
 		};
 		
 		$http(confirmConsultationEvent).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.success(data);
+				}
+		});
+	}
+	this.getPatientProfiles = function(params) {
+		var PatientDetailsList = {
+			headers: util.getHeaders(params.accessToken),
+            url: 'https://sandbox.connectedcare.md/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+            method: 'GET'
+		};
+		
+		$http(PatientDetailsList).
 			success(function (data, status, headers, config) {
 				if (typeof params.success != 'undefined') {
 					params.success(data);
