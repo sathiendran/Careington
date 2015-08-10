@@ -40,7 +40,7 @@
 						 }, 100); 
                     }else{
                         elm.addClass('ng-hide');
-						$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+						/*$ionicPlatform.registerBackButtonAction(function (event, $state) {	
 							if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 								 ($rootScope.currState.$current.name=="tab.receipt") || 	
 								 ($rootScope.currState.$current.name=="tab.videoConference") ||
@@ -52,15 +52,18 @@
 								}else if($rootScope.currState.$current.name=="tab.login"){									 
 									navigator.app.exitApp();
 									//alert('a1');
-								}else { 
+								}else {								
+											
+									navigator.app.backHistory();
 									
-									// For all other states, the H/W BACK button is enabled
-									//$ionicBackdrop.release(); 
-									//$(".ion-google-place-container").css({"display": "none"});		
-									navigator.app.backHistory(); 
-									//$ionicBackdrop.release();  
-								//	$(".ion-google-place-container").css({"display": "none"}); 
-									//alert('a2');  
+								}
+						}, 100); */
+						$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+							if($rootScope.currState.$current.name=="tab.login"){									 
+									navigator.app.exitApp();
+									//alert('a1');
+								}else {
+									
 								}
 						}, 100); 
                     }
