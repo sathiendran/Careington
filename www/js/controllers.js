@@ -1584,23 +1584,34 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       if($('#FirstName').val() == '' || $('#LastName').val() == '' || $('#CardNumber').val() == '' || $('#datepicker').val() == '' || $('#Cvv').val() == '' || $('#BillingAddress').val() == '' ||  $('#City').val() == '' || $('#State').val() == ''|| $('#Zip').val() == '' )  {			
 			$scope.ErrorMessage = "Required fields can't be empty";
 			$rootScope.Validation($scope.ErrorMessage);
-			
-		} else if(zipCount <= 4) {
-			$scope.invalidZip = "border: 1px solid red;";
-			$scope.ErrorMessage = "Verify Zip";
-			$rootScope.Validation($scope.ErrorMessage);
-        } else if(ExpiryDateCheck < currentTime) {
+		}else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
+			$scope.invalidZip = "";
+			$scope.invalidMonth = "";			
+			$scope.invalidCVV = "";
+			$scope.invalidCard = "border: 1px solid red;";
+            $scope.ErrorMessage = "Invalid Card Number";
+            $rootScope.Validation($scope.ErrorMessage);	
+		} else if(ExpiryDateCheck < currentTime) {
+			 $scope.invalidZip = "";			
+			$scope.invalidCard = "";
+			$scope.invalidCVV = "";	
 			 $scope.invalidMonth = "border: 1px solid red;";	
              $scope.ErrorMessage = "Verify month & year";
 			 $rootScope.Validation($scope.ErrorMessage);
-        }else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
-			$scope.invalidCard = "border: 1px solid red;";
-            $scope.ErrorMessage = "Invalid Card Number";
-            $rootScope.Validation($scope.ErrorMessage);
-        }else if($rootScope.Cvv.length != $scope.ccCvvLength){
+		  }else if($rootScope.Cvv.length != $scope.ccCvvLength){
+			$scope.invalidZip = "";
+			$scope.invalidMonth = "";
+			$scope.invalidCard = "";			
 			 $scope.invalidCVV = "border: 1px solid red;";	
             $scope.ErrorMessage = "Security code must be " + $scope.ccCvvLength + " numbers";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);  
+		} else if(zipCount <= 4) {			
+			$scope.invalidMonth = "";
+			$scope.invalidCard = "";
+			$scope.invalidCVV = "";
+			$scope.invalidZip = "border: 1px solid red;";
+			$scope.ErrorMessage = "Verify Zip";
+			$rootScope.Validation($scope.ErrorMessage);  
         }
         else {		
             if ($scope.accessToken == 'No Token') {
