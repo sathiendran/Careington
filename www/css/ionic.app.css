@@ -7730,41 +7730,41 @@ body {
   left: 1px;
   right: 1px; }
 
-.login_content, .password_content, .ContentSearchHomeUser {
-  margin: 80px 0 0 0;
-  padding-top: 100px; }
-  .login_content .login_home, .login_content .password_content, .login_content .ContentSearchHomeUser {
+.login_content, .ContentSearchHomeUser {
+  margin: 92px 0 0 0;
+  padding-top: 90px; }
+  .login_content .login_home, .login_content .ContentSearchHomeUser {
     padding: 0 12%; }
-    .login_content .login_home .item-input, .login_content .login_home .password_content, .login_content .login_home .ContentSearchHomeUser {
+    .login_content .login_home .item-input, .login_content .login_home .ContentSearchHomeUser {
       border: 1px solid #CDCACA;
       border-radius: 8px;
       height: 52px;
       font-weight: bold;
       background-color: #999999;
       padding: 6px 0 2px 16px; }
-      .login_content .login_home .item-input ::-webkit-input-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      .login_content .login_home .item-input ::-webkit-input-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* WebKit browsers */
         color: #111 !important;
         font-size: 20px !important;
         padding-top: 5px !important; }
-      .login_content .login_home .item-input :-moz-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      .login_content .login_home .item-input :-moz-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* Mozilla Firefox 4 to 18 */
         color: #111 !important;
         font-size: 20px !important;
         padding-top: 5px !important;
         opacity: 1; }
-      .login_content .login_home .item-input ::-moz-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      .login_content .login_home .item-input ::-moz-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* Mozilla Firefox 19+ */
         color: #111 !important;
         font-size: 20px !important;
         padding-top: 5px !important;
         opacity: 1; }
-      .login_content .login_home .item-input :-ms-input-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      .login_content .login_home .item-input :-ms-input-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* Internet Explorer 10+ */
         color: #111 !important;
         font-size: 20px !important;
         padding-top: 5px !important; }
-      .login_content .login_home .item-input input, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      .login_content .login_home .item-input input, .login_content .login_home .item-input .ContentSearchHomeUser {
         font-size: 20px; }
 
 /* SQUARED TWO */
@@ -7982,9 +7982,30 @@ body {
       font-family: 'Glober SemiBold';
       font-weight: bold; }
 
+/*.password_content {
+	@extend .login_content;
+	//margin: 220px 0 0 0;
+    margin: 219px 0 0 0;
+	padding-top: 75px;
+    background-color: #EFEFED;
+	.item-input {
+		
+		border: 1px solid $Altoa;
+		border-radius: 8px;
+		height: 50px;
+        line-height: normal;
+		font-weight: bold;
+		background-color: #E6E6E2;
+        padding: 6px 0 7px 16px;
+		
+		input {
+		font-size: 17px;
+		line-height: 30px;
+        }
+	}
+}*/
 .password_content {
-  margin: 219px 0 0 0;
-  padding-top: 75px;
+  /*@extend .login_content;   */
   background-color: #EFEFED; }
   .password_content .item-input {
     border: 1px solid #CDCACA;
@@ -8022,29 +8043,11 @@ body {
       font-size: 17px;
       line-height: 30px; }
 
-/*.item-input {
-	background-color: $Mercury;
-	
-	border: 1px solid $Altoa;
-	border-radius: 8px;
-	@extend .item-input;
-	
-		input {
-			-moz-appearance: none;
-			-moz-box-flex: 1;
-			background-color: transparent;
-			border-radius: 0;
-			flex: 1 1 220px;
-			margin: 0;
-			padding-right: 24px;
-			font-size: 17px;			
-		}		
-}*/
 .password_home {
   padding: 0 12%; }
 
 .password_home_top {
-  margin-top: -20px; }
+  margin-top: 56px; }
 
 .password_icon {
   float: left;
@@ -8166,7 +8169,7 @@ body {
       font-family: 'Glober Thin'; }
 
 .patient_content {
-  margin: 17px 0 0 4%;
+  margin: 17px 0 0 0;
   padding-top: 95px; }
 
 .button.button-energized {
@@ -8483,7 +8486,7 @@ body {
   top: 7px !important; }
 
 .PatientDetailsHome {
-  padding-left: 7%; }
+  padding: 4%; }
   .PatientDetailsHome span {
     position: relative;
     top: 4px; }
@@ -9485,13 +9488,13 @@ a {
   background-color: #EFEFED;
   height: 63px;
   position: relative;
-  top: 136px; }
+  top: 141px; }
 
 .bar-TitleLess-terms-IOS {
   display: block;
   background-color: #EFEFED;
   height: 63px;
-  margin-top: 142px; }
+  margin-top: 147px; }
 
 .TitleLess {
   font-family: 'Glober Bold';
@@ -10629,3 +10632,9 @@ input, button, select, textarea {
   content: "\f12a";
   font-size: 33px !important;
   color: #352D2D; }
+
+.has-footer {
+  bottom: 48px; }
+
+.currMedicationList {
+  top: -5px !important; }
