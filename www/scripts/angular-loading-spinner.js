@@ -40,7 +40,7 @@
 						 }, 100); 
                     }else{
                         elm.addClass('ng-hide');
-						/*$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+						$ionicPlatform.registerBackButtonAction(function (event, $state) {	
 							if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 								 ($rootScope.currState.$current.name=="tab.receipt") || 	
 								 ($rootScope.currState.$current.name=="tab.videoConference") ||
@@ -57,15 +57,15 @@
 									navigator.app.backHistory();
 									
 								}
-						}, 100); */
-						$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+						}, 100); 
+						/*$ionicPlatform.registerBackButtonAction(function (event, $state) {	
 							if($rootScope.currState.$current.name=="tab.login"){									 
 									navigator.app.exitApp();
 									//alert('a1');
 								}else {
 									
 								}
-						}, 100); 
+						}, 100); */
                     }
                 });
             }

@@ -29,7 +29,7 @@
 						<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
 						<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
 						<select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
-							<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + PolicyNo + '@' + healthPlanID == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber}}</span></b></option>
+							<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + PolicyNo + '@' + healthPlanID == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumberLong}}</span></b></option>
 							<option value=""><b>Add a new health plan</b></option>
 						</select>
 					</div>

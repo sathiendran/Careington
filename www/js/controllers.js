@@ -109,7 +109,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.appoinmentStyle = "  margin-top: -5px;";
 		$rootScope.appointContent = "margin: 85px 0 0 0;";
         $rootScope.MenuIconBottom = "top: 4px;";
-        $rootScope.patientsubHeaderInnerStyle = "margin-top: 2px;";
+        $rootScope.patientsubHeaderInnerStyle = "margin-top: 0px;";
+		$rootScope.waitingContentIos = "margin-top: 124px; ";
         $rootScope.BackBotton = "top: 7px; position: relative;";
         $rootScope.Appoinmentwaitcenter = "left: -27px;";
         $rootScope.PaymentStyle = "top: 6px;position: relative;";
@@ -221,11 +222,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.providerItamTop  = "top: 6px;";
 		$rootScope.appointContent = "margin: 76px 0 0 0;";
 		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
-		 $rootScope.MarginHomeTop = "margin-top: -60px;"; 
+		 $rootScope.MarginHomeTop = "margin-top: -60px;";
+		$rootScope.waitingContentIos = "margin-top: 120px; ";		 
         $rootScope.providerItamMarginTop  = "";
     }
    
-	/*$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.addCard") ||
 			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
@@ -252,9 +254,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}else {                
                 navigator.app.backHistory(); 
             }
-        }, 100); 	*/
+        }, 100); 	
 		
-		$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+		/* $ionicPlatform.registerBackButtonAction(function (event, $state) {	
 			if($rootScope.currState.$current.name=="tab.login"){
                 navigator.app.exitApp();
             }else if($rootScope.currState.$current.name=="tab.cardDetails"){
@@ -271,7 +273,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}else {                
                
             }
-        }, 100); 	
+        }, 100); */	
 		
 	
 /*	var dtNow = new Date("2015-05-26T13:20:04.268Z");	*/
@@ -946,6 +948,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'memberName': index.memberName,
 								'subsciberId': index.subsciberId,
 								'payerId': index.payerId,
+								'policyNumberLong': index.policyNumber,
 								'policyNumber': index.policyNumber.substring(index.policyNumber.length-4, index.policyNumber.length),
 							});
 						});	
