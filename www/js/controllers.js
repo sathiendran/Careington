@@ -383,10 +383,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//});
 	}	
 	
+	 $scope.$watch('userLogin.UserEmail', function(UserEmail){	
+			if($localstorage.get('username') == UserEmail) {
+				if($localstorage.get('username')) {
+					$rootScope.chkedchkbox = true;
+					}
+			}
+			if($localstorage.get('username') != UserEmail) {
+					 $localstorage.set('username', ""); 
+					$rootScope.chkedchkbox = false;					
+			} else {			
+				if($("#squaredCheckbox").prop('checked') == true) {
+					$rootScope.chkedchkbox = true;
+				}	
+			}
+		
+		  //$localstorage.set('chkedchkbox', "");	
+    });
+	
 	
 	
 
     $('#UserEmail').val($localstorage.get('username'));
+	
     
 	$scope.userLogin = {};
     $scope.userLogin.UserEmail = $localStorage.oldEmail;
@@ -405,22 +424,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Please enter a valid email address";
 				$rootScope.Validation($scope.ErrorMessage);
 			}
-			else {	
-				if($scope.userLogin.remember) {
+			else {
+				if($("#squaredCheckbox").prop('checked') == true) {
                     $localstorage.set('username', $("#UserEmail").val());
                     $localStorage.oldEmail = $scope.userLogin.UserEmail;  
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
+					$rootScope.chkedchkbox = true;
 
                 } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
                    $localStorage.oldEmail = '';
-                   $localstorage.set('username', ""); 
+                   $localstorage.set('username', ""); 				  				
+				   $rootScope.chkedchkbox = false;
                 }                
 				$scope.doGetFacilitiesList();
 			}
 		}
 		
     };
+	
+	 
 	
 	$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 	
@@ -3574,7 +3597,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     };
     initConferenceRoomHub();
     
-	$rootScope.myVideoHeight = $window.innerHeight - 40;
+	$rootScope.myVideoHeight = $window.innerHeight - 38;
     $rootScope.myVideoWidth = $window.innerWidth;
     $rootScope.otherVideoTop = $window.innerHeight - 150;
     $rootScope.controlsStyle = false;
@@ -3585,11 +3608,15 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     
     $rootScope.muteIconClass = 'ion-ios-mic callIcons';
     $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
-    
+	
     var apiKey = $rootScope.videoApiKey;
     var sessionId = $rootScope.videoSessionId;
     var token = $rootScope.videoToken;
-    
+	/*
+    var apiKey = "45191172";
+    var sessionId = "1_MX40NTE5MTE3Mn5-MTQzOTQ2MDk3ODA4OH5wSEpoU091NXJkK01sZzFoUDV4aXhVWWh-fg";
+    var token = "T1==cGFydG5lcl9pZD00NTE5MTE3MiZzaWc9MzAyOTYzMTExMGJkYTJhYmI3MDMwNTNiM2Q4MWM5ZjU1ZWZkNjlkODpzZXNzaW9uX2lkPTFfTVg0ME5URTVNVEUzTW41LU1UUXpPVFEyTURrM09EQTRPSDV3U0Vwb1UwOTFOWEprSzAxc1p6Rm9VRFY0YVhoVldXaC1mZyZjcmVhdGVfdGltZT0xNDM5NDYwOTc1Jm5vbmNlPTcwNDQzJnJvbGU9UFVCTElTSEVS";
+    */
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
 
@@ -4054,3 +4081,4 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         }
     };
 })
+

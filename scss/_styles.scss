@@ -1044,7 +1044,8 @@ body {
 				margin-left: -160px;
 			}
 			.AddCard {
-				margin-left: 0px;
+				margin-left: 8px;
+				margin-top: 7px;
 				img {
 					width: 30px; height: 30px;
 				}
@@ -1059,7 +1060,8 @@ body {
 				margin-left: -160px;
 			}
 			.AddCard {
-				margin-left: 0px;
+				margin-left: 8px;
+				margin-top: 7px;
 				img {
 					width: 30px; height: 30px;
 				}
@@ -1247,7 +1249,7 @@ body {
 //Receipt
 .ReceiptContent {
 	margin: 117px 0 0 0; 
-	padding-top: 30px;
+	padding-top: 20px;
 	.PaymentSuccess {
 		font-size: 35px; text-align: center; padding-top: 41px; color: #60605D;
 		.PaymentConfirmation {
@@ -3103,7 +3105,7 @@ font-family: $fontFamily_regular;
   top: 6px;
   position: relative; 
 }
-.ion-navicon-round:before {
+.ion-navicon-round:before { 
   content: "\f20d";
   font-size: 40px;
   color: #352D2D;
@@ -3115,7 +3117,7 @@ font-family: $fontFamily_regular;
   color: #352D2D;
 }
 
-.has-footer {
+.has-footer { 
 	bottom: 48px;
 }
 
@@ -3124,6 +3126,14 @@ font-family: $fontFamily_regular;
 }
 
 .ion-android-time:before {
-	font-size: 25px;
-    font-weight: bold;
+	font-size: 25px;    
+}
+
+.ion-plus-round:before {
+	color: white;
+    background-color: #A3D38B;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 25px;
+    width: 30px;
 }
