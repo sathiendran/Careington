@@ -226,6 +226,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.waitingContentIos = "margin-top: 120px; ";		 
         $rootScope.providerItamMarginTop  = "";
     }
+   $scope.showSearchInput = function(){
+		var searchStyle = $('#divSearchInput').css('display');
+		if(searchStyle == 'none'){
+			if($('#divSearchInput').hasClass("ng-hide"))
+				$('#divSearchInput').removeClass('ng-hide');
+			if($('#divSearchInput').hasClass("slideOutUp"))
+				$('#divSearchInput').removeClass('slideOutUp');
+			$('#divSearchInput').addClass('animated slideInDown');
+			$('#divSearchInput').toggle();
+		}else{
+			if($('#divSearchInput').hasClass("slideInDown")){
+				$('#divSearchInput').removeClass('slideInDown');
+			}
+			$('#divSearchInput').addClass('animated slideOutUp');
+			setTimeout(function(){
+				
+				$('#divSearchInput').toggle();
+			}, 500);
+		}
+   };
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.addCard") ||
@@ -517,11 +537,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$state.go('tab.password');
 	}
 	
+	$('#password').focus(function(){
+		setTimeout(function(){
+			$('.password_home').css("margin-top", "-70px");
+		}, 100);
+        
+    });
+	
+	$scope.goBackProvider = function() {
+		setTimeout(function(){
+			$('.password_home').css("margin-top", "-10px");
+		}, 100);
+		$state.go('tab.provider');
+	};
+	
 	//Password functionality	
 	$scope.pass = {};
 	
 	$scope.doGetToken = function () {
-	
+		$('.password_home').css("margin-top", "-10px");	
 		if($('#password').val() == ''){
 			$scope.ErrorMessage = "Please enter your password";
 			$rootScope.Validation($scope.ErrorMessage);

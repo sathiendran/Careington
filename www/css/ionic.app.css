@@ -8621,7 +8621,8 @@ body {
     .consultChargeNoPlanContent .AddCardNoPlan .healthPlan_text {
       margin-left: -160px; }
     .consultChargeNoPlanContent .AddCardNoPlan .AddCard {
-      margin-left: 0px; }
+      margin-left: 8px;
+      margin-top: 7px; }
       .consultChargeNoPlanContent .AddCardNoPlan .AddCard img {
         width: 30px;
         height: 30px; }
@@ -8630,7 +8631,8 @@ body {
   .consultChargeNoPlanContent .AddCardDetails .healthPlan_text {
     margin-left: -160px; }
   .consultChargeNoPlanContent .AddCardDetails .AddCard {
-    margin-left: 0px; }
+    margin-left: 8px;
+    margin-top: 7px; }
     .consultChargeNoPlanContent .AddCardDetails .AddCard img {
       width: 30px;
       height: 30px; }
@@ -8795,7 +8797,7 @@ select {
 
 .ReceiptContent {
   margin: 117px 0 0 0;
-  padding-top: 30px; }
+  padding-top: 20px; }
   .ReceiptContent .PaymentSuccess {
     font-size: 35px;
     text-align: center;
@@ -10090,7 +10092,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -moz-background-size: 200px 300px;
   -o-background-size: 200px 300px;
   background-size: 200px 300px;
-  padding-top: 220px; }
+  padding-top: 100px; }
   .waitingRoomImage .WaitingContent {
     color: #858585; }
     .waitingRoomImage .WaitingContent .WaitingMessage {
@@ -10638,3 +10640,14 @@ input, button, select, textarea {
 
 .currMedicationList {
   top: -5px !important; }
+
+.ion-android-time:before {
+  font-size: 25px; }
+
+.ion-plus-round:before {
+  color: white;
+  background-color: #A3D38B;
+  padding: 2px;
+  border-radius: 5px;
+  font-size: 25px;
+  width: 30px; }
