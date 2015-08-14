@@ -982,6 +982,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						{
 							$rootScope.enableAddHealthPlan = "block";
 							$rootScope.disableAddHealthPlan = "none;";					
+							$rootScope.healthPlanPage = "initial";
+							$rootScope.consultChargeNoPlanPage = "none";
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							//$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
@@ -993,6 +995,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						{
 							$rootScope.enableAddHealthPlan = "none";
 							$rootScope.disableAddHealthPlan = "block;";
+							$rootScope.healthPlanPage = "initial";
+							$rootScope.consultChargeNoPlanPage = "none";
 							$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$state.go('tab.applyPlan');
@@ -1276,6 +1280,30 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.copayAmount = $rootScope.consultationAmount;
 		$state.go('tab.consultChargeNoPlan');
 	}
+	
+	 $scope.showConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {		
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientFirstName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+		$rootScope.BackPage = P_Page;
+		$rootScope.copayAmount = $rootScope.consultationAmount;
+		$rootScope.healthPlanPage = "none";
+		$rootScope.consultChargeNoPlanPage = "initial";
+		//$state.go('tab.consultChargeNoPlan');
+	}
+	
+	$scope.backAddHealthPlan = function() {
+		if($rootScope.healthPlanPage == "initial") {
+			$state.go('tab.consultCharge');
+		} else {
+			$rootScope.healthPlanPage = "initial";
+			$rootScope.consultChargeNoPlanPage = "none";
+		}
+			
+	}
+	
 	$scope.goToNextPage = function() {
 			$state.go($rootScope.BackPage);
 	}
