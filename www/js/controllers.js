@@ -539,7 +539,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$('#password').focus(function(){
 		setTimeout(function(){
-			$('.password_home').css("margin-top", "-70px");
+			$('.password_home').css("margin-top", "-90px");
 		}, 100);
         
     });
