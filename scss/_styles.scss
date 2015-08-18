@@ -195,12 +195,12 @@ body {
 			position: absolute;
 			left: 0px;
 			top: 0px;
-			background: -webkit-linear-gradient(top, #A9C985 0%, #A9C985 100%);
-			background: -moz-linear-gradient(top, #A9C985 0%, #A9C985 100%);
-			background: -o-linear-gradient(top, #A9C985 0%, #A9C985 100%);
-			background: -ms-linear-gradient(top, #A9C985 0%, #A9C985 100%);
-			background: linear-gradient(top, #A9C985 0%, #A9C985 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A9C985', endColorstr='#A9C985',GradientType=0 );
+			background: -webkit-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+			background: -moz-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+			background: -o-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+			background: -ms-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+			background: linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9BCA82', endColorstr='#9BCA82',GradientType=0 );
 		}
 			label:after {
 				@include measurement(0, 0, 20px, 8px);	
@@ -242,12 +242,13 @@ body {
 
 
 .button.button-positive.button-outline {	
-	@include buttons($Feijoa, normal, 7px, 19px, 35px );	
+	@include buttons(#9BCA82, normal, 5px, 19px, 35px );	
 	color: #fff;
 	width: 111px;
 	line-height: 35px;
 	padding-top: 5px;
-	/*background: linear-gradient(#9BCA83, #93C07E); */
+	/* background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);*/
+	background: linear-gradient(#9BCA82, #9BCA82); 
 	
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
@@ -258,8 +259,8 @@ body {
 }
 
 .button.button-outline.button-positive.activated {
-	background-color: $Feijoa;
-	border-color: $Feijoa;
+	background-color: #9BCA82;
+	border-color: #9BCA82;
 }
 
 .footer {
@@ -941,6 +942,61 @@ body {
 	margin: 140px 0 0 0; // 133px;
     padding-bottom: 30px;
     padding-top: 22px;
+	.consultChargeNoPlanText {
+		padding-top: 5px;
+	}
+	.NoPlanHeader {
+		color: #5C5C5C; text-align: center;
+	}
+	.NoPlanText {  
+		margin-left: 20px !important; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;
+	}
+	.NoPlanAddCardDropdown {
+			text-align:left; 
+			.demo { 
+				margin-left: 50px;
+				option {
+					padding:10px;
+				}
+			}
+		}
+	
+	.AddCardNoPlan {
+		padding-top: 60px; 
+			.healthPlan_text {
+				margin-left: -160px;
+			}
+			.AddCard {
+				margin-left: 8px;
+				margin-top: 7px;
+				img {
+					width: 30px; height: 30px;
+				}
+				span {
+					margin-left:0px;
+				}
+			}
+	}
+	
+	.AddCardDetails {		
+			.healthPlan_text {
+				margin-left: -160px;
+			}
+			.AddCard {
+				margin-left: 8px;
+				margin-top: 7px;
+				img {
+					width: 30px; height: 30px;
+				}
+				span {
+					margin-left:0px;
+				}
+			}
+	}
+	
+	.NoPlanBottomText {
+		text-align: justify; padding-bottom: 50px;
+	}
 }
 
 .button.button-royal {
@@ -1026,7 +1082,7 @@ body {
 	.NoPlanHeader {
 		color: #5C5C5C; text-align: center;
 	}
-	.NoPlanText { 
+	.NoPlanText {  
 		margin-left: 20px !important; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;
 	}
 	.NoPlanAddCardDropdown {
@@ -1873,13 +1929,10 @@ body {
     background-color: #DD472D;
 	background-image: linear-gradient(0deg, #DD472D, #DD472D 50%, transparent 50%);
 	
-/*	box-shadow: 0px 4px 2px #BD6E5D;
-	-moz-box-shadow: 0px 5px 2px #BD6E5D;
-  -webkit-box-shadow: 0px 5px 2px #BD6E5D; 
-  box-shadow: inset 0 -13px 10px -10px #8E8A8A;  #B36C5D;*/
-    box-shadow: inset 0 -13px 10px -11px #8E8A8A;
-	-moz-box-shadow: inset 0 -13px 10px -11px #8E8A8A;
-  -webkit-box-shadow: inset 0 -13px 10px -11px #8E8A8A;
+
+    box-shadow: inset 0 -13px 10px -11px #6D6C6C;
+	-moz-box-shadow: inset 0 -13px 10px -11px #6D6C6C;
+  -webkit-box-shadow: inset 0 -13px 10px -11px #6D6C6C;
   
 }
 
@@ -2105,6 +2158,12 @@ text-align:center
 	margin: 81px 0 0 0;
 	font-family:$fontFamily_regular;
 }
+
+.ContentUserHome {
+	margin: 70px 0 0 0;
+	font-family:$fontFamily_regular;
+}
+
 .listImgView {
 width:45px !important; height:45px; border-radius: 50%;margin-top: 1px; margin-left: 8px;
 }
@@ -2627,7 +2686,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 .UserHme {
 	padding: 0 0%;
-	margin-top: 70px;
+	
 	border-color:#000;
 	.UserHmeSub-Android {				
 				padding:12px 10px 5px 10px;
@@ -2704,12 +2763,13 @@ form.ng-submitted input.ng-valid + i.icon.error {
 					font-size: 19px;
 					color:#616462;height: 21px;  margin-top: 0px;
 					font-family: $fontFamily_regular;	position: relative;
-					top: 4px;
+					top: 2px;
 					}
 
 				}
 		}
 }
+
 
 .UserHomePatient {
 	cursor:pointer;
@@ -2775,7 +2835,8 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 
 .menuiconIOS {  position: relative;top: 4px; }
 
-.subHeaderTop { top: 86px; }
+.subHeaderTop { top: 70px; padding-top: 19px;
+    height: 87%; }
 
 #BackButtonIcon { color:#000; margin-top: 15px; display: block !important;}
 
