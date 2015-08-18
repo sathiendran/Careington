@@ -2103,7 +2103,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			if(typeof $scope.cardPaymentId.addNewCard != 'undefined') {
 				$rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
 			} else if(typeof $scope.cardPaymentId.addNewCard == 'undefined') {
-				if(typeof $scope.cardPaymentId.addNewCard == 'undefined'){
+				if(typeof $rootScope.userCardDetails == 'undefined'){
 					$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
 					$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
 				}else{
