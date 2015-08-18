@@ -2770,9 +2770,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
 						padding-top: 5px !important;	
 						}
 					input {
-					font-size: 21px;
+					font-size: 19px;
 					color:#616462;height: 21px;  margin-top: 0px;
-					font-family: $fontFamily_regular;	
+					font-family: $fontFamily_regular;	position: relative;
+						top: 2px;
 					}
 
 				} 
@@ -3202,7 +3203,7 @@ font-family: $fontFamily_regular;
 	top: -5px !important;
 }
 
-.ion-android-time:before {
+.ion-android-time:before { 
 	font-size: 25px;    
 }
 
@@ -3213,4 +3214,4 @@ font-family: $fontFamily_regular;
     border-radius: 5px;
     font-size: 25px;
     width: 30px;
-}
+}  

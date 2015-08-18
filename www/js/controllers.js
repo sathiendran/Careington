@@ -239,7 +239,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			if($rootScope.AndroidDevice) {
 				$('.ContentUserHome').animate({"margin" : "133px 0 0 0"}, "slow");
 			} else {
-				$('.ContentUserHome').animate({"margin" : "128px 0 0 0"}, "slow");
+				$('.ContentUserHome').animate({"margin" : "130px 0 0 0"}, "slow");
 			}		
 			
 		}else{
