@@ -50,7 +50,7 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
 	/*$rootScope.online = navigator.onLine;	
 	$rootScope.IsOnline = navigator.onLine;
@@ -241,18 +241,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			} else {
 				$('.ContentUserHome').animate({"margin" : "128px 0 0 0"}, "slow");
 			}		
-			//$('#divSearchInput').toggle();
+			
 		}else{
 			if($('#divSearchInput').hasClass("slideInDown")){
 				$('#divSearchInput').removeClass('slideInDown');
 			}
 			$('#divSearchInput').addClass('animated slideOutUp');
 			$('.ContentUserHome').animate({"margin" : "70px 0 0 0"}, "slow");
-			$("#divSearchInput").css("display", "none");
-			/*setTimeout(function(){
-				
-				$('#divSearchInput').toggle();
-			}, 1000);*/
+			setTimeout(function(){		
+				$("#divSearchInput").css("display", "none");			
+			}, 500);	
 		}
    };
    
@@ -546,27 +544,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$state.go('tab.password');
 	}
 	
-	$('#password').focus(function(){
-	//	setTimeout(function(){
-			$('.password_home').animate({"margin-top" : "-130px"}, 900);
-
-		//}, 100);
-		
-        
-    });
+	$scope.textboxUp = function() {
+		$timeout(function(){			
+			$ionicScrollDelegate.scrollTo(0, 150, true);
+		}, 500);
+    };
 	
-	$scope.goBackProvider = function() {
-		//setTimeout(function(){
-			$('.password_home').css({"margin-top" : "-85px"});
-	//	}, 100);
+	
+	
+	$scope.goBackProvider = function() {		
 		$state.go('tab.provider');
 	};
 	
 	//Password functionality	
 	$scope.pass = {};
-	//$('.password_home').animate({"margin-top" : "-50px"}, "slow");
-	$scope.doGetToken = function () {
-		$('.password_home').animate({"margin-top" : "-85px"}, 900);	
+	$scope.doGetToken = function () {		
 		if($('#password').val() == ''){
 			$scope.ErrorMessage = "Please enter your password";
 			$rootScope.Validation($scope.ErrorMessage);

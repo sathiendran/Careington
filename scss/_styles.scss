@@ -2684,10 +2684,15 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .activeCallIcon{
     color: red;
 }
+.userSearch-Android {
+	position: relative; top: 108px; border-bottom: 1px solid #C4C5C3;
+}
+.userSearch-IOS {
+	position: relative; top: 110px; border-bottom: 1px solid #C4C5C3;
+}
+
 .UserHme {
 	padding: 0 0%;
-	
-	border-color:#000;
 	.UserHmeSub-Android {				
 				padding:12px 10px 5px 10px;
 				.item-input {
@@ -2733,40 +2738,44 @@ form.ng-submitted input.ng-valid + i.icon.error {
 						color:    $Tundora !important;
 						font-size: 19px !important;
 						padding-top: 5px !important;
+						font-family: $fontFamily_regular;
 						position: relative;
-						top: 2px !important;
+						top: 2px;
+						
 					}
 					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 						   color:    $Tundora !important;
 						  font-size: 19px !important;
-							padding-top: 5px !important;
-						   opacity:  1;
+						   font-family: $fontFamily_regular;
 						   position: relative;
-							top: 2px !important;
+						top: 2px;
+						padding-top: 5px !important;
+						  
 						}
 					::-moz-placeholder { /* Mozilla Firefox 19+ */
 						   color:    $Tundora !important;
 						  font-size: 19px !important;
-						padding-top: 5px !important;
-						   opacity:  1;
+						   font-family: $fontFamily_regular;
 						   position: relative;
-							top: 2px !important;
+						top: 2px;
+						padding-top: 5px !important;
+						   
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
 						   color:    $Tundora !important;
 						   font-size: 19px !important;
-						padding-top: 5px !important;
-							position: relative;
-							top: 2px !important;
+						font-family: $fontFamily_regular;
+						position: relative;
+						top: 2px;
+						padding-top: 5px !important;	
 						}
 					input {
-					font-size: 19px;
+					font-size: 21px;
 					color:#616462;height: 21px;  margin-top: 0px;
-					font-family: $fontFamily_regular;	position: relative;
-					top: 2px;
+					font-family: $fontFamily_regular;	
 					}
 
-				}
+				} 
 		}
 }
 
