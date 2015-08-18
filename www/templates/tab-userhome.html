@@ -9,15 +9,15 @@
 		</div>
 		<h1 class="{{title_patient}} {{HeaderList}}" style="margin-left: -30px;">Patient List</h1>	  
 
-		<a href="#" ng-click="showSearchInput();"> 
+		
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
 				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who needs care today?</div>
-				<div class="SearchImage">
-					<i class="ion-search" style="float: right; font-size: 26px;color: #616462;"></i>
-				</div>
-
+				
+					<div class="SearchImage">
+						<a href="#" ng-click="showSearchInput();"> <i class="ion-search" style="float: right; font-size: 26px;color: #616462;"></i></a>
+					</div>				
 			</div> 
-		</a>
+		
 	   
 	</ion-header-bar> 
 
@@ -25,8 +25,8 @@
 
 
 <ion-view title="User Home">
-<div class="UserHme" style="position: relative; top: 110px; border-bottom: 1px solid #C4C5C3;">
-	<div id="divSearchInput" class="UserHmeSub-{{deviceName}}" _ng-show="showDetails" style="display: none;">
+<div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
+	<div  class="UserHmeSub-{{deviceName}}">
         <label class="item-input"  >
             <input type="search" placeholder="Search" id="searchQuery" ng-model="data.searchQuery"  >
         </label>
