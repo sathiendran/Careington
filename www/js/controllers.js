@@ -570,6 +570,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				userTypeId: 1,
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
+					//Get default payment profile from localstorage if already stored.
+					$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
+					
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
 					if(typeof data.access_token == 'undefined') {
@@ -2100,7 +2103,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			if(typeof $scope.cardPaymentId.addNewCard != 'undefined') {
 				$rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
 			} else if(typeof $scope.cardPaymentId.addNewCard == 'undefined') {
-				$rootScope.paymentProfileId = $rootScope.userCardDetails
+				if(typeof $scope.cardPaymentId.addNewCard == 'undefined'){
+					$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+					$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+				}else{
+					$rootScope.paymentProfileId = $rootScope.userCardDetails;
+				}
 			} 
 	
 			if ($scope.accessToken == 'No Token') {
@@ -2115,6 +2123,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				paymentProfileId: parseInt($rootScope.paymentProfileId),
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
+					//To save the last used card for user.
+					$localstorage.set("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
 					$rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
 					$scope.CreditCardDetails = data;					
 					$state.go('tab.receipt');	
@@ -3561,6 +3571,15 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					if($rootScope.consultationAmount > 0)	{
 						$rootScope.doGetPatientPaymentProfiles();	
 						$state.go('tab.consultCharge'); 
+						if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
+							$('#addNewCard').val() == 'Choose Your Card'
+						}else{
+							$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+							$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+							$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+						}
+
+						
 					} else {
 						$state.go('tab.receipt'); 
 						$scope.ReceiptTimeout();
