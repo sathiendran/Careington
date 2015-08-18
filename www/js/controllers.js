@@ -3576,7 +3576,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 						$rootScope.doGetPatientPaymentProfiles();	
 						$state.go('tab.consultCharge'); 
 						if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
-							$('#addNewCard').val() == 'Choose Your Card'
+							$('#addNewCard').val() == 'Choose Your Card';
+							$rootScope.userDefaultPaymentProfileText = 'undefined';
 						}else{
 							$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
 							$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
