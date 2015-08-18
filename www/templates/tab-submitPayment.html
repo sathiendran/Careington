@@ -26,8 +26,8 @@
 							</select>							
 						</div>-->
 						<div  class="dropdownContainer">
-							<div style = "display: {{choosePaymentHide}};" class="viewport">Choose Your Card</div>
-							<div style = "display: {{choosePaymentShow}};" class="viewport">Card ending in...{{userCardNumber}}</div>
+							<div ng-if="choosePaymentHide == 'initial'" class="viewport">Choose Your Card</div>
+							<div ng-if="choosePaymentShow == 'initial'" class="viewport">Card ending in...{{userCardNumber}}</div>
 							 						
 							<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
 								<option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>Card ending in...{{getPayment.cardNumber}}</span></b></option> 

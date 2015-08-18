@@ -324,7 +324,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
           }
         }
     }
-    
+    //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
+	//$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
  $scope.toggleLeft = function() {
   $ionicSideMenuDelegate.toggleLeft();
         $scope.checkAndChangeMenuIcon();
@@ -572,6 +573,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					//Get default payment profile from localstorage if already stored.
 					$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
+					$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
 					
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
@@ -2124,7 +2126,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
 					//To save the last used card for user.
+					var cardSelectedText = $('#cardViewport').html();
 					$localstorage.set("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
+					$localstorage.set("CardText" + $rootScope.UserEmail, cardSelectedText);
 					$rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
 					$scope.CreditCardDetails = data;					
 					$state.go('tab.receipt');	
