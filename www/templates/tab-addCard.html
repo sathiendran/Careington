@@ -31,8 +31,8 @@
 								<option><b>Add a new card</b></option>
 							</select>
 						</div>-->
-						<div  class="dropdownContainer">
-							<!--
+							<!--<div  class="dropdownContainer">
+							
 							<div class="cardViewport">Choose Your Card</div>							
 							<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
 								<option><b>Choose Your Card</b></option>
@@ -48,8 +48,8 @@
 										<option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
 										<option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
 									</select>
-								</div>
-						</div>
+							</div>
+						
 					</div>
 			</div>
 			

@@ -60,7 +60,7 @@
 					<button class="button button-block button-royal"  type="submit" ng-click="GetConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.consultCharge')" style="padding: 3px;"  >
 							<span> Skip to Payment</span>
 					</button>
-				</div>
+				</div>				
 				<div class="scheduled_appointments_text" >
 					Don't use your health plan, pay full charge directly.
 				</div>
@@ -71,7 +71,7 @@
 	<!--Consult Charge End-->	
 	
 	<!--Add Health Plan Start-->		
-			<div style="display: {{healthPlanSection}}">
+			<div class="animated slideInUp"  style="display: {{healthPlanSection}}">
 				<div style="display: {{healthPlanPage}};">	
 					<div style="display: {{enableAddHealthPlan}}">	
 						<div class="healthPlan_header"  >				
@@ -114,7 +114,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="display: {{consultChargeNoPlanPage}};">
+				<div class="animated slideInUp" style="display: {{consultChargeNoPlanPage}};">
 					<div style="display: {{enableSubmitpayment}}">
 						<div class="healthPlan_header"  >
 							<div class="healthPlan_text NoPlanText" >Pay Using</div>

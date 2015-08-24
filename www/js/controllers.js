@@ -135,6 +135,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
 		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;"; 	
 		$rootScope.currentMedicationContent = "margin-top: 125px !important;";
+		$rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
     if($rootScope.IOSDevice) {
         $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
         $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
@@ -230,16 +231,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		var searchStyle = $('#divSearchInput').css('display');
 	
 		if(searchStyle == 'none'){
+			$("#divSearchInput").css("display", "block");
+		
 			if($('#divSearchInput').hasClass("ng-hide"))
 				$('#divSearchInput').removeClass('ng-hide');
 			if($('#divSearchInput').hasClass("slideOutUp"))
 				$('#divSearchInput').removeClass('slideOutUp');
 			$('#divSearchInput').addClass('animated slideInDown');
-			$("#divSearchInput").css("display", "block");
-			if($rootScope.AndroidDevice) {
-				$('.ContentUserHome').animate({"margin" : "133px 0 0 0"}, "slow");
-			} else {
-				$('.ContentUserHome').animate({"margin" : "130px 0 0 0"}, "slow");
+			
+			
+			var searchStyle1 = $('#divSearchInput').css('display');
+			if(searchStyle1 == 'block'){
+				if($rootScope.AndroidDevice) {
+					$('.ContentUserHome').animate({"margin" : "140px 0 0 0"}, 280);
+				} else {
+					$('.ContentUserHome').animate({"margin" : "138px 0 0 0"}, 280);
+				}
 			}		
 			
 		}else{
@@ -247,7 +254,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$('#divSearchInput').removeClass('slideInDown');
 			}
 			$('#divSearchInput').addClass('animated slideOutUp');
-			$('.ContentUserHome').animate({"margin" : "70px 0 0 0"}, "slow");
+			if($rootScope.AndroidDevice) {
+			
+				$('.ContentUserHome').animate({"margin" : "70px 0 0 0"}, 280);
+			} else {
+				$('.ContentUserHome').animate({"margin" : "75px 0 0 0"}, 280);
+			}	
+			
 			setTimeout(function(){		
 				$("#divSearchInput").css("display", "none");			
 			}, 500);	
@@ -374,7 +387,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$("#Error_Message").append(top);
-				//$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$("#notifications-top-center").addClass('animated ' + 'slideOutUp');
 				refresh_close();
 			//});
 	}
@@ -988,9 +1001,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	
 	$scope.openAddHealthPlanSection = function () {
-		$rootScope.consultChargeSection = "initial";
+		$rootScope.consultChargeSection = "block";
 		$rootScope.healthPlanSection = "none";
-		$rootScope.healthPlanPage = "initial";
+		$rootScope.healthPlanPage = "block";
 		$rootScope.consultChargeNoPlanPage = "none";		
 		$rootScope.chooseHealthHide = 'initial';
 		$rootScope.chooseHealthShow = 'none';
@@ -1037,14 +1050,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.enableAddHealthPlan = "block";
 							$rootScope.disableAddHealthPlan = "none;";
 							$rootScope.consultChargeSection = "none";
-							$rootScope.healthPlanSection = "initial";	
+							$rootScope.healthPlanSection = "block";	
 							//$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							//$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
 							$rootScope.consultChargeSection = "none";
 							$rootScope.disableAddHealthPlan = "none";
-							$rootScope.healthPlanSection = "initial";
-							$rootScope.enableAddHealthPlan = "initial";							
+							$rootScope.healthPlanSection = "block";
+							$rootScope.enableAddHealthPlan = "block";							
 							$state.go('tab.consultCharge');						
 							
 						}
@@ -1054,11 +1067,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.enableAddHealthPlan = "none";
 							$rootScope.disableAddHealthPlan = "block;";
 							$rootScope.consultChargeSection = "none";
-							$rootScope.healthPlanSection = "initial";
+							$rootScope.healthPlanSection = "block";
 							//$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							$rootScope.consultChargeSection = "none";
-							$rootScope.healthPlanSection = "initial";
+							$rootScope.healthPlanSection = "block";
 							$state.go('tab.consultCharge');		
 						}
 					}	
@@ -1330,7 +1343,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
     });
 		
-    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {		
+    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {	
+	//$("#aaaa").addClass('animated ' + 'slideInUp');	
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -1339,9 +1353,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.BackPage = P_Page;
 		$rootScope.copayAmount = $rootScope.consultationAmount;
 		$rootScope.consultChargeSection = "none";
-		$rootScope.healthPlanSection = "initial";
+		$rootScope.healthPlanSection = "block";
 		$rootScope.healthPlanPage = "none";
-		$rootScope.consultChargeNoPlanPage = "initial";
+		$rootScope.consultChargeNoPlanPage = "block";
 		//$state.go('tab.consultChargeNoPlan');
 	}
 	
@@ -1354,26 +1368,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.BackPage = P_Page;
 		$rootScope.copayAmount = $rootScope.consultationAmount;
 		$rootScope.healthPlanPage = "none";
-		$rootScope.consultChargeNoPlanPage = "initial";
+		$rootScope.consultChargeNoPlanPage = "block";
 		//$state.go('tab.consultChargeNoPlan');
 	}
 	
 	$scope.backAddHealthPlan = function() {
-		if($rootScope.healthPlanPage == "initial") {
+		if($rootScope.healthPlanPage == "block") {
 			$state.go('tab.consultCharge');
 		} else {
-			$rootScope.healthPlanPage = "initial";
+			$rootScope.healthPlanPage = "block";
 			$rootScope.consultChargeNoPlanPage = "none";
 		}
 			
 	}
 	
 	$scope.backConsultCharge = function() {
-		if($rootScope.consultChargeSection == "initial") {
+		if($rootScope.consultChargeSection == "block") {
 			$state.go('tab.ConsentTreat');
-		} else if($rootScope.healthPlanSection == "initial") {			
+		} else if($rootScope.healthPlanSection == "block") {			
 			$rootScope.healthPlanSection = "none";
-			$rootScope.consultChargeSection = "initial";
+			$rootScope.consultChargeSection = "block";
 		}
 			
 	}
@@ -2201,7 +2215,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-		$rootScope.consultChargeSection = "initial";
+		$rootScope.consultChargeSection = "block";
 		$rootScope.healthPlanSection = "none";	
 		$rootScope.doPutConsultationSave();       
     }
