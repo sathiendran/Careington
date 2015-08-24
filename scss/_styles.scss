@@ -941,7 +941,7 @@ body {
 .consultCharge_content {
 	margin: 140px 0 0 0; // 133px;
     padding-bottom: 30px;
-    padding-top: 22px;
+    padding-top: 36px;
 	.consultChargeNoPlanText {
 		padding-top: 5px;
 	}
@@ -2711,23 +2711,27 @@ form.ng-submitted input.ng-valid + i.icon.error {
 						color:    $Tundora !important;
 						font-size: 19px !important;
 						padding-top: 5px !important;
+						font-family: $fontFamily_regular;	
 					}
 					:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
 						   color:    $Tundora !important;
 						  font-size: 19px !important;
 							padding-top: 5px !important;
 						   opacity:  1;
+						   font-family: $fontFamily_regular;	
 						}
 					::-moz-placeholder { /* Mozilla Firefox 19+ */
 						   color:    $Tundora !important;
 						  font-size: 19px !important;
 						padding-top: 5px !important;
 						   opacity:  1;
+						   font-family: $fontFamily_regular;	
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
 						   color:    $Tundora !important;
 						   font-size: 19px !important;
 						padding-top: 5px !important;
+						font-family: $fontFamily_regular;	
 						}
 					input {
 					font-size: 19px;
@@ -3226,7 +3230,7 @@ font-family: $fontFamily_regular;
 }  
 
 
-.animated {
+.animated { 
 		
 	   -webkit-animation-duration: 0.35s !important;
 	   -moz-animation-duration: 0.35s !important;

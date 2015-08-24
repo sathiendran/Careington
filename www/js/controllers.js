@@ -1342,6 +1342,28 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$('div.cardViewport').text($("option:selected", this).text());
         }
     });
+	
+	$("#addNewCard_addCard").change(function() {
+        console.log( $('option:selected', this).text() );
+		if($('option:selected', this).text() == 'Add a new card') {
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
+			console.log($rootScope.submitPayBack);
+			$state.go('tab.cardDetails');
+		} else {
+			$('div.cardViewport').text($("option:selected", this).text());
+        }
+    });
+	
+	$("#addNewCard_submitPay").change(function() {
+        console.log( $('option:selected', this).text() );
+		if($('option:selected', this).text() == 'Add a new card') {
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
+			console.log($rootScope.submitPayBack);
+			$state.go('tab.cardDetails');
+		} else {
+			$('div.cardViewport').text($("option:selected", this).text());
+        }
+    });
 		
     $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {	
 	//$("#aaaa").addClass('animated ' + 'slideInUp');	
@@ -2110,7 +2132,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.cardPaymentId = [];	
     $scope.doPostCoPayDetails = function () {		
 		
-		if($('#addNewCard').val() == 'Choose Your Card'){			
+		if($('#addNewCard').val() == 'Choose Your Card' || $('#addNewCard_addCard').val() == 'Choose Your Card' || $('#addNewCard_submitPay').val() == 'Choose Your Card'){			
 			$scope.ErrorMessages = "Please select the card to use for payment";
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 			
@@ -3591,10 +3613,14 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 						$state.go('tab.consultCharge'); 
 						if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
 							$('#addNewCard').val() == 'Choose Your Card';
+							$('#addNewCard_addCard').val() == 'Choose Your Card';
+							$('#addNewCard_submitPay').val() == 'Choose Your Card';
 							$rootScope.userDefaultPaymentProfileText = 'undefined';
 						}else{
 							$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
 							$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+							$('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+							$('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
 							$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
 						}
 
