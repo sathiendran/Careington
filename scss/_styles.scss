@@ -2167,10 +2167,8 @@ text-align:center
 .ContentUserHome {
 	margin: 70px 0 0 0;
 	font-family:$fontFamily_regular;
-	-webkit-animation-duration: 0.4s !important;
-	   -moz-animation-duration: 0.4s !important;
-	   -o-animation-duration: 0.4s !important;
-		animation-duration: 0.4s !important;
+	border-top: 1px solid #C4C5C3;	
+	//border-bottom: 1px solid #C4C5C3;
 }
 
 .listImgView {
@@ -2694,10 +2692,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
     color: red;
 }
 .userSearch-Android {
-	position: relative; top: 110px; border-bottom: 1px solid #C4C5C3;
+	position: relative; top: 110px;
 }
 .userSearch-IOS {
-	position: relative; top: 110px; border-bottom: 1px solid #C4C5C3;
+	position: relative; top: 110px; 
 }
 
 .UserHme {
@@ -3232,8 +3230,8 @@ font-family: $fontFamily_regular;
 
 .animated { 
 		
-	   -webkit-animation-duration: 0.35s !important;
-	   -moz-animation-duration: 0.35s !important;
-	   -o-animation-duration: 0.35s !important;
-		animation-duration: 0.35s !important;
+	   -webkit-animation-duration: 0.4s !important;
+	   -moz-animation-duration: 0.4s !important;
+	   -o-animation-duration: 0.4s !important;
+		animation-duration: 0.4s !important;
 }

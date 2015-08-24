@@ -243,9 +243,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			var searchStyle1 = $('#divSearchInput').css('display');
 			if(searchStyle1 == 'block'){
 				if($rootScope.AndroidDevice) {
-					$('.ContentUserHome').animate({"margin" : "140px 0 0 0"}, 280);
+					$('.ContentUserHome').animate({"margin" : "140px 0 0 0"}, 290);
 				} else {
-					$('.ContentUserHome').animate({"margin" : "138px 0 0 0"}, 280);
+					$('.ContentUserHome').animate({"margin" : "138px 0 0 0"}, 290);
 				}
 			}		
 			
@@ -256,9 +256,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$('#divSearchInput').addClass('animated slideOutUp');
 			if($rootScope.AndroidDevice) {
 			
-				$('.ContentUserHome').animate({"margin" : "70px 0 0 0"}, 280);
+				$('.ContentUserHome').animate({"margin" : "70px 0 0 0"}, 290);
 			} else {
-				$('.ContentUserHome').animate({"margin" : "75px 0 0 0"}, 280);
+				$('.ContentUserHome').animate({"margin" : "75px 0 0 0"}, 290);
 			}	
 			
 			setTimeout(function(){		
