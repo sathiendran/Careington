@@ -1935,9 +1935,9 @@ body {
 	
 
     //box-shadow: inset 0 -13px 10px -11px #6D6C6C;
-	box-shadow:	inset 0 -13px 8px -13px #460707;
-	-moz-box-shadow: inset 0 -13px 8px -13px #460707;
-    -webkit-box-shadow: inset 0 -13px 8px -13px #460707;
+	box-shadow:	inset 0 -13px 8px -13px #000;
+	-moz-box-shadow: inset 0 -13px 8px -13px #000;
+    -webkit-box-shadow: inset 0 -13px 8px -13px #000;
   
 }
 
@@ -1952,15 +1952,17 @@ body {
     -moz-box-shadow: 0px 3px 5px #9A9696;
 	-webkit-box-shadow: 0px 3px 5px #9A9696;
 	box-shadow: 0px 3px 5px #9A9696*/
+	border-top: none;
 }
 
 .bar-subheaderLessIOS { 
 	display: block;
 	height: 95px;
 	top: 48px;
-	-moz-box-shadow: 0px 3px 5px #9A9696;
-	-webkit-box-shadow: 0px 3px 5px #9A9696;
-	box-shadow: 0px 3px 5px #9A9696;
+	-moz-box-shadow: 0px 3px 5px #A8A6A6;
+	-webkit-box-shadow: 0px 3px 5px #A8A6A6;
+	box-shadow: 0px 3px 5px #A8A6A6;
+	border-top: none;
 }
 	
 .head_titleLessAndroid { 

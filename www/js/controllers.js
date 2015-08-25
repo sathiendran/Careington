@@ -559,9 +559,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
 	$scope.textboxUp = function() {
-		$timeout(function(){			
+		/*$timeout(function(){			
 			$ionicScrollDelegate.scrollTo(0, 150, true);
-		}, 500);
+		}, 400);*/
+		 $timeout(function(){$ionicScrollDelegate.scrollTo(0, 150, true);},400);
     };
 	
 	
