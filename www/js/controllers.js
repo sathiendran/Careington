@@ -86,6 +86,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.deviceName = "IOS";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
+		$rootScope.loginSub = "height: 100px; top: 43px;";
+		$rootScope.loginSubTitle = "top: 31px;";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
         $rootScope.password_sub_header = "password_sub_headerIOS";
         $rootScope.password_header_content = "password_header_contentIOS";
@@ -562,7 +564,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		/*$timeout(function(){			
 			$ionicScrollDelegate.scrollTo(0, 150, true);
 		}, 400);*/
-		 $timeout(function(){$ionicScrollDelegate.scrollTo(0, 150, true);},400);
+		 $timeout(function(){$ionicScrollDelegate.scrollTo(0, 150, true);},800);
     };
 	
 	
