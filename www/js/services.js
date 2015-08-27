@@ -13,6 +13,7 @@ angular.module('starter.services', [])
 		//var apiCommonURL = 'https://snap-dev.com';
 		
 		var apiCommonURL = 'https://sandbox.connectedcare.md';
+	//	var apiCommonURL = 'https://emerald.connectedcare.md';
 	
 	 this.getToken = function (params) {
         var requestInfo = {

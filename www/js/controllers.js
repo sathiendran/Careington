@@ -4,6 +4,8 @@ var indexOf = [].indexOf || function(item) {
 	}
 	return -1;
 }
+       // request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+        //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 
 var util = {
     setHeaders: function (request, credentials) {
@@ -155,7 +157,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
         $rootScope.LoginContantDiv = " height: 50px;";  //95px
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
-        $rootScope.PasswordOverlop = "margin: 120px 0 0 0 !important;";  
+        $rootScope.PasswordOverlop = "margin: 103px 0 0 0 !important; padding-top: 18px !important;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
@@ -172,7 +174,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -16px !important;";
         $rootScope.providerItamMarginTop  = "top: 5px;";
     }
-    if($rootScope.isIPad) {
+    if($rootScope.isIPad) { 
         $rootScope.PrimaryConcernPopupH = "height: 66px;";
         $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
         $rootScope.PrimaryConcernPopupTitle = "margin-top: 6px; font-family: 'Glober SemiBold'; ";
@@ -213,7 +215,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
          $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
-       $rootScope.PasswordOverlop = "margin: 120px 0 0 0; padding-top: 18px;"; 
+       $rootScope.PasswordOverlop = "margin: 100px 0 0 0; padding-top: 30px;"; 
 	   $rootScope.resetContent = "margin: 202px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
@@ -225,7 +227,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.providerItamTop  = "top: 6px;";
 		$rootScope.appointContent = "margin: 76px 0 0 0;";
 		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
-		 $rootScope.MarginHomeTop = "margin-top: -85px;";
+		 $rootScope.MarginHomeTop = "margin-top: -50px;";
 		$rootScope.waitingContentIos = "margin-top: 120px; ";		 
         $rootScope.providerItamMarginTop  = "";
     }
@@ -488,7 +490,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	 
 	
-	$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+	//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+	$rootScope.APICommonURL = 'https://connectedcare.md';
 	
 	$scope.doGetFacilitiesList = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -564,7 +567,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		/*$timeout(function(){			
 			$ionicScrollDelegate.scrollTo(0, 150, true);
 		}, 400);*/
-		 $timeout(function(){$ionicScrollDelegate.scrollTo(0, 150, true);},800);
+		 $timeout(function(){$ionicScrollDelegate.scrollTo(0, 150, true);},900);
     };
 	
 	
@@ -1332,7 +1335,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.postNewHealthPlan(params);
 		}
 	
-	
+	$scope.goCardDetailsPage = function() {
+		$rootScope.cardPage = "consultCharge";
+		$state.go('tab.cardDetails');
+	}
+	$scope.goCardDetailsPageFromAddCard = function() {
+		$rootScope.cardPage = "addCard";
+		$state.go('tab.cardDetails');
+	}
 	
 	
 	 $("#addNewCard").change(function() {
@@ -1340,6 +1350,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if($('option:selected', this).text() == 'Add a new card') {
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
 			console.log($rootScope.submitPayBack);
+			$rootScope.cardPage = "consultCharge";
 			$state.go('tab.cardDetails');
 		} else {
 			$('div.cardViewport').text($("option:selected", this).text());
@@ -1351,6 +1362,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if($('option:selected', this).text() == 'Add a new card') {
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
 			console.log($rootScope.submitPayBack);
+			$rootScope.cardPage = "addCard";
 			$state.go('tab.cardDetails');
 		} else {
 			$('div.cardViewport').text($("option:selected", this).text());
@@ -1362,6 +1374,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if($('option:selected', this).text() == 'Add a new card') {
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
 			console.log($rootScope.submitPayBack);
+			$rootScope.cardPage = "submitPayment";
 			$state.go('tab.cardDetails');
 		} else {
 			$('div.cardViewport').text($("option:selected", this).text());
@@ -1422,11 +1435,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
 	$scope.goToPreviosPage = function() {
-		if($rootScope.submitPayBack=="tab.addCard") {
+		/*if($rootScope.submitPayBack=="tab.addCard") {
 			$state.go('tab.applyPlan');
 		} else {
 			$state.go('tab.consultCharge');
-		}		
+		}*/
+		$rootScope.consultChargeSection = "block";
+		$rootScope.healthPlanSection = "none";	
+		$state.go('tab.' + $rootScope.cardPage);	
 	}
 	
 	/*
@@ -1540,11 +1556,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                                 $scope.Choose = 'true';
                             } else { 
                                   if($rootScope.NewHealth != "") {
-                                 $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
-                                 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
-                                 $rootScope.providerName = healthInsurance[0];
-                                 $rootScope.PolicyNo = healthInsurance[1];
-                                 $rootScope.healthPlanID = healthInsurance[2];
+									  if($rootScope.providerName != '') {
+										 $rootScope.providerName = $rootScope.providerName;
+										 $rootScope.PolicyNo = $rootScope.PolicyNo;
+										 $rootScope.healthPlanID = $rootScope.healthPlanID;
+									  } else {
+										 $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+										 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+										 $rootScope.providerName = healthInsurance[0];
+										 $rootScope.PolicyNo = healthInsurance[1];
+										 $rootScope.healthPlanID = healthInsurance[2];
+										}
                                   } else {
                                  $rootScope.providerName = $rootScope.providerName;
                                  $rootScope.PolicyNo = $rootScope.PolicyNo;
