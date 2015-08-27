@@ -1,6 +1,7 @@
 <ion-view title="Add Health Plan">
      <div id="Error_Message" class="ErrorMessageDiv" ></div>
 	 <div class="Server_Error ErrorMessageDiv" ></div>
+	 <div class="Error_Message ErrorMessageDiv" ></div>
 <ion-side-menus>
 	<ion-side-menu-content> 
        
@@ -13,86 +14,100 @@
 	
 	
 	<ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
-		<div class="password_home">
-		
-			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-				<div class="consultTittle">Consultation Charge</div>
-				<div class="consultation_number"> ${{consultationAmount}}*</div>
+		<div class="password_home">		
+				<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+					<div class="consultTittle">Consultation Charge</div>
+					<div class="consultation_number"> ${{consultationAmount}}*</div>
+				</div>
+			<div style="display: {{healthPlanPage}};">	
+				<div style="display: {{enableAddHealthPlan}}">	
+					<div class="healthPlan_header"  >				
+						<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
+							<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >				
+								<div  class="dropdownContainer">
+									<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
+									<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
+									 <select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
+										<option value="Choose Your Health Plan"><b>Choose Your Health Plan</b></option>
+										<option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId == providerName + '@' + PolicyNo + '@' + healthPlanID"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumberLong}}</span></b></option>
+										<option><b>Add a new health plan</b></option>
+								   </select>
+								</div>
+							</div>
+					</div>
+					<div class="SkipToPayment">
+						<button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
+								<span>Apply Plan</span>
+						</button>
+					</div>
+				</div>	
+					
+				<div style="display:{{disableAddHealthPlan}}">	
+					<div class="healthPlan_header AddCardNoPlan"  >
+						<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
+						<a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
+							<div class="addHealthPlan_header AddCard" >
+								<i style="position: relative; top: -5px;" class="ion-plus-round"></i><span class="addHealthPlan_text" >Add A Health Plan</span>
+							</div>
+						</a>
+					</div>
+					<div class="SkipToPayment" >
+						<button class="button button-block button-royal"  type="submit" ng-click="showConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.addHealthPlan')" style=" padding: 3px"  >
+							<span> Skip to Payment</span>
+						</button>				
+					</div>
+					<div class="scheduled_appointments_text" >
+						Don't add a health plan, pay full charge directly.
+					</div>
+				</div>
 			</div>
-			
-			
-			<div class="healthPlan_header" style="display: {{enableAddHealthPlan}} " >
-				
-				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
-					<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >				
-						<!--<div class="demo" ng-if="providerName == ''" >
-							<select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
-								<option value=""><b>Choose Your Health Plan</b></option>
-								 <option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId == providerName + '@' + GetPlanList.policyNumber + '@' + GetPlanList.healthPlanId"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumber}}</span></b></option>
-                            </select>
-						</div>	
-						<div class="demo" ng-if="providerName != ''" >
-							 <select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;"> 
-								<option value=""><b>Choose Your Health Plan</b></option>
-								<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:18}}</span></b></option>
-							</select>	
-						</div>-->
-						<div  class="dropdownContainer">
-							<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
-							<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
-							 <select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
-								<option value="Choose Your Health Plan"><b>Choose Your Health Plan</b></option>
-								<option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId == providerName + '@' + PolicyNo + '@' + healthPlanID"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumberLong}}</span></b></option>
-								<option><b>Add a new health plan</b></option>
-						   </select>
+			<div style="display: {{consultChargeNoPlanPage}};">
+				<div style="display: {{enableSubmitpayment}}">
+					<div class="healthPlan_header"  >
+						<div class="healthPlan_text NoPlanText" >Pay Using</div>
+						<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">					
+							<div  class="dropdownContainer">
+								<div class="cardViewport">Choose Your Card</div>							
+								<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
+									<option><b>Choose Your Card</b></option>
+									<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
+									<option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
+								</select>
+							</div>
 						</div>
+					</div>				
+					
+					<div class="SkipToPayment">
+						<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
+						  <span>Submit Payment</span>
+						</button>
 					</div>
-			</div>
+				</div>
 			
-			
-			
-			<div class="SkipToPayment" style="display: {{enableAddHealthPlan}} ">
-				<!--<a ng-href="#/tab/addCard">-->
-					<!-- <button type="submit" ng-click="doGetPatientPaymentProfiles()" class="button button-block button-balanced"> --->
-                <button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
-						<span>Apply Plan</span>
-					</button>
-				<!--</a>-->
-			</div>
-			
-			<!--<div class="healthPlan_header" style="padding-top: 40px; color: #5C5C5C; text-align: center; " >
-				<div class="healthPlan_text" style="margin-left: 20px; padding-top: 30px; font-size: 16px; color: #888585; text-align: left;" >Select health plan</div>
-				<a ng-href="#/tab/planDetails">
-					<div class="addHealthPlan_header" style="text-align: left; margin-left: 20px;" >
-						<img ng-src="img/add.png" style="width: 30px; height: 30px;" ><span class="addHealthPlan_text" >Add A Health Plan</span>
+				<div style="display:{{disableSubmitpayment}}">
+					<div class="healthPlan_header AddCardNoPlan"> 
+						<div class="healthPlan_text" >Pay Using</div>
+						<a ng-href="#/tab/cardDetails">
+							<div class="addHealthPlan_header AddCard"  >
+								<i style="position: relative; top: -5px;" class="ion-plus-round"></i>
+								<span class="addHealthPlan_text" >Add A Payment Card</span>
+							</div>
+						</a>
 					</div>
-				</a>
-			</div> style="display:{{disableAddHealthPlan}}" -->
-			
-			<div class="healthPlan_header AddCardNoPlan" style="display:{{disableAddHealthPlan}}" >
-				<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
-				<a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
-					<div class="addHealthPlan_header AddCard" >
-						<img ng-src="img/add.png"  ><span class="addHealthPlan_text" >Add A Health Plan</span>
+					
+					
+					<div class="SkipToPayment" >
+						<button class="button button-block button-royal cardSubmitPayment" style="padding: 3px;" >
+								<span>  Submit Payment</span>
+						</button>
 					</div>
-				</a>
+				</div>
+				<div class="scheduled_appointments_text NoPlanBottomText"  >
+					<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p> 
+				</div>
 			</div>
 			
 			
-			
-			<div class="SkipToPayment" style="display:{{disableAddHealthPlan}}" >
-				
-				
-				<!--<a style="text-decoration: none;" ng-href="#/tab/consultChargeNoPlan">-->
-					<button class="button button-block button-royal"  type="submit" ng-click="GetConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.addHealthPlan')" style=" padding: 3px"  >
-						<span> Skip to Payment</span>
-					</button>
-				<!--</a>-->
-				
-			</div>
-			<div class="scheduled_appointments_text" style="display:{{disableAddHealthPlan}}" >
-				Don't add a health plan, pay full charge directly.
-			</div>
 		</div>
 	</ion-content>
 </ion-side-menu-content>	
@@ -106,7 +121,8 @@
 		<ion-footer-bar align-title="left" class="footer">			
 			<div class="ConsultChargeFooter">
 				<div class="ConsultChargeBack" >
-                    <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span> Back</span></a>
+                    <a class="button_new icon ion-chevron-left" ng-click="backAddHealthPlan()" ><span> Back</span></a>
+					
 				  <!-- <site-header back="Back"></site-header>-->
 				</div>
 						

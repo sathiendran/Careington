@@ -50,7 +50,7 @@ var JOIN_CONSULTATION_STATUS_CODE = 121;
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
 
 
-.controller('LoginCtrl', function($scope, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
 	/*$rootScope.online = navigator.onLine;	
 	$rootScope.IsOnline = navigator.onLine;
@@ -86,6 +86,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.deviceName = "IOS";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
+		$rootScope.loginSub = "height: 100px; top: 43px;";
+		$rootScope.loginSubTitle = "top: 31px;";
         $rootScope.HeadTitleLessDevice = "head_titleLessIOS";
         $rootScope.password_sub_header = "password_sub_headerIOS";
         $rootScope.password_header_content = "password_header_contentIOS";
@@ -135,6 +137,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
 		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;"; 	
 		$rootScope.currentMedicationContent = "margin-top: 125px !important;";
+		$rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
     if($rootScope.IOSDevice) {
         $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
         $rootScope.concernListTitleStyle = "concernListTitle-ios"; 
@@ -158,7 +161,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
         $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
         $rootScope.PositionIOS = "position:fixed; top:105px;";
-        $rootScope.MarginHomeTop = "margin-top: -60px";  
+        $rootScope.MarginHomeTop = "margin-top: -10px";  
         $rootScope.concernsItemDivs = "top: 5px;";        
         $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
         $rootScope.FootNextButton = "left: 24px;";
@@ -222,10 +225,49 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.providerItamTop  = "top: 6px;";
 		$rootScope.appointContent = "margin: 76px 0 0 0;";
 		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
-		 $rootScope.MarginHomeTop = "margin-top: -60px;";
+		 $rootScope.MarginHomeTop = "margin-top: -85px;";
 		$rootScope.waitingContentIos = "margin-top: 120px; ";		 
         $rootScope.providerItamMarginTop  = "";
     }
+   $scope.showSearchInput = function(){
+		var searchStyle = $('#divSearchInput').css('display');
+	
+		if(searchStyle == 'none'){
+			$("#divSearchInput").css("display", "block");
+		
+			if($('#divSearchInput').hasClass("ng-hide"))
+				$('#divSearchInput').removeClass('ng-hide');
+			if($('#divSearchInput').hasClass("slideOutUp"))
+				$('#divSearchInput').removeClass('slideOutUp');
+			$('#divSearchInput').addClass('animated slideInDown');
+			
+			
+			var searchStyle1 = $('#divSearchInput').css('display');
+			if(searchStyle1 == 'block'){
+				if($rootScope.AndroidDevice) {
+					$('.ContentUserHome').animate({"margin" : "140px 0 0 0"}, 290);
+				} else {
+					$('.ContentUserHome').animate({"margin" : "138px 0 0 0"}, 290);
+				}
+			}		
+			
+		}else{
+			if($('#divSearchInput').hasClass("slideInDown")){
+				$('#divSearchInput').removeClass('slideInDown');
+			}
+			$('#divSearchInput').addClass('animated slideOutUp');
+			if($rootScope.AndroidDevice) {
+			
+				$('.ContentUserHome').animate({"margin" : "70px 0 0 0"}, 290);
+			} else {
+				$('.ContentUserHome').animate({"margin" : "75px 0 0 0"}, 290);
+			}	
+			
+			setTimeout(function(){		
+				$("#divSearchInput").css("display", "none");			
+			}, 500);	
+		}
+   };
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
         if ( ($rootScope.currState.$current.name=="tab.addCard") ||
@@ -297,7 +339,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
           }
         }
     }
-    
+    //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
+	//$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
  $scope.toggleLeft = function() {
   $ionicSideMenuDelegate.toggleLeft();
         $scope.checkAndChangeMenuIcon();
@@ -346,7 +389,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
 				$("#Error_Message").append(top);
-				//$("#notifications-top-center").addClass('animated ' + 'bounce');
+				//$("#notifications-top-center").addClass('animated ' + 'slideOutUp');
 				refresh_close();
 			//});
 	}
@@ -383,10 +426,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//});
 	}	
 	
+	 $scope.$watch('userLogin.UserEmail', function(UserEmail){	
+			if($localstorage.get('username') == UserEmail) {
+				if($localstorage.get('username')) {
+					$rootScope.chkedchkbox = true;
+					}
+			}
+			if($localstorage.get('username') != UserEmail) {
+					 $localstorage.set('username', ""); 
+					$rootScope.chkedchkbox = false;					
+			} else {			
+				if($("#squaredCheckbox").prop('checked') == true) {
+					$rootScope.chkedchkbox = true;
+				}	
+			}
+		
+		  //$localstorage.set('chkedchkbox', "");	
+    });
+	
 	
 	
 
     $('#UserEmail').val($localstorage.get('username'));
+	
     
 	$scope.userLogin = {};
     $scope.userLogin.UserEmail = $localStorage.oldEmail;
@@ -405,22 +467,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Please enter a valid email address";
 				$rootScope.Validation($scope.ErrorMessage);
 			}
-			else {	
-				if($scope.userLogin.remember) {
+			else {
+				if($("#squaredCheckbox").prop('checked') == true) {
                     $localstorage.set('username', $("#UserEmail").val());
                     $localStorage.oldEmail = $scope.userLogin.UserEmail;  
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
+					$rootScope.chkedchkbox = true;
 
                 } else { 
                    $rootScope.UserEmail = $scope.userLogin.UserEmail;
                    $localStorage.oldEmail = '';
-                   $localstorage.set('username', ""); 
+                   $localstorage.set('username', ""); 				  				
+				   $rootScope.chkedchkbox = false;
                 }                
 				$scope.doGetFacilitiesList();
 			}
 		}
 		
     };
+	
+	 
 	
 	$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 	
@@ -494,11 +560,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$state.go('tab.password');
 	}
 	
+	$scope.textboxUp = function() {
+		/*$timeout(function(){			
+			$ionicScrollDelegate.scrollTo(0, 150, true);
+		}, 400);*/
+		 $timeout(function(){$ionicScrollDelegate.scrollTo(0, 150, true);},800);
+    };
+	
+	
+	
+	$scope.goBackProvider = function() {		
+		$state.go('tab.provider');
+	};
+	
 	//Password functionality	
 	$scope.pass = {};
-	
-	$scope.doGetToken = function () {
-	
+	$scope.doGetToken = function () {		
 		if($('#password').val() == ''){
 			$scope.ErrorMessage = "Please enter your password";
 			$rootScope.Validation($scope.ErrorMessage);
@@ -510,6 +587,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				userTypeId: 1,
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
+					//Get default payment profile from localstorage if already stored.
+					$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
+					$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
+					
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
 					if(typeof data.access_token == 'undefined') {
@@ -910,7 +991,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}*/
 	
 	$scope.GetHealthPlanList = function () {
-		$scope.doGetPatientHealthPlansList()
+		$scope.doGetPatientHealthPlansList();
 	}
 	
 	if(typeof $rootScope.providerName == 'undefined' || $rootScope.providerName == "")	
@@ -920,7 +1001,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		} else if(typeof $rootScope.providerName != 'undefined' || $rootScope.providerName != "") {
 			$rootScope.chooseHealthHide = 'none';
 			$rootScope.chooseHealthShow = 'initial';
-		}	
+		}
+	
+	$scope.openAddHealthPlanSection = function () {
+		$rootScope.consultChargeSection = "block";
+		$rootScope.healthPlanSection = "none";
+		$rootScope.healthPlanPage = "block";
+		$rootScope.consultChargeNoPlanPage = "none";		
+		$rootScope.chooseHealthHide = 'initial';
+		$rootScope.chooseHealthShow = 'none';
+		$rootScope.providerName = "";
+		$rootScope.PolicyNo = "";
+		$scope.doGetPatientHealthPlansList();
+	}	
 	
 	
 	$scope.doGetPatientHealthPlansList = function () {
@@ -958,11 +1051,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						if($rootScope.currState.$current.name=="tab.consultCharge")
 						{
 							$rootScope.enableAddHealthPlan = "block";
-							$rootScope.disableAddHealthPlan = "none;";					
-							$state.go('tab.addHealthPlan');
+							$rootScope.disableAddHealthPlan = "none;";
+							$rootScope.consultChargeSection = "none";
+							$rootScope.healthPlanSection = "block";	
+							//$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
 							//$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
-							$state.go('tab.applyPlan');						
+							$rootScope.consultChargeSection = "none";
+							$rootScope.disableAddHealthPlan = "none";
+							$rootScope.healthPlanSection = "block";
+							$rootScope.enableAddHealthPlan = "block";							
+							$state.go('tab.consultCharge');						
 							
 						}
 					} else {
@@ -970,9 +1069,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						{
 							$rootScope.enableAddHealthPlan = "none";
 							$rootScope.disableAddHealthPlan = "block;";
-							$state.go('tab.addHealthPlan');
+							$rootScope.consultChargeSection = "none";
+							$rootScope.healthPlanSection = "block";
+							//$state.go('tab.addHealthPlan');
 						} else if ($rootScope.currState.$current.name=="tab.planDetails") {
-							$state.go('tab.applyPlan');
+							$rootScope.consultChargeSection = "none";
+							$rootScope.healthPlanSection = "block";
+							$state.go('tab.consultCharge');		
 						}
 					}	
 				
@@ -1242,8 +1345,31 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$('div.cardViewport').text($("option:selected", this).text());
         }
     });
+	
+	$("#addNewCard_addCard").change(function() {
+        console.log( $('option:selected', this).text() );
+		if($('option:selected', this).text() == 'Add a new card') {
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
+			console.log($rootScope.submitPayBack);
+			$state.go('tab.cardDetails');
+		} else {
+			$('div.cardViewport').text($("option:selected", this).text());
+        }
+    });
+	
+	$("#addNewCard_submitPay").change(function() {
+        console.log( $('option:selected', this).text() );
+		if($('option:selected', this).text() == 'Add a new card') {
+			$rootScope.submitPayBack = $rootScope.currState.$current.name;
+			console.log($rootScope.submitPayBack);
+			$state.go('tab.cardDetails');
+		} else {
+			$('div.cardViewport').text($("option:selected", this).text());
+        }
+    });
 		
-    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {		
+    $scope.GetConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {	
+	//$("#aaaa").addClass('animated ' + 'slideInUp');	
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -1251,8 +1377,46 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
 		$rootScope.BackPage = P_Page;
 		$rootScope.copayAmount = $rootScope.consultationAmount;
-		$state.go('tab.consultChargeNoPlan');
+		$rootScope.consultChargeSection = "none";
+		$rootScope.healthPlanSection = "block";
+		$rootScope.healthPlanPage = "none";
+		$rootScope.consultChargeNoPlanPage = "block";
+		//$state.go('tab.consultChargeNoPlan');
 	}
+	
+	 $scope.showConsultChargeNoPlan = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {		
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientFirstName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+		$rootScope.BackPage = P_Page;
+		$rootScope.copayAmount = $rootScope.consultationAmount;
+		$rootScope.healthPlanPage = "none";
+		$rootScope.consultChargeNoPlanPage = "block";
+		//$state.go('tab.consultChargeNoPlan');
+	}
+	
+	$scope.backAddHealthPlan = function() {
+		if($rootScope.healthPlanPage == "block") {
+			$state.go('tab.consultCharge');
+		} else {
+			$rootScope.healthPlanPage = "block";
+			$rootScope.consultChargeNoPlanPage = "none";
+		}
+			
+	}
+	
+	$scope.backConsultCharge = function() {
+		if($rootScope.consultChargeSection == "block") {
+			$state.go('tab.ConsentTreat');
+		} else if($rootScope.healthPlanSection == "block") {			
+			$rootScope.healthPlanSection = "none";
+			$rootScope.consultChargeSection = "block";
+		}
+			
+	}
+	
 	$scope.goToNextPage = function() {
 			$state.go($rootScope.BackPage);
 	}
@@ -1355,7 +1519,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         } 
         
-        if($rootScope.currState.$current.name=="tab.addHealthPlan") {
+        if($rootScope.currState.$current.name=="tab.consultCharge") {
                        if(typeof $scope.Health.addHealthPlan != 'undefined') { 
                             if($scope.Health.addHealthPlan != 'Choose Your Health Plan') {
                                  $rootScope.NewHealth = $scope.Health.addHealthPlan;
@@ -1971,7 +2135,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.cardPaymentId = [];	
     $scope.doPostCoPayDetails = function () {		
 		
-		if($('#addNewCard').val() == 'Choose Your Card'){			
+		if($('#addNewCard').val() == 'Choose Your Card' || $('#addNewCard_addCard').val() == 'Choose Your Card' || $('#addNewCard_submitPay').val() == 'Choose Your Card'){			
 			$scope.ErrorMessages = "Please select the card to use for payment";
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 			
@@ -1980,7 +2144,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			if(typeof $scope.cardPaymentId.addNewCard != 'undefined') {
 				$rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
 			} else if(typeof $scope.cardPaymentId.addNewCard == 'undefined') {
-				$rootScope.paymentProfileId = $rootScope.userCardDetails
+				if(typeof $rootScope.userCardDetails == 'undefined'){
+					$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+					$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+				}else{
+					$rootScope.paymentProfileId = $rootScope.userCardDetails;
+				}
 			} 
 	
 			if ($scope.accessToken == 'No Token') {
@@ -1995,6 +2164,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				paymentProfileId: parseInt($rootScope.paymentProfileId),
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
+					//To save the last used card for user.
+					var cardSelectedText = $('#cardViewport').html();
+					$localstorage.set("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
+					$localstorage.set("CardText" + $rootScope.UserEmail, cardSelectedText);
 					$rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
 					$scope.CreditCardDetails = data;					
 					$state.go('tab.receipt');	
@@ -2066,7 +2239,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;		
+        $rootScope.PatientGuardian = P_Guardian;
+		$rootScope.consultChargeSection = "block";
+		$rootScope.healthPlanSection = "none";	
 		$rootScope.doPutConsultationSave();       
     }
 	
@@ -3439,6 +3614,20 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					if($rootScope.consultationAmount > 0)	{
 						$rootScope.doGetPatientPaymentProfiles();	
 						$state.go('tab.consultCharge'); 
+						if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
+							$('#addNewCard').val() == 'Choose Your Card';
+							$('#addNewCard_addCard').val() == 'Choose Your Card';
+							$('#addNewCard_submitPay').val() == 'Choose Your Card';
+							$rootScope.userDefaultPaymentProfileText = 'undefined';
+						}else{
+							$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+							$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+							$('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+							$('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+							$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+						}
+
+						
 					} else {
 						$state.go('tab.receipt'); 
 						$scope.ReceiptTimeout();
@@ -3574,7 +3763,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     };
     initConferenceRoomHub();
     
-	$rootScope.myVideoHeight = $window.innerHeight - 40;
+	$rootScope.myVideoHeight = $window.innerHeight - 38;
     $rootScope.myVideoWidth = $window.innerWidth;
     $rootScope.otherVideoTop = $window.innerHeight - 150;
     $rootScope.controlsStyle = false;
@@ -3585,11 +3774,15 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     
     $rootScope.muteIconClass = 'ion-ios-mic callIcons';
     $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
-    
+	
     var apiKey = $rootScope.videoApiKey;
     var sessionId = $rootScope.videoSessionId;
     var token = $rootScope.videoToken;
-    
+	/*
+    var apiKey = "45191172";
+    var sessionId = "1_MX40NTE5MTE3Mn5-MTQzOTQ2MDk3ODA4OH5wSEpoU091NXJkK01sZzFoUDV4aXhVWWh-fg";
+    var token = "T1==cGFydG5lcl9pZD00NTE5MTE3MiZzaWc9MzAyOTYzMTExMGJkYTJhYmI3MDMwNTNiM2Q4MWM5ZjU1ZWZkNjlkODpzZXNzaW9uX2lkPTFfTVg0ME5URTVNVEUzTW41LU1UUXpPVFEyTURrM09EQTRPSDV3U0Vwb1UwOTFOWEprSzAxc1p6Rm9VRFY0YVhoVldXaC1mZyZjcmVhdGVfdGltZT0xNDM5NDYwOTc1Jm5vbmNlPTcwNDQzJnJvbGU9UFVCTElTSEVS";
+    */
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
 
@@ -4054,3 +4247,4 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         }
     };
 })
+

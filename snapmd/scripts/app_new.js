@@ -1047,7 +1047,8 @@ app.service('apiComService', function ($http) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
            // url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
-		    url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
+		    //url: 'https://sandbox.connectedcare.md/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
+			url: apiCommonURL + '/api/v2/patients/payments',
             method: 'GET'   
         };
 

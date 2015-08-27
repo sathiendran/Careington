@@ -31,21 +31,32 @@
 								<option><b>Add a new card</b></option>
 							</select>
 						</div>-->
-						<div  class="dropdownContainer">
+						<!--<div  class="dropdownContainer">
+							
 							<div class="cardViewport">Choose Your Card</div>							
 							<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
 								<option><b>Choose Your Card</b></option>
 								<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
 								<option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
 							</select>
-						</div>
+							-->
+							<div  class="dropdownContainer">
+									<div ng-if="userDefaultPaymentProfileText == 'undefined'" id="cardViewport" class="cardViewport">Choose Your Card</div>	
+									<div ng-if="userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport">{{userDefaultPaymentProfileText}}</div>	
+									<select class="healthPlanDropDown" id="addNewCard_addCard" name="addNewCard_addCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
+										<option><b>Choose Your Card</b></option>
+										<option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
+										<option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
+									</select>
+								</div>
+						
 					</div>
 			</div>
 			
 			
 			<div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}">
 				<!--<a ng-href="#/tab/receipt">-->
-				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
+				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
 				  <span>Submit Payment</span>
 				</button>
 				
@@ -54,7 +65,7 @@
 			
 			<div class="SkipToPayment" style="padding-top: 133px; display: {{continueAddCard}}">
 				<!--<a ng-href="#/tab/receipt">-->
-				<button type="submit" ng-click='doGetReceipt()'  class="button button-block button-balanced">
+				<button type="submit" ng-click='doGetReceipt()'  class="button button-block button-balanced" style="padding: 3px;">
 				  <span>Continue</span>
 				</button>
 				
@@ -62,11 +73,11 @@
 			</div>
 		
 			
-			<div class="healthPlan_header AddCardDetails" style="display:{{disableSubmitpaymentAddCard}}" >				
+			<div class="healthPlan_header AddCardDetails" style="padding-top: 60px; display:{{disableSubmitpaymentAddCard}}" >				
 				<div class="healthPlan_text"  >Pay Using</div>
 				<a ng-href="#/tab/cardDetails" >
 					<div class="addHealthPlan_header AddCard" >
-						<img ng-src="img/add.png" >
+						<i style="position: relative; top: -5px;" class="ion-plus-round"></i>
 						<span class="addHealthPlan_text" >Add A Payment Card</span>
 					</div>
 				</a>				

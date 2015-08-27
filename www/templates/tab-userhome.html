@@ -9,33 +9,37 @@
 		</div>
 		<h1 class="{{title_patient}} {{HeaderList}}" style="margin-left: -30px;">Patient List</h1>	  
 
-		<a href="" ng-click="showDetails = ! showDetails"> 
+		
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
 				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who needs care today?</div>
-				<div class="SearchImage">
-					<i class="ion-search" style="float: right; font-size: 26px;color: #616462;"></i>
-				</div>
-
+				
+					<div class="SearchImage">
+						<a href="#" ng-click="showSearchInput();"> <i class="ion-search" style="float: right; font-size: 26px;color: #616462;"></i></a>
+					</div>				
 			</div> 
-		</a>
+		
 	   
 	</ion-header-bar> 
 
 
 
 
-<ion-view title="User Home">	
-<ion-content class="ContentHomeUser UserHme" ng-controller="LoginCtrl" >
-	<div class="UserHmeSub-{{deviceName}}" ng-show="showDetails">
+<ion-view title="User Home">
+<div id="divSearchInput" class="UserHme userSearch-{{deviceName}}" style="display: none;">
+	<div  class="UserHmeSub-{{deviceName}}">
         <label class="item-input"  >
             <input type="search" placeholder="Search" id="searchQuery" ng-model="data.searchQuery"  >
         </label>
 	</div>
+</div>
+	
+<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" >
+	
 
  	<ion-list>
       
 	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
-		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery">
+		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border-top: none; top: -2px; height: 93px;">
 			 <div class="HrefListView"> 
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{PatientImage}}" class="UserHmelistImgView">
