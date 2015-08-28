@@ -7,9 +7,21 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+/*var handleOpenURL = function(url) {
+    console.log("received url: " + url);
+    //window.localstorage.setItem('ASA', url);
+}*/
+var handleOpenURL = function (url) {
+    setTimeout(function(){
+        window.localStorage.setItem("external_load", null);
+        window.localStorage.setItem("external_load", url);
+               
+    }, 0);
+    
+}
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $state, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -36,9 +48,52 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             });
 			} 
 		}
-	*/	
-		
-  });
+	*/
+      if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+        var EXTRA = {};
+        var extQuery = window.localStorage.getItem("external_load").split('?')
+        var extQueryOnly = extQuery[1];
+        
+        var query = extQueryOnly.split("&");
+        
+        for (var i = 0, max = query.length; i < max; i++)
+        {
+            if (query[i] === "") // check for trailing & with no param
+                continue;
+        
+            var param = query[i].split("=");
+            EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+        }
+        if(EXTRA['token'] != ""){
+          window.localStorage.setItem("external_load", null);
+          $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+        }
+      }
+        
+      $ionicPlatform.on('resume', function(){
+         if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+          var EXTRA = {};
+          var extQuery = window.localStorage.getItem("external_load").split('?')
+          var extQueryOnly = extQuery[1];
+          
+          var query = extQueryOnly.split("&");
+          
+          for (var i = 0, max = query.length; i < max; i++)
+          {
+              if (query[i] === "") // check for trailing & with no param
+                  continue;
+          
+              var param = query[i].split("=");
+              EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+          }
+          if(EXTRA['token'] != ""){
+            window.localStorage.setItem("external_load", null);
+            $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationid: EXTRA['consultationId'] });
+          }
+        }
+      });    
+      
+    });
 })
 
 
@@ -337,10 +392,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
+  .state('tab.interimpage', {
+    url: '/interimpage/:token/:hospitalId/:consultationId',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-interimpage.html',
+        controller: 'InterimController'
+      }
+    }
+  })
 
   
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/login');
-
 });
+
+//snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=
