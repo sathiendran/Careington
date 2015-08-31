@@ -12,6 +12,9 @@
     //window.localstorage.setItem('ASA', url);
 }*/
 var handleOpenURL = function (url) {
+    //window.localStorage.setItem("external_load", null);
+    //window.localStorage.setItem("external_load", url);
+    
     setTimeout(function(){
         window.localStorage.setItem("external_load", null);
         window.localStorage.setItem("external_load", url);
@@ -49,29 +52,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 			} 
 		}
 	*/
-      if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
-        var EXTRA = {};
-        var extQuery = window.localStorage.getItem("external_load").split('?')
-        var extQueryOnly = extQuery[1];
-        
-        var query = extQueryOnly.split("&");
-        
-        for (var i = 0, max = query.length; i < max; i++)
-        {
-            if (query[i] === "") // check for trailing & with no param
-                continue;
-        
-            var param = query[i].split("=");
-            EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-        }
-        if(EXTRA['token'] != ""){
-          window.localStorage.setItem("external_load", null);
-          $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
-        }
-      }
-        
-      $ionicPlatform.on('resume', function(){
-         if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+      setTimeout(function() {
+        //alert('external: ' + window.localStorage.getItem("external_load"));
+        if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
           var EXTRA = {};
           var extQuery = window.localStorage.getItem("external_load").split('?')
           var extQueryOnly = extQuery[1];
@@ -88,9 +71,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
           if(EXTRA['token'] != ""){
             window.localStorage.setItem("external_load", null);
-            $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationid: EXTRA['consultationId'] });
+            //$state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+            $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: "" });
           }
         }
+      }, 2000);
+      $ionicPlatform.on('resume', function(){
+        setTimeout(function() {
+          if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+            var EXTRA = {};
+            var extQuery = window.localStorage.getItem("external_load").split('?')
+            var extQueryOnly = extQuery[1];
+            
+            var query = extQueryOnly.split("&");
+            
+            for (var i = 0, max = query.length; i < max; i++)
+            {
+                if (query[i] === "") // check for trailing & with no param
+                    continue;
+            
+                var param = query[i].split("=");
+                EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+            }
+            if(EXTRA['token'] != ""){
+              window.localStorage.setItem("external_load", null);
+              $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationid: "" });
+            }
+          }
+        }, 2000);
       });    
       
     });

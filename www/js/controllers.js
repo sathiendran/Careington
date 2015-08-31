@@ -7,6 +7,34 @@ var indexOf = [].indexOf || function(item) {
        // request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
         //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 
+// API Keys for sandbox
+/*
+var util = {
+    setHeaders: function (request, credentials) {
+        if (typeof credentials != 'undefined') {
+            request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+        }
+        request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+        request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+        request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+        return request;
+    },
+    getHeaders: function (accessToken) {
+        var headers = {
+                'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+                'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+                'Content-Type': 'application/json; charset=utf-8'
+            };
+        if (typeof accessToken != 'undefined') {
+            headers['Authorization'] = 'Bearer ' + accessToken;
+        }
+        
+        return headers;
+    }
+}
+*/
+// API Keys for production
+
 var util = {
     setHeaders: function (request, credentials) {
         if (typeof credentials != 'undefined') {
