@@ -7,56 +7,54 @@ var indexOf = [].indexOf || function(item) {
        // request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
         //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 
-// API Keys for sandbox
-/*
-var util = {
-    setHeaders: function (request, credentials) {
-        if (typeof credentials != 'undefined') {
-            request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
-        }
-        request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-        request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-        request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
-        return request;
-    },
-    getHeaders: function (accessToken) {
-        var headers = {
-                'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-                'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
-                'Content-Type': 'application/json; charset=utf-8'
-            };
-        if (typeof accessToken != 'undefined') {
-            headers['Authorization'] = 'Bearer ' + accessToken;
-        }
-        
-        return headers;
-    }
-}
-*/
-// API Keys for production
-
-var util = {
-    setHeaders: function (request, credentials) {
-        if (typeof credentials != 'undefined') {
-            request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
-        }
-        request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-        request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-        request.defaults.headers.post['X-Api-Key'] = '1d3d2f653608d25c080810794928fcaa12ef372a2';
-        return request;
-    },
-    getHeaders: function (accessToken) {
-        var headers = {
-                'X-Developer-Id': '1f9480321986463b822a981066cad094',
-                'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
-                'Content-Type': 'application/json; charset=utf-8'
-            };
-        if (typeof accessToken != 'undefined') {
-            headers['Authorization'] = 'Bearer ' + accessToken;
-        }
-        
-        return headers;
-    }
+if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv == "QA"){
+	var util = {
+		setHeaders: function (request, credentials) {
+			if (typeof credentials != 'undefined') {
+				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			}
+			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+			request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+			request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+			return request;
+		},
+		getHeaders: function (accessToken) {
+			var headers = {
+					'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+					'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+					'Content-Type': 'application/json; charset=utf-8'
+				};
+			if (typeof accessToken != 'undefined') {
+				headers['Authorization'] = 'Bearer ' + accessToken;
+			}
+			
+			return headers;
+		}
+	}
+}else if(deploymentEnv == "Production"){
+	var util = {
+		setHeaders: function (request, credentials) {
+			if (typeof credentials != 'undefined') {
+				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			}
+			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+			request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
+			request.defaults.headers.post['X-Api-Key'] = '1d3d2f653608d25c080810794928fcaa12ef372a2';
+			return request;
+		},
+		getHeaders: function (accessToken) {
+			var headers = {
+					'X-Developer-Id': '1f9480321986463b822a981066cad094',
+					'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+					'Content-Type': 'application/json; charset=utf-8'
+				};
+			if (typeof accessToken != 'undefined') {
+				headers['Authorization'] = 'Bearer ' + accessToken;
+			}
+			
+			return headers;
+		}
+	}
 }
 
 var REVIEW_CONSULTATION_EVENT_CODE = 116;
@@ -81,6 +79,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 //InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+	
+	$rootScope.deploymentEnv = deploymentEnv;
+	if(deploymentEnv == "Sandbox"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
+		
+	}else if(deploymentEnv == "Production"){
+		$rootScope.APICommonURL = 'https://connectedcare.md';
+		apiCommonURL = 'https://connectedcare.md';
+	}else if(deploymentEnv == "QA"){
+		$rootScope.APICommonURL = 'https://snap-qa.com';
+		apiCommonURL = 'https://snap-qa.com';
+	}
+	
+	$scope.ssoMessage = 'Authenticating..... Please wait!';
 	
 	$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
@@ -227,7 +240,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 			},
 			error: function (data) {
-				$rootScope.serverErrorMessageValidation();
+				$scope.ssoMessage = 'Authentication Failed! Please try again later!';
 				$rootScope.patientInfomation = '';
 				$rootScope.patientAccount = '';	
 				$rootScope.patientAddresses = '';	
@@ -309,15 +322,47 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.doGetPatientProfiles();	
 		$scope.doGetRelatedPatientProfiles();
 	}else{
-		$state.go('tab.login');
+		if(deploymentEnv == "Multiple"){
+			$state.go('tab.chooseEnvironment');
+		}else{
+			$state.go('tab.login');
+		}
 	}
 	$scope.showAlert = function(){
 	
 	};
 })       
 
+
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
+	$rootScope.deploymentEnv = deploymentEnv;
+	//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+	//$rootScope.APICommonURL = 'https://connectedcare.md';
+	if(deploymentEnv == "Sandbox"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
+	}else if(deploymentEnv == "Production"){
+		$rootScope.APICommonURL = 'https://connectedcare.md';
+		apiCommonURL = 'https://connectedcare.md';
+	}else if(deploymentEnv == "QA"){
+		$rootScope.APICommonURL = 'https://snap-qa.com';
+		apiCommonURL = 'https://snap-qa.com';
+	}
+	
+	$rootScope.envList = ["Snap.QA", "Sandbox" ];
+	
+	$scope.ChangeEnv = function(env){
+		if(env == "Snap.QA"){
+			$rootScope.APICommonURL = ' https://snap-qa.com';
+			apiCommonURL = ' https://snap-qa.com';
+			
+		}else if(env == "Sandbox"){
+			$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+			apiCommonURL = 'https://sandbox.connectedcare.md';
+		}
+		$state.go('tab.login');
+	};
 	    //$rootScope.externalURL = localStorage.getItem("external_load");
 			/*$scope.externalVideoURLFromWeb = localStorage.getItem("external_load");
 			if($scope.externalVideoURLFromWeb != ""){
@@ -634,7 +679,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		 $state.go('tab.login');
+		if(deploymentEnv == "Multiple"){
+			$state.go('tab.chooseEnvironment');
+		}else{
+			$state.go('tab.login');
+		}
 	}
 	
 	
@@ -765,8 +814,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	 
 	
-	//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-	$rootScope.APICommonURL = 'https://connectedcare.md';
 	
 	$scope.doGetFacilitiesList = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -2645,7 +2692,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
-	window.plugins.insomnia.keepAwake();
+	//window.plugins.insomnia.keepAwake();
 	$rootScope.currState = $state;
     
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
@@ -2666,7 +2713,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		 $state.go('tab.login');
+		 if(deploymentEnv == "Multiple"){
+			$state.go('tab.chooseEnvironment');
+		}else{
+			$state.go('tab.login');
+		}
 	}
    
 	
@@ -2774,7 +2825,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		 $state.go('tab.login');
+		if(deploymentEnv == "Multiple"){
+			$state.go('tab.chooseEnvironment');
+		}else{
+			$state.go('tab.login');
+		}
 	}
      
     $scope.doGetExistingConsulatation = function () {
@@ -4022,7 +4077,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		 $state.go('tab.login');
+		if(deploymentEnv == "Multiple"){
+			$state.go('tab.chooseEnvironment');
+		}else{
+			$state.go('tab.login');
+		}
 	}
     
 	

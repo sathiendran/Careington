@@ -11,6 +11,13 @@
     console.log("received url: " + url);
     //window.localstorage.setItem('ASA', url);
 }*/
+
+// Sandbox -  https://sandbox.connectedcare.md
+// Production - https://connectedcare.md
+// QA - https://snap-qa.com
+// Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
+var deploymentEnv = 'Multiple'; //Production //Multiple
+
 var handleOpenURL = function (url) {
     //window.localStorage.setItem("external_load", null);
     //window.localStorage.setItem("external_load", url);
@@ -20,7 +27,6 @@ var handleOpenURL = function (url) {
         window.localStorage.setItem("external_load", url);
                
     }, 0);
-    
 }
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
@@ -65,12 +71,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           {
               if (query[i] === "") // check for trailing & with no param
                   continue;
-          
+            
               var param = query[i].split("=");
               EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
           }
           if(EXTRA['token'] != ""){
             window.localStorage.setItem("external_load", null);
+            if(EXTRA['env'] != ""){
+              var dEnv = EXTRA['env'];
+              if(dEnv.toUpperCase() == "SANDBOX"){
+                deploymentEnv = "Sandbox";
+              }else if(dEnv.toUpperCase() == "QA"){
+                deploymentEnv = "QA";
+              }else if(dEnv.toUpperCase() == "PRODUCTION"){
+                deploymentEnv = "Production";
+              }
+            }
             //$state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
             $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: "" });
           }
@@ -95,6 +111,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
             if(EXTRA['token'] != ""){
               window.localStorage.setItem("external_load", null);
+              if(EXTRA['env'] != ""){
+                var dEnv = EXTRA['env'];
+                if(dEnv.toUpperCase() == "SANDBOX"){
+                  deploymentEnv = "Sandbox";
+                }else if(dEnv.toUpperCase() == "QA"){
+                  deploymentEnv = "QA";
+                }else if(dEnv.toUpperCase() == "PRODUCTION"){
+                  deploymentEnv = "Production";
+                }
+              }
               $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationid: "" });
             }
           }
@@ -409,10 +435,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('tab.chooseEnvironment', {
+    url: '/chooseEnvironment',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-chooseEnvironment.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
 
   
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/login');
+  if(deploymentEnv == "Multiple"){
+    $urlRouterProvider.otherwise('/tab/chooseEnvironment');
+  }else{
+    $urlRouterProvider.otherwise('/tab/login');
+  }
+  
 });
 
 //snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=
