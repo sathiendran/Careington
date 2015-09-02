@@ -405,6 +405,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isWindow = true;
      
     if($rootScope.IOSDevice || $rootScope.isIPad) {
+		$rootScope.screenwidth = window.innerWidth;
+		if($rootScope.screenwidth < 325) { //alert($rootScope.screenwidth);
+			$rootScope.consentScreenSize = "margin-top: 224px !important;";
+		}
+		
 		$rootScope.deviceName = "IOS";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
