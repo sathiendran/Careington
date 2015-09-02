@@ -719,14 +719,14 @@ body {
 .patientDo-Android {
 	margin-top:134px;margin-top: 122px;text-align: center;height: 48px;border-bottom: 1px solid #A9ABA7;
 	.patient_Do_sub-Android {
-		margin-left:18px;margin-top:10px;
+		margin-left:18px;margin-top:10px; width: 100%;
 	}
 }	
 
 .patientDo-IOS {
 	margin-top:134px;margin-top: 122px;text-align: center;height: 53px;border-bottom: 1px solid #A9ABA7;
 	.patient_Do_sub-IOS {
-		margin-left:18px;margin-top:15px;
+		margin-left:18px;margin-top:15px; width: 100%;
 	}
 }
 
@@ -734,7 +734,7 @@ body {
 	background-color: #e6e6e6;
 	/*border-bottom: 1px solid #b9b8b8;*/
 	color: #565656; 
-	height: auto; 
+	height: 50px; 
 	margin-top: 121px;
     //margin-top: 114px;
 }

@@ -33,10 +33,12 @@
 	</div>
 	
 		<div style="display: none;"><timer end-time="time"  ></timer></div>
+			
 	
 	<ion-content class="patientCalendar_Content" style="font-weight: bold; {{PatientCalentarScheduleItem}}" >			
 		<div class="list">		
-	
+			<div><ion-refresher on-refresh="doRefresh()"  > 
+    </ion-refresher></div>
 		
 			<a class="item" style=" background-color: #FEEFE8;  display: {{patientDisplay}}"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 				<div class="patient_appointment">
@@ -54,7 +56,7 @@
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
-			
+		
 		<a class="item" style="display: {{patientDisplay2}}" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
     
 			<div class="patient_appointment">						

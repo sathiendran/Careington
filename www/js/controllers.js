@@ -426,7 +426,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
 		$rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
-        $rootScope.PatientCalentarSchedule = "top: 7px;position: relative;";
+        $rootScope.PatientCalentarSchedule = "top: 7px;position: relative; height: 49px;";
         $rootScope.PatientCalentarScheduleItem = "top: 48px;"
         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
@@ -673,6 +673,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             $scope.checkAndChangeMenuIcon();
         }, 300);
  };
+ 
+  $scope.doRefresh = function() {
+	$scope.doGetScheduledConsulatation();
+	 $timeout( function() {		
+		$scope.getScheduledDetails($rootScope.patientId);
+        $scope.$broadcast('scroll.refreshComplete');
+     }, 1000);
+    $scope.$apply();	
+  };
 	
 	
 	
