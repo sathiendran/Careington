@@ -961,6 +961,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			 var params = {
                 patientEmail: $rootScope.UserEmail,
 				emailType: $scope.emailType,
+				hospitalId: $rootScope.hospitalId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
 				console.log('dopostsentpass');
