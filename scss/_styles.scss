@@ -1233,6 +1233,7 @@ body {
 		input[type="text"], input[type="number"], input[type="password"] {
 			font-size: 20px;
 			line-height: 30px;
+			padding-top: 9px;
 		}
 		.planDetails {
 			padding:0 5px 0 15px;
@@ -1257,6 +1258,7 @@ body {
 			font-weight: bold;
 			font-size: 20px;
 			width: 50%;
+			padding: 10px 10px 7px 0px;
 		}
 		.cardDetailsHeading { 
 			padding-top: 35px;
@@ -3262,4 +3264,7 @@ font-family: $fontFamily_regular;
 		 position: relative;
 		top: 5px !important;
 		}
+}
+.userDateofbirth {
+	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
 }
