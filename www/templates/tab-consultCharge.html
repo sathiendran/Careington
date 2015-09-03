@@ -13,7 +13,7 @@
 		  <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}" >Patient</h1>
 	  
 	  
-<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{PatientCalentarInnerStyle}}" >
+		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{PatientCalentarInnerStyle}}" >
 			<div class="calendar_subHeader">
 				<div class="subHeader_image">					
 					<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
@@ -26,15 +26,17 @@
                     <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
 				</div>
 			</div>
-		</div>			
+		</div>
+		
+		<div class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 119px;	background-color: #fff; {{PaymentStyle}}">
+			<span>Payment</span>
+		</div>	
 	   
 	</ion-header-bar>
 	
 	
 	
-	<div class="consultCharge_subHeader PatintHeaderFontStyle"  style="{{PaymentStyle}}">
-		<span>Payment</span>
-	</div>
+	
 	
 	
 	<ion-content class="consultCharge_content" style="{{ContentOverlop}}" >
