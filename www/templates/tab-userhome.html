@@ -37,6 +37,9 @@
 	
 
  	<ion-list>
+	
+	<div><ion-refresher on-refresh="doRefreshUserHome()"  > 
+    </ion-refresher></div>
       
 	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
 		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border-top: none; top: -2px; height: 93px;">

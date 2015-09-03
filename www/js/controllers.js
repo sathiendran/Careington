@@ -687,6 +687,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
      }, 1000);
     $scope.$apply();	
   };
+  
+  $scope.doRefreshUserHome = function() {
+	$scope.doGetScheduledConsulatation();
+	 $timeout( function() {		
+		//$scope.getScheduledDetails($rootScope.patientId);
+        $scope.$broadcast('scroll.refreshComplete');
+     }, 1000);
+    $scope.$apply();	
+  };
 	
 	
 	
