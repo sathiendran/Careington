@@ -16,7 +16,7 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple
+var deploymentEnv = 'Multiple'; //Production //Multiple 
 
 var handleOpenURL = function (url) {
     //window.localStorage.setItem("external_load", null);

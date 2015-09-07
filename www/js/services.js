@@ -899,33 +899,20 @@ this.getCountryDetails = function () {
 		 yearString = "y"; 
 		 monthString = "m";
 
-	  if ( age.years < 10 ) years = '0' + age.years;
-	  else years = age.years;
-	  if ( age.months < 10 ) month = '0' + age.months;
-	  else month = age.months;
-	  if ( age.days > 1 ) dayString = " days";
-	  else dayString = " day";
-
-	  
-	   if(age.years == 0 ) {  
+	 if(age.years == 0 ) {  
 			if(age.days <= 15) {
-				return ageString =  month + monthString; 
+				return ageString = age.months + monthString;; 
 			} else if (age.days > 15) {
-				 var ageMonth =  (age.months + 1); 
-				 if ( ageMonth < 10 ) return ageString = '0' + ageMonth + monthString;
-				else return ageString = ageMonth + monthString;
+				 return ageString = (age.months + 1) + monthString;; 
 			}
 	   }
 		if (age.years > 0) {
 			if(age.days <= 15) {
-				var month =  month + monthString; 
+				 var month = age.months + monthString;; 
 			} else if (age.days > 15) {
-				//var month =  (month + 1) + monthString; 
-				var ageMonth =  (age.months + 1); 
-				 if ( ageMonth < 10 ) var month = '0' + ageMonth + monthString;
-				else var month = ageMonth + monthString;
+				  var month = (age.months + 1) + monthString;; 
 			}
-			return ageString = years + yearString +'/'+ month; }
+		return ageString = age.years + yearString +'/'+ month; }
 		
 
 	  
