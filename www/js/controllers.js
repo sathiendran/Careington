@@ -462,7 +462,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.loginLineHeight = "top: 2px; position: relative;";
 		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
-		$rootScope.ContentConsultCharge = "margin: 192px 0 0 0;"; 	
+		$rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;"; 	
 		$rootScope.currentMedicationContent = "margin-top: 125px !important;";
 		$rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
     if($rootScope.IOSDevice) {
