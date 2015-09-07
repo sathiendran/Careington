@@ -2343,6 +2343,7 @@ margin-left: 16px;
     font-size: 15px;
     margin: 0;
     padding: 0;
+	width: 100%;
 }
 
 .checkbox input, .checkbox-icon {
@@ -2553,7 +2554,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .popup-head {
   padding: 8px 10px;
   border-bottom: 1px solid #eee;
-  text-align: center; }	
+  text-align: left; 
+	width: 100%;
+  }	
   
  .popup-body {
   padding: 10px;

@@ -1218,12 +1218,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.patientExistInfomation = data.data[0].patientInformation;
 				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
-				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.age;
+				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
 				$rootScope.appointmentsPatientGurdianName = $rootScope.patientExistInfomation.guardianName;
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
 				$rootScope.reportScreenPrimaryConcern = $rootScope.intakeForm.concerns[0].customCode.description;
 				$rootScope.reportScreenSecondaryConcern = $rootScope.intakeForm.concerns[1].customCode.description;
+				if($rootScope.reportScreenSecondaryConcern == "") {
+					$rootScope.reportScreenSecondaryConcern = "None Reported";
+				}
 				if(typeof $rootScope.consultionInformation.note != 'undefined') {
 					$rootScope.preConsultantNotes = $rootScope.consultionInformation.note;				
 				} else {
@@ -4475,23 +4478,37 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 		  months: monthAge,
 		  days: dateAge
 		  };
+		  
+		 yearString = "y"; 
+		 monthString = "m";
 
-	  if ( age.years > 1 ) yearString = " years";
-	  else yearString = " year";
-	  if ( age.months> 1 ) monthString = " months";
-	  else monthString = " month";
+	  if ( age.years < 10 ) years = '0' + age.years;
+	  else years = age.years;
+	  if ( age.months < 10 ) month = '0' + age.months;
+	  else month = age.months;
 	  if ( age.days > 1 ) dayString = " days";
 	  else dayString = " day";
 
 	  
 	   if(age.years == 0 ) {  
 			if(age.days <= 15) {
-				return ageString = '0.' + age.months; 
+				return ageString =  month + monthString; 
 			} else if (age.days > 15) {
-				 return ageString = '0.' + (age.months + 1); 
+				 var ageMonth =  (age.months + 1); 
+				 if ( ageMonth < 10 ) return ageString = '0' + ageMonth + monthString;
+				else return ageString = ageMonth + monthString;
 			}
 	   }
-		if (age.years > 0) { return ageString = age.years; }
+		if (age.years > 0) {
+			if(age.days <= 15) {
+				var month =  month + monthString; 
+			} else if (age.days > 15) {
+				//var month =  (month + 1) + monthString; 
+				var ageMonth =  (age.months + 1); 
+				 if ( ageMonth < 10 ) var month = '0' + ageMonth + monthString;
+				else var month = ageMonth + monthString;
+			}
+			return ageString = years + yearString +'/'+ month; }
 
 	  
 	}
