@@ -12,34 +12,36 @@
                 scope.$watch(scope.isLoading, function (loading)
                 { 
                     $rootScope.spinnerActive = loading;					 	
-                    if(loading){						
-                        elm.removeClass('ng-hide');						
-                        elm.css({
-                            'top' : 0, 
-                            'left' : 0, 
-                            'right' : 0, 
-                            'bottom' : 0, 
-                            'z-index' : 90000,
-                            'background-color' : '#666',
-                            'opacity' : 0.5,
-                            'position' : 'absolute'
-                        });
-						$ionicPlatform.registerBackButtonAction(function (event) {	
+                    if(loading){
+						if ($rootScope.currState.$current.name != "tab.login") {
+							elm.removeClass('ng-hide');						
 							elm.css({
-                            'top' : 0, 
-                            'left' : 0, 
-                            'right' : 0, 
-                            'bottom' : 0, 
-                            'z-index' : 90000,
-                            'background-color' : '#666',
-                            'opacity' : 0.5,
-                            'position' : 'absolute'
-                        });	
-							//alert('bbbb');
-							//event.preventDefault();
-						 }, 100); 
+								'top' : 0, 
+								'left' : 0, 
+								'right' : 0, 
+								'bottom' : 0, 
+								'z-index' : 90000,
+								'background-color' : '#666',
+								'opacity' : 0.5,
+								'position' : 'absolute'
+							});
+							$ionicPlatform.registerBackButtonAction(function (event) {	
+								elm.css({
+								'top' : 0, 
+								'left' : 0, 
+								'right' : 0, 
+								'bottom' : 0, 
+								'z-index' : 90000,
+								'background-color' : '#666',
+								'opacity' : 0.5,
+								'position' : 'absolute'
+							});	
+								//alert('bbbb');
+								//event.preventDefault();
+							 }, 100); 
+						}
                     }else{
-                        elm.addClass('ng-hide');
+                       elm.addClass('ng-hide');
 						$ionicPlatform.registerBackButtonAction(function (event, $state) {	
 							if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 								 ($rootScope.currState.$current.name=="tab.receipt") || 	
