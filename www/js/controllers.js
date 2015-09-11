@@ -912,7 +912,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		/*$timeout(function(){			
 			$ionicScrollDelegate.scrollTo(0, 150, true);
 		}, 400);*/
-		 $timeout(function(){$ionicScrollDelegate.scrollTo(0, 150, true);},900);
+		 $('#passwordtop').css({"padding-bottom": "2px !important"});
+		 $timeout(function(){			 
+			 $ionicScrollDelegate.scrollTo(0, 150, false);	
+			 //$ionicScrollDelegate.getScrollView().scrollTo(0, 150, false);		
+		},900);
     };
 	
 	
