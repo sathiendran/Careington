@@ -689,7 +689,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
   };
   
   $scope.doRefreshUserHome = function() {
-	$scope.doGetScheduledConsulatation();
+	$scope.doGetPatientProfiles();	
+	$scope.doGetRelatedPatientProfiles();
+	//$scope.doGetScheduledConsulatation();
 	 $timeout( function() {		
 		//$scope.getScheduledDetails($rootScope.patientId);
         $scope.$broadcast('scroll.refreshComplete');
@@ -912,9 +914,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		/*$timeout(function(){			
 			$ionicScrollDelegate.scrollTo(0, 150, true);
 		}, 400);*/
-		 $('#passwordtop').css({"padding-bottom": "2px !important"});
+		// $('#passwordtop').css({"padding-bottom": "2px !important"});
 		 $timeout(function(){			 
-			 $ionicScrollDelegate.scrollTo(0, 150, false);	
+			 $ionicScrollDelegate.scrollTo(0, 150, true);	
 			 //$ionicScrollDelegate.getScrollView().scrollTo(0, 150, false);		
 		},900);
     };
@@ -1982,7 +1984,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 			LoginService.postApplyHealthPlan(params);
    	 }
-    
+	 
+	 
     
    
 	$rootScope.doGetPatientPaymentProfiles = function () {	
@@ -3031,7 +3034,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
        $ionicPopup.show({
           //template: '<input type="text" ng-model="data.PrimaryConcernOther">',
 			template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
-            title: 'Enter Concerns',
+            title: 'Enter Primary Concern',
 			subTitle: '',
 			scope: $scope,
 			buttons: [
@@ -3102,6 +3105,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				refresh_close();
 		
 	}
+	
+	
     
    $scope.PatientConcernsDirectory = function(ChronicValid){
         $rootScope.ChronicValid = ChronicValid; // pre populated valid value
@@ -3111,6 +3116,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.ConcernsValidation($scope.ErrorMessage);
 			}
         } else { 
+			//$scope.doGetHospitalInformation();
 			$scope.doPostOnDemandConsultation();			
         }
         
@@ -3202,7 +3208,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	   $scope.data = {}
        $ionicPopup.show({
            template: '<textarea name="comment" id="comment-textarea" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
-            title: 'Enter Concerns',
+            title: 'Enter Secondary Concern',
 			subTitle: '',
 			scope: $scope,
 			buttons: [
@@ -3710,7 +3716,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 	   $scope.data = {}
        $ionicPopup.show({
            template: '<textarea name="comment" id="comment-textarea" ng-model="data.CurrentMedicationOther" class="textAreaPop">',
-            title: 'Enter Concerns',
+            title: 'Enter Medication',
 			subTitle: '',
 			scope: $scope,
 			buttons: [
@@ -3883,6 +3889,37 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
       var indexPos = $scope.patientSurgeriess.indexOf(item);
       $rootScope.IsToPriorCount--;
       //console.log($rootScope.IsToPriorCount--);
+    }
+	
+	$scope.doGetHospitalInformation = function () {
+			if ($rootScope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}			
+			var params = {
+				accessToken: $rootScope.accessToken,
+				success: function (data) {
+					$rootScope.getDetails = data.enabledModules;
+					if($rootScope.getDetails != '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+								$rootScope.paymentMode == 'on';
+									for (var i = 0; i < $rootScope.getDetails.length; i++) {
+										if ($rootScope.getDetails[i] == 'InsuranceVerification') {
+											$rootScope.insuranceMode == 'on';
+										}
+									}
+							}
+						}
+					}
+					
+					
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getHospitalInfo(params);		
     }
     
 	
@@ -4374,6 +4411,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         session.unpublish(publisher)
         //publisher.destroy();
         session.disconnect();
+		alert('Consultation ended successfully!');
 		$scope.doGetPatientsSoapNotes();
 		$scope.doGetExistingConsulatationReport(); 
 		window.plugins.insomnia.allowSleepAgain();	

@@ -21,7 +21,7 @@
 	    </ion-item>
        
 		
-		 <ion-item ng-repeat="item in patinentMedicationAllergies" >
+		 <ion-item ng-repeat="item in patinentMedicationAllergies" ng-if="item.text != 'Other'" >
 			<div class="PrimaryConcernList" >
 				<p class="intakeNote">{{item.text}} </p>
                 <div ng-click="removeMedicationAllegies($index, item);">

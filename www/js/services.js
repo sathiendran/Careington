@@ -396,6 +396,35 @@ angular.module('starter.services', [])
 					}
                 });
     }
+	
+	this.getHospitalInfo = function (params) {
+        //https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/Hospital/Get',
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+					if(status == 404) {
+						if (typeof params.error != 'undefined') {
+							params.success(data);
+						}
+					} else {
+						if (typeof params.error != 'undefined') {
+						   params.error(data);
+						}
+					}
+                });
+    }
+	
 
     this.getFacilitiesList = function (params) {
         //GET v2/patients/hospitals?email=<email>

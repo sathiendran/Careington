@@ -13,7 +13,7 @@
                 { 
                     $rootScope.spinnerActive = loading;					 	
                     if(loading){
-						if ($rootScope.currState.$current.name != "tab.login") {
+						if ($rootScope.currState.$current.name != "tab.chooseEnvironment") {
 							elm.removeClass('ng-hide');						
 							elm.css({
 								'top' : 0, 
