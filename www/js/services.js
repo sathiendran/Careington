@@ -562,6 +562,56 @@ angular.module('starter.services', [])
 				}
 		});
 	}
+	
+	 this.postVerifyHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/apply?retry=1',
+            method: 'POST',
+			data: {
+                InsuranceCompanyName: params.insuranceCompanyName,
+				PolicyNumber: params.policyNumber,
+				ConsultationId: params.consultationId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
+	this.postSkipHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/skip',
+            method: 'POST',
+			data: {
+                InsuranceCompanyName: params.insuranceCompanyName,
+				PolicyNumber: params.policyNumber,
+				ConsultationId: params.consultationId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
     
     this.updateConsultationEvent = function(params) {
 		var updatedConsultationEvent = {

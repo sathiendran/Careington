@@ -1362,9 +1362,33 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	
 	$scope.openAddHealthPlanSection = function () {
+		if($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on') {
+			$rootScope.applyPlanMode = "none";
+			$rootScope.chooseHealthHide = 'initial';
+			$rootScope.chooseHealthShow = 'none';
+			$rootScope.verifyPlanMode = "block";
+		} else {
+			$rootScope.applyPlanMode = "block";
+			$rootScope.verifyPlanMode = "none";
+		}
+		$rootScope.consultChargeNoPlanPage = "none";	
+		//$rootScope.verifyHealthPlanPage = "none";
 		$rootScope.consultChargeSection = "block";
 		$rootScope.healthPlanSection = "none";
-		$rootScope.healthPlanPage = "block";
+		$rootScope.healthPlanPage = "block";			
+		$rootScope.chooseHealthHide = 'initial';
+		$rootScope.chooseHealthShow = 'none';
+		$rootScope.providerName = "";
+		$rootScope.PolicyNo = "";
+		$scope.doGetPatientHealthPlansList();
+	}
+	
+	$scope.openVerifyInsuranceSection = function () {
+		
+		$rootScope.consultChargeSection = "none";
+		$rootScope.healthPlanSection = "block";
+		$rootScope.verifyHealthPlanPage = "block";
+		$rootScope.healthPlanPage = "none";
 		$rootScope.consultChargeNoPlanPage = "none";		
 		$rootScope.chooseHealthHide = 'initial';
 		$rootScope.chooseHealthShow = 'none';
@@ -1984,6 +2008,119 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 			LoginService.postApplyHealthPlan(params);
    	 }
+	 
+	 $scope.doPostVerifyHealthPlan = function() {
+	 
+		 if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+        $scope.Choose = 'false';
+        console.log($scope.Health.addHealthPlan);        
+       
+        
+        if($rootScope.currState.$current.name=="tab.consultCharge") {
+                       if(typeof $scope.Health.addHealthPlan != 'undefined') { 
+                            if($scope.Health.addHealthPlan != 'Choose Your Health Plan') {
+                                 $rootScope.NewHealth = $scope.Health.addHealthPlan;
+                                 $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+                                 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+                                 $rootScope.providerName = healthInsurance[0];
+                                 $rootScope.PolicyNo = healthInsurance[1];
+                                 $rootScope.healthPlanID = healthInsurance[2];
+                            } else { 
+                                $rootScope.NewHealth = "";
+                                $rootScope.providerName = "";
+                                $rootScope.PolicyNo = "";
+                                $rootScope.healthPlanID = "";
+                            }
+                                 //$rootScope.providerName   =  InsuranceCompany;
+                       } if(typeof $scope.Health.addHealthPlan == 'undefined' || $scope.Health.addHealthPlan == 'Choose Your Health Plan') {
+                           if($rootScope.NewHealth == "" && $rootScope.providerName == "") {
+                                $scope.Choose = 'true';
+                            } else { 
+                                  if($rootScope.NewHealth != "") {
+									  if($rootScope.providerName != '') {
+										 $rootScope.providerName = $rootScope.providerName;
+										 $rootScope.PolicyNo = $rootScope.PolicyNo;
+										 $rootScope.healthPlanID = $rootScope.healthPlanID;
+									  } else {
+										 $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+										 var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+										 $rootScope.providerName = healthInsurance[0];
+										 $rootScope.PolicyNo = healthInsurance[1];
+										 $rootScope.healthPlanID = healthInsurance[2];
+										}
+                                  } else {
+                                 $rootScope.providerName = $rootScope.providerName;
+                                 $rootScope.PolicyNo = $rootScope.PolicyNo;
+                                 $rootScope.healthPlanID = $rootScope.healthPlanID;
+                                  }
+                           }
+			              
+                       } else {
+
+                            $rootScope.NewHealth ;
+                            $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
+                            var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
+
+                            $rootScope.providerName = healthInsurance[0];
+                            $rootScope.PolicyNo = healthInsurance[1];
+                            $rootScope.healthPlanID = healthInsurance[2];
+                            // $rootScope.providerName   =  InsuranceCompany;
+                            }
+                       
+                    }
+        if($scope.Choose != 'true') {
+         var params = {
+                accessToken: $rootScope.accessToken,
+				insuranceCompanyName: $rootScope.providerName,
+				policyNumber: $rootScope.PolicyNo,
+				consultationId: $rootScope.consultationId,
+				healthPlanId: $rootScope.healthPlanID,
+				success: function (data) {
+					console.log(data);
+					$scope.doGetSkipHealthPlan();
+				},
+				error: function (data) { 
+                   $rootScope.serverErrorMessageValidation();
+				}
+			};
+        } else {
+            $scope.ErrorMessages = "Choose Your Health Plan";
+            $rootScope.Validation($scope.ErrorMessages);
+        }		
+        
+			LoginService.postVerifyHealthPlan(params);
+   	 }
+	 
+	 
+	 $scope.doGetSkipHealthPlan = function () {	
+		
+			if ($scope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			
+			var params = {
+				accessToken: $rootScope.accessToken,
+				insuranceCompanyName: $rootScope.providerName,
+				policyNumber: $rootScope.PolicyNo,
+				consultationId: $rootScope.consultationId,
+				healthPlanId: $rootScope.healthPlanID,
+				success: function (data) {
+					console.log(data);
+					$state.go('tab.receipt'); 
+					$scope.ReceiptTimeout();
+					
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			
+			LoginService.postSkipHealthPlan(params);		
+    }
 	 
 	 
     
@@ -2618,6 +2755,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
+		if($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on') {
+			$rootScope.verifyInsuranceSection = "block";
+			$rootScope.verifyConsultChargeSection = "none";			
+		} else {
+			$rootScope.verifyInsuranceSection = "none";
+			$rootScope.verifyConsultChargeSection = "block";			
+		}	
 		$rootScope.consultChargeSection = "block";
 		$rootScope.healthPlanSection = "none";	
 		$rootScope.doPutConsultationSave();       
@@ -3116,7 +3260,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.ConcernsValidation($scope.ErrorMessage);
 			}
         } else { 
-			//$scope.doGetHospitalInformation();
+			$scope.doGetHospitalInformation();
 			$scope.doPostOnDemandConsultation();			
         }
         
@@ -3902,11 +4046,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					$rootScope.getDetails = data.enabledModules;
 					if($rootScope.getDetails != '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
-							if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
-								$rootScope.paymentMode == 'on';
+							if ($rootScope.getDetails[i] == 'InsuranceVerification') {
+								$rootScope.insuranceMode = 'on';
 									for (var i = 0; i < $rootScope.getDetails.length; i++) {
-										if ($rootScope.getDetails[i] == 'InsuranceVerification') {
-											$rootScope.insuranceMode == 'on';
+										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+											$rootScope.paymentMode = 'on';
 										}
 									}
 							}
