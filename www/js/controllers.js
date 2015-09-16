@@ -2110,6 +2110,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				healthPlanId: $rootScope.healthPlanID,
 				success: function (data) {
 					console.log(data);
+					$rootScope.enablePaymentSuccess = "none";
 					$state.go('tab.receipt'); 
 					$scope.ReceiptTimeout();
 					
@@ -2372,6 +2373,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_id) {
        if($rootScope.P_isAuthorized == true) {
 			// Start Intake Sub Header Information 
+			$rootScope.paymentMode = '';
+			$rootScope.insuranceMode = '';
 			$rootScope.PatientImageSelectUser = P_img;
 			$rootScope.PatientFirstName = P_Fname;
 			$rootScope.PatientLastName = P_Lname;
@@ -4174,26 +4177,33 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {                    
 					$scope.ConsultationSave = "success";
-					if($rootScope.consultationAmount > 0)	{
-						$rootScope.doGetPatientPaymentProfiles();	
-						$state.go('tab.consultCharge'); 
-						if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
-							$('#addNewCard').val() == 'Choose Your Card';
-							$('#addNewCard_addCard').val() == 'Choose Your Card';
-							$('#addNewCard_submitPay').val() == 'Choose Your Card';
-							$rootScope.userDefaultPaymentProfileText = 'undefined';
-						}else{
-							$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
-							$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
-							$('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
-							$('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
-							$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
-						}
-
-						
-					} else {
+					if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
+						$rootScope.enablePaymentSuccess = "none";
 						$state.go('tab.receipt'); 
-						$scope.ReceiptTimeout();
+							$scope.ReceiptTimeout();
+					} else {
+						if($rootScope.consultationAmount > 0)	{
+							$rootScope.doGetPatientPaymentProfiles();	
+							$state.go('tab.consultCharge'); 
+							if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
+								$('#addNewCard').val() == 'Choose Your Card';
+								$('#addNewCard_addCard').val() == 'Choose Your Card';
+								$('#addNewCard_submitPay').val() == 'Choose Your Card';
+								$rootScope.userDefaultPaymentProfileText = 'undefined';
+							}else{
+								$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+								$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+								$('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+								$('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+								$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+							}
+
+							
+						} else {
+							$rootScope.enablePaymentSuccess = "none";
+							$state.go('tab.receipt'); 
+							$scope.ReceiptTimeout();
+						}
 					}	
                 },
                 error: function (data) {
