@@ -777,6 +777,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			//});
 	}	
 	
+	$rootScope.serverErrorMessageValidationForHealthPlanApply = function(){
+		function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to verify health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$(".Server_Error").append(top);
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+	}
 	 $scope.$watch('userLogin.UserEmail', function(UserEmail){	
 			if($localstorage.get('username') == UserEmail) {
 				if($localstorage.get('username')) {
@@ -1978,16 +1993,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				healthPlanId: $rootScope.healthPlanID,
 				success: function (data) {
                     if(!data.message) {
-					$scope.ApplyHealthPlan = data;
-					$rootScope.copayAmount = data.copayAmount;
-					if($rootScope.consultationAmount > $rootScope.copayAmount) {
-						$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
-					} else  {
-						$rootScope.PlanCoversAmount = '';
-					}
-					console.log($scope.ApplyHealthPlan);
-                    $rootScope.doGetPatientPaymentProfiles();
-                    $state.go('tab.addCard');
+						$scope.ApplyHealthPlan = data;
+						$rootScope.copayAmount = data.copayAmount;
+						if($rootScope.consultationAmount > $rootScope.copayAmount) {
+							$rootScope.PlanCoversAmount = $rootScope.consultationAmount - $rootScope.copayAmount;
+						} else  {
+							$rootScope.PlanCoversAmount = '';
+						}
+						console.log($scope.ApplyHealthPlan);
+						$rootScope.doGetPatientPaymentProfiles();
+						$state.go('tab.addCard');
                     } else {
                         if($scope.Health.addHealthPlan != ''){
                     $scope.ErrorMessage = "Bad Request Please check it";
@@ -2001,7 +2016,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 				},
 				error: function (data) { 
-                   $rootScope.serverErrorMessageValidation();
+                   $rootScope.serverErrorMessageValidationForHealthPlanApply();
 				}
 			};
         } else {
