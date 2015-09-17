@@ -4585,12 +4585,21 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         session.unpublish(publisher)
         //publisher.destroy();
         session.disconnect();
-		alert('Consultation ended successfully!');
+		navigator.notification.alert(
+			'Consultation ended successfully!',  // message
+			consultationEndedAlertDismissed,         // callback
+			'Connected Care',            // title
+			'Done'                  // buttonName
+		);
+		//alert('Consultation ended successfully!');
+		
+    };
+    
+	function consultationEndedAlertDismissed(){
 		$scope.doGetPatientsSoapNotes();
 		$scope.doGetExistingConsulatationReport(); 
 		window.plugins.insomnia.allowSleepAgain();	
-    };
-    
+	}
 })
 
 
