@@ -10,15 +10,19 @@
 				<img ng-src="img/success-badge.svg" style="width: 150px; height: 148px;">				
 			</div>
 			<div class="PaymentSuccess" style="display: {{enablePaymentSuccess}}">
-				Payment Successful
+				Payment Successfull
 				<div class="PaymentConfirmation" >
 					Confirmation #{{paymentConfirmationNumber}}
 						<div class="ConfirmationReceipt">
 							A receipt has been sent to you via email
 						</div>
 				</div>
-			</div>			
-			
+			</div>		
+			<div class="PaymentSuccess" style="display: {{enableInsuranceVerificationSuccess}}">	
+				<div class="PaymentConfirmation">
+					Your plan has been verified
+				</div>
+			</div>
 			
 			<div class="EnterWaitingRoom">
 				<!--<a ng-href="#/tab/waitingRoom">-->

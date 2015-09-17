@@ -42,7 +42,7 @@
 	<ion-content class="consultCharge_content" style="{{ContentOverlop}}" >
 		<div class="password_home">
 		
-			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" style="display: {{verifyConsultChargeSection}}">
 				<div class="consultTittle">Consultation Charge</div>
 				<div class="consultation_number"> ${{consultationAmount}}*</div>
 			</div>
@@ -51,7 +51,7 @@
 				<div class="UseHealthPlan" style="display: {{verifyInsuranceSection}}">	
 					<a ng-click="openAddHealthPlanSection()">
 						<button class="button button-block button-energized" style="padding: 3px;">
-							<span> Verify Insurance </span>
+							<span> Verify Health Plan </span>
 						</button>
 					</a>
 				</div>

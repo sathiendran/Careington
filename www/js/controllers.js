@@ -653,7 +653,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
     
-    $scope.checkAndChangeMenuIcon = function(){
+    $rootScope.checkAndChangeMenuIcon = function(){
         if (!$ionicSideMenuDelegate.isOpen(true)){
           if($('#BackButtonIcon').hasClass("ion-close")){
             $('#BackButtonIcon').removeClass("ion-close");
@@ -670,12 +670,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
  $scope.toggleLeft = function() {
   $ionicSideMenuDelegate.toggleLeft();
-        $scope.checkAndChangeMenuIcon();
+        $rootScope.checkAndChangeMenuIcon();
         if(checkAndChangeMenuIcon){
             $interval.cancel(checkAndChangeMenuIcon);
         }
         checkAndChangeMenuIcon = $interval(function(){
-            $scope.checkAndChangeMenuIcon();
+            $rootScope.checkAndChangeMenuIcon();
         }, 300);
  };
  
@@ -1361,7 +1361,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.chooseHealthShow = 'initial';
 		}
 	
-	$scope.openAddHealthPlanSection = function () {
+	$rootScope.openAddHealthPlanSection = function () {
 		if($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on') {
 			$rootScope.applyPlanMode = "none";
 			$rootScope.chooseHealthHide = 'initial';
@@ -1800,7 +1800,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
 	$scope.backConsultCharge = function() {
-		if($rootScope.consultChargeSection == "block") {
+		if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode == 'on') {
+			$state.go('tab.ConsentTreat');
+		}
+		else if($rootScope.consultChargeSection == "block") {
 			$state.go('tab.ConsentTreat');
 		} else if($rootScope.healthPlanSection == "block") {			
 			$rootScope.healthPlanSection = "none";
@@ -2111,6 +2114,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					console.log(data);
 					$rootScope.enablePaymentSuccess = "none";
+					$rootScope.enableInsuranceVerificationSuccess = "block";
 					$state.go('tab.receipt'); 
 					$scope.ReceiptTimeout();
 					
@@ -2935,7 +2939,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $scope.waitingMsg="The Clinician will be with you Shortly.";
 	var initWaitingRoomHub = function () {
          var connection = $.hubConnection();
-         debugger;
          var conHub = connection.createHubProxy('consultationHub');
          connection.url = $rootScope.APICommonURL + "/api/signalR/";
          var consultationWatingId = +$rootScope.consultationId;
@@ -3263,12 +3266,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.ConcernsValidation($scope.ErrorMessage);
 			}
         } else { 
-			$scope.doGetHospitalInformation();
+			//$scope.doGetHospitalInformation();
 			$scope.doPostOnDemandConsultation();			
         }
         
     }
     
+	$scope.goToConsentToTreat = function(){
+		$scope.doGetHospitalInformation();
+		$state.go('tab.ConsentTreat');	
+	};
 	/*Primary concern End here*/
 	
 	/*Secondary concern Start here*/
@@ -4051,11 +4058,15 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
 							if ($rootScope.getDetails[i] == 'InsuranceVerification') {
 								$rootScope.insuranceMode = 'on';
-									for (var i = 0; i < $rootScope.getDetails.length; i++) {
+									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
 										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
 											$rootScope.paymentMode = 'on';
 										}
-									}
+									}*/
+							}
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce') {
+								$rootScope.paymentMode = 'on';
 							}
 						}
 					}
@@ -4177,13 +4188,24 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {                    
 					$scope.ConsultationSave = "success";
+					$rootScope.doGetPatientPaymentProfiles();
+					$rootScope.enableInsuranceVerificationSuccess = "none";					
 					if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
 						$rootScope.enablePaymentSuccess = "none";
 						$state.go('tab.receipt'); 
 							$scope.ReceiptTimeout();
-					} else {
+					} else if($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on'){
+						$rootScope.verifyInsuranceSection = "none";
+						$rootScope.openAddHealthPlanSection();
+						$state.go('tab.consultCharge'); 
+					}else {
 						if($rootScope.consultationAmount > 0)	{
-							$rootScope.doGetPatientPaymentProfiles();	
+							if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode == 'on') {
+								$rootScope.consultChargeSection = "none";
+								$rootScope.healthPlanSection = "block";
+								$rootScope.healthPlanPage = "none";
+								$rootScope.consultChargeNoPlanPage = "block";
+							}	
 							$state.go('tab.consultCharge'); 
 							if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
 								$('#addNewCard').val() == 'Choose Your Card';
@@ -4191,14 +4213,12 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 								$('#addNewCard_submitPay').val() == 'Choose Your Card';
 								$rootScope.userDefaultPaymentProfileText = 'undefined';
 							}else{
-								$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
 								$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
 								$('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
 								$('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
 								$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
-							}
-
-							
+								$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+							}						
 						} else {
 							$rootScope.enablePaymentSuccess = "none";
 							$state.go('tab.receipt'); 
@@ -4260,7 +4280,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
     
-    $scope.checkAndChangeMenuIcon = function(){
+    $rootScope.checkAndChangeMenuIcon = function(){
         if (!$ionicSideMenuDelegate.isOpen(true)){
           if($('#BackButtonIcon').hasClass("ion-close")){
             $('#BackButtonIcon').removeClass("ion-close");
@@ -4276,12 +4296,12 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     
  $scope.toggleLeft = function() {
   $ionicSideMenuDelegate.toggleLeft();
-        $scope.checkAndChangeMenuIcon();
+        $rootScope.checkAndChangeMenuIcon();
         if(checkAndChangeMenuIcon){
             $interval.cancel(checkAndChangeMenuIcon);
         }
         checkAndChangeMenuIcon = $interval(function(){
-            $scope.checkAndChangeMenuIcon();
+            $rootScope.checkAndChangeMenuIcon();
         }, 300);
  };
     
