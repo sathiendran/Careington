@@ -8,4 +8,6 @@ Plugins to be installed
 	7. cordova plugin add org.apache.cordova.dialogs
 
 Notes to remember
-
+	1. Remember to change the signalR reference in index.html on very release to different env.
+	2. Remember to update the build number in login.html in every build.
+	3. Remember to test the app full flow before releasing it to store to make sure everything is working.
