@@ -25,7 +25,7 @@ w<ion-side-menus> >
 			
 		  
 			
-			 <ion-item ng-repeat="item in PatientChronicCondition" ng-if="item.text != 'Other'">
+			 <ion-item ng-repeat="item in PatientChronicCondition">
 				<div class="PrimaryConcernList">
 					<p class="intakeNote">{{item.text}}</p>
 <div  ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;"> 

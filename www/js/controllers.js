@@ -1869,7 +1869,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
 	$scope.backConsultCharge = function() {
-		if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode == 'on') {
+		if(($rootScope.insuranceMode != 'on' && $rootScope.paymentMode == 'on') || ($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on')) {
 			$state.go('tab.ConsentTreat');
 		}
 		else if($rootScope.consultChargeSection == "block") {
@@ -2155,7 +2155,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$scope.doGetSkipHealthPlan();
 				},
 				error: function (data) { 
-                   $rootScope.serverErrorMessageValidationForHealthPlanVerify();
+                   //$rootScope.serverErrorMessageValidationForHealthPlanVerify();
+				   $scope.doGetSkipHealthPlan();
 				}
 			};
         } else {
@@ -3630,6 +3631,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	  }  else  { 
 	  $rootScope.checkedChronic--; 
 	  }
+	  /*
         if(item.text == "Other"){
            $scope.openOtherChronicConditionView(item);          
 		 } else {
@@ -3637,6 +3639,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.closeChronicCondition();
 			}
 		 }
+		*/
+		if($rootScope.checkedChronic == 4) {
+			$scope.closeChronicCondition();
+		}
     }
 	
    
@@ -3704,7 +3710,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     // Get list of Medication Allegies List
     $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-    
+    /*
 	for(var i=0; i < $scope.MedicationAllegiesList.length; i++){
 		if($scope.MedicationAllegiesList[i].text == 'Other'){
 			//$scope.MedicationAllegiesList.shift();
@@ -3720,6 +3726,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
   			$scope.chronicConditionList.splice(index, 1); 
 		}
 	}
+	*/
      // Get list of Medication Allegies Pre populated
   /*  $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
         $rootScope.AllegiesCountValid = AllegiesCountValid;
@@ -3788,18 +3795,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
       // Onchange of Medication Alligies
     $scope.OnSelectMedicationAllegies = function(item) {
-            if(item.checked == true) { 
-                $rootScope.checkedAllergies++; 
-              }  else  { 
-                $rootScope.checkedAllergies--; 
-              }
-        if(item.text == "Other"){
+		if(item.checked == true) { 
+			$rootScope.checkedAllergies++; 
+		}  else  { 
+			$rootScope.checkedAllergies--; 
+		}
+		if($rootScope.checkedAllergies == 4) {
+			$scope.closeMedicationAllegies();
+		}
+        /*
+		if(item.text == "Other"){
             $scope.openOtherMedicationAllgiesView(item);
         } else {
 			if($rootScope.checkedAllergies == 4) {
 				$scope.closeMedicationAllegies();
 			}
 		}
+		*/
     }
     
     
