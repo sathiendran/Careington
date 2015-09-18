@@ -74,8 +74,45 @@ var ENDED_CONSULTATION_STATUS_CODE = 119;
 var WAITING_CONSULTATION_STATUS_CODE = 68;
 var JOIN_CONSULTATION_STATUS_CODE = 121;
 
+angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
+  $provide.decorator('$browser', ['$delegate', '$window', function($delegate, $window) {
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place'])
+    if (isIOS9UIWebView($window.navigator.userAgent)) {
+      return applyIOS9Shim($delegate);
+    }
+
+    return $delegate;
+
+    function isIOS9UIWebView(userAgent) {
+      return /(iPhone|iPad|iPod).* OS 9_\d/.test(userAgent) && !/Version\/9\./.test(userAgent);
+    }
+
+    function applyIOS9Shim(browser) {
+      var pendingLocationUrl = null;
+      var originalUrlFn= browser.url;
+
+      browser.url = function() {
+        if (arguments.length) {
+          pendingLocationUrl = arguments[0];
+          return originalUrlFn.apply(browser, arguments);
+        }
+
+        return pendingLocationUrl || originalUrlFn.apply(browser, arguments);
+      };
+
+      window.addEventListener('popstate', clearPendingLocationUrl, false);
+      window.addEventListener('hashchange', clearPendingLocationUrl, false);
+
+      function clearPendingLocationUrl() {
+        pendingLocationUrl = null;
+      }
+
+      return browser;
+    }
+  }]);
+});
+
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
 //InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
@@ -783,6 +820,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to apply health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+
+			//$('#notifications-window-row-button').click(function(){
+				$("#notifications-top-center").remove();
+				$(".Server_Error").append(top);
+				//$("#notifications-top-center").addClass('animated ' + 'bounce');
+				refresh_close();
+			//});
+	}
+	
+	$rootScope.serverErrorMessageValidationForHealthPlanVerify = function(){
+		function refresh_close(){
+			$('.close').click(function(){$(this).parent().fadeOut(200);});
+			}
+			refresh_close();
+			
 			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to verify health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
@@ -792,6 +845,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				refresh_close();
 			//});
 	}
+	
 	 $scope.$watch('userLogin.UserEmail', function(UserEmail){	
 			if($localstorage.get('username') == UserEmail) {
 				if($localstorage.get('username')) {
@@ -2101,7 +2155,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$scope.doGetSkipHealthPlan();
 				},
 				error: function (data) { 
-                   $rootScope.serverErrorMessageValidation();
+                   $rootScope.serverErrorMessageValidationForHealthPlanVerify();
 				}
 			};
         } else {
@@ -3651,6 +3705,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     // Get list of Medication Allegies List
     $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
     
+	for(var i=0; i < $scope.MedicationAllegiesList.length; i++){
+		if($scope.MedicationAllegiesList[i].text == 'Other'){
+			//$scope.MedicationAllegiesList.shift();
+			var index = $scope.MedicationAllegiesList.indexOf($scope.MedicationAllegiesList[i]);
+  			$scope.MedicationAllegiesList.splice(index, 1); 
+		}
+	}
+	
+	for(var i=0; i < $scope.chronicConditionList.length; i++){
+		if($scope.chronicConditionList[i].text == 'Other'){
+			//$scope.MedicationAllegiesList.shift();
+			var index = $scope.chronicConditionList.indexOf($scope.chronicConditionList[i]);
+  			$scope.chronicConditionList.splice(index, 1); 
+		}
+	}
      // Get list of Medication Allegies Pre populated
   /*  $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
         $rootScope.AllegiesCountValid = AllegiesCountValid;
@@ -3782,12 +3851,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
      $scope.removeMedicationAllegies = function(index, item){
-      $scope.patinentMedicationAllergies.splice(index, 1);
-      var indexPos = $scope.MedicationAllegiesList.indexOf(item);
-      $scope.MedicationAllegiesList[indexPos].checked = false;
-      $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
-      $rootScope.checkedAllergies--;
-	   $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
+		$scope.patinentMedicationAllergies.splice(index, 1);
+		var indexPos = $scope.MedicationAllegiesList.indexOf(item);
+		$scope.MedicationAllegiesList[indexPos].checked = false;
+		$rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
+		$rootScope.checkedAllergies--;
+		$scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
     }
 	
     /*Medication Allegies End here*/
@@ -4412,7 +4481,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     session.on('sessionDisconnected', function(event) {
         console.log('You were disconnected from the session.', event.reason);
     });
-
+	
     // Connect to the Session
     session.connect(token, function(error) {
         // If the connection is successful, initialize a publisher and publish to the session
