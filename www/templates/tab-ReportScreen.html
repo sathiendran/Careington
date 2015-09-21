@@ -110,7 +110,7 @@
 			<div class="concernNumber"> <span>1</span> </div>
 			<div class="primaryConcernText"> {{reportScreenPrimaryConcern}}</div>
 		</div>
-		<div class="reportConcerns" ng-if="reportScreenSecondaryConcern != ''" >
+		<div class="reportConcerns"  >
 			<div class="concernNumber"> <span>2</span> </div>
 			<div class="primaryConcernText"> {{reportScreenSecondaryConcern}}</div>
 		</div>
@@ -174,12 +174,12 @@
 				<div ng-if="intake.medicationAllergies == ''" class="medicationNone" >None Reported</div>
 			</div>
 			
-			<div class="intakeMedication" >
+			<div class="intakeMedication" ng-if="userReportDOB < 1" >
 				<div>
 					<div class="medicationTitle"><b>Birth Info</b></div>
 					<div class="medicationUnderline"></div>
 				</div>
-				<div class="medicationList" ng-if="userReportDOB < 1" >					
+				<div class="medicationList"  >					
 					<span>Child born at full term : {{fullTerm}}</span><br>
 					<span>Child born vaginally : {{vaginalBirth}}</span><br>
 					<span>Child discharged with mother : {{dischargedWithMother}}</span><br>

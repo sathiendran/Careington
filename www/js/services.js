@@ -354,7 +354,8 @@ angular.module('starter.services', [])
 		var confirmSoapPost = {
 			headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/patients/consultations/' + params.consultationID + '/soapnote',
-		    url: apiCommonURL + '/api/patients/consultations/'+ params.consultationId +'/soapnote',
+		 //   url: apiCommonURL + '/api/patients/consultations/'+ params.consultationId +'/soapnote',
+			url: apiCommonURL + '/api/Soapnotes/Get/'+ params.consultationId,
             method: 'GET'
 		};
 		

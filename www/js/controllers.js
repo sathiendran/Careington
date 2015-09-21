@@ -4581,7 +4581,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 						$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern1[1];
 					}
 				} else {
-					$rootScope.reportScreenSecondaryConcern = "";
+					$rootScope.reportScreenSecondaryConcern = "None Reported";
 				}
 				$rootScope.intake = $rootScope.existingConsultationReport.intake;
 				
