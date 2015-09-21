@@ -44,8 +44,14 @@ angular.module('starter.services', [])
 	this.postSendPasswordResetEmail = function(params) {
 		var confirmSendPasswordResetEmail = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
-            method: 'POST'
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+              url: apiCommonURL + '/api/v2/patients/mail/' + params.emailType,
+			 //http://emeraldg.local/api/v2/patients/mail/resetPassword
+			method: 'POST',
+			 data: {
+                email: params.patientEmail,
+                hospitalId: params.hospitalId,
+            }
 		};
 		
 		$http(confirmSendPasswordResetEmail).
@@ -860,7 +866,7 @@ this.getCountryDetails = function () {
 	this.getLocalTime = function(dateTime){
        var utcTime = moment.utc(dateTime).toDate();
 		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss');
-        return localTime;
+        return new Date(dateTime);//localTime;
     }
     
 }) 

@@ -147,11 +147,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != "") {
 						$rootScope.scheduledList = [];
 						var currentDate = new Date();
-						var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+					//	var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 							
 												
 						angular.forEach($scope.scheduledConsultationList, function(index, item) {							
-							if(getDateFormat < CustomCalendar.getLocalTime(index.scheduledTime)) {
+							if(currentDate < CustomCalendar.getLocalTime(index.scheduledTime)) {
 								 $rootScope.scheduledList.push({							
 									'id': index.$id,
 									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
@@ -2527,11 +2527,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != "") {
 						$rootScope.scheduledList = [];
 						var currentDate = new Date();
-						var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+						//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 							
 												
 						angular.forEach($scope.scheduledConsultationList, function(index, item) {							
-							if(getDateFormat < CustomCalendar.getLocalTime(index.scheduledTime)) {
+							if(currentDate < CustomCalendar.getLocalTime(index.scheduledTime)) {
 								 $rootScope.scheduledList.push({							
 									'id': index.$id,
 									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
