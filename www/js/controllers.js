@@ -3012,7 +3012,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
          var conHub = connection.createHubProxy('consultationHub');
          connection.url = $rootScope.APICommonURL + "/api/signalR/";
          var consultationWatingId = +$rootScope.consultationId;
-         
+         var sound = $rootScope.AndroidDevice ? 'file://sound.mp3' : 'file://beep.caf';
+            
            // var conHub = $.connection.consultationHub;
            connection.qs = {
                 "Bearer": $rootScope.accessToken,
@@ -3022,6 +3023,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             };
             conHub.on("onConsultationReview", function () {
                 $scope.waitingMsg = "The clinician is now reviewing the intake form.";
+				cordova.plugins.notification.local.schedule([
+					{
+						id: 1,
+						text: "The clinician is now reviewing the intake form.",
+						sound: sound,
+					}
+				]);
+				navigator.notification.beep(1);
                 $scope.$digest();
             });
             conHub.on("onCustomerDefaultWaitingInformation",function () {
@@ -3030,6 +3039,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             });
             conHub.on("onConsultationStarted",function () {
                $scope.waitingMsg = "Please wait...";
+			   cordova.plugins.notification.local.schedule([
+					{
+						id: 1,
+						text: "The clinician started consultation.",
+						sound: sound,
+						data: { updated:true }
+					}
+				]);
+				navigator.notification.beep(2);
                 $scope.$digest();;
                 $.connection.hub.stop();
                 getConferenceKeys();
@@ -4425,7 +4443,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	
     var initConferenceRoomHub = function () {
          var connection = $.hubConnection();
-         debugger;
+         //debugger;
          var conHub = connection.createHubProxy('consultationHub');
          connection.url = $rootScope.APICommonURL + "/api/signalR/";
          var consultationWatingId = +$rootScope.consultationId;
@@ -4499,6 +4517,9 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         // If the connection is successful, initialize a publisher and publish to the session
         if (!error) {
             publisher = OT.initPublisher('publisher', {
+				insertMode: 'replace',
+				publishAudio: true,
+				publishVideo: true
             });
             $timeout(function(){
                 $scope.controlsStyle = true;
