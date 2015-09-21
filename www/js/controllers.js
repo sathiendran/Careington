@@ -2947,7 +2947,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
-	//window.plugins.insomnia.keepAwake();
+	window.plugins.insomnia.keepAwake();
 	$rootScope.currState = $state;
     
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	

@@ -58,6 +58,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 			} 
 		}
 	*/
+    cordova.plugins.backgroundMode.setDefaults({ text:'Connected Care'});
+      // Enable background mode
+      cordova.plugins.backgroundMode.enable();
+  
+      // Called when background mode has been activated
+      cordova.plugins.backgroundMode.onactivate = function () {
+          /*setTimeout(function () {
+              // Modify the currently displayed notification
+              cordova.plugins.backgroundMode.configure({
+                  text:'Running in background for more than 5s now.'
+              });
+          }, 5000);
+          */
+      };
       setTimeout(function() {
         //alert('external: ' + window.localStorage.getItem("external_load"));
         if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
