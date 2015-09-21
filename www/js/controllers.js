@@ -4597,7 +4597,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				$rootScope.vaccinationsCurrent = $rootScope.intake.infantData.vaccinationsCurrent;
 					if($rootScope.vaccinationsCurrent == 'N') { $rootScope.vaccinationsCurrent = 'No'; } else if($rootScope.vaccinationsCurrent == 'T') { $rootScope.vaccinationsCurrent = 'True'; } 
 				
-				$rootScope.userReportDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
+				var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
+				$rootScope.userReportDOB = usDOB.search("y");
 								
 				
 				$rootScope.gender = data.data[0].details[0].gender;

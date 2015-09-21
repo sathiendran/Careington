@@ -174,12 +174,12 @@
 				<div ng-if="intake.medicationAllergies == ''" class="medicationNone" >None Reported</div>
 			</div>
 			
-			<div class="intakeMedication" ng-if="userReportDOB < 1" >
+			<div class="intakeMedication"  >
 				<div>
 					<div class="medicationTitle"><b>Birth Info</b></div>
 					<div class="medicationUnderline"></div>
 				</div>
-				<div class="medicationList"  >					
+				<div class="medicationList" ng-if="userReportDOB < 1" >					
 					<span>Child born at full term : {{fullTerm}}</span><br>
 					<span>Child born vaginally : {{vaginalBirth}}</span><br>
 					<span>Child discharged with mother : {{dischargedWithMother}}</span><br>
