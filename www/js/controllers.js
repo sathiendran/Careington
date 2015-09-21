@@ -3023,6 +3023,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             };
             conHub.on("onConsultationReview", function () {
                 $scope.waitingMsg = "The clinician is now reviewing the intake form.";
+				/*
 				cordova.plugins.notification.local.schedule([
 					{
 						id: 1,
@@ -3030,7 +3031,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						sound: sound,
 					}
 				]);
-				navigator.notification.beep(1);
+				//navigator.notification.beep(1);
+				*/
                 $scope.$digest();
             });
             conHub.on("onCustomerDefaultWaitingInformation",function () {
@@ -3039,6 +3041,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             });
             conHub.on("onConsultationStarted",function () {
                $scope.waitingMsg = "Please wait...";
+			   /*
 			   cordova.plugins.notification.local.schedule([
 					{
 						id: 1,
@@ -3047,7 +3050,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						data: { updated:true }
 					}
 				]);
-				navigator.notification.beep(2);
+				//navigator.notification.beep(2);
+				*/
                 $scope.$digest();;
                 $.connection.hub.stop();
                 getConferenceKeys();
