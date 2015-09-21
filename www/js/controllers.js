@@ -1,3 +1,10 @@
+var openTokConnection;
+var waitingRoomConnection;
+var publisher;
+var session;
+var disconnectConference;
+var connectToVideoSession;
+
 var indexOf = [].indexOf || function(item) {
 	for (var i = 0, l = this.length; i < l; i++) {
 	  if (i in this && this[i] === item) return i;
@@ -117,6 +124,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 //InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
+	$scope.ssoMessage = 'Authenticating..... Please wait!';
+	var consultaionStatus = window.localStorage.getItem("consultaionStatus");
+	if(consultaionStatus == "ConferenceRoom"){
+		$scope.ssoMessage = 'Reconnecting your session..... Please wait!';
+		$state.go('tab.videoConference'); 
+		return;
+	}else if(consultaionStatus == "WaitingRoom"){
+		navigator.notification.alert(
+			'Please do not close this app or lock your device again until your consultation is completed.', 
+			function(){ $state.go('tab.waitingRoom'); return;}, 
+			'Connected Care', 'OK'                  
+		);
+		//$state.go('tab.waitingRoom');
+		return;
+	}
+	
 	$rootScope.deploymentEnv = deploymentEnv;
 	if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
@@ -129,8 +152,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
 	}
-	
-	$scope.ssoMessage = 'Authenticating..... Please wait!';
 	
 	$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
@@ -373,6 +394,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
+	window.localStorage.setItem("consultaionStatus", "");
+	window.localStorage.setItem("conferenceSignalRConnection", null);
+	window.localStorage.setItem("waitingRoomSignalRConnection", null);
+	
 	$rootScope.deploymentEnv = deploymentEnv;
 	//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 	//$rootScope.APICommonURL = 'https://connectedcare.md';
@@ -2946,125 +2971,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    
 })
 
-.controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
-	//window.plugins.insomnia.keepAwake();
-	$rootScope.currState = $state;
-    
-	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
-        if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
-			 ($rootScope.currState.$current.name=="tab.receipt") || 	
-             ($rootScope.currState.$current.name=="tab.videoConference") ||
-			 ($rootScope.currState.$current.name=="tab.ReportScreen")
-            ){ 
-                // H/W BACK button is disabled for these states (these views)
-                // Do not go to the previous state (or view) for these states. 
-                // Do nothing here to disable H/W back button.
-            } else { 
-                // For all other states, the H/W BACK button is enabled
-                navigator.app.backHistory(); 
-            }
-        }, 100); 
-    $scope.$storage = $localStorage;
-    $scope.ClearRootScope = function() {
-		$rootScope = $rootScope.$new(true);
-		$scope = $scope.$new(true);
-		 if(deploymentEnv == "Multiple"){
-			$state.go('tab.chooseEnvironment');
-		}else{
-			$state.go('tab.login');
-		}
-	}
-   
-	
-    $scope.isPhysicianStartedConsultaion = false;
-    
-    /*        
-    consultationStatusCheck = $interval(function(){
-         if(!$scope.isPhysicianStartedConsultaion){
-              $scope.checkIfPhysicianStartedConference();
-         }
-    }, 5000);
-            
-    $scope.checkIfPhysicianStartedConference = function(){
-        var params = {
-            accessToken: $rootScope.accessToken,
-            consultationId: $rootScope.consultationId,
-            success: function (data) {
-                console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
-                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
-                      $interval.cancel(consultationStatusCheck);
-                      $scope.isPhysicianStartedConsultaion = true;
-                      $scope.getConferenceKeys();
-                      return;
-                 }
-            },
-            error: function (data) {
-				$rootScope.serverErrorMessageValidation();
-            }
-        };
-        LoginService.getExistingConsulatation(params);
-     };
-    */
-    
-    $scope.waitingMsg="The Clinician will be with you Shortly.";
-	var initWaitingRoomHub = function () {
-         var connection = $.hubConnection();
-         var conHub = connection.createHubProxy('consultationHub');
-         connection.url = $rootScope.APICommonURL + "/api/signalR/";
-         var consultationWatingId = +$rootScope.consultationId;
-         
-           // var conHub = $.connection.consultationHub;
-           connection.qs = {
-                "Bearer": $rootScope.accessToken,
-                "consultationId": consultationWatingId,
-                "waitingroom":1,
-                "isMobile" : true
-            };
-            conHub.on("onConsultationReview", function () {
-                $scope.waitingMsg = "The clinician is now reviewing the intake form.";
-                $scope.$digest();
-            });
-            conHub.on("onCustomerDefaultWaitingInformation",function () {
-                $scope.waitingMsg = "Please Wait....";
-                $scope.$digest();
-            });
-            conHub.on("onConsultationStarted",function () {
-               $scope.waitingMsg = "Please wait...";
-                $scope.$digest();;
-                $.connection.hub.stop();
-                getConferenceKeys();
-            });
-         connection.logging = true;
-            connection.start({
-                withCredentials :false
-            }).then(function(){
-                $scope.waitingMsg="The Clinician will be with you Shortly.";
-                $scope.$digest(); 
-            });
-    };
-    initWaitingRoomHub();
-    
-    var getConferenceKeys = function(){
-        var params = {
-            accessToken: $rootScope.accessToken,
-            consultationId: $rootScope.consultationId,
-            success: function (data) {
-                $rootScope.videoSessionId = data.sessionId;
-                $rootScope.videoApiKey = data.apiKey;
-                $rootScope.videoToken = data.token;
-                if($rootScope.videoSessionId != "" && $rootScope.videoToken != ""){
-                    $state.go('tab.videoConference');
-                }
-
-            },
-            error: function (data) {
-               $rootScope.serverErrorMessageValidation(); 
-            }
-        };
-        LoginService.getVideoConferenceKeys(params);
-    };
-    
-})
 
 // Controller to be used by all intake forms
 .controller('IntakeFormsCtrl', function($scope,$interval,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
@@ -4405,6 +4311,160 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	
 })
 
+.controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
+	
+	window.localStorage.setItem("consultaionStatus", "WaitingRoom");
+	
+	window.plugins.insomnia.keepAwake();
+	$rootScope.currState = $state;
+    
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+        if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") || 	
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
+            ){ 
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states. 
+                // Do nothing here to disable H/W back button.
+            } else { 
+                // For all other states, the H/W BACK button is enabled
+                navigator.app.backHistory(); 
+            }
+        }, 100); 
+    $scope.$storage = $localStorage;
+    $scope.ClearRootScope = function() {
+		$rootScope = $rootScope.$new(true);
+		$scope = $scope.$new(true);
+		 if(deploymentEnv == "Multiple"){
+			$state.go('tab.chooseEnvironment');
+		}else{
+			$state.go('tab.login');
+		}
+	}
+   
+	
+    $scope.isPhysicianStartedConsultaion = false;
+    
+    /*        
+    consultationStatusCheck = $interval(function(){
+         if(!$scope.isPhysicianStartedConsultaion){
+              $scope.checkIfPhysicianStartedConference();
+         }
+    }, 5000);
+            
+    $scope.checkIfPhysicianStartedConference = function(){
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationId: $rootScope.consultationId,
+            success: function (data) {
+                console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
+                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
+                      $interval.cancel(consultationStatusCheck);
+                      $scope.isPhysicianStartedConsultaion = true;
+                      $scope.getConferenceKeys();
+                      return;
+                 }
+            },
+            error: function (data) {
+				$rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.getExistingConsulatation(params);
+     };
+    */
+    
+    $scope.waitingMsg="The Clinician will be with you Shortly.";
+	//var waitingRoomConnection = window.localStorage.getItem("waitingRoomSignalRConnection");
+	
+	var initWaitingRoomHub = function () {
+		waitingRoomConnection = $.hubConnection();
+         var conHub = waitingRoomConnection.createHubProxy('consultationHub');
+         waitingRoomConnection.url = $rootScope.APICommonURL + "/api/signalR/";
+         var consultationWatingId = +$rootScope.consultationId;
+         
+           // var conHub = $.connection.consultationHub;
+           waitingRoomConnection.qs = {
+                "Bearer": $rootScope.accessToken,
+                "consultationId": consultationWatingId,
+                "waitingroom":1,
+                "isMobile" : true
+            };
+            conHub.on("onConsultationReview", function () {
+                $scope.waitingMsg = "The clinician is now reviewing the intake form.";
+                $scope.$digest();
+            });
+            conHub.on("onCustomerDefaultWaitingInformation",function () {
+                $scope.waitingMsg = "Please Wait....";
+                $scope.$digest();
+            });
+            conHub.on("onConsultationStarted",function () {
+               $scope.waitingMsg = "Please wait...";
+                $scope.$digest();;
+                $.connection.hub.stop();
+				waitingRoomConnection = null;
+                getConferenceKeys();
+            });
+         	waitingRoomConnection.logging = true;
+			waitingRoomConnection.start({
+				withCredentials :false
+			}).then(function(){
+				window.localStorage.setItem("waitingRoomSignalRConnection", waitingRoomConnection);
+				$scope.waitingMsg="The Clinician will be with you Shortly.";
+				$scope.$digest(); 
+			});
+			waitingRoomConnection.disconnected(function() {
+				setTimeout(function() {
+					console.log('+++++++++++++++++++++++++');
+					waitingRoomConnection.start();
+				}, 5000); // Restart connection after 5 seconds.
+			});
+    };
+
+	$scope.disconnectFromSession = function(){
+		waitingRoomConnection.stop().then(function(){
+			$scope.waitingMsg="Connection Stopped";
+			$scope.$digest(); 
+		});
+	};
+	
+	$scope.reconnectToSession = function(){
+		waitingRoomConnection.start({
+			withCredentials :false
+		}).then(function(){
+			//window.localStorage.setItem("consultaionSignalRConnection", connection);
+			$scope.waitingMsg="The Clinician will be with you Shortly.";
+			$scope.$digest(); 
+		});
+	};
+	if(waitingRoomConnection == null || waitingRoomConnection == "null"){
+		initWaitingRoomHub();	
+	}else{
+		waitingRoomConnection.stop();
+		waitingRoomConnection.start();
+	}
+	
+    var getConferenceKeys = function(){
+        var params = {
+            accessToken: $rootScope.accessToken,
+            consultationId: $rootScope.consultationId,
+            success: function (data) {
+                $rootScope.videoSessionId = data.sessionId;
+                $rootScope.videoApiKey = data.apiKey;
+                $rootScope.videoToken = data.token;
+                if($rootScope.videoSessionId != "" && $rootScope.videoToken != ""){
+                    $state.go('tab.videoConference');
+                }
+
+            },
+            error: function (data) {
+               $rootScope.serverErrorMessageValidation(); 
+            }
+        };
+        LoginService.getVideoConferenceKeys(params);
+    };
+    
+})
 
 
 
@@ -4412,54 +4472,66 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 .controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
-	$scope.ClearRootScope = function() {
-		$rootScope = $rootScope.$new(true);
-		$scope = $scope.$new(true);
-		if(deploymentEnv == "Multiple"){
-			$state.go('tab.chooseEnvironment');
-		}else{
-			$state.go('tab.login');
-		}
-	}
-    
+	window.localStorage.setItem("consultaionStatus", "ConferenceRoom");
 	
     var initConferenceRoomHub = function () {
-         var connection = $.hubConnection();
-         debugger;
-         var conHub = connection.createHubProxy('consultationHub');
-         connection.url = $rootScope.APICommonURL + "/api/signalR/";
+         openTokConnection = $.hubConnection();
+         var conHub = openTokConnection.createHubProxy('consultationHub');
+         openTokConnection.url = $rootScope.APICommonURL + "/api/signalR/";
          var consultationWatingId = +$rootScope.consultationId;
          
            // var conHub = $.connection.consultationHub;
-           connection.qs = {
-                "Bearer": $rootScope.accessToken,
-                "consultationId": consultationWatingId,
-                "isMobile" : true
-            };
-            conHub.on("onConsultationReview", function () {
-                $rootScope.waitingMsg = "The clinician is now reviewing the intake form.";
-            });
-            conHub.on("onCustomerDefaultWaitingInformation",function () {
-                $rootScope.waitingMsg = "Please Wait....";
-            });
-            conHub.on("onConsultationStarted",function () {
-               $rootScope.waitingMsg = "Please wait...";
-            });
-            connection.logging = true;
-            connection.start({
-                withCredentials :false
-            }).then(function(){
-                $rootScope.waitingMsg="The Clinician will be with you Shortly.";
-            });
-            conHub.on("onConsultationEnded",function () {
-                $scope.disconnectConference();
-            });
+		openTokConnection.qs = {
+			"Bearer": $rootScope.accessToken,
+			"consultationId": consultationWatingId,
+			"isMobile" : true
+		};
+		conHub.on("onConsultationReview", function () {
+			$rootScope.waitingMsg = "The clinician is now reviewing the intake form.";
+		});
+		conHub.on("onCustomerDefaultWaitingInformation",function () {
+			$rootScope.waitingMsg = "Please Wait....";
+		});
+		conHub.on("onConsultationStarted",function () {
+			$rootScope.waitingMsg = "Please wait...";
+		});
+		openTokConnection.logging = true;
+		openTokConnection.start({
+			withCredentials :false
+		}).then(function(){
+			window.localStorage.setItem("conferenceSignalRConnection", openTokConnection);
+			$rootScope.waitingMsg="The Clinician will be with you Shortly.";
+		});
+		conHub.on("onConsultationEnded",function () {
+			window.localStorage.setItem("consultaionStatus", "");
+			window.localStorage.setItem("conferenceSignalRConnection", null);
+			openTokConnection = null;
+			$scope.disconnectConferenceCall();
+			//disconnectConference();
+		});
     };
-    initConferenceRoomHub();
     
+	
+    var apiKey = $rootScope.videoApiKey;
+    var sessionId = $rootScope.videoSessionId;
+    var token = $rootScope.videoToken;
+	
+	if(openTokConnection == null || openTokConnection == "null"){
+		initConferenceRoomHub();
+		session = OT.initSession(apiKey, sessionId);	
+	}else{
+		openTokConnection.stop();
+		openTokConnection.start();
+		session.disconnect();
+		console.log('+++++++++++++++++++++++++++++++++++++');
+		console.log(session);
+	}
+    
+	
 	$rootScope.myVideoHeight = $window.innerHeight - 38;
     $rootScope.myVideoWidth = $window.innerWidth;
     $rootScope.otherVideoTop = $window.innerHeight - 150;
+	
     $rootScope.controlsStyle = false;
     
     $rootScope.cameraPosition = "front";
@@ -4469,17 +4541,12 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     $rootScope.muteIconClass = 'ion-ios-mic callIcons';
     $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
 	
-    var apiKey = $rootScope.videoApiKey;
-    var sessionId = $rootScope.videoSessionId;
-    var token = $rootScope.videoToken;
 	/*
     var apiKey = "45191172";
     var sessionId = "1_MX40NTE5MTE3Mn5-MTQzOTQ2MDk3ODA4OH5wSEpoU091NXJkK01sZzFoUDV4aXhVWWh-fg";
     var token = "T1==cGFydG5lcl9pZD00NTE5MTE3MiZzaWc9MzAyOTYzMTExMGJkYTJhYmI3MDMwNTNiM2Q4MWM5ZjU1ZWZkNjlkODpzZXNzaW9uX2lkPTFfTVg0ME5URTVNVEUzTW41LU1UUXpPVFEyTURrM09EQTRPSDV3U0Vwb1UwOTFOWEprSzAxc1p6Rm9VRFY0YVhoVldXaC1mZyZjcmVhdGVfdGltZT0xNDM5NDYwOTc1Jm5vbmNlPTcwNDQzJnJvbGU9UFVCTElTSEVS";
     */
-    var session = OT.initSession(apiKey, sessionId);
-    var publisher;
-
+    
     session.on('streamCreated', function(event) {
         session.subscribe(event.stream, 'subscriber', {
             insertMode: 'append',
@@ -4488,7 +4555,10 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         });
         OT.updateViews();
     });
-
+	session.on("streamDestroyed", function(event){
+		console.log('Stream destroyed');
+	});
+	
     // Handler for sessionDisconnected event
     session.on('sessionDisconnected', function(event) {
         console.log('You were disconnected from the session.', event.reason);
@@ -4496,21 +4566,26 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	
     // Connect to the Session
     session.connect(token, function(error) {
-        // If the connection is successful, initialize a publisher and publish to the session
-        if (!error) {
-            publisher = OT.initPublisher('publisher', {
-            });
-            $timeout(function(){
-                $scope.controlsStyle = true;
-            }, 100);
-            session.publish(publisher);
-            OT.updateViews();
+		// If the connection is successful, initialize a publisher and publish to the session
+		if (!error) {
+			publisher = OT.initPublisher('publisher', {
+			});
+			$timeout(function(){
+				$scope.controlsStyle = true;
+			}, 100);
+			session.publish(publisher);
+			OT.updateViews();
 
-        } else {
-            alert('There was an error connecting to the session: ' + error.message);
-        }
-
-    });
+		} else if (error.code == 1006) {
+			navigator.notification.alert(
+				'You are not connected to the internet. Check your network connection.',  // message
+				null,         // callback
+				'Connected Care',            // title
+				'OK'                  // buttonName
+			);
+		}
+	});
+	
     $scope.toggleCamera = function(){
         if($scope.cameraPosition == "front"){
             $rootScope.newCamPosition = "back";
@@ -4676,11 +4751,18 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			LoginService.getPatientsSoapNotes(params);
 		}
 	
-    
-    $scope.disconnectConference = function(){
+    disconnectConference = function(){
+		$scope.disconnectConferenceCall();
+	};
+	
+    $scope.disconnectConferenceCall = function(){
         session.unpublish(publisher)
         //publisher.destroy();
         session.disconnect();
+		setTimeout(function() {
+			$('#publisher').remove();
+			$('#subscriber').remove();
+		}, 100);
 		navigator.notification.alert(
 			'Consultation ended successfully!',  // message
 			consultationEndedAlertDismissed,         // callback
