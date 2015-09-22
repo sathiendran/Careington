@@ -89,20 +89,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
               var param = query[i].split("=");
               EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
           }
-          if(EXTRA['token'] != ""){
-            window.localStorage.setItem("external_load", null);
-            if(EXTRA['env'] != ""){
-              var dEnv = EXTRA['env'];
-              if(dEnv.toUpperCase() == "SANDBOX"){
-                deploymentEnv = "Sandbox";
-              }else if(dEnv.toUpperCase() == "QA"){
-                deploymentEnv = "QA";
-              }else if(dEnv.toUpperCase() == "PRODUCTION"){
-                deploymentEnv = "Production";
-              }
+          window.localStorage.setItem("external_load", null);
+          if(EXTRA['env'] != ""){
+            var dEnv = EXTRA['env'];
+            if(dEnv.toUpperCase() == "SANDBOX"){
+              deploymentEnv = "Sandbox";
+            }else if(dEnv.toUpperCase() == "QA"){
+              deploymentEnv = "QA";
+            }else if(dEnv.toUpperCase() == "PRODUCTION"){
+              deploymentEnv = "Production";
             }
-            //$state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
-            $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: "" });
+          }
+          if(EXTRA['token'] != "" && EXTRA['env'] != ""){
+            $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+          }else if(EXTRA['env'] != ""){
+            $state.go('tab.login');
           }
         }
       }, 2000);
@@ -123,19 +124,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 var param = query[i].split("=");
                 EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
             }
-            if(EXTRA['token'] != ""){
-              window.localStorage.setItem("external_load", null);
-              if(EXTRA['env'] != ""){
-                var dEnv = EXTRA['env'];
-                if(dEnv.toUpperCase() == "SANDBOX"){
-                  deploymentEnv = "Sandbox";
-                }else if(dEnv.toUpperCase() == "QA"){
-                  deploymentEnv = "QA";
-                }else if(dEnv.toUpperCase() == "PRODUCTION"){
-                  deploymentEnv = "Production";
-                }
+            window.localStorage.setItem("external_load", null);
+            if(EXTRA['env'] != ""){
+              var dEnv = EXTRA['env'];
+              if(dEnv.toUpperCase() == "SANDBOX"){
+                deploymentEnv = "Sandbox";
+              }else if(dEnv.toUpperCase() == "QA"){
+                deploymentEnv = "QA";
+              }else if(dEnv.toUpperCase() == "PRODUCTION"){
+                deploymentEnv = "Production";
               }
-              $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationid: "" });
+            }
+            if(EXTRA['token'] != "" && EXTRA['env'] != ""){
+              $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+            }else if(EXTRA['env'] != ""){
+              $state.go('tab.login');
             }
           }
         }, 2000);

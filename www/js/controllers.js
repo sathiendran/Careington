@@ -307,7 +307,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		LoginService.getPatientProfiles(params);
 	};
-	$scope.doGetRelatedPatientProfiles = function() {		
+	$scope.doGetRelatedPatientProfiles = function(redirectPage) {		
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -338,8 +338,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						});
 					});	
 					
-						$rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
-						$state.go('tab.userhome');	
+					$rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+					if(redirectPage == 'userhome'){
+						$state.go('tab.userhome');
+					}else{
+						//$state.go('tab.waitingRoom');
+						$scope.doGetExistingConsulatation();
+					}
 					
 			},
 			error: function (data) {
@@ -349,15 +354,75 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		LoginService.getRelatedPatientProfiles(params);
 	};
-	if($stateParams.token != "" && $stateParams.consultationId != ""){
+	
+	$scope.doGetExistingConsulatation = function () {
+		$rootScope.consultionInformation = '';
+		$rootScope.appointmentsPatientFirstName = '';
+		$rootScope.appointmentsPatientLastName = '';
+		$rootScope.appointmentsPatientDOB = '';
+		$rootScope.appointmentsPatientGurdianName = '';
+		$rootScope.appointmentsPatientImage = '';
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
+			
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+                $rootScope.patientExistInfomation = data.data[0].patientInformation;
+				$rootScope.intakeForm = data.data[0].intakeForm;
+				$rootScope.PatientAge = $rootScope.patientExistInfomation.dob;
+				$rootScope.PatientGuardian = $rootScope.patientExistInfomation.guardianName;
+				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
+				$rootScope.PatientImageSelectUser = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				$scope.doGetExistingPatientName();
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getExistingConsulatation(params);	
+		
+	}
+	
+	$scope.doGetExistingPatientName = function () {
+		var params = {
+			patientId: $rootScope.appointmentsPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {				
+				$rootScope.PatientFirstName = data.data[0].patientName;	
+				$rootScope.PatientLastName = data.data[0].lastName;		 
+				$state.go('tab.waitingRoom');
+			},
+			error: function (data) {
+				$rootScope.serverErrorMessageValidation();
+			}
+		};
+		
+		LoginService.getPrimaryPatientLastName(params);
+	}
+	
+	if($stateParams.token != "" && $stateParams.hospitalId != "" && $stateParams.consultationId != ""){
 		$rootScope.accessToken = $stateParams.token;
-	}else if($stateParams.token != "" && $stateParams.hospitalId != ""){
+		$rootScope.hospitalId = $stateParams.hospitalId;
+		$rootScope.consultationId = $stateParams.consultationId;
+		$scope.doGetPatientProfiles();
+		//$scope.doGetExistingConsulatation();	
+		$scope.doGetRelatedPatientProfiles('waitingRoom');
+		//$state.go('tab.waitingRoom');
+	}else if($stateParams.token != "" && $stateParams.hospitalId != "" && $stateParams.consultationId == ""){
 		$rootScope.accessToken = $stateParams.token;
 		$rootScope.hospitalId = $stateParams.hospitalId;
 		//$rootScope.accessToken = "RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ";
 		//localStorage.setItem("external_load", null);
 		$scope.doGetPatientProfiles();	
-		$scope.doGetRelatedPatientProfiles();
+		$scope.doGetRelatedPatientProfiles('userhome');
 	}else{
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
