@@ -3005,7 +3005,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $state.go('tab.waitingRoom');				
     }
 	
-	$rootScope.EnableBackButton = function () {     
+	$rootScope.EnableBackButton = function () {
+		$scope.doGetPatientProfiles();	
+		$scope.doGetRelatedPatientProfiles();     
         $state.go('tab.userhome');			
     };
    
@@ -4544,9 +4546,9 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     };
     initConferenceRoomHub();
     
-	$rootScope.myVideoHeight = $window.innerHeight - 38;
-    $rootScope.myVideoWidth = $window.innerWidth;
-    $rootScope.otherVideoTop = $window.innerHeight - 150;
+	$rootScope.clinicianVideoHeight = $window.innerHeight - 38;
+    $rootScope.clinicianVideoWidth = $window.innerWidth;
+    $rootScope.patientVideoTop = $window.innerHeight - 150;
     $rootScope.controlsStyle = false;
     
     $rootScope.cameraPosition = "front";
