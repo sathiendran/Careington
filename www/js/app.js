@@ -16,18 +16,18 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple 
+
+var deploymentEnv = 'Single'; //Production //Multiple //Single
+var singleHospitalId = 126;
 
 var handleOpenURL = function (url) {
-    //window.localStorage.setItem("external_load", null);
-    //window.localStorage.setItem("external_load", url);
-    
-    setTimeout(function(){
+   setTimeout(function(){
         window.localStorage.setItem("external_load", null);
         window.localStorage.setItem("external_load", url);
                
     }, 0);
 }
+
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $state, $rootScope) {
@@ -69,7 +69,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   
       // Called when background mode has been activated
       cordova.plugins.backgroundMode.onactivate = function () {
-          /*setTimeout(function () {
+          /*
+          setTimeout(function () {
               // Modify the currently displayed notification
               cordova.plugins.backgroundMode.configure({
                   text:'Running in background for more than 5s now.'
@@ -178,6 +179,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+  .state('tab.loginSingle', {
+    url: '/loginSingle',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-loginSingle.html',
         controller: 'LoginCtrl'
       }
     }
@@ -471,6 +482,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
+  }else if(deploymentEnv == "Single"){
+    $urlRouterProvider.otherwise('/tab/loginSingle');
   }else{
     $urlRouterProvider.otherwise('/tab/login');
   }
