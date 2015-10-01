@@ -1,33 +1,36 @@
 
-<div class="bar bar-headerLess">
-    <div id="Error_Message" ></div>
-	<div class="Server_Error" ></div>
-</div>
 
 <ion-view title="Login">
 	
-	<!-- Header Start---->
-	<ion-header-bar align-title="left" class="bar-positiveLess">
-		 
-            <div class="bar bar-headerLess">
-                <!--<div id="Error_Message" ></div>-->
-            </div>
-
-            <div class="bar {{SubHeaderLessDevice}}" style="{{loginSub}}">
-                <h2 class="{{HeadTitleLessDevice}}" style="{{loginSubTitle}}">Connected Care</h2>
-            </div>
-          
-        
-	</ion-header-bar>
-	<!-- Header end-->
+	<div ng-include src="'templates/password_header.html'"></div>
+    
+   <ion-content class="password_content BacgroundColorContent" style="{{PasswordOverlop}};" >
+       
+    <div ng-if="IOSDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; top: -119px;">
+		<div class="{{password_header_content}} passwordSubHeader" style="margin-top: 82px;background-color:#FFF;">
+			<div class="subHospital" style="color: {{brandColor}};">{{Hopital}}</div>
+			<span>
+				Virtual Consultation Platform
+			</span>
+		</div>
+	</div>
 	
+	 <div ng-if="AndroidDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; top: -147px;">
+		<div class="{{password_header_content}} passwordSubHeader" style="margin-top: 54px;background-color:#FFF;">
+			<div class="subHospital" style="color: {{brandColor}};">{{Hopital}}</div>
+			<span>
+				Virtual Consultation Platform
+			</span>
+		</div>
+	</div>
+       
 	
 	<!-- Content Start-->
 	
-	<ion-content class="login_content BacgroundColorContent" style="{{LoginContant}}">
+	<!--<ion-content class="login_content BacgroundColorContent" style="{{LoginContant}}">-->
 		 <form ng-submit="checkSingleHospitalLogin()">
              <div style="{{LoginContantDiv}}"></div>
-			<div class="login_home">	
+			 <div class="password_home password_home_top" style="{{MarginHomeTop}}" >
 				<label class="item-input">
 					<!--<input type="email" placeholder="Email" ng-model="userLogin.email" >-->
 					<input style="{{loginLineHeight}}" type="email" placeholder="Email" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
@@ -52,11 +55,12 @@
 				
 				<div class="remember"> Remember my email</div> 	
                 
-				<div class="continue">				
+				<div class="continue" style="margin-bottom: 5px;">				
 					<button type="submit" class="button button-outline button-positive" style="font-size: 20px;">
 						Continue
 					</button>					
 				</div>	
+				<div class="forgot_password_text" style="margin-bottom: 45px;" > <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
 			<!--	<div id="notifications" style="height: auto;" >
 					<div id="notifications-window-row-button" ng-click="validation();">Sample Error Alert</div>
 				</div> -->

@@ -143,7 +143,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$rootScope.deploymentEnv = deploymentEnv;
 	if(deploymentEnv == "single"){
-		
 	}
 	if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
@@ -483,6 +482,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
 	}else if(deploymentEnv == "Single"){
+		$rootScope.brandColor = brandColor;
+		$rootScope.logo = logo;
+		$rootScope.Hopital = Hopital;
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		apiCommonURL = 'https://sandbox.connectedcare.md';
 		$rootScope.hospitalId = singleHospitalId;
@@ -659,7 +661,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConstantTreat = "font-size: 16px;";
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if(!$rootScope.AndroidDevice) { 
+    } else if($rootScope.AndroidDevice) { 
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -1170,24 +1172,52 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
-			 var params = {
-                patientEmail: $rootScope.UserEmail,
-				emailType: $scope.emailType,
-				hospitalId: $rootScope.hospitalId,
-                accessToken: $rootScope.accessToken,
-                success: function (data) {
-				console.log('dopostsentpass');
-					console.log(data);
-                    $scope.PasswordResetEmail = data;
-					$state.go('tab.resetPassword');	
-                },
-                error: function (data) {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            };
-			
-			LoginService.postSendPasswordResetEmail(params);
+			if($('#UserEmail').val() == ''){			
+				$scope.ErrorMessage = "Please enter an email!";
+				$rootScope.Validation($scope.ErrorMessage);			
+			} else {
+				if(deploymentEnv == "Single"){ 
+					//$rootScope.UserEmail = $('#UserEmail').val();
+					if($("#squaredCheckbox").prop('checked') == true) {
+						$localstorage.set('username', $("#UserEmail").val());
+						$localStorage.oldEmail = $scope.userLogin.UserEmail;  
+						$rootScope.UserEmail = $scope.userLogin.UserEmail;
+						$rootScope.chkedchkbox = true;
+
+					} else { 
+						$rootScope.UserEmail = $scope.userLogin.UserEmail;
+						$localStorage.oldEmail = '';
+						$localstorage.set('username', ""); 				  				
+						$rootScope.chkedchkbox = false;
+					}
+				}
+				 var params = {
+					patientEmail: $rootScope.UserEmail,
+					emailType: $scope.emailType,
+					hospitalId: $rootScope.hospitalId,
+					accessToken: $rootScope.accessToken,
+					success: function (data) {
+					console.log('dopostsentpass');
+						console.log(data);
+						$scope.PasswordResetEmail = data;
+						$state.go('tab.resetPassword');	
+					},
+					error: function (data) {
+						$rootScope.serverErrorMessageValidation();
+					}
+				};
+				
+				LoginService.postSendPasswordResetEmail(params);
+			}
 		}	
+	
+	$scope.goBackFromReset = function() {
+		if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
+		} else {
+			$state.go('tab.password');
+		}
+	}
 	
 
 	//$rootScope.patientId = 471;

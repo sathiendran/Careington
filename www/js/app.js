@@ -18,7 +18,12 @@
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
 var deploymentEnv = 'Single'; //Production //Multiple //Single
-var singleHospitalId = 126;
+if(deploymentEnv == 'Single') {
+	var singleHospitalId = 126;
+	var brandColor = '#0071bb';
+	var logo= 'img/ch_emerald_city03.png';
+	var Hopital = 'Emerald City Healthcare (Sandbox)';
+}
 
 var handleOpenURL = function (url) {
    setTimeout(function(){
