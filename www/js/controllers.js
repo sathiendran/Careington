@@ -55,6 +55,30 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 			return headers;
 		}
 	}
+}else if(deploymentEnv == "Single"){
+	var util = {
+		setHeaders: function (request, credentials) {
+			if (typeof credentials != 'undefined') {
+				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			}
+			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+			request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+			request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+			return request;
+		},
+		getHeaders: function (accessToken) {
+			var headers = {
+					'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+					'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+					'Content-Type': 'application/json; charset=utf-8'
+				};
+			if (typeof accessToken != 'undefined') {
+				headers['Authorization'] = 'Bearer ' + accessToken;
+			}
+			
+			return headers;
+		}
+	}
 }
 
 var REVIEW_CONSULTATION_EVENT_CODE = 116;
@@ -118,6 +142,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
 	$rootScope.deploymentEnv = deploymentEnv;
+	if(deploymentEnv == "single"){
+		
+	}
 	if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		apiCommonURL = 'https://sandbox.connectedcare.md';
@@ -128,6 +155,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}else if(deploymentEnv == "QA"){
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
+	}else if(deploymentEnv == "Single"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
 	}
 	
 	$scope.ssoMessage = 'Authenticating..... Please wait!';
@@ -426,6 +456,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}else{
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
+		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
@@ -450,6 +482,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}else if(deploymentEnv == "QA"){
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
+	}else if(deploymentEnv == "Single"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
+		$rootScope.hospitalId = singleHospitalId;
 	}
 	
 	$rootScope.envList = ["Snap.QA", "Sandbox" ];
@@ -623,7 +659,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConstantTreat = "font-size: 16px;";
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if($rootScope.AndroidDevice) { 
+    } else if(!$rootScope.AndroidDevice) { 
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -776,9 +812,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         if(checkAndChangeMenuIcon){
             $interval.cancel(checkAndChangeMenuIcon);
         }
-        checkAndChangeMenuIcon = $interval(function(){
-            $rootScope.checkAndChangeMenuIcon();
-        }, 300);
+		if($state.current.name != "tab.login" && $state.current.name != "tab.loginSingle"){
+			checkAndChangeMenuIcon = $interval(function(){
+				$rootScope.checkAndChangeMenuIcon();
+			}, 300);
+		}
  };
  
   $scope.doRefresh = function() {
@@ -808,6 +846,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope = $scope.$new(true);
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
+		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
@@ -971,8 +1011,31 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
     };
 	
-	 
-	
+	$scope.checkSingleHospitalLogin = function(item,event){
+		if($('#UserEmail').val() == ''){			
+			$scope.ErrorMessage = "Please enter an email";
+			$rootScope.Validation($scope.ErrorMessage);
+			
+		}else if($('#UserEmail').val() == ''){			
+			$scope.ErrorMessage = "Please enter your password";
+			$rootScope.Validation($scope.ErrorMessage);
+			
+		}else{
+			if($("#squaredCheckbox").prop('checked') == true) {
+				$localstorage.set('username', $("#UserEmail").val());
+				$localStorage.oldEmail = $scope.userLogin.UserEmail;  
+				$rootScope.UserEmail = $scope.userLogin.UserEmail;
+				$rootScope.chkedchkbox = true;
+
+			} else { 
+				$rootScope.UserEmail = $scope.userLogin.UserEmail;
+				$localStorage.oldEmail = '';
+				$localstorage.set('username', ""); 				  				
+				$rootScope.chkedchkbox = false;
+			}
+			$scope.doGetToken();
+		}
+	};
 	
 	$scope.doGetFacilitiesList = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -3037,6 +3100,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope = $scope.$new(true);
 		 if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
+		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
@@ -3170,6 +3235,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope = $scope.$new(true);
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
+		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
@@ -4485,9 +4552,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         if(checkAndChangeMenuIcon){
             $interval.cancel(checkAndChangeMenuIcon);
         }
-        checkAndChangeMenuIcon = $interval(function(){
-            $rootScope.checkAndChangeMenuIcon();
-        }, 300);
+		if($state.current.name != "tab.login" || $state.current.name != "tab.loginSingle"){
+			checkAndChangeMenuIcon = $interval(function(){
+				$rootScope.checkAndChangeMenuIcon();
+			}, 300);
+		}
  };
     
     
@@ -4506,6 +4575,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 		$scope = $scope.$new(true);
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
+		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
