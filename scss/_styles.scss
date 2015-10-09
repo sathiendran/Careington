@@ -3274,3 +3274,6 @@ font-family: $fontFamily_regular;
 .userDateofbirth {
 	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
 }
+.noResult {
+	text-align: center; border: none; color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 40px;
+}
