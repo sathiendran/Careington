@@ -4300,6 +4300,16 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         if(selectedSurgeryDate < patientBirthDateStr){
             isSurgeryDateValid = false;
         }
+		var today = new Date();
+		var mm = today.getMonth()+1;
+		var yyyy = today.getFullYear();
+		var isSurgeryDateIsFuture = true;
+		if($scope.surgery.dateStringYear == yyyy) {
+			if($scope.surgery.dateStringMonth > mm) {
+				var isSurgeryDateIsFuture = false;
+			}
+		}
+		
         if($scope.surgery.name == '' || $scope.surgery.name == undefined){
             $scope.ErrorMessage = "Please provide a name/description for this surgery";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
@@ -4308,6 +4318,9 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
         }else if(!isSurgeryDateValid){
             $scope.ErrorMessage = "Sugery date should not be before your birthdate";
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
+        }else if(!isSurgeryDateIsFuture){
+            $scope.ErrorMessage = "Sugery date should not be the future Date";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
         }else {
             SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);
