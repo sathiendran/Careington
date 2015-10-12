@@ -17,7 +17,7 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single
+var deploymentEnv = 'Multiple'; //Production //Multiple //Single
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 126;
 	var brandColor = '#0071bb';
