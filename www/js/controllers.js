@@ -2690,7 +2690,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != "") {
 						$rootScope.scheduledList = [];
 						var currentDate = new Date();
-						currentDate = $scope.addMinutes(currentDate, -5);
+						currentDate = $scope.addMinutes(currentDate, -30);
 						//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 							
 												
@@ -4635,7 +4635,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 
 
-.controller('ConferenceCtrl', function($scope, ageFilter, ionic, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+.controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
