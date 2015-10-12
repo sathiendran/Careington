@@ -4611,7 +4611,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 
 
-.controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+.controller('ConferenceCtrl', function($scope, ageFilter, ionic, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
@@ -4690,16 +4690,19 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     session.on('streamCreated', function(event) { 		
 		//alert('stream created from type: ' + event.stream.videoType);
 		
-		
-		if(event.stream.videoType == 1){
-			//$("#subscriberScreen").hide();
-			//$("#subscriber").show();	
-			$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);				
-		} else if(event.stream.videoType == 2){			
-			//$("#subscriber").hide();
-			//$("#subscriberScreen").show();
-			$('#subscriber .OT_video-container').remove();
-			$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeightScreen);			
+		if(ionic.Platform.isIOS()){
+			if(event.stream.videoType == 1){
+				$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);	
+			} else if(event.stream.videoType == 2){			
+				$('#subscriber .OT_video-container').remove();
+				
+				var screenHeight = $rootScope.clinicianVideoHeight / 2;			
+				var divHeight = $rootScope.clinicianVideoHeightScreen / 2;
+				var totalHeight = screenHeight - divHeight;
+				
+				$("#subscriber").css('top',  totalHeight);
+				$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeightScreen);			
+			}
 		}
 		session.subscribe(event.stream, 'subscriber', {
 			insertMode: 'append',
