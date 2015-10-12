@@ -2698,6 +2698,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
     z-index: 30;
     float: left;
 }
+#subscriberScreen {
+    position: relative;
+    z-index: 30;
+    float: left;
+}
 .callIcons{
     font-size: 30px;
     cursor: pointer;

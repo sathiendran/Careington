@@ -4684,6 +4684,9 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     
 	$rootScope.clinicianVideoHeight = $window.innerHeight - 38;
     $rootScope.clinicianVideoWidth = $window.innerWidth;
+	
+	$rootScope.clinicianVideoHeightScreen = ($window.innerWidth / 16) * 9;
+			
     $rootScope.patientVideoTop = $window.innerHeight - 150;
     $rootScope.controlsStyle = false;
     
@@ -4704,14 +4707,36 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     */
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
-
-    session.on('streamCreated', function(event) {
-        session.subscribe(event.stream, 'subscriber', {
-            insertMode: 'append',
-            subscribeToAudio: true,
-            subscribeToVideo: true
-        });
+	
+			   
+    session.on('streamCreated', function(event) { 		
+		//alert('stream created from type: ' + event.stream.videoType);
+		
+		
+		if(event.stream.videoType == 1){
+			//$("#subscriberScreen").hide();
+			//$("#subscriber").show();	
+			$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);				
+		} else if(event.stream.videoType == 2){			
+			//$("#subscriber").hide();
+			//$("#subscriberScreen").show();
+			$('#subscriber .OT_video-container').remove();
+			$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeightScreen);			
+		}
+		session.subscribe(event.stream, 'subscriber', {
+			insertMode: 'append',
+			subscribeToAudio: true,
+			subscribeToVideo: true
+		});			
+       
         OT.updateViews();
+    });
+	
+	session.on('streamDestroyed', function(event) { 					
+			//$("#subscriberScreen").hide();
+			//$("#subscriber").show();				
+			$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);	
+			event.preventDefault(); 
     });
 
     // Handler for sessionDisconnected event
@@ -4724,7 +4749,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         // If the connection is successful, initialize a publisher and publish to the session
         if (!error) {
             publisher = OT.initPublisher('publisher', {
-				insertMode: 'replace',
+				insertMode: 'append',
 				publishAudio: true,
 				publishVideo: true
             });
