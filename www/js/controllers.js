@@ -214,6 +214,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
 							}
 						}
 						 
@@ -2689,7 +2690,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != "") {
 						$rootScope.scheduledList = [];
 						var currentDate = new Date();
-						currentDate = $scope.addMinutes(currentDate, -30);
+						currentDate = $scope.addMinutes(currentDate, -5);
 						//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 							
 												
@@ -2728,6 +2729,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
 							}
 						}
 						 
@@ -2742,7 +2744,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
 		
 	$scope.getScheduledDetails = function (patientId) {
-		$scope.$broadcast('timer-stop');
+		//$scope.$broadcast('timer-stop');
 		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
 		var d = new Date();
 		d.setHours(d.getHours() + 12);
@@ -2800,7 +2802,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				
 				 $timeout(function() {   
 					document.getElementsByTagName('timer')[0].start();
-				});
+				}, 10);
 				
 				var d = new Date();
 				d.setHours(d.getHours() + 12);
@@ -2817,7 +2819,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				/*$rootScope.patientDisplay = 'none';
 				$rootScope.patientDisplay2 = 'block';
 				$rootScope.patientDisplay1 = 'none';*/
-				  $rootScope.timerCOlor = 'transparent';
+				$rootScope.timerCOlor = 'transparent';
 				
 			}
 		}
@@ -3016,7 +3018,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
-		$scope.$broadcast('timer-stop');
+		//$scope.$broadcast('timer-stop');
 		$scope.$on('timer-tick', function (event, args){
 			
 			console.log(args.minutes + ' - ' + args.seconds + '-' + args.days );
