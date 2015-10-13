@@ -2439,8 +2439,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$state.go('tab.userhome');
 				}
 			 },
-			'Connected Care',
-			['Cancel','OK']     
+			'Confirmation:',
+			['No','Yes']     
 		);
 	}
 	
@@ -4786,11 +4786,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					$rootScope.AllegiesCountValid = "";
 					$rootScope.MedicationCountValid = ""; 
 					SurgeryStocksListService.ClearSurgery();
-					$state.go('tab.patientDetail');
+					$state.go('tab.userhome');
 				}
 			 },
-			'Connected Care',
-			['Cancel','OK']     
+			'Confirmation:',
+			['No','Yes']     
 		);
 	 
      };
