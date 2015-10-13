@@ -160,6 +160,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
 	$scope.ssoMessage = 'Authenticating..... Please wait!';
+	$scope.addMinutes = function (inDate, inMinutes) {   
+		var newdate = new Date();
+		newdate.setTime(inDate.getTime() + inMinutes * 60000);
+		return newdate;
+	}
 	
 	$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
@@ -176,6 +181,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != "") {
 						$rootScope.scheduledList = [];
 						var currentDate = new Date();
+						currentDate = $scope.addMinutes(currentDate, -30);
 					//	var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 							
 												
@@ -822,15 +828,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
  };
  
-  $scope.doRefresh = function() {
-	$scope.doGetScheduledConsulatation();
-	 $timeout( function() {		
-		$scope.getScheduledDetails($rootScope.patientId);
-        $scope.$broadcast('scroll.refreshComplete');
-     }, 1000);
-    $scope.$apply();	
-  };
-  
   $scope.doRefreshUserHome = function() {
 	$scope.doGetPatientProfiles();	
 	$scope.doGetRelatedPatientProfiles();
@@ -2432,6 +2429,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getPatientPaymentProfile(params);		
     }
 	
+	$scope.cancelConsultation = function() {
+		navigator.notification.confirm(
+			'Are you sure that you want to cancel this consultation?',
+			 function(index){
+				if(index == 1){					
+					
+				}else if(index == 2){
+					$state.go('tab.userhome');
+				}
+			 },
+			'Connected Care',
+			['Cancel','OK']     
+		);
+	}
+	
 	$scope.doGetReceipt = function () {
 		$rootScope.enablePaymentSuccess = "none";
 		$state.go('tab.receipt');
@@ -2744,85 +2756,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
 		
 	$scope.getScheduledDetails = function (patientId) {
-		//$scope.$broadcast('timer-stop');
-		$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:patientId});
-		var d = new Date();
-		d.setHours(d.getHours() + 12);
-		var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-		
-			
-		if($rootScope.getIndividualScheduleDetails !='') {		
-			var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
-			var currentUserHomeDate = currentUserHomeDate;		
-			if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {				
-					
-					$scope.$on('timer-tick', function (event, args){
-						if(args.days == 0) {
-							$rootScope.hourDisplay = 'initial';
-							$rootScope.daysDisplay = 'none';
-							$rootScope.dayDisplay = 'none';		
-						} else if(args.days == 1) {
-							$rootScope.daysDisplay = 'none';	
-							$rootScope.hourDisplay = 'none';
-							$rootScope.dayDisplay = 'initial';		
-						} else if(args.days > 1) {
-							$rootScope.daysDisplay = 'initial';	
-							$rootScope.hourDisplay = 'none';
-							$rootScope.dayDisplay = 'none';	
-						}
-						
-					
-						if(args.millis < 100){
-						   // $rootScope.timeNew = 'Completed';
-							$rootScope.timeNew = 'none';
-						   $rootScope.timeNew1 = 'block';
-						  // $rootScope.patientDisplay = 'none';
-						  // $rootScope.patientDisplay1 = 'block';
-						}
-						else if(args.millis < 600000){
-						//$rootScope.timeNew = 'below 10 minutes!';
-						   $rootScope.timeNew = 'none';
-						   $rootScope.timeNew1 = 'block';
-						   $rootScope.timerCOlor = '#E1FCD4';
-						  /* $rootScope.patientDisplay = 'none';
-						   $rootScope.patientDisplay1 = 'block';
-							$rootScope.patientDisplay2 = 'none';*/
-						}else{
-						   // $rootScope.timeNew = 'More than 10 minutes!';
-							$rootScope.timeNew = 'block';
-						   $rootScope.timeNew1 = 'none';
-						    $rootScope.timerCOlor = '#FEEFE8';
-							/*$rootScope.patientDisplay = 'block';
-						   $rootScope.patientDisplay1 = 'none';
-							$rootScope.patientDisplay2 = 'none';*/
-						}
-						
-					});
-				$rootScope.time = new Date(getReplaceTime).getTime();
-				
-				 $timeout(function() {   
-					document.getElementsByTagName('timer')[0].start();
-				}, 10);
-				
-				var d = new Date();
-				d.setHours(d.getHours() + 12);
-				
-				var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-				
-				if(getReplaceTime < currentUserHomeDate){
-					 $rootScope.timerCOlor = '#E1FCD4';
-				}
-						
-						
-				
-			} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
-				/*$rootScope.patientDisplay = 'none';
-				$rootScope.patientDisplay2 = 'block';
-				$rootScope.patientDisplay1 = 'none';*/
-				$rootScope.timerCOlor = 'transparent';
-				
-			}
-		}
+		$rootScope.selectedPatientIdForDetails = patientId;
 		$state.go('tab.patientCalendar');
 	}
 		
@@ -2995,8 +2929,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $scope.doGetWaitingRoom();
-               
     }
+	
 	 $scope.GoToConsultCharge  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
@@ -3018,80 +2952,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
-		//$scope.$broadcast('timer-stop');
-		$scope.$on('timer-tick', function (event, args){
-			
-			console.log(args.minutes + ' - ' + args.seconds + '-' + args.days );
-			if(args.days == 0) {
-				$rootScope.hourDisplay = 'initial';
-				$rootScope.daysDisplay = 'none';
-				$rootScope.dayDisplay = 'none';		
-			} else if(args.days == 1) {
-				$rootScope.daysDisplay = 'none';	
-				$rootScope.hourDisplay = 'none';
-				$rootScope.dayDisplay = 'initial';		
-			} else if(args.days > 1) {
-				$rootScope.daysDisplay = 'initial';	
-				$rootScope.hourDisplay = 'none';
-				$rootScope.dayDisplay = 'none';	
-			}
-			
-		
-			if(args.millis < 100){
-			   // $rootScope.timeNew = 'Completed';
-				$rootScope.timeNew = 'none';
-			   $rootScope.timeNew1 = 'block';
-			  // $rootScope.patientDisplay = 'none';
-			  // $rootScope.patientDisplay1 = 'block';
-			}
-			else if(args.millis < 600000){
-			//$rootScope.timeNew = 'below 10 minutes!';
-			   $rootScope.timeNew = 'none';
-			   $rootScope.timeNew1 = 'block';
-			  /* $rootScope.patientDisplay = 'none';
-			   $rootScope.patientDisplay1 = 'block';
-			    $rootScope.patientDisplay2 = 'none';
-			   console.log('below 10 minutes!');*/
-			   $rootScope.timerCOlor = '#E1FCD4';
-			   
-			}else{
-			   // $rootScope.timeNew = 'More than 10 minutes!';
-				$rootScope.timeNew = 'block';
-			   $rootScope.timeNew1 = 'none';				
-				console.log('More than 10 minutes!');
-			}
-			
-		});
-	 
-		$rootScope.scheduledListDatas = scheduledListData;     
-		   //console.log($rootScope.scheduledListDatas);
-		   
-		$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
-		
-		//var getReplaceTime = ($rootScope.scheduledListDatas.scheduledTime).replace("T"," ");	
-		var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
-		
-		$rootScope.time = new Date(getReplaceTime).getTime();
-		
-		
-		$timeout(function() {   
-			document.getElementsByTagName('timer')[0].start();
-		});
-		
-		var d = new Date();
-		d.setHours(d.getHours() + 12);
-		
-		var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-		
-		if(getReplaceTime < currentUserHomeDate){
-			$rootScope.timeNew = 'none';
-			$rootScope.timeNew1 = 'block';
-			 $rootScope.timerCOlor = '#E1FCD4';
-		}
-		
-		$scope.doGetExistingConsulatation();  
-		//$scope.doGetExistingConsulatationReport();
-		   
+		$rootScope.scheduledListDatas = scheduledListData;
+		$state.go('tab.appoimentDetails');
      };
 	 
 	 
@@ -3100,7 +2962,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 		
 	
-
 
 	   
     $scope.doGetWaitingRoom = function() {
@@ -3130,6 +2991,334 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    
 })
 
+.controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+	
+	$scope.addMinutes = function (inDate, inMinutes) {   
+		var newdate = new Date();
+		newdate.setTime(inDate.getTime() + inMinutes * 60000);
+		return newdate;
+	}
+	
+	$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:$rootScope.selectedPatientIdForDetails});
+	
+	var d = new Date();
+	d.setHours(d.getHours() + 12);
+	var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+	
+	$scope.doRefresh = function() {
+		$scope.doGetScheduledConsulatation();
+		$timeout( function() {
+			$scope.$broadcast('scroll.refreshComplete');
+		 }, 1000);
+		$scope.$apply();	
+	};
+	
+	$scope.doGetScheduledConsulatation = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		 $rootScope.scheduledConsultationList = [];
+		var params = {
+			patientId: $rootScope.primaryPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {
+				console.log(data);
+				$scope.scheduledConsultationList = data.data;
+				if(data != "") {
+					$rootScope.scheduledList = [];
+					var currentDate = new Date();
+					currentDate = $scope.addMinutes(currentDate, -30);
+					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+						
+											
+					angular.forEach($scope.scheduledConsultationList, function(index, item) {							
+						if(currentDate < CustomCalendar.getLocalTime(index.scheduledTime)) {
+							 $rootScope.scheduledList.push({							
+								'id': index.$id,
+								'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
+								'consultantUserId': index.consultantUserId,
+								'consultationId': index.consultationId,
+								'patientFirstName': index.patientFirstName,
+								'patientLastName': index.patientLastName,	
+								'patientId': index.patientId,
+								'assignedDoctorName': index.assignedDoctorName,
+								'patientName': index.patientName,
+								'consultationStatus': index.consultationStatus,
+								'scheduledId': index.scheduledId,    
+							});
+						}	
+					});
+					
+					
+					$rootScope.nextAppointmentDisplay = 'none';
+					
+					var d = new Date();
+					d.setHours(d.getHours() + 12);
+					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+					
+					if($rootScope.scheduledList != '')
+					{
+						$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:$rootScope.selectedPatientIdForDetails});
+						
+						var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
+						var currentUserHomeDate = currentUserHomeDate;
+						
+						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+							console.log('scheduledTime <= getTwelveHours UserHome');
+							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+						}
+					}
+					 
+				}
+			},
+			error: function (data) {
+			   $rootScope.serverErrorMessageValidation();
+			}
+		};
+
+		LoginService.getScheduledConsulatation(params);
+	}
+
+	$scope.GoToappoimentDetails = function(scheduledListData) {
+		$rootScope.scheduledListDatas = scheduledListData;
+		$state.go('tab.appoimentDetails');
+	};
+	
+	if($rootScope.getIndividualScheduleDetails !='') {		
+		var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+		var currentUserHomeDate = currentUserHomeDate;		
+		if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {				
+				
+			$scope.$on('timer-tick', function (event, args){
+				if(args.days == 0) {
+					$rootScope.hourDisplay = 'initial';
+					$rootScope.daysDisplay = 'none';
+					$rootScope.dayDisplay = 'none';		
+				} else if(args.days == 1) {
+					$rootScope.daysDisplay = 'none';	
+					$rootScope.hourDisplay = 'none';
+					$rootScope.dayDisplay = 'initial';		
+				} else if(args.days > 1) {
+					$rootScope.daysDisplay = 'initial';	
+					$rootScope.hourDisplay = 'none';
+					$rootScope.dayDisplay = 'none';	
+				}
+				
+			
+				if(args.millis < 100){
+					$rootScope.timeNew = 'none';
+				   $rootScope.timeNew1 = 'block';
+				}
+				else if(args.millis < 600000){
+				   $rootScope.timeNew = 'none';
+				   $rootScope.timeNew1 = 'block';
+				   $rootScope.timerCOlor = '#E1FCD4';
+				}else if(args.millis > 600000){
+					$rootScope.timeNew = 'block';
+				   $rootScope.timeNew1 = 'none';
+					$rootScope.timerCOlor = '#FEEFE8';
+				}
+				
+			});
+			$rootScope.time = new Date(getReplaceTime).getTime();
+			
+			 $timeout(function() {   
+				document.getElementsByTagName('timer')[0].start();
+			}, 10);
+			
+			var d = new Date();
+			
+			var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+			
+			if(getReplaceTime < currentUserHomeDate){
+				 $rootScope.timerCOlor = '#E1FCD4';
+			}
+		} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+			$rootScope.timerCOlor = 'transparent';
+		}	
+	}
+	
+})
+
+.controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+	//$state.go('tab.appoimentDetails');
+	//document.getElementsByTagName('timer')[0].stop();
+	$scope.addMinutes = function (inDate, inMinutes) {   
+		var newdate = new Date();
+		newdate.setTime(inDate.getTime() + inMinutes * 60000);
+		return newdate;
+	}
+	
+	$scope.enterWaitingRoom  = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+        $rootScope.PatientImageSelectUser = P_img;
+        $rootScope.PatientFirstName = P_Fname;
+        $rootScope.PatientLastName = P_Lname;
+        $rootScope.PatientAge = P_Age;
+        $rootScope.PatientGuardian = P_Guardian;
+        $scope.doGetWaitingRoom();
+    }
+	$scope.doGetWaitingRoom = function() {
+        $state.go('tab.waitingRoom');				
+    }
+	$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
+	var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
+	
+	$rootScope.time = new Date(getReplaceTime).getTime();
+	
+	$scope.$on('timer-tick', function (event, args){
+		//$timeout(function(){
+		console.log('Timer tick events by Prabin');
+		if(args.days == 0) {
+			$rootScope.hourDisplay = 'initial';
+			$rootScope.daysDisplay = 'none';
+			$rootScope.dayDisplay = 'none';		
+		} else if(args.days == 1) {
+			$rootScope.daysDisplay = 'none';	
+			$rootScope.hourDisplay = 'none';
+			$rootScope.dayDisplay = 'initial';		
+		} else if(args.days > 1) {
+			$rootScope.daysDisplay = 'initial';	
+			$rootScope.hourDisplay = 'none';
+			$rootScope.dayDisplay = 'none';	
+		}
+		
+	
+		if(args.millis < 100){
+
+		  $('.AvailableIn').hide();
+			$('.enterAppoinment').show();
+		}
+		else if(args.millis < 600000){
+		   $('.AvailableIn').hide();
+			$('.enterAppoinment').show();
+		   $rootScope.timerCOlor = '#E1FCD4';
+		   
+		}else if(args.millis > 600000){
+		  $rootScope.timeNew = 'block';
+		   $rootScope.timeNew1 = 'none';
+			$('.AvailableIn').show();
+			$('.enterAppoinment').hide();		   
+		}
+		//},1000);
+	});
+	$scope.showEnterWaitingRoomButton = function(){
+		$rootScope.timeNew = 'none';
+		$rootScope.timeNew1 = 'block';
+		$('.AvailableIn').hide();
+		$('.enterAppoinment').show();
+	};
+	$timeout(function() {   
+		
+	}, 100);
+	
+	var d = new Date();
+	d.setHours(d.getHours() + 12);
+	
+	var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+	
+	if(getReplaceTime < currentUserHomeDate){
+		$rootScope.timeNew = 'none';
+		$rootScope.timeNew1 = 'block';
+		 $rootScope.timerCOlor = '#E1FCD4';
+	}
+	
+	$scope.doGetExistingConsulatation = function () {
+		$rootScope.consultionInformation = '';
+		$rootScope.appointmentsPatientFirstName = '';
+		$rootScope.appointmentsPatientLastName = '';
+		$rootScope.appointmentsPatientDOB = '';
+		$rootScope.appointmentsPatientGurdianName = '';
+		$rootScope.appointmentsPatientImage = '';
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
+			
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+                $rootScope.patientExistInfomation = data.data[0].patientInformation;
+				 $rootScope.intakeForm = data.data[0].intakeForm;
+				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
+				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
+				$rootScope.appointmentsPatientGurdianName = $rootScope.patientExistInfomation.guardianName;
+				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
+				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				$rootScope.reportScreenPrimaryConcern = $rootScope.intakeForm.concerns[0].customCode.description;
+				$rootScope.reportScreenSecondaryConcern = $rootScope.intakeForm.concerns[1].customCode.description;
+				if($rootScope.reportScreenSecondaryConcern == "") {
+					$rootScope.reportScreenSecondaryConcern = "None Reported";
+				}
+				if(typeof $rootScope.consultionInformation.note != 'undefined') {
+					$rootScope.preConsultantNotes = $rootScope.consultionInformation.note;				
+				} else {
+					$rootScope.preConsultantNotes = '';
+				}
+				$scope.doGetExistingPatientName();
+				$scope.doGetDoctorDetails();
+               
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getExistingConsulatation(params);	
+		
+	}
+	
+	$scope.doGetExistingPatientName = function () {
+		var params = {
+			patientId: $rootScope.appointmentsPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {				
+				$rootScope.appointmentsPatientFirstName = data.data[0].patientName;	
+				$rootScope.appointmentsPatientLastName = data.data[0].lastName;		 
+					
+			},
+			error: function (data) {
+				$rootScope.serverErrorMessageValidation();
+			}
+		};
+		
+		LoginService.getPrimaryPatientLastName(params);
+	}
+	
+	$scope.doGetDoctorDetails = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            doctorId: $rootScope.assignedDoctorId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+				$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;	
+				document.getElementsByTagName('timer')[0].stop();
+				document.getElementsByTagName('timer')[0].start();
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getDoctorDetails(params);	
+		
+	}
+	
+	
+	$scope.doGetExistingConsulatation();  
+	//$scope.doGetExistingConsulatationReport();
+	
+	
+})
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
 	window.plugins.insomnia.keepAwake();
 	$rootScope.currState = $state;
