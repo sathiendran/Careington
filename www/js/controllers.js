@@ -4760,28 +4760,39 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     
     
      $scope.clearRootScopeConce = function(model) {
-		$rootScope.PatientPrimaryConcern = "";
-        $rootScope.PatientSecondaryConcern = "";
-        $rootScope.PatientChronicCondition = "";
-        $rootScope.patinentCurrentMedication = "";
-        $rootScope.patinentMedicationAllergies = "";
-        $rootScope.patientSurgeriess = "";
-        $rootScope.MedicationCount == 'undefined'
-        $rootScope.checkedChronic = 0;  
-        $rootScope.ChronicCount = "";
-        $rootScope.AllegiesCount = "";
-        $rootScope.checkedAllergies = 0;
-        $rootScope.MedicationCount = ""; 
-        $rootScope.checkedMedication = 0; 
-        $rootScope.IsValue = "";
-        $rootScope.IsToPriorCount = "";
-        $rootScope.ChronicCountValidCount = "";
-        $rootScope.PriorSurgeryValidCount = ""; 
-        $rootScope.AllegiesCountValid = "";
-        $rootScope.MedicationCountValid = ""; 
-        SurgeryStocksListService.ClearSurgery();
-        $state.go('tab.patientDetail');
-        
+		navigator.notification.confirm(
+			'Are you sure that you want to cancel this consultation?',
+			 function(index){
+				if(index == 1){					
+					
+				}else if(index == 2){
+					$rootScope.PatientPrimaryConcern = "";
+					$rootScope.PatientSecondaryConcern = "";
+					$rootScope.PatientChronicCondition = "";
+					$rootScope.patinentCurrentMedication = "";
+					$rootScope.patinentMedicationAllergies = "";
+					$rootScope.patientSurgeriess = "";
+					$rootScope.MedicationCount == 'undefined'
+					$rootScope.checkedChronic = 0;  
+					$rootScope.ChronicCount = "";
+					$rootScope.AllegiesCount = "";
+					$rootScope.checkedAllergies = 0;
+					$rootScope.MedicationCount = ""; 
+					$rootScope.checkedMedication = 0; 
+					$rootScope.IsValue = "";
+					$rootScope.IsToPriorCount = "";
+					$rootScope.ChronicCountValidCount = "";
+					$rootScope.PriorSurgeryValidCount = ""; 
+					$rootScope.AllegiesCountValid = "";
+					$rootScope.MedicationCountValid = ""; 
+					SurgeryStocksListService.ClearSurgery();
+					$state.go('tab.patientDetail');
+				}
+			 },
+			'Connected Care',
+			['Cancel','OK']     
+		);
+	 
      };
     
     //Side Menu

@@ -124,10 +124,10 @@
 				</div>
 						
 				<div ng-if="cardPage == 'consultCharge'" class="ConsultChargeCancel"  >
-					<a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+					<a class="button_new icon" ng-click="cancelConsultation()" >Cancel</a>
 				</div>
 				<div ng-if="cardPage != 'consultCharge'" class="ConsultChargeCancel" style="width: 100%;" >
-					<a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+					<a class="button_new icon" ng-click="cancelConsultation()" >Cancel</a>
 				</div>
 						
 			</div>
