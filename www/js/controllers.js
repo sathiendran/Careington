@@ -161,6 +161,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.ssoMessage = 'Authenticating..... Please wait!';
 	
+	$scope.addMinutes = function (inDate, inMinutes) {   
+		var newdate = new Date();
+		newdate.setTime(inDate.getTime() + inMinutes * 60000);
+		return newdate;
+	}
+	
 	$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
@@ -176,6 +182,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(data != "") {
 						$rootScope.scheduledList = [];
 						var currentDate = new Date();
+						currentDate = $scope.addMinutes(currentDate, -30);
 					//	var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 							
 												
