@@ -166,6 +166,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		return newdate;
 	}
 	
+	$scope.addMinutes = function (inDate, inMinutes) {   
+		var newdate = new Date();
+		newdate.setTime(inDate.getTime() + inMinutes * 60000);
+		return newdate;
+	}
+	
 	$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
