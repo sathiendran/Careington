@@ -267,7 +267,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-patientCalendar.html',
-        controller: 'LoginCtrl'
+        controller: 'patientCalendarCtrl'
       }
     }
   })
@@ -277,7 +277,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-appoimentDetails.html',
-        controller: 'LoginCtrl'
+        controller: 'appoimentDetailsCtrl'
       }
     }
   })
