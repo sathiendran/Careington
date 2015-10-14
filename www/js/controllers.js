@@ -3232,8 +3232,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-		$scope.doGetExistingConsulatation();
-        $scope.doGetWaitingRoom();
+		$scope.doCheckExistingConsulatationStatus();
+        //$scope.doGetWaitingRoom();
     }
 	$scope.doGetWaitingRoom = function() {
         $state.go('tab.waitingRoom');				
@@ -3299,7 +3299,71 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.timeNew1 = 'block';
 		 $rootScope.timerCOlor = '#E1FCD4';
 	}
-	
+	$scope.doCheckExistingConsulatationStatus = function () {
+		
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
+			
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
+				if(!angular.isUndefined($rootScope.consultationStatusId)) {
+					if($rootScope.consultationStatusId == 71 ) {
+						navigator.notification.alert(
+							'Your consultation is already started on other device.',  // message
+							function(){ $state.go('tab.userhome'); return;},
+							'Connected Care',            // title
+							'Done'                  // buttonName
+						);
+						return false;
+					} else if($rootScope.consultationStatusId == 72 ) {
+						navigator.notification.alert(
+							'Your consultation is already ended.',  // message
+							function(){ $state.go('tab.userhome'); return;},
+							'Connected Care',            // title
+							'Done'                  // buttonName
+						);
+						return false;
+					} else if($rootScope.consultationStatusId == 79 ) {
+						navigator.notification.alert(
+							'Your consultation is cancelled.',  // message
+							function(){ $state.go('tab.userhome'); return;},
+							'Connected Care',            // title
+							'Done'                  // buttonName
+						);
+						return false;
+					} else if($rootScope.consultationStatusId == 80 ) {
+						navigator.notification.alert(
+							'Your consultation is in progress on other device.',  // message
+							function(){ $state.go('tab.userhome'); return;},
+							'Connected Care',            // title
+							'Done'                  // buttonName
+						);
+						return false;
+					} else {
+						$scope.doGetWaitingRoom();
+					}
+						
+				}
+				
+               
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getExistingConsulatation(params);	
+		
+	}
+
 	$scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
 		$rootScope.appointmentsPatientFirstName = '';
