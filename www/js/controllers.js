@@ -3157,6 +3157,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
+		$scope.doGetExistingConsulatation();
         $scope.doGetWaitingRoom();
     }
 	$scope.doGetWaitingRoom = function() {
@@ -3214,7 +3215,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}, 100);
 	
 	var d = new Date();
-	d.setHours(d.getHours() + 12);
+	//d.setHours(d.getHours() + 12);
 	
 	var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 	
@@ -3243,6 +3244,45 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.existingConsultation = data;
 			
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
+				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
+				if(!angular.isUndefined($rootScope.consultationStatusId)) {
+						if($rootScope.consultationStatusId == 71 ) {
+							navigator.notification.alert(
+								'Your consultation is already started, may be an another device.',  // message
+								consultationEndedMessage,         // callback
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+						} else if($rootScope.consultationStatusId == 72 ) {
+							navigator.notification.alert(
+								'Your consultation is already ended.',  // message
+								consultationEndedMessage,         // callback
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+						} else if($rootScope.consultationStatusId == 79 ) {
+							navigator.notification.alert(
+								'Your consultation is cancelled.',  // message
+								consultationEndedMessage,         // callback
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+						} else if($rootScope.consultationStatusId == 80 ) {
+							navigator.notification.alert(
+								'Your consultation is in progress, may be an another device.',  // message
+								consultationEndedMessage,         // callback
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+						}
+				}
+				
+				function consultationEndedMessage(){
+					$state.go('tab.userhome');
+					return;
+				}
+				
+				
                 $rootScope.patientExistInfomation = data.data[0].patientInformation;
 				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
