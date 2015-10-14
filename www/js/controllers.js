@@ -414,7 +414,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				if(!angular.isUndefined($rootScope.consultationStatusId)) {
 						if($rootScope.consultationStatusId == 71 ) {
 							navigator.notification.alert(
-								'Your consultation is already started, may be an another device.',  // message
+								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
@@ -438,7 +438,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							return false;
 						} else if($rootScope.consultationStatusId == 80 ) {
 							navigator.notification.alert(
-								'Your consultation is in progress, may be an another device.',  // message
+								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
@@ -1487,7 +1487,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				if(!angular.isUndefined($rootScope.consultationStatusId)) {
 						if($rootScope.consultationStatusId == 71 ) {
 							navigator.notification.alert(
-								'Your consultation is already started, may be an another device.',  // message
+								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
@@ -1511,7 +1511,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							return false;
 						} else if($rootScope.consultationStatusId == 80 ) {
 							navigator.notification.alert(
-								'Your consultation is in progress, may be an another device.',  // message
+								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
@@ -3323,7 +3323,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				if(!angular.isUndefined($rootScope.consultationStatusId)) {
 						if($rootScope.consultationStatusId == 71 ) {
 							navigator.notification.alert(
-								'Your consultation is already started, may be an another device.',  // message
+								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
@@ -3347,7 +3347,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							return false;
 						} else if($rootScope.consultationStatusId == 80 ) {
 							navigator.notification.alert(
-								'Your consultation is in progress, may be an another device.',  // message
+								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
