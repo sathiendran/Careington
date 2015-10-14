@@ -2573,8 +2573,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $scope.PostPaymentDetails = data;
 					
                     
-                    if(data.message == "Success")	{
-                       $rootScope.userCardDetails = data.data.paymentProfileId;
+                    //if(data.message == "Success")	{
+                       $rootScope.userCardDetails = data.data[0].paymentProfileId;
 					   if(typeof $rootScope.CardNumber == 'undefined') {
 							$rootScope.choosePaymentShow = 'none';
 							$rootScope.choosePaymentHide = 'initial';
@@ -2589,7 +2589,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                        // $scope.doGetPatientPaymentProfilesCardDetails();  
 						$rootScope.doGetPatientPaymentProfiles();
 						$state.go('tab.submitPayment');					   
-                    } else {
+                    /*} else {
 						if(!angular.isUndefined(data.message)) {
 							$scope.ErrorMessage = data.message;
 							$rootScope.Validation($scope.ErrorMessage);
@@ -2597,7 +2597,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						} else {
 							$rootScope.serverErrorMessageValidationForPayment();
 						}
-                    }
+                    }*/
                     $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
                 },
