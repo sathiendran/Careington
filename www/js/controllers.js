@@ -410,6 +410,43 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.existingConsultation = data;
 			
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
+				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
+				if(!angular.isUndefined($rootScope.consultationStatusId)) {
+						if($rootScope.consultationStatusId == 71 ) {
+							navigator.notification.alert(
+								'Your consultation is already started, may be an another device.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						} else if($rootScope.consultationStatusId == 72 ) {
+							navigator.notification.alert(
+								'Your consultation is already ended.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						} else if($rootScope.consultationStatusId == 79 ) {
+							navigator.notification.alert(
+								'Your consultation is cancelled.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						} else if($rootScope.consultationStatusId == 80 ) {
+							navigator.notification.alert(
+								'Your consultation is in progress, may be an another device.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						}
+						
+				}
                 $rootScope.patientExistInfomation = data.data[0].patientInformation;
 				$rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.PatientAge = $rootScope.patientExistInfomation.dob;
@@ -1446,6 +1483,44 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.existingConsultation = data;
 			
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
+				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
+				if(!angular.isUndefined($rootScope.consultationStatusId)) {
+						if($rootScope.consultationStatusId == 71 ) {
+							navigator.notification.alert(
+								'Your consultation is already started, may be an another device.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						} else if($rootScope.consultationStatusId == 72 ) {
+							navigator.notification.alert(
+								'Your consultation is already ended.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						} else if($rootScope.consultationStatusId == 79 ) {
+							navigator.notification.alert(
+								'Your consultation is cancelled.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						} else if($rootScope.consultationStatusId == 80 ) {
+							navigator.notification.alert(
+								'Your consultation is in progress, may be an another device.',  // message
+								function(){ $state.go('tab.userhome'); return;},
+								'Connected Care',            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						}
+						
+				}
+				
                 $rootScope.patientExistInfomation = data.data[0].patientInformation;
 				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
@@ -3249,37 +3324,37 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						if($rootScope.consultationStatusId == 71 ) {
 							navigator.notification.alert(
 								'Your consultation is already started, may be an another device.',  // message
-								consultationEndedMessage,         // callback
+								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
 							);
+							return false;
 						} else if($rootScope.consultationStatusId == 72 ) {
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
-								consultationEndedMessage,         // callback
+								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
 							);
+							return false;
 						} else if($rootScope.consultationStatusId == 79 ) {
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
-								consultationEndedMessage,         // callback
+								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
 							);
+							return false;
 						} else if($rootScope.consultationStatusId == 80 ) {
 							navigator.notification.alert(
 								'Your consultation is in progress, may be an another device.',  // message
-								consultationEndedMessage,         // callback
+								function(){ $state.go('tab.userhome'); return;},
 								'Connected Care',            // title
 								'Done'                  // buttonName
 							);
+							return false;
 						}
-				}
-				
-				function consultationEndedMessage(){
-					$state.go('tab.userhome');
-					return;
+						
 				}
 				
 				
