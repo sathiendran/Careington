@@ -220,7 +220,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
-								if((new Date(getReplaceTime).getTime()) <= (new Date().getTime()))
+								$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+								var beforAppointmentTime = 	getReplaceTime;
+								var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+								if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
 								{
 									$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
 								}
@@ -2818,8 +2821,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
-								$rootScope.nextAppointmentDisplay = 'block';								
-								if((new Date(getReplaceTime).getTime()) <= (new Date().getTime()))
+								$rootScope.nextAppointmentDisplay = 'block';
+								$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+								var beforAppointmentTime = 	getReplaceTime;
+								var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+								if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
 								{
 									$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
 								}
@@ -3148,10 +3154,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							console.log('scheduledTime <= getTwelveHours UserHome');
 							$rootScope.nextAppointmentDisplay = 'block';
-							if((new Date(getReplaceTime).getTime()) <= (new Date().getTime()))
-								{
-									$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
-								}
+							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+							var beforAppointmentTime = 	getReplaceTime;
+							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+							if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+							{
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+							}
 						}
 					}
 					 
