@@ -57,23 +57,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		  // org.apache.cordova.statusbar required
 		  StatusBar.styleDefault();
 		}
+    
 		setTimeout(function() {		
 			document.addEventListener("offline", onOffline, false);
-			function onOffline() {
-				// Handle the offline event				
-			//	$(".networkDiv").show();
-		//	var networkConnection = 'off';
-				alert('offline');
-			}
-			document.addEventListener("online", onOnline, false);
-			function onOnline() {
-				// Handle the online event			
-				//$(".networkDiv").hide();
-			//	var networkConnection = 'on';
-					alert('online');
-			}
-	}, 1000);
-	
+	 }, 1000);
+	  function onOffline(){
+      navigator.notification.alert(
+          'Please make sure that you have network connection.',  // message
+          null,
+          'No Internet Connection',            // title
+          'Ok'                  // buttonName
+        );
+    }
+    
 	/*$ionicPlatform.on('resume', function(){
 		 setTimeout(function() {		
 			document.addEventListener("offline", onOffline, false);
