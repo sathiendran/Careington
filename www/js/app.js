@@ -17,7 +17,7 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single
+var deploymentEnv = 'Production'; //Production //Multiple //Single
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 126;
 	var brandColor = '#0071bb';
@@ -57,17 +57,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		  // org.apache.cordova.statusbar required
 		  StatusBar.styleDefault();
 		}
-	/*	if(window.Connection) {
-			if(navigator.connection.type == Connection.NONE) {            
-            alert("The internet is disconnected on your device.")
-            .then(function(result) {
-                if(!result) {
-                    ionic.Platform.exitApp();
-                }
-            });
-			} 
-		}
-	*/
+    
+		setTimeout(function() {		
+			document.addEventListener("offline", onOffline, false);
+	 }, 1000);
+	  function onOffline(){
+      navigator.notification.alert(
+          'Please make sure that you have network connection.',  // message
+          null,
+          'No Internet Connection',            // title
+          'Ok'                  // buttonName
+        );
+    }
+    
+	/*$ionicPlatform.on('resume', function(){
+		 setTimeout(function() {		
+			document.addEventListener("offline", onOffline, false);
+			function onOffline() {
+				// Handle the offline event				
+				//$(".networkDiv").show();
+				var networkConnection = 'off';
+				alert('offline2');
+			}
+			document.addEventListener("online", onOnline, false);
+			function onOnline() {
+				// Handle the online event				
+				//$(".networkDiv").hide();
+				var networkConnection = 'on';
+				alert('online2');
+			}
+		 }, 1000);
+	});  
+		*/
+	
     cordova.plugins.backgroundMode.setDefaults({ text:'Connected Care'});
       // Enable background mode
       cordova.plugins.backgroundMode.enable();
