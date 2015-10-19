@@ -936,7 +936,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -2111,7 +2111,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		else if($rootScope.consultChargeSection == "block") {
 			$state.go('tab.ConsentTreat');
-		} else if($rootScope.healthPlanSection == "block") {			
+		} else if($rootScope.healthPlanSection == "block") {
+			$rootScope.healthPlanPage = "none";
 			$rootScope.healthPlanSection = "none";
 			$rootScope.consultChargeSection = "block";
 		}
@@ -2427,7 +2428,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$rootScope.serverErrorMessageValidation();
+					//$rootScope.serverErrorMessageValidation();
+					$rootScope.enablePaymentSuccess = "none";
+					$rootScope.enableInsuranceVerificationSuccess = "block";
+					$state.go('tab.receipt'); 
+					$scope.ReceiptTimeout();
 				}
 			};
 			
@@ -4908,7 +4913,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 success: function (data) {                    
 					$scope.ConsultationSave = "success";
 					$rootScope.doGetPatientPaymentProfiles();
-					$rootScope.enableInsuranceVerificationSuccess = "none";					
+					$rootScope.enableInsuranceVerificationSuccess = "none";	
+					$rootScope.healthPlanPage = "none";					
 					if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
 						$rootScope.enablePaymentSuccess = "none";
 						$state.go('tab.receipt'); 
