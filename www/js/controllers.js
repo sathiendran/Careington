@@ -220,7 +220,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
-								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+								var beforAppointmentTime = 	getReplaceTime;
+								var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+								if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+								{
+									$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								}
 							}
 						}
 						 
@@ -930,7 +936,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -2105,7 +2111,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		else if($rootScope.consultChargeSection == "block") {
 			$state.go('tab.ConsentTreat');
-		} else if($rootScope.healthPlanSection == "block") {			
+		} else if($rootScope.healthPlanSection == "block") {
+			$rootScope.healthPlanPage = "none";
 			$rootScope.healthPlanSection = "none";
 			$rootScope.consultChargeSection = "block";
 		}
@@ -2421,7 +2428,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$rootScope.serverErrorMessageValidation();
+					//$rootScope.serverErrorMessageValidation();
+					$rootScope.enablePaymentSuccess = "none";
+					$rootScope.enableInsuranceVerificationSuccess = "block";
+					$state.go('tab.receipt'); 
+					$scope.ReceiptTimeout();
 				}
 			};
 			
@@ -2816,7 +2827,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 								console.log('scheduledTime <= getTwelveHours UserHome');
 								$rootScope.nextAppointmentDisplay = 'block';
-								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+								var beforAppointmentTime = 	getReplaceTime;
+								var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+								if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+								{
+									$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								}
 							}
 						}
 						 
@@ -3142,7 +3159,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							console.log('scheduledTime <= getTwelveHours UserHome');
 							$rootScope.nextAppointmentDisplay = 'block';
-							$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+							var beforAppointmentTime = 	getReplaceTime;
+							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+							if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+							{
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+							}
 						}
 					}
 					 
@@ -3162,7 +3185,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	};
 	
 	if($rootScope.getIndividualScheduleDetails !='') {		
-		var getReplaceTime = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+		var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+		getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
 		var currentUserHomeDate = currentUserHomeDate;		
 		if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {				
 				
@@ -3182,11 +3206,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 				
 			
-				if(args.millis < 100){
+				if(args.millis < 600){
 					$rootScope.timeNew = 'none';
 				   $rootScope.timeNew1 = 'block';
+				   $rootScope.timerCOlor = '#E1FCD4';
+				} else if(args.millis > 600){
+					$rootScope.timeNew = 'block';
+				    $rootScope.timeNew1 = 'none';
+				    $rootScope.timerCOlor = '#FEEFE8';
 				}
-				else if(args.millis < 600000){
+				/*else if(args.millis < 600000){
 				   $rootScope.timeNew = 'none';
 				   $rootScope.timeNew1 = 'block';
 				   $rootScope.timerCOlor = '#E1FCD4';
@@ -3194,7 +3223,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.timeNew = 'block';
 				   $rootScope.timeNew1 = 'none';
 					$rootScope.timerCOlor = '#FEEFE8';
-				}
+				}*/
 				
 			});
 			$rootScope.time = new Date(getReplaceTime).getTime();
@@ -3239,7 +3268,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $state.go('tab.waitingRoom');				
     }
 	$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
-	var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
+	var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+	
+	getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
 	
 	$rootScope.time = new Date(getReplaceTime).getTime();
 	
@@ -3260,23 +3291,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.dayDisplay = 'none';	
 		}
 		
-	
-		if(args.millis < 100){
+		//console.log(args.millis);
+		if(args.millis < 600){
 
 		  $('.AvailableIn').hide();
 			$('.enterAppoinment').show();
+			 $rootScope.timerCOlor = '#E1FCD4';
+		} else if(args.millis > 600){
+			$('.AvailableIn').show();
+			$('.enterAppoinment').hide();	
 		}
-		else if(args.millis < 600000){
+		/*else if(args.millis < 1800000){
 		   $('.AvailableIn').hide();
 			$('.enterAppoinment').show();
 		   $rootScope.timerCOlor = '#E1FCD4';
 		   
-		}else if(args.millis > 600000){
+		}else if(args.millis > 1800000){
 		  $rootScope.timeNew = 'block';
 		   $rootScope.timeNew1 = 'none';
 			$('.AvailableIn').show();
 			$('.enterAppoinment').hide();		   
-		}
+		}*/
 		//},1000);
 	});
 	$scope.showEnterWaitingRoomButton = function(){
@@ -3297,7 +3332,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	if(getReplaceTime < currentUserHomeDate){
 		$rootScope.timeNew = 'none';
 		$rootScope.timeNew1 = 'block';
-		 $rootScope.timerCOlor = '#E1FCD4';
+		$('.AvailableIn').hide();
+		$('.enterAppoinment').show();	
+		$rootScope.timerCOlor = '#E1FCD4';
 	}
 	$scope.doCheckExistingConsulatationStatus = function () {
 		
@@ -4876,7 +4913,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 success: function (data) {                    
 					$scope.ConsultationSave = "success";
 					$rootScope.doGetPatientPaymentProfiles();
-					$rootScope.enableInsuranceVerificationSuccess = "none";					
+					$rootScope.enableInsuranceVerificationSuccess = "none";	
+					$rootScope.healthPlanPage = "none";					
 					if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
 						$rootScope.enablePaymentSuccess = "none";
 						$state.go('tab.receipt'); 

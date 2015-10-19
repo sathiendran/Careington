@@ -1478,13 +1478,18 @@ body {
 			input[type="text"] {
 				background-color:#CCCCCC;
 				width: 75px;
-				font-size: 18px;
+				font-size: 14px;
 				height: 30px;
 				font-weight: bold;
+				padding-left: 2px;
 				
+			}
+			tr {
+				font-size: 14px;
 			}
 			.statisticsTitle {
 				padding: 7px;
+				font-size: 18px;
 				div {
 					border-bottom: 1px solid #ccc; position: relative; top: -5px;
 				}
