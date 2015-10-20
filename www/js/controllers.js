@@ -738,7 +738,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.concernListTitleStyle = "concernListTitle"; 
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop  = "margin-top: -16px";
-        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -36px !important;";
+        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
         $rootScope.providerItamTop  = "top: 6px;";
 		$rootScope.appointContent = "margin: 76px 0 0 0;";
 		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
@@ -5244,6 +5244,25 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             accessToken: $rootScope.accessToken,
             success: function (data) {
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
+				
+				var startTimeISOString =  $rootScope.existingConsultationReport.consultationDate;
+				 var startTime = new Date(startTimeISOString );
+				 $rootScope.consultationDate =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) );
+				 
+				   var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
+					var consultationSeconds = $rootScope.existingConsultationReport.consultationDuration - (consultationMinutes * 60);
+					if(consultationMinutes == 0){
+						$rootScope.consultDurationMinutes = '00';
+					} else {
+						$rootScope.consultDurationMinutes = consultationMinutes;
+					}
+					
+					if(consultationSeconds == 0){
+						$rootScope.consultDurationSeconds = '00';
+					} else {
+						$rootScope.consultDurationSeconds = consultationSeconds;
+					}
+				
 				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
 				$rootScope.reportScreenPrimaryConcern = $rootScope.existingConsultationReport.primaryConcern;
 				if(typeof $rootScope.reportScreenPrimaryConcern != 'undefined') {

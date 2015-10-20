@@ -21,7 +21,7 @@
 			</div>
 			<div class="subHeader_content-{{deviceName}} ellipsis" >					
 				<div class="ellipsis subHeader_content_name" >
-					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}} - {{consultationId}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 				</div>
                 <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
@@ -66,12 +66,16 @@
 			<div ng-if="existingConsultationReport.patientAddress != ''">{{existingConsultationReport.patientAddress}}</div>
 			<div>Home: {{existingConsultationReport.homePhone}} </div>
 			<div>Cell: {{existingConsultationReport.mobilePhone}} </div>
+			<div>&nbsp;</div>
+			<div>&nbsp;</div>
 		</div>		
 		<div class="reportEncounter"  >
 			<div><b>Encounter Date:</b></div>
-			<div>{{existingConsultationReport.consultationDate | date:'MMM dd, yyyy'}}</div>
+			<div>{{consultationDate | date:'MMM dd, yyyy h:mm a'}}</div>
 			<div><b>Physician:</b> </div>
 			<div>{{existingConsultationReport.doctorFirstName}} {{existingConsultationReport.doctorLastName}}</div>
+			<div><b>Consultation Duration:</b> </div>
+			<div>{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
 		</div>		
 	</div>
 	<div class="reportPatientStatistics" >		

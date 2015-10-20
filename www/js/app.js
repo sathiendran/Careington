@@ -17,7 +17,7 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Production'; //Production //Multiple //Single
+var deploymentEnv = 'Multiple'; //Production //Multiple //Single
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 126;
 	var brandColor = '#0071bb';
@@ -190,6 +190,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $ionicConfigProvider.views.maxCache(0);
+  $ionicConfigProvider.views.swipeBackEnabled(false);
   $stateProvider
    
   // setup an abstract state for the tabs directive
