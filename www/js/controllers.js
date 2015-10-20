@@ -1901,11 +1901,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
+			$('.userDateofbirth').css('display', 'none');
+			$('.dobRequired').css('display', 'block');	   		
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
             $scope.doGetHealthPlanProvider();
 		} else {
 			$('div.viewport').text($("option:selected", this).text());
 		}
+    });
+	
+	
+	 $(".userDateofbirth").click(function(){		
+	 //  $('div.dobRequired').text($(".userDateofbirth").val());
+	   $('.dobRequired').css('display', 'none');
+	    $('.userDateofbirth').css('display', 'block');
     });
 	
 	/*$('#addHealthPlan').change(function () {
@@ -1923,6 +1932,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 patientId: $rootScope.patientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
+					$('.userDateofbirth').css('display', 'none');
+					$('.dobRequired').css('display', 'block');
 				console.log('addHealthPlan');
 					console.log(data);
                     $scope.HealthPlanProvidersList = data.data;

@@ -3013,6 +3013,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 		top: 10px;
 		/*font-weight: bold;*/
 	}
+	
 	.viewport1 {
 		 pointer-events: none;
 		  color: #60605D;
@@ -3282,8 +3283,20 @@ font-family: $fontFamily_regular;
 		}
 }
 .userDateofbirth {
-	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
+	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px;
 }
 .noResult {
 	text-align: center; border: none; color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 40px;
 }
+
+.dobRequired {
+		pointer-events: none;
+		color: #AAA;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden; 
+		top: 24px;	
+		font-size: 20px;
+	}
