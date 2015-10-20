@@ -1636,7 +1636,7 @@ body {
 					p {
 						font-size: 20px;
 						white-space: pre-wrap;
-						padding-top: 1px;
+						padding-top: 3px;
 						font-family: $fontFamily_regular;
 					}
 				}
@@ -1692,6 +1692,8 @@ body {
 			  content: "\f125";
 			  font-size: 22px; 
 			  margin-top: -2px;  
+			  position: relative;
+				left: -4px;
 			}
 		text-align:right; float:left;width:33%; position: relative; top: -7px;
 		a {
@@ -1701,7 +1703,7 @@ body {
 			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -42px; position: relative;top: -4px;left: -18px;
+			margin-left: -42px; position: relative;top: -3px;left: -18px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
