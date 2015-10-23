@@ -1478,13 +1478,18 @@ body {
 			input[type="text"] {
 				background-color:#CCCCCC;
 				width: 75px;
-				font-size: 18px;
+				font-size: 14px;
 				height: 30px;
 				font-weight: bold;
+				padding-left: 2px;
 				
+			}
+			tr {
+				font-size: 14px;
 			}
 			.statisticsTitle {
 				padding: 7px;
+				font-size: 18px;
 				div {
 					border-bottom: 1px solid #ccc; position: relative; top: -5px;
 				}
@@ -1631,7 +1636,7 @@ body {
 					p {
 						font-size: 20px;
 						white-space: pre-wrap;
-						padding-top: 1px;
+						padding-top: 3px;
 						font-family: $fontFamily_regular;
 					}
 				}
@@ -1686,7 +1691,7 @@ body {
 			.ion-chevron-right:before { 
 			  content: "\f125";
 			  font-size: 22px; 
-			  margin-top: -2px;  
+			  margin-top: -2px;
 			}
 		text-align:right; float:left;width:33%; position: relative; top: -7px;
 		a {
@@ -1696,7 +1701,7 @@ body {
 			font-size: 17px;
 		}
 		.ConcernFooterNext {
-			margin-left: -42px; position: relative;top: -4px;left: -18px;
+			margin-left: -42px; position: relative;top: -3px;left: -18px;
             //margin-left: -44px;margin-right: 25px;position: relative;top: -4px;left: -20px;
 		}
 	}
@@ -3009,6 +3014,7 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 		top: 10px;
 		/*font-weight: bold;*/
 	}
+	
 	.viewport1 {
 		 pointer-events: none;
 		  color: #60605D;
@@ -3278,8 +3284,20 @@ font-family: $fontFamily_regular;
 		}
 }
 .userDateofbirth {
-	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
+	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px;
 }
 .noResult {
 	text-align: center; border: none; color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 40px;
 }
+
+.dobRequired {
+		pointer-events: none;
+		color: #AAA;
+		position: absolute;
+		width: 75%;
+		height: 100%;
+		z-index: 15;
+		overflow: hidden; 
+		top: 24px;	
+		font-size: 20px;
+	}

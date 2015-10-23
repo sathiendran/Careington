@@ -738,7 +738,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.concernListTitleStyle = "concernListTitle"; 
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop  = "margin-top: -16px";
-        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -36px !important;";
+        $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
         $rootScope.providerItamTop  = "top: 6px;";
 		$rootScope.appointContent = "margin: 76px 0 0 0;";
 		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
@@ -936,7 +936,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to connect to the server. Please try again later! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -1901,11 +1901,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
+			$('.userDateofbirth').css('display', 'none');
+			$('.dobRequired').css('display', 'block');	   		
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
             $scope.doGetHealthPlanProvider();
 		} else {
 			$('div.viewport').text($("option:selected", this).text());
 		}
+    });
+	
+	
+	 $(".userDateofbirth").click(function(){		
+	 //  $('div.dobRequired').text($(".userDateofbirth").val());
+	   $('.dobRequired').css('display', 'none');
+	    $('.userDateofbirth').css('display', 'block');
     });
 	
 	/*$('#addHealthPlan').change(function () {
@@ -1923,6 +1932,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 patientId: $rootScope.patientId,
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
+					$('.userDateofbirth').css('display', 'none');
+					$('.dobRequired').css('display', 'block');
 				console.log('addHealthPlan');
 					console.log(data);
                     $scope.HealthPlanProvidersList = data.data;
@@ -2111,7 +2122,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 		else if($rootScope.consultChargeSection == "block") {
 			$state.go('tab.ConsentTreat');
-		} else if($rootScope.healthPlanSection == "block") {			
+		} else if($rootScope.healthPlanSection == "block") {
+			$rootScope.healthPlanPage = "none";
 			$rootScope.healthPlanSection = "none";
 			$rootScope.consultChargeSection = "block";
 		}
@@ -2427,7 +2439,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					
 				},
 				error: function (data) {
-					$rootScope.serverErrorMessageValidation();
+					//$rootScope.serverErrorMessageValidation();
+					$rootScope.enablePaymentSuccess = "none";
+					$rootScope.enableInsuranceVerificationSuccess = "block";
+					$state.go('tab.receipt'); 
+					$scope.ReceiptTimeout();
 				}
 			};
 			
@@ -4908,7 +4924,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 success: function (data) {                    
 					$scope.ConsultationSave = "success";
 					$rootScope.doGetPatientPaymentProfiles();
-					$rootScope.enableInsuranceVerificationSuccess = "none";					
+					$rootScope.enableInsuranceVerificationSuccess = "none";	
+					$rootScope.healthPlanPage = "none";					
 					if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
 						$rootScope.enablePaymentSuccess = "none";
 						$state.go('tab.receipt'); 
@@ -5227,6 +5244,25 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             accessToken: $rootScope.accessToken,
             success: function (data) {
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
+				
+				var startTimeISOString =  $rootScope.existingConsultationReport.consultationDate;
+				 var startTime = new Date(startTimeISOString );
+				 $rootScope.consultationDate =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) );
+				 
+				   var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
+					var consultationSeconds = $rootScope.existingConsultationReport.consultationDuration - (consultationMinutes * 60);
+					if(consultationMinutes == 0){
+						$rootScope.consultDurationMinutes = '00';
+					} else {
+						$rootScope.consultDurationMinutes = consultationMinutes;
+					}
+					
+					if(consultationSeconds == 0){
+						$rootScope.consultDurationSeconds = '00';
+					} else {
+						$rootScope.consultDurationSeconds = consultationSeconds;
+					}
+				
 				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
 				$rootScope.reportScreenPrimaryConcern = $rootScope.existingConsultationReport.primaryConcern;
 				if(typeof $rootScope.reportScreenPrimaryConcern != 'undefined') {

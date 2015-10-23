@@ -28,8 +28,11 @@
 			</div>
 		</div>
 		
-		<div class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 119px;	background-color: #fff; {{PaymentStyle}}">
+		<div ng-if="healthPlanPage != 'block'" class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 119px;	background-color: #fff; {{PaymentStyle}}" >
 			<span>Payment</span>
+		</div>	
+		<div ng-if="healthPlanPage == 'block'" class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 119px;	background-color: #fff; {{PaymentStyle}}" >
+			<span>Insurance</span>
 		</div>	
 	   
 	</ion-header-bar>
