@@ -5248,7 +5248,10 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				var startTimeISOString =  $rootScope.existingConsultationReport.consultationDate;
 				 var startTime = new Date(startTimeISOString );
 				 $rootScope.consultationDate =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) );
-				 
+				
+		if($rootScope.existingConsultationReport.consultationDuration != 0 && $rootScope.existingConsultationReport.consultationDuration != 'undefined')	
+			{
+					$rootScope.displayCOnsultationDuration = "display";
 				   var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
 					var consultationSeconds = $rootScope.existingConsultationReport.consultationDuration - (consultationMinutes * 60);
 					if(consultationMinutes == 0){
@@ -5262,6 +5265,9 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					} else {
 						$rootScope.consultDurationSeconds = consultationSeconds;
 					}
+			} else {
+				$rootScope.displayCOnsultationDuration = "none";
+			}
 				
 				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
 				$rootScope.reportScreenPrimaryConcern = $rootScope.existingConsultationReport.primaryConcern;
