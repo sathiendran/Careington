@@ -3040,16 +3040,104 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
-		if($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on') {
-			$rootScope.verifyInsuranceSection = "block";
-			$rootScope.verifyConsultChargeSection = "none";			
-		} else {
-			$rootScope.verifyInsuranceSection = "none";
-			$rootScope.verifyConsultChargeSection = "block";			
+		
+		if($rootScope.appointmentsPage == false)
+		{
+			if($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on') {
+				$rootScope.verifyInsuranceSection = "block";
+				$rootScope.verifyConsultChargeSection = "none";			
+			} else {
+				$rootScope.verifyInsuranceSection = "none";
+				$rootScope.verifyConsultChargeSection = "block";			
+			}	
+			$rootScope.consultChargeSection = "block";
+			$rootScope.healthPlanSection = "none";	
+			$rootScope.doPutConsultationSave();  
+		} else if($rootScope.appointmentsPage == true){
+			$scope.doGetHospitalInformation();
 		}	
-		$rootScope.consultChargeSection = "block";
-		$rootScope.healthPlanSection = "none";	
-		$rootScope.doPutConsultationSave();       
+    }
+	
+	
+	$scope.doGetHospitalInformation = function () {
+			if ($rootScope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}			
+			var params = {
+				accessToken: $rootScope.accessToken,
+				success: function (data) {
+					$rootScope.getDetails = data.enabledModules;
+					if($rootScope.getDetails != '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification') {
+								$rootScope.insuranceMode = 'on';
+									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
+										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+											$rootScope.paymentMode = 'on';
+										}
+									}*/
+							}
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce') {
+								$rootScope.paymentMode = 'on';
+							}
+						}
+						$rootScope.consultChargeSection = "block";
+						$rootScope.healthPlanSection = "none";	
+					
+					//Get Payment Details	
+						if($rootScope.paymentMode == 'on') {
+							$rootScope.doGetPatientPaymentProfiles();
+						}	
+						$rootScope.enableInsuranceVerificationSuccess = "none";					
+						if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
+							$rootScope.enablePaymentSuccess = "none";
+							$state.go('tab.receipt'); 
+								$scope.ReceiptTimeout();
+						} else if($rootScope.insuranceMode == 'on' && $rootScope.paymentMode != 'on'){
+							$rootScope.verifyInsuranceSection = "none";
+							$rootScope.verifyConsultChargeSection = "none";	
+							$rootScope.openAddHealthPlanSection();
+							$state.go('tab.consultCharge'); 
+						}else {
+							if($rootScope.consultationAmount > 0)	{
+								if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode == 'on') {
+									$rootScope.consultChargeSection = "none";
+									$rootScope.healthPlanSection = "block";
+									$rootScope.healthPlanPage = "none";
+									$rootScope.consultChargeNoPlanPage = "block";
+								}	
+								$state.go('tab.consultCharge'); 
+								$rootScope.verifyInsuranceSection = "none";
+								$rootScope.verifyConsultChargeSection = "block";
+								if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
+									$('#addNewCard').val() == 'Choose Your Card';
+									$('#addNewCard_addCard').val() == 'Choose Your Card';
+									$('#addNewCard_submitPay').val() == 'Choose Your Card';
+									$rootScope.userDefaultPaymentProfileText = 'undefined';
+								}else{
+									$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+									$('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+									$('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+									$rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+									$scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+								}						
+							} else {
+								$rootScope.enablePaymentSuccess = "none";
+								$state.go('tab.receipt'); 
+								$scope.ReceiptTimeout();
+							}
+						}
+					}
+					
+					
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getHospitalInfo(params);		
     }
 	
 	
@@ -3270,8 +3358,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
-        $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientAge = P_Age;	
+		$rootScope.appointPatientGuardian = P_Guardian;	
+		$rootScope.appointmentsPage = true;
 		$scope.doCheckExistingConsulatationStatus();
         //$scope.doGetWaitingRoom();
     }
@@ -3361,6 +3450,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.existingConsultation = data;
 			
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
+				//Get Hospital Information
+				$rootScope.patientId = $rootScope.appointmentsPatientId;
+				
+				if($rootScope.primaryPatientId !=  $rootScope.patientId) 
+				{
+					$rootScope.PatientGuardian = $rootScope.appointPatientGuardian;
+				}
+				
+				//alert($rootScope.patientId);
+				$rootScope.consultationAmount = $rootScope.consultionInformation.consultationAmount;
+				$rootScope.copayAmount = $rootScope.consultationAmount;	
+				
 				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
 				if(!angular.isUndefined($rootScope.consultationStatusId)) {
 					if($rootScope.consultationStatusId == 71 ) {
@@ -3396,7 +3497,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						);
 						return false;
 					} else {
-						$scope.doGetWaitingRoom();
+						$state.go('tab.ConsentTreat');
 					}
 						
 				}
@@ -3410,7 +3511,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
         LoginService.getExistingConsulatation(params);	
 		
-	}
+	}	
+	
 
 	$scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
@@ -3969,6 +4071,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
     
 	$scope.goToConsentToTreat = function(){
+		$rootScope.appointmentsPage = false;
 		$scope.doGetHospitalInformation();
 		$state.go('tab.ConsentTreat');	
 	};

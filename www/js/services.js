@@ -8,8 +8,24 @@ angular.module('starter.services', [])
     /*
         params: email, password, userTypeId, hospitalId
                 (event handlers): success, failure
-    */
+   
+	
+	if(deploymentEnv == "Sandbox"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
 		
+	}else if(deploymentEnv == "Production"){
+		$rootScope.APICommonURL = 'https://connectedcare.md';
+		apiCommonURL = 'https://connectedcare.md';
+	}else if(deploymentEnv == "QA"){
+		$rootScope.APICommonURL = 'https://snap-qa.com';
+		apiCommonURL = 'https://snap-qa.com';
+	}else if(deploymentEnv == "Single"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
+	}
+	
+	 */	
 		//var apiCommonURL = 'https://snap-dev.com';
 		
 		//var apiCommonURL = 'https://sandbox.connectedcare.md';
