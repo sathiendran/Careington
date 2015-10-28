@@ -43,7 +43,8 @@
                     }else{
                        elm.addClass('ng-hide');
 						$ionicPlatform.registerBackButtonAction(function (event, $state) {	
-							if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+							if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+								 ($rootScope.currState.$current.name=="tab.waitingRoom") ||	
 								 ($rootScope.currState.$current.name=="tab.receipt") || 	
 								 ($rootScope.currState.$current.name=="tab.videoConference") ||
 								 ($rootScope.currState.$current.name=="tab.ReportScreen")

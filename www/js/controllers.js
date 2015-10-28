@@ -787,7 +787,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    };
    
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
-        if ( ($rootScope.currState.$current.name=="tab.addCard") ||
+        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+			  ($rootScope.currState.$current.name=="tab.addCard") ||	
 			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
@@ -1182,8 +1183,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					//Get default payment profile from localstorage if already stored.
-					$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
-					$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
 					
 					$rootScope.accessToken = data.access_token;
 					console.log($scope.accessToken);
@@ -2996,6 +2995,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.healthPlanID = '';
         $rootScope.NewHealth = '';    
         }
+		
+		$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
+		$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
+					
         
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
@@ -5347,12 +5350,24 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             accessToken: $rootScope.accessToken,
             success: function (data) {
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
+				if($rootScope.existingConsultationReport.organization !='' && typeof $rootScope.existingConsultationReport.organization != 'undefined')
+				{
+					$rootScope.userReportOrganization = $rootScope.existingConsultationReport.organization;
+				} else {
+					$rootScope.userReportOrganization = '';
+				}
+				if($rootScope.existingConsultationReport.location !='' && typeof $rootScope.existingConsultationReport.location != 'undefined')
+				{
+					$rootScope.reportLocation = $rootScope.existingConsultationReport.location;
+				} else {
+					$rootScope.reportLocation = '';
+				}
 				
 				var startTimeISOString =  $rootScope.existingConsultationReport.consultationDate;
 				 var startTime = new Date(startTimeISOString );
 				 $rootScope.consultationDate =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) );
 				
-		if($rootScope.existingConsultationReport.consultationDuration != 0 && $rootScope.existingConsultationReport.consultationDuration != 'undefined')	
+		if($rootScope.existingConsultationReport.consultationDuration != 0 && typeof $rootScope.existingConsultationReport.consultationDuration != 'undefined')	
 			{
 					$rootScope.displayCOnsultationDuration = "display";
 				   var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
@@ -5491,18 +5506,21 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			LoginService.getPatientsSoapNotes(params);
 		}
 	
-    
+    var callEnded = false;
     $scope.disconnectConference = function(){
-        session.unpublish(publisher)
-        //publisher.destroy();
-        session.disconnect();
-		navigator.notification.alert(
-			'Consultation ended successfully!',  // message
-			consultationEndedAlertDismissed,         // callback
-			'Connected Care',            // title
-			'Done'                  // buttonName
-		);
-		//alert('Consultation ended successfully!');
+		if(!callEnded){
+			session.unpublish(publisher)
+			//publisher.destroy();
+			session.disconnect();
+			navigator.notification.alert(
+				'Consultation ended successfully!',  // message
+				consultationEndedAlertDismissed,         // callback
+				'Connected Care',            // title
+				'Done'                  // buttonName
+			);
+			//alert('Consultation ended successfully!');
+		}
+		  callEnded = true;
 		
     };
     
