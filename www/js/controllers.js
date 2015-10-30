@@ -3092,7 +3092,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.healthPlanSection = "none";	
 					
 					//Get Payment Details	
-						if($rootScope.paymentMode == 'on') {
+						if($rootScope.paymentMode == 'on' && $rootScope.consultationAmount != 0) {
 							$rootScope.doGetPatientPaymentProfiles();
 						}	
 						$rootScope.enableInsuranceVerificationSuccess = "none";					
@@ -5033,7 +5033,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {                    
 					$scope.ConsultationSave = "success";
-					if($rootScope.paymentMode == 'on') {
+					if($rootScope.paymentMode == 'on' && $rootScope.consultationAmount != 0) {
 						$rootScope.doGetPatientPaymentProfiles();
 					}
 					$rootScope.enableInsuranceVerificationSuccess = "none";	
