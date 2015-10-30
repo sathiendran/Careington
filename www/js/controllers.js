@@ -653,7 +653,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.passwordLineHeight = "top: 2px; position: relative;";
 		$rootScope.ContentOverlop = "margin: 147px 0 0 0;";	
 		$rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;"; 	
-		$rootScope.currentMedicationContent = "margin-top: 125px !important;";
+		//$rootScope.currentMedicationContent = "margin-top: 125px !important;";
 		$rootScope.usHomeCOntent = "margin: 75px 0 0 0 !important;";
     if($rootScope.IOSDevice) {
         $rootScope.patientConternFontStyle = "patientConternFontStyle-ios";
@@ -741,7 +741,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
         $rootScope.providerItamTop  = "top: 6px;";
 		$rootScope.appointContent = "margin: 76px 0 0 0;";
-		$rootScope.currentMedicationContent = "margin-top: 118px !important;";
 		 $rootScope.MarginHomeTop = "margin-top: -50px;";
 		$rootScope.waitingContentIos = "margin-top: 120px; ";		 
         $rootScope.providerItamMarginTop  = "";
@@ -2464,7 +2463,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				patientId: $rootScope.patientId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					if(data != 0) {				
+					if(data.data[0].paymentProfiles.length != 0) {				
 						
 						$rootScope.patientprofileID = data.data[0].profileID;	
 
@@ -2499,7 +2498,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.textAddCard = "none";
 						}	
 						//$state.go('tab.addCard');
-					} else if(data == 0) {
+					} else if(data.data[0].paymentProfiles.length == 0) {
 						$rootScope.enableSubmitpayment = "none";
 						$rootScope.disableSubmitpayment = "block";
 						if($rootScope.copayAmount != 0) {
@@ -2752,6 +2751,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.serverErrorMessageValidation();
 				}
 			};
+			$rootScope.MedicationAllegiesItem = "";
+			$rootScope.CurrentMedicationItem = "";
+			$rootScope.PatientChronicConditionsSelected = "";
 			
 		   $rootScope.PatientPrimaryConcern = "";
 			$rootScope.PatientSecondaryConcern = "";
@@ -3058,7 +3060,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.doPutConsultationSave();  
 		} else if($rootScope.appointmentsPage == true){
 			$scope.doGetHospitalInformation();
-		}	
+		}
     }
 	
 	
@@ -3500,7 +3502,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						);
 						return false;
 					} else {
-						$state.go('tab.ConsentTreat');
+						//$state.go('tab.ConsentTreat');
+						$scope.doGetWaitingRoom();
+
 					}
 						
 				}
@@ -4324,7 +4328,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
    // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
-        $scope.clearSelectionAndRebindSelectionList($scope.PatientChronicConditionsSelected, $scope.chronicConditionList);
+        $scope.clearSelectionAndRebindSelectionList($rootScope.PatientChronicConditionsSelected, $scope.chronicConditionList);
 		if(typeof $rootScope.ChronicCount == 'undefined') { 
 			$rootScope.checkedChronic = 0;
 		} else {  
@@ -4344,7 +4348,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
     $scope.closeChronicCondition = function() {
         $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
-        $scope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
+        $rootScope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
 		if($scope.PatientChronicConditionItem != '') {	
 			$rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
 			$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
@@ -4429,7 +4433,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
           $scope.chronicConditionList[indexPos].checked = false;
           $rootScope.checkedChronic--;
 		  $rootScope.ChronicCount = $rootScope.checkedChronic;
-          $scope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
+          $rootScope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
     }
 	
   
@@ -4495,7 +4499,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
     $scope.loadMedicationAllegies = function() {
 		
-		 $scope.clearSelectionAndRebindSelectionList($scope.MedicationAllegiesItem, $scope.MedicationAllegiesList);
+		 $scope.clearSelectionAndRebindSelectionList($rootScope.MedicationAllegiesItem, $scope.MedicationAllegiesList);
         
         if(typeof $rootScope.AllegiesCount == 'undefined') { 
 			$rootScope.checkedAllergies = 0;
@@ -4516,9 +4520,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
 	
      $scope.closeMedicationAllegies = function() {
-        $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
-			if($scope.MedicationAllegiesItem != '') {
-				$rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
+        $rootScope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
+			if($rootScope.MedicationAllegiesItem != '') {
+				$rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
 				$rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
 				$scope.modal.hide();
 				//$scope.data.searchQuery = ''; 
@@ -4600,7 +4604,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.MedicationAllegiesList[indexPos].checked = false;
 		$rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
 		$rootScope.checkedAllergies--;
-		$scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
+		$rootScope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
     }
 	
     /*Medication Allegies End here*/
@@ -4646,7 +4650,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     
    // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
-	 $scope.clearSelectionAndRebindSelectionList($scope.CurrentMedicationItem, $scope.CurrentMedicationList);
+	 $scope.clearSelectionAndRebindSelectionList($rootScope.CurrentMedicationItem, $scope.CurrentMedicationList);
         
          if(typeof $rootScope.MedicationCount == 'undefined') { 
 			$rootScope.checkedMedication = 0;
@@ -4667,9 +4671,9 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     };
 	
      $scope.closeCurrentMedication = function() {
-        $scope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
-			if($scope.CurrentMedicationItem != '') {
-				$rootScope.patinentCurrentMedication = $scope.CurrentMedicationItem;
+        $rootScope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
+			if($rootScope.CurrentMedicationItem != '') {
+				$rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
 				$rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
 				$scope.modal.hide();
 				//$scope.data.searchQuery = ''; 
@@ -4745,7 +4749,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
       $scope.CurrentMedicationList[indexPos].checked = false;
       $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;    
       $rootScope.checkedMedication--;
-	   $scope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
+	   $rootScope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
     }
 	
    /*Current Medication End here*/
@@ -5273,7 +5277,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	
 	session.on('streamDestroyed', function(event) { 					
 			//$("#subscriberScreen").hide();
-			//$("#subscriber").show();				
+			//$("#subscriber").show();	
+			$("#subscriber").css('top', '0px');	
 			$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);	
 			event.preventDefault(); 
     });
