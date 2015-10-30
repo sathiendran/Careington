@@ -5033,7 +5033,9 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				ConsultationSaveData: $scope.ConsultationSaveData,
                 success: function (data) {                    
 					$scope.ConsultationSave = "success";
-					$rootScope.doGetPatientPaymentProfiles();
+					if($rootScope.paymentMode == 'on') {
+						$rootScope.doGetPatientPaymentProfiles();
+					}
 					$rootScope.enableInsuranceVerificationSuccess = "none";	
 					$rootScope.healthPlanPage = "none";					
 					if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
