@@ -4,7 +4,7 @@ angular.module('starter.services', [])
 
 
 
-.service('LoginService', function($http){
+.service('LoginService', function($http){ 
     /*
         params: email, password, userTypeId, hospitalId
                 (event handlers): success, failure

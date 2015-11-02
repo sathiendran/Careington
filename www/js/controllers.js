@@ -785,7 +785,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
    };
    
-	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||
 			  ($rootScope.currState.$current.name=="tab.addCard") ||	
 			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
