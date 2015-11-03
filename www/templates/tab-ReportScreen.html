@@ -42,10 +42,10 @@
 			</div>
 			<div class="providerAddress">
 				<div>{{existingConsultationReport.hospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
-				<div class="reportOrganization" ng-if="userReportOrganization != ''"><b>Organization:</b> {{existingConsultationReport.organization}}</div>
+				<div class="reportOrganization" ng-if="userReportOrganization != ''"><b>Organization:</b> {{userReportOrganization}}</div>
 				<div ng-if="reportLocation != ''">
 					<div><b>Location</b></div>
-					<div>{{existingConsultationReport.location}} </div>
+					<div>{{reportLocation}} </div>
 				</div>
 			</div>		
 		</div>

@@ -2742,8 +2742,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.scondaryConcernsCodesList = $rootScope.primaryConcernDataList;
 					}
 					$rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
+					$rootScope.chronicConditionList = $rootScope.chronicConditionsCodesList;
 					$rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);	
+					$rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
 					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
+					$rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
                     $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
 					$state.go('tab.patientConcerns');
 				},
@@ -3819,7 +3822,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}else{
 			$state.go('tab.login');
 		}
-	}
+	}	
+	
+		
+    $scope.checkPreLoadDataAndSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
+        angular.forEach(mainListItem, function(item, key2) {
+               item.checked = false;
+           });
+        if(!angular.isUndefined(selectedListItem)){
+            
+           if(selectedListItem.length > 0){
+               angular.forEach(selectedListItem, function(value1, key1) {
+                   angular.forEach(mainListItem, function(value2, key2) {
+                       if (value1.code == value2.codeId) {
+                           value2.checked = true;
+                       }   
+                   });
+               });
+           }
+       }
+    };
      
     $scope.doGetExistingConsulatation = function () {
 		if ($scope.accessToken == 'No Token') {
@@ -3839,10 +3861,57 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 //$rootScope.inTakeForm = data.data[0].intakeForm;
                 //Pre Populated //
                 $rootScope.inTakeForm = data.data[0].intakeForm;
-                $rootScope.inTakeFormCurrentMedication = $rootScope.inTakeForm.takingMedications;
-                $rootScope.inTakeFormChronicConditions = $rootScope.inTakeForm.medicalCondition;
-                $rootScope.inTakeFormPriorSurgeories = $rootScope.inTakeForm.priorSurgeories;
-                $rootScope.inTakeFormMedicationAllergies = $rootScope.inTakeForm.medicationAllergies;
+                $rootScope.inTakeFormCurrentMedication = $rootScope.inTakeForm.medications;
+				if(!angular.isUndefined($rootScope.inTakeFormCurrentMedication)){
+					$rootScope.MedicationCountValid = $rootScope.inTakeFormCurrentMedication.length;
+					if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.MedicationCountValid == '') {
+						$scope.checkPreLoadDataAndSelectionAndRebindSelectionList($rootScope.inTakeFormCurrentMedication, $rootScope.CurrentMedicationList);
+						$rootScope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
+						$rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
+						if($rootScope.patinentCurrentMedication) {
+								  $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;
+								  $rootScope.MedicationCountValid = $rootScope.MedicationCount;
+							 } 
+								
+					} 					 
+				}
+				
+				
+                
+				$rootScope.inTakeFormChronicConditions = $rootScope.inTakeForm.medicalConditions;
+				if(!angular.isUndefined($rootScope.inTakeFormChronicConditions)){
+					$rootScope.ChronicValid = $rootScope.inTakeFormChronicConditions.length;
+					$rootScope.ChronicCount = $rootScope.inTakeFormChronicConditions.length;
+					if(typeof $rootScope.ChronicValid != 'undefined' &&  $rootScope.ChronicValid != '') {
+						$scope.checkPreLoadDataAndSelectionAndRebindSelectionList($rootScope.inTakeFormChronicConditions, $rootScope.chronicConditionList);
+						 
+						$rootScope.PatientChronicConditionItem = $filter('filter')($rootScope.chronicConditionList, {checked:true});
+						$rootScope.PatientChronicCondition = $rootScope.PatientChronicConditionItem;
+						$rootScope.PatientChronicConditionsSelected = $rootScope.PatientChronicConditionItem;
+						if($rootScope.PatientChronicCondition) {
+							$rootScope.ChronicCountValidCount = $rootScope.PatientChronicCondition.length; 
+							$rootScope.ChronicCount = $rootScope.inTakeFormChronicConditions.length;
+						}
+					} 
+				}
+				
+                $rootScope.inTakeFormPriorSurgeories = $rootScope.inTakeForm.surgeries;
+               
+			   //MedicationAllegies pre-populated
+			    $rootScope.inTakeFormMedicationAllergies = $rootScope.inTakeForm.medicationAllergies;
+				if(!angular.isUndefined($rootScope.inTakeFormMedicationAllergies)){
+					$rootScope.AllegiesCountValid = $rootScope.inTakeFormMedicationAllergies.length;
+					if(typeof $rootScope.AllegiesCountValid != 'undefined' &&  $rootScope.AllegiesCountValid != '') {
+						$scope.checkPreLoadDataAndSelectionAndRebindSelectionList($rootScope.inTakeFormMedicationAllergies, $rootScope.MedicationAllegiesList);
+						$rootScope.MedicationAllegiesItem = $filter('filter')($rootScope.MedicationAllegiesList, {checked:true});
+						$rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
+						if($rootScope.patinentMedicationAllergies) {
+							  $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length; 
+							  $rootScope.AllegiesCountValid = $rootScope.AllegiesCount;
+						}
+					}
+				}		
+				
                 //Pre Populated //
                 $state.go('tab.ChronicCondition');
             },
@@ -4264,8 +4333,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.copayAmount = $rootScope.OnDemandConsultationSaveResult.consultationAmount;
 						$rootScope.consultationId = $rootScope.OnDemandConsultationSaveResult.consultationId;
 						console.log(data);
-						 $state.go('tab.ChronicCondition');
-                        //$scope.doGetExistingConsulatation();
+						// $state.go('tab.ChronicCondition');
+                        $scope.doGetExistingConsulatation();
 						//$state.go('tab.ChronicCondition');
 					},
 					error: function (data) {
@@ -4275,7 +4344,24 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				
 				LoginService.postOnDemandConsultation (params);
 		};
-
+	
+	 $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
+        angular.forEach(mainListItem, function(item, key2) {
+               item.checked = false;
+           });
+        if(!angular.isUndefined(selectedListItem)){
+            
+           if(selectedListItem.length > 0){
+               angular.forEach(selectedListItem, function(value1, key1) {
+                   angular.forEach(mainListItem, function(value2, key2) {
+                       if (value1.text == value2.text) {
+                           value2.checked = true;
+                       }   
+                   });
+               });
+           }
+       }
+    };
 	
 	
 	/*Chronic Condition Start here*/
@@ -4286,10 +4372,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
     
     // Get list of Chronic Condition lists
-   $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
+  // $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
     
      // Get list of Chronic Condition Pre populated
-  /*  if($rootScope.currState.$current.name=="tab.ChronicCondition") { 
+   /*if($rootScope.currState.$current.name=="tab.ChronicCondition") { 
         if(typeof $rootScope.ChronicValid == 'undefined' ||  $rootScope.ChronicValid == 0) {
              angular.forEach($rootScope.inTakeFormChronicConditions, function(index, item) { 
                $scope.chronicConditionList.push({
@@ -4307,28 +4393,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.ChronicCountValidCount = $rootScope.PatientChronicCondition.length; 
             }
         } 
-    }
-	*/
-    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
-        angular.forEach(mainListItem, function(item, key2) {
-               item.checked = false;
-           });
-        if(!angular.isUndefined(selectedListItem)){
-            
-           if(selectedListItem.length > 0){
-               angular.forEach(selectedListItem, function(value1, key1) {
-                   angular.forEach(mainListItem, function(value2, key2) {
-                       if (value1.text == value2.text) {
-                           value2.checked = true;
-                       }   
-                   });
-               });
-           }
-       }
-    };
+    }*/
+
    // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
-        $scope.clearSelectionAndRebindSelectionList($rootScope.PatientChronicConditionsSelected, $scope.chronicConditionList);
+        $scope.clearSelectionAndRebindSelectionList($rootScope.PatientChronicConditionsSelected, $rootScope.chronicConditionList);
 		if(typeof $rootScope.ChronicCount == 'undefined') { 
 			$rootScope.checkedChronic = 0;
 		} else {  
@@ -4347,10 +4416,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
 
     $scope.closeChronicCondition = function() {
-        $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
+        $rootScope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
         $rootScope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
 		if($scope.PatientChronicConditionItem != '') {	
-			$rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
+			$rootScope.PatientChronicCondition = $rootScope.PatientChronicConditionItem;
 			$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
 			console.log($rootScope.ChronicCount);
 			console.log($rootScope.PatientChronicCondition);
@@ -4415,7 +4484,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                        });  
                       
                        var newchronicConditionItem = { text: $scope.data.ChronicCondtionOther, checked: true };
-                      $scope.chronicConditionList.splice(1, 0, newchronicConditionItem);
+                      $rootScope.chronicConditionList.splice(1, 0, newchronicConditionItem);
                       
                        //$scope.chronicConditionList.push({ text: $scope.data.ChronicCondtionOther, checked: true });
                        return $scope.data.ChronicCondtionOther;
@@ -4429,8 +4498,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     $scope.removeChronicCondition = function(index, item){
           $scope.PatientChronicCondition.splice(index, 1);
-          var indexPos = $scope.chronicConditionList.indexOf(item);
-          $scope.chronicConditionList[indexPos].checked = false;
+          var indexPos = $rootScope.chronicConditionList.indexOf(item);
+          $rootScope.chronicConditionList[indexPos].checked = false;
           $rootScope.checkedChronic--;
 		  $rootScope.ChronicCount = $rootScope.checkedChronic;
           $rootScope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
@@ -4445,7 +4514,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     /*Medication Allegies Start here*/
 	
     // Get list of Medication Allegies List
-    $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
+   // $scope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
     /*
 	for(var i=0; i < $scope.MedicationAllegiesList.length; i++){
 		if($scope.MedicationAllegiesList[i].text == 'Other'){
@@ -4464,27 +4533,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	*/
      // Get list of Medication Allegies Pre populated
-  /*  $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
+  /* $scope.GoToMedicationAllegies = function(AllegiesCountValid) {
         $rootScope.AllegiesCountValid = AllegiesCountValid;
-    if(typeof $rootScope.AllegiesCountValid == 'undefined' ||  $rootScope.AllegiesCountValid == '') { 
-        angular.forEach($rootScope.inTakeFormMedicationAllergies, function(index, item) { 
-               $scope.MedicationAllegiesList.push({
-                    $id: index.$id,
-                    codeId: index.id,
-                    displayOrder: 0,
-                    text: index.value,
-                    checked: true,
-                });
+		if(typeof $rootScope.AllegiesCountValid != 'undefined' ||  $rootScope.AllegiesCountValid != '') { 
+			angular.forEach($rootScope.inTakeFormMedicationAllergies, function(index, item) { 
+				   $scope.MedicationAllegiesList.push({
+						$id: index.$id,
+						codeId: index.id,
+						displayOrder: 0,
+						text: index.value,
+						checked: true,
+					});
 
-            }); 
-        
-      $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
-      $rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
-          if($rootScope.patinentMedicationAllergies) {
-              $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length; 
-              $rootScope.AllegiesCountValid = $rootScope.AllegiesCount;
-         } 
-            $state.go('tab.MedicationAllegies');    
+				}); 
+			
+		  $scope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
+		  $rootScope.patinentMedicationAllergies = $scope.MedicationAllegiesItem;
+			  if($rootScope.patinentMedicationAllergies) {
+				  $rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length; 
+				  $rootScope.AllegiesCountValid = $rootScope.AllegiesCount;
+			 } 
+				$state.go('tab.MedicationAllegies');    
         } else { 
             $state.go('tab.MedicationAllegies');
         }
@@ -4499,7 +4568,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
     $scope.loadMedicationAllegies = function() {
 		
-		 $scope.clearSelectionAndRebindSelectionList($rootScope.MedicationAllegiesItem, $scope.MedicationAllegiesList);
+		 $scope.clearSelectionAndRebindSelectionList($rootScope.MedicationAllegiesItem, $rootScope.MedicationAllegiesList);
         
         if(typeof $rootScope.AllegiesCount == 'undefined') { 
 			$rootScope.checkedAllergies = 0;
@@ -4584,7 +4653,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                       });
                      
                        var newMedicationAllegiesItem = { text: $scope.data.MedicationAllergiesOther, checked: true };
-                      $scope.MedicationAllegiesList.splice(1, 0, newMedicationAllegiesItem);
+                      $rootScope.MedicationAllegiesList.splice(1, 0, newMedicationAllegiesItem);
         
                       // $scope.MedicationAllegiesList.push({ text: $scope.data.MedicationAllergiesOther, checked: true });
 					  $scope.closeMedicationAllegies();
@@ -4600,8 +4669,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
      $scope.removeMedicationAllegies = function(index, item){
 		$scope.patinentMedicationAllergies.splice(index, 1);
-		var indexPos = $scope.MedicationAllegiesList.indexOf(item);
-		$scope.MedicationAllegiesList[indexPos].checked = false;
+		var indexPos = $rootScope.MedicationAllegiesList.indexOf(item);
+		$rootScope.MedicationAllegiesList[indexPos].checked = false;
 		$rootScope.AllegiesCount = $scope.patinentMedicationAllergies.length;
 		$rootScope.checkedAllergies--;
 		$rootScope.MedicationAllegiesItem = $filter('filter')($scope.MedicationAllegiesList, {checked:true});
@@ -4613,10 +4682,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
       /*Current Medication Start here*/
 	
     // Get list of Current Medication  List
-       $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
+      // $scope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
     
     // Get list of Current Medication Pre populated
- /*   $scope.GoToCurrentMedication = function(MedicationCountValid) { 
+   /* $scope.GoToCurrentMedication = function(MedicationCountValid) { 
         $rootScope.MedicationCountValid = MedicationCountValid;
 if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.MedicationCountValid == '') { 
     angular.forEach($rootScope.inTakeFormCurrentMedication, function(index, item) { 
@@ -4644,13 +4713,13 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     }
     console.log('CurrentMedication: ' + $rootScope.inTakeFormCurrentMedication); */
     
-    $scope.GoToCurrentMedication = function(MedicationCountValid) {
+   $scope.GoToCurrentMedication = function(MedicationCountValid) {
         $state.go('tab.CurrentMedication');
     }
     
    // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
-	 $scope.clearSelectionAndRebindSelectionList($rootScope.CurrentMedicationItem, $scope.CurrentMedicationList);
+	 $scope.clearSelectionAndRebindSelectionList($rootScope.CurrentMedicationItem, $rootScope.CurrentMedicationList);
         
          if(typeof $rootScope.MedicationCount == 'undefined') { 
 			$rootScope.checkedMedication = 0;
@@ -4729,7 +4798,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                       });
                      
                           var newCurrentMedicationItem = { text: $scope.data.CurrentMedicationOther, checked: true };
-                      $scope.CurrentMedicationList.splice(1, 0, newCurrentMedicationItem);
+                      $rootScope.CurrentMedicationList.splice(1, 0, newCurrentMedicationItem);
                       
                       // $scope.CurrentMedicationList.push({ text: $scope.data.CurrentMedicationOther, checked: true });
 						if($rootScope.checkedMedication == 4) {
@@ -4745,8 +4814,8 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     
     $scope.removeCurrentMedication = function(index, item){
       $scope.patinentCurrentMedication.splice(index, 1);
-      var indexPos = $scope.CurrentMedicationList.indexOf(item);
-      $scope.CurrentMedicationList[indexPos].checked = false;
+      var indexPos = $rootScope.CurrentMedicationList.indexOf(item);
+      $rootScope.CurrentMedicationList[indexPos].checked = false;
       $rootScope.MedicationCount = $scope.patinentCurrentMedication.length;    
       $rootScope.checkedMedication--;
 	   $rootScope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
@@ -5189,11 +5258,12 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 		}
 	}
     
+	 var connection = $.hubConnection();
+         //debugger;
+     var conHub = connection.createHubProxy('consultationHub');
 	
     var initConferenceRoomHub = function () {
-         var connection = $.hubConnection();
-         //debugger;
-         var conHub = connection.createHubProxy('consultationHub');
+        
          connection.url = $rootScope.APICommonURL + "/api/signalR/";
          var consultationWatingId = +$rootScope.consultationId;
          
@@ -5216,6 +5286,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             connection.start({
                 withCredentials :false
             }).then(function(){
+				conHub.invoke("joinCustomer").then(function(){
+				});
                 $rootScope.waitingMsg="The Clinician will be with you Shortly.";
             });
             conHub.on("onConsultationEnded",function () {
@@ -5515,7 +5587,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	
     var callEnded = false;
     $scope.disconnectConference = function(){
-		if(!callEnded){
+		if(!callEnded){			
 			session.unpublish(publisher)
 			//publisher.destroy();
 			session.disconnect();
@@ -5532,6 +5604,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     };
     
 	function consultationEndedAlertDismissed(){
+		conHub.invoke("endConsultation").then(function(){
+		});
 		$scope.doGetPatientsSoapNotes();
 		$scope.doGetExistingConsulatationReport(); 
 		window.plugins.insomnia.allowSleepAgain();	
