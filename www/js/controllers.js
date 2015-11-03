@@ -155,8 +155,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
 	}else if(deploymentEnv == "Single"){
-		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-		apiCommonURL = 'https://sandbox.connectedcare.md';
+		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		//apiCommonURL = 'https://sandbox.connectedcare.md';
+		$rootScope.APICommonURL = 'https://snap-qa.com';
+		apiCommonURL = 'https://snap-qa.com';
 	}
 	
 	$scope.ssoMessage = 'Authenticating..... Please wait!';
@@ -535,8 +537,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.brandColor = brandColor;
 		$rootScope.logo = logo;
 		$rootScope.Hopital = Hopital;
-		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-		apiCommonURL = 'https://sandbox.connectedcare.md';
+		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		//apiCommonURL = 'https://sandbox.connectedcare.md';
+		$rootScope.APICommonURL = 'https://snap-qa.com';
+		apiCommonURL = 'https://snap-qa.com';
 		$rootScope.hospitalId = singleHospitalId;
 	}
 	
