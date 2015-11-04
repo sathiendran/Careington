@@ -3838,7 +3838,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
            if(selectedListItem.length > 0){
                angular.forEach(selectedListItem, function(value1, key1) {
                    angular.forEach(mainListItem, function(value2, key2) {
-                       if (value1.code == value2.codeId) {
+                       if (value1.description == value2.text) {
                            value2.checked = true;
                        }   
                    });
@@ -3868,7 +3868,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.inTakeFormCurrentMedication = $rootScope.inTakeForm.medications;
 				if(!angular.isUndefined($rootScope.inTakeFormCurrentMedication)){
 					$rootScope.MedicationCountValid = $rootScope.inTakeFormCurrentMedication.length;
-					if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.MedicationCountValid == '') {
+					if(typeof $rootScope.MedicationCountValid != 'undefined' &&  $rootScope.MedicationCountValid != '') {
 						$scope.checkPreLoadDataAndSelectionAndRebindSelectionList($rootScope.inTakeFormCurrentMedication, $rootScope.CurrentMedicationList);
 						$rootScope.CurrentMedicationItem = $filter('filter')($scope.CurrentMedicationList, {checked:true});
 						$rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
@@ -3900,6 +3900,26 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 				
                 $rootScope.inTakeFormPriorSurgeories = $rootScope.inTakeForm.surgeries;
+				if(!angular.isUndefined($rootScope.inTakeFormPriorSurgeories)){
+					$rootScope.PriorSurgeryValid = $rootScope.inTakeFormPriorSurgeories.length;
+					if(typeof $rootScope.PriorSurgeryValid != 'undefined' && $rootScope.PriorSurgeryValid != '') {
+							SurgeryStocksListService.ClearSurgery();
+						  angular.forEach($rootScope.inTakeFormPriorSurgeories, function (Priorvalue, index) {
+							  var surgeryMonthName = Priorvalue.month;
+							  var PriorSurgeryDate = new Date(Priorvalue.year, surgeryMonthName-1, 01);
+							  var dateString = PriorSurgeryDate;
+							  var surgeryName = Priorvalue.description;
+							  var stockSurgery = SurgeryStocksListService.addSurgery(surgeryName, dateString);
+							 $rootScope.patientSurgeriess = SurgeryStocksListService.SurgeriesList;
+							 $rootScope.IsToPriorCount = $rootScope.patientSurgeriess.length;
+						 });
+						   $rootScope.PriorSurgeryValidCount = $rootScope.IsToPriorCount ;
+					}
+				}
+				
+				
+				
+				
                
 			   //MedicationAllegies pre-populated
 			    $rootScope.inTakeFormMedicationAllergies = $rootScope.inTakeForm.medicationAllergies;
@@ -4424,7 +4444,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
 		if($scope.PatientChronicConditionItem != '') {	
 			$rootScope.PatientChronicCondition = $rootScope.PatientChronicConditionItem;
-			$rootScope.ChronicCount = $scope.PatientChronicCondition.length;
+			$rootScope.ChronicCount = $rootScope.PatientChronicCondition.length;
 			console.log($rootScope.ChronicCount);
 			console.log($rootScope.PatientChronicCondition);
 			$scope.modal.hide(); 
@@ -4501,15 +4521,15 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
     
     $scope.removeChronicCondition = function(index, item){
-          $scope.PatientChronicCondition.splice(index, 1);
+          $rootScope.PatientChronicCondition.splice(index, 1);
           var indexPos = $rootScope.chronicConditionList.indexOf(item);
           $rootScope.chronicConditionList[indexPos].checked = false;
-          $rootScope.checkedChronic--;
-		  $rootScope.ChronicCount = $rootScope.checkedChronic;
+		  $rootScope.ChronicCount = $rootScope.PatientChronicCondition.length;
+          $rootScope.checkedChronic--;		  
           $rootScope.PatientChronicConditionsSelected = $filter('filter')($scope.chronicConditionList, {checked:true});
     }
 	
-  
+	  
 	/*Chronic Condition End here*/
     
     
