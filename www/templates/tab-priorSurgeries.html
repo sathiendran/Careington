@@ -50,7 +50,7 @@
 		</ion-item> -->
         
 	<div class="list surgeryList" style="margin-top: 3px;">
-	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete" >     
+	   <a class="item item-avatar" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete" >     
 			<div class="surgeryDetails">
 				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
 				<div class="surgeryDate">{{surgery.Date | date: "MMM, yyyy"}}</div>   
