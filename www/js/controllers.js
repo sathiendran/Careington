@@ -4977,8 +4977,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         $scope.modal.hide();
  };
      $scope.removePriorSurgeries = function(index, item){
-      $scope.patientSurgeriess.splice(index, 1);
-      var indexPos = $scope.patientSurgeriess.indexOf(item);
+      $rootScope.patientSurgeriess.splice(index, 1);
+      var indexPos = $rootScope.patientSurgeriess.indexOf(item);
       $rootScope.IsToPriorCount--;
       //console.log($rootScope.IsToPriorCount--);
     }
