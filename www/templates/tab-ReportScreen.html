@@ -66,9 +66,7 @@
 				<div>{{existingConsultationReport.patientName}} {{existingConsultationReport.lastName}} </div>
 				<div ng-if="existingConsultationReport.patientAddress != ''">{{existingConsultationReport.patientAddress}}</div>
 				<div>Home: {{existingConsultationReport.homePhone}} </div>
-				<div>Cell: {{existingConsultationReport.mobilePhone}} </div>
-				<div>&nbsp;</div>
-				<div>&nbsp;</div>
+				<div>Cell: {{existingConsultationReport.mobilePhone}} </div>				
 			</div>		
 			<div class="reportEncounter"  >
 				<div><b>Encounter Date:</b></div>
@@ -91,7 +89,7 @@
 					<td><b><input type="text" style="" readonly value="{{existingConsultationReport.dob  | ageFilter}}"></b></td>
 					<td>&nbsp </td>
 					<td><b>Height: </b></td>
-					<td><b> <input type="text" style="" readonly value="{{existingConsultationReport.height}} {{existingConsultationReport.heightUnit}}"></b></td>
+					<td><b> <input type="text" style="" readonly value="{{reportHeight}}"></b></td>
 					<td>&nbsp </td>
 				</tr>
 				
@@ -100,7 +98,7 @@
 					<td><b> <input type="text" style="" readonly value="{{gender}}"></b></td>
 					<td>&nbsp </td>
 					<td><b> Weight: &nbsp</b></td>
-					<td><b> <input type="text" style="" readonly value="{{existingConsultationReport.weight}} {{existingConsultationReport.weightUnit}}"></b></td>
+					<td><b> <input type="text" style="" readonly value="{{reportWeight}}"></b></td>
 					<td>&nbsp </td>
 				</tr>
 			

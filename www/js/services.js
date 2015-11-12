@@ -425,7 +425,8 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/Hospital/Get',
+           // url: apiCommonURL + '/api/Hospital/Get',
+		    url: apiCommonURL + '/api/v2/hospital/' + params.hospitalId,
             method: 'GET'   
         };
 

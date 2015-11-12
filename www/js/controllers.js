@@ -194,11 +194,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 									'consultantUserId': index.consultantUserId,
 									'consultationId': index.consultationId,
-									'patientFirstName': index.patientFirstName,
-									'patientLastName': index.patientLastName,	
+									'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+									'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
 									'patientId': index.patientId,
-									'assignedDoctorName': index.assignedDoctorName,
-									'patientName': index.patientName,
+									'assignedDoctorName': angular.element('<div>').html(index.assignedDoctorName).text(), 
+									'patientName': angular.element('<div>').html(index.patientName).text(),
 									'consultationStatus': index.consultationStatus,
 									'scheduledId': index.scheduledId,    
 								});
@@ -268,7 +268,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'location': index.location,
 							});
 						});	
-					$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName;	
+					$rootScope.primaryPatientLastName = angular.element('<div>').html($rootScope.primaryPatientLastName[0].lastName).text(); 	
 					
 					$rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' '+$rootScope.primaryPatientLastName;					
 						
@@ -307,7 +307,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.location = data.data[0].location;
 				$rootScope.mobilePhone = data.data[0].mobilePhone;
 				$rootScope.organization = data.data[0].organization;
-				$rootScope.primaryPatientName = data.data[0].patientName;
+				$rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
 				$rootScope.userCountry = data.data[0].country;
 				if(typeof $rootScope.userCountry == 'undefined') {
 					$rootScope.userCountry = '';
@@ -374,11 +374,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'birthdate': index.birthdate,
 							'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
 							'addresses': angular.fromJson(index.addresses),
-							'patientFirstName': index.patientFirstName,
-							'patientLastName': index.patientLastName,
-							'guardianFirstName': index.guardianFirstName,
-							'guardianLastName': index.guardianLastName,
-							'guardianName': index.guardianName,
+							'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+							'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
+							'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
+							'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
+							'guardianName': angular.element('<div>').html(index.guardianName).text(),
 						});
 					});	
 					
@@ -476,9 +476,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		var params = {
 			patientId: $rootScope.appointmentsPatientId,
 			accessToken: $rootScope.accessToken,
-			success: function (data) {				
-				$rootScope.PatientFirstName = data.data[0].patientName;	
-				$rootScope.PatientLastName = data.data[0].lastName;		 
+			success: function (data) {	
+				$rootScope.PatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();				
+				$rootScope.PatientLastName = angular.element('<div>').html(data.data[0].lastName).text(); 	
 				$state.go('tab.waitingRoom');
 			},
 			error: function (data) {
@@ -1341,7 +1341,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.location = data.data[0].location;
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 					$rootScope.organization = data.data[0].organization;
-					$rootScope.primaryPatientName = data.data[0].patientName;
+					$rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text(); 
 					$rootScope.userCountry = data.data[0].country;
 					if(typeof $rootScope.userCountry == 'undefined') {
 						$rootScope.userCountry = '';
@@ -1413,7 +1413,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'location': index.location,
 							});
 						});	
-					$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName;	
+					//$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName;
+					$rootScope.primaryPatientLastName = angular.element('<div>').html($rootScope.primaryPatientLastName[0].lastName).text(); 		
 					
 					$rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' '+$rootScope.primaryPatientLastName;					
 						
@@ -1450,11 +1451,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'birthdate': index.birthdate,
 								'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
 								'addresses': angular.fromJson(index.addresses),
-								'patientFirstName': index.patientFirstName,
-								'patientLastName': index.patientLastName,
-								'guardianFirstName': index.guardianFirstName,
-								'guardianLastName': index.guardianLastName,
-								'guardianName': index.guardianName,
+								'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+								'patientLastName': angular.element('<div>').html(index.patientLastName).text(), 
+								'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
+								'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(), 
+								'guardianName': angular.element('<div>').html(index.guardianName).text(),
 							});
 						});	
 						
@@ -2467,42 +2468,60 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				patientId: $rootScope.patientId,
 				accessToken: $rootScope.accessToken,
 				success: function (data) {
-					if(data.data[0].paymentProfiles.length != 0) {				
-						
-						$rootScope.patientprofileID = data.data[0].profileID;	
-
-						$rootScope.PaymentProfile = [];	
-					
-						angular.forEach(data.data[0].paymentProfiles, function(index, item) {	
-				
+					if(data != '')
+					{
+						if(data.data[0].paymentProfiles.length != 0) {				
 							
-							$rootScope.PaymentProfile.push({
-								'id': index.$id,
-								'billingAddress': angular.fromJson(index.billingAddress),
-								'cardExpiration': index.cardExpiration,
-								'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
-								'isBusiness': index.isBusiness,
-								'profileID': index.profileID,
-							});
-						});	
-						$rootScope.totalPaymentCard = $rootScope.PaymentProfile.length; 
+							$rootScope.patientprofileID = data.data[0].profileID;	
+
+							$rootScope.PaymentProfile = [];	
 						
-						$rootScope.enableSubmitpayment = "block";
-						$rootScope.disableSubmitpayment = "none";
-						$rootScope.enablePaymentSuccess = "block";	
-						if($rootScope.copayAmount != 0) {
-							$rootScope.enableSubmitpaymentAddCard =	"block";
-							$rootScope.disableSubmitpaymentAddCard = "none";	
-							$rootScope.continueAddCard = "none";
-							$rootScope.textAddCard = "block";
-						} else {
-							$rootScope.enableSubmitpaymentAddCard =	"none";
-							$rootScope.disableSubmitpaymentAddCard = "none";	
-							$rootScope.continueAddCard = "block";
-							$rootScope.textAddCard = "none";
-						}	
-						//$state.go('tab.addCard');
-					} else if(data.data[0].paymentProfiles.length == 0) {
+							angular.forEach(data.data[0].paymentProfiles, function(index, item) {	
+					
+								
+								$rootScope.PaymentProfile.push({
+									'id': index.$id,
+									'billingAddress': angular.fromJson(index.billingAddress),
+									'cardExpiration': index.cardExpiration,
+									'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
+									'isBusiness': index.isBusiness,
+									'profileID': index.profileID,
+								});
+							});	
+							$rootScope.totalPaymentCard = $rootScope.PaymentProfile.length; 
+							
+							$rootScope.enableSubmitpayment = "block";
+							$rootScope.disableSubmitpayment = "none";
+							$rootScope.enablePaymentSuccess = "block";	
+							if($rootScope.copayAmount != 0) {
+								$rootScope.enableSubmitpaymentAddCard =	"block";
+								$rootScope.disableSubmitpaymentAddCard = "none";	
+								$rootScope.continueAddCard = "none";
+								$rootScope.textAddCard = "block";
+							} else {
+								$rootScope.enableSubmitpaymentAddCard =	"none";
+								$rootScope.disableSubmitpaymentAddCard = "none";	
+								$rootScope.continueAddCard = "block";
+								$rootScope.textAddCard = "none";
+							}	
+							//$state.go('tab.addCard');
+						} else if(data.data[0].paymentProfiles.length == 0) {
+							$rootScope.enableSubmitpayment = "none";
+							$rootScope.disableSubmitpayment = "block";
+							if($rootScope.copayAmount != 0) {
+								$rootScope.enableSubmitpaymentAddCard =	"none";
+								$rootScope.disableSubmitpaymentAddCard = "block;";
+								$rootScope.continueAddCard = "none";
+								$rootScope.textAddCard = "block";
+							} else {
+								$rootScope.enableSubmitpaymentAddCard =	"none";
+								$rootScope.disableSubmitpaymentAddCard = "none";	
+								$rootScope.continueAddCard = "block";
+								$rootScope.textAddCard = "none";
+							}		
+							//$state.go('tab.addCard');
+						}
+					} else {
 						$rootScope.enableSubmitpayment = "none";
 						$rootScope.disableSubmitpayment = "block";
 						if($rootScope.copayAmount != 0) {
@@ -2515,8 +2534,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.disableSubmitpaymentAddCard = "none";	
 							$rootScope.continueAddCard = "block";
 							$rootScope.textAddCard = "none";
-						}		
-						//$state.go('tab.addCard');
+						}
 					}
 					
 				},
@@ -2716,9 +2734,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_id) {
        if($rootScope.P_isAuthorized == true) {
-			// Start Intake Sub Header Information 
-			$rootScope.paymentMode = '';
-			$rootScope.insuranceMode = '';
+			// Start Intake Sub Header Information 			
 			$rootScope.PatientImageSelectUser = P_img;
 			$rootScope.PatientFirstName = P_Fname;
 			$rootScope.PatientLastName = P_Lname;
@@ -2818,11 +2834,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 									'consultantUserId': index.consultantUserId,
 									'consultationId': index.consultationId,
-									'patientFirstName': index.patientFirstName,
-									'patientLastName': index.patientLastName,	
+									'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+									'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
 									'patientId': index.patientId,
-									'assignedDoctorName': index.assignedDoctorName,
-									'patientName': index.patientName,
+									'assignedDoctorName': angular.element('<div>').html(index.assignedDoctorName).text(), 
+									'patientName': angular.element('<div>').html(index.patientName).text(),
 									'consultationStatus': index.consultationStatus,
 									'scheduledId': index.scheduledId,    
 								});
@@ -3004,19 +3020,59 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.healthPlanID = '';
         $rootScope.NewHealth = '';    
         }
+		$rootScope.paymentMode = '';
+		$rootScope.insuranceMode = '';
+		$rootScope.onDemandMode = '';	
 		
 		$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
 		$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
-					
-        
-        $rootScope.PatientImageSelectUser = P_img;
+		$rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.patientId = P_Id;
-		$rootScope.P_isAuthorized = P_isAuthorized
-        $state.go('tab.patientDetail'); 
+		$rootScope.P_isAuthorized = P_isAuthorized;       
+		$scope.doGetUserHospitalInformation();	
+    }
+	$scope.doGetUserHospitalInformation = function () {
+			if ($rootScope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}			
+			var params = {
+				accessToken: $rootScope.accessToken,
+				hospitalId: $rootScope.hospitalId,
+				success: function (data) {					
+					$rootScope.getDetails = data.data[0].enabledModules;
+					if($rootScope.getDetails != '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+								$rootScope.insuranceMode = 'on';
+									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
+										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+											$rootScope.paymentMode = 'on';
+										}
+									}*/
+							}
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+								$rootScope.paymentMode = 'on';
+							}
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+								$rootScope.onDemandMode = 'on';
+							}
+						}
+					}
+					 $state.go('tab.patientDetail'); 
+					
+					
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getHospitalInfo(params);		
     }
     
      $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
@@ -3078,23 +3134,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}			
 			var params = {
 				accessToken: $rootScope.accessToken,
+				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
-					$rootScope.getDetails = data.enabledModules;
+					$rootScope.getDetails = data.data[0].enabledModules;
 					if($rootScope.getDetails != '') {
-						for (var i = 0; i < $rootScope.getDetails.length; i++) {
-							if ($rootScope.getDetails[i] == 'InsuranceVerification') {
-								$rootScope.insuranceMode = 'on';
-									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
-										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
-											$rootScope.paymentMode = 'on';
-										}
-									}*/
+						/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+								$rootScope.insuranceMode = 'on';									
 							}
 							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
-							if ($rootScope.getDetails[i] == 'ECommerce') {
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
 								$rootScope.paymentMode = 'on';
 							}
-						}
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+								$rootScope.onDemandMode = 'on';
+							}
+						}*/
 						$rootScope.consultChargeSection = "block";
 						$rootScope.healthPlanSection = "none";	
 					
@@ -3242,11 +3297,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 								'consultantUserId': index.consultantUserId,
 								'consultationId': index.consultationId,
-								'patientFirstName': index.patientFirstName,
-								'patientLastName': index.patientLastName,	
+								'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(), 
+								'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
+								'assignedDoctorName': angular.element('<div>').html(index.assignedDoctorName).text(),
+								'patientName': angular.element('<div>').html(index.patientName).text(),
 								'patientId': index.patientId,
-								'assignedDoctorName': index.assignedDoctorName,
-								'patientName': index.patientName,
 								'consultationStatus': index.consultationStatus,
 								'scheduledId': index.scheduledId,    
 							});
@@ -4172,7 +4227,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     
 	$scope.goToConsentToTreat = function(){
 		$rootScope.appointmentsPage = false;
-		$scope.doGetHospitalInformation();
+		//$scope.doGetHospitalInformation();
 		$state.go('tab.ConsentTreat');	
 	};
 	/*Primary concern End here*/
@@ -4977,13 +5032,13 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         $scope.modal.hide();
  };
      $scope.removePriorSurgeries = function(index, item){
-      $scope.patientSurgeriess.splice(index, 1);
-      var indexPos = $scope.patientSurgeriess.indexOf(item);
+      $rootScope.patientSurgeriess.splice(index, 1);
+      var indexPos = $rootScope.patientSurgeriess.indexOf(item);
       $rootScope.IsToPriorCount--;
       //console.log($rootScope.IsToPriorCount--);
     }
 	
-	$scope.doGetHospitalInformation = function () {
+	/*$scope.doGetHospitalInformation = function () {
 			if ($rootScope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -4995,12 +5050,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					if($rootScope.getDetails != '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
 							if ($rootScope.getDetails[i] == 'InsuranceVerification') {
-								$rootScope.insuranceMode = 'on';
-									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
-										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
-											$rootScope.paymentMode = 'on';
-										}
-									}*/
+								$rootScope.insuranceMode = 'on';									
 							}
 							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
 							if ($rootScope.getDetails[i] == 'ECommerce') {
@@ -5016,7 +5066,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				}
 			};
 			LoginService.getHospitalInfo(params);		
-    }
+    }*/
     
 	
 	/* Prior Surgery page END */
@@ -5466,6 +5516,20 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					$rootScope.reportLocation = '';
 				}
 				
+				if($rootScope.existingConsultationReport.height !='' && typeof $rootScope.existingConsultationReport.height != 'undefined')
+				{
+					$rootScope.reportHeight = $rootScope.existingConsultationReport.height +" "+$rootScope.existingConsultationReport.heightUnit;
+				} else {
+					$rootScope.reportHeight = 'NA';
+				}
+				
+				if($rootScope.existingConsultationReport.weight !='' && typeof $rootScope.existingConsultationReport.weight != 'undefined')
+				{
+					$rootScope.reportWeight = $rootScope.existingConsultationReport.weight +" "+$rootScope.existingConsultationReport.weightUnit;
+				} else {
+					$rootScope.reportWeight = 'NA';
+				}
+				
 				var startTimeISOString =  $rootScope.existingConsultationReport.consultationDate;
 				 var startTime = new Date(startTimeISOString );
 				 $rootScope.consultationDate =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) );
@@ -5534,8 +5598,12 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 								
 				
 				$rootScope.gender = data.data[0].details[0].gender;
-				if($rootScope.gender == 'M') { $rootScope.gender = 'Male'; } else if($rootScope.gender == 'F') { $rootScope.gender = 'Female'; } 
-				
+				if(data.data[0].details[0].gender !='' && typeof data.data[0].details[0].gender != 'undefined')
+				{
+					if($rootScope.gender == 'M') { $rootScope.gender = 'Male'; } else if($rootScope.gender == 'F') { $rootScope.gender = 'Female'; } 
+				} else {
+					$rootScope.gender = 'NA';
+				}
 				
 					$rootScope.ReportMedicalConditions = [];
 					angular.forEach($rootScope.intake.medicalConditions, function(index, item) {	

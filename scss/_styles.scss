@@ -1468,7 +1468,9 @@ body {
 			width: 55%;  float: left; padding-right: 35px;
 		}
 		.reportEncounter {
-			padding-left: 20px;
+			/*padding-left: 20px;*/
+			float: right;
+			width: 40%;
 		}
 	}
 	.reportPatientStatistics {
@@ -1519,7 +1521,7 @@ body {
 				}
 			}
 			.primaryConcernText {
-				position: relative;  top: 3px;  left: 20px;
+				position: relative;  top: 3px;  left: 20px; width: 93%; text-align: justify;
 			}
 		}
 	}
