@@ -6,29 +6,53 @@ var indexOf = [].indexOf || function(item) {
 }
        // request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
         //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
-
+var api_keys_env = '';
 if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv == "QA"){
 	var util = {
+		
 		setHeaders: function (request, credentials) {
-			if (typeof credentials != 'undefined') {
-				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			if(api_keys_env == 'Staging'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+				return request;
+			}else{
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+				request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+				return request;
 			}
-			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-			request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
-			return request;
 		},
 		getHeaders: function (accessToken) {
-			var headers = {
-					'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-					'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+			if(api_keys_env == 'Staging'){
+				var headers = {
+					'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+					'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 					'Content-Type': 'application/json; charset=utf-8'
 				};
-			if (typeof accessToken != 'undefined') {
-				headers['Authorization'] = 'Bearer ' + accessToken;
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
+			}else{
+				var headers = {
+						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
 			}
-			
-			return headers;
 		}
 	}
 }else if(deploymentEnv == "Production"){
@@ -70,30 +94,6 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 			var headers = {
 					'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
 					'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
-					'Content-Type': 'application/json; charset=utf-8'
-				};
-			if (typeof accessToken != 'undefined') {
-				headers['Authorization'] = 'Bearer ' + accessToken;
-			}
-			
-			return headers;
-		}
-	}
-}else if(deploymentEnv == "Staging"){
-	var util = {
-		setHeaders: function (request, credentials) {
-			if (typeof credentials != 'undefined') {
-				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
-			}
-			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
-			request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
-			return request;
-		},
-		getHeaders: function (accessToken) {
-			var headers = {
-					'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
-					'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 					'Content-Type': 'application/json; charset=utf-8'
 				};
 			if (typeof accessToken != 'undefined') {
@@ -574,13 +574,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if(env == "Snap.QA"){
 			$rootScope.APICommonURL = ' https://snap-qa.com';
 			apiCommonURL = ' https://snap-qa.com';
+			api_keys_env = "Snap.QA"
 			
 		}else if(env == "Sandbox"){
 			$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 			apiCommonURL = 'https://sandbox.connectedcare.md';
+			api_keys_env = "Sandbox";
 		}else if(env == "Staging") {
 			$rootScope.APICommonURL = 'https://snap-stage.com';
 			apiCommonURL = ' https://snap-stage.com';
+			api_keys_env = "Staging";
 		}
 		$state.go('tab.login');
 	};
