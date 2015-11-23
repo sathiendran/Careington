@@ -166,12 +166,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
 	$rootScope.deploymentEnv = deploymentEnv;
-	if(deploymentEnv == "single"){
-	}
+	
 	if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-		apiCommonURL = 'https://sandbox.connectedcare.md';
-		
+		apiCommonURL = 'https://sandbox.connectedcare.md';		
 	}else if(deploymentEnv == "Production"){
 		$rootScope.APICommonURL = 'https://connectedcare.md';
 		apiCommonURL = 'https://connectedcare.md';
@@ -183,7 +181,41 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		//apiCommonURL = 'https://sandbox.connectedcare.md';
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
+	} else if(deploymentEnv == "Staging") {
+		$rootScope.APICommonURL = 'https://snap-stage.com';
+		apiCommonURL = ' https://snap-stage.com';
+		api_keys_env = "Staging";
 	}
+	
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
+        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+			  ($rootScope.currState.$current.name=="tab.addCard") ||	
+			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") || 	
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
+            ){ 
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states. 
+                // Do nothing here to disable H/W back button.
+            }else if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+				var gSearchLength = $('.ion-google-place-container').length;
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
+					$ionicBackdrop.release();					
+					$(".ion-google-place-container").css({"display": "none"});						 
+					
+				}else{		
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory(); 
+				}
+												
+			}else {                
+                navigator.app.backHistory(); 
+            }
+        }, 100); 	
 	
 	$scope.ssoMessage = 'Authenticating..... Please wait!';
 	$scope.addMinutes = function (inDate, inMinutes) {   
@@ -566,6 +598,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
 		$rootScope.hospitalId = singleHospitalId;
+	}else if(deploymentEnv == "Staging") {
+		$rootScope.APICommonURL = 'https://snap-stage.com';
+		apiCommonURL = ' https://snap-stage.com';
+		api_keys_env = "Staging";
 	}
 	
 	$rootScope.envList = ["Snap.QA", "Sandbox", "Staging" ];
@@ -1351,8 +1387,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			 var params = {
                 accessToken: $rootScope.accessToken,
-				success: function (data) {
-					
+				success: function (data) {					
 					$rootScope.patientInfomation = data.data[0];
 					$rootScope.patientAccount = data.data[0].account;	
 					$rootScope.patientAddresses = data.data[0].addresses;	
@@ -1564,16 +1599,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
 				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
-				$rootScope.appointmentsPatientGurdianName = $rootScope.patientExistInfomation.guardianName;
+				$rootScope.appointmentsPatientGurdianName = angular.element('<div>').html($rootScope.patientExistInfomation.guardianName).text();
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
-				$rootScope.reportScreenPrimaryConcern = $rootScope.intakeForm.concerns[0].customCode.description;
-				$rootScope.reportScreenSecondaryConcern = $rootScope.intakeForm.concerns[1].customCode.description;
+				$rootScope.reportScreenPrimaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[0].customCode.description).text();
+				$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[1].customCode.description).text();
 				if($rootScope.reportScreenSecondaryConcern == "") {
 					$rootScope.reportScreenSecondaryConcern = "None Reported";
 				}
 				if(typeof $rootScope.consultionInformation.note != 'undefined') {
-					$rootScope.preConsultantNotes = $rootScope.consultionInformation.note;				
+					$rootScope.preConsultantNotes = angular.element('<div>').html($rootScope.consultionInformation.note).text();			
 				} else {
 					$rootScope.preConsultantNotes = '';
 				}
@@ -1595,8 +1630,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			patientId: $rootScope.appointmentsPatientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {				
-				$rootScope.appointmentsPatientFirstName = data.data[0].patientName;	
-				$rootScope.appointmentsPatientLastName = data.data[0].lastName;		 
+				$rootScope.appointmentsPatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();	
+				$rootScope.appointmentsPatientLastName = angular.element('<div>').html(data.data[0].lastName).text();	 
 					
 			},
 			error: function (data) {
@@ -1933,9 +1968,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
-            }
-			$('.userDateofbirth').css('display', 'none');
-			$('.dobRequired').css('display', 'block');	   		
+            }			
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
             $scope.doGetHealthPlanProvider();
 		} else {
@@ -1944,11 +1977,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     });
 	
 	
-	 $(".userDateofbirth").click(function(){		
+	/* $scope.getDOBDiv = function() {	
 	 //  $('div.dobRequired').text($(".userDateofbirth").val());
+	// alert('gggg');
 	   $('.dobRequired').css('display', 'none');
 	    $('.userDateofbirth').css('display', 'block');
-    });
+    }*/
 	
 	/*$('#addHealthPlan').change(function () {
 		if($('option:selected', this).text() == 'Add a new health plan') {
@@ -1964,11 +1998,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             var params = {
                 patientId: $rootScope.patientId,
                 accessToken: $rootScope.accessToken,
-                success: function (data) {
-					$('.userDateofbirth').css('display', 'none');
-					$('.dobRequired').css('display', 'block');
-				console.log('addHealthPlan');
-					console.log(data);
+                success: function (data) {					
                     $scope.HealthPlanProvidersList = data.data;
                     if(data != "")
                     $rootScope.ProviderList = [];
@@ -3281,6 +3311,37 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 .controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
+	
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
+        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+			  ($rootScope.currState.$current.name=="tab.addCard") ||	
+			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") || 	
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
+            ){ 
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states. 
+                // Do nothing here to disable H/W back button.
+            }else if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+				var gSearchLength = $('.ion-google-place-container').length;
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
+					$ionicBackdrop.release();					
+					$(".ion-google-place-container").css({"display": "none"});						 
+					
+				}else{		
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory(); 
+				}
+												
+			}else {                
+                navigator.app.backHistory(); 
+            }
+        }, 100); 
+	
 	$scope.addMinutes = function (inDate, inMinutes) {   
 		var newdate = new Date();
 		newdate.setTime(inDate.getTime() + inMinutes * 60000);
@@ -3445,6 +3506,36 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	//$state.go('tab.appoimentDetails');
 	//document.getElementsByTagName('timer')[0].stop();
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
+        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+			  ($rootScope.currState.$current.name=="tab.addCard") ||	
+			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") || 	
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
+            ){ 
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states. 
+                // Do nothing here to disable H/W back button.
+            }else if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+				var gSearchLength = $('.ion-google-place-container').length;
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
+					$ionicBackdrop.release();					
+					$(".ion-google-place-container").css({"display": "none"});						 
+					
+				}else{		
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory(); 
+				}
+												
+			}else {                
+                navigator.app.backHistory(); 
+            }
+        }, 100); 
+		
 	$scope.addMinutes = function (inDate, inMinutes) {   
 		var newdate = new Date();
 		newdate.setTime(inDate.getTime() + inMinutes * 60000);
@@ -3675,16 +3766,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
 				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
-				$rootScope.appointmentsPatientGurdianName = $rootScope.patientExistInfomation.guardianName;
+				$rootScope.appointmentsPatientGurdianName = angular.element('<div>').html($rootScope.patientExistInfomation.guardianName).text();
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
-				$rootScope.reportScreenPrimaryConcern = $rootScope.intakeForm.concerns[0].customCode.description;
-				$rootScope.reportScreenSecondaryConcern = $rootScope.intakeForm.concerns[1].customCode.description;
+				$rootScope.reportScreenPrimaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[0].customCode.description).text();
+				$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[1].customCode.description).text();
 				if($rootScope.reportScreenSecondaryConcern == "") {
 					$rootScope.reportScreenSecondaryConcern = "None Reported";
 				}
 				if(typeof $rootScope.consultionInformation.note != 'undefined') {
-					$rootScope.preConsultantNotes = $rootScope.consultionInformation.note;				
+					$rootScope.preConsultantNotes = angular.element('<div>').html($rootScope.consultionInformation.note).text();				
 				} else {
 					$rootScope.preConsultantNotes = '';
 				}
@@ -3706,8 +3797,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			patientId: $rootScope.appointmentsPatientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {				
-				$rootScope.appointmentsPatientFirstName = data.data[0].patientName;	
-				$rootScope.appointmentsPatientLastName = data.data[0].lastName;		 
+				$rootScope.appointmentsPatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();	
+				$rootScope.appointmentsPatientLastName = angular.element('<div>').html(data.data[0].lastName).text();		 
 					
 			},
 			error: function (data) {
@@ -3749,10 +3840,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
 	window.plugins.insomnia.keepAwake();
-	$rootScope.currState = $state;
-    
-	$ionicPlatform.registerBackButtonAction(function (event, $state) {	
-        if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+	$rootScope.currState = $state;    
+	
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
+        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+			  ($rootScope.currState.$current.name=="tab.addCard") ||	
+			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
@@ -3760,8 +3854,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states. 
                 // Do nothing here to disable H/W back button.
-            } else { 
-                // For all other states, the H/W BACK button is enabled
+            }else if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+				var gSearchLength = $('.ion-google-place-container').length;
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
+					$ionicBackdrop.release();					
+					$(".ion-google-place-container").css({"display": "none"});						 
+					
+				}else{		
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory(); 
+				}
+												
+			}else {                
                 navigator.app.backHistory(); 
             }
         }, 100); 
@@ -3892,8 +3998,40 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 })
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$interval,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
-    $rootScope.currState = $state;
+.controller('IntakeFormsCtrl', function($scope,$ionicPlatform,$interval,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
+    
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
+        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+			  ($rootScope.currState.$current.name=="tab.addCard") ||	
+			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") || 	
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
+            ){ 
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states. 
+                // Do nothing here to disable H/W back button.
+            }else if($rootScope.currState.$current.name=="tab.login"){
+                navigator.app.exitApp();
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+				var gSearchLength = $('.ion-google-place-container').length;
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
+					$ionicBackdrop.release();					
+					$(".ion-google-place-container").css({"display": "none"});						 
+					
+				}else{		
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory(); 
+				}
+												
+			}else {                
+                navigator.app.backHistory(); 
+            }
+        }, 100); 
+	
+	
+	$rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
     $rootScope.limit = 4;
@@ -5227,7 +5365,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 								$rootScope.healthPlanPage = "none";
 								$rootScope.consultChargeNoPlanPage = "block";
 							}	
-							$state.go('tab.consultCharge'); 
+							$state.go('tab.consultCharge'); 							
 							if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
 								$('#addNewCard').val() == 'Choose Your Card';
 								$('#addNewCard_addCard').val() == 'Choose Your Card';
@@ -5255,7 +5393,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             };
 
             LoginService.putConsultationSave(params);
-        }
+        }		
+		
 
     $scope.ReceiptTimeout = function() {
 	
@@ -5535,13 +5674,13 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
 				if($rootScope.existingConsultationReport.organization !='' && typeof $rootScope.existingConsultationReport.organization != 'undefined')
 				{
-					$rootScope.userReportOrganization = $rootScope.existingConsultationReport.organization;
+					$rootScope.userReportOrganization = angular.element('<div>').html($rootScope.existingConsultationReport.organization).text();
 				} else {
 					$rootScope.userReportOrganization = '';
 				}
 				if($rootScope.existingConsultationReport.location !='' && typeof $rootScope.existingConsultationReport.location != 'undefined')
 				{
-					$rootScope.reportLocation = $rootScope.existingConsultationReport.location;
+					$rootScope.reportLocation = angular.element('<div>').html($rootScope.existingConsultationReport.location).text();
 				} else {
 					$rootScope.reportLocation = '';
 				}
@@ -5558,6 +5697,42 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					$rootScope.reportWeight = $rootScope.existingConsultationReport.weight +" "+$rootScope.existingConsultationReport.weightUnit;
 				} else {
 					$rootScope.reportWeight = 'NA';
+				}
+				$rootScope.reportPatientName = angular.element('<div>').html($rootScope.existingConsultationReport.patientName).text();
+				$rootScope.reportLastName = angular.element('<div>').html($rootScope.existingConsultationReport.lastName).text();
+				
+				if($rootScope.existingConsultationReport.patientAddress !='' && typeof $rootScope.existingConsultationReport.patientAddress != 'undefined')
+				{
+					$rootScope.reportPatientAddress = angular.element('<div>').html($rootScope.existingConsultationReport.patientAddress).text();
+				} else {
+					$rootScope.reportPatientAddress = 'None Reported';
+				}
+				
+				if($rootScope.existingConsultationReport.hospitalAddress !='' && typeof $rootScope.existingConsultationReport.hospitalAddress != 'undefined')
+				{
+					$rootScope.reportHospitalAddress = angular.element('<div>').html($rootScope.existingConsultationReport.hospitalAddress).text();
+				} else {
+					$rootScope.reportHospitalAddress = 'None Reported';
+				}
+				
+				if($rootScope.existingConsultationReport.doctorFirstName !='' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined')
+				{
+					$rootScope.reportDoctorFirstName = angular.element('<div>').html($rootScope.existingConsultationReport.doctorFirstName).text();
+				} else {
+					$rootScope.reportDoctorFirstName = 'None Reported';
+				}
+				
+				if($rootScope.existingConsultationReport.doctorFirstName !='' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined')
+				{
+					$rootScope.reportDoctorLastName = angular.element('<div>').html($rootScope.existingConsultationReport.doctorLastName).text();
+				} else {
+					$rootScope.reportDoctorLastName = 'None Reported';
+				}
+			
+				if($rootScope.existingConsultationReport.rx !='' && typeof $rootScope.existingConsultationReport.rx != 'undefined') {
+					$rootScope.reportrx = angular.element('<div>').html($rootScope.existingConsultationReport.rx).text();
+				} else {
+					$rootScope.reportrx = 'None Reported';
 				}
 				
 				var startTimeISOString =  $rootScope.existingConsultationReport.consultationDate;
@@ -5585,7 +5760,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			}
 				
 				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
-				$rootScope.reportScreenPrimaryConcern = $rootScope.existingConsultationReport.primaryConcern;
+				$rootScope.reportScreenPrimaryConcern = angular.element('<div>').html($rootScope.existingConsultationReport.primaryConcern).text();
 				if(typeof $rootScope.reportScreenPrimaryConcern != 'undefined') {
 					var n = $rootScope.reportScreenPrimaryConcern.indexOf("?");
 					if(n < 0) {
@@ -5601,10 +5776,10 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 				if(typeof $rootScope.reportScreenSecondaryConcern != 'undefined') {
 					var n = $rootScope.reportScreenSecondaryConcern.indexOf("?");
 					if(n < 0) {
-						$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern;
+						$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.reportScreenSecondaryConcern).text();
 					} else {
 						$rootScope.reportScreenSecondaryConcern1 = $rootScope.reportScreenSecondaryConcern.split("?");
-						$rootScope.reportScreenSecondaryConcern = $rootScope.reportScreenSecondaryConcern1[1];
+						$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.reportScreenSecondaryConcern1[1]).text();
 					}
 				} else {
 					$rootScope.reportScreenSecondaryConcern = "None Reported";
@@ -5697,7 +5872,31 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
                 consultationId: $rootScope.consultationId, 
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
-                    $rootScope.SoapNote = data.data;
+                    $rootScope.SoapNote = data.data;					
+					if($rootScope.SoapNote.subjective !='' && typeof $rootScope.SoapNote.subjective != 'undefined') {
+						$rootScope.reportSubjective = angular.element('<div>').html($rootScope.SoapNote.subjective).text();
+					} else {
+						$rootScope.reportSubjective = 'None Reported';
+					}
+					
+					if($rootScope.SoapNote.objective !='' && typeof $rootScope.SoapNote.objective != 'undefined') {
+						$rootScope.reportObjective = angular.element('<div>').html($rootScope.SoapNote.objective).text();
+					} else {
+						$rootScope.reportObjective = 'None Reported';
+					}
+					
+					if($rootScope.SoapNote.assessment !='' && typeof $rootScope.SoapNote.assessment != 'undefined') {
+						$rootScope.reportAssessment = angular.element('<div>').html($rootScope.SoapNote.assessment).text();
+					} else {
+						$rootScope.reportAssessment = 'None Reported';
+					}
+					
+					if($rootScope.SoapNote.plan !='' && typeof $rootScope.SoapNote.plan != 'undefined') {
+						$rootScope.reportPlan = angular.element('<div>').html($rootScope.SoapNote.plan).text();
+					} else {
+						$rootScope.reportPlan = 'None Reported';
+					}
+					
                 },
                 error: function (data) {
                     $rootScope.serverErrorMessageValidation();
@@ -6019,3 +6218,4 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     };
 })
 
+.controller('searchproviderCtrl', function($scope) {})

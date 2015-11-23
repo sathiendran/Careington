@@ -21,7 +21,7 @@
 			</div>
 			<div class="subHeader_content-{{deviceName}} ellipsis" >					
 				<div class="ellipsis subHeader_content_name" >
-					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}} - {{consultationId}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 				</div>
                 <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
@@ -41,7 +41,7 @@
 				<img ng-src="{{ReportHospitalImage}}">
 			</div>
 			<div class="providerAddress">
-				<div>{{existingConsultationReport.hospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
+				<div>{{reportHospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
 				<div class="reportOrganization" ng-if="userReportOrganization != ''"><b>Organization:</b> {{userReportOrganization}}</div>
 				<div ng-if="reportLocation != ''">
 					<div><b>Location</b></div>
@@ -63,8 +63,8 @@
 		<div class="reportPatientDetails">
 			<div  class="reportPatient">
 				<div><b>Patient :</b></div>
-				<div>{{existingConsultationReport.patientName}} {{existingConsultationReport.lastName}} </div>
-				<div ng-if="existingConsultationReport.patientAddress != ''">{{existingConsultationReport.patientAddress}}</div>
+				<div>{{reportPatientName}} {{reportLastName}} </div>
+				<div ng-if="existingConsultationReport.patientAddress != ''">{{reportPatientAddress}}</div>
 				<div>Home: {{existingConsultationReport.homePhone}} </div>
 				<div>Cell: {{existingConsultationReport.mobilePhone}} </div>				
 			</div>		
@@ -72,7 +72,7 @@
 				<div><b>Encounter Date:</b></div>
 				<div>{{consultationDate | date:'MMM dd, yyyy h:mm a'}}</div>
 				<div><b>Physician:</b> </div>
-				<div>{{existingConsultationReport.doctorFirstName}} {{existingConsultationReport.doctorLastName}}</div>
+				<div>{{reportDoctorFirstName}} {{reportDoctorLastName}}</div>
 				<div ng-if="displayCOnsultationDuration == 'display'"><b>Consultation Duration:</b> </div>
 				<div ng-if="displayCOnsultationDuration == 'display'">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
 			</div>		
@@ -193,7 +193,7 @@
 				
 			</div>
 			<div>
-				<p class="intakeParagraph"> {{SoapNote.subjective}}</p>
+				<p class="intakeParagraph"> {{reportSubjective}}</p>
 			</div>
 			
 		</div>	
@@ -202,7 +202,7 @@
 			<div class="objectiveTitle" ><b>OBJECTIVE</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<p> {{SoapNote.objective}}</p>
+				<p> {{reportObjective}}</p>
 			</div>		
 		</div>	
 		
@@ -210,7 +210,7 @@
 			<div class="objectiveTitle" ><b>ASSESSMENT</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<p> {{SoapNote.assessment}}</p>
+				<p> {{reportAssessment}}</p>
 			</div>		
 		</div>	
 		
@@ -218,7 +218,7 @@
 			<div class="objectiveTitle" ><b>PLAN</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<p> {{SoapNote.plan}}</p>
+				<p> {{reportPlan}}</p>
 			</div>		
 		</div>	
 		
@@ -226,30 +226,30 @@
 			<div class="objectiveTitle" ><b>RX</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<p>{{existingConsultationReport.rx}}  </p>
+				<p>{{reportrx}}  </p>
 			</div>		
 		</div>
 		
 		<div class="reportObjective">
 			<div class="objectiveTitle" ><b>CHAT TRANSCRIPT</b></div>
-			<div class="objectiveUnderline">	</div>		
+			<div class="objectiveUnderline"> </div>		
 			<div>
-				<p></p>
+				<p>None Reported</p>
 			</div>		
 		</div>	
 
 		<div class="reportObjective">
 			<div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
-			<div class="objectiveUnderline">	</div>		
+			<div class="objectiveUnderline"></div>		
 			<div>
-				<p></p>
+				<p>None Reported</p>
 			</div>		
 		</div>	
 		
 		
 		<div ng-click="EnableBackButton()" class="reportDOne">
 			<button class="button button-block button-balanced ReportButton">
-				<b style="  top: 4px;position: relative;">Done</b>  
+				<b style="top: 4px;position: relative;">Done</b>  
 			</button>
 		</div>
 	</div>
