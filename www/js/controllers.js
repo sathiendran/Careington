@@ -1977,12 +1977,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     });
 	
 	
-	/* $scope.getDOBDiv = function() {	
+	 $scope.getDOBDiv = function() {	
 	 //  $('div.dobRequired').text($(".userDateofbirth").val());
 	// alert('gggg');
 	   $('.dobRequired').css('display', 'none');
 	    $('.userDateofbirth').css('display', 'block');
-    }*/
+    }
 	
 	/*$('#addHealthPlan').change(function () {
 		if($('option:selected', this).text() == 'Add a new health plan') {
