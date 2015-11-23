@@ -1971,15 +1971,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }			
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
             $scope.doGetHealthPlanProvider();
+			 $state.go('tab.planDetails');
 		} else {
 			$('div.viewport').text($("option:selected", this).text());
 		}
     });
 	
 	
-	 $scope.getDOBDiv = function() {	
+	$scope.getDOBDiv = function() {
 	 //  $('div.dobRequired').text($(".userDateofbirth").val());
-	// alert('gggg');
+	 alert('ggg');
 	   $('.dobRequired').css('display', 'none');
 	    $('.userDateofbirth').css('display', 'block');
     }
@@ -2000,6 +2001,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 accessToken: $rootScope.accessToken,
                 success: function (data) {					
                     $scope.HealthPlanProvidersList = data.data;
+					 $('.dobRequired').css('display', 'block');
+					$('.userDateofbirth').css('display', 'none');
+					
                     if(data != "")
                     $rootScope.ProviderList = [];
                     angular.forEach($scope.HealthPlanProvidersList, function(index, item) {	
@@ -2011,7 +2015,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							    
 						});
 					});	
-                    $state.go('tab.planDetails');
+                   // $state.go('tab.planDetails');
                 },
                 error: function (data) {
 					$rootScope.serverErrorMessageValidation();

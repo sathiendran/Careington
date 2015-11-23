@@ -100,15 +100,14 @@
 				<input type="text" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
 					</label>
                     
-					<label class="item item-input datePlaceholder" >
+					<div class="item item-input datePlaceholder" >
 						<span class="input-label"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
 					<!--<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();"  id="date" max="{{PreviousDate}}" required style="font-size:18px;">  -->
-					<div ng-if="deviceName == 'IOS'" class="dobRequired" ng-click="getDOBDiv()">Required</div>
-					
-					<div class="dobDiv"><input ng-if="deviceName == 'IOS'" class="userDateofbirth" placeholder="Required"  ng-model="AddHealth.dateBirth" type="date" onfocus="this.type='date';" id="date" max="{{PreviousDate}}" required ></div>
-					<input ng-if="deviceName != 'IOS'" class="userDateofbirth_android" placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date';"  id="date" max="{{PreviousDate}}" required >
-					</label>
+					<div ng-if="deviceName != 'IOS'" class="dobRequired" ng-click="getDOBDiv()">Required</div>
+					<input ng-if="deviceName != 'IOS'" class="userDateofbirth" placeholder="Required"  ng-model="AddHealth.dateBirth" type="date" onfocus="this.type='date';" id="date" max="{{PreviousDate}}" required >
+					<input ng-if="deviceName == 'IOS'" class="userDateofbirth_android" placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date';"  id="date" max="{{PreviousDate}}" required >
+					</div>
 				</div>
 				
 				<div class="planDetails"  >

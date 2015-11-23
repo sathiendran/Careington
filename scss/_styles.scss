@@ -3284,22 +3284,19 @@ font-family: $fontFamily_regular;
 		top: 5px !important;
 		}
 }
-.dobDiv {
-	textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
-		display : none;
-	}
-	.userDateofbirth {
-		font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; display: none;
-	}
-}
 .userDateofbirth {
+	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
+}
+
+.userDateofbirth_android {
 	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
 }
 .noResult {
 	text-align: center; border: none; color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 40px;
 }
 
-.dobRequired {		
+.dobRequired {
+		
 		color: #AAA;
 		position: absolute;
 		width: 75%;
