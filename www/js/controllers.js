@@ -1971,21 +1971,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }			
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
             $scope.doGetHealthPlanProvider();
-			 $state.go('tab.planDetails');
+			// $state.go('tab.planDetails');
 		} else {
 			$('div.viewport').text($("option:selected", this).text());
 		}
     });
 	
 	
-	$scope.getDOBDiv = function() {
+	/*$scope.getDOBDiv = function() {
 	 //  $('div.dobRequired').text($(".userDateofbirth").val());
 	 alert('ggg');
 	   $('.dobRequired').css('display', 'none');
 	    $('.userDateofbirth').css('display', 'block');
     }
 	
-	/*$('#addHealthPlan').change(function () {
+	$('#addHealthPlan').change(function () {
 		if($('option:selected', this).text() == 'Add a new health plan') {
 			$rootScope.submitPayBack = $rootScope.currState.$current.name;
 			$state.go('tab.planDetails');
@@ -2001,8 +2001,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 accessToken: $rootScope.accessToken,
                 success: function (data) {					
                     $scope.HealthPlanProvidersList = data.data;
-					 $('.dobRequired').css('display', 'block');
-					$('.userDateofbirth').css('display', 'none');
+					// $('.dobRequired').css('display', 'block');
+					//$('.userDateofbirth').css('display', 'none');
 					
                     if(data != "")
                     $rootScope.ProviderList = [];
@@ -2015,7 +2015,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							    
 						});
 					});	
-                   // $state.go('tab.planDetails');
+                    $state.go('tab.planDetails');
                 },
                 error: function (data) {
 					$rootScope.serverErrorMessageValidation();
