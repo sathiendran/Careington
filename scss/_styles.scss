@@ -3310,3 +3310,28 @@ font-family: $fontFamily_regular;
 	text-align: center;
 }
 
+.singleTermsTitle-Android {
+	border-bottom: none; position: relative;  top: -143px;
+}
+.singleTermsTitle-IOS {
+	border-bottom: none; position: relative;  top: -143px;
+}
+.singleTermsLine-Android {
+	border-top: 1px solid #A9ABA7;position: relative; top: -122px;
+}
+.singleTermsLine-IOS {
+	border-top: 1px solid #A9ABA7;position: relative; top: -122px;
+}
+.singleTermsContent-Android {
+	padding: 50px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+    text-align: justify; position: relative; top: -153px;
+}
+
+.singleTermsContent-IOS {
+	padding: 50px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+    text-align: justify; position: relative; top: -153px;
+}
