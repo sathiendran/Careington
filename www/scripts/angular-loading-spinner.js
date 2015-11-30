@@ -55,6 +55,8 @@
 								}else if($rootScope.currState.$current.name=="tab.login"){									 
 									navigator.app.exitApp();
 									//alert('a1');
+								}else if($rootScope.currState.$current.name=="tab.loginSingle"){
+									navigator.app.exitApp();
 								}else {								
 											
 									navigator.app.backHistory();
