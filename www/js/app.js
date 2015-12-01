@@ -19,7 +19,7 @@
 
 var deploymentEnv = 'Single'; //Production //Multiple //Single 
 if(deploymentEnv == 'Single') {
-	var singleHospitalId = 168;
+	var singleHospitalId = 156;
 	var brandColor = '#22508b';
 	var logo= 'img/docYourWay.png';
 	var Hopital = 'DocYourWay';
