@@ -2965,6 +2965,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.verifyPlanDisplay = "none;";
 		
 	$scope.PlanDetailsValidation = function(model) {
+	
+		var d = new Date();
+		var curr_date = d.getDate()+1;
+		var curr_month = d.getMonth()+1;
+		var curr_year = d.getFullYear();
+		var getCurntDate = curr_year + '-'+ curr_month +'-'+ curr_date;
 		
 		/*if($('#Provider').val() == '' || $('#firstName').val() == '' || $('#lastName').val() == '' || $('#policyNumber').val() == '' || $('#date').val() == '' ){ */
         if($('#Provider').val() == '') {
@@ -2981,6 +2987,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.Validation($scope.ErrorMessage);
 		} else if($('#date').val() == '') {
             $scope.ErrorMessage = "Required fields can't be empty";
+			$rootScope.Validation($scope.ErrorMessage);
+		} else if($('#date').val() > getCurntDate) { 
+			$scope.ErrorMessage = "Date of Birth Should not be Future Date";
 			$rootScope.Validation($scope.ErrorMessage);
 		} else {
 			$rootScope.verifyPlanDisplay = "inherit";

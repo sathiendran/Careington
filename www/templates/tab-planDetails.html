@@ -107,7 +107,7 @@
 					<!--<div ng-if="deviceName != 'IOS'" class="dobRequired" ng-click="getDOBDiv()">Required</div>
 					<input ng-if="deviceName != 'IOS'" class="userDateofbirth" placeholder="Required"  ng-model="AddHealth.dateBirth" type="date" onfocus="this.type='date';" id="date" max="{{PreviousDate}}" required >-->
 					 <div ng-if="deviceName == 'IOS'" class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div> 
-            		<input ng-if="deviceName == 'IOS'"  class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date" max="{{PreviousDate}}" required>
+            		<input ng-if="deviceName == 'IOS'"  class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date"  required>
 					<input ng-if="deviceName != 'IOS'" class="userDateofbirth_android" placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date';"  id="date" max="{{PreviousDate}}" required >
 					</label>					
 				</div>
