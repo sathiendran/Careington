@@ -17,7 +17,7 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single 
+var deploymentEnv = 'Multiple'; //Production //Multiple //Single 
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 156;
 	var brandColor = '#22508b';
@@ -35,7 +35,7 @@ var handleOpenURL = function (url) {
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope) {
+.run(function($ionicPlatform, $state, $rootScope, $localstorage) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -60,15 +60,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     
 		setTimeout(function() {		
 			document.addEventListener("offline", onOffline, false);
+			document.addEventListener("online", onOnline, false);
 	 }, 1000);
-	  function onOffline(){
+	
+	function onOffline(){
+		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+			$state.go('tab.connectionLost');
+		} 
       navigator.notification.alert(
           'Please make sure that you have network connection.',  // message
           null,
           'No Internet Connection',            // title
           'Ok'                  // buttonName
         );
+		/*navigator.notification.alert(
+			'Please make sure that you have network connection.',  // message
+			function(){ 
+				if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+					$state.go('tab.testPage'); return;} },
+			'No Internet Connection',            // title
+			'Done'                  // buttonName
+		);
+		return false;*/
+		
     }
+	function onOnline() {		
+		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 			
+			$state.go('tab.videoConference');
+		}		
+	}
     
 	/*$ionicPlatform.on('resume', function(){
 		 setTimeout(function() {		
@@ -477,6 +497,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })  
+  
+  .state('tab.connectionLost', {
+    url: '/connectionLost',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-connectionLost.html',
+        controller: 'ConferenceCtrl'
+      }
+    }
+  })
   
    .state('tab.ReportScreen', {
     url: '/ReportScreen',

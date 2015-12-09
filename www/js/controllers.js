@@ -158,7 +158,7 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
       return browser;
     }
   }]);
-});
+}); 
 
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
@@ -188,6 +188,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		apiCommonURL = ' https://snap-stage.com';
 		api_keys_env = "Staging";
 	}
+	$localstorage.set('ChkVideoConferencePage', ""); 
 	
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||
@@ -196,6 +197,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
+			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){ 
                 // H/W BACK button is disabled for these states (these views)
@@ -658,6 +660,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	*/
 	
+	$localstorage.set('ChkVideoConferencePage', ""); 
 	
 	
 	$rootScope.currState = $state;
@@ -869,6 +872,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
+			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){ 
                 // H/W BACK button is disabled for these states (these views)
@@ -3341,6 +3345,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
+			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){ 
                 // H/W BACK button is disabled for these states (these views)
@@ -3537,6 +3542,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
+			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){ 
                 // H/W BACK button is disabled for these states (these views)
@@ -3875,6 +3881,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
+			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){ 
                 // H/W BACK button is disabled for these states (these views)
@@ -4035,6 +4042,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
 			 ($rootScope.currState.$current.name=="tab.receipt") || 	
              ($rootScope.currState.$current.name=="tab.videoConference") ||
+			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){ 
                 // H/W BACK button is disabled for these states (these views)
@@ -5517,7 +5525,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 
 
-.controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+.controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
     
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
@@ -5530,6 +5538,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			$state.go('tab.login');
 		}
 	}
+	$localstorage.set('ChkVideoConferencePage', "videoConference"); 
     
 	 var connection = $.hubConnection();
          //debugger;
@@ -5942,6 +5951,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			session.unpublish(publisher)
 			//publisher.destroy();
 			session.disconnect();
+			$localstorage.set('ChkVideoConferencePage', ""); 
 			navigator.notification.alert(
 				'Consultation ended successfully!',  // message
 				consultationEndedAlertDismissed,         // callback

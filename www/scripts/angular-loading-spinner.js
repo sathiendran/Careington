@@ -47,6 +47,7 @@
 								 ($rootScope.currState.$current.name=="tab.waitingRoom") ||	
 								 ($rootScope.currState.$current.name=="tab.receipt") || 	
 								 ($rootScope.currState.$current.name=="tab.videoConference") ||
+								  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 								 ($rootScope.currState.$current.name=="tab.ReportScreen")
 								){ //alert('a'); 
 									// H/W BACK button is disabled for these states (these views)
