@@ -3446,12 +3446,81 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							console.log('scheduledTime <= getTwelveHours UserHome');
 							$rootScope.nextAppointmentDisplay = 'block';
 							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+							 $rootScope.timerCOlor = '#FEEFE8';
 							var beforAppointmentTime = 	getReplaceTime;
 							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
 							if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
 							{
 								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								 $rootScope.timerCOlor = '#E1FCD4';
 							}
+						}
+						if($rootScope.getIndividualScheduleDetails !='') {		
+							var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+							var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+							var currentUserHomeDate = currentUserHomeDate;		
+							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {	
+								
+								$rootScope.time = new Date(getReplaceTime).getTime();
+								
+								 $timeout(function() {  
+									document.getElementsByTagName('timer')[0].stop();
+									document.getElementsByTagName('timer')[0].start();
+								}, 10);
+									
+								$scope.$on('timer-tick', function (event, args){
+									if(args.days == 0) {
+										$rootScope.hourDisplay = 'initial';
+										$rootScope.daysDisplay = 'none';
+										$rootScope.dayDisplay = 'none';		
+									} else if(args.days == 1) {
+										$rootScope.daysDisplay = 'none';	
+										$rootScope.hourDisplay = 'none';
+										$rootScope.dayDisplay = 'initial';		
+									} else if(args.days > 1) {
+										$rootScope.daysDisplay = 'initial';	
+										$rootScope.hourDisplay = 'none';
+										$rootScope.dayDisplay = 'none';	
+									}
+									
+								
+									if(args.millis < 600){
+										$rootScope.timeNew = 'none';
+									   $rootScope.timeNew1 = 'block';
+									   $rootScope.timerCOlor = '#E1FCD4';
+									} else if(args.millis > 600){
+										$rootScope.timeNew = 'block';
+										$rootScope.timeNew1 = 'none';
+										$rootScope.timerCOlor = '#FEEFE8';
+									}
+									/*else if(args.millis < 600000){
+									   $rootScope.timeNew = 'none';
+									   $rootScope.timeNew1 = 'block';
+									   $rootScope.timerCOlor = '#E1FCD4';
+									}else if(args.millis > 600000){
+										$rootScope.timeNew = 'block';
+									   $rootScope.timeNew1 = 'none';
+										$rootScope.timerCOlor = '#FEEFE8';
+									}*/
+									
+								});
+								$rootScope.time = new Date(getReplaceTime).getTime();
+								
+								/* $timeout(function() {  
+									document.getElementsByTagName('timer')[0].stop();
+									document.getElementsByTagName('timer')[0].start();
+								}, 10);*/
+								
+								var d = new Date();
+								
+								var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+								
+								if(getReplaceTime < currentUserHomeDate){
+									 $rootScope.timerCOlor = '#E1FCD4';
+								}
+							} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+								$rootScope.timerCOlor = 'transparent';
+							}	
 						}
 					}
 					 
@@ -3466,15 +3535,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 
 	$scope.GoToappoimentDetails = function(scheduledListData) {
-		$rootScope.scheduledListDatas = scheduledListData;
 		$state.go('tab.appoimentDetails');
+		$rootScope.scheduledListDatas = scheduledListData;		
 	};
 	
 	if($rootScope.getIndividualScheduleDetails !='') {		
 		var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
-		getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+		var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
 		var currentUserHomeDate = currentUserHomeDate;		
-		if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {				
+		if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {		
+			
 				
 			$scope.$on('timer-tick', function (event, args){
 				if(args.days == 0) {
@@ -3514,7 +3584,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			});
 			$rootScope.time = new Date(getReplaceTime).getTime();
 			
-			 $timeout(function() {   
+			 $timeout(function() {  				
 				document.getElementsByTagName('timer')[0].start();
 			}, 10);
 			
@@ -3590,7 +3660,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
 	var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
 	
-	getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+	var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
 	
 	$rootScope.time = new Date(getReplaceTime).getTime();
 	
@@ -5520,7 +5590,12 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	
 })
 
+.controller('connectionLostCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
 
+		session.unpublish(publisher)
+			//publisher.destroy();
+			session.disconnect();
+})
 
 
 

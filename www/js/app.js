@@ -17,7 +17,7 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single 
+var deploymentEnv = 'Single'; //Production //Multiple //Single  
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 156;
 	var brandColor = '#22508b';
@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 	
 	function onOffline(){
 		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-			$state.go('tab.connectionLost');
+			//$state.go('tab.connectionLost');
 		} 
       navigator.notification.alert(
           'Please make sure that you have network connection.',  // message
@@ -86,7 +86,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
 	function onOnline() {		
 		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 			
-			$state.go('tab.videoConference');
+			//$state.go('tab.videoConference');
 		}		
 	}
     
@@ -503,7 +503,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-account': {
         templateUrl: 'templates/tab-connectionLost.html',
-        controller: 'ConferenceCtrl'
+        controller: 'connectionLostCtrl'
       }
     }
   })
