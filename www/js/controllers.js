@@ -5786,7 +5786,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
             accessToken: $rootScope.accessToken,
             success: function (data) {
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
-				if($rootScope.existingConsultationReport.organization !='' && typeof $rootScope.existingConsultationReport.organization != 'undefined')
+				/*if($rootScope.existingConsultationReport.organization !='' && typeof $rootScope.existingConsultationReport.organization != 'undefined')
 				{
 					$rootScope.userReportOrganization = angular.element('<div>').html($rootScope.existingConsultationReport.organization).text();
 				} else {
@@ -5797,7 +5797,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					$rootScope.reportLocation = angular.element('<div>').html($rootScope.existingConsultationReport.location).text();
 				} else {
 					$rootScope.reportLocation = '';
-				}
+				}*/
 				
 				if($rootScope.existingConsultationReport.height !='' && typeof $rootScope.existingConsultationReport.height != 'undefined')
 				{
@@ -5860,6 +5860,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					var consultationSeconds = $rootScope.existingConsultationReport.consultationDuration - (consultationMinutes * 60);
 					if(consultationMinutes == 0){
 						$rootScope.consultDurationMinutes = '00';
+					} else if(consultationMinutes < 10) {
+						$rootScope.consultDurationMinutes = '0' + consultationMinutes;
 					} else {
 						$rootScope.consultDurationMinutes = consultationMinutes;
 					}

@@ -41,12 +41,12 @@
 			   <!--<img ng-src="{{ReportHospitalImage}}">-->
 				<img style="max-height: 70px;" ng-src="{{logo}}">
 			</div>
-			<div class="providerAddress">
+			<div class="providerAddress"> 
 				<div>{{reportHospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
-				<div class="reportOrganization" ng-if="userReportOrganization != ''"><b>Organization:</b> {{userReportOrganization}}</div>
-				<div ng-if="reportLocation != ''">
+				<div class="reportOrganization" ng-if="organization != ''"><b>Organization:</b> {{organization}}</div>
+				<div ng-if="location != ''">
 					<div><b>Location</b></div>
-					<div>{{reportLocation}} </div>
+					<div>{{location}} </div>
 				</div>
 			</div>		
 		</div>
