@@ -366,9 +366,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
 				$rootScope.gender = data.data[0].gender;
 				$rootScope.homePhone = data.data[0].homePhone;
-				$rootScope.location = data.data[0].location;
+				
+				if(typeof data.data[0].location != 'undefined') {
+					$rootScope.location = data.data[0].location;
+				} else {
+					$rootScope.location = '';
+				}
 				$rootScope.mobilePhone = data.data[0].mobilePhone;
-				$rootScope.organization = data.data[0].organization;
+				
+				if(typeof data.data[0].organization != 'undefined') {
+					$rootScope.organization = data.data[0].organization;
+				} else {
+					$rootScope.organization = '';
+				}
 				$rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
 				$rootScope.userCountry = data.data[0].country;
 				if(typeof $rootScope.userCountry == 'undefined') {
@@ -1420,9 +1430,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
 					$rootScope.gender = data.data[0].gender;
 					$rootScope.homePhone = data.data[0].homePhone;
-					$rootScope.location = data.data[0].location;
+					if(typeof data.data[0].location != 'undefined') {
+						$rootScope.location = data.data[0].location;
+					} else {
+						$rootScope.location = '';
+					}
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
-					$rootScope.organization = data.data[0].organization;
+					
+					if(typeof data.data[0].organization != 'undefined') {
+						$rootScope.organization = data.data[0].organization;
+					} else {
+						$rootScope.organization = '';
+					}
 					$rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text(); 
 					$rootScope.userCountry = data.data[0].country;
 					if(typeof $rootScope.userCountry == 'undefined') {
