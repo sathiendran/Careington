@@ -486,7 +486,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -494,7 +494,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -502,7 +502,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -510,7 +510,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -570,6 +570,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
+		}else if(deploymentEnv == "QA"){
 			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
@@ -973,6 +975,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
+		}else if(deploymentEnv == "QA"){
 			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
@@ -1576,7 +1580,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1584,7 +1588,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1592,7 +1596,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1600,7 +1604,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -3758,7 +3762,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						navigator.notification.alert(
 							'Your consultation is already started on other device.',  // message
 							function(){ $state.go('tab.userhome'); return;},
-							'Connected Care',            // title
+							'DocYourWay',            // title
 							'Done'                  // buttonName
 						);
 						return false;
@@ -3766,7 +3770,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						navigator.notification.alert(
 							'Your consultation is already ended.',  // message
 							function(){ $state.go('tab.userhome'); return;},
-							'Connected Care',            // title
+							'DocYourWay',            // title
 							'Done'                  // buttonName
 						);
 						return false;
@@ -3774,7 +3778,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						navigator.notification.alert(
 							'Your consultation is cancelled.',  // message
 							function(){ $state.go('tab.userhome'); return;},
-							'Connected Care',            // title
+							'DocYourWay',            // title
 							'Done'                  // buttonName
 						);
 						return false;
@@ -3782,7 +3786,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						navigator.notification.alert(
 							'Your consultation is in progress on other device.',  // message
 							function(){ $state.go('tab.userhome'); return;},
-							'Connected Care',            // title
+							'DocYourWay',            // title
 							'Done'                  // buttonName
 						);
 						return false;
@@ -3831,7 +3835,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -3839,7 +3843,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -3847,7 +3851,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -3855,7 +3859,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Connected Care',            // title
+								'DocYourWay',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -3983,6 +3987,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		 if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
+		}else if(deploymentEnv == "QA"){
 			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
@@ -4153,6 +4159,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
+		}else if(deploymentEnv == "QA"){
 			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
@@ -5609,6 +5617,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
 			$state.go('tab.loginSingle');
+		}else if(deploymentEnv == "QA"){
+			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
@@ -6032,7 +6042,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			navigator.notification.alert(
 				'Consultation ended successfully!',  // message
 				consultationEndedAlertDismissed,         // callback
-				'Connected Care',            // title
+				'DocYourWay',            // title
 				'Done'                  // buttonName
 			);
 			//alert('Consultation ended successfully!');
