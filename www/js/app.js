@@ -17,7 +17,8 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single  
+var deploymentEnv = 'Single'; //Production //Multiple //Single
+var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 156;
 	var brandColor = '#22508b';
@@ -155,8 +156,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
           if(EXTRA['token'] != "" && EXTRA['env'] != ""){
             $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
-          }else if(EXTRA['env'] != ""){
+          }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
             $state.go('tab.login');
+          }else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+            $state.go('tab.loginSingle');
           }
         }
       }, 2000);
@@ -190,9 +193,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
             if(EXTRA['token'] != "" && EXTRA['env'] != ""){
               $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
-            }else if(EXTRA['env'] != ""){
-              $state.go('tab.login');
-            }
+            }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
+				$state.go('tab.login');
+			}else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+				$state.go('tab.loginSingle');
+			}
           }
         }, 2000);
       });    
