@@ -5897,6 +5897,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					
 					if(consultationSeconds == 0){
 						$rootScope.consultDurationSeconds = '00';
+					} else if(consultDurationSeconds < 10) {
+						$rootScope.consultDurationSeconds = '0' + consultDurationSeconds;
 					} else {
 						$rootScope.consultDurationSeconds = consultationSeconds;
 					}
