@@ -6072,7 +6072,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	function consultationEndedAlertDismissed(){
 		conHub.invoke("endConsultation").then(function(){
 		});
-		$scope.doGetPatientsSoapNotes();
+		$('#publisher').css('display', 'none');
+			$('#subscriber').css('display', 'none');
+			$('#publisher').hide();
+			$('#subscriber').hide();
+		//$scope.doGetPatientsSoapNotes();
 		$scope.doGetExistingConsulatationReport(); 
 		window.plugins.insomnia.allowSleepAgain();	
 	}
