@@ -64,16 +64,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 			document.addEventListener("online", onOnline, false);
 	 }, 1000);
 	
-	function onOffline(){
-		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-			//$state.go('tab.connectionLost');
-		} 
+	function onOffline(){	
+		
       navigator.notification.alert(
           'Please make sure that you have network connection.',  // message
           null,
           'No Internet Connection',            // title
           'Ok'                  // buttonName
-        );
+        ); 
+		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+			$('#publisher').css('display', 'none');
+			$('#subscriber').css('display', 'none');
+			$('#publisher').hide();
+			$('#subscriber').hide();
+			$state.go('tab.connectionLost');
+		} 
+		
 		/*navigator.notification.alert(
 			'Please make sure that you have network connection.',  // message
 			function(){ 
@@ -86,8 +92,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		
     }
 	function onOnline() {		
-		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 			
-			//$state.go('tab.videoConference');
+		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+			$('#publisher').css('display', 'block');
+			$('#subscriber').css('display', 'block');
+			$('publisher').show();
+			$('subscriber').show(); 
+			$state.go('tab.videoConference');
 		}		
 	}
     

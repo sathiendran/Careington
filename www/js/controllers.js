@@ -5618,10 +5618,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 })
 
 .controller('connectionLostCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
-
-		session.unpublish(publisher)
-			//publisher.destroy();
-			session.disconnect();
+	  
 })
 
 
@@ -5897,8 +5894,6 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 					
 					if(consultationSeconds == 0){
 						$rootScope.consultDurationSeconds = '00';
-					} else if(consultDurationSeconds < 10) {
-						$rootScope.consultDurationSeconds = '0' + consultDurationSeconds;
 					} else {
 						$rootScope.consultDurationSeconds = consultationSeconds;
 					}
