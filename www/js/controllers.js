@@ -2994,7 +2994,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.PlanDetailsValidation = function(model) {
 	
 		var d = new Date();
-		var curr_date = d.getDate()+1;
+		var curr_date = d.getDate();
 		var curr_month = d.getMonth()+1;
 		var curr_year = d.getFullYear();
 		var getCurntDate = curr_year + '-'+ curr_month +'-'+ curr_date;
@@ -4319,7 +4319,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
   
     $scope.model = null;
 	var today = new Date();
-			var dd = today.getDate()-1;
+			var dd = today.getDate();
 			var mm = today.getMonth()+1; //January is 0!
 			var yyyy = today.getFullYear();	
 				if(dd<10) {
