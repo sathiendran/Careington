@@ -7,6 +7,9 @@ var indexOf = [].indexOf || function(item) {
        // request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
         //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 var api_keys_env = '';
+ var session = null;
+ var publisher = null
+ 
 if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv == "QA"){
 	var util = {
 		
@@ -5626,6 +5629,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 .controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
     
+	if(session != null) {
+		session.unpublish(publisher);
+		session.disconnect();
+	}
+	
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
@@ -5702,8 +5710,8 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
     var sessionId = "1_MX40NTE5MTE3Mn5-MTQzOTQ2MDk3ODA4OH5wSEpoU091NXJkK01sZzFoUDV4aXhVWWh-fg";
     var token = "T1==cGFydG5lcl9pZD00NTE5MTE3MiZzaWc9MzAyOTYzMTExMGJkYTJhYmI3MDMwNTNiM2Q4MWM5ZjU1ZWZkNjlkODpzZXNzaW9uX2lkPTFfTVg0ME5URTVNVEUzTW41LU1UUXpPVFEyTURrM09EQTRPSDV3U0Vwb1UwOTFOWEprSzAxc1p6Rm9VRFY0YVhoVldXaC1mZyZjcmVhdGVfdGltZT0xNDM5NDYwOTc1Jm5vbmNlPTcwNDQzJnJvbGU9UFVCTElTSEVS";
     */
-    var session = OT.initSession(apiKey, sessionId);
-    var publisher;
+    session = OT.initSession(apiKey, sessionId);
+    //var publisher;
 	
 			   
     session.on('streamCreated', function(event) { 		
@@ -6052,19 +6060,46 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	
     var callEnded = false;
     $scope.disconnectConference = function(){
-		if(!callEnded){			
-			session.unpublish(publisher)
+		if(!callEnded){		
+			
+			//$timeout(function(){
+			//try {
+               session.unpublish(publisher)
 			//publisher.destroy();
 			session.disconnect();
+			//} 
+			/*catch(err) {
+				alert(err);
+			}*/
+          // }, 5000);
+			
+			
+			
+		/*	$("#subscriber").width(0).height(0);	
+			$('#publisher').width(0).height(0);
+			
+			$("#subscriber").remove();
+			$("#publisher").remove();*/
+			$('#publisher').hide();
+				$('#subscriber').hide(); 
+			//alert($('#publisher').html());
+			//alert($('#subscriber').html());
+			
+			
 			$localstorage.set('ChkVideoConferencePage', ""); 
+			//$timeout(function(){
+				 //setTimeout(function() {
 			navigator.notification.alert(
 				'Consultation ended successfully!',  // message
 				consultationEndedAlertDismissed,         // callback
 				'DocYourWay',            // title
 				'Done'                  // buttonName
 			);
+				// }, 10000);
+			 	
 			//alert('Consultation ended successfully!');
 		}
+		
 		  callEnded = true;
 		
     };
@@ -6072,10 +6107,9 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 	function consultationEndedAlertDismissed(){
 		conHub.invoke("endConsultation").then(function(){
 		});
-		$('#publisher').css('display', 'none');
-			$('#subscriber').css('display', 'none');
-			$('#publisher').hide();
-			$('#subscriber').hide();
+		//$('#publisher').css('display', 'none');
+			//$('#subscriber').css('display', 'none');
+			
 		//$scope.doGetPatientsSoapNotes();
 		$scope.doGetExistingConsulatationReport(); 
 		window.plugins.insomnia.allowSleepAgain();	

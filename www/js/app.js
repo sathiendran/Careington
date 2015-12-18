@@ -73,8 +73,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           'Ok'                  // buttonName
         ); 
 		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-			$('#publisher').css('display', 'none');
-			$('#subscriber').css('display', 'none');
+			//$('#publisher').css('display', 'none');
+			//$('#subscriber').css('display', 'none');
 			
 			$state.go('tab.connectionLost');
 		} 
@@ -92,8 +92,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
 	function onOnline() {		
 		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-			$('#publisher').css('display', 'block');
-			$('#subscriber').css('display', 'block');			
+		//	$('#publisher').css('display', 'block');
+			//$('#subscriber').css('display', 'block');			
 			$state.go('tab.videoConference');
 		}		
 	}
