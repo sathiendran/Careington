@@ -39,7 +39,7 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 			}
 			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
 			request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-			request.defaults.headers.post['X-Api-Key'] = '1d3d2f653608d25c080810794928fcaa12ef372a2';
+			request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
 			return request;
 		},
 		getHeaders: function (accessToken) {
@@ -62,14 +62,14 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 			}
 			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-			request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+			request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
+			request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
 			return request;
 		},
 		getHeaders: function (accessToken) {
 			var headers = {
-					'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-					'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+					'X-Developer-Id': '1f9480321986463b822a981066cad094',
+					'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
 					'Content-Type': 'application/json; charset=utf-8'
 				};
 			if (typeof accessToken != 'undefined') {
@@ -155,8 +155,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
 	}else if(deploymentEnv == "Single"){
-		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-		apiCommonURL = 'https://sandbox.connectedcare.md';
+		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		//apiCommonURL = 'https://sandbox.connectedcare.md';
+		$rootScope.APICommonURL = 'https://connectedcare.md';
+		apiCommonURL = 'https://connectedcare.md';
 	}
 	
 	$scope.ssoMessage = 'Authenticating..... Please wait!';
@@ -535,8 +537,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.brandColor = brandColor;
 		$rootScope.logo = logo;
 		$rootScope.Hopital = Hopital;
-		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-		apiCommonURL = 'https://sandbox.connectedcare.md';
+		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+	//	apiCommonURL = 'https://sandbox.connectedcare.md';
+		$rootScope.APICommonURL = 'https://connectedcare.md';
+		apiCommonURL = 'https://connectedcare.md';
 		$rootScope.hospitalId = singleHospitalId;
 	}
 	

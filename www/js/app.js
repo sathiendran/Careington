@@ -17,12 +17,12 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single
+var deploymentEnv = 'Single'; //Production //Multiple //Single
 if(deploymentEnv == 'Single') {
-	var singleHospitalId = 126;
-	var brandColor = '#0071bb';
-	var logo= 'img/ch_emerald_city03.png';
-	var Hopital = 'Emerald City Healthcare (Sandbox)';
+	var singleHospitalId = 168;
+	var brandColor = '#22508b';
+	var logo= 'img/docYourWay.png';
+	var Hopital = 'DocYourWay';
 }
 
 var handleOpenURL = function (url) {
@@ -501,6 +501,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-chooseEnvironment.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+  
+   .state('tab.singleTerms', {
+    url: '/singleTerms',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-singleTerms.html',
         controller: 'LoginCtrl'
       }
     }
