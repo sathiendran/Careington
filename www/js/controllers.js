@@ -5629,185 +5629,43 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 
 .controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
     
-	if(session != null) {
-		session.unpublish(publisher);
-		session.disconnect();
-	}
-	
-	$scope.ClearRootScope = function() {
-		$rootScope = $rootScope.$new(true);
-		$scope = $scope.$new(true);
-		if(deploymentEnv == "Multiple"){
-			$state.go('tab.chooseEnvironment');
-		}else if(deploymentEnv == "Single"){
-			$state.go('tab.loginSingle');
-		}else if(deploymentEnv == "QA"){
-			$state.go('tab.loginSingle');
-		}else{
-			$state.go('tab.login');
+    $scope.doGetExistingConsulatation = function () {
+		$rootScope.consultionInformation = '';
+		$rootScope.appointmentsPatientFirstName = '';
+		$rootScope.appointmentsPatientLastName = '';
+		$rootScope.appointmentsPatientDOB = '';
+		$rootScope.appointmentsPatientGurdianName = '';
+		$rootScope.appointmentsPatientImage = '';
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
 		}
-	}
-	$localstorage.set('ChkVideoConferencePage', "videoConference"); 
-    
-	 var connection = $.hubConnection();
-         //debugger;
-     var conHub = connection.createHubProxy('consultationHub');
-	
-    var initConferenceRoomHub = function () {
-        
-         connection.url = $rootScope.APICommonURL + "/api/signalR/";
-         var consultationWatingId = +$rootScope.consultationId;
-         
-           // var conHub = $.connection.consultationHub;
-           connection.qs = {
-                "Bearer": $rootScope.accessToken,
-                "consultationId": consultationWatingId,
-                "isMobile" : true
-            };
-            conHub.on("onConsultationReview", function () {
-                $rootScope.waitingMsg = "The clinician is now reviewing the intake form.";
-            });
-            conHub.on("onCustomerDefaultWaitingInformation",function () {
-                $rootScope.waitingMsg = "Please Wait....";
-            });
-            conHub.on("onConsultationStarted",function () {
-               $rootScope.waitingMsg = "Please wait...";
-            });
-            connection.logging = true;
-            connection.start({
-                withCredentials :false
-            }).then(function(){
-				conHub.invoke("joinCustomer").then(function(){
-				});
-                $rootScope.waitingMsg="The Clinician will be with you Shortly.";
-            });
-            conHub.on("onConsultationEnded",function () {
-                $scope.disconnectConference();
-            });
-    };
-    initConferenceRoomHub();
-    
-	$rootScope.clinicianVideoHeight = $window.innerHeight - 38;
-    $rootScope.clinicianVideoWidth = $window.innerWidth;
-	
-	$rootScope.clinicianVideoHeightScreen = ($window.innerWidth / 16) * 9;
-			
-    $rootScope.patientVideoTop = $window.innerHeight - 150;
-    $rootScope.controlsStyle = false;
-    
-    $rootScope.cameraPosition = "front";
-    $rootScope.publishAudio = true;
-    
-    
-    $rootScope.muteIconClass = 'ion-ios-mic callIcons';
-    $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
-	
-    var apiKey = $rootScope.videoApiKey;
-    var sessionId = $rootScope.videoSessionId;
-    var token = $rootScope.videoToken;
-	/*
-    var apiKey = "45191172";
-    var sessionId = "1_MX40NTE5MTE3Mn5-MTQzOTQ2MDk3ODA4OH5wSEpoU091NXJkK01sZzFoUDV4aXhVWWh-fg";
-    var token = "T1==cGFydG5lcl9pZD00NTE5MTE3MiZzaWc9MzAyOTYzMTExMGJkYTJhYmI3MDMwNTNiM2Q4MWM5ZjU1ZWZkNjlkODpzZXNzaW9uX2lkPTFfTVg0ME5URTVNVEUzTW41LU1UUXpPVFEyTURrM09EQTRPSDV3U0Vwb1UwOTFOWEprSzAxc1p6Rm9VRFY0YVhoVldXaC1mZyZjcmVhdGVfdGltZT0xNDM5NDYwOTc1Jm5vbmNlPTcwNDQzJnJvbGU9UFVCTElTSEVS";
-    */
-    session = OT.initSession(apiKey, sessionId);
-    //var publisher;
-	
-			   
-    session.on('streamCreated', function(event) { 		
-		//alert('stream created from type: ' + event.stream.videoType);
 		
-		if(ionic.Platform.isIOS()){
-			if(event.stream.videoType == 1){
-				$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);	
-			} else if(event.stream.videoType == 2){			
-				$('#subscriber .OT_video-container').remove();
-				
-				var screenHeight = $rootScope.clinicianVideoHeight / 2;			
-				var divHeight = $rootScope.clinicianVideoHeightScreen / 2;
-				var totalHeight = screenHeight - divHeight;
-				
-				$("#subscriber").css('top',  totalHeight);
-				$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeightScreen);			
-			}
-		}
-		session.subscribe(event.stream, 'subscriber', {
-			insertMode: 'append',
-			subscribeToAudio: true,
-			subscribeToVideo: true
-		});			
-       
-        OT.updateViews();
-    });
-	
-	session.on('streamDestroyed', function(event) { 					
-			//$("#subscriberScreen").hide();
-			//$("#subscriber").show();	
-			$("#subscriber").css('top', '0px');	
-			$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);	
-			event.preventDefault(); 
-    });
-
-    // Handler for sessionDisconnected event
-    session.on('sessionDisconnected', function(event) {
-        console.log('You were disconnected from the session.', event.reason);
-    });
-	
-    // Connect to the Session
-    session.connect(token, function(error) {
-        // If the connection is successful, initialize a publisher and publish to the session
-        if (!error) {
-            publisher = OT.initPublisher('publisher', {
-				insertMode: 'append',
-				publishAudio: true,
-				publishVideo: true
-            });
-            $timeout(function(){
-                $scope.controlsStyle = true;
-            }, 100);
-            session.publish(publisher);
-            OT.updateViews();
-
-        } else {
-            alert('There was an error connecting to the session: ' + error.message);
-        }
-
-    });
-    $scope.toggleCamera = function(){
-        if($scope.cameraPosition == "front"){
-            $rootScope.newCamPosition = "back";
-            $rootScope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
-        }else{
-            $rootScope.newCamPosition = "front";
-            $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
-        }
-        $scope.cameraPosition = $scope.newCamPosition;
-        publisher.setCameraPosition($scope.newCamPosition);
-        OT.updateViews();
-    };
-    
-    $scope.toggleMute = function(){
-        if($scope.publishAudio){
-            $rootScope.newPublishAudio = false;
-            $rootScope.muteIconClass = 'ion-ios-mic-off callIcons activeCallIcon';
-        }else{
-            $rootScope.newPublishAudio = true;
-            $rootScope.muteIconClass = 'ion-ios-mic callIcons';
-        }
-        $rootScope.publishAudio = $rootScope.newPublishAudio;
-        publisher.publishAudio($rootScope.newPublishAudio);
-        //OT.updateViews();
-    };
-    
-    $scope.toggleSpeaker = function(){
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+                $scope.existingConsultation = data;
+			
+                $rootScope.consultionInformation = data.data[0].consultationInfo;
+				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
+				if(!angular.isUndefined($rootScope.consultationStatusId)) {
+						if($rootScope.consultationStatusId == 72 ) {
+							$scope.doGetExistingConsulatationReport();
+						}						
+				}
+               
+            },
+            error: function (data) {
+              //  $rootScope.serverErrorMessageValidation();
+            }
+        };
         
-    };
+        LoginService.getExistingConsulatation(params);	
+		
+	}
     
-    $scope.turnOffCamera = function(){
-        
-    };
-	
-	$scope.doGetExistingConsulatationReport = function () {	
+    $scope.doGetExistingConsulatationReport = function () {	
 		
 			
 		 if ($scope.accessToken == 'No Token') {
@@ -6003,7 +5861,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 						});
 					});
 					
-					
+					$localstorage.set('ChkVideoConferencePage', ""); 	
 				
 				$state.go('tab.ReportScreen');
 		   },
@@ -6057,6 +5915,194 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			
 			LoginService.getPatientsSoapNotes(params);
 		}
+    
+    
+	if(session != null) {
+		session.unpublish(publisher);
+		session.disconnect();
+		 session = null; 
+         $scope.doGetExistingConsulatation();
+	}
+    $scope.doGetExistingConsulatation();
+	
+	$scope.ClearRootScope = function() {
+		$rootScope = $rootScope.$new(true);
+		$scope = $scope.$new(true);
+		if(deploymentEnv == "Multiple"){
+			$state.go('tab.chooseEnvironment');
+		}else if(deploymentEnv == "Single"){
+			$state.go('tab.loginSingle');
+		}else if(deploymentEnv == "QA"){
+			$state.go('tab.loginSingle');
+		}else{
+			$state.go('tab.login');
+		}
+	}
+    
+    $localstorage.set('ChkVideoConferencePage', "videoConference"); 
+    
+    if(!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId != 72) 
+    {    
+	  
+                var connection = $.hubConnection();
+                    //debugger;
+                var conHub = connection.createHubProxy('consultationHub');
+                
+                var initConferenceRoomHub = function () {
+                    
+                    connection.url = $rootScope.APICommonURL + "/api/signalR/";
+                    var consultationWatingId = +$rootScope.consultationId;
+                    
+                    // var conHub = $.connection.consultationHub;
+                    connection.qs = {
+                            "Bearer": $rootScope.accessToken,
+                            "consultationId": consultationWatingId,
+                            "isMobile" : true
+                        };
+                        conHub.on("onConsultationReview", function () {
+                            $rootScope.waitingMsg = "The clinician is now reviewing the intake form.";
+                        });
+                        conHub.on("onCustomerDefaultWaitingInformation",function () {
+                            $rootScope.waitingMsg = "Please Wait....";
+                        });
+                        conHub.on("onConsultationStarted",function () {
+                        $rootScope.waitingMsg = "Please wait...";
+                        });
+                        connection.logging = true;
+                        connection.start({
+                            withCredentials :false
+                        }).then(function(){
+                            conHub.invoke("joinCustomer").then(function(){
+                            });
+                            $rootScope.waitingMsg="The Clinician will be with you Shortly.";
+                        });
+                        conHub.on("onConsultationEnded",function () {
+                            $scope.disconnectConference();
+                        });
+                };
+                initConferenceRoomHub();
+                
+                $rootScope.clinicianVideoHeight = $window.innerHeight - 38;
+                $rootScope.clinicianVideoWidth = $window.innerWidth;
+                
+                $rootScope.clinicianVideoHeightScreen = ($window.innerWidth / 16) * 9;
+                        
+                $rootScope.patientVideoTop = $window.innerHeight - 150;
+                $rootScope.controlsStyle = false;
+                
+                $rootScope.cameraPosition = "front";
+                $rootScope.publishAudio = true;
+                
+                
+                $rootScope.muteIconClass = 'ion-ios-mic callIcons';
+                $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
+                
+                var apiKey = $rootScope.videoApiKey;
+                var sessionId = $rootScope.videoSessionId;
+                var token = $rootScope.videoToken;
+                /*
+                var apiKey = "45191172";
+                var sessionId = "1_MX40NTE5MTE3Mn5-MTQzOTQ2MDk3ODA4OH5wSEpoU091NXJkK01sZzFoUDV4aXhVWWh-fg";
+                var token = "T1==cGFydG5lcl9pZD00NTE5MTE3MiZzaWc9MzAyOTYzMTExMGJkYTJhYmI3MDMwNTNiM2Q4MWM5ZjU1ZWZkNjlkODpzZXNzaW9uX2lkPTFfTVg0ME5URTVNVEUzTW41LU1UUXpPVFEyTURrM09EQTRPSDV3U0Vwb1UwOTFOWEprSzAxc1p6Rm9VRFY0YVhoVldXaC1mZyZjcmVhdGVfdGltZT0xNDM5NDYwOTc1Jm5vbmNlPTcwNDQzJnJvbGU9UFVCTElTSEVS";
+                */
+                session = OT.initSession(apiKey, sessionId);
+                //var publisher;
+                
+                        
+                session.on('streamCreated', function(event) { 		
+                    //alert('stream created from type: ' + event.stream.videoType);
+                    
+                    if(ionic.Platform.isIOS()){
+                        if(event.stream.videoType == 1){
+                            $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);	
+                        } else if(event.stream.videoType == 2){			
+                            $('#subscriber .OT_video-container').remove();
+                            
+                            var screenHeight = $rootScope.clinicianVideoHeight / 2;			
+                            var divHeight = $rootScope.clinicianVideoHeightScreen / 2;
+                            var totalHeight = screenHeight - divHeight;
+                            
+                            $("#subscriber").css('top',  totalHeight);
+                            $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeightScreen);			
+                        }
+                    }
+                    session.subscribe(event.stream, 'subscriber', {
+                        insertMode: 'append',
+                        subscribeToAudio: true,
+                        subscribeToVideo: true
+                    });			
+                
+                    OT.updateViews();
+                });
+                
+                session.on('streamDestroyed', function(event) { 					
+                        //$("#subscriberScreen").hide();
+                        //$("#subscriber").show();	
+                        $("#subscriber").css('top', '0px');	
+                        $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);	
+                        event.preventDefault(); 
+                });
+
+                // Handler for sessionDisconnected event
+                session.on('sessionDisconnected', function(event) {
+                    console.log('You were disconnected from the session.', event.reason);
+                });
+                
+                // Connect to the Session
+                session.connect(token, function(error) {
+                    // If the connection is successful, initialize a publisher and publish to the session
+                    if (!error) {
+                        publisher = OT.initPublisher('publisher', {
+                            insertMode: 'append',
+                            publishAudio: true,
+                            publishVideo: true
+                        });
+                        $timeout(function(){
+                            $scope.controlsStyle = true;
+                        }, 100);
+                        session.publish(publisher);
+                        OT.updateViews();
+
+                    } else {
+                        alert('There was an error connecting to the session: ' + error.message);
+                    }
+
+                });
+                $scope.toggleCamera = function(){
+                    if($scope.cameraPosition == "front"){
+                        $rootScope.newCamPosition = "back";
+                        $rootScope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
+                    }else{
+                        $rootScope.newCamPosition = "front";
+                        $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
+                    }
+                    $scope.cameraPosition = $scope.newCamPosition;
+                    publisher.setCameraPosition($scope.newCamPosition);
+                    OT.updateViews();
+                };
+                
+                $scope.toggleMute = function(){
+                    if($scope.publishAudio){
+                        $rootScope.newPublishAudio = false;
+                        $rootScope.muteIconClass = 'ion-ios-mic-off callIcons activeCallIcon';
+                    }else{
+                        $rootScope.newPublishAudio = true;
+                        $rootScope.muteIconClass = 'ion-ios-mic callIcons';
+                    }
+                    $rootScope.publishAudio = $rootScope.newPublishAudio;
+                    publisher.publishAudio($rootScope.newPublishAudio);
+                    //OT.updateViews();
+                };
+                
+                $scope.toggleSpeaker = function(){
+                    
+                };
+                
+                $scope.turnOffCamera = function(){
+                    
+                };
+    }               
+	
 	
     var callEnded = false;
     $scope.disconnectConference = function(){
@@ -6086,7 +6132,7 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
 			//alert($('#subscriber').html());
 			
 			
-			$localstorage.set('ChkVideoConferencePage', ""); 
+		
 			//$timeout(function(){
 				 //setTimeout(function() {
 			navigator.notification.alert(
