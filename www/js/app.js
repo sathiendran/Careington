@@ -17,7 +17,7 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single
+var deploymentEnv = 'Multiple'; //Production //Multiple //Single
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 156;
@@ -131,7 +131,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 	});  
 		*/
 	
-    cordova.plugins.backgroundMode.setDefaults({ text:'Connected Care'});
+    cordova.plugins.backgroundMode.setDefaults({ text:'Virtual Care'});
       // Enable background mode
       cordova.plugins.backgroundMode.enable();
   

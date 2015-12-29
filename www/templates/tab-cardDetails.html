@@ -100,7 +100,7 @@
                 </div>
                 <label class="item item-input" >
 					<span class="input-label" >Security Code</span>
-					<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
+					<input type="number"  style="-webkit-text-security: disc; text-security:disc; -mox-text-security:disc;{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
 				</label>
                 	  
 				<label class="item item-input" >
