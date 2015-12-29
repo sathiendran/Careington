@@ -54,6 +54,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 		   cordova.plugins.Keyboard.disableScroll(true);
 		}
+		
+		var initialScreenSize = window.innerHeight;
+		window.addEventListener("resize", function() {
+			if(window.innerHeight < initialScreenSize){
+				$(".has-footer").css({"bottom": 0});	
+				$(".footer").hide();
+			}
+			else{
+				$(".footer").show();
+			}
+		});
+		
+		
 		if (window.StatusBar) {
 		  // org.apache.cordova.statusbar required
 		  StatusBar.styleDefault();
@@ -62,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		setTimeout(function() {		
 			document.addEventListener("offline", onOffline, false);
 			document.addEventListener("online", onOnline, false);
-	 }, 1000);
+	 }, 100);
 	
 	function onOffline(){	
 		
