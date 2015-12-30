@@ -88,6 +88,13 @@ angular.module('starter.controllers')
 					$rootScope.reportPatientAddress = 'None Reported';
 				}
 				
+				if($rootScope.existingConsultationReport.homePhone !='' && typeof $rootScope.existingConsultationReport.homePhone != 'undefined')
+				{
+					$rootScope.reportHomePhone = angular.element('<div>').html($rootScope.existingConsultationReport.homePhone).text();
+				} else {
+					$rootScope.reportHomePhone = 'NA';
+				}
+				
 				if($rootScope.existingConsultationReport.hospitalAddress !='' && typeof $rootScope.existingConsultationReport.hospitalAddress != 'undefined')
 				{
 					$rootScope.reportHospitalAddress = angular.element('<div>').html($rootScope.existingConsultationReport.hospitalAddress).text();
@@ -236,7 +243,7 @@ angular.module('starter.controllers')
 					});
 					
 					$localstorage.set('ChkVideoConferencePage', ""); 	
-				
+				session = null; 
 				$state.go('tab.ReportScreen');
 		   },
             error: function (data) {
@@ -512,7 +519,7 @@ angular.module('starter.controllers')
 			navigator.notification.alert(
 				'Consultation ended successfully!',  // message
 				consultationEndedAlertDismissed,         // callback
-				'DocYourWay',            // title
+				'Virtual Care',            // title
 				'Done'                  // buttonName
 			);
 				// }, 10000);
