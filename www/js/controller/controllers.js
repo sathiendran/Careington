@@ -8,7 +8,7 @@ var indexOf = [].indexOf || function(item) {
         //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 var api_keys_env = '';
  var session = null;
- var publisher = null
+ var publisher = null;
  
 if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv == "QA"){
 	var util = {
@@ -89,14 +89,14 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 			}
 			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-			request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+			request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+			request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
 			return request;
 		},
 		getHeaders: function (accessToken) {
 			var headers = {
-					'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-					'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+					'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+					'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 					'Content-Type': 'application/json; charset=utf-8'
 				};
 			if (typeof accessToken != 'undefined') {
@@ -182,10 +182,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}else if(deploymentEnv == "Single"){
 		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		//apiCommonURL = 'https://sandbox.connectedcare.md';
-		$rootScope.APICommonURL = 'https://snap-qa.com';
-		apiCommonURL = 'https://snap-qa.com';
-		//$rootScope.APICommonURL = 'https://connectedcare.md';
-		//apiCommonURL = 'https://connectedcare.md';
+	//	$rootScope.APICommonURL = 'https://snap-qa.com';
+	//	apiCommonURL = 'https://snap-qa.com';
+	//	$rootScope.APICommonURL = 'https://connectedcare.md';
+	//	apiCommonURL = 'https://connectedcare.md';
+    $rootScope.APICommonURL = 'https://snap-stage.com';
+		apiCommonURL = ' https://snap-stage.com';    
+    
 	} else if(deploymentEnv == "Staging") {
 		$rootScope.APICommonURL = 'https://snap-stage.com';
 		apiCommonURL = ' https://snap-stage.com';
@@ -499,7 +502,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -507,7 +510,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -515,7 +518,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -523,7 +526,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -617,10 +620,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.contactNumber = '';
 		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		//apiCommonURL = 'https://sandbox.connectedcare.md';
-		$rootScope.APICommonURL = 'https://snap-qa.com';
-		apiCommonURL = 'https://snap-qa.com';
-		//$rootScope.APICommonURL = 'https://connectedcare.md';
-		//apiCommonURL = 'https://connectedcare.md';
+		//$rootScope.APICommonURL = 'https://snap-qa.com';
+		//apiCommonURL = 'https://snap-qa.com';
+	//	$rootScope.APICommonURL = 'https://connectedcare.md';
+	//	apiCommonURL = 'https://connectedcare.md';
+    $rootScope.APICommonURL = 'https://snap-stage.com';
+		apiCommonURL = ' https://snap-stage.com';
 		$rootScope.hospitalId = singleHospitalId;
 	}else if(deploymentEnv == "Staging") {
 		$rootScope.APICommonURL = 'https://snap-stage.com';
@@ -1602,7 +1607,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1610,7 +1615,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1618,7 +1623,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1626,7 +1631,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;

@@ -17,13 +17,13 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single
+var deploymentEnv = 'Single'; //Production //Multiple //Single 
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
-	var singleHospitalId = 156;
-	var brandColor = '#22508b';
-	var logo= 'img/docYourWay.png';
-	var Hopital = 'DocYourWay';
+	var singleHospitalId = 142;
+	var brandColor =  '#5ec4fe';  //DYW -'#22508b';
+	var logo= 'img/teleHealthOne.png';
+	var Hopital = 'TelehealthOne';
 }
 
 var handleOpenURL = function (url) {
@@ -131,7 +131,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 	});  
 		*/
 	
-    cordova.plugins.backgroundMode.setDefaults({ text:'Virtual Care'});
+    cordova.plugins.backgroundMode.setDefaults({ text:'TelehealthOne'});
       // Enable background mode
       cordova.plugins.backgroundMode.enable();
   
