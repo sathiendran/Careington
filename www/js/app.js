@@ -21,7 +21,7 @@ var deploymentEnv = 'Single'; //Production //Multiple //Single
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 142;
-	var brandColor =  '#5ec4fe';  //DYW -'#22508b';
+	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
 	var logo= 'img/teleHealthOne.png';
 	var Hopital = 'TelehealthOne';
 }
@@ -179,7 +179,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
             $state.go('tab.login');
           }else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-            $state.go('tab.loginSingle');
+            $state.go('tab.singleTheme');
           }
         }
       }, 2000);
@@ -216,7 +216,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
 				$state.go('tab.login');
 			}else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-				$state.go('tab.loginSingle');
+				$state.go('tab.singleTheme');
 			}
           }
         }, 2000);
@@ -570,13 +570,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+.state('tab.singleTheme', {
+    url: '/singleTheme',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-singleTheme.html',
+        controller: 'singleHospitalThemeCtrl'
+      }
+    }
+  })
 
   
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
   }else if(deploymentEnv == "Single"){
-    $urlRouterProvider.otherwise('/tab/loginSingle');
+    $urlRouterProvider.otherwise('/tab/singleTheme');
   }else{
     $urlRouterProvider.otherwise('/tab/login');
   }

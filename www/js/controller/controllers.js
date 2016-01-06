@@ -165,6 +165,27 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
+.controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+	$scope.doGetSingleHospitalTheme = function () {
+						
+			var params = {
+				
+				success: function (data) {					
+					//alert(data);
+                    brandColor = data.color;
+					 $state.go('tab.loginSingle'); 
+					
+					
+				},
+				error: function (data) {
+					//$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getSingleHospitalTheme(params);		
+    }
+    $scope.doGetSingleHospitalTheme();  
+})
+
 //InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
