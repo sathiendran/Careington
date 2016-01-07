@@ -22,8 +22,8 @@ var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 142;
 	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
-	var logo= 'img/teleHealthOne.png';
-	var Hopital = 'TelehealthOne';
+	var logo= ''; //img/teleHealthOne.png';
+	var Hopital = ''; //TelehealthOne';
 }
 
 var handleOpenURL = function (url) {
@@ -36,7 +36,7 @@ var handleOpenURL = function (url) {
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, $localstorage) {
+.run(function($ionicPlatform, $state, $rootScope, $localstorage, LoginService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -66,126 +66,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 			}
 		});
 		
-		
+        
 		if (window.StatusBar) {
-		  // org.apache.cordova.statusbar required
 		  StatusBar.styleDefault();
 		}
     
 		setTimeout(function() {		
 			document.addEventListener("offline", onOffline, false);
 			document.addEventListener("online", onOnline, false);
-	 }, 100);
+        }, 100);
 	
-	function onOffline(){	
-		
-      navigator.notification.alert(
-          'Please make sure that you have network connection.',  // message
-          null,
-          'No Internet Connection',            // title
-          'Ok'                  // buttonName
-        ); 
-		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-			//$('#publisher').css('display', 'none');
-			//$('#subscriber').css('display', 'none');
-			
-			$state.go('tab.connectionLost');
-		} 
-		
-		/*navigator.notification.alert(
-			'Please make sure that you have network connection.',  // message
-			function(){ 
-				if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-					$state.go('tab.testPage'); return;} },
-			'No Internet Connection',            // title
-			'Done'                  // buttonName
-		);
-		return false;*/
-		
-    }
-	function onOnline() {		
-		if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-		//	$('#publisher').css('display', 'block');
-			//$('#subscriber').css('display', 'block');			
-			$state.go('tab.videoConference');
-		}		
-	}
-    
-	/*$ionicPlatform.on('resume', function(){
-		 setTimeout(function() {		
-			document.addEventListener("offline", onOffline, false);
-			function onOffline() {
-				// Handle the offline event				
-				//$(".networkDiv").show();
-				var networkConnection = 'off';
-				alert('offline2');
-			}
-			document.addEventListener("online", onOnline, false);
-			function onOnline() {
-				// Handle the online event				
-				//$(".networkDiv").hide();
-				var networkConnection = 'on';
-				alert('online2');
-			}
-		 }, 1000);
-	});  
-		*/
-	
-    cordova.plugins.backgroundMode.setDefaults({ text:'TelehealthOne'});
-      // Enable background mode
-      cordova.plugins.backgroundMode.enable();
-  
-      // Called when background mode has been activated
-      cordova.plugins.backgroundMode.onactivate = function () {
-          /*
-          setTimeout(function () {
-              // Modify the currently displayed notification
-              cordova.plugins.backgroundMode.configure({
-                  text:'Running in background for more than 5s now.'
-              });
-          }, 5000);
-          */
-      };
-      setTimeout(function() {
-        //alert('external: ' + window.localStorage.getItem("external_load"));
-        if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
-          var EXTRA = {};
-          var extQuery = window.localStorage.getItem("external_load").split('?')
-          var extQueryOnly = extQuery[1];
-          
-          var query = extQueryOnly.split("&");
-          
-          for (var i = 0, max = query.length; i < max; i++)
-          {
-              if (query[i] === "") // check for trailing & with no param
-                  continue;
+        function onOffline(){	
             
-              var param = query[i].split("=");
-              EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-          }
-          window.localStorage.setItem("external_load", null);
-          if(EXTRA['env'] != ""){
-            var dEnv = EXTRA['env'];
-            if(dEnv.toUpperCase() == "SANDBOX"){
-              deploymentEnv = "Sandbox";
-            }else if(dEnv.toUpperCase() == "QA"){
-              deploymentEnv = "QA";
-            }else if(dEnv.toUpperCase() == "PRODUCTION"){
-              deploymentEnv = "Production";
-            }
-          }
-          if(EXTRA['token'] != "" && EXTRA['env'] != ""){
-            $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
-          }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
-            $state.go('tab.login');
-          }else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-            $state.go('tab.singleTheme');
-          }
+        navigator.notification.alert(
+            'Please make sure that you have network connection.',  // message
+            null,
+            'No Internet Connection',            // title
+            'Ok'                  // buttonName
+            ); 
+            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+                $state.go('tab.connectionLost');
+            } 
         }
-      }, 2000);
-      $ionicPlatform.on('resume', function(){
+        function onOnline() {		
+            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+            $state.go('tab.videoConference');
+            }		
+        }
+        
+        cordova.plugins.backgroundMode.setDefaults({ text:'TelehealthOne'});
+        cordova.plugins.backgroundMode.enable();
+  
         setTimeout(function() {
-          if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+            if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
             var EXTRA = {};
             var extQuery = window.localStorage.getItem("external_load").split('?')
             var extQueryOnly = extQuery[1];
@@ -196,33 +109,70 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             {
                 if (query[i] === "") // check for trailing & with no param
                     continue;
-            
+                
                 var param = query[i].split("=");
                 EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
             }
             window.localStorage.setItem("external_load", null);
             if(EXTRA['env'] != ""){
-              var dEnv = EXTRA['env'];
-              if(dEnv.toUpperCase() == "SANDBOX"){
+                var dEnv = EXTRA['env'];
+                if(dEnv.toUpperCase() == "SANDBOX"){
                 deploymentEnv = "Sandbox";
-              }else if(dEnv.toUpperCase() == "QA"){
+                }else if(dEnv.toUpperCase() == "QA"){
                 deploymentEnv = "QA";
-              }else if(dEnv.toUpperCase() == "PRODUCTION"){
+                }else if(dEnv.toUpperCase() == "PRODUCTION"){
                 deploymentEnv = "Production";
-              }
+                }
             }
             if(EXTRA['token'] != "" && EXTRA['env'] != ""){
-              $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+                $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
             }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
-				$state.go('tab.login');
-			}else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-				$state.go('tab.singleTheme');
-			}
-          }
+                $state.go('tab.login');
+            }else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+                $state.go('tab.singleTheme');
+            }
+            }
         }, 2000);
-      });    
-      
-    });
+        $ionicPlatform.on('resume', function(){
+            setTimeout(function() {
+            if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+                var EXTRA = {};
+                var extQuery = window.localStorage.getItem("external_load").split('?')
+                var extQueryOnly = extQuery[1];
+                
+                var query = extQueryOnly.split("&");
+                
+                for (var i = 0, max = query.length; i < max; i++)
+                {
+                    if (query[i] === "") // check for trailing & with no param
+                        continue;
+                
+                    var param = query[i].split("=");
+                    EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+                }
+                window.localStorage.setItem("external_load", null);
+                if(EXTRA['env'] != ""){
+                var dEnv = EXTRA['env'];
+                if(dEnv.toUpperCase() == "SANDBOX"){
+                    deploymentEnv = "Sandbox";
+                }else if(dEnv.toUpperCase() == "QA"){
+                    deploymentEnv = "QA";
+                }else if(dEnv.toUpperCase() == "PRODUCTION"){
+                    deploymentEnv = "Production";
+                }
+                }
+                if(EXTRA['token'] != "" && EXTRA['env'] != ""){
+                $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+                }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
+                    $state.go('tab.login');
+                }else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+                    $state.go('tab.singleTheme');
+                }
+            }
+            }, 2000);
+        });    
+        
+        });
 })
 
 

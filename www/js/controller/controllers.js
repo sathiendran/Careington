@@ -125,6 +125,8 @@ var ENDED_CONSULTATION_STATUS_CODE = 119;
 var WAITING_CONSULTATION_STATUS_CODE = 68;
 var JOIN_CONSULTATION_STATUS_CODE = 121;
 
+
+
 angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
   $provide.decorator('$browser', ['$delegate', '$window', function($delegate, $window) {
 
@@ -163,35 +165,58 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
   }]);
 }); 
 
+    if(deploymentEnv == "Sandbox"){
+		apiCommonURL = 'https://sandbox.connectedcare.md';		
+	}else if(deploymentEnv == "Production"){
+		apiCommonURL = 'https://connectedcare.md';
+	}else if(deploymentEnv == "QA"){
+		apiCommonURL = 'https://snap-qa.com';
+	}else if(deploymentEnv == "Single"){		
+		//apiCommonURL = 'https://sandbox.connectedcare.md';	
+	//	apiCommonURL = 'https://snap-qa.com';	
+	//	apiCommonURL = 'https://connectedcare.md';
+		apiCommonURL = ' https://snap-stage.com';    
+    
+	} else if(deploymentEnv == "Staging") {
+		apiCommonURL = ' https://snap-stage.com';
+		api_keys_env = "Staging";
+	}
+
+
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
 .controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
-	$scope.doGetSingleHospitalTheme = function () {
-						
+	$rootScope.hospitalId = singleHospitalId;
+    $scope.doGetUserHospitalInformation = function () {					
 			var params = {
-				
-				success: function (data) {					
-					//alert(data);
-                    brandColor = data.color;
-					 $state.go('tab.loginSingle'); 
+				hospitalId: $rootScope.hospitalId,
+				success: function (data) {	
+                    $rootScope.brandColor = data.data[0].brandColor;
+                    $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                    $rootScope.Hopital = data.data[0].brandName;
+                    $rootScope.contactNumber = '';
+					
+                     $state.go('tab.loginSingle'); 
 					
 					
 				},
 				error: function (data) {
-					//$rootScope.serverErrorMessageValidation();
+				//	$rootScope.serverErrorMessageValidation();
 				}
 			};
-			LoginService.getSingleHospitalTheme(params);		
+			LoginService.getHospitalInfo(params);		
     }
-    $scope.doGetSingleHospitalTheme();  
+    $scope.doGetUserHospitalInformation();  
 })
 
 //InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
 	$rootScope.deploymentEnv = deploymentEnv;
+    
+    $rootScope.APICommonURL = apiCommonURL;
 	
-	if(deploymentEnv == "Sandbox"){
+	/*if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		apiCommonURL = 'https://sandbox.connectedcare.md';		
 	}else if(deploymentEnv == "Production"){
@@ -214,7 +239,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-stage.com';
 		apiCommonURL = ' https://snap-stage.com';
 		api_keys_env = "Staging";
-	}
+	}*/
+    
 	$localstorage.set('ChkVideoConferencePage', ""); 
 	
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
@@ -607,9 +633,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
-			$state.go('tab.loginSingle');
+			$state.go('tab.singleTheme');
 		}else if(deploymentEnv == "QA"){
-			$state.go('tab.loginSingle');
+			$state.go('tab.singleTheme');
 		}else{
 			$state.go('tab.login');
 		}
@@ -623,9 +649,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
 	$rootScope.deploymentEnv = deploymentEnv;
+    if(deploymentEnv != 'Multiple') {
+        $rootScope.APICommonURL = apiCommonURL;
+    }
 	//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 	//$rootScope.APICommonURL = 'https://connectedcare.md';
-	if(deploymentEnv == "Sandbox"){
+	/*if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		apiCommonURL = 'https://sandbox.connectedcare.md';
 	}else if(deploymentEnv == "Production"){
@@ -652,7 +681,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-stage.com';
 		apiCommonURL = ' https://snap-stage.com';
 		api_keys_env = "Staging";
-	}
+	}*/
 	
 	$rootScope.envList = ["Snap.QA", "Sandbox", "Staging" ];
 	
@@ -1014,9 +1043,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
-			$state.go('tab.loginSingle');
+			$state.go('tab.singleTheme');
 		}else if(deploymentEnv == "QA"){
-			$state.go('tab.loginSingle');
+			$state.go('tab.singleTheme');
 		}else{
 			$state.go('tab.login');
 		}
@@ -1378,7 +1407,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.goBackFromReset = function() {
 		if(deploymentEnv == "Single"){
-			$state.go('tab.loginSingle');
+			$state.go('tab.singleTheme');
 		} else {
 			$state.go('tab.password');
 		}

@@ -312,9 +312,9 @@ angular.module('starter.controllers')
 		if(deploymentEnv == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnv == "Single"){
-			$state.go('tab.loginSingle');
+			$state.go('tab.singleTheme');
 		}else if(deploymentEnv == "QA"){
-			$state.go('tab.loginSingle');
+			$state.go('tab.singleTheme');
 		}else{
 			$state.go('tab.login');
 		}

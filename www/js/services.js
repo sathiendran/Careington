@@ -102,29 +102,8 @@ angular.module('starter.services', [])
 					params.error(data);
 				}
 		});
-	}
-    
-    this.getSingleHospitalTheme = function(params) {
-		var PatientDetailsList = {
-			//headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: 'http://rinsoft.com/snapmdapi/getHospitalColor.php',
-            method: 'GET'
-		};
-		
-		$http(PatientDetailsList).
-			success(function (data, status, headers, config) {
-				if (typeof params.success != 'undefined') {
-					params.success(data);
-				}
-			}).
-			error(function (data, status, headers, config) {
-				if (typeof params.error != 'undefined') {
-					params.error(data);
-				}
-		});
-	}
-	
+	}  
+   
 	this.getPrimaryPatientLastName = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
