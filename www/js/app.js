@@ -121,14 +121,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 				if(EXTRA['env'] != ""){
 					var dEnv = EXTRA['env'];
 					if(dEnv.toUpperCase() == "SANDBOX"){
-					deploymentEnv = "Sandbox";
-                    apiCommonURL = 'https://sandbox.connectedcare.md';
+						deploymentEnv = "Sandbox";
+						apiCommonURL = 'https://sandbox.connectedcare.md';
 					}else if(dEnv.toUpperCase() == "QA"){
-					deploymentEnv = "QA";
-                    apiCommonURL = 'https://snap-qa.com';
+						deploymentEnv = "QA";
+						apiCommonURL = 'https://snap-qa.com';
 					}else if(dEnv.toUpperCase() == "PRODUCTION"){
-					deploymentEnv = "Production";
-                    apiCommonURL = 'https://connectedcare.md';
+						deploymentEnv = "Production";
+						apiCommonURL = 'https://connectedcare.md';
+					}else if(dEnv.toUpperCase() == "STAGE"){
+						deploymentEnv = "Staging";
+						apiCommonURL = ' https://snap-stage.com';
 					}
 				}
 			}
@@ -161,17 +164,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 window.localStorage.setItem("external_load", null);
 				if(deploymentEnv != 'Single') {
 					if(EXTRA['env'] != ""){
-					var dEnv = EXTRA['env'];
-					if(dEnv.toUpperCase() == "SANDBOX"){
-						deploymentEnv = "Sandbox";
-                        apiCommonURL = 'https://sandbox.connectedcare.md';
-					}else if(dEnv.toUpperCase() == "QA"){
-						deploymentEnv = "QA";
-                        apiCommonURL = 'https://snap-qa.com';
-					}else if(dEnv.toUpperCase() == "PRODUCTION"){
-						deploymentEnv = "Production";
-                        apiCommonURL = 'https://connectedcare.md';
-					}
+						var dEnv = EXTRA['env'];
+						if(dEnv.toUpperCase() == "SANDBOX"){
+							deploymentEnv = "Sandbox";
+							apiCommonURL = 'https://sandbox.connectedcare.md';
+						}else if(dEnv.toUpperCase() == "QA"){
+							deploymentEnv = "QA";
+							apiCommonURL = 'https://snap-qa.com';
+						}else if(dEnv.toUpperCase() == "PRODUCTION"){
+							deploymentEnv = "Production";
+							apiCommonURL = 'https://connectedcare.md';
+						}else if(dEnv.toUpperCase() == "STAGE"){
+							deploymentEnv = "Staging";
+							apiCommonURL = ' https://snap-stage.com';
+						}
 					}
 				}
                 if(EXTRA['token'] != "" && EXTRA['env'] != ""){
