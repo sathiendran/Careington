@@ -12,12 +12,15 @@
     //window.localstorage.setItem('ASA', url);
 }*/
 
+
 // Sandbox -  https://sandbox.connectedcare.md
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
 var deploymentEnv = 'Single'; //Production //Multiple //Single 
+var deploymentEnvLogout = 'Single'; // same as above
+
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	var singleHospitalId = 142;
@@ -119,10 +122,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 					var dEnv = EXTRA['env'];
 					if(dEnv.toUpperCase() == "SANDBOX"){
 					deploymentEnv = "Sandbox";
+                    apiCommonURL = 'https://sandbox.connectedcare.md';
 					}else if(dEnv.toUpperCase() == "QA"){
 					deploymentEnv = "QA";
+                    apiCommonURL = 'https://snap-qa.com';
 					}else if(dEnv.toUpperCase() == "PRODUCTION"){
 					deploymentEnv = "Production";
+                    apiCommonURL = 'https://connectedcare.md';
 					}
 				}
 			}
@@ -130,9 +136,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
             }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
                 $state.go('tab.login');
-            }else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+            }/*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
                 $state.go('tab.singleTheme');
-            }
+            }*/
             }
         }, 2000);
         $ionicPlatform.on('resume', function(){
@@ -158,10 +164,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 					var dEnv = EXTRA['env'];
 					if(dEnv.toUpperCase() == "SANDBOX"){
 						deploymentEnv = "Sandbox";
+                        apiCommonURL = 'https://sandbox.connectedcare.md';
 					}else if(dEnv.toUpperCase() == "QA"){
 						deploymentEnv = "QA";
+                        apiCommonURL = 'https://snap-qa.com';
 					}else if(dEnv.toUpperCase() == "PRODUCTION"){
 						deploymentEnv = "Production";
+                        apiCommonURL = 'https://connectedcare.md';
 					}
 					}
 				}
@@ -169,9 +178,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
                 }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
                     $state.go('tab.login');
-                }else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+                } /*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
                     $state.go('tab.singleTheme');
-                }
+                }*/
             }
             }, 2000);
         });    

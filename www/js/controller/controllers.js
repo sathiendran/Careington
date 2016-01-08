@@ -213,8 +213,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 .controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
 	$rootScope.deploymentEnv = deploymentEnv;
-    
-    $rootScope.APICommonURL = apiCommonURL;
+     if(deploymentEnv != 'Multiple') {
+         $rootScope.APICommonURL = apiCommonURL;
+     }
 	
 	/*if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
@@ -630,11 +631,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.doGetPatientProfiles();	
 		$scope.doGetRelatedPatientProfiles('userhome');
 	}else{
-		if(deploymentEnv == "Multiple"){
+		if(deploymentEnvLogout == "Multiple"){
 			$state.go('tab.chooseEnvironment');
-		}else if(deploymentEnv == "Single"){
-			$state.go('tab.singleTheme');
-		}else if(deploymentEnv == "QA"){
+		}else if(deploymentEnvLogout == "Single"){
 			$state.go('tab.singleTheme');
 		}else{
 			$state.go('tab.login');
@@ -1040,12 +1039,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		if(deploymentEnv == "Multiple"){
+		if(deploymentEnvLogout == "Multiple"){
 			$state.go('tab.chooseEnvironment');
-		}else if(deploymentEnv == "Single"){
-			$state.go('tab.singleTheme');
-		}else if(deploymentEnv == "QA"){
-			$state.go('tab.singleTheme');
+		}else if(deploymentEnvLogout == "Single"){
+			$state.go('tab.singleTheme');		
 		}else{
 			$state.go('tab.login');
 		}

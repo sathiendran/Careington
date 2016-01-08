@@ -51,11 +51,9 @@ angular.module('starter.controllers')
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		if(deploymentEnv == "Multiple"){
+		if(deploymentEnvLogout == "Multiple"){
 			$state.go('tab.chooseEnvironment');
-		}else if(deploymentEnv == "Single"){
-			$state.go('tab.singleTheme');
-		}else if(deploymentEnv == "QA"){
+		}else if(deploymentEnvLogout == "Single"){
 			$state.go('tab.singleTheme');
 		}else{
 			$state.go('tab.login');
