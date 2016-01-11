@@ -187,8 +187,8 @@ angular.module('starter.controllers')
 						);
 						return false;
 					} else {
-						//$state.go('tab.ConsentTreat');
-						$scope.doGetWaitingRoom();
+						$state.go('tab.ConsentTreat');
+						//$scope.doGetWaitingRoom();
 
 					}
 						

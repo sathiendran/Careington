@@ -1191,11 +1191,11 @@ $scope.GoTopriorSurgery = function(PriorSurgeryValid) {
         } else if(($scope.surgery.dateStringMonth == '' || $scope.surgery.dateStringMonth == undefined || $scope.surgery.dateStringYear == '' || $scope.surgery.dateStringYear == undefined)) {
              $scope.ErrorMessage = "Please enter the date as MM/YYYY";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
-        }else if(!isSurgeryDateValid){
-            $scope.ErrorMessage = "Sugery date should not be before your birthdate";
-			$rootScope.ValidationFunction1($scope.ErrorMessage);
+       /* }else if(!isSurgeryDateValid){
+            $scope.ErrorMessage = "Surgery date should not be before your birthdate";
+			$rootScope.ValidationFunction1($scope.ErrorMessage);*/
         }else if(!isSurgeryDateIsFuture){
-            $scope.ErrorMessage = "Sugery date should not be the future Date";
+            $scope.ErrorMessage = "Surgery date should not be the future Date";
 			$rootScope.ValidationFunction1($scope.ErrorMessage);
         }else {
             SurgeryStocksListService.addSurgery($scope.surgery.name, $scope.surgery.dateString);

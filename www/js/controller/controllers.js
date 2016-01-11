@@ -2701,14 +2701,50 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getPatientPaymentProfile(params);		
     }
 	
-	$scope.cancelConsultation = function() {
+	$scope.doPostClearHealthPlan = function() {
+			if ($rootScope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+				var params = {
+					healthPlanID: $rootScope.healthPlanID,
+					InsuranceCompanyName: $rootScope.providerName,
+					PolicyNumber: $rootScope.PolicyNo,
+					ConsultationId: $rootScope.consultationId,
+					accessToken: $rootScope.accessToken,
+					success: function (data) {					
+						$state.go('tab.userhome');
+					},
+					error: function (data) {
+						$rootScope.serverErrorMessageValidation();
+					}
+				};
+				LoginService.postClearHealthPlan(params);
+		}
+	
+	$scope.cancelConsultation = function() {		
 		navigator.notification.confirm(
 			'Are you sure that you want to cancel this consultation?',
 			 function(index){
 				if(index == 1){					
 					
 				}else if(index == 2){
-					$state.go('tab.userhome');
+					$state.go('tab.userhome');			
+				}
+			 },
+			'Confirmation:',
+			['No','Yes']     
+		);
+	}
+	
+	$scope.cancelConsultationForHealthPlan = function() {		
+		navigator.notification.confirm(
+			'Are you sure that you want to cancel this consultation?',
+			 function(index){
+				if(index == 1){					
+					
+				}else if(index == 2){
+					$scope.doPostClearHealthPlan();					
 				}
 			 },
 			'Confirmation:',
@@ -3372,10 +3408,53 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 	
 	
+	$scope.doGetUserHospitalInformationForUserHome = function () {
+			if ($rootScope.accessToken == 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}			
+			var params = {
+				accessToken: $rootScope.accessToken,
+				hospitalId: $rootScope.hospitalId,
+				success: function (data) {					
+					$rootScope.getDetails = data.data[0].enabledModules;
+					if($rootScope.getDetails != '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+								$rootScope.insuranceMode = 'on';
+									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
+										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+											$rootScope.paymentMode = 'on';
+										}
+									}*/
+							}
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+								$rootScope.paymentMode = 'on';
+							}
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+								$rootScope.onDemandMode = 'on';
+							}
+						}
+					}
+					 $state.go('tab.appoimentDetails'); 
+					
+					
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getHospitalInfo(params);		
+    }
      
      $scope.GoToappoimentDetails = function(scheduledListData) {
+		$rootScope.paymentMode = '';
+		$rootScope.insuranceMode = '';
+		$rootScope.onDemandMode = '';	
 		$rootScope.scheduledListDatas = scheduledListData;
-		$state.go('tab.appoimentDetails');
+		$scope.doGetUserHospitalInformationForUserHome();
+		//$state.go('tab.appoimentDetails');
      };
 	 
 	 
