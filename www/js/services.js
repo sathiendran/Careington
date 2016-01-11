@@ -192,6 +192,34 @@ angular.module('starter.services', [])
 		});
 	}
 	
+		
+	this.postClearHealthPlan = function(params) {
+		var confirmPostClearHealthPlan = {
+			headers: util.getHeaders(params.accessToken),
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+              url: apiCommonURL + '/api/healthplan/' + params.healthPlanID +'/clear',
+			 //http://emeraldg.local/api/v2/patients/mail/resetPassword
+			method: 'POST',
+			 data: {
+                InsuranceCompanyName: params.InsuranceCompanyName,
+                PolicyNumber: params.PolicyNumber,
+				ConsultationId: params.ConsultationId,
+            }
+		};
+		
+		$http(confirmPostClearHealthPlan).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
 	this.putConsultationSave = function (params) {
         //util.setHeaders($http, params);
         var requestInfo = {
