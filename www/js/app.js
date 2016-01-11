@@ -18,8 +18,8 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single 
-var deploymentEnvLogout = 'Single'; // same as above
+var deploymentEnv = 'Multiple'; //Production //Multiple //Single 
+var deploymentEnvLogout = 'Multiple'; // same as above
 
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
@@ -97,7 +97,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }		
         }
         
-        cordova.plugins.backgroundMode.setDefaults({ text:'TelehealthOne'});
+        cordova.plugins.backgroundMode.setDefaults({ text:'Virtual Care'});
         cordova.plugins.backgroundMode.enable();
   
         setTimeout(function() {

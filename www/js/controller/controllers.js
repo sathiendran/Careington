@@ -550,7 +550,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -558,7 +558,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -566,7 +566,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -574,7 +574,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1654,7 +1654,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1662,7 +1662,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1670,7 +1670,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1678,7 +1678,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'TelehealthOne',            // title
+								'Virtual Care',            // title
 								'Done'                  // buttonName
 							);
 							return false;
