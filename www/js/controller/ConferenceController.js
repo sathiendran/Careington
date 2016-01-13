@@ -517,7 +517,7 @@ angular.module('starter.controllers')
 			navigator.notification.alert(
 				'Consultation ended successfully!',  // message
 				consultationEndedAlertDismissed,         // callback
-				'Virtual Care',            // title
+				'TelehealthOne',            // title
 				'Done'                  // buttonName
 			);
 				// }, 10000);

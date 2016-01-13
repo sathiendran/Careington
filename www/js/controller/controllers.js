@@ -85,25 +85,48 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 }else if(deploymentEnv == "Single"){
 	var util = {
 		setHeaders: function (request, credentials) {
-			if (typeof credentials != 'undefined') {
-				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			if(api_keys_env == 'Staging'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+				return request;
+			}else{
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
+				request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+				return request;
 			}
-			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
-			request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
-			return request;
 		},
 		getHeaders: function (accessToken) {
-			var headers = {
+			if(api_keys_env == 'Staging'){
+				var headers = {
 					'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
 					'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 					'Content-Type': 'application/json; charset=utf-8'
 				};
-			if (typeof accessToken != 'undefined') {
-				headers['Authorization'] = 'Bearer ' + accessToken;
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
+			}else{
+				var headers = {
+						'X-Developer-Id': '1f9480321986463b822a981066cad094',
+						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
 			}
-			
-			return headers;
 		}
 	}
 }
@@ -172,10 +195,11 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 	}else if(deploymentEnv == "QA"){
 		apiCommonURL = 'https://snap-qa.com';
 	}else if(deploymentEnv == "Single"){		
-		//apiCommonURL = 'https://sandbox.connectedcare.md';	
+	//	apiCommonURL = 'https://sandbox.connectedcare.md';	
 	//	apiCommonURL = 'https://snap-qa.com';	
-	//	apiCommonURL = 'https://connectedcare.md';
-		apiCommonURL = ' https://snap-stage.com';    
+		apiCommonURL = 'https://connectedcare.md';
+		var deploymentEnvForProduction = 'Production'; // Enable Only for Single Production - For Apple testing purpose
+	//	apiCommonURL = ' https://snap-stage.com';    
     
 	} else if(deploymentEnv == "Staging") {
 		apiCommonURL = ' https://snap-stage.com';
@@ -550,7 +574,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -558,7 +582,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -566,7 +590,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -574,7 +598,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1187,7 +1211,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Please enter a valid email address";
 				$rootScope.Validation($scope.ErrorMessage);
 			}
-			else {
+			else {	
 				if($("#squaredCheckbox").prop('checked') == true) {
                     $localstorage.set('username', $("#UserEmail").val());
                     $localStorage.oldEmail = $scope.userLogin.UserEmail;  
@@ -1216,6 +1240,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.Validation($scope.ErrorMessage);
 			
 		}else{
+			if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
+				//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
+					if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+						//deploymentEnv = "Staging";
+						apiCommonURL = 'https://snap-stage.com';
+						api_keys_env = 'Staging';
+						$rootScope.APICommonURL = 'https://snap-stage.com';
+					} else {
+						//deploymentEnv = "Production";
+						apiCommonURL = 'https://connectedcare.md';
+						api_keys_env = '';
+						$rootScope.APICommonURL = 'https://connectedcare.md';
+					}
+				}
 			if($("#squaredCheckbox").prop('checked') == true) {
 				$localstorage.set('username', $("#UserEmail").val());
 				$localStorage.oldEmail = $scope.userLogin.UserEmail;  
@@ -1368,6 +1406,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.Validation($scope.ErrorMessage);			
 			} else {
 				if(deploymentEnv == "Single"){ 
+					if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
+						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+							//deploymentEnv = "Staging";
+							apiCommonURL = 'https://snap-stage.com';
+							api_keys_env = 'Staging';
+							$rootScope.APICommonURL = 'https://snap-stage.com';
+						} else {
+							//deploymentEnv = "Production";
+							apiCommonURL = 'https://connectedcare.md';
+							api_keys_env = '';
+							$rootScope.APICommonURL = 'https://connectedcare.md';
+						}
+					}
+					
+					
 					//$rootScope.UserEmail = $('#UserEmail').val();
 					if($("#squaredCheckbox").prop('checked') == true) {
 						$localstorage.set('username', $("#UserEmail").val());
@@ -1654,7 +1707,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1662,7 +1715,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1670,7 +1723,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1678,7 +1731,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Virtual Care',            // title
+								'TelehealthOne',            // title
 								'Done'                  // buttonName
 							);
 							return false;

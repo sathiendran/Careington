@@ -18,11 +18,13 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single 
-var deploymentEnvLogout = 'Multiple'; // same as above
+var deploymentEnv = 'Single'; //Production //Multiple //Single 
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var appStoreTestUserEmail = '';
 
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
+	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 	var singleHospitalId = 142;
 	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
 	var logo= ''; //img/teleHealthOne.png';
@@ -97,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }		
         }
         
-        cordova.plugins.backgroundMode.setDefaults({ text:'Virtual Care'});
+        cordova.plugins.backgroundMode.setDefaults({ text:'TelehealthOne'});
         cordova.plugins.backgroundMode.enable();
   
         setTimeout(function() {
@@ -131,7 +133,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 						apiCommonURL = 'https://connectedcare.md';
 					}else if(dEnv.toUpperCase() == "STAGE"){
 						deploymentEnv = "Staging";
-						apiCommonURL = ' https://snap-stage.com';
+						apiCommonURL = 'https://snap-stage.com';
 					}
 				}
 			}
@@ -176,7 +178,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 							apiCommonURL = 'https://connectedcare.md';
 						}else if(dEnv.toUpperCase() == "STAGE"){
 							deploymentEnv = "Staging";
-							apiCommonURL = ' https://snap-stage.com';
+							apiCommonURL = 'https://snap-stage.com';
 						}
 					}
 				}
