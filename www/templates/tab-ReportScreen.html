@@ -72,8 +72,8 @@
 			<div class="reportEncounter"  >
 				<div><b>Encounter Date:</b></div>
 				<div>{{consultationDate | date:'MMM dd, yyyy h:mm a'}}</div>
-				<div><b>Physician:</b> </div>
-				<div>{{reportDoctorFirstName}} {{reportDoctorLastName}}</div>
+				<div><b>Clinician:</b> </div>
+				<div>{{reportDoctorFirstName}} {{reportDoctorLastName}} {{reportMedicalSpeciality}} </div>
 				<div ng-if="displayCOnsultationDuration == 'display'"><b>Consultation Duration:</b> </div>
 				<div ng-if="displayCOnsultationDuration == 'display'">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
 			</div>		

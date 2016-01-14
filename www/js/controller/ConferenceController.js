@@ -108,6 +108,12 @@ angular.module('starter.controllers')
 				} else {
 					$rootScope.reportDoctorFirstName = 'None Reported';
 				}
+				if($rootScope.existingConsultationReport.medicalSpeciality !='' && typeof $rootScope.existingConsultationReport.medicalSpeciality != 'undefined')
+				{
+					$rootScope.reportMedicalSpeciality = ', ' + angular.element('<div>').html($rootScope.existingConsultationReport.medicalSpeciality).text();
+				} else {
+					$rootScope.reportMedicalSpeciality = '';
+				}
 				
 				if($rootScope.existingConsultationReport.doctorFirstName !='' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined')
 				{
