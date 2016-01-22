@@ -18,16 +18,16 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single 
-var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Production'; //Production //Multiple //Single 
+var deploymentEnvLogout = 'Production'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = '';
 var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-	//deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
-	var singleHospitalId = 142;
+	//deploymentEnvForProduction = 'Production';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
+	var singleHospitalId = 168;
 	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
 	var logo= ''; //img/teleHealthOne.png';
 	var Hopital = ''; //TelehealthOne';
@@ -101,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }		
         }
         
-        cordova.plugins.backgroundMode.setDefaults({ text:'TelehealthOne'});
+        cordova.plugins.backgroundMode.setDefaults({ text:'Virtual Care'});
         cordova.plugins.backgroundMode.enable();
   
         setTimeout(function() {
