@@ -844,7 +844,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
         $rootScope.LoginContantDiv = " height: 50px;";  //95px
         //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
-        $rootScope.PasswordOverlop = "margin: 105px 0 0 0 !important; padding-top: 18px !important;";  
+        $rootScope.PasswordOverlop = "margin: 105px 0 0 0 !important;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";  
         $rootScope.PriorSurgeryPopupTextBox = "margin-top: 11px;";
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
