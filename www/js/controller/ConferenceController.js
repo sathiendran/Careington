@@ -51,6 +51,8 @@ angular.module('starter.controllers')
             consultationId: $rootScope.consultationId, 
             accessToken: $rootScope.accessToken,
             success: function (data) {
+				//$('#subscriber .OT_video-container').css('background-color', 'transparent');
+				//$('#publisher .OT_video-container').css('background-color', 'transparent');
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
 				/*if($rootScope.existingConsultationReport.organization !='' && typeof $rootScope.existingConsultationReport.organization != 'undefined')
 				{
@@ -304,7 +306,7 @@ angular.module('starter.controllers')
 		}
     
     
-	if(session != null) {
+	if(session != null) {		 
 		session.unpublish(publisher);
 		session.disconnect();
 		 session = null; 
@@ -523,7 +525,7 @@ angular.module('starter.controllers')
 			navigator.notification.alert(
 				'Consultation ended successfully!',  // message
 				consultationEndedAlertDismissed,         // callback
-				'TelehealthOne',            // title
+				'Virtual Care',            // title
 				'Done'                  // buttonName
 			);
 				// }, 10000);
