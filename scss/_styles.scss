@@ -369,7 +369,7 @@ body {
 .password_sub_headerIOS { 
 	@extend .login_sub_header;
 	margin-top: 99px;
-	color: $Shiraz;
+	color: $Shiraz;     
 		.password_header_contentIOS { 
 			/*position: relative;
 			top: 45px;*/
@@ -1431,6 +1431,7 @@ body {
 
 .ReportContent   {
 	margin: 81px 0px 0 0px;
+    padding-top: 20px;
 	font-family: 'Glober Regular';
 	z-index: 999; 
 	.reportLogo {
@@ -3335,4 +3336,9 @@ font-family: $fontFamily_regular;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify; position: relative; top: -115px;
+}
+.SubHeadIOS {
+    margin-top: 82px !important;
+    background-color:#FFF !important; position: relative !important; top: 10px !important; box-shadow:  0px 3px 3px #ADABAB !important;
+	-moz-box-shadow:  0px 3px 3px #ADABAB !important;	-webkit-box-shadow:  0px 3px 3px #ADABAB !important;  
 }
