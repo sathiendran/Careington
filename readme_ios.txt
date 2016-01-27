@@ -54,3 +54,21 @@ F:\adt-bundle-windows-x86-20140702\adt-bundle-windows-x86-20140702\sdk\build-too
 ls\21.0.0>	
 	
 	3.	zipalign -v 4 "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\CordovaApp-release-unsigned.apk" "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\VirtualCare.apk"
+
+
+IOS:
+
+ ionic plugin rm cordova-plugin-customurlscheme
+    device org.apache.cordova.device
+    ionic plugin rm de.appplant.cordova.plugin.local-notification
+    ionic plugin add de.appplant.cordova.plugin.local-notification
+		
+opentok:
+
+opentokplugin.m
+
+465- [streamData setObject: stream.name forKey: @"name" ];
+    [streamData setObject: stream.streamId forKey: @"streamId" ];
+     [streamData setObject: [NSNumber numberWithInt: stream.videoType] forKey: @"videoType" ];
+     [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.height] forKey: @"videoHeight" ];
+     [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.width] forKey: @"videowidth" ];	
