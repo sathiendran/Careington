@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="apiTestApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+    <style>
+    .push-it-down {
+        margin-top: 60px;
+    }
+	.alert {
+		overflow: scroll;
+	}
+	.someTopSpace {
+		margin-top: 10px;
+	}
+    </style>
+<body ng-controller="apiTestController">
+    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">{{title}}</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container push-it-down">
+
+        <div class="panel panel-default" style="display: none;">
+            <div class="panel-heading">
+                POST /Account/Token
+                <a target="_blank" href="https://sandbox.connectedcare.md/api/Help/Api/POST-Account-Token"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+            </div>
+            <div class="panel-body">
+                <button type="button" class="btn btn-default btn-lg" ng-click="doGetToken();">
+                  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Get Token
+                </button>
+				<div>
+					<label>UserType Id:</label>
+					<input ng-model="userTypeId" class="form-control input-sm" type="text">
+					
+					<label>Email Id:</label>
+					<input ng-model="emailAddress" class="form-control input-sm" type="text">
+						<label>Password:</label>
+					<input ng-model="userPassword" class="form-control input-sm" type="text">
+				</div>	
+				<div class="alert {{tokenStatus}} someTopSpace" role="alert">{{accessToken}}</div>
+            </div>
+        </div>
+		
+		
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				POST /v2/patients/{patientEmail}/mail?type={emailType}
+				<a target="_blank" href="https://sandbox.connectedcare.md/api/Help/Api/POST-v2-patients-email-mail_type"><span class="glyphicon glyphicon-question-sign"></span>Help</a>
+			</div>
+			<div class="panel-body" id="ConsultationSave">
+				<button type="button" class="btn btn-default btn-lg" ng-click="doPostSendPasswordResetEmail();">
+				  <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Send Password Reset Email
+				</button>
+				<div>
+					<label>Patient Email:</label>
+					<input ng-model="patientEmail" class="form-control input-sm" type="text">
+					<label>Email Type:</label>
+					<input ng-model="emailType" class="form-control input-sm" type="text">	
+					<label>Hospital Id:</label>
+					<input ng-model="hospitalId" class="form-control input-sm" type="text">	
+					<p class="someTopSpace">
+						<textarea class="form-control" rows="5">{{PasswordResetEmail}}</textarea>
+					</p>
+				</div>
+			</div>
+		</div>
+		      
+        <p>
+            <input type="button" value="jQuery Token" onclick="getToken();"/>
+        </p>
+    </div><!-- /.container -->
+	
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="scripts/ui-bootstrap-tpls-0.12.1.min.js"></script>
+<script src="scripts/app_schedule.js"></script>
+<script src="scripts/spin.min.js"></script>
+<script src="scripts/angular-spinner.min.js"></script>
+<script src="scripts/angular-loading-spinner.js"></script>
+
+<script>
+    function getToken() {
+        $.ajax({
+            url: 'https://snap-dev.com/api/Account/Token',
+            data: {
+                UserTypeId: 1,// params.userTypeId,
+                HospitalId: 126,// params.hospitalId,
+                Email: 'ben.ross.310.95348@gmail.com', //params.email,
+                Password: 'Password@123'//params.password
+            },
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+                'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5'
+            },
+            success: function (data) {
+                alert('Success!!');
+                console.log(data);
+            },
+            error: function (data) {
+                alert('Failed!!');
+                console.log(data);
+            }
+        });
+    }
+</script>
+</html>

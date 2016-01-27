@@ -15,6 +15,28 @@ Notes to remember
 	2. Remember to update the build number in login.html in every build.
 	3. Remember to test the app full flow before releasing it to store to make sure everything is working.
 	
+Opentok Android:
+
+www/js/opentok.js - 720 - //element.parentNode.removeChild(element);
+					604 -  delete streamElements[streamId];
+					
+C:\Users\RINSOFT\workspace\snapmdV2\platforms\android\src\com\tokbox\cordova
+
+opentokandroidplugin.java - 
+
+	36, import android.util.DisplayMetrics;
+		import com.opentok.android.BaseVideoRenderer;
+	117,  //widthRatio = (float) mProperty.getDouble(ratioIndex);
+          //heightRatio = (float) mProperty.getDouble(ratioIndex + 1);
+		
+		DisplayMetrics metrics = new DisplayMetrics();
+		cordova.getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+		widthRatio = (float) mProperty.getDouble(ratioIndex) * metrics.density;
+		heightRatio = (float) mProperty.getDouble(ratioIndex + 1) * metrics.density;
+	187, mPublisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+	277, mSubscriber.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+	
 	
 Android Release
 com.snap.connectedcare.production

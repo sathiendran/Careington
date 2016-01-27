@@ -26,8 +26,8 @@ var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only f
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-	deploymentEnvForProduction = 'Production';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
-	var singleHospitalId = 142;
+	//deploymentEnvForProduction = 'Production';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
+	var singleHospitalId = 156;
 	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
 	var logo= ''; //img/teleHealthOne.png';
 	var Hopital = ''; //TelehealthOne';
