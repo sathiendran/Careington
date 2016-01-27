@@ -1,5 +1,5 @@
 Plugins to be installed
-	1. ionic plugin add https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git --variable URL_SCHEME=snapmdconnectedcare
+	1. ionic plugin a
 	2. ionic plugin add https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git - Added by manual integration.
 	3. ionic plugin add https://github.com/prabinyovan/cordova-plugin-opentok-v2.6.0
 	4. ionic plugin add https://github.com/katzer/cordova-plugin-background-mode.git
@@ -8,12 +8,28 @@ Plugins to be installed
 	7. ionic plugin add https://github.com/apache/cordova-plugin-inappbrowser
 	8. ionic plugin add org.apache.cordova.dialogs
 	9. ionic plugin add org.apache.cordova.device
+    ionic plugin add https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git --variable URL_SCHEME=snapmdconnectedcare
+    
+    ionic plugin rm cordova-plugin-customurlscheme
+    device org.apache.cordova.device
+    ionic plugin rm de.appplant.cordova.plugin.local-notification
+    ionic plugin add de.appplant.cordova.plugin.local-notification
 	
 
 Notes to remember
 	1. Remember to change the signalR reference in index.html on very release to different env.
 	2. Remember to update the build number in login.html in every build.
 	3. Remember to test the app full flow before releasing it to store to make sure everything is working.
+	
+opentok:
+
+opentokplugin.m
+
+465- [streamData setObject: stream.name forKey: @"name" ];
+    [streamData setObject: stream.streamId forKey: @"streamId" ];
+     [streamData setObject: [NSNumber numberWithInt: stream.videoType] forKey: @"videoType" ];
+     [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.height] forKey: @"videoHeight" ];
+     [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.width] forKey: @"videowidth" ];	
 	
 	
 Android Release
@@ -31,4 +47,5 @@ C:\Program Files\Java\jdk1.8.0_25\bin>
 F:\adt-bundle-windows-x86-20140702\adt-bundle-windows-x86-20140702\sdk\build-too
 ls\21.0.0>	
 	
-	3.	zipalign -v 4 "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\CordovaApp-release-unsigned.apk" "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\VirtualCare.apk"
+	3.	zipalign -v 4 "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\CordovaApp-release-unsigned.apk" "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\VirtualCare.apk
+
