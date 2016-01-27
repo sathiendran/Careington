@@ -101,7 +101,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }		
         }
         
-        cordova.plugins.backgroundMode.setDefaults({ text:'TelehealthOne'});
+        cordova.plugins.backgroundMode.setDefaults({ text:'Dokita247'});
         cordova.plugins.backgroundMode.enable();
   
         setTimeout(function() {
