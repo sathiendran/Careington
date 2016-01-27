@@ -23,7 +23,8 @@ www/js/opentok.js - 720 - //element.parentNode.removeChild(element);
 C:\Users\RINSOFT\workspace\snapmdV2\platforms\android\src\com\tokbox\cordova
 
 opentokandroidplugin.java - 
-
+	
+	33, import com.opentok.android.Stream.StreamVideoType;
 	36, import android.util.DisplayMetrics;
 		import com.opentok.android.BaseVideoRenderer;
 	117,  //widthRatio = (float) mProperty.getDouble(ratioIndex);
@@ -36,6 +37,9 @@ opentokandroidplugin.java -
 		heightRatio = (float) mProperty.getDouble(ratioIndex + 1) * metrics.density;
 	187, mPublisher.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
 	277, mSubscriber.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
+
+
+Change URL Scheme for co-brand app	
 	
 	
 Android Release
@@ -48,14 +52,14 @@ C:\Program Files\Java\jdk1.8.0_25\bin>
 	1.	keytool -genkey -v -keystore "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\VirtualCare.keystore" -alias VirtualCare -keyalg RSA -keysize 2048 -validity 10000
 
 
-	2.	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\VirtualCare.keystore" "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\CordovaApp-release-unsigned.apk" VirtualCare
+	2.	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "C:\Users\RINSOFT\workspace\snapmdV2\platforms\android\ant-build\VirtualCare.keystore" "C:\Users\RINSOFT\workspace\snapmdV2\platforms\android\ant-build\CordovaApp-release-unsigned.apk" VirtualCare
 
 F:\adt-bundle-windows-x86-20140702\adt-bundle-windows-x86-20140702\sdk\build-too
-ls\21.0.0>	
+ls\21.0.0>		
+
+	3.	zipalign -v 4 "C:\Users\RINSOFT\workspace\snapmdV2\platforms\android\ant-build\CordovaApp-release-unsigned.apk" "C:\Users\RINSOFT\workspace\snapmdV2\platforms\android\ant-build\VirtualCare.apk"
+
 	
-	3.	zipalign -v 4 "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\CordovaApp-release-unsigned.apk" "C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\VirtualCare.apk"
-
-
 IOS:
 
  ionic plugin rm cordova-plugin-customurlscheme
@@ -72,3 +76,4 @@ opentokplugin.m
      [streamData setObject: [NSNumber numberWithInt: stream.videoType] forKey: @"videoType" ];
      [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.height] forKey: @"videoHeight" ];
      [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.width] forKey: @"videowidth" ];	
+
