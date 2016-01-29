@@ -42,10 +42,12 @@
 						}
                     }else{
                        elm.addClass('ng-hide');
-						$ionicPlatform.registerBackButtonAction(function (event, $state) {	
-							if ( ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+						$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
+							if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+								 ($rootScope.currState.$current.name=="tab.waitingRoom") ||	
 								 ($rootScope.currState.$current.name=="tab.receipt") || 	
 								 ($rootScope.currState.$current.name=="tab.videoConference") ||
+								  ($rootScope.currState.$current.name=="tab.connectionLost") ||
 								 ($rootScope.currState.$current.name=="tab.ReportScreen")
 								){ //alert('a'); 
 									// H/W BACK button is disabled for these states (these views)
@@ -54,6 +56,8 @@
 								}else if($rootScope.currState.$current.name=="tab.login"){									 
 									navigator.app.exitApp();
 									//alert('a1');
+								}else if($rootScope.currState.$current.name=="tab.loginSingle"){
+									navigator.app.exitApp();
 								}else {								
 											
 									navigator.app.backHistory();

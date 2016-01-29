@@ -479,7 +479,8 @@ TBSession = (function() {
   };
 
   TBSession.prototype.forceDisconnect = function(connection) {
-    return this;
+    //return this;
+    return Cordova.exec(TBSuccess, TBError, OTPlugin, "forceDisconnect", []);
   };
 
   TBSession.prototype.forceUnpublish = function(stream) {
@@ -717,7 +718,7 @@ TBSession = (function() {
     if (stream) {
       element = streamElements[stream.streamId];
       if (element) {
-        element.parentNode.removeChild(element);
+        //element.parentNode.removeChild(element);
         delete streamElements[stream.streamId];
         TBUpdateObjects();
       }
@@ -777,10 +778,11 @@ TBStream = (function() {
       v = prop[k];
       this[k] = v;
     }
-    this.videoDimensions = {
+    /*this.videoDimensions = {
       width: 0,
       height: 0
     };
+    */
   }
 
   return TBStream;

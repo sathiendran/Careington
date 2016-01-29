@@ -4,12 +4,28 @@ angular.module('starter.services', [])
 
 
 
-.service('LoginService', function($http){
+.service('LoginService', function($http){ 
     /*
         params: email, password, userTypeId, hospitalId
                 (event handlers): success, failure
-    */
+   
+	
+	if(deploymentEnv == "Sandbox"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
 		
+	}else if(deploymentEnv == "Production"){
+		$rootScope.APICommonURL = 'https://connectedcare.md';
+		apiCommonURL = 'https://connectedcare.md';
+	}else if(deploymentEnv == "QA"){
+		$rootScope.APICommonURL = 'https://snap-qa.com';
+		apiCommonURL = 'https://snap-qa.com';
+	}else if(deploymentEnv == "Single"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
+	}
+	
+	 */	
 		//var apiCommonURL = 'https://snap-dev.com';
 		
 		//var apiCommonURL = 'https://sandbox.connectedcare.md';
@@ -86,8 +102,8 @@ angular.module('starter.services', [])
 					params.error(data);
 				}
 		});
-	}
-	
+	}  
+   
 	this.getPrimaryPatientLastName = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
@@ -164,6 +180,34 @@ angular.module('starter.services', [])
 		};
 		
 		$http(confirmOnDemandConsultationSave).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
+		
+	this.postClearHealthPlan = function(params) {
+		var confirmPostClearHealthPlan = {
+			headers: util.getHeaders(params.accessToken),
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+              url: apiCommonURL + '/api/healthplan/' + params.healthPlanID +'/clear',
+			 //http://emeraldg.local/api/v2/patients/mail/resetPassword
+			method: 'POST',
+			 data: {
+                InsuranceCompanyName: params.InsuranceCompanyName,
+                PolicyNumber: params.PolicyNumber,
+				ConsultationId: params.ConsultationId,
+            }
+		};
+		
+		$http(confirmPostClearHealthPlan).
 			success(function (data, status, headers, config) {
 				if (typeof params.success != 'undefined') {
 					params.success(data);
@@ -409,7 +453,8 @@ angular.module('starter.services', [])
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/Hospital/Get',
+           // url: apiCommonURL + '/api/Hospital/Get',
+		    url: apiCommonURL + '/api/v2/hospital/' + params.hospitalId,
             method: 'GET'   
         };
 

@@ -1,0 +1,91 @@
+Virtual Care - Emerald :
+
+https://snap-qa.com/admin/Login 
+
+QA :
+
+	https://emerald.snap-qa.com/Physician/Login
+		snapmdstestingema.iladdress@gmail.com
+		dejan.zivanovic+333@gmail.com
+		
+	https://emerald.snap-qa.com/Admin/Login
+
+	https://emerald.snap-qa.com/Customer/Login
+	
+Sandbox : 
+
+	https://sandbox.connectedcare.md/physician/login
+		 Admin/Physician Login
+		 prabinyovan@hotmail.com
+		 snapmdstestingema.iladdress@gmail.com
+		 Password@123
+		 on sandbox
+	 https://sandbox.connectedcare.md/admin/login
+		snapmdstestingema.iladdress@gmail.com
+ 
+ 
+Docyourway :
+ 
+https://docyourway.snap-qa.com/Physician/Login
+	snapmcgrath@gmail.com/Password@123
+
+	appointment login:
+		snapmcgrath@gmail.com
+		Password@123
+		
+https://docyourway.snap-qa.com/admin/Login
+	snapmcgrath@gmail.com
+	Password@123
+
+Doc your way Production customer login
+	snap.locklear@gmail.com
+	Password@123
+	
+Client Name: DocYourWay
+
+ClientID - Sandbox: 136 
+Client ID - QA: 156
+ClientID - Production: 168
+
+
+ 
+TelehealthOne :
+
+com.snap.connectedcare.TelehealthOneProduction
+Terms & Conditions - https://telehealthone.snap-stage.com/Main/#/UserTerms
+
+Production : 
+
+	Telehealthone production customer login details
+		Demo account – thoover152@gmail.com
+		Demo account password – Telehealth1
+Staging :
+	
+	TelehealthOne staging admin & physician & customer login details	Hospital ID: 142
+		admin & physician 	testuse.rsna.p@gmail.com
+		customer account:  christie.threlkeld@snap.md
+		Password: <their usual password>
+	
+	Customer For Apple Testing	
+		itunesmobiletester@gmail.com
+		iTunesconnect1		
+	#5390 issue
+	#5143
+	
+URL Scheme Updation :
+
+https://snap-qa.com/SnapMDAdmin/Login#Client
+	hi@example.com
+	Password@123
+	
+
+Dokita247	
+
+com.snap.connectedcare.Dokita247Staging
+com.snap.connectedcare.Dokita247Production
+
+#5515
+
+Staging -  156
+Production -  184
+

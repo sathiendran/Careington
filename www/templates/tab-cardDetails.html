@@ -100,7 +100,9 @@
                 </div>
                 <label class="item item-input" >
 					<span class="input-label" >Security Code</span>
-					<input type="password" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
+					<!--<input type="number"  style="-webkit-text-security: disc; text-security:disc; -mox-text-security:disc;{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
+					<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
+
 				</label>
                 	  
 				<label class="item item-input" >
@@ -135,8 +137,10 @@
 			
 			<div class="planDetails"  >
 				<p>When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
-			</div>
-			<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://connectedcare.md/Customer/Terms.aspx', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>
+			</div>			
+			<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://docyourway.connectedcare.md/public/#/userTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>-->
+				<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://dokita247.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div> 
+			<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://connectedcare.md/Main/#/UserTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>-->
 		</div>
 		
 	</ion-content>

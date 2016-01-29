@@ -2,10 +2,11 @@
 	<ion-side-menu-content> 
 		<div ng-include src="'templates/intakeHeader.html'"></div>
 	
-<!-- <div ng-include src="'templates/healthPlan_header.html'"></div> --->
-<ion-content class="ContentHomeUser ConcernsContent" style="{{currentMedicationContent}}" >
+<!-- <div ng-include src="'templates/healthPlan_header.html'"></div> ---> 
+<ion-view title="Current Medication">
+<ion-content class="ContentHomeUser ConcernsContent" >
  	<ion-list>
-		<ion-item class="PrimaryList currMedicationList" style="{{IntakeFormInnerStyleMedication}}">
+		<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
 			<div class="Step1">Step <b style="color:#535353;">5</b> of <b style="color:#535353;">7</b></div>
 			<div ng-click="loadCurrentMedication();" > 
                 
@@ -21,7 +22,7 @@
 		
 		</ion-item>
 		
-         <ion-item ng-repeat="item in patinentCurrentMedication" style="margin-top: -10px;">
+         <ion-item ng-repeat="item in patinentCurrentMedication" >
 			<div class="PrimaryConcernList"  >
 				<p class="intakeNote">{{item.text}} </p>
                 <div ng-click="removeCurrentMedication($index, item);" >
