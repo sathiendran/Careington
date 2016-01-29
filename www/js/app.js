@@ -12,17 +12,25 @@
     //window.localstorage.setItem('ASA', url);
 }*/
 
+
 // Sandbox -  https://sandbox.connectedcare.md
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single
+var deploymentEnv = 'Single'; //Production //Multiple //Single 
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var appStoreTestUserEmail = '';
+var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
+
+var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
-	var singleHospitalId = 168;
-	var brandColor = '#22508b';
-	var logo= 'img/docYourWay.png';
-	var Hopital = 'DocYourWay';
+	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
+	//deploymentEnvForProduction = 'Production';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
+	var singleHospitalId = 156;
+	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
+	var logo= ''; //img/teleHealthOne.png';
+	var Hopital = ''; //TelehealthOne';
 }
 
 var handleOpenURL = function (url) {
@@ -35,7 +43,7 @@ var handleOpenURL = function (url) {
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope) {
+.run(function($ionicPlatform, $state, $rootScope, $localstorage, LoginService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -53,96 +61,51 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 		   cordova.plugins.Keyboard.disableScroll(true);
 		}
+		
+		var initialScreenSize = window.innerHeight;
+		window.addEventListener("resize", function() {
+			if(window.innerHeight < initialScreenSize){
+				$(".has-footer").css({"bottom": 0});	
+				$(".footer").hide();
+			}
+			else{
+				$(".footer").show();
+			}
+		});
+		
+        
 		if (window.StatusBar) {
-		  // org.apache.cordova.statusbar required
 		  StatusBar.styleDefault();
 		}
     
 		setTimeout(function() {		
 			document.addEventListener("offline", onOffline, false);
-	 }, 1000);
-	  function onOffline(){
-      navigator.notification.alert(
-          'Please make sure that you have network connection.',  // message
-          null,
-          'No Internet Connection',            // title
-          'Ok'                  // buttonName
-        );
-    }
-    
-	/*$ionicPlatform.on('resume', function(){
-		 setTimeout(function() {		
-			document.addEventListener("offline", onOffline, false);
-			function onOffline() {
-				// Handle the offline event				
-				//$(".networkDiv").show();
-				var networkConnection = 'off';
-				alert('offline2');
-			}
 			document.addEventListener("online", onOnline, false);
-			function onOnline() {
-				// Handle the online event				
-				//$(".networkDiv").hide();
-				var networkConnection = 'on';
-				alert('online2');
-			}
-		 }, 1000);
-	});  
-		*/
+        }, 100);
 	
-    cordova.plugins.backgroundMode.setDefaults({ text:'Connected Care'});
-      // Enable background mode
-      cordova.plugins.backgroundMode.enable();
-  
-      // Called when background mode has been activated
-      cordova.plugins.backgroundMode.onactivate = function () {
-          /*
-          setTimeout(function () {
-              // Modify the currently displayed notification
-              cordova.plugins.backgroundMode.configure({
-                  text:'Running in background for more than 5s now.'
-              });
-          }, 5000);
-          */
-      };
-      setTimeout(function() {
-        //alert('external: ' + window.localStorage.getItem("external_load"));
-        if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
-          var EXTRA = {};
-          var extQuery = window.localStorage.getItem("external_load").split('?')
-          var extQueryOnly = extQuery[1];
-          
-          var query = extQueryOnly.split("&");
-          
-          for (var i = 0, max = query.length; i < max; i++)
-          {
-              if (query[i] === "") // check for trailing & with no param
-                  continue;
+        function onOffline(){	
             
-              var param = query[i].split("=");
-              EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
-          }
-          window.localStorage.setItem("external_load", null);
-          if(EXTRA['env'] != ""){
-            var dEnv = EXTRA['env'];
-            if(dEnv.toUpperCase() == "SANDBOX"){
-              deploymentEnv = "Sandbox";
-            }else if(dEnv.toUpperCase() == "QA"){
-              deploymentEnv = "QA";
-            }else if(dEnv.toUpperCase() == "PRODUCTION"){
-              deploymentEnv = "Production";
-            }
-          }
-          if(EXTRA['token'] != "" && EXTRA['env'] != ""){
-            $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
-          }else if(EXTRA['env'] != ""){
-            $state.go('tab.login');
-          }
+        navigator.notification.alert(
+            'Please make sure that you have network connection.',  // message
+            null,
+            'No Internet Connection',            // title
+            'Ok'                  // buttonName
+            ); 
+            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+                $state.go('tab.connectionLost');
+            } 
         }
-      }, 2000);
-      $ionicPlatform.on('resume', function(){
+        function onOnline() {		
+            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+            $state.go('tab.videoConference');
+            }		
+        }
+        
+        cordova.plugins.backgroundMode.setDefaults({ text:'Dokita247'});
+        cordova.plugins.backgroundMode.enable();
+  
         setTimeout(function() {
-          if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+            if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
             var EXTRA = {};
             var extQuery = window.localStorage.getItem("external_load").split('?')
             var extQueryOnly = extQuery[1];
@@ -153,31 +116,86 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             {
                 if (query[i] === "") // check for trailing & with no param
                     continue;
-            
+                
                 var param = query[i].split("=");
                 EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
             }
             window.localStorage.setItem("external_load", null);
-            if(EXTRA['env'] != ""){
-              var dEnv = EXTRA['env'];
-              if(dEnv.toUpperCase() == "SANDBOX"){
-                deploymentEnv = "Sandbox";
-              }else if(dEnv.toUpperCase() == "QA"){
-                deploymentEnv = "QA";
-              }else if(dEnv.toUpperCase() == "PRODUCTION"){
-                deploymentEnv = "Production";
-              }
-            }
+			if(deploymentEnv != 'Single') {
+				if(EXTRA['env'] != ""){
+					var dEnv = EXTRA['env'];
+					if(dEnv.toUpperCase() == "SANDBOX"){
+						deploymentEnv = "Sandbox";
+						apiCommonURL = 'https://sandbox.connectedcare.md';
+					}else if(dEnv.toUpperCase() == "QA"){
+						deploymentEnv = "QA";
+						apiCommonURL = 'https://snap-qa.com';
+					}else if(dEnv.toUpperCase() == "PRODUCTION"){
+						deploymentEnv = "Production";
+						apiCommonURL = 'https://connectedcare.md';
+					}else if(dEnv.toUpperCase() == "STAGE"){
+						deploymentEnv = "Staging";
+						apiCommonURL = 'https://snap-stage.com';
+					}
+				}
+			}
             if(EXTRA['token'] != "" && EXTRA['env'] != ""){
-              $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
-            }else if(EXTRA['env'] != ""){
-              $state.go('tab.login');
+                $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+            }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
+                $state.go('tab.login');
+            }/*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+                $state.go('tab.singleTheme');
+            }*/
             }
-          }
         }, 2000);
-      });    
-      
-    });
+        $ionicPlatform.on('resume', function(){
+            setTimeout(function() {
+            if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+                var EXTRA = {};
+                var extQuery = window.localStorage.getItem("external_load").split('?')
+                var extQueryOnly = extQuery[1];
+                
+                var query = extQueryOnly.split("&");
+                
+                for (var i = 0, max = query.length; i < max; i++)
+                {
+                    if (query[i] === "") // check for trailing & with no param
+                        continue;
+                
+                    var param = query[i].split("=");
+                    EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+                }
+                window.localStorage.setItem("external_load", null);
+				if(deploymentEnv != 'Single') {
+					if(EXTRA['env'] != ""){
+						var dEnv = EXTRA['env'];
+						if(dEnv.toUpperCase() == "SANDBOX"){
+							deploymentEnv = "Sandbox";
+							apiCommonURL = 'https://sandbox.connectedcare.md';
+						}else if(dEnv.toUpperCase() == "QA"){
+							deploymentEnv = "QA";
+							apiCommonURL = 'https://snap-qa.com';
+						}else if(dEnv.toUpperCase() == "PRODUCTION"){
+							deploymentEnv = "Production";
+							apiCommonURL = 'https://connectedcare.md';
+						}else if(dEnv.toUpperCase() == "STAGE"){
+							deploymentEnv = "Staging";
+							apiCommonURL = 'https://snap-stage.com';
+						}
+					}
+				}
+                if(EXTRA['token'] != "" && EXTRA['env'] != ""){
+                $state.go('tab.interimpage', { token: EXTRA['token'], hospitalId: EXTRA['hospitalId'], consultationId: EXTRA['consultationId'] });
+                }else if(EXTRA['env'] != "" && loginPageEnv != 'Single'){
+                    $state.go('tab.login');
+                } /*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
+                    $state.go('tab.singleTheme');
+                }*/
+            }
+            }, 2000);
+        });    
+        
+        });
 })
 
 
@@ -478,6 +496,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })  
   
+  .state('tab.connectionLost', {
+    url: '/connectionLost',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-connectionLost.html',
+        controller: 'connectionLostCtrl'
+      }
+    }
+  })
+  
    .state('tab.ReportScreen', {
     url: '/ReportScreen',
     views: {
@@ -515,13 +543,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+.state('tab.singleTheme', {
+    url: '/singleTheme',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-singleTheme.html',
+        controller: 'singleHospitalThemeCtrl'
+      }
+    }
+  })
 
   
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
   }else if(deploymentEnv == "Single"){
-    $urlRouterProvider.otherwise('/tab/loginSingle');
+    $urlRouterProvider.otherwise('/tab/singleTheme');
   }else{
     $urlRouterProvider.otherwise('/tab/login');
   }

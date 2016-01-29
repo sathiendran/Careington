@@ -341,7 +341,7 @@ body {
 }
 
 .header_imageIOS { 
-	margin-top: 21px;
+	margin-top: 35px; 
 	text-align: center;
 	width: 100%;
 	border-color: #B03A21;
@@ -354,7 +354,7 @@ body {
 }
 
 .header_imageAndroid { 
-	margin-top: 18px;
+	margin-top: 35px;
 	text-align: center;
 	width: 100%;
 	border-color: #B03A21;
@@ -369,7 +369,7 @@ body {
 .password_sub_headerIOS { 
 	@extend .login_sub_header;
 	margin-top: 99px;
-	color: $Shiraz;
+	color: $Shiraz;     
 		.password_header_contentIOS { 
 			/*position: relative;
 			top: 45px;*/
@@ -1429,9 +1429,12 @@ body {
 	margin-left: 16px;
 }
 
-.ReportContent {
-	margin: 81px 10px 0 10px;
+.ReportContent   {
+	margin: 81px 0px 0 0px;
+    padding-top: 20px;
 	font-family: 'Glober Regular';
+	z-index: 999; 
+	padding-top: 20px;
 	.reportLogo {
 		//width: 50%;  float: left;
 		img {
@@ -1468,7 +1471,9 @@ body {
 			width: 55%;  float: left; padding-right: 35px;
 		}
 		.reportEncounter {
-			padding-left: 20px;
+			/*padding-left: 20px;*/
+			float: right;
+			width: 40%;
 		}
 	}
 	.reportPatientStatistics {
@@ -1519,7 +1524,7 @@ body {
 				}
 			}
 			.primaryConcernText {
-				position: relative;  top: 3px;  left: 20px;
+				position: relative;  top: 3px;  left: 20px; width: 93%; text-align: justify;
 			}
 		}
 	}
@@ -1920,8 +1925,7 @@ body {
 	border-bottom: 1px solid #9D9E9C;
 	.SearchImage {
 		width:10%;
-		//margin-right: 10px;
-		padding-right: 10px;
+		margin-right: 10px;
 		.searchIcon {
 			float: right;
 			width: 20px;
@@ -3284,14 +3288,18 @@ font-family: $fontFamily_regular;
 		}
 }
 .userDateofbirth {
-	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px;
+	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
+}
+
+.userDateofbirth_android {
+	font-size:20px !important; line-height: 30px !important; position: relative; top: -5px; 
 }
 .noResult {
 	text-align: center; border: none; color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 40px;
 }
 
 .dobRequired {
-		pointer-events: none;
+		
 		color: #AAA;
 		position: absolute;
 		width: 75%;
@@ -3299,8 +3307,11 @@ font-family: $fontFamily_regular;
 		z-index: 15;
 		overflow: hidden; 
 		top: 24px;	
-		font-size: 20px;
+		font-size: 20px;		
 	}
+.brand {
+	text-align: center;
+}
 
 .singleTermsTitle-Android {
 	border-bottom: none; position: relative;  top: -143px;
@@ -3326,4 +3337,9 @@ font-family: $fontFamily_regular;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify; position: relative; top: -115px;
+}
+.SubHeadIOS {
+    margin-top: 82px !important;
+    background-color:#FFF !important; position: relative !important; top: 10px !important; box-shadow:  0px 3px 3px #ADABAB !important;
+	-moz-box-shadow:  0px 3px 3px #ADABAB !important;	-webkit-box-shadow:  0px 3px 3px #ADABAB !important;  
 }
