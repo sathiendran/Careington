@@ -31,6 +31,7 @@ if(deploymentEnv == 'Single') {
 	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
 	var logo= ''; //img/teleHealthOne.png';
 	var Hopital = ''; //TelehealthOne';
+	var HopitalTag = '';
 }
 
 var handleOpenURL = function (url) {

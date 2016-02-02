@@ -217,6 +217,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.Hopital = data.data[0].brandName;
+					$rootScope.HopitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = '';
 					
                      $state.go('tab.loginSingle'); 
