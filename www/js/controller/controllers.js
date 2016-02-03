@@ -116,8 +116,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 				}
 				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-				request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-				request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
 				return request;
 			}
 		},
@@ -135,8 +135,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				return headers;
 			}else{
 				var headers = {
-						'X-Developer-Id': '1f9480321986463b822a981066cad094',
-						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+						'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -215,8 +215,8 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 	}else if(deploymentEnv == "Single"){		
 	//	apiCommonURL = 'https://sandbox.connectedcare.md';	
 	//	apiCommonURL = 'https://snap-qa.com';	
-	apiCommonURL = 'https://connectedcare.md';		
-	//	apiCommonURL = 'https://snap-stage.com';    
+	//apiCommonURL = 'https://connectedcare.md';		
+		apiCommonURL = 'https://snap-stage.com';    
     
 	} else if(deploymentEnv == "Staging") {
 		apiCommonURL = 'https://snap-stage.com';
@@ -227,9 +227,8 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
 .controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
-	//$rootScope.hospitalId = singleHospitalId;
-	if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {	
-			$rootScope.hospitalId = singleHospitalId;
+	$rootScope.hospitalId = singleHospitalId;
+	if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
 			apiCommonURL = 'https://connectedcare.md';
 			api_keys_env = '';
 			$rootScope.APICommonURL = 'https://connectedcare.md';
@@ -243,6 +242,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.Hopital = data.data[0].brandName;
+                    $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
 					$rootScope.HopitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = '';
 					
@@ -600,7 +600,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								$rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -608,7 +608,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								$rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -616,7 +616,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								 $rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -624,7 +624,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								 $rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1758,7 +1758,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								 $rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1766,7 +1766,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								 $rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1774,7 +1774,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								 $rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1782,7 +1782,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								'Dokita247',            // title
+								 $rootScope.Hopital,            // title
 								'Done'                  // buttonName
 							);
 							return false;

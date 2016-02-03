@@ -525,7 +525,7 @@ angular.module('starter.controllers')
 			navigator.notification.alert(
 				'Consultation ended successfully!',  // message
 				consultationEndedAlertDismissed,         // callback
-				'Dokita247',            // title
+				 $rootScope.Hopital,            // title
 				'Done'                  // buttonName
 			);
 				// }, 10000);

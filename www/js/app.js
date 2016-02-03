@@ -26,9 +26,9 @@ var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only f
 var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-	deploymentEnvForProduction = 'Production';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
-	var singleStagingHospitalId = 156; //Enable only for production. singleStagingHospitalId is Staging ID
-	var singleHospitalId = 184;	
+	//deploymentEnvForProduction = 'Production';  //'Production'; //Enable only for production. Set 'Production' Only for Single Production - For Apple testing purpose
+	//var singleStagingHospitalId = 156; //Enable only for production. singleStagingHospitalId is Staging ID
+	var singleHospitalId = 157;	
 	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
 	var logo= ''; //img/teleHealthOne.png';
 	var Hopital = ''; //TelehealthOne';
@@ -103,7 +103,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }		
         }
         
-        cordova.plugins.backgroundMode.setDefaults({ text:'Dokita247'});
+        cordova.plugins.backgroundMode.setDefaults({ text: $rootScope.Hopital});
         cordova.plugins.backgroundMode.enable();
   
         setTimeout(function() {
