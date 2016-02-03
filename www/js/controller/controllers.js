@@ -227,7 +227,15 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
 .controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
-	$rootScope.hospitalId = singleHospitalId;
+	//$rootScope.hospitalId = singleHospitalId;
+	if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {	
+			$rootScope.hospitalId = singleHospitalId;
+			apiCommonURL = 'https://connectedcare.md';
+			api_keys_env = '';
+			$rootScope.APICommonURL = 'https://connectedcare.md';
+	}
+	
+	
     $scope.doGetUserHospitalInformation = function () {					
 			var params = {
 				hospitalId: $rootScope.hospitalId,
@@ -1262,11 +1270,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
 					if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
 						//deploymentEnv = "Staging";
+						$rootScope.hospitalId = singleStagingHospitalId;
 						apiCommonURL = 'https://snap-stage.com';
 						api_keys_env = 'Staging';
 						$rootScope.APICommonURL = 'https://snap-stage.com';
 					} else {
 						//deploymentEnv = "Production";
+						$rootScope.hospitalId = singleHospitalId;
 						apiCommonURL = 'https://connectedcare.md';
 						api_keys_env = '';
 						$rootScope.APICommonURL = 'https://connectedcare.md';
@@ -1427,11 +1437,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
 						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
 							//deploymentEnv = "Staging";
+							$rootScope.hospitalId = singleStagingHospitalId;
 							apiCommonURL = 'https://snap-stage.com';
 							api_keys_env = 'Staging';
 							$rootScope.APICommonURL = 'https://snap-stage.com';
 						} else {
 							//deploymentEnv = "Production";
+							$rootScope.hospitalId = singleHospitalId;
 							apiCommonURL = 'https://connectedcare.md';
 							api_keys_env = '';
 							$rootScope.APICommonURL = 'https://connectedcare.md';
