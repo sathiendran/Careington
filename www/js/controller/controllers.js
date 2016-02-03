@@ -22,6 +22,14 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
 				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
 				return request;
+			}else if(api_keys_env == 'Sandbox'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
+				request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+				return request;		
 			}else{
 				if (typeof credentials != 'undefined') {
 					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
@@ -44,6 +52,16 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				}
 				
 				return headers;
+			} else if(api_keys_env == 'Sandbox'){
+				var headers = {
+					'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
+					'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
+					'Content-Type': 'application/json; charset=utf-8'
+				};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}				
+				return headers;	
 			}else{
 				var headers = {
 						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
@@ -1460,6 +1478,27 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		} else {
 			$state.go('tab.password');
 		}
+	}
+	
+	$scope.doGetConcentToTreat = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            documentType: 1, 
+			hospitalId: $rootScope.hospitalId,			
+            success: function (data) {				
+				$rootScope.termsandCOnditionsContent = angular.element('<div>').html(data.data[0].documentText).text();
+				$state.go('tab.singleTerms');
+						
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+		
+		LoginService.getConcentToTreat(params);
 	}
 	
 
@@ -3830,3 +3869,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     };
 })
 
+ .filter("sanitize", ['$sce', function($sce) {
+  return function(htmlCode){
+    return $sce.trustAsHtml(htmlCode);
+  }
+}])

@@ -220,6 +220,26 @@ angular.module('starter.services', [])
 		});
 	}
 	
+	this.getConcentToTreat = function(params) {
+		var PatientDetailsList = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/publicdocuments?documentType=' + params.documentType +'&hospitalId=' + params.hospitalId,
+            method: 'GET'
+		};
+		
+		$http(PatientDetailsList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
 	this.putConsultationSave = function (params) {
         //util.setHeaders($http, params);
         var requestInfo = {

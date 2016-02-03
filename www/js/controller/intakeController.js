@@ -401,11 +401,33 @@ angular.module('starter.controllers')
         }
         
     }
+	
+	$scope.doGetConcentToTreat = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            documentType: 2, 
+			hospitalId: $rootScope.hospitalId,			
+            success: function (data) {				
+				$rootScope.concentToTreatContent = angular.element('<div>').html(data.data[0].documentText).text();
+				$state.go('tab.ConsentTreat');
+						
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+		
+		LoginService.getConcentToTreat(params);
+	}
     
 	$scope.goToConsentToTreat = function(){
 		$rootScope.appointmentsPage = false;
+		$scope.doGetConcentToTreat();
 		//$scope.doGetHospitalInformation();
-		$state.go('tab.ConsentTreat');	
+		//$state.go('tab.ConsentTreat');	
 	};
 	/*Primary concern End here*/
 	
