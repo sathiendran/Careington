@@ -235,28 +235,48 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	
 	
-    $scope.doGetUserHospitalInformation = function () {					
+    $scope.doGetSingleUserHospitalInformation = function () {
+			$rootScope.paymentMode = '';
+			$rootScope.insuranceMode = '';
+			$rootScope.onDemandMode = '';
 			var params = {
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {	
+					$rootScope.getDetails = data.data[0].enabledModules;
+					if($rootScope.getDetails != '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+								$rootScope.insuranceMode = 'on';									
+							}
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+								$rootScope.paymentMode = 'on';
+							}
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+								$rootScope.onDemandMode = 'on';
+							}
+						}
+					}
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.Hopital = data.data[0].brandName;
                     $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
 					$rootScope.HopitalTag = data.data[0].brandTitle;
-                    $rootScope.contactNumber = '';
+					$rootScope.contactNumber = data.data[0].contactNumber;
+					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+					$rootScope.clientName = data.data[0].hospitalName;
 					
                      $state.go('tab.loginSingle'); 
 					
 					
 				},
 				error: function (data) {
-				//	$rootScope.serverErrorMessageValidation();
+					$rootScope.serverErrorMessageValidation();
 				}
 			};
 			LoginService.getHospitalInfo(params);		
     }
-    $scope.doGetUserHospitalInformation();  
+    $scope.doGetSingleUserHospitalInformation();  
 })
 
 //InterimController - To manipulate URL Schemes
@@ -333,6 +353,48 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		newdate.setTime(inDate.getTime() + inMinutes * 60000);
 		return newdate;
 	}
+	 $scope.doGetSingleUserHospitalInformation = function () {
+			$rootScope.paymentMode = '';
+			$rootScope.insuranceMode = '';
+			$rootScope.onDemandMode = '';
+			var params = {
+				hospitalId: $rootScope.hospitalId,
+				success: function (data) {	
+					$rootScope.getDetails = data.data[0].enabledModules;
+					if($rootScope.getDetails != '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+								$rootScope.insuranceMode = 'on';									
+							}
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+								$rootScope.paymentMode = 'on';
+							}
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+								$rootScope.onDemandMode = 'on';
+							}
+						}
+					}
+                    $rootScope.brandColor = data.data[0].brandColor;
+                    $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                    $rootScope.Hopital = data.data[0].brandName;
+                    $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+					$rootScope.HopitalTag = data.data[0].brandTitle;
+					$rootScope.contactNumber = data.data[0].contactNumber;
+					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+					$rootScope.clientName = data.data[0].hospitalName;
+					
+                    // $state.go('tab.loginSingle'); 
+					
+					
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getHospitalInfo(params);		
+    }
+    
 	
 	$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
@@ -669,6 +731,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.accessToken = $stateParams.token;
 		$rootScope.hospitalId = $stateParams.hospitalId;
 		$rootScope.consultationId = $stateParams.consultationId;
+		$scope.doGetSingleUserHospitalInformation();
 		$scope.doGetPatientProfiles();
 		//$scope.doGetExistingConsulatation();	
 		$scope.doGetRelatedPatientProfiles('waitingRoom');
@@ -678,6 +741,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.hospitalId = $stateParams.hospitalId;
 		//$rootScope.accessToken = "RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ";
 		//localStorage.setItem("external_load", null);
+		$scope.doGetSingleUserHospitalInformation();
 		$scope.doGetPatientProfiles();	
 		$scope.doGetRelatedPatientProfiles('userhome');
 	}else{
@@ -1355,17 +1419,58 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		LoginService.getFacilitiesList(params);
 	}
 	
+	$scope.doGetSingleHospitalInformation = function () {	
+			$rootScope.paymentMode = '';
+			$rootScope.insuranceMode = '';
+			$rootScope.onDemandMode = '';
+			var params = {
+				hospitalId: $rootScope.hospitalId,
+				success: function (data) {	
+					$rootScope.getDetails = data.data[0].enabledModules;
+					if($rootScope.getDetails != '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+								$rootScope.insuranceMode = 'on';									
+							}
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+								$rootScope.paymentMode = 'on';
+							}
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+								$rootScope.onDemandMode = 'on';
+							}
+						}
+					}
+                    $rootScope.brandColor = data.data[0].brandColor;
+                    $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                    $rootScope.Hopital = data.data[0].brandName;
+                    $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+					$rootScope.HopitalTag = data.data[0].brandTitle;
+                    $rootScope.contactNumber = data.data[0].contactNumber;
+					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+					$rootScope.clientName = data.data[0].hospitalName;
+					
+                    $state.go('tab.password');
+					
+					
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getHospitalInfo(params);		
+    }
 	
 	
 	$scope.ProviderFunction = function(hospitalDetailsDatas) {
         $rootScope.hospitalId = hospitalDetailsDatas.providerId;
-        $rootScope.Hopital = hospitalDetailsDatas.name;
-        $rootScope.logo = hospitalDetailsDatas.logo;
+       // $rootScope.Hopital = hospitalDetailsDatas.name;
+      //  $rootScope.logo = hospitalDetailsDatas.logo;
         $rootScope.operatingHours = hospitalDetailsDatas.operatingHours;
         $rootScope.id = hospitalDetailsDatas.id;
-        $rootScope.brandColor = hospitalDetailsDatas.brandColor;
+      //  $rootScope.brandColor = hospitalDetailsDatas.brandColor;
         $rootScope.backgroundimage = "background-image: none;"; 
-		$state.go('tab.password');
+		$scope.doGetSingleHospitalInformation();
 	}
 	
 	$scope.textboxUp = function() {
@@ -3324,9 +3429,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.healthPlanID = '';
         $rootScope.NewHealth = '';    
         }
-		$rootScope.paymentMode = '';
-		$rootScope.insuranceMode = '';
-		$rootScope.onDemandMode = '';	
 		
 		$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
 		$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
@@ -3336,10 +3438,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.patientId = P_Id;
-		$rootScope.P_isAuthorized = P_isAuthorized;       
-		$scope.doGetUserHospitalInformation();	
+		$rootScope.P_isAuthorized = P_isAuthorized;   
+		$state.go('tab.patientDetail'); 	
+		//$scope.doGetUserHospitalInformation();	
     }
-	$scope.doGetUserHospitalInformation = function () {
+	/*$scope.doGetUserHospitalInformation = function () {
 			if ($rootScope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -3352,12 +3455,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if($rootScope.getDetails != '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
 							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
-								$rootScope.insuranceMode = 'on';
-									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
-										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
-											$rootScope.paymentMode = 'on';
-										}
-									}*/
+								$rootScope.insuranceMode = 'on';									
 							}
 							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
 							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
@@ -3377,7 +3475,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 			};
 			LoginService.getHospitalInfo(params);		
-    }
+    }*/
     
      $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -3512,7 +3610,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 	
 	
-	$scope.doGetUserHospitalInformationForUserHome = function () {
+	/*$scope.doGetUserHospitalInformationForUserHome = function () {
 			if ($rootScope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -3525,12 +3623,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					if($rootScope.getDetails != '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
 							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
-								$rootScope.insuranceMode = 'on';
-									/*for (var i = 0; i < $rootScope.getDetails.length; i++) {
-										if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
-											$rootScope.paymentMode = 'on';
-										}
-									}*/
+								$rootScope.insuranceMode = 'on';									
 							}
 							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
 							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
@@ -3550,15 +3643,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 			};
 			LoginService.getHospitalInfo(params);		
-    }
+    }*/
      
-     $scope.GoToappoimentDetails = function(scheduledListData) {
-		$rootScope.paymentMode = '';
-		$rootScope.insuranceMode = '';
-		$rootScope.onDemandMode = '';	
+     $scope.GoToappoimentDetails = function(scheduledListData) {			
 		$rootScope.scheduledListDatas = scheduledListData;
-		$scope.doGetUserHospitalInformationForUserHome();
-		//$state.go('tab.appoimentDetails');
+		//$scope.doGetUserHospitalInformationForUserHome();
+		$state.go('tab.appoimentDetails');
      };
 	 
 	 
