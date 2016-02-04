@@ -306,12 +306,12 @@ angular.module('starter.controllers')
 		}
     
     
-	if(session != null) {		 
+	/*if(session != null) {		 
 		session.unpublish(publisher);
 		session.disconnect();
 		 session = null; 
          $scope.doGetExistingConsulatation();
-	}
+	}*/
     $scope.doGetExistingConsulatation();
 	
 	$scope.ClearRootScope = function() {

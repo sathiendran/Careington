@@ -18,8 +18,8 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Single'; //Production //Multiple //Single 
-var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Multiple'; //Production //Multiple //Single 
+var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = '';
 var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
@@ -94,12 +94,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             'Ok'                  // buttonName
             ); 
             if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-                $state.go('tab.connectionLost');
+              //  $state.go('tab.connectionLost');
             } 
         }
         function onOnline() {		
             if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-            $state.go('tab.videoConference');
+           // $state.go('tab.videoConference');
             }		
         }
         
