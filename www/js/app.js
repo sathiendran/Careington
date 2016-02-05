@@ -94,16 +94,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             'Ok'                  // buttonName
             ); 
             if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-              //  $state.go('tab.connectionLost');
+              $state.go('tab.connectionLost');
             } 
         }
         function onOnline() {		
             if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
-           // $state.go('tab.videoConference');
+           $state.go('tab.videoConference');
             }		
         }
         
-        cordova.plugins.backgroundMode.setDefaults({ text: $rootScope.Hopital});
+        cordova.plugins.backgroundMode.setDefaults({ text: $rootScope.alertMsgName});
         cordova.plugins.backgroundMode.enable();
   
         setTimeout(function() {

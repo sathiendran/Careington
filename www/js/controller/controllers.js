@@ -259,8 +259,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
-                    $rootScope.Hopital = data.data[0].brandName;
-                    $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+                    $rootScope.Hopital = data.data[0].brandName; 
+                    if(deploymentEnvLogout == 'Multiple') {
+                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.reportHospitalUpperCase =  'Virtual Care';
+                    } else {
+                         $rootScope.alertMsgName = $rootScope.Hopital;
+                         $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+                    } 
 					$rootScope.HopitalTag = data.data[0].brandTitle;
 					$rootScope.contactNumber = data.data[0].contactNumber;
 					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
@@ -378,7 +384,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.Hopital = data.data[0].brandName;
-                    $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+                    if(deploymentEnvLogout == 'Multiple') {
+                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.reportHospitalUpperCase =  'Virtual Care';
+                    } else {
+                         $rootScope.alertMsgName = $rootScope.Hopital;
+                         $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+                    }                    
 					$rootScope.HopitalTag = data.data[0].brandTitle;
 					$rootScope.contactNumber = data.data[0].contactNumber;
 					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
@@ -662,7 +674,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								$rootScope.Hopital,            // title
+								$rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -670,7 +682,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								$rootScope.Hopital,            // title
+								$rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -678,7 +690,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								 $rootScope.Hopital,            // title
+								 $rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -686,7 +698,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								 $rootScope.Hopital,            // title
+								 $rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1444,7 +1456,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.Hopital = data.data[0].brandName;
-                    $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+                     if(deploymentEnvLogout == 'Multiple') {
+                        $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.reportHospitalUpperCase =  'Virtual Care';
+                    } else {
+                         $rootScope.alertMsgName = $rootScope.Hopital;
+                         $rootScope.reportHospitalUpperCase =  $rootScope.Hopital.toUpperCase();
+                    } 
 					$rootScope.HopitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = data.data[0].contactNumber;
 					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
@@ -1863,7 +1881,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								 $rootScope.Hopital,            // title
+								 $rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1871,7 +1889,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								 $rootScope.Hopital,            // title
+								$rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1879,7 +1897,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								 $rootScope.Hopital,            // title
+								 $rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
@@ -1887,7 +1905,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
-								 $rootScope.Hopital,            // title
+								 $rootScope.alertMsgName,            // title
 								'Done'                  // buttonName
 							);
 							return false;
