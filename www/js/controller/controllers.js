@@ -1478,6 +1478,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			};
 			LoginService.getHospitalInfo(params);		
     }
+    
+   
+    
+    $('.hospitalDynamicLink').click(function () {
+        var url = 'https://'+$rootScope.hospitalDomainName+'/Main/#/UserTerms';
+        window.open(encodeURI(url), '_system', 'location=yes');
+        return false;
+    });
 	
 	
 	$scope.ProviderFunction = function(hospitalDetailsDatas) {
