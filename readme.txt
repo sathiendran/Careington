@@ -1,4 +1,4 @@
-Plugins to be installed
+#Plugins to be installed
 	1. ionic plugin add https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git --variable URL_SCHEME=snapmdconnectedcare
 	2. ionic plugin add https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git - Added by manual integration.
 	3. ionic plugin add https://github.com/prabinyovan/cordova-plugin-opentok-v2.6.0
