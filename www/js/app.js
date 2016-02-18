@@ -37,7 +37,7 @@ if(deploymentEnv == 'Single') {
     var Hospital;
     var HospitalTag;
     
-	var cobrandApp = 'EpicMD';
+	var cobrandApp = 'Dokita';
     
     if(cobrandApp == 'EpicMD'){
         singleStagingHospitalId = 155;
@@ -45,7 +45,21 @@ if(deploymentEnv == 'Single') {
         brandColor = '#66c3b0';
         logo= 'img/epicmd_logotypebg.png';
         Hospital = 'EpicMD';
-        HospitalTag = 'Virtual Health';
+        HospitalTag = 'Virtual Care Concierge';
+    } else if(cobrandApp == 'TelehealthOne'){
+        singleStagingHospitalId = 142;
+        singleHospitalId = 142;	
+        brandColor = '#5ec4fe';
+        logo= 'img/teleLogo.png';
+        Hospital = 'telehealthONE';
+        HospitalTag = 'Virtual Consultation Platform';
+    } else if(cobrandApp == 'Dokita'){
+        singleStagingHospitalId = 156;
+        singleHospitalId = 184;	
+        brandColor = '#ff0000';
+        logo= 'img/dokita.png';
+        Hospital = 'Dokita247';
+        HospitalTag = 'Virtual Medical Consultation Portal';
     }
 
     
