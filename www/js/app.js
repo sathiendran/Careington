@@ -37,7 +37,7 @@ if(deploymentEnv == 'Single') {
     var Hospital;
     var HospitalTag;
     
-	var cobrandApp = 'Dokita';
+	var cobrandApp = 'DYW';
     
     if(cobrandApp == 'EpicMD'){
         singleStagingHospitalId = 155;
@@ -52,14 +52,21 @@ if(deploymentEnv == 'Single') {
         brandColor = '#5ec4fe';
         logo= 'img/teleLogo.png';
         Hospital = 'telehealthONE';
-        HospitalTag = 'Virtual Consultation Platform';
+        HospitalTag = 'Virtual Care Concierge';
     } else if(cobrandApp == 'Dokita'){
         singleStagingHospitalId = 156;
         singleHospitalId = 184;	
         brandColor = '#ff0000';
         logo= 'img/dokita.png';
         Hospital = 'Dokita247';
-        HospitalTag = 'Virtual Medical Consultation Portal';
+        HospitalTag = 'Virtual Care Concierge';
+    } else if(cobrandApp == 'DYW'){
+        singleStagingHospitalId = 156;
+        singleHospitalId = 168;	
+        brandColor = '#22508b';
+        logo= 'img/dyw.jpg';
+        Hospital = "DocYourWay's Global Care Management";
+        HospitalTag = 'Virtual Care Concierge';
     }
 
     
