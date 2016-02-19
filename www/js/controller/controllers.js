@@ -30,14 +30,14 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
 				request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
 				return request;		
-			}else{
-				if (typeof credentials != 'undefined') {
-					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
-				}
-				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-				request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-				request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
-				return request;
+			}else{				
+					if (typeof credentials != 'undefined') {
+						request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+					}
+					request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+					request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
+					request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+					return request;
 			}
 		},
 		getHeaders: function (accessToken) {
@@ -62,17 +62,17 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 					headers['Authorization'] = 'Bearer ' + accessToken;
 				}				
 				return headers;	
-			}else{
+			}else{				
 				var headers = {
-						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+						'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
+						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
 					headers['Authorization'] = 'Bearer ' + accessToken;
 				}
 				
-				return headers;
+				return headers;				
 			}
 		}
 	}
@@ -776,44 +776,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$rootScope.deploymentEnv = deploymentEnv;
     if(deploymentEnv != 'Multiple') {
         $rootScope.APICommonURL = apiCommonURL;
-    }
-	//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-	//$rootScope.APICommonURL = 'https://connectedcare.md';
-	/*if(deploymentEnv == "Sandbox"){
-		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-		apiCommonURL = 'https://sandbox.connectedcare.md';
-	}else if(deploymentEnv == "Production"){
-		$rootScope.APICommonURL = 'https://connectedcare.md';
-		apiCommonURL = 'https://connectedcare.md';
-	}else if(deploymentEnv == "QA"){
-		$rootScope.APICommonURL = 'https://snap-qa.com';
-		apiCommonURL = 'https://snap-qa.com';
-	}else if(deploymentEnv == "Single"){
-		$rootScope.brandColor = brandColor;
-		$rootScope.logo = logo;
-		$rootScope.Hopital = Hopital;
-		$rootScope.contactNumber = '';
-		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-		//apiCommonURL = 'https://sandbox.connectedcare.md';
-		//$rootScope.APICommonURL = 'https://snap-qa.com';
-		//apiCommonURL = 'https://snap-qa.com';
-	//	$rootScope.APICommonURL = 'https://connectedcare.md';
-	//	apiCommonURL = 'https://connectedcare.md';
-    $rootScope.APICommonURL = 'https://snap-stage.com';
-		apiCommonURL = ' https://snap-stage.com';
-		$rootScope.hospitalId = singleHospitalId;
-	}else if(deploymentEnv == "Staging") {
-		$rootScope.APICommonURL = 'https://snap-stage.com';
-		apiCommonURL = ' https://snap-stage.com';
-		api_keys_env = "Staging";
-	}*/
+    }	
 	
 	$rootScope.envList = ["Snap.QA", "Sandbox", "Staging" ];
 	
 	$scope.ChangeEnv = function(env){
 		if(env == "Snap.QA"){
-			$rootScope.APICommonURL = ' https://snap-qa.com';
-			apiCommonURL = ' https://snap-qa.com';
+			$rootScope.APICommonURL = 'https://snap-qa.com';
+			apiCommonURL = 'https://snap-qa.com';
+			//$rootScope.APICommonURL ='http://emerald.snap.local';
+			//apiCommonURL ='http://emerald.snap.local';
 			api_keys_env = "Snap.QA"
 			
 		}else if(env == "Sandbox"){
@@ -822,7 +794,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			api_keys_env = "Sandbox";
 		}else if(env == "Staging") {
 			$rootScope.APICommonURL = 'https://snap-stage.com';
-			apiCommonURL = ' https://snap-stage.com';
+			apiCommonURL = 'https://snap-stage.com';
 			api_keys_env = "Staging";
 		}
 		$state.go('tab.login');
@@ -1191,14 +1163,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
           console.log(data) // valid data saving stuff here
         }
       }
+	  
+	$scope.$on("callValidation", function (event, args) {
+		$scope.errorMsg = args.errorMsg;
+		$rootScope.Validation( $scope.errorMsg);
+	}); 
 	
-	$rootScope.Validation = function($a){
+	$rootScope.Validation = function($errorMsg){
 		function refresh_close(){
 			$('.close').click(function(){$(this).parent().fadeOut(200);});
 			}
 			refresh_close();
 			
-			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> '+ $a+'! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> '+ $errorMsg+'! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 			//$('#notifications-window-row-button').click(function(){
 				$("#notifications-top-center").remove();
@@ -1207,6 +1184,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				refresh_close();
 			//});
 	}
+	
+	$scope.$on("callServerErrorMessageValidation", function (event, args) {		
+		$rootScope.serverErrorMessageValidation();
+	}); 
 	
 	$rootScope.serverErrorMessageValidation = function(){
 		function refresh_close(){
@@ -1305,7 +1286,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			
 		} else {
 			 $scope.ValidateEmail = function(email){
-				var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+				//var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+				var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 				return expr.test(email);
 			};
 			
@@ -1429,6 +1411,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         };
 		
 		LoginService.getFacilitiesList(params);
+	}
+	
+	$scope.goToSearchProvider = function(currentPage) {
+		$rootScope.frontPage = 'tab.' + currentPage;
+		$rootScope.backProviderSearchKey = '';
+		$state.go('tab.searchprovider');		
+	}	
+	
+	$rootScope.backtoPreviousPage = function() {
+		$state.go($rootScope.frontPage);	
+	}
+	
+	$rootScope.backtoPreviousPageFromTerms = function(registerCurrentPage) {
+		$state.go(registerCurrentPage);	
 	}
 	
 	$scope.doGetSingleHospitalInformation = function () {	
@@ -1623,8 +1619,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$state.go('tab.password');
 		}
 	}
-	
-	$scope.doGetConcentToTreat = function () {
+		
+	$rootScope.doGetTermsandCondition = function (registerRedirectPage, registerCurrentPage) {
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -1634,7 +1630,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			hospitalId: $rootScope.hospitalId,			
             success: function (data) {				
 				$rootScope.termsandCOnditionsContent = angular.element('<div>').html(data.data[0].documentText).text();
-				$state.go('tab.singleTerms');
+				$rootScope.registerRedirectPage = registerRedirectPage;
+				$rootScope.registerCurrentPage = registerCurrentPage;
+				$state.go(registerRedirectPage);
 						
             },
             error: function (data) {

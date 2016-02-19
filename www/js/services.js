@@ -83,6 +83,55 @@ angular.module('starter.services', [])
 		});
 	}
 	
+	this.getSearchProviderList = function(params) {
+		var searchProviderList = {
+			headers: util.getHeaders(params.accessToken),
+           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		   url: apiCommonURL + '/api/v2/hospitals/providers/'+ params.providerSearchKey,
+            method: 'GET'
+		};
+		
+		$http(searchProviderList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}  
+	
+	this.postRegisterDetails = function(params) {
+		var registerDetails = {
+			headers: util.getHeaders(params.accessToken),          
+              url: apiCommonURL + '/api/v2/patients/single-trip-registration',
+			  method: 'POST',
+			  data: {
+                address: params.address,
+                dob: params.dob,
+				email: params.email,
+				name: params.name,
+				password: params.password,
+				providerId: params.providerId,
+              }
+		};
+		
+		$http(registerDetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
 	this.getPatientProfiles = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
@@ -1131,3 +1180,21 @@ this.getCountryDetails = function () {
 	    return this.luhn(card_number);
 	}
 })
+
+.service('step1PostRegDetailsService', function(){
+	var regDetails = [];
+	var addPostRegDetails = function(postRegDetails) {
+		regDetails.push(postRegDetails);
+	};
+	var getPostRegDetails = function() {
+		return regDetails;
+	};
+	var ClearPostRgDetails = function () {
+        regDetails = [];
+    };
+	return {
+		addPostRegDetails: addPostRegDetails,
+		getPostRegDetails: getPostRegDetails,
+		ClearPostRgDetails: ClearPostRgDetails
+	};
+ })

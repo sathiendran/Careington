@@ -1,0 +1,52 @@
+<ion-view class="epassbg">	
+	<ion-content class="register">
+		<div>	
+			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>	
+		</div>	
+			
+		<div class="card">
+					<div class="regcontent">
+						<h2>You’re all set <br>{{step1RegDetails[0].FName}}</h2>
+						<p class="lineheight rlpad">We’ve sent a verification email to the address you  provided. Just be sure to verify your account  within 24 hours to ensure uninteruppted access</p>
+					</div>
+					
+					<div class="btn1 btnpad">				
+						<a ng-click="backtoPreviousPage();" ><button type="submit" class="button">
+								Enter Now
+						</button></a>					
+					</div>	
+					<!--<div class="or">
+						<h3>OR</h3>
+						<p>Enter your mobile number to verify now via SMS</p>
+						<div class="row">
+							<div class="col col-75">
+								<div class="item-input-inset">
+									<label class="item-input-wrapper place1">
+									<input type="text" placeholder="Mobile Number">
+									</label>		
+								</div>								
+							</div>
+							<div class="col col-25">
+								<div class="btn1" style="margin-top:0px;">				
+									<button type="submit" class="button">
+									Verify
+									</button>					
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="condition">
+							<p>*Standard data rates may apply</p>
+					</div>	-->
+		</div>				
+		<div class="acinfo1">
+			<h4>Already have an account? <span ng-click="backtoPreviousPage();">Login.</span></h4>
+					
+		</div>
+		
+	</ion-content>
+	<ion-footer-bar class="bar bar-footer emailpassfooter">
+		<a ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerSuccess');"><button class="button button-clear"><span>Terms & Conditions</span></button></a>		
+		<!--<button class="button button-clear"><span>Powered by SnapMD</span></button>-->
+	</ion-footer-bar>
+</ion-view>	

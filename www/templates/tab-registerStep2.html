@@ -1,0 +1,54 @@
+<ion-view class="epassbg">	
+	<ion-content class="register">
+		<div>	
+			<h2>{{selectedSearchProviderList.hospitalName}}  <br><span>Registration</span></h2>	
+		</div>	
+		<div id="Error_Message" ></div>
+		<div class="Server_Error" ></div>
+		<form ng-submit="postRegisterStep2()">	
+			<div class="card">
+				<div class="regcontent">
+					<h2>Hello, {{step1RegDetails[0].FName}}</h2>
+					<p class="lineheight">We just need a little more information <br>to complete your registration</p>
+				</div>
+				<div class="item-input-inset">
+					<label class="item-input-wrapper place">
+						<input type="text" ng-model="regStep2.emailID" placeholder="Email Address" >
+					</label>		
+				</div>
+				<div class="item-input-inset">
+					<label class="item-input-wrapper place1">
+						<input type="password" ng-model="regStep2.password" placeholder="Password" >
+					</label>		
+				</div>
+				<div class="item-input-inset">
+					<label class="item-input-wrapper place1">
+						<input type="password" ng-model="regStep2.confirmPwd" placeholder="Confirm Password" >
+					</label>		
+				</div>
+				<div class="birth"><p>Birthdate</p></div>
+				<div class="item-input-inset">						
+					<label class="item-input-wrapper place">
+						<input type="date" ng-model="regStep2.dob"  >
+					</label>		
+				</div>
+				<div class="btn1 btnpad">				
+					<button type="submit" class="button">
+							Register
+					</button>					
+				</div>		
+			</div>	
+		</form>
+					
+		<div class="acinfo1">
+			<h4>Already have an account? <span ng-click="backtoPreviousPage();">Login.</span></h4>
+					
+		</div>
+		<div ng-controller="LoginCtrl">       
+		</div>
+	</ion-content>
+	<ion-footer-bar class="bar bar-footer emailpassfooter">
+		<a ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');"><button class="button button-clear"><span>Terms & Conditions</span></button>	</a>	
+		<!--<button class="button button-clear"><span>Powered by SnapMD</span></button>
+	</ion-footer-bar>
+</ion-view>	

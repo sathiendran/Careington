@@ -64,8 +64,8 @@
 					<div id="notifications-window-row-button" ng-click="validation();">Sample Error Alert</div>
 				</div> -->
 					<div class="{{NeedanAcountStyle}}">
-                        <h5><b>Need an account?</b></h5>
-                        <p style="" class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>
+                        <h5><b>Need an account? {{deploymentEnv}}</b></h5>
+                        <a style="cursor: pointer;" ng-click="goToSearchProvider('loginSingle');"> <p class="needanaccountPragraph">Click here to find your provider.</p></a>
                     </div>
 				</div>
         </form>
@@ -78,7 +78,7 @@
 		<ion-footer-bar class="footer"  >
 		 <div class="terms" >
 			 <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
-			 <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetConcentToTreat();" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
+			 <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
 		  </div>
 		  
 		 

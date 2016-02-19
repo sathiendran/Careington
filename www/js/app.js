@@ -549,14 +549,61 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/singleTheme',
     views: {
       'tab-login': {
-        templateUrl: 'templates/tab-singleTheme.html',
-        controller: 'singleHospitalThemeCtrl'
+        controller: 'singleHospitalThemeCtrl',
+      }
+    }
+  })
+  
+  .state('tab.searchprovider', {
+    url: '/searchprovider',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-searchprovider.html',
+        controller: 'searchProviderController'
+      }
+    }
+  })
+  
+  .state('tab.registerStep1', {
+    url: '/registerStep1',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerStep1.html',
+        controller: 'registerStep1Controller'
+      }
+    }
+  })
+  .state('tab.registerStep2', {
+    url: '/registerStep2',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerStep2.html',
+        controller: 'registerStep2Controller'
+      }
+    }
+  })
+  .state('tab.registerSuccess', {
+    url: '/registerSuccess',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerSuccess.html',
+        controller: 'registerStep2Controller'
+      }
+    }
+  })
+  .state('tab.registerTerms', {
+    url: '/registerTerms',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerTerms.html',
+        controller: 'registerStep2Controller'
       }
     }
   })
 
+
   
-  // if none of the above states are matched, use this as the fallback
+  // if none of the above states are matched, use this as the fallback tab-chooseEnvironment
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
   }else if(deploymentEnv == "Single"){

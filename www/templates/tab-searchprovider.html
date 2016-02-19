@@ -1,0 +1,48 @@
+<ion-view>	
+	<ion-header-bar class="bg">
+		<div id="Error_Message" ></div>
+		<div class="Server_Error" ></div>
+		<h2>Virtual Care</h2> 	
+	</ion-header-bar>		
+	<div class="bar bar-subheader searchbox">		
+		
+			<h3>Find your provider</h3>			
+			<p>Search for your provider to create an account.</p>
+		
+		<div class="item-input-inset">
+				<label class="item-input-wrapper">
+					<i class="icon ion-ios-search placeholder-icon"></i>
+					<input type="search"  placeholder="Search" ng-model="data.searchProvider">
+					
+				</label>
+		</div>
+	</div>
+	<ion-content class="content-height">
+			
+			<div id="providerListDiv" class="list has-subheader provider" >				
+				<a class="item item-avatar item-icon-right" ng-repeat="providerList in searchProviderList" ng-click="goToRegisterStep1(providerList)">
+					<img src="img/patient.png">
+					<h2>{{providerList.hospitalName}}</h2>					
+					<i class="icon ion-chevron-right"></i>
+				</a>
+			</div>
+			<div id="startSearchProvider" class="list has-subheader provider">		
+				<p class="startTyping">Start typing the name of your provider. </p>
+				<p class="startTypingSubHeader">Be sure to use the organization name and not the individual doctor.</p>
+			</div>
+			<div id="emptyProvider" class="list has-subheader provider" >		
+				<p class="startTyping">No results were found for your search.</p>
+				<p class="startTypingSubHeader">Please be sure to search by the organization name and not the individual doctor.</p>
+			</div>
+			<div ng-controller="LoginCtrl">       
+		</div>
+	</ion-content>
+	<ion-footer-bar class="footer bar bar-footer">
+		<div class="ConcernsFooter">
+			<div class="FooterCenter" style="width: 100%;" ng-click="backtoPreviousPage()">
+				<a class="button_new icon">Cancel</a>
+			</div>
+		</div>		
+	</ion-footer-bar>
+	
+</ion-view>

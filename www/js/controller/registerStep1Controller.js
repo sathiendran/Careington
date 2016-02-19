@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('connectionLostCtrl', function($scope, ageFilter, $ionicPlatform, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+.controller('registerStep1Controller', function($scope, ageFilter, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
 	  $ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||
 			  ($rootScope.currState.$current.name=="tab.addCard") ||	
@@ -33,4 +33,33 @@ angular.module('starter.controllers')
                 navigator.app.backHistory(); 
             }
         }, 100); 
+		
+		$scope.regStep1 = {};
+		$rootScope.postRegisterStep1 = function() {			
+			if(typeof $scope.regStep1.FName == 'undefined' || $scope.regStep1.FName == '') {
+				$scope.ErrorMessage = "Please enter your first name";
+				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
+			} else if(typeof $scope.regStep1.LName == 'undefined' || $scope.regStep1.LName == '') {
+				$scope.ErrorMessage = "Please enter your last name";
+				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
+			}else if(typeof $scope.regStep1.address == 'undefined' || $scope.regStep1.address == '') {
+				$scope.ErrorMessage = "Please enter your address";
+				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
+			} else {
+				step1PostRegDetailsService.addPostRegDetails($scope.regStep1);					
+				$state.go('tab.registerStep2');		
+				$rootScope.step1RegDetails = step1PostRegDetailsService.getPostRegDetails();				
+			}
+		}
+		
+		$scope.registerStpe1BackToSearchProvider = function() {
+			if($rootScope.providerSearchKey !='' && typeof $rootScope.providerSearchKey !='undefined') {
+				$rootScope.backProviderSearchKey = $rootScope.providerSearchKey;
+			}
+			$state.go('tab.searchprovider');
+		}				
+		
 })
+
+
+
