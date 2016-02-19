@@ -18,21 +18,58 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single 
-var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Single'; //Production //Multiple //Single 
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = '';
 var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
-
 var loginPageEnv = 'Single';
+
+
+
 if(deploymentEnv == 'Single') {
 	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-	//deploymentEnvForProduction = 'Production';  //'Production'; //Enable only for production. Set 'Production' Only for Single Production - For Apple testing purpose
-	//var singleStagingHospitalId = 156; //Enable only for production. singleStagingHospitalId is Staging ID
-	var singleHospitalId = 157;	
-	var brandColor = ''; //'#5ec4fe';  //DYW -'#22508b';
-	var logo= ''; //img/teleHealthOne.png';
-	var Hopital = ''; //TelehealthOne';
-	var HopitalTag = '';
+	deploymentEnvForProduction = 'Production';  //'Production'; //Enable only for production. Set 'Production' Only for Single Production - For Apple testing purpose
+    
+    var singleStagingHospitalId;
+    var singleHospitalId;	
+    var brandColor;
+    var logo;
+    var Hospital;
+    var HospitalTag;
+    
+	var cobrandApp = 'DYW';
+    
+    if(cobrandApp == 'EpicMD'){
+        singleStagingHospitalId = 155;
+        singleHospitalId = 190;	
+        brandColor = '#66c3b0';
+        logo= 'img/epicmd_logotypebg.png';
+        Hospital = 'EpicMD';
+        HospitalTag = 'Virtual Care Concierge';
+    } else if(cobrandApp == 'TelehealthOne'){
+        singleStagingHospitalId = 142;
+        singleHospitalId = 142;	
+        brandColor = '#5ec4fe';
+        logo= 'img/teleLogo.png';
+        Hospital = 'telehealthONE';
+        HospitalTag = 'Virtual Care Concierge';
+    } else if(cobrandApp == 'Dokita'){
+        singleStagingHospitalId = 156;
+        singleHospitalId = 184;	
+        brandColor = '#ff0000';
+        logo= 'img/dokita.png';
+        Hospital = 'Dokita247';
+        HospitalTag = 'Virtual Care Concierge';
+    } else if(cobrandApp == 'DYW'){
+        singleStagingHospitalId = 156;
+        singleHospitalId = 168;	
+        brandColor = '#22508b';
+        logo= 'img/dyw.jpg';
+        Hospital = "DocYourWay's Global Care Management";
+        HospitalTag = 'Virtual Care Concierge';
+    }
+
+    
 }
 
 var handleOpenURL = function (url) {
@@ -560,7 +597,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
   }else if(deploymentEnv == "Single"){
-    $urlRouterProvider.otherwise('/tab/singleTheme');
+    //$urlRouterProvider.otherwise('/tab/singleTheme');
+    $urlRouterProvider.otherwise('/tab/loginSingle');
   }else{
     $urlRouterProvider.otherwise('/tab/login');
   }

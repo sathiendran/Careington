@@ -320,7 +320,7 @@ angular.module('starter.controllers')
 		if(deploymentEnvLogout == "Multiple"){
 			$state.go('tab.chooseEnvironment');
 		}else if(deploymentEnvLogout == "Single"){
-			$state.go('tab.singleTheme');		
+			$state.go('tab.loginSingle');		
 		}else{
 			$state.go('tab.login');
 		}
