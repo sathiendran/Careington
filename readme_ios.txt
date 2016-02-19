@@ -76,4 +76,10 @@ opentokplugin.m
      [streamData setObject: [NSNumber numberWithInt: stream.videoType] forKey: @"videoType" ];
      [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.height] forKey: @"videoHeight" ];
      [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.width] forKey: @"videowidth" ];	
+     
+     
+      NSString* jsString = [NSString stringWithFormat:@
+                               "window.setTimeout(function() { \n"
+                               "handleOpenURL(\"%@\"); \n"
+                               "},1);", url];
 

@@ -341,7 +341,7 @@ body {
 }
 
 .header_imageIOS { 
-	margin-top: 35px; 
+	margin-top: 20px; 
 	text-align: center;
 	width: 100%;
 	border-color: #B03A21;
@@ -1437,6 +1437,7 @@ body {
 	z-index: 999; 
 	padding-top: 20px;
 	.reportLogo {
+       // padding-top: 20px; 
 		//width: 50%;  float: left;
 		img {
 			//width: 140px;
