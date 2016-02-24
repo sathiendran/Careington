@@ -300,7 +300,7 @@ body {
 
 
 .bar-footer {
-	background-position: 0px 40px;  height: 47px;
+	background-position: 0px 40px;  height: 48px;
 }
 .terms_footer_a {
 	margin-left: 20px !important; font-weight: bold !important;cursor: pointer;
@@ -354,8 +354,7 @@ body {
 }
 
 .header_imageAndroid { 
-	padding-top: 20px;
-	padding-bottom: 20px;
+	margin-top: 20px;
 	text-align: center;
 	width: 100%;
 	border-color: #B03A21;
@@ -527,7 +526,7 @@ body {
 
 .ion-chevron-left::before {
     color: #fff;
- margin: 3px;
+ margin: 2px 3px 3px 3px;
     
 }
 
@@ -657,7 +656,7 @@ body {
 
 
 .calendarBack {   
-	padding-top: 7px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:11px;
+	padding-top: 5px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1;top:11px;
 	span { 
 		margin-top:7px;position: relative;margin-left: -1px;top: -1px; 
 	}
@@ -738,14 +737,14 @@ body {
 	background-color: #e6e6e6;
 	/*border-bottom: 1px solid #b9b8b8;*/
 	color: #565656; 
-	height: 50px; 
-	margin-top: 121px;
+	height: 53px; 
+	margin-top: 119px;
     //margin-top: 114px;
 }
 .patientCalendar_watch {
 	padding: 10px;
 	float: left;
-	margin-top: 6px;
+	margin-top: 4px;
 	img{
 		width:20px;
 	}
@@ -759,7 +758,7 @@ body {
     margin-bottom: -8px;
     font-family: $fontFamily_semibold;
 	position: relative;
-	top: 6px;
+	top: 4px;
 	left: -2px;
 }
 .patientCalendar_Content {
@@ -1431,11 +1430,10 @@ body {
 }
 
 .ReportContent   {
-	margin: 81px 0px 0 0px;
-    padding-top: 20px;
+	margin: 35px 0px 0 0px;
+    padding-top: 57px;
 	font-family: 'Glober Regular';
-	z-index: 999; 
-	padding-top: 20px;
+	z-index: 999;
 	.reportLogo {
        // padding-top: 20px; 
 		//width: 50%;  float: left;
@@ -1462,11 +1460,13 @@ body {
 			p {
 				color: #fff;margin: -40px 0 0 8px;
 			}
-		}
-		.attachmentSpace {
-			border-bottom: 2px solid #ccc; position: relative; top: -37px; 
-		}
+		}		
 	}
+	
+	.attachmentSpace { 
+			border-bottom: 2px solid #ccc; position: relative; top: -33px; 
+		}
+	
 	.reportPatientDetails {
 		margin-top: -20px;
 		.reportPatient {
@@ -2841,7 +2841,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 			.ion-chevron-right:before {
 			  content: "\f125";
 			  font-size: 19px;
-			  margin-top: -2px;
+			  margin-top: 0px;
 			}
 		}
 	}
@@ -2890,9 +2890,9 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 .menuiconIOS {  position: relative;top: 4px; }
 
 .subHeaderTop { top: 70px; padding-top: 19px;
-    height: 87%; }
+    height: 87%; margin-top: -7px; }
 
-#BackButtonIcon { color:#000; margin-top: 15px; display: block !important;}
+#BackButtonIcon { color:#000; margin-top: 13px; display: block !important;}
 
 #WhoNeeds { font-size: 23px;  width: 85%; }
 .BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}
