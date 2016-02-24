@@ -474,7 +474,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuInnerStyle = "top: -8px;"; 
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
-         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
+         $rootScope.PriorSurgeryPopupCancel = "margin-top: -5px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
        $rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;"; 
 	   $rootScope.resetContent = "margin: 202px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
@@ -1142,6 +1142,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         if(deploymentEnv == "Single"){
             $rootScope.hospitalId = singleHospitalId;
         }
+		if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
+			apiCommonURL = 'https://connectedcare.md';
+			api_keys_env = '';
+			$rootScope.APICommonURL = 'https://connectedcare.md';
+		}
     
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
