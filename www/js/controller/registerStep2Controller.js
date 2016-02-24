@@ -40,7 +40,7 @@ angular.module('starter.controllers')
 				var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 				return expr.test(email);
 			};
-			var pwdRegularExpress = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])^.{4,7}$/;	
+			var pwdRegularExpress = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])^.{8,20}$/;	
 					
 			if(typeof $scope.regStep2.emailID == 'undefined' || $scope.regStep2.emailID == '') {
 				$scope.ErrorMessage = "Please enter your email id";

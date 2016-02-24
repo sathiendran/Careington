@@ -35,8 +35,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 						request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 					}
 					request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-					request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
-					request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+					request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+					request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 					return request;
 			}
 		},
@@ -64,8 +64,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				return headers;	
 			}else{				
 				var headers = {
-						'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
-						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -287,17 +287,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
     /******** Prabin: Code to implement static brand color, logo and tagline. *******/
     
-    $rootScope.brandColor = brandColor;
-    $rootScope.logo = logo;
-    $rootScope.Hospital = Hospital; 
+   
     if(deploymentEnvLogout == 'Multiple') {
         $rootScope.alertMsgName = 'Virtual Care';
         $rootScope.reportHospitalUpperCase =  'Virtual Care';
     } else {
+		 $rootScope.brandColor = brandColor;
+		$rootScope.logo = logo;
+		 $rootScope.HospitalTag = HospitalTag;	
+		$rootScope.Hospital = Hospital; 
          $rootScope.alertMsgName = Hospital;
          $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
     } 
-    $rootScope.HospitalTag = HospitalTag;	
+   
 	
     /******** Code to implement static brand color ends here **********/
           
@@ -894,6 +896,22 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$state.go($rootScope.frontPage);	
 	}
 	
+	$rootScope.cancelProviderSearch = function() {
+		navigator.notification.confirm(
+			'Are you sure that you want to cancel?',
+			 function(index){
+				if(index == 1){					
+					
+				}else if(index == 2){
+					//$state.go('tab.userhome');			
+					$state.go($rootScope.frontPage);
+				}
+			 },
+			'Confirmation:',
+			['No','Yes']     
+		);
+	}
+	
 	$rootScope.backtoPreviousPageFromTerms = function(registerCurrentPage) {
 		$state.go(registerCurrentPage);	
 	}
@@ -1026,6 +1044,24 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         };
         LoginService.getHospitalInfo(params);		
     }
+	
+	$scope.doPostResendEmail = function() {		
+		 var params = {
+			email: $rootScope.UserEmail,
+			hospitalId: $rootScope.hospitalId,
+			success: function (data) {
+				//console.log('dopostsentpass');
+				console.log(data);
+				alert('ddd');
+			},
+			error: function (data) {
+				$rootScope.serverErrorMessageValidation();
+			}
+		};
+		
+		LoginService.postResendEmail(params);
+		
+	}
     
 	//Password functionality	
 	$scope.pass = {};
@@ -1055,9 +1091,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                         //$rootScope.CountryLists = CountryList.getCountryDetails();							
 					}
 				},
-				error: function (data) {
-					$scope.ErrorMessage = "Incorrect Password. Please try again";
-					$rootScope.Validation($scope.ErrorMessage);
+				error: function (data, status) {
+					if(status == '401' || status == '403') {						      
+						navigator.notification.confirm(
+							'Your account is not verified yet. Do you want to resend?',
+							 function(index){
+								if(index == 1){					
+									
+								}else if(index == 2){
+									$scope.doPostResendEmail();
+								}
+							 },
+							'Confirmation:',
+							['Cancel','Resend']     
+						);
+
+					} else {
+						$scope.ErrorMessage = "Incorrect Password. Please try again";
+						$rootScope.Validation($scope.ErrorMessage);
+					}
 				}
 			};
 			

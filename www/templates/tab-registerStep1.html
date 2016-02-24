@@ -23,13 +23,19 @@
 					</div>
 					<div class="item-input-inset">
 						<label class="item-input-wrapper place1">
-							<input type="text" ng-model="regStep1.address" placeholder="Full Address">
+							<!--<input type="text" ng-model="regStep1.address" placeholder="Full Address">-->
+							 <ion-google-place placeholder="Required" ng-model="regStep1.address" />
+							 
+							 
 						</label>		
-					</div>
+					</div>					
+					
 					<div class="btn1">				
 						<button type="submit" class="button">
 								Get Started
-						</button>					
+						</button>		
+
+						
 					</div>	
 			</div>	
 		</form>	

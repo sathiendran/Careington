@@ -34,7 +34,7 @@ angular.module('starter.services', [])
 	 this.getToken = function (params) {
         var requestInfo = {
             headers: util.getHeaders(),
-            url: apiCommonURL + '/api/Account/Token',
+            url: apiCommonURL + '/api/v2/Account/Token',
             method: 'POST',
             data: {
                 UserTypeId: params.userTypeId,
@@ -52,7 +52,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data, status);
                     }
                 });
     }
@@ -71,6 +71,30 @@ angular.module('starter.services', [])
 		};
 		
 		$http(confirmSendPasswordResetEmail).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
+	this.postResendEmail = function(params) {
+		var confirmResendMail = {
+			headers: util.getHeaders(params.accessToken),          
+              url: apiCommonURL + '/api/v2/patients/single-trip-registration/resend-onboarding-email',
+			  method: 'POST',
+			  data: {
+                email: params.email,
+                hospitalId: params.hospitalId,
+             }
+		};
+		
+		$http(confirmResendMail).
 			success(function (data, status, headers, config) {
 				if (typeof params.success != 'undefined') {
 					params.success(data);
