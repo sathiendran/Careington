@@ -116,8 +116,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 				}
 				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-				request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-				request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
 				return request;
 			}
 		},
@@ -135,8 +135,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				return headers;
 			}else{
 				var headers = {
-						'X-Developer-Id': '1f9480321986463b822a981066cad094',
-						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+						'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -215,8 +215,8 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 	}else if(deploymentEnv == "Single"){		
 	//	apiCommonURL = 'https://sandbox.connectedcare.md';	
 	//	apiCommonURL = 'https://snap-qa.com';	
-	apiCommonURL = 'https://connectedcare.md';		
-		//apiCommonURL = 'https://snap-stage.com';    
+	//apiCommonURL = 'https://connectedcare.md';		
+		apiCommonURL = 'https://snap-stage.com';    
     
 	} else if(deploymentEnv == "Staging") {
 		apiCommonURL = 'https://snap-stage.com';
@@ -285,24 +285,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$localstorage.set('ChkVideoConferencePage', ""); 
 	
-    /******** Prabin: Code to implement static brand color, logo and tagline. *******/
-    
-   
-    if(deploymentEnvLogout == 'Multiple') {
-        $rootScope.alertMsgName = 'Virtual Care';
-        $rootScope.reportHospitalUpperCase =  'Virtual Care';
-    } else {
-		 $rootScope.brandColor = brandColor;
-		$rootScope.logo = logo;
-		 $rootScope.HospitalTag = HospitalTag;	
-		$rootScope.Hospital = Hospital; 
-         $rootScope.alertMsgName = Hospital;
-         $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
-    } 
-   
-	
-    /******** Code to implement static brand color ends here **********/
-          
 	$rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -313,6 +295,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isWebView = ionic.Platform.isWebView();
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
+	
+    /******** Prabin: Code to implement static brand color, logo and tagline. *******/
+    
+   
+    if(deploymentEnvLogout == 'Multiple') {
+        $rootScope.alertMsgName = 'Virtual Care';
+        $rootScope.reportHospitalUpperCase =  'Virtual Care';
+    } else {
+		//if(typeof $rootScope.brandColor == 'undefined' || $rootScope.brandColor == '') {
+		  if($rootScope.currState.$current.name=="tab.loginSingle") {
+			 $rootScope.brandColor = brandColor;
+			$rootScope.logo = logo;
+			 $rootScope.HospitalTag = HospitalTag;	
+			$rootScope.Hospital = Hospital; 
+			 $rootScope.alertMsgName = Hospital;
+			 $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
+		}
+    } 
+   
+	
+    /******** Code to implement static brand color ends here **********/
+          
+	
      
     if($rootScope.IOSDevice || $rootScope.isIPad) {
 		$rootScope.screenwidth = window.innerWidth;
@@ -1079,9 +1084,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					//Get default payment profile from localstorage if already stored.
 					
-					$rootScope.accessToken = data.access_token;
+					$rootScope.accessToken = data.data[0].access_token;
 					console.log($scope.accessToken);
-					if(typeof data.access_token == 'undefined') {
+					if(typeof data.data[0].access_token == 'undefined') {
 						$scope.ErrorMessage = "Incorrect Password. Please try again";
 						$rootScope.Validation($scope.ErrorMessage);
 					} else {
@@ -1196,7 +1201,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			apiCommonURL = 'https://connectedcare.md';
 			api_keys_env = '';
 			$rootScope.APICommonURL = 'https://connectedcare.md';
-		} else {
+		} else if(deploymentEnvLogout == 'Single') {
 			$rootScope.hospitalId = singleHospitalId;
 		}
 

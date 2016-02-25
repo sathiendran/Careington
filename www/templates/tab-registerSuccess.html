@@ -1,6 +1,7 @@
-<ion-view class="epassbg">	
-	<ion-content class="register">
-		<div>	
+<ion-view>	
+	<ion-content class="register" style="background-color: {{brandColor}}">
+		<div class="epassbg">	
+			<img ng-src="{{logo}}" />
 			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>	
 		</div>	
 			
@@ -45,7 +46,7 @@
 		</div>
 		
 	</ion-content>
-	<ion-footer-bar class="bar bar-footer emailpassfooter">
+	<ion-footer-bar class="bar bar-footer emailpassfooter" style="background-color: {{brandColor}}">
 		<a ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerSuccess');"><button class="button button-clear"><span>Terms & Conditions</span></button></a>		
 		<!--<button class="button button-clear"><span>Powered by SnapMD</span></button>-->
 	</ion-footer-bar>

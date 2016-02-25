@@ -3584,10 +3584,22 @@ font-family: $fontFamily_regular;
 	}
 	
 }
-.epassbg{
-	background: url('../img/csbg.png') no-repeat center;
-	background-color: #23b4d6;	
-}
+	.epassbg {
+		margin: 0px;
+		text-align: center;
+		img {
+			margin-top: 36px;
+			z-index: -1;			
+			opacity: 0.3;
+			width: 400px;
+			height: 100px;
+		}
+		h2 {
+			margin-top: -150px;
+		}
+	}
+
+
 
 .loginimg{
 	text-align: center;
@@ -4125,6 +4137,7 @@ input[type="checkbox"]:checked + label{
 					}
 				}
 				.card{	
+							
 							background-color: #f4f4f4;				
 							border: none !important;
 							border-radius: 13px;
@@ -4477,55 +4490,202 @@ input[type="checkbox"]:checked + label{
 }
 
 
+/* Samsung Galaxy S5 ----------- */
+	 
+	 $break-maxsize: 360px;
+	 @media screen and (min-width: $break-maxsize)  {		
+		
+		.epassbg {
+			margin: -60px;
+			text-align: center;
+			img {
+				margin-top: 36px;	
+				z-index: -1;			
+				opacity: 0.3;
+				width: 290px;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+			}
+		}
+	 }
+	 
+/* Smartphones (portrait) ----------- */
+	$break-maxsize: 320px;
+	@media screen and (max-width: $break-maxsize)  {
+		.epassbg {
+			margin: -60px;
+			text-align: center;
+			img {
+				margin-top: 36px;
+				z-index: -1;			
+				opacity: 0.3;
+				width: 252px;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+				font-size: 20px;
+			}
+		}
+	}
+
+/* Large screens ----------- */
+	$break-maxsize: 1824px;
+	 @media screen and (min-width: $break-maxsize)  {
+		.card{
+			margin-right:25%;
+			margin-left: 25%;
+		}
+		.epassbg {
+			margin: 0px;
+			text-align: center;
+			img {
+				margin-top: 36px;	
+				z-index: -1;			
+				opacity: 0.3;
+				width: 252px;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+				font-size: 20px;
+			}
+		}		
+	} 
+
+/* Desktops and laptops ----------- */
+	$break-maxsize: 1224px;
+	 @media screen and (min-width: $break-maxsize)  {
+		.card{
+			margin-right:25%;
+			margin-left: 25%;
+		}
+		.epassbg {
+			margin: 0px;
+			text-align: center;
+			img {
+				margin-top: 36px;	
+				z-index: -1;			
+				opacity: 0.3;
+				width: 513px;
+				height: 118px;
+			}
+			h2 {
+				margin-top: -150px;
+				font-size: 20px;
+			}
+		}    
+	}
+	
+/* iPhone 4 & iPhone 5 ----------- */
+ 
+	 $break-maxsize: 320px;
+	 @media screen and (min-width: $break-maxsize)  {
+		.epassbg {
+			margin: 0px;
+			text-align: center;
+			img {
+				margin-top: 36px;	
+				z-index: -1;			
+				opacity: 0.3;
+				width: 253;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+			}
+		}
+	 }
+ 
+ 
+ 
+ /* iPhone 6 ----------- */
+ 
+	 $break-maxsize: 375px;
+	 @media screen and (min-width: $break-maxsize)  {
+		.epassbg {
+			margin: 0px;
+			text-align: center;
+			img {
+				margin-top: 36px;
+				z-index: -1;			
+				opacity: 0.3;
+				width: 290px;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+			}
+		}
+	 }
+ 
+ /* iPhone 6+ ----------- */
+ 
+	 $break-maxsize: 414px;
+	 @media screen and (min-width: $break-maxsize)  {
+		.epassbg {
+			margin: 0px;
+			text-align: center;
+			img {
+				margin-top: 36px;
+				z-index: -1;			
+				opacity: 0.3;
+				width: 290px;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+			}
+		}
+	 }
+
+/* iPads (portrait) ----------- */
+	$break-maxsize: 768px;
+	 @media screen and (min-width: $break-maxsize)  {
+		.card{
+			margin-right:27%;
+			margin-left: 27%;
+		}	
+		
+		.epassbg {
+			margin: 0px;
+			text-align: center;
+			img {
+				margin-top: 36px;
+				z-index: -1;			
+				opacity: 0.3;
+				width: 290px;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+			}
+		}
+	 }
 
 
-$break-maxsize: 668px;
- @media screen and (min-width: $break-maxsize)  {
-	.card{
-		margin-right:27%;
-		margin-left: 27%;
-	}	
-    
-}
-/*$break-maxsize: 640px;
- @media screen and (min-width: $break-maxsize)  {
-	.card{
-		margin-right:23%;
-		margin-left: 23%;
-	}	
-    
-}
-
-$break-maxsize: 980px;
- @media screen and (min-width: $break-maxsize)  {
-	.card{
-		margin-right:35%;
-		margin-left: 35%;
-	}	
-    
-}
-
-$break-maxsize: 1024px;
- @media screen and (min-width: $break-maxsize)  {
-	.card{
-		margin-right:38%;
-		margin-left: 38%;
-	}	
-    
-}
-$break-maxsize: 1280px;
- @media screen and (min-width: $break-maxsize)  {
-	.card{
-		margin-right:25%;
-		margin-left: 25%;
-	}	
-    
-}
-$break-maxsize: 1280px;
- @media screen and (max-width: $break-maxsize)  {
-	.card{
-		margin-right:25%;
-		margin-left: 25%;
-	}	
-    
-}*/
+	$break-maxsize: 1024px;
+	 @media screen and (min-width: $break-maxsize)  {
+		.card{
+			margin-right:38%;
+			margin-left: 38%;
+		}
+		.epassbg {
+			margin: 0px;
+			text-align: center;
+			img {
+				margin-top: 36;	
+				z-index: -1;			
+				opacity: 0.3;
+				width: 290px;
+				height: 100px;
+			}
+			h2 {
+				margin-top: -150px;
+			}
+		}	
+		
+	}
+	

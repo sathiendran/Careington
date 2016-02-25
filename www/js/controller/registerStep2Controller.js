@@ -90,7 +90,17 @@ angular.module('starter.controllers')
 						$state.go('tab.registerSuccess');	
 					},
 					error: function (data) {
-						$scope.$root.$broadcast("callServerErrorMessageValidation");
+						if(data.message == 'Email address already registered.') {
+							navigator.notification.alert(
+								'Email address already registered. Please use different Email ID',  // message
+								function(){ },
+								 $rootScope.alertMsgName,            // title
+								'Done'                  // buttonName
+							);
+							return false;
+						} else {
+							$scope.$root.$broadcast("callServerErrorMessageValidation");
+						}
 					}
 				};
 				
