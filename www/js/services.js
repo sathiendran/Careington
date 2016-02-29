@@ -971,10 +971,8 @@ this.getCountryDetails = function () {
 .service('htmlEscapeValue', function(){ 
 	this.getHtmlEscapeValue = function(value) {
 		//return angular.element('<div></div>').text(value).html();
-		if(typeof value != 'undefined' && value !='') {
-			var element = angular.element('<div></div>');
-			element.text(value); // not chainable, see #1044
-			return element.html();
+		if(typeof value != 'undefined' && value !='') {			
+			return  angular.element('<div>').html(value).text();
 		}
      }; 
 	 
