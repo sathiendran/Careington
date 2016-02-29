@@ -1,7 +1,7 @@
 
 angular.module('starter.controllers')
 
-.controller('ConferenceCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
     
     $scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
@@ -80,52 +80,52 @@ angular.module('starter.controllers')
 				} else {
 					$rootScope.reportWeight = 'NA';
 				}
-				$rootScope.reportPatientName = angular.element('<div>').html($rootScope.existingConsultationReport.patientName).text();
-				$rootScope.reportLastName = angular.element('<div>').html($rootScope.existingConsultationReport.lastName).text();
+				$rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
+				$rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
 				
 				if($rootScope.existingConsultationReport.patientAddress !='' && typeof $rootScope.existingConsultationReport.patientAddress != 'undefined')
 				{
-					$rootScope.reportPatientAddress = angular.element('<div>').html($rootScope.existingConsultationReport.patientAddress).text();
+					$rootScope.reportPatientAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientAddress);
 				} else {
 					$rootScope.reportPatientAddress = 'None Reported';
 				}
 				
 				if($rootScope.existingConsultationReport.homePhone !='' && typeof $rootScope.existingConsultationReport.homePhone != 'undefined')
 				{
-					$rootScope.reportHomePhone = angular.element('<div>').html($rootScope.existingConsultationReport.homePhone).text();
+					$rootScope.reportHomePhone = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.homePhone);
 				} else {
 					$rootScope.reportHomePhone = 'NA';
 				}
 				
 				if($rootScope.existingConsultationReport.hospitalAddress !='' && typeof $rootScope.existingConsultationReport.hospitalAddress != 'undefined')
 				{
-					$rootScope.reportHospitalAddress = angular.element('<div>').html($rootScope.existingConsultationReport.hospitalAddress).text();
+					$rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
 				} else {
 					$rootScope.reportHospitalAddress = 'None Reported';
 				}
 				
 				if($rootScope.existingConsultationReport.doctorFirstName !='' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined')
 				{
-					$rootScope.reportDoctorFirstName = angular.element('<div>').html($rootScope.existingConsultationReport.doctorFirstName).text();
+					$rootScope.reportDoctorFirstName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorFirstName);
 				} else {
 					$rootScope.reportDoctorFirstName = 'None Reported';
 				}
 				if($rootScope.existingConsultationReport.medicalSpeciality !='' && typeof $rootScope.existingConsultationReport.medicalSpeciality != 'undefined')
 				{
-					$rootScope.reportMedicalSpeciality = ', ' + angular.element('<div>').html($rootScope.existingConsultationReport.medicalSpeciality).text();
+					$rootScope.reportMedicalSpeciality = ', ' + htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.medicalSpeciality);
 				} else {
 					$rootScope.reportMedicalSpeciality = '';
 				}
 				
 				if($rootScope.existingConsultationReport.doctorFirstName !='' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined')
 				{
-					$rootScope.reportDoctorLastName = angular.element('<div>').html($rootScope.existingConsultationReport.doctorLastName).text();
+					$rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
 				} else {
 					$rootScope.reportDoctorLastName = 'None Reported';
 				}
 			
 				if($rootScope.existingConsultationReport.rx !='' && typeof $rootScope.existingConsultationReport.rx != 'undefined') {
-					$rootScope.reportrx = angular.element('<div>').html($rootScope.existingConsultationReport.rx).text();
+					$rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
 				} else {
 					$rootScope.reportrx = 'None Reported';
 				}
@@ -159,7 +159,7 @@ angular.module('starter.controllers')
 			}
 				
 				$rootScope.ReportHospitalImage = $rootScope.APICommonURL + $rootScope.existingConsultationReport.hospitalImage;					
-				$rootScope.reportScreenPrimaryConcern = angular.element('<div>').html($rootScope.existingConsultationReport.primaryConcern).text();
+				$rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.primaryConcern);
 				if(typeof $rootScope.reportScreenPrimaryConcern != 'undefined') {
 					var n = $rootScope.reportScreenPrimaryConcern.indexOf("?");
 					if(n < 0) {
@@ -175,10 +175,10 @@ angular.module('starter.controllers')
 				if(typeof $rootScope.reportScreenSecondaryConcern != 'undefined') {
 					var n = $rootScope.reportScreenSecondaryConcern.indexOf("?");
 					if(n < 0) {
-						$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.reportScreenSecondaryConcern).text();
+						$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.reportScreenSecondaryConcern);
 					} else {
 						$rootScope.reportScreenSecondaryConcern1 = $rootScope.reportScreenSecondaryConcern.split("?");
-						$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.reportScreenSecondaryConcern1[1]).text();
+						$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.reportScreenSecondaryConcern1[1]);
 					}
 				} else {
 					$rootScope.reportScreenSecondaryConcern = "None Reported";
@@ -273,25 +273,25 @@ angular.module('starter.controllers')
                 success: function (data) {
                     $rootScope.SoapNote = data.data;					
 					if($rootScope.SoapNote.subjective !='' && typeof $rootScope.SoapNote.subjective != 'undefined') {
-						$rootScope.reportSubjective = angular.element('<div>').html($rootScope.SoapNote.subjective).text();
+						$rootScope.reportSubjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.subjective);
 					} else {
 						$rootScope.reportSubjective = 'None Reported';
 					}
 					
 					if($rootScope.SoapNote.objective !='' && typeof $rootScope.SoapNote.objective != 'undefined') {
-						$rootScope.reportObjective = angular.element('<div>').html($rootScope.SoapNote.objective).text();
+						$rootScope.reportObjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.objective);
 					} else {
 						$rootScope.reportObjective = 'None Reported';
 					}
 					
 					if($rootScope.SoapNote.assessment !='' && typeof $rootScope.SoapNote.assessment != 'undefined') {
-						$rootScope.reportAssessment = angular.element('<div>').html($rootScope.SoapNote.assessment).text();
+						$rootScope.reportAssessment = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.assessment);
 					} else {
 						$rootScope.reportAssessment = 'None Reported';
 					}
 					
 					if($rootScope.SoapNote.plan !='' && typeof $rootScope.SoapNote.plan != 'undefined') {
-						$rootScope.reportPlan = angular.element('<div>').html($rootScope.SoapNote.plan).text();
+						$rootScope.reportPlan = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.plan);
 					} else {
 						$rootScope.reportPlan = 'None Reported';
 					}

@@ -4,7 +4,7 @@ angular.module('starter.controllers')
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope,$ionicPlatform,$interval,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
+.controller('IntakeFormsCtrl', function($scope,$ionicPlatform, htmlEscapeValue, $interval,$ionicSideMenuDelegate, replaceCardNumber, $ionicModal,$ionicPopup,$ionicHistory, $filter, $rootScope, $state,SurgeryStocksListService, LoginService, $timeout, CustomCalendar,CustomCalendarMonth) {
     
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||
@@ -411,7 +411,7 @@ angular.module('starter.controllers')
             documentType: 2, 
 			hospitalId: $rootScope.hospitalId,			
             success: function (data) {				
-				$rootScope.concentToTreatContent = angular.element('<div>').html(data.data[0].documentText).text();
+				$rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
 				$state.go('tab.ConsentTreat');
 						
             },

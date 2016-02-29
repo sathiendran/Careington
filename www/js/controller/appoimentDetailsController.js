@@ -2,7 +2,7 @@
 angular.module('starter.controllers')
 
 
-.controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	//$state.go('tab.appoimentDetails');
 	//document.getElementsByTagName('timer')[0].stop();
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
@@ -268,16 +268,16 @@ angular.module('starter.controllers')
 				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
 				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
-				$rootScope.appointmentsPatientGurdianName = angular.element('<div>').html($rootScope.patientExistInfomation.guardianName).text();
+				$rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.patientExistInfomation.guardianName);
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
-				$rootScope.reportScreenPrimaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[0].customCode.description).text();
-				$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[1].customCode.description).text();
+				$rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[0].customCode.description);
+				$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[1].customCode.description);
 				if($rootScope.reportScreenSecondaryConcern == "") {
 					$rootScope.reportScreenSecondaryConcern = "None Reported";
 				}
 				if(typeof $rootScope.consultionInformation.note != 'undefined') {
-					$rootScope.preConsultantNotes = angular.element('<div>').html($rootScope.consultionInformation.note).text();				
+					$rootScope.preConsultantNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.consultionInformation.note);				
 				} else {
 					$rootScope.preConsultantNotes = '';
 				}
@@ -299,8 +299,8 @@ angular.module('starter.controllers')
 			patientId: $rootScope.appointmentsPatientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {				
-				$rootScope.appointmentsPatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();	
-				$rootScope.appointmentsPatientLastName = angular.element('<div>').html(data.data[0].lastName).text();		 
+				$rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);	
+				$rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);		 
 					
 			},
 			error: function (data) {
