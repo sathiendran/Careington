@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 
 
 
-.controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
 	
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
@@ -85,10 +85,10 @@ angular.module('starter.controllers')
 								'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 								'consultantUserId': index.consultantUserId,
 								'consultationId': index.consultationId,
-								'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(), 
-								'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
-								'assignedDoctorName': angular.element('<div>').html(index.assignedDoctorName).text(),
-								'patientName': angular.element('<div>').html(index.patientName).text(),
+								'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName), 
+								'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName),
+								'assignedDoctorName': htmlEscapeValue.getHtmlEscapeValue(index.assignedDoctorName),
+								'patientName': htmlEscapeValue.getHtmlEscapeValue(index.patientName),
 								'patientId': index.patientId,
 								'consultationStatus': index.consultationStatus,
 								'scheduledId': index.scheduledId,    
