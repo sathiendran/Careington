@@ -11,7 +11,7 @@
 		
 		<div class="item-input-inset">
 				<label class="item-input-wrapper">
-					<i class="icon ion-ios-search placeholder-icon"></i>
+					<i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
 					<input type="search"  placeholder="Search" ng-model="data.searchProvider">
 					
 				</label>
@@ -21,12 +21,14 @@
 			
 			<div id="providerListDiv" class="list has-subheader provider" >				
 				<a class="item item-avatar item-icon-right" ng-repeat="providerList in searchProviderList" ng-click="goToRegisterStep1(providerList)">
-					<img src="img/patient.png">
+					<!--<img src="img/patient.png">-->
+					<div class="searchProvFirstLetterDiv" style="border: 2px solid #C4C5C3; background-color: red;"><p>{{providerList.firstCharactOfHosName}}</p></div>
 					<h2>{{providerList.hospitalName}}</h2>					
 					<i class="icon ion-chevron-right"></i>
 				</a>
 			</div>
 			<div id="startSearchProvider" class="list has-subheader provider">		
+				<p><img ng-src="../img/searchArrow.png" style="width: 50px;" ></p>
 				<p class="startTyping">Start typing the name of your provider. </p>
 				<p class="startTypingSubHeader">Be sure to use the organization name and not the individual doctor.</p>
 			</div>
@@ -37,12 +39,13 @@
 			<div ng-controller="LoginCtrl">       
 		</div>
 	</ion-content>
-	<ion-footer-bar class="footer bar bar-footer">
+	<ion-footer-bar class="footer">
 		<div class="ConcernsFooter">
 			<div class="FooterCenter" style="width: 100%;" ng-click="cancelProviderSearch()">
 				<a class="button_new icon">Cancel</a>
 			</div>
 		</div>		
 	</ion-footer-bar>
+
 	
 </ion-view>

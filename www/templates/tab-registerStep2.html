@@ -42,14 +42,20 @@
 		</form>
 					
 		<div class="acinfo1">
-			<h4>Already have an account? <span ng-click="backtoPreviousPage();">Login.</span></h4>
+			<h4>Already have an account? <span ng-click="backtoPreviousPage();">Login</span></h4>
 					
 		</div>
 		<div ng-controller="LoginCtrl">       
 		</div>
 	</ion-content>
-	<ion-footer-bar class="bar bar-footer emailpassfooter" style="background-color: {{brandColor}}">
+	<!--<ion-footer-bar class="bar bar-footer emailpassfooter" style="background-color: {{brandColor}}">
 		<a ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');"><button class="button button-clear"><span>Terms & Conditions</span></button>	</a>	
-		<!--<button class="button button-clear"><span>Powered by SnapMD</span></button>
-	</ion-footer-bar>
+	</ion-footer-bar>-->
+	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+		<div class="ConcernsFooter">				 
+			<div class="FooterLeft">				
+				<a class="button_new icon" style="font-size: 12px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');">Terms & Conditions</a>	
+			</div>
+		<div>
+	</ion-footer-bar>	
 </ion-view>	

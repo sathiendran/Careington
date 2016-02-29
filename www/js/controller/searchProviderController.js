@@ -38,23 +38,20 @@ angular.module('starter.controllers')
 	$scope.$watch('data.searchProvider', function(searchKey){
 		 $rootScope.providerSearchKey = searchKey;	
 			if(typeof $rootScope.providerSearchKey =='undefined') {
-				$scope.data.searchProvider = $rootScope.backProviderSearchKey;
+				$scope.data.searchProvider = $rootScope.backProviderSearchKey;				
 			}
-		// $rootScope.backProviderSearchKey = $rootScope.backProviderSearchKey;		
-		//if($rootScope.backProviderSearchKey == '' || typeof $rootScope.backProviderSearchKey == 'undefined') {
-			if($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined' && $rootScope.providerSearchKey.length >= 3){           
-				$scope.doGetSearchProviderList($rootScope.providerSearchKey);
+			if($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+				$rootScope.iconDisplay = 'none';
 			} else {
+				$rootScope.iconDisplay = 'Block';
+			}
+			if($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined' && $rootScope.providerSearchKey.length >= 3){           
+				$scope.doGetSearchProviderList($rootScope.providerSearchKey);				
+			} else {				
 				$('#providerListDiv').hide();
 				$('#emptyProvider').hide();
 				$('#startSearchProvider').show();			
-			}
-		/*} else {
-			$rootScope.backProviderSearchKey = '';
-			$('#providerListDiv').show();
-			$('#emptyProvider').hide();
-			$('#startSearchProvider').hide();
-		}*/
+			}		
     });
 	
 	$scope.doGetSearchProviderList = function(providerSearchKey) {		
@@ -73,6 +70,7 @@ angular.module('starter.controllers')
 							'customerSso': index.customerSso,
 							'hospitalId': index.hospitalId,
 							'hospitalName': index.hospitalName,
+							'firstCharactOfHosName' : index.hospitalName.substring(0, 2).toUpperCase()
 						});
 					});						
 					
