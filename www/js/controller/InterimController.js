@@ -1,7 +1,7 @@
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
 //InterimController - To manipulate URL Schemes
-.controller('InterimController', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
 	
 	$rootScope.deploymentEnv = deploymentEnv;
      if(deploymentEnv != 'Multiple') {
@@ -149,11 +149,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 									'consultantUserId': index.consultantUserId,
 									'consultationId': index.consultationId,
-									'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
-									'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
+									'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName),
+									'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName),
 									'patientId': index.patientId,
-									'assignedDoctorName': angular.element('<div>').html(index.assignedDoctorName).text(), 
-									'patientName': angular.element('<div>').html(index.patientName).text(),
+									'assignedDoctorName': htmlEscapeValue.getHtmlEscapeValue(index.assignedDoctorName), 
+									'patientName': htmlEscapeValue.getHtmlEscapeValue(index.patientName),
 									'consultationStatus': index.consultationStatus,
 									'scheduledId': index.scheduledId,    
 								});
@@ -223,7 +223,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'location': index.location,
 							});
 						});	
-					$rootScope.primaryPatientLastName = angular.element('<div>').html($rootScope.primaryPatientLastName[0].lastName).text(); 	
+					$rootScope.primaryPatientLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientLastName[0].lastName); 	
 					
 					$rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' '+$rootScope.primaryPatientLastName;					
 						
@@ -272,7 +272,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				} else {
 					$rootScope.organization = '';
 				}
-				$rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
+				$rootScope.primaryPatientName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
 				$rootScope.userCountry = data.data[0].country;
 				if(typeof $rootScope.userCountry == 'undefined') {
 					$rootScope.userCountry = '';
@@ -339,11 +339,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'birthdate': index.birthdate,
 							'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
 							'addresses': angular.fromJson(index.addresses),
-							'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
-							'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
-							'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
-							'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
-							'guardianName': angular.element('<div>').html(index.guardianName).text(),
+							'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName),
+							'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName),
+							'guardianFirstName': htmlEscapeValue.getHtmlEscapeValue(index.guardianFirstName),
+							'guardianLastName': htmlEscapeValue.getHtmlEscapeValue(index.guardianLastName),
+							'guardianName': htmlEscapeValue.getHtmlEscapeValue(index.guardianName),
 						});
 					});	
 					
@@ -442,8 +442,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			patientId: $rootScope.appointmentsPatientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {	
-				$rootScope.PatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();				
-				$rootScope.PatientLastName = angular.element('<div>').html(data.data[0].lastName).text(); 	
+				$rootScope.PatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);				
+				$rootScope.PatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName); 	
 				$state.go('tab.waitingRoom');
 			},
 			error: function (data) {
