@@ -6,63 +6,57 @@
         
 		<div ng-include src="'templates/intakeHeader.html'"></div> 
 	
-		<div class="consultCharge_subHeader PatintHeaderFontStyle"  >
+		<div class="consultCharge_subHeader PatintHeaderFontStyle" style="{{PaymentStyle}}" >
 			<span>Payment</span>
 		</div>
 		
 	
-	<ion-content class="consultChargeNoPlanContent" >
+	<ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
 		<div class="password_home">
 		
 			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
 				<div class="consultTittle">Consultation Charge</div>
 				<div class="consultation_number"> ${{consultationAmount}}*</div>
 			</div>
-			
-			<div class="healthPlan_header" style="display: {{enableSubmitpayment}} " >
-				
-				<div class="healthPlan_text NoPlanText" >Pay Using</div>
-				<div class="addHealthPlan_header NoPlanAddCardDropdown">					
-					<div class="demo" >
-						<select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard">
-							<option><b>Choose Your Card</b></option>
-							<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span class="ellipsis">{{PaymentProfile.cardNumber}}</span></b></option>
-							<option><b>Add a new card</b></option>
-						</select>
+			<div style="display: {{enableSubmitpayment}}">
+				<div class="healthPlan_header"  >
+					<div class="healthPlan_text NoPlanText" >Pay Using</div>
+					<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">					
+						<div  class="dropdownContainer">
+							<div class="cardViewport">Choose Your Card</div>							
+							<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
+								<option><b>Choose Your Card</b></option>
+								<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
+								<option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
+							</select>
+						</div>
 					</div>
+				</div>				
+				
+				<div class="SkipToPayment">
+					<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
+					  <span>Submit Payment</span>
+					</button>
 				</div>
 			</div>
 			
-			
-			<div class="SkipToPayment" style=" display: {{enableSubmitpayment}}">
-				<!--<a ng-href="#/tab/receipt">-->
-				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
-				  <span>Submit Payment</span>
-				</button>
+			<div style="display:{{disableSubmitpayment}}">
+				<div class="healthPlan_header AddCardNoPlan"> 
+					<div class="healthPlan_text" >Pay Using</div>
+					<a ng-href="#/tab/cardDetails">
+						<div class="addHealthPlan_header AddCard"  >
+							<i style="position: relative; top: -5px;" class="ion-plus-round"></i>
+							<span class="addHealthPlan_text" >Add A Payment Card</span>
+						</div>
+					</a>
+				</div>
 				
-				<!--</a>-->
-			</div>
-			
-			<div class="healthPlan_header AddCardNoPlan" style="display:{{disableSubmitpayment}}" > 
-			
-			<!--<div class="healthPlan_header" style="padding-top: 60px;" >-->
-				<div class="healthPlan_text" >Pay Using</div>
-				<a ng-href="#/tab/cardDetails">
-					<div class="addHealthPlan_header AddCard"  >
-						<img ng-src="img/add.png"  >
-						<span class="addHealthPlan_text" >Add A Payment Card</span>
-					</div>
-				</a>
-			</div>
-			
-			
-			<div class="SkipToPayment" style="display:{{disableSubmitpayment}}">
-			
-			
-				<button class="button button-block button-royal cardSubmitPayment" >
-						<span>  Submit Payment</span>
+				
+				<div class="SkipToPayment" >
+					<button class="button button-block button-royal cardSubmitPayment" style="padding: 3px;" >
+							<span>  Submit Payment</span>
 					</button>
-				
+				</div>
 			</div>
 			<div class="scheduled_appointments_text NoPlanBottomText"  >
 				<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p> 
@@ -79,8 +73,8 @@
 		<ion-footer-bar align-title="left" class="footer">			
 			<div class="ConsultChargeFooter">
 				<div class="ConsultChargeBack" >
-                    <!--<a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span>Back</span></a>-->
-					<site-header back="Back"></site-header> 
+                    <a class="button_new icon ion-chevron-left" ng-click="goToNextPage()" ><span> Back</span></a>
+					<!--<site-header back="Back"></site-header>-->
 				</div>
 						
 				<div class="ConsultChargeCancel" >

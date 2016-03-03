@@ -7676,19 +7676,22 @@ a.button {
   font-family: 'Glober xBold';
   src: url("Glober xBold.otf"); }
 
+div {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
 body {
   font-family: 'Glober Regular'; }
 
 .bar.bar-positive {
-  background-color: #F0502C;
+  background-color: #DD472D;
   height: 40px;
   /*border-color: $Flamingo;*/
-  background-image: linear-gradient(0deg, #F0502C, #F0502C 50%, transparent 50%);
+  background-image: linear-gradient(0deg, #DD472D, #DD472D 50%, transparent 50%);
   border-color: #B03A21;
   border-width: 0px 0px 3px 0px;
   border-style: solid; }
 
-.login_sub_header, .password_sub_header {
+.login_sub_header, .password_sub_headerIOS, .password_sub_headerAndroid {
   /*@include measurement(0, 38px 0 0 0, auto, 78px);	*/
   padding: 0;
   margin: 0;
@@ -7698,13 +7701,12 @@ body {
   font-weight: bold;
   font-size: 28px;
   text-align: center;
-  color: #F0502C;
+  color: #DD472D;
   position: relative;
-  /*-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;*/
-  box-shadow: 0px 2px 9px #ADABAB; }
-  .login_sub_header after, .login_sub_header .password_sub_header {
+  box-shadow: 0px 3px 3px #ADABAB;
+  -moz-box-shadow: 0px 3px 3px #ADABAB;
+  -webkit-box-shadow: 0px 3px 3px #ADABAB; }
+  .login_sub_header after, .login_sub_header .password_sub_headerIOS, .login_sub_header .password_sub_headerAndroid {
     right: 10px;
     left: auto;
     -webkit-transform: skew(8deg) rotate(3deg);
@@ -7712,11 +7714,11 @@ body {
     -ms-transform: skew(8deg) rotate(3deg);
     -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg); }
-  .login_sub_header div, .login_sub_header .password_sub_header {
+  .login_sub_header div, .login_sub_header .password_sub_headerIOS, .login_sub_header .password_sub_headerAndroid {
     position: relative;
     top: 62px; }
 
-.login_sub_header:before, .password_sub_header:before, .login_sub_header:after, .password_sub_header:after {
+.login_sub_header:before, .password_sub_headerIOS:before, .password_sub_headerAndroid:before, .login_sub_header:after, .password_sub_headerIOS:after, .password_sub_headerAndroid:after {
   content: "";
   position: absolute;
   z-index: -1;
@@ -7728,41 +7730,42 @@ body {
   left: 1px;
   right: 1px; }
 
-.login_content, .password_content, .ContentSearchHomeUser {
-  margin: 70px 0 0 0;
-  padding-top: 100px; }
-  .login_content .login_home, .login_content .password_content, .login_content .ContentSearchHomeUser {
+.login_content, .ContentSearchHomeUser {
+  margin: 92px 0 0 0;
+  padding-top: 90px; }
+  .login_content .login_home, .login_content .ContentSearchHomeUser {
     padding: 0 12%; }
-    .login_content .login_home .item-input, .login_content .login_home .password_content, .login_content .login_home .ContentSearchHomeUser {
-      border: 1px solid #DADADA;
+    .login_content .login_home .item-input, .login_content .login_home .ContentSearchHomeUser {
+      border: 1px solid #CDCACA;
       border-radius: 8px;
-      height: 45px;
+      height: 52px;
       font-weight: bold;
-      background-color: #999999; }
-      .login_content .login_home .item-input ::-webkit-input-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      background-color: #999999;
+      padding: 6px 0 2px 16px; }
+      .login_content .login_home .item-input ::-webkit-input-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* WebKit browsers */
-        color: #484848 !important;
-        font-size: 17px !important;
-        padding-top: 3px !important; }
-      .login_content .login_home .item-input :-moz-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+        color: #111 !important;
+        font-size: 20px !important;
+        padding-top: 5px !important; }
+      .login_content .login_home .item-input :-moz-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* Mozilla Firefox 4 to 18 */
-        color: #484848 !important;
-        font-size: 17px !important;
-        padding-top: 3px !important;
+        color: #111 !important;
+        font-size: 20px !important;
+        padding-top: 5px !important;
         opacity: 1; }
-      .login_content .login_home .item-input ::-moz-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      .login_content .login_home .item-input ::-moz-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* Mozilla Firefox 19+ */
-        color: #484848 !important;
-        font-size: 17px !important;
-        padding-top: 3px !important;
+        color: #111 !important;
+        font-size: 20px !important;
+        padding-top: 5px !important;
         opacity: 1; }
-      .login_content .login_home .item-input :-ms-input-placeholder, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
+      .login_content .login_home .item-input :-ms-input-placeholder, .login_content .login_home .item-input .ContentSearchHomeUser {
         /* Internet Explorer 10+ */
-        color: #484848 !important;
-        font-size: 17px !important;
-        padding-top: 3px !important; }
-      .login_content .login_home .item-input input, .login_content .login_home .item-input .password_content, .login_content .login_home .item-input .ContentSearchHomeUser {
-        font-size: 17px; }
+        color: #111 !important;
+        font-size: 20px !important;
+        padding-top: 5px !important; }
+      .login_content .login_home .item-input input, .login_content .login_home .item-input .ContentSearchHomeUser {
+        font-size: 20px; }
 
 /* SQUARED TWO */
 .squaredCheckbox {
@@ -7783,12 +7786,12 @@ body {
     position: absolute;
     left: 0px;
     top: 0px;
-    background: -webkit-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
-    background: -moz-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
-    background: -o-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
-    background: -ms-linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
-    background: linear-gradient(top, #A0D18A 0%, #A0D18A 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A0D18A', endColorstr='#A0D18A',GradientType=0 ); }
+    background: -webkit-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+    background: -moz-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+    background: -o-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+    background: -ms-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+    background: linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9BCA82', endColorstr='#9BCA82',GradientType=0 ); }
   .squaredCheckbox label:after {
     padding: 0;
     margin: 0;
@@ -7818,7 +7821,7 @@ body {
 .remember {
   padding-top: 20px;
   color: #7A7A7A;
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'Glober SemiBold'; }
 
 .continue {
@@ -7827,59 +7830,69 @@ body {
   margin-bottom: 50px; }
 
 .button.button-positive.button-outline {
-  background-color: #A2D28A;
-  border-color: #A2D28A;
-  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+  background-color: #9BCA82;
+  border-color: #9BCA82;
+  background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);
   font-weight: normal;
-  border-radius: 7px;
+  border-radius: 5px;
   font-size: 19px;
   min-height: 35px;
   text-decoration: none;
-  font-family: 'Glober SemiBold';
+  font-family: 'Glober Bold';
   color: #fff;
-  width: 105px;
-  line-height: 30px;
+  width: 111px;
+  line-height: 35px;
   padding-top: 5px;
-  background: linear-gradient(#A0D18A, #91BE7B);
-  box-shadow: 1px 2px 13px rgba(0, 0, 0, 0.3); }
+  /* background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);*/
+  background: linear-gradient(#9BCA82, #9BCA82);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  /*-webkit-box-shadow:  1px 2px 13px rgba(0,0,0,0.3); */ }
 
 .button.button-outline.button-positive.activated {
-  background-color: #A2D28A;
-  border-color: #A2D28A; }
+  background-color: #9BCA82;
+  border-color: #9BCA82; }
 
 .footer {
   color: #fff;
-  background-color: #4D4D4D;
-  border-color: #4D4D4D;
-  height: 40px;
-  font-family: 'Glober Thin';
+  background-color: #4D4D4D !important;
+  border-color: #4D4D4D !important;
+  padding: 20px 0px 20px 0px;
+  font-family: 'Glober Light';
   font-weight: bold;
-  font-size: 9px;
+  font-size: 11px;
   border-top-width: -1px;
-  border-top: -1px; }
+  border-top: -1px;
+  background-image: none; }
   .footer .terms {
-    font-family: 'Glober Thin';
+    font-family: 'Glober Light';
     font-weight: bold;
-    font-size: 9px;
+    font-size: 11px;
     text-align: left;
-    width: 50%;
-    margin: 5px 0 0 1%; }
+    width: 50%; }
     .footer .terms a {
       text-decoration: none;
-      color: #fff; }
+      color: #fff;
+      position: relative;
+      top: -5px;
+      padding: 10px; }
   .footer .powerdBySnapMD {
-    font-family: 'Glober Thin';
+    font-family: 'Glober Light';
     font-weight: bold;
-    font-size: 9px;
+    font-size: 11px;
     text-align: right;
-    width: 49%;
-    margin: 5px 0 0 0; }
+    width: 70%; }
     .footer .powerdBySnapMD a {
       color: #fff;
-      text-decoration: none; }
+      text-decoration: none;
+      position: relative;
+      top: -5px;
+      padding: 10px; }
 
 .bar-footer {
-  background-position: 0px 40px; }
+  background-position: 0px 40px;
+  height: 48px; }
 
 .terms_footer_a {
   margin-left: 20px !important;
@@ -7887,7 +7900,9 @@ body {
   cursor: pointer; }
   .terms_footer_a span {
     top: -2px;
-    position: relative; }
+    position: relative;
+    font-size: 17px;
+    padding-left: 3px; }
 
 .provider_item {
   color: #888 !important;
@@ -7916,93 +7931,145 @@ body {
 			height: 75px;
 		}*/ }
 
-.password_sub_header {
-  margin-top: 96px;
+.header_imageIOS {
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+  border-color: #B03A21;
+  border-width: 0px 0px 3px 0px;
+  /*img {
+			width: 135px;
+			height: 75px;
+		}*/ }
+
+.header_imageAndroid {
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+  border-color: #B03A21;
+  border-width: 0px 0px 3px 0px;
+  /*img {
+			width: 135px;
+			height: 75px;
+		}*/ }
+
+.password_sub_headerIOS {
+  margin-top: 99px;
   color: #A80532; }
-  .password_sub_header .password_header_content {
+  .password_sub_headerIOS .password_header_contentIOS {
     /*position: relative;
 			top: 45px;*/
-    margin-top: 96px; }
-    .password_sub_header .password_header_content span {
-      color: #C4C4C4;
-      font-size: 12px;
+    margin-top: 99px; }
+    .password_sub_headerIOS .password_header_contentIOS .subHospital {
       position: relative;
-      top: -10px;
-      font-family: 'Glober SemiBold';
-      font-weight: bold; }
+      top: -10px; }
+    .password_sub_headerIOS .password_header_contentIOS span {
+      color: #C4C4C4;
+      font-size: 15px;
+      position: relative;
+      top: -20px;
+      font-family: 'Glober Regular'; }
 
+.password_sub_headerAndroid {
+  margin-top: 108px;
+  color: #A80532; }
+  .password_sub_headerAndroid .password_header_contentAndroid {
+    /*position: relative;
+			top: 45px;*/
+    margin-top: 108px; }
+    .password_sub_headerAndroid .password_header_contentAndroid .subHospital {
+      position: relative;
+      top: -8px; }
+    .password_sub_headerAndroid .password_header_contentAndroid span {
+      color: #C4C4C4;
+      font-size: 15px;
+      position: relative;
+      top: -18px;
+      font-family: 'Glober Regular'; }
+
+/*.password_content {
+	@extend .login_content;
+	//margin: 220px 0 0 0;
+    margin: 219px 0 0 0;
+	padding-top: 75px;
+    background-color: #EFEFED;
+	.item-input {
+		
+		border: 1px solid $Altoa;
+		border-radius: 8px;
+		height: 50px;
+        line-height: normal;
+		font-weight: bold;
+		background-color: #E6E6E2;
+        padding: 6px 0 7px 16px;
+		
+		input {
+		font-size: 17px;
+		line-height: 30px;
+        }
+	}
+}*/
 .password_content {
-  margin: 220px 0 0 0;
-  padding-top: 85px; }
+  /*@extend .login_content;   */
+  background-color: #EFEFED; }
+  .password_content .passwordtop {
+    padding: 6px 0 6px 16px; }
   .password_content .item-input {
-    border: 1px solid #DADADA;
+    border: 1px solid #CDCACA;
     border-radius: 8px;
-    height: 45px;
+    height: 50px;
     line-height: normal;
     font-weight: bold;
-    background-color: #999999; }
+    background-color: #E6E6E2; }
     .password_content .item-input ::-webkit-input-placeholder {
       /* WebKit browsers */
       color: #484848 !important;
-      font-size: 17px !important;
+      font-size: 20px !important;
       padding-top: 2px !important;
       opacity: 1; }
     .password_content .item-input :-moz-placeholder {
       /* Mozilla Firefox 4 to 18 */
-      color: #484848 !important;
-      font-size: 17px !important;
+      color: #898989 !important;
+      font-size: 20px !important;
       padding-top: 2px !important;
       opacity: 1; }
     .password_content .item-input ::-moz-placeholder {
       /* Mozilla Firefox 19+ */
-      color: #484848 !important;
-      font-size: 17px !important;
+      color: #898989 !important;
+      font-size: 20px !important;
       padding-top: 2px !important;
       opacity: 1; }
     .password_content .item-input :-ms-input-placeholder {
       /* Internet Explorer 10+ */
-      color: #484848 !important;
-      font-size: 17px !important;
+      color: #898989 !important;
+      font-size: 20px !important;
       padding-top: 2px !important;
       opacity: 1; }
     .password_content .item-input input {
-      font-size: 17px; }
+      font-size: 17px;
+      line-height: 30px; }
 
-/*.item-input {
-	background-color: $Mercury;
-	
-	border: 1px solid $Altoa;
-	border-radius: 8px;
-	@extend .item-input;
-	
-		input {
-			-moz-appearance: none;
-			-moz-box-flex: 1;
-			background-color: transparent;
-			border-radius: 0;
-			flex: 1 1 220px;
-			margin: 0;
-			padding-right: 24px;
-			font-size: 17px;			
-		}		
-}*/
 .password_home {
   padding: 0 12%; }
 
 .password_home_top {
-  margin-top: -20px; }
+  margin-top: 56px; }
 
 .password_icon {
   float: left;
-  margin: 8px 10px 0 0; }
+  margin: 8px 10px 0 0;
+  left: -12px;
+  position: relative; }
 
 .pass_reset_content {
-  text-align: justify;
-  font-size: 17px; }
+  font-size: 19px;
+  color: #4D4D4D;
+  padding-top: 12px;
+  line-height: 24px; }
 
 .login {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 40px;
   margin-bottom: 10px; }
 
 .forgot_password_text {
@@ -8011,11 +8078,11 @@ body {
   .forgot_password_text a {
     text-decoration: none;
     color: #4FC0DA;
-    font-size: 12px; }
+    font-size: 14px; }
 
 .button_new {
-  font-family: 'Glober Thin';
-  font-weight: normal;
+  font-family: 'Glober Light';
+  font-weight: bold;
   font-size: 19px;
   color: #fff;
   border-radius: 7px;
@@ -8023,17 +8090,18 @@ body {
   /*line-height: 38px;*/
   min-height: 38px;
   margin: 0 0 0 10px;
-  text-decoration: none; }
+  text-decoration: none;
+  cursor: pointer; }
 
 .ion-chevron-left::before {
   color: #fff;
-  margin: 3px; }
+  margin: 2px 3px 3px 3px; }
 
 .bar-positiveHomeUser {
   background-color: #A80532;
   background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%);
-  border-color: #f0502c;
-  height: auto; }
+  height: auto;
+  border-bottom: none; }
 
 .backButtonDiv {
   float: left;
@@ -8044,7 +8112,25 @@ body {
   line-height: 28px;
   padding-right: 4px; }
 
-.title_patient {
+.title_patientIOS {
+  font-family: 'Glober SemiBold';
+  font-weight: bold;
+  font-size: 25px;
+  /*@include font($fontFamily_xBold, bold,30px);*/
+  color: #fff;
+  text-align: center;
+  left: 0px;
+  right: 0px;
+  /* height: 45px;*/
+  /*line-height: 61px;*/
+  /*margin: 7px 10px;*/
+  min-width: 30px;
+  position: relative;
+  text-align: center;
+  top: 4px;
+  margin-top: 23px; }
+
+.title_patientAndroid {
   font-family: 'Glober SemiBold';
   font-weight: bold;
   font-size: 25px;
@@ -8074,7 +8160,7 @@ body {
     margin-top: -4px; }
   .patient_subHeader .subHeader_content {
     margin-left: 45px;
-    margin-top: 7px; }
+    margin-top: 1px; }
     .patient_subHeader .subHeader_content .sub_username {
       font-family: 'Glober Bold'; }
     .patient_subHeader .subHeader_content .sub_user_subname {
@@ -8088,55 +8174,65 @@ body {
       font-family: 'Glober Thin'; }
 
 .patient_content {
-  margin: 40px 0 0 4%;
+  margin: 17px 0 0 0;
   padding-top: 95px; }
 
 .button.button-energized {
-  background-color: #FBAE17;
-  border-color: #FBAE17;
-  background-image: linear-gradient(0deg, #FBAE17, #FBAE17 50%, transparent 50%);
+  background-color: #EEA82D;
+  border-color: #EEA82D;
+  background-image: linear-gradient(0deg, #EEA82D, #EEA82D 50%, transparent 50%);
   font-weight: normal;
   border-radius: 5px;
   font-size: 23px;
   min-height: 35px;
   text-decoration: none;
-  font-family: 'Glober SemiBold'; }
+  font-family: 'Glober Bold';
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
 
 .scheduled_appointments_text {
   /*margin-top: -7px;*/
-  color: #9D9D9D;
+  color: #747474;
   font-size: 14px;
   text-align: center;
   font-family: 'Glober Regular'; }
 
 .button.button-balanced {
-  background-color: #A2D28A;
-  border-color: #A2D28A;
-  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+  background-color: #A9C985;
+  border-color: #A9C985;
+  background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%);
   font-weight: normal;
   border-radius: 5px;
   font-size: 23px;
   min-height: 35px;
   text-decoration: none;
-  font-family: 'Glober SemiBold'; }
+  font-family: 'Glober Bold';
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%); }
 
 .button.button-balanced.activated {
-  background-color: #A2D28A;
-  border-color: #A2D28A; }
+  background-color: #A9C985;
+  border-color: #A9C985; }
 
 .calendarBack {
-  padding-top: 7px;
+  padding-top: 5px;
   font-weight: bold;
   cursor: pointer;
   width: 68px;
   position: absolute;
   z-index: 1;
-  top: 10px; }
+  top: 11px; }
   .calendarBack span {
     margin-top: 7px;
     position: relative;
-    margin-left: -6px;
-    top: -2px; }
+    margin-left: -1px;
+    top: -1px; }
+
+.AppointBack {
+  top: 0px; }
 
 .calendarTitle {
   font-size: 20px;
@@ -8147,29 +8243,66 @@ body {
   top: 65px !important;
   height: auto !important; }
   .calendar_subHeader_height .calendar_subHeader {
-    margin-left: 10px; }
+    margin: 7px 7px 7px 10px; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_image {
       margin-left: -15px;
-      margin-top: -13px;
+      margin-top: -20px;
       position: relative;
-      top: 4px; }
+      top: 11px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_image img {
         width: 34px; }
-    .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name {
-      font-size: 21px; }
-      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientName {
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name {
+      font-size: 21px;
+      margin-left: 7px; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientName {
         font-weight: bold; }
-      .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_name .patientLastName {
-        font-weight: normal; }
-    .calendar_subHeader_height .calendar_subHeader .subHeader_content .subHeader_content_age {
-      font-size: 12px; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientLastName {
+        font-weight: bold; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_age {
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 7px;
+      margin-top: 1px; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name {
+      font-size: 22px;
+      margin-left: 7px; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name .patientName {
+        font-weight: bold; }
+      .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name .patientLastName {
+        font-weight: bold; }
+    .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_age {
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 7px;
+      margin-top: -2px; }
+
+.patientDo-Android {
+  margin-top: 134px;
+  margin-top: 122px;
+  text-align: center;
+  height: 48px;
+  border-bottom: 1px solid #A9ABA7; }
+  .patientDo-Android .patient_Do_sub-Android {
+    margin-left: 18px;
+    margin-top: 10px;
+    width: 100%; }
+
+.patientDo-IOS {
+  margin-top: 134px;
+  margin-top: 122px;
+  text-align: center;
+  height: 53px;
+  border-bottom: 1px solid #A9ABA7; }
+  .patientDo-IOS .patient_Do_sub-IOS {
+    margin-top: 15px;
+    width: 100%; }
 
 .patientCalendar_subHeader {
   background-color: #e6e6e6;
-  border-bottom: 1px solid #b9b8b8;
+  /*border-bottom: 1px solid #b9b8b8;*/
   color: #565656;
-  height: auto;
-  margin-top: 113px; }
+  height: 53px;
+  margin-top: 119px; }
 
 .patientCalendar_watch {
   padding: 10px;
@@ -8181,20 +8314,28 @@ body {
 .patientCalendar_text {
   padding: 17px;
   color: #383838;
-  font-size: 22px;
+  font-size: 19px;
   font-weight: bold;
-  margin-bottom: -8px; }
+  margin-bottom: -8px;
+  font-family: 'Glober SemiBold';
+  position: relative;
+  top: 4px;
+  left: -2px; }
 
 .patientCalendar_Content {
-  margin: 122px 0 0 0;
-  top: 37px; }
+  margin: 128px 0 0 0;
+  top: 42px; }
   .patientCalendar_Content .list .item {
-    padding: 10px; }
+    padding: 10px;
+    height: 64px; }
 
 .patient_appointment {
   float: left; }
   .patient_appointment .appointment_text {
-    font-size: 15px; }
+    font-size: 14px;
+    color: #888 !important;
+    position: relative;
+    top: -2px; }
   .patient_appointment .appointment_text_time {
     font-size: 22px;
     color: #706A67 !important; }
@@ -8203,25 +8344,33 @@ body {
   .patient_appointment .appointment_time {
     font-size: 22px;
     color: #706A67 !important;
-    margin-top: 10px; }
+    margin-top: 16px; }
     .patient_appointment .appointment_time span {
       font-size: 18px; }
 
 .BackPatientViewDetails {
+  position: relative;
+  top: 3px;
+  font-weight: normal;
   text-align: right;
-  font-size: 15px;
-  color: #706A67 !important; }
+  font-size: 14px;
+  color: #888 !important; }
   .BackPatientViewDetails .icon.ion-chevron-right {
     line-height: 3;
     font-size: 15px;
-    padding-left: 5px;
+    padding-left: 7px;
     position: relative;
     top: 5px; }
+  .BackPatientViewDetails .ion-chevron-right:before {
+    content: "\f125";
+    font-size: 19px;
+    position: relative;
+    top: -2px; }
 
 .Appointment_heading {
   top: 12px;
   border-color: #9e9e9e;
-  margin-top: -30px; }
+  margin-top: -15px; }
 
 .doctor_details {
   padding: 8px;
@@ -8231,45 +8380,64 @@ body {
   .doctor_details a {
     margin: -4px; }
     .doctor_details a .doctorName {
-      top: -20px;
-      margin-left: 3px; }
+      top: -18px;
+      margin-left: 10px; }
+      .doctor_details a .doctorName .ion-chevron-right:before {
+        content: "\f125";
+        font-size: 20px;
+        margin-top: 2px;
+        Color: #898989; }
     .doctor_details a .doctorArrow {
       color: #888;
-      margin-top: 22px; }
+      margin-top: 21px; }
 
 .appointmentTimeDetails {
   padding: 25px;
-  top: -2px;
+  top: -5px;
   text-align: center;
   height: 100px;
   border-color: #9e9e9e; }
   .appointmentTimeDetails div {
-    margin-top: 7px; }
+    margin-top: 4px; }
     .appointmentTimeDetails div .appinmentTime {
       margin-top: -9px;
-      font-size: 55px;
-      color: #706A67; }
+      font-size: 45px;
+      color: #706A67;
+      font-family: 'Glober SemiBold'; }
     .appointmentTimeDetails div .appinmentTimeAM {
       color: #706A67 !important;
-      font-size: 37px; }
+      font-size: 29px;
+      font-family: 'Glober SemiBold'; }
     .appointmentTimeDetails div .appinmentTimeDate {
       color: #706A67;
       position: relative;
       top: 5px;
-      font-size: 25px; }
+      font-size: 20px; }
 
 .concernsItem {
   padding: 11px;
-  top: -2px;
+  top: -12px;
   border-color: #9e9e9e; }
   .concernsItem p {
-    font-size: 16px;
+    font-size: 18px;
     text-overflow: unset;
     white-space: normal;
-    text-align: justify; }
+    text-align: justify;
+    margin-left: 32px;
+    color: #000;
+    line-height: 25px; }
   .concernsItem span {
     margin-right: 13px;
-    margin-left: 14px; }
+    margin-left: 14px;
+    font-family: Glober xBold;
+    font-size: 21px;
+    color: #989998;
+    float: left;
+    position: relative;
+    top: 3px; }
+  .concernsItem div {
+    position: relative;
+    top: 2px; }
   .concernsItem .pre_consultant span {
     margin-right: 27px;
     margin-left: 14px; }
@@ -8278,6 +8446,8 @@ body {
   background-color: #A2D28A !important;
   border: none !important;
   box-shadow: 0 0px 8px 3px #333 !important;
+  -moz-box-shadow: 0 0px 8px 3px #333 !important;
+  -webkit-box-shadow: 0 0px 8px 3px #333 !important;
   background-size: 100% 0 !important; }
   .enterAppoinment .EnterText {
     font-size: 25px !important;
@@ -8288,6 +8458,8 @@ body {
   background-color: #FFC609 !important;
   border: none !important;
   box-shadow: 0 0px 8px 3px #333 !important;
+  -moz-box-shadow: 0 0px 8px 3px #333 !important;
+  -webkit-box-shadow: 0 0px 8px 3px #333 !important;
   background-size: 100% 0 !important; }
   .AvailableIn .availableImage {
     font-size: 22px;
@@ -8295,12 +8467,17 @@ body {
     .AvailableIn .availableImage .AvailableText {
       float: left;
       text-align: right;
-      width: 54%; }
+      width: 54%;
+      font-family: 'Glober SemiBold';
+      font-weight: bold;
+      color: #fff; }
     .AvailableIn .availableImage .AvailableTimer {
       float: left;
       text-align: left;
       width: 45%;
-      padding-left: 10px; }
+      padding-left: 10px;
+      font-family: 'Glober SemiBold';
+      font-weight: bold; }
 
 .ErrorMessageDiv {
   position: fixed;
@@ -8308,37 +8485,84 @@ body {
   top: 0px;
   left: 0px; }
 
-.intakeTittle {
+.intakeTittleAndroid {
   margin-left: -33px;
   top: -4px !important; }
 
+.intakeTittleIOS {
+  margin-left: -33px;
+  top: 7px !important; }
+
 .PatientDetailsHome {
-  padding-left: 7%; }
+  padding: 4%; }
   .PatientDetailsHome span {
     position: relative;
-    top: 3px; }
+    top: 4px; }
   .PatientDetailsHome .PatientNextAvailable {
     padding-top: 40px; }
 
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
-  height: 52px;
+  height: 60px;
   margin-top: 125px;
   font-size: 20px;
   font-weight: bold;
   line-height: 3;
   color: #666666; }
   .consultCharge_subHeader span {
-    color: #666666;
-    font-size: 27px;
-    top: -16px;
+    color: #616462;
+    font-size: 26px;
+    top: -8px;
     position: relative;
-    left: 10px; }
+    left: 10px;
+    font-family: 'Glober Bold'; }
 
 .consultCharge_content {
-  margin: 133px 0 0 0;
+  margin: 140px 0 0 0;
   padding-bottom: 30px;
-  padding-top: 15px; }
+  padding-top: 36px; }
+  .consultCharge_content .consultChargeNoPlanText {
+    padding-top: 5px; }
+  .consultCharge_content .NoPlanHeader {
+    color: #5C5C5C;
+    text-align: center; }
+  .consultCharge_content .NoPlanText {
+    margin-left: 20px !important;
+    padding-top: 30px;
+    font-size: 16px;
+    color: #888585;
+    text-align: left; }
+  .consultCharge_content .NoPlanAddCardDropdown {
+    text-align: left; }
+    .consultCharge_content .NoPlanAddCardDropdown .demo {
+      margin-left: 50px; }
+      .consultCharge_content .NoPlanAddCardDropdown .demo option {
+        padding: 10px; }
+  .consultCharge_content .AddCardNoPlan {
+    padding-top: 60px; }
+    .consultCharge_content .AddCardNoPlan .healthPlan_text {
+      margin-left: -160px; }
+    .consultCharge_content .AddCardNoPlan .AddCard {
+      margin-left: 8px;
+      margin-top: 7px; }
+      .consultCharge_content .AddCardNoPlan .AddCard img {
+        width: 30px;
+        height: 30px; }
+      .consultCharge_content .AddCardNoPlan .AddCard span {
+        margin-left: 0px; }
+  .consultCharge_content .AddCardDetails .healthPlan_text {
+    margin-left: -160px; }
+  .consultCharge_content .AddCardDetails .AddCard {
+    margin-left: 8px;
+    margin-top: 7px; }
+    .consultCharge_content .AddCardDetails .AddCard img {
+      width: 30px;
+      height: 30px; }
+    .consultCharge_content .AddCardDetails .AddCard span {
+      margin-left: 0px; }
+  .consultCharge_content .NoPlanBottomText {
+    text-align: justify;
+    padding-bottom: 50px; }
 
 .button.button-royal {
   background-color: #B3B3B3;
@@ -8349,7 +8573,10 @@ body {
   font-size: 23px;
   min-height: 35px;
   text-decoration: none;
-  font-family: 'Glober SemiBold'; }
+  font-family: 'Glober Bold';
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
 
 .button.button-royal.activated {
   background-color: #B3B3B3;
@@ -8362,9 +8589,9 @@ body {
   color: #2A2A2A; }
   .consultation_head .consultation_number {
     font-weight: bold;
-    padding-top: 15px;
+    padding-top: 18px;
     font-size: 30px;
-    font-family: 'Glober Heavy';
+    font-family: 'Glober Bold';
     color: #666666; }
     .consultation_head .consultation_number span {
       text-decoration: line-through;
@@ -8391,25 +8618,37 @@ body {
     top: 3px; }
 
 .ConsultChargeFooter {
-  width: 100%;
-  cursor: pointer; }
+  width: 100%; }
   .ConsultChargeFooter .ConsultChargeBack {
     float: left;
-    width: 33%; }
-    .ConsultChargeFooter .ConsultChargeBack a span {
-      top: -2px;
-      position: relative; }
+    width: 33%;
+    position: relative;
+    top: -10px; }
+    .ConsultChargeFooter .ConsultChargeBack a {
+      padding: 10px 10px 10px 0px; }
+      .ConsultChargeFooter .ConsultChargeBack a span {
+        top: -2px;
+        position: relative;
+        font-size: 17px; }
+    .ConsultChargeFooter .ConsultChargeBack .ion-chevron-left:before {
+      content: "\f124";
+      font-size: 22px;
+      margin-top: 0px;
+      padding-left: 10px; }
   .ConsultChargeFooter .ConsultChargeCancel {
     text-align: center;
     float: left;
     width: 33%;
-    margin-top: 7px; }
+    margin-top: -6px; }
     .ConsultChargeFooter .ConsultChargeCancel a {
-      color: #b8b8b8; }
+      color: #b8b8b8;
+      font-weight: bold;
+      padding: 10px;
+      font-size: 17px; }
 
 .consultChargeNoPlanContent {
-  margin: 176px 0 0 0;
-  padding-top: 25px; }
+  margin: 140px 0 0 0;
+  padding-top: 36px; }
   .consultChargeNoPlanContent .consultChargeNoPlanText {
     padding-top: 5px; }
   .consultChargeNoPlanContent .NoPlanHeader {
@@ -8432,7 +8671,8 @@ body {
     .consultChargeNoPlanContent .AddCardNoPlan .healthPlan_text {
       margin-left: -160px; }
     .consultChargeNoPlanContent .AddCardNoPlan .AddCard {
-      margin-left: 0px; }
+      margin-left: 8px;
+      margin-top: 7px; }
       .consultChargeNoPlanContent .AddCardNoPlan .AddCard img {
         width: 30px;
         height: 30px; }
@@ -8441,7 +8681,8 @@ body {
   .consultChargeNoPlanContent .AddCardDetails .healthPlan_text {
     margin-left: -160px; }
   .consultChargeNoPlanContent .AddCardDetails .AddCard {
-    margin-left: 0px; }
+    margin-left: 8px;
+    margin-top: 7px; }
     .consultChargeNoPlanContent .AddCardDetails .AddCard img {
       width: 30px;
       height: 30px; }
@@ -8457,14 +8698,18 @@ body {
   background-image: linear-gradient(0deg, #DADADA, #DADADA 50%, transparent 50%) !important; }
 
 .healthPlan_header {
-  padding-top: 40px;
+  -webkit-animation-duration: 20s !important;
+  -moz-animation-duration: 20s !important;
+  -o-animation-duration: 20s !important;
+  animation-duration: 20s !important;
+  padding-top: 12px;
   text-align: center;
   color: #5C5C5C; }
   .healthPlan_header .healthPlan_text {
-    font-size: 16px;
+    font-size: 15px;
     color: #888585;
     margin-left: -100px;
-    font-weight: bold; }
+    /*font-weight: bold;*/ }
   .healthPlan_header .addHealthPlan_header {
     margin-left: -35px;
     margin-right: 17px; }
@@ -8484,20 +8729,19 @@ body {
 .PlanHeader {
   height: 58px; }
   .PlanHeader .PlanCancel {
-    padding-top: 12px;
     font-weight: bold;
     cursor: pointer;
     width: 68px; }
     .PlanHeader .PlanCancel span {
-      margin-top: 7px;
+      margin-top: 17px;
       position: absolute; }
   .PlanHeader .PlanNext {
-    padding-top: 12px;
+    padding-top: 14px;
     font-weight: bold;
     cursor: pointer;
-    width: 68px;
-    position: absolute;
-    right: 0px;
+    width: auto;
+    position: relative;
+    right: 10px;
     background: none;
     border: none; }
     .PlanHeader .PlanNext span {
@@ -8529,33 +8773,37 @@ body {
   .planDetails_content .verifyPlanHeading {
     padding-top: 35px; }
   .planDetails_content input[type="text"], .planDetails_content input[type="number"], .planDetails_content input[type="password"] {
-    font-size: 18px; }
+    font-size: 20px;
+    line-height: 30px;
+    padding-top: 9px; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
     text-align: left;
-    font-size: 13px; }
+    font-size: 13px;
+    font-weight: bold; }
   .planDetails_content .privacy {
     color: #39BAD9;
     font-size: 13px;
     padding: 0 5px 50px 15px;
-    margin-top: -10px; }
+    margin-top: -10px;
+    font-weight: bold; }
   .planDetails_content .list {
     padding-top: 12px; }
   .planDetails_content .item.item-input {
     padding: 10px 16px 10px 16px; }
   .planDetails_content .input-label {
     font-weight: bold;
-    font-size: 18px;
-    width: 50%; }
+    font-size: 20px;
+    width: 50%;
+    padding: 10px 10px 7px 0px; }
   .planDetails_content .cardDetailsHeading {
     padding-top: 35px; }
   .planDetails_content .CardInformation {
-    padding-top: 30px;
+    padding-top: 27px;
     padding-bottom: 20px;
     color: #5C5C5C;
     text-align: center;
-    font-size: 20px;
-    font-weight: bold; }
+    font-size: 20px; }
   .planDetails_content .verifyCardDisplay {
     padding-top: 30px;
     padding-bottom: 20px; }
@@ -8592,6 +8840,8 @@ body {
   margin-left: 8px;
   padding: 6px;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
   height: 45px;
   font-size: 18px;
   border: none; }
@@ -8602,11 +8852,13 @@ select {
   text-overflow: ellipsis; }
 
 .ReceiptContent {
-  margin: 117px 0 0 0; }
+  margin: 117px 0 0 0;
+  padding-top: 20px; }
   .ReceiptContent .PaymentSuccess {
     font-size: 35px;
     text-align: center;
-    padding-top: 50px; }
+    padding-top: 41px;
+    color: #60605D; }
     .ReceiptContent .PaymentSuccess .PaymentConfirmation {
       font-size: 20px;
       padding-top: 20px;
@@ -8624,23 +8876,81 @@ select {
     color: black;
     text-align: center; }
 
-.SidemenuHome {
+#SidemenuHomeAndroid {
   margin-top: 10px;
   border: none;
-  color: #706A67;
-  font-family: Glober regular !important; }
-  .SidemenuHome span {
+  color: #7E807E;
+  font-family: Glober regular !important;
+  background-color: #464644; }
+  #SidemenuHomeAndroid span {
     top: 0px;
-    position: relative; }
+    position: relative;
+    font-size: 23px;
+    padding-left: 15px; }
+
+#SidemenuHomeIOS {
+  margin-top: 18px;
+  border: none;
+  color: #7E807E;
+  font-family: Glober regular !important;
+  background-color: #464644; }
+  #SidemenuHomeIOS span {
+    top: 0px;
+    position: relative;
+    font-size: 23px;
+    padding-left: 15px; }
+
+.sidemenuContent {
+  position: absolute;
+  bottom: 64px;
+  width: 100%; }
+  .sidemenuContent .ion-ios-list:before {
+    font-size: 31px; }
 
 .SidemenuLogOut {
-  color: #706A67; }
+  width: 100%;
+  color: #7E807E;
+  bottom: 0px;
+  position: absolute; }
   .SidemenuLogOut .LogOutText {
-    color: #706A67;
+    color: #7E807E;
     margin-left: -4px;
-    font-family: Glober regular !important; }
+    font-family: Glober regular !important;
+    background-color: #464644; }
     .SidemenuLogOut .LogOutText span {
-      position: relative; }
+      position: relative;
+      font-size: 23px;
+      padding-left: 15px; }
+  .SidemenuLogOut .item {
+    border-color: #464644; }
+  .SidemenuLogOut .ion-power:before {
+    font-size: 27px; }
+
+.sidemenuContent1 {
+  position: absolute;
+  bottom: 113px;
+  width: 100%; }
+  .sidemenuContent1 .ion-ios-list:before {
+    font-size: 31px; }
+
+.SidemenuLogOut1 {
+  width: 100%;
+  color: #7E807E;
+  bottom: 47px;
+  position: absolute; }
+  .SidemenuLogOut1 .LogOutText {
+    color: #7E807E;
+    margin-left: -4px;
+    font-family: Glober regular !important;
+    background-color: #464644; }
+    .SidemenuLogOut1 .LogOutText span {
+      position: relative;
+      font-size: 23px;
+      padding-left: 15px; }
+  .SidemenuLogOut1 .item {
+    border-color: #464644; }
+  .SidemenuLogOut1 .ion-power:before {
+    font-size: 27px; }
 
 .ReportTittle {
   margin-left: 22px !important;
@@ -8657,8 +8967,10 @@ select {
   margin-left: 16px; }
 
 .ReportContent {
-  margin: 81px 10px 0 10px;
-  font-family: 'Glober Regular'; }
+  margin: 35px 0px 0 0px;
+  padding-top: 57px;
+  font-family: 'Glober Regular';
+  z-index: 999; }
   .ReportContent .providerAddress {
     text-align: right; }
     .ReportContent .providerAddress .reportOrganization {
@@ -8676,10 +8988,10 @@ select {
     .ReportContent .ConnectedCareDetails .CCAttachment p {
       color: #fff;
       margin: -40px 0 0 8px; }
-  .ReportContent .ConnectedCareDetails .attachmentSpace {
+  .ReportContent .attachmentSpace {
     border-bottom: 2px solid #ccc;
     position: relative;
-    top: -37px; }
+    top: -33px; }
   .ReportContent .reportPatientDetails {
     margin-top: -20px; }
     .ReportContent .reportPatientDetails .reportPatient {
@@ -8687,7 +8999,9 @@ select {
       float: left;
       padding-right: 35px; }
     .ReportContent .reportPatientDetails .reportEncounter {
-      padding-left: 20px; }
+      /*padding-left: 20px;*/
+      float: right;
+      width: 40%; }
   .ReportContent .reportPatientStatistics {
     clear: both;
     padding-top: 20px; }
@@ -8697,12 +9011,16 @@ select {
       font-size: 18px; }
       .ReportContent .reportPatientStatistics .PatientStatistic input[type="text"] {
         background-color: #CCCCCC;
-        width: 67px;
-        font-size: 18px;
+        width: 75px;
+        font-size: 14px;
         height: 30px;
-        font-weight: bold; }
+        font-weight: bold;
+        padding-left: 2px; }
+      .ReportContent .reportPatientStatistics .PatientStatistic tr {
+        font-size: 14px; }
       .ReportContent .reportPatientStatistics .PatientStatistic .statisticsTitle {
-        padding: 7px; }
+        padding: 7px;
+        font-size: 18px; }
         .ReportContent .reportPatientStatistics .PatientStatistic .statisticsTitle div {
           border-bottom: 1px solid #ccc;
           position: relative;
@@ -8735,7 +9053,9 @@ select {
       .ReportContent .reportPatientConcerns .reportConcerns .primaryConcernText {
         position: relative;
         top: 3px;
-        left: 20px; }
+        left: 20px;
+        width: 93%;
+        text-align: justify; }
   .ReportContent .reportSubjective {
     padding-top: 20px;
     font-size: 18px; }
@@ -8792,25 +9112,31 @@ select {
     padding-top: 10px; }
 
 .ConcernsContent {
-  margin-top: 114px !important; }
+  margin-top: 110px !important; }
   .ConcernsContent .PrimaryList {
-    top: 8px;
+    top: 3px;
     padding: 1px;
     cursor: pointer; }
     .ConcernsContent .PrimaryList .Step1 {
       color: #888;
       float: right;
       margin-right: 10px;
-      margin-top: 10px; }
+      margin-top: 14px; }
     .ConcernsContent .PrimaryList .PrimaryContent {
       margin-top: 30px; }
       .ConcernsContent .PrimaryList .PrimaryContent h1 {
         font-size: 25px;
         margin-bottom: 2px;
-        width: 100%; }
+        width: 100%;
+        position: relative;
+        top: -6px; }
       .ConcernsContent .PrimaryList .PrimaryContent p {
         margin-left: 19px;
-        margin-bottom: 10px; }
+        margin-bottom: 10px;
+        font-size: 16px;
+        margin-top: -7px;
+        width: 80%;
+        white-space: normal; }
       .ConcernsContent .PrimaryList .PrimaryContent div {
         float: right;
         left: -15px;
@@ -8818,7 +9144,10 @@ select {
         margin-top: -55px;
         cursor: pointer; }
   .ConcernsContent .PrimaryConcernList p {
-    width: 90%; }
+    width: 90%;
+    padding-top: 6px;
+    font-family: 'Glober Regular';
+    font-size: 19px; }
   .ConcernsContent .PrimaryConcernList div {
     float: right;
     left: 0px;
@@ -8833,13 +9162,17 @@ select {
         margin-bottom: 2px; }
       .ConcernsContent .SecondaryList .SecondaryContent p {
         margin-left: 19px;
-        margin-bottom: 10px; }
+        margin-bottom: 10px;
+        font-size: 16px;
+        width: 75%;
+        white-space: initial; }
       .ConcernsContent .SecondaryList .SecondaryContent div {
         float: right;
         left: -15px;
         position: relative;
         margin-top: -55px; }
   .ConcernsContent .surgeryList {
+    font-family: 'Glober Regular';
     margin-top: 8px; }
     .ConcernsContent .surgeryList a {
       padding-left: 15px; }
@@ -8850,8 +9183,9 @@ select {
           font-size: 20px; }
           .ConcernsContent .surgeryList a .surgeryDetails .surgeryName p {
             font-size: 20px;
-            color: #000;
-            white-space: pre-wrap; }
+            white-space: pre-wrap;
+            padding-top: 3px;
+            font-family: 'Glober Regular'; }
         .ConcernsContent .surgeryList a .surgeryDetails .surgeryDate {
           padding-top: 5px;
           font-size: 15px; }
@@ -8860,42 +9194,82 @@ select {
         margin-right: -1px;
         margin-top: 10px; }
 
+.platform-ios .ConcernsFooter {
+  opacity: 2;
+  font-weight: 600; }
+
 .ConcernsFooter {
   width: 100%; }
   .ConcernsFooter .FooterLeft {
     float: left;
-    width: 33%; }
+    width: 33%;
+    cursor: pointer;
+    position: relative;
+    top: -10px;
+    left: 10px; }
+    .ConcernsFooter .FooterLeft .ion-chevron-left:before {
+      content: "\f124";
+      font-size: 22px;
+      margin-top: 0px; }
     .ConcernsFooter .FooterLeft span {
       top: -2px;
-      position: relative; }
+      position: relative;
+      font-weight: bold; }
+    .ConcernsFooter .FooterLeft a {
+      padding: 10px 10px 10px 0px;
+      font-size: 17px; }
   .ConcernsFooter .FooterCenter {
     text-align: center;
     float: left;
     width: 33%;
-    margin-top: 7px; }
+    position: relative;
+    top: -6px; }
     .ConcernsFooter .FooterCenter a {
+      /*color:#b8b8b8;*/
+      cursor: pointer;
+      font-weight: bold;
+      padding: 10px;
+      font-size: 17px;
       color: #b8b8b8; }
   .ConcernsFooter .FooterRight {
     text-align: right;
-    margin-top: 3px;
     float: left;
-    width: 33%; }
+    width: 33%;
+    position: relative;
+    top: -7px; }
+    .ConcernsFooter .FooterRight .ion-chevron-right:before {
+      content: "\f125";
+      font-size: 22px;
+      margin-top: -2px; }
     .ConcernsFooter .FooterRight a {
-      cursor: pointer; }
+      cursor: pointer;
+      font-weight: bold;
+      padding: 10px 0px 10px 47px;
+      font-size: 17px; }
     .ConcernsFooter .FooterRight .ConcernFooterNext {
-      margin-left: -58px;
-      margin-right: 25px;
+      margin-left: -42px;
       position: relative;
-      top: -4px; }
+      top: -3px;
+      left: -18px; }
 
 .concernListHeader {
   height: 55px; }
   .concernListHeader .concernListTitle {
     top: 6px !important;
-    font-size: 16px !important; }
+    font-size: 16px !important;
+    font-family: 'Glober SemiBold'; }
   .concernListHeader .concernListDone {
     top: 6px !important;
-    font-size: 15px !important; }
+    font-size: 15px !important;
+    font-family: 'Glober SemiBold'; }
+  .concernListHeader .concernListTitle-ios {
+    top: 17px !important;
+    font-size: 16px !important;
+    font-family: 'Glober SemiBold'; }
+  .concernListHeader .concernListDone-ios {
+    top: 18px !important;
+    font-size: 15px !important;
+    font-family: 'Glober SemiBold'; }
 
 .concernListContent {
   margin-top: 52px; }
@@ -8906,19 +9280,121 @@ select {
     .concernListContent .concernListSearch .concernListSearchHome {
       padding: 20px 11px 16px 11px;
       top: 0px; }
-      .concernListContent .concernListSearch .concernListSearchHome .SearchLabel {
+      .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android {
         margin-top: -19px; }
-        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel .SearchBox {
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android .SearchBox {
           color: #535353;
           font-weight: normal;
           margin-top: 0px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android ::-webkit-input-placeholder {
+          /* WebKit browsers */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-Android :-ms-input-placeholder {
+          /* Internet Explorer 10+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important; }
+      .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS {
+        margin-top: -19px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS .SearchBox {
+          color: #535353;
+          font-weight: normal;
+          margin-top: 0px;
+          position: relative;
+          top: 2px; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS ::-webkit-input-placeholder {
+          /* WebKit browsers */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          position: relative;
+          top: -1px;
+          font-weight: normal; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS :-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1;
+          position: relative;
+          top: -1px;
+          font-weight: normal; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS ::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          opacity: 1;
+          position: relative;
+          top: -1px;
+          font-weight: normal; }
+        .concernListContent .concernListSearch .concernListSearchHome .SearchLabel-IOS :-ms-input-placeholder {
+          /* Internet Explorer 10+ */
+          color: #484848 !important;
+          font-size: 19px !important;
+          padding-top: 5px !important;
+          position: relative;
+          top: -1px;
+          font-weight: normal; }
+  .concernListContent .UserHmeSub {
+    padding: 12px 10px 5px 10px; }
+    .concernListContent .UserHmeSub .item-input {
+      margin-top: 5px;
+      background: #E6E6E2;
+      margin-left: 5px;
+      margin-right: 5px;
+      border-radius: 9px;
+      border: 1px solid #CDCACA; }
+      .concernListContent .UserHmeSub .item-input ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 5px !important; }
+      .concernListContent .UserHmeSub .item-input :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 5px !important;
+        opacity: 1; }
+      .concernListContent .UserHmeSub .item-input ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 5px !important;
+        opacity: 1; }
+      .concernListContent .UserHmeSub .item-input :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #484848 !important;
+        font-size: 18px !important;
+        padding-top: 5px !important; }
+      .concernListContent .UserHmeSub .item-input input {
+        font-size: 17px;
+        color: #616462;
+        height: 26px;
+        margin-top: 0px;
+        font-family: 'Glober Regular'; }
   .concernListContent .concernListDetails {
-    font-size: 15px; }
+    font-size: 19px;
+    font-family: 'Glober Regular'; }
 
 .SurgeryHeader {
   height: 50px; }
   .SurgeryHeader .SurgeryCancel {
-    top: -1px;
+    top: -2px;
     font-size: 15px !important; }
   .SurgeryHeader .SurgeryTitle {
     top: 4px !important;
@@ -8929,6 +9405,13 @@ select {
 
 .SurgeryContent {
   margin-top: 48px; }
+  .SurgeryContent span.input-label {
+    font-size: 19px;
+    color: #666;
+    padding-top: 10px; }
+  .SurgeryContent .validated input {
+    font-size: 19px;
+    line-height: 36px; }
 
 .ConsentSteps {
   color: #888;
@@ -8948,13 +9431,14 @@ select {
   margin-top: -8px;
   margin-left: 16px;
   padding-bottom: 0px;
-  color: #888; }
+  color: #5E5F5D;
+  font-family: 'Glober Bold'; }
 
 .consentLine {
-  border-bottom: 1px solid #ddd; }
+  border-bottom: 1px solid #A9ABA7; }
 
 .ConsentContent {
-  margin-top: 205px !important; }
+  margin-top: 204px !important; }
   .ConsentContent .ConsentMessageFirst {
     border-bottom: 1px solid #ddd;
     margin: 12px 10px 10px 10px; }
@@ -8988,13 +9472,13 @@ select {
       border: none; }
       .ConsentContent .ConsentMessageAgree .ConsentCancel b {
         font-size: 16px;
-        color: #ccc; }
+        color: #B2B2B2; }
 
 .UserHomeIcon {
   margin-top: 15px; }
 
 .UserNeeds {
-  border-bottom: 1.65px solid #ccc; }
+  border-bottom: 1px solid #9D9E9C; }
   .UserNeeds .SearchImage {
     width: 10%;
     margin-right: 10px; }
@@ -9006,62 +9490,141 @@ a {
   text-decoration: none; }
 
 .bar.bar-positiveLess {
-  background-color: #f0502c;
-  background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
-  border-color: #f0502c; }
+  background-color: #F04E29;
+  background-image: linear-gradient(0deg, #F04E29, #F04E29 50%, transparent 50%);
+  border-color: #F04E29; }
 
 .bar-headerLess {
   border-bottom-width: 0px;
   border-top-width: 0;
   top: 0;
-  background-color: #f0502c;
-  background-image: linear-gradient(0deg, #f0502c, #f0502c 50%, transparent 50%);
-  /*border-color: #B03A21;
-	border-width: 0px 0px 3px 0px;*/
-  box-shadow: 0px 3px 2px #B03A21;
-  -moz-box-shadow: 0px 3px 2px #B03A21;
-  -webkit-box-shadow: 0px 3px 2px #B03A21; }
+  background-color: #DD472D;
+  background-image: linear-gradient(0deg, #DD472D, #DD472D 50%, transparent 50%);
+  box-shadow: inset 0 -13px 8px -13px #000;
+  -moz-box-shadow: inset 0 -13px 8px -13px #000;
+  -webkit-box-shadow: inset 0 -13px 8px -13px #000; }
 
-.bar-subheaderLess {
+.bar-subheaderLessAndroid {
   display: block;
-  height: 70px;
+  height: 88px;
   top: 47px;
-  -moz-box-shadow: 0px 2px 9px #ADABAB;
-  -webkit-box-shadow: 0px 2px 9px #ADABAB;
-  box-shadow: 0px 2px 9px #ADABAB; }
+  -moz-box-shadow: 0px 4px 3px #A8A6A6;
+  -webkit-box-shadow: 0px 4px 3px #A8A6A6;
+  box-shadow: 0px 4px 3px #A8A6A6;
+  /*
+    -moz-box-shadow: 0px 3px 5px #9A9696;
+	-webkit-box-shadow: 0px 3px 5px #9A9696;
+	box-shadow: 0px 3px 5px #9A9696*/
+  border-top: none; }
 
-.head_titleLess {
+.bar-subheaderLessIOS {
+  display: block;
+  height: 95px;
+  top: 48px;
+  -moz-box-shadow: 0px 3px 5px #A8A6A6;
+  -webkit-box-shadow: 0px 3px 5px #A8A6A6;
+  box-shadow: 0px 3px 5px #A8A6A6;
+  border-top: none; }
+
+.head_titleLessAndroid {
   font-family: 'Glober xBold';
   font-weight: bold;
-  font-size: 30px;
+  font-size: 32px;
   text-align: center;
-  color: #F0502C;
+  color: #DD472D;
   position: relative;
-  top: 12px; }
+  top: 24px; }
 
-.bar-TitleLess {
+.head_titleLessIOS {
+  font-family: 'Glober xBold';
+  font-weight: bold;
+  font-size: 33px;
+  text-align: center;
+  color: #DD472D;
+  position: relative;
+  top: 26px; }
+
+.bar-TitleLess-Android {
   display: block;
-  background-color: #f2f2f2;
+  background-color: #EFEFED;
   height: 63px;
-  top: 120px; }
+  position: relative;
+  top: 139px; }
+
+.bar-TitleLess-IOS {
+  display: block;
+  background-color: #EFEFED;
+  height: 63px;
+  margin-top: 144px; }
+
+.bar-TitleLess-terms-Android {
+  display: block;
+  background-color: #EFEFED;
+  height: 63px;
+  position: relative;
+  top: 141px; }
+
+.bar-TitleLess-terms-IOS {
+  display: block;
+  background-color: #EFEFED;
+  height: 63px;
+  margin-top: 147px; }
 
 .TitleLess {
   font-family: 'Glober Bold';
   font-weight: normal;
-  font-size: 21px;
+  font-size: 23px;
   text-align: left;
   position: relative;
   top: 25px;
   margin: 12px;
   Color: #4D4D4D; }
 
-.ContentList_provider {
-  margin: 138px 0 0 0; }
-  .ContentList_provider .item {
-    padding: 25px 16px 16px 35px;
-    Color: #4D4D4D;
-    font-size: 20px; }
-    .ContentList_provider .item .ion-chevron-right.ListLinkHref {
+.ContentList_provider-Android {
+  margin: 152px 0 0 0;
+  background-color: #EFEFED; }
+  .ContentList_provider-Android .item {
+    padding: 42px 18px 27px 35px;
+    Color: #787878;
+    font-size: 22px;
+    font-family: 'Glober Regular'; }
+    .ContentList_provider-Android .item .ion-chevron-right.ListLinkHref {
+      font-size: 28px;
+      margin-top: -8px; }
+
+.ContentList_provider-IOS {
+  margin: 167px 0 0 0;
+  background-color: #EFEFED; }
+  .ContentList_provider-IOS .item {
+    padding: 42px 18px 27px 35px;
+    Color: #787878;
+    font-size: 22px;
+    font-family: 'Glober Regular'; }
+    .ContentList_provider-IOS .item .ion-chevron-right.ListLinkHref {
+      font-size: 28px;
+      margin-top: -8px; }
+
+.ContentList_terms-IOS {
+  margin: 166px 0 0 0;
+  background-color: #EFEFED; }
+  .ContentList_terms-IOS .item {
+    padding: 42px 18px 27px 35px;
+    Color: #787878;
+    font-size: 22px;
+    font-family: 'Glober Regular'; }
+    .ContentList_terms-IOS .item .ion-chevron-right.ListLinkHref {
+      font-size: 28px;
+      margin-top: -8px; }
+
+.ContentList_terms-Android {
+  margin: 160px 0 0 0;
+  background-color: #EFEFED; }
+  .ContentList_terms-Android .item {
+    padding: 42px 18px 27px 35px;
+    Color: #787878;
+    font-size: 22px;
+    font-family: 'Glober Regular'; }
+    .ContentList_terms-Android .item .ion-chevron-right.ListLinkHref {
       font-size: 28px;
       margin-top: -8px; }
 
@@ -9080,13 +9643,6 @@ a {
 
 .ListLinkHref a {
   text-decoration: none; }
-
-.footer {
-  font-family: 'Glober Thin';
-  font-weight: bold;
-  font-size: 11px;
-  color: #fff;
-  background-color: #484848; }
 
 .bar .title {
   text-align: center; }
@@ -9115,30 +9671,36 @@ a {
 
 .bar-subheaderHomeUser {
   /*display: block;*/
-  height: 60%;
+  height: 63%;
   top: 80px;
-  margin-top: -6px; }
+  margin-top: -6px;
+  background-image: none; }
 
 .TitleHomeUser_Sub {
   font-family: 'Glober SemiBold';
   font-weight: bold;
-  font-size: 25px;
+  font-size: 23px;
   position: relative;
   /*margin: 1px 7px 25px;*/
   margin-left: 7px;
   top: 3px;
   width: 90%;
-  color: #000; }
+  color: #616462; }
 
 .ContentHomeUser {
   margin: 81px 0 0 0;
   font-family: 'Glober Regular'; }
 
+.ContentUserHome {
+  margin: 70px 0 0 0;
+  font-family: 'Glober Regular';
+  border-top: 1px solid #C4C5C3; }
+
 .listImgView {
-  width: 35px !important;
-  height: 35px;
+  width: 45px !important;
+  height: 45px;
   border-radius: 50%;
-  margin-top: 6px;
+  margin-top: 1px;
   margin-left: 8px; }
 
 .UserHmelistImgView {
@@ -9152,19 +9714,32 @@ a {
   font-size: 21px;
   color: #000;
   font-size: 21px;
-  margin: 12px; }
+  margin: 9px 12px 6px 12px; }
+  .HrefListView .ion-chevron-right:before {
+    content: "\f125";
+    font-size: 19px;
+    margin-top: -2px; }
+
+.HrefListViewDependent {
+  font-family: 'Glober Thin';
+  font-weight: normal;
+  font-size: 21px;
+  color: #000;
+  font-size: 21px;
+  margin: 6px 12px 6px 12px; }
 
 .ListText {
   position: relative;
   top: -28px;
   margin-left: 10px;
-  font-family: 'Glober Bold'; }
+  font-family: 'Glober SemiBold'; }
 
 .ListTextTitle {
   position: relative;
-  top: -50px;
+  top: -54px;
   margin-left: 66px;
-  font-family: 'Glober Bold'; }
+  font-family: 'Glober Bold';
+  color: #616462; }
 
 .listTitle {
   position: relative;
@@ -9178,7 +9753,7 @@ a {
 
 .ItemList {
   padding: 8px;
-  background-color: #FEEFE8;
+  background-color: #FEEDE1;
   -webkit-box-shadow: inset 0 20px 12px -20px rgba(0, 0, 0, 0.8);
   -moz-box-shadow: inset 0 20px 12px -20px rgba(0, 0, 0, 0.8);
   box-shadow: inset 0 20px 12px -20px rgba(0, 0, 0, 0.8); }
@@ -9196,14 +9771,21 @@ a {
   font-size: 14px;
   margin-bottom: -1px;
   margin-left: 66px;
-  margin-top: -51px;
-  /*font-family: $fontFamily_thin; */ }
+  margin-top: -59px;
+  /*font-family: $fontFamily_thin; */
+  padding-top: 5px; }
 
 .SubTitleSpan {
   font-family: 'Glober Regular';
   font-weight: normal;
-  font-size: 23px;
+  font-size: 100%;
   color: #706A67; }
+
+.docName {
+  width: 63%;
+  position: relative;
+  top: -23px;
+  left: 102px; }
 
 .ion-search::before {
   margin-left: 10px; }
@@ -9214,39 +9796,41 @@ a {
 .appointment_with {
   font-family: 'Glober SemiBold';
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
-  color: #888; }
+  color: #888;
+  position: relative;
+  top: -2px; }
 
 .primary {
-  background-color: #d7d7d7;
-  margin: -11px -15px 12px -12px;
+  background-color: #F2F0EE;
+  margin: -13px -15px 12px -12px;
   padding: 5px;
-  font-weight: bold;
-  font-size: 19px;
-  color: #706A67; }
+  font-size: 16px;
+  color: #777A78;
+  padding-top: 8px; }
 
 .secondary {
-  background-color: #d7d7d7;
-  margin: 12px -15px 11px -12px;
+  background-color: #F2F0EE;
+  margin: 8px -15px 11px -12px;
   padding: 5px;
-  font-weight: bold;
-  font-size: 19px;
-  color: #706A67; }
+  font-size: 16px;
+  color: #777A78; }
 
 .ptagprimary {
   font-family: 'Glober Regular';
   font-weight: normal;
   font-size: 20px;
-  margin-left: 32px; }
+  margin-left: 10px;
+  margin-right: 10px; }
 
 .pre_consultant {
-  background-color: #d7d7d7;
-  margin: -11px -15px 11px -12px;
+  background-color: #F2F0EE;
+  margin: -13px -15px 11px -12px;
   padding: 5px;
-  font-weight: bold;
-  font-size: 19px;
-  color: #706A67; }
+  font-size: 16px;
+  color: #777A78;
+  padding-top: 8px; }
 
 .optionList {
   position: absolute;
@@ -9267,7 +9851,7 @@ a {
 .PragraphContent {
   font-family: 'Glober Regular';
   font-weight: normal;
-  font-size: 15px; }
+  font-size: 16px; }
 
 .ReportTitle {
   font-family: 'Glober Regular';
@@ -9293,14 +9877,15 @@ a {
   top: 84px; }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
-  background: #A2D28A;
-  border-color: #A2D28A; }
+  background: #A9C985;
+  border-color: #A9C985; }
 
 .popup-title {
   float: left;
   font-size: 15px;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  width: 100%; }
 
 .checkbox input, .checkbox-icon {
   background: none repeat scroll 0 0 transparent;
@@ -9337,7 +9922,7 @@ a {
   pointer-events: none; }
 
 /*.ion-checkmark::before {
-    //content: "";
+    //content: "?";
 	 background: none repeat scroll 0 0 #fff;
     border-radius: 28px;
     border-style: solid;
@@ -9351,7 +9936,7 @@ a {
 .ContentSearchHomeUser {
   margin: -20px 0 0 0; }
   .ContentSearchHomeUser .item-input {
-    border: 1px solid #DADADA;
+    border: 1px solid #CDCACA;
     border-radius: 8px;
     height: 45px;
     font-weight: bold;
@@ -9382,7 +9967,7 @@ a {
       font-size: 19px; }
 
 .PatintHeaderFontStyle {
-  font-family: 'Glober Bold'; }
+  font-family: 'Glober xBold'; }
 
 .PatintHeaderFontStyleInner {
   font-family: 'Glober Thin'; }
@@ -9491,7 +10076,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .popup-head {
   padding: 8px 10px;
   border-bottom: 1px solid #eee;
-  text-align: center; }
+  text-align: left;
+  width: 100%; }
 
 .popup-body {
   padding: 10px; }
@@ -9580,12 +10166,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .waitingRoomImage {
   background: url(../img/wait.png) no-repeat;
   background-position: center center;
-  background-attachment: scroll;
-  -webkit-background-size: auto;
-  -moz-background-size: auto;
-  -o-background-size: auto;
-  background-size: auto;
-  margin: 117px 0 0 0;
+  /*background-attachment:scroll; 	*/
+  -webkit-background-size: 200px 300px;
+  -moz-background-size: 200px 300px;
+  -o-background-size: 200px 300px;
+  background-size: 200px 300px;
   padding-top: 100px; }
   .waitingRoomImage .WaitingContent {
     color: #858585; }
@@ -9620,76 +10205,148 @@ form.ng-submitted input.ng-valid + i.icon.error {
   z-index: 30;
   float: left; }
 
+#subscriberScreen {
+  position: relative;
+  z-index: 30;
+  float: left; }
+
 .callIcons {
   font-size: 30px;
-  cursor: pointer; }
+  cursor: pointer;
+  margin-bottom: 15px;
+  position: relative;
+  top: 10px; }
 
 .activeCallIcon {
   color: red; }
 
+.userSearch-Android {
+  position: relative;
+  top: 110px; }
+
+.userSearch-IOS {
+  position: relative;
+  top: 110px; }
+
 .UserHme {
-  padding: 0 0%;
-  margin-top: 70px;
-  border-color: #000; }
-  .UserHme .UserHmeSub {
-    padding: 10px; }
-    .UserHme .UserHmeSub .item-input {
+  padding: 0 0%; }
+  .UserHme .UserHmeSub-Android {
+    padding: 15px 10px 9px 10px; }
+    .UserHme .UserHmeSub-Android .item-input {
       margin-top: 5px;
-      background: #E6E6E6;
+      background: #E6E6E2;
       margin-left: 5px;
       margin-right: 5px;
       border-radius: 9px;
-      border: 1px solid #DADADA; }
-      .UserHme .UserHmeSub .item-input ::-webkit-input-placeholder {
+      border: 1px solid #CDCACA; }
+      .UserHme .UserHmeSub-Android .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
         color: #484848 !important;
-        font-size: 18px !important;
-        padding-top: 3px !important; }
-      .UserHme .UserHmeSub .item-input :-moz-placeholder {
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        font-family: 'Glober Regular'; }
+      .UserHme .UserHmeSub-Android .item-input ::-moz-placeholder {
         /* Mozilla Firefox 4 to 18 */
         color: #484848 !important;
-        font-size: 18px !important;
-        padding-top: 3px !important;
-        opacity: 1; }
-      .UserHme .UserHmeSub .item-input ::-moz-placeholder {
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        opacity: 1;
+        font-family: 'Glober Regular'; }
+      .UserHme .UserHmeSub-Android .item-input input:-moz-placeholder {
         /* Mozilla Firefox 19+ */
         color: #484848 !important;
-        font-size: 18px !important;
-        padding-top: 3px !important;
-        opacity: 1; }
-      .UserHme .UserHmeSub .item-input :-ms-input-placeholder {
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        opacity: 1;
+        font-family: 'Glober Regular'; }
+      .UserHme .UserHmeSub-Android .item-input :-ms-input-placeholder {
         /* Internet Explorer 10+ */
         color: #484848 !important;
-        font-size: 18px !important;
-        padding-top: 3px !important; }
-      .UserHme .UserHmeSub .item-input input {
-        font-size: 17px;
-        color: #000;
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        font-family: 'Glober Regular'; }
+      .UserHme .UserHmeSub-Android .item-input input {
+        font-size: 19px;
+        color: #616462;
         height: 26px;
-        margin-top: -4px; }
+        margin-top: 0px;
+        font-family: 'Glober Regular'; }
+  .UserHme .UserHmeSub-IOS {
+    padding: 15px 10px 9px 10px; }
+    .UserHme .UserHmeSub-IOS .item-input {
+      margin-top: 5px;
+      background: #E6E6E2;
+      margin-left: 5px;
+      margin-right: 5px;
+      border-radius: 9px;
+      border: 1px solid #CDCACA; }
+      .UserHme .UserHmeSub-IOS .item-input ::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #484848 !important;
+        font-size: 19px !important;
+        padding-top: 5px !important;
+        font-family: 'Glober Regular';
+        position: relative;
+        top: 0px; }
+      .UserHme .UserHmeSub-IOS .item-input ::-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #484848 !important;
+        font-size: 19px !important;
+        font-family: 'Glober Regular';
+        position: relative;
+        top: 0px;
+        padding-top: 5px !important; }
+      .UserHme .UserHmeSub-IOS .item-input input:-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #484848 !important;
+        font-size: 19px !important;
+        font-family: 'Glober Regular';
+        position: relative;
+        top: 0px;
+        padding-top: 5px !important; }
+      .UserHme .UserHmeSub-IOS .item-input :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #484848 !important;
+        font-size: 19px !important;
+        font-family: 'Glober Regular';
+        position: relative;
+        top: 0px;
+        padding-top: 5px !important; }
+      .UserHme .UserHmeSub-IOS .item-input input {
+        font-size: 19px;
+        color: #616462;
+        height: 21px;
+        margin-top: 0px;
+        font-family: 'Glober Regular';
+        position: relative;
+        top: 2px; }
 
 .UserHomePatient {
   cursor: pointer; }
   .UserHomePatient .UserHomeHeader {
-    top: 1px;
+    top: 5px;
     padding: 11px;
     height: 104px; }
     .UserHomePatient .UserHomeHeader .UserhmePatientDetails {
       margin-left: 0px;
-      margin-top: -5px !important; }
+      margin-top: 0px !important; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails div, .UserHomePatient .UserHomeHeader .UserhmePatientDetails p {
         width: 67%; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails .UserHomeIcon {
         color: #888;
-        margin-top: -33px; }
+        margin-top: -34px; }
+      .UserHomePatient .UserHomeHeader .UserhmePatientDetails .ion-chevron-right:before {
+        content: "\f125";
+        font-size: 19px;
+        margin-top: 0px; }
 
 .UserHomeNextAppointment {
   top: -2px;
-  height: 66px; }
+  height: 64px; }
   .UserHomeNextAppointment a {
     margin-left: 10px; }
     .UserHomeNextAppointment a .UHomeNextAppoinment {
-      font-size: 16px;
+      font-size: 14px;
       top: 1px;
       color: #888;
       margin-left: -5px; }
@@ -9704,37 +10361,52 @@ form.ng-submitted input.ng-valid + i.icon.error {
         font-size: 14px; }
     .UserHomeNextAppointment a .nextList {
       color: #888;
-      margin-top: -33px;
+      margin-top: -35px;
       margin-right: 12px; }
     .UserHomeNextAppointment a .AppointmentView {
       float: right;
-      font-size: 16px;
+      font-size: 14px;
       margin-right: 30px;
       color: #888;
-      margin-top: -33px; }
+      margin-top: -35px; }
 
 .DependentList {
   padding: 11px;
   top: -2px;
-  height: 80px; }
+  height: 91px; }
   .DependentList a {
     cursor: pointer; }
     .DependentList a p {
       margin-left: 83px; }
 
-.HeaderList {
+.HeaderListIOS {
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  margin-left: -32px;
+  top: 5px; }
+
+.HeaderListAndroid {
   font-size: 20px;
   text-align: center;
   width: 100%;
   margin-left: -32px;
   top: -1px; }
 
+.menuiconIOS {
+  position: relative;
+  top: 4px; }
+
 .subHeaderTop {
-  top: 86px; }
+  top: 70px;
+  padding-top: 19px;
+  height: 87%;
+  margin-top: -7px; }
 
 #BackButtonIcon {
   color: #000;
-  margin-top: 15px; }
+  margin-top: 13px;
+  display: block !important; }
 
 #WhoNeeds {
   font-size: 23px;
@@ -9751,8 +10423,19 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .ion-chevron-left:before {
   content: "\f124";
-  font-size: 25px;
+  font-size: 22px;
   margin-top: 0px; }
+
+.providerName {
+  width: 85%;
+  position: relative;
+  top: -5px; }
+
+.providerIcon .ion-chevron-right:before {
+  content: "\f125";
+  font-size: 27px;
+  margin-top: -4px;
+  Color: #898989; }
 
 .ion-chevron-right:before {
   content: "\f125";
@@ -9789,25 +10472,383 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .confCamera {
   float: left;
   width: 30%;
-  border-right: 1px solid gray; }
+  border-right: 1px solid gray;
+  margin-top: -20px;
+  margin-bottom: 13px;
+  cursor: pointer; }
 
 .confEndCall {
   width: 39%;
   border-right: 1px solid gray;
   float: left;
   font-size: 18px;
-  margin-top: 2px; }
+  /*margin-top: 2px;*/
+  margin-top: -20px;
+  margin-bottom: 13px;
+  cursor: pointer; }
 
 .confMute {
   width: 30%;
-  float: left; }
+  float: left;
+  margin-top: -20px;
+  margin-bottom: 13px;
+  cursor: pointer; }
 
 .doctorImgeSize {
-  width: 60px !important;
-  height: 60px;
-  margin-top: 0px; }
+  width: 50px !important;
+  height: 50px;
+  margin-top: 1px; }
 
 .passwordSubHeader {
   height: auto;
   line-height: 1em;
   padding-top: 47px; }
+
+.consentIAgree {
+  position: relative;
+  top: 3px; }
+
+.noPlanContainer-Android .dropdownContainer .healthPlanDropDown {
+  width: 100%;
+  z-index: 2;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
+  width: 93%;
+  text-indent: 0.01px;
+  text-overflow: "";
+  border-radius: 7px;
+  margin-left: 8px;
+  padding: 6px;
+  /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
+				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
+				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
+  border: 1px solid #CDCACA !important;
+  height: 48px;
+  font-size: 18px;
+  border: none; }
+.noPlanContainer-Android .healthPlanDropDown {
+  color: transparent;
+  background: none; }
+.noPlanContainer-Android .dropdownContainer {
+  position: relative;
+  height: 50px;
+  margin-left: 50px; }
+.noPlanContainer-Android .viewport {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 18px;
+  top: 10px;
+  /*font-weight: bold;*/ }
+.noPlanContainer-Android .viewport1 {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 25px;
+  top: 10px;
+  /*font-weight: bold;*/
+  text-align: left; }
+.noPlanContainer-Android .cardViewport {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 18px;
+  top: 10px;
+  /*font-weight: bold;*/ }
+.noPlanContainer-Android .healthPlanDropDown option {
+  color: #60605D; }
+
+.noPlanContainer-IOS .dropdownContainer .healthPlanDropDown {
+  width: 100%;
+  z-index: 2;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
+  width: 93%;
+  text-indent: 0.01px;
+  text-overflow: "";
+  border-radius: 7px;
+  margin-left: 8px;
+  padding: 6px;
+  /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
+				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
+				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
+  border: 1px solid #CDCACA !important;
+  height: 48px;
+  font-size: 18px;
+  border: none; }
+.noPlanContainer-IOS .healthPlanDropDown {
+  color: transparent;
+  background: none; }
+.noPlanContainer-IOS .dropdownContainer {
+  position: relative;
+  height: 50px;
+  margin-left: 50px; }
+.noPlanContainer-IOS .viewport {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 18px;
+  top: 11px;
+  /*font-weight: bold;*/ }
+.noPlanContainer-IOS .viewport1 {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 25px;
+  top: 11px;
+  /*font-weight: bold;*/
+  text-align: left; }
+.noPlanContainer-IOS .cardViewport {
+  pointer-events: none;
+  color: #60605D;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 19px;
+  padding: 6px;
+  left: 18px;
+  top: 11px;
+  /*font-weight: bold;*/ }
+.noPlanContainer-IOS .healthPlanDropDown option {
+  color: #60605D; }
+
+.bar .button.button-clear.icon:before {
+  font-size: 40px; }
+
+.BacgroundColorContent {
+  background-color: #EFEFED; }
+
+.NeedanAcount_android {
+  text-align: center;
+  font-family: 'Glober Bold'; }
+
+.NeedanAcount_ios {
+  text-align: center;
+  font-family: 'Glober Bold';
+  top: 25px;
+  float: none;
+  position: relative; }
+
+.needanaccountPragraph {
+  font-family: 'Glober Regular';
+  margin-left: -10px; }
+
+.footerBackButton {
+  top: 11px;
+  position: absolute; }
+
+.subheaderTitle {
+  margin-top: 3px;
+  margin-left: 7px; }
+
+.PatientDetailsYor {
+  font-family: 'Glober SemiBold'; }
+
+input, button, select, textarea {
+  font-family: 'Glober Regular'; }
+
+.item {
+  border-color: #C4C5C3; }
+
+.patientConternFontStyle {
+  font-family: 'Glober Bold'; }
+
+.patientConternFontStyle-ios {
+  font-family: 'Glober Bold';
+  font-size: 15px; }
+
+.patientConternFontStyleSubTitle {
+  font-family: 'Glober Regular'; }
+
+.concernsItempTag {
+  top: 6px;
+  position: relative; }
+
+.ion-navicon-round:before {
+  content: "\f20d";
+  font-size: 40px;
+  color: #352D2D; }
+
+.ion-close:before {
+  content: "\f12a";
+  font-size: 33px !important;
+  color: #352D2D; }
+
+.has-footer {
+  bottom: 48px; }
+
+.currMedicationList {
+  top: -5px !important; }
+
+.ion-android-time:before {
+  font-size: 25px; }
+
+.ion-plus-round:before {
+  color: white;
+  background-color: #A3D38B;
+  padding: 2px;
+  border-radius: 5px;
+  font-size: 25px;
+  width: 30px; }
+
+.animated {
+  -webkit-animation-duration: 0.4s !important;
+  -moz-animation-duration: 0.4s !important;
+  -o-animation-duration: 0.4s !important;
+  animation-duration: 0.4s !important; }
+
+.datePlaceholder ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  position: relative;
+  top: 5px !important; }
+.datePlaceholder ::-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  position: relative;
+  top: 5px !important; }
+.datePlaceholder input:-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  position: relative;
+  top: 5px !important; }
+.datePlaceholder :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  position: relative;
+  top: 5px !important; }
+
+.userDateofbirth {
+  font-size: 20px !important;
+  line-height: 30px !important;
+  position: relative;
+  top: -5px; }
+
+.userDateofbirth_android {
+  font-size: 20px !important;
+  line-height: 30px !important;
+  position: relative;
+  top: -5px; }
+
+.noResult {
+  text-align: center;
+  border: none;
+  color: #616462;
+  font-weight: bold;
+  font-size: 19px;
+  position: relative;
+  top: 40px; }
+
+.dobRequired {
+  color: #AAA;
+  position: absolute;
+  width: 75%;
+  height: 100%;
+  z-index: 15;
+  overflow: hidden;
+  top: 24px;
+  font-size: 20px; }
+
+.brand {
+  text-align: center; }
+
+.singleTermsTitle-Android {
+  border-bottom: none;
+  position: relative;
+  top: -143px; }
+
+.singleTermsTitle-IOS {
+  border-bottom: none;
+  position: relative;
+  top: -110px; }
+
+.singleTermsLine-Android {
+  border-top: 1px solid #A9ABA7;
+  position: relative;
+  top: -122px; }
+
+.singleTermsLine-IOS {
+  border-top: 1px solid #A9ABA7;
+  position: relative;
+  top: -90px; }
+
+.singleTermsContent-Android {
+  padding: 50px 7px 7px 7px;
+  font-size: 19px;
+  color: #4D4D4D;
+  text-align: justify;
+  position: relative;
+  top: -153px; }
+
+.singleTermsContent-IOS {
+  padding: 50px 7px 7px 7px;
+  font-size: 19px;
+  color: #4D4D4D;
+  text-align: justify;
+  position: relative;
+  top: -115px; }
+
+.SubHeadIOS {
+  margin-top: 82px !important;
+  background-color: #FFF !important;
+  position: relative !important;
+  top: 10px !important;
+  box-shadow: 0px 3px 3px #ADABAB !important;
+  -moz-box-shadow: 0px 3px 3px #ADABAB !important;
+  -webkit-box-shadow: 0px 3px 3px #ADABAB !important; }

@@ -5,11 +5,11 @@
 	<ion-side-menu-content> 
 		<div ng-include src="'templates/intakeHeader.html'"></div> 
 	
-	<div class="consultCharge_subHeader PatintHeaderFontStyle"  >
+	<div class="consultCharge_subHeader PatintHeaderFontStyle" style="{{PaymentStyle}}"  >
 		<span>Payment</span>
 	</div>
 	
-	<ion-content class="consultChargeNoPlanContent" >
+	<ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
 		<div class="password_home">
 		
 			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
@@ -19,20 +19,19 @@
 			
 			<div class="healthPlan_header" >				
 				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
-				<div class="addHealthPlan_header NoPlanAddCardDropdown" >					
-					<div class="demo" >							
-						<!--<select id="addHealthPlan" name="addHealthPlan" class="ellipsis">
-								<option><b>Choose Your Health Plan</b></option>
-								<option  ng-repeat="GetPlanList in patientHealthPlanList"><b><span class="ellipsis">{{GetPlanList.insuranceCompany}}</span><span class="ellipsis"> {{GetPlanList.policyNumber}}</span></b></option>
-								<option><b>Add a new health plan</b></option>
-						</select>-->
-
-                        <!--data-ng-model="Health.SelectedHealthPlan" ---->
-                        
-                 <!--  	<select id="addNewCard" name="addNewCard"  data-ng-options="GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:15 for GetHealthPlan in ApplyPlanPatientHealthPlanList" data-ng-model="SelectedHealthPlan" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" style="border: none;"></select>  -->
-                        
-                  <select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;"> <option  ng-repeat="GetHealthPlan in ApplyPlanPatientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:18}}</span></b></option> </select>	
-
+				<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >					
+					<!--<div class="demo" >	
+						<select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
+							<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:18}}</span></b></option>
+							</select>	
+					</div>-->
+					<div  class="dropdownContainer">
+						<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
+						<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
+						<select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
+							<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + PolicyNo + '@' + healthPlanID == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumberLong}}</span></b></option>
+							<option value=""><b>Add a new health plan</b></option>
+						</select>
 					</div>
 				</div>
 			</div>			
@@ -40,7 +39,7 @@
 			
 			<div class="SkipToPayment">
 				<!--<a ng-href="#/tab/addCard">-->
-					<button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced">
+					<button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
 						<span>Apply Plan</span>
 					</button>
 				<!--</a>-->
@@ -74,8 +73,8 @@
 		<ion-footer-bar align-title="left" class="footer">			
 			<div class="ConsultChargeFooter">
 				<div class="ConsultChargeBack" >
-                   <!-- <a class="button_new icon ion-chevron-left" href="#/tab/planDetails" ><span>Back</span></a>-->
-				   <site-header back="Back"></site-header>
+                   <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span> Back</span></a>
+				   <!-- <site-header back="Back"></site-header>-->
 				</div>
 						
 				<div class="ConsultChargeCancel" >

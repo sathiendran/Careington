@@ -7,16 +7,16 @@
 <ion-view title="Prior Surgeries">
     <ion-content class="ContentHomeUser ConcernsContent" >
         <ion-list>
-			<ion-item class="PrimaryList">
-                <div class="Step1">Step <b>3</b> of <b>7</b></div>
+			<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+                <div class="Step1">Step <b style="color:#535353;">3</b> of <b style="color:#535353;">7</b></div>
                     
 				<div ng-if="IsToPriorCount != 3" ng-click="getSurgeryPopup();" >
 					<div class="PrimaryContent">
 						<h1 class="title ChronicCondition" >Prior Surgeries</h1>
-						<p>
+						<p class="patientConternFontStyle">
 							List any prior surgeries.
 							<br/>
-							Enter up to three
+                            <span class="patientConternFontStyleSubTitle">Enter up to three</span>
 						</p>
 						<div> <i ng-if="IsToPriorCount != 3" class="ion-plus-circled addBtn">  </i>    
 						</div>
@@ -49,25 +49,19 @@
 			</div>
 		</ion-item> -->
         
-	<div class="list surgeryList">
-	   <a class="item item-avatar" href="#" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete">     
+	<div class="list surgeryList" style="margin-top: 3px;">
+	   <a class="item item-avatar" ng-repeat="surgery in patientSurgeriess" show-delete="data.showDelete" >     
 			<div class="surgeryDetails">
 				<div class="surgeryName"><p>{{surgery.Name}}</p></div>
 				<div class="surgeryDate">{{surgery.Date | date: "MMM, yyyy"}}</div>   
 			</div>
-			<div class="surgerydelete"><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
+			<div class="surgerydelete" ng-click="removePriorSurgeries($index)" >
+                <i class="ion-close-circled delBtn"></i>
+           </div>
 		</a>
 	</div>
     
-    <div class="list surgeryList">
-	   <a class="item item-avatar" href="#" ng-repeat="surgery in inTakeFormPriorSurgeories" show-delete="data.showDelete">     
-			<div class="surgeryDetails">
-				<div class="surgeryName"><p>{{surgery.value}}</p></div>
-				<div class="surgeryDate">{{surgery.month | date: "MM"}} | {{surgery.year | date: "yyyy"}}</div>   
-			</div>
-			<div class="surgerydelete"><i class="ion-close-circled delBtn" ng-click="removePriorSurgeries($index)" ></i></div>
-		</a>
-	</div>        
+        
             
         
             </ion-content>
@@ -81,16 +75,17 @@
 	<ion-footer-bar  class="footer">
 		<div class="ConcernsFooter">
 					 
-		 <div class="FooterLeft" >
-				<a class="button_new icon ion-chevron-left" href="#/tab/ChronicCondition" ><span>Back</span></a>
+		 <div class="FooterLeft" ng-click="BackToChronicCondition(ChronicCountValidCount);">
+				<a class="button_new icon ion-chevron-left"  ><span> Back</span></a>
 			</div>
 			
-			<div class="FooterCenter">
-				<a class="button_new icon" ng-click="clearRootScopeConce()">Cancel</a>
+			<div class="FooterCenter" ng-click="clearRootScopeConce()">
+				<a class="button_new icon" >Cancel</a>
 			</div>
 			   
-			<div class="FooterRight" >
-				<a class="button_new icon ion-chevron-right"   href="#/tab/MedicationAllegies"> <span class="ConcernFooterNext" >Next<span> </a>
+			<div class="FooterRight" style="{{NextIntakeForm}};" ng-click="GoToMedicationAllegies(AllegiesCountValid)">
+				<!--<a class="button_new icon ion-chevron-right" > <span class="ConcernFooterNext" style="{{FootNextButton}};{{FootNextButtonRight}}" >Next<span> </a>-->
+				<a class="button_new icon ion-chevron-right" > <span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span> </a>
 			</div>
 						  
 		<div>

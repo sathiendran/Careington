@@ -1,2 +1,2 @@
-C:\Users\RINSOFT\workspace\SnapMD\platforms\android\ant-build\AndroidManifest.xml : \
-C:\Users\RINSOFT\workspace\SnapMD\platforms\android\AndroidManifest.xml \
+D:\workspace\snapmdV3\platforms\android\ant-build\AndroidManifest.xml : \
+D:\workspace\snapmdV3\platforms\android\AndroidManifest.xml \

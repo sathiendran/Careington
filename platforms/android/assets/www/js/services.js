@@ -4,15 +4,32 @@ angular.module('starter.services', [])
 
 
 
-.service('LoginService', function($http){
+.service('LoginService', function($http){ 
     /*
         params: email, password, userTypeId, hospitalId
                 (event handlers): success, failure
-    */
+   
+	
+	if(deploymentEnv == "Sandbox"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
 		
+	}else if(deploymentEnv == "Production"){
+		$rootScope.APICommonURL = 'https://connectedcare.md';
+		apiCommonURL = 'https://connectedcare.md';
+	}else if(deploymentEnv == "QA"){
+		$rootScope.APICommonURL = 'https://snap-qa.com';
+		apiCommonURL = 'https://snap-qa.com';
+	}else if(deploymentEnv == "Single"){
+		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+		apiCommonURL = 'https://sandbox.connectedcare.md';
+	}
+	
+	 */	
 		//var apiCommonURL = 'https://snap-dev.com';
 		
-		var apiCommonURL = 'https://sandbox.connectedcare.md';
+		//var apiCommonURL = 'https://sandbox.connectedcare.md';
+		//var apiCommonURL = 'https://connectedcare.md';
 	
 	 this.getToken = function (params) {
         var requestInfo = {
@@ -43,8 +60,14 @@ angular.module('starter.services', [])
 	this.postSendPasswordResetEmail = function(params) {
 		var confirmSendPasswordResetEmail = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType,
-            method: 'POST'
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+              url: apiCommonURL + '/api/v2/patients/mail/' + params.emailType,
+			 //http://emeraldg.local/api/v2/patients/mail/resetPassword
+			method: 'POST',
+			 data: {
+                email: params.patientEmail,
+                hospitalId: params.hospitalId,
+            }
 		};
 		
 		$http(confirmSendPasswordResetEmail).
@@ -63,7 +86,8 @@ angular.module('starter.services', [])
 	this.getPatientProfiles = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		   url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
             method: 'GET'
 		};
 		
@@ -78,8 +102,8 @@ angular.module('starter.services', [])
 					params.error(data);
 				}
 		});
-	}
-	
+	}  
+   
 	this.getPrimaryPatientLastName = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
@@ -156,6 +180,54 @@ angular.module('starter.services', [])
 		};
 		
 		$http(confirmOnDemandConsultationSave).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
+		
+	this.postClearHealthPlan = function(params) {
+		var confirmPostClearHealthPlan = {
+			headers: util.getHeaders(params.accessToken),
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+              url: apiCommonURL + '/api/healthplan/' + params.healthPlanID +'/clear',
+			 //http://emeraldg.local/api/v2/patients/mail/resetPassword
+			method: 'POST',
+			 data: {
+                InsuranceCompanyName: params.InsuranceCompanyName,
+                PolicyNumber: params.PolicyNumber,
+				ConsultationId: params.ConsultationId,
+            }
+		};
+		
+		$http(confirmPostClearHealthPlan).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
+	this.getConcentToTreat = function(params) {
+		var PatientDetailsList = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/publicdocuments?documentType=' + params.documentType +'&hospitalId=' + params.hospitalId,
+            method: 'GET'
+		};
+		
+		$http(PatientDetailsList).
 			success(function (data, status, headers, config) {
 				if (typeof params.success != 'undefined') {
 					params.success(data);
@@ -324,8 +396,8 @@ angular.module('starter.services', [])
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
           //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
-		   // url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
-		    url: apiCommonURL + '/api/v2/reports/consultation/2538?include=',
+		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
             method: 'GET'   
         };
 
@@ -346,7 +418,8 @@ angular.module('starter.services', [])
 		var confirmSoapPost = {
 			headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/patients/consultations/' + params.consultationID + '/soapnote',
-		    url: apiCommonURL + '/api/patients/consultations/2538/soapnote',
+		 //   url: apiCommonURL + '/api/patients/consultations/'+ params.consultationId +'/soapnote',
+			url: apiCommonURL + '/api/Soapnotes/Get/'+ params.consultationId,
             method: 'GET'
 		};
 		
@@ -371,7 +444,8 @@ angular.module('starter.services', [])
             headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
 		   // url: apiCommonURL + '/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
-		    url: apiCommonURL + '/api/patients/' + params.patientId + '/payments',
+		   // url: apiCommonURL + '/api/patients/' + params.patientId + '/payments',
+		    url: apiCommonURL + '/api/v2/patients/payments',
             method: 'GET'   
         };
 
@@ -382,11 +456,47 @@ angular.module('starter.services', [])
                     }
                 }).
                 error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                       params.error(data);
-                    }
+					if(status == 404) {
+						if (typeof params.error != 'undefined') {
+							params.success(data);
+						}
+					} else {
+						if (typeof params.error != 'undefined') {
+						   params.error(data);
+						}
+					}
                 });
     }
+	
+	this.getHospitalInfo = function (params) {
+        //https://snap-dev.com/api/v2/patients/profile/471/payments?hospitalId=126
+        //util.setHeaders($http, params);
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+           // url: apiCommonURL + '/api/Hospital/Get',
+		    url: apiCommonURL + '/api/v2/hospital/' + params.hospitalId,
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+					if(status == 404) {
+						if (typeof params.error != 'undefined') {
+							params.success(data);
+						}
+					} else {
+						if (typeof params.error != 'undefined') {
+						   params.error(data);
+						}
+					}
+                });
+    }
+	
 
     this.getFacilitiesList = function (params) {
         //GET v2/patients/hospitals?email=<email>
@@ -463,14 +573,15 @@ angular.module('starter.services', [])
                 });
     }
 
-    this.postPaymentProfileDetails = function (params) {
+    this.postPaymentProfileDetails = function (params) { 
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/patients/' + params.userId + '/payments',
+           // url: apiCommonURL + '/api/patients/' + params.userId + '/payments',
+		    url: apiCommonURL + '/api/v2/patients/payments',
             method: 'POST',
             data: {
-                userId: params.userId,
+                EmailId: params.EmailId,
                 BillingAddress: params.BillingAddress,
                 CardNumber: params.CardNumber,
                 City: params.City,
@@ -508,6 +619,56 @@ angular.module('starter.services', [])
                 insuranceCompanyName: params.insuranceCompanyName,
 				policyNumber: params.policyNumber,
 				consultationId: params.consultationId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
+	 this.postVerifyHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/apply?retry=1',
+            method: 'POST',
+			data: {
+                InsuranceCompanyName: params.insuranceCompanyName,
+				PolicyNumber: params.policyNumber,
+				ConsultationId: params.consultationId
+            }
+		};
+		
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
+	this.postSkipHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/skip',
+            method: 'POST',
+			data: {
+                InsuranceCompanyName: params.insuranceCompanyName,
+				PolicyNumber: params.policyNumber,
+				ConsultationId: params.consultationId
             }
 		};
 		
@@ -696,7 +857,7 @@ this.getCountryDetails = function () {
 }])
 
  
-.service('CustomCalendar', function(){
+.service('CustomCalendar', function($filter){
     var months = [
         {"value" : "", "text" : "MM", "selected" : true},
         {"value" : "01", "text" : "01", "selected" : false},
@@ -745,7 +906,7 @@ this.getCountryDetails = function () {
 
 	  var dob = new Date(dateOfBirth);
         var birthYear = dob.getFullYear();
-        years.push({ value: '', text: 'Year', selected: true});
+        years.push({ value: '', text: 'YYYY', selected: true});
         for(var i = birthYear; i <= yearNow; i++){
             years.push({ value: i, text: i });
         }
@@ -767,8 +928,173 @@ this.getCountryDetails = function () {
         }
         return years;
     }
+	
+	this.getLocalTime = function(dateTime){
+       var utcTime = moment.utc(dateTime).toDate();
+		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss');
+        return new Date(dateTime);//localTime;
+    }
     
 }) 
+
+.service('CustomCalendarMonth', function(){ 
+  this.getMonthName = function(PriorSurgerymonth) {
+      if(PriorSurgerymonth == 'Jan') {
+          return 01; 
+      } else if(PriorSurgerymonth == 'Feb') {
+       return 02;   
+      } else if(PriorSurgerymonth == 'Mar') {
+       return 03;   
+      } else if(PriorSurgerymonth == 'Apr') {
+       return 04;   
+      } else if(PriorSurgerymonth == 'May') {
+       return 05;   
+      } else if(PriorSurgerymonth == 'Jun') {
+       return 06;   
+      } else if(PriorSurgerymonth == 'Jul') {
+       return 07;   
+      } else if(PriorSurgerymonth == 'Aug') {
+       return 08;   
+      } else if(PriorSurgerymonth == 'Sep') {
+       return 09;   
+      } else if(PriorSurgerymonth == 'Oct') {
+       return 10;   
+      } else if(PriorSurgerymonth == 'Nov') {
+       return 11;   
+      } else if(PriorSurgerymonth == 'Dec') {
+       return 12;   
+      }
+  }
+
+})
+
+.service('htmlEscapeValue', function(){ 
+	this.getHtmlEscapeValue = function(value) {
+		//return angular.element('<div></div>').text(value).html();
+		if(typeof value != 'undefined' && value !='') {			
+			return  angular.element('<div>').html(value).text();
+		}
+     }; 
+	 
+})
+
+.service('replaceCardNumber', function(){ 
+	this.getCardNumber = function(cardNo) {
+		var str = cardNo;
+		var res = str.replace("XXXX", '');
+		return res;
+     }; 
+})
+
+.service('ageFilter', function(){ 
+  //this.getAge = function(dateString) {
+//.filter('ageFilter', function() {
+    function getAge(dateString) {
+	  var now = new Date();
+	  var today = new Date(now.getYear(),now.getMonth(),now.getDate());
+
+	  var yearNow = now.getYear();
+	  var monthNow = now.getMonth();
+	  var dateNow = now.getDate();
+
+	  var dob = new Date(dateString.substring(6,10),
+						 dateString.substring(0,2)-1,                   
+						 dateString.substring(3,5)                  
+						 );
+
+	  var yearDob = dob.getYear();
+	  var monthDob = dob.getMonth();
+	  var dateDob = dob.getDate();
+	  var age = {};
+	  var ageString = "";
+	  var yearString = "";
+	  var monthString = "";
+	  var dayString = "";
+
+
+	  yearAge = yearNow - yearDob;
+
+	  if (monthNow >= monthDob)
+		var monthAge = monthNow - monthDob;
+	  else {
+		yearAge--;
+		var monthAge = 12 + monthNow -monthDob;
+	  }
+
+	  if (dateNow >= dateDob)
+		var dateAge = dateNow - dateDob;
+	  else {
+		monthAge--;
+		var dateAge = 31 + dateNow - dateDob;
+
+		if (monthAge < 0) {
+		  monthAge = 11;
+		  yearAge--;
+		}
+	  }
+
+	  age = {
+		  years: yearAge,
+		  months: monthAge,
+		  days: dateAge
+		  };
+
+	/*  if ( age.years > 1 ) yearString = " years";
+	  else yearString = " year";
+	  if ( age.months> 1 ) monthString = " months";
+	  else monthString = " month";
+	  if ( age.days > 1 ) dayString = " days";
+	  else dayString = " day";
+
+	  
+	   if(age.years == 0 ) {  
+			if(age.days <= 15) {
+				return ageString = '0.' + age.months; 
+			} else if (age.days > 15) {
+				 return ageString = '0.' + (age.months + 1); 
+			}
+	   }
+		if (age.years > 0) { return ageString = age.years; }
+		*/
+		
+		 yearString = "y"; 
+		 monthString = "m";
+
+	 if(age.years == 0 ) {  
+			if(age.days <= 15) {
+				return ageString = age.months + monthString;; 
+			} else if (age.days > 15) {
+				 return ageString = (age.months + 1) + monthString;; 
+			}
+	   }
+		if (age.years > 0) {
+			if(age.days <= 15) {
+				 var month = age.months + monthString;; 
+			} else if (age.days > 15) {
+				  var month = (age.months + 1) + monthString;; 
+			}
+		return ageString = age.years + yearString +'/'+ month; }
+		
+
+	  
+	}
+	this.getDateFilter = function(birthdate) {
+     //return function(birthdate) {
+			var BirthDate = new Date(birthdate);
+
+			var year = BirthDate.getFullYear();
+			var month = BirthDate.getMonth() + 1;
+			if(month < 10) { month = '0' + month; } else { month = month; }
+			var date = BirthDate.getDate();
+			if(date < 10) { date = '0' + date; } else { date = date; }
+			
+			var newDate = month + '/' + date + '/' + year;
+
+           var age = getAge(newDate);
+		   return age;
+     }; 
+})
+
 .service('CreditCardValidations', function(){
     
     this.luhn = function luhn(num) {
