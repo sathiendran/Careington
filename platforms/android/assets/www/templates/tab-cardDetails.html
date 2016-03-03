@@ -4,24 +4,27 @@
     
     <form ng-submit="doPostPaymentProfileDetails()" name="CardForm" novalidate=''>
     
-       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};" >			
+       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{backgroundimage}}; {{HeadercardDetails}}" >			
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
 			 <div class="Server_Error ErrorMessageDiv" ></div>
-			<div class="buttons" style="display: {{cardDisplay}}" >
-				<a class="button_new icon PlanCancel" ng-href="#/tab/consultChargeNoPlan" >
+<div class="buttons" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
+				<!--<a class="button_new icon PlanCancel" ng-href="#/tab/consultChargeNoPlan" >
 					<span>Cancel</span>
-				</a>				
+				</a>-->
+				<site-header2 back="Cancel"></site-header2>
+			
 			</div>
 			
-			<div class="buttons" style="display: {{cardDisplay}}" >			
-				<div ng-if="CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext" style="color:#999;"  ng-disabled="CardForm.$invalid" >
+			<div class="buttons" style="width: 50%; display: {{cardDisplay}};" >			
+
+				<div style="width: 100%; text-align: right;" ng-if="CardForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}};"   ng-disabled="CardForm.$invalid" >
                         Next
                     </button>	
                 </div>
-                <div ng-if="!CardForm.$invalid">
-                    <button type="submit" class="button_new icon PlanNext"   ng-disabled="CardForm.$invalid" >                   Next
-                    </button>
+                <div style="width: 100%; text-align: right;" ng-if="!CardForm.$invalid">
+                    <button type="submit" class="button_new icon PlanNext"  style="{{CardDetailsNextButton}}"  ng-disabled="CardForm.$invalid" >                   Next
+</button>
                 </div>
                 
                 <!-- <div ng-if="CardForm.$invalid" class="disabled" >
@@ -73,7 +76,7 @@
 				
 				<label class="item item-input">
 					<span class="input-label" >Card Number</span>
-					<input type="number" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required>
+					<input type="number" style="{{invalidCard}}" placeholder="Required" ng-model="getCardDetails.CardNumber" name="CardNumber" id="CardNumber" maxlength="19" required>
 				</label>
 				<!--
 				<label class="item item-input" >
@@ -84,12 +87,12 @@
                 -->
                 <div class="item item-input">
                     <span class="input-label">Expiration Date</span>
-                    <select id="CardExpireDatesMonth" name="CardExpireDatesMonth" ng-model="getCardDetails.CardExpireDatesMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;" required>
+                    <select id="CardExpireDatesMonth" name="CardExpireDatesMonth" ng-model="getCardDetails.CardExpireDatesMonth" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailmonth}}" required>
                           <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
                               <b><span>{{month.text}}</span></b></option> 
                       </select>
-                      /{{validCC}}
-                      <select id="CardExpireDatesYear" name="CardExpireDatesYear" ng-model="getCardDetails.CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;" required>
+                     <span> /{{validCC}}</span>
+                      <select id="CardExpireDatesYear" name="CardExpireDatesYear" ng-model="getCardDetails.CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailYear}}" required>
                           <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}">
                               <b><span>{{ccYear.text }}</span></b>
                           </option> 
@@ -97,7 +100,9 @@
                 </div>
                 <label class="item item-input" >
 					<span class="input-label" >Security Code</span>
-					<input type="password" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
+					<!--<input type="number"  style="-webkit-text-security: disc; text-security:disc; -mox-text-security:disc;{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>-->
+					<input type="password" pattern="[0-9]*" inputmode="numeric" style="{{invalidCVV}}" placeholder="Required" maxlength="{{ccCvvLength}}" ng-model="getCardDetails.Cvv"  name="Cvv" id="Cvv" required>
+
 				</label>
                 	  
 				<label class="item item-input" >
@@ -123,7 +128,7 @@
 				</label>
 				<label class="item item-input" >
 					<span class="input-label" >Zip</span>
-			    <input type="number" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  input-max-length-number maxlength="5" name="Zip" id="Zip" required/>
+			    <input type="number" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  input-max-length-number maxlength="5" name="Zip" id="Zip" required/>
 				</label>
             
                 
@@ -131,9 +136,11 @@
             </div>
 			
 			<div class="planDetails"  >
-				<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
-			</div>
-			<div class="privacy" >About Connected Care Privacy</div>
+				<p>When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
+			</div>			
+			<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://docyourway.connectedcare.md/public/#/userTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>-->
+				<div class="privacy" ><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div> 
+			<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://connectedcare.md/Main/#/UserTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>-->
 		</div>
 		
 	</ion-content>

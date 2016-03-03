@@ -6,15 +6,15 @@
 <ion-view title="Medication Allergies">
 <ion-content class="ContentHomeUser ConcernsContent" >
  	<ion-list>
-		<ion-item class="PrimaryList">
-			<div class="Step1">Step <b>4</b> of <b>7</b></div>
+		<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+			<div class="Step1">Step <b style="color:#535353;">4</b> of <b style="color:#535353;">7</b></div>
 			<div ng-click="loadMedicationAllegies();" >            
 				<div class="PrimaryContent">
 					<h1 class="title ChronicCondition">Medication Allergies</h1>
 				
-					<p>List any medication allergies.
+					<p class="patientConternFontStyle">Select any medication allergies.
 						<br/>
-						Select up to four</p>
+                        <span class="patientConternFontStyleSubTitle">Select up to four </span></p>
 					<div><i class="ion-plus-circled addBtn">  </i></div>
 				</div>
 			</div>
@@ -22,20 +22,16 @@
        
 		
 		 <ion-item ng-repeat="item in patinentMedicationAllergies">
-			<div class="PrimaryConcernList">
+			<div class="PrimaryConcernList" >
 				<p class="intakeNote">{{item.text}} </p>
-                <div><i class="ion-close-circled delBtn" ng-click="removeMedicationAllegies($index, item);" ></i></div>
+                <div ng-click="removeMedicationAllegies($index, item);">
+                    <i class="ion-close-circled delBtn"></i>
+                </div>
 
 			</div>
 		</ion-item>
         
-         <ion-item ng-repeat="item in inTakeFormMedicationAllergies">
-			<div class="PrimaryConcernList">
-				<p class="intakeNote">{{item.value}} </p>
-                <div><i class="ion-close-circled delBtn" ng-click="removeMedicationAllegies($index, item);" ></i></div>
-
-			</div>
-		</ion-item>
+       
         
         
 	</ion-list>
@@ -50,15 +46,16 @@
 <ion-footer-bar  class="footer">
 	<div class="ConcernsFooter">
 		<div class="FooterLeft">
-			<a class="button_new icon ion-chevron-left" href="#/tab/priorSurgeries" ><span>Back</span></a>
+			<a class="button_new icon ion-chevron-left" href="#/tab/priorSurgeries" ><span> Back</span></a>
 		</div>
 		
-		<div class="FooterCenter" >
-			<a class="button_new icon" ng-click="clearRootScopeConce()">Cancel</a>
+		<div class="FooterCenter" ng-click="clearRootScopeConce()">
+			<a class="button_new icon" >Cancel</a>
 		</div>
 		   
-		<div class="FooterRight" >
-			<a class="button_new icon ion-chevron-right"   href="#/tab/CurrentMedication"> <span class="ConcernFooterNext">Next<span> </a>
+		<div class="FooterRight" style="{{NextIntakeForm}};" >
+			<!--<a class="button_new icon ion-chevron-right"   ng-click="GoToCurrentMedication(MedicationCountValid)"> <span class="ConcernFooterNext" style="{{FootNextButton}}{{FootNextButtonRight}}">Next<span> </a>-->
+			<a class="button_new icon ion-chevron-right"   ng-click="GoToCurrentMedication(MedicationCountValid)"> <span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span> </a>
 		</div>
 						  
 	<div>

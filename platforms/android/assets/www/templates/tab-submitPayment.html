@@ -2,40 +2,88 @@
 <ion-view title="Submit Payment">
 <ion-side-menus>
 	<ion-side-menu-content> 
-		<div ng-include src="'templates/intakeHeader.html'"></div> 
-	
-	<div class="consultCharge_subHeader PatintHeaderFontStyle">
-		<span>Payment</span>
+		<!--<div ng-include src="'templates/intakeHeader.html'"></div> -->
+		
+		<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+       
+  
+	<div class="buttons" >
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>
 	</div>
 	
-	<ion-content class="consultChargeNoPlanContent" >
+	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Intake Form</h1>  
+
+
+	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+        
+		<div class="calendar_subHeader" >
+			<div class="subHeader_image" >
+				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
+			</div>
+			<div class="subHeader_content-{{deviceName}} ellipsis" >					
+				<div class="ellipsis subHeader_content_name" >
+					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+				</div>
+                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
+			</div>
+		</div>
+        
+	</div>	
+	
+	<div class="bar consultCharge_subHeader PatintHeaderFontStyle" style="padding: 0px; margin-top: 119px;	background-color: #fff;">
+		<span>Payment</span>
+	</div>
+
+   
+</ion-header-bar>
+	
+	
+	
+	<ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
 	<form>
 		<div class="password_home">
 		
 			<div class="consultation_head RegularFontStyle consultChargeNoPlanText"  >
 				<div class="consultTittle">Consultation Charge</div>
-				<div class="consultation_number"> ${{consultationAmount}}*</div>
+				<div ng-if="cardPage == 'consultCharge'" class="consultation_number"> ${{consultationAmount}}*</div>
+				<div ng-if="cardPage != 'consultCharge'" class="consultation_number"> <span>${{consultationAmount}}</span> ${{copayAmount}}*</div>
+				<div ng-if="cardPage != 'consultCharge'" class="Plancovers" ng-if="PlanCoversAmount != ''">Plan Covers ${{PlanCoversAmount}}**</div>
 			</div>
 			
-			<div class="healthPlan_header"  >
+			<div class="healthPlan_header" style="display: {{enableSubmitpaymentAddCard}}" >
 				<div class="healthPlan_text NoPlanText" >Pay Using</div>
-					<div class="addHealthPlan_header NoPlanAddCardDropdown"  >					
-						<div class="demo" >
-							<!--<select  id="addNewCard" name="addNewCard">
-								<option style="padding:10px;"><b>Choose Your Card</b></option>
-								<option style="padding:10px;" ng-repeat="PaymentProfile in PaymentProfile"  ><b>{{PaymentProfile.cardNumber}}</b></option>
-								 <option style="padding:10px;"><b>Add a new card</b></option>
+					<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >					
+						<!--<div class="demo" >
+							<select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
+								<option  ng-repeat="getPayment in PaymentDetailsList" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>{{getPayment.cardNumber}}</span></b></option> 
+							</select>							
+						</div>-->
+						<div  class="dropdownContainer">
+							<div id="cardViewport" class="viewport">Card ending in...{{userCardNumber}}</div>
+							 						
+							<select class="healthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" style="border: none;">
+								<option><b>Choose Your Card</b></option>
+								<option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>Card ending in...{{getPayment.cardNumber}}</span></b></option> 
+								<option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
 							</select>
-							<select id="addNewCard" name="addNewCard" data-ng-options="PaymentCard.cardNumber for PaymentCard in PaymentDetailsList" data-ng-model="SelectedPaymentDetails" value="PaymentCard.cardNumber"></select>-->
-<select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
- <option  ng-repeat="getPayment in PaymentDetailsList" value="{{getPayment.profileID}}"><b><span>{{getPayment.cardNumber}}</span></b></option> 
- </select>							
 						</div>
+						<!--<div  class="dropdownContainer">
+							<div class="cardViewport">Choose Your Card</div>							
+							<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
+								<option><b>Choose Your Card</b></option>
+								<option  ng-repeat="PaymentProfile in PaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
+								<option><b>Add a new card</b></option>
+							</select>
+						</div>-->
+						
 					</div>
 			</div>
 		
 			
-			<div class="SkipToPayment">
+			<div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}">
 				<!--<a ng-href="#/tab/receipt">-->
 				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
 				  <span>Submit Payment</span>
@@ -43,10 +91,21 @@
 				
 				<!--</a>-->
 			</div>
-			<div class="scheduled_appointments_text NoPlanBottomText" >
+			<div class="scheduled_appointments_text NoPlanBottomText" style="display: {{textAddCard}}">
 				<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
 			</div>
+			
+			<div class="SkipToPayment" style="padding-top: 133px; display: {{continueAddCard}}">
+				<!--<a ng-href="#/tab/receipt">-->
+				<button type="submit" ng-click='doGetReceipt()'  class="button button-block button-balanced">
+				  <span>Continue</span>
+				</button>
+				
+				<!--</a>-->
+			</div>
+			
 		</div>
+		
 	</ion-content>
 	</form>
 </ion-side-menu-content>	
@@ -60,12 +119,15 @@
 		<ion-footer-bar align-title="left" class="footer">			
 			<div class="ConsultChargeFooter">
 				<div class="ConsultChargeBack" >
-                    <!--<a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span>Back</span></a>-->
-					<site-header back="Back"></site-header>
+                    <a ng-if="cardPage == 'consultCharge'" class="button_new icon ion-chevron-left" ng-click="goToPreviosPage()" ><span> Back</span></a>
+					<!--<site-header back="Back"></site-header>-->
 				</div>
 						
-				<div class="ConsultChargeCancel" >
-					<a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+				<div ng-if="cardPage == 'consultCharge'" class="ConsultChargeCancel"  >
+					<a class="button_new icon" ng-click="cancelConsultation()" >Cancel</a>
+				</div>
+				<div ng-if="cardPage != 'consultCharge'" class="ConsultChargeCancel" style="width: 100%;" >
+					<a class="button_new icon" ng-click="cancelConsultation()" >Cancel</a>
 				</div>
 						
 			</div>

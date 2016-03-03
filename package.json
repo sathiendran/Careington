@@ -19,16 +19,10 @@
   "cordovaPlugins": [
     "org.apache.cordova.splashscreen",
     "org.apache.cordova.network-information",
-    {
-      "variables": {
-        "URL_SCHEME": "vc190"
-      },
-      "locator": "https://github.com/EddyVerbruggen/LaunchMyApp-PhoneGap-Plugin.git",
-      "id": "cordova-plugin-customurlscheme"
-    }
+    "org.apache.cordova.inappbrowser@0.2.4"
   ],
   "cordovaPlatforms": [
-    "android",
-    "ios"
+    "ios",
+    "android"
   ]
 }

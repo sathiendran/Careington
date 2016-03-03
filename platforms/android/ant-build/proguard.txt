@@ -1,3 +1,6 @@
 # view AndroidManifest.xml #generated:6
--keep class com.ionicframework.connectedcare848317.CordovaApp { <init>(...); }
+-keep class com.snap.connectedcare.Dokita247Production.CordovaApp { <init>(...); }
+
+# view AndroidManifest.xml #generated:18
+-keep class de.appplant.cordova.plugin.background.ForegroundService { <init>(...); }
 

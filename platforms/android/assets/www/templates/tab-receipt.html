@@ -1,25 +1,28 @@
 <div class="Server_Error ErrorMessageDiv" ></div>
 <ion-view title="Receipt">
-<ion-side-menus>
-	<ion-side-menu-content> 
+
 		<div ng-include src="'templates/receiptHeader.html'"></div> 
 	
 	
 	<ion-content class="ReceiptContent"  >
 		<div>
-			<div class="healthPlan_header"  >
-				<img ng-src="img/success.png">				
+			<div class="healthPlan_header"  style="padding-top: 50px;" >
+				<img ng-src="img/success-badge.svg" style="width: 150px; height: 148px;">				
 			</div>
-			<div class="PaymentSuccess">
-				Payment Successful
+			<div class="PaymentSuccess" style="display: {{enablePaymentSuccess}}">
+				Payment Successful! 
 				<div class="PaymentConfirmation" >
 					Confirmation #{{paymentConfirmationNumber}}
 						<div class="ConfirmationReceipt">
 							A receipt has been sent to you via email
 						</div>
 				</div>
-			</div>			
-			
+			</div>		
+			<div class="PaymentSuccess" style="display: {{enableInsuranceVerificationSuccess}}">	
+				<div class="PaymentConfirmation">
+					Your plan has been verified
+				</div>
+			</div>
 			
 			<div class="EnterWaitingRoom">
 				<!--<a ng-href="#/tab/waitingRoom">-->
@@ -37,7 +40,6 @@
 				
 		</div>
 	</ion-content>
-</ion-side-menu-content>	
- <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+
+
 </ion-view>	

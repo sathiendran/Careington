@@ -13,3 +13,7 @@ input.ion-google-place[readonly]{
     background-color: transparent;
     cursor: text;
 }
+.placeHolderCountrySearch {
+  top: 3px;
+  position: relative;
+}

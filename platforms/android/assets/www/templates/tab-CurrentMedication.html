@@ -2,40 +2,36 @@
 	<ion-side-menu-content> 
 		<div ng-include src="'templates/intakeHeader.html'"></div>
 	
-<!-- <div ng-include src="'templates/healthPlan_header.html'"></div> --->
+<!-- <div ng-include src="'templates/healthPlan_header.html'"></div> ---> 
+<ion-view title="Current Medication">
 <ion-content class="ContentHomeUser ConcernsContent" >
  	<ion-list>
-		<ion-item class="PrimaryList">
-			<div class="Step1">Step <b>5</b> of <b>7</b></div>
+		<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+			<div class="Step1">Step <b style="color:#535353;">5</b> of <b style="color:#535353;">7</b></div>
 			<div ng-click="loadCurrentMedication();" > 
                 
                 <div class="PrimaryContent">
                     <h1 class="title ChronicCondition">Current Medications</h1>
                     
-                    <p>List any medications currently talking.
+                    <p class="patientConternFontStyle">Select any medications currently talking.
                         <br/>
-                        Select up to four</p>
+                        <span class="patientConternFontStyleSubTitle">Select up to four</span></p>
                     <div> <i class="ion-plus-circled addBtn">  </i></div>
 				</div>
 			</div>
 		
 		</ion-item>
 		
-         <ion-item ng-repeat="item in patinentCurrentMedication">
-			<div class="PrimaryConcernList">
+         <ion-item ng-repeat="item in patinentCurrentMedication" >
+			<div class="PrimaryConcernList"  >
 				<p class="intakeNote">{{item.text}} </p>
-                <div><i class="ion-close-circled delBtn" ng-click="removeCurrentMedication($index, item);" ></i></div>
+                <div ng-click="removeCurrentMedication($index, item);" >
+                    <i class="ion-close-circled delBtn" ></i>
+                </div>
 
 			</div>
 		</ion-item>
         
-         <ion-item ng-repeat="item in inTakeFormCurrentMedication">
-			<div class="PrimaryConcernList">
-				<p class="intakeNote">{{item.value}} </p>
-                <div><i class="ion-close-circled delBtn" ng-click="removeCurrentMedication($index, item);" ></i></div>
-
-			</div>
-		</ion-item>
         
 	</ion-list>
 </ion-content>
@@ -52,16 +48,17 @@
 <ion-footer-bar  class="footer">
 		<div class="ConcernsFooter">				 
 			<div class="FooterLeft">
-				<a class="button_new icon ion-chevron-left" href="#/tab/MedicationAllegies" ><span>Back</span></a>
+				<a class="button_new icon ion-chevron-left" href="#/tab/MedicationAllegies" ><span> Back</span></a>
 			</div>
 					
-			<div class="FooterCenter">
-				<a class="button_new icon" ng-click="clearRootScopeConce()" >Cancel</a>
+			<div class="FooterCenter" ng-click="clearRootScopeConce()">
+				<a class="button_new icon" >Cancel</a>
 			</div>
 					   
-			<div class="FooterRight">
-				<a class="button_new icon ion-chevron-right"   href="#/tab/ConsentTreat"  > 
-					<span class="ConcernFooterNext">Next<span>
+			<div class="FooterRight" style="{{NextIntakeForm}};">
+				<a class="button_new icon ion-chevron-right" ng-click="goToConsentToTreat();"  _href="#/tab/ConsentTreat"  > 
+					<!--<span class="ConcernFooterNext" style="{{FootNextButton}};{{FootNextButtonRight}}">Next<span>-->
+					<span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span>
 				</a>
 			</div>
 					  

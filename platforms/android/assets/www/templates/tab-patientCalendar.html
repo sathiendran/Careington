@@ -2,19 +2,19 @@
 <ion-view title="Patient Calender">	
 
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">	  
-		<div class="buttons" >
-			<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/patientDetail"  >
+		<div class="buttons" style="{{BackBotton}}" >
+			<a class="button_new icon ion-chevron-left calendarBack" style="{{calendarBackStyle}}" ng-href="#/tab/patientDetail">
 				<span>Back</span>
 			</a>				
 		</div>
-		<h1 class="title_patient calendarTitle">Patient</h1> 	  
+		<h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}">Patient</h1> 	  
 
-		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" >
+		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="border-bottom: 1px solid #000; {{PatientCalentarInnerStyle}}" >
 			<div class="calendar_subHeader" >
 				<div class="subHeader_image" >
 					<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
 				</div>
-				<div class="subHeader_content ellipsis" >					
+				<div class="subHeader_content-{{deviceName}} ellipsis" >					
 					<div class="subHeader_content_name ellipsis" >
 						<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
@@ -26,21 +26,24 @@
 	</ion-header-bar>
 
 	
-	<div class="patientCalendar_subHeader" >
-		<div class="patientCalendar_watch" ><img ng-src="img/watch.png"  /></div>
+	<div class="patientCalendar_subHeader" style="{{PatientCalentarSchedule}}" >
+		<!--<div class="patientCalendar_watch" ><img ng-src="img/watch.png"  /></div>-->
+		<div class="patientCalendar_watch" ><i class="ion-android-time"></i></i></div>
 		<div class="patientCalendar_text" >Scheduled Appointments</div>
 	</div>
 	
-		<div style="visibility: hidden;"><timer end-time="time"  ></timer></div>
+		<div style="display: none;"><timer end-time="time"  ></timer></div>
+			
 	
-	<ion-content class="patientCalendar_Content"  >			
+	<ion-content class="patientCalendar_Content" style="font-weight: bold; {{PatientCalentarScheduleItem}}" >			
 		<div class="list">		
-	
+			<div><ion-refresher on-refresh="doRefresh()"  > 
+    </ion-refresher></div>
 		
-			<a class="item" style=" background-color: #FEEFE8;  display: {{patientDisplay}}"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+			<!--<a class="item" style=" background-color: #FEEFE8;  display: {{patientDisplay}}"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 				<div class="patient_appointment">
 					<div class="appointment_text">Next Appointment:</div>
-					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span style="top: 3px;position: relative;"><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
@@ -49,7 +52,26 @@
 			<a class="item" style=" background-color: #E1FCD4;  display: {{patientDisplay1}}"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 				<div class="patient_appointment" >
 					<div class="appointment_text">Next Appointment:</div>
-					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span style="top: 3px;position: relative;"><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+				</div>
+				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
+			</a>
+		
+		<a class="item" style="display: {{patientDisplay2}}" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+    
+			<div class="patient_appointment">						
+				<div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}}
+					<span style="top: 3px;position: relative;"><sup>@</sup></span> 
+					{{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+				</div>
+            <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
+        
+		</a>	-->
+		
+		<a class="item" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+				<div class="patient_appointment" >
+					<div class="appointment_text">Next Appointment:</div>
+					<div class="appointment_text_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}} <span style="top: 3px;position: relative;"><sup>@</sup></span> {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
 				</div>
 				<div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
 			</a>
@@ -60,12 +82,14 @@
     
 		<div class="patient_appointment">						
             <div class="appointment_time" >{{scheduledListData.scheduledTime | date: "MMM dd"}}
-                <span><sup>@</sup></span> 
-                {{scheduledListData.scheduledTime | date: "hh:mm"}}<span>{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+                <span style="top: 3px;position: relative;"><sup>@</sup></span> 
+                {{scheduledListData.scheduledTime | date: "hh:mm"}}<span  style="font-size: 15px;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
         </div>
             <div class="BackPatientViewDetails">View Details<i class="icon ion-chevron-right"></i></div>
         
 </a>
+
+<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
 			
 		
 			
