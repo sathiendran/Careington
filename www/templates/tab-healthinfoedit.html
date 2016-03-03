@@ -1,0 +1,181 @@
+
+
+
+<ion-side-menus> >
+	<ion-side-menu-content> 
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+       
+  
+	<div class="buttons" > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>
+	</div>
+
+<h1 class="headertitle">My Health</h1>
+<h1 class="canceltitle" ng-hide="headerval">Done</h1>
+<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+                  <div class="row"> <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+					<span class="PatintHeaderFontStyle patientName ellipsis">Elizabeth</span>
+					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">Fitzpztrick</span>
+				</div></h1></div>
+         
+                <div class="row">
+				<div class="TitleHomeUser_Sub " id="hometitle">
+                     <button class="button-rounded homeicon">
+                       <i class="icon ion-home icons ionstyle"></i>
+                   </button> 
+                    <div class="iconname" >Account Home</div> 
+                </div>
+				<div  class="SearchImage imagesposition ">
+                 <a class="item item-thumbnail-left UserHmelistImgView" >
+          <img src="/img/IMG_logo.png"/>
+      </a>
+				</div>   
+					<div class="" >
+                         <button class="button-rounded homeicon">
+              <i class="ion-ios-people ionstyle"></i>
+         </button>
+           <div class="iconname" >Change Patient</div>
+                   </div>
+				
+					</div>
+                    </div>				
+			</div> 
+   
+</ion-header-bar>
+
+<ion-view title="">
+	<ion-content style="margin-top:175px;">
+        <div class="row">
+         
+       <div class="buttons backbtn"  > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+			</button>
+	</div>
+        <div class=" button-bar">
+        <label class="button button-small btcolor btn-first" ng-click="profile()" id="profid"> Profile</label>
+        <label class="button button-small btn-first" ng-click="health()" id="healid">Health History</label>
+    </div>
+    
+      <div class="buttons backbtn"  > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+			</button>
+	</div>
+        </div>
+        
+        <div ng-hide="addmore">
+            
+             <h4 style=" text-align: center;color:#888;"><b>Demographics</b></h4>
+             <form>
+        <div class="list">
+		
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b></span>
+            <input type="text" value="06/08/1988"  placeholder="Required" required="required"  name="name" id="name">
+		 </label>	
+         
+       	 <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-female"></i><b class="formlabel">Gender</b></span>
+            <input type="text" value="Male" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-android-arrow-up"></i><b class="formlabel">Height</b></span>
+            <input type="text" value="6'1" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-ios-filing"></i><b class="formlabel">Weight</b></span>
+            <input type="text" value="185lbs" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-ios-telephone"></i><b class="formlabel">Home Phone</b></span>
+            <input type="text" value="555-987-5664" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
+            <input type="text" value="555-897-3642" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-location"></i><b class="formlabel">Home Address</b></span>
+                    <input type="text" value="121 E Lexington Dr,Glendale, CA 91203 USA"  placeholder="Optional"   name="name" id="name">
+             <!--<textarea value="121 E Lexington Dr,Glendale, CA 91203 USA" id="name" cols="10" rows="3"  placeholder="Optional"></textarea>-->
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-ios-people"></i><b class="formlabel">Organization</b></span>
+            <input type="text" value="Coca-Cola" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-location"></i><b class="formlabel">Location</b></span>
+            <input type="text" value="West Factory" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-ios-person"></i><b class="formlabel">Hair Color</b></span>
+            <input type="text" value="Brown" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-ios-eye"></i><b class="formlabel">Eye Color</b></span>
+            <input type="text" value="Brown" placeholder="Optional"   name="name" id="name">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-earth"></i><b class="formlabel">Ethnicity</b></span>
+            <input type="text" value="Caucasian" placeholder="Optional"   name="name" id="name">
+		 </label>
+        
+    </div>
+    <div class="row">
+    <a style="width:40%;"></a>
+       <a class="button button-balanced donebutton" href="/#/tab/healthinfo">Done</a>
+    </div>
+		</form>
+        
+   </div>
+      
+       
+    </ion-content>
+    
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
+
+
+
+
+	 <ion-tabs  class=" tabs-icon-top tabs-dark">
+
+  <a class="tab-item " href="/#tab/relatedusers">
+    <i class="icon ion-android-people"></i>
+   User
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-card"></i>
+    Consultations
+  </a>
+  <a class="tab-item active" href="/#tab/healthinfo">
+    <i class="icon ion-clipboard"></i>
+    My Health
+  </a>
+
+<a class="tab-item">
+    <i class="icon ion-calendar"></i>
+    Appointments
+  </a>
+<a class="tab-item">
+    <i class="icon ion-more"></i>
+    More
+  </a>
+
+      </ion-tabs>

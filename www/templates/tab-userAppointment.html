@@ -1,0 +1,118 @@
+
+
+
+<ion-side-menus> >
+	<ion-side-menu-content> 
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+       
+  
+	<div class="buttons" > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>
+	</div>
+	
+	<h1 class="headertitle">User</h1>  
+
+
+
+			<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+                  <div class="row"> <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+					<span class="PatintHeaderFontStyle patientName ellipsis">Jonathan</span>
+					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">Fitzpztrick</span>
+				</div></h1></div>
+         
+                <div class="row">
+				<div class="TitleHomeUser_Sub " id="hometitle">
+                     <button class="button-rounded homeicon">
+                       <i class="icon ion-home icons ionstyle"></i>
+                   </button> 
+                    <div class="iconname" >Account Home</div> 
+                </div>
+				<div  class="SearchImage imagesposition ">
+                 <a class="item item-thumbnail-left UserHmelistImgView" >
+          <img src="/img/IMG_logo.png"/>
+      </a>
+				</div>   
+					<div class="" >
+                         <button class="button-rounded homeicon">
+              <i class="ion-ios-people ionstyle"></i>
+         </button>
+           <div class="iconname" >Change Patient</div>
+                   </div>
+				
+					</div>
+                    </div>				
+			</div> 
+   
+</ion-header-bar>
+
+<ion-view title="">
+	<ion-content class="usercontent" >
+		<ion-list>
+			<ion-item>
+				<div class="">
+                       <h2 class="title ChronicCondition">
+                             <i class="ion-ios-person"></i> 
+                           <span class="content"> Manage Your Profile</span></h2>
+				
+					</div>
+								
+			</ion-item>
+		
+		
+			<ion-item class="">
+				
+				<div  >
+					<div class="SecondaryContent">					
+						<h2 class="title ChronicCondition">
+                             <i class="ion-ios-calendar-outline"></i> 
+                           <span class="content"> View your Appointments</span>
+                            </h3>
+						
+						
+					</div>
+				</div>
+				
+			</ion-item>
+			   <ion-item class="" style="background-color:#ffc900;">
+				<div>
+					<div>
+    <h3> <span class="appointment">Appointment @ 2:45 pm</span> <span id="viewicon">
+         View Details 
+         <button class="button-rounded iconbutton">
+                     <i class="ion-ios-arrow-right"></i>
+                   </button> </span>
+                        
+                    
+    </h3>
+</div>
+				</div>
+			</ion-item
+		</ion-list>
+	</ion-content>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
+
+
+
+
+	<ion-footer-bar  class="footer bar bar-footer bar-balanced ">
+		<div class="ConcernsFooter">
+            <div class="bar bar-footer footer-color">				 
+			<div class="FooterLeft">
+		<!--	<a class="button_new icon" href="#/tab/patientDetail" ></a>-->
+			</div>
+					
+			<div class="FooterCenter" style="top:0px !important;">
+				<a class="button_new icon" id="centercolor" >See a Clinician Now</a>
+			</div>
+            </div>		   
+			
+                   
+					  
+		<div>
+	

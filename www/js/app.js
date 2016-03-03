@@ -597,8 +597,84 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-
+.state('tab.userAccount', {
+    url: '/userAccount',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-userAccount.html',
+        controller: ''
+      }
+    }
+  })
   
+.state('tab.userAppointment', {
+    url: '/userAppointment',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-userAppointment.html',
+        controller: ''
+      }
+    }
+  })
+.state('tab.relateduseroptions', {
+    url: '/relateduseroptions',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-relateduseroptions.html',
+        controller: ''
+      }
+    }
+  })
+  .state('tab.addUser', {
+    url: '/addUser',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-addUser.html',
+        controller: 'newuserController'
+      }
+    }
+  })
+ 
+   .state('tab.healthinfo', {
+    url: '/healthinfo',
+  views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-healthinfo.html',
+        controller: 'healthinfoController'
+      }
+      }
+  })
+   
+   .state('tab.healthinfoedit', {
+    url: '/healthinfoedit',
+  views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-healthinfoedit.html',
+        
+        controller: ''
+      }
+      }
+  })
+  
+   .state('tab.relatedusers', {
+    url: '/relatedusers',
+  views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-relatedusers.html',
+        controller: 'relateduserController'
+      }
+      }
+  })
+  
+   .state('tab.removerelatedusers', {
+    url: '/removerelatedusers',
+  views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-removerelatedusers.html',
+        controller: 'removeuserController'
+      }
+      }
+  })
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');

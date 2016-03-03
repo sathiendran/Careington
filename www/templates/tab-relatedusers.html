@@ -1,0 +1,254 @@
+
+<ion-side-menus> >
+	<ion-side-menu-content> 
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+	<div class="buttons" > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>
+	</div>
+
+<h1 class="headertitle" style="width:95%;">Related Users</h1>
+<h1 class="canceltitle" ng-hide="headerval"> <i class="icon ion-plus"></i></h1>
+<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+                  <div class="row"> <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+					<span class="patientName ellipsis"><b>Jonathan</b></span>
+					<span class="patientLastName ellipsis">Fitzpztrick</span>
+				</div></h1></div>
+         
+                <div class="row">
+				<div class="TitleHomeUser_Sub " id="hometitle">
+                     <button class="button-rounded homeicon">
+                       <i class="icon ion-home icons ionstyle"></i>
+                   </button> 
+                    <div class="iconname" >Account Home</div> 
+                </div>
+				<div  class="SearchImage imagesposition ">
+                 <a class="item item-thumbnail-left UserHmelistImgView" >
+          <img src="/img/IMG_logo.png"/>
+      </a>
+				</div>   
+					<div class="" >
+                         <button class="button-rounded homeicon">
+              <i class="ion-ios-people ionstyle"></i>
+         </button>
+           <div class="iconname" >Change Patient</div>
+                   </div>
+				
+					</div>
+                    </div>				
+			</div> 
+   
+</ion-header-bar>
+
+
+<ion-view title="">
+	<ion-content style="margin-top:175px;">
+        <div class="row">
+         
+       <div class="buttons backbtn"  > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+			</button>
+	</div>
+        <div class=" button-bar">
+        <label class="button button-small btcolor btn-first" ng-click="userslist()" id="users"> Co-Users</label>
+        <label class="button button-small btn-first tabcontent" ng-click="dependentslist()" id="dependents">Dependents</label>
+         <label class="button button-small btn-first tabcontent" ng-click="gaurdianslist" id="">Gaurdians</label>
+    </div>
+    
+      <div class="buttons backbtn"  > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+			</button>
+	</div>
+        </div>
+        
+    <div class="list" style="margin-top:18px;" ng-hide="userdata">
+            <a class="item item-avatar" style="border-top:none;">
+            <img src="img\ionic.png">
+            <h2><span  class="fname">Elizabeth</span> <span  class="sname">Fitzpatrick</span></h2>
+            <p>Female.29 yrs.Spouse</p>
+            </a>
+            
+            <a class="item item-avatar"  ng-show='showdetails'  ng-click="moredetails()">
+            <img src="img\patient.png">
+            <h2><span class="fname">Colleen</span> <span class="sname">Fitzpatrick</span> </h2>
+            <p>Female.29 yrs.Sister
+              <i class="icon ion-chevron-right avataricon"></i></p>
+             </a>
+           
+<div class="row" ng-show='showarchieve' ng-click='archievedetails()'>
+    
+  <div class="col col-25 archieve">
+    <div>
+     <div class="aligncenicon" >
+      <i class="icon ion-email icons" ></i>
+      <div>  Archieve</div>
+      </div>
+      </div>
+   </div>
+  <div class="col col-75">
+     <a class="item item-avatar"  style="border-right: none;width:105%;">
+       <img src="img\patient.png">
+        <h2><span class="fname">Colleen</span> <span class="sname">Fitzpatrick</span> </h2>
+          <p>Female.29 yrs.Sister</p>
+      </a>
+  </div>
+ </div>
+ 
+</div>                
+   
+ <div class="list" style="margin-top:18px;" ng-hide="dependentshide">
+            <a class="item item-avatar" style="border-top:none;">
+            <img src="img\ionic.png">
+            <h2><span  class="fname">Angie</span> <span  class="sname">Fitzpatrick</span></h2>
+            <p>Female.19 yrs.Daughter</p>
+            </a>
+            
+            <a class="item item-avatar"  ng-show='showdnewetails' ng-click="showtab()">
+            <img src="img\patient.png" ng-click="userdetails()">
+            <h2><span class="fname">Robert</span> <span class="sname">Fitzpatrick</span> </h2>
+            <p>Female.19 yrs.Son </p>
+           
+             </a>
+             
+           
+           <div class="row" ng-show='newarchieve' ng-click='archieve()'>
+    
+  <div class="col col-25 archieve">
+    <div>
+     <div class="aligncenicon" >
+      <i class="icon ion-email icons" ></i>
+      <div>  Archieve</div>
+      </div>
+      </div>
+   </div>
+  <div class="col col-75">
+     <a class="item item-avatar"  style="border-right: none;width:105%;">
+       <img src="img\patient.png">
+        <h2><span class="fname">Robert</span> <span class="sname">Fitzpatrick</span> </h2>
+          <p>Female.19 yrs.Son</p>
+      </a>
+  </div>
+ </div>
+             
+             
+   
+         <div class="row" style="background-color: #ccc;" ng-show="tabview">
+             
+          <div class="col col-20 " style="background-color:#9bca82;">
+                  <p class="tabicon"> <i class="ion-chevron-down"></i></p>
+                  <i class="icon ion-person-stalker contacticon "></i>
+                   <p style="color:white;">See a Doc Now</p> 
+           </div>   
+            
+           <div class="col col-20">
+               <div  class="tabvalue">
+             <i class="icon ion-eye-disabled" style="font-size:21px;"></i><div>View Profile</div>
+               </div>
+          </div> 
+          
+          <div class="col col-20">
+                <div  class="tabvalue">
+             <i class="icon ion-ios-calendar-outline" style="font-size:21px;"></i><div>Appointments</div>
+                </div>
+          </div>
+          
+           <div class="col col-20">
+              <div  class="tabvalue">    
+             <i class="icon ion-calendar" style="font-size:21px;"></i><div>Consultations</div>
+              </div>
+          </div>
+          
+           <div class="col col-20" ng-click="moreclickval()">
+                <div  class="tabvalue">
+             <i class="icon ion-more" style="font-size:21px;"></i><div>More</div>
+                </div>
+          </div>   
+          
+         </div>
+      
+    
+        <div class="row"  ng-show="moretab">
+             
+          <div class="col col-25 " style="background-color:#9bca82;" ng-click="hidemoretab()">
+                  <p class="tabicon"> <i class="ion-chevron-down"></i></p>
+                  <div class="">
+                  <i class="icon ion-more "  style="font-size:26px;margin-left: 23px;"></i>
+                   <p><a style="margin-left: 19px;">More</a>
+                 
+                   </p> 
+                   </div>
+                  
+           </div>   
+            
+           <div class="col col-25" style="background-color: #ccc;" >
+               <div  class="tabvalue">
+                   <a class="firstval">Status</a>
+                <p class="avatarclass"><i class="icon ion-chevron-right avatarlefticon "></i></p> 
+             <div class="contentvalue"><p class="contentalign">Authorized </p><i class="ion-thumbsup thumpsicon" ></i></div> 
+               </div> 
+          </div> 
+          
+          <div class="col col-50" style="background-color:white;">
+         
+            
+             <div class="conticon">
+                  <i class="ion-chevron-right avataricon"  style="font-size:26px;margin-left: 23px;"></i>
+                   <p><a style="margin-left: 19px;">Relationsship</a></p>
+                  </div>
+                   <div class="contvalue"><p class="">Adobe Daughter</p></div> 
+          </div>
+     
+         </div>
+      
+          
+             <a class="item item-avatar"    ng-click="">
+            <img src="img\patient.png">
+            <h2><span class="fname">Sarah</span> <span class="sname">Pradesh</span> </h2>
+            <p>Female.16 Step-Daughter</p>
+         </a> 
+          
+          <a class="item authorizedval">
+    
+          <p class="authorizedicon" style=""><i class="ion-chevron-down" style="font-size: 22px;"></i></p>
+          
+       <p>You are not authorized to view/manage this account 
+           
+               <span class="authorizedupdate" >update <i class="icon ion-chevron-right"></i></span> 
+           
+       </p>
+      
+          </a>
+       
+ </div>
+        
+	</ion-content>
+</ion-view>     
+
+
+<ion-tabs  class=" tabs-icon-top tabs-dark">
+
+  <a class="tab-item active" href="/#tab/relatedusers">
+    <i class="icon ion-android-people"></i>
+   User
+  </a>
+  <a class="tab-item">
+    <i class="icon ion-card"></i>
+    Consultations
+  </a>
+  <a class="tab-item " href="/#tab/healthinfo">
+    <i class="icon ion-clipboard"></i>
+    My Health
+  </a>
+
+<a class="tab-item">
+    <i class="icon ion-calendar"></i>
+    Appointments
+  </a>
+<a class="tab-item">
+    <i class="icon ion-more"></i>
+    More
+  </a>
+
+      </ion-tabs>
