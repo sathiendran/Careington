@@ -35,8 +35,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 						request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 					}
 					request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-					request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-					request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+					request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
+					request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
 					return request;
 			}
 		},
@@ -64,8 +64,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				return headers;	
 			}else{				
 				var headers = {
-						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+						'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
+						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -265,10 +265,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.ChangeEnv = function(env){
 		if(env == "Snap.QA"){
-			$rootScope.APICommonURL = 'https://snap-qa.com';
-			apiCommonURL = 'https://snap-qa.com';
+			//$rootScope.APICommonURL = 'https://snap-qa.com';
+			//apiCommonURL = 'https://snap-qa.com';
 			//$rootScope.APICommonURL ='http://emerald.snap.local';
 			//apiCommonURL ='http://emerald.snap.local';
+			$rootScope.APICommonURL ='http://snapmd-api.azurewebsites.net';
+			apiCommonURL ='http://snapmd-api.azurewebsites.net';
 			api_keys_env = "Snap.QA";			
 		}else if(env == "Sandbox"){
 			$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
@@ -462,7 +464,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConstantTreat = "font-size: 16px;";
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if(!$rootScope.AndroidDevice) {  
+    } else if($rootScope.AndroidDevice) {  
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2578,7 +2580,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$state.go('tab.userhome');			
 				}
 			 },
-			'Confirmation:',
+			$rootScope.alertMsgName,
 			['No','Yes']     
 		);
 	}
@@ -2593,7 +2595,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$scope.doPostClearHealthPlan();					
 				}
 			 },
-			'Confirmation:',
+			$rootScope.alertMsgName,
 			['No','Yes']     
 		);
 	}

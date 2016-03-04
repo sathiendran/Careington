@@ -21,8 +21,8 @@
 			
 			<div id="providerListDiv" class="list has-subheader provider" >				
 				<a class="item item-avatar item-icon-right" ng-repeat="providerList in searchProviderList" ng-click="goToRegisterStep1(providerList)">
-					<!--<img src="img/patient.png">-->
-					<div class="searchProvFirstLetterDiv" style="border: 2px solid #C4C5C3; background-color: red;"><p>{{providerList.firstCharactOfHosName}}</p></div>
+					<!--<p  ><img src="{{providerList.hospitalImage}}"></p>-->
+					<div class="searchProvFirstLetterDiv" style="border: 2px solid {{providerList.brandColor}}; background-color: {{providerList.brandColor}};"><p>{{providerList.firstCharactOfHosName}}</p></div>
 					<h2>{{providerList.hospitalName}}</h2>					
 					<i class="icon ion-chevron-right"></i>
 				</a>

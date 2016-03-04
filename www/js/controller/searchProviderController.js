@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('searchProviderController', function($scope, ageFilter, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+.controller('searchProviderController', function($scope, ageFilter, get2CharInString, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
 	  $ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||
 			  ($rootScope.currState.$current.name=="tab.addCard") ||	
@@ -70,7 +70,11 @@ angular.module('starter.controllers')
 							'customerSso': index.customerSso,
 							'hospitalId': index.hospitalId,
 							'hospitalName': index.hospitalName,
-							'firstCharactOfHosName' : index.hospitalName.substring(0, 2).toUpperCase()
+							'firstCharactOfHosName' : get2CharInString.getProv2Char(index.hospitalName),
+							'brandColor' : index.brandColor,
+							'brandName' : index.brandName,
+							'brandTitle' : index.brandTitle,
+							'hospitalImage' : $rootScope.APICommonURL + index.hospitalImage
 						});
 					});						
 					
