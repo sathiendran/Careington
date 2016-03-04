@@ -3478,8 +3478,7 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
   }
 
 .round-button {
-	width:95%;
-    margin:0;
+	margin-left:46%;
 }
 .round-button-circle {
 	width: 93%;
@@ -3495,16 +3494,14 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
 .round-button a {
     display:block;
 	 margin:0;
-	width:100%;
 	padding-top:50%;
-    padding-bottom:50%;
 	line-height:1em;
 	margin-top:-1.5em;
     text-align:center;
 	color:#888;
     font-size:1.2em;
     font-weight:bold;
-    text-decoration:none;
+  
 }
 
 .labelcolor{
@@ -3637,13 +3634,13 @@ p{
     font-size:20px;
     color:black;
     .contentalign{
-        float:left;
-        margin-left: 14px;
+       // float:left;
+        //margin-left: 14px;
         font-size:15px;
     }
     .thumpsicon{
         color:#11c1f3;
-        float:right;
+      //  float:right;
     }
 }
   .conticon{
@@ -3673,3 +3670,16 @@ p{
       }
      
   }
+  
+  .label{
+    display: table;
+    padding: 6px 86px 7px 8px;
+  }
+  .labels{
+    display: table;
+    padding: 6px 106px 7px 8px;
+  }
+  .labelicon{
+      font-size: 23px;
+  }
+  
