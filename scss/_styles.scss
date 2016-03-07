@@ -3596,6 +3596,7 @@ font-family: $fontFamily_regular;
 		}
 		h2 {
 			margin-top: -150px;
+            opacity: 0.9;
 		}
 	}
 
@@ -4512,8 +4513,8 @@ input[type="checkbox"]:checked + label{
 		z-index: 999;
 		width: 100%;
 		height: 100%;
-		padding-top: 12px;
-		padding-left: 10px;
+		padding-top: 11px;
+		padding-left: 8px;
 		color: #fff;
 	}
 }

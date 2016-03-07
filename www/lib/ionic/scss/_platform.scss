@@ -11,56 +11,39 @@
   // if its in Cordova, and set to fullscreen, then disregard the bump.
   &:not(.fullscreen) {
     .bar-header:not(.bar-subheader) {
-      height: $bar-height + $ios-statusbar-height;
+      _height: $bar-height + $ios-statusbar-height;
+	  height: auto;
 
       &.item-input-inset .item-input-wrapper {
-        margin-top: 19px !important;
+        _margin-top: 19px !important;
       }
 
       > * {
-        margin-top: $ios-statusbar-height;
+        _margin-top: $ios-statusbar-height;
       }
     }
     .tabs-top > .tabs,
     .tabs.tabs-top {
-      top: $bar-height + $ios-statusbar-height;
+      _top: $bar-height + $ios-statusbar-height;
     }
 
     .has-header,
     .bar-subheader {
-      top: $bar-height + $ios-statusbar-height;
+      _top: $bar-height + $ios-statusbar-height;
     }
     .has-subheader {
-      top: $bar-height + $bar-subheader-height + $ios-statusbar-height;
+      _top: $bar-height + $bar-subheader-height + $ios-statusbar-height;
     }
     .has-header.has-tabs-top {
-      top: $bar-height + $tabs-height + $ios-statusbar-height;
+      _top: $bar-height + $tabs-height + $ios-statusbar-height;
     }
     .has-header.has-subheader.has-tabs-top {
-      top: $bar-height + $bar-subheader-height + $tabs-height + $ios-statusbar-height;
-    }
-  }
-  .popover{
-    .bar-header:not(.bar-subheader) {
-      height: $bar-height;
-      &.item-input-inset .item-input-wrapper {
-        margin-top: -1px;
-      }
-      > * {
-        margin-top: 0;
-      }
-    }
-    .has-header,
-    .bar-subheader {
-      top: $bar-height;
-    }
-    .has-subheader {
-      top: $bar-height + $bar-subheader-height;
+      _top: $bar-height + $bar-subheader-height + $tabs-height + $ios-statusbar-height;
     }
   }
   &.status-bar-hide {
     // Cordova doesn't adjust the body height correctly, this makes up for it
-    margin-bottom: 20px;
+    _margin-bottom: 20px;
   }
 }
 
