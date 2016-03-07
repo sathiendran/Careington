@@ -5,7 +5,7 @@
   font-family: 'Glober Black Italic';
   src: url("Glober Black Italic.otf");
 }
-@font-face {
+@font-face { 
   font-family: 'Glober Black';
   src: url("Glober Black.otf");
 }
@@ -3359,7 +3359,7 @@ font-family: $fontFamily_regular;
 			color: #FFFFFF;
 			width: 100%;
 			text-align: center;	
-			@include font($fontFamily_xBold, bold, 39px);
+			@include font($fontFamily_xBold, bold, 35px);
 			font-weight: bold;
 			margin-top: 10px;			
 		}
@@ -3569,9 +3569,9 @@ font-family: $fontFamily_regular;
 		}
 			
 			h2{
-				@include font($fontFamily_semibold, regular, 28px);
+				@include font($fontFamily_regular, regular, 28px);
 				color: #888888;
-				padding-top: 10px;
+				padding-top: 9px;
 			}
 	}
 }
@@ -4124,13 +4124,13 @@ input[type="checkbox"]:checked + label{
 
 .register{
 				h2{
-					@include font($fontFamily_xBold, bold, 22px);	
+					@include font($fontFamily_xBold, bold, 18px);	
 					color:#FFFFFF;
 					text-align: center;
 					line-height: 30px;
 					padding-top: 60px;
 					span{
-						@include font($fontFamily_xBold, bold, 37px);	
+						@include font($fontFamily_xBold, bold, 34px);	
 						color:#FFFFFF;
 						text-align: center;
 						margin: 0 !important;
@@ -4177,7 +4177,8 @@ input[type="checkbox"]:checked + label{
 								/*color: #8e8e93;*/
 								color: #000;
 								width: 100%;
-								@include font($fontFamily_regular, bold, 15px);
+								padding-top: 5px;
+								@include font($fontFamily_regular, bold, 13px);
 							}	
 							input::-webkit-input-placeholder{
 						color: #8e8e93;
@@ -4195,7 +4196,8 @@ input[type="checkbox"]:checked + label{
 							/*color: #000000;*/
 							color: #000;
 							width: 100%;
-							@include font($fontFamily_regular, bold, 15px);
+							padding-top: 5px;
+							@include font($fontFamily_regular, bold, 13px);
 						}	
 						input::-webkit-input-placeholder{
 					color: #8e8e93;
@@ -4205,12 +4207,12 @@ input[type="checkbox"]:checked + label{
 	.acinfo1{
 			text-align: center;
 			h4{
-				@include font($fontFamily_bold, bold, 15.5px);
+				@include font($fontFamily_semibold, bold, 14.5px);
 				color: #FFFFFF;
 				margin: 0;
 				padding-top: 12px;
 				span{
-					@include font($fontFamily_regular, bold, 13.5px);	
+					@include font($fontFamily_semibold, bold, 12.5px);	
 					color: #FFFFFF;
 					
 				}
@@ -4250,7 +4252,7 @@ input[type="checkbox"]:checked + label{
 
 .regcontent{
 	h2{
-		@include font($fontFamily_semibold, bold, 33px);	
+		@include font($fontFamily_semibold, bold, 29px);	
 		color:#999999;
 		text-align: center;
 		padding-top: 25px !important;
@@ -4271,7 +4273,7 @@ input[type="checkbox"]:checked + label{
 		
 	}
 	p{
-		@include font($fontFamily_semibold, normal, 16px);	
+		@include font($fontFamily_semibold, normal, 14px);	
 		color:#999999;
 		text-align: center;
 		line-height: 8px;
@@ -4421,7 +4423,7 @@ input[type="checkbox"]:checked + label{
 	 border: none;
 	 border-bottom: 2px solid  #cbcbcb;
 	h3{
-		@include font($fontFamily_bold, normal, 25px); 
+		@include font($fontFamily_bold, normal, 22px); 
 		color:#999999;
 		margin-bottom: 0px;
 		margin-top: 5px;
@@ -4434,7 +4436,7 @@ input[type="checkbox"]:checked + label{
 	.item-input-wrapper{  
 		background-color: #e3e4e6; 
 		.ion-ios-search:before {
-			    font-size: 23px;
+			    font-size: 20px;
 				padding-right: 26px;
 		}
 		input {			
@@ -4443,17 +4445,18 @@ input[type="checkbox"]:checked + label{
 	}
  
     .item-input-inset{
-		margin-bottom: -10px;   
+		margin-bottom: -10px;  
+		margin-top: 10px;		
 		input{
 		   background-color: #e3e4e6;
 			   
 		   text-align: center;
 		   width: 100%;
-		   @include font($fontFamily_semibold, normal, 18px);
+		   @include font($fontFamily_semibold, normal, 15px);
 		   /*color: #8e8e93;*/
 		   color : #000;
 		   padding-top: 5px !important;
-		   height: 28px;
+		   height: 25px;
 		}
 		i{ 
 		   position: fixed;
@@ -4491,11 +4494,11 @@ input[type="checkbox"]:checked + label{
 		margin: 0 5%;
 	}
 	.startTyping {
-		@include font($fontFamily_regular, normal, 22px);
+		@include font($fontFamily_semibold, normal, 20px);
 		color: #999999;
 	}
 	.startTypingSubHeader {
-		@include font($fontFamily_regular, normal, 17px);		
+		@include font($fontFamily_regular, normal, 15px);		
 		color: #999999;
 	}
 }
@@ -4517,6 +4520,11 @@ input[type="checkbox"]:checked + label{
 		padding-left: 8px;
 		color: #fff;
 	}
+}
+
+.bar-subheader-provider {
+	top: 50px;
+    display: block;
 }
 
 
