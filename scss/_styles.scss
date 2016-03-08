@@ -4208,7 +4208,22 @@ input[type="checkbox"]:checked + label{
 				}
 		}
 	}
-	.acinfo1{
+	.acinfo1-Android{
+			text-align: center;
+			h4{
+				@include font($fontFamily_bold, bold, 14.5px);
+				color: #FFFFFF;
+				margin: 0;
+				padding-top: 12px;
+				span{
+					@include font($fontFamily_regular, bold, 12.5px);	
+					color: #FFFFFF;
+					
+				}
+				
+			}
+	}
+	.acinfo1-IOS{
 			text-align: center;
 			h4{
 				@include font($fontFamily_semibold, bold, 12.5px);
