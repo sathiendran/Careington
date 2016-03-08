@@ -52,7 +52,7 @@ angular.module('ion-google-place', [])
 								 '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
 									'<label class="item-input-wrapper">',
 										'<i class="icon ion-ios7-search placeholder-icon"></i>',
-										'<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter a City or ZIP">',
+										'<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
 									'</label>',
 									'<button class="button button-clear">',
 										'Cancel',

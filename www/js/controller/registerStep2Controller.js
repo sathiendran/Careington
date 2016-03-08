@@ -43,13 +43,13 @@ angular.module('starter.controllers')
 			var pwdRegularExpress = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])^.{8,20}$/;	
 					
 			if(typeof $scope.regStep2.emailID == 'undefined' || $scope.regStep2.emailID == '') {
-				$scope.ErrorMessage = "Please enter your email id";
+				$scope.ErrorMessage = "Please enter your Email Address";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else if (!$scope.ValidateEmail($scope.regStep2.emailID)) {
-				$scope.ErrorMessage = "Please enter a valid email address";
+				$scope.ErrorMessage = "Please enter a valid Email Address";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else if(typeof $scope.regStep2.password == 'undefined' || $scope.regStep2.password == '') {
-				$scope.ErrorMessage = "Please enter your password";
+				$scope.ErrorMessage = "Please enter your Password";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else if(!pwdRegularExpress.test($scope.regStep2.password)) { 
 				$scope.ErrorMessage = "Your Password must be between 8 and 20 characters. It must contain at least one upper and lower case letter and at least one number";
@@ -58,13 +58,13 @@ angular.module('starter.controllers')
 				$scope.ErrorMessage = "Password must not contain white spaces";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			}else if(typeof $scope.regStep2.confirmPwd == 'undefined' || $scope.regStep2.confirmPwd == '') {
-				$scope.ErrorMessage = "Please enter your confirm password";
+				$scope.ErrorMessage = "Please enter your Confirm Password";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else if($scope.regStep2.password != $scope.regStep2.confirmPwd) {
 				$scope.ErrorMessage = "Password mismatch";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else if(typeof $scope.regStep2.dob == 'undefined' || $scope.regStep2.dob == '' || $scope.regStep2.dob == null) {
-				$scope.ErrorMessage = "Please select your dob";
+				$scope.ErrorMessage = "Please select your Birthdate";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else {
 				$scope.doPostUserRegisterDetails();

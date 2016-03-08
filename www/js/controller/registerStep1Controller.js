@@ -37,13 +37,13 @@ angular.module('starter.controllers')
 		$scope.regStep1 = {};
 		$rootScope.postRegisterStep1 = function() {			
 			if(typeof $scope.regStep1.FName == 'undefined' || $scope.regStep1.FName == '') {
-				$scope.ErrorMessage = "Please enter your first name";
+				$scope.ErrorMessage = "Please enter your First Name";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else if(typeof $scope.regStep1.LName == 'undefined' || $scope.regStep1.LName == '') {
-				$scope.ErrorMessage = "Please enter your last name";
+				$scope.ErrorMessage = "Please enter your Last Name";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			}else if(typeof $scope.regStep1.address == 'undefined' || $scope.regStep1.address == '') {
-				$scope.ErrorMessage = "Please enter your address";
+				$scope.ErrorMessage = "Please enter your Full Address";
 				$scope.$root.$broadcast("callValidation", {errorMsg: $scope.ErrorMessage });
 			} else {
 				step1PostRegDetailsService.addPostRegDetails($scope.regStep1);					
