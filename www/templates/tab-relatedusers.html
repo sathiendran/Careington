@@ -25,9 +25,12 @@
                     <div class="iconname" >Account Home</div> 
                 </div>
 				<div  class="SearchImage imagesposition ">
-                 <a class="item item-thumbnail-left UserHmelistImgView" >
+                    <a class="item-avatar itemhead">
+                        <p><img src="img\patient.png" class="topimage"></p>
+                     </a> 
+               <!--  <a class="item item-thumbnail-left UserHmelistImgView" >
           <img src="/img/IMG_logo.png"/>
-      </a>
+      </a>-->
 				</div>   
 					<div class="" >
                          <button class="button-rounded homeicon">
@@ -105,15 +108,16 @@
             <p>Female.19 yrs.Daughter</p>
             </a>
             
-            <a class="item item-avatar"  ng-show='showdnewetails' ng-click="showtab()">
+            <a class="item item-avatar"  ng-show='showdnewetails' >
             <img src="img\patient.png" ng-click="userdetails()">
+            <span ng-click="showtab()">
             <h2><span class="fname">Robert</span> <span class="sname">Fitzpatrick</span> </h2>
             <p>Female.19 yrs.Son </p>
-           
+           </span>
              </a>
              
            
-           <div class="row" ng-show='newarchieve' ng-click='archieve()'>
+           <div class="row"  ng-show='newarchieve' ng-click='archieve()'>
     
   <div class="col col-25 archieve">
     <div>
@@ -203,23 +207,81 @@
          </div>
       
           
-             <a class="item item-avatar"    ng-click="">
+       <a class="item item-avatar"    ng-click="authorizeduser()">
             <img src="img\patient.png">
             <h2><span class="fname">Sarah</span> <span class="sname">Pradesh</span> </h2>
             <p>Female.16 Step-Daughter</p>
          </a> 
           
-          <a class="item authorizedval">
+          <a class="item authorizedval" ng-show="viewunauthorized" ng-click="addauthorized()">
     
           <p class="authorizedicon" style=""><i class="ion-chevron-down" style="font-size: 22px;"></i></p>
           
-       <p>You are not authorized to view/manage this account 
+               <p>You are not authorized to view/manage this account 
            
                <span class="authorizedupdate" >update <i class="icon ion-chevron-right"></i></span> 
            
        </p>
-      
-          </a>
+      </a>
+       
+       
+       
+     <div class="row"  ng-show="authorizedview" style="
+    margin-left: -5px;
+    margin-top: -11px;">
+             
+          <div class="col col-25 authorizedval"  ng-click="">
+                  <p class="tabicon"> <i class="ion-chevron-down"></i></p>
+                  <div class="">
+             
+                   <p><a style="margin-left:6px;">update <i class="icon ion-chevron-right avatarlefticon "></i> </a>
+                 
+                   </p> 
+                   </div>
+                  
+           </div>   
+            
+           <div class="col col-25" style="background-color: #ccc;" ng-click="showPopup()">
+               <div  class="tabvalue" >
+                 <a class="firstval">Status</a>
+                 <p class="iconalign"><i class="icon ion-chevron-right avaticon "></i></p>
+                  <div class="contentvalue"><p class="" style="font-size:14px;">UnAuthorized <i class="ion-thumbsdown" style="color:#888;" ></i></p></div> 
+               </div> 
+          </div> 
+          
+          <div class="col col-35" style="background-color:white;">
+         
+         
+          <div  class="conticon">
+                   <a class="" >Relationsship</a>
+           
+             <div class="contentvalue"><p class="" style="font-size:14px;">Step-Daughter <i class="ion-chevron-right avataricon" style="color:#888;" ></i></p></div> 
+               </div> 
+         
+         
+            
+            <!-- <div class="conticon">
+                  <i class="ion-chevron-right avataricon"  style="font-size:23px;margin-left:23px;"></i>
+                   <p style="margin-left: 18px;">Relationsship</p>
+                  </div>
+                   <div class=""><p class="">Step-Daughter</p></div> 
+          </div>-->
+     
+         </div>  
+       
+       
+     </div> 
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
        
  </div>
         

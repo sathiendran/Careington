@@ -147,30 +147,6 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 			}
 		}
 	}
-}else if(deploymentEnv == "Demo"){
-	var util = {
-		setHeaders: function (request, credentials) {
-			if (typeof credentials != 'undefined') {
-				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
-			}
-			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = 'f92f6017f3f043809e0f317c1d0cde4c';
-			request.defaults.headers.post['X-Api-Key'] = 'ddc9e736777f130b97f7fff5976c5bc9e7f3b337';
-			return request;
-		},
-		getHeaders: function (accessToken) {
-			var headers = {
-					'X-Developer-Id': 'f92f6017f3f043809e0f317c1d0cde4c',
-					'X-Api-Key': 'ddc9e736777f130b97f7fff5976c5bc9e7f3b337',
-					'Content-Type': 'application/json; charset=utf-8'
-				};
-			if (typeof accessToken != 'undefined') {
-				headers['Authorization'] = 'Bearer ' + accessToken;
-			}
-			
-			return headers;
-		}
-	}
 }
 
 var REVIEW_CONSULTATION_EVENT_CODE = 116;
@@ -239,21 +215,20 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 	}else if(deploymentEnv == "Single"){		
 	//	apiCommonURL = 'https://sandbox.connectedcare.md';	
 	//	apiCommonURL = 'https://snap-qa.com';	
-	apiCommonURL = 'https://connectedcare.md';	
-		//apiCommonURL = 'https://demo.connectedcare.md';
-		//apiCommonURL = 'https://snap-stage.com';  
+	apiCommonURL = 'https://connectedcare.md';		
+		//apiCommonURL = 'https://snap-stage.com';    
+    
 	} else if(deploymentEnv == "Staging") {
 		apiCommonURL = 'https://snap-stage.com';
 		api_keys_env = "Staging";
-	} else if(deploymentEnv == "Demo") {
-		apiCommonURL = 'https://demo.connectedcare.md';
-		api_keys_env = "Demo";
 	}
 
 
 angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+
+
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
     
 	$rootScope.deploymentEnv = deploymentEnv;
     if(deploymentEnv != 'Multiple') {
@@ -261,7 +236,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 	//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 	//$rootScope.APICommonURL = 'https://connectedcare.md';
-	/*if(deploymentEnv == "Sandbox"){
+	if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		apiCommonURL = 'https://sandbox.connectedcare.md';
 	}else if(deploymentEnv == "Production"){
@@ -288,14 +263,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.APICommonURL = 'https://snap-stage.com';
 		apiCommonURL = ' https://snap-stage.com';
 		api_keys_env = "Staging";
-	}*/
+	}
 	
-	$rootScope.envList = ["Snap.QA", "Sandbox", "Staging"];
+	$rootScope.envList = ["Snap.QA", "Sandbox", "Staging" ];
 	
 	$scope.ChangeEnv = function(env){
 		if(env == "Snap.QA"){
-			$rootScope.APICommonURL = 'https://snap-qa.com';
-			apiCommonURL = 'https://snap-qa.com';
+			$rootScope.APICommonURL = ' https://snap-qa.com';
+			apiCommonURL = ' https://snap-qa.com';
 			api_keys_env = "Snap.QA"
 			
 		}else if(env == "Sandbox"){
@@ -304,12 +279,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			api_keys_env = "Sandbox";
 		}else if(env == "Staging") {
 			$rootScope.APICommonURL = 'https://snap-stage.com';
-			apiCommonURL = 'https://snap-stage.com';
+			apiCommonURL = ' https://snap-stage.com';
 			api_keys_env = "Staging";
-		}else if(env == "Demo") {
-			$rootScope.APICommonURL = 'https://demo.connectedcare.md';
-			apiCommonURL = 'https://demo.connectedcare.md';
-			api_keys_env = "Demo";
 		}
 		$state.go('tab.login');
 	};
@@ -342,6 +313,23 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	*/
 	
 	$localstorage.set('ChkVideoConferencePage', ""); 
+	
+    /******** Prabin: Code to implement static brand color, logo and tagline. *******/
+    
+    $rootScope.brandColor = brandColor;
+    $rootScope.logo = logo;
+    $rootScope.Hospital = Hospital; 
+    if(deploymentEnvLogout == 'Multiple') {
+        $rootScope.alertMsgName = 'Virtual Care';
+        $rootScope.reportHospitalUpperCase =  'Virtual Care';
+    } else {
+         $rootScope.alertMsgName = Hospital;
+         $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
+    } 
+    $rootScope.HospitalTag = HospitalTag;	
+	
+    /******** Code to implement static brand color ends here **********/
+          
 	$rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -352,28 +340,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isWebView = ionic.Platform.isWebView();
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
-	
-    /******** Prabin: Code to implement static brand color, logo and tagline. *******/
-    
-    
-    if(deploymentEnvLogout == 'Single') {
-		 if($rootScope.currState.$current.name=="tab.loginSingle") {
-			 $rootScope.brandColor = brandColor;
-			$rootScope.logo = logo;
-			 $rootScope.HospitalTag = HospitalTag;	
-			$rootScope.Hospital = Hospital; 
-			 $rootScope.alertMsgName = Hospital;
-			 $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
-		}
-    } else {
-          $rootScope.alertMsgName = 'Virtual Care';
-        $rootScope.reportHospitalUpperCase =  'Virtual Care';
-    } 
-   
-	
-    /******** Code to implement static brand color ends here **********/
-          
-	
      
     if($rootScope.IOSDevice || $rootScope.isIPad) {
 		$rootScope.screenwidth = window.innerWidth;
@@ -492,7 +458,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConstantTreat = "font-size: 16px;";
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if(!$rootScope.AndroidDevice) {  
+    } else if($rootScope.AndroidDevice) {  
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -510,7 +476,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.MenuInnerStyle = "top: -8px;"; 
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";  
-         $rootScope.PriorSurgeryPopupCancel = "margin-top: -5px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
+         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";    
        $rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;"; 
 	   $rootScope.resetContent = "margin: 202px 0 0 0;";
 	    $rootScope.NeedanAcountStyle = "NeedanAcount_android";
@@ -962,12 +928,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
-                     if(deploymentEnvLogout == 'Single') {
-						$rootScope.alertMsgName = $rootScope.Hospital;
-                         $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();                       
-                    } else {
-                          $rootScope.alertMsgName = 'Virtual Care';
+                     if(deploymentEnvLogout == 'Multiple') {
+                        $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase =  'Virtual Care';
+                    } else {
+                         $rootScope.alertMsgName = $rootScope.Hospital;
+                         $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
                     } 
 					$rootScope.HospitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = data.data[0].contactNumber;
@@ -1047,12 +1013,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 //$rootScope.brandColor = data.data[0].brandColor;
                 $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                 //$rootScope.Hospital = data.data[0].brandName; 
-                if(deploymentEnvLogout == 'Single') {
-                     $rootScope.alertMsgName = $rootScope.Hospital;
-                        $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
+                if(deploymentEnvLogout == 'Multiple') {
+                    $rootScope.alertMsgName = 'Virtual Care';
+                    $rootScope.reportHospitalUpperCase =  'Virtual Care';
                 } else {
-					$rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase =  'Virtual Care';                       
+                        $rootScope.alertMsgName = $rootScope.Hospital;
+                        $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
                 } 
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
@@ -1178,11 +1144,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         if(deploymentEnv == "Single"){
             $rootScope.hospitalId = singleHospitalId;
         }
-		if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-			apiCommonURL = 'https://connectedcare.md';
-			api_keys_env = '';
-			$rootScope.APICommonURL = 'https://connectedcare.md';
-		}
     
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
@@ -1192,7 +1153,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             documentType: 1, 
 			hospitalId: $rootScope.hospitalId,			
             success: function (data) {				
-				$rootScope.termsandCOnditionsContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
+				$rootScope.termsandCOnditionsContent = angular.element('<div>').html(data.data[0].documentText).text();
 				$state.go('tab.singleTerms');
 						
             },
@@ -1291,7 +1252,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					} else {
 						$rootScope.organization = '';
 					}
-					$rootScope.primaryPatientName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName); 
+					$rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text(); 
 					$rootScope.userCountry = data.data[0].country;
 					if(typeof $rootScope.userCountry == 'undefined') {
 						$rootScope.userCountry = '';
@@ -1351,7 +1312,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.primaryPatientLastName.push({
 								'id': index.$id,
 								'patientName': index.patientName,
-								'lastName': htmlEscapeValue.getHtmlEscapeValue(index.lastName),
+								'lastName': index.lastName,
 								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
 								'mobilePhone': index.mobilePhone,
 								'homePhone': index.homePhone,
@@ -1364,7 +1325,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							});
 						});	
 					//$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName;
-					$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName; 		
+					$rootScope.primaryPatientLastName = angular.element('<div>').html($rootScope.primaryPatientLastName[0].lastName).text(); 		
 					
 					$rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' '+$rootScope.primaryPatientLastName;					
 						
@@ -1401,11 +1362,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'birthdate': index.birthdate,
 								'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
 								'addresses': angular.fromJson(index.addresses),
-								'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName),
-								'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName), 
-								'guardianFirstName': htmlEscapeValue.getHtmlEscapeValue(index.guardianFirstName),
-								'guardianLastName': htmlEscapeValue.getHtmlEscapeValue(index.guardianLastName), 
-								'guardianName': htmlEscapeValue.getHtmlEscapeValue(index.guardianName),
+								'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+								'patientLastName': angular.element('<div>').html(index.patientLastName).text(), 
+								'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
+								'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(), 
+								'guardianName': angular.element('<div>').html(index.guardianName).text(),
 							});
 						});
                         $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
@@ -1488,16 +1449,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				 $rootScope.intakeForm = data.data[0].intakeForm;
 				$rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
 				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
-				$rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.patientExistInfomation.guardianName);
+				$rootScope.appointmentsPatientGurdianName = angular.element('<div>').html($rootScope.patientExistInfomation.guardianName).text();
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
-				$rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[0].customCode.description);
-				$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[1].customCode.description);
+				$rootScope.reportScreenPrimaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[0].customCode.description).text();
+				$rootScope.reportScreenSecondaryConcern = angular.element('<div>').html($rootScope.intakeForm.concerns[1].customCode.description).text();
 				if($rootScope.reportScreenSecondaryConcern == "") {
 					$rootScope.reportScreenSecondaryConcern = "None Reported";
 				}
 				if(typeof $rootScope.consultionInformation.note != 'undefined') {
-					$rootScope.preConsultantNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.consultionInformation.note);			
+					$rootScope.preConsultantNotes = angular.element('<div>').html($rootScope.consultionInformation.note).text();			
 				} else {
 					$rootScope.preConsultantNotes = '';
 				}
@@ -1519,8 +1480,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			patientId: $rootScope.appointmentsPatientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {				
-				$rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);	
-				$rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);	 
+				$rootScope.appointmentsPatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();	
+				$rootScope.appointmentsPatientLastName = angular.element('<div>').html(data.data[0].lastName).text();	 
 					
 			},
 			error: function (data) {
@@ -2823,11 +2784,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 									'consultantUserId': index.consultantUserId,
 									'consultationId': index.consultationId,
-									'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName),
-									'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName),
+									'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+									'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
 									'patientId': index.patientId,
-									'assignedDoctorName': htmlEscapeValue.getHtmlEscapeValue(index.assignedDoctorName), 
-									'patientName': htmlEscapeValue.getHtmlEscapeValue(index.patientName),
+									'assignedDoctorName': angular.element('<div>').html(index.assignedDoctorName).text(), 
+									'patientName': angular.element('<div>').html(index.patientName).text(),
 									'consultationStatus': index.consultationStatus,
 									'scheduledId': index.scheduledId,    
 								});

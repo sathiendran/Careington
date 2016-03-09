@@ -12,13 +12,12 @@
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
-	
-	<h1 class="headertitle">User</h1>  
 
+<h1 class="headertitle">User</h1>
 
-			<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
                   <div class="row"> <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					<span class="PatintHeaderFontStyle patientName ellipsis">Jonathan</span>
+					<span class="PatintHeaderFontStyle patientName ellipsis">Elizabeth</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">Fitzpztrick</span>
 				</div></h1></div>
          
@@ -29,20 +28,14 @@
                    </button> 
                     <div class="iconname" >Account Home</div> 
                 </div>
-                
 				<div  class="SearchImage imagesposition ">
-                    
                   <a class="item-avatar itemhead">
                     <p><img src="img\patient.png" class="topimage"></p>
                   </a>  
-                    
-                <!-- <a class="item item-thumbnail-left UserHmelistImgView" >
-                   <img src="/img/IMG_logo.png"/>
-                 </a>-->
-				</div> 
-                
-                
-                  
+                 <!-- <a class="item item-thumbnail-left UserHmelistImgView" >
+                    <img src="/img/IMG_logo.png"/>
+                  </a>-->
+				</div>   
 					<div class="" >
                          <button class="button-rounded homeicon">
               <i class="ion-ios-people ionstyle"></i>
@@ -53,7 +46,6 @@
 					</div>
                     </div>				
 			</div> 
-		
    
 </ion-header-bar>
 
@@ -85,16 +77,28 @@
 				</div>
 				
 			</ion-item>
-			
+			   <ion-item class="" style="background-color:#ffc900;">
+				<div>
+					<div>
+    <h3> <span class="appointment">Appointment @ 2:45 pm</span> <span id="viewicon">
+         View Details 
+         <button class="button-rounded iconbutton">
+                     <i class="ion-ios-arrow-right"></i>
+                   </button> </span>
+                        
+                    
+    </h3>
+</div>
+				</div>
+			</ion-item>
 		</ion-list>
         
-        <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
+        <a class="button button-calm" ng-href="#/tab/addUser"><span>Next</span></a>
+        
 	</ion-content>
 </ion-side-menu-content>
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
-
- 
 </ion-view>
 
 
@@ -115,5 +119,4 @@
                    
 					  
 		<div>
-		
-	</ion-footer-bar>
+	
