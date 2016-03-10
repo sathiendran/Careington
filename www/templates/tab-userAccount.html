@@ -18,11 +18,12 @@
 
 			<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
                   <div class="row"> <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					<span class="PatintHeaderFontStyle patientName ellipsis">Jonathan</span>
-					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">Fitzpztrick</span>
-				</div></h1></div>
-         
-                <div class="row">
+					<span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
+					<span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Fitzpztrick</span>
+				     </div></h1>
+                  </div>
+        <!-- 
+          <div class="row">
 				<div class="TitleHomeUser_Sub " id="hometitle">
                      <button class="button-rounded homeicon">
                        <i class="icon ion-home icons ionstyle"></i>
@@ -35,85 +36,78 @@
                   <a class="item-avatar itemhead">
                     <p><img src="img\patient.png" class="topimage"></p>
                   </a>  
-                    
-                <!-- <a class="item item-thumbnail-left UserHmelistImgView" >
-                   <img src="/img/IMG_logo.png"/>
-                 </a>-->
-				</div> 
+            
+				</div>
                 
                 
                   
 					<div class="" >
                          <button class="button-rounded homeicon">
-              <i class="ion-ios-people ionstyle"></i>
-         </button>
-           <div class="iconname" >Change Patient</div>
+                          <i class="ion-ios-people ionstyle"></i>
+                          </button>
+                       <div class="iconname" >Change Patient</div>
                    </div>
 				
-					</div>
-                    </div>				
+					</div>-->
+           
+                  
+                  
+     <div class="item item-image-icon " style="background-color:#444444;">
+         <a style="    padding-left: 30px;">
+  <i class="icon ion-home" style="border:2px solid #888;border-radius: 50%;padding-left: 7px;padding-right: 8px;padding-top: 5px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+  <p style="padding-top:17px;">Account Home</p>
+         </a>
+                  <a class="item-avatar itemhead">
+                    <p><img src="img\patient.png" class="topimage" style=""></p>
+                  </a>
+                  <a style="float:right;margin-top:-83px;">
+                      <i class="icon ion-ios-people" style="border:2px solid #888;border-radius: 50%;padding-left:5px;padding-right:6px;padding-top:4px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+<p style=" padding-top: 19px; margin-left: -21px;"  >Change Patient</p>
+                  </a>
+</div>
+    
+               
+                  
+                  				
 			</div> 
 		
    
 </ion-header-bar>
 
 <ion-view title="">
+    
 	<ion-content class="usercontent" >
 		<ion-list>
 			<ion-item>
 				<div class="">
                        <h2 class="title ChronicCondition">
-                             <i class="ion-ios-person"></i> 
-                           <span class="content"> Manage Your Profile</span></h2>
-				
-					</div>
-								
+                             <i class="ion-ios-person" style="font-size:24px;"></i> 
+                             <span class="content"> Manage Your Profile</span>
+                        </h2>
+				</div>
 			</ion-item>
-		
-		
-			<ion-item class="">
-				
-				<div  >
-					<div class="SecondaryContent">					
+		 <ion-item class="">
+				<div>
+				  <div class="SecondaryContent">					
 						<h2 class="title ChronicCondition">
-                             <i class="ion-ios-calendar-outline"></i> 
-                           <span class="content"> View your Appointments</span>
-                            </h3>
-						
-						
+                             <i class="ion-ios-calendar-outline" content></i> 
+                             <span class="content"> View your Appointments</span>
+                         </h2>
 					</div>
 				</div>
-				
 			</ion-item>
 			
-		</ion-list>
+	</ion-list>
         
         <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
-	</ion-content>
-</ion-side-menu-content>
+  </ion-content>
+ </ion-side-menu-content>
  <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+ <div ng-include src="'templates/SideMenu.html'"></div>
 
- 
 </ion-view>
 
+<div class="bar bar-footer  footer-color">
+   <h1 class="title" id="centercolor" >See a Clinician Now</h1>
+</div>
 
-
-
-	<ion-footer-bar  class="footer bar bar-footer bar-balanced ">
-		<div class="ConcernsFooter">
-            <div class="bar bar-footer footer-color">				 
-			<div class="FooterLeft">
-		<!--	<a class="button_new icon" href="#/tab/patientDetail" ></a>-->
-			</div>
-					
-			<div class="FooterCenter" style="top:0px !important;">
-				<a class="button_new icon" id="centercolor" >See a Clinician Now</a>
-			</div>
-            </div>		   
-			
-                   
-					  
-		<div>
-		
-	</ion-footer-bar>
