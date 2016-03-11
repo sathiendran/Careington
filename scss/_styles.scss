@@ -2327,6 +2327,7 @@ color:#706A67;
 @include font($fontFamily_bold, bold, 30px);
  color:#535353;
 margin-left: 16px;
+
 }	
 
 .PragraphContent {
@@ -3459,6 +3460,7 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
 #centercolor{
     color:white;
     margin-bottom:15px !important;
+    font-size:24px;
 }
 .formlabel {
       margin-left: 7px;
@@ -3742,6 +3744,13 @@ p{
        .topimage {
              margin-left:33% !important;
          }  
+       .ionitem {
+           padding:8px;
+       }
+       .hidecard{
+           margin:7px 10px!important;
+       }
+      
     }  
    
     
@@ -3751,6 +3760,15 @@ p{
          }
          .topimage {
              margin-left:41% !important;
+         }
+         .footerheight{
+             height:83px;
+         }
+         .usercontent{
+             margin-top:216px !important;
+         }
+         .alignchronic{
+             margin-left:68px !important;
          }
     }  
     
@@ -3764,14 +3782,22 @@ p{
      }   
     
      @media (max-width:768px) and (min-width:641px)    {
-    .popup-container .popup {
-        width: 39% !important;
-           }
+      .alignchronic{
+             margin-left:345px !important;
+         }   
+          .topimage {
+             margin-left:43% !important;
+         }  
+     }  
+    
+     @media (min-width:770px) and (min-width:1024px)    {
+     .popup-container .popup {
+         width: 39% !important;
+         }
         .topimage {
              margin-left:43% !important;
          }     
      }  
-    
     @media (max-width:1366px) and (min-width:769px)    {
     .popup-container .popup {
         width:27% !important;
@@ -3841,4 +3867,8 @@ p{
     border-bottom: none;
     margin-left: -7px;
     margin-right: -8px;
+}
+.hidecard{
+    
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
 }
