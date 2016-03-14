@@ -3438,11 +3438,8 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
     font-size: 12px !important;
     background-color: rgba(222, 208, 208, 0.38) !important;
  }
- .appointment{
-     font-size:20px;
-     color:white;
-    
- }
+ 
+ 
  #hometitle{
      width:45%;
  }
@@ -3606,7 +3603,10 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
     
   }
  }
-
+newcard{
+    
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+}
 .archieve{
     background-color:rgba(12, 96, 238, 0.78);;
     margin-left: -5px;
@@ -3722,6 +3722,13 @@ p{
   .fontcolor{
       color:#888;
   }
+.ionappointment{
+    height:75px !important;
+   .appointment{
+     font-size:20px;
+     color:white;
+  } 
+}
   @media only screen and (max-device-width: 480px){
 	.col-25{
             max-width:46% !important;
@@ -3750,7 +3757,25 @@ p{
        .hidecard{
            margin:7px 10px!important;
        }
-      
+       .newcard {
+       margin: 2px 9px !important;
+       box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+       }
+       .appointment{
+        font-size:16px !important;
+        }
+      .usercontent {
+         margin-top: 168px !important;
+      }
+	  .ionappointment{
+          height:65px !important;
+      }
+      #viewicon{
+          height:24px;
+      }
+      #centercolor{
+          font-size:21px;
+      }
     }  
    
     
@@ -3770,6 +3795,9 @@ p{
          .alignchronic{
              margin-left:68px !important;
          }
+           .ionappointment{
+          height:75px !important;
+      }
     }  
     
     @media (max-width:640px) and (min-width:482px)    {
@@ -3871,4 +3899,8 @@ p{
 .hidecard{
     
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+}
+
+   .ion-chevron-right:before {
+    font-size: 8px !important;
 }
