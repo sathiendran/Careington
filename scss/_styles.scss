@@ -3463,7 +3463,7 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
 }
 #centercolor{
     color:white;
-    margin-top:15px !important;
+    margin-top:2px !important;
     font-size:24px;
 }
 .formlabel {
@@ -3514,6 +3514,7 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
   #viewicon{
      float:right; 
      color:white;
+     margin-top:3px;
   }
 
 .round-button {
@@ -3764,6 +3765,7 @@ p{
        .hidecard{
            margin:7px 10px!important;
        }
+       
        .newcard {
        margin: 2px 9px !important;
        box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
@@ -3783,6 +3785,10 @@ p{
       #centercolor{
           font-size:21px;
       }
+      .appointment{
+        font-size:16px !important;
+        color:white;
+        }
     }  
    
    
@@ -3794,11 +3800,16 @@ p{
              margin-left:39% !important;
          }
          .footerheight{
-             height:49px;
+            height:56px !important;
              background-image:none;
          }
+         .fooheight
+         {
+         height: 67.5px !important;
+         background-image:none;
+          }
          .usercontent{
-             margin-top:140px !important;
+             margin-top:142px !important;
          }
          .alignchronic{
              margin-left:40px !important;
@@ -3806,11 +3817,19 @@ p{
          .has-header{
              top:142px;
          }
+         .newcard{
+             margin:48px 10px !important;
+              box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
+         }
          .hidecard{   
-              margin:21px 10px !important;
+              margin:42.5px 10px !important;
          }
            .ionappointment{
           height:75px !important;
+      }
+      .appointment{
+          color:white;
+          font-size:20px;
       }
     }  
     
@@ -3901,6 +3920,10 @@ p{
    border-radius: 50%;
      
  }  
+  .appointment{
+          color:white;
+          font-size:20px;
+      }
 .item-image-icon{
     background-color: #444444;
     margin-top: -14px;
@@ -3918,4 +3941,14 @@ p{
 }
  .ion-chevron-right:before {
     font-size: 8px !important;
+}
+.iconchevron{
+    border: 1px solid white;
+    border-radius: 50%;
+    padding-left:7px;
+    padding-right:7px;
+    padding-top:0px;
+    padding-bottom:5px;
+    font-size:16px;
+    color:white;
 }
