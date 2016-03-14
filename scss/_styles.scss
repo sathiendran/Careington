@@ -3408,7 +3408,7 @@ font-family: $fontFamily_regular;
       font-size:14px;
   }
  .usercontent{
-      margin-top:258px !important;
+      margin-top: 170px !important;
  }
  .contwidth{
      margin-top:258px !important;
@@ -3794,17 +3794,20 @@ p{
              margin-left:39% !important;
          }
          .footerheight{
-             height:98px;
+             height:49px;
              background-image:none;
          }
          .usercontent{
-             margin-top:159px !important;
+             margin-top:140px !important;
          }
          .alignchronic{
              margin-left:40px !important;
          }
          .has-header{
              top:142px;
+         }
+         .hidecard{   
+              margin:21px 10px !important;
          }
            .ionappointment{
           height:75px !important;
@@ -3909,7 +3912,8 @@ p{
     margin-right: -8px;
 }
 .hidecard{
-    margin:36px 10px !important;
+ //   margin:36px 10px !important;
+ //margin:24px 10px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
 }
  .ion-chevron-right:before {
