@@ -10,8 +10,8 @@
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
-          <h1 class="headertitle">My Health</h1>
-            <h1 class="canceltitle" ng-hide="headerval">Edit</h1>
+        
+    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> User <span style="float:right;">Edit</span></h1>
 
   <div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
                   <div class="row">
@@ -217,24 +217,24 @@
 
 <ion-tabs  class=" tabs-icon-top tabs-dark">
 
-  <a class="tab-item " href="/#tab/relatedusers">
+  <a class="tab-item" ng-href="#tab/relatedusers">
     <i class="icon ion-android-people"></i>
    User
   </a>
   <a class="tab-item">
-    <i class="icon ion-card"></i>
+    <i class="icon ion-card" ng-href="#tab/consultations"></i>
     Consultations
   </a>
-  <a class="tab-item active" href="/#tab/healthinfo">
+  <a class="tab-item active" ng-href="#tab/healthinfo">
     <i class="icon ion-clipboard"></i>
     My Health
   </a>
 
-<a class="tab-item" href="/#tab/appointmentpatientdetails">
+<a class="tab-item" ng-href="#tab/appointmentpatientdetails">
     <i class="icon ion-calendar"></i>
     Appointments
   </a>
-<a class="tab-item" href="/#tab/profileoption"">
+<a class="tab-item" ng-href="#tab/profileoption"">
     <i class="icon ion-more"></i>
     More
   </a>

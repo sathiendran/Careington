@@ -2883,20 +2883,27 @@ form.ng-submitted input.ng-valid + i.icon.error {
 		}
 	}
 }
+ .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before {
+        font-size: 30px !important; 
+ }
+ .bar .button.button-clear.icon:before {
+   font-size: 30px !important; }
+
 
 .HeaderListIOS { 
-font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top: 5px;
+font-size: 20px; text-align: center; width: 100%;
+  margin-left: 32px; margin-top:12px;
 }
 .HeaderListAndroid { 
 font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 }
 
-.menuiconIOS {  position: relative;top: 4px; }
+.menuiconIOS {  position: relative;top: 4px; font-size: 22px !important;}
 
 .subHeaderTop { top: 70px; padding-top: 19px;
     height: 87%; }
 
-#BackButtonIcon { color:#000; margin-top: 15px; display: block !important;}
+#BackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
 
 #WhoNeeds { font-size: 23px;  width: 85%; }
 .BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}

@@ -7,28 +7,25 @@
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
  
 	<div class="buttons" > 
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
 	</div>
-	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Intake Form</h1>  
+	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">New User <span style="float:right;">Cancel</span></h1>  
 
 
-	<!--<h1 class="headertitle-{{deviceName}}">New User</h1>  
-<h1 class="canceltitle-{{deviceName}}">Cancel</h1>-->
 	
 <div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
-               <div class="row"> 
-                  <h1 class="headertitle">
-                    <div class="ellipsis subHeader_content_name" >
-					 <span class="PatintHeaderFontStyle patientName ellipsis">New</span>
-					 <span class="PatintHeaderFontStyleInner patientLastName ellipsis">Co-User</span>
-				    </div>
-                   </h1>
-                 </div>
-   
+    
+    <div class="row">
+                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+					  <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">New</span>
+					 <span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Co-User</span>
+				     </div></h1>
+                </div>
+    
+           
          <div class="row">
-                <div class="addphoto" style=""></div>
-  <div class="">
+           <div class="addphoto" style=""></div>
+             <div class="">
 				<div class="round-button" >
                      <div class="round-button-circle">
                          <a  class="round-button">
