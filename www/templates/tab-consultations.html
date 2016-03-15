@@ -1,0 +1,125 @@
+
+<ion-side-menus>
+	<ion-side-menu-content> 
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+	<div class="buttons" > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>
+	</div>
+<h1 class="headertitle" style="width:95%;">Appointments</h1>
+<h1 class="canceltitle" > <i class="icon ion-search"></i></h1>
+
+<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+                  <div class="row">
+                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+					  <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
+				      <span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Fitzpztrick</span>
+				     </div></h1>
+                </div>
+       
+         <div class="item item-image-icon " style="background-color:#444444;">
+          
+           <a style="padding-left: 30px;">
+               <i class="icon ion-home" style="border:2px solid #888;border-radius: 50%;padding-left: 7px;padding-right: 8px;padding-top: 5px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+               <p style="padding-top:17px;">Account Home</p>
+          </a>
+           <a class="item-avatar itemhead">
+               <p><img src="img\patient.png" class="topimage" style=""></p>
+           </a>
+           <a style="float:right;margin-top:-83px;">
+               <i class="icon ion-ios-people" style="border:2px solid #888;border-radius: 50%;padding-left:5px;padding-right:6px;padding-top:4px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+               <p style=" padding-top: 19px; margin-left: -21px;"  >Change Patient</p>
+           </a>
+   </div>
+   			
+
+</div>  
+   
+</ion-header-bar>
+
+
+
+<ion-view title="">
+	<ion-content style="margin-top:175px;">
+      
+      <div class="row">
+         
+       <div class="buttons backbtn"  > 
+		    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+			</button>
+	</div>
+        <div class=" button-bar">
+          <label class="button button-small btcolor btn-first"  id=""> Past</label>
+          <label class="button button-small btnextcolor btn-first tabcontent" >Missed</label>
+          <label class="button button-small btnextcolor btn-first tabcontent" >Dropped</label>
+         
+    </div>
+    
+       <div class="buttons backbtn"  > 
+		 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+		 </button>
+	  </div>
+   </div>
+      <div class="row header">
+          
+          <div class="col col-35">Date</div>
+          <div class="col col-15">Time</div>
+          <div class="col col-40">Provider</div>
+          
+          
+        </div>
+        <hr style="margin-top: -6px;">
+        <div class="row">
+       
+           <div class="col col-35">
+             <a class="item item-avatar" style="border:none;margin-top:-18px;">
+            <img src="img\patient.png" style="margin-top: -7px;">
+            <h2><span class="">Nov 16,2015</span> </h2>
+          
+             </a>  
+           </div>
+          <div class="col col-15"><p>2:35 PM</p></div>
+          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
+         
+        
+        </div>
+        <div class="row">
+         <div class="col col-35">Date</div>
+          <div class="col col-15">Time</div>
+          <div class="col col-40">Provider</div>
+          
+        
+        </div>
+	</ion-content>
+  
+    </ion-side-menu-content>
+</ion-view>     
+
+
+<ion-tabs  class=" tabs-icon-top tabs-dark">
+
+  <a class="tab-item " href="/#tab/relatedusers">
+    <i class="icon ion-android-people"></i>
+   User
+  </a>
+  <a class="tab-item active">
+    <i class="icon ion-card"></i>
+    Consultations
+  </a>
+  <a class="tab-item " href="/#tab/healthinfo">
+    <i class="icon ion-clipboard"></i>
+    My Health
+  </a>
+
+<a class="tab-item " href="/#tab/appointmentpatientdetails">
+    <i class="icon ion-calendar"></i>
+    Appointments
+  </a>
+<a class="tab-item"  href="/#tab/profileoption">
+    <i class="icon ion-more"></i>
+    More
+  </a>
+
+      </ion-tabs>

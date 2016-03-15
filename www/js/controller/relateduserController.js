@@ -124,11 +124,7 @@ angular.module('starter.controllers')
    });
  
   };
-    
-    
-    
-    
-    
+   
     $scope.userslist=function(){
         
          var myEl = angular.element( document.querySelector( '#users' ) );
