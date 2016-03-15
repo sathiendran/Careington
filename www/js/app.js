@@ -18,8 +18,8 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Demo'; //Production //Multiple //Single //Demo
-var deploymentEnvLogout = 'Demo'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Multiple'; //Production //Multiple //Single //Demo
+var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = '';
 var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -667,14 +667,45 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
   
    .state('tab.removerelatedusers', {
-    url: '/removerelatedusers',
-  views: {
+      url: '/removerelatedusers',
+    views: {
       'tab-login': {
         templateUrl: 'templates/tab-removerelatedusers.html',
         controller: 'removeuserController'
       }
       }
   })
+               
+   .state('tab.appointmentpatientdetails', {
+       url: '/appointmentpatientdetails',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-appointmentpatientdetails.html',
+        controller: ''
+      }
+      }
+  })
+  
+   .state('tab.profileoption', {
+       url: '/profileoption',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-profileoption.html',
+        controller: ''
+      }
+      }
+  })
+  
+   .state('tab.consultations', {
+       url: '/consultations',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-consultations.html',
+        controller: ''
+      }
+      }
+  })
+  
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');

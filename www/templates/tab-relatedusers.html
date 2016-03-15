@@ -8,9 +8,8 @@
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
-
-<h1 class="headertitle" style="width:95%;">Related Users</h1>
-<h1 class="canceltitle" ng-hide="headerval"> <i class="icon ion-plus"></i></h1>
+ 
+    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Related Users <span style="float:right;"><i class="icon ion-plus"></i></span></h1>
 <div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
                   <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
@@ -279,8 +278,8 @@
     <i class="icon ion-android-people"></i>
    User
   </a>
-  <a class="tab-item">
-    <i class="icon ion-card" ng-href="#tab/consultations"></i>
+  <a class="tab-item"  ng-href="#/tab/consultations">
+    <i class="icon ion-card"></i>
     Consultations
   </a>
   <a class="tab-item " ng-href="#tab/healthinfo">
