@@ -132,20 +132,23 @@ angular.module('starter.controllers')
     $scope.userslist=function(){
         
          var myEl = angular.element( document.querySelector( '#users' ) );
-     myEl.addClass('btcolor');
-  var myEl = angular.element( document.querySelector( '#dependents' ) );
-     myEl.removeClass('btcolor').css('color','#11c1f3');
-        
+             myEl.addClass('btcolor');
+             myEl.removeClass('btnextcolor');
+         var myEl = angular.element( document.querySelector( '#dependents' ) );
+             myEl.removeClass('btcolor').css('color','#11c1f3');
+             myEl.addClass('btnextcolor');
         $scope.userdata=false;
     $scope.dependentshide=true;
     };
     $scope.dependentslist=function(){
         
         var myEl = angular.element( document.querySelector( '#dependents' ) );
-     myEl.addClass('btcolor');
- var myEl = angular.element( document.querySelector( '#users' ) );
-     myEl.removeClass('btcolor').css('color','#11c1f3');
-         $scope.userdata=true;
+            myEl.addClass('btcolor');
+            myEl.removeClass('btnextcolor');
+        var myEl = angular.element( document.querySelector( '#users' ) );
+            myEl.removeClass('btcolor').css('color','#11c1f3');
+            myEl.addClass('btnextcolor');
+      $scope.userdata=true;
      $scope.dependentshide=false;
     }
 });

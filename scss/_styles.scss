@@ -2519,7 +2519,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -moz-flex: 0 0 60%;
   -ms-flex: 0 0 60%;
   flex: 0 0 60%;
-  max-width: 60%; 
+  max-width: 80%; 
 }
 
 .validated error {
@@ -3467,7 +3467,9 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
     font-size:24px;
 }
 .formlabel {
-      margin-left: 7px;
+    margin-left: 10px;
+    color: #111;
+    font-family: Glober Bold;
 }
 .circle {
   position: relative;
@@ -3546,10 +3548,17 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
     font-weight:bold;
     text-decoration:none;
 }
-
+.typealign{
+    margin-left: 54px;
+}
 .labelcolor{
     color:#888;
+    margin-left:5px;
+    .iconsize{
+    font-size:20px;    
+    }
 }
+
 .hidetab {
     display:none;
 }
@@ -3563,7 +3572,15 @@ font-size: 20px; text-align: center; width: 100%;top: 5px;
 .btcolor{
      background-color:#11c1f3 !important;
      color:#fff !important;
+     border-color:#11c1f3 !important;
  }
+ .btnextcolor{
+      background-color:#fff !important;
+      color:#11c1f3 !important;
+      border-color:#11c1f3 !important;
+ }
+ 
+ 
  hr {
     height: 1px;
     color: #888;
@@ -3789,7 +3806,19 @@ p{
         font-size:16px !important;
         color:white;
         }
+        
+       .valtex {
+             margin-left: 113px;
+             color: #888;
+             width: 146px;
+             font-size: 15px;
+         }  
     }  
+    
+    .ioncontentalign{
+        margin-top: 188px;
+    }
+  
    
    
   @media (max-width:481px) and (min-width:322px)    {
@@ -3831,15 +3860,53 @@ p{
           color:white;
           font-size:20px;
       }
+       .userdetcontent{
+             margin-top:45px !important;
+         }
+         .ioncontentalign{
+             margin-top:102px;
+         }
+         .valuealign{
+             margin-left:45px;
+             color:#888;
+                
+         }
+         .valtex {
+             margin-left:47px;
+             color: #888;
+             width: 145px;
+             font-size: 15px;
+         }
     }  
     
     @media (max-width:640px) and (min-width:482px)    {
+ 
+    
+ 
     .popup-container .popup {
         width: 45% !important;
            }
           .topimage {
              margin-left:42% !important;
          }   
+         .userdetcontent{
+             margin-top:138px !important;
+         }
+         .ioncontentalign{
+             margin-top:185px;;
+         }
+          .valuealign{
+             margin-left: 70px;
+             color:#888;
+         }
+         
+            .valtex {
+             margin-left:70px;
+             color: #888;
+             width: 146px;
+             font-size: 15px;
+         }
+         
      }   
     
      @media (max-width:768px) and (min-width:641px)    {
@@ -3848,8 +3915,24 @@ p{
          }   
           .topimage {
              margin-left:43% !important;
+         }
+          .userdetcontent{
+             margin-top:138px !important;
          }  
-     }  
+         .ioncontentalign{
+             margin-top:185px;
+         }
+         .valuealign{
+             margin-left: 92px;
+             color:#888;
+         }
+           .valtex {
+             margin-left: 92px;
+             color: #888;
+             width: 146px;
+             font-size: 15px;
+         }
+     }
     
      @media (min-width:770px) and (min-width:1024px)    {
      .popup-container .popup {
@@ -3857,7 +3940,23 @@ p{
          }
         .topimage {
              margin-left:43% !important;
-         }     
+         }  
+          .userdetcontent{
+             margin-top:138px !important;
+         }   
+         .ioncontentalign{
+             margin-top:185px;
+         }
+           .valuealign{
+             margin-left: 108px;
+             color:#888;
+         }
+          .valtex {
+             margin-left: 109px;
+             color: #888;
+             width: 146px;
+             font-size: 15px;
+         }
      }  
     @media (max-width:1366px) and (min-width:769px)    {
     .popup-container .popup {
@@ -3865,6 +3964,15 @@ p{
            }
             .topimage {
              margin-left:46% !important;
+         }
+          .userdetcontent{
+             margin-top:138px !important;
+         }
+          .userdetcontent{
+             margin-top:138px !important;
+         }
+         .ioncontentalign{
+             margin-top:176px;
          }
      } 
         
@@ -3951,4 +4059,12 @@ p{
     padding-bottom:5px;
     font-size:16px;
     color:white;
+}
+.button-bar > .button:first-child {
+    border-radius: 6px 0px 0px 6px !important;
+
+}
+.button-bar > .button:last-child {
+    border-right-width: 1px;
+    border-radius: 0px 6px 6px 0px !important;
 }

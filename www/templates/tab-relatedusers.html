@@ -11,7 +11,7 @@
 
 <h1 class="headertitle" style="width:95%;">Related Users</h1>
 <h1 class="canceltitle" ng-hide="headerval"> <i class="icon ion-plus"></i></h1>
-<<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
                   <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
 					  <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
@@ -32,8 +32,26 @@
                <i class="icon ion-ios-people" style="border:2px solid #888;border-radius: 50%;padding-left:5px;padding-right:6px;padding-top:4px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
                <p style=" padding-top: 19px; margin-left: -21px;"  >Change Patient</p>
            </a>
-           
-   </div>				
+   </div>
+   
+    <div class="row">
+         
+       <div class="buttons backbtn"  > 
+		    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+			</button>
+	</div>
+        <div class=" button-bar">
+          <label class="button button-small btcolor btn-first" ng-click="userslist()" id="users"> Co-Users</label>
+          <label class="button button-small btnextcolor btn-first tabcontent" ng-click="dependentslist()" id="dependents">Dependents</label>
+          <label class="button button-small btnextcolor btn-first tabcontent" ng-click="gaurdianslist" id="">Gaurdians</label>
+    </div>
+    
+       <div class="buttons backbtn"  > 
+		 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+		 </button>
+	  </div>
+   </div>
+        				
 
 </div>  
    
@@ -42,24 +60,7 @@
 
 <ion-view title="">
 	<ion-content style="margin-top:175px;">
-        <div class="row">
-         
-       <div class="buttons backbtn"  > 
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
-			</button>
-	</div>
-        <div class=" button-bar">
-        <label class="button button-small btcolor btn-first" ng-click="userslist()" id="users"> Co-Users</label>
-        <label class="button button-small btn-first tabcontent" ng-click="dependentslist()" id="dependents">Dependents</label>
-         <label class="button button-small btn-first tabcontent" ng-click="gaurdianslist" id="">Gaurdians</label>
-    </div>
     
-      <div class="buttons backbtn"  > 
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
-			</button>
-	</div>
-        </div>
-        
     <div class="list" style="margin-top:18px;" ng-hide="userdata">
             <a class="item item-avatar" style="border-top:none;">
             <img src="img\ionic.png">
