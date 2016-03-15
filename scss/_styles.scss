@@ -3428,6 +3428,20 @@ font-family: $fontFamily_regular;
 font-size: 20px; text-align: center; width: 100%;top: 5px;
  color:white;
  }
+ 
+ .headertitle-Android{   
+font-size: 20px; text-align: center; width: 100%;top: 5px;
+ color:white;
+ }
+ 
+.headertitle-IOS{   
+font-size: 20px;margin-left:120px; top: 5px;
+ color:white;
+ } 
+ .canceltitle-IOS{
+   margin-left:97px;
+   font-size: 17px;
+ }
  .canceltitle{
      font-size: 20px;
       color:white;
@@ -3861,7 +3875,7 @@ p{
           font-size:20px;
       }
        .userdetcontent{
-             margin-top:45px !important;
+             margin-top:58px !important;
          }
          .ioncontentalign{
              margin-top:102px;
