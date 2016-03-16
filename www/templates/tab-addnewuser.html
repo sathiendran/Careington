@@ -1,0 +1,106 @@
+
+
+
+<ion-side-menus>
+	<ion-side-menu-content> 
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+       
+  
+	<div class="buttons" > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>
+	</div>
+	
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Related Users <span style="float:right;">Cancel</span></h1>
+
+			<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+                  <div class="row"> 
+                      <h1 class="headertitle">
+                          <div class="ellipsis subHeader_content_name" >
+					       <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
+					      <span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Fitzpztrick</span>
+				        </div>
+                     </h1>
+                  </div>
+               
+     <div class="item item-image-icon " style="background-color:#444444;">
+           <a style="    padding-left: 30px;">
+              <i class="icon ion-home" style="border:2px solid #888;border-radius: 50%;padding-left: 7px;padding-right: 8px;padding-top: 5px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+             <p style="padding-top:17px;">Account Home</p>
+          </a>
+           <a class="item-avatar itemhead">
+               <p><img src="img\patient.png" class="topimage" style=""></p>
+           </a>
+           <a style="float:right;margin-top:-83px;">
+               <i class="icon ion-ios-people" style="border:2px solid #888;border-radius: 50%;padding-left:5px;padding-right:6px;padding-top:4px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+               <p style=" padding-top: 19px; margin-left: -21px;"  >Change Patient</p>
+           </a>
+      </div>
+  </div>
+                    
+   
+		
+   
+</ion-header-bar>
+
+<ion-view title="">
+    
+	<ion-content class="useraddcontent" style="">
+        
+        <ion-list>
+             <ion-item class="ionitem itemclass" style="border-top: none;">
+           <div class="card newcard">
+              <div class="item item-text-wrap">
+                  <div class="" style="text-align:center;">
+                         <p><i class="fontcolor icon ion-ios-personadd" style="font-size:90px;"></i></p> 
+                       
+                         <h2><p class="fontcolor" style="font-size:30px;">Add A New User</p></h2>
+                         <p>Select a user type to add</p>
+				      </div>
+                 </div>
+              </div>
+         </ion-item>  
+            
+            
+         <ion-item class="ionitem itemsecclass">
+           <div class="card newcard">
+              <div class="item item-text-wrap">
+                    <div class="" style="text-align:center;">
+                       <h2 class="title alignedchronic ChronicCondition ">
+                         <a class="fontcolor" ng-href="#/tab/addUser" style="font-size:20px;"> Invite A Co-User</a>
+                        </h2>
+				      </div>
+                 </div>
+              </div>
+         </ion-item>     
+            
+          <ion-item class="ionitem">
+           <div class="card newcard">
+              <div class="item item-text-wrap">
+                    <div class="" style="text-align:center;">
+                       <h2 class="title alignedchronic ChronicCondition ">
+                         <a class="fontcolor" ng-href="#/tab/addnewdepartment" style="font-size:20px;">Add A Dependent</a>
+                        </h2>
+				      </div>
+                 </div>
+              </div>
+         </ion-item>    
+            
+	
+	</ion-list>
+        
+       
+  </ion-content>
+ </ion-side-menu-content>
+ <!--Side Menu File Include --->
+ <div ng-include src="'templates/SideMenu.html'"></div>
+
+</ion-view>
+
+<div class="bar bar-footer fooheight" style="background-color:#484848;">
+     <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
+   <h1 class="title" id="centercolor" >Cancel</h1>
+</div>
+

@@ -1,0 +1,143 @@
+
+<ion-side-menus> 
+	<ion-side-menu-content> 
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
+ 
+	<div class="buttons" > 
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
+	</div>
+	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">New User <span style="float:right;">Cancel</span></h1>  
+	
+<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+    
+    <div class="row">
+           <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+		   <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">New</span>
+		   <span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Co-User</span>
+		</div></h1>
+    </div>
+   <div class="row">
+      <div class="addphoto" style=""></div>
+        <div class="">
+		 <div class="round-button" >
+           <div class="round-button-circle">
+             <a  class="round-button">
+               <span> <i class="icon ion-camera"></i></span>
+               <p> Add a Picture</p>
+             </a>
+            </div>
+          </div>
+         </div>
+        </div>	
+    </div>
+	</ion-header-bar>
+
+
+<ion-view title="">
+    
+	<ion-content class="userdetcontent">
+	<h4 style=" text-align: center;color:#444;"><b>User Details</b></h4>
+    
+    <div class="list">
+		
+		  <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-person"></i><b class="formlabel">First Name</b></span>
+            <input   class="typealign" type="text" value="" placeholder="Required" required="required"  name="name" id="name" style="margin-left: 56px;">
+			
+		 </label>	
+         
+           <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-person"></i><b class="formlabel">Last Name</b></span>
+            <input   class="typealign" type="text" value="" placeholder="Required" required="required"  name="name" id="name"  style="margin-left: 56px;">
+		</label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-email"></i><b class="formlabel">Email</b></span>
+            <input   class="typealign"  type="text" value="" placeholder="Required" required="required"  name="name" id="name"  style="margin-left: 56px;">
+		</label>	
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-calendar-outline"></i><b class="formlabel">Date of Birth</b></span>
+            <input   class="typealign"  type="text" value=""  placeholder="Required" required="required"  name="name" id="name"  style="margin-left: 56px;">
+		 </label>	
+         
+           <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-person-stalker"></i><b class="formlabel">Reltionship</b></span>
+            <input  class="typealign" type="text" value=""  placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+			
+		 </label>		
+ 
+
+		  <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-female"></i><b class="formlabel">Gender</b></span>
+            <input type="text" value="" placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-android-arrow-up"></i><b class="formlabel">Height</b></span>
+            <input type="text" value=""  class="typealign"  placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-filing"></i><b class="formlabel">Weight</b></span>
+            <input type="text" value=""  class="typealign"  placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Home Phone</b></span>
+            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
+            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor" style="margin-bottom:50px;">
+                  <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
+             <textarea   class="typealign" id="name" cols="30" rows="5"  placeholder="Optional" style="margin-top: 12px;"></textarea>
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-people"></i><b class="formlabel">Organization</b></span>
+            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-location"></i><b class="formlabel">Location</b></span>
+            <input type="text" value=""  class="typealign"  placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-person"></i><b class="formlabel">Hair Color</b></span>
+            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-ios-eye"></i><b class="formlabel">Eye Color</b></span>
+            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+          <label class="item item-input validated">
+               <span class="input-label labelcolor">
+                  <i class="iconsize ion-earth"></i><b class="formlabel">Ethnicity</b></span>
+            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left: 56px;">
+		 </label>
+   
+   
+    </div>
+	</ion-content>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
+
+
+<div class="bar bar-footer  footer-color footerheight" >
+      
+   <h1 class="title" id="centercolor" >Add Department</h1>
+</div>

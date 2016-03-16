@@ -3648,11 +3648,7 @@ font-size: 20px;margin-left:120px; top: 5px;
         float:right;
     
   }
- }
-newcard{
-    
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
-}
+
 .archieve{
     background-color:rgba(12, 96, 238, 0.78);;
     margin-left: -5px;
@@ -3766,7 +3762,7 @@ p{
      
   }
   .fontcolor{
-      color:#888;
+      color:#888 !important;
   }
 .ionappointment{
     height:75px !important;
@@ -3788,8 +3784,14 @@ p{
        }
 	}
     
+     }
+.newcard{
     
-
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
+}
+.useraddcontent{
+    margin-top: 125px !important;
+}
    @media (max-width:320px) and (min-width:315px)    {
     .popup-container .popup {
         width: 85% !important;
@@ -3865,7 +3867,23 @@ p{
              margin-left:40px !important;
          }
          .has-header{
-             top:142px;
+            top:104px;
+         }
+         .useraddcontent{
+              margin-top:5px !important;
+         }
+         .itemclass{
+             height:237px;
+         }
+         .itemsecclass{
+             height:140px;
+         }
+         .item-text-wrap{
+          
+             margin-top:-13px;
+         }
+         alignedchronic {
+               margin-right:40px !important;
          }
          .newcard{
              margin:48px 10px !important;
@@ -3999,14 +4017,18 @@ p{
         
  .popup-container .popup {
     border-radius: 7px;
-
-	}
+}
 	
-  .popup-head {
+    .listfirst > a:first-child  {
+    background-color:rgba(255, 201, 0, 0.53);
+}
+.listall > a:first-child  {
+    background-color:rgba(230, 101, 10, 0.33);
+}
+ .popup-head {
     padding: 14px 12px;
     border-bottom: 1px solid #888;
     text-align: left;
-  
   }
   .popup-body{
     overflow: hidden;     

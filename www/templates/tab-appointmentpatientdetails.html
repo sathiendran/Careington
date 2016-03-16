@@ -41,8 +41,8 @@
 			</button>
 	</div>
         <div class=" button-bar">
-          <label class="button button-small btcolor btn-first"  id="users"> This Patient</label>
-          <label class="button button-small btnextcolor btn-first tabcontent" >All</label>
+          <label class="button button-small btcolor btn-first"  id="users" ng-click="user()"> This Patient</label>
+          <label class="button button-small btnextcolor btn-first tabcontent" id="allusers" ng-click="alluser()">All</label>
          
     </div>
     
@@ -51,18 +51,19 @@
 		 </button>
 	  </div>
    </div>		
-
+ 
 </div>  
    
 </ion-header-bar>
 
 
 <ion-view title="">
-	<ion-content style="margin-top:175px;">
-    
-        
-    <div class="list" style="margin-top: 120px;">
-        <a class="item item-avatar" style="border-top:none;">
+ <ion-content style="margin-top:175px;">
+     
+  
+        <div ng-hide="addmore">
+           <div class="list listfirst" style="margin-top: 120px;">
+        <a class="item item-avatar">
              <img src="img\patient.png">
             <h2>Next Appointment</h2>
               <h2><span class="fname">Nov 13</span> @<span class="fname">3:45</span>  PM 
@@ -107,11 +108,64 @@
              <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
            </h2>
          </a>
-</div>                
+   </div>       
+   </div>
    
+   <div ng-hide="healthhide">
+        <div class="list listall" style="margin-top: 120px;">
+        <a class="item item-avatar">
+             <img src="img\Lisa_Wong.jpg">
+            <h2>Next Appointment</h2>
+              <h2><span class="fname">Nov 13</span> @<span class="fname">3:45</span>  PM 
+                <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
+              </h2>
+        </a>
+            
+        <a class="item item-avatar">
+             <img src="img\password.jpg">
+           <h2><span class="fname">Nov 21</span> @<span class="fname">3:45</span>  PM 
+             <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
+           </h2>
+         </a>
  
+          <a class="item item-avatar">
+             <img src="img\patient.png">
+           <h2><span class="fname">Dec 02</span> @<span class="fname">3:45</span>  PM 
+             <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
+           </h2>
+         </a>
+          <a class="item item-avatar">
+             <img src="img\James_king.jpg">
+           <h2><span class="fname">Dec 08</span> @<span class="fname">3:45</span>  PM 
+             <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
+           </h2>
+         </a>
+          <a class="item item-avatar">
+             <img src="img\patient.png">
+           <h2><span class="fname">Dec 13</span> @<span class="fname">3:45</span>  PM 
+             <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
+           </h2>
+         </a>
+          <a class="item item-avatar">
+             <img src="img\patient.png">
+           <h2><span class="fname">Dec 16</span> @<span class="fname">3:45</span>  PM 
+             <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
+           </h2>
+         </a>
+          <a class="item item-avatar">
+             <img src="img\patient.png">
+           <h2><span class="fname">Dec 21</span> @<span class="fname">3:45</span>  PM 
+             <span class=""> View Details <i class="icon ion-chevron-right "></i></span>
+           </h2>
+         </a>
+   </div>                
+   </div>    
+       
+           
         
-	</ion-content>
+       
+    </ion-content>
+    
   
     </ion-side-menu-content>
 </ion-view>     

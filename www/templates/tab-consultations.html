@@ -9,7 +9,7 @@
 				ng-click="toggleLeft()"></button>
 	</div>
 
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Appointments <span style="float:right;"><i class="icon ion-search""></i></span></h1>
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="float:right;" ><a ng-href="/#tab/consultationSearch" ><i class="icon ion-search" style="color:black;"></i></a></span></h1>
 
 
 <div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
@@ -86,11 +86,32 @@
          
         
         </div>
-        <div class="row">
-         <div class="col col-35">Date</div>
-          <div class="col col-15">Time</div>
-          <div class="col col-40">Provider</div>
+       <div class="row">
+       
+           <div class="col col-35">
+             <a class="item item-avatar" style="border:none;margin-top:-18px;">
+            <img src="img\patient.png" style="margin-top: -7px;">
+            <h2><span class="">Nov 16,2015</span> </h2>
           
+             </a>  
+           </div>
+          <div class="col col-15"><p>2:35 PM</p></div>
+          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
+         
+        
+        </div>
+        <div class="row">
+       
+           <div class="col col-35">
+             <a class="item item-avatar" style="border:none;margin-top:-18px;">
+            <img src="img\patient.png" style="margin-top: -7px;">
+            <h2><span class="">Nov 16,2015</span> </h2>
+          
+             </a>  
+           </div>
+          <div class="col col-15"><p>2:35 PM</p></div>
+          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
+         
         
         </div>
 	</ion-content>

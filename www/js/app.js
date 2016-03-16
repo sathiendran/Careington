@@ -681,7 +681,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-appointmentpatientdetails.html',
-        controller: ''
+        controller: 'patientdetailsController'
       }
       }
   })
@@ -706,6 +706,45 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
   })
   
+  .state('tab.addnewuser', {
+       url: '/addnewuser',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-addnewuser.html',
+        controller: ''
+      }
+      }
+  })
+  
+   .state('tab.addnewdepartment', {
+       url: '/addnewdepartment',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-addnewdepartment.html',
+        controller: ''
+      }
+      }
+  })
+  
+  .state('tab.consultationSearch', {
+       url: '/consultationSearch',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-consultationSearch.html',
+        controller: ''
+      }
+      }
+  })
+   
+   .state('tab.patientappointmentdetails', {
+       url: '/patientappointmentdetails',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-patientappointmentdetails.html',
+        controller: ''
+      }
+      }
+  })
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
