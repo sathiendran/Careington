@@ -9,7 +9,7 @@
 				ng-click="toggleLeft()"></button>
 	</div>
  
-    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Related Users <span style="float:right;"><i class="icon ion-plus"></i></span></h1>
+    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Related Users <span style="float:right;"><a ng-href="/#tab/addnewuser" ><i class="icon ion-plus" style="color:#000 !important;"></i></a></span></h1>
 <div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
                   <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
@@ -60,24 +60,27 @@
 <ion-view title="">
 	<ion-content style="margin-top:175px;">
     
-    <div class="list couses animated slideInLeft" id="couserlist" style="margin-top:18px;" >
+    <div class="list couses " id="couserlist" style="margin-top:18px;" >
      
-            <a class="item item-avatar" style="border-top:none;">
+            <a class="item item-avatar" style="border-top:none;" type="item-text-wrap">
             <img src="img\ionic.png">
             <h2><span  class="fname">Elizabeth</span> <span  class="sname">Fitzpatrick</span></h2>
             <p>Female.29 yrs.Spouse</p>
             </a>
-            
-            <a class="item item-avatar"  ng-show='showdetails'  ng-click="moredetails()">
+           
+         
+           
+           <a class="item item-avatar"  ng-show="!showActions" ng-swipe-right="showActions = true">
             <img src="img\patient.png">
             <h2><span class="fname">Colleen</span> <span class="sname">Fitzpatrick</span> </h2>
             <p>Female.29 yrs.Sister
               <i class="icon ion-chevron-right avataricon"></i></p>
              </a>
+        
           
-<div class="row" ng-show='showarchieve' ng-click='archievedetails()'>
-    
-  <div class="col col-25 archieve">
+         
+<div class="row"  ng-show="showActions" ng-swipe-left="showActions = false">
+   <div class="col col-25 archieve">
     <div>
      <div class="aligncenicon" >
       <i class="icon ion-email icons" ></i>
@@ -93,8 +96,9 @@
       </a>
   </div>
  </div>
- 
-</div>      
+</div>   
+    
+    
  <div class="list dependusers animated slideInRight" id="dependuserlist" style="margin-top:18px;" >
             <a class="item item-avatar" style="border-top:none;">
             <img src="img\ionic.png">

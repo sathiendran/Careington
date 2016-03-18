@@ -13,7 +13,7 @@ angular.module('starter.controllers')
       $scope.authorizedview=false;
       $scope.moredetails = function() {
         $scope.showdetails = false;
-        $scope.showarchieve = true;
+       $scope.showarchieve = true;
       
     };
     

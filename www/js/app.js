@@ -80,7 +80,7 @@ var handleOpenURL = function (url) {
     }, 0);
 }
 
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $state, $rootScope, $localstorage, LoginService) {
   $ionicPlatform.ready(function() {
@@ -745,6 +745,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
       }
   })
+  
+  
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
