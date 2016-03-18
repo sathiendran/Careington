@@ -313,23 +313,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	*/
 	
 	$localstorage.set('ChkVideoConferencePage', ""); 
-	
-    /******** Prabin: Code to implement static brand color, logo and tagline. *******/
-    
-    $rootScope.brandColor = brandColor;
-    $rootScope.logo = logo;
-    $rootScope.Hospital = Hospital; 
-    if(deploymentEnvLogout == 'Multiple') {
-        $rootScope.alertMsgName = 'Virtual Care';
-        $rootScope.reportHospitalUpperCase =  'Virtual Care';
-    } else {
-         $rootScope.alertMsgName = Hospital;
-         $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
-    } 
-    $rootScope.HospitalTag = HospitalTag;	
-	
-    /******** Code to implement static brand color ends here **********/
-          
 	$rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -340,6 +323,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isWebView = ionic.Platform.isWebView();
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
+	
+    /******** Prabin: Code to implement static brand color, logo and tagline. *******/
+    
+     if(deploymentEnvLogout === 'Single') {
+		 if($rootScope.currState.$current.name==="tab.loginSingle") {
+			 $rootScope.brandColor = brandColor;
+			$rootScope.logo = logo;
+			 $rootScope.HospitalTag = HospitalTag;	
+			$rootScope.Hospital = Hospital; 
+			 $rootScope.alertMsgName = Hospital;
+			 $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
+		}
+    } else {
+          $rootScope.alertMsgName = 'Virtual Care';
+        $rootScope.reportHospitalUpperCase =  'Virtual Care';
+    } 
+	
+    /******** Code to implement static brand color ends here **********/          
+	
      
     if($rootScope.IOSDevice || $rootScope.isIPad) {
 		$rootScope.screenwidth = window.innerWidth;
