@@ -701,7 +701,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-consultations.html',
-        controller: ''
+        controller: 'consultationController'
       }
       }
   })

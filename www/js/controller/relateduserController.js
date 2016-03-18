@@ -133,9 +133,17 @@ angular.module('starter.controllers')
          var myEl = angular.element( document.querySelector( '#dependents' ) );
              myEl.removeClass('btcolor').css('color','#11c1f3');
              myEl.addClass('btnextcolor');
-        $scope.userdata=false;
-    $scope.dependentshide=true;
+             
+             var myEl = angular.element( document.querySelector( '#couserlist' ) );
+          myEl.addClass('couses');
+          myEl.removeClass('dependusers');
+          
+           var myEl = angular.element( document.querySelector( '#dependuserlist' ) );
+            myEl.removeClass('couses');
+            myEl.addClass('dependusers');
     };
+    
+    
     $scope.dependentslist=function(){
         
         var myEl = angular.element( document.querySelector( '#dependents' ) );
@@ -144,8 +152,13 @@ angular.module('starter.controllers')
         var myEl = angular.element( document.querySelector( '#users' ) );
             myEl.removeClass('btcolor').css('color','#11c1f3');
             myEl.addClass('btnextcolor');
-      $scope.userdata=true;
-     $scope.dependentshide=false;
+          var myEl = angular.element( document.querySelector( '#dependuserlist' ) );
+          myEl.addClass('couses');
+          myEl.removeClass('dependusers');
+          
+           var myEl = angular.element( document.querySelector( '#couserlist' ) );
+            myEl.removeClass('couses');
+            myEl.addClass('dependusers');
     }
 });
 	

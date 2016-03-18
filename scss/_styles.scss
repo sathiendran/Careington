@@ -1259,7 +1259,7 @@ body {
 		}
 		.input-label {
 			font-weight: bold;
-			font-size: 20px;
+			font-size: 23px !important;
 			width: 50%;
 			padding: 10px 10px 7px 0px;
 		}
@@ -3357,7 +3357,9 @@ font-family: $fontFamily_regular;
         }
      } 
       
-
+.item-image-icon {
+    height:95px !important;
+}
 
 .singleTermsTitle-Android {
 	border-bottom: none; position: relative;  top: -143px;
@@ -3484,8 +3486,8 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 #centercolor{
     color:white;
-    margin-top:2px !important;
-    font-size:24px;
+    margin-top:10px !important;
+    font-size:21px;
 }
 .formlabel {
     margin-left: 10px;
@@ -3546,13 +3548,14 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 .round-button-circle {
 	width: 93%;
-	height:0;
-     margin:0;
-	padding-bottom: 88%;
+    height: 0;
+    margin: 0;
+    padding-bottom: 88%;
     border-radius: 50%;
-     overflow:hidden;
-    background: #FFFFFF;
-    box-shadow: 0 0 3px gray;
+    overflow: hidden;
+    background: #ddd;
+    box-shadow: 0px 2px 3px #ccc;
+    border: 2px solid #FFFFFF;
 }
 
 .round-button a {
@@ -3573,10 +3576,10 @@ font-size: 20px;margin-left:120px; top: 5px;
     margin-left: 54px;
 }
 .labelcolor{
-    color:#888;
+    color:#b2b2b2;
     margin-left:5px;
     .iconsize{
-    font-size:20px;    
+    font-size:25px;    
     }
 }
 
@@ -3837,12 +3840,36 @@ p{
              font-size: 15px;
          }  
     }  
-    
     .ioncontentalign{
         margin-top: 188px;
     }
   
+  .pfontsize{
+      font-size:16px !important;
+      width: 284px;
+      white-space: normal !important;
+  }
+  .headerrighticon{
+      border:1px solid #888;
+      border-radius:50%;
+      padding-left:5px;
+      padding-right:6px;
+      padding-top:5px;
+      padding-bottom: 0px;
+      font-size:21px;
+      color: #888;
+  }
    
+  .headerlefticons{
+      border:1px solid #888;
+      border-radius: 50%;
+      padding-left: 7px;
+      padding-right: 8px;
+      padding-top: 5px;
+      padding-bottom: 0px;
+      font-size: 21px;
+      color: #888;
+  } 
    
   @media (max-width:481px) and (min-width:322px)    {
     .popup-container .popup {
@@ -3852,7 +3879,7 @@ p{
              margin-left:39% !important;
          }
          .footerheight{
-            height:56px !important;
+            height:66px !important;
              background-image:none;
          }
          .fooheight
@@ -3892,13 +3919,19 @@ p{
          .hidecard{   
               margin:42.5px 10px !important;
          }
-           .ionappointment{
+          .ionappointment{
           height:75px !important;
+         }
+         .appointment{
+           color:white;
+           font-size:20px;
       }
-      .appointment{
-          color:white;
-          font-size:20px;
-      }
+       .userdeptcontent{
+               margin-top:93px !important;
+       }
+       .deptlist:last-child{
+           margin-bottom:130px;
+       }
        .userdetcontent{
              margin-top:58px !important;
          }
@@ -4001,23 +4034,28 @@ p{
     .popup-container .popup {
         width:27% !important;
            }
-            .topimage {
+      .topimage {
              margin-left:46% !important;
          }
-          .userdetcontent{
-             margin-top:138px !important;
+         
+       .userdetcontent{
+             margin-top:151px !important;
          }
-          .userdetcontent{
-             margin-top:138px !important;
-         }
-         .ioncontentalign{
+      .ioncontentalign{
              margin-top:176px;
          }
+       .deptlist:last-child{
+           margin-bottom:105px;
+       }   
+       .userdeptcontent{
+           margin-top:148px;
+       }   
+         
      } 
         
  .popup-container .popup {
     border-radius: 7px;
-}
+  }
 	
     .listfirst > a:first-child  {
     background-color:rgba(255, 201, 0, 0.53);
@@ -4065,10 +4103,11 @@ p{
  .topimage {
     position: absolute;
     top: 9px;
-    max-width: 70px;
-    max-height: 70px;
-    width: 100%;
-   border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 3px #888;
+    border: 2px solid #FFFFFF;
      
  }  
   .appointment{
@@ -4110,4 +4149,11 @@ p{
 .button-bar > .button:last-child {
     border-right-width: 1px;
     border-radius: 0px 6px 6px 0px !important;
+}
+.dependusers{
+    display:none; 
+}
+
+.couses{
+    display:block;
 }

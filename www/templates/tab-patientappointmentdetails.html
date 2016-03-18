@@ -23,14 +23,14 @@
          <div class="item item-image-icon " style="background-color:#444444;">
           
            <a style="padding-left: 30px;">
-               <i class="icon ion-home" style="border:2px solid #888;border-radius: 50%;padding-left: 7px;padding-right: 8px;padding-top: 5px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+               <i class="icon ion-home headerlefticons" style=""></i>
                <p style="padding-top:17px;">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
                <p><img src="img\patient.png" class="topimage" style=""></p>
            </a>
            <a style="float:right;margin-top:-83px;">
-               <i class="icon ion-ios-people" style="border:2px solid #888;border-radius: 50%;padding-left:5px;padding-right:6px;padding-top:4px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+               <i class="icon ion-ios-people  headerrighticon" style=""></i>
                <p style=" padding-top: 19px; margin-left: -21px;"  >Change Patient</p>
            </a>
    </div>
@@ -46,19 +46,22 @@
     <div class="list " style="margin-top: 147px;">
         
      
-        <a class="item item-avatar">
-             <img src="img\patient.png">
-            <h2>with</h2>
+        <a class="item item-avatar" style="padding-left:85px;">
+             <img src="img\patient.png" style="max-width:59px;max-height:59px;top:19px;">
+              <h2>with</h2>
               <h2><span class="fname">Dr.McGrath</span> 
                 <span style="float:right;"><i class="icon ion-chevron-right "></i></span>
               </h2>
               <p>Female . 36 yrs</p>
-        </a>
-    
+           </a>
+    <span>
+        
+        
+    </span>
       
         <ion-item class="ionitem">
            <div class="card newcard">
-              <div class="item item-text-wrap">
+              <div class="item item-text-wrap" style= "padding-left: 29px;">
                   <div class="">
                        <h2><span class="fname" style="font-size:40px;margin-left: 24px">12:25 pm</span> </h2>
                        <p style="font-size: 22px; ">Monday, july 29,2015</p>
@@ -68,34 +71,34 @@
          </ion-item>  
       
       <a class="item" href="#" style="border-bottom:none;">
-       <div class="row">
+       <div class="row" style="margin-left:-17px;">
           <div class="col col-10" style="background-color: rgba(204, 204, 204, 0.46);">1</div>
             <div class="col col-50">
-                <div><h2><b>Primary Concern</b></h2></div>
-                <p>This is the primary reason for visit</p>
+                <p><b>Primary Concern</b></p>
+                <p class="pfontsize">This is the primary reason for visit</p>
             </div>
           </div>
           <br>
-          <div class="row" style="margin-top: -28px;">
+          <div class="row" style="margin-top: -28px;margin-left:-17px;">
           <div class="col col-10" style="background-color: rgba(204, 204, 204, 0.46);">2</div>
             <div class="col col-50">
-                <div><h2><b>Secondary Concern</b></h2></div>
-                <p>This is the Secondary reason for this</p>
-                <p>visit. It may be significantly longer</p>
-                <p>than normal if it is a cunstom entry</p>
+               <p><b>Secondary Concern</b></p>
+                <p class="pfontsize">This is the Secondary reason for this
+                visit. It may be significantly longer
+                than normal if it is a cunstom entry</p>
             </div>
           </div>
           <br>
-          <div class="row" style="margin-top: -28px;">
+          <div class="row" style="margin-top: -28px;margin-left:-17px;">
           <div class="col col-10" style="background-color: rgba(204, 204, 204, 0.46);">a</div>
             <div class="col col-50">
-                <div><h2><b>Notes</b></h2></div>
-                <p>This is the Secondary reason for this</p>
-                <p>visit. It may be significantly longer</p>
-                <p>than normal if it is a cunstom entry</p>
-                <p>This is the Secondary reason for this</p>
-                <p>visit. It may be significantly longer</p>
-                <p>than normal if it is a cunstom entry</p>
+                <p><b>Notes</b></p>
+                <p class="pfontsize">This is the Secondary reason for this
+                visit. It may be significantly longer
+                than normal if it is a cunstom entry
+                This is the Secondary reason for this
+                visit. It may be significantly longer
+                than normal if it is a cunstom entry</p>
                 
                 
                 
@@ -116,7 +119,7 @@
 </ion-view>     
 
 
-<div class="bar bar-footer  footer-color fooheight">
+<ion-footer-bar class="bar bar-footer  footer-color fooheight">
      <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
    <h1 class="title" id="centercolor" >Enter Appointment</h1>
-</div>
+</ion-footer-bar>
