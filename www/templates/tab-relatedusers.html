@@ -1,5 +1,5 @@
 
-<ion-side-menus> >
+<ion-side-menus>
 	<ion-side-menu-content> 
 
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
@@ -21,14 +21,14 @@
          <div class="item item-image-icon " style="background-color:#444444;">
           
            <a style="padding-left: 30px;">
-               <i class="icon ion-home" style="border:2px solid #888;border-radius: 50%;padding-left: 7px;padding-right: 8px;padding-top: 5px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+               <i class="icon ion-home headerlefticons" style=""></i>
                <p style="padding-top:17px;">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
                <p><img src="img\patient.png" class="topimage" style=""></p>
            </a>
            <a style="float:right;margin-top:-83px;">
-               <i class="icon ion-ios-people" style="border:2px solid #888;border-radius: 50%;padding-left:5px;padding-right:6px;padding-top:4px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
+               <i class="icon ion-ios-people headerrighticon" style=""></i>
                <p style=" padding-top: 19px; margin-left: -21px;"  >Change Patient</p>
            </a>
    </div>
@@ -60,7 +60,8 @@
 <ion-view title="">
 	<ion-content style="margin-top:175px;">
     
-    <div class="list" style="margin-top:18px;" ng-hide="userdata">
+    <div class="list couses animated slideInLeft" id="couserlist" style="margin-top:18px;" >
+     
             <a class="item item-avatar" style="border-top:none;">
             <img src="img\ionic.png">
             <h2><span  class="fname">Elizabeth</span> <span  class="sname">Fitzpatrick</span></h2>
@@ -73,7 +74,7 @@
             <p>Female.29 yrs.Sister
               <i class="icon ion-chevron-right avataricon"></i></p>
              </a>
-           
+          
 <div class="row" ng-show='showarchieve' ng-click='archievedetails()'>
     
   <div class="col col-25 archieve">
@@ -93,9 +94,8 @@
   </div>
  </div>
  
-</div>                
-   
- <div class="list" style="margin-top:18px;" ng-hide="dependentshide">
+</div>      
+ <div class="list dependusers animated slideInRight" id="dependuserlist" style="margin-top:18px;" >
             <a class="item item-avatar" style="border-top:none;">
             <img src="img\ionic.png">
             <h2><span  class="fname">Angie</span> <span  class="sname">Fitzpatrick</span></h2>
@@ -253,13 +253,7 @@
                </div> 
          
          
-            
-            <!-- <div class="conticon">
-                  <i class="ion-chevron-right avataricon"  style="font-size:23px;margin-left:23px;"></i>
-                   <p style="margin-left: 18px;">Relationsship</p>
-                  </div>
-                   <div class=""><p class="">Step-Daughter</p></div> 
-          </div>-->
+        
      
          </div>  
        
