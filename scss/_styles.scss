@@ -531,14 +531,11 @@ body {
 }
 
 
-//Patient Detail page
-
 .bar-positiveHomeUser {
-    background-color: $pinkPipe;
-    background-image: linear-gradient(0deg, $pinkPipe, $pinkPipe 50%, transparent 50%);
-    //border-color: #f0502c;
-	height: auto;
-    border-bottom: none;
+  background-color: #A80532;
+  background-image: linear-gradient(0deg, #A80532, #A80532 50%, transparent 50%);
+  height: 128px; 
+  border-bottom: none; 
 }
 .backButtonDiv {
 	float: left;
@@ -3358,7 +3355,7 @@ font-family: $fontFamily_regular;
      } 
       
 .item-image-icon {
-    height:95px !important;
+    height:102px !important;
 }
 
 .singleTermsTitle-Android {
@@ -3491,8 +3488,9 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 .formlabel {
     margin-left: 10px;
-    color: #111;
+    color:#707070;
     font-family: Glober Bold;
+    font-weight: normal !important; 
 }
 .circle {
   position: relative;
@@ -3540,6 +3538,7 @@ font-size: 20px;margin-left:120px; top: 5px;
      float:right; 
      color:white;
      margin-top:3px;
+     font-size:12px !important;
   }
 
 .round-button {
@@ -3547,16 +3546,18 @@ font-size: 20px;margin-left:120px; top: 5px;
     margin:0;
 }
 .round-button-circle {
-	width: 93%;
-    height: 0;
-    margin: 0;
-    padding-bottom: 88%;
-    border-radius: 50%;
-    overflow: hidden;
-    background: #ddd;
-    box-shadow: 0px 2px 3px #ccc;
-    border: 2px solid #FFFFFF;
-}
+	
+  width: 78%;
+  height: 0;
+  margin: 0;
+  padding-bottom: 78%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ddd;
+  box-shadow: 0px 2px 3px #ccc;
+  border: 2px solid #FFFFFF; 
+  }
+
 
 .round-button a {
     display:block;
@@ -3576,7 +3577,7 @@ font-size: 20px;margin-left:120px; top: 5px;
     margin-left: 54px;
 }
 .labelcolor{
-    color:#b2b2b2;
+    color: #cccccc;
     margin-left:5px;
     .iconsize{
     font-size:25px;    
@@ -3876,11 +3877,21 @@ p{
         width: 67% !important;
          }
          .topimage {
-             margin-left:39% !important;
+             margin-left:34% !important;
          }
          .footerheight{
             height:66px !important;
              background-image:none;
+         }
+         .footerrsheight{
+            height:80px !important;
+             background-image:none; 
+             #centercolor {
+                color: white;
+                margin-top: 20px !important;
+                font-size: 21px; 
+                font-family:Glober Bold;
+                }
          }
          .fooheight
          {
@@ -3913,11 +3924,11 @@ p{
                margin-right:40px !important;
          }
          .newcard{
-             margin:48px 10px !important;
+             margin:42px 10px !important;
               box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
          }
          .hidecard{   
-              margin:42.5px 10px !important;
+             margin:40px 10px !important; 
          }
           .ionappointment{
           height:75px !important;
@@ -3927,10 +3938,11 @@ p{
            font-size:20px;
       }
        .userdeptcontent{
-               margin-top:93px !important;
+               margin-top:105px !important;
        }
        .deptlist:last-child{
-           margin-bottom:130px;
+          // margin-bottom:130px;
+           padding-bottom:65px;
        }
        .userdetcontent{
              margin-top:58px !important;
@@ -3949,6 +3961,11 @@ p{
              width: 145px;
              font-size: 15px;
          }
+         
+         .list .ion-chevron-right:before {
+           font-size: 12px !important; 
+           }
+         
     }  
     
     @media (max-width:640px) and (min-width:482px)    {
@@ -4116,7 +4133,7 @@ p{
       }
 .item-image-icon{
     background-color: #444444;
-    margin-top: -14px;
+    margin-top: -10px;
     border-color: #444444;
     height: 90px;
     background: -webkit-linear-gradient(top, #444444, #444444 59%, white 30%, white);
@@ -4132,16 +4149,17 @@ p{
  .ion-chevron-right:before {
     font-size: 8px !important;
 }
-.iconchevron{
-    border: 1px solid white;
-    border-radius: 50%;
-    padding-left:7px;
-    padding-right:7px;
-    padding-top:0px;
-    padding-bottom:5px;
-    font-size:16px;
-    color:white;
-}
+.iconchevron {
+  border: 1px solid white;
+border-radius: 50%;
+padding-left: 4px;
+padding-right: 4px;
+padding-top: 0px;
+padding-bottom: 0px;
+ font-size: 12px !important; 
+color: white;  
+ 
+  }
 .button-bar > .button:first-child {
     border-radius: 6px 0px 0px 6px !important;
 
