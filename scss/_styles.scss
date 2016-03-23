@@ -3431,7 +3431,7 @@ font-family: $fontFamily_regular;
      margin-top:258px !important;
  }
  .content{
-     margin-left:12px;
+     margin-left:20px;
      font-size:20px;
  }
  .footercontent{
@@ -3501,7 +3501,7 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 #centercolor{
     color:white;
-    margin-top:10px !important;
+    margin-top:20px !important;
     font-size:21px;
 }
 .formlabel {
@@ -3946,9 +3946,9 @@ p{
          .alignchronic{
              margin-left:40px !important;
          }
-         .has-header{
+      /*   .has-header{
             top:104px;
-         }
+         }*/
          .useraddcontent{
               margin-top:5px !important;
          }
@@ -4047,9 +4047,12 @@ p{
           .topimage {
              margin-left:43% !important;
          }
-          .userdetcontent{
+          .userdetcontent{ 
              margin-top:138px !important;
          }  
+         .userdeptcontent {
+              margin-top:155px !important;
+         }
          .ioncontentalign{
              margin-top:185px;
          }
@@ -4121,6 +4124,10 @@ p{
 }
 .listall > a:first-child  {
     background-color:rgba(230, 101, 10, 0.33);
+}
+.listfirst:last-child {
+    margin-bottom: 120px;
+  
 }
  .popup-head {
     padding: 14px 12px;
