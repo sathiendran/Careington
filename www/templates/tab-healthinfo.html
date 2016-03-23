@@ -2,7 +2,7 @@
 <ion-side-menus> 
 	<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
        
   
@@ -11,9 +11,9 @@
 				ng-click="toggleLeft()"></button>
 	</div>
         
-    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> User <span style="float:right;">Edit</span></h1>
+    <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> My Health</span> <span style="float:right;">Edit</span></h1>
 
-  <div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+  <div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
                   <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
 					  <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
@@ -25,14 +25,14 @@
           
            <a style="padding-left: 30px;">
                <i class="icon ion-home headerlefticons" style=""></i>
-               <p style="padding-top:17px;">Account Home</p>
+               <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
                <p><img src="img\patient.png" class="topimage" style=""></p>
            </a>
-           <a style="float:right;margin-top:-83px;">
+           <a style="float:right;margin-top:-88px;">
                <i class="icon ion-ios-people headerrighticon" style=""></i>
-               <p style=" padding-top: 19px; margin-left: -21px;"  >Change Patient</p>
+               <p class="patientcontent" >Change Patient</p>
            </a>
            
    </div>				
@@ -60,146 +60,150 @@
 </ion-header-bar>
 
 <ion-view title="">
-	<ion-content class="ioncontentalign" >
+	<ion-content class="ioncontentalign">
           
         
         <div ng-hide="addmore">
             
-             <h4 style=" text-align: center;color:#888;"><b>Demographics</b></h4>
-        <div class="list">
+             <h4 style=" text-align: center;color:#6c6c6c;font-size:22px;"><b>Demographics</b></h4>
+        <div class="list profilelist">
 		
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
              <span class="input-label labelcolor">
               <i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b>
                </span>
               <span class="valuealign">
-                <input type="text" value="06/08/1988"  placeholder="Required" required="required"  name="name" id="name">
+                <input type="text" value="06/08/1988"  placeholder="Required" required="required"  name="name" style="font-size:17px;color:#7c7c7c;">
                </span>
 		 </label>	
          
-       	 <label class="item item-input validated">
+       	 <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-female"></i><b class="formlabel">Gender</b>
+                  <i class="ion-female"></i><b class="formlabel labelfont">Gender</b>
                 </span>
                <span class="valuealign"> 
-                <input type="text" value="Male" placeholder="Optional"   name="name" id="name" >
+                <input type="text" value="Male" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
                </span>
 		 </label>
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
             <span class="input-label labelcolor">
-               <i class="ion-android-arrow-up"></i><b class="formlabel">Height</b>
+               <i class="ion-android-arrow-up"></i><b class="formlabel labelfont">Height</b>
             </span>
           <span class="valuealign">    
-            <input type="text" value="6'1" placeholder="Optional"   name="name" id="name" >
+            <input type="text" value="6'1" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
           </span>  
 		 </label>
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                <i class="ion-ios-filing"></i><b class="formlabel">Weight</b>
+                <i class="ion-ios-filing"></i><b class="formlabel labelfont">Weight</b>
               </span>
               <span class="valuealign">
-                <input type="text" value="185lbs" placeholder="Optional"   name="name" id="name" >
+                <input type="text" value="185lbs" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
               </span>
 		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor" style="margin-bottom: 22px;">
-                  <i class="ion-ios-telephone"></i><b class="formlabel">Home Phone</b>
-               </span>
-               <span class="valuealign">
-                 <input type="text" value="555-987-5664" placeholder="Optional"   name="name" id="name" >
-                <span class="valuealign">   
-		 </label>
-          <label class="item item-input validated">
+         <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-ios-telephone"></i><b class="formlabel">Mobile</b>
+                  <i class="ion-ios-telephone"></i><b class="formlabel labelfont">Home Phone</b>
                </span>
                <span class="valuealign">
-                 <input type="text" value="555-897-3642" placeholder="Optional"   name="name" id="name">
+                 <input type="text" value="555-987-5664" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
                </span>  
 		 </label>
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-location"></i><b class="formlabel">Home Address</b>
+                  <i class="ion-ios-telephone"></i><b class="formlabel labelfont">Mobile</b>
+               </span>
+               <span class="valuealign">
+                 <input type="text" value="555-897-3642" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
+               </span>  
+		 </label>
+          <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor">
+                  <i class="ion-location"></i><b class="formlabel labelfont">Home Address</b>
                </span>
                <span class="valtex">
                    <textarea class ="valuetextarea" value=""  rows="3" cols="3">121 E Lexington Dr, Glendale, CA 91203 USA</textarea>
                </span>   
-             <!--<textarea value="121 E Lexington Dr,Glendale, CA 91203 USA" id="name" cols="10" rows="3"  placeholder="Optional"></textarea>-->
-		 </label>
-          <label class="item item-input validated">
+ m		 </label>
+          <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-ios-people"></i><b class="formlabel">Organization</b>
+                  <i class="ion-ios-people"></i><b class="formlabel labelfont">Organization</b>
                </span>
                <span class="valuealign">
-                 <input type="text" value="Coca-Cola" placeholder="Optional"   name="name" id="name">
+                 <input type="text" value="Coca-Cola" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
                </span>  
 		 </label>
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-location"></i><b class="formlabel">Location</b>
+                  <i class="ion-location"></i><b class="formlabel labelfont">Location</b>
                </span>
                <span class="valuealign">
-                 <input type="text" value="West Factory" placeholder="Optional"   name="name" id="name" >
+                 <input type="text" value="West Factory" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
                </span>
 		 </label>
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-ios-person"></i><b class="formlabel">Hair Color</b>
+                  <i class="ion-ios-person"></i><b class="formlabel labelfont">Hair Color</b>
                </span>
                <span class="valuealign">
-                 <input type="text" value="Brown" placeholder="Optional"   name="name" id="name">
+                 <input type="text" value="Brown" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
                </span>
 		 </label>
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-ios-eye"></i><b class="formlabel">Eye Color</b>
+                  <i class="ion-ios-eye"></i><b class="formlabel labelfont">Eye Color</b>
                </span>
                <span class="valuealign">
-                <input type="text" value="Brown" placeholder="Optional"   name="name" id="name">
+                <input type="text" value="Brown" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
                </span> 
 		 </label>
-          <label class="item item-input validated">
+          <label class="item item-input itemtab validated">
                <span class="input-label labelcolor">
-                  <i class="ion-earth"></i><b class="formlabel">Ethnicity</b>
+                  <i class="ion-earth"></i><b class="formlabel labelfont">Ethnicity</b>
                </span>
                <span class="valuealign">
-                <input type="text" value="Caucasian" placeholder="Optional"   name="name" id="name">
+                <input type="text" value="Caucasian" placeholder="Optional"   name="name" style="font-size:17px;color:#7c7c7c;">
                </span>   
 		 </label>
          
-         <label class="item item-input validated">
-               <span class="input-label labelcolor">
-               </span>
-		 </label>
+       
     </div>
    </div>
    
    <div ng-hide="healthhide">
-       <h4 style="color:#888;"><b> <span class="aligntext">Basic Health </span><i class="ion-chevron-down" style="float:right;margin-right:26px;"></i></b></h4>
-       <hr> 
-      <h4><span class="aligntext"  style="font-size: 22px;">Current Medications</span><i class="ion-edit" style="float:right;margin-right:26px;"></i></h4>
-      <hr class="dothr">
-      <ul class="aligntext alvalue">
-         <li>1.Acetemetaphine</li>
-         <li>2.Another thing</li>
-         <li>3.Yet Another item</li>  
-         <li>4.Amoxicillen</li> 
-      </ul> <br>
-    <h4><span  class="aligntext"  style="font-size: 22px;">Medication Allergies</span><i class="ion-edit" style="float:right;margin-right:26px;"></i></h4>
-      <hr class="dothr">
-       <ul class="aligntext alvalue">
+       <h4 style="color:#888;"> <span class="aligntext">Basic Health </span><i class="ion-chevron-down icondown"></i></h4>
+       <hr style="background-color:rgba(186, 186, 186, 0.95);margin-top:-8px;"> 
+      
+          <div>
+              <h4>
+          <span class="alignnexttext">Current Medications</span><span><i class="ion-edit" style="float:right;margin-right:26px;"></i></span>
+          </h4>
+          </div>
+          
+      <hr class="dothr" style="margin-top:-2px;">
+      <ul class="aligntext alvalue" style="line-height:1.5;">
+         <li>1. Acetemetaphine</li>
+         <li>2. Another thing</li>
+         <li>3. Yet Another item</li>  
+         <li>4. Amoxicillen</li> 
+      </ul> 
+    <h4 style="margin-top:-3px !important;"><div style="margin-top:12px;"  class="alignnexttext"  >Medication Allergies</div><span><i class="ion-edit" style="float:right;margin-right:26px;margin-top:-22px"></i></span></h4>
+      <hr class="dothr" style="margin-top:-8px;">
+       <ul class="aligntext alvalue" style="line-height:1.5;">
          <li>1.Steroids</li>
-       </ul>  <br>
-      <h4><span class="aligntext"  style="font-size: 22px;">Chronic Conditions</span><i class="ion-edit" style="float:right;margin-right:26px;"></i></h4>
-      <hr class="dothr">
-       <ul class="aligntext alvalue">
-         <li>1.Thing</li>
-       </ul>  <br> 
-       <h4><span  class="aligntext"  style="font-size: 22px;">Prior Surgeries</span><i class="ion-edit" style="float:right;margin-right:26px;"></i></h4>
+       </ul> 
+       
+       <h4 style="margin-top:-3px !important;padding-top:7px;"><div style="margin-top:12px;" class="alignnexttext chronic">Chronic Conditions</div><span><i class="ion-edit" style="float:right;margin-right:26px;margin-top:-22px"></i></span></h4>
+      <hr class="dothr" style="margin-top:-8px;">
+       <ul class="aligntext alvalue" style="line-height:1.5;">
+          <li>1. Thing</li>
+       </ul> 
+       
+       <h4><div style="margin-top:12px; padding-bottom:12px;"  class="alignnexttext"  >Prior Surgeries</div><span><i class="ion-edit" style="float:right;margin-right:26px;"></i></span></h4>
       <hr class="dothr">
        <ul class="aligntext alvalue">
          <li>1.That One thing</li>
-       </ul>  <br>
+       </ul>  
    </div>    
        
           <a class="button button-calm" ng-href="#/tab/healthinfoedit"><span>Next</span></a>   
