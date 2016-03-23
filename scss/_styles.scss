@@ -704,7 +704,7 @@ body {
 					font-weight: bold;
 				}
 				.patientLastName {
-					font-weight: bold;
+					font-weight: normal;
 				}				
 			}
 			.subHeader_content_age {
@@ -2136,8 +2136,14 @@ body {
 	
 }
 
-
-
+.lnamefont{
+    font-family:Glober Regular;
+    font-size:28px;
+}
+.fnamefont{
+    font-family:Glober SemiBold;
+    font-size:28px;
+}
 
 .bar .title {
 text-align:center
@@ -2453,7 +2459,7 @@ margin-left: 16px;
 }
 
 .PatintHeaderFontStyle { 
-font-family: $fontFamily_xBold;
+//font-family: $fontFamily_xBold;
 }
 .PatintHeaderFontStyleInner { 
 font-family: $fontFamily_thin;
@@ -2891,7 +2897,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 
 .HeaderListIOS { 
-font-size: 20px; text-align: center; width: 100%;
+font-size: 18px; text-align: center; width: 100%;
   margin-left: 32px; margin-top:12px;
 }
 .HeaderListAndroid { 
@@ -3431,8 +3437,11 @@ font-family: $fontFamily_regular;
      margin-top:258px !important;
  }
  .content{
-     margin-left:20px;
+     margin-left:38px;
      font-size:20px;
+     a{
+         color :rgba(5, 4, 9, 0.54)!important;
+        }
  }
  .footercontent{
      color:white;
@@ -3443,10 +3452,10 @@ font-family: $fontFamily_regular;
  }
  .homecontent{
      padding-top:25px;
-     font-size:12px;
+     font-size:12px !important;
  }
  .patientcontent{
-     padding-top: 19px; margin-left:-21px;font-size:12px; margin-top: 7px;
+     padding-top: 19px; margin-left:-21px;font-size:12px !important; margin-top: 7px;
  }
  .headertitle{   
 font-size: 20px; text-align: center; width: 100%;top: 5px;
@@ -3499,16 +3508,35 @@ font-size: 20px;margin-left:120px; top: 5px;
 #footleft{
     width:42px;
 }
+.usersubheader{
+    top:64px;
+    height:100px;
+}
 #centercolor{
     color:white;
     margin-top:20px !important;
     font-size:21px;
+    font-family:Glober Bold;
+}
+.userionitem{
+    padding: 7px!important;
+}
+.userlist{
+   padding-top: 77px !important; 
+}
+.lefthome{
+    padding-left: 30px;
+}
+.rightpatient{
+    float:right;
+    margin-top:-90px;
 }
 .formlabel {
-    margin-left: 10px;
-    color:#707070;
-    font-family: Glober Bold;
-    font-weight: normal !important; 
+  margin-left: 10px;
+color: rgba(5, 4, 9, 0.54) !important;
+font-family: Glober Bold;
+font-weight: normal !important;
+font-size: 18px;
 }
 .circle {
   position: relative;
@@ -3528,7 +3556,11 @@ font-size: 20px;margin-left:120px; top: 5px;
   background-color: #ddd;
   content: "";
 }
-
+.headerrightend{
+   float:right; 
+   font-weight:normal;
+   font-size:16px;
+}
 .circle__inner {
   position: absolute;
   top: 0;
@@ -3938,13 +3970,25 @@ p{
                 font-family:Glober Bold;
                 }
          }
+         .footerstyle{
+             height:80px !important;
+             margin-top:15px !important;
+         }
+         .userappheight{
+             margin-top:15px !important;
+             height:44px!important;
+         }
+         .userappcontent{
+             font-family:Glober SemiBold;
+             background-color: #9BCA82;color:#fff;
+         }
          .fooheight
          {
          height: 67.5px !important;
          background-image:none;
           }
          .usercontent{
-             margin-top:142px !important;
+             margin-top:156px !important;
          }
          .alignchronic{
              margin-left:40px !important;
@@ -3983,7 +4027,7 @@ p{
            font-size:20px;
       }
        .userdeptcontent{
-               margin-top:105px !important;
+               margin-top:120px !important;
        }
        .deptlist:last-child{
           // margin-bottom:130px;
@@ -4013,7 +4057,9 @@ p{
          .list .ion-chevron-right:before {
            font-size: 12px !important; 
            }
-         
+       .has-header {
+         top:90px; 
+       }
     }  
     
     @media (max-width:640px) and (min-width:482px)    {
@@ -4196,10 +4242,11 @@ p{
     border: 2px solid #FFFFFF;
      
  }  
-  .appointment{
-          color:white;
-          font-size:20px;
-      }
+  .appointment {
+  color: white;
+  font-size: 19px;
+  font-family: Glober xBold;
+   }
 .item-image-icon{
     background-color: #444444;
     margin-top: -13px;
@@ -4229,6 +4276,18 @@ padding-bottom: 0px;
 color: white;  
  
   }
+.footerstyle{
+      height:80px !important;
+      margin-top:15px !important;
+         }  
+  .userappheight{
+       margin-top:15px !important;
+       height:44px!important;
+         }
+ .userappcontent{
+      font-family:Glober SemiBold;
+       background-color: #9BCA82;color:#fff;
+         } 
 .button-bar > .button:first-child {
     border-radius: 6px 0px 0px 6px !important;
 

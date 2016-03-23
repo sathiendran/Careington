@@ -13,26 +13,26 @@
 
        <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="margin-left:-32px;"> <span>User</span></h1>
 
-			<div class="bar bar-subheader bar-dark" style="top:64px;height:100px;">
+			<div class="bar bar-subheader bar-dark usersubheader" >
                   <div class="row">
                       <h1 class="headertitle">
                           <div class="ellipsis subHeader_content_name" >
-					       <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober SemiBold;font-size:28px;">Jonathan</span>
-					      <span class="patientLastName ellipsis" style="font-style:Glober Regular;font-size:25px;">Fitzpztrick</span>
+					       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
+					      <span class="patientLastName ellipsis lnamefont">Fitzpztrick</span>
 				        </div>
                      </h1>
                   </div>
 
      <div class="item item-image-icon " style="background-color:#444444;">
-           <a style="padding-left: 30px;">
-              <i class="icon ion-home headerlefticons" style=""></i>
+           <a class="lefthome"style="">
+              <i class="icon ion-home headerlefticons"></i>
              <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
-               <p><img src="img\patient.png" class="topimage" style=""></p>
+               <p><img src="img\patient.png" class="topimage"></p>
            </a>
-           <a style="float:right;margin-top:-90px;">
-               <i class="icon ion-ios-people headerrighticon" style=""></i>
+           <a class="rightpatient" style="">
+               <i class="icon ion-ios-people headerrighticon"></i>
                <p class="patientcontent"  >Change Patient</p>
            </a>
       </div>
@@ -45,17 +45,17 @@
 
 <ion-view title="">
 
-	<ion-content class="usercontent" style="">
+	<ion-content class="usercontent" >
         <ion-list >
-            <div class="list" style="padding-top: 77px !important;">
-         <ion-item class="ionitem" style="padding: 7px!important;">
+            <div class="list userlist">
+         <ion-item class="ionitem userionitem" >
            <div class="card newcard" style="margin: 33px 10px !important;">
               <div class="item item-text-wrap">
                   <div class="">
                        <h2 class="title alignchronic ChronicCondition" >
-                             <i class="ion-ios-person" style="font-size:24px;"></i> 
+                            <span style="margin-left:-18px;">  <i class="ion-ios-person" style="margin-left:-18px;font-size:24px;"></i></span> 
                              <span class="content"> 
-                                 <a ng-href="#tab/healthinfo" style="color:rgba(5, 4, 9, 0.54)!important;" >
+                                 <a ng-href="#tab/healthinfo" >
                                  Manage Your Profile
                                  </a>
                                  </span>
@@ -70,14 +70,14 @@
 
 
 
-              <ion-item class="ionitem" style="padding: 7px!important;">
+              <ion-item class="ionitem userionitem" >
            <div class="card newcard" style="margin: 33px 10px !important;">
               <div class="item item-text-wrap">
 				  <div class="">					
 						<h2 class="title alignchronic ChronicCondition" >
-                             <i class="ion-ios-calendar-outline" style="font-size:24px;"></i>
+                             <span style="margin-left:-18px;"><i class="ion-ios-calendar-outline" style="margin-left:-18px;font-size:24px;"></i></span>
                              <span class="content">
-                                 <a ng-href="#tab/appointmentpatientdetails"style="color:rgba(5, 4, 9, 0.54)!important;" >
+                                 <a ng-href="#tab/appointmentpatientdetails"  >
                                   View your Appointments</a>
                                   </span>
                          </h2>
@@ -98,8 +98,8 @@
 
 </ion-view>
 
-<ion-footer-bar class="bar bar-footer  footer-color fooheight" style="height:80px !important;margin-top:15px !important;">
+<ion-footer-bar class="bar bar-footer  footer-color footerstyle" style="">
      <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
-  <h1 class="title" id="centercolor" style="font-family:Glober SemiBold" >See A Clinician Now</h1>
+  <h1 class="title" id="centercolor" >See A Clinician Now</h1>
 </ion-footer-bar>
 
