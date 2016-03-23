@@ -911,7 +911,7 @@ body {
 }
 .intakeTittleIOS { 
 	margin-left: -33px;
-	top: 7px !important;
+	top: 17px !important;
 }
 
 .PatientDetailsHome { 
@@ -922,6 +922,9 @@ body {
 	.PatientNextAvailable {
 		padding-top: 40px;
 	}
+}
+.labelfont{
+    font-size:17px;
 }
 
 //Consult Charge page
@@ -3323,6 +3326,14 @@ font-family: $fontFamily_regular;
 .brand {
 	text-align: center;
 }
+.itemtab{
+    padding:12px !important;
+}
+
+
+
+
+
  @media (max-width:320px) and (min-width:315px)    {
    .addphoto{
       width:34%;
@@ -3429,6 +3440,13 @@ font-family: $fontFamily_regular;
  }
  .homeicon{
      margin-left:24px;
+ }
+ .homecontent{
+     padding-top:25px;
+     font-size:12px;
+ }
+ .patientcontent{
+     padding-top: 19px; margin-left:-21px;font-size:12px;
  }
  .headertitle{   
 font-size: 20px; text-align: center; width: 100%;top: 5px;
@@ -3620,7 +3638,24 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 .aligntext{
     margin-left: 12px;
+    font-weight:normal;
+    font-size:24px;
+    font-family: Glober Regular;
 }
+.alignnexttext{
+  margin-left: 12px;
+  font-size: 18px; 
+  font-family:Glober bold;
+  color:#585858;
+}
+.icondown{
+    float: right;
+    margin-right: 26px;
+    margin-top:12px;
+    font-size:14px;
+    color:#414141;
+}
+
 .alvalue{
     color: #888;
     font-size: 18px;
@@ -3775,6 +3810,12 @@ p{
    
   } 
 }
+
+ .profilelist:last-child{
+          // margin-bottom:130px;
+           padding-bottom:65px;
+       }
+
   @media only screen and (max-device-width: 480px){
 	.col-25{
             max-width:46% !important;
@@ -3883,6 +3924,7 @@ p{
             height:66px !important;
              background-image:none;
          }
+      
          .footerrsheight{
             height:80px !important;
              background-image:none; 
@@ -3948,7 +3990,7 @@ p{
              margin-top:58px !important;
          }
          .ioncontentalign{
-             margin-top:102px;
+             margin-top:154px;
          }
          .valuealign{
              margin-left:45px;
@@ -4133,7 +4175,7 @@ p{
       }
 .item-image-icon{
     background-color: #444444;
-    margin-top: -10px;
+    margin-top: -13px;
     border-color: #444444;
     height: 90px;
     background: -webkit-linear-gradient(top, #444444, #444444 59%, white 30%, white);
