@@ -3431,7 +3431,7 @@ font-family: $fontFamily_regular;
      margin-top:258px !important;
  }
  .content{
-     margin-left:12px;
+     margin-left:20px;
      font-size:20px;
  }
  .footercontent{
@@ -3501,7 +3501,7 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 #centercolor{
     color:white;
-    margin-top:10px !important;
+    margin-top:20px !important;
     font-size:21px;
 }
 .formlabel {
@@ -3885,6 +3885,9 @@ p{
     .ioncontentalign{
         margin-top: 188px;
     }
+    .ioncontentsalign{
+        margin-top: 188px;
+    }
   
   .pfontsize{
       font-size:16px !important;
@@ -3946,9 +3949,9 @@ p{
          .alignchronic{
              margin-left:40px !important;
          }
-         .has-header{
+      /*   .has-header{
             top:104px;
-         }
+         }*/
          .useraddcontent{
               margin-top:5px !important;
          }
@@ -3992,6 +3995,9 @@ p{
          .ioncontentalign{
              margin-top:154px;
          }
+         .ioncontentsalign{
+             margin-top:165px;
+         }
          .valuealign{
              margin-left:45px;
              color:#888;
@@ -4026,6 +4032,9 @@ p{
          .ioncontentalign{
              margin-top:185px;;
          }
+         .ioncontentsalign{
+             margin-top:185px;;
+         }
           .valuealign{
              margin-left: 70px;
              color:#888;
@@ -4047,10 +4056,16 @@ p{
           .topimage {
              margin-left:43% !important;
          }
-          .userdetcontent{
+          .userdetcontent{ 
              margin-top:138px !important;
          }  
+         .userdeptcontent {
+              margin-top:155px !important;
+         }
          .ioncontentalign{
+             margin-top:185px;
+         }
+          .ioncontentsalign{
              margin-top:185px;
          }
          .valuealign{
@@ -4078,6 +4093,9 @@ p{
          .ioncontentalign{
              margin-top:185px;
          }
+          .ioncontentsalign{
+             margin-top:185px;
+         }
            .valuealign{
              margin-left: 108px;
              color:#888;
@@ -4103,6 +4121,9 @@ p{
       .ioncontentalign{
              margin-top:176px;
          }
+      .ioncontentsalign{
+             margin-top:176px;
+         }
        .deptlist:last-child{
            margin-bottom:105px;
        }   
@@ -4121,6 +4142,10 @@ p{
 }
 .listall > a:first-child  {
     background-color:rgba(230, 101, 10, 0.33);
+}
+.listfirst:last-child {
+    margin-bottom: 120px;
+  
 }
  .popup-head {
     padding: 14px 12px;
@@ -4158,7 +4183,9 @@ p{
  .itemhead{
       padding-left: 13px !important;
       }
- 
+ .chronic{
+     margin-bottom:11px !important;
+ }
  .topimage {
     position: absolute;
     top: 9px;
