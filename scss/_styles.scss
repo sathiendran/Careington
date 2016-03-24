@@ -2895,10 +2895,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
  .bar .button.button-clear.icon:before {
    font-size: 30px !important; }
 
-
+.iconsize{
+ font-size:26px !important;   
+}
 .HeaderListIOS { 
 font-size: 18px; text-align: center; width: 100%;
-  margin-left: 32px; margin-top:12px;
+ /* margin-left: 32px;*/ margin-top:12px;
 }
 .HeaderListAndroid { 
 font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
@@ -3668,6 +3670,7 @@ font-size: 18px;
   background-color:#fff;
   height:1px;
 }
+
 .aligntext{
     margin-left: 12px;
     font-weight:normal;
@@ -3864,6 +3867,7 @@ p{
   .fontcolor{
       color:#888 !important;
   }
+   
 .ionappointment{
     height:75px !important;
    .appointment{
@@ -4324,8 +4328,12 @@ color: white;
          } 
 .button-bar > .button:first-child {
     border-radius: 6px 0px 0px 6px !important;
-
 }
+.fontcolorfamily{
+      color:rgba(5, 4, 9, 0.54) !important;
+      font-family:Glober SemiBold;
+      font-size:19px;
+  }
 .button-bar > .button:last-child {
     border-right-width: 1px;
     border-radius: 0px 6px 6px 0px !important;
@@ -4339,4 +4347,7 @@ color: white;
    }
 .couses{
     display:block;
+}
+.tabfont{
+    font-size:26px !important;
 }
