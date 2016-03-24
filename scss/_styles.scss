@@ -3692,8 +3692,36 @@ font-size: 18px;
     color: #888;
     font-size: 18px;
     margin-left: 28px;
+    line-height:1.5;
 }
-
+.chronic{
+    margin-top:12px;
+}
+.h4align{
+  margin-top:-3px !important;  
+  padding-top:7px;
+}
+.hrbasic{
+    background-color:rgba(186, 186, 186, 0.95) !important;
+    margin-top:-8px;
+}
+.editicons{
+   float:right;
+   margin-right:26px;
+   margin-top:-22px ;
+}
+.currentedit{
+    float:right;
+    margin-right:26px;
+}
+.editicon{
+   float:right;
+   margin-right:26px;
+   margin-top:-32px ;
+}
+ .dotalign{
+     margin-top:-8px;
+ }
 .tab-item.active{
     color:#11c1f3 !important;
 }
@@ -3908,7 +3936,7 @@ p{
         }
         
        .valtex {
-             margin-left: 113px;
+             margin-left: 22px;
              color: #888;
              width: 146px;
              font-size: 15px;
