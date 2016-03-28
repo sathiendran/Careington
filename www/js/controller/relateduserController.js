@@ -102,9 +102,9 @@ angular.module('starter.controllers')
      templateUrl: 'templates/popupTemplate.html',
      scope: $scope,
      buttons: [
-       { text: 'Cancel' },
+       { text: '<b class="fonttype">Cancel</b>' },
        {
-         text: '<b>Confirm</b>',
+         text: '<b class="fonttype">Confirm</b>',
          type: 'button-positive',
          onTap: function(e) {
            if (!$scope.Confirm) {

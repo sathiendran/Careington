@@ -140,32 +140,32 @@
              
              
    
-         <div class="row" style="background-color: #ccc; height:70px;" ng-show="tabview">
-           <a class="col col-20 " style="background-color:#9bca82; height:80px;margin-left:-10px;min-width:90px;">
-                  <p class="tabicon"> <i class="ion-chevron-down"></i></p>
+         <div class="row" style="background-color: #ccc; height:60px;" ng-show="tabview">
+           <a class="col col-20 " style="background-color:#9bca82; height:80px;margin-left:-4px;min-width:90px;">
+                  <div class="tabicon"> <i class="ion-chevron-down"></i></div>
                   <i class="icon ion-person-stalker contacticon "></i>
-                   <p style="color:white;font-size:12px;">See a Doc Now</p> 
+                   <p style="color:white;font-size:12px;margin-bottom:0px !important;">See a Doc Now</p> 
            </a>   
             
-           <div class="col col-20" style="margin-left:5px;">
+           <div class="col col-20" style="padding:0px;">
                <div  class="tabvalue">
              <i class="icon ion-eye-disabled" style="font-size:22px;"></i><div style="font-size:12px;">View Profile</div>
                </div>
           </div> 
           
-          <div class="col col-20" style="margin-left:5px;width:73px;">
+          <div class="col col-25" style="width:73px;padding:0px;">
                 <div  class="tabvalue">
              <i class="icon ion-calendar" style="font-size:22px;"></i><div style="font-size:12px;">Appointments</div>
                 </div>
           </div>
           
-           <div class="col col-20" style="margin-left:5px;width:73px;">
+           <div class="col col-20" style="width:73px;padding:0px;">
               <div  class="tabvalue">    
              <i class="icon ion-card" style="font-size:22px;"></i><div style="font-size:12px;">Consultations</div>
               </div>
           </div>
           
-           <div class="col col-13" style="margin-left:5px;" ng-click="moreclickval()">
+           <div class="col col-13" style="margin-left:5px;padding:0px;" ng-click="moreclickval()">
                 <div  class="tabvalue">
              <i class="icon ion-more" style="font-size:22px;"></i><div style="font-size:12px;">More</div>
                 </div>
@@ -174,35 +174,36 @@
          </div>
       
     
-        <div class="row"  ng-show="moretab">
+        <div class="row"   ng-show="moretab" style="height:60px;">
              
           <div class="col col-25 " style="background-color:#9bca82;" ng-click="hidemoretab()">
-                  <p class="tabicon"> <i class="ion-chevron-down"></i></p>
-                  <div class="">
-                  <i class="icon ion-more "  style="font-size:26px;margin-left: 23px;"></i>
-                   <p><a style="margin-left: 19px;">More</a>
-                 
-                   </p> 
-                   </div>
+                  <p class="tabicon" style="margin-top:-10px!important;font-size:20px !important;"> <i class="ion-chevron-down"></i></p>
+                  <div class="" style="margin-top:-12px;">
+                    <i class="icon ion-more "  style="font-size:16px;margin-left: 23px;"></i>
+                    <div><a style="margin-left: 19px;">More</a></div>
+                  </div>
                   
            </div>   
             
-           <div class="col col-25" style="background-color: #ccc;" >
+           <div class="col col-35" style="background-color:#e3e3e3;max-width: 130px;" >
                <div  class="tabvalue">
-                   <a class="firstval">Status</a>
-                <p class="avatarclass"><i class="icon ion-chevron-right avatarlefticon "></i></p> 
-             <div class="contentvalue"><p class="contentalign">Authorized </p><i class="ion-thumbsup thumpsicon" ></i></div> 
+                   <p class="" style="margin-left:5px;font-size:12px;">Status</p>
+                <p class="avatarclass">
+                    <i class="icon ion-chevron-right avatlefticon " style=""></i></p> 
+            
+                 <p class="contentalign" style="margin-top:10px;margin-left:-38px;">Authorized 
+                    <i class="ion-thumbsup thumpsicon" ></i></p>
+                
                </div> 
           </div> 
           
-          <div class="col col-50" style="background-color:white;">
-         
-            
-             <div class="conticon">
-                  <i class="ion-chevron-right avataricon"  style="font-size:26px;margin-left: 23px;"></i>
-                   <p><a style="margin-left: 19px;">Relationsship</a></p>
-                  </div>
-                   <div class="contvalue"><p class="">Adobe Daughter</p></div> 
+          <div class="col col-40" style="background-color:##ededed;">
+           <div class="conticon">
+                <p><a style="margin-left:3px;font-size:12px">Relationsship</a></p>
+            </div>
+                   <p style="margin-top:-12px;color:#6d6d6d;">Adobe Daughter
+                        <i class="ion-chevron-right avataricon"  style=""></i>
+                       </p>
           </div>
      
          </div>
@@ -218,14 +219,14 @@
     
           <p class="authorizedicon" style=""><i class="ion-chevron-down" style="font-size: 22px;"></i></p>
           
-               <p>You are not authorized to view/manage this account 
+               <p style="font-size: 12px !important;">You are not authorized to view/manage this account 
            
                <span class="authorizedupdate" >update <i class="icon ion-chevron-right"></i></span> 
            
        </p>
       </a>
        
-       
+    <!--   
        
      <div class="row"  ng-show="authorizedview" style="
     margin-left: -5px;
@@ -263,9 +264,45 @@
         
      
          </div>  
-       
-       
-     </div> 
+  
+     </div> -->
+     <div class="row"  ng-show="authorizedview" style="height:70px;margin-left:-5px;margin-top:-11px;">
+             
+          <div class="col col-25 authorizedval "  ng-click="hidemoretab()">
+                  <p class="tabicon" style="margin-top:-10px!important;font-size:20px !important;"> <i class="ion-chevron-down"></i></p>
+                  <div class="" style="margin-top:-12px;">
+                       <p><a style="margin-left:6px;">update <i class="icon ion-chevron-right avatarlefticon "></i> 
+                       </a>
+                 
+                   </p> 
+                  </div>
+                  
+           </div>   
+            
+           <div class="col col-35" style="background-color:#e3e3e3;max-width: 130px;" ng-click="showPopup()">
+               <div  class="tabvalue">
+                   <p class="" style="margin-left:5px;font-size:12px;">Status</p>
+                <p class="avatclass">
+                    <i class="icon ion-chevron-right avaticon " style=""></i></p> 
+            
+                 <p class="contentalign" style="margin-top:15px;margin-left:-36px;">UnAuthorized 
+                    <i class="ion-thumbsdown" style="float:right;margin-left:16px; font-size:22px"></i></p>
+                
+               </div> 
+          </div> 
+          
+          <div class="col col-40" style="background-color:##ededed;">
+           <div class="conticon">
+                <p><a style="margin-left:3px;font-size:12px">Relationsship</a></p>
+            </div>
+                   <p style="margin-top:-12px;color:#6d6d6d;">Step-Daughter
+                        <i class="ion-chevron-right avataricon"  style=""></i>
+                       </p>
+          </div>
+     
+         </div>
+      
+     
     </div>
         
 	</ion-content>

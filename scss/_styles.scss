@@ -3548,6 +3548,19 @@ font-size: 18px;
   color: #222;
   text-align: center;
 }
+.avatarclass{
+  margin-top: 10px;
+  margin-left: -28px;  
+}
+
+
+.avatlefticon{
+    float:left;
+    margin-left:-18px;
+    color: #9bca82;
+    font-size:16 px!important;
+
+ }
 
 .circle:after {
   display: block;
@@ -3746,13 +3759,7 @@ font-size: 18px;
     font-family: Glober Regular;
   }
 .list{
-    //@extend .fname;
-   // @extend .lname;
- .avataricon{
-        float:right;
-       
-  }
-
+  
 .archieve{
     background-color:rgba(12, 96, 238, 0.78);;
     margin-left: -5px;
@@ -3786,9 +3793,15 @@ font-size: 18px;
 .tabicon{
     
      margin-left: 17px;
-    margin-top: -14px;
+    margin-top: -16px;
     color: white;
     font-size: 28px;
+}
+.tabmoreicon {
+margin-left: 17px;
+margin-top: 2px;
+color: white;
+font-size: 20px;
 }
 .contacticon{
      margin-left: 22px;
@@ -3796,14 +3809,22 @@ font-size: 18px;
    color: white;
   
 }
+.avataricon{
+        float:right;
+       font-size:26px;
+       margin-left: 23px;
+       color:#000;
+  }
+
 .tabvalue{
     text-align: center;
-    margin-top: 15px;
+    margin-top:5px;
     color:#888;
     .firstval{
         margin:0;
             margin-right: 277px;
     }
+    
 p{
     float:left;
  .avatarlefticon{
@@ -3817,6 +3838,13 @@ p{
  } 
 }
 }
+
+.avatclass{
+    margin-top: 10px;
+    margin-left: -38px; 
+}
+
+
 .righticon{
     margin-right: -12px;
     color: #9bca82;
@@ -3829,17 +3857,20 @@ p{
         float:left;
         margin-left: 14px;
         font-size:15px;
+        
         }
         .contentalignment{
           margin-left:8px !important;
         }
-    .thumpsicon{
-        color:#11c1f3;
-        float:right;
-    }
+    
 }
+.thumpsicon{
+        color:#11c1f3;
+        margin-left: 22px;
+        font-size: 24px;
+    }
   .conticon{
-     margin-top: 18px;
+     margin-top: 5px;
      color: #888;
   }
   .contvalue{
@@ -3989,7 +4020,7 @@ p{
    
   @media (max-width:481px) and (min-width:322px)    {
     .popup-container .popup {
-        width: 67% !important;
+        width: 85% !important;
          }
          .topimage {
              margin-left:34% !important;
@@ -4220,6 +4251,7 @@ p{
         
  .popup-container .popup {
     border-radius: 7px;
+    width:85% !important;
   }
 	
     .listfirst > a:first-child  {
@@ -4352,4 +4384,15 @@ color: white;
 }
 .tabfont{
     font-size:26px !important;
+}
+.popupcontent{
+    margin-left:15px;
+    line-height: 1.6;
+    font-size:16px;
+    font-family:Glober Regular;
+    color:#e3e3e3;
+}
+.fonttype{
+    font-family:Glober SemiBold;
+    font-size:19px;
 }
