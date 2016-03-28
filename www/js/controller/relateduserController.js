@@ -2,9 +2,9 @@ angular.module('starter.controllers')
 .controller('relateduserController', function($scope,$ionicPopup) {
     
      $scope.showdetails = true;
-     $scope.showdnewetails=true;
+    // $scope.showdnewetails=true;
      $scope.showarchieve=false;
-     $scope.newarchieve=false;
+    // $scope.allval=true;
      $scope.userdata=false;
      $scope.dependentshide=true;
      $scope.tabview=false;
@@ -21,7 +21,7 @@ angular.module('starter.controllers')
           $scope.tabview=false;
                 $scope.newarchieve = true;
          
-        $scope.showdnewetails = false;
+     //   $scope.showdnewetails = false;
       
        
     };
@@ -32,7 +32,7 @@ angular.module('starter.controllers')
     
     $scope.archieve=function(){
           $scope.newarchieve=true;
-          $scope.showdnewetails = false;
+        //  $scope.showdnewetails = false;
           
           
           
@@ -55,8 +55,8 @@ angular.module('starter.controllers')
        if(res) {
         
        } else {
-         $scope.showdnewetails=true;
-          $scope.newarchieve=false;
+         $scope.showdnewetails=false;
+          $scope.allval=false;
        }
     
      

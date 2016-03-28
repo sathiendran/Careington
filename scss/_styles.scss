@@ -3736,20 +3736,21 @@ font-size: 18px;
     color:#11c1f3;
 }
 .fname{
-    font-size: 23px;
-    font-family: Glober Bold;
+    font-size: 22px;
+    font-family: Glober SemiBold;
     color: #484848; 
     }
     .sname{
     font-size: 22px;
     color: #888;
+    font-family: Glober Regular;
   }
 .list{
     //@extend .fname;
    // @extend .lname;
  .avataricon{
         float:right;
-    
+       
   }
 
 .archieve{
@@ -4237,6 +4238,7 @@ p{
     text-align: left;
   }
   .popup-body{
+      padding: 38px !important;
     overflow: hidden;     
   }
   .popup-buttons {

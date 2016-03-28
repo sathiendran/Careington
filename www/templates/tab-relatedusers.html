@@ -1,19 +1,23 @@
 <ion-side-menus>
 	<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
 	<div class="buttons" > 
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
  
-    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Related Users <span style="float:right;"><a ng-href="#tab/addnewuser" ><i class="icon ion-plus" style="color:#000 !important;"></i></a></span></h1>
-<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+   
+        <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> <span style="float:right;">
+            <a ng-href="#tab/addnewuser" ><i class="icon ion-plus" style="color:white !important;"></i></span></h1>
+
+    
+<div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
                   <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					  <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
-				      <span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Fitzpztrick</span>
+					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
+				      <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
 				     </div></h1>
                 </div>
        
@@ -57,23 +61,23 @@
 
 
 <ion-view title="">
-	<ion-content style="margin-top:175px;">
+	<ion-content style="margin-top:150px;">
     
     <div class="list couses animated slideInLeft " id="couserlist" style="margin-top:18px;" >
      
             <a class="item item-avatar" style="border-top:none;" type="item-text-wrap">
             <img src="img\ionic.png">
             <h2><span  class="fname">Elizabeth</span> <span  class="sname">Fitzpatrick</span></h2>
-            <p>Female.29 yrs.Spouse</p>
+            <p class="fontcolor">Female.29 yrs.Spouse</p>
             </a>
            
          
            
            <a class="item item-avatar"  ng-show="!showActions" ng-swipe-right="showActions = true">
             <img src="img\patient.png">
-            <h2><span class="fname">Colleen</span> <span class="sname">Fitzpatrick</span> </h2>
-            <p>Female.29 yrs.Sister
-              <i class="icon ion-chevron-right avataricon"></i></p>
+            <h2><span class="fname">Colleen</span> <span class="sname">Fitzpatrick</span>  <i class="icon ion-chevron-right avataricon" style="color:#696969;font-size:18px;margin-top:12px;"></i> </h2>
+            <p class="fontcolor">Female.29 yrs.Sister
+            </p>
              </a>
         
           
@@ -81,9 +85,9 @@
 <div class="row"  ng-show="showActions" ng-swipe-left="showActions = false">
    <div class="col col-25 archieve">
     <div>
-     <div class="aligncenicon" >
-      <i class="icon ion-email icons" ></i>
-      <div>  Archieve</div>
+     <div class="aligncenicon" style="margin-top:10px;">
+      <i class="icon ion-ios-box" style="font-size:30px !important;"></i>
+      <div style="font-size:12px;">  Archieve</div>
       </div>
       </div>
    </div>
@@ -104,23 +108,24 @@
             <h2><span  class="fname">Angie</span> <span  class="sname">Fitzpatrick</span></h2>
             <p>Female.19 yrs.Daughter</p>
             </a>
-            
-            <a class="item item-avatar"  ng-show='showdnewetails' >
-            <img src="img\patient.png" ng-click="userdetails()">
+           <div>
+            <a class="item item-avatar"  ng-show="!showdnewetails" ng-swipe-right="showdnewetails = true">
+            <img src="img\patient.png" >
             <span ng-click="showtab()">
             <h2><span class="fname">Robert</span> <span class="sname">Fitzpatrick</span> </h2>
             <p>Female.19 yrs.Son </p>
            </span>
              </a>
+           </div>
              
            
-           <div class="row"  ng-show='newarchieve' ng-click='archieve()'>
+           <div class="row"  ng-show='showdnewetails' ng-swipe-left="showdnewetails = false" >
     
-  <div class="col col-25 archieve">
+  <div class="col col-25 archieve" ng-click='archieve()'>
     <div>
-     <div class="aligncenicon" >
-      <i class="icon ion-email icons" ></i>
-      <div>  Archieve</div>
+       <div class="aligncenicon" style="margin-top:10px;">
+      <i class="icon ion-ios-box" style="font-size:30px !important;"></i>
+      <div style="font-size:12px;">  Archieve</div>
       </div>
       </div>
    </div>
@@ -135,35 +140,34 @@
              
              
    
-         <div class="row" style="background-color: #ccc;" ng-show="tabview">
-             
-          <div class="col col-20 " style="background-color:#9bca82;">
+         <div class="row" style="background-color: #ccc; height:70px;" ng-show="tabview">
+           <a class="col col-20 " style="background-color:#9bca82; height:80px;margin-left:-10px;min-width:90px;">
                   <p class="tabicon"> <i class="ion-chevron-down"></i></p>
                   <i class="icon ion-person-stalker contacticon "></i>
-                   <p style="color:white;">See a Doc Now</p> 
-           </div>   
+                   <p style="color:white;font-size:12px;">See a Doc Now</p> 
+           </a>   
             
-           <div class="col col-20">
+           <div class="col col-20" style="margin-left:5px;">
                <div  class="tabvalue">
-             <i class="icon ion-eye-disabled" style="font-size:21px;"></i><div>View Profile</div>
+             <i class="icon ion-eye-disabled" style="font-size:22px;"></i><div style="font-size:12px;">View Profile</div>
                </div>
           </div> 
           
-          <div class="col col-20">
+          <div class="col col-20" style="margin-left:5px;width:73px;">
                 <div  class="tabvalue">
-             <i class="icon ion-ios-calendar-outline" style="font-size:21px;"></i><div>Appointments</div>
+             <i class="icon ion-calendar" style="font-size:22px;"></i><div style="font-size:12px;">Appointments</div>
                 </div>
           </div>
           
-           <div class="col col-20">
+           <div class="col col-20" style="margin-left:5px;width:73px;">
               <div  class="tabvalue">    
-             <i class="icon ion-calendar" style="font-size:21px;"></i><div>Consultations</div>
+             <i class="icon ion-card" style="font-size:22px;"></i><div style="font-size:12px;">Consultations</div>
               </div>
           </div>
           
-           <div class="col col-20" ng-click="moreclickval()">
+           <div class="col col-13" style="margin-left:5px;" ng-click="moreclickval()">
                 <div  class="tabvalue">
-             <i class="icon ion-more" style="font-size:21px;"></i><div>More</div>
+             <i class="icon ion-more" style="font-size:22px;"></i><div style="font-size:12px;">More</div>
                 </div>
           </div>   
           
@@ -272,24 +276,24 @@
 <ion-tabs  class=" tabs-icon-top tabs-dark">
 
    <a class="tab-item active" ng-href="#tab/relatedusers">
-    <i class="icon ion-person-stalker"></i>
+    <i class="icon ion-person-stalker tabfont"></i>
    User
   </a>
   <a class="tab-item"  ng-href="#tab/consultations">
-    <i class="icon ion-card"></i>
+    <i class="icon ion-card tabfont"></i>
     Consultations
   </a>
   <a class="tab-item " ng-href="/#tab/healthinfo">
-    <i class="icon ion-android-clipboard"></i>
+    <i class="icon ion-android-clipboard tabfont"></i>
     My Health
   </a>
 
 <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
-    <i class="icon ion-calendar"></i>
+    <i class="icon ion-calendar tabfont"></i>
     Appointments
   </a>
 <a class="tab-item" ng-href="#tab/profileoption">
-    <i class="icon ion-more"></i>
+    <i class="icon ion-more tabfont"></i>
     More
   </a>
       </ion-tabs>
