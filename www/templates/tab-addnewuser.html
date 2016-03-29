@@ -4,7 +4,7 @@
 <ion-side-menus>
 	<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
        
   
@@ -12,15 +12,15 @@
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
-	
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Related Users <span style="float:right;"><a ng-href="#tab/relatedusers" style=" color:#000 !important;" >Cancel</a></span></h1>
+	 <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> <span style="float:right;">
+            <a class="headerval" ng-href="#tab/relatedusers">Cancel</a></span></h1>
 
-			<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+	<div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
                   <div class="row"> 
                       <h1 class="headertitle">
                           <div class="ellipsis subHeader_content_name" >
-					       <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
-					      <span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Fitzpztrick</span>
+					       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">Jonathan</span>
+					      <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
 				        </div>
                      </h1>
                   </div>
@@ -47,25 +47,25 @@
 
 <ion-view title="">
     
-	<ion-content class="useraddcontent" style="">
+	<ion-content style="margin-top: 120px !important; ">
         
         <ion-list>
-             <ion-item class="ionitem itemclass" style="border-top: none;">
-           <div class="card newcard">
-              <div class="item item-text-wrap">
-                  <div class="" style="text-align:center;">
-                         <p><i class="fontcolor icon ion-ios-personadd" style="font-size:90px;"></i></p> 
+             <ion-item class="ionitem" style="border-top: none;padding: 10px !important;;">
+           <div>
+              <div class="item item-text-wrap" style="border:none;">
+                  <div class="" style="text-align:center;margin-top: 3px;"> 
+                         <p><i class="fontcolor icon ion-person-add" style="font-size:50px;"></i></p> 
                        
-                         <h2><p class="fontcolor" style="font-size:30px;">Add A New User</p></h2>
-                         <p>Select a user type to add</p>
-				      </div>
+                         <h2><p class="fontcolor" style="font-size:30px;font-family:Glober Bold;">Add A New User</p></h2>
+                         <p style="color: #ababab;font-size: 16px;">Select a user type to add</p>
+                        </div>
                  </div>
               </div>
          </ion-item>  
             
             
-         <ion-item class="ionitem itemsecclass">
-           <div class="card newcard">
+         <ion-item class="ionitem ">
+           <div class="card cardshadow">
               <div class="item item-text-wrap">
                     <div class="" style="text-align:center;">
                        <h2 class="title alignedchronic ChronicCondition ">
@@ -77,11 +77,11 @@
          </ion-item>     
             
           <ion-item class="ionitem">
-           <div class="card newcard">
+           <div class="card cardshadow">
               <div class="item item-text-wrap">
-                    <div class="" style="text-align:center;">
+                    <div class="" style="text-align:center;margin-top: 3px;">
                        <h2 class="title alignedchronic ChronicCondition ">
-                         <a class="fontcolor" ng-click="adddepartment()" style="font-size:20px;">Add A Dependent</a>
+                         <a class="fontcolor" ng-click="adddependent()" style="font-size:20px;">Add A Dependent</a>
                         </h2>
 				      </div>
                  </div>
@@ -99,9 +99,9 @@
 
 </ion-view>
 
-<div class="bar bar-footer fooheight" style="background-color:#484848;">
+<div class="bar bar-footer addheight" style="background-color:#484848;">
      <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
-   <h1 class="title" id="centercolor" >Cancel</h1>
+   <h1 class="title" id="centercolor" style="margin-top: 7px !important;" >Cancel</h1>
 </div>
 
 </ion-side-menus>

@@ -716,11 +716,11 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
   })
   
-   .state('tab.addnewdepartment', {
-       url: '/addnewdepartment',
+   .state('tab.addnewdependent', {
+       url: '/addnewdependent',
     views: {
       'tab-login': {
-        templateUrl: 'templates/tab-addnewdepartment.html',
+        templateUrl: 'templates/tab-addnewdependent.html',
         controller: 'addnewdepartmentController'
       }
       }
