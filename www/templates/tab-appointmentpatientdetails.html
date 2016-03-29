@@ -21,19 +21,28 @@
        
          <div class="item item-image-icon " style="background-color:#444444;">
           
-           <a style="padding-left: 30px;">
-               <i class="icon ion-home" style="border:1px solid #888;border-radius: 50%;padding-left: 7px;padding-right: 8px;padding-top: 5px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
-              <p class="homecontent">Account Home</p>
+            <a style="padding-left: 30px;">
+               <i class="icon ion-home headerlefticons" style=""></i>
+               <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
                <p><img src="img\patient.png" class="topimage" style=""></p>
            </a>
-           <a style="float:right;margin-top:-83px;">
-               <i class="icon ion-ios-people" style="border:1px solid #888;border-radius: 50%;padding-left:5px;padding-right:6px;padding-top:4px;padding-bottom: 0px;font-size: 23px;color: #888;"></i>
-              <p class="patientcontent" >Change Patient</p>
+           <a style="float:right;margin-top:-88px;">
+               <i class="icon ion-ios-people headerrighticon" style=""></i>
+               <p class="patientcontent" >Change Patient</p>
            </a>
    </div>
-   	<div class="row">
+   
+</div>  
+   
+</ion-header-bar>
+
+
+<ion-view title="">
+ <ion-content style="margin-top:120px;">
+     
+     	<div class="row">
          
        <div class="buttons backbtn"> 
 		    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
@@ -51,18 +60,11 @@
 	  </div>
    </div>		
  
-</div>  
-   
-</ion-header-bar>
-
-
-<ion-view title="">
- <ion-content style="margin-top:165px;">
      
   
         <div ng-hide="addmore">
            <div class="list listfirst" >
-        <a class="item item-avatar">
+        <a class="item item-avatar" style="margin-bottom: -13px;">
              <img src="img\patient.png">
             <h2 class="sname">Next Appointment</h2>
               <h4><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span> 
@@ -72,7 +74,7 @@
               </h4>
         </a>
             
-        <a class="item item-avatar">
+        <a class="item item-avatar appitem">
              <img src="img\patient.png">
            <h4 class="appalign"><span class="fname">Nov 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
             <p style="float:right;">
@@ -81,7 +83,7 @@
            </h4>
          </a>
  
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\patient.png">
            <h4 class="appalign"><span class="fname">Dec 02</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
           <p style="float:right;">
@@ -89,7 +91,7 @@
               </p>
            </h4>
          </a>
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\patient.png">
            <h4 class="appalign"><span class="fname">Dec 08</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
            <p style="float:right;">
@@ -105,7 +107,7 @@
               </p>
            </h4>
          </a>
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\patient.png">
            <h4 class="appalign"><span class="fname">Dec 16</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
            <p style="float:right;">
@@ -113,7 +115,7 @@
               </p>
               </h4>
          </a>
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\patient.png">
               <h4 class="appalign"><span class="fname">Dec 21</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
           <p style="float:right;">
@@ -123,21 +125,21 @@
          </a>
    </div>       
    </div>
-   
+    
    <div ng-hide="healthhide">
         <div class="list listall">
             
-        <a class="item item-avatar">
+        <a class="item item-avatar" style="margin-bottom: -13px;">
              <img src="img\Lisa_Wong.jpg">
             <h2>Next Appointment</h2>
-                <h4 class="appalign"><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
+                <h4 class=""><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
               <p style="float:right;">
                 <span class="fontcolor"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
               </h4>
         </a>
             
-        <a class="item item-avatar">
+        <a class="item item-avatar appitem">
              <img src="img\password.jpg">
            <h4 class="appalign"><span class="fname">Nov 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
            <p style="float:right;">
@@ -146,7 +148,7 @@
            </h4>
          </a>
  
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\patient.png">
              <h4 class="appalign"><span class="fname">Dec 02</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
             <p style="float:right;">
@@ -154,7 +156,7 @@
               </p>
            </h4>
          </a>
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\James_king.jpg">
            <h4><span class="fname">Dec 08</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
             <p style="float:right;">
@@ -162,7 +164,7 @@
               </p>
            </h4>
          </a>
-        <a class="item item-avatar">
+        <a class="item item-avatar appitem">
              <img src="img\patient.png">
             <h4 class="appalign"><span class="fname">Dec 13</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
              <p style="float:right;">
@@ -170,7 +172,7 @@
               </p>
            </h4>
          </a>
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\patient.png">
             <h4 class="appalign"><span class="fname">Dec 16</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
              <p style="float:right;">
@@ -178,7 +180,7 @@
               </p>
            </h4>
          </a>
-          <a class="item item-avatar">
+          <a class="item item-avatar appitem">
              <img src="img\patient.png">
              <h4 class="appalign"><span class="fname">Dec 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
             <p style="float:right;">
@@ -210,12 +212,12 @@
     <i class="icon ion-card tabfont"></i>
     Consultations
   </a>
-  <a class="tab-item active" ng-href="/#tab/healthinfo">
+  <a class="tab-item " ng-href="/#tab/healthinfo">
     <i class="icon ion-android-clipboard tabfont"></i>
     My Health
   </a>
 
-<a class="tab-item" ng-href="#tab/appointmentpatientdetails">
+<a class="tab-item active" ng-href="#tab/appointmentpatientdetails">
     <i class="icon ion-calendar tabfont"></i>
     Appointments
   </a>

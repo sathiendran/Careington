@@ -3762,7 +3762,7 @@ font-size: 18px;
     color: #686868;
   }
   .appalign{
-      margin: 10px 0 0 0 !important;
+      margin: 8px 0 0 0 !important;
   }
   .fonttime{
       font-size: 14px;
@@ -4264,7 +4264,10 @@ p{
     border-radius: 7px;
     width:85% !important;
   }
-	
+	.appitem{
+      margin-top: -8px;
+     margin-bottom: -8px
+    }
     .listfirst > a:first-child  {
     background-color:rgba(255, 201, 0, 0.53);
 }
@@ -4272,6 +4275,10 @@ p{
     background-color:rgba(230, 101, 10, 0.33);
 }
 .listfirst:last-child {
+    margin-bottom: 120px;
+    padding-bottom:100px;
+}
+.listall:last-child {
     margin-bottom: 120px;
     padding-bottom:100px;
 }
