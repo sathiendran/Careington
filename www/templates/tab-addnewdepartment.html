@@ -139,7 +139,11 @@
 
 
 
-<ion-footer-bar class="bar bar-footer  footer-color fooheight">
-  <h1 class="title" id="centercolor" >Add Dependent</h1>
+<ion-footer-bar class="bar bar-footer fooheight" style="background-color:#B2B2B2;" ng-hide="tempfooter">
+  <h1 class="title alterfooter">Please Complete
+  All Required Fields</h1>
 </ion-footer-bar>
 
+<ion-footer-bar class="bar bar-footer  footer-color fooheight" ng-show="permfooter">
+  <h1 class="title" id="centercolor" >Add Dependent</h1>
+</ion-footer-bar>

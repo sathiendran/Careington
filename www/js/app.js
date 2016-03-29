@@ -711,7 +711,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-addnewuser.html',
-        controller: ''
+        controller: 'addnewuserController'
       }
       }
   })
@@ -721,7 +721,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-addnewdepartment.html',
-        controller: ''
+        controller: 'addnewdepartmentController'
       }
       }
   })
