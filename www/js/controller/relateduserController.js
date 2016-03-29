@@ -78,10 +78,10 @@ angular.module('starter.controllers')
          $scope.moretab=false;
          $scope.tabview=true;
     }
-    $scope.authorizeduser=function(){
-        $scope.viewunauthorized=true;
-         $scope.authorizedview=false;
-    }
+   $scope.authorizeduser=function(){
+     $scope.viewunauthorized=true;
+     $scope.authorizedview=false;
+   }
     
     
     $scope.addauthorized=function(){

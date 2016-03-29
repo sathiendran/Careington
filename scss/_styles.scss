@@ -3759,11 +3759,22 @@ font-size: 18px;
 .fname{
     font-size: 22px;
     font-family: Glober SemiBold;
-    color: #484848;
+    color: #717171;
     }
     .sname{
     font-size: 22px;
     color: #888;
+    font-family: Glober Regular;
+  }
+  .fontsymbol{
+    color: #686868;
+  }
+  .appalign{
+      margin: 10px 0 0 0 !important;
+  }
+  .fonttime{
+      font-size: 14px;
+    color: #686868;
     font-family: Glober Regular;
   }
 .list{
@@ -4270,7 +4281,7 @@ p{
 }
 .listfirst:last-child {
     margin-bottom: 120px;
-
+    padding-bottom:100px;
 }
  .popup-head {
     padding: 14px 12px;
@@ -4398,9 +4409,17 @@ color: white;
     line-height: 1.6;
     font-size:16px;
     font-family:Glober Regular;
-    color:#e3e3e3;
+    color:#616462;
 }
 .fonttype{
     font-family:Glober SemiBold;
     font-size:19px;
+}
+.alterfooter{
+   font-size: 23px;
+    font-family: Globber Bold;
+    width: 185px;
+    text-align: center;
+    margin-left: 53px;
+    color: #484848;
 }
