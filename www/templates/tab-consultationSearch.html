@@ -1,149 +1,106 @@
 
 <ion-side-menus>
-	<ion-side-menu-content> 
+<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-	<div class="buttons" > 
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
-	</div>
+<div class="buttons" > 
+<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+ng-click="toggleLeft()"></button>
+</div>
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
 
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="float:right;" ><a ng-href="#tab/consultations" ><i class="icon ion-search" style="color:black;"></i></a></span></h1>
 
-
-<div class="bar bar-subheader " style="margin-top: 36px;height: 131px">
+<div class="bar bar-subheader " style="margin-top:20px;height: 131px;border-bottom: 1.5px solid #b5b5b5;border-image:none;">
       <div class="row">
            <div class="buttons backbtn"  > 
-		    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
-	      </div>
+   <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
+     </div>
         <div class=" button-bar">
           <label class="button button-small btcolor btn-first"  id=""> Past</label>
           <label class="button button-small btnextcolor btn-first tabcontent" >Missed</label>
           <label class="button button-small btnextcolor btn-first tabcontent" >Dropped</label>
         </div>
-       <div class="buttons backbtn"  > 
-		 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
-	  </div>        
+       <div class="buttons backbtn"> 
+<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
+ </div>        
    </div>
-   <div>
-   	 <div class="" style="background-color: #B2B2B2;height:32px; border-radius: 5px;"> <h2 style="text-align: center; font-size: 21px;"><i class="icon ion-search " style="color:#888;"></i> <span style="color:#888;">Search</span></h2></div>		
-   </div>
-   <div class="row header" style="margin-top: 25px;">
+ <div class="csearch">
+      <h6 class="hsearch">
+          <i class="icon ion-search " style="color:#888;"></i> 
+          <span style="color:#888;">Search</span>
+       </h6>
+ </div>
+
+   <div class="row rheader" style="margin-top: 20px;">
+          <div class="col col-25">Date</div>
+          <div class="col col-20" >Time</div>
+          <div class="col col-60">Provider</div>
           
-          <div class="col col-35">Date</div>
-          <div class="col col-15">Time</div>
-          <div class="col col-40">Provider</div>
           
-          
-        </div>
+    </div>
 </div>  
    
 </ion-header-bar>
-
-
-
-<ion-view title="">
-	<ion-content >
-      
-      
+<ion-view>
+	<ion-content style="margin-top:120px">
+      <hr class="dashedhr">  
+       
+  <div class="row">
+     <div class="col col-25" style="margin-left:5px;">
+        <p class="colfamily">Nov 16,2015</p>
+     </div>
+     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+     <div class="col col-60">
+       <p>
+         <span class="colfamily">Dr.McGrath</span>
+         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right rghticon"></i></span>
+       </p>
+     </div>
+    </div>
+   <hr class="dotedhr">   
     
-        <hr style="margin-top: -6px;">
-        <div class="row">
-       
-           <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-              <h2><span class="">Nov 16,2015</span> </h2>
-           </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-         
-        
-        </div>
-       <div class="row">
-       
-           <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-              <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-         </div>
-        <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div>
-       <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div>
-       <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div>
-       <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div>
-      
-       <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div> <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div>
-      
-       <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div>
-       <div class="row">
-         <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;padding-left:0px;">
-             <h2><span class="">Nov 16,2015</span> </h2>
-          </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right"></i></span></div>
-      </div>
+    <div class="row">
+     <div class="col col-25" style="margin-left:5px;">
+        <p class="colfamily">Nov 16,2015</p>
+     </div>
+     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+     <div class="col col-60">
+       <p>
+         <span class="colfamily">Dr.McGrath</span>
+         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right rghticon" ></i></span>
+       </p>
+     </div>
+    </div>
+   <hr class="dotedhr">      
+   
+   <div class="row">
+     <div class="col col-25" style="margin-left:5px;">
+        <p class="colfamily">Nov 16,2015</p>
+     </div>
+     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+     <div class="col col-60">
+       <p>
+         <span class="colfamily">Dr.McGrath</span>
+         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right rghticon" ></i></span>
+       </p>
+     </div>
+    </div>
+   <hr class="dotedhr">  
+   
+   <div class="row">
+     <div class="col col-25" style="margin-left:5px;">
+        <p class="colfamily">Nov 16,2015</p>
+     </div>
+     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+     <div class="col col-60">
+       <p>
+         <span class="colfamily">Dr.McGrath</span>
+         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right rghticon" ></i></span>
+       </p>
+     </div>
+    </div>
+   <hr class="dotedhr">  
 	</ion-content>
   
     </ion-side-menu-content>

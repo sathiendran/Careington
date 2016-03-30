@@ -2,39 +2,37 @@
 <ion-side-menus>
 	<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-	<div class="buttons" > 
+	<div class="buttons"> 
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
 
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="float:right;" ><a ng-href="#tab/consultationSearch" ><i class="icon ion-search" style="color:black;"></i></a></span></h1>
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultationSearch" ><i class="icon ion-search" ></i></a></span></h1>
 
 
-<div class="bar bar-subheader bar-dark" style="top:56px;height:88px;">
+<div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
                   <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					  <span class="PatintHeaderFontStyle patientName ellipsis" style="font-style:Glober Bold;font-size:28px;">Jonathan</span>
-				      <span class="patientLastName ellipsis" style="font-style:Glober SemiBold;font-size:25px;">Fitzpztrick</span>
+					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
+				      <span class="patientLastName ellipsis lnamefont">Fitzpztrick</span>
 				     </div></h1>
                 </div>
        
-         <div class="item item-image-icon " style="background-color:#444444;">
-          
-           <a style="padding-left: 30px;">
-               <i class="icon ion-home headerlefticons" style=""></i>
-              <p class="homecontent">Account Home</p>
-          </a>
-           <a class="item-avatar itemhead">
-               <p><img src="img\patient.png" class="topimage" style=""></p>
-           </a>
-           <a style="float:right;margin-top:-83px;">
-               <i class="icon ion-ios-people headerrighticon" style=""></i>
-              <p class="patientcontent" >Change Patient</p>
-           </a>
-   </div>
-   			
+       <div class="item item-image-icon" >
+				<a class="lefthome">
+					<i class="icon ion-home headerlefticons"></i>
+					<p class="homecontent">Account Home</p>
+				</a>
+				<a class="item-avatar itemhead">
+					<p><img src="img\patient.png" class="topimage"></p>
+				</a>
+				<a class="rightpatient">
+					<i class="icon ion-ios-people headerrighticon"></i>
+					<p class="patientcontent"  >Change Patient</p>
+				</a>
+			</div>	
 
 </div>  
    
@@ -43,7 +41,7 @@
 
 
 <ion-view title="">
-	<ion-content style="margin-top:175px;">
+	<ion-content style="margin-top:120px;">
       
       <div class="row">
          
@@ -63,57 +61,148 @@
 		 </button>
 	  </div>
    </div>
-      <div class="row header">
-          
-          <div class="col col-35"><span>Date</span></div>
-          <div class="col col-15"><span>Time</span></div>
-          <div class="col col-40"><span>Provider</span></div>
-          
-          
-        </div>
-        <hr style="margin-top: -6px;">
-        <div class="row">
-       
-           <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;">
+      <div class="row rheader" style="margin-top:0px;">
+           <div class="col col-20"><span></span></div>
+          <div class="col col-20"><span class="topfont">Date</span></div>
+          <div class="col col-15" style="max-width:60px;margin-left:12px;"><span class="topfont">Time</span></div>
+          <div class="col col-30" style="margin-left:3px;"><span class="topfont">Provider</span></div>
+      </div>
+        <hr style="margin-top:-12px;">
+ <div class="list listfirst" >      
+   <div class="row">
+      <div class="col col-20">
+         <a class="item item-avatar avatitem">
+          <img src="img\patient.png"  class="avtimg">
+          </a>
+      </div>
+      <div class="col col-20">
+           <p class="colfamily coldate">Nov 16, 2015</p>
+      </div>
+      <div class="col col-15 coltime">
+          <p class="colfamily">2:35 PM</p>
+      </div>
+      <div class="col col-30">
+          <span class="colfamily">Dr.McGrath </span>  <span class="vreport colpro" >Details</span>
+          <span ><i class=" ion-chevron-right rghticon"></i></span>
+       </div>
+  </div>
+      <hr class="dotedhr">
+    
+   <div class="row">
+      <div class="col col-20">
+         <a class="item item-avatar avatitem">
+          <img src="img\patient.png"  class="avtimg">
+          </a>
+      </div>
+      <div class="col col-20">
+           <p class="colfamily coldate">Nov 16, 2015</p>
+      </div>
+      <div class="col col-15 coltime">
+          <p class="colfamily">2:35 PM</p>
+      </div>
+      <div class="col col-30">
+          <span class="colfamily">Dr.McGrath </span>  <span class="vreport colpro" >Details</span>
+          <span ><i class=" ion-chevron-right rghticon"></i></span>
+       </div>
+  </div>
+      <hr class="dotedhr">
+      
+     <div class="row">
+       <div class="col col-20">
+            <a class="item item-avatar" style="border:none;min-height:50px !important;margin-top:-17px;padding-left:0px!important;">
             <img src="img\patient.png" style="margin-top: -7px;">
-            <h2><span class="">Nov 16,2015</span> </h2>
-          
-             </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right" style="float:right;"></i></span></div>
-         
-        
+            </a>
         </div>
+        <div class="col col-20">
+             <p class="colfamily" style="width:80px;">Nov 16, 2015</p>
+        </div>
+        <div class="col col-15" style="max-width:65px;margin-left: 10px;">
+            <p class="colfamily">2:35 PM</p>
+        </div>
+        <div class="col col-30">
+          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" style=" margin-left:3px;">Details</span>
+          <span ><i class=" ion-chevron-right rghticon"></i></span>
+         </div>
+    </div>
+      <hr class="dotedhr">
+      
        <div class="row">
-       
-           <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;">
+       <div class="col col-20">
+            <a class="item item-avatar" style="border:none;min-height:50px !important;margin-top:-17px;padding-left:0px!important;">
             <img src="img\patient.png" style="margin-top: -7px;">
-            <h2><span class="">Nov 16,2015</span> </h2>
-          
-             </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span >Details</span><span><i class="icon ion-chevron-right" style="float:right;"></i></span></div>
-         
-        
+            </a>
         </div>
-        <div class="row">
-       
-           <div class="col col-35">
-             <a class="item item-avatar" style="border:none;margin-top:-18px;">
+        <div class="col col-20">
+             <p class="colfamily" style="width:80px;">Nov 16, 2015</p>
+        </div>
+        <div class="col col-15" style="max-width:65px;margin-left: 10px;">
+            <p class="colfamily">2:35 PM</p>
+        </div>
+        <div class="col col-30">
+          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" style=" margin-left:3px;">Details</span>
+          <span ><i class=" ion-chevron-right rghticon"></i></span>
+         </div>
+    </div>
+      <hr class="dotedhr">
+      
+       <div class="row">
+       <div class="col col-20">
+            <a class="item item-avatar" style="border:none;min-height:50px !important;margin-top:-17px;padding-left:0px!important;">
             <img src="img\patient.png" style="margin-top: -7px;">
-            <h2><span class="">Nov 16,2015</span> </h2>
-          
-             </a>  
-           </div>
-          <div class="col col-15"><p>2:35 PM</p></div>
-          <div class="col col-40"><span>Dr.McGrath </span>  <span>Details</span><span><i class="icon ion-chevron-right" style="float:right;"></i></span></div>
-         
-        
+            </a>
         </div>
+        <div class="col col-20">
+             <p class="colfamily" style="width:80px;">Nov 16, 2015</p>
+        </div>
+        <div class="col col-15" style="max-width:65px;margin-left: 10px;">
+            <p class="colfamily">2:35 PM</p>
+        </div>
+        <div class="col col-30">
+          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" style=" margin-left:3px;">Details</span>
+          <span ><i class=" ion-chevron-right rghticon"></i></span>
+         </div>
+    </div>
+      <hr class="dotedhr">
+      
+     <div class="row">
+      <div class="col col-20">
+         <a class="item item-avatar avatitem">
+          <img src="img\patient.png"  class="avtimg">
+          </a>
+      </div>
+      <div class="col col-20">
+           <p class="colfamily coldate">Nov 16, 2015</p>
+      </div>
+      <div class="col col-15 coltime">
+          <p class="colfamily">2:35 PM</p>
+      </div>
+      <div class="col col-30">
+          <span class="colfamily">Dr.McGrath </span>  <span class="vreport colpro" >Details</span>
+          <span ><i class=" ion-chevron-right rghticon"></i></span>
+       </div>
+  </div>
+      <hr class="dotedhr">
+      
+   <div class="row">
+      <div class="col col-20">
+         <a class="item item-avatar avatitem">
+          <img src="img\patient.png"  class="avtimg">
+          </a>
+      </div>
+      <div class="col col-20">
+           <p class="colfamily coldate">Nov 16, 2015</p>
+      </div>
+      <div class="col col-15 coltime">
+          <p class="colfamily">2:35 PM</p>
+      </div>
+      <div class="col col-30">
+          <span class="colfamily">Dr.McGrath </span>  <span class="vreport colpro" >Details</span>
+          <span ><i class=" ion-chevron-right rghticon"></i></span>
+       </div>
+  </div>
+      <hr class="dotedhr">
+ </div>    
+      
 	</ion-content>
   
     </ion-side-menu-content>
