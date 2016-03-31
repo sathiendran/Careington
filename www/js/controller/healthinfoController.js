@@ -7,22 +7,34 @@ angular.module('starter.controllers')
    $scope.editshow=true;
    $scope.doneshow=true;
    $scope.inactive = true;
-   $scope.healthdisable=false;
+   $scope.doneedit=false;
+  
    
    $scope.edittext = function() {
-     $scope.inactive = false;
+      $scope.inactive = false;
       $scope.doneshow=false;
-        $scope.editshow=false;
-        $scope.healthdisable=true;
+      $scope.editshow=false;
+      $scope.doneedit=true;
+      
+         
    }
    
       
    $scope.donetext = function() {
       $scope.inactive = true;
       $scope.doneshow=true;
-       $scope.editshow=true;
-       $scope.healthdisable=false;
+      $scope.editshow=true;
+      $scope.doneedit=false;
+    
    }
+   
+   $scope.done=function(){
+      $scope.editshow=true;
+      $scope.doneshow=true;
+      $scope.inactive = true;
+      $scope.doneedit=false;
+   }
+   
    
  $scope.profile= function() {
      var myEl = angular.element( document.querySelector( '#profid' ) );
@@ -35,7 +47,7 @@ angular.module('starter.controllers')
        $scope.addmore=false;
        $scope.healthhide=true;  
         $scope.doneshow=true;  
-     //  $scope.headerval=false;
+     
     }
  $scope.health= function() {
      
@@ -48,7 +60,7 @@ angular.module('starter.controllers')
   $scope.editshow=false;
      $scope.addmore=true;
        $scope.healthhide=false;  
-        //$scope.headerval=true;
+      
          $scope.doneshow=true;
     }
    

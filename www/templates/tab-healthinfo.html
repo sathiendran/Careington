@@ -50,7 +50,7 @@
 	</div>
         <div class=" button-bar">
         <label class="button button-small btcolor btn-first" ng-click="profile()"  id="profid"> Profile</label>
-        <label class="button button-small btn-first btnextcolor" ng-disabled="healthdisable"  ng-click="health()" id="healid">Health History</label>
+        <label class="button button-small btn-first btnextcolor"   ng-click="health()" id="healid">Health History</label>
     </div>
     
       <div class="buttons backbtn"  > 
@@ -172,6 +172,14 @@
          
        
     </div>
+    
+    
+      
+    <div class="row">
+    <a style="width:40%;"></a>
+       <a class="button button-balanced donebutton" ng-show="doneedit" ng-click="done()">Done</a>
+    </div>
+    
    </div>
    
    <div ng-hide="healthhide">

@@ -9,7 +9,7 @@
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
-  <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> My Health</span> <span style="float:right;"ng-hide="headerval">Done</span></h1>
+  <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> My Health</span> <span ><a class="headerval" ng-href="#tab/healthinfo" >Done</a></span></h1>
 
 <div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
                   <div class="row">
@@ -60,121 +60,21 @@
 	<ion-content class="ioncontentalign">
        
         
-        <div ng-hide="addmore">
+        <div>
             
               <h4 style=" text-align: center;color:#6c6c6c;font-size:22px;"><b>Demographics</b></h4>
-             <form>
+          
       <div class="list">
 		
-          <label class="item item-input validated">
-             <span class="input-label labelcolor">
-              <i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b>
-               </span>
-              <span class="valuealign">
-                <input type="text" value="06/08/1988"  placeholder="Required" required="required"  name="name" style="color:#7c7c7c;">
-               </span>
-		 </label>	
-         
-       	 <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-female"></i><b class="formlabel">Gender</b>
-                </span>
-               <span class="valuealign"> 
-                <input type="text" value="Male" placeholder="Optional"   name="name" style="color:#7c7c7c;">
-               </span>
-		 </label>
-          <label class="item item-input validated">
-            <span class="input-label labelcolor">
-               <i class="ion-android-arrow-up"></i><b class="formlabel">Height</b>
-            </span>
-          <span class="valuealign">    
-            <input type="text" value="6'1" placeholder="Optional" name="name" style="color:#7c7c7c;">
-          </span>  
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                <i class="ion-ios-filing"></i><b class="formlabel">Weight</b>
-              </span>
-              <span class="valuealign">
-                <input type="text" value="185lbs" placeholder="Optional" name="name" style="color:#7c7c7c;">
-              </span>
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor" style="margin-bottom: 22px;">
-                  <i class="ion-ios-telephone"></i><b class="formlabel">Home Phone</b>
-               </span>
-               <span class="" style="margin-left:38px;">
-                 <input type="text" value="555-987-5664" placeholder="Optional" name="name" style="color:#7c7c7c;">
-                </span>   
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-ios-telephone"></i><b class="formlabel">Mobile</b>
-               </span>
-               <span class="valuealign">
-                 <input type="text" value="555-897-3642" placeholder="Optional" name="name" style="color:#7c7c7c;">
-               </span>  
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-location"></i><b class="formlabel">Home Address</b>
-               </span>
-               <span class="valtex">
-                   <textarea class ="valuetextarea" value=""  rows="3" cols="3" style="color:#7c7c7c;">121 E Lexington Dr, Glendale, CA 91203 USA</textarea>
-               </span>   
-             <!--<textarea value="121 E Lexington Dr,Glendale, CA 91203 USA" id="name" cols="10" rows="3"  placeholder="Optional"></textarea>-->
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-ios-people"></i><b class="formlabel">Organization</b>
-               </span>
-               <span style="margin-left:32px;">
-                 <input type="text" value="Coca-Cola" placeholder="Optional" name="name" style="color:#7c7c7c;">
-               </span>  
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-location"></i><b class="formlabel">Location</b>
-               </span>
-               <span class="valuealign">
-                 <input type="text" value="West Factory" placeholder="Optional" name="name" style="color:#7c7c7c;">
-               </span>
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-ios-person"></i><b class="formlabel">Hair Color</b>
-               </span>
-               <span class="valuealign">
-                 <input type="text" value="Brown" placeholder="Optional"  name="name" style="color:#7c7c7c;">
-               </span>
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-ios-eye"></i><b class="formlabel">Eye Color</b>
-               </span>
-               <span class="valuealign">
-                <input type="text" value="Brown" placeholder="Optional" name="name" style="color:#7c7c7c;">
-               </span> 
-		 </label>
-          <label class="item item-input validated">
-               <span class="input-label labelcolor">
-                  <i class="ion-earth"></i><b class="formlabel">Ethnicity</b>
-               </span>
-               <span class="valuealign">
-                <input type="text" value="Caucasian" placeholder="Optional"  name="name" style="color:#7c7c7c;">
-               </span>   
-		 </label>
+        <label class="item item-input">
+            <span class="input-label"><i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b></span>
+          
+            <input type="text" value="06/08/1988" class="textdata">
+           
+        </label>
         
     </div>
-    
-    <a class="button button-calm" ng-href="#/tab/relatedusers"><span>Next</span></a>
-    
-    
-    <div class="row">
-    <a style="width:40%;"></a>
-       <a class="button button-balanced donebutton" href="#/tab/healthinfo">Done</a>
-    </div>
-		</form>
+  
         
    </div>
       
