@@ -10,8 +10,8 @@
 			<div class="row">
 				<h1 class="headertitle">
 					<div class="ellipsis subHeader_content_name" >
-						<span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
-						<span class="patientLastName ellipsis lnamefont">Fitzpztrick</span>
+						<span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >{{patientInfomation.patientName}}</span>
+						<span class="patientLastName ellipsis lnamefont">{{patientInfomation.lastName}}</span>
 					</div>
 				</h1>
 			</div>
@@ -21,7 +21,7 @@
 					<p class="homecontent">Account Home</p>
 				</a>
 				<a class="item-avatar itemhead">
-					<p><img src="img\patient.png" class="topimage"></p>
+					<p><img src="{{PatientImage}}" class="topimage"></p>
 				</a>
 				<a class="rightpatient">
 					<i class="icon ion-ios-people headerrighticon"></i>
@@ -68,11 +68,12 @@
 				</div>
 			</ion-list>
 		</ion-content>
-</ion-side-menu-content>
-<!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+
 </ion-view>
 <ion-footer-bar class="bar bar-footer  footer-color footerstyle">
 	<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
 	<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 </ion-footer-bar>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>

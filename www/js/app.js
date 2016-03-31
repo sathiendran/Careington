@@ -29,54 +29,54 @@ var loginPageEnv = 'Single';
 if(deploymentEnv == 'Single') {
 	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 	deploymentEnvForProduction = 'Production';  //'Production'; //Enable only for production. Set 'Production' Only for Single Production - For Apple testing purpose
-    
+
     var singleStagingHospitalId;
-    var singleHospitalId;	
+    var singleHospitalId;
     var brandColor;
     var logo;
     var Hospital;
     var HospitalTag;
-    
+
 	var cobrandApp = 'DYW';
-    
+
     if(cobrandApp == 'EpicMD'){
         singleStagingHospitalId = 155;
-        singleHospitalId = 190;	
+        singleHospitalId = 190;
         brandColor = '#66c3b0';
         logo= 'img/epicmd_logotypebg.png';
         Hospital = 'EpicMD';
         HospitalTag = 'Virtual Care Concierge';
     } else if(cobrandApp == 'TelehealthOne'){
         singleStagingHospitalId = 142;
-        singleHospitalId = 142;	
+        singleHospitalId = 142;
         brandColor = '#5ec4fe';
         logo= 'img/teleLogo.png';
         Hospital = 'telehealthONE';
         HospitalTag = 'Virtual Care Concierge';
     } else if(cobrandApp == 'Dokita'){
         singleStagingHospitalId = 156;
-        singleHospitalId = 184;	
+        singleHospitalId = 184;
         brandColor = '#ff0000';
         logo= 'img/dokita.png';
         Hospital = 'Dokita247';
         HospitalTag = 'Virtual Care Concierge';
     } else if(cobrandApp == 'DYW'){
         singleStagingHospitalId = 156;
-        singleHospitalId = 168;	
+        singleHospitalId = 168;
         brandColor = '#22508b';
         logo= 'img/dyw.jpg';
         Hospital = "DocYourWay's Global Care Management";
         HospitalTag = 'Virtual Care Concierge';
     }
 
-    
+
 }
 
 var handleOpenURL = function (url) {
    setTimeout(function(){
         window.localStorage.setItem("external_load", null);
         window.localStorage.setItem("external_load", url);
-               
+
     }, 0);
 }
 
@@ -90,7 +90,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
 			setTimeout(function() {
 				navigator.splashscreen.hide();
 			}, 500);
-		} else { 
+		} else {
 			//setTimeout(function() {
 				window.localStorage.setItem("app_load", "yes");
 				//navigator.splashscreen.hide();
@@ -100,62 +100,62 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
 		   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
 		   cordova.plugins.Keyboard.disableScroll(true);
 		}
-		
+
 		var initialScreenSize = window.innerHeight;
 		window.addEventListener("resize", function() {
 			if(window.innerHeight < initialScreenSize){
-				$(".has-footer").css({"bottom": 0});	
+				$(".has-footer").css({"bottom": 0});
 				$(".footer").hide();
 			}
 			else{
 				$(".footer").show();
 			}
 		});
-		
-        
+
+
 		if (window.StatusBar) {
 		  StatusBar.styleDefault();
 		}
-    
-		setTimeout(function() {		
+
+		setTimeout(function() {
 			document.addEventListener("offline", onOffline, false);
 			document.addEventListener("online", onOnline, false);
         }, 100);
-	
-        function onOffline(){	
-            
+
+        function onOffline(){
+
         navigator.notification.alert(
             'Please make sure that you have network connection.',  // message
             null,
             'No Internet Connection',            // title
             'Ok'                  // buttonName
-            ); 
-            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+            );
+            if($localstorage.get('ChkVideoConferencePage') == "videoConference") {
               $state.go('tab.connectionLost');
-            } 
+            }
         }
-        function onOnline() {		
-            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+        function onOnline() {
+            if($localstorage.get('ChkVideoConferencePage') == "videoConference") {
            $state.go('tab.videoConference');
-            }		
+            }
         }
-        
+
         cordova.plugins.backgroundMode.setDefaults({ text: $rootScope.alertMsgName});
         cordova.plugins.backgroundMode.enable();
-  
+
         setTimeout(function() {
             if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
             var EXTRA = {};
             var extQuery = window.localStorage.getItem("external_load").split('?')
             var extQueryOnly = extQuery[1];
-            
+
             var query = extQueryOnly.split("&");
-            
+
             for (var i = 0, max = query.length; i < max; i++)
             {
                 if (query[i] === "") // check for trailing & with no param
                     continue;
-                
+
                 var param = query[i].split("=");
                 EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
             }
@@ -196,14 +196,14 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
                 var EXTRA = {};
                 var extQuery = window.localStorage.getItem("external_load").split('?')
                 var extQueryOnly = extQuery[1];
-                
+
                 var query = extQueryOnly.split("&");
-                
+
                 for (var i = 0, max = query.length; i < max; i++)
                 {
                     if (query[i] === "") // check for trailing & with no param
                         continue;
-                
+
                     var param = query[i].split("=");
                     EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
                 }
@@ -238,8 +238,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
                 }*/
             }
             }, 2000);
-        });    
-        
+        });
+
         });
 })
 
@@ -255,7 +255,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
   $ionicConfigProvider.views.maxCache(0);
   $ionicConfigProvider.views.swipeBackEnabled(false);
   $stateProvider
-   
+
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: "/tab",
@@ -274,7 +274,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
   .state('tab.loginSingle', {
     url: '/loginSingle',
     views: {
@@ -284,7 +284,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.provider', {
     url: '/provider',
     views: {
@@ -294,7 +294,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
   .state('tab.terms', {
     url: '/terms',
     views: {
@@ -304,7 +304,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.password', {
     url: '/password',
     views: {
@@ -314,7 +314,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.resetPassword', {
     url: '/resetPassword',
     views: {
@@ -324,7 +324,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
   .state('tab.userhome', {
     url: '/userhome',
     views: {
@@ -334,10 +334,10 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
 
-  
-  
+
+
+
   .state('tab.patientDetail', {
     url: '/patientDetail',
     views: {
@@ -347,7 +347,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
     .state('tab.patientCalendar', {
     url: '/patientCalendar',
     views: {
@@ -357,7 +357,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
   .state('tab.appoimentDetails', {
     url: '/appoimentDetails',
     views: {
@@ -367,9 +367,9 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
-   
-  
+
+
+
    .state('tab.patientConcerns', {
     url: '/patientConcerns',
     views: {
@@ -379,7 +379,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
     .state('tab.ChronicCondition', {
     url: '/ChronicCondition',
     views: {
@@ -389,7 +389,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.priorSurgeries', {
     url: '/priorSurgeries',
     views: {
@@ -409,7 +409,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
  .state('tab.MedicationAllegies', {
     url: '/MedicationAllegies',
     views: {
@@ -428,7 +428,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
   .state('tab.consultCharge', {
     url: '/consultCharge',
     views: {
@@ -438,7 +438,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.addHealthPlan', {
     url: '/addHealthPlan',
     views: {
@@ -448,7 +448,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
     .state('tab.planDetails', {
     url: '/planDetails',
     views: {
@@ -458,9 +458,9 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
-  
-  
+
+
+
     .state('tab.applyPlan', {
     url: '/applyPlan',
     views: {
@@ -470,7 +470,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.addCard', {
     url: '/addCard',
     views: {
@@ -480,7 +480,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.consultChargeNoPlan', {
     url: '/consultChargeNoPlan',
     views: {
@@ -499,8 +499,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
- 
+
+
   .state('tab.submitPayment', {
     url: '/submitPayment',
     views: {
@@ -510,7 +510,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
   .state('tab.receipt', {
     url: '/receipt',
     views: {
@@ -520,7 +520,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.waitingRoom', {
     url: '/waitingRoom',
     views: {
@@ -529,8 +529,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
         controller: 'waitingRoomCtrl'
       }
     }
-  })  
-  
+  })
+
   .state('tab.videoConference', {
     url: '/videoConference',
     views: {
@@ -539,8 +539,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
         controller: 'ConferenceCtrl'
       }
     }
-  })  
-  
+  })
+
   .state('tab.connectionLost', {
     url: '/connectionLost',
     views: {
@@ -550,7 +550,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.ReportScreen', {
     url: '/ReportScreen',
     views: {
@@ -578,7 +578,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
-  
+
    .state('tab.singleTerms', {
     url: '/singleTerms',
     views: {
@@ -602,11 +602,11 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-userAccount.html',
-        controller: ''
+        controller: 'LoginCtrl'
       }
     }
   })
-  
+
 .state('tab.userAppointment', {
     url: '/userAppointment',
     views: {
@@ -634,7 +634,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
     }
   })
- 
+
    .state('tab.healthinfo', {
     url: '/healthinfo',
   views: {
@@ -644,18 +644,18 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-   
+
    .state('tab.healthinfoedit', {
     url: '/healthinfoedit',
   views: {
       'tab-login': {
         templateUrl: 'templates/tab-healthinfoedit.html',
-        
+
         controller: ''
       }
       }
   })
-  
+
    .state('tab.relatedusers', {
     url: '/relatedusers',
   views: {
@@ -665,7 +665,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
+
    .state('tab.removerelatedusers', {
       url: '/removerelatedusers',
     views: {
@@ -675,7 +675,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-               
+
    .state('tab.appointmentpatientdetails', {
        url: '/appointmentpatientdetails',
     views: {
@@ -685,7 +685,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
+
    .state('tab.profileoption', {
        url: '/profileoption',
     views: {
@@ -695,7 +695,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
+
    .state('tab.consultations', {
        url: '/consultations',
     views: {
@@ -705,7 +705,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
+
   .state('tab.addnewuser', {
        url: '/addnewuser',
     views: {
@@ -715,7 +715,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
+
    .state('tab.addnewdependent', {
        url: '/addnewdependent',
     views: {
@@ -725,7 +725,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
+
   .state('tab.consultationSearch', {
        url: '/consultationSearch',
     views: {
@@ -735,7 +735,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-   
+
    .state('tab.patientappointmentdetails', {
        url: '/patientappointmentdetails',
     views: {
@@ -745,8 +745,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
-  
+
+
   // if none of the above states are matched, use this as the fallback
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
@@ -756,7 +756,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
   }else{
     $urlRouterProvider.otherwise('/tab/login');
   }
-  
+
 });
 
 //snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=
