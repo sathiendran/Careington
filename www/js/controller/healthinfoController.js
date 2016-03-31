@@ -6,32 +6,43 @@ angular.module('starter.controllers')
    $scope.headerval=false;
    $scope.editshow=true;
    $scope.doneshow=true;
-   $scope.inactive = true;
+   $scope.readattr = false;
    $scope.doneedit=false;
-  
+   $scope.flag = true;
    
    $scope.edittext = function() {
-      $scope.inactive = false;
+      $scope.readattr = false;
       $scope.doneshow=false;
       $scope.editshow=false;
       $scope.doneedit=true;
-      
-         
+       $scope.flag = false;
+        var editvalues = angular.element(document.getElementsByTagName('input'));
+        var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+          editvalues.removeClass('textdata');
+          editvalues.addClass('editdata');
+          edittextarea.removeClass('editdata');
+          edittextarea.addClass('textdata');
    }
    
       
    $scope.donetext = function() {
-      $scope.inactive = true;
+      $scope.readattr = true;
       $scope.doneshow=true;
       $scope.editshow=true;
       $scope.doneedit=false;
-    
+      $scope.flag = true;
+      var editvalues = angular.element(document.getElementsByTagName('input'));
+      var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+          editvalues.removeClass('editdata');
+          editvalues.addClass('textdata');
+          edittextarea.removeClass('editdata');
+          edittextarea.addClass('textdata');
    }
    
    $scope.done=function(){
       $scope.editshow=true;
       $scope.doneshow=true;
-      $scope.inactive = true;
+      $scope.flag = true;
       $scope.doneedit=false;
    }
    
