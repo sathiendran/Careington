@@ -913,7 +913,7 @@ body {
 .intakeTittleIOS {
 	//margin-left: -33px;
 	top: 17px !important;
- 
+
 }
 
 .PatientDetailsHome {
@@ -1387,8 +1387,6 @@ body {
 }
 
 .sidemenuContent1 {
-	position: absolute;
-	bottom: 113px;
 	width: 100%;
 	.ion-ios-list:before {
 		font-size: 31px;
@@ -1398,8 +1396,6 @@ body {
 .SidemenuLogOut1 {
 	width: 100%;
 	color:#7E807E;
-	  bottom: 47px;
-	 position: absolute;
 	.LogOutText {
 		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
 		span {
@@ -4082,10 +4078,6 @@ p{
                 font-family:Glober Bold;
                 }
          }
-         .footerstyle{
-             height:81px !important;
-             margin-top:15px !important;
-         }
          .userappheight{
              margin-top:15px !important;
              height:47px!important;
@@ -4174,13 +4166,13 @@ p{
          .ioncontentsalign{
              margin-top:165px;
          }
-      
+
          .valhome{
             margin-left:36px;
           }
           .valorg{
              margin-left:30px;
-          }  
+          }
          .valtex {
              margin-left:22px;
              color: #888;
@@ -4486,9 +4478,11 @@ color: white;
 }
 .headerval{
  color:white;
+
  font-family:Glober Regular;  
  float:right; 
  margin-right:8px;
+
 }
 .colfamily{
     font-family:Glober Semibold;
@@ -4509,10 +4503,10 @@ color: white;
 }
 .vreport{
    margin-left: 12px;
-   color:#616161; 
+   color:#616161;
 }
 .rghticon{
-     color:#616161; 
+     color:#616161;
      float:right;
 }
 .rowalign{
@@ -4526,7 +4520,7 @@ color: white;
    background-color:#e8e8e8;
    height:27px;
    border-radius:5px;
-   margin-top:10px; 
+   margin-top:10px;
  .hsearch{
    text-align: center;
    line-height: 2;
@@ -4566,10 +4560,10 @@ color: white;
  }
  .coltime{
     max-width:65px;
-    margin-left: 10px; 
+    margin-left: 10px;
  }
  .dotedhr{
-   margin-top:-3px; 
+   margin-top:-3px;
    height:0px !important;
   border-top: 1px dashed #c0bebe;
    background-color:#e9e9e9;
@@ -4578,7 +4572,7 @@ color: white;
     margin: 25px 10px !important;
 }
 .item-input
-{ 
+{
  .valuealign{
    margin-left:45px;
   }
@@ -4587,6 +4581,7 @@ color: white;
       width: 145px;
      }
 .textdata{
+    background-color:red;
        font-size:17px;
         color:#7c7c7c;
   }
@@ -4595,10 +4590,17 @@ color: white;
     }
    .valorg{
       margin-left:30px;
-     } 
+     }
  .editdata{
      font-size:12px;
      color:#7c7c7c;
      background-color:#e9e9e9;;
    }
 }
+/*Start SideMenu by Poomani*/
+.sideMenu {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+/*End SideMenu by Poomani*/
