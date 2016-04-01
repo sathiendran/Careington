@@ -1379,7 +1379,7 @@ body {
 		}
 	}
 	.item {
-	  border-color: #464644;
+	  border-color: #a8a9a7;
 	}
 	.ion-power:before {
 	 font-size: 27px;
@@ -2155,6 +2155,8 @@ text-align:center
 .pathead{
     font-family:Glober SemiBold;
 color:#979797;
+margin-top:0px !important;
+margin-bottom:13px !important;
 }
 
 .bar-headerHomeUser {
@@ -2863,6 +2865,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 		}
 	}
 }
+.sfont{
+    margin-left:10px;
+}
 .UserHomeNextAppointment {
 	top: -2px;height: 64px;
 	a {
@@ -3563,7 +3568,8 @@ font-size: 18px;
 }
 .avatarclass{
   margin-top: 10px;
-  margin-left: -28px;
+  margin-left:  -34px;
+  
 }
 
 
@@ -3661,12 +3667,15 @@ font-size: 18px;
     font-size:25px;
     }
 }
-
+.imgsize{
+    max-width:50px !important;
+    max-height:50px !important;
+}
 .hidetab {
     display:none;
 }
 .btn-first{
-
+    font-size:14px !important; 
     height:0px;
  }
  .backbtn{
@@ -3761,8 +3770,14 @@ font-size: 18px;
 .tabcontent{
     color:#11c1f3;
 }
+.appfname{
+      font-size: 20px;
+    font-family: Glober SemiBold;
+    color: #717171;
+    
+}
 .fname{
-    font-size: 22px;
+    font-size: 23px;
     font-family: Glober SemiBold;
     color: #717171;
     }
@@ -3857,15 +3872,18 @@ p{
  }
 
  .avaticon{
-      margin-left: -12px;
-    color: #E2B176;
+      margin-left: -14px;
+    color: rgba(250, 130, 69, 0.32) !important; 
  }
 }
 }
-
+.consimg{
+    max-width:30px !important;
+    max-height:30px !important;
+}
 .avatclass{
     margin-top: 10px;
-    margin-left: -38px;
+    margin-left: -36px;
 }
 
 
@@ -3905,10 +3923,10 @@ p{
       font-size:16px !important;
   }
   .authorizedval{
-      background-color:#E2B176;
-
+     background-color: rgba(250, 130, 69, 0.32); 
+     height:50px;
       .authorizedicon{
-        margin-top:-27px;
+        margin-top:-28px;
         color: white;
         margin-left:4px;
 
@@ -4070,20 +4088,36 @@ p{
          }
          .userappheight{
              margin-top:15px !important;
-             height:44px!important;
+             height:47px!important;
          }
          .userappcontent{
-             font-family:Glober SemiBold;
-             background-color: #9BCA82;color:#fff;
+             font-family:Glober Bold;
+             margin-top:5px !important;
+             color:#fff;
+             font-size:22px !important;
          }
          .fooheight
          {
          height: 67.5px !important;
          background-image:none;
           }
-          .addheight{
-          height: 65px !important;
+           .footheight
+         {
+         height: 79px !important;
          background-image:none;
+          }
+          .btnclass{
+              font-size:14px;
+              line-height: 2.3;
+          }
+          .addheight{
+          height: 54px !important;
+         background-image:none;
+          }
+          .aptsname{
+            font-size: 13px !important;
+            color: #888;
+            font-family: Glober SemiBold;
           }
          .usercontent{
              margin-top:156px !important;
@@ -4393,11 +4427,13 @@ color: white;
          }
   .userappheight{
        margin-top:15px !important;
-       height:44px!important;
+       height:47px!important;
          }
  .userappcontent{
-      font-family:Glober SemiBold;
-       background-color: #9BCA82;color:#fff;
+       font-family:Glober Bold;
+       margin-top:5px !important;
+       color:#fff;
+       font-size:22px !important;
          }
 .button-bar > .button:first-child {
     border-radius: 6px 0px 0px 6px !important;
@@ -4416,7 +4452,8 @@ color: white;
 }
 .tabheading{
       padding: 2px 16px !important;
-      font-size:15px;
+      font-size:14px;
+      line-height:2.4;
    }
 .couses{
     display:block;
@@ -4451,6 +4488,7 @@ color: white;
  color:white;
  font-family:Glober Regular;  
  float:right; 
+ margin-right:8px;
 }
 .colfamily{
     font-family:Glober Semibold;
@@ -4477,6 +4515,13 @@ color: white;
      color:#616161; 
      float:right;
 }
+.rowalign{
+    padding:0px;
+}
+.right-icon {
+  color: #616161;
+   margin-left: 15px;
+   }
 .csearch{
    background-color:#e8e8e8;
    height:27px;
@@ -4491,7 +4536,8 @@ color: white;
 }
 .topfont{
    max-width:60px;
-   margin-left:12px;
+   margin-left:-10px;
+   font-size:11px;
 }
 .avatitem{
     border:none;
@@ -4516,6 +4562,7 @@ color: white;
 }
  .coldate{
      width:80px;
+     margin-left:-10px;
  }
  .coltime{
     max-width:65px;
@@ -4524,7 +4571,7 @@ color: white;
  .dotedhr{
    margin-top:-3px; 
    height:0px !important;
-   border: 0.8px dashed #a3a3a3;
+  border-top: 1px dashed #c0bebe;
    background-color:#e9e9e9;
 }
 .usercard{

@@ -9,7 +9,7 @@
 				ng-click="toggleLeft()"></button>
 	</div>
 
-    <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointments <span style="float:right;"><i class="icon ion-search"></i></span></h1>
+    <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointments <span style="float:right;margin-right: 10px;"><i class="icon ion-search"></i></span></h1>
 
 <div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
                   <div class="row">
@@ -49,8 +49,8 @@
 			</button>
 	</div>
         <div class=" button-bar">
-          <label class="button button-small btcolor btn-first"  id="users" ng-click="user()"> This Patient</label>
-          <label class="button button-small btnextcolor btn-first tabcontent" id="allusers" ng-click="alluser()">All</label>
+          <label class="button button-small btcolor btn-first btnclass"  id="users" ng-click="user()"> This Patient</label>
+          <label class="button button-small btnextcolor btn-first tabcontent btnclass" id="allusers" ng-click="alluser()">All</label>
          
     </div>
     
@@ -67,11 +67,10 @@
         <a class="item item-avatar" style="margin-bottom: -13px;">
              <img src="img\patient.png">
             <h2 class="sname">Next Appointment</h2>
-              <h4><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span> 
-              <p style="float:right;">
+            <p style="float:right;margin-top:-10px;">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
-              </h4>
+              <h4><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span> </h4>
         </a>
             
         <a class="item item-avatar appitem">
@@ -131,12 +130,11 @@
             
         <a class="item item-avatar" style="margin-bottom: -13px;">
              <img src="img\Lisa_Wong.jpg">
-            <h2>Next Appointment</h2>
-                <h4 class=""><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-              <p style="float:right;">
+            <h2 class="sname">Next Appointment</h2>
+             <p style="float:right;margin-top:-10px;">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
-              </h4>
+                <h4 class=""><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span></h4>
         </a>
             
         <a class="item item-avatar appitem">
