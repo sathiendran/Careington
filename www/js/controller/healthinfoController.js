@@ -20,8 +20,8 @@ angular.module('starter.controllers')
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
           editvalues.removeClass('textdata');
           editvalues.addClass('editdata');
-          edittextarea.removeClass('editdata');
-          edittextarea.addClass('textdata');
+          edittextarea.removeClass('textdata');
+          edittextarea.addClass('editdata');
    }
    
       
@@ -44,6 +44,12 @@ angular.module('starter.controllers')
       $scope.doneshow=true;
       $scope.flag = true;
       $scope.doneedit=false;
+       var editvalues = angular.element(document.getElementsByTagName('input'));
+      var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+          editvalues.removeClass('editdata');
+          editvalues.addClass('textdata');
+          edittextarea.removeClass('editdata');
+          edittextarea.addClass('textdata');
    }
    
    

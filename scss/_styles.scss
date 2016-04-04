@@ -2642,7 +2642,31 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-weight: bold;
   background-color: #E6E6E6;
   }
-
+  .userhead{
+      text-align: center;
+      color:rgba(109, 109, 109, 0.91);
+      font-size:23px;
+      font-family:Glober Bold;
+  }
+  .deticon{
+      font-size:16px;
+      margin-left:8px;
+  }
+.moredet{
+     font-family: Glober Regular;
+    margin-left:23px;
+    padding-bottom:75px;
+    color:#5c5c5c;
+    font-size:18px;
+    font-weight:normal;
+}
+.lessdet{
+    font-family: Glober Regular;
+    margin-left:20px;
+    font-size: 18px;
+    font-weight:normal;
+    color: #5c5c5c;
+}
 .intakeNote{
     width: 93%;
     float: left;
@@ -3759,9 +3783,24 @@ font-size: 18px;
 .tab-item.active{
     color:#11c1f3 !important;
 }
+
+ .profilelist:last-child{
+         margin-bottom:120px;
+         //  padding-bottom:65px;
+       }
 .donebutton{
-    margin-bottom:300px;
-    width:30%;
+  margin-bottom: 50px;
+  height: 20px;
+  width: 32%;
+  border-radius: 8px !important;
+  box-shadow: 2px 2px 3px #a7a7a7 !important; 
+  border:none;
+  .donetext{
+    line-height:2.4;
+    color: white;
+    font-family: Glober Bold;
+    font-size: 21px;
+  }
 }
 .tabcontent{
     color:#11c1f3;
@@ -3946,10 +3985,7 @@ p{
   }
 }
 
- .profilelist:last-child{
-          // margin-bottom:130px;
-           padding-bottom:65px;
-       }
+
 
   @media only screen and (max-device-width: 480px){
 	.col-25{
@@ -4154,8 +4190,8 @@ p{
                margin-top:120px !important;
        }
        .deptlist:last-child{
-          // margin-bottom:130px;
-           padding-bottom:65px;
+          margin-bottom:130px;
+           padding-bottom:85px;
        }
        .userdetcontent{
              margin-top:58px !important;
@@ -4573,6 +4609,17 @@ color: white;
 }
 .item-input
 {
+    
+    .usertext {
+        margin-left:38px;
+        margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;
+    }
+    .userdob {
+       margin-left:22px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px; 
+    }
+    .userrel {
+       margin-left:30px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;
+       }
  .valuealign{
    margin-left:45px;
   }
@@ -4581,9 +4628,9 @@ color: white;
       width: 145px;
      }
 .textdata{
-    background-color:red;
-       font-size:17px;
-        color:#7c7c7c;
+    font-size:17px;
+    color: #7c7c7c;
+    background-color: #e9e9e9;
   }
   .valhome{
      margin-left:36px;
