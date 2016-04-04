@@ -3,70 +3,70 @@ angular.module('starter.controllers')
 
 .controller('waitingRoomCtrl', function($scope, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout,SurgeryStocksListService,$filter, $localStorage,$sessionStorage,StateList) {
 	window.plugins.insomnia.keepAwake();
-	$rootScope.currState = $state;    
-	
-	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
-        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
-			  ($rootScope.currState.$current.name=="tab.addCard") ||	
-			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
-			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
-			 ($rootScope.currState.$current.name=="tab.receipt") || 	
-             ($rootScope.currState.$current.name=="tab.videoConference") ||
-			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
-			 ($rootScope.currState.$current.name=="tab.ReportScreen")
-            ){ 
+	$rootScope.currState = $state;
+
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {
+        if ( ($rootScope.currState.$current.name==="tab.userhome") ||
+			  ($rootScope.currState.$current.name==="tab.addCard") ||
+			  ($rootScope.currState.$current.name==="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name==="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name==="tab.receipt") ||
+             ($rootScope.currState.$current.name==="tab.videoConference") ||
+			  ($rootScope.currState.$current.name==="tab.connectionLost") ||
+			 ($rootScope.currState.$current.name==="tab.ReportScreen")
+            ){
                 // H/W BACK button is disabled for these states (these views)
-                // Do not go to the previous state (or view) for these states. 
+                // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
-            }else if($rootScope.currState.$current.name=="tab.login"){
+            }else if($rootScope.currState.$current.name==="tab.login"){
                 navigator.app.exitApp();
-			}else if($rootScope.currState.$current.name=="tab.loginSingle"){
+			}else if($rootScope.currState.$current.name==="tab.loginSingle"){
                 navigator.app.exitApp();
-            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+            }else if($rootScope.currState.$current.name==="tab.cardDetails"){
 				var gSearchLength = $('.ion-google-place-container').length;
-				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
-					$ionicBackdrop.release();					
-					$(".ion-google-place-container").css({"display": "none"});						 
-					
-				}else{		
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block')	{
+					$ionicBackdrop.release();
 					$(".ion-google-place-container").css({"display": "none"});
-					navigator.app.backHistory(); 
+
+				}else{
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory();
 				}
-												
-			}else {                
-                navigator.app.backHistory(); 
+
+			}else {
+                navigator.app.backHistory();
             }
-        }, 100); 
+        }, 100);
     $scope.$storage = $localStorage;
     $scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		 if(deploymentEnvLogout == "Multiple"){
+		 if(deploymentEnvLogout === "Multiple"){
 			$state.go('tab.chooseEnvironment');
-		}else if(deploymentEnvLogout == "Single"){
-			$state.go('tab.loginSingle');		
+		}else if(deploymentEnvLogout === "Single"){
+			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
 	}
-   
-	
+
+
     $scope.isPhysicianStartedConsultaion = false;
-    
-    /*        
+
+    /*
     consultationStatusCheck = $interval(function(){
          if(!$scope.isPhysicianStartedConsultaion){
               $scope.checkIfPhysicianStartedConference();
          }
     }, 5000);
-            
+
     $scope.checkIfPhysicianStartedConference = function(){
         var params = {
             accessToken: $rootScope.accessToken,
             consultationId: $rootScope.consultationId,
             success: function (data) {
                 console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
-                 if(data.data[0].consultationInfo.consultationStatus == REVIEW_CONSULTATION_STATUS_CODE){
+                 if(data.data[0].consultationInfo.consultationStatus === REVIEW_CONSULTATION_STATUS_CODE){
                       $interval.cancel(consultationStatusCheck);
                       $scope.isPhysicianStartedConsultaion = true;
                       $scope.getConferenceKeys();
@@ -80,7 +80,7 @@ angular.module('starter.controllers')
         LoginService.getExistingConsulatation(params);
      };
     */
-    
+
     $scope.waitingMsg="The Clinician will be with you Shortly.";
 	var initWaitingRoomHub = function () {
          var connection = $.hubConnection();
@@ -88,7 +88,7 @@ angular.module('starter.controllers')
          connection.url = $rootScope.APICommonURL + "/api/signalR/";
          var consultationWatingId = +$rootScope.consultationId;
          var sound = $rootScope.AndroidDevice ? 'file://sound.mp3' : 'file://beep.caf';
-            
+
            // var conHub = $.connection.consultationHub;
            connection.qs = {
                 "Bearer": $rootScope.accessToken,
@@ -136,11 +136,11 @@ angular.module('starter.controllers')
                 withCredentials :false
             }).then(function(){
                 $scope.waitingMsg="The Clinician will be with you Shortly.";
-                $scope.$digest(); 
+                $scope.$digest();
             });
     };
     initWaitingRoomHub();
-    
+
     var getConferenceKeys = function(){
         var params = {
             accessToken: $rootScope.accessToken,
@@ -149,16 +149,16 @@ angular.module('starter.controllers')
                 $rootScope.videoSessionId = data.sessionId;
                 $rootScope.videoApiKey = data.apiKey;
                 $rootScope.videoToken = data.token;
-                if($rootScope.videoSessionId != "" && $rootScope.videoToken != ""){
+                if($rootScope.videoSessionId !== "" && $rootScope.videoToken !== ""){
                     $state.go('tab.videoConference');
                 }
 
             },
             error: function (data) {
-               $rootScope.serverErrorMessageValidation(); 
+               $rootScope.serverErrorMessageValidation();
             }
         };
         LoginService.getVideoConferenceKeys(params);
     };
-    
+
 })
