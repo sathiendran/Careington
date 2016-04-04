@@ -4,63 +4,63 @@ angular.module('starter.controllers')
 
 
 .controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
-	
-	
-	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
-        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
-			  ($rootScope.currState.$current.name=="tab.addCard") ||	
-			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
-			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
-			 ($rootScope.currState.$current.name=="tab.receipt") || 	
-             ($rootScope.currState.$current.name=="tab.videoConference") ||
-			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
-			 ($rootScope.currState.$current.name=="tab.ReportScreen")
-            ){ 
+
+
+	$ionicPlatform.registerBackButtonAction(function (event, $state) {
+        if ( ($rootScope.currState.$current.name==="tab.userhome") ||
+			  ($rootScope.currState.$current.name==="tab.addCard") ||
+			  ($rootScope.currState.$current.name==="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name==="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name==="tab.receipt") ||
+             ($rootScope.currState.$current.name==="tab.videoConference") ||
+			  ($rootScope.currState.$current.name==="tab.connectionLost") ||
+			 ($rootScope.currState.$current.name==="tab.ReportScreen")
+            ){
                 // H/W BACK button is disabled for these states (these views)
-                // Do not go to the previous state (or view) for these states. 
+                // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
-            }else if($rootScope.currState.$current.name=="tab.login"){
+            }else if($rootScope.currState.$current.name==="tab.login"){
                 navigator.app.exitApp();
-			}else if($rootScope.currState.$current.name=="tab.loginSingle"){
+			}else if($rootScope.currState.$current.name==="tab.loginSingle"){
                 navigator.app.exitApp();
-            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
+            }else if($rootScope.currState.$current.name==="tab.cardDetails"){
 				var gSearchLength = $('.ion-google-place-container').length;
-				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
-					$ionicBackdrop.release();					
-					$(".ion-google-place-container").css({"display": "none"});						 
-					
-				}else{		
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block')	{
+					$ionicBackdrop.release();
 					$(".ion-google-place-container").css({"display": "none"});
-					navigator.app.backHistory(); 
+
+				}else{
+					$(".ion-google-place-container").css({"display": "none"});
+					navigator.app.backHistory();
 				}
-												
-			}else {                
-                navigator.app.backHistory(); 
+
+			}else {
+                navigator.app.backHistory();
             }
-        }, 100); 
-	
-	$scope.addMinutes = function (inDate, inMinutes) {   
+        }, 100);
+
+	$scope.addMinutes = function (inDate, inMinutes) {
 		var newdate = new Date();
 		newdate.setTime(inDate.getTime() + inMinutes * 60000);
 		return newdate;
 	}
-	
+
 	$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:$rootScope.selectedPatientIdForDetails});
-	
+
 	var d = new Date();
 	d.setHours(d.getHours() + 12);
 	var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-	
+
 	$scope.doRefresh = function() {
 		$scope.doGetScheduledConsulatation();
 		$timeout( function() {
 			$scope.$broadcast('scroll.refreshComplete');
 		 }, 1000);
-		$scope.$apply();	
+		$scope.$apply();
 	};
-	
+
 	$scope.doGetScheduledConsulatation = function () {
-		if ($scope.accessToken == 'No Token') {
+		if ($scope.accessToken === 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
@@ -71,45 +71,45 @@ angular.module('starter.controllers')
 			success: function (data) {
 				console.log(data);
 				$scope.scheduledConsultationList = data.data;
-				if(data != "") {
+				if(data !== "") {
 					$rootScope.scheduledList = [];
 					var currentDate = new Date();
 					currentDate = $scope.addMinutes(currentDate, -30);
 					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
-						
-											
-					angular.forEach($scope.scheduledConsultationList, function(index, item) {							
+
+
+					angular.forEach($scope.scheduledConsultationList, function(index, item) {
 						if(currentDate < CustomCalendar.getLocalTime(index.scheduledTime)) {
-							 $rootScope.scheduledList.push({							
+							 $rootScope.scheduledList.push({
 								'id': index.$id,
 								'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
 								'consultantUserId': index.consultantUserId,
 								'consultationId': index.consultationId,
-								'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName), 
+								'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName),
 								'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName),
 								'assignedDoctorName': htmlEscapeValue.getHtmlEscapeValue(index.assignedDoctorName),
 								'patientName': htmlEscapeValue.getHtmlEscapeValue(index.patientName),
 								'patientId': index.patientId,
 								'consultationStatus': index.consultationStatus,
-								'scheduledId': index.scheduledId,    
+								'scheduledId': index.scheduledId,
 							});
-						}	
+						}
 					});
-					
-					
+
+
 					$rootScope.nextAppointmentDisplay = 'none';
-					
+
 					var d = new Date();
 					d.setHours(d.getHours() + 12);
 					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-					
-					if($rootScope.scheduledList != '')
+
+					if($rootScope.scheduledList !== undefined && $rootScope.scheduledList.length !== 0)
 					{
 						$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:$rootScope.selectedPatientIdForDetails});
-						
+
 						var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
 						var currentUserHomeDate = currentUserHomeDate;
-						
+
 						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							console.log('scheduledTime <= getTwelveHours UserHome');
 							$rootScope.nextAppointmentDisplay = 'block';
@@ -123,35 +123,35 @@ angular.module('starter.controllers')
 								 $rootScope.timerCOlor = '#E1FCD4';
 							}
 						}
-						if($rootScope.getIndividualScheduleDetails !='') {		
-							var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+						if($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
+							var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
 							var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
-							var currentUserHomeDate = currentUserHomeDate;		
-							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {	
-								
+							var currentUserHomeDate = currentUserHomeDate;
+							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+
 								$rootScope.time = new Date(getReplaceTime).getTime();
-								
-								 $timeout(function() {  
+
+								 $timeout(function() {
 									document.getElementsByTagName('timer')[0].stop();
 									document.getElementsByTagName('timer')[0].start();
 								}, 10);
-									
+
 								$scope.$on('timer-tick', function (event, args){
-									if(args.days == 0) {
+									if(args.days === 0) {
 										$rootScope.hourDisplay = 'initial';
 										$rootScope.daysDisplay = 'none';
-										$rootScope.dayDisplay = 'none';		
-									} else if(args.days == 1) {
-										$rootScope.daysDisplay = 'none';	
+										$rootScope.dayDisplay = 'none';
+									} else if(args.days === 1) {
+										$rootScope.daysDisplay = 'none';
 										$rootScope.hourDisplay = 'none';
-										$rootScope.dayDisplay = 'initial';		
+										$rootScope.dayDisplay = 'initial';
 									} else if(args.days > 1) {
-										$rootScope.daysDisplay = 'initial';	
+										$rootScope.daysDisplay = 'initial';
 										$rootScope.hourDisplay = 'none';
-										$rootScope.dayDisplay = 'none';	
+										$rootScope.dayDisplay = 'none';
 									}
-									
-								
+
+
 									if(args.millis < 600){
 										$rootScope.timeNew = 'none';
 									   $rootScope.timeNew1 = 'block';
@@ -170,28 +170,28 @@ angular.module('starter.controllers')
 									   $rootScope.timeNew1 = 'none';
 										$rootScope.timerCOlor = '#FEEFE8';
 									}*/
-									
+
 								});
 								$rootScope.time = new Date(getReplaceTime).getTime();
-								
-								/* $timeout(function() {  
+
+								/* $timeout(function() {
 									document.getElementsByTagName('timer')[0].stop();
 									document.getElementsByTagName('timer')[0].start();
 								}, 10);*/
-								
+
 								var d = new Date();
-								
+
 								var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-								
+
 								if(getReplaceTime < currentUserHomeDate){
 									 $rootScope.timerCOlor = '#E1FCD4';
 								}
 							} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
 								$rootScope.timerCOlor = 'transparent';
-							}	
+							}
 						}
 					}
-					 
+
 				}
 			},
 			error: function (data) {
@@ -204,32 +204,32 @@ angular.module('starter.controllers')
 
 	$scope.GoToappoimentDetails = function(scheduledListData) {
 		$state.go('tab.appoimentDetails');
-		$rootScope.scheduledListDatas = scheduledListData;		
+		$rootScope.scheduledListDatas = scheduledListData;
 	};
-	
-	if($rootScope.getIndividualScheduleDetails !='') {		
-		var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+
+		if($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
+		var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
 		var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
-		var currentUserHomeDate = currentUserHomeDate;		
-		if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {		
-			
-				
+		var currentUserHomeDate = currentUserHomeDate;
+		if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+
+
 			$scope.$on('timer-tick', function (event, args){
-				if(args.days == 0) {
+				if(args.days === 0) {
 					$rootScope.hourDisplay = 'initial';
 					$rootScope.daysDisplay = 'none';
-					$rootScope.dayDisplay = 'none';		
-				} else if(args.days == 1) {
-					$rootScope.daysDisplay = 'none';	
+					$rootScope.dayDisplay = 'none';
+				} else if(args.days === 1) {
+					$rootScope.daysDisplay = 'none';
 					$rootScope.hourDisplay = 'none';
-					$rootScope.dayDisplay = 'initial';		
+					$rootScope.dayDisplay = 'initial';
 				} else if(args.days > 1) {
-					$rootScope.daysDisplay = 'initial';	
+					$rootScope.daysDisplay = 'initial';
 					$rootScope.hourDisplay = 'none';
-					$rootScope.dayDisplay = 'none';	
+					$rootScope.dayDisplay = 'none';
 				}
-				
-			
+
+
 				if(args.millis < 600){
 					$rootScope.timeNew = 'none';
 				   $rootScope.timeNew1 = 'block';
@@ -248,25 +248,24 @@ angular.module('starter.controllers')
 				   $rootScope.timeNew1 = 'none';
 					$rootScope.timerCOlor = '#FEEFE8';
 				}*/
-				
+
 			});
 			$rootScope.time = new Date(getReplaceTime).getTime();
-			
-			 $timeout(function() {  				
+
+			 $timeout(function() {
 				document.getElementsByTagName('timer')[0].start();
 			}, 10);
-			
+
 			var d = new Date();
-			
+
 			var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-			
+
 			if(getReplaceTime < currentUserHomeDate){
 				 $rootScope.timerCOlor = '#E1FCD4';
 			}
 		} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
 			$rootScope.timerCOlor = 'transparent';
-		}	
+		}
 	}
-	
-})
 
+})
