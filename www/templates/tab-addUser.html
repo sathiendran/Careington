@@ -1,30 +1,29 @@
 
 <ion-side-menus> 
-	<ion-side-menu-content> 
+<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
  
-	<div class="buttons" > 
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
-	</div>
-	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">New User <span class="headerrightend" >Cancel</span></h1>  
+<div class="buttons" > 
+<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
+</div>
+<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">New User <span  ><a class="headerval" ng-href="#/tab/relatedusers">Cancel</a></span></h1>  
 
 
-	
 <div class="bar bar-subheader bar-dark" style="top:65px;height:109px;">
     
     <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >New</span>
-					 <span class="patientLastName ellipsis lnamefont">Co-User</span>
-				     </div></h1>
+ <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >New</span>
+<span class="patientLastName ellipsis lnamefont">Co-User</span>
+    </div></h1>
                 </div>
     
            
          <div class="row">
            <div class="addphoto" style=""></div>
              <div class="">
-				<div class="round-button" >
+<div class="round-button" >
                      <div class="round-button-circle">
                          <a  class="round-button">
                             <span> <i class="icon ion-camera"></i></span>
@@ -33,8 +32,7 @@
                       </div>
                 </div>
             </div>
-                    </div>	
-			
+                    </div>
 </div>
 
 
@@ -43,106 +41,102 @@
 
 <ion-view title="">
     
-	<ion-content class="userdeptcontent">
-	<h4 style=" text-align: center;color:rgba(109, 109, 109, 0.91);font-size:22px;font-family:Glober Bold;"><b>User Details</b></h4>
+<ion-content class="userdeptcontent">
+<h4 class="userhead"><b>User Details</b></h4>
     
     <div class="list">
-		
-		  <label class="item item-input validated">
+ <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-person"></i><b class="formlabel">First Name</b></span>
-            <input   class="typealign" type="text" value="" placeholder="Required" required="required"  name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-			
-		 </label>	
+            <input   class="usertext" type="text" value="" placeholder="Required" required="required"  name="name" >
+</label>
          
            <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-person"></i><b class="formlabel">Last Name</b></span>
-            <input   class="typealign" type="text" value="" placeholder="Required" required="required"  name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		</label>
+            <input   class="usertext" type="text" value="" placeholder="Required" required="required"  name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-email"></i><b class="formlabel">Email</b></span>
-            <input   class="typealign"  type="text" value="" placeholder="Required" required="required"  name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		</label>	
+            <input   class="usertext"  type="text" value="" placeholder="Required" required="required"  name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-calendar-outline"></i><b class="formlabel">Date of Birth</b></span>
-            <input   class="typealign"  type="text" value=""  placeholder="Required" required="required"  name="name" id="name" style="margin-left:22px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>	
+            <input   class="userdob"  type="text" value=""  placeholder="Required" required="required"  name="name" >
+</label>
          
            <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-person-stalker"></i><b class="formlabel">Reltionship</b></span>
-            <input  class="typealign" type="text" value=""  placeholder="Optional"   name="name" id="name" style="margin-left:30px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-			
-		 </label>		
+            <input  class="userrel" type="text" value=""  placeholder="Optional"   name="name" id="name" style="">
+</label>
   </div>
-    <h3  ng-hide="addmore" ng-click="moredetails()" style="margin-left:23px;padding-bottom:75px;color:#5c5c5c;"><span style="font-size:18px;font-weight:normal;">Add More Details</span> <span> <i class="ion-ios-arrow-forward" style="font-size:16px;margin-left:8px;"></i></span></h3>
-    <h3 ng-show="showless" ng-click="lessdetails()" style="margin-left:20px;font-size: 18px;font-weight:normal;color: #5c5c5c;"><span>Show Less </span> <span><i class="ion-ios-arrow-down" style="font-size:16px;margin-left:8px;"></i></span></h3>
+    <h3  ng-hide="addmore" ng-click="moredetails()" class="moredet"><span >Add More Details</span> <span> <i class="ion-ios-arrow-forward deticon" ></i></span></h3>
+    <h3 ng-show="showless" ng-click="lessdetails()"  class="lessdet"><span>Show Less </span> <span><i class="ion-ios-arrow-down deticon"></i></span></h3>
     
  <div class="list deptlist" ng-show="showme">
-		
-		  <label class="item item-input validated">
+ <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-female"></i><b class="formlabel">Gender</b></span>
-            <input type="text" value="" placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input class="usertext" type="text" value="" placeholder="Optional"   name="name">
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-android-arrow-up"></i><b class="formlabel">Height</b></span>
-            <input type="text" value=""  class="typealign"  placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input class="usertext" type="text" value=""  class="typealign"  placeholder="Optional"   name="name">
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-filing"></i><b class="formlabel">Weight</b></span>
-            <input type="text" value=""  class="typealign"  placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input class="usertext" type="text" value=""  class="typealign"  placeholder="Optional"   name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Home Phone</b></span>
-            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left:24px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input class="userdob" type="text" value=""  class="typealign" placeholder="Optional"   name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
-            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input class="usertext" type="text" value=""  class="typealign" placeholder="Optional"   name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor" style="margin-bottom:50px;">
                   <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
              <textarea   class="typealign" id="name" cols="30" rows="5"  placeholder="Optional" style="margin-left:17px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;"></textarea>
-		 </label>
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-people"></i><b class="formlabel">Organization</b></span>
-            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left:22px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input class="userdob" type="text" value=""  placeholder="Optional"   name="name">
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-location"></i><b class="formlabel">Location</b></span>
-            <input type="text" value=""  class="typealign"  placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input  type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-person"></i><b class="formlabel">Hair Color</b></span>
-            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-eye"></i><b class="formlabel">Eye Color</b></span>
-            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
+</label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-earth"></i><b class="formlabel">Ethnicity</b></span>
-            <input type="text" value=""  class="typealign" placeholder="Optional"   name="name" id="name" style="margin-left:38px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;">
-		 </label>
+            <input type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
+</label>
    </div>
   
 
     
-	</ion-content>
+</ion-content>
 </ion-side-menu-content>
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
