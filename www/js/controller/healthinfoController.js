@@ -141,6 +141,12 @@ angular.module('starter.controllers')
         $scope.doneshow = true;
         $scope.flag = true;
         $scope.doneedit = false;
+          var editvalues = angular.element(document.getElementsByTagName('input'));
+        var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+        editvalues.removeClass('editdata');
+        editvalues.addClass('textdata');
+        edittextarea.removeClass('editdata');
+        edittextarea.addClass('textdata');
     }
 
  $scope.profile= function() {
