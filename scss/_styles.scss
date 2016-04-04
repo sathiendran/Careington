@@ -2141,12 +2141,38 @@ body {
     font-size:28px;
 }
 .fnamefont{
-    font-family:Glober SemiBold;
+    font-family:Glober Bold;
     font-size:28px;
 }
-
+.subheaderheight{
+    top:64px;height:88px;
+}
 .bar .title {
 text-align:center
+}
+.pationcontent{
+    margin-top:110px;
+}
+.itemtext{
+    padding-left: 29px;border:none;
+}
+.patavatar{
+    padding-left:85px;border-top:none;
+}
+.patimage{
+    max-width:50px;max-height:50px;top:19px;
+}
+.pattime{
+    margin: 0 0 11px 0;font-size:55px;font-family:Glober Bold;margin-left: 24px; 
+}
+.patdate{
+    font-size:31px;margin-top:4px;font-family:Glober Regular; 
+}
+.patage{
+   margin-top:-5px; 
+}
+.appfname{
+   margin-top: -14px; 
 }
 .pathead{
     font-family:Glober SemiBold;
@@ -2154,7 +2180,17 @@ color:#979797;
 margin-top:0px !important;
 margin-bottom:13px !important;
 }
-
+.pataptdetails{
+    margin-left:-22px;line-height:1.5;margin-top:-20px;
+   }
+    .patno{
+      background-color: rgba(204, 204, 204, 0.46);color:#585858;
+      font-family:Glober SemiBold;  
+    }
+    .patcontent{
+        color:#555555 !important;
+         font-family:Glober SemiBold; 
+    }
 .bar-headerHomeUser {
 	border-bottom-width: 1px;
 	border-top-width: 0;
@@ -3637,7 +3673,14 @@ font-size: 18px;
   vertical-align: middle;
 
 }
-
+.appalignrighticon{
+         margin-left:42px;
+         color:#fff;
+         font-size:13px;
+             }
+        .aslignspan{
+          margin-left:3px;  
+          } 
   #viewicon{
      float:right;
      color:white;
@@ -3784,10 +3827,7 @@ font-size: 18px;
     color:#11c1f3 !important;
 }
 
- .profilelist:last-child{
-         margin-bottom:120px;
-         padding-bottom:65px;
-       }
+ 
 .donebutton{
   margin-bottom: 50px;
   height: 20px;
@@ -3817,15 +3857,15 @@ font-size: 18px;
     color: #717171;
     }
     .sname{
-    font-size: 22px;
+    font-size: 14px !important;
     color: #888;
-    font-family: Glober Regular;
+    font-family: Glober SemiBold;
   }
   .fontsymbol{
     color: #686868;
   }
   .appalign{
-      margin: 8px 0 0 0 !important;
+      margin: 12px 0 0 0 !important;
   }
   .fonttime{
       font-size: 14px;
@@ -3851,7 +3891,8 @@ font-size: 18px;
 
     margin-top: -9px;
 }
-
+  
+      
 .nonarchieve{
     margin-top: -9px;
     margin-left: -19px;
@@ -3877,6 +3918,28 @@ margin-top: 2px;
 color: white;
 font-size: 20px;
 }
+.apticons{
+    font-size:26px;
+    margin-left:-18px;
+}
+.apptimage{
+    margin-top:-7px;
+}
+.apptitem{
+    background-color:#ffc900;
+    height:80px;
+    padding:10px!important; 
+    position: fixed;
+	bottom: 50px;
+	left: 0;
+	right: 0;
+}
+ .ionitem {
+           padding:0px!important;
+       }
+.sionitem {
+           padding:2px!important;
+       }       
 .contacticon{
      margin-left: 22px;
    font-size: 22px;
@@ -3941,6 +4004,9 @@ p{
         }
 
 }
+.listtype{
+         padding-top:29px !important;
+     }
 .thumpsicon{
         color:#11c1f3;
         margin-left: 22px;
@@ -4001,6 +4067,7 @@ p{
 	}
 
      }
+     
 .newcard{
   margin: 33px 10px !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
@@ -4016,7 +4083,7 @@ p{
              margin-left:33% !important;
          }
        .ionitem {
-           padding:8px;
+           padding:0px!important;
        }
        .hidecard{
            margin:7px 10px!important;
@@ -4037,7 +4104,8 @@ p{
       }
       #viewicon{
           height:24px;
-      }
+          }
+     
       #centercolor{
           font-size:21px;
       }
@@ -4197,7 +4265,7 @@ p{
              margin-top:58px !important;
          }
          .ioncontentalign{
-             margin-top:154px;
+             margin-top:160px;
          }
          .ioncontentsalign{
              margin-top:165px;
@@ -4340,15 +4408,25 @@ p{
        }
 
      }
-
+.subcontent{
+    margin-left:-32px !important;
+}
  .popup-container .popup {
     border-radius: 7px;
     width:85% !important;
   }
-
+  .avatheight{
+      padding: 7px !important;
+      margin-bottom: -8px;
+      padding-left: 68px !important;
+      min-height: 70px !important; 
+  }
 	.appitem{
-      margin-top: -8px;
-     margin-bottom: -8px
+     margin-top: -10px;
+    padding:7px !important;
+    margin-bottom: -8px;
+    padding-left: 68px !important;
+    min-height: 70px !important; 
     }
 
     .listfirst > a:first-child  {
@@ -4365,6 +4443,10 @@ p{
     margin-bottom: 120px;
     padding-bottom:100px;
 }
+.listprofile {
+         //margin-bottom:120px;
+         padding-bottom:50px;
+       }
  .popup-head {
     padding: 14px 12px;
     border-bottom: 1px solid #888;
@@ -4605,7 +4687,7 @@ color: white;
    background-color:#e9e9e9;
 }
 .usercard{
-    margin: 25px 10px !important;
+    margin: 38px 10px !important;
 }
 .item-input
 {
