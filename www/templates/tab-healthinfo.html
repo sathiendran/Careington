@@ -13,8 +13,8 @@
           <div class="row">
             <h1 class="headertitle">
               <div class="ellipsis subHeader_content_name" >
-                <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
-                <span class="patientLastName ellipsis lnamefont">Fitzpztrick</span>
+                <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >{{currentPatientDetails.patientName}}</span>
+                <span class="patientLastName ellipsis lnamefont">{{currentPatientDetails.lastName}}</span>
               </div>
             </h1>
           </div>
@@ -54,35 +54,35 @@
           <div class="list profilelist">
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b></span>
-              <input type="text" value="06/08/1988" ng-readonly="flag" class="valuealign textdata">
+              <input type="text" value="{{currentPatientDetails.dob}}" ng-readonly="flag" class="valuealign textdata">
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-female"></i><b class="formlabel labelfont">Gender</b> </span>
-              <input type="text" value="Male" ng-readonly="flag" class="valuealign textdata">
+              <input type="text" value="{{currentPatientDetails.gender}}" ng-readonly="flag" class="valuealign textdata">
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-android-arrow-up"></i><b class="formlabel labelfont">Height</b></span>
-              <input type="text" value="6'1" ng-readonly="flag" class="valuealign textdata">
+              <input type="text" value="{{currentPatientDetails.height}} {{currentPatientDetails.heightUnit}}" ng-readonly="flag" class="valuealign textdata">
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor">  <i class="ion-ios-filing"></i><b class="formlabel labelfont">Weight</b></span>
-              <input type="text" value="185lbs" ng-readonly="flag" class="valuealign textdata">
+              <input type="text" value="{{currentPatientDetails.weight}} {{currentPatientDetails.weightUnit}}" ng-readonly="flag" class="valuealign textdata">
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-ios-telephone"></i><b class="formlabel labelfont">Home Phone</b></span>
-              <input type="text" value="555-987-5664" ng-readonly="flag" class="valhome textdata">
+              <input type="text" value="{{currentPatientDetails.homePhone}}" ng-readonly="flag" class="valhome textdata">
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="ion-ios-telephone"></i><b class="formlabel labelfont">Mobile</b> </span>
-              <input type="text" value="555-897-3642" ng-readonly="flag" class="valuealign textdata">
+              <input type="text" value="{{currentPatientDetails.mobilePhone}}" ng-readonly="flag" class="valuealign textdata">
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-location"></i><b class="formlabel labelfont">Home Address</b></span>
-              <textarea rows="3" cols="3" ng-readonly="flag" class="valtex textdata">121 E Lexington Dr, Glendale, CA 91203 USA</textarea>
+              <textarea rows="3" cols="3" ng-readonly="flag" class="valtex textdata">{{currentPatientDetails.addresses[0].addressText}}</textarea>
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="ion-ios-people"></i><b class="formlabel labelfont">Organization</b></span>
-              <input type="text" value="Coca-Cola" ng-readonly="flag" class="valorg textdata">
+              <input type="text" value="{{currentPatientDetails.mobilePhone}}" ng-readonly="flag" class="valorg textdata">
             </label>
             <label class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-location"></i><b class="formlabel labelfont">Location</b> </span>

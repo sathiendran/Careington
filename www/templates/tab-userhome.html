@@ -1,25 +1,25 @@
 <div class="Server_Error ErrorMessageDiv" ></div>
 
 <ion-side-menus>
-	<ion-side-menu-content> 
+	<ion-side-menu-content>
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-	  
+
 		<div class="buttons {{menuicon}}" >
 			<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>
 		</div>
-		<h1 class="{{title_patient}} {{HeaderList}}" style="margin-left: -30px;">Patient List</h1>	  
+		<h1 class="{{title_patient}} {{HeaderList}}" style="margin-left: -30px;">Patient List</h1>
 
-		
+
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
 				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who needs care today?</div>
-				
+
 					<div class="SearchImage" ng-click="showSearchInput();">
 						<i class="ion-search" style="float: right; font-size: 26px;color: #616462;"></i>
-					</div>				
-			</div> 
-		
-	   
-	</ion-header-bar> 
+					</div>
+			</div>
+
+
+	</ion-header-bar>
 
 
 
@@ -32,21 +32,21 @@
         </label>
 	</div>
 </div>
-	
+
 <ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" >
-	
+
 
  	<ion-list>
-	
-	<div><ion-refresher on-refresh="doRefreshUserHome()"  > 
+
+	<div><ion-refresher on-refresh="doRefreshUserHome()"  >
     </ion-refresher></div>
-      
-	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
+
+	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(primaryPatientDetails, PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
 		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border-top: none; top: -2px; height: 93px;">
-			 <div class="HrefListView"> 
+			 <div class="HrefListView">
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{PatientImage}}" class="UserHmelistImgView">
-					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div> 
+					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
 					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 					<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>
@@ -54,32 +54,32 @@
 			 </div>
 		</ion-item>
 	</a>
-		
+
 	<!--<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
-			<a class="HrefListView"  > 
+			<a class="HrefListView"  >
 			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 			   <h2 class="DateFormateStyle"><b>OCT 12 </b> <span class="NextAppointTime"><sup>@</sup></span> <b>12:15</b><span class="NextAppointAMorPM">PM</span></h2>
 			   <list class="ion-chevron-right ListLinkHref nextList"></list>
 			   <span class="DateFormateStyle AppointmentView" >View Details</span>
-		    </a>	
-		</ion-item>--> 
+		    </a>
+		</ion-item>-->
 		<div style="display: none;"><timer end-time="time"  ></timer></div>
-		
+
 		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-if="$first">
-			<a class="HrefListView"  > 
+			<a class="HrefListView"  >
 			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 			   <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2>
 			   <list class="ion-chevron-right ListLinkHref nextList"></list>
 			   <span class="DateFormateStyle AppointmentView" >View Details</span>
-				
-		    </a>	
+
+		    </a>
 		</ion-item>
-		
-		
-		
-		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
+
+
+
+		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-click = "GoToPatientDetails(dependentDetails, dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
 			<!-- <a class="HrefListView">   -->
-			 <div class="HrefListViewDependent"> 
+			 <div class="HrefListViewDependent">
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
 					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
@@ -87,37 +87,37 @@
 				</div>
 			</div>
 			<!-- </a>-->
-			
-		</ion-item> 
-		
-		<ion-item ng-if="searched == true && filteredResult == ''" class="noResult" > Search result not found! </ion-item>		
-		
-		
+
+		</ion-item>
+
+		<ion-item ng-if="searched == true && filteredResult == ''" class="noResult" > Search result not found! </ion-item>
+
+
 	</ion-list>
 </ion-content>
-</ion-side-menu-content>	
+</ion-side-menu-content>
  <!--Side Menu File Include --->
 <!--<div ng-include src="'templates/SideMenu.html'"></div>-->
 	<ion-side-menu side="left" style="background-color: #464644;">
         <a ng-click="toggleLeft()" class="sidemenuContent" >
 			<ion-list>
 				<ion-item class="ion-ios-list" id="{{sidemenuHome}}">
-					<span>  Patient List</span> 
+					<span>  Patient List</span>
 				</ion-item>
 			</ion-list>
 		</a>
        <a ng-click="ClearRootScope()" class="SidemenuLogOut" >
 			<ion-list>
 				<ion-item class="ion-power LogOutText" >
-					<span>  Logout</span> 
+					<span>  Logout</span>
 				</ion-item>
 			</ion-list>
         </a>
-		
-		
-				
+
+
+
 	</ion-side-menu>
 </ion-side-menus>
 
 
-</ion-view>	
+</ion-view>
