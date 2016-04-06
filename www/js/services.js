@@ -170,6 +170,27 @@ angular.module('starter.services', [])
                 });
     }
 
+		this.getListOfCodeSet = function(params) {
+			var PatientDetailsList = {
+				headers: util.getHeaders(params.accessToken),
+							url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=eyecolor,haircolor,ethnicity,relationship',
+							method: 'GET'
+			};
+
+			$http(PatientDetailsList).
+				success(function (data, status, headers, config) {
+					if (typeof params.success != 'undefined') {
+						params.success(data);
+					}
+				}).
+				error(function (data, status, headers, config) {
+					if (typeof params.error != 'undefined') {
+						params.error(data);
+					}
+			});
+		}
+
+
 	this.postOnDemandConsultation = function(params) {
 
 		var confirmOnDemandConsultationSave = {

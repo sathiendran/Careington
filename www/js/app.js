@@ -608,14 +608,14 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
   })
 
 	.state('tab.healthinfo', {
-	 url: '/healthinfo',
- views: {
-		 'tab-login': {
-			 templateUrl: 'templates/tab-healthinfo.html',
-			 controller: 'healthinfoController'
-		 }
-		 }
- })
+	 		url: '/healthinfo',
+ 			views: {
+		 		'tab-login': {
+			 		templateUrl: 'templates/tab-healthinfo.html',
+			 		controller: 'healthinfoController'
+			 }
+			 }
+	 })
 
 .state('tab.userAppointment', {
     url: '/userAppointment',
@@ -645,16 +645,6 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     }
   })
 
-   .state('tab.healthinfoedit', {
-    url: '/healthinfoedit',
-  views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-healthinfoedit.html',
-
-        controller: ''
-      }
-      }
-  })
 
    .state('tab.relatedusers', {
     url: '/relatedusers',

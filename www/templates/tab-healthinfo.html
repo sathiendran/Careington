@@ -1,179 +1,211 @@
 <ion-side-menus>
-  <ion-side-menu-content>
-    <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-        <div class="buttons">
-          <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
-        </div>
-        <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
-          <span> My Health </span>
-          <span class="headerval" ng-click="edittext()" ng-show="editshow">Edit</span>
-          <span class="headerval"  ng-click="donetext()"  ng-hide="doneshow" >Done</span>
-        </h1>
-        <div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
-          <div class="row">
+<ion-side-menu-content>
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <div class="buttons">
+         <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+      </div>
+      <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+         <span> My Health </span>
+         <span class="headerval" ng-click="edittext()" ng-show="editshow">Edit</span>
+         <span class="headerval"  ng-click="donetext()"  ng-hide="doneshow" >Done</span>
+      </h1>
+      <div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
+         <div class="row">
             <h1 class="headertitle">
-              <div class="ellipsis subHeader_content_name" >
-                <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
-                <span class="patientLastName ellipsis lnamefont">Fitzpztrick</span>
-              </div>
+               <div class="ellipsis subHeader_content_name" >
+                  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >{{currentPatientDetails[0].patientName}}</span>
+                  <span class="patientLastName ellipsis lnamefont">{{currentPatientDetails[0].lastName}}</span>
+               </div>
             </h1>
-          </div>
-          <div class="item item-image-icon " style="background-color:#444444;">
+         </div>
+         <div class="item item-image-icon " style="background-color:#444444;">
             <a style="padding-left: 30px;">
-              <i class="icon ion-home headerlefticons" style=""></i>
-              <p class="homecontent">Account Home</p>
+               <i class="icon ion-home headerlefticons" style=""></i>
+               <p class="homecontent">Account Home</p>
             </a>
             <a class="item-avatar itemhead">
-              <p><img src="img\patient.png" class="topimage" style=""></p>
+               <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" style=""></p>
             </a>
             <a style="float:right;margin-top:-88px;">
-              <i class="icon ion-ios-people headerrighticon" style=""></i>
-              <p class="patientcontent">Change Patient</p>
+               <i class="icon ion-ios-people headerrighticon" style=""></i>
+               <p class="patientcontent">Change Patient</p>
             </a>
-          </div>
-          <div class="row">
+         </div>
+         <div class="row">
             <div class="buttons backbtn">
-              <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
-              </button>
+               <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+               </button>
             </div>
             <div class=" button-bar">
-              <label class="button button-small btcolor btn-first" ng-click="profile()" id="profid"> Profile</label>
-              <label class="button button-small btn-first btnextcolor" ng-click="health()" id="healid">Health History</label>
+               <label class="button button-small btcolor btn-first" ng-click="profile()" id="profid"> Profile</label>
+               <label class="button button-small btn-first btnextcolor" ng-click="health()" id="healid">Health History</label>
             </div>
             <div class="buttons backbtn">
-              <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
-              </button>
+               <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+               </button>
             </div>
-          </div>
-        </div>
-    </ion-header-bar>
-    <ion-view title="Health Info Details">
+         </div>
+      </div>
+   </ion-header-bar>
+   <ion-view title="Health Info Details">
       <ion-content class="ioncontentalign">
-        <div ng-hide="addmore">
-    <h4 style=" text-align: center;color:#6c6c6c;font-size:22px;"><b>Demographics</b></h4>
-        <div class="list profilelist">
-            
-          <label class="item item-input itemtab validated">
-             <span class="input-label labelcolor"><i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b></span>
-              <input type="text" value="06/08/1988"  ng-readonly="flag"  class="valuealign textdata" >
-          </label>
-         
-       	<label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-female"></i><b class="formlabel labelfont">Gender</b> </span>
-           <input type="text" value="Male" ng-readonly="flag" class="valuealign textdata" >
-        </label>
-        
-        <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-android-arrow-up"></i><b class="formlabel labelfont">Height</b></span>
-           <input type="text" value="6'1" ng-readonly="flag" class="valuealign textdata">
-        </label>
-        
-       <label class="item item-input itemtab validated">
-          <span class="input-label labelcolor">  <i class="ion-ios-filing"></i><b class="formlabel labelfont">Weight</b></span>
-           <input type="text" value="185lbs" ng-readonly="flag" class="valuealign textdata"> 
-       </label>
-      
-      <label class="item item-input itemtab validated">
-         <span class="input-label labelcolor"> <i class="ion-ios-telephone"></i><b class="formlabel labelfont">Home Phone</b></span>
-         <input type="text" value="555-987-5664" ng-readonly="flag" class="valhome textdata">
-      </label>
-      
-      <label class="item item-input itemtab validated">
-          <span class="input-label labelcolor"><i class="ion-ios-telephone"></i><b class="formlabel labelfont">Mobile</b> </span>
-          <input type="text" value="555-897-3642" ng-readonly="flag" class="valuealign textdata">
-      </label>
-      
-       <label class="item item-input itemtab validated">
-          <span class="input-label labelcolor"> <i class="ion-location"></i><b class="formlabel labelfont">Home Address</b></span>
-           <textarea  rows="3" cols="3"  ng-readonly="flag" class="valtex textdata">121 E Lexington Dr, Glendale, CA 91203 USA</textarea>
-      </label>
-      
-       <label class="item item-input itemtab validated">
-          <span class="input-label labelcolor"><i class="ion-ios-people"></i><b class="formlabel labelfont">Organization</b></span>
-          <input type="text" value="Coca-Cola" ng-readonly="flag" class="valorg textdata">
-       </label>
-       
-       <label class="item item-input itemtab validated">
-          <span class="input-label labelcolor"> <i class="ion-location"></i><b class="formlabel labelfont">Location</b> </span>
-          <input type="text" value="West Factory" ng-readonly="flag" class="valuealign textdata">
-       </label>
-       
-       <label class="item item-input itemtab validated">
-          <span class="input-label labelcolor"> <i class="ion-ios-person"></i><b class="formlabel labelfont">Hair Color</b> </span>
-          <input type="text" value="Brown" ng-readonly="flag" class="valuealign textdata">
-      </label>
-      
-       <label class="item item-input itemtab validated">
-          <span class="input-label labelcolor"> <i class="ion-ios-eye"></i><b class="formlabel labelfont">Eye Color</b> </span>
-          <input type="text" value="Brown" ng-readonly="flag" class="valuealign textdata">
-       </label>
-       
-          <label class="item item-input itemtab validated">
-             <span class="input-label labelcolor"> <i class="ion-earth"></i><b class="formlabel labelfont">Ethnicity</b> </span>
-             <input type="text" value="Caucasian" ng-readonly="flag" class="valuealign textdata">
-        </label>
-         
-        </div>
-    
-     <div class="row">
-    <a style="width:40%;"></a>
-       <a class="button footer-color donebutton" ng-show="doneedit" ng-click="done()"><span class="donetext">Done</span></a>
-    </div>
-    
-    
-   </div>
-   
-        <div ng-hide="healthhide">
-          <h4 style="color:#888;margin-top:20px;"> <span class="aligntext">Basic Health </span><i class="ion-chevron-down icondown"></i></h4>
-          <hr>
-          <div>
-            <h4>
+         <div ng-hide="addmore">
+            <h4 style=" text-align: center;color:#6c6c6c;font-size:22px;"><b>Demographics</b></h4>
+            <div class="list profilelist">
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"><i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b></span>
+               <input type="date" name="healthInfoDOB" id="healthInfoDOB" value="{{userDOB}}"  ng-readonly="flag"  class="valuealign textdata" >
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-female"></i><b class="formlabel labelfont">Gender</b> </span>
+               <input type="text" name="healthInfoGender" id="healthInfoGender" value="{{userGender}}" ng-readonly="flag" class="valuealign textdata" >
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-android-arrow-up"></i><b class="formlabel labelfont">Height</b></span>
+               <div ng-show="flag">
+                  <input type="text" value="{{currentPatientDetails[0].anatomy.height}} {{currentPatientDetails[0].anatomy.heightUnit}}" ng-readonly="flag" class="valuealign textdata">
+               </div>
+               <div ng-hide="flag")>
+                 <input type="text" name="healthInfoHeight" id="healthInfoHeight" value="{{currentPatientDetails[0].anatomy.height}}" ng-readonly="flag" class="valuealign textdata">
+               </div>
+               <div ng-hide= "flag")>
+                 <input type="text" name="healthInfoHeightUnit" id="healthInfoHeightUnit" value="{{currentPatientDetails[0].anatomy.heightUnit}}" ng-readonly="flag" class="valuealign textdata">
+               </div>
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor">  <i class="ion-ios-filing"></i><b class="formlabel labelfont">Weight</b></span>
+               <div ng-show="flag">
+                  <input type="text" value="{{currentPatientDetails[0].anatomy.weight}} {{currentPatientDetails[0].anatomy.weightUnit}}" ng-readonly="flag" class="valuealign textdata">
+               </div>
+               <div ng-hide="flag")>
+                 <input type="text" name="healthInfoWeight" id="healthInfoWeight" value="{{currentPatientDetails[0].anatomy.weight}}" ng-readonly="flag" class="valuealign textdata">
+               </div>
+               <div ng-hide= "flag")>
+                 <input type="text" name="healthInfoWeightUnit" id="healthInfoWeightUnit" value="{{currentPatientDetails[0].anatomy.weightUnit}}" ng-readonly="flag" class="valuealign textdata">
+               </div>
 
-          <span class="alignnexttext">Current Medications</span><span><i class="ion-edit currentedit" ></i></span>
-          </h4>
-          </div>
-          <hr class="dothr dotalign">
-          <ul class="aligntext alvalue">
-            <li>1. Acetemetaphine</li>
-            <li>2. Another thing</li>
-            <li>3. Yet Another item</li>
-            <li>4. Amoxicillen</li>
-          </ul>
-          <h4 class="h4align"><div class="alignnexttext chronic"  >Medication Allergies</div><span><i class="ion-edit editicons" ></i></span></h4>
-          <hr class="dothr">
-          <ul class="aligntext alvalue">
-            <li>1.Steroids</li>
-          </ul>
-          <h4 class="h4align"><div class="alignnexttext chronic">Chronic Conditions</div><span><i class="ion-edit editicon" ></i></span></h4>
-          <hr class="dothr">
-          <ul class="aligntext alvalue">
-            <li>1. Thing</li>
-          </ul>
-          <h4 class="h4align"><div class="alignnexttext chronic">Prior Surgeries</div><span><i class="ion-edit editicon" ></i></span></h4>
-          <hr class="dothr dotalign">
-          <ul class="aligntext alvalue">
-            <li>1.That One thing</li>
-          </ul>
-        </div>
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-ios-telephone"></i><b class="formlabel labelfont">Home Phone</b></span>
+               <input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone" value="{{currentPatientDetails[0].homePhone}}" ng-readonly="flag" class="valhome textdata">
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"><i class="ion-ios-telephone"></i><b class="formlabel labelfont">Mobile</b> </span>
+               <input type="text" name="healthInfoMobilePhone" id="healthInfoMobilePhone" value="{{currentPatientDetails[0].mobilePhone}}" ng-readonly="flag" class="valuealign textdata">
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-location"></i><b class="formlabel labelfont">Home Address</b></span>
+               <textarea name="healthInfoAddress" id="healthInfoAddress"  rows="3" cols="3"  ng-readonly="flag" class="valtex textdata">{{currentPatientDetails[0].address}}</textarea>
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"><i class="ion-ios-people"></i><b class="formlabel labelfont">Organization</b></span>
+               <input type="text" name="healthInfoOrganization" id="healthInfoOrganization" value="{{currentPatientDetails[0].organization}}" ng-readonly="flag" class="valorg textdata">
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-location"></i><b class="formlabel labelfont">Location</b> </span>
+               <input type="text" name="healthInfoLocation" id="healthInfoLocation" value="{{currentPatientDetails[0].location}}" ng-readonly="flag" class="valuealign textdata">
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-ios-person"></i><b class="formlabel labelfont">Hair Color</b> </span>
+               <div ng-show="flag">
+                 <input type="text" value="{{currentPatientDetails[0].anatomy.hairColor}}" ng-readonly="flag" class="valuealign textdata">
+               </div>
+                <div ng-hide="flag">
+                  <select class="valuealign textdata" id="healthInfoHairColor">
+                    <option value=""><b>Hair Color</b></option>
+                    <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}" ng-selected="{{getHairColor.text}} == {{currentPatientDetails[0].anatomy.hairColor}}"><b>{{getHairColor.text}}</b></option>
+                  </select>
+                </div>
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-ios-eye"></i><b class="formlabel labelfont">Eye Color</b> </span>
+               <div ng-show="flag">
+                <input type="text" value="{{currentPatientDetails[0].anatomy.eyeColor}}" ng-readonly="flag" class="valuealign textdata">
+              </div>
+              <div ng-hide="flag">
+                <select class="valuealign textdata" name="healthInfoEyeColor" id="healthInfoEyeColor">
+                  <option value=""><b>Eye Color</b></option>
+                  <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}" ng-selected="getEyeColor.text == currentPatientDetails[0].anatomy.eyeColor"><b>{{getEyeColor.text}}</b></option>
+                </select>
+              </div>
+               </label>
+               <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-earth"></i><b class="formlabel labelfont">Ethnicity</b> </span>
+                <div ng-show="flag">
+                  <input type="text" value="{{currentPatientDetails[0].anatomy.enthicity}}" ng-readonly="flag" class="valuealign textdata">
+                </div>
+                <div ng-hide="flag">
+                  <select class="valuealign textdata" name="healthInfoEthnicity" id="healthInfoEthnicity">
+                    <option value=""><b>Ethnicity</b></option>
+                    <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.enthicity"><b>{{getEthnicity.text}}</b></option>
+                  </select>
+                </div>
+               </label>
+            </div>
+            <div class="row">
+               <a style="width:40%;"></a>
+               <a class="button footer-color donebutton" ng-show="doneedit" ng-click="done()"><span class="donetext">Done</span></a>
+            </div>
+         </div>
+         <div ng-hide="healthhide">
+            <h4 style="color:#888;margin-top:20px;"> <span class="aligntext">Basic Health </span><i class="ion-chevron-down icondown"></i></h4>
+            <hr>
+            <div>
+               <h4>
+                  <span class="alignnexttext">Current Medications</span><span><i class="ion-edit currentedit" ></i></span>
+               </h4>
+            </div>
+            <hr class="dothr dotalign">
+            <ul class="aligntext alvalue">
+               <li>1. Acetemetaphine</li>
+               <li>2. Another thing</li>
+               <li>3. Yet Another item</li>
+               <li>4. Amoxicillen</li>
+            </ul>
+            <h4 class="h4align">
+               <div class="alignnexttext chronic"  >Medication Allergies</div>
+               <span><i class="ion-edit editicons" ></i></span>
+            </h4>
+            <hr class="dothr">
+            <ul class="aligntext alvalue">
+               <li>1.Steroids</li>
+            </ul>
+            <h4 class="h4align">
+               <div class="alignnexttext chronic">Chronic Conditions</div>
+               <span><i class="ion-edit editicon" ></i></span>
+            </h4>
+            <hr class="dothr">
+            <ul class="aligntext alvalue">
+               <li>1. Thing</li>
+            </ul>
+            <h4 class="h4align">
+               <div class="alignnexttext chronic">Prior Surgeries</div>
+               <span><i class="ion-edit editicon" ></i></span>
+            </h4>
+            <hr class="dothr dotalign">
+            <ul class="aligntext alvalue">
+               <li>1.That One thing</li>
+            </ul>
+         </div>
       </ion-content>
-  </ion-side-menu-content>
-  <!--Side Menu File Include --->
-  <div ng-include src="'templates/SideMenu.html'"></div>
-  </ion-view>
-  <ion-tabs class=" tabs-icon-top tabs-dark">
-    <a class="tab-item " ng-href="#tab/relatedusers">
-      <i class="icon ion-person-stalker tabfont"></i> User
-    </a>
-    <a class="tab-item" ng-href="#tab/consultations">
-      <i class="icon ion-card tabfont"></i> Consultations
-    </a>
-    <a class="tab-item active" ng-href="/#tab/healthinfo">
-      <i class="icon ion-android-clipboard tabfont"></i> My Health
-    </a>
-    <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
-      <i class="icon ion-calendar tabfont"></i> Appointments
-    </a>
-    <a class="tab-item" ng-href="#tab/profileoption">
-      <i class="icon ion-more tabfont"></i> More
-    </a>
-  </ion-tabs>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
+<ion-tabs class=" tabs-icon-top tabs-dark">
+   <a class="tab-item " ng-href="#tab/relatedusers">
+   <i class="icon ion-person-stalker tabfont"></i> User
+   </a>
+   <a class="tab-item" ng-href="#tab/consultations">
+   <i class="icon ion-card tabfont"></i> Consultations
+   </a>
+   <a class="tab-item active" ng-href="/#tab/healthinfo">
+   <i class="icon ion-android-clipboard tabfont"></i> My Health
+   </a>
+   <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
+   <i class="icon ion-calendar tabfont"></i> Appointments
+   </a>
+   <a class="tab-item" ng-href="#tab/profileoption">
+   <i class="icon ion-more tabfont"></i> More
+   </a>
+</ion-tabs>
