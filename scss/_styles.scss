@@ -2251,6 +2251,9 @@ text-align:center
 .pationcontent{
     margin-top:110px;
 }
+.itemtextwap{
+    margin-top:0px !important;
+}
 .itemtext{
     padding-left: 29px;border:none;
 }
@@ -3725,7 +3728,7 @@ font-size: 20px;margin-left:120px; top: 5px;
     font-family:Glober Bold;
 }
 .userionitem{
-    padding: 13px!important;
+    padding: 10px!important;
 }
 .userlist{
    padding-top: 77px !important;
@@ -4891,7 +4894,11 @@ color: white;
    line-height: 2;
    font-size: 16px;
    font-family: Glober Regular;
+   color: #aaa;
    }
+}
+.ionicitem{
+    padding: 8px !important;
 }
 .topfont{
    max-width:60px;

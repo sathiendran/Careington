@@ -99,7 +99,7 @@ angular.module('starter.controllers')
 		$scope.readattr = true;
         $scope.editshow = true;
         $scope.doneshow = true;
-        $scope.flag = true;
+        $scope.flag = false;
         $scope.doneedit = false;
         var editvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
