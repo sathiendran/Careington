@@ -94,33 +94,21 @@ angular.module('starter.controllers')
           edittextarea.addClass('editdata');
    }
 
-   $scope.putUpdatePatientProfile = function() {
-        $scope.readattr = true;
-       $scope.editshow = true;
-       $scope.doneshow = true;
-       $rootScope.flag = true;
-       $scope.doneedit = false;
-         var editvalues = angular.element(document.getElementsByTagName('input'));
-       var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-       editvalues.removeClass('editdata');
-       editvalues.addClass('textdata');
-       edittextarea.removeClass('editdata');
-       edittextarea.addClass('textdata');
-   }
 
-   $scope.donetext = function() {
-      $scope.readattr = true;
-      $scope.doneshow=true;
-      $scope.editshow=true;
-      $scope.doneedit=false;
-      $rootScope.flag = true;
-      var editvalues = angular.element(document.getElementsByTagName('input'));
-      var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-          editvalues.removeClass('editdata');
-          editvalues.addClass('textdata');
-          edittextarea.removeClass('editdata');
-          edittextarea.addClass('textdata');
-   }
+    $scope.putUpdatePatientProfile = function() {
+		$scope.readattr = true;
+        $scope.editshow = true;
+        $scope.doneshow = true;
+        $scope.flag = true;
+        $scope.doneedit = false;
+        var editvalues = angular.element(document.getElementsByTagName('input'));
+        var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+        editvalues.removeClass('editdata');
+        editvalues.addClass('textdata');
+        edittextarea.removeClass('editdata');
+        edittextarea.addClass('textdata');
+    }
+
 
  $scope.profile= function() {
      var myEl = angular.element( document.querySelector( '#profid' ) );

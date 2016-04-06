@@ -2,9 +2,9 @@ angular.module('starter.controllers')
 .controller('relateduserController', function($scope,$ionicPopup) {
     
      $scope.showdetails = true;
-    // $scope.showdnewetails=true;
+  
      $scope.showarchieve=false;
-    // $scope.allval=true;
+    $scope.allval=true;
      $scope.userdata=false;
      $scope.dependentshide=true;
      $scope.tabview=false;
@@ -79,6 +79,8 @@ angular.module('starter.controllers')
          $scope.tabview=true;
     }
    $scope.authorizeduser=function(){
+    var myEl = angular.element( document.querySelector( '#authorizeddiv' ));
+     myEl.removeClass('fadediv');
      $scope.viewunauthorized=true;
      $scope.authorizedview=false;
    }

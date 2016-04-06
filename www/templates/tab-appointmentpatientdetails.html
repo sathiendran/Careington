@@ -2,16 +2,20 @@
 <ion-side-menus>
 	<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
 	<div class="buttons" > 
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
 
-    <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointments <span style="float:right;margin-right: 10px;"><i class="icon ion-search"></i></span></h1>
+    
+<h1  class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
+          <span> Appointments </span>
+          <span class="headerval" ><i class="icon ion-search"></i></span>
+         </h1>
 
-<div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
+<div class="bar bar-subheader bar-dark subheaderheight" >
                   <div class="row">
                      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
 					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">Jonathan</span>
@@ -19,30 +23,22 @@
 				     </div></h1>
                 </div>
        
-         <div class="item item-image-icon " style="background-color:#444444;">
+         <div class="item item-image-icon itemiconcolor">
           
-            <a style="padding-left: 30px;">
+            <a class="lefthome">
                <i class="icon ion-home headerlefticons" style=""></i>
                <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
                <p><img src="img\patient.png" class="topimage" style=""></p>
            </a>
-           <a style="float:right;margin-top:-88px;">
+            <a class="rightpatient">
                <i class="icon ion-ios-people headerrighticon" style=""></i>
                <p class="patientcontent" >Change Patient</p>
            </a>
    </div>
    
-</div>  
-   
-</ion-header-bar>
-
-
-<ion-view title="">
- <ion-content style="margin-top:120px;">
-     
-     	<div class="row">
+   <div class="row">
          
        <div class="buttons backbtn"> 
 		    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
@@ -60,64 +56,70 @@
 	  </div>
    </div>		
  
-     
-  
-        <div ng-hide="addmore">
+   
+</div>  
+   
+</ion-header-bar>
+
+
+<ion-view title="">
+ <ion-content class="appiconcontent">
+     <div ng-hide="addmore">
            <div class="list listfirst" >
-        <a class="item item-avatar" style="margin-bottom: -13px;">
-             <img src="img\patient.png">
-            <h2 class="sname">Next Appointment</h2>
-            <p style="float:right;margin-top:-10px;">
+        <a class="item item-avatar avatheight">
+             <img class="apptimage" src="img\patient.png">
+            <h2 class="aptsname">Next Appointment</h2>
+            <p class="appmarg">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
               <h4><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span> </h4>
         </a>
             
         <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+            <img class="apptimage" src="img\patient.png">
            <h4 class="appalign"><span class="fname">Nov 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-            <p style="float:right;">
+            <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
  
           <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+            <img class="apptimage" src="img\patient.png">
            <h4 class="appalign"><span class="fname">Dec 02</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-          <p style="float:right;">
+           <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
           <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+            <img class="apptimage" src="img\patient.png">
            <h4 class="appalign"><span class="fname">Dec 08</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-           <p style="float:right;">
+            <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
               </h4>
          </a>
-          <a class="item item-avatar">
-             <img src="img\patient.png">
+          <a class="item item-avatar appitem">
+             <img class="apptimage" src="img\patient.png">
           <h4 class="appalign"><span class="fname">Dec 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-           <p style="float:right;">
+            <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
           <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+             <img class="apptimage" src="img\patient.png">
            <h4 class="appalign"><span class="fname">Dec 16</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-           <p style="float:right;">
+            <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
               </h4>
          </a>
           <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+             <img class="apptimage" src="img\patient.png">
               <h4 class="appalign"><span class="fname">Dec 21</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-          <p style="float:right;">
+          <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
               </h4>
@@ -128,60 +130,60 @@
    <div ng-hide="healthhide">
         <div class="list listall">
             
-        <a class="item item-avatar" style="margin-bottom: -13px;">
-             <img src="img\Lisa_Wong.jpg">
-            <h2 class="sname">Next Appointment</h2>
-             <p style="float:right;margin-top:-10px;">
+        <a class="item item-avatar avatheight" >
+             <img class="apptimage" src="img\patient.png">
+            <h2 class="aptsname">Next Appointment</h2>
+             <p class="appmarg">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
                 <h4 class=""><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span></h4>
         </a>
             
         <a class="item item-avatar appitem">
-             <img src="img\password.jpg">
+            <img class="apptimage" src="img\patient.png">
            <h4 class="appalign"><span class="fname">Nov 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-           <p style="float:right;">
+             <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
  
           <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+              <img class="apptimage" src="img\patient.png">
              <h4 class="appalign"><span class="fname">Dec 02</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-            <p style="float:right;">
+             <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
           <a class="item item-avatar appitem">
-             <img src="img\James_king.jpg">
-           <h4><span class="fname">Dec 08</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
+             <img class="apptimage" src="img\patient.png">
+          <h4 class="appalign"><span class="fname">Dec 08</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
             <p style="float:right;">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
         <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+             <img class="apptimage" src="img\patient.png">
             <h4 class="appalign"><span class="fname">Dec 13</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-             <p style="float:right;">
+               <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
           <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+             <img class="apptimage" src="img\patient.png">
             <h4 class="appalign"><span class="fname">Dec 16</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-             <p style="float:right;">
+               <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
           <a class="item item-avatar appitem">
-             <img src="img\patient.png">
+                <img class="apptimage" src="img\patient.png">
              <h4 class="appalign"><span class="fname">Dec 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-            <p style="float:right;">
+              <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>

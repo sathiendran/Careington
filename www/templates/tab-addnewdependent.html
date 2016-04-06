@@ -1,16 +1,18 @@
 <ion-side-menus> 
 	<ion-side-menu-content> 
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
  
 	<div class="buttons" > 
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
+		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>
 	</div>
-	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">New User <span> <a class="headerval" ng-href="#tab/relatedusers">Cancel</a></span></h1>  
+ 
+   
+        <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User</span> <span >
+            <a class="headerval" ng-href="#tab/relatedusers" >Cancel</a></span></h1>
 
-
-	
-<div class="bar bar-subheader bar-dark" style="top:65px;height:109px;">
+<div class="bar bar-subheader bar-dark usersubheaderheight">
     
     
     <div class="row">
