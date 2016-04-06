@@ -2793,6 +2793,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
       color:rgba(109, 109, 109, 0.91);
       font-size:23px;
       font-family:Glober Bold;
+      margin-top: 10px !important;
+      margin-bottom: 5px !important;
   }
   .deticon{
       font-size:16px;
@@ -3559,7 +3561,12 @@ font-family: $fontFamily_regular;
       width:47%;
         }
      }
-
+.userrow{
+    margin-top: -12px !important;
+}
+.headercont{
+    margin-left: 38px !important;
+}
 .item-image-icon {
     height:102px !important;
 }
@@ -4701,6 +4708,13 @@ p{
     border: 2px solid #FFFFFF;
 
  }
+ .useracctheader{
+     margin-left:32px !important;
+ }
+ .contuser{
+    font-size:20px; 
+      color :rgba(5, 4, 9, 0.54)!important;
+ }
   .seccontent{
      margin-left:-22px;line-height:1.5;margin-top:-20px;
      .col-10{
@@ -4712,6 +4726,12 @@ p{
  }
  .seccontentone{
      margin-top: -28px;margin-left:-22px;line-height: 1.5;
+       .col-10{
+         font-family:Glober SemiBold;background-color: rgba(204, 204, 204, 0.46);color:#585858;
+     }
+     .parafont{
+         color:#555555;font-family:Glober SemiBold;
+     }
  }
   .appointment {
   color: white;
