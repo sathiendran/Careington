@@ -1876,7 +1876,86 @@ body {
 
 	}
 }
-
+.archeight{
+    height:81px;
+}
+.aligncentericon{
+    margin-top: 5px;
+    text-align: center
+}
+.dotrow{
+    background-color:rgb(243, 242, 234); 
+    height:50px;
+}
+.dotcol{
+  background-color:#9bca82; height:60px;margin-left:-4px;min-width:90px;  
+}
+.dotcont{
+    color:white;font-size:11px;margin-top:-8px !important;
+}
+.doticon{
+    font-size:22px;
+}
+.dotfont{
+  font-size:11px; 
+  font-family:Glober Regular;
+  color: #5c5c5c; 
+}
+.colmore{
+    margin-left:5px;padding:0px;
+}
+.colpad{
+    width:73px;padding:0px;
+}
+.moretab{
+    max-width: 20% !important; 
+    background-color:#9bca82;
+    .moralign{
+       margin-top:-15px;
+       .moreicon{
+           font-size:22px;margin-left: 23px;color:#888;
+       } 
+       .morecont{
+         margin-left: 19px;font-size:11px;margin-top:-9px;color:#888;  
+       }
+    }
+}
+.tabmoreicon{
+    margin-top:-10px!important;font-size:20px !important;color: white;
+}
+.statuscol{
+    background-color:#e3e3e3;
+    max-width: 130px;
+    .status{
+      margin-left: 10px;font-size: 11px;margin-top:-4px;
+    }
+    .statuscont{
+        margin-left:-38px;font-size:12px;font-family:Glober SemiBold;
+    }
+}
+.relationcol{
+    background-color:#ededed;
+    .relation{
+        margin-left:10px;font-size:10px;color:#888;
+     }
+     .relationcont{
+         margin-top:-15px;color:#888;font-size:12px;margin-left:9px;font-family:Glober SemiBold;
+     }
+}
+.listarchieved{
+    background-color: rgba(12, 96, 238, 0.78);
+    margin-left: -5px;
+    margin-right: -4px;
+    margin-top: -5px;
+    margin-bottom: -5px;
+    color: white;
+}
+#couserlist{
+   margin-top:15px !important; 
+  }
+  #dependuserlist{
+      margin-top:15px !important;   
+  }
 .ConsentSteps {
 	color:#888;float:right;margin-right: 15px; margin-top: -3px; font-size: 16px;
 }
@@ -2144,8 +2223,27 @@ body {
     font-family:Glober Bold;
     font-size:28px;
 }
+.headerheight{
+    height:128px !important; 
+}
 .subheaderheight{
     top:64px;height:88px;
+}
+.usersubheaderheight{
+    top:65px;height:109px;
+}
+.appiconcontent{
+    margin-top:165px;
+}
+.avatpad{
+    padding:14px !important;
+}
+.relatedhead{
+    margin-top:4px !important;
+ 
+}
+.itemiconcolor{
+  background-color:#444444;  
 }
 .bar .title {
 text-align:center
@@ -2157,10 +2255,10 @@ text-align:center
     padding-left: 29px;border:none;
 }
 .patavatar{
-    padding-left:85px;border-top:none;
+    padding-left:85px;border-top:none;padding-top:10px !important;
 }
 .patimage{
-    max-width:50px;max-height:50px;top:19px;
+    max-width:50px !important;max-height:50px !important;top:5px !important;
 }
 .pattime{
     margin: 0 0 11px 0;font-size:55px;font-family:Glober Bold;margin-left: 24px; 
@@ -2169,16 +2267,28 @@ text-align:center
     font-size:31px;margin-top:4px;font-family:Glober Regular; 
 }
 .patage{
-   margin-top:-5px; 
+   margin-top: 4px;
+   font-size: 14px !important;
+   color: #8c8c8c !important;;
 }
 .appfname{
-   margin-top: -14px; 
+  height: 16px;
+  font-size: 20px !important;
+  font-family: Glober SemiBold;
+  color: #4e4e4e !important;
+  margin-top: -13px !important;  
+}
+.appfloat{
+float:right;    
+}
+.appmarg{
+    float:right;margin-top:-10px;
 }
 .pathead{
-    font-family:Glober SemiBold;
-color:#979797;
-margin-top:0px !important;
-margin-bottom:13px !important;
+    font-family: Glober SemiBold;
+    color: #979797 !important;
+    margin-top: -10px !important;
+    margin-bottom: 11px !important; 
 }
 .pataptdetails{
     margin-left:-22px;line-height:1.5;margin-top:-20px;
@@ -2981,6 +3091,8 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 
 #BackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
 
+.iconbackbutton { top:0px !important;}
+
 #WhoNeeds { font-size: 23px;  width: 85%; }
 .BackButton { padding-top: 14px; font-weight: bold; cursor: pointer; width: 68px; position: absolute; z-index: 1; top:10px;}
 
@@ -3284,6 +3396,12 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
  top: 11px;
   position: absolute;
 }
+.headertime{
+    max-width:60px;margin-left:20px;
+}
+.headerprovider{
+   margin-left:3px; 
+}
 .subheaderTitle {
  margin-top: 3px;
   margin-left: 7px
@@ -3405,8 +3523,9 @@ font-family: $fontFamily_regular;
 .itemtab{
     padding:12px !important;
 }
-
-
+.paticoncontent{
+    margin-top:120px;
+}
 
 
 
@@ -3568,7 +3687,11 @@ font-size: 20px;margin-left:120px; top: 5px;
     font-size: 12px !important;
     background-color: rgba(222, 208, 208, 0.38) !important;
  }
-
+.bhealth{
+    margin-top:-10px;
+    background-color:#b5b5b5 !important;
+    color:#d0d0d0 !important;
+    }
 
  #hometitle{
      width:45%;
@@ -3605,7 +3728,7 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 .rightpatient{
     float:right;
-    margin-top:-90px;
+    margin-top:-88px;
 }
 .formlabel {
   margin-left: 10px;
@@ -3623,7 +3746,7 @@ font-size: 18px;
   text-align: center;
 }
 .avatarclass{
-  margin-top: 10px;
+  margin-top: 2px;
   margin-left:  -34px;
   
 }
@@ -3783,8 +3906,8 @@ font-size: 18px;
 }
 .icondown{
     float: right;
-    margin-right: 26px;
-    margin-top:12px;
+    margin-right: 16px;
+    margin-top:7px;
     font-size:14px;
     color:#414141;
 }
@@ -3808,16 +3931,16 @@ font-size: 18px;
 }
 .editicons{
    float:right;
-   margin-right:26px;
+   margin-right:16px;
    margin-top:-22px ;
 }
 .currentedit{
     float:right;
-    margin-right:26px;
+    margin-right:12px;
 }
 .editicon{
    float:right;
-   margin-right:26px;
+   margin-right:16px;
    margin-top:-32px ;
 }
  .dotalign{
@@ -3845,21 +3968,16 @@ font-size: 18px;
 .tabcontent{
     color:#11c1f3;
 }
-.appfname{
-      font-size: 20px;
-    font-family: Glober SemiBold;
-    color: #717171;
-    
-}
+
 .fname{
-    font-size: 23px;
+    font-size: 21px;
     font-family: Glober SemiBold;
     color: #717171;
     }
     .sname{
-    font-size: 14px !important;
+    font-size: 21px !important;
     color: #888;
-    font-family: Glober SemiBold;
+    font-family: Glober Regular;
   }
   .fontsymbol{
     color: #686868;
@@ -3882,16 +4000,20 @@ font-size: 18px;
     margin-bottom: 4px;
     color: white;
 .aligncenicon{
-    font-size: 22px;
     text-align:center;
-
+    margin-top: 10px;
 }
 }
 .col-75{
 
     margin-top: -9px;
 }
-  
+ .iconbox{
+     font-size:30px !important;
+ }
+ .icontext{
+     font-size:10px;
+ } 
       
 .nonarchieve{
     margin-top: -9px;
@@ -3906,14 +4028,16 @@ font-size: 18px;
      background-color:red !important;
 }
 .tabicon{
-
-     margin-left: 17px;
-    margin-top: -16px;
-    color: white;
-    font-size: 28px;
+   margin-left: 22px;
+   margin-top: -16px;
+   color: white;
+   font-size: 26px;   
+}
+.fadediv{
+   opacity: 0.6;
 }
 .tabmoreicon {
-margin-left: 17px;
+margin-left: 22px;
 margin-top: 2px;
 color: white;
 font-size: 20px;
@@ -3924,6 +4048,22 @@ font-size: 20px;
 }
 .apptimage{
     margin-top:-7px;
+}
+.contalign{
+ margin-top:-12px;   
+}
+.textwrap{
+    padding-left:55px;
+    border:none;
+}
+.fdate{
+    margin-top:18px !important
+}
+.ftime{
+    margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;margin-left: 24px
+}
+.fday{
+    font-size:31px;margin-top:10px;font-family:Glober Regular;
 }
 .apptitem{
     background-color:#ffc900;
@@ -3942,7 +4082,7 @@ font-size: 20px;
        }       
 .contacticon{
      margin-left: 22px;
-   font-size: 22px;
+   font-size: 21px;
    color: white;
 
 }
@@ -3950,12 +4090,16 @@ font-size: 20px;
         float:right;
        font-size:26px;
        margin-left: 23px;
-       color:#000;
+       color:#888;
   }
-
+.relatediconfont{
+    margin-top: -4px;
+    color: #888 !important;
+    margin-left: 10px !important;
+}
 .tabvalue{
     text-align: center;
-    margin-top:5px;
+    margin-top:7px;
     color:#888;
     .firstval{
         margin:0;
@@ -3978,12 +4122,16 @@ p{
 .consimg{
     max-width:30px !important;
     max-height:30px !important;
+    margin-top:-15px;
 }
 .avatclass{
     margin-top: 10px;
     margin-left: -36px;
 }
-
+.avatrelationclass{
+  margin-top: 4px;
+  margin-left: -30px; 
+}
 
 .righticon{
     margin-right: -12px;
@@ -4020,29 +4168,79 @@ p{
     margin-top: -9px;
     margin-left: 17px;
   }
-  .ion-chevron-right:before{
+ /* .ion-chevron-right:before{
       font-size:16px !important;
-  }
+  }*/
   .authorizedval{
      background-color: rgba(250, 130, 69, 0.32); 
-     height:50px;
+     height:40px;
       .authorizedicon{
         margin-top:-28px;
         color: white;
-        margin-left:4px;
+        margin-left:17px;
+        font-size:22px;
 
+      }
+      .authorizedcont{
+          font-size: 12px !important;color:#838383;margin-top: -4px;
       }
       .authorizedupdate{
       margin-bottom:4px;
       float:right;
-      color:black;
+      color: #222222;
+      font-size:11px !important;
       }
-
-  }
+      
+    }
+  .authorupdate{
+            background-color: rgba(250, 130, 69, 0.32) !important;
+       }
+   .authorizedview {
+       height:60px;margin-left:-5px;margin-top:-11px;
+         
+       .authortab{
+           margin-top:-10px!important; margin-left:26px;font-size:20px !important;
+       }
+       .authorcont{
+         margin-top:-8px;  
+         margin-left:14px; 
+         color: #222222;
+         font-size:11px !important;
+      }
+   } 
+   .statustab{
+       background-color:#e3e3e3;max-width: 130px;
+     .unstatus{
+         margin-left: 5px;font-size: 10px;margin-top: -4px; 
+     }
+     .unstatuscont{
+        margin-top: 10px;margin-left: -29px;font-size: 12px;font-family: Glober SemiBold;
+         .thumbsdownicon{
+             float:right;margin-left:16px; font-size:22px;margin-top:-8px;
+         }
+     }
+   }
+ .relationtab{
+    background-color:#ededed; 
+    .relationstatus{
+        margin-left:10px;font-size:10px;
+    }
+    .unauthorrelationship{
+       margin-top: -16px;color:#6d6d6d;font-size:12px;margin-left:9px; font-family:Glober SemiBold;
+    }
+ }   
+ 
+    
+    
   .fontcolor{
       color:#888 !important;
   }
-
+.relatedfont{
+    margin-top:-12px;
+    color:#888 !important;
+    margin-left:10px !important;
+   
+}
 .ionappointment{
     height:75px !important;
    .appointment{
@@ -4284,9 +4482,9 @@ p{
              font-size: 15px;
          }
 
-         .list .ion-chevron-right:before {
+         /*.list .ion-chevron-right:before {
            font-size: 12px !important;
-           }
+           }*/
        .has-header {
          top:90px;
        }
@@ -4411,6 +4609,12 @@ p{
 .subcontent{
     margin-left:-32px !important;
 }
+.consultcontent{
+    margin-top:115px;
+}
+.csheader{
+    margin-left:4px;
+}
  .popup-container .popup {
     border-radius: 7px;
     width:85% !important;
@@ -4496,6 +4700,18 @@ p{
     box-shadow: 0px 2px 3px #888;
     border: 2px solid #FFFFFF;
 
+ }
+  .seccontent{
+     margin-left:-22px;line-height:1.5;margin-top:-20px;
+     .col-10{
+         font-family:Glober SemiBold;background-color: rgba(204, 204, 204, 0.46);color:#585858;
+     }
+     .parafont{
+         color:#555555;font-family:Glober SemiBold;
+     }
+ }
+ .seccontentone{
+     margin-top: -28px;margin-left:-22px;line-height: 1.5;
  }
   .appointment {
   color: white;
@@ -4596,7 +4812,6 @@ color: white;
 }
 .headerval{
  color:white;
-
  font-family:Glober Regular;  
  float:right; 
  margin-right:8px;
@@ -4608,7 +4823,19 @@ color: white;
 }
 .rheader{
     color:#616161;
-     font-size:12px !important;
+    font-size:12px !important;
+    margin-top:0px !important;
+}
+.relicon{
+    color:#696969;font-size:18px;
+}
+.csubheader{
+   margin-top:20px;height:131px;border-bottom: 1.5px solid #b5b5b5;border-image:none; 
+}
+.sheader{
+    color:#616161;
+    font-size:12px !important;
+    margin-top: 20px !important;
 }
 .cdetcolor{
      color: #868686;
@@ -4620,7 +4847,7 @@ color: white;
     margin-left: 6px;
 }
 .vreport{
-   margin-left: 12px;
+   margin-left:6px;
    color:#616161;
 }
 .rghticon{
@@ -4652,9 +4879,9 @@ color: white;
    font-size:11px;
 }
 .avatitem{
-    border:none;
-    min-height:50px !important;
-    margin-top:-17px;padding-left:0px!important;
+  border: none;
+  min-height: 36px !important;
+  padding-left: 0px !important;
     .avtimg{
         margin-top: -7px;
     }
@@ -4675,13 +4902,18 @@ color: white;
  .coldate{
      width:80px;
      margin-left:-10px;
+     margin-top:-6px;
  }
  .coltime{
     max-width:65px;
     margin-left: 10px;
+    margin-top:-6px;
+ }
+ .coldetails{
+      margin-top:-6px;
  }
  .dotedhr{
-   margin-top:-3px;
+   margin-top:-8px;
    height:0px !important;
   border-top: 1px dashed #c0bebe;
    background-color:#e9e9e9;
