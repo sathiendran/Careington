@@ -1891,13 +1891,13 @@ body {
   background-color:#9bca82; height:60px;margin-left:-4px;min-width:90px;  
 }
 .dotcont{
-    color:white;font-size:11px;margin-top:-8px !important;
+    color:white;font-size:10px;margin-top:-8px !important;
 }
 .doticon{
     font-size:22px;
 }
 .dotfont{
-  font-size:11px; 
+  font-size:10px; 
   font-family:Glober Regular;
   color: #5c5c5c; 
 }
@@ -2284,8 +2284,11 @@ text-align:center
 .appfloat{
 float:right;    
 }
+.healthhead{
+    text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober SemiBold;
+}
 .appmarg{
-    float:right;margin-top:-10px;
+    float:right;margin-top:-6px;
 }
 .pathead{
     font-family: Glober SemiBold;
@@ -3083,7 +3086,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 .HeaderListIOS {
 font-size: 18px; text-align: center; width: 100%;
-/*margin-left: 32px;*/margin-top:12px;
+margin-left: 32px;margin-top:12px;
 }
 .HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
