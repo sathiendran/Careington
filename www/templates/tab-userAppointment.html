@@ -1,90 +1,107 @@
 <ion-side-menus>
-<ion-side-menu-content>
-	<ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-		<div class="buttons" >
-			<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
-		</div>
-		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="margin-left:-32px;"> User</h1>
-		<div class="bar bar-subheader bar-dark usersubheader">
-			<div class="row">
-				<h1 class="headertitle">
+  <ion-side-menu-content>
+    <ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <div class="buttons">
+        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+      </div>
+     <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader" > <span>User</span>
+        <span> <a class="headerval">Cancel</a>
+       </span>
+        </h1>
+        <div class="bar bar-subheader bar-dark usersubheader">
+        <div class="row">
+          <h1 class="headertitle">
 					<div class="ellipsis subHeader_content_name" >
 						<span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
 						<span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
 					</div>
 				</h1>
-			</div>
-			<div class="item item-image-icon">
-				<a class="lefthome" >
-					<i class="icon ion-home headerlefticons" ></i>
-					<p class="homecontent">Account Home</p>
-				</a>
-				<a class="item-avatar itemhead">
-					<p><img src="img\patient.png" class="topimage" ></p>
-				</a>
-				<a class="rightpatient">
-					<i class="icon ion-ios-people headerrighticon"></i>
-					<p class="patientcontent" >Change Patient</p>
-				</a>
-			</div>
-		</div>
-	</ion-header-bar>
-	<ion-view title="User Appointment">
-		<ion-content class="usercontent" >
-			<ion-list>
-				<div class="list" style="padding-top:29px !important;">
-					<ion-item class="ionitem" style="padding:0px!important;">
-						<div class="card newcard hidecard">
-							<div class="item item-text-wrap">
-								<div class="">
-									<h2 class="title alignchronic ChronicCondition ">
-										<i class="ion-ios-person" style="font-size:26px;margin-left:-18px;"></i>
+        </div>
+        <div class="item item-image-icon">
+          <a class="lefthome">
+            <i class="icon ion-home headerlefticons"></i>
+            <p class="homecontent">Account Home</p>
+          </a>
+          <a class="item-avatar itemhead">
+            <p><img src="img\patient.png" class="topimage"></p>
+          </a>
+          <a class="rightpatient">
+            <i class="icon ion-ios-people headerrighticon"></i>
+            <p class="patientcontent">Change Patient</p>
+          </a>
+        </div>
+      </div>
+    </ion-header-bar>
+    <ion-view title="User Appointment">
+      <ion-content class="usercontent">
+        <ion-list>
+          <div class="list listtype" >
+            <ion-item class="ionitem" >
+              <div class="card newcard hidecard">
+                <div class="item item-text-wrap">
+                  <div class="">
+                    <h2 class="title alignchronic ChronicCondition ">
+										<i class="ion-ios-person apticons" ></i>
 										<span class="content"> <a ng-href="#tab/healthinfo">
 										Manage Your Profile
 										</a></span>
 									</h2>
-								</div>
-							</div>
-						</div>
-					</ion-item>
-					<ion-item class="ionitem" style="padding:2px !important;">
-						<div class="card newcard hidecard">
-							<div class="item item-text-wrap">
-								<div class="">
-									<h2 class="title alignchronic ChronicCondition">
-										<i class="ion-ios-calendar-outline" style="font-size:26px;margin-left:-18px;"></i>
+                  </div>
+                </div>
+              </div>
+            </ion-item>
+            <ion-item class="sionitem" >
+              <div class="card newcard hidecard">
+                <div class="item item-text-wrap">
+                  <div class="">
+                    <h2 class="title alignchronic ChronicCondition">
+										<i class="ion-ios-calendar-outline apticons" style="font-size:26px;margin-left:-18px;"></i>
 										<span class="content"> <a ng-href="#tab/appointmentpatientdetails"  >
 										View Your Appointments</a></span>
 									</h2>
-								</div>
-							</div>
-						</div>
-					</ion-item>
-					
-				</div>
-			</ion-list>
-		</ion-content>
-</ion-side-menu-content>
-<!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
-</ion-view>
-<ion-item class="" style="background-color:#ffc900;height:87px;padding:10px !important; position: fixed;
+                  </div>
+                </div>
+              </div>
+            </ion-item>
+
+          </div>
+        </ion-list>
+      </ion-content>
+  </ion-side-menu-content>
+  <!--Side Menu File Include --->
+  <div ng-include src="'templates/SideMenu.html'"></div>
+  </ion-view>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <ion-item class="" style="background-color:#ffc900;height:80px;padding:10px !important; position: fixed;
 	bottom: 50px;
 	left: 0;
 	right: 0;">
-	<a class="" ng-href="#tab/patientappointmentdetails">
-		<div>
-			<h3 style="margin:16px 0px 0px 0px;"> <span class="appointment">Appointment @ 2:45 pm</span>
-				<span id="viewicon">
-	<a class="aslignrighticon" style="margin-left:24px;color:#fff;font-size:12px;"> View Details</a>
-	<i class="iconchevron ion-chevron-right" style=""></i>
+    <a class="" ng-href="#tab/patientappointmentdetails">
+      <div>
+        <h3 style="margin:20px 0px 0px 0px;"> <span class="appointment">Appointment @ 2:45 pm</span>
+         <span id="viewicon">
+	        <a class="appalignrighticon"> View Details</a>
+	         <span  class="aslignspan"><i class="iconchevron ion-chevron-right" style=""></i>
+	</span>
 	</span>
 	</h3>
+
 	</div>
 	</a>
 </ion-item>
 <ion-footer-bar class="bar bar-footer  footer-color userappheight" >
-	<a class="button button-calm" ng-href="#/tab/relateduseroptions"><span>Next</span></a>
+	
 	<h1 class="title userappcontent" >See A Clinician Now</h1>
 </ion-footer-bar>
+
+

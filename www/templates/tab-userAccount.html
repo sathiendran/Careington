@@ -5,27 +5,32 @@
 			<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 		</div>
-		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="margin-left:-32px;"> <span>User</span></h1>
-		<div class="bar bar-subheader bar-dark usersubheader" >
-			<div class="row">
-				<h1 class="headertitle">
-					<div class="ellipsis subHeader_content_name" >
-						<span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
-						<span class="patientLastName ellipsis lnamefont">Fitzpztrick</span>
-					</div>
-				</h1>
-			</div>
+		<h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader " > <span>User</span>
+        <span> <a class="headerval">Cancel</a>
+       </span>
+        </h1>
+        
+         <div class="bar bar-subheader bar-dark subheaderheight" >
+            <div class="row">
+             <h1 class="headertitle">
+               <div class="ellipsis subHeader_content_name" >
+                <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
+                <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+               </div>
+             </h1>
+         </div>
+       
 			<div class="item item-image-icon" >
 				<a class="lefthome">
 					<i class="icon ion-home headerlefticons"></i>
 					<p class="homecontent">Account Home</p>
 				</a>
 				<a class="item-avatar itemhead">
-					<p><img src="img\patient.png" class="topimage"></p>
+					<p><img src="{{PatientImageSelectUser}}" class="topimage"></p>
 				</a>
 				<a class="rightpatient">
 					<i class="icon ion-ios-people headerrighticon"></i>
-					<p class="patientcontent"  >Change Patient</p>
+					<p class="patientcontent" >Change Patient</p>
 				</a>
 			</div>
 		</div>
@@ -34,26 +39,28 @@
 		<ion-content class="usercontent" >
 			<ion-list >
 				<div class="list userlist">
-					<ion-item class="ionitem userionitem" >
-						<div class="card newcard">
-							<div class="item item-text-wrap">
-								<div>
+					<ion-item class="ioniictem userionitem" >
+                       
+						<div class="card cardshadow usercard">
+							<div class="item-text-wrap itemtextwap">
+								
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan">  <i class="ion-ios-person profileicon"></i></span>
 										<span class="content">
-										<a ng-href="#tab/healthinfo" >
+										<a ng-click="getManageProfile(currentPatientDetails)" _ng-href="#/tab/healthinfo" >
 										Manage Your Profile
 										</a>
 										</span>
 									</h2>
-								</div>
+								
 							</div>
 						</div>
+                        </a>
 					</ion-item>
-					<ion-item class="ionitem userionitem" >
-						<div class="card newcard">
-							<div class="item item-text-wrap">
-								<div class="">
+					<ion-item class="ionicitem userionitem">
+						<div class="card cardshadow usercard">
+							<div class="item-text-wrap itemtextwap">
+								
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan"><i class="ion-ios-calendar-outline profileicon"></i></span>
 										<span class="content">
@@ -61,18 +68,18 @@
 										View your Appointments</a>
 										</span>
 									</h2>
-								</div>
+								
 							</div>
 						</div>
 					</ion-item>
 				</div>
 			</ion-list>
 		</ion-content>
+	</ion-view>
+	<ion-footer-bar class="bar bar-footer  footer-color footerstyle">
+		<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
+		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
+	</ion-footer-bar>
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
-</ion-view>
-<ion-footer-bar class="bar bar-footer  footer-color footerstyle">
-	<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
-	<h1 class="title" id="centercolor" >See A Clinician Now</h1>
-</ion-footer-bar>

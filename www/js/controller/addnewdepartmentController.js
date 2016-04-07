@@ -5,6 +5,6 @@ angular.module('starter.controllers')
       $scope.tempfooter= true;
       $scope.permfooter= true;
     }
-    $timeout(countUp, 3000);
+    $timeout(countUp, 2000);
      
 });
