@@ -66,7 +66,6 @@ angular.module('starter.controllers')
             }, 300);
         }
     };
-    $scope.healthInfo = {};
 
     $scope.addmore = false;
     $scope.healthhide = true;
@@ -94,13 +93,14 @@ angular.module('starter.controllers')
           edittextarea.addClass('editdata');
    }
 
-
-    $scope.putUpdatePatientProfile = function() {
+      $scope.healthInfo = {};
+    $scope.putUpdatePatientDetails = function() {
 		$scope.readattr = true;
         $scope.editshow = true;
         $scope.doneshow = true;
-        $scope.flag = true;
+        $rootScope.flag = true;
         $scope.doneedit = false;
+        console.log($scope.healthInfo123);
         var editvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
         editvalues.removeClass('editdata');
