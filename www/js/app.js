@@ -644,19 +644,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-   
-   .state('tab.healthinfoedit', {
-    url: '/healthinfoedit',
-  views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-healthinfoedit.html',
-        
-        controller: ''
-      }
-      }
-  })
-  
-   .state('tab.relatedusers', {
+    .state('tab.relatedusers', {
     url: '/relatedusers',
   views: {
       'tab-login': {
