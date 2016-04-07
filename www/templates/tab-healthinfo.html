@@ -1,15 +1,15 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <div class="buttons">
          <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
       </div>
-      <h1 style="margin-top:12px;" class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+      <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
          <span> My Health </span>
          <span class="headerval" ng-click="edittext()" ng-show="editshow">Edit</span>
          <span class="headerval"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
       </h1>
-      <div class="bar bar-subheader bar-dark" style="top:64px;height:88px;">
+      <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
             <h1 class="headertitle">
                <div class="ellipsis subHeader_content_name" >
@@ -19,14 +19,14 @@
             </h1>
          </div>
          <div class="item item-image-icon " style="background-color:#444444;">
-            <a style="padding-left: 30px;">
+            <a class="lefthome">
                <i class="icon ion-home headerlefticons" style=""></i>
                <p class="homecontent">Account Home</p>
             </a>
             <a class="item-avatar itemhead">
                <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" style=""></p>
             </a>
-            <a style="float:right;margin-top:-88px;">
+            <a class="rightpatient">
                <i class="icon ion-ios-people headerrighticon" style=""></i>
                <p class="patientcontent">Change Patient</p>
             </a>
@@ -50,7 +50,7 @@
    <ion-view title="Health Info Details">
       <ion-content class="ioncontentalign">
         <div ng-hide="addmore">
-          <h4 style=" text-align: center;color:#6c6c6c;font-size:22px;"><b>Demographics</b></h4>
+          <h4 class="healthhead"><b>Demographics</b></h4>
           <div class="list listprofile" ng-show="flag">
             <label class="item item-input itemtab validated">
                <span class="input-label labelcolor"><i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B</b></span>
@@ -121,7 +121,6 @@
         </div>
 <form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
         <div class="list listprofile" ng-hide="flag">
-
           <label class="item item-input itemtab validated">
              <span class="input-label labelcolor"><i class="ion-ios-calendar-outline"></i><b class="formlabel">D.O.B </b></span>
               <input type="date" ngModel="healthInfo.dob"  value="{{userDOB}}"  ng-readonly="flag"  class="valuealign textdata" >
