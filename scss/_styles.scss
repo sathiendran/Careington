@@ -2288,8 +2288,9 @@ float:right;
     text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober SemiBold;
 }
 .appmarg{
-    float:right;margin-top:-6px;
+    float:right;margin-top:-6px;font-size:18px !important;
 }
+
 .pathead{
     font-family: Glober SemiBold;
     color: #979797 !important;
@@ -4958,12 +4959,11 @@ color: white;
 /*End SideMenu by Poomani*/
 
 @media only screen and (min-width: 595px) and (max-width: 610px){
- .HeaderListAndroid {
+.fname {font-size: 24px;}  
+.HeaderListAndroid {
     margin-left:32px !important;
     }
- .chronic {
-margin-top: 19px;
-}    
+.chronic { margin-top: 19px;}    
 .usercontent {
 margin-top: 177px !important
 }
@@ -5010,6 +5010,12 @@ margin-top:9px !important;
 }
 }
 }
+.tabs-top > .tabs, .tabs.tabs-top {
+top: inherit !important;
+}
+.tabs-striped .tabs {
+    border-bottom:none;
+}
 .appth3{
     margin: 36px 0px 0px 0px !important;
     }
@@ -5027,6 +5033,9 @@ float: right;
 margin-top: -12px;
 font-size: 18px !important;
 }
+.appiconcontent {
+margin-top: 217px;
+}
 .alignchronic {
 font-size:22px !important;
 font-family: "Glober Bold";
@@ -5034,7 +5043,24 @@ color: #535353;
 text-align:center;
 margin-left:0px;
 }
+.headerprovider {
+margin-left: 65px !important;
+}
+.coldetails {
+margin-left: 61px;
+}
+.vreport {
+margin-left: 60px;}
+.rghticon {
+color: #616161;
+margin-left: 13px !important;
+}
 .patcol10{ max-width: 25px}
+.appitem{
+  .appfloat{
+      margin-top: 0px !important;
+  }  
+}
 //.patcol50{  min-width: 97%;}
 
 //.pfontsize {width:-px !important;}
