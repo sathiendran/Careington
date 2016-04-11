@@ -2994,6 +2994,62 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 	}
 
+	$rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage) {
+			if ($rootScope.accessToken === 'No Token') {
+				alert('No token.  Get token first then attempt operation.');
+				return;
+			}
+			 var params = {
+								accessToken: $rootScope.accessToken,
+								patientId : patientId,
+				success: function (data) {
+					$scope.selectedPatientDetails = [];
+	//angular.fromJson(index.billingAddress)
+					angular.forEach(data.data, function(index, item) {
+						$scope.selectedPatientDetails.push({
+							'account': angular.fromJson(index.account),
+							'address': index.address,
+							'addresses': angular.fromJson(index.addresses),
+							'anatomy': angular.fromJson(index.anatomy),
+							'countryCode': index.countryCode,
+							'createDate': index.createDate,
+							'dob': index.dob,
+							'gender': index.gender,
+							'homePhone': index.homePhone,
+							'lastName': index.lastName,
+							'mobilePhone': index.mobilePhone,
+							'patientName': index.patientName,
+							'pharmacyDetails': index.pharmacyDetails,
+							'physicianDetails': index.physicianDetails,
+							'schoolContact': index.schoolContact,
+							'schoolName': index.schoolName
+						});
+					});
+					$rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+					var date = new Date($rootScope.currentPatientDetails[0].dob);
+					//$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+					$rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+						if($rootScope.currentPatientDetails[0].gender == 'M') {
+							$rootScope.userGender = "Male";
+							$rootScope.isCheckedMale = true;
+						} else if($rootScope.currentPatientDetails[0].gender == 'F') {
+							$rootScope.userGender = "FeMale";
+								$rootScope.isCheckedFeMale = true;
+						}
+
+					console.log($rootScope.selectedPatientDetails);
+					$state.go(nextPage);
+				},
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+
+			LoginService.getSelectedPatientProfiles(params);
+		}
+
+
+
     $scope.GoToPatientDetails = function(currentPatientDetails, P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
         if($rootScope.patientSearchKey !== '' || typeof $rootScope.patientSearchKey !== "undefined"){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
@@ -3011,7 +3067,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 		$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
 		$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
-		$rootScope.currentPatientDetails = currentPatientDetails;
+		//$rootScope.currentPatientDetails = currentPatientDetails;
+		$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
 		$rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -3020,7 +3077,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.patientId = P_Id;
 		$rootScope.P_isAuthorized = P_isAuthorized;
 		//$state.go('tab.patientDetail');
-		$state.go('tab.userAccount');
+	//	$state.go('tab.userAccount');
     }
 
      $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
