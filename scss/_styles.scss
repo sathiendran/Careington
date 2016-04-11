@@ -1884,8 +1884,10 @@ body {
     text-align: center
 }
 .dotrow{
-    background-color:rgb(243, 242, 234); 
-    height:50px;
+   // background-color:rgb(243, 242, 234); 
+   // height:50px;
+   background-color: white;
+   height: 54px;
 }
 .dotcol{
   background-color:#9bca82; height:50px;margin-left:-4px;min-width:90px;  
@@ -1902,10 +1904,10 @@ body {
   color: #5c5c5c; 
 }
 .colmore{
-    margin-left:5px;padding:0px;
+    margin-left:5px;padding:0px;background-color: #f3f2ea;height: 50px;
 }
 .colpad{
-    width:73px;padding:0px;
+  width: 73px;padding: 0px;background-color: #f3f2ea;height: 50px;
 }
 .moretab{
     max-width: 20% !important; 
@@ -1921,7 +1923,7 @@ body {
     }
 }
 .tabmoreicon{
-    margin-top:-10px!important;font-size:20px !important;color: white;
+    margin-top:-11px!important;font-size:20px !important;color: white;margin-left: 22px;
 }
 .statuscol{
     background-color:#e3e3e3;
@@ -4010,12 +4012,7 @@ font-size: 18px;
 .fadediv{
    opacity: 0.6;
 }
-.tabmoreicon {
-margin-left: 22px;
-margin-top: 2px;
-color: white;
-font-size: 20px;
-}
+
 .apticons{
     font-size:26px;
     margin-left:-18px;
@@ -4872,7 +4869,8 @@ color: white;
      float:right;
 }
 .rowalign{
-    padding:0px;
+  padding:0px;
+ background-color: #f3f2ea;height: 50px;
 }
 .right-icon {
   color: #616161;
@@ -4957,14 +4955,17 @@ color: white;
     
     .usertext {
         margin-left:38px;
-        margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;
+        margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:18px;
     }
     .userdob {
-       margin-left:22px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px; 
+       margin-left:22px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:18px; 
     }
     .userrel {
-       margin-left:30px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;
+       margin-left:30px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:18px;
        }
+     .userhome{
+        margin-left:17px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:18px; 
+     }
  .valuealign{
    margin-left:45px;
   }
@@ -5033,7 +5034,12 @@ margin: 70px 10px !important;
 .userlist {
 padding-top: 177px !important;
 }
-
+.item-input{
+  .userdob {margin-left: 38px !important;} 
+  .userrel {margin-left: 38px !important;}
+  .userhome{margin-left: 38px !important;}
+}
+.colmore {margin-left: 0px !important;}
 .relatedusercontent{
     margin-top:200px;
 }
@@ -5116,11 +5122,13 @@ color: #616161;
 margin-left: 13px !important;
 }
 .patcol10{ max-width: 25px}
-.appitem{
-  .appfloat{
+ .appfloat{
       margin-top: 0px !important;
-  }  
+      .ion-chevron-right:before{
+          font-size: 14px !important;
+      }
 }
+
   .addheight{
           height: 54px !important;
          background-image:none;
