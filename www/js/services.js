@@ -104,6 +104,27 @@ angular.module('starter.services', [])
 		});
 	}
 
+	this.getSelectedPatientProfiles = function(params) {
+		var PatientDetailsList = {
+			headers: util.getHeaders(params.accessToken),
+           // url: apiCommonURL + '/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		   url: apiCommonURL + '/v2/patients/profile/'+params.patientId+'?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
+            method: 'GET'
+		};
+
+		$http(PatientDetailsList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+
 	this.getPrimaryPatientLastName = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
@@ -189,6 +210,33 @@ angular.module('starter.services', [])
 					}
 			});
 		}
+
+		this.putProfileUpdation = function(params) {
+		var registerDetails = {
+			headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL + '/patients/profile',
+			  method: 'PUT',
+			  data: {
+                emailAddress: params.emailAddress,
+				timeZoneId: params.timeZoneId,
+				patientProfileData: params.patientProfileData,
+				patientMedicalHistoryData: params.patientMedicalHistoryData,
+				patientProfileFieldsTracing: params.patientProfileFieldsTracing
+              }
+		};
+
+		$http(registerDetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
 
 
 	this.postOnDemandConsultation = function(params) {

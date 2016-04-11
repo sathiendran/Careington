@@ -104,8 +104,10 @@ angular.module('starter.controllers')
         $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
           if($rootScope.currentPatientDetails[0].gender == 'M') {
             $rootScope.userGender = "Male";
+            $rootScope.isCheckedMale = true;
           } else if($rootScope.currentPatientDetails[0].gender == 'F') {
             $rootScope.userGender = "FeMale";
+              $rootScope.isCheckedFeMale = true;
           }
           $rootScope.doGetListOfCodeSet();
         }
