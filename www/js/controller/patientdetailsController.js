@@ -1,5 +1,7 @@
 angular.module('starter.controllers')
 .controller('patientdetailsController', function($scope) {
+   // $( "ion-tabs" ).removeClass( "tabs-top" ).addClass( "tabs-bottom" );
+    
    $scope.addmore=false;
      $scope.healthhide=true;  
       

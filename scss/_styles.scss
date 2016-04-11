@@ -2288,8 +2288,9 @@ float:right;
     text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober SemiBold;
 }
 .appmarg{
-    float:right;margin-top:-6px;
+    float:right;margin-top:-6px;font-size:18px !important;
 }
+
 .pathead{
     font-family: Glober SemiBold;
     color: #979797 !important;
@@ -3374,14 +3375,9 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 		}
 	}
 }
-
-
-	.bar .button.button-clear.icon:before {
+.bar .button.button-clear.icon:before {
 		font-size: 40px;
 	}
-
-
-
 .BacgroundColorContent {
     background-color: #EFEFED;
  }
@@ -3421,11 +3417,9 @@ font-size: 20px; text-align: center; width: 100%;  margin-left: -32px; top:-1px;
 input, button, select, textarea {
 	 font-family: $fontFamily_regular;
 }
-
 .item  {
   border-color: #C4C5C3;
   }
-
 .patientConternFontStyle {
 font-family: $fontFamily_bold;
 }
@@ -3473,11 +3467,8 @@ font-family: $fontFamily_regular;
     font-size: 25px;
     width: 30px;
 }
-
-
 .animated {
-
-	   -webkit-animation-duration: 0.4s !important;
+       -webkit-animation-duration: 0.4s !important;
 	   -moz-animation-duration: 0.4s !important;
 	   -o-animation-duration: 0.4s !important;
 		animation-duration: 0.4s !important;
@@ -3525,49 +3516,11 @@ font-family: $fontFamily_regular;
 		top: 24px;
 		font-size: 20px;
 	}
-.brand {
-	text-align: center;
-}
-.itemtab{
-    padding:12px !important;
-}
-.paticoncontent{
-    margin-top:120px;
-}
+.brand {text-align: center;}
+.itemtab{padding:12px !important;}
 
-
-
- @media (max-width:320px) and (min-width:315px)    {
-   .addphoto{
-      width:34%;
-        }
-    }
-
-
-  @media (max-width:481px) and (min-width:322px)    {
-    .addphoto{
-      width:38%;
-        }
-    }
-
-    @media (max-width:640px) and (min-width:482px)    {
-    .addphoto{
-      width:42%;
-        }
-     }
-
-     @media (max-width:768px) and (min-width:641px)    {
-   .addphoto{
-      width:44%;
-        }
-     }
-
-    @media (max-width:1366px) and (min-width:769px)    {
-   .addphoto{
-      width:47%;
-        }
-     }
-.userrow{
+.paticoncontent{ margin-top:120px;}
+ .userrow{
     margin-top: -12px !important;
 }
 .headercont{
@@ -3576,7 +3529,6 @@ font-family: $fontFamily_regular;
 .item-image-icon {
     height:102px !important;
 }
-
 .singleTermsTitle-Android {
 	border-bottom: none; position: relative;  top: -143px;
 }
@@ -3595,7 +3547,6 @@ font-family: $fontFamily_regular;
     color: #4D4D4D;
     text-align: justify; position: relative; top: -153px;
 }
-
 .singleTermsContent-IOS {
 	padding: 50px 7px 7px 7px;
     font-size: 19px;
@@ -3607,7 +3558,6 @@ font-family: $fontFamily_regular;
     background-color:#FFF !important; position: relative !important; top: 10px !important; box-shadow:  0px 3px 3px #ADABAB !important;
 	-moz-box-shadow:  0px 3px 3px #ADABAB !important;	-webkit-box-shadow:  0px 3px 3px #ADABAB !important;
 }
-
   .button-rounded {
         display: block;
         width: 30px;
@@ -3646,7 +3596,7 @@ font-family: $fontFamily_regular;
  }
  .content{
      margin-left:38px;
-     font-size:20px;
+     font-size:22px;
      a{
          color :rgba(5, 4, 9, 0.54)!important;
         }
@@ -3666,35 +3616,31 @@ font-family: $fontFamily_regular;
      padding-top: 19px; margin-left:-21px;font-size:12px !important; margin-top: 7px;
  }
  .headertitle{
+  font-size: 20px; text-align: center; width: 100%;top: 5px;
+ color:white;
+ }
+.headertitle-Android{
 font-size: 20px; text-align: center; width: 100%;top: 5px;
  color:white;
  }
-
- .headertitle-Android{
-font-size: 20px; text-align: center; width: 100%;top: 5px;
- color:white;
- }
-
 .headertitle-IOS{
 font-size: 20px;margin-left:120px; top: 5px;
  color:white;
  }
- .canceltitle-IOS{
-   margin-left:97px;
-   font-size: 17px;
+.canceltitle-IOS{
+  margin-left:97px;
+  font-size: 17px;
  }
- .canceltitle{
-     font-size: 20px;
-      color:white;
-      margin-top: 21px;
+.canceltitle{
+   font-size: 20px;
+   color:white;
+   margin-top: 21px;
  }
  .iconbutton{
     display: inline-block !important;
     width: 3% !important;
-     height: 13% !important;
-
+    height: 13% !important;
     border: 1px solid white !important;
-
     color: black;
     text-align: center !important;
     font-size: 12px !important;
@@ -3705,11 +3651,9 @@ font-size: 20px;margin-left:120px; top: 5px;
     background-color:#b5b5b5 !important;
     color:#d0d0d0 !important;
     }
-
  #hometitle{
      width:45%;
- }
-
+     }
  .imagesposition {
     width: 43% !important;
     margin-right: 10px;
@@ -3744,7 +3688,7 @@ font-size: 20px;margin-left:120px; top: 5px;
     margin-top:-88px;
 }
 .formlabel {
-  margin-left: 10px;
+     margin-left: 10px;
 color: rgba(5, 4, 9, 0.54) !important;
 font-family: Glober Bold;
 font-weight: normal !important;
@@ -3761,18 +3705,13 @@ font-size: 18px;
 .avatarclass{
   margin-top: 2px;
   margin-left:  -34px;
-  
-}
-
-
+  }
 .avatlefticon{
     float:left;
     margin-left:-18px;
     color: #9bca82;
     font-size:16 px!important;
-
  }
-
 .circle:after {
   display: block;
   padding-bottom: 30%;
@@ -3794,42 +3733,34 @@ font-size: 18px;
   left: 0;
   width: 30%;
   height: 30%;
-
 }
-
 .circle__wrapper {
   display: table;
   width: 40%;
   height: 40%;
 }
-
 .circle__content {
   display: table-cell;
   padding: 1em;
   vertical-align: middle;
-
 }
 .appalignrighticon{
          margin-left:42px;
          color:#fff;
          font-size:13px;
-             }
-        .aslignspan{
-          margin-left:3px;  
-          } 
+  }
+ .aslignspan{margin-left:3px;   } 
   #viewicon{
      float:right;
      color:white;
      margin-top:3px;
      font-size:12px !important;
   }
-
 .round-button {
 	width:95%;
     margin:0;
 }
 .round-button-circle {
-
   width: 78%;
   height: 0;
   margin: 0;
@@ -3840,8 +3771,6 @@ font-size: 18px;
   box-shadow: 0px 2px 3px #ccc;
   border: 2px solid #FFFFFF;
   }
-
-
 .round-button a {
     display:block;
 	 margin:0;
@@ -3924,7 +3853,6 @@ font-size: 18px;
     font-size:14px;
     color:#414141;
 }
-
 .alvalue{
     color: #888;
     font-size: 18px;
@@ -3963,7 +3891,6 @@ font-size: 18px;
     color:#11c1f3 !important;
 }
 
- 
 .donebutton{
   margin-bottom: 50px;
   height: 20px;
@@ -4003,6 +3930,16 @@ font-size: 18px;
     color: #686868;
     font-family: Glober Regular;
   }
+  .apptdetails{
+    background-color:#ffc900;height:80px;padding:10px !important; position: fixed;
+	bottom: 50px;
+	left: 0;
+	right: 0;
+  }
+  
+  .appth3{
+      margin:20px 0px 0px 0px;
+  }
 .list{
 
 .archieve{
@@ -4018,9 +3955,14 @@ font-size: 18px;
 }
 }
 .col-75{
-
-    margin-top: -9px;
+  margin-top: -9px;
 }
+.footheight
+         {
+         height: 83px !important;
+         background-image:none;
+          }
+
  .iconbox{
      font-size:30px !important;
  }
@@ -4059,6 +4001,9 @@ font-size: 20px;
     font-size:26px;
     margin-left:-18px;
 }
+.aptviewicons{
+    font-size:26px;margin-left:-18px;
+}
 .apptimage{
     margin-top:-7px;
 }
@@ -4090,9 +4035,7 @@ font-size: 20px;
  .ionitem {
            padding:0px!important;
        }
-.sionitem {
-           padding:2px!important;
-       }       
+.sionitem { padding:2px!important;}       
 .contacticon{
      margin-left: 22px;
    font-size: 21px;
@@ -4118,15 +4061,13 @@ font-size: 20px;
         margin:0;
             margin-right: 277px;
     }
-
 p{
     float:left;
  .avatarlefticon{
     margin-left: -12px;
     color: #9bca82;
  }
-
- .avaticon{
+.avaticon{
       margin-left: -14px;
     color: rgba(250, 130, 69, 0.32) !important; 
  }
@@ -4145,7 +4086,6 @@ p{
   margin-top: 4px;
   margin-left: -30px; 
 }
-
 .righticon{
     margin-right: -12px;
     color: #9bca82;
@@ -4158,12 +4098,10 @@ p{
         float:left;
         margin-left: 14px;
         font-size:15px;
-
-        }
-        .contentalignment{
-          margin-left:8px !important;
-        }
-
+   }
+  .contentalignment{
+      margin-left:8px !important;
+     }
 }
 .listtype{
          padding-top:29px !important;
@@ -4181,9 +4119,6 @@ p{
     margin-top: -9px;
     margin-left: 17px;
   }
- /* .ion-chevron-right:before{
-      font-size:16px !important;
-  }*/
   .authorizedval{
      background-color: rgba(250, 130, 69, 0.32); 
      height:40px;
@@ -4192,9 +4127,8 @@ p{
         color: white;
         margin-left:17px;
         font-size:22px;
-
-      }
-      .authorizedcont{
+}
+   .authorizedcont{
           font-size: 12px !important;color:#838383;margin-top: -4px;
       }
       .authorizedupdate{
@@ -4203,8 +4137,7 @@ p{
       color: #222222;
       font-size:11px !important;
       }
-      
-    }
+   }
   .authorupdate{
             background-color: rgba(250, 130, 69, 0.32) !important;
        }
@@ -4242,9 +4175,7 @@ p{
        margin-top: -16px;color:#6d6d6d;font-size:12px;margin-left:9px; font-family:Glober SemiBold;
     }
  }   
- 
-    
-    
+   
   .fontcolor{
       color:#888 !important;
   }
@@ -4257,14 +4188,10 @@ p{
 .ionappointment{
     height:75px !important;
    .appointment{
-     font-size:20px;
-
+     font-size:22px;
   }
 }
-
-
-
-  @media only screen and (max-device-width: 480px){
+ @media only screen and (max-device-width: 480px){
 	.col-25{
             max-width:46% !important;
 
@@ -4287,6 +4214,9 @@ p{
     margin-top: 125px !important;
 }
    @media (max-width:320px) and (min-width:315px)    {
+       .addphoto{
+      width:34%;
+        }
     .popup-container .popup {
         width: 85% !important;
          }
@@ -4304,9 +4234,6 @@ p{
        margin: 2px 9px !important;
        box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
        }
-       .appointment{
-        font-size:16px !important;
-        }
       .usercontent {
          margin-top: 168px !important;
       }
@@ -4321,7 +4248,7 @@ p{
           font-size:21px;
       }
       .appointment{
-        font-size:16px !important;
+        font-size:22px !important;
         color:white;
         }
 
@@ -4346,7 +4273,7 @@ p{
          }
   .pfontsize{
       font-size:16px !important;
-      width: 284px;
+     // width: 284px;
       white-space: normal !important;
   }
   .headerrighticon{
@@ -4372,6 +4299,9 @@ p{
   }
 
   @media (max-width:481px) and (min-width:322px)    {
+       .addphoto{
+      width:38%;
+        }
     .popup-container .popup {
         width: 85% !important;
          }
@@ -4463,7 +4393,7 @@ p{
          }
          .appointment{
            color:white;
-           font-size:20px;
+           font-size:22px;
       }
        .userdeptcontent{
                margin-top:120px !important;
@@ -4494,25 +4424,30 @@ p{
              width: 145px;
              font-size: 15px;
          }
-
-         /*.list .ion-chevron-right:before {
-           font-size: 12px !important;
-           }*/
        .has-header {
          top:90px;
        }
     }
+    
+    
 
-    @media (max-width:640px) and (min-width:482px)    {
-
-
-
-    .popup-container .popup {
+  @media (max-width:640px) and (min-width:482px)    {
+ .addphoto{
+      width:42%;
+        }    
+.popup-container .popup {
         width: 45% !important;
            }
-          .topimage {
-             margin-left:42% !important;
-         }
+   .topimage {
+       position: absolute;
+       top: 9px;
+       width: 80px;
+       height: 80px;
+       border-radius: 50%;
+       box-shadow: 0px 2px 3px #888;
+       border: 2px solid #FFFFFF;
+       margin-left: 240px;
+      }
          .userdetcontent{
              margin-top:138px !important;
          }
@@ -4537,12 +4472,23 @@ p{
      }
 
      @media (max-width:768px) and (min-width:641px)    {
+         .addphoto{
+      width:44%;
+        }
+
       .alignchronic{
              margin-left:345px !important;
          }
-          .topimage {
-             margin-left:43% !important;
-         }
+        .topimage {
+           position: absolute;
+           top: 9px;
+           width: 80px;
+           height: 80px;
+           border-radius: 50%;
+           box-shadow: 0px 2px 3px #888;
+           border: 2px solid #FFFFFF;
+           margin-left: 325px !important;
+        }
           .userdetcontent{
              margin-top:138px !important;
          }
@@ -4567,7 +4513,17 @@ p{
          }
      }
 
-     @media (min-width:770px) and (min-width:1024px)    {
+     @media (min-width:770px) and (max-width:1024px){
+       
+       .usercontent {
+         margin-top: 177px !important
+        }
+       .usercard {
+         margin: 90px 10px !important;
+        }
+       .userlist {
+         padding-top: 177px !important;
+        }
      .popup-container .popup {
          width: 39% !important;
          }
@@ -4594,7 +4550,12 @@ p{
              font-size: 15px;
          }
      }
+   /*
     @media (max-width:1366px) and (min-width:769px)    {
+        
+         .addphoto{
+      width:47%;
+        }
     .popup-container .popup {
         width:27% !important;
            }
@@ -4618,7 +4579,7 @@ p{
            margin-top:148px;
        }
 
-     }
+     }*/
 .subcontent{
     margin-left:-32px !important;
 }
@@ -4741,7 +4702,7 @@ p{
  }
   .appointment {
   color: white;
-  font-size: 19px;
+  font-size: 22px;
   font-family: Glober xBold;
    }
 .item-image-icon{
@@ -4997,3 +4958,112 @@ color: white;
 }
 /*End SideMenu by Poomani*/
 
+@media only screen and (min-width: 595px) and (max-width: 610px){
+.fname {font-size: 24px;}  
+.HeaderListAndroid {
+    margin-left:32px !important;
+    }
+.chronic { margin-top: 19px;}    
+.usercontent {
+margin-top: 177px !important
+}
+.aptviewicons{
+    font-size:26px;
+    margin-left:26px !important;
+}
+.usercard {
+margin: 90px 10px !important;
+}
+.userlist {
+padding-top: 177px !important;
+}
+.profileSpan {
+margin-left: 27px;
+}
+.list.listtype {
+padding-top: 110px !important;
+}
+.newcard {
+margin: 75px 10px !important;
+box-shadow: 0 1px 3px transparent !important;
+}
+.paticoncontent{ margin-top:170px;}
+.apptdetails{
+background-color: #ffc900;
+height: 123px;
+padding: 16px !important;
+position: fixed;
+bottom: 60px;
+left: 0;
+right: 0;
+}
+.footheight {
+  height: 87px !important;
+  background-image:none;
+ }
+.datecontent{
+    text-align:center;  
+.fdate {
+margin-top:9px !important;
+.ftime{
+    margin-left: 0px !important;
+}
+}
+}
+.tabs-top > .tabs, .tabs.tabs-top {
+top: inherit !important;
+}
+.tabs-striped .tabs {
+    border-bottom:none;
+}
+.appth3{
+    margin: 36px 0px 0px 0px !important;
+    }
+.userappheight {
+margin-top: 15px !important;
+height: 57px !important;
+}
+.appalignrighticon {
+margin-left: 210px;
+color: #fff;
+font-size: 13px;
+}
+.appfloat {
+float: right;
+margin-top: -12px;
+font-size: 18px !important;
+}
+.appiconcontent {
+margin-top: 217px;
+}
+.alignchronic {
+font-size:22px !important;
+font-family: "Glober Bold";
+color: #535353;
+text-align:center;
+margin-left:0px;
+}
+.headerprovider {
+margin-left: 65px !important;
+}
+.coldetails {
+margin-left: 61px;
+}
+.vreport {
+margin-left: 60px;}
+.rghticon {
+color: #616161;
+margin-left: 13px !important;
+}
+.patcol10{ max-width: 25px}
+.appitem{
+  .appfloat{
+      margin-top: 0px !important;
+  }  
+}
+//.patcol50{  min-width: 97%;}
+
+//.pfontsize {width:-px !important;}
+
+
+}
