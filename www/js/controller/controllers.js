@@ -375,7 +375,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 7px;position: relative; height: 49px;";
-        $rootScope.PatientCalentarScheduleItem = "top: 48px;"
+        $rootScope.PatientCalentarScheduleItem = "top: 45px;"
         $rootScope.PatientCalentarInnerStyleDetail = "margin-top: 1px;";
         $rootScope.PatientCalentarInnerStyleAppointmentWith = "margin-top: -16px !important;";
         $rootScope.appoinmentStyle = "  margin-top: -5px;";
@@ -1000,7 +1000,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
    
     
     $('.hospitalDynamicLink').click(function () {
-        var url = 'https://'+$rootScope.hospitalDomainName+'/Main/#/UserTerms';
+        var url = 'https://'+$rootScope.hospitalDomainName+'/public/#/UserTerms';
         window.open(encodeURI(url), '_system', 'location=yes');
         return false;
     });
