@@ -227,7 +227,8 @@ angular.module('starter.services', [])
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,			
-			url: apiCommonURL + '/api/v2/patients/profile?include=Appointments',
+			//url: apiCommonURL + '/api/v2/patients/profile?include=Appointments',
+			url: apiCommonURL + '/api/v2.1/patients/appointments',
             method: 'GET'   
         };
 

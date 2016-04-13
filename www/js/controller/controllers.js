@@ -2954,7 +2954,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			accessToken: $rootScope.accessToken,
 			success: function (data) {
 				if(data != "") {
-					$scope.scheduledConsultationList = data.data[0];
+					$scope.scheduledConsultationList = data.data;
 					$rootScope.getScheduledList = [];
 					$rootScope.scheduleParticipants = [];
 					var currentDate = new Date();
@@ -2962,7 +2962,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 						
 											
-					angular.forEach($scope.scheduledConsultationList.appointments, function(index, item) {							
+					angular.forEach($scope.scheduledConsultationList, function(index, item) {							
 						if(currentDate < CustomCalendar.getLocalTime(index.startTime)) {
 							 $rootScope.getScheduledList.push({								
 								'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
@@ -3212,7 +3212,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
 		
 					console.log($rootScope.individualScheduledList);
-					$rootScope.nextAppointmentDisplay = 'none';
+					//$rootScope.nextAppointmentDisplay = 'none';
 					
 					var d = new Date();
 					d.setHours(d.getHours() + 12);
@@ -3227,7 +3227,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						
 						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							console.log('scheduledTime <= getTwelveHours UserHome');
-							$rootScope.nextAppointmentDisplay = 'block';
+							//$rootScope.nextAppointmentDisplay = 'block';
 							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
 							var beforAppointmentTime = 	getReplaceTime;
 							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
