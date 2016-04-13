@@ -3312,7 +3312,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.healthPlanID = '';
         $rootScope.NewHealth = '';    
         }
-		
+		$rootScope.appointmentDisplay = '';
 		$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
 		$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
 		$rootScope.PatientImageSelectUser = P_img;

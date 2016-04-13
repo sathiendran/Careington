@@ -84,7 +84,8 @@ angular.module('starter.controllers')
 			
 			//console.log(args.millis);
 			if(args.millis < 600){
-
+				$rootScope.timeNew = 'none';
+			$rootScope.timeNew1 = 'block';
 			  $('.AvailableIn').hide();
 				$('.enterAppoinment').show();
 				 $rootScope.timerCOlor = '#E1FCD4';
