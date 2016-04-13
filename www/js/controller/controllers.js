@@ -35,8 +35,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 						request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 					}
 					request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-					request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
-					request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+					request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+					request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 					return request;
 			}
 		},
@@ -64,8 +64,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				return headers;	
 			}else{				
 				var headers = {
-						'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
-						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -265,12 +265,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	
 	$scope.ChangeEnv = function(env){
 		if(env == "Snap.QA"){
-			//$rootScope.APICommonURL = 'https://snap-qa.com';
-			//apiCommonURL = 'https://snap-qa.com';
+			$rootScope.APICommonURL = 'https://snap-qa.com';
+			apiCommonURL = 'https://snap-qa.com';
 			//$rootScope.APICommonURL ='http://emerald.snap.local';
 			//apiCommonURL ='http://emerald.snap.local';
-			$rootScope.APICommonURL ='https://snapmd-api.azurewebsites.net';
-			apiCommonURL ='https://snapmd-api.azurewebsites.net';
+			//$rootScope.APICommonURL ='https://snapmd-api.azurewebsites.net';
+			//apiCommonURL ='https://snapmd-api.azurewebsites.net';
 			api_keys_env = "Snap.QA";			
 		}else if(env == "Sandbox"){
 			$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
@@ -1351,7 +1351,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.zipCode = data.data[0].zipCode;
 					$rootScope.primaryPatientId = $rootScope.patientAccount.patientId;	
 					$scope.doGetPrimaryPatientLastName();	
-					 $scope.doGetScheduledConsulatation();
+					 $rootScope.doGetScheduledConsulatation();
 						
 				},
 				error: function (data) {
@@ -2005,6 +2005,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         
 			 var params = {
                 accessToken: $rootScope.accessToken,
+				healthPlanID: $rootScope.healthPlanID,
                 PatientId: $rootScope.patientId,
 				insuranceCompany: $scope.insuranceCompany,
 				insuranceCompanyNameId: $scope.insuranceCompanyNameId,
@@ -2847,7 +2848,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		return newdate;
 	}
 
-        $scope.doGetScheduledConsulatation = function () {
+        /*$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -2919,7 +2920,113 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             };
 
             LoginService.getScheduledConsulatation(params);
-        }
+        }*/
+		
+	//$scope.doGetConsultationId($rootScope.scheduledList[0].appointmentId, $rootScope.scheduleParticipants[0].person.id);	
+	$rootScope.doGetConsultationId = function(appointmentId, personId, nextPage) {			
+		 var params = {
+			accessToken: $rootScope.accessToken,
+			AppointmentId: appointmentId,
+			personID: personId,					
+			success: function (data) {					
+				$rootScope.consultationId = data.data[0].consultationId;
+				//$rootScope.doGeAppointmentExistingConsulatation();
+				$rootScope.appointmentDisplay = "test";
+				$scope.$root.$broadcast("callAppointmentConsultation");
+				//$state.go(nextPage);
+			},
+			error: function (data) {
+				$rootScope.serverErrorMessageValidation()
+			}
+		};
+			
+		LoginService.postGetConsultationId(params);
+	}
+		
+	$rootScope.doGetScheduledConsulatation = function () {
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		 $rootScope.scheduledConsultationList = [];
+		var params = {
+			patientId: $rootScope.primaryPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {
+				if(data != "") {
+					$scope.scheduledConsultationList = data.data[0];
+					$rootScope.getScheduledList = [];
+					$rootScope.scheduleParticipants = [];
+					var currentDate = new Date();
+					currentDate = $scope.addMinutes(currentDate, -30);
+					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+						
+											
+					angular.forEach($scope.scheduledConsultationList.appointments, function(index, item) {							
+						if(currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+							 $rootScope.getScheduledList.push({								
+								'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+								'appointmentId': index.appointmentId,
+								'appointmentStatusCode': index.appointmentStatusCode,
+								'appointmentTypeCode': index.appointmentTypeCode,
+								'availabilityBlockId': index.availabilityBlockId,
+								'endTime': index.endTime,
+								'intakeMetadata': angular.fromJson(index.intakeMetadata),
+								'participants': angular.fromJson(index.participants),
+								'waiveFee': index.waiveFee						
+							});
+							angular.forEach(index.participants, function(index, item) {
+								$rootScope.scheduleParticipants.push({								
+								'appointmentId': index.appointmentId,
+								'attendenceCode': index.attendenceCode,
+								'participantId': index.participantId,
+								'participantTypeCode': index.participantTypeCode,
+								'person': angular.fromJson(index.person),
+								'referenceType': index.referenceType,								
+								'status': index.status						
+							});
+							}) 
+						}	
+					});
+			$rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
+					
+					console.log($rootScope.scheduledList);
+					$rootScope.nextAppointmentDisplay = 'none';
+					
+					var d = new Date();
+					d.setHours(d.getHours() + 12);
+					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+					
+					if($rootScope.scheduledList != '')
+					{
+						//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+						//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+						var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
+						var currentUserHomeDate = currentUserHomeDate;
+						
+						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+							console.log('scheduledTime <= getTwelveHours UserHome');
+							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+							$rootScope.timerCOlor = '#FEEFE8';
+							var beforAppointmentTime = 	getReplaceTime;
+							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+							if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+							{
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								$rootScope.timerCOlor = '#E1FCD4';
+							}
+						}						
+					}	
+				}
+			},
+			error: function (data) {
+			   $rootScope.serverErrorMessageValidation();
+			}
+		};
+
+		LoginService.getScheduledConsulatation(params);
+	}	
 		
 	$scope.getScheduledDetails = function (patientId) {
 		$rootScope.selectedPatientIdForDetails = patientId;
@@ -3053,6 +3160,143 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.postCoPayDetails(params);
 		}
 	}
+	
+	$rootScope.doGetIndividualScheduledConsulatation = function () {
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		 $rootScope.individualScheduledConsultationList = [];
+		var params = {
+			patientId: $rootScope.patientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {
+				if(data != "") {
+					$scope.individualScheduledConsultationList = data.data[0];
+					$rootScope.getIndividualScheduledList = [];
+					$rootScope.individualScheduleParticipants = [];
+					var currentDate = new Date();
+					currentDate = $scope.addMinutes(currentDate, -30);
+					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+						
+											
+					angular.forEach($scope.individualScheduledConsultationList.appointments, function(index, item) {							
+						if(currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+							 $rootScope.getIndividualScheduledList.push({								
+								'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+								'appointmentId': index.appointmentId,
+								'appointmentStatusCode': index.appointmentStatusCode,
+								'appointmentTypeCode': index.appointmentTypeCode,
+								'availabilityBlockId': index.availabilityBlockId,
+								'endTime': index.endTime,
+								'intakeMetadata': angular.fromJson(index.intakeMetadata),
+								'participants': angular.fromJson(index.participants),
+								'waiveFee': index.waiveFee						
+							});
+							angular.forEach(index.participants, function(index, item) {
+								$rootScope.individualScheduleParticipants.push({								
+								'appointmentId': index.appointmentId,
+								'attendenceCode': index.attendenceCode,
+								'participantId': index.participantId,
+								'participantTypeCode': index.participantTypeCode,
+								'person': angular.fromJson(index.person),
+								'referenceType': index.referenceType,								
+								'status': index.status						
+							});
+							}) 
+						}	
+					});
+					
+		$rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
+			
+		$rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
+		
+					console.log($rootScope.individualScheduledList);
+					$rootScope.nextAppointmentDisplay = 'none';
+					
+					var d = new Date();
+					d.setHours(d.getHours() + 12);
+					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+					
+					if($rootScope.individualScheduledList != '')
+					{
+						//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+						//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+						var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
+						var currentUserHomeDate = currentUserHomeDate;
+						
+						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+							console.log('scheduledTime <= getTwelveHours UserHome');
+							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+							var beforAppointmentTime = 	getReplaceTime;
+							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+							if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+							{
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+							}
+						}
+						
+						var getReplaceTime1 = $rootScope.individualScheduledList[0].scheduledTime;	
+							var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+							var currentUserHomeDate = currentUserHomeDate;		
+							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {	
+								
+								$rootScope.time = new Date(getReplaceTime).getTime();
+								
+								 $timeout(function() {  
+									document.getElementsByTagName('timer')[0].stop();
+									document.getElementsByTagName('timer')[0].start();
+								}, 10);
+									
+								$scope.$on('timer-tick', function (event, args){
+									if(args.days == 0) {
+										$rootScope.hourDisplay = 'initial';
+										$rootScope.daysDisplay = 'none';
+										$rootScope.dayDisplay = 'none';		
+									} else if(args.days == 1) {
+										$rootScope.daysDisplay = 'none';	
+										$rootScope.hourDisplay = 'none';
+										$rootScope.dayDisplay = 'initial';		
+									} else if(args.days > 1) {
+										$rootScope.daysDisplay = 'initial';	
+										$rootScope.hourDisplay = 'none';
+										$rootScope.dayDisplay = 'none';	
+									}
+									
+								
+									if(args.millis < 600){
+										$rootScope.timeNew = 'none';
+									   $rootScope.timeNew1 = 'block';
+									   $rootScope.timerCOlor = '#E1FCD4';
+									} else if(args.millis > 600){
+										$rootScope.timeNew = 'block';
+										$rootScope.timeNew1 = 'none';
+										$rootScope.timerCOlor = '#FEEFE8';
+									}									
+								});
+								$rootScope.time = new Date(getReplaceTime).getTime();
+								
+								var d = new Date();
+								
+								var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+								
+								if(getReplaceTime < currentUserHomeDate){
+									 $rootScope.timerCOlor = '#E1FCD4';
+								}
+							} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+								$rootScope.timerCOlor = 'transparent';
+							}							
+					}	
+				}
+			},
+			error: function (data) {
+			   $rootScope.serverErrorMessageValidation();
+			}
+		};
+
+		LoginService.getIndividualScheduledConsulatation(params);
+	}	
     
     $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
         if($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined"){
@@ -3077,7 +3321,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.patientId = P_Id;
-		$rootScope.P_isAuthorized = P_isAuthorized;   
+		$rootScope.P_isAuthorized = P_isAuthorized;  
+		$rootScope.doGetIndividualScheduledConsulatation();	
 		$state.go('tab.patientDetail'); 	
 		//$scope.doGetUserHospitalInformation();	
     }
@@ -3287,7 +3532,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
      $scope.GoToappoimentDetails = function(scheduledListData) {			
 		$rootScope.scheduledListDatas = scheduledListData;
 		//$scope.doGetUserHospitalInformationForUserHome();
-		$state.go('tab.appoimentDetails');
+		$rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');	
+		//$state.go('tab.appoimentDetails');
      };
 	 
 	 

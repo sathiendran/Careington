@@ -40,10 +40,10 @@
 			
 			<ion-item class="doctor_details">
 				 <a class="HrefListView"  href="#" >   
-				     <img ng-src="{{doctorImage}}" class="listImgView doctorImgeSize">
+				     <img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="listImgView doctorImgeSize">
 				  <!-- <img class="listImgView doctorImgeSize" src="https://sandbox.connectedcare.md/images/Patient-Male.gif">-->
-					<span class = "ListText doctorName" ><span style="font-size: 22px; font-family: Glober xBold;">Dr.</span>
-						<div class="SubTitleSpan docName ellipsis">{{scheduledListDatas.assignedDoctorName}}</div>								
+					<span class = "ListText doctorName" ><span style="font-size: 22px; font-family: Glober xBold;"></span>
+						<div class="SubTitleSpan docName ellipsis">{{scheduledDoctorDetails[0].fullName}}</div>								
 						<list style="top: -69px; position: relative; display: none;" class="ion-chevron-right ListLinkHref doctorArrow" ></list>
 					</span>	
 				 </a>
@@ -60,16 +60,16 @@
 			
 			<ion-item class="concernsItem">
 				 <div class="primary" style="{{PrimaryMarginTop}}"><span>1 </span> <div>Primary Concern</div></div>
-				 <p class="ptagprimary concernsItempTag">{{reportScreenPrimaryConcern}} </p>				
+				 <p class="ptagprimary concernsItempTag">{{scheduledListDatas.intakeMetadata.concerns[0].customCode.description}} </p>				
 
 				 <div class="secondary"  ><span>2 </span><div>Secondary Concern</div></div>
-				 <p class="ptagprimary concernsItempTag" >{{reportScreenSecondaryConcern}} </p>
+				 <p class="ptagprimary concernsItempTag" >{{scheduledListDatas.intakeMetadata.concerns[1].customCode.description}} </p>
 			</ion-item>
 			
 			<ion-item class="concernsItem">
 				<div class="pre_consultant" style="margin-top: -16px;"><span></span><div style="left: 38px;">Pre-Consult Notes:</div></div>
-	<!-- <p class="ptagprimary" >{{preConsultantNotes}} </p>-->
-				 <p class="ptagprimary" style="position: relative; top: 8px;" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>
+	<!-- <p class="ptagprimary" style="position: relative; top: 8px;" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>-->
+				 <p class="ptagprimary" style="position: relative; top: 8px;" >{{scheduledListDatas.intakeMetadata.additionalNotes}} </p>
 			</ion-item>
 			
 	</ion-content>

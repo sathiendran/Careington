@@ -57,53 +57,69 @@ angular.module('starter.controllers')
 	$scope.doGetWaitingRoom = function() {
         $state.go('tab.waitingRoom');				
     }
-	$rootScope.consultationId = $rootScope.scheduledListDatas.consultationId;
-	var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
-	
-	var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
-	
-	$rootScope.time = new Date(getReplaceTime).getTime();
-	
-	$scope.$on('timer-tick', function (event, args){
-		//$timeout(function(){
-		console.log('Timer tick events by Prabin');
-		if(args.days == 0) {
-			$rootScope.hourDisplay = 'initial';
-			$rootScope.daysDisplay = 'none';
-			$rootScope.dayDisplay = 'none';		
-		} else if(args.days == 1) {
-			$rootScope.daysDisplay = 'none';	
-			$rootScope.hourDisplay = 'none';
-			$rootScope.dayDisplay = 'initial';		
-		} else if(args.days > 1) {
-			$rootScope.daysDisplay = 'initial';	
-			$rootScope.hourDisplay = 'none';
-			$rootScope.dayDisplay = 'none';	
-		}
+	if($rootScope.appointmentDisplay == "test") {
+		$rootScope.consultationId = $rootScope.consultationId;
+		var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
 		
-		//console.log(args.millis);
-		if(args.millis < 600){
+		var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+		
+		$rootScope.time = new Date(getReplaceTime).getTime();
+		
+		$scope.$on('timer-tick', function (event, args){
+			//$timeout(function(){
+			console.log('Timer tick events by Prabin');
+			if(args.days == 0) {
+				$rootScope.hourDisplay = 'initial';
+				$rootScope.daysDisplay = 'none';
+				$rootScope.dayDisplay = 'none';		
+			} else if(args.days == 1) {
+				$rootScope.daysDisplay = 'none';	
+				$rootScope.hourDisplay = 'none';
+				$rootScope.dayDisplay = 'initial';		
+			} else if(args.days > 1) {
+				$rootScope.daysDisplay = 'initial';	
+				$rootScope.hourDisplay = 'none';
+				$rootScope.dayDisplay = 'none';	
+			}
+			
+			//console.log(args.millis);
+			if(args.millis < 600){
 
-		  $('.AvailableIn').hide();
-			$('.enterAppoinment').show();
-			 $rootScope.timerCOlor = '#E1FCD4';
-		} else if(args.millis > 600){
-			$('.AvailableIn').show();
-			$('.enterAppoinment').hide();	
+			  $('.AvailableIn').hide();
+				$('.enterAppoinment').show();
+				 $rootScope.timerCOlor = '#E1FCD4';
+			} else if(args.millis > 600){
+				$('.AvailableIn').show();
+				$('.enterAppoinment').hide();	
+			}
+			/*else if(args.millis < 1800000){
+			   $('.AvailableIn').hide();
+				$('.enterAppoinment').show();
+			   $rootScope.timerCOlor = '#E1FCD4';
+			   
+			}else if(args.millis > 1800000){
+			  $rootScope.timeNew = 'block';
+			   $rootScope.timeNew1 = 'none';
+				$('.AvailableIn').show();
+				$('.enterAppoinment').hide();		   
+			}*/
+			//},1000);
+		});	
+		
+		var d = new Date();
+		//d.setHours(d.getHours() + 12);
+		
+		var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+		
+		if(getReplaceTime < currentUserHomeDate){
+			$rootScope.timeNew = 'none';
+			$rootScope.timeNew1 = 'block';
+			$('.AvailableIn').hide();
+			$('.enterAppoinment').show();	
+			$rootScope.timerCOlor = '#E1FCD4';
 		}
-		/*else if(args.millis < 1800000){
-		   $('.AvailableIn').hide();
-			$('.enterAppoinment').show();
-		   $rootScope.timerCOlor = '#E1FCD4';
-		   
-		}else if(args.millis > 1800000){
-		  $rootScope.timeNew = 'block';
-		   $rootScope.timeNew1 = 'none';
-			$('.AvailableIn').show();
-			$('.enterAppoinment').hide();		   
-		}*/
-		//},1000);
-	});
+	}
+	
 	$scope.showEnterWaitingRoomButton = function(){
 		$rootScope.timeNew = 'none';
 		$rootScope.timeNew1 = 'block';
@@ -114,18 +130,27 @@ angular.module('starter.controllers')
 		
 	}, 100);
 	
-	var d = new Date();
-	//d.setHours(d.getHours() + 12);
-	
-	var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-	
-	if(getReplaceTime < currentUserHomeDate){
-		$rootScope.timeNew = 'none';
-		$rootScope.timeNew1 = 'block';
-		$('.AvailableIn').hide();
-		$('.enterAppoinment').show();	
-		$rootScope.timerCOlor = '#E1FCD4';
+	$scope.doGetConcentToTreat = function () {
+		if ($scope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		var params = {
+            documentType: 2, 
+			hospitalId: $rootScope.hospitalId,			
+            success: function (data) {				
+				$rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
+				$state.go('tab.ConsentTreat');
+						
+            },
+            error: function (data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+		
+		LoginService.getConcentToTreat(params);
 	}
+	
 	$scope.doCheckExistingConsulatationStatus = function () {
 		
 		if ($scope.accessToken == 'No Token') {
@@ -187,8 +212,9 @@ angular.module('starter.controllers')
 						);
 						return false;
 					} else {
-						$state.go('tab.ConsentTreat');
+						//$state.go('tab.ConsentTreat');
 						//$scope.doGetWaitingRoom();
+						$scope.doGetConcentToTreat();
 
 					}
 						
@@ -205,8 +231,13 @@ angular.module('starter.controllers')
 		
 	}	
 	
-
-	$scope.doGetExistingConsulatation = function () {
+	$scope.$on("callAppointmentConsultation", function (event, args) {
+		//$scope.errorMsg = args.errorMsg;
+		//$rootScope.Validation( $scope.errorMsg);
+		$scope.doGeAppointmentExistingConsulatation();
+	}); 
+	
+	$scope.doGeAppointmentExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
 		$rootScope.appointmentsPatientFirstName = '';
 		$rootScope.appointmentsPatientLastName = '';
@@ -271,16 +302,17 @@ angular.module('starter.controllers')
 				$rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.patientExistInfomation.guardianName);
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
 				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
-				$rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[0].customCode.description);
-				$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[1].customCode.description);
-				if($rootScope.reportScreenSecondaryConcern == "") {
+				/*$rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[0].customCode.description);
+				if(typeof $rootScope.intakeForm.concerns[1] != 'undefined') {
+					$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[1].customCode.description);
+				} else {
 					$rootScope.reportScreenSecondaryConcern = "None Reported";
 				}
 				if(typeof $rootScope.consultionInformation.note != 'undefined') {
 					$rootScope.preConsultantNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.consultionInformation.note);				
 				} else {
 					$rootScope.preConsultantNotes = '';
-				}
+				}*/
 				$scope.doGetExistingPatientName();
 				$scope.doGetDoctorDetails();
                
@@ -316,14 +348,32 @@ angular.module('starter.controllers')
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
-		
+		$rootScope.scheduledDoctorDetails = [];
 		var params = {
             doctorId: $rootScope.assignedDoctorId, 
             accessToken: $rootScope.accessToken,
             success: function (data) {
-				$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;	
+				//$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;
+				angular.forEach(data.data, function(index, item) {
+					$rootScope.scheduledDoctorDetails.push({								
+					'businessAddress': index.businessAddress,
+					'firstName': index.firstName,
+					'fullName': index.fullName,
+					'gender': index.gender,
+					'hospitalId': index.hospitalId,
+					'lastName': index.lastName,								
+					'medicalLicense': index.medicalLicense,
+					'medicalSpeciality': index.medicalSpeciality,
+					'medicalSchool': index.medicalSchool,
+					'profileImage': $rootScope.APICommonURL + index.profileImage,
+					'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+					'statesLicenced': index.statesLicenced,
+					'subSpeciality': index.subSpeciality					
+					});	
+				});
 				document.getElementsByTagName('timer')[0].stop();
 				document.getElementsByTagName('timer')[0].start();
+				$state.go('tab.appoimentDetails');
             },
             error: function (data) {
                 $rootScope.serverErrorMessageValidation();
@@ -335,8 +385,7 @@ angular.module('starter.controllers')
 	}
 	
 	
-	$scope.doGetExistingConsulatation();  
-	//$scope.doGetExistingConsulatationReport();
+	//$scope.doGeAppointmentExistingConsulatation(); 
 	
 	
 })

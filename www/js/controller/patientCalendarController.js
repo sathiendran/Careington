@@ -45,21 +45,23 @@ angular.module('starter.controllers')
 		return newdate;
 	}
 	
-	$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:$rootScope.selectedPatientIdForDetails});
+	//$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:$rootScope.selectedPatientIdForDetails});
+	$rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
 	
 	var d = new Date();
 	d.setHours(d.getHours() + 12);
 	var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 	
 	$scope.doRefresh = function() {
-		$scope.doGetScheduledConsulatation();
+		$rootScope.doGetScheduledConsulatation();
+		$rootScope.doGetIndividualScheduledConsulatation();
 		$timeout( function() {
 			$scope.$broadcast('scroll.refreshComplete');
 		 }, 1000);
 		$scope.$apply();	
 	};
 	
-	$scope.doGetScheduledConsulatation = function () {
+	/*$scope.doGetScheduledConsulatation = function () {
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -160,24 +162,9 @@ angular.module('starter.controllers')
 										$rootScope.timeNew = 'block';
 										$rootScope.timeNew1 = 'none';
 										$rootScope.timerCOlor = '#FEEFE8';
-									}
-									/*else if(args.millis < 600000){
-									   $rootScope.timeNew = 'none';
-									   $rootScope.timeNew1 = 'block';
-									   $rootScope.timerCOlor = '#E1FCD4';
-									}else if(args.millis > 600000){
-										$rootScope.timeNew = 'block';
-									   $rootScope.timeNew1 = 'none';
-										$rootScope.timerCOlor = '#FEEFE8';
-									}*/
-									
+									}									
 								});
 								$rootScope.time = new Date(getReplaceTime).getTime();
-								
-								/* $timeout(function() {  
-									document.getElementsByTagName('timer')[0].stop();
-									document.getElementsByTagName('timer')[0].start();
-								}, 10);*/
 								
 								var d = new Date();
 								
@@ -200,11 +187,32 @@ angular.module('starter.controllers')
 		};
 
 		LoginService.getScheduledConsulatation(params);
+	}*/
+	
+	$rootScope.doGetAppointmentConsultationId = function(appointmentId, personId, nextPage) {			
+		 var params = {
+			accessToken: $rootScope.accessToken,
+			AppointmentId: appointmentId,
+			personID: personId,					
+			success: function (data) {					
+				$rootScope.consultationId = data.data[0].consultationId;
+				//$rootScope.doGeAppointmentExistingConsulatation();
+				$rootScope.appointmentDisplay = "test";
+				$scope.$root.$broadcast("callAppointmentConsultation");
+				//$state.go(nextPage);
+			},
+			error: function (data) {
+				$rootScope.serverErrorMessageValidation()
+			}
+		};
+			
+		LoginService.postGetConsultationId(params);
 	}
 
 	$scope.GoToappoimentDetails = function(scheduledListData) {
-		$state.go('tab.appoimentDetails');
-		$rootScope.scheduledListDatas = scheduledListData;		
+		//$state.go('tab.appoimentDetails');
+		$rootScope.scheduledListDatas = scheduledListData;	
+		$rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');	
 	};
 	
 	if($rootScope.getIndividualScheduleDetails !='') {		
