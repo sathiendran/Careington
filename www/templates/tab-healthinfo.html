@@ -1,6 +1,6 @@
 <ion-side-menus>
 <ion-side-menu-content>
- <form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
+ <!--<form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">-->
    <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <div class="buttons">
          <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
@@ -54,11 +54,11 @@
           <h4 class="healthhead"><b>Demographics</b></h4>
           <div class="list listprofile" ng-show="flag">
             <label class="item item-input itemtab validated">
-               <span class="input-label labelcolor"> <i class="ion-ios-telephone"></i><b class="formlabel labelfont">First</b></span>
+               <span class="input-label labelcolor"> <i class="ion-android-person"></i><b class="formlabel labelfont">First</b></span>
                <input type="text"  value="{{currentPatientDetails[0].patientName}}" ng-readonly="flag" class="valhome textdata">
             </label>
             <label class="item item-input itemtab validated">
-               <span class="input-label labelcolor"> <i class="ion-ios-telephone"></i><b class="formlabel labelfont">Last</b></span>
+               <span class="input-label labelcolor"> <i class="ion-android-person"></i><b class="formlabel labelfont">Last</b></span>
                <input type="text"  value="{{currentPatientDetails[0].lastName}}" ng-readonly="flag" class="valhome textdata">
             </label>
             <label class="item item-input itemtab validated">
@@ -66,7 +66,7 @@
                 <input type="date" value="{{userDOB}}"  ng-readonly="flag"  class="valuealign textdata" id="dobdate">
             </label>
             <label class="item item-input itemtab validated">
-               <span class="input-label labelcolor"> <i class="ion-ios-telephone"></i><b class="formlabel labelfont">Email</b></span>
+               <span class="input-label labelcolor"> <i class="ion-android-mail"></i><b class="formlabel labelfont">Email</b></span>
                <input type="text"  value="{{currentPatientDetails[0].account.email}}" ng-readonly="flag" class="valhome textdata">
             </label>
 
@@ -316,7 +316,7 @@
             </ul>
          </div>
       </ion-content>
-    </form>
+   <!-- </form>-->
 </ion-side-menu-content>
 <div class="Server_Error ErrorMessageDiv" ></div>
 <div id="Error_Message"></div>
