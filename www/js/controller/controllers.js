@@ -3177,11 +3177,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.individualScheduleParticipants = [];
 					var currentDate = new Date();
 					currentDate = $scope.addMinutes(currentDate, -30);
-					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");					
+					
+					var d = new Date();
+					d.setHours(d.getHours() + 12);
+					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 						
 											
-					angular.forEach($scope.individualScheduledConsultationList.appointments, function(index, item) {							
-						if(currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+					angular.forEach($scope.individualScheduledConsultationList.appointments, function(index, item) {
+						var indexScheduleTime = CustomCalendar.getLocalTime(index.startTime);
+						if((currentDate < CustomCalendar.getLocalTime(index.startTime)) && (new Date(indexScheduleTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							 $rootScope.getIndividualScheduledList.push({								
 								'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
 								'appointmentId': index.appointmentId,
@@ -3214,9 +3219,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					console.log($rootScope.individualScheduledList);
 					//$rootScope.nextAppointmentDisplay = 'none';
 					
-					var d = new Date();
-					d.setHours(d.getHours() + 12);
-					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 					
 					if($rootScope.individualScheduledList != '')
 					{
