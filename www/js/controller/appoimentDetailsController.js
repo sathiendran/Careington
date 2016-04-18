@@ -372,8 +372,8 @@ angular.module('starter.controllers')
 					'subSpeciality': index.subSpeciality					
 					});	
 				});
-				document.getElementsByTagName('timer')[0].stop();
-				document.getElementsByTagName('timer')[0].start();
+				//document.getElementsByTagName('timer')[0].stop();
+				//document.getElementsByTagName('timer')[0].start();
 				$state.go('tab.appoimentDetails');
             },
             error: function (data) {

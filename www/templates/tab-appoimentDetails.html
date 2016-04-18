@@ -60,16 +60,16 @@
 			
 			<ion-item class="concernsItem">
 				 <div class="primary" style="{{PrimaryMarginTop}}"><span>1 </span> <div>Primary Concern</div></div>
-				 <p class="ptagprimary concernsItempTag">{{scheduledListDatas.intakeMetadata.concerns[0].customCode.description}} </p>				
+				 <p class="ptagprimary concernsItempTag">{{appointPrimaryConcern}} </p>				
 
 				 <div class="secondary"  ><span>2 </span><div>Secondary Concern</div></div>
-				 <p class="ptagprimary concernsItempTag" >{{scheduledListDatas.intakeMetadata.concerns[1].customCode.description}} </p>
+				 <p class="ptagprimary concernsItempTag" >{{appointSecondConcern}} </p>
 			</ion-item>
 			
 			<ion-item class="concernsItem">
 				<div class="pre_consultant" style="margin-top: -16px;"><span></span><div style="left: 38px;">Pre-Consult Notes:</div></div>
 	<!-- <p class="ptagprimary" style="position: relative; top: 8px;" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>-->
-				 <p class="ptagprimary" style="position: relative; top: 8px;" >{{scheduledListDatas.intakeMetadata.additionalNotes}} </p>
+				 <p class="ptagprimary" style="position: relative; top: 8px;" >{{appointNotes}} </p>
 			</ion-item>
 			
 	</ion-content>

@@ -3532,6 +3532,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
      $scope.GoToappoimentDetails = function(scheduledListData) {			
 		$rootScope.scheduledListDatas = scheduledListData;
 		//$scope.doGetUserHospitalInformationForUserHome();
+		$rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
+		$rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
+		if($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern == 'undefined') {
+			$rootScope.appointSecondConcern = 'None Reported';
+		} else {
+			$rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
+		}
+		$rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
+		if($rootScope.appointNotes == '' || typeof $rootScope.appointNotes == 'undefined') {
+			$rootScope.appointNotes = 'None Reported';
+		} else {
+			$rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
+		}
 		$rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');	
 		//$state.go('tab.appoimentDetails');
      };

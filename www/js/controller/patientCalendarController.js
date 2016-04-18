@@ -212,16 +212,27 @@ angular.module('starter.controllers')
 	$scope.GoToappoimentDetails = function(scheduledListData) {
 		//$state.go('tab.appoimentDetails');
 		$rootScope.scheduledListDatas = scheduledListData;	
+		$rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
+		$rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
+		if($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern == 'undefined') {
+			$rootScope.appointSecondConcern = 'None Reported';
+		} else {
+			$rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
+		}
+		$rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
+		if($rootScope.appointNotes == '' || typeof $rootScope.appointNotes == 'undefined') {
+			$rootScope.appointNotes = 'None Reported';
+		} else {
+			$rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
+		}
 		$rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');	
 	};
 	
 	if($rootScope.getIndividualScheduleDetails !='') {		
-		var getReplaceTime1 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
-		var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+		var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;	
+		var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
 		var currentUserHomeDate = currentUserHomeDate;		
-		if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {		
-			
-				
+		if((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 			$scope.$on('timer-tick', function (event, args){
 				if(args.days == 0) {
 					$rootScope.hourDisplay = 'initial';
@@ -235,8 +246,7 @@ angular.module('starter.controllers')
 					$rootScope.daysDisplay = 'initial';	
 					$rootScope.hourDisplay = 'none';
 					$rootScope.dayDisplay = 'none';	
-				}
-				
+				}				
 			
 				if(args.millis < 600){
 					$rootScope.timeNew = 'none';
@@ -258,7 +268,7 @@ angular.module('starter.controllers')
 				}*/
 				
 			});
-			$rootScope.time = new Date(getReplaceTime).getTime();
+			$rootScope.time = new Date(getReplaceTime3).getTime();
 			
 			 $timeout(function() {  				
 				document.getElementsByTagName('timer')[0].start();
@@ -268,10 +278,10 @@ angular.module('starter.controllers')
 			
 			var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 			
-			if(getReplaceTime < currentUserHomeDate){
+			if(getReplaceTime3 < currentUserHomeDate){
 				 $rootScope.timerCOlor = '#E1FCD4';
 			}
-		} else if((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+		} else if((new Date(getReplaceTime3).getTime()) >= (new Date(d).getTime())) {
 			$rootScope.timerCOlor = 'transparent';
 		}	
 	}
