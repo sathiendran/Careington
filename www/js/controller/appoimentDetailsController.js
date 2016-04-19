@@ -58,6 +58,8 @@ angular.module('starter.controllers')
         $state.go('tab.waitingRoom');				
     }
 	if($rootScope.appointmentDisplay == "test") {
+	
+	  $("#appointNotes").html($rootScope.appointNotes);
 		$rootScope.consultationId = $rootScope.consultationId;
 		var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
 		

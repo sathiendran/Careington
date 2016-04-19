@@ -223,7 +223,7 @@ angular.module('starter.controllers')
 		if($rootScope.appointNotes == '' || typeof $rootScope.appointNotes == 'undefined') {
 			$rootScope.appointNotes = 'None Reported';
 		} else {
-			$rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
+			$rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
 		}
 		$rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');	
 	};
