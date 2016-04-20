@@ -820,47 +820,58 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
     };
 	
-	$scope.checkSingleHospitalLogin = function(item,event){
+	$scope.checkSingleHospitalLogin = function(item,event){	
+	
 		if($('#UserEmail').val() == ''){			
 			$scope.ErrorMessage = "Please enter an email";
 			$rootScope.Validation($scope.ErrorMessage);
 			
-		}else if($('#UserEmail').val() == ''){			
-			$scope.ErrorMessage = "Please enter your password";
-			$rootScope.Validation($scope.ErrorMessage);
+		}else { 
+			$scope.ValidateEmail = function(email){
+				//var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+				var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+				return expr.test(email);
+			};
+			if (!$scope.ValidateEmail($("#UserEmail").val())) {
+				$scope.ErrorMessage = "Please enter a valid email address";
+				$rootScope.Validation($scope.ErrorMessage);
+			}else if($('#password').val() == ''){			
+				$scope.ErrorMessage = "Please enter your password";
+				$rootScope.Validation($scope.ErrorMessage);
 			
-		}else{
-			if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-				//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
-					if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-						//deploymentEnv = "Staging";
+			}else{
+				if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
+					//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
+						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+							//deploymentEnv = "Staging";
+							$rootScope.hospitalId = singleStagingHospitalId;
+							apiCommonURL = 'https://snap-stage.com';
+							api_keys_env = 'Staging';
+							$rootScope.APICommonURL = 'https://snap-stage.com';
+						} else {
+							//deploymentEnv = "Production";
+							$rootScope.hospitalId = singleHospitalId;
+							apiCommonURL = 'https://connectedcare.md';
+							api_keys_env = '';
+							$rootScope.APICommonURL = 'https://connectedcare.md';
+						}
+					}else {
 						$rootScope.hospitalId = singleStagingHospitalId;
-						apiCommonURL = 'https://snap-stage.com';
-						api_keys_env = 'Staging';
-						$rootScope.APICommonURL = 'https://snap-stage.com';
-					} else {
-						//deploymentEnv = "Production";
-						$rootScope.hospitalId = singleHospitalId;
-						apiCommonURL = 'https://connectedcare.md';
-						api_keys_env = '';
-						$rootScope.APICommonURL = 'https://connectedcare.md';
 					}
-				}else {
-					$rootScope.hospitalId = singleStagingHospitalId;
-				}
-			if($("#squaredCheckbox").prop('checked') == true) {
-				$localstorage.set('username', $("#UserEmail").val());
-				$localStorage.oldEmail = $scope.userLogin.UserEmail;  
-				$rootScope.UserEmail = $scope.userLogin.UserEmail;
-				$rootScope.chkedchkbox = true;
+				if($("#squaredCheckbox").prop('checked') == true) {
+					$localstorage.set('username', $("#UserEmail").val());
+					$localStorage.oldEmail = $scope.userLogin.UserEmail;  
+					$rootScope.UserEmail = $scope.userLogin.UserEmail;
+					$rootScope.chkedchkbox = true;
 
-			} else { 
-				$rootScope.UserEmail = $scope.userLogin.UserEmail;
-				$localStorage.oldEmail = '';
-				$localstorage.set('username', ""); 				  				
-				$rootScope.chkedchkbox = false;
+				} else { 
+					$rootScope.UserEmail = $scope.userLogin.UserEmail;
+					$localStorage.oldEmail = '';
+					$localstorage.set('username', ""); 				  				
+					$rootScope.chkedchkbox = false;
+				}
+				$scope.doGetToken();
 			}
-			$scope.doGetToken();
 		}
 	};
 	
@@ -1162,57 +1173,73 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Please enter an email!";
 				$rootScope.Validation($scope.ErrorMessage);			
 			} else {
-				if(deploymentEnv == "Single"){ 
-					if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-							//deploymentEnv = "Staging";
-							$rootScope.hospitalId = singleStagingHospitalId;
-							apiCommonURL = 'https://snap-stage.com';
-							api_keys_env = 'Staging';
-							$rootScope.APICommonURL = 'https://snap-stage.com';
-						} else {
-							//deploymentEnv = "Production";
-							$rootScope.hospitalId = singleHospitalId;
-							apiCommonURL = 'https://connectedcare.md';
-							api_keys_env = '';
-							$rootScope.APICommonURL = 'https://connectedcare.md';
-						}
-					}else {
-						$rootScope.hospitalId = singleStagingHospitalId;
-					}
-					
-					
-					//$rootScope.UserEmail = $('#UserEmail').val();
-					if($("#squaredCheckbox").prop('checked') == true) {
-						$localstorage.set('username', $("#UserEmail").val());
-						$localStorage.oldEmail = $scope.userLogin.UserEmail;  
-						$rootScope.UserEmail = $scope.userLogin.UserEmail;
-						$rootScope.chkedchkbox = true;
-
-					} else { 
-						$rootScope.UserEmail = $scope.userLogin.UserEmail;
-						$localStorage.oldEmail = '';
-						$localstorage.set('username', ""); 				  				
-						$rootScope.chkedchkbox = false;
-					}
-				}
-				 var params = {
-					patientEmail: $rootScope.UserEmail,
-					emailType: $scope.emailType,
-					hospitalId: $rootScope.hospitalId,
-					accessToken: $rootScope.accessToken,
-					success: function (data) {
-					console.log('dopostsentpass');
-						console.log(data);
-						$scope.PasswordResetEmail = data;
-						$state.go('tab.resetPassword');	
-					},
-					error: function (data) {
-						$rootScope.serverErrorMessageValidation();
-					}
-				};
 				
-				LoginService.postSendPasswordResetEmail(params);
+				$scope.ValidateEmail = function(email){
+					//var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+					var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+					return expr.test(email);
+				};
+				if (!$scope.ValidateEmail($("#UserEmail").val())) {
+					$scope.ErrorMessage = "Please enter a valid email address";
+					$rootScope.Validation($scope.ErrorMessage);
+				} else {
+					if(deploymentEnv == "Single"){ 
+						if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
+							if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+								//deploymentEnv = "Staging";
+								$rootScope.hospitalId = singleStagingHospitalId;
+								apiCommonURL = 'https://snap-stage.com';
+								api_keys_env = 'Staging';
+								$rootScope.APICommonURL = 'https://snap-stage.com';
+							} else {
+								//deploymentEnv = "Production";
+								$rootScope.hospitalId = singleHospitalId;
+								apiCommonURL = 'https://connectedcare.md';
+								api_keys_env = '';
+								$rootScope.APICommonURL = 'https://connectedcare.md';
+							}
+						}else {
+							$rootScope.hospitalId = singleStagingHospitalId;
+						}
+						
+						
+						//$rootScope.UserEmail = $('#UserEmail').val();
+						if($("#squaredCheckbox").prop('checked') == true) {
+							$localstorage.set('username', $("#UserEmail").val());
+							$localStorage.oldEmail = $scope.userLogin.UserEmail;  
+							$rootScope.UserEmail = $scope.userLogin.UserEmail;
+							$rootScope.chkedchkbox = true;
+
+						} else { 
+							$rootScope.UserEmail = $scope.userLogin.UserEmail;
+							$localStorage.oldEmail = '';
+							$localstorage.set('username', ""); 				  				
+							$rootScope.chkedchkbox = false;
+						}
+					}
+					 var params = {
+						patientEmail: $rootScope.UserEmail,
+						emailType: $scope.emailType,
+						hospitalId: $rootScope.hospitalId,
+						accessToken: $rootScope.accessToken,
+						success: function (data) {
+						console.log('dopostsentpass');
+							console.log(data);
+							$scope.PasswordResetEmail = data;
+							$state.go('tab.resetPassword');	
+						},
+						error: function (data, status) {
+							if(status == '404') {
+								$scope.ErrorMessage = "Email Address not Found";
+								$rootScope.Validation($scope.ErrorMessage);
+							} else {
+								$rootScope.serverErrorMessageValidation();
+							}
+						}
+					};
+					
+					LoginService.postSendPasswordResetEmail(params);
+				}
 			}
 		}	
 	
@@ -1228,13 +1255,32 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		
 	$rootScope.doGetTermsandCondition = function (registerRedirectPage, registerCurrentPage) {
         
-		if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
+		/*if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
 			$rootScope.hospitalId = singleHospitalId;
 			apiCommonURL = 'https://connectedcare.md';
 			api_keys_env = '';
 			$rootScope.APICommonURL = 'https://connectedcare.md';
 		} else if(deploymentEnvLogout == 'Single') {
 			$rootScope.hospitalId = singleHospitalId;
+		}*/
+		
+		if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
+		//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
+			if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+				//deploymentEnv = "Staging";
+				$rootScope.hospitalId = singleStagingHospitalId;
+				apiCommonURL = 'https://snap-stage.com';
+				api_keys_env = 'Staging';
+				$rootScope.APICommonURL = 'https://snap-stage.com';
+			} else {
+				//deploymentEnv = "Production";
+				$rootScope.hospitalId = singleHospitalId;
+				apiCommonURL = 'https://connectedcare.md';
+				api_keys_env = '';
+				$rootScope.APICommonURL = 'https://connectedcare.md';
+			}
+		}else {
+			$rootScope.hospitalId = singleStagingHospitalId;
 		}
 
 		if ($scope.accessToken == 'No Token') {
@@ -2821,6 +2867,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.MedicationAllegiesItem = "";
 			$rootScope.CurrentMedicationItem = "";
 			$rootScope.PatientChronicConditionsSelected = "";
+			$rootScope.SecondaryConcernText = "";
+			$rootScope.PrimaryConcernText = "";
 			
 		   $rootScope.PatientPrimaryConcern = "";
 			$rootScope.PatientSecondaryConcern = "";

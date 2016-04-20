@@ -55,7 +55,7 @@
 				<div class="remember"> Remember my email</div> 	
                 
 				<div class="continue" style="margin-bottom: 5px;">				
-					<button type="submit" class="button button-outline button-positive" style="font-size: 20px;">
+					<button type="submit" ng-click="checkSingleHospitalLogin()" class="button button-outline button-positive" style="font-size: 20px;">
 						Continue
 					</button>					
 				</div>	
@@ -64,7 +64,7 @@
 					<div id="notifications-window-row-button" ng-click="validation();">Sample Error Alert</div>
 				</div> -->
 					<div class="{{NeedanAcountStyle}}">
-                        <h5><b>Need an account? {{deploymentEnv}}</b></h5>
+                        <h5><b>Need an account?</b></h5>
                         <!--<a style="cursor: pointer;" ng-click="goToSearchProvider('loginSingle');"> <p class="needanaccountPragraph">Click here to find your provider.</p></a>-->
 						 <p class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>
                     
@@ -86,7 +86,7 @@
 		 
 		  <div class="powerdBySnapMD">			
 			<!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes');return false;"><b>v1.3.4<b></a>-->
-			<a><b>v5.0.7<b></a>
+			<a><b>v5.0.8<b></a>
 		  </div> 
 		</ion-footer-bar>
 	</div>
