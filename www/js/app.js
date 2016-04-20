@@ -737,6 +737,15 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
+  .state('tab.healthsearch', {
+       url: '/healthsearch',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-healthsearch.html',
+        controller: 'healthsearchController'
+      }
+      }
+  })
 
 
   // if none of the above states are matched, use this as the fallback
