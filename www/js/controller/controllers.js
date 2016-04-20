@@ -1169,7 +1169,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
-			if($('#UserEmail').val() == ''){			
+			if(deploymentEnv == "Single"){ 
+					$scope.userEmailId = $('#UserEmail').val();
+			} else {
+				$scope.userEmailId = $rootScope.UserEmail;
+			}
+			if( $scope.userEmailId == ''){			
 				$scope.ErrorMessage = "Please enter an email!";
 				$rootScope.Validation($scope.ErrorMessage);			
 			} else {
@@ -1179,7 +1184,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 					return expr.test(email);
 				};
-				if (!$scope.ValidateEmail($("#UserEmail").val())) {
+				if (!$scope.ValidateEmail($scope.userEmailId)) {
 					$scope.ErrorMessage = "Please enter a valid email address";
 					$rootScope.Validation($scope.ErrorMessage);
 				} else {
