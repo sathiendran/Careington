@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('healthinfoController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService) {
+.controller('healthinfoController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log) {
 
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
@@ -74,8 +74,14 @@ angular.module('starter.controllers')
     $scope.doneshow = true;
     $scope.readattr = false;
     $scope.doneedit = false;
-    $rootScope.flag = true;
-
+    $scope.healthinfoshow=true;
+    $scope.healthinfosubheader=true;
+    $scope.searchdone=true;
+    $scope.healthsearchsubheader=true;
+    $scope.healthsearchinfo=true;
+    $rootScope.flag = true; 
+   
+     
     $scope.edittext = function() {
         $scope.readattr = false;
         $scope.doneshow = false;
@@ -280,11 +286,12 @@ angular.module('starter.controllers')
        $scope.editshow=true;
        $scope.addmore=false;
        $scope.healthhide=true;
-        $scope.doneshow=true;
-     editvalues.removeClass('textdata');
-        editvalues.addClass('editdata');
-        edittextarea.removeClass('editdata');
-        edittextarea.addClass('textdata');
+       $scope.doneshow=true;
+       $scope.cancelshow=false;
+       editvalues.removeClass('textdata');
+       editvalues.addClass('editdata');
+       edittextarea.removeClass('editdata');
+       edittextarea.addClass('textdata');
 
     }
 
@@ -299,8 +306,73 @@ angular.module('starter.controllers')
         $scope.editshow = false;
         $scope.addmore = true;
         $scope.healthhide = false;
-
         $scope.doneshow = true;
+          $scope.cancelshow = true;
     }
+
+/* Healthinfo Search */
+ $scope.alphabet = iterateAlphabet();
+      var tmp={};
+     function iterateAlphabet()
+  {
+     var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+     var numbers = new Array();
+     for(var i=0; i<str.length; i++)
+     {
+        var nextChar = str.charAt(i);
+        numbers.push(nextChar);
+     }
+     return numbers;
+  }
+  $scope.groups = [];
+  for (var i=0; i<10; i++) {
+    $scope.groups[i] = {
+      name: i,
+      items: []
+    };
+    for (var j=0; j<3; j++) {
+      $scope.groups[i].items.push(i + '-' + j);
+    }
+  }
+  
+  
+$scope.healthsearchdone=function(){
+   
+   
+   
+      var myEl = angular.element(document.querySelector('#healid'));
+        myEl.removeClass('btnextcolor');
+        myEl.addClass('btcolor');
+        var myEl = angular.element(document.querySelector('#profid'));
+        myEl.removeClass('btcolor').css('color', '#11c1f3');
+        myEl.addClass('btnextcolor');
+        
+         $scope.healthinfosubheader=true;
+         $scope.healthsearchsubheader=true;
+         $scope.healthinfoshow=true;
+         $scope.healthsearchinfo=true;
+        $scope.editshow = false;
+        $scope.addmore = true;
+        $scope.healthhide = false;
+        $scope.doneshow = true;
+        $scope.cancelshow = true;
+        $scope.searchdone=true;
+}
+
+
+$scope.healthsearch=function(){
+    
+    $scope.healthinfosubheader=false;
+    $scope.healthsearchsubheader=false;
+    $scope.healthinfoshow=false;
+    $scope.healthsearchinfo=false;
+    $scope.searchdone=false;
+    $scope.cancelshow = false;
+    $scope.doneshow = true;
+    $scope.editshow = false;
+   
+}
+
+
 
 });

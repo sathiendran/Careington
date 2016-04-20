@@ -8,9 +8,12 @@
       <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
          <span> My Health </span>
          <span class="headerval" ng-click="edittext()" ng-show="editshow">Edit</span>
+           <span ng-click="edittext()" ng-show="cancelshow"><a class="headerval" >cancel</a></span>
          <span class="headerval"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
+         <span class="headerval"  ng-click="healthsearchdone()"  ng-hide="searchdone" >Done</span>
       </h1>
-      <div class="bar bar-subheader bar-dark subheaderheight" >
+      
+      <div class="bar bar-subheader bar-dark subheaderheight" ng-show="healthinfosubheader">
          <div class="row">
             <h1 class="headertitle">
                <div class="ellipsis subHeader_content_name" >
@@ -47,9 +50,22 @@
             </div>
          </div>
       </div>
+      
+      
+<div class="bar bar-subheader csubheader" ng-hide="healthsearchsubheader">
+
+<h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;">Current Medication</h2>
+  <div class="csearch">
+      <h6 class="hsearch">
+          <i class="icon ion-search fontcolor"></i> 
+          <span class="fontcolor">Search</span>
+       </h6>
+  </div>
+</div>  
    </ion-header-bar>
-   <ion-view title="Health Info Details">
-      <ion-content class="ioncontentalign">
+   
+   <ion-view title="Health Info Details" >
+      <ion-content class="ioncontentalign" ng-show="healthinfoshow">
         <div ng-hide="addmore">
           <h4 class="healthhead"><b>Demographics</b></h4>
           <div class="list listprofile" ng-show="flag">
@@ -268,8 +284,8 @@
     <!--<a style="width:40%;"></a>
        <a class="button footer-color donebutton" ng-show="doneedit" ng-click="putUpdatePatientDetails()"><span class="donetext">Done</span></a>
      -->
-     <button type="submit" class="button button-outline button-positive" style="padding: 3px;">
-						<span>Done</span>
+     <button  ng-click="putUpdatePatientDetails()" type="submit" class="button button-outline button-positive" style="padding: 3px;">
+						<span >Done</span>
 					</button>
     </div>
 
@@ -281,7 +297,7 @@
           <hr class="bhealth">
           <div>
             <h4>
-			<span class="alignnexttext">Current Medications</span><span><a ng-href="#tab/healthsearch" ><i class="ion-edit currentedit" ></i></a></span>
+			<span class="alignnexttext">Current Medications</span><span><a ng-click="healthsearch()" ><i class="ion-edit currentedit" ></i></a></span>
                </h4>
             </div>
             <hr class="dothr dotalign">
@@ -317,6 +333,40 @@
             </ul>
          </div>
       </ion-content>
+      
+      
+      
+      <ion-content style="margin-top:112px;" ng-hide="healthsearchinfo">
+     <div class="list">
+       <div class="item item-divider">
+          Medication Name
+       </div>
+       <div class="item item-divider">
+          Medication Name
+       </div>
+       <div class="item item-divider">
+          Medication Name
+       </div>
+       <div class="item item-divider">
+          Medication Name
+       </div>
+       <div class="item item-divider">
+          Medication Name
+       </div>
+         
+         
+     </div>
+	
+     <ul class="alpha_sidebar">
+      <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet"> 
+          {{letter}}
+      </li>
+    </ul>
+     </ion-content>
+     
+     
+      
+      
    <!-- </form>-->
 </ion-side-menu-content>
 <div class="Server_Error ErrorMessageDiv" ></div>
@@ -324,6 +374,10 @@
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
 </ion-view>
+
+
+
+
 
 <div class="hide-on-keyboard-open">
 <ion-tabs class=" tabs-icon-top tabs-dark">
