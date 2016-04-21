@@ -17,6 +17,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
                         },
@@ -37,15 +41,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"LaunchMyApp\"><param name=\"android-package\" value=\"nl.xservices.plugins.LaunchMyApp\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -94,12 +90,6 @@
                             "xml": "<service android:name=\"de.appplant.cordova.plugin.background.ForegroundService\" />",
                             "count": 1
                         }
-                    ],
-                    "/manifest/application/activity": [
-                        {
-                            "xml": "<intent-filter><data android:scheme=\"vc184\" /><action android:name=\"android.intent.action.VIEW\" /><category android:name=\"android.intent.category.DEFAULT\" /><category android:name=\"android.intent.category.BROWSABLE\" /></intent-filter>",
-                            "count": 1
-                        }
                     ]
                 }
             },
@@ -117,37 +107,36 @@
     },
     "installed_plugins": {
         "com.ionic.keyboard": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         },
         "com.tokbox.cordova.opentok": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         },
         "de.appplant.cordova.plugin.background-mode": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         },
         "nl.x-services.plugins.insomnia": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
+        },
+        "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         },
         "org.apache.cordova.dialogs": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
-        },
-        "org.apache.cordova.splashscreen": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         },
         "org.apache.cordova.inappbrowser": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDProduction"
-        },
-        "cordova-plugin-customurlscheme": {
-            "URL_SCHEME": "vc184",
             "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         }
     },
     "dependent_plugins": {
         "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.snap.connectedcare.EpicMDStaging"
+            "PACKAGE_NAME": "com.snap.connectedcare.Dokita247Production"
         }
     }
 }
