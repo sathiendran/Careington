@@ -280,15 +280,13 @@
           <hr class="bhealth">
           <div>
             <h4>
-			<span class="alignnexttext">Current Medications</span><span><i class="ion-edit currentedit" ></i></span>
+			<span class="alignnexttext">Current Medications</span><span ng-click="loadPrimaryConcerns()"><i class="ion-edit currentedit" ></i></span>
                </h4>
             </div>
             <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
-               <li>1. Acetemetaphine</li>
-               <li>2. Another thing</li>
-               <li>3. Yet Another item</li>
-               <li>4. Amoxicillen</li>
+               <li ng-repeat="medication in medicalProfileMedications">{{medication.Number}}. {{medication.description}}</li>
+               <li>{{NAMedication}}</li>
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic"  >Medication Allergies</div>
@@ -296,7 +294,8 @@
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
-               <li>1.Steroids</li>
+              <li ng-repeat="allergies in medicalProfileMedicationAllergies">{{allergies.Number}}. {{allergies.description}}</li>
+              <li>{{NAMedAllergy}}</li>
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Chronic Conditions</div>
@@ -304,7 +303,8 @@
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
-               <li>1. Thing</li>
+               <li ng-repeat="medicalConditions in medicalProfileMedicalConditions">{{medicalConditions.Number}}. {{medicalConditions.description}}</li>
+                <li>{{NAMedCondition}}</li>
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Prior Surgeries</div>
@@ -312,7 +312,8 @@
             </h4>
             <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
-               <li>1.That One thing</li>
+               <li ng-repeat="surgeries in medicalProfileSurgeries">{{surgeries.Number}}. {{surgeries.description}}</li>
+              <li>{{NAMedSurgery}}</li>
             </ul>
          </div>
       </ion-content>

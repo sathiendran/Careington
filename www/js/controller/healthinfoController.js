@@ -192,7 +192,7 @@ angular.module('starter.controllers')
 						accessToken: $rootScope.accessToken,
 						emailAddress: $scope.healthInfoEmail,
 						patientProfileData: {
-							patientId: $rootScope.currentPatientDetails[0].account.patientId,
+							patientId: $rootScope.patientId, //$rootScope.currentPatientDetails[0].account.patientId,
 							patientName: $scope.healthInfoFirstName,
 							lastName: $scope.healthInfoLastName,
 							dob: $scope.healthInfoDOB,
