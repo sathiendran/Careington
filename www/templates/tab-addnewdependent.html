@@ -1,41 +1,39 @@
-<ion-side-menus> 
+<ion-side-menus>
 	<ion-side-menu-content> 
 
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
- 
+
 	<div class="buttons" > 
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
  
    
-        <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}} headercont"><span> New User</span> <span >
+        <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User </span> <span >
             <a class="headerval" ng-href="#tab/relatedusers" >Cancel</a></span></h1>
 
-<div class="bar bar-subheader bar-dark usersubheaderheight">
     
-    
+<div class="bar bar-subheader bar-dark subheaderheight">
     <div class="row">
-           <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-		   <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">New</span>
-		   <span class="patientLastName ellipsis lnamefont" >Dependent</span>
+      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+		<span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >New </span>
+		 <span class="patientLastName ellipsis lnamefont" >Dependent</span>
 		</div></h1>
-    </div>
-  <div class="row userrow">
-      <div class="addphoto" style=""></div>
-        <div class="">
-		 <div class="round-button" >
-           <div class="round-button-circle">
-             <a  class="round-button">
-               <span> <i class="icon ion-camera"></i></span>
-               <p> Add a Picture</p>
-             </a>
-            </div>
-          </div>
-         </div>
-        </div>	
-    </div>
-	</ion-header-bar>
+       </div>
+  
+    <div class="circlenew" >
+       <div class="">
+        <a class="circlecanh"> 
+          <i class="icon ion-camera circlecam"></i>
+        </a>
+        <span class="circletext" > Add a Picture</span>  
+      </div>
+  </div>
+  
+</div>  
+   
+</ion-header-bar>
+
 
 
 <ion-view title="">
@@ -71,7 +69,7 @@
            <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-person-stalker"></i><b class="formlabel">Reltionship</b></span>
-            <input  class="userrel" type="text" value=""  placeholder="Optional"   name="name" id="name" style="">
+            <input  class="userrel" type="text" value=""  placeholder="Optional"   name="name" id="name" >
           </label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
@@ -101,7 +99,7 @@
           <label class="item item-input validated">
                <span class="input-label labelcolor" style="margin-bottom:50px;">
                   <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
-             <textarea   class="typealign" id="name" cols="30" rows="5"  placeholder="Optional" style="margin-left:17px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;"></textarea>
+             <textarea   class="userhome" id="name" cols="30" rows="5"  placeholder="Optional"></textarea>
 </label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
@@ -144,6 +142,9 @@
   All Required Fields</p>
 </ion-footer-bar>
 
+
+<div class="hide-on-keyboard-open">
 <ion-footer-bar class="bar bar-footer  footer-color footerrsheight" ng-show="permfooter">
   <h1 class="title" id="centercolor" >Add Dependent</h1>
 </ion-footer-bar>
+</div>

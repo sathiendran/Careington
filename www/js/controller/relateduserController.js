@@ -66,12 +66,13 @@ angular.module('starter.controllers')
           
     }; 
     $scope.showtab=function(){
-          $scope.tabview=true;
+         $scope.tabview = $scope.tabview === false ? true: false;
     };
     
     $scope.moreclickval=function(){
+         $scope.tabview=false;
         $scope.moretab=true;
-        $scope.tabview=false;
+       
     }
     
     $scope.hidemoretab=function(){
@@ -81,6 +82,8 @@ angular.module('starter.controllers')
    $scope.authorizeduser=function(){
     var myEl = angular.element( document.querySelector( '#authorizeddiv' ));
      myEl.removeClass('fadediv');
+    //  $scope.viewunauthorized = $scope.viewunauthorized === false ? true: false;
+   
      $scope.viewunauthorized=true;
      $scope.authorizedview=false;
    }

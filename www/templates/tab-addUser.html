@@ -10,40 +10,31 @@
   <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}} headercont"><span> New User </span> <span >
            <a class="headerval" ng-href="#/tab/relatedusers">Cancel</a></span></h1>
 
+  <div class="bar bar-subheader bar-dark usersubheaderheight">
     
-
-<div class="bar bar-subheader bar-dark usersubheaderheight" >
     
     <div class="row">
-                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
- <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >New</span>
-<span class="patientLastName ellipsis lnamefont">Co-User</span>
-    </div></h1>
-                </div>
-    
-           
-         <div class="row userrow">
-           <div class="addphoto" style=""></div>
-             <div class="">
-<div class="round-button" >
-                     <div class="round-button-circle">
-                         <a  class="round-button">
-                            <span> <i class="icon ion-camera"></i></span>
-                            <p> Add a Picture</p>
-                         </a>
-                      </div>
-                </div>
-            </div>
-                    </div>
+           <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+		   <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">New</span>
+		   <span class="patientLastName ellipsis lnamefont" >Co-User</span>
+		</div></h1>
+    </div>
+     <div class="circlenew" >
+       <div class="">
+        <a class="circlecanh"> 
+          <i class="icon ion-camera circlecam"></i>
+        </a>
+        <span class="circletext" > Add a Picture</span>  
+      </div>
+  </div>
 </div>
-
-
-
-</ion-header-bar>
-
+	</ion-header-bar>
 <ion-view title="">
-    
+ 
 <ion-content class="userdeptcontent">
+    
+    
+    
 <h4 class="userhead"><b>User Details</b></h4>
     
     <div class="list">
@@ -87,27 +78,27 @@
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-android-arrow-up"></i><b class="formlabel">Height</b></span>
-            <input class="usertext" type="text" value=""  class="typealign"  placeholder="Optional"   name="name">
+            <input class="usertext" type="text" value=""    placeholder="Optional"   name="name">
 </label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-filing"></i><b class="formlabel">Weight</b></span>
-            <input class="usertext" type="text" value=""  class="typealign"  placeholder="Optional"   name="name" >
+            <input class="usertext" type="text" value=""    placeholder="Optional"   name="name" >
 </label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Home Phone</b></span>
-            <input class="userdob" type="text" value=""  class="typealign" placeholder="Optional"   name="name" >
+            <input class="userdob" type="text" value=""  placeholder="Optional"   name="name" >
 </label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
-            <input class="usertext" type="text" value=""  class="typealign" placeholder="Optional"   name="name" >
+            <input class="usertext" type="text" value=""  placeholder="Optional"   name="name" >
 </label>
           <label class="item item-input validated">
                <span class="input-label labelcolor" style="margin-bottom:50px;">
                   <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
-             <textarea   class="typealign" id="name" cols="30" rows="5"  placeholder="Optional" style="margin-left:17px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:17px;"></textarea>
+             <textarea   class="userhome" id="name" cols="30" rows="5"  placeholder="Optional"></textarea>
 </label>
           <label class="item item-input validated">
                <span class="input-label labelcolor">
@@ -145,8 +136,9 @@
 
 
 </ion-view>
-
-<ion-footer-bar class="bar bar-footer  footer-color footerrsheight" >
+<div class="hide-on-keyboard-open">
+<ion-footer-bar class=" bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;">
         <a class="button button-calm" ng-href="#/tab/healthinfo"><span>Next</span></a>
    <h1 class="title" id="centercolor" >Send Invitation</h1>
 </ion-footer-bar>
+</div>
