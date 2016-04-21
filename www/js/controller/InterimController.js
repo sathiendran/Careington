@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
+angular.module('starter.controllers')
 
 //InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
@@ -123,7 +123,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
     
 	
-	$scope.doGetScheduledConsulatation = function () {
+	/*$scope.doGetScheduledConsulatation = function () {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -195,7 +195,93 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             };
 
             LoginService.getScheduledConsulatation(params);
-        };
+        };*/
+		
+	$scope.doGetScheduledConsulatation = function () {
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		 $rootScope.scheduledConsultationList = [];
+		var params = {
+			patientId: $rootScope.primaryPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {
+				if(data != "") {
+					$scope.scheduledConsultationList = data.data;
+					$rootScope.getScheduledList = [];
+					$rootScope.scheduleParticipants = [];
+					var currentDate = new Date();
+					currentDate = $scope.addMinutes(currentDate, -30);
+					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+						
+											
+					angular.forEach($scope.scheduledConsultationList, function(index, item) {							
+						if(currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+							 $rootScope.getScheduledList.push({								
+								'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+								'appointmentId': index.appointmentId,
+								'appointmentStatusCode': index.appointmentStatusCode,
+								'appointmentTypeCode': index.appointmentTypeCode,
+								'availabilityBlockId': index.availabilityBlockId,
+								'endTime': index.endTime,
+								'intakeMetadata': angular.fromJson(index.intakeMetadata),
+								'participants': angular.fromJson(index.participants),
+								'waiveFee': index.waiveFee						
+							});
+							angular.forEach(index.participants, function(index, item) {
+								$rootScope.scheduleParticipants.push({								
+								'appointmentId': index.appointmentId,
+								'attendenceCode': index.attendenceCode,
+								'participantId': index.participantId,
+								'participantTypeCode': index.participantTypeCode,
+								'person': angular.fromJson(index.person),
+								'referenceType': index.referenceType,								
+								'status': index.status						
+							});
+							}) 
+						}	
+					});
+			$rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
+					
+					console.log($rootScope.scheduledList);
+					$rootScope.nextAppointmentDisplay = 'none';
+					
+					var d = new Date();
+					d.setHours(d.getHours() + 12);
+					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+					
+					if($rootScope.scheduledList != '')
+					{
+						//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+						//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+						var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
+						var currentUserHomeDate = currentUserHomeDate;
+						
+						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+							console.log('scheduledTime <= getTwelveHours UserHome');
+							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+							$rootScope.timerCOlor = '#FEEFE8';
+							var beforAppointmentTime = 	getReplaceTime;
+							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+							if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+							{
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								$rootScope.timerCOlor = '#E1FCD4';
+							}
+						}						
+					}	
+				}
+			},
+			error: function (data) {
+			   $rootScope.serverErrorMessageValidation();
+			}
+		};
+
+		LoginService.getScheduledConsulatation(params);
+	}
+		
 	$scope.doGetPrimaryPatientLastName = function() {
 			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
