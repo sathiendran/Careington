@@ -211,6 +211,25 @@ angular.module('starter.services', [])
 			});
 		}
 
+		this.getPatientMedicalProfile = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.patientId,
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
 		this.putProfileUpdation = function(params) {
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),

@@ -2711,18 +2711,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 
-	$scope.doGetCodesSet = function (P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_id) {
-       if($rootScope.P_isAuthorized === true) {
-			// Start Intake Sub Header Information
-			$rootScope.PatientImageSelectUser = P_img;
-			$rootScope.PatientFirstName = P_Fname;
-			$rootScope.PatientLastName = P_Lname;
-			$rootScope.PatientAge = P_Age;
-			$rootScope.PatientGuardian = P_Guardian;
-            $rootScope.patientId = P_id;
-			// End Intake Sub Header Information
 
-			if ($scope.accessToken === 'No Token') {
+	$scope.doGetCodesSet = function () {
+       if($rootScope.P_isAuthorized === true) {
+
+			if ($rootScope.accessToken === 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
@@ -2733,6 +2726,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 				//console.log(data.data[3].codes);
 					$rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
+					  $rootScope.primaryConcernList = $rootScope.hospitalCodesList;
 					$rootScope.primaryConcernDataList = angular.fromJson(data.data[3].codes);
 					$rootScope.getSecondaryConcernAPIList = angular.fromJson(data.data[4].codes);
 					if(angular.fromJson(data.data[4].codes) !== "") {
@@ -2747,7 +2741,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
 					$rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
                     $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
-					$state.go('tab.patientConcerns');
+				//	$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
 					$rootScope.serverErrorMessageValidation();
@@ -3068,7 +3062,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.userDefaultPaymentProfile = $localstorage.get("Card" + $rootScope.UserEmail);
 		$rootScope.userDefaultPaymentProfileText = $localstorage.get("CardText" + $rootScope.UserEmail);
 		//$rootScope.currentPatientDetails = currentPatientDetails;
-		$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
 		$rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -3076,6 +3069,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.patientId = P_Id;
 		$rootScope.P_isAuthorized = P_isAuthorized;
+		$scope.doGetCodesSet();
+		$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
 		//$state.go('tab.patientDetail');
 	//	$state.go('tab.userAccount');
     }
