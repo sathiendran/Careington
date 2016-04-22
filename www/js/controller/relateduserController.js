@@ -4,22 +4,28 @@ angular.module('starter.controllers')
      $scope.showdetails = true;
   
      $scope.showarchieve=false;
-    $scope.allval=true;
+     $scope.allval=true;
      $scope.userdata=false;
      $scope.dependentshide=true;
      $scope.tabview=false;
      $scope.moretab=false;
      $scope.viewunauthorized=false;
-      $scope.authorizedview=false;
-      $scope.moredetails = function() {
-        $scope.showdetails = false;
-       $scope.showarchieve = true;
-      
+     $scope.authorizedview=false;
+     $scope.moredetails = function() {
+     $scope.showdetails = false;
+     $scope.showarchieve = true;
+     $scope.usersearchinfocontent=false;
+     $scope.userinfoshow=false;
+     $scope.userdone=false;
+     $scope.useradd=false;
+     $scope.userinfosubheader=false;
+     $scope.usersearchsubheader=false;
+     $scope.usertab=false;
     };
     
       $scope.userdetails = function() {
           $scope.tabview=false;
-                $scope.newarchieve = true;
+           $scope.newarchieve = true;
          
      //   $scope.showdnewetails = false;
       
@@ -165,5 +171,52 @@ angular.module('starter.controllers')
             myEl.removeClass('couses');
             myEl.addClass('dependusers');
     }
+    /* Relationship Search */
+ $scope.alphabet = iterateAlphabet();
+      var tmp={};
+     function iterateAlphabet()
+  {
+     var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+     var numbers = new Array();
+     for(var i=0; i<str.length; i++)
+     {
+        var nextChar = str.charAt(i);
+        numbers.push(nextChar);
+     }
+     return numbers;
+  }
+  $scope.groups = [];
+  for (var i=0; i<10; i++) {
+    $scope.groups[i] = {
+      name: i,
+      items: []
+    };
+    for (var j=0; j<3; j++) {
+      $scope.groups[i].items.push(i + '-' + j);
+    }
+  }
+  /* Seach Done*/
+  
+    $scope.selectrelation=function(){
+       $scope.useradd=true;
+       $scope.userdone=true;
+       $scope.userinfosubheader=true;
+       $scope.usersearchsubheader=true;
+       $scope.userinfoshow=true;
+       $scope.usersearchinfocontent=true;
+       $scope.usertab=true;
+    }
+    
+    $scope.usersearchdone=function(){
+       $scope.useradd=false;
+       $scope.userdone=false;
+       $scope.userinfosubheader=false;
+       $scope.usersearchsubheader=false;
+       $scope.userinfoshow=false;
+       $scope.usersearchinfocontent=false;
+       $scope.usertab=false;
+    }
+    
 });
 	
+     

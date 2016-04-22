@@ -79,6 +79,7 @@ angular.module('starter.controllers')
     $scope.searchdone=true;
     $scope.healthsearchsubheader=true;
     $scope.healthsearchinfo=true;
+    $scope.healthtab=true;
     $rootScope.flag = true; 
    
      
@@ -334,7 +335,7 @@ angular.module('starter.controllers')
       $scope.groups[i].items.push(i + '-' + j);
     }
   }
-  
+  /* Seach Done*/
   
 $scope.healthsearchdone=function(){
    
@@ -357,6 +358,7 @@ $scope.healthsearchdone=function(){
         $scope.doneshow = true;
         $scope.cancelshow = true;
         $scope.searchdone=true;
+        $scope.healthtab=true;
 }
 
 
@@ -370,6 +372,7 @@ $scope.healthsearch=function(){
     $scope.cancelshow = false;
     $scope.doneshow = true;
     $scope.editshow = false;
+    $scope.healthtab=false;
    
 }
 

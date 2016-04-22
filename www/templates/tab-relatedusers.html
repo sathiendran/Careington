@@ -8,18 +8,19 @@
 				ng-click="toggleLeft()"></button>
 	</div>
  
-   
-        <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> <span >
-            <a class="headerval" ng-href="#tab/addnewuser" ><i class="icon ion-plus"></i></a></span></h1>
+  <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> 
+        <span ng-hide="useradd"> <a class="headerval" ng-href="#tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
+        <span class="headerval"  ng-click="usersearchdone()"  ng-show="userdone" >Done</span>
+  </h1>
 
     
-<div class="bar bar-subheader bar-dark subheaderheight">
-                  <div class="row">
-                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
-				      <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
-				     </div></h1>
-                </div>
+<div class="bar bar-subheader bar-dark subheaderheight" ng-hide="userinfosubheader">
+    <div class="row">
+      <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+		 <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
+		 <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
+	  </div></h1>
+     </div>
        
          <div class="item item-image-icon itemiconcolor">
           
@@ -54,19 +55,29 @@
 		 </button>
 	  </div>
    </div>
-        				
+ </div>  
 
-</div>  
+<div class="bar bar-subheader searchsubheader" ng-show="usersearchsubheader">
+
+<h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;">Relationship</h2>
+  <div class="csearch">
+      <h6 class="hsearch">
+          <i class="icon ion-search fontcolor"></i> 
+          <span class="fontcolor">Search</span>
+       </h6>
+  </div>
+ </div>  
+
    
 </ion-header-bar>
 
 
 <ion-view title="">
-	<ion-content class="relatedusercontent">
+	<ion-content class="relatedusercontent" ng-hide="userinfoshow">
     
     <div class="list couses animated slideInLeft " id="couserlist" >
      
-           <a class="item item-avatar" style="border-top:none;" type="item-text-wrap">
+           <a class="item item-avatar" ng-href="#/tab/userAppointment" style="border-top:none;" type="item-text-wrap">
             <img class="imgsize" src="img\ionic.png">
             <h2 class="relatedhead"><span  class="fname sfont">Elizabeth</span> <span  class="sname">Fitzpatrick</span></h2>
             <p class="relatediconfont">Female . 29yrs . Spouse</p>
@@ -140,9 +151,7 @@
    
  </div>
              
-             
-   
-         <div class="row dotrow"  ng-show="tabview">
+   <div class="row dotrow"  ng-show="tabview">
            <a class="col col-20 dotcol" style="">
                   <div class="tabicon"> <i class="ion-chevron-down"></i></div>
                   <i class="icon ion-person-stalker contacticon "></i>
@@ -173,7 +182,7 @@
                 </div>
           </div>   
           
-         </div>
+      </div>
       
     
         <div class="row dotrow"   ng-show="moretab">
@@ -195,7 +204,7 @@
                 </div> 
           </div> 
           
-          <div class="col col-40 relationcol">
+          <div class="col col-40 relationcol" ng-click="selectrelation()">
             <p><a class="relation" >Relationsship</a></p>
             <p class="relationcont"> <span>Adobe Daughter</span>
                         <i class="ion-chevron-right avataricon"  style=""></i>
@@ -240,7 +249,7 @@
                </div> 
           </div> 
           
-         <div class="col col-40 relationtab" style="">
+         <div class="col col-40 relationtab" style="" ng-click="selectrelation()">
             <p class="conticon relationstatus"><a style="">Relationsship</a></p>
              <p class="unauthorrelationship" style=""> <span style="">Adobe Daughter</span>
                  <i class="ion-chevron-right avataricon"  style=""></i>
@@ -248,16 +257,49 @@
           </div>
      
          </div>
-      
-     
     </div>
-        
-	</ion-content>
+  </ion-content>
+    
+ <ion-content class="searchcontent" ng-show="usersearchinfocontent">
+     <div class="list">
+       <div class="item item-divider">
+          Father
+       </div>
+       <div class="item item-divider">
+          Mother
+       </div>
+       <div class="item item-divider">
+         Daughter
+       </div>
+       <div class="item item-divider">
+          Son
+       </div>
+       <div class="item item-divider">
+          Step Daughter
+       </div>
+       <div class="item item-divider">
+          Grand Mother
+       </div>
+       <div class="item item-divider">
+          Grand Father
+       </div>
+         
+         
+     </div>
+	
+     <ul class="alpha_sidebar">
+      <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet"> 
+          {{letter}}
+      </li>
+    </ul>
+     </ion-content> 
+    
+    
     </ion-side-menu-content>
 </ion-view>     
 
 
-<ion-tabs  class=" tabs-icon-top tabs-dark">
+<ion-tabs  class=" tabs-icon-top tabs-dark" ng-hide="usertab">
 
    <a class="tab-item active" ng-href="#tab/relatedusers">
     <i class="icon ion-person-stalker tabfont"></i>

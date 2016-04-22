@@ -1,29 +1,26 @@
-
-<ion-side-menus> 
-	<ion-side-menu-content> 
-
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-
-	<div class="buttons" > 
+<div class="animated slideInRight">
+  <ion-side-menus> 
+	 <ion-side-menu-content> 
+    <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+        
+     <div class="buttons" > 
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
-	</div>
-
-
-   <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span>Profile Options</span> <span >
-            <a class="headerval" ng-href="" >Cancel</a></span></h1>
-
-   
-<div class="bar bar-subheader bar-dark usersubheader">
-                  <div class="row">
-                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">Jonathan</span>
-				      <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
-				     </div></h1>
-                </div>
+	 </div>
+    <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
+        <span>Profile Options</span> <span><a class="headerval" ng-href="" >Cancel</a></span>
+     </h1>
+   <div class="bar bar-subheader bar-dark usersubheader">
+       <div class="row">
+         <h1 class="headertitle">
+           <div class="ellipsis subHeader_content_name" >
+			 <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">Jonathan</span>
+			  <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
+			 </div>
+            </h1>
+          </div>
        
        <div class="item item-image-icon itemiconcolor">
-          
            <a class="lefthome">
                <i class="icon ion-home headerlefticons" style=""></i>
                <p class="homecontent">Account Home</p>
@@ -36,18 +33,15 @@
                <i class="icon ion-ios-people headerrighticon" style=""></i>
                <p class="patientcontent" >Change Patient</p>
            </a>
-   </div>
-   			
-
-</div>  
-   
+      </div>
+    </div>  
 </ion-header-bar>
 
 
 <ion-view title="">
-	<ion-content class="profilecontent">
+  <ion-content class="profilecontent">
                      
- <div class="list">
+    <div class="list">
       <a class="item item-icon-left item-icon-right" ng-href="#tab/relatedusers">
           <i class="icon ion-person-stalker iconsize fontcolor"></i> <span class="fontcolorfamily">  Users </span><i class="icon ion-chevron-right fontcolor"></i>
       </a>
@@ -63,13 +57,9 @@
        <a class="item item-icon-left item-icon-right" ng-href="#">
           <i class="icon ion-ios-albums iconsize fontcolor"></i> <span class="fontcolorfamily"> Files </span> <i class="icon ion-chevron-right fontcolor"></i>
       </a>         
-             
-   
-    
     </div>
-        
-	</ion-content>
-    </ion-side-menu-content>
+  </ion-content>
+ </ion-side-menu-content>
 </ion-view>     
 
 
@@ -96,5 +86,5 @@
     <i class="icon ion-more tabfont"></i>
     More
   </a>
-
-      </ion-tabs>
+</ion-tabs>
+  </div>
