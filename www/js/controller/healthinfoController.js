@@ -295,8 +295,31 @@ angular.module('starter.controllers')
        edittextarea.addClass('textdata');
 
     }
-
+ 
     $scope.health = function() {
+
+
+		$rootScope.PatientMedicalProfileList = [];
+            var params = {
+                patientId: $rootScope.patientId,
+                accessToken: $rootScope.accessToken,
+                success: function (data) {
+                 $scope.PatientMedicalProfileList = data.data;
+                 $scope.patvalues=$scope.PatientMedicalProfileList;
+                 $scope.patientmedications=$scope.PatientMedicalProfileList[0].medications;
+                 $scope.patientmedicationsallergies=$scope.PatientMedicalProfileList[0].medicationAllergies;
+                 $scope.patientmedicalConditions=$scope.PatientMedicalProfileList[0].medicalConditions;
+                 $scope.patientmedicalsurgeries=$scope.PatientMedicalProfileList[0].surgeries;
+                 // var patientmedical=$scope.PatientMedicalProfileList;
+                  //var medicationvalues=patientmedical[0].medications;
+                },
+                error: function (data) {
+					
+                }
+            };
+        LoginService.getPatientMedicalProfile(params);
+
+
 
         var myEl = angular.element(document.querySelector('#healid'));
         myEl.removeClass('btnextcolor');
@@ -309,6 +332,21 @@ angular.module('starter.controllers')
         $scope.healthhide = false;
         $scope.doneshow = true;
           $scope.cancelshow = true;
+        
+     
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
     }
 
 /* Healthinfo Search */

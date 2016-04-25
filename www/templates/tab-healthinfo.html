@@ -378,9 +378,15 @@
                </h4>
             </div>
             <hr class="dothr dotalign">
-            <ul class="aligntext alvalue">
-               <li ng-repeat="medication in medicalProfileMedications">{{medication.Number}}. {{medication.description}}</li>
-               <li>{{NAMedication}}</li>
+            <ul class="aligntext alvalue" ng-repeat="medicpt in PatientMedicalProfileList" >
+              
+              
+              
+               <li  ng-repeat=" medicationspt in patientmedications">
+                 {{$index + 1}}. {{medicationspt.description}}
+                   
+                   </li>
+               
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic"  >Medication Allergies</div>
@@ -388,17 +394,26 @@
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
-              <li ng-repeat="allergies in medicalProfileMedicationAllergies">{{allergies.Number}}. {{allergies.description}}</li>
-              <li>{{NAMedAllergy}}</li>
+              <li  ng-repeat=" allergies in patientmedicationsallergies">
+                 {{$index + 1}}. {{allergies.description}}
+                   
+                   </li>
+             
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Chronic Conditions</div>
                <span><i class="ion-edit editicon" ></i></span>
             </h4>
             <hr class="dothr">
-            <ul class="aligntext alvalue">
-               <li ng-repeat="medicalConditions in medicalProfileMedicalConditions">{{medicalConditions.Number}}. {{medicalConditions.description}}</li>
-                <li>{{NAMedCondition}}</li>
+            <ul class="aligntext alvalue">  
+                    <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description == '' ">
+                 {{$index + 1}}. N/A
+                    </li>
+                     <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description != '' ">
+                 {{$index + 1}}. N/A
+                    </li>
+                    
+                     
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Prior Surgeries</div>
@@ -406,8 +421,9 @@
             </h4>
             <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
-               <li ng-repeat="surgeries in medicalProfileSurgeries">{{surgeries.Number}}. {{surgeries.description}}</li>
-              <li>{{NAMedSurgery}}</li>
+               <li  ng-repeat=" surgeries in patientmedicalsurgeries">
+                 {{$index + 1}}. {{surgeries.description}}
+                    </li>
             </ul>
          </div>
       </ion-content>

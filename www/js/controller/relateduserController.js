@@ -72,7 +72,7 @@ angular.module('starter.controllers')
           
     }; 
     $scope.showtab=function(){
-         $scope.tabview = $scope.tabview === false ? true: false;
+         $scope.tabview  = $scope.tabview === false ? true: false;
     };
     
     $scope.moreclickval=function(){
