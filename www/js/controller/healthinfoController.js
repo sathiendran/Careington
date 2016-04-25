@@ -79,9 +79,9 @@ angular.module('starter.controllers')
     $scope.searchdone=true;
     $scope.healthsearchsubheader=true;
     $scope.healthsearchinfo=true;
-    $rootScope.flag = true; 
-   
-     
+    $rootScope.flag = true;
+
+
     $scope.edittext = function() {
         $scope.readattr = false;
         $scope.doneshow = false;
@@ -334,19 +334,19 @@ angular.module('starter.controllers')
       $scope.groups[i].items.push(i + '-' + j);
     }
   }
-  
-  
+
+
 $scope.healthsearchdone=function(){
-   
-   
-   
+
+
+
       var myEl = angular.element(document.querySelector('#healid'));
         myEl.removeClass('btnextcolor');
         myEl.addClass('btcolor');
         var myEl = angular.element(document.querySelector('#profid'));
         myEl.removeClass('btcolor').css('color', '#11c1f3');
         myEl.addClass('btnextcolor');
-        
+
          $scope.healthinfosubheader=true;
          $scope.healthsearchsubheader=true;
          $scope.healthinfoshow=true;
@@ -361,7 +361,7 @@ $scope.healthsearchdone=function(){
 
 
 $scope.healthsearch=function(){
-    
+
     $scope.healthinfosubheader=false;
     $scope.healthsearchsubheader=false;
     $scope.healthinfoshow=false;
@@ -370,8 +370,36 @@ $scope.healthsearch=function(){
     $scope.cancelshow = false;
     $scope.doneshow = true;
     $scope.editshow = false;
-   
+
 }
+
+$scope.doGetListOfCoUsers = function() {
+            var params = {
+              	accessToken: $rootScope.accessToken,
+			            authorizedOnly: true,
+              success: function(data) {
+                //$scope.listOfCoUser = JSON.stringify(data, null, 2);
+                $rootScope.listOfCoUserDetails = [];
+                angular.forEach(data.data, function(index, item) {
+                  $rootScope.listOfCoUserDetails.push({
+                    'description': index.description,
+                    'imagePath': $rootScope.APICommonURL + index.imagePath,
+                    'lastname': index.lastname,
+                    'name': index.name,
+                    'patientId': index.patientId,
+                    'personId': index.personId,
+                    'roleId': index.roleId,
+                    'userId': index.userId
+                  });
+                });
+                $state.go('tab.relatedusers');
+              },
+              error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+              }
+            };
+            LoginService.getListOfCoUsers(params);
+        }
 
 
 

@@ -1,0 +1,24 @@
+<div class="Server_Error ErrorMessageDiv" ></div>
+<div id="Error_Message"></div>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
+<div class="hide-on-keyboard-open">
+   <ion-tabs class=" tabs-icon-top tabs-dark">
+      <a class="tab-item" ng-click="doGetListOfCoUsers()" >
+      <i class="icon ion-person-stalker tabfont"></i> User
+      </a>
+      <a class="tab-item" ng-href="#tab/consultations">
+      <i class="icon ion-card tabfont"></i> Consultations
+      </a>
+      <a class="tab-item active" ng-href="/#tab/healthinfo">
+      <i class="icon ion-android-clipboard tabfont"></i> My Health
+      </a>
+      <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
+      <i class="icon ion-calendar tabfont"></i> Appointments
+      </a>
+      <a class="tab-item" ng-href="#tab/profileoption">
+      <i class="icon ion-more tabfont"></i> More
+      </a>
+   </ion-tabs>
+</div>
