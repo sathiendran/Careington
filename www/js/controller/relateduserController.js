@@ -273,7 +273,7 @@ angular.module('starter.controllers')
     }
 
 
-});
+
 
     /* Relationship Search */
  $scope.alphabet = iterateAlphabet();
