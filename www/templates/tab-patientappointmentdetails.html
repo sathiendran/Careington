@@ -1,40 +1,43 @@
 
-<ion-side-menus>
-<ion-side-menu-content> 
+<div class="animated slideInRight">
+ <ion-side-menus>
+   <ion-side-menu-content> 
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-
-<div class="buttons" > 
-<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-ng-click="toggleLeft()"></button>
-</div>
-
-    <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
+ 
+ <div class="buttons" > 
+  <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+   ng-click="toggleLeft()"></button>
+ </div>
+ <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
         <a class="headerval" ng-href="#tab/appointmentpatientdetails"  >Done</a>
-       </span></h1>
+       </span>
+ </h1>
 
 
 <div class="bar bar-subheader bar-dark subheaderheight" >
-                  <div class="row">
-                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
- <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> Jonathan</span>
-     <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
-    </div></h1>
-                </div>
+   <div class="row">
+    <h1 class="headertitle">
+     <div class="ellipsis subHeader_content_name" >
+       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> Jonathan</span>
+       <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
+    </div>
+   </h1>
+  </div>
        
-       <div class="item item-image-icon" >
-<a class="lefthome">
-<i class="icon ion-home headerlefticons"></i>
-<p class="homecontent">Account Home</p>
-</a>
-<a class="item-avatar itemhead">
-<p><img src="img\patient.png" class="topimage"></p>
-</a>
-<a class="rightpatient">
-<i class="icon ion-ios-people headerrighticon"></i>
-<p class="patientcontent"  >Change Patient</p>
-</a>
-</div>
+ <div class="item item-image-icon" >
+    <a class="lefthome">
+      <i class="icon ion-home headerlefticons"></i>
+      <p class="homecontent">Account Home</p>
+    </a>
+    <a class="item-avatar itemhead">
+      <p><img src="img\patient.png" class="topimage"></p>
+    </a>
+    <a class="rightpatient">
+      <i class="icon ion-ios-people headerrighticon"></i>
+      <p class="patientcontent"  >Change Patient</p>
+    </a>
+  </div>
    
 </div>  
    
@@ -46,7 +49,6 @@ ng-click="toggleLeft()"></button>
      
     <div class="list">
         
-     
         <a class="item item-avatar patavatar">
              <img src="img\patient.png" class="patimage">
               <p class="pathead">With</p>
@@ -65,7 +67,7 @@ ng-click="toggleLeft()"></button>
          </div>
        </ion-item>  
       
-      <a class="item" href="#" style="border-bottom:none;">
+      <a class="item" style="border-bottom:none; pointer-events: none;">
           
         <div class="row seccontent" >
           <div class="col col-10 patcol10">1</div>
@@ -87,9 +89,9 @@ ng-click="toggleLeft()"></button>
        </div>
           <br>
           
-     <div class="row seccontentone" >
+      <div class="row seccontentone" >
         <div class="col col-10 patcol10">a</div>
-        <div class="col col-90 ">
+         <div class="col col-90 ">
            <p class="parafont"><b>Notes</b></p>
           <p class="pfontsize">This is the Secondary reason for this
                 visit. It may be significantly longer
@@ -97,15 +99,13 @@ ng-click="toggleLeft()"></button>
                 This is the Secondary reason for this
                 visit. It may be significantly longer
                 than normal if it is a cunstom entry</p>
-        </div>
-      </div>
+         </div>
+       </div>
    </a>
  </div>     
    
  </ion-content>
-    
-  
-    </ion-side-menu-content>
+   </ion-side-menu-content>
 </ion-view>     
 
 
@@ -113,3 +113,5 @@ ng-click="toggleLeft()"></button>
      <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
    <h1 class="title" id="centercolor" >Enter Appointment</h1>
 </ion-footer-bar>
+
+</div>

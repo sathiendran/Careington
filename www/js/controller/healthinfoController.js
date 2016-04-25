@@ -79,8 +79,8 @@ angular.module('starter.controllers')
     $scope.searchdone=true;
     $scope.healthsearchsubheader=true;
     $scope.healthsearchinfo=true;
+    $scope.healthtab=true;
     $rootScope.flag = true;
-
 
     $scope.edittext = function() {
         $scope.readattr = false;
@@ -297,6 +297,29 @@ angular.module('starter.controllers')
 
     $scope.health = function() {
 
+
+		$rootScope.PatientMedicalProfileList = [];
+            var params = {
+                patientId: $rootScope.patientId,
+                accessToken: $rootScope.accessToken,
+                success: function (data) {
+                 $scope.PatientMedicalProfileList = data.data;
+                 $scope.patvalues=$scope.PatientMedicalProfileList;
+                 $scope.patientmedications=$scope.PatientMedicalProfileList[0].medications;
+                 $scope.patientmedicationsallergies=$scope.PatientMedicalProfileList[0].medicationAllergies;
+                 $scope.patientmedicalConditions=$scope.PatientMedicalProfileList[0].medicalConditions;
+                 $scope.patientmedicalsurgeries=$scope.PatientMedicalProfileList[0].surgeries;
+                 // var patientmedical=$scope.PatientMedicalProfileList;
+                  //var medicationvalues=patientmedical[0].medications;
+                },
+                error: function (data) {
+
+                }
+            };
+        LoginService.getPatientMedicalProfile(params);
+
+
+
         var myEl = angular.element(document.querySelector('#healid'));
         myEl.removeClass('btnextcolor');
         myEl.addClass('btcolor');
@@ -308,6 +331,21 @@ angular.module('starter.controllers')
         $scope.healthhide = false;
         $scope.doneshow = true;
           $scope.cancelshow = true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
 /* Healthinfo Search */
@@ -335,7 +373,6 @@ angular.module('starter.controllers')
     }
   }
 
-
 $scope.healthsearchdone=function(){
 
 
@@ -357,6 +394,7 @@ $scope.healthsearchdone=function(){
         $scope.doneshow = true;
         $scope.cancelshow = true;
         $scope.searchdone=true;
+        $scope.healthtab=true;
 }
 
 
@@ -370,6 +408,7 @@ $scope.healthsearch=function(){
     $scope.cancelshow = false;
     $scope.doneshow = true;
     $scope.editshow = false;
+    $scope.healthtab=false;
 
 }
 

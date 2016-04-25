@@ -664,7 +664,20 @@ body {
 .AppointBack {
 	top: 0px;
 }
-
+.alpha_sidebar{
+	position: absolute;
+	top:40px;
+	right: 	10px;
+	z-index: 10;
+}
+.alpha_sidebar li{
+	color: #49afcd;
+	margin-bottom: 0px;
+	cursor: pointer;
+}
+.alpha_list{
+	padding-right: 22px;
+}
 .calendarTitle {
 	font-size: 20px; text-align: center; width: 100%;
 }
@@ -2292,10 +2305,10 @@ float:right;
 font-size: 18px !important;
 }
 .healthhead{
-    text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober SemiBold;
+    text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober Bold;
 }
 .appmarg{
-    float:right;margin-top:-6px;font-size:18px !important;
+    float:right;margin-top:-4px;font-size:18px !important;
 }
 
 .pathead{
@@ -4259,7 +4272,7 @@ p{
         }
 
        .valtex {
-             margin-left: 22px;
+             margin-left: 18px;
              color: #888;
              width: 146px;
              font-size: 15px;
@@ -4271,12 +4284,7 @@ p{
     .ioncontentsalign{
         margin-top: 188px;
     }
-   .valtex {
-        margin-left: 22px;
-        color: #888;
-        width: 146px;
-        font-size: 15px;
-         }
+
   .pfontsize{
       font-size:16px !important;
      // width: 284px;
@@ -4317,6 +4325,13 @@ p{
   .newusercontent{
     margin-top: 110px ;
 }
+.alpha_sidebar{
+	position: absolute;
+	top:3px;
+	right: 	10px;
+	z-index: 10;
+}
+.searchcontent{margin-top:84px;}
    .lefthome{
     padding-left: 20px;
 }
@@ -4329,7 +4344,7 @@ p{
 }
 .avatarclass{margin-left:-26px;  }
 .fstrow{ margin-top:4px;}
-  .statuscont{   margin-left:-27px;}
+  .statuscont{   margin-left:-27px !important;}
 .consultcontent{ margin-top:102px;}
 .paticoncontent{ margin-top:117px;}
 .addphoto{   width:38%; }
@@ -4408,9 +4423,10 @@ p{
               margin-top:111px !important;
          }
          .appth3 {margin: 20px 0px 0px 0px !important;}
+
          .rightpatient {
            float: right;
-           margin-top: -80px !important;
+           margin-top: -80px;
            }
 
           .chronic { margin-top: 24px;}
@@ -4465,19 +4481,21 @@ p{
          .ioncontentsalign{
              margin-top:165px;
          }
-
-         .valhome{
+.item-input{
+       .inputtext{ max-width:100%; }
+}
+       /*  .valhome{
             margin-left:36px;
           }
           .valorg{
-             margin-left:30px;
+             margin-left:24px;
           }
          .valtex {
              margin-left:32px;
              color: #888;
              width: 145px;
              font-size: 15px;
-         }
+         }*/
        .has-header {
          top:90px;
        }
@@ -4659,6 +4677,9 @@ p{
 .consultcontent{
     margin-top:105px;
 }
+.dsheader{
+    margin-left:3px;
+}
 .csheader{
     margin-left:4px;
 }
@@ -4770,7 +4791,7 @@ top: inherit !important;
       color :rgba(5, 4, 9, 0.54)!important;
  }
   .seccontent{
-     margin-left:-22px;line-height:1.5;margin-top:-20px;
+     margin-left:-22px;line-height:1.5;margin-top:-21px;
      .col-10{
          font-family:Glober SemiBold;background-color: rgba(204, 204, 204, 0.46);color:#585858;
      }
@@ -4784,7 +4805,7 @@ top: inherit !important;
          font-family:Glober SemiBold;background-color: rgba(204, 204, 204, 0.46);color:#585858;
      }
      .parafont{
-         color:#555555;font-family:Glober SemiBold;
+         color:#555555;font-family:Glober SemiBold;font-size:15px;
      }
  }
   .appointment {
@@ -4908,6 +4929,9 @@ color: white;
 .csubheader{
    margin-top:20px;height:131px;border-bottom: 1.5px solid #b5b5b5;border-image:none;
 }
+.searchsubheader{
+   margin-top:23px;height:110px;border-bottom: 1.5px solid #b5b5b5;border-image:none;
+}
 .sheader{
     color:#616161;
     font-size:12px !important;
@@ -5022,22 +5046,36 @@ color: white;
 }
 .item-input
 {
+   .inputheight{
+     margin-left:65px;
+    }
+     .inputweight{
+     margin-left:60px;
+    }
 
     .usertext {
-        margin-left:45px;
+       // margin-left:45px;
       font-size:17px;font-family:Glober Semibold;line-height:22px;
     }
     .userdob {
-       margin-left:35px;font-size:17px;font-family:Glober Semibold;line-height:22px;
+       margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
+    }
+    .userorg {
+       margin-left:43px;font-size:17px;font-family:Glober Semibold;line-height:22px;
+
     }
     .userrel {
        margin-left:42px;font-size:17px;font-family:Glober Semibold;line-height:22px;
        }
      .userhome{
-        margin-left:40px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:16px;
+        margin-left:43px;margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:16px;
+     }
+     .homeadd{
+         //margin-left:36px;
+        margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:16px;
      }
  .valuealign{
-   margin-left:45px;
+   margin-left:43px;
   }
 
    .valtex {
@@ -5053,8 +5091,9 @@ color: white;
      margin-left:43px;
     }
    .valorg{
-      margin-left:39px;
+      margin-left:28px;
      }
+
  .editdata{
      font-size:12px;
      color:#7c7c7c;
@@ -5113,6 +5152,7 @@ margin-top: 120px !important
 height: 84px;
 }
 .unauthor {margin-left: -25px;}
+.searchcontent{margin-top:112px;}
 .unstatuscont{
  margin-left: -43px;
 }
@@ -5127,8 +5167,12 @@ margin: 70px 10px !important;
 padding-top: 177px !important;
 }
 .item-input{
-  .userdob {margin-left:35px !important;}
-  .userrel {margin-left: 38px !important;}
+    .inputheight{margin-left:110px;}
+  .userdob {margin-left:25px !important;}
+   .userorg {
+       margin-left:43px;font-size:17px;font-family:Glober Semibold;line-height:22px;
+    }
+  .userrel {margin-left: 33px !important;}
   .userhome{margin-left: 30px !important;}
 }
 .colmore {margin-left: 0px !important;}
@@ -5258,6 +5302,7 @@ margin-left: 13px !important;
     line-height: 1.2;
     margin-left: 23px;
 }
+
 
 .alpha_sidebar{
 	position: absolute;
