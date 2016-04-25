@@ -827,6 +827,47 @@ angular.module('starter.services', [])
     
     
 
+		/*Account API Start*/
+
+		this.getListOfCoUsers = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/v2/patients/familygroup/adults?authorizedOnly=False',
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+    this.getAccountDependentDetails = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/v2/patients/familyprofiles/dependents',
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+
 })
 
 
