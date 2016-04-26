@@ -248,10 +248,14 @@
             <hr class="dothr dotalign">
             <ul class="aligntext alvalue" ng-repeat="medicpt in PatientMedicalProfileList" >
 
-                <li  ng-repeat="medicationspt in patientmedications" >
-                 {{$index + 1}}.{{medicationspt.description}}
-
+              
+               <li  ng-repeat="medicationspt in patientmedications" ng-if="medicationspt.description == '' ">
+                 {{$index + 1}}. N/A
                     </li>
+                     <li  ng-repeat="medicationspt in patientmedications" ng-if="medicationspt.description != '' ">
+                 {{$index + 1}}.{{medicationspt.description}}
+                    </li>
+                    
 
 
             </ul>
@@ -261,11 +265,14 @@
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
-              <li  ng-repeat=" allergies in patientmedicationsallergies">
-                 {{$index + 1}}. {{allergies.description}}
 
-                   </li>
-
+                 <li  ng-repeat="allergies in patientmedicationsallergies" ng-if="allergies.description == '' ">
+                 {{$index + 1}}. N/A
+                    </li>
+                     <li  ng-repeat="allergies in patientmedicationsallergies" ng-if="allergies.description != '' ">
+                 {{$index + 1}}.{{allergies.description}}
+                    </li>
+        
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Chronic Conditions</div>
@@ -277,7 +284,7 @@
                  {{$index + 1}}. N/A
                     </li>
                      <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description != '' ">
-                 {{$index + 1}}. N/A
+                 {{$index + 1}}.{{chronic.description}}
                     </li>
 
 
@@ -288,9 +295,14 @@
             </h4>
             <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
-               <li  ng-repeat=" surgeries in patientmedicalsurgeries">
-                 {{$index + 1}}. {{surgeries.description}}
+                
+                   <li  ng-repeat="surgeries in patientmedicalsurgeriess" ng-if="surgeries.description == '' ">
+                 {{$index + 1}}. N/A
                     </li>
+                     <li  ng-repeat="surgeries in patientmedicalsurgeries" ng-if="surgeries.description != '' ">
+                 {{$index + 1}}.{{surgeries.description}}
+                    </li>
+              
             </ul>
          </div>
    </ion-content>
