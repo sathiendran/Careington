@@ -112,5 +112,9 @@ angular.module('starter.controllers')
           $rootScope.doGetListOfCodeSet();
         }
 
+        $scope.goToPatientConcerns = function() {
+          $state.go('tab.patientConcerns');
+        }
+
 
     })

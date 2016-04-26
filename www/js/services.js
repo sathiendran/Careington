@@ -817,15 +817,15 @@ angular.module('starter.services', [])
                     }
             });
     }
-    
-    
-     
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
 
 		/*Account API Start*/
 
@@ -861,11 +861,53 @@ angular.module('starter.services', [])
               }
           }).
           error(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+    this.deleteAccountUser = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/v2/patients/profiles/'+ params.PatientId,
+          method: 'DELETE',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
               if (typeof params.error != 'undefined') {
                   params.success(data);
               }
           });
     }
+
+    this.updateDependentsAuthorize = function(params) {
+		var registerDetails = {
+			headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL + '/v2/patients/familygroup/'+params.patientId+'/relationship',
+			  method: 'PUT',
+			  data: {
+                RelationCodeId: params.RelationCodeId,
+				IsAuthorized: params.IsAuthorized
+              }
+		};
+	$http(registerDetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
 
 
 })

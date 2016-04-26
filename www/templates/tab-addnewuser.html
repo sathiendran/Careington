@@ -2,13 +2,13 @@
 <div class="animated slideInRight">
 
 <ion-side-menus>
-	<ion-side-menu-content> 
+	<ion-side-menu-content>
 
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-       
-  
-	<div class="buttons" > 
+
+
+	<div class="buttons" >
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
@@ -16,53 +16,53 @@
             <a class="headerval" ng-href="#tab/relatedusers">Cancel</a></span></h1>
 
 	<div class="bar bar-subheader bar-dark usersubheader" >
-                  <div class="row"> 
+                  <div class="row">
                       <h1 class="headertitle">
                           <div class="ellipsis subHeader_content_name" >
-					       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">Jonathan</span>
-					      <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
+					       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{currentPatientDetails[0].patientName}}</span>
+					      <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
 				        </div>
                      </h1>
                   </div>
-               
+
     <div class="item item-image-icon " style="background-color:#444444;">
-          
-          <a class="lefthome">
-               <i class="icon ion-home headerlefticons" style=""></i>
+
+          <a class="lefthome" ng-href="#/tab/userAccount">
+               <i class="icon ion-home headerlefticons" ></i>
                <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
-               <p><img src="img\patient.png" class="topimage" style=""></p>
+               <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" style=""></p>
            </a>
-            <a class="rightpatient">
-               <i class="icon ion-ios-people headerrighticon" style=""></i>
+            <a class="rightpatient" ng-href="#/tab/userhome">
+               <i class="icon ion-ios-people headerrighticon"></i>
                <p class="patientcontent" >Change Patient</p>
            </a>
    </div>
   </div>
-                    
-   
-		
-   
+
+
+
+
 </ion-header-bar>
 
 <ion-view title="">
-    
+
 	<ion-content class="newusercontent">
-        
+
         <ion-list>
            <ion-item class="iionitem item newuserdetails" style="">
-          
+
                   <p class="newuserp"><i class="fontcolor icon ion-person-add" style="font-size:50px;"></i></p>
-                  <div class="newusertopcontent"> 
+                  <div class="newusertopcontent">
                      <h2 class="newusertoph2"><p class="fontcolor usertopfont">Add A New User</p>
                       <p class="topp regularfamily">Select a user type to add</p>
                      </h2>
                   </div>
-              
-         </ion-item>  
-            
-            
+
+         </ion-item>
+
+
          <ion-item class="iionitem ">
            <div class="card shadowcard">
               <div class="item item-text-wrap">
@@ -73,8 +73,8 @@
 				      </div>
                  </div>
               </div>
-         </ion-item>     
-            
+         </ion-item>
+
           <ion-item class="iionitem">
            <div class="card shadowcard">
               <div class="item item-text-wrap">
@@ -85,23 +85,25 @@
 				      </div>
                  </div>
               </div>
-         </ion-item>    
-            
-	
-	</ion-list>
-        
-       
-  </ion-content>
- </ion-side-menu-content>
- <!--Side Menu File Include --->
- <div ng-include src="'templates/SideMenu.html'"></div>
+         </ion-item>
 
-</ion-view>
+
+	</ion-list>
+
+
+  </ion-content>
+
 
 <div class="bar bar-footer addheight" style="background-color:#484848;">
    <!--  <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
    <h1 class="title" id="centercolor" style="margin-top: 5px !important;" >Cancel</h1>
 </div>
+
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+
+</ion-view>
 
 </ion-side-menus>
 </div>

@@ -1,9 +1,9 @@
 <div class="animated slideInRight">
-  <ion-side-menus> 
-	 <ion-side-menu-content> 
+  <ion-side-menus>
+	 <ion-side-menu-content>
     <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-        
-     <div class="buttons" > 
+
+     <div class="buttons" >
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	 </div>
@@ -14,77 +14,50 @@
        <div class="row">
          <h1 class="headertitle">
            <div class="ellipsis subHeader_content_name" >
-			 <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">Jonathan</span>
-			  <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
+			 <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{currentPatientDetails[0].patientName}}</span>
+			  <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
 			 </div>
             </h1>
           </div>
-       
+
        <div class="item item-image-icon itemiconcolor">
            <a class="lefthome">
-               <i class="icon ion-home headerlefticons" style=""></i>
+               <i class="icon ion-home headerlefticons"></i>
                <p class="homecontent">Account Home</p>
           </a>
-          
+
            <a class="item-avatar itemhead">
-               <p><img src="img\patient.png" class="topimage" style=""></p>
+               <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage"></p>
            </a>
            <a class="rightpatient">
-               <i class="icon ion-ios-people headerrighticon" style=""></i>
+               <i class="icon ion-ios-people headerrighticon"></i>
                <p class="patientcontent" >Change Patient</p>
            </a>
       </div>
-    </div>  
+    </div>
 </ion-header-bar>
 
 
-<ion-view title="">
+<ion-view title="Profile Option">
   <ion-content class="profilecontent">
-                     
+
     <div class="list">
       <a class="item item-icon-left item-icon-right" ng-href="#tab/relatedusers">
           <i class="icon ion-person-stalker iconsize fontcolor"></i> <span class="fontcolorfamily">  Users </span><i class="icon ion-chevron-right fontcolor"></i>
       </a>
        <a class="item item-icon-left item-icon-right" ng-href="#tab/consultations">
           <i class="icon ion-card iconsize fontcolor"></i> <span class="fontcolorfamily">  Consultations </span> <i class="icon ion-chevron-right fontcolor"></i>
-      </a>      
+      </a>
       <a class="item item-icon-left item-icon-right" ng-href="#tab/healthinfo">
           <i class="icon ion-android-clipboard iconsize fontcolor"></i> <span class="fontcolorfamily"> My Health </span><i class="icon ion-chevron-right fontcolor"></i>
-      </a>   
+      </a>
        <a class="item item-icon-left item-icon-right"  ng-href="#tab/appointmentpatientdetails">
           <i class="icon ion-calendar iconsize fontcolor"></i> <span class="fontcolorfamily"> Appointments </span> <i class="icon ion-chevron-right fontcolor"></i>
-      </a>  
+      </a>
        <a class="item item-icon-left item-icon-right" ng-href="#">
           <i class="icon ion-ios-albums iconsize fontcolor"></i> <span class="fontcolorfamily"> Files </span> <i class="icon ion-chevron-right fontcolor"></i>
-      </a>         
+      </a>
     </div>
   </ion-content>
  </ion-side-menu-content>
-</ion-view>     
-
-
-<ion-tabs  class=" tabs-icon-top tabs-dark">
-
-  <a class="tab-item " ng-href="#tab/relatedusers">
-    <i class="icon ion-person-stalker tabfont"></i>
-   User
-  </a>
-  <a class="tab-item"  ng-href="#tab/consultations">
-    <i class="icon ion-card tabfont"></i>
-    Consultations
-  </a>
-  <a class="tab-item " ng-href="/#tab/healthinfo">
-    <i class="icon ion-android-clipboard tabfont"></i>
-    My Health
-  </a>
-
-<a class="tab-item" ng-href="#tab/appointmentpatientdetails">
-    <i class="icon ion-calendar tabfont"></i>
-    Appointments
-  </a>
-<a class="tab-item active">
-    <i class="icon ion-more tabfont"></i>
-    More
-  </a>
-</ion-tabs>
-  </div>
+<div ng-include src="'templates/account_footer.html'"></div>
