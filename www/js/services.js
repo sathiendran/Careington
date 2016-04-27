@@ -230,6 +230,36 @@ angular.module('starter.services', [])
           });
     }
 
+/*
+
+   this.putPatientMedicalProfile = function(params){
+      var requestpatientInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.patientId,
+          method: 'PUT',
+           data: {
+              
+                patientId: params.patientId,
+            }
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+*/
+
+
+
+
+
 		this.putProfileUpdation = function(params) {
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),

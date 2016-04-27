@@ -1,0 +1,62 @@
+<div class="modal" >
+
+<ion-view>
+    
+    
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> My health <span ng-click="chronicdone()"><a class="headerval" >Done</a></span></h1>
+
+
+ <div class="bar bar-subheader csubheader">
+    <h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;" class="subname">Chronic Conditions</h2>
+     <div class="csearch">
+       <h6 class="hsearch">
+         <i class="icon ion-search fontcolor"></i>
+         <span class="fontcolor">Search</span>
+       </h6>
+     </div>
+ </div>  
+   
+</ion-header-bar>
+	<ion-content class="consultcontent has-header" scroll="true" padding="true">
+     <div class="list" style="margin-top:44px;" >
+       
+       
+       
+        <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: data.searchQuery"
+						  ng-model="chronic.checked" 
+						  ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)" >
+			  <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
+
+
+		  </ion-checkbox> 
+       
+   <!--     <div ng-repeat="(letter, chronicConditionsearchList) in sorted_users"  > 
+           <div id="index_{{letter}}" class="item item-divider"    ng-repeat="chronic in chronicConditionsearchList">
+              {{chronic.text}}
+            </div>
+       </div>-->
+     </div>   
+      
+	</ion-content>
+   <ul class="alpha_sidebar">
+         <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
+            {{letter}}
+         </li>
+      </ul> 
+</ion-view>     
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

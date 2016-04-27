@@ -10,9 +10,9 @@
          <span class="headerval" ng-click="edittext()" ng-show="editshow">Edit</span>
          <span ng-click="edittext()" ng-show="cancelshow"><a class="headerval" >cancel</a></span>
          <span class="headerval"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
-         <span class="headerval"  ng-click="healthsearchdone()"  ng-hide="searchdone" >Done</span>
+       
       </h1>
-      <div class="bar bar-subheader bar-dark subheaderheight" ng-show="healthinfosubheader">
+      <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
             <h1 class="headertitle">
                <div class="ellipsis subHeader_content_name" >
@@ -49,18 +49,10 @@
             </div>
          </div>
       </div>
-      <div class="bar bar-subheader csubheader" ng-hide="healthsearchsubheader">
-         <h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;">Current Medication</h2>
-         <div class="csearch">
-            <h6 class="hsearch">
-               <i class="icon ion-search fontcolor"></i>
-               <span class="fontcolor">Search</span>
-            </h6>
-         </div>
-      </div>
+     
    </ion-header-bar>
    <ion-view title="Health Info Details" >
-   <ion-content class="ioncontentalign" ng-show="healthinfoshow">
+   <ion-content class="ioncontentalign" >
       <div ng-hide="addmore">
          <h4 class="healthhead"><b>Demographics</b></h4>
          <div class="list listprofile" ng-show="flag">
@@ -249,10 +241,8 @@
             <ul class="aligntext alvalue" ng-repeat="medicpt in PatientMedicalProfileList" >
 
               
-               <li  ng-repeat="medicationspt in patientmedications" ng-if="medicationspt.description == '' ">
-                 {{$index + 1}}. N/A
-                    </li>
-                     <li  ng-repeat="medicationspt in patientmedications" ng-if="medicationspt.description != '' ">
+   
+                     <li  ng-repeat="medicationspt in patientmedications" >
                  {{$index + 1}}.{{medicationspt.description}}
                     </li>
                     
@@ -261,7 +251,8 @@
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic"  >Medication Allergies</div>
-               <span><i class="ion-edit editicons" ></i></span>
+               <span><a ng-click="alergiessearch()" ><i class="ion-edit editicons" ></i></a>
+               </span>
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
@@ -276,14 +267,14 @@
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Chronic Conditions</div>
-               <span><i class="ion-edit editicon" ></i></span>
+               <span><a ng-click="chronicsearch()" ><i class="ion-edit editicon" ></i></a></span>
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
                     <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description == '' ">
                  {{$index + 1}}. N/A
                     </li>
-                     <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description != '' ">
+                        <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description != '' ">
                  {{$index + 1}}.{{chronic.description}}
                     </li>
 
@@ -291,7 +282,7 @@
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Prior Surgeries</div>
-               <span><i class="ion-edit editicon" ></i></span>
+               
             </h4>
             <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
@@ -304,32 +295,9 @@
                     </li>
               
             </ul>
-         </div>
+         </div>  
    </ion-content>
-   <ion-content style="margin-top:112px;" ng-hide="healthsearchinfo">
-      <div class="list">
-         <div class="item item-divider">
-            Medication Name
-         </div>
-         <div class="item item-divider">
-            Medication Name
-         </div>
-         <div class="item item-divider">
-            Medication Name
-         </div>
-         <div class="item item-divider">
-            Medication Name
-         </div>
-         <div class="item item-divider">
-            Medication Name
-         </div>
-      </div>
-      <ul class="alpha_sidebar">
-         <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
-            {{letter}}
-         </li>
-      </ul>
-   </ion-content>
+  
    <!-- </form>-->
 </ion-side-menu-content>
 

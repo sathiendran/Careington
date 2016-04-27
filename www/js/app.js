@@ -737,6 +737,16 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
+  
+     .state('tab.currentmedicationsearch', {
+       url: '/currentmedicationsearch',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-currentmedicationsearch.html',
+        controller: 'healthinfocontroller'
+      }
+      }
+  })
   /*
   .state('tab.healthsearch', {
        url: '/healthsearch',
