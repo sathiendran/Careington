@@ -228,7 +228,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
 
 	$rootScope.deploymentEnv = deploymentEnv;
     if(deploymentEnv !== 'Multiple') {
@@ -2781,79 +2781,90 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		return newdate;
 	}
 
-        $scope.doGetScheduledConsulatation = function () {
-            if ($scope.accessToken === 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-             $rootScope.scheduledConsultationList = [];
-            var params = {
-                patientId: $rootScope.primaryPatientId,
-                accessToken: $rootScope.accessToken,
-                success: function (data) {
-					console.log(data);
-                    $scope.scheduledConsultationList = data.data;
-					if(data !== "") {
-						$rootScope.scheduledList = [];
-						var currentDate = new Date();
-						currentDate = $scope.addMinutes(currentDate, -30);
-						//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+	$rootScope.doGetScheduledConsulatation = function () {
+if ($rootScope.accessToken == 'No Token') {
+alert('No token.  Get token first then attempt operation.');
+return;
+}
+$rootScope.scheduledConsultationList = [];
+var params = {
+patientId: $rootScope.primaryPatientId,
+accessToken: $rootScope.accessToken,
+success: function (data) {
+	if(data != "") {
+		$scope.scheduledConsultationList = data.data;
+		$rootScope.getScheduledList = [];
+		$rootScope.scheduleParticipants = [];
+		var currentDate = new Date();
+		currentDate = $scope.addMinutes(currentDate, -30);
+		//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
 
 
-						angular.forEach($scope.scheduledConsultationList, function(index, item) {
-							if(currentDate < CustomCalendar.getLocalTime(index.scheduledTime)) {
-								 $rootScope.scheduledList.push({
-									'id': index.$id,
-									'scheduledTime': CustomCalendar.getLocalTime(index.scheduledTime),
-									'consultantUserId': index.consultantUserId,
-									'consultationId': index.consultationId,
-									'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
-									'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
-									'patientId': index.patientId,
-									'assignedDoctorName': angular.element('<div>').html(index.assignedDoctorName).text(),
-									'patientName': angular.element('<div>').html(index.patientName).text(),
-									'consultationStatus': index.consultationStatus,
-									'scheduledId': index.scheduledId,
-								});
-							}
-						});
+		angular.forEach($scope.scheduledConsultationList, function(index, item) {
+			if(currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+				 $rootScope.getScheduledList.push({
+					'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+					'appointmentId': index.appointmentId,
+					'appointmentStatusCode': index.appointmentStatusCode,
+					'appointmentTypeCode': index.appointmentTypeCode,
+					'availabilityBlockId': index.availabilityBlockId,
+					'endTime': index.endTime,
+					'intakeMetadata': angular.fromJson(index.intakeMetadata),
+					'participants': angular.fromJson(index.participants),
+					'waiveFee': index.waiveFee
+				});
+				angular.forEach(index.participants, function(index, item) {
+					$rootScope.scheduleParticipants.push({
+					'appointmentId': index.appointmentId,
+					'attendenceCode': index.attendenceCode,
+					'participantId': index.participantId,
+					'participantTypeCode': index.participantTypeCode,
+					'person': angular.fromJson(index.person),
+					'referenceType': index.referenceType,
+					'status': index.status
+				});
+				})
+			}
+		});
+$rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
 
+		console.log($rootScope.scheduledList);
+		$rootScope.nextAppointmentDisplay = 'none';
 
-						$rootScope.nextAppointmentDisplay = 'none';
+		var d = new Date();
+		d.setHours(d.getHours() + 12);
+		var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 
-						var d = new Date();
-						d.setHours(d.getHours() + 12);
-						var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+		if($rootScope.scheduledList != '')
+		{
+			//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+			//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+			var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
+			var currentUserHomeDate = currentUserHomeDate;
 
-						if($rootScope.scheduledList !== undefined && $rootScope.scheduledList.length !== 0)
-						{
-							//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
-							//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
-							var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
-							var currentUserHomeDate = currentUserHomeDate;
+			if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+				console.log('scheduledTime <= getTwelveHours UserHome');
+				$rootScope.nextAppointmentDisplay = 'block';
+				$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+				$rootScope.timerCOlor = '#FEEFE8';
+				var beforAppointmentTime = 	getReplaceTime;
+				var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+				if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+				{
+					$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+					$rootScope.timerCOlor = '#E1FCD4';
+				}
+			}
+		}
+	}
+},
+error: function (data) {
+	 $rootScope.serverErrorMessageValidation();
+}
+};
 
-							if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-								console.log('scheduledTime <= getTwelveHours UserHome');
-								$rootScope.nextAppointmentDisplay = 'block';
-								$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
-								var beforAppointmentTime = 	getReplaceTime;
-								var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
-								if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
-								{
-									$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
-								}
-							}
-						}
-
-					}
-                },
-                error: function (data) {
-                   $rootScope.serverErrorMessageValidation();
-                }
-            };
-
-            LoginService.getScheduledConsulatation(params);
-        }
+LoginService.getScheduledConsulatation(params);
+}
 
 	$scope.getScheduledDetails = function (patientId) {
 		$rootScope.selectedPatientIdForDetails = patientId;
@@ -2987,6 +2998,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.postCoPayDetails(params);
 		}
 	}
+	$rootScope.doDeleteAccountUser = function(patientId) {
+            var params = {
+              accessToken: $rootScope.accessToken,
+			  			PatientId : patientId,
+              success: function(data) {
+                $scope.deleteCoUser = JSON.stringify(data, null, 2);
+								$rootScope.doGetAccountDependentDetails();
+              },
+              error: function(data) {
+                	$rootScope.serverErrorMessageValidation();
+              }
+            };
+            LoginService.deleteAccountUser(params);
+        }
 
 	$rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage) {
 			if ($rootScope.accessToken === 'No Token') {
@@ -2997,42 +3022,113 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								accessToken: $rootScope.accessToken,
 								patientId : patientId,
 				success: function (data) {
-					$scope.selectedPatientDetails = [];
-	//angular.fromJson(index.billingAddress)
-					angular.forEach(data.data, function(index, item) {
-						$scope.selectedPatientDetails.push({
-							'account': angular.fromJson(index.account),
-							'address': index.address,
-							'addresses': angular.fromJson(index.addresses),
-							'anatomy': angular.fromJson(index.anatomy),
-							'countryCode': index.countryCode,
-							'createDate': index.createDate,
-							'dob': index.dob,
-							'gender': index.gender,
-							'homePhone': index.homePhone,
-							'lastName': index.lastName,
-							'mobilePhone': index.mobilePhone,
-							'patientName': index.patientName,
-							'pharmacyDetails': index.pharmacyDetails,
-							'physicianDetails': index.physicianDetails,
-							'schoolContact': index.schoolContact,
-							'schoolName': index.schoolName
+					if(nextPage == 'tab.relatedusers') {
+						$rootScope.selectedRelatedDependentDetails = [];
+		//angular.fromJson(index.billingAddress)
+						angular.forEach(data.data, function(index, item) {
+							$rootScope.selectedRelatedDependentDetails.push({
+								'account': angular.fromJson(index.account),
+								'address': index.address,
+								'addresses': angular.fromJson(index.addresses),
+								'anatomy': angular.fromJson(index.anatomy),
+								'countryCode': index.countryCode,
+								'createDate': index.createDate,
+								'dob': index.dob,
+								'gender': index.gender,
+								'homePhone': index.homePhone,
+								'lastName': index.lastName,
+								'mobilePhone': index.mobilePhone,
+								'patientName': index.patientName,
+								'pharmacyDetails': index.pharmacyDetails,
+								'physicianDetails': index.physicianDetails,
+								'schoolContact': index.schoolContact,
+								'schoolName': index.schoolName
+							});
 						});
-					});
-					$rootScope.currentPatientDetails = $scope.selectedPatientDetails;
-					var date = new Date($rootScope.currentPatientDetails[0].dob);
-					//$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-					$rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-						if($rootScope.currentPatientDetails[0].gender == 'M') {
-							$rootScope.userGender = "Male";
-							$rootScope.isCheckedMale = true;
-						} else if($rootScope.currentPatientDetails[0].gender == 'F') {
-							$rootScope.userGender = "FeMale";
-								$rootScope.isCheckedFeMale = true;
-						}
+						var date = new Date($rootScope.selectedRelatedDependentDetails[0].dob);
+						$rootScope.dependentDOB = $filter('date')(date, "yyyy-MM-dd");
+							if($rootScope.selectedRelatedDependentDetails[0].gender == 'M') {
+								$rootScope.dependentGender = "Male";
+								$rootScope.isCheckedMaleDependent = true;
+							} else if($rootScope.selectedRelatedDependentDetails[0].gender == 'F') {
+								$rootScope.dependentGender = "FeMale";
+									$rootScope.isCheckedMaleDependent = true;
+							}
+							if($rootScope.selectedRelatedDependentDetails.length !== 0) {
+						 		$rootScope.dependentDOB = ageFilter.getDateFilter($rootScope.dependentDOB);
+						 			var confirmPopup = $ionicPopup.confirm({
 
-					console.log($rootScope.selectedPatientDetails);
-					$state.go(nextPage);
+						  title: "<a class='item-avatar'>  <img src='"+$rootScope.APICommonURL+$rootScope.selectedRelatedDependentDetails[0].account.profileImagePath+"'><span><span class='fname'><b>"+$rootScope.selectedRelatedDependentDetails[0].patientName+"</b></span> <span class='sname'>"+$rootScope.selectedRelatedDependentDetails[0].lastName+"</span></span></a> ",
+						  subTitle:"<p class='fontcolor'>"+$rootScope.dependentGender+"."+$rootScope.dependentDOB+" Step-Daughter</p>",
+						 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
+						  templateUrl: 'templates/archiveTemplate.html',
+
+						  buttons: [
+						 	 { text: 'Cancel',
+							 onTap: function(e) {
+								 return false;
+								 }
+								},
+						 	 {
+						 		 text: '<b>Archieve</b>',
+						 		 type: 'button-assertive',
+								 onTap: function(e) {
+									 return true;
+							    }
+						 	 },
+						  ],
+						 	});
+						  confirmPopup.then(function(res) {
+						 	 if(res) {
+								 $rootScope.doDeleteAccountUser(patientId);
+						 	 } else {
+						 		 $scope.showdnewetails=false;
+						 			$scope.allval=false;
+						 	 }
+
+
+						 });
+						 }
+
+
+
+						} else {
+						$scope.selectedPatientDetails = [];
+		//angular.fromJson(index.billingAddress)
+						angular.forEach(data.data, function(index, item) {
+							$scope.selectedPatientDetails.push({
+								'account': angular.fromJson(index.account),
+								'address': index.address,
+								'addresses': angular.fromJson(index.addresses),
+								'anatomy': angular.fromJson(index.anatomy),
+								'countryCode': index.countryCode,
+								'createDate': index.createDate,
+								'dob': index.dob,
+								'gender': index.gender,
+								'homePhone': index.homePhone,
+								'lastName': index.lastName,
+								'mobilePhone': index.mobilePhone,
+								'patientName': index.patientName,
+								'pharmacyDetails': index.pharmacyDetails,
+								'physicianDetails': index.physicianDetails,
+								'schoolContact': index.schoolContact,
+								'schoolName': index.schoolName
+							});
+						});
+						$rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+						var date = new Date($rootScope.currentPatientDetails[0].dob);
+						//$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+						$rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+							if($rootScope.currentPatientDetails[0].gender == 'M') {
+								$rootScope.userGender = "Male";
+								$rootScope.isCheckedMale = true;
+							} else if($rootScope.currentPatientDetails[0].gender == 'F') {
+								$rootScope.userGender = "FeMale";
+									$rootScope.isCheckedFeMale = true;
+							}
+						console.log($rootScope.selectedPatientDetails);
+						$state.go(nextPage);
+					}
 				},
 				error: function (data) {
 					$rootScope.serverErrorMessageValidation();
@@ -3044,7 +3140,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 
-    $scope.GoToPatientDetails = function(currentPatientDetails, P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
+    $rootScope.GoToPatientDetails = function(currentPatientDetails, P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
         if($rootScope.patientSearchKey !== '' || typeof $rootScope.patientSearchKey !== "undefined"){
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
 		if($rootScope.RelatedPatientProfiles !== '') {

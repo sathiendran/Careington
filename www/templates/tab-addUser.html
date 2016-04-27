@@ -1,10 +1,10 @@
 
-<ion-side-menus> 
- <ion-side-menu-content> 
+<ion-side-menus>
+ <ion-side-menu-content>
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
- 
- <div class="buttons" > 
+
+ <div class="buttons" >
   <button class="button icon button-clear ion-navicon-round iconbackbutton  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
 </div>
    <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User </span> <span >
@@ -17,27 +17,27 @@
 		 <span class="patientLastName ellipsis lnamefont" >Co-User</span>
 		</div></h1>
        </div>
-  
+
     <div class="circlenew" >
        <div class="">
-        <a class="circlecanh"> 
+        <a class="circlecanh">
           <i class="icon ion-camera circlecam"></i>
         </a>
-        <span class="circletext" > Add a Picture</span>  
+        <span class="circletext" > Add a Picture</span>
       </div>
   </div>
-  
-</div>  
- 
+
+</div>
+
 	</ion-header-bar>
-<ion-view title="">
- 
+<ion-view title="Add User">
+
 <ion-content class="userdeptcontent">
-    
-    
-    
+
+
+
 <h4 class="userhead"><b>User Details</b></h4>
-    
+
     <div class="list">
  <label class="item item-input validated">
      <div class="col clo-50">
@@ -46,15 +46,15 @@
      </div>
       <div class="col clo-50">
             <input   class="usertext" type="text" value="" placeholder="Required" required="required"  name="name" >
-      </div>     
+      </div>
 </label>
-         
+
 <label class="item item-input validated">
               <div class="col clo-50">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-person"></i><b class="formlabel">Last Name</b></span>
               </div>
-             <div class="col clo-50">    
+             <div class="col clo-50">
             <input   class="usertext" type="text" value="" placeholder="Required" required="required"  name="name" >
              </div>
 </label>
@@ -63,104 +63,104 @@
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-email"></i><b class="formlabel">Email</b></span>
              </div>
-             <div class="col clo-50">     
+             <div class="col clo-50">
             <input   class="usertext"  type="text" value="" placeholder="Required" required="required"  name="name" >
              </div>
 </label>
 <label class="item item-input validated">
-              <div class="col clo-50">   
+              <div class="col clo-50">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-calendar-outline"></i><b class="formlabel">Date of Birth</b></span>
               </div>
-             <div class="col clo-50">    
+             <div class="col clo-50">
             <input   class="usertext"  type="text" value=""  placeholder="Required" required="required"  name="name" >
              </div>
 </label>
-         
+
  <label class="item item-input validated">
-              <div class="col clo-50">   
+              <div class="col clo-50">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-person-stalker"></i><b class="formlabel">Reltionship</b></span>
               </div>
-              <div class="col clo-50">      
+              <div class="col clo-50">
             <input  class="usertext" type="text" value=""  placeholder="Optional"   name="name" id="name" style="">
               </div>
-              
+
 </label>
   </div>
     <h3  ng-hide="addmore" ng-click="moredetails()" class="moredet"><span >Add More Details</span> <span> <i class="ion-ios-arrow-forward deticon" ></i></span></h3>
     <h3 ng-show="showless" ng-click="lessdetails()"  class="lessdet"><span>Show Less </span> <span><i class="ion-ios-arrow-down deticon"></i></span></h3>
-    
+
  <div class="list deptlist" ng-show="showme">
  <label class="item item-input validated">
       <div class="col clo-50">
          <span class="input-label labelcolor">
           <i class="iconsize ion-female"></i><b class="formlabel">Gender</b></span>
       </div>
-       <div class="col clo-50">           
+       <div class="col clo-50">
           <input class="usertext" type="text" value="" placeholder="Optional"   name="name">
-       </div>    
+       </div>
 </label>
  <label class="item item-input validated">
      <div class="col clo-50">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-android-arrow-up"></i><b class="formlabel">Height</b></span>
      </div>
-      <div class="col clo-50">            
+      <div class="col clo-50">
             <input class="usertext" type="text" value=""    placeholder="Optional"   name="name">
-      </div>     
+      </div>
 </label>
 <label class="item item-input validated">
     <div class="col clo-50">
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-filing"></i><b class="formlabel">Weight</b></span>
     </div>
-     <div class="col clo-50">   
+     <div class="col clo-50">
             <input class="usertext" type="text" value=""    placeholder="Optional"   name="name" >
-     </div>      
+     </div>
 </label>
 <label class="item item-input validated">
-    <div class="col clo-50"> 
+    <div class="col clo-50">
                <span class="input-label labelcolor">
                   <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Home Phone</b></span>
     </div>
-     <div class="col clo-50">             
+     <div class="col clo-50">
             <input class="usertext" type="text" value=""  placeholder="Optional"   name="name" >
-     </div>      
+     </div>
 </label>
  <label class="item item-input validated">
    <div class="col clo-50">
        <span class="input-label labelcolor">
        <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
    </div>
-    <div class="col clo-50">   
+    <div class="col clo-50">
        <input class="usertext" type="text" value=""  placeholder="Optional"   name="name" >
-    </div>   
+    </div>
 </label>
 <label class="item item-input validated">
-   <div class="col clo-50">  
+   <div class="col clo-50">
      <span class="input-label labelcolor" style="margin-bottom:50px;">
      <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
    </div>
-    <div class="col clo-50">    
+    <div class="col clo-50">
      <textarea   class="homeadd" id="name" cols="30" rows="5"  placeholder="Optional"></textarea>
-    </div>  
+    </div>
 </label>
  <label class="item item-input validated">
-     <div class="col clo-50">          
+     <div class="col clo-50">
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-people"></i><b class="formlabel">Organization</b></span>
      </div>
-      <div class="col clo-50">    
+      <div class="col clo-50">
        <input class="usertext" type="text" value=""  placeholder="Optional"   name="name">
-      </div> 
+      </div>
 </label>
  <label class="item item-input validated">
       <div class="col clo-50">
         <span class="input-label labelcolor">
          <i class="iconsize ion-location"></i><b class="formlabel">Location</b></span>
       </div>
-       <div class="col clo-50">  
+       <div class="col clo-50">
         <input  type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
        </div>
 </label>
@@ -169,42 +169,42 @@
       <span class="input-label labelcolor">
       <i class="iconsize ion-ios-person"></i><b class="formlabel">Hair Color</b></span>
     </div>
-     <div class="col clo-50">  
+     <div class="col clo-50">
        <input type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
-     </div>  
+     </div>
 </label>
  <label class="item item-input validated">
-     <div class="col clo-50"> 
+     <div class="col clo-50">
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-eye"></i><b class="formlabel">Eye Color</b></span>
      </div>
-      <div class="col clo-50">   
+      <div class="col clo-50">
         <input type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
-      </div>  
+      </div>
 </label>
 <label class="item item-input validated">
      <div class="col clo-50">
         <span class="input-label labelcolor">
          <i class="iconsize ion-earth"></i><b class="formlabel">Ethnicity</b></span>
      </div>
-      <div class="col clo-50">   
+      <div class="col clo-50">
          <input type="text" value=""  class="usertext" placeholder="Optional"   name="name" >
-      </div>   
+      </div>
 </label>
    </div>
-  
 
-    
+
+
 </ion-content>
-</ion-side-menu-content>
- <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
-
-
-</ion-view>
 <div class="hide-on-keyboard-open">
 <ion-footer-bar class=" bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;">
         <a class="button button-calm" ng-href="#/tab/healthinfo"><span>Next</span></a>
    <h1 class="title" id="centercolor" >Send Invitation</h1>
 </ion-footer-bar>
 </div>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+
+
+</ion-view>

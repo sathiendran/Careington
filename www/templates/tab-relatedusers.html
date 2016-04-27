@@ -13,21 +13,21 @@
          <div class="row">
             <h1 class="headertitle">
                <div class="ellipsis subHeader_content_name" >
-                  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
-                  <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
+                  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >{{currentPatientDetails[0].patientName}}</span>
+                  <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
                </div>
             </h1>
          </div>
          <div class="item item-image-icon itemiconcolor">
-            <a class="lefthome">
-               <i class="icon ion-home headerlefticons" style=""></i>
+            <a class="lefthome" ng-href="#/tab/userAccount">
+               <i class="icon ion-home headerlefticons" ></i>
                <p class="homecontent">Account Home</p>
             </a>
             <a class="item-avatar itemhead">
-               <p><img src="img\patient.png" class="topimage" style=""></p>
+               <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" ></p>
             </a>
-            <a class="rightpatient">
-               <i class="icon ion-ios-people headerrighticon" style=""></i>
+            <a class="rightpatient" ng-href="#/tab/userhome">
+               <i class="icon ion-ios-people headerrighticon"></i>
                <p class="patientcontent" >Change Patient</p>
             </a>
          </div>
@@ -61,7 +61,7 @@
       <ion-content class="relatedusercontent" ng-hide="userinfoshow">
          <div class="list couses animated slideInLeft " id="couserlist" >
 					 <div ng-repeat="getCoUserDetails in listOfCoUserDetails">
-							<a class="item item-avatar"  ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-right="showActions{{getCoUserDetails.userId}} = true">
+							<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails, getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized)"  ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-right="showActions{{getCoUserDetails.userId}} = true">
 								 <img class="imgsize" src="{{getCoUserDetails.imagePath}}">
 								 <h2 class="relatedhead"> <span class="fname sfont">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
 										<i class="icon ion-chevron-right avataricon" ></i>
@@ -78,8 +78,8 @@
 										</div>
 								 </div>
 								 <div class="col col-75">
-										<a class="item item-avatar"  style="border-right: none;width:105%;">
-											 <img src="img\patient.png">
+										<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails, getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized)"  style="border-right: none;width:105%;">
+											 <img src="{{getCoUserDetails.imagePath}}">
 											 <h2><span class="fname">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span> </h2>
 											 <p>Female . 29yrs . Sister</p>
 										</a>
@@ -89,6 +89,7 @@
          </div>
          <div class="list dependusers animated slideInRight" id="dependuserlist">
 					 <div ng-repeat="getDependentDetails in listOfAccountDependents">
+             <div ng-if="getDependentDetails.isAuthorized == true">
 				<a class="item item-avatar"  ng-show="!showdnewetails{{getDependentDetails.patientId}}" ng-swipe-right="showdnewetails{{getDependentDetails.patientId}} = true">
 					 <img class="imgsize" src="{{getDependentDetails.profileImagePath}}" >
 					 <span ng-click="showtab(getDependentDetails.tabPatientId)">
@@ -97,10 +98,10 @@
 					 </span>
 				</a>
 				<div class="row archeight"  ng-show='showdnewetails{{getDependentDetails.patientId}}' ng-swipe-left="showdnewetails{{getDependentDetails.patientId}} = false" >
-					 <div class="col col-25 listarchieved" ng-click="archieve()">
+					 <div class="col col-25 listarchieved" ng-click="archieve(getDependentDetails.patientId)">
 							<div>
 								 <div class="aligncentericon" >
-										<i class="icon ion-ios-box iconbox" style=""></i>
+										<i class="icon ion-ios-box iconbox"></i>
 										<div class="icontext">  Archieve</div>
 								 </div>
 							</div>
@@ -154,7 +155,7 @@
 								 </div>
 							</div>
 					 </div>
-					 <div class="col col-35 statuscol">
+					 <div class="col col-35 statuscol" ng-click="showPopup(getDependentDetails.patientId,getDependentDetails.patientFirstName,getDependentDetails.patientLastName,getDependentDetails.profileImagePath, getDependentDetails.relationCode,'F')">
 							<div  class="tabvalue">
 								 <p class="status">Status</p>
 								 <p class="avatarclass"><i class="icon ion-chevron-right avatlefticon " style=""></i></p>
@@ -172,39 +173,63 @@
 				</div>
 	 </div>
 
+   <div ng-if="getDependentDetails.isAuthorized == false">
+     <a class="item item-avatar fadediv" id="authorizeddiv"   ng-click="authorizeduser(getDependentDetails.tabPatientId)">
+           <img class="imgsize" src="{{getDependentDetails.profileImagePath}}">
+           <h2><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
+           <p class="relatediconfont">Female . 16yrs . Step-Daughter</p>
+        </a>
+        <a class="item authorizedval" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="viewunauthorized" ng-click="addauthorized(getDependentDetails.tabPatientId)">
+           <p class="authorizedicon"><i class="ion-chevron-down"></i></p>
+           <p class="authorizedcont">You are not authorized to view/manage this account
+              <span class="authorizedupdate" >Update <i class="icon ion-chevron-right"></i></span>
+           </p>
+        </a>
+        <div class="row authorizedview" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="authorizedview">
+           <div class="col col-25 authorupdate" >
+              <p class="tabicon authortab"> <i class="ion-chevron-down"></i></p>
+              <div class="authorcont">
+                 <p><a>Update <i class="icon ion-chevron-right avatarlefticon "></i></a> </p>
+              </div>
+           </div>
+           <div class="col col-35 statustab" ng-click="showPopup(getDependentDetails.patientId,getDependentDetails.patientFirstName,getDependentDetails.patientLastName,getDependentDetails.profileImagePath, getDependentDetails.relationCode, 'T')">
+              <div  class="tabvalue">
+                 <p class="unstatus">Status</p>
+                 <p class="avatrelationclass">
+                    <i class="icon ion-chevron-right avaticon"></i>
+                 </p>
+                 <p class="contentalign unstatuscont"> <span class="unauthor">UnAuthorized</span>
+                    <i class="ion-thumbsdown thumbsdownicon"></i>
+                 </p>
+              </div>
+           </div>
+           <div class="col col-40 relationtab">
+              <p class="conticon relationstatus"><a>Relationsship</a></p>
+              <p class="unauthorrelationship"> <span>Adobe Daughter</span>
+                 <i class="ion-chevron-right avataricon"></i>
+              </p>
+           </div>
+        </div>
+   </div>
+
+</div>
 
          </div>
       </ion-content>
       <ion-content class="searchcontent" ng-show="usersearchinfocontent">
          <div class="list">
-            <div class="item item-divider">
-               Father
-            </div>
-            <div class="item item-divider">
-               Mother
-            </div>
-            <div class="item item-divider">
-               Daughter
-            </div>
-            <div class="item item-divider">
-               Son
-            </div>
-            <div class="item item-divider">
-               Step Daughter
-            </div>
-            <div class="item item-divider">
-               Grand Mother
-            </div>
-            <div class="item item-divider">
-               Grand Father
+            <div class="item item-divider" ng-repeat = "relationShipDetails in listOfRelationship[0].codes | orderBy:'text'">
+               {{relationShipDetails.text}}
             </div>
          </div>
-         <ul class="alpha_sidebar">
+         <!--<ul class="alpha_sidebar">
             <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
                {{letter}}
             </li>
-         </ul>
+         </ul>-->
       </ion-content>
-		</ion-side-menu-content>
 
-			<div ng-include src="'templates/account_footer.html'"></div>
+  	<div ng-include src="'templates/account_footer.html'"></div>
+		</ion-side-menu-content>
+    <div ng-include src="'templates/SideMenu.html'"></div>
+    </ion-view>

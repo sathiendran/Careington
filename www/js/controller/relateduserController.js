@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter) {
+.controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter,$localstorage) {
   $ionicPlatform.registerBackButtonAction(function(event, $state) {
       if (($rootScope.currState.$current.name === "tab.userhome") ||
           ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -98,53 +98,35 @@ angular.module('starter.controllers')
           $scope.showdetails = true;
     };
 
-    $scope.archieve=function(){
+    $scope.archieve=function(P_Id){
           $scope.newarchieve=true;
         //  $scope.showdnewetails = false;
-
-
-
-          var confirmPopup = $ionicPopup.show({
-
-     title: "<a class='item-avatar'>  <img src='img/patient.png'><span><span class='fname'><b>Sarah</b></span> <span class='sname'>Pradesh</span></span></a> ",
-     subTitle:"<p class='fontcolor'>Female.16 Step-Daughter</p>",
-  //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
-     templateUrl: 'templates/archiveTemplate.html',
-
-     buttons: [
-       { text: 'Cancel' },
-       {
-         text: '<b>Archieve</b>',
-         type: 'button-assertive',
-       },
-     ],
-      });
-     confirmPopup.then(function(res) {
-       if(res) {
-
-       } else {
-         $scope.showdnewetails=false;
-          $scope.allval=false;
-       }
-
-
-   });
+      //  $rootScope.selectedRelatedDependentDetails = [];
+        $rootScope.doGetSelectedPatientProfiles(P_Id,'tab.relatedusers');
 
     };
     $scope.showtab=function(tabview){
          $scope.tabView = true;
          $scope.moretab = false;
-        $scope.tabWithPatientId = tabview;
-        if(typeof $scope.tabview === 'undefined') {
-          $scope.tabview = false;
-        }
-         $scope.tabview = $scope.tabview === false ? true: false;
+        $scope.patientIDWithTab = $localstorage.get('patientIDWithTab');
+        if($scope.patientIDWithTab === tabview) {
+            $scope.tabWithPatientId = '';
+              $localstorage.set('patientIDWithTab', '');
+        } else {
+          $scope.tabWithPatientId = tabview;
+          $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
+          if(typeof $scope.tabview === 'undefined') {
+            $scope.tabview = false;
+          }
+           $scope.tabview = $scope.tabview === false ? true: false;
+       }
 
     };
 
     $scope.moreclickval=function(tabview){
          $scope.tabView = false;
          $scope.tabWithPatientId = tabview;
+         $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
          $scope.moretab=true;
     }
 
@@ -152,39 +134,73 @@ angular.module('starter.controllers')
        $scope.moretab = false;
        $scope.tabView = true;
     }
-   $scope.authorizeduser=function(){
-    var myEl = angular.element( document.querySelector( '#authorizeddiv' ));
-     myEl.removeClass('fadediv');
-    //  $scope.viewunauthorized = $scope.viewunauthorized === false ? true: false;
+   $scope.authorizeduser=function(tabWithPatientId){
+     $scope.patientIDWithTab = $localstorage.get('patientIDWithTab');
+     if($scope.patientIDWithTab === tabWithPatientId) {
+         $scope.tabWithPatientId = '';
+           $localstorage.set('patientIDWithTab', '');
+     } else {
+       $scope.tabWithPatientId = tabWithPatientId;
+       $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
+      //var myEl = angular.element( document.querySelector( '#authorizeddiv' ));
+      // myEl.removeClass('fadediv');
+      //  $scope.viewunauthorized = $scope.viewunauthorized === false ? true: false;
 
-     $scope.viewunauthorized=true;
-     $scope.authorizedview=false;
+       $scope.viewunauthorized=true;
+       $scope.authorizedview=false;
+     }
    }
 
 
-    $scope.addauthorized=function(){
+    $scope.addauthorized=function(tabWithPatientId){
+      $scope.tabWithPatientId = tabWithPatientId;
+      $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
         $scope.viewunauthorized=false;
         $scope.authorizedview=true;
     }
 
+    $rootScope.doUpdateDependentsAuthorize = function(relateDependentId,relateDependentRelationCode,relateDependentAuthorize) {
+            var params = {
+              accessToken: $rootScope.accessToken,
+			   patientId : relateDependentId,
+			    RelationCodeId : relateDependentRelationCode,
+				 IsAuthorized : relateDependentAuthorize,
+              success: function(data) {
+                $scope.authorizedview=false;
+                 //myPopup.close();
+                 $rootScope.doGetAccountDependentDetails();
+              },
+              error: function(data) {
+                	$rootScope.serverErrorMessageValidation();
+              }
+            };
+            LoginService.updateDependentsAuthorize(params);
+        }
 
-     $scope.showPopup = function() {
 
-   $scope.data = {}
+
+     $scope.showPopup = function(relateDependentId,relateDependentFirstName,relateDependentLastName,relateDependentImage,relateDependentRelationCode,relateDependentAuthorize) {
 
    var myPopup = $ionicPopup.show({
 
-     title: "<a class='item-avatar'>  <img src='img/patient.png'><span><span class='fname'><b>Sarah</b></span> <span class='sname'>Pradesh</span></span></a> ",
+     title: "<a class='item-avatar'>  <img src='"+$rootScope.APICommonURL+relateDependentImage+"'><span><span class='fname'><b>"+relateDependentFirstName+"</b></span> <span class='sname'>"+relateDependentLastName+"</span></span></a> ",
      subTitle:"<p class='fontcolor'>Female.16 Step-Daughter</p>",
   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
      templateUrl: 'templates/popupTemplate.html',
      scope: $scope,
      buttons: [
-       { text: '<b class="fonttype">Cancel</b>' },
+       { text: '<b class="fonttype">Cancel</b>',
+       onTap: function(e) {
+         return false;
+        }
+      },
        {
          text: '<b class="fonttype">Confirm</b>',
          type: 'button-positive',
          onTap: function(e) {
+           return true;
+          }
+         /*onTap: function(e) {
            if (!$scope.Confirm) {
                 $scope.authorizedview=false;
                  myPopup.close();
@@ -193,12 +209,17 @@ angular.module('starter.controllers')
            } else {
 
            }
-         }
+         }*/
        },
      ]
    });
    myPopup.then(function(res) {
-     console.log('Tapped!', res);
+     if(res) {
+       $rootScope.doUpdateDependentsAuthorize(relateDependentId,relateDependentRelationCode,relateDependentAuthorize);
+     } else {
+
+     }
+
    });
 
   };
@@ -223,6 +244,8 @@ angular.module('starter.controllers')
 
 
     $scope.dependentslist=function(){
+      $scope.tabWithPatientId = '';
+      $localstorage.set('patientIDWithTab', '');
         var myEl = angular.element( document.querySelector( '#dependents' ) );
             myEl.addClass('btcolor');
             myEl.removeClass('btnextcolor');
@@ -236,11 +259,11 @@ angular.module('starter.controllers')
            var myEl = angular.element( document.querySelector( '#couserlist' ) );
             myEl.removeClass('couses');
             myEl.addClass('dependusers');
-            $scope.doGetAccountDependentDetails();
+            $rootScope.doGetAccountDependentDetails();
     }
 
 
-    $scope.doGetAccountDependentDetails = function() {
+    $rootScope.doGetAccountDependentDetails = function() {
       var params = {
             accessToken: $rootScope.accessToken,
            success: function(data) {

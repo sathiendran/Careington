@@ -645,8 +645,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     }
   })
 
- 
-   
+
+
 
    .state('tab.relatedusers', {
    url: '/relatedusers',
@@ -683,7 +683,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-profileoption.html',
-        controller: ''
+        controller: 'LoginCtrl'
       }
       }
   })

@@ -6,10 +6,10 @@
 				ng-click="toggleLeft()"></button>
 		</div>
 		<h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader " > <span class="headerfont">User</span>
-        <span> <a class="headerval">Cancel</a>
+        <span> <a class="headerval" ng-href="#/tab/userhome" >Cancel</a>
        </span>
         </h1>
-        
+
          <div class="bar bar-subheader bar-dark subheaderheight" >
             <div class="row">
              <h1 class="headertitle">
@@ -19,7 +19,7 @@
                </div>
              </h1>
          </div>
-       
+
 			<div class="item item-image-icon" >
 				<a class="lefthome">
 					<i class="icon ion-home headerlefticons"></i>
@@ -28,7 +28,7 @@
 				<a class="item-avatar itemhead">
 					<p><img src="{{PatientImageSelectUser}}" class="topimage"></p>
 				</a>
-				<a class="rightpatient">
+				<a class="rightpatient" ng-href="#/tab/userhome">
 					<i class="icon ion-ios-people headerrighticon"></i>
 					<p class="patientcontent" >Change Patient</p>
 				</a>
@@ -40,10 +40,10 @@
 			<ion-list >
 				<div class="list userlist">
 					<ion-item class="ioniictem userionitem" >
-                       
+
 						<div class="card cardshadow usercard">
 							<div class="item-text-wrap itemtextwap">
-								
+
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan">  <i class="ion-ios-person profileicon profileperson"></i></span>
 										<span class="content">
@@ -52,7 +52,7 @@
 										</a>
 										</span>
 									</h2>
-								
+
 							</div>
 						</div>
                         </a>
@@ -60,7 +60,7 @@
 			 		<ion-item class="ionicitem userionitem">
 						<div class="card cardshadow usercard">
 							<div class="item-text-wrap itemtextwap">
-								
+
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan"><i class="ion-calendar profileicon profilecalendar"></i></span>
 										<span class="content">
@@ -68,7 +68,7 @@
 										View your Appointments</a>
 										</span>
 									</h2>
-								
+
 							</div>
 						</div>
 					</ion-item>
@@ -76,10 +76,31 @@
 			</ion-list>
 		</ion-content>
 	</ion-view>
-	<ion-footer-bar class="bar bar-footer  footer-color footerstyle">
+	<ion-footer-bar class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
 		<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 	</ion-footer-bar>
+
+	<ion-item class="apptdetails" style="display: {{nextAppointmentDisplay}}" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-if="$first">
+		<a ng-href="#tab/patientappointmentdetails">
+      <div>
+        <h3 class="appth3"> <span class="appointment">Appointment @ 2:45 pm</span>
+         <span id="viewicon">
+	        <a class="appalignrighticon"> View Details</a>
+	         <span  class="aslignspan"><i class="iconchevron ion-chevron-right" ></i>
+	</span>
+	</span>
+	</h3>
+
+	</div>
+	</a>
+</ion-item>
+ <ion-footer-bar style="display: {{nextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" >
+
+	<h1 class="title userappfootcontent" >See A Clinician Now</h1>
+ </ion-footer-bar>
+
+
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
