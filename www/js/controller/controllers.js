@@ -2741,7 +2741,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
 					$rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
                     $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
-				//	$state.go('tab.patientConcerns');
+					$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
 					$rootScope.serverErrorMessageValidation();
