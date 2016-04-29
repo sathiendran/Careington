@@ -257,10 +257,10 @@
             <hr class="dothr">
             <ul class="aligntext alvalue">
 
-                 <li  ng-repeat="allergies in patientmedicationsallergies" ng-if="allergies.description == '' ">
+             <!--    <li  ng-repeat="allergies in patientmedicationsallergies" ng-if="allergies.description == '' "  ng-if="allergies.description != '' ">
                  {{$index + 1}}. N/A
-                    </li>
-                     <li  ng-repeat="allergies in patientmedicationsallergies" ng-if="allergies.description != '' ">
+                    </li>-->
+                     <li  ng-repeat="allergies in patientmedicationsallergies">
                  {{$index + 1}}.{{allergies.description}}
                     </li>
         
@@ -296,6 +296,8 @@
               
             </ul>
          </div>  
+          
+         
    </ion-content>
   
    <!-- </form>-->

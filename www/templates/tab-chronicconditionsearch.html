@@ -6,22 +6,20 @@
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
 
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> My health <span ng-click="chronicdone()"><a class="headerval" >Done</a></span></h1>
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="width:100%;"> My health <span ng-click="chronicdone()"><a class="headerval" >Done</a></span></h1>
 
 
- <div class="bar bar-subheader csubheader">
-    <h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;" class="subname">Chronic Conditions</h2>
-     <div class="csearch">
-       <h6 class="hsearch">
-         <i class="icon ion-search fontcolor"></i>
-         <span class="fontcolor">Search</span>
-       </h6>
-     </div>
+ <div class="bar bar-subheader searchstyle">
+    <h2  class="subname">Chronic Conditions</h2>
+     <div class="search_home UserHmeSub concernListSearchHome">
+       <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
+	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="data.searchQuery" >
+        </label>
+	</div>  
  </div>  
-   
 </ion-header-bar>
 	<ion-content class="consultcontent has-header" scroll="true" padding="true">
-     <div class="list" style="margin-top:44px;" >
+     <ion-list  style="margin-top:44px;" ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
        
        
        
@@ -38,14 +36,15 @@
               {{chronic.text}}
             </div>
        </div>-->
-     </div>   
+     </ion-list>
       
-	</ion-content>
-   <ul class="alpha_sidebar">
-         <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
+       <ul class="alpha_sidebar">
+         <li ng-click="gotochronicList('index_{{letter}}')"ng-repeat="letter in alphabet">
             {{letter}}
          </li>
-      </ul> 
+      </ul>
+	</ion-content>
+   
 </ion-view>     
 
 </div>

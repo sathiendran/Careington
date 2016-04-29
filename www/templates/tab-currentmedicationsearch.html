@@ -1,49 +1,45 @@
-<div class="modal" >
+<div class="modal" style="height:100%;">
 
 <ion-view>
-    
-    
-<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+ <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+  <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="width:100%;"> My health <span ng-click="medicationdone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
 
 
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> My health <span ng-click="medicationdone()"><a class="headerval" >Done</a></span></h1>
-
-
- <div class="bar bar-subheader csubheader" ng-hide="healthsearchsubheader">
-    <h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;" class="subname">Current Medication</h2>
-     <div class="csearch">
-       <h6 class="hsearch">
-         <i class="icon ion-search fontcolor"></i>
-         <span class="fontcolor">Search</span>
-       </h6>
-     </div>
+ <div class="bar bar-subheader searchstyle" >
+    <h2 class="subname">Current Medication</h2>
+     <div class="search_home UserHmeSub concernListSearchHome">
+       <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
+	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="data.searchQuery" >
+        </label>
+	</div>   
  </div>  
    
 </ion-header-bar>
-	<ion-content class="consultcontent">
-     <div class="list" style="margin-top:44px;">
-       
-        <div > 
-            <!--    <div class="item item-divider">Welcome Chronic</div>-->
-          
-       
-       
-      <ion-checkbox ng-repeat="currentmedication in currentMedicationsearchList | filter: data.searchQuery"
+<ion-content class="consultcontent" >
+ 
+ <ion-list  style="margin-top:54px;" >
+       <!-- <ion-list  style="margin-top:44px;" >-->
+         <div id="cursearch" class="" ng-repeat="(letter, currentMedicationsearchList) in sorted_users">
+        
+       <ion-checkbox ng-repeat="currentmedication in currentMedicationsearchList | filter: data.searchQuery"
 						  ng-model="currentmedication.checked" 
 						  ng-checked="currentmedication.checked" ng-change="OnSelectMedication(currentmedication)"  ng-disabled="checkedMedication==limit && !currentmedication.checked" >
-			  <span>   {{ currentmedication.text }} </span>
+			  <span id="index_{{letter}}">   {{ currentmedication.text }} </span>
+        </ion-checkbox>
+         </div>
+   </ion-list>
+ 
 
 
-		  </ion-checkbox>
-     </div>   
-      
-       <ul class="alpha_sidebar">
+
+
+      <ul class="alpha_sidebar">
          <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
             {{letter}}
          </li>
       </ul> 
-	</ion-content>
-  
+           
+</ion-content>
 </ion-view>     
 
 </div>

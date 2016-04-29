@@ -211,7 +211,7 @@ angular.module('starter.services', [])
 			});
 		}
 
-		this.getPatientMedicalProfile = function(params){
+this.getPatientMedicalProfile = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
           url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.patientId,
@@ -230,19 +230,16 @@ angular.module('starter.services', [])
           });
     }
 
-/*
+
 
    this.putPatientMedicalProfile = function(params){
       var requestpatientInfo = {
           headers: util.getHeaders(params.accessToken),
           url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.patientId,
           method: 'PUT',
-           data: {
-              
-                patientId: params.patientId,
-            }
+           data: {patientId: params.patientId  }
       };
-      $http(requestInfo).
+      $http(requestpatientInfo).
           success(function (data, status, headers, config) {
               if (typeof params.success != 'undefined') {
                   params.success(data);
@@ -254,7 +251,7 @@ angular.module('starter.services', [])
               }
           });
     }
-*/
+
 
 
 
