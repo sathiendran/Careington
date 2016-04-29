@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
 //InterimController - To manipulate URL Schemes
-.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,StateList, CustomCalendar, CreditCardValidations) {
 	
 	$rootScope.deploymentEnv = deploymentEnv;
      if(deploymentEnv != 'Multiple') {
@@ -33,7 +33,7 @@ angular.module('starter.controllers')
 		api_keys_env = "Staging";
 	}*/
     
-	$localstorage.set('ChkVideoConferencePage', ""); 
+	$window.localStorage.setItem('ChkVideoConferencePage', ""); 
 	
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||

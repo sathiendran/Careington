@@ -36,6 +36,8 @@
 
 <ion-content class="ReportContent"  >
 	<div style="margin: 0 3%;">
+		<div><ion-refresher on-refresh="doRefreshReportDetails()"  > 
+    </ion-refresher></div>
 		<div>
 			<div class="reportLogo">
 			   <!--<img ng-src="{{ReportHospitalImage}}">-->
@@ -205,8 +207,8 @@
 			<div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<!--<p> {{reportSubjective}}</p>-->
-                <p>None Reported</p>
+				<p ng-if="reportSubjective != 'None Reported'" id="reportSubjective" ></p>
+                <p ng-if="reportSubjective == 'None Reported'">{{reportSubjective}}</p>
 			</div>		
 		</div>
         
@@ -214,8 +216,8 @@
 			<div class="objectiveTitle" ><b>OBJECTIVE</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<!--<p> {{reportObjective}}</p>-->
-                 <p>None Reported</p>
+				<p ng-if="reportObjective != 'None Reported'" id="reportObjective"></p>
+                 <p ng-if="reportObjective == 'None Reported'">{{reportObjective}}</p>
 			</div>		
 		</div>	
 		
@@ -223,8 +225,8 @@
 			<div class="objectiveTitle" ><b>ASSESSMENT</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<!--<p> {{reportAssessment}}</p>-->
-                 <p>None Reported</p>
+				<p ng-if="reportAssessment != 'None Reported'" id="reportAssessment"></p>
+               <p ng-if="reportAssessment == 'None Reported'">{{reportAssessment}}</p>
 			</div>		
 		</div>	
 		
@@ -232,8 +234,8 @@
 			<div class="objectiveTitle" ><b>PLAN</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<!--<p> {{reportPlan}}</p>-->
-                 <p>None Reported</p>
+				<p ng-if="reportPlan != 'None Reported'" id="reportPlan"></p>
+                 <p ng-if="reportPlan == 'None Reported'">{{reportPlan}}</p>
 			</div>		
 		</div>	
 		
@@ -241,8 +243,8 @@
 			<div class="objectiveTitle" ><b>RX</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<!--<p>{{reportrx}}  </p>-->
-                 <p>None Reported</p>
+				<p>{{reportrx}}  </p>
+                 <!--<p>None Reported</p>-->
 			</div>		
 		</div>
 		

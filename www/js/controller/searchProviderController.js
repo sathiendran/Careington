@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('searchProviderController', function($scope, ageFilter, get2CharInString, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+.controller('searchProviderController', function($scope, ageFilter, get2CharInString, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
 	  $ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||
 			  ($rootScope.currState.$current.name=="tab.addCard") ||	

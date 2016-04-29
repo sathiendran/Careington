@@ -1,7 +1,7 @@
 
 angular.module('starter.controllers')
 
-.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
     
     $scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
@@ -25,7 +25,7 @@ angular.module('starter.controllers')
 				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
 				if(!angular.isUndefined($rootScope.consultationStatusId)) {
 						if($rootScope.consultationStatusId == 72 ) {
-							$scope.doGetExistingConsulatationReport();
+							$rootScope.doGetExistingConsulatationReport();
 						}						
 				}
                
@@ -39,8 +39,8 @@ angular.module('starter.controllers')
 		
 	}
     
-    $scope.doGetExistingConsulatationReport = function () {	
-		
+    $rootScope.doGetExistingConsulatationReport = function () {	
+			$state.go('tab.ReportScreen');
 			
 		 if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
@@ -65,7 +65,8 @@ angular.module('starter.controllers')
 					$rootScope.reportLocation = angular.element('<div>').html($rootScope.existingConsultationReport.location).text();
 				} else {
 					$rootScope.reportLocation = '';
-				}*/
+				}*/			
+						
 				
 				if($rootScope.existingConsultationReport.height !='' && typeof $rootScope.existingConsultationReport.height != 'undefined')
 				{
@@ -250,9 +251,9 @@ angular.module('starter.controllers')
 						});
 					});
 					
-					$localstorage.set('ChkVideoConferencePage', ""); 	
-				session = null; 
-				$state.go('tab.ReportScreen');
+					$window.localStorage.setItem('ChkVideoConferencePage', ""); 	
+				session = null; 				
+				$scope.getSoapNotes();
 		   },
             error: function (data) {
                 $rootScope.serverErrorMessageValidation();
@@ -260,6 +261,36 @@ angular.module('starter.controllers')
         };
         
 		LoginService.getConsultationFinalReport(params);
+	}
+	
+	$scope.getSoapNotes = function() {
+				$("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
+				$("#reportObjective").html($rootScope.existingConsultationReport.objective);
+				$("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
+				$("#reportPlan").html($rootScope.existingConsultationReport.plan);
+			if($rootScope.existingConsultationReport.subjective !='' && typeof $rootScope.existingConsultationReport.subjective != 'undefined') {
+				$rootScope.reportSubjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.subjective);
+			} else {
+				$rootScope.reportSubjective = 'None Reported';
+			}
+			
+			if($rootScope.existingConsultationReport.objective !='' && typeof $rootScope.existingConsultationReport.objective != 'undefined') {
+				$rootScope.reportObjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.objective);
+			} else {
+				$rootScope.reportObjective = 'None Reported';
+			}
+			
+			if($rootScope.existingConsultationReport.assessment !='' && typeof $rootScope.existingConsultationReport.assessment != 'undefined') {
+				$rootScope.reportAssessment = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.assessment);
+			} else {
+				$rootScope.reportAssessment = 'None Reported';
+			}
+			
+			if($rootScope.existingConsultationReport.plan !='' && typeof $rootScope.existingConsultationReport.plan != 'undefined') {
+				$rootScope.reportPlan = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.plan);
+			} else {
+				$rootScope.reportPlan = 'None Reported';
+			}
 	}
 	
 	$scope.doGetPatientsSoapNotes = function() {
@@ -271,7 +302,11 @@ angular.module('starter.controllers')
                 consultationId: $rootScope.consultationId, 
                 accessToken: $rootScope.accessToken,
                 success: function (data) {
-                    $rootScope.SoapNote = data.data;					
+                    $rootScope.SoapNote = data.data;	
+						$("#reportSubjective").html($rootScope.SoapNote.subjective);
+						$("#reportObjective").html($rootScope.SoapNote.objective);
+						$("#reportAssessment").html($rootScope.SoapNote.assessment);
+						$("#reportPlan").html($rootScope.SoapNote.plan);
 					if($rootScope.SoapNote.subjective !='' && typeof $rootScope.SoapNote.subjective != 'undefined') {
 						$rootScope.reportSubjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.subjective);
 					} else {
@@ -326,7 +361,7 @@ angular.module('starter.controllers')
 		}
 	}
     
-    $localstorage.set('ChkVideoConferencePage', "videoConference"); 
+    $window.localStorage.setItem('ChkVideoConferencePage', "videoConference"); 
     
     if(!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId != 72) 
     {    
@@ -544,7 +579,10 @@ angular.module('starter.controllers')
 			//$('#subscriber').css('display', 'none');
 			
 		//$scope.doGetPatientsSoapNotes();
-		$scope.doGetExistingConsulatationReport(); 
+		$rootScope.doGetExistingConsulatationReport(); 
 		window.plugins.insomnia.allowSleepAgain();	
 	}
+	
+	
+	
 })

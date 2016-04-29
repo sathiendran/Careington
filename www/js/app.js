@@ -82,8 +82,40 @@ var handleOpenURL = function (url) {
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, $localstorage, LoginService) {
+.run(function($ionicPlatform, $state, $rootScope,  LoginService, $ionicPopup, $window) {
   $ionicPlatform.ready(function() {
+  
+  // Check for network connection
+    if(window.Connection) {
+	//alert('fff');
+      if(navigator.connection.type == Connection.NONE) {
+	 // alert('ddd');
+      /* $ionicPopup.confirm({
+          title: 'Network Problem',
+          content: 'Sorry, Please Check Your Network Connection.'
+        })
+        .then(function(result) {
+          if(!result) {
+            navigator.app.exitApp();
+          }
+        });*/
+		
+		
+		navigator.notification.confirm(
+			'Sorry, Please Check Your Network Connection.',
+			 function(index){
+				if(index == 1){					
+					
+				}else if(index == 2){
+					// navigator.app.exitApp();				
+				}
+			 },
+			'Network Problem:',
+			['Cancel','Ok']     
+		);
+		
+      }
+	 }
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
 		if(window.localStorage.getItem("app_load") == "yes") {
@@ -130,12 +162,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             'No Internet Connection',            // title
             'Ok'                  // buttonName
             ); 
-            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+            if($window.localStorage.get('ChkVideoConferencePage') == "videoConference") { 
               $state.go('tab.connectionLost');
             } 
         }
         function onOnline() {		
-            if($localstorage.get('ChkVideoConferencePage') == "videoConference") { 
+            if($window.localStorage.get('ChkVideoConferencePage') == "videoConference") { 
            $state.go('tab.videoConference');
             }		
         }

@@ -618,6 +618,26 @@ angular.module('starter.services', [])
                 });
     }
 	
+	this.getonDemandAvailability = function(params) {
+		var onDemandAvailability = {
+			headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2.1/patients/ondemand/availability?providerId=' + params.hospitalId,
+            method: 'GET'
+		};
+		
+		$http(onDemandAvailability).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+	
 
     this.getFacilitiesList = function (params) {
         //GET v2/patients/hospitals?email=<email>
@@ -960,7 +980,7 @@ this.getCountryDetails = function () {
 })
 
 
-.factory('$localstorage', ['$window', function($window) {
+.factory('$window.localStorage', ['$window', function($window) {
   return {
  set: function(key, value) {
    $window.localStorage[key] = value;

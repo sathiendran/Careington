@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+.controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
 	$rootScope.hospitalId = singleHospitalId;
 	if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
 			apiCommonURL = 'https://connectedcare.md';

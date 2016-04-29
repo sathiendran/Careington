@@ -1,6 +1,6 @@
 
 angular.module('starter.controllers')
-.controller('connectionLostCtrl', function($scope, ageFilter, $ionicPlatform, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+.controller('connectionLostCtrl', function($scope, ageFilter, $ionicPlatform, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
 	  $ionicPlatform.registerBackButtonAction(function (event, $state) {	 
         if ( ($rootScope.currState.$current.name=="tab.userhome") ||
 			  ($rootScope.currState.$current.name=="tab.addCard") ||	
