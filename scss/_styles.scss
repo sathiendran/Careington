@@ -1500,6 +1500,16 @@ body {
 			width: 40%;
 		}
 	}
+	#soapReport {
+		ol { 
+			list-style-type: decimal;
+			margin-left: 5%;
+		}
+		ul { 
+			list-style: initial; 
+			margin-left: 5%;
+		}
+	}
 	.reportPatientStatistics {
 		clear: both; padding-top: 20px;
 		.PatientStatistic {

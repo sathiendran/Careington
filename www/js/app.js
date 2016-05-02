@@ -86,21 +86,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $ionicPlatform.ready(function() {
   
   // Check for network connection
-    if(window.Connection) {
-	//alert('fff');
-      if(navigator.connection.type == Connection.NONE) {
-	 // alert('ddd');
-      /* $ionicPopup.confirm({
-          title: 'Network Problem',
-          content: 'Sorry, Please Check Your Network Connection.'
-        })
-        .then(function(result) {
-          if(!result) {
-            navigator.app.exitApp();
-          }
-        });*/
-		
-		
+   /* if(window.Connection) {	
+      if(navigator.connection.type == Connection.NONE) { 
 		navigator.notification.confirm(
 			'Sorry, Please Check Your Network Connection.',
 			 function(index){
@@ -115,7 +102,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 		);
 		
       }
-	 }
+	 }*/
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
 		if(window.localStorage.getItem("app_load") == "yes") {
@@ -162,6 +149,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             'No Internet Connection',            // title
             'Ok'                  // buttonName
             ); 
+			return false;
             if($window.localStorage.get('ChkVideoConferencePage') == "videoConference") { 
               $state.go('tab.connectionLost');
             } 

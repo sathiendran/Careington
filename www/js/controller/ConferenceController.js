@@ -129,7 +129,8 @@ angular.module('starter.controllers')
 					$rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
 				} else {
 					$rootScope.reportrx = 'None Reported';
-				}
+				}		
+				
 				
 				var startTimeISOString =  $rootScope.existingConsultationReport.consultationDate;
 				 var startTime = new Date(startTimeISOString );
@@ -251,6 +252,25 @@ angular.module('starter.controllers')
 						});
 					});
 					
+					$rootScope.reportMedicalCodeDetails = [];					
+					
+					if($rootScope.existingConsultationReport.medicalCodeDetails !='' && typeof $rootScope.existingConsultationReport.medicalCodeDetails != 'undefined')
+					{						
+						angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {	
+							$rootScope.reportMedicalCodeDetails.push({	
+								'Number':item + 1,
+								'shortDescription': index.shortDescription,
+								'medicalCodingSystem': index.medicalCodingSystem								
+							});
+						});		
+						$rootScope.reportMediCPT = $filter('filter')($scope.reportMedicalCodeDetails, {medicalCodingSystem:'CPT'});
+						$rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {medicalCodingSystem:'ICD-10-DX'});
+						
+					} else {
+						$rootScope.reportMediCPT = '';
+						$rootScope.reportMediICD ='';
+					}
+					
 					$window.localStorage.setItem('ChkVideoConferencePage', ""); 	
 				session = null; 				
 				$scope.getSoapNotes();
@@ -291,9 +311,16 @@ angular.module('starter.controllers')
 			} else {
 				$rootScope.reportPlan = 'None Reported';
 			}
+			$('#soapReport').find('a').each(function() {
+				var aLink = angular.element(this).attr('href');
+				var onClickLink = "window.open('" + aLink + "', '_system', 'location=yes'); return false;";
+				angular.element(this).removeAttr('href', '');
+				angular.element(this).attr('href', 'javascript:void(0);');
+				angular.element(this).attr('onclick', onClickLink);
+			});
 	}
 	
-	$scope.doGetPatientsSoapNotes = function() {
+	/*$scope.doGetPatientsSoapNotes = function() {
 			if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -338,7 +365,7 @@ angular.module('starter.controllers')
             };
 			
 			LoginService.getPatientsSoapNotes(params);
-		}
+		}*/
     
     
 	if(session != null) {		 
