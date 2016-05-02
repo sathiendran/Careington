@@ -267,8 +267,7 @@ angular.module('starter.controllers')
 						$rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {medicalCodingSystem:'ICD-10-DX'});
 						
 					} else {
-						$rootScope.reportMediCPT = '';
-						$rootScope.reportMediICD ='';
+						$rootScope.reportMedicalCodeDetails = '';
 					}
 					
 					$window.localStorage.setItem('ChkVideoConferencePage', ""); 	

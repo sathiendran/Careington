@@ -277,17 +277,22 @@
 						<div class="objectiveTitle"><b>MEDICAL CODES</b></div>
 						<div class="objectiveUnderline"></div>
 					</div>
-					<div class="objectiveTitle" style="padding-top: 5%;"><b>CPT Code</b></div>
-					<div ng-repeat="reportMediCPT in reportMediCPT" style="margin-left: 10%;"> 
-						<p>{{reportMediCPT.shortDescription}}</p>
+					<div ng-if="reportMedicalCodeDetails != ''">
+						<div ng-if="reportMediCPT != ''">
+							<div class="objectiveTitle" style="padding-top: 5%;"><b>CPT Code</b></div>
+							<div ng-repeat="reportMediCPT in reportMediCPT" style="margin-left: 10%;"> 
+								<p>{{reportMediCPT.shortDescription}}</p>
+							</div>
+						</div>
+						
+						<div ng-if="reportMediICD != ''">
+							<div class="objectiveTitle"><b>ICD-10-DX Code</b></div>
+							<div ng-repeat="reportMediICD in reportMediICD"  style="margin-left: 10%;"> 
+								<p>{{reportMediICD.shortDescription}}</b>
+							</div>
+						</div>
 					</div>
-					<div ng-if="reportMediCPT == ''" class="medicationNone" style="margin-left: 10%;" ><p>None Reported</p></div>
-					
-					<div class="objectiveTitle"><b>ICD-10-DX Code</b></div>
-					<div ng-repeat="reportMediICD in reportMediICD"  style="margin-left: 10%;"> 
-						<p>{{reportMediICD.shortDescription}}</b>
-					</div>
-					<div ng-if="reportMediICD == ''" class="medicationNone"  style="margin-left: 10%;" ><p>None Reported</p></div>
+					<div ng-if="reportMedicalCodeDetails == ''"><p>None Reported</p></div>
 				</div>
 
 		<div class="reportObjective">
