@@ -116,8 +116,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 				}
 				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-				request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
-				request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
 				return request;
 			}
 		},
@@ -135,8 +135,8 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				return headers;
 			}else{
 				var headers = {
-						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
-						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+						'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+						'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -238,10 +238,10 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 		apiCommonURL = 'https://snap-qa.com';
 	}else if(deploymentEnv == "Single"){		
 	//	apiCommonURL = 'https://sandbox.connectedcare.md';	
-		apiCommonURL = 'https://snap-qa.com';
+		//apiCommonURL = 'https://snap-qa.com';
 	//apiCommonURL = 'https://connectedcare.md';	
 		//apiCommonURL = 'https://demo.connectedcare.md';
-		//apiCommonURL = 'https://snap-stage.com';  
+		apiCommonURL = 'https://snap-stage.com';  
 	} else if(deploymentEnv == "Staging") {
 		apiCommonURL = 'https://snap-stage.com';
 		api_keys_env = "Staging";
