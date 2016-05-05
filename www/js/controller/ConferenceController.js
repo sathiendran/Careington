@@ -53,6 +53,7 @@ angular.module('starter.controllers')
             success: function (data) {
 				//$('#subscriber .OT_video-container').css('background-color', 'transparent');
 				//$('#publisher .OT_video-container').css('background-color', 'transparent');
+				$rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
 				/*if($rootScope.existingConsultationReport.organization !='' && typeof $rootScope.existingConsultationReport.organization != 'undefined')
 				{
@@ -273,6 +274,7 @@ angular.module('starter.controllers')
 					$window.localStorage.setItem('ChkVideoConferencePage', ""); 	
 				session = null; 				
 				$scope.getSoapNotes();
+				$scope.doGetAttachmentList();
 		   },
             error: function (data) {
                 $rootScope.serverErrorMessageValidation();
@@ -281,6 +283,72 @@ angular.module('starter.controllers')
         
 		LoginService.getConsultationFinalReport(params);
 	}
+	$scope.doGetAttachmentList = function () {		
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+				$scope.getSoapNotes();
+                //$rootScope.attachmentFileId = data.data[0].snapFile.files[0].id;
+				$rootScope.getAttachmentList = []
+					
+				
+				angular.forEach(data.data[0].snapFile.files, function(index, item) {
+					 $rootScope.getAttachmentList.push({								
+						'id': index.id,
+						'name': index.name,
+						'image': index.name.split(".")	
+					});
+					//$scope.doGetAttachmentURL(index.id, index.name);					 
+					
+				});
+				$rootScope.attachmentLength = $rootScope.getAttachmentList.length;
+				
+				
+            },
+            error: function (data) {
+               $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getAttachmentList(params);	
+		
+	}
+	
+	/*$scope.doGetAttachmentURL = function (fileId) {		
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}		
+		var params = {
+            attachmentFileId: fileId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+				$rootScope.attachmentURLList = [];
+				angular.forEach(data.data, function(index, item) {
+					 $rootScope.attachmentURLList.push({								
+						'url': index.url,
+						'name': "https://emerald.snap-qa.com/" + index.name,
+						'openURL': "window.open('" + index.url + "', '_system', 'location=yes'); return false;"	
+					});					
+					
+				});
+			
+                $rootScope.getAttachmentURL = data.data[0].url;
+				$rootScope.getAttachmentName = "https://emerald.snap-qa.com/" + data.data[0].name;
+            },
+            error: function (data) {
+               $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getAttachmentURL(params);	
+		
+	}*/
 	
 	$scope.getSoapNotes = function() {
 				$("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
@@ -318,6 +386,8 @@ angular.module('starter.controllers')
 				angular.element(this).attr('onclick', onClickLink);
 			});
 	}
+	
+	 
 	
 	/*$scope.doGetPatientsSoapNotes = function() {
 			if ($rootScope.accessToken == 'No Token') {

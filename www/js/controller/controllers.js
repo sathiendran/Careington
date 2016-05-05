@@ -3565,7 +3565,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.healthPlanSection = "none";	
 					
 					//Get Payment Details	
-						if($rootScope.paymentMode == 'on' && $rootScope.consultationAmount != 0) {
+						if($rootScope.paymentMode == 'on' && $rootScope.consultationAmount != 0 && typeof $rootScope.consultationAmount != 'undefined') {
 							$rootScope.doGetPatientPaymentProfiles();
 						}	
 						$rootScope.enableInsuranceVerificationSuccess = "none";					
@@ -3579,7 +3579,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							$rootScope.openAddHealthPlanSection();
 							$state.go('tab.consultCharge'); 
 						}else {
-							if($rootScope.consultationAmount > 0)	{
+							if($rootScope.consultationAmount > 0 && typeof $rootScope.consultationAmount != 'undefined')	{
 								if($rootScope.insuranceMode != 'on' && $rootScope.paymentMode == 'on') {
 									$rootScope.consultChargeSection = "none";
 									$rootScope.healthPlanSection = "block";
@@ -3593,7 +3593,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									$('#addNewCard').val() == 'Choose Your Card';
 									$('#addNewCard_addCard').val() == 'Choose Your Card';
 									$('#addNewCard_submitPay').val() == 'Choose Your Card';
-									$rootScope.userDefaultPaymentProfileText = 'undefined';
+									$rootScope.userDefaultPaymentProfileText = null;
 								}else{
 									$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
 									$('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
@@ -3713,7 +3713,28 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.doGetPatientProfiles();	
 		$scope.doGetRelatedPatientProfiles();     
         $state.go('tab.userhome');			
-    };
+    }
+	
+	$rootScope.doGetAttachmentURL = function (fileId) {		
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}		
+		var params = {
+            attachmentFileId: fileId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {	
+				window.open(data.data[0].url, '_system', 'location=yes');
+            },
+            error: function (data) {
+               $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getAttachmentURL(params);	
+		
+	}
+	
    
 })
 
