@@ -83,3 +83,7 @@ opentokplugin.m
                                "handleOpenURL(\"%@\"); \n"
                                "},1);", url];
 
+http://stackoverflow.com/questions/32631184/the-resource-could-not-be-loaded-because-the-app-transport-security-policy-requi
+resource - > info.plist
+
+http://stackoverflow.com/questions/34546607/xcode-7-2-in-archive-getting-the-issue-cordova-cdvviewcontroller-h-file-n
