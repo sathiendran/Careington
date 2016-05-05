@@ -428,7 +428,6 @@ angular.module('starter.services', [])
                 });
     }
 	
-	
 	 this.getDoctorDetails = function (params) {
         
         var requestInfo = {
@@ -869,6 +868,46 @@ angular.module('starter.services', [])
                            params.error(data);
                     }
             });
+    }
+	
+	this.getAttachmentList = function (params) {        
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer&patientId=0',
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                       params.error(data);
+                    }
+                });
+    }
+	
+	this.getAttachmentURL = function (params) {        
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/filesharing/file/customer/' + params.attachmentFileId,
+            method: 'GET'   
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                       params.error(data);
+                    }
+                });
     }
     
 })

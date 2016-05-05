@@ -53,6 +53,7 @@ angular.module('starter.controllers')
             success: function (data) {
 				//$('#subscriber .OT_video-container').css('background-color', 'transparent');
 				//$('#publisher .OT_video-container').css('background-color', 'transparent');
+				$rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
 				/*if($rootScope.existingConsultationReport.organization !='' && typeof $rootScope.existingConsultationReport.organization != 'undefined')
 				{
@@ -273,6 +274,7 @@ angular.module('starter.controllers')
 					$window.localStorage.setItem('ChkVideoConferencePage', ""); 	
 				session = null; 				
 				$scope.getSoapNotes();
+				$scope.doGetAttachmentList();
 		   },
             error: function (data) {
                 $rootScope.serverErrorMessageValidation();
@@ -280,6 +282,42 @@ angular.module('starter.controllers')
         };
         
 		LoginService.getConsultationFinalReport(params);
+	}
+	$scope.doGetAttachmentList = function () {		
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}		
+		var params = {
+            consultationId: $rootScope.consultationId, 
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+				$scope.getSoapNotes();
+                //$rootScope.attachmentFileId = data.data[0].snapFile.files[0].id;
+				$rootScope.getAttachmentList = []
+					
+				
+				angular.forEach(data.data[0].snapFile.files, function(index, item) {
+					var attachImage = index.name.split(".");
+					 $rootScope.getAttachmentList.push({								
+						'id': index.id,
+						'name': index.name,
+						'image': attachImage[attachImage.length-1]	
+					});
+					//$scope.doGetAttachmentURL(index.id, index.name);					 
+					
+				});
+				$rootScope.attachmentLength = $rootScope.getAttachmentList.length;
+				
+				
+            },
+            error: function (data) {
+               $rootScope.serverErrorMessageValidation();
+            }
+        };
+        
+        LoginService.getAttachmentList(params);	
+		
 	}
 	
 	$scope.getSoapNotes = function() {
@@ -318,7 +356,7 @@ angular.module('starter.controllers')
 				angular.element(this).attr('onclick', onClickLink);
 			});
 	}
-	
+
 	if(session != null) {		 
 		session.unpublish(publisher);
 		session.disconnect();
