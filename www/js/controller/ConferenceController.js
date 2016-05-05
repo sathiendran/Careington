@@ -298,10 +298,11 @@ angular.module('starter.controllers')
 					
 				
 				angular.forEach(data.data[0].snapFile.files, function(index, item) {
+					var attachImage = index.name.split(".");
 					 $rootScope.getAttachmentList.push({								
 						'id': index.id,
 						'name': index.name,
-						'image': index.name.split(".")	
+						'image': attachImage[attachImage.length-1]	
 					});
 					//$scope.doGetAttachmentURL(index.id, index.name);					 
 					
