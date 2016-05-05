@@ -404,8 +404,7 @@ function iterateAlphabet()
                   $rootScope.sorted_users= tmp;
   
               $rootScope.gotoList = function(id){
-                 //    var myEl = angular.element(document.querySelector('#cursearch'));
-                //     myEl.addClass('currmedication');
+                
                    $location.hash(id);
                    $ionicScrollDelegate.anchorScroll();
                   

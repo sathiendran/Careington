@@ -64,14 +64,54 @@ angular.module('starter.controllers')
           }, 300);
       }
   };
-
-
-     $scope.adddependent = function(){
-
-        $state.go('tab.addnewdependent');
-
-         $timeout(function(){
-             $scope.tempfooter = true, $scope.permfooter = true}, 2000);  
-    }
+  
+   $('input').blur(function () {                        
+       $(this).val(
+       $.trim($(this).val())
+      );
+   });
+  
+  
+   var minDate = new Date();
+   var maxDate=minDate.getDay();
+   var maxMonth=minDate.getMonth()+1;
+   var maxYear=minDate.getFullYear();
+   if(maxDate<10){
+       var maxD="0"+maxDate;
+   }
+   if(maxMonth<10){
+       var maxM="0"+maxMonth;
+   }
+   var maxDay=maxYear+"-"+maxM+"-"+maxD;
+   var mDate="2016-05-04";
+     $scope.maxDate1 = mDate;
+     $scope.minimum ="1950-01-01";
+  
+  $('input.firstname').blur(function(){
+		var value=$.trim($(this).val());
+		$(this).val(value);
+	});
+    
+  
+    $("#userphone").blur(function () { 
+        
+      if (this.value.match(/^[0-9]{1,14}$/)) {
+          this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
+        
+      }
+    });
+    $("#usermobile").blur(function () { 
+        
+      if (this.value.match(/^[0-9]{1,14}$/)) {
+          this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
+       
+      }
+    });
+ 
+  
+  
+ $scope.adddependent = function(){
+    $state.go('tab.addnewdependent');
+ }
 
 });

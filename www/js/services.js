@@ -612,7 +612,6 @@ this.getPatientMedicalProfile = function(params){
                 });
     }
 
-
     this.getFacilitiesList = function (params) {
         //GET v2/patients/hospitals?email=<email>
         //util.setHeaders($http, params);
@@ -935,9 +934,49 @@ this.getPatientMedicalProfile = function(params){
 				}
 		});
 	}
+    
 
 
-})
+   this.postNewDependentuser = function(params) {
+       
+		var registerDependentdetails = {
+			headers: util.getHeaders(params.accessToken),        
+              url: apiCommonURL +'/v2/familygroups/dependents',
+			  method: 'POST',
+			  data: {
+                 EmailAddress: params.EmailAddress,
+				TimeZoneId: params.TimeZoneId,
+				PatientProfileData: params.PatientProfileData,
+				PatientMedicalHistoryData: params.PatientMedicalHistoryData,
+				PatientProfileFieldsTracing: params.PatientProfileFieldsTracing			
+              }
+		};
+		
+		$http(registerDependentdetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		})
+    
+    
+   }
+    
+    
+    
+      })
+    
+    
+    
+    
+    
+
+
 
 
 

@@ -84,6 +84,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
 
 .run(function($ionicPlatform, $state, $rootScope, $localstorage, LoginService) {
   $ionicPlatform.ready(function() {
+      
+      
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
 		if(window.localStorage.getItem("app_load") == "yes") {
@@ -241,6 +243,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
         });
 
         });
+        
 })
 
 
@@ -713,7 +716,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-addnewdependent.html',
-        controller: 'addnewdepartmentController'
+        controller: 'addnewdependentController'
       }
       }
   })
@@ -747,16 +750,16 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  /*
-  .state('tab.healthsearch', {
-       url: '/healthsearch',
+
+  .state('tab.check', {
+       url: '/check',
     views: {
       'tab-login': {
-        templateUrl: 'templates/tab-healthsearch.html',
-        controller: 'healthinfoController'
+        templateUrl: 'templates/tab-check.html',
+        controller: 'checkController'
       }
       }
-  })*/
+  })
 
 
   // if none of the above states are matched, use this as the fallback
