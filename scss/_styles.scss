@@ -665,8 +665,8 @@ body {
 	top: 0px;
 }
 .alpha_sidebar{
-	position: fixed;
-	top:200px;
+	position: absolute;
+	top:90px;
 	right: 	10px;
 	z-index: 10;
 }
@@ -4326,9 +4326,9 @@ p{
     margin-top: 110px ;
 }
 .alpha_sidebar{
-	position: fixed;
+	position: absolute;
 	top:3px;
-	right: 	200px;
+	right: 	90px;
 	z-index: 10;
 }
 .searchcontent{margin-top:84px;}
@@ -5305,8 +5305,8 @@ margin-left: 13px !important;
 
 
 .alpha_sidebar{
-	position: fixed;
-	top:200px;
+	position: absolute;
+	top:90px;
 	right: 	10px;
 	z-index: 10;
 }
@@ -5318,3 +5318,31 @@ margin-left: 13px !important;
 .alpha_list{
 	padding-right: 22px;
 }
+.searchstyle {
+    margin-top: 20px;
+    height: 90px;
+    border-bottom: 1.5px solid #b5b5b5;
+    border-image: none;
+}
+.popupstyleSearch {
+    border: 1px solid #DADADA;
+    border-radius: 8px;
+    height: 30px;
+    font-weight: bold;
+    background-color: #E6E6E6;
+}
+.subname{
+   text-align:center;
+   font-family:Glober SemiBold;
+   margin-top:5px;font-size: 22px; 
+}
+.currmedication{margin-top: -85px;}
+.error{color:red;}   
+.submitbutton{
+    background-color: #a3d488;
+    border: none;
+    
+}     
+       
+       
+       

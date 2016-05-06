@@ -87,10 +87,21 @@ angular.module('starter.controllers')
         //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
           // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
          
+       if( (typeof $scope.lastName === 'undefined' || $scope.lastName === '')  &&
+             (typeof $scope.email === 'undefined' || $scope.email === '')  &&
+             (typeof $scope.dob === 'undefined' || $scope.dob === '')  &&
+             (typeof $scope.gender === 'undefined' || $scope.gender === '')  &&
+             (typeof $scope.height === 'undefined' || $scope.height === '')  &&
+             (typeof $scope.weight === 'undefined' || $scope.weight === '')  
+        ) {
+        //  $scope.ErrorMessage = "Please Enter All Required Fields";
+            alert("Please Enter All Required Fields");  
+       }
+       else{
+          // alert("fail");
+            $scope.doPostNewDependentuser();
+       }
        
-             
-         
-        $scope.doPostNewDependentuser();
     }
        $scope.doPostNewDependentuser = function() {
            var params = {					
@@ -103,7 +114,7 @@ angular.module('starter.controllers')
 							dob: $scope.dob,
 							bloodType: 1,
 							eyeColor: $scope.getEyeColorId,
-							gender: "M",
+							gender:  $scope.gender,
 							enthicity:$scope.getEthnicityId,
 							hairColor:$scope.getHairColorId,
 							homePhone: $scope.homephone,
@@ -152,7 +163,7 @@ angular.module('starter.controllers')
 							patientId: $rootScope.patientId,							
 						},
                         success: function (data) {
-                            alert("Successfully Inserted");
+                           
                                $('#dependentuserform')[0].reset();
                                $state.go('tab.relatedusers');
                             console.log(data);
