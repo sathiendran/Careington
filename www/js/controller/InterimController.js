@@ -337,7 +337,8 @@ angular.module('starter.controllers')
 				$rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
 				$rootScope.patientPhysicianDetails = data.data[0].physicianDetails;	
 				//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
-				$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
+				//$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
+				$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
 				$rootScope.address = data.data[0].address;
 				$rootScope.city = data.data[0].city;
 				$rootScope.createDate = data.data[0].createDate;
@@ -419,7 +420,7 @@ angular.module('starter.controllers')
 							'id': index.$id,
 							'patientId': index.patientId,
 							'patientName': index.patientName,
-							'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
+							'profileImagePath': index.profileImagePath,
 							'relationCode': index.relationCode,
 							'isAuthorized': index.isAuthorized,
 							'birthdate': index.birthdate,

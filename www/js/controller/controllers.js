@@ -985,7 +985,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						}
 					}
                     $rootScope.brandColor = data.data[0].brandColor;
-                    $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                    //$rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                    $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
                      if(deploymentEnvLogout == 'Single') {
 						$rootScope.alertMsgName = $rootScope.Hospital;
@@ -1181,29 +1182,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 				},
 				error: function (data, status) {
-					var networkState = navigator.connection.type;
-					if(networkState != 'none') {
-						if(status == '401' || status == '403') {						      
-							navigator.notification.confirm(
-								'Your account is not verified yet. Do you want to resend?',
-								 function(index){
-									if(index == 1){					
+					// var networkState = navigator.connection.type;
+					// if(networkState != 'none') {
+					// 	if(status == '401' || status == '403') {						      
+					// 		navigator.notification.confirm(
+					// 			'Your account is not verified yet. Do you want to resend?',
+					// 			 function(index){
+					// 				if(index == 1){					
 										
-									}else if(index == 2){
-										$scope.doPostResendEmail();
-									}
-								 },
-								'Confirmation:',
-								['Cancel','Resend']     
-							);
+					// 				}else if(index == 2){
+					// 					$scope.doPostResendEmail();
+					// 				}
+					// 			 },
+					// 			'Confirmation:',
+					// 			['Cancel','Resend']     
+					// 		);
 
-						} else {
-							$scope.ErrorMessage = "Incorrect Password. Please try again";
-							$rootScope.Validation($scope.ErrorMessage);
-						}
-					} else {
-						$rootScope.serverErrorMessageValidation();
-					}
+					// 	} else {
+					// 		$scope.ErrorMessage = "Incorrect Password. Please try again";
+					// 		$rootScope.Validation($scope.ErrorMessage);
+					// 	}
+					// } else {
+					// 	$rootScope.serverErrorMessageValidation();
+					// }
 				}
 			};
 			
@@ -1424,7 +1425,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
 					$rootScope.patientPhysicianDetails = data.data[0].physicianDetails;	
 					//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
-					$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
+					//$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
+					$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
 					$rootScope.address = data.data[0].address;
 					$rootScope.city = data.data[0].city;
 					$rootScope.createDate = data.data[0].createDate;
@@ -1505,7 +1507,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'id': index.$id,
 								'patientName': index.patientName,
 								'lastName': htmlEscapeValue.getHtmlEscapeValue(index.lastName),
-								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+								//'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+								'profileImagePath': index.profileImagePath,
 								'mobilePhone': index.mobilePhone,
 								'homePhone': index.homePhone,
 								'primaryPhysician': index.primaryPhysician,								
@@ -1543,12 +1546,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					//$scope.RelatedPatientProfiles = data.data;
 					$rootScope.RelatedPatientProfiles = [];	
 					
-						angular.forEach(data.data, function(index, item) {		
+						angular.forEach(data.data, function(index, item) {	
+							if(!index.profileImagePath){
+								index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
+							}	
 							$rootScope.RelatedPatientProfiles.push({
 								'id': index.$id,
 								'patientId': index.patientId,
 								'patientName': index.patientName,
-								'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
+								//'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
+								'profileImagePath': index.profileImagePath,
 								'relationCode': index.relationCode,
 								'isAuthorized': index.isAuthorized,
 								'birthdate': index.birthdate,
@@ -1643,7 +1650,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
 				$rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.patientExistInfomation.guardianName);
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
-				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				//$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				$rootScope.appointmentsPatientImage = $rootScope.patientExistInfomation.profileImagePath;
 				$rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[0].customCode.description);
 				$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[1].customCode.description);
 				if($rootScope.reportScreenSecondaryConcern == "") {
@@ -1694,7 +1702,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             doctorId: $rootScope.assignedDoctorId, 
             accessToken: $rootScope.accessToken,
             success: function (data) {
-				$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;	
+				//$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;	
+				$rootScope.doctorImage = data.data[0].profileImagePath;	
 				$state.go('tab.appoimentDetails');
             },
             error: function (data) {

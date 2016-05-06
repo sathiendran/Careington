@@ -454,7 +454,7 @@ angular.module('starter.controllers')
 				session.on('streamCreated', function(event) { 		
                     //alert('stream created from type: ' + event.stream.videoType);
 					$('#pleaseWaitVideo').remove();
-					$('#subscriber').css('background-color: black !important');
+					$('#subscriber').css('background-color', 'black !important');
 					for(var i = 0; i < connectedStreams.length; i++){
 						var tbStreamVal = session.streams[connectedStreams[i]];
 						var connectedStreamId = connectedStreams[i];						
@@ -477,13 +477,17 @@ angular.module('starter.controllers')
 					var vdioPlayer = document.createElement("div");
 					vdioPlayer.setAttribute("id", streamIdVal);
 					
+					vdioContainer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px!important; position: relative; height: " + $rootScope.clinicianVideoHeight + "px;");	
+					vdioPlayer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px; height: " + $rootScope.clinicianVideoHeight + "px;");
+						
                     if(ionic.Platform.isIOS()){
-						if(event.stream.videoType == 1){
-							//$('#video-' + streamIdVal).width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
-							//$('#' + streamIdVal).width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
-							vdioContainer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px!important; position: relative; height: " + $rootScope.clinicianVideoHeight + "px;");	
-							vdioPlayer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px; height: " + $rootScope.clinicianVideoHeight + "px;");
-						} else if(event.stream.videoType == 2){		
+						// if(event.stream.videoType == 1){
+						// 	//$('#video-' + streamIdVal).width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
+						// 	//$('#' + streamIdVal).width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
+						// 	vdioContainer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px!important; position: relative; height: " + $rootScope.clinicianVideoHeight + "px;");	
+						// 	vdioPlayer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px; height: " + $rootScope.clinicianVideoHeight + "px;");
+						// } else 
+						if(event.stream.videoType == 2){		
 							$('#subscriber .OT_root').hide();
 							var screenHeight = $rootScope.clinicianVideoHeight / 2;			
 							var divHeight = $rootScope.clinicianVideoHeightScreen / 2;
@@ -527,11 +531,13 @@ angular.module('starter.controllers')
 					//document.getElementById('thumbVideos').appendChild(thumbContainer);
 					//document.getElementById('thumb-' + streamIdVal).appendChild(thumbPlayer);
 					var imgThumbPath = $rootScope.APICommonURL + '/images/Patient-Male.gif';
+					imgThumbPath = 'img/default-user.jpg';
 					var videoSource = '';
-					if(event.stream.videoType == 2){
-						participantName = 'Screen-' + participantName;
+					if(participantName.indexOf('Screen Share') >= 0){
+						imgThumbPath = 'img/share-icon.jpg';
 					}
-					thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 90px;text-align: center !important;'><img style='width: 50px; height: 50px; border-radius: 50%;' src='" + imgThumbPath +  "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
+					participantName = participantName.replace('Screen Share By :','');
+					thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 90px;text-align: center !important;'><img style='width: 50px; height: 50px; border-radius: 50%;' src='" + imgThumbPath +  "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
 				};
 				
 				$scope.removeVideoThumbnail = function(streamIdVal){
@@ -541,6 +547,7 @@ angular.module('starter.controllers')
 					$('#thumb-' + streamIdVal).hide();
 					$('#thumb-' + streamIdVal).remove();
 					$(swiperParent).remove();
+					$("div.swiper-slide:empty").remove();
 					OT.updateViews();
 				};
 				
@@ -613,6 +620,10 @@ angular.module('starter.controllers')
                     console.log('You were disconnected from the session.', event.reason);
                 });
                 
+				session.on("signal", function(event) {
+					
+				});
+				
                 // Connect to the Session
                 session.connect(token, function(error) {
                     // If the connection is successful, initialize a publisher and publish to the session
@@ -658,6 +669,7 @@ angular.module('starter.controllers')
                     $rootScope.publishAudio = $rootScope.newPublishAudio;
                     publisher.publishAudio($rootScope.newPublishAudio);
                     //OT.updateViews();
+					$scope.sendSignalMessage();
 				};
                 
                 $scope.toggleSpeaker = function(){
@@ -674,6 +686,8 @@ angular.module('starter.controllers')
     $scope.disconnectConference = function(){
 		if(!callEnded){		
 			$('#thumbVideos').remove();
+			$('#videoControls').remove();
+			
 			//$timeout(function(){
 			//try {
                session.unpublish(publisher)
