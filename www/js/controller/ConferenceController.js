@@ -669,7 +669,7 @@ angular.module('starter.controllers')
                     $rootScope.publishAudio = $rootScope.newPublishAudio;
                     publisher.publishAudio($rootScope.newPublishAudio);
                     //OT.updateViews();
-					$scope.sendSignalMessage();
+					
 				};
                 
                 $scope.toggleSpeaker = function(){
