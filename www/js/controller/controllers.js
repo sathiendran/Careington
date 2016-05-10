@@ -1182,29 +1182,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					}
 				},
 				error: function (data, status) {
-					// var networkState = navigator.connection.type;
-					// if(networkState != 'none') {
-					// 	if(status == '401' || status == '403') {						      
-					// 		navigator.notification.confirm(
-					// 			'Your account is not verified yet. Do you want to resend?',
-					// 			 function(index){
-					// 				if(index == 1){					
+					 var networkState = navigator.connection.type;
+					if(networkState != 'none') {
+						if(status == '401' || status == '403') {						      
+					 		navigator.notification.confirm(
+					 			'Your account is not verified yet. Do you want to resend?',
+					 			 function(index){
+									if(index == 1){					
 										
-					// 				}else if(index == 2){
-					// 					$scope.doPostResendEmail();
-					// 				}
-					// 			 },
-					// 			'Confirmation:',
-					// 			['Cancel','Resend']     
-					// 		);
+					 				}else if(index == 2){
+										$scope.doPostResendEmail();
+									}
+					 			 },
+								'Confirmation:',
+					 			['Cancel','Resend']     
+							);
 
-					// 	} else {
-					// 		$scope.ErrorMessage = "Incorrect Password. Please try again";
-					// 		$rootScope.Validation($scope.ErrorMessage);
-					// 	}
-					// } else {
-					// 	$rootScope.serverErrorMessageValidation();
-					// }
+					 	} else {
+					 		$scope.ErrorMessage = "Incorrect Password. Please try again";
+					 		$rootScope.Validation($scope.ErrorMessage);
+					 	}
+					 } else {
+					 	$rootScope.serverErrorMessageValidation();
+					 }
 				}
 			};
 			
@@ -1426,7 +1426,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.patientPhysicianDetails = data.data[0].physicianDetails;	
 					//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
 					//$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-					$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
+					if(data.data[0].account.profileImagePath !== '' && typeof data.data[0].account.profileImagePath !== 'undefined') {
+						$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
+					} else {
+						$rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
+					}
 					$rootScope.address = data.data[0].address;
 					$rootScope.city = data.data[0].city;
 					$rootScope.createDate = data.data[0].createDate;
@@ -2793,7 +2797,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$scope.invalidCard = "";
 			$scope.invalidCVV = "";	
 			 $scope.invalidMonth = "border: 1px solid red;";	
-             $scope.ErrorMessage = "Verify month & year";
+             $scope.ErrorMessage = "Invalid Expiry Month";
 			 $rootScope.Validation($scope.ErrorMessage);
 		  }else if($rootScope.Cvv.length != $scope.ccCvvLength){
 			$scope.invalidZip = "";
