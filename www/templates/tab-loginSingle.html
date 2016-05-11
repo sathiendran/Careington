@@ -55,7 +55,7 @@
 				<div class="remember"> Remember my email</div> 	
                 
 				<div class="continue" style="margin-bottom: 5px;">				
-					<button type="submit" class="button button-outline button-positive" style="font-size: 20px;">
+					<button type="submit" ng-click="checkSingleHospitalLogin()" class="button button-outline button-positive" style="font-size: 20px;">
 						Continue
 					</button>					
 				</div>	
@@ -65,7 +65,9 @@
 				</div> -->
 					<div class="{{NeedanAcountStyle}}">
                         <h5><b>Need an account?</b></h5>
-                        <p style="" class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>
+                        <!--<a style="cursor: pointer;" ng-click="goToSearchProvider('loginSingle');"> <p class="needanaccountPragraph">Click here to find your provider.</p></a>-->
+						 <p class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>
+                    
                     </div>
 				</div>
         </form>
@@ -78,13 +80,13 @@
 		<ion-footer-bar class="footer"  >
 		 <div class="terms" >
 			 <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
-			 <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetConcentToTreat();" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
+			 <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
 		  </div>
 		  
 		 
 		  <div class="powerdBySnapMD">			
 			<!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes');return false;"><b>v1.3.4<b></a>-->
-			<a><b>v5.0.8<b></a>
+			<a><b>v5.0.12<b></a>
 		  </div> 
 		</ion-footer-bar>
 	</div>

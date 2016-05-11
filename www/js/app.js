@@ -61,7 +61,7 @@ if(deploymentEnv == 'Single') {
         Hospital = 'Dokita247';
         HospitalTag = 'Virtual Care Concierge';
     } else if(cobrandApp == 'DYW'){
-        singleStagingHospitalId = 156;
+        singleStagingHospitalId = 157;
         singleHospitalId = 168;
         brandColor = '#22508b';
         logo= 'img/dyw.jpg';
@@ -82,10 +82,27 @@ var handleOpenURL = function (url) {
 
 angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, $localstorage, LoginService) {
+.run(function($ionicPlatform, $state, $rootScope,  LoginService, $ionicPopup, $window) {
   $ionicPlatform.ready(function() {
-      
-      
+  // Check for network connection
+   /* if(window.Connection) {
+      if(navigator.connection.type == Connection.NONE) {
+		navigator.notification.confirm(
+			'Sorry, Please Check Your Network Connection.',
+			 function(index){
+				if(index == 1){
+
+				}else if(index == 2){
+					// navigator.app.exitApp();
+				}
+			 },
+			'Network Problem:',
+			['Cancel','Ok']
+		);
+
+      }
+	 }*/
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
 		if(window.localStorage.getItem("app_load") == "yes") {
@@ -130,15 +147,17 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
             'Please make sure that you have network connection.',  // message
             null,
             'No Internet Connection',            // title
-            'Ok'                  // buttonName
+            'Ok'                 // buttonName
             );
-            if($localstorage.get('ChkVideoConferencePage') == "videoConference") {
-              $state.go('tab.connectionLost');
+			return false;
+            if($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
+							$state.go('tab.connectionLost');
             }
         }
+
         function onOnline() {
-            if($localstorage.get('ChkVideoConferencePage') == "videoConference") {
-           $state.go('tab.videoConference');
+            if($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
+							$state.go('tab.videoConference');
             }
         }
 
@@ -243,7 +262,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
         });
 
         });
-        
+
 })
 
 
@@ -595,11 +614,31 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     url: '/singleTheme',
     views: {
       'tab-login': {
-        templateUrl: 'templates/tab-singleTheme.html',
-        controller: 'singleHospitalThemeCtrl'
+        controller: 'singleHospitalThemeCtrl',
       }
     }
   })
+
+  .state('tab.searchprovider', {
+    url: '/searchprovider',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-searchprovider.html',
+        controller: 'searchProviderController'
+      }
+    }
+  })
+
+  .state('tab.registerStep1', {
+    url: '/registerStep1',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerStep1.html',
+        controller: 'registerStep1Controller'
+      }
+    }
+  })
+
 .state('tab.userAccount', {
     url: '/userAccount',
     views: {
@@ -648,7 +687,33 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     }
   })
 
-
+	.state('tab.registerStep2', {
+    url: '/registerStep2',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerStep2.html',
+        controller: 'registerStep2Controller'
+      }
+    }
+  })
+  .state('tab.registerSuccess', {
+    url: '/registerSuccess',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerSuccess.html',
+        controller: 'registerStep2Controller'
+      }
+    }
+  })
+  .state('tab.registerTerms', {
+    url: '/registerTerms',
+    views: {
+      'tab-login': {
+        templateUrl: 'templates/tab-registerTerms.html',
+        controller: 'registerStep2Controller'
+			}
+		}
+	})
 
 
    .state('tab.relatedusers', {
@@ -721,6 +786,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
   })
 
+
   .state('tab.consultationSearch', {
        url: '/consultationSearch',
     views: {
@@ -740,7 +806,8 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
       }
   })
-  
+
+
      .state('tab.currentmedicationsearch', {
        url: '/currentmedicationsearch',
     views: {
@@ -762,7 +829,9 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
   })
 
 
-  // if none of the above states are matched, use this as the fallback
+
+  // if none of the above states are matched, use this as the fallback tab-chooseEnvironment
+
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
   }else if(deploymentEnv == "Single"){

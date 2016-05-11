@@ -1,0 +1,67 @@
+
+<ion-view>	
+    <div id="Error_Message" ></div>
+	<ion-content class="register" style="background-color: {{brandColor}}">
+		<div class="epassbg">	
+			<img ng-src="{{logo}}" />
+			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>	
+		</div>	
+		
+		<form ng-submit="postRegisterStep1()">		
+			<div class="card">
+					<div class="regcontent">
+						<h2>Let’s Get Started</h2>
+						<p>First, please tell us who you are</p>
+					</div>
+					<div class="item-input-inset">
+						<label class="item-input-wrapper place">
+							<input type="text" ng-model="regStep1.FName" placeholder="First Name">
+						</label>		
+					</div>
+					<div class="item-input-inset">
+						<label class="item-input-wrapper place1">
+							<input type="text" ng-model="regStep1.LName" placeholder="Last Name">
+						</label>		
+					</div>
+					<div class="item-input-inset">
+						<label class="item-input-wrapper place1">
+							<!--<input type="text" ng-model="regStep1.address" placeholder="Full Address">-->
+							 <ion-google-place placeholder="Full Address" ng-model="regStep1.address" />
+							 
+							 
+						</label>		
+					</div>					
+					
+					<div class="btn1">				
+						<button type="submit" class="button">
+								Get Started
+						</button>		
+
+						
+					</div>	
+			</div>	
+		</form>	
+		
+   			
+		<div class="acinfo1-{{deviceName}}">
+			<h4>Already have an account? <a ng-click="backtoPreviousPage();"><span>Login</span></a></h4>					
+		</div>
+		<div class="acinfo1-{{deviceName}}">
+			<h4 style="padding-top: 20px;">Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>					
+		</div>
+		<div ng-controller="LoginCtrl">       
+		</div>
+		
+	</ion-content>
+	<!--<ion-footer-bar class="bar bar-footer emailpassfooter" style="background-color: {{brandColor}}">
+		<a ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');"><button class="button button-clear"><span>Terms & Conditions</span></button></a>		
+	</ion-footer-bar>-->
+	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+		<div class="ConcernsFooter">				 
+			<div class="FooterLeft" style="width: 100%;">				
+				<a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</a>	
+			</div>
+		<div>
+	</ion-footer-bar>	
+	
+</ion-view>	

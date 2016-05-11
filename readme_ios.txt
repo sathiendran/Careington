@@ -83,3 +83,38 @@ opentokplugin.m
                                "handleOpenURL(\"%@\"); \n"
                                "},1);", url];
 
+http://stackoverflow.com/questions/32631184/the-resource-could-not-be-loaded-because-the-app-transport-security-policy-requi
+resource - > info.plist
+
+http://stackoverflow.com/questions/34546607/xcode-7-2-in-archive-getting-the-issue-cordova-cdvviewcontroller-h-file-n
+
+---------------------************************----------------------------
+
+Convert from Production to Staging
+App.Js
+check Line no 21 & 22 - For Co-Brand App it should be "Single"
+Hide line no 31 - deploymentEnvForProduction = 'Production';
+line no 40 var cobrandApp = 'DYW'; - Here you can change app name
+
+
+Controller.Js
+
+change Line No 119 & 120
+request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+
+Change Line No 138 & 139
+'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
+
+Line No 239
+hide apiCommonURL = 'https://connectedcare.md';	
+enable apiCommonURL = 'https://snap-stage.com';  
+
+Change Icon & Splash Screen from Resource folder
+Root Folder - > Resource - > Iocn & Splash Screen
+
+---------------------************************----------------------------
+
+
+

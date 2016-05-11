@@ -1,3 +1,6 @@
+<div id="Error_Message" class="ErrorMessageDiv" ></div>
+	 <div class="Server_Error ErrorMessageDiv" ></div>
+	 <div class="Error_Message ErrorMessageDiv" ></div>
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
 		
 		
@@ -36,6 +39,8 @@
 
 <ion-content class="ReportContent"  >
 	<div style="margin: 0 3%;">
+		<div><ion-refresher on-refresh="doRefreshReportDetails()"  > 
+    </ion-refresher></div>
 		<div>
 			<div class="reportLogo">
 			   <!--<img ng-src="{{ReportHospitalImage}}">-->
@@ -55,9 +60,9 @@
 				<h1 class="ReportTitle">{{reportHospitalUpperCase}} CONSULTATION REPORT</h1>
 			</div>
 		
-			<div class="Roundcircle CCAttachment" style="display:none;">
+			<div class="Roundcircle CCAttachment">
 				<img ng-src="img/attached.png">
-				<p><b>3</b></p>
+				<p><b>{{attachmentLength}}</b></p>
 			</div>
 			
 		</div>
@@ -200,49 +205,49 @@
 			</div>-->
 			
 		</div>	
-		
-        <div class="reportObjective">
-			<div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
-			<div class="objectiveUnderline">	</div>		
-			<div>
-				<!--<p> {{reportSubjective}}</p>-->
-                <p>None Reported</p>
-			</div>		
+		<div id="soapReport">
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
+				<div class="objectiveUnderline">	</div>		
+				<div>
+					<p ng-if="reportSubjective != 'None Reported'" id="reportSubjective" ></p>
+					<p ng-if="reportSubjective == 'None Reported'">{{reportSubjective}}</p>
+				</div>		
+			</div>
+			
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>OBJECTIVE</b></div>
+				<div class="objectiveUnderline">	</div>		
+				<div>
+					<p ng-if="reportObjective != 'None Reported'" id="reportObjective"></p>
+					 <p ng-if="reportObjective == 'None Reported'">{{reportObjective}}</p>
+				</div>		
+			</div>	
+			
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>ASSESSMENT</b></div>
+				<div class="objectiveUnderline">	</div>		
+				<div>
+					<p ng-if="reportAssessment != 'None Reported'" id="reportAssessment"></p>
+				   <p ng-if="reportAssessment == 'None Reported'">{{reportAssessment}}</p>
+				</div>		
+			</div>	
+			
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>PLAN</b></div>
+				<div class="objectiveUnderline">	</div>		
+				<div>
+					<p ng-if="reportPlan != 'None Reported'" id="reportPlan"></p>
+					 <p ng-if="reportPlan == 'None Reported'">{{reportPlan}}</p>
+				</div>		
+			</div>	
 		</div>
-        
-		<div class="reportObjective">
-			<div class="objectiveTitle" ><b>OBJECTIVE</b></div>
-			<div class="objectiveUnderline">	</div>		
-			<div>
-				<!--<p> {{reportObjective}}</p>-->
-                 <p>None Reported</p>
-			</div>		
-		</div>	
-		
-		<div class="reportObjective">
-			<div class="objectiveTitle" ><b>ASSESSMENT</b></div>
-			<div class="objectiveUnderline">	</div>		
-			<div>
-				<!--<p> {{reportAssessment}}</p>-->
-                 <p>None Reported</p>
-			</div>		
-		</div>	
-		
-		<div class="reportObjective">
-			<div class="objectiveTitle" ><b>PLAN</b></div>
-			<div class="objectiveUnderline">	</div>		
-			<div>
-				<!--<p> {{reportPlan}}</p>-->
-                 <p>None Reported</p>
-			</div>		
-		</div>	
-		
 		<div class="reportObjective">
 			<div class="objectiveTitle" ><b>RX</b></div>
 			<div class="objectiveUnderline">	</div>		
 			<div>
-				<!--<p>{{reportrx}}  </p>-->
-                 <p>None Reported</p>
+				<p>{{reportrx}}  </p>
+                 <!--<p>None Reported</p>-->
 			</div>		
 		</div>
 		
@@ -253,13 +258,58 @@
 				<p>None Reported</p>
 			</div>		
 		</div>	
+		
+		<!--<div class="reportObjective">
+			<div class="objectiveTitle" ><b>MEDICAL CODES</b></div>
+			<div class="objectiveUnderline"> </div>		
+			<div class="objectiveTitle" ><b>CPT Code</b></div>
+			<div>
+				<p>None Reported</p>
+			</div>	
+			<div class="objectiveTitle" ><b>ICD-10-DX Code</b></div>
+			<div>
+				<p>None Reported</p>
+			</div>				
+		</div>	-->
+		
+		<div class="reportObjective" >
+					<div>
+						<div class="objectiveTitle"><b>MEDICAL CODES</b></div>
+						<div class="objectiveUnderline"></div>
+					</div>
+					<div ng-if="reportMedicalCodeDetails != ''">
+						<div ng-if="reportMediCPT != ''">
+							<div class="objectiveTitle" style="padding-top: 5%;"><b>CPT Code</b></div>
+							<div ng-repeat="reportMediCPT in reportMediCPT" style="margin-left: 10%;"> 
+								<p>{{reportMediCPT.shortDescription}}</p>
+							</div>
+						</div>
+						
+						<div ng-if="reportMediICD != ''">
+							<div class="objectiveTitle"><b>ICD-10-DX Code</b></div>
+							<div ng-repeat="reportMediICD in reportMediICD"  style="margin-left: 10%;"> 
+								<p>{{reportMediICD.shortDescription}}</b>
+							</div>
+						</div>
+					</div>
+					<div ng-if="reportMedicalCodeDetails == ''"><p>None Reported</p></div>
+				</div>
 
 		<div class="reportObjective">
 			<div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
 			<div class="objectiveUnderline"></div>		
-			<div>
-				<p>No Attachment</p>
-			</div>		
+			<div ng-if="getAttachmentList != ''">				
+				
+					<div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" style="height: 60px;">
+						<div style="float: left;position: relative;top: 7px; padding-right: 10px;">						
+							<img style="height: 40px; height: 45px;" src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
+						</div>	
+						<div style="font-size: 14px;position: relative;top: 22px;" class="ellipsis">{{getAttachment.name}}</div>
+					</div>
+				
+			</div>	
+			<div ng-if="getAttachmentList == ''"> <p>No Attachment</p></div>
+				
 		</div>	
 		
 		

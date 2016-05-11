@@ -1,7 +1,8 @@
 
 angular.module('starter.controllers')
 
-.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $localstorage) {
+
+.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
 
     $scope.doGetExistingConsulatation = function () {
 		$rootScope.consultionInformation = '';
@@ -27,6 +28,7 @@ angular.module('starter.controllers')
 						if($rootScope.consultationStatusId === 72 ) {
 							$scope.doGetExistingConsulatationReport();
 						}
+
 				}
 
             },
@@ -39,10 +41,11 @@ angular.module('starter.controllers')
 
 	}
 
-    $scope.doGetExistingConsulatationReport = function () {
 
+    $rootScope.doGetExistingConsulatationReport = function () {
+			$state.go('tab.ReportScreen');
 
-		 if ($scope.accessToken === 'No Token') {
+		 if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
@@ -53,6 +56,7 @@ angular.module('starter.controllers')
             success: function (data) {
 				//$('#subscriber .OT_video-container').css('background-color', 'transparent');
 				//$('#publisher .OT_video-container').css('background-color', 'transparent');
+				$rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0]	;
 				/*if($rootScope.existingConsultationReport.organization !=='' && typeof $rootScope.existingConsultationReport.organization !== 'undefined')
 				{
@@ -250,9 +254,28 @@ angular.module('starter.controllers')
 						});
 					});
 
-					$localstorage.set('ChkVideoConferencePage', "");
+					$rootScope.reportMedicalCodeDetails = [];
+
+					if($rootScope.existingConsultationReport.medicalCodeDetails !='' && typeof $rootScope.existingConsultationReport.medicalCodeDetails != 'undefined')
+					{
+						angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
+							$rootScope.reportMedicalCodeDetails.push({
+								'Number':item + 1,
+								'shortDescription': index.shortDescription,
+								'medicalCodingSystem': index.medicalCodingSystem
+							});
+						});
+						$rootScope.reportMediCPT = $filter('filter')($scope.reportMedicalCodeDetails, {medicalCodingSystem:'CPT'});
+						$rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {medicalCodingSystem:'ICD-10-DX'});
+
+					} else {
+						$rootScope.reportMedicalCodeDetails = '';
+					}
+
+					$window.localStorage.setItem('ChkVideoConferencePage', "");
 				session = null;
-				$state.go('tab.ReportScreen');
+				$scope.getSoapNotes();
+				$scope.doGetAttachmentList();
 		   },
             error: function (data) {
                 $rootScope.serverErrorMessageValidation();
@@ -262,51 +285,81 @@ angular.module('starter.controllers')
 		LoginService.getConsultationFinalReport(params);
 	}
 
-	$scope.doGetPatientsSoapNotes = function() {
-			if ($rootScope.accessToken === 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-			 var params = {
-                consultationId: $rootScope.consultationId,
-                accessToken: $rootScope.accessToken,
-                success: function (data) {
-                    $rootScope.SoapNote = data.data;
-					if($rootScope.SoapNote.subjective !=='' && typeof $rootScope.SoapNote.subjective !== 'undefined') {
-						$rootScope.reportSubjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.subjective);
-					} else {
-						$rootScope.reportSubjective = 'None Reported';
-					}
-
-					if($rootScope.SoapNote.objective !=='' && typeof $rootScope.SoapNote.objective !== 'undefined') {
-						$rootScope.reportObjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.objective);
-					} else {
-						$rootScope.reportObjective = 'None Reported';
-					}
-
-					if($rootScope.SoapNote.assessment !=='' && typeof $rootScope.SoapNote.assessment !== 'undefined') {
-						$rootScope.reportAssessment = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.assessment);
-					} else {
-						$rootScope.reportAssessment = 'None Reported';
-					}
-
-					if($rootScope.SoapNote.plan !=='' && typeof $rootScope.SoapNote.plan !== 'undefined') {
-						$rootScope.reportPlan = htmlEscapeValue.getHtmlEscapeValue($rootScope.SoapNote.plan);
-					} else {
-						$rootScope.reportPlan = 'None Reported';
-					}
-
-                },
-                error: function (data) {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            };
-
-			LoginService.getPatientsSoapNotes(params);
+	$scope.doGetAttachmentList = function () {
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
 		}
+		var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function (data) {
+				$scope.getSoapNotes();
+                //$rootScope.attachmentFileId = data.data[0].snapFile.files[0].id;
+				$rootScope.getAttachmentList = []
 
 
-	if(session !== null) {
+				angular.forEach(data.data[0].snapFile.files, function(index, item) {
+					var attachImage = index.name.split(".");
+					 $rootScope.getAttachmentList.push({
+						'id': index.id,
+						'name': index.name,
+						'image': attachImage[attachImage.length-1]
+					});
+					//$scope.doGetAttachmentURL(index.id, index.name);
+
+				});
+				$rootScope.attachmentLength = $rootScope.getAttachmentList.length;
+
+
+            },
+            error: function (data) {
+               $rootScope.serverErrorMessageValidation();
+            }
+        };
+
+        LoginService.getAttachmentList(params);
+
+	}
+
+	$scope.getSoapNotes = function() {
+				$("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
+				$("#reportObjective").html($rootScope.existingConsultationReport.objective);
+				$("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
+				$("#reportPlan").html($rootScope.existingConsultationReport.plan);
+			if($rootScope.existingConsultationReport.subjective !='' && typeof $rootScope.existingConsultationReport.subjective != 'undefined') {
+				$rootScope.reportSubjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.subjective);
+			} else {
+				$rootScope.reportSubjective = 'None Reported';
+			}
+
+			if($rootScope.existingConsultationReport.objective !='' && typeof $rootScope.existingConsultationReport.objective != 'undefined') {
+				$rootScope.reportObjective = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.objective);
+			} else {
+				$rootScope.reportObjective = 'None Reported';
+			}
+
+			if($rootScope.existingConsultationReport.assessment !='' && typeof $rootScope.existingConsultationReport.assessment != 'undefined') {
+				$rootScope.reportAssessment = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.assessment);
+			} else {
+				$rootScope.reportAssessment = 'None Reported';
+			}
+
+			if($rootScope.existingConsultationReport.plan !='' && typeof $rootScope.existingConsultationReport.plan != 'undefined') {
+				$rootScope.reportPlan = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.plan);
+			} else {
+				$rootScope.reportPlan = 'None Reported';
+			}
+			$('#soapReport').find('a').each(function() {
+				var aLink = angular.element(this).attr('href');
+				var onClickLink = "window.open('" + aLink + "', '_system', 'location=yes'); return false;";
+				angular.element(this).removeAttr('href', '');
+				angular.element(this).attr('href', 'javascript:void(0);');
+				angular.element(this).attr('onclick', onClickLink);
+			});
+	}
+
+  if(session != null) {
 		session.unpublish(publisher);
 		session.disconnect();
 		 session = null;
@@ -317,18 +370,18 @@ angular.module('starter.controllers')
 	$scope.ClearRootScope = function() {
 		$rootScope = $rootScope.$new(true);
 		$scope = $scope.$new(true);
-		if(deploymentEnvLogout === "Multiple"){
+		if(deploymentEnvLogout == "Multiple"){
 			$state.go('tab.chooseEnvironment');
-		}else if(deploymentEnvLogout === "Single"){
+		}else if(deploymentEnvLogout == "Single"){
 			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');
 		}
 	}
 
-    $localstorage.set('ChkVideoConferencePage', "videoConference");
+    $window.localStorage.setItem('ChkVideoConferencePage', "videoConference");
 
-    if(!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId !== 72)
+    if(!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId != 72)
     {
 
                 var connection = $.hubConnection();
@@ -369,12 +422,12 @@ angular.module('starter.controllers')
                 };
                 initConferenceRoomHub();
 
-                $rootScope.clinicianVideoHeight = $window.innerHeight - 38;
+                $rootScope.clinicianVideoHeight = $window.innerHeight - 38 - 100;
                 $rootScope.clinicianVideoWidth = $window.innerWidth;
 
                 $rootScope.clinicianVideoHeightScreen = ($window.innerWidth / 16) * 9;
 
-                $rootScope.patientVideoTop = $window.innerHeight - 150;
+                $rootScope.patientVideoTop = $window.innerHeight - 150 - 100;
                 $rootScope.controlsStyle = false;
 
                 $rootScope.cameraPosition = "front";
@@ -387,53 +440,191 @@ angular.module('starter.controllers')
                 var apiKey = $rootScope.videoApiKey;
                 var sessionId = $rootScope.videoSessionId;
                 var token = $rootScope.videoToken;
-                /*
-                var apiKey = "45191172";
-                var sessionId = "1_MX40NTE5MTE3Mn5-MTQzOTQ2MDk3ODA4OH5wSEpoU091NXJkK01sZzFoUDV4aXhVWWh-fg";
-                var token = "T1===cGFydG5lcl9pZD00NTE5MTE3MiZzaWc9MzAyOTYzMTExMGJkYTJhYmI3MDMwNTNiM2Q4MWM5ZjU1ZWZkNjlkODpzZXNzaW9uX2lkPTFfTVg0ME5URTVNVEUzTW41LU1UUXpPVFEyTURrM09EQTRPSDV3U0Vwb1UwOTFOWEprSzAxc1p6Rm9VRFY0YVhoVldXaC1mZyZjcmVhdGVfdGltZT0xNDM5NDYwOTc1Jm5vbmNlPTcwNDQzJnJvbGU9UFVCTElTSEVS";
-                */
+
                 session = OT.initSession(apiKey, sessionId);
                 //var publisher;
 
+				var customerFullName = $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName;
+				var connectedStreams = new Array();
+                var lastSubscriber = "";
 
-                session.on('streamCreated', function(event) {
+				var thumbSwiper = new Swiper('.swiper-container',{
+					mode:'horizontal',
+					slidesPerView: 3,
+				});
+
+				session.on('streamCreated', function(event) {
                     //alert('stream created from type: ' + event.stream.videoType);
+					$('#pleaseWaitVideo').remove();
+					$('#subscriber').css('background-color', 'black !important');
+					for(var i = 0; i < connectedStreams.length; i++){
+						var tbStreamVal = session.streams[connectedStreams[i]];
+						var connectedStreamId = connectedStreams[i];
+						if(connectedStreamId != ""){
+							$('#subscriber #video-' + connectedStreamId).hide();
+							$('#subscriber #' + connectedStreamId).hide();
+							$('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
+						}
+						if(typeof tbStreamVal == "undefined"){
+							var index = connectedStreams.indexOf(connectedStreamId);
+							connectedStreams.splice(index, 1);
+						}
+					}
+					connectedStreams.push(event.stream.streamId);
+					var streamIdVal = event.stream.streamId;
+
+					var vdioContainer = document.createElement("div");
+					vdioContainer.setAttribute("id", 'video-' + streamIdVal);
+
+					var vdioPlayer = document.createElement("div");
+					vdioPlayer.setAttribute("id", streamIdVal);
+
+					vdioContainer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px!important; position: relative; height: " + $rootScope.clinicianVideoHeight + "px;");
+					vdioPlayer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px; height: " + $rootScope.clinicianVideoHeight + "px;");
 
                     if(ionic.Platform.isIOS()){
-                        if(event.stream.videoType === 1){
-                            $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
-                        } else if(event.stream.videoType === 2){
-                            $('#subscriber .OT_video-container').remove();
+						// if(event.stream.videoType == 1){
+						// 	//$('#video-' + streamIdVal).width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
+						// 	//$('#' + streamIdVal).width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
+						// 	vdioContainer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px!important; position: relative; height: " + $rootScope.clinicianVideoHeight + "px;");
+						// 	vdioPlayer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px; height: " + $rootScope.clinicianVideoHeight + "px;");
+						// } else
+						if(event.stream.videoType == 2){
+							$('#subscriber .OT_root').hide();
+							var screenHeight = $rootScope.clinicianVideoHeight / 2;
+							var divHeight = $rootScope.clinicianVideoHeightScreen / 2;
+							var totalHeight = screenHeight - divHeight;
+							vdioContainer.setAttribute("style", "top:" + totalHeight + "px !important; position: relative; width: " + $rootScope.clinicianVideoWidth + "px; height: " + $rootScope.clinicianVideoHeightScreen + "px;");
+							vdioPlayer.setAttribute("style", "width: " + $rootScope.clinicianVideoWidth + "px; height: " + $rootScope.clinicianVideoHeightScreen + "px;");
+						}
+					}
+					document.getElementById('subscriber').appendChild(vdioContainer);
+					document.getElementById('video-' + streamIdVal).appendChild(vdioPlayer);
 
-                            var screenHeight = $rootScope.clinicianVideoHeight / 2;
-                            var divHeight = $rootScope.clinicianVideoHeightScreen / 2;
-                            var totalHeight = screenHeight - divHeight;
+					lastSubscriber = event.stream.streamId;
 
-                            $("#subscriber").css('top',  totalHeight);
-                            $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeightScreen);
-                        }
-                    }
-                    session.subscribe(event.stream, 'subscriber', {
+					session.subscribe(event.stream, streamIdVal, {
                         insertMode: 'append',
                         subscribeToAudio: true,
                         subscribeToVideo: true
                     });
 
-                    OT.updateViews();
+					$scope.createVideoThumbnail(event);
+
+					OT.updateViews();
                 });
 
+				$scope.createVideoThumbnail = function(event){
+					var streamIdVal = event.stream.streamId;
+					var participantName = event.stream.name;
+					if(participantName == ""){
+						participantName = streamIdVal.split('-')[0];
+					}
+					var thumbContainer = document.createElement("div");
+					thumbContainer.setAttribute("id", 'thumb-' + streamIdVal);
+
+					var thumbPlayer = document.createElement("div");
+					thumbPlayer.setAttribute("id", "thumbPlayer-" + streamIdVal);
+					thumbContainer.setAttribute("class", "claVideoThumb");
+					var thumbLeft = $('.claVideoThumb').length * 100;
+					thumbContainer.setAttribute("style", "z-index: 30000; left: " + thumbLeft + "px; border: 1px dotted red; width: 100px !important; padding: 5px; position: absolute; float: left; height: 100px !important;");
+					thumbPlayer.setAttribute("style", "background-color: black; border: 1px dotted green; width: 80px !important; position: absolute; height: 80px !important;");
+					thumbPlayer.setAttribute("onclick", "switchToStream('" + streamIdVal + "');");
+					//document.getElementById('thumbVideos').appendChild(thumbContainer);
+					//document.getElementById('thumb-' + streamIdVal).appendChild(thumbPlayer);
+					var imgThumbPath = $rootScope.APICommonURL + '/images/Patient-Male.gif';
+					imgThumbPath = 'img/default-user.jpg';
+					var videoSource = '';
+					if(participantName.indexOf('Screen Share') >= 0){
+						imgThumbPath = 'img/share-icon.jpg';
+					}
+					participantName = participantName.replace('Screen Share By :','');
+					thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 90px;text-align: center !important;'><img style='width: 50px; height: 50px; border-radius: 50%;' src='" + imgThumbPath +  "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
+				};
+
+				$scope.removeVideoThumbnail = function(streamIdVal){
+					$('#thumbPlayer-' + streamIdVal).hide();
+					$('#thumbPlayer-' + streamIdVal).remove();
+					var swiperParent = $('#thumb-' + streamIdVal).parent();
+					$('#thumb-' + streamIdVal).hide();
+					$('#thumb-' + streamIdVal).remove();
+					$(swiperParent).remove();
+					$("div.swiper-slide:empty").remove();
+					OT.updateViews();
+				};
+
+				$scope.arrangeVideoThumbnails = function(){
+					var thumbLength = $('.claVideoThumb').length;
+					for(var i = 0; i < thumbLength; i++){
+						var thumbLeft = i * 100;
+						$('.claVideoThumb').eq(i).css('left', thumbLeft + 'px !important;');
+					}
+				};
+
+				switchToStream = function(selectedSteamId){
+					for(var i = 0; i < connectedStreams.length; i++){
+						var connectedStreamId = connectedStreams[i];
+						if(connectedStreamId != "" && connectedStreamId != selectedSteamId){
+							$('#subscriber #video-' + connectedStreamId).hide();
+							$('#subscriber #' + connectedStreamId).hide();
+							$('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
+						}
+					}
+					$('#hiddenVideos #video-' + selectedSteamId).appendTo("#subscriber");
+					$('#video-' + selectedSteamId).show();
+					$('#' + selectedSteamId).show();
+					OT.updateViews();
+				};
                 session.on('streamDestroyed', function(event) {
-                        //$("#subscriberScreen").hide();
-                        //$("#subscriber").show();
-                        $("#subscriber").css('top', '0px');
-                        $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
-                        event.preventDefault();
+					var tbStreamVal = event.stream.streamId;
+					$scope.removeVideoThumbnail(tbStreamVal);
+					$('#subscriber #video-' + connectedStreamId).hide();
+					$('#subscriber #' + connectedStreamId).hide();
+					$('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
+					$('#' + tbStreamVal).remove();
+					$('#video-' + tbStreamVal).remove();
+					if(typeof tbStreamVal != "undefined"){
+						var index = connectedStreams.indexOf(tbStreamVal);
+						connectedStreams.splice(index, 1);
+					}
+					$scope.removeVideoThumbnail(tbStreamVal);
+
+					for(var i = 0; i < connectedStreams.length; i++){
+						var tbStreamVal = session.streams[connectedStreams[i]];
+						var connectedStreamId = connectedStreams[i];
+						if(connectedStreamId != ""){
+							$('#subscriber #video-' + connectedStreamId).hide();
+							$('#subscriber #' + connectedStreamId).hide();
+							$('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
+						}
+						if(typeof tbStreamVal == "undefined"){
+							var index = connectedStreams.indexOf(connectedStreamId);
+							connectedStreams.splice(index, 1);
+						}
+					}
+					if(connectedStreams.length > 0){
+						var doctorsStreamId = connectedStreams[0];
+						$('#hiddenVideos #video-' + doctorsStreamId).appendTo("#subscriber");
+						$('#video-' + doctorsStreamId).show();
+						$('#' + doctorsStreamId).show();
+					}
+
+					//session.unsubscribe(event.stream);
+					OT.updateViews();
+					$scope.arrangeVideoThumbnails();
+					$("#subscriber").css('top', '0px');
+					$("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
+					event.preventDefault();
                 });
 
                 // Handler for sessionDisconnected event
                 session.on('sessionDisconnected', function(event) {
                     console.log('You were disconnected from the session.', event.reason);
                 });
+
+				session.on("signal", function(event) {
+
+				});
 
                 // Connect to the Session
                 session.connect(token, function(error) {
@@ -442,7 +633,8 @@ angular.module('starter.controllers')
                         publisher = OT.initPublisher('publisher', {
                             insertMode: 'append',
                             publishAudio: true,
-                            publishVideo: true
+                            publishVideo: true,
+							name: customerFullName
                         });
                         $timeout(function(){
                             $scope.controlsStyle = true;
@@ -456,7 +648,7 @@ angular.module('starter.controllers')
 
                 });
                 $scope.toggleCamera = function(){
-                    if($scope.cameraPosition === "front"){
+                    if($scope.cameraPosition == "front"){
                         $rootScope.newCamPosition = "back";
                         $rootScope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
                     }else{
@@ -479,7 +671,8 @@ angular.module('starter.controllers')
                     $rootScope.publishAudio = $rootScope.newPublishAudio;
                     publisher.publishAudio($rootScope.newPublishAudio);
                     //OT.updateViews();
-                };
+
+				};
 
                 $scope.toggleSpeaker = function(){
 
@@ -494,6 +687,8 @@ angular.module('starter.controllers')
     var callEnded = false;
     $scope.disconnectConference = function(){
 		if(!callEnded){
+			$('#thumbVideos').remove();
+			$('#videoControls').remove();
 
 			//$timeout(function(){
 			//try {
@@ -544,7 +739,10 @@ angular.module('starter.controllers')
 			//$('#subscriber').css('display', 'none');
 
 		//$scope.doGetPatientsSoapNotes();
-		$scope.doGetExistingConsulatationReport();
+		$rootScope.doGetExistingConsulatationReport();
 		window.plugins.insomnia.allowSleepAgain();
 	}
+
+
+
 })

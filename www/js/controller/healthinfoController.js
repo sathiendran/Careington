@@ -83,9 +83,9 @@
       //  $scope.healthsearchinfo=true;
      //   $scope.healthtab=true;
         $rootScope.flag = true;
-     
-        
-        
+
+
+
 
         $scope.edittext = function() {
             $scope.readattr = false;
@@ -300,7 +300,7 @@ function iterateAlphabet()
     for (var j=0; j<3; j++) {
       $scope.groups[i].items.push(i + '-' + j);
     }
-  } 
+  }
     $scope.profile= function() {
         var myEl = angular.element( document.querySelector( '#profid' ) );
         myEl.addClass('btcolor');
@@ -359,7 +359,7 @@ function iterateAlphabet()
 
         }
 
-  
+
    $scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
  $scope.healthsearch=function(){
         $scope.alphabet = iterateAlphabet();
@@ -377,7 +377,7 @@ function iterateAlphabet()
            $scope.modal = modal;
            $scope.modal.show();
         });
-        
+
         if ($rootScope.accessToken === 'No Token') {
                     alert('No token.  Get token first then attempt operation.');
                     return;
@@ -389,7 +389,7 @@ function iterateAlphabet()
                     success: function (data) {
                     $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
                     $rootScope.currentMedicationsearchList = angular.fromJson(data.data[1].codes);
-                    
+
                   var users = $rootScope.currentMedicationsearchList;
                     var userslength=users.length;
                     var log = [];
@@ -402,14 +402,14 @@ function iterateAlphabet()
                       tmp[letter].push( users[i] );
                     }
                   $rootScope.sorted_users= tmp;
-  
+
               $rootScope.gotoList = function(id){
-                
+
                    $location.hash(id);
                    $ionicScrollDelegate.anchorScroll();
-                  
-                }  
-                    
+
+                }
+
             },
             error: function (data) {
                 $rootScope.serverErrorMessageValidation();
@@ -430,39 +430,39 @@ $scope.medicationdone=function(){
       if($rootScope.CurrentMedicationsearchItem !== '') {
             $rootScope.patientmedicationsSearch = $rootScope.CurrentMedicationsearchItem;
 		    $rootScope.MedicationsCount = $rootScope.patientmedicationsSearch.length;
-		
+
          for (var i = 0; i < $rootScope.MedicationsCount; i++) {
                  $rootScope.CurrentmedicationupdateList.push(
 					{code: $rootScope.CurrentMedicationsearchItem[i].codeId, description: $rootScope.CurrentMedicationsearchItem[i].text}
-					); 
+					);
           }
             console.log($rootScope.patientsearchmedications);
 			console.log($rootScope.MedicationsCount);
              $scope.modal.hide();
 			}
-       
+
         $scope.InfantData = [];
-       
+
 				console.log($rootScope.patientmedicalsurgeries);
                 console.log($rootScope.CurrentMedicationsearchSelected);
                 console.log($rootScope.patientmedicalConditions);
                 console.log($rootScope.patientmedicationsallergies);
         var params = {
-					accessToken: $rootScope.accessToken,  
+					accessToken: $rootScope.accessToken,
 					MedicationAllergies:$rootScope.patientmedicationsallergies,
 					Surgeries:$rootScope.patientmedicalsurgeries,
 					MedicalConditions:$rootScope.patientmedicalConditions,
 					Medications:$rootScope.CurrentmedicationupdateList,
 					InfantData:$scope.InfantData,
-					patientId:$rootScope.patientId,					
-					success: function (data) {					
+					patientId:$rootScope.patientId,
+					success: function (data) {
 						 $scope.health();
 					},
 					error: function (data) {
 						$scope.postPatientMedicalProfile = 'Error getting Patient Medical Profile';
 					}
 				};
-				
+
 			 LoginService.putPatientMedicalProfile(params);
 }
 
@@ -473,15 +473,15 @@ $scope.OnSelectMedication = function(currentmedication) {
               } else  {
                 $rootScope.checkedMedication--;
               }
-              
+
         if(currentmedication.text === "Other - (List below)"){
             $scope.openOtherCurrentMedicationView(currentmedication);
         } else {
 			if($rootScope.checkedMedication === 4) {
 				$scope.medicationdone();
 			}
-		}       
-   
+		}
+
  }
 
 
@@ -516,7 +516,7 @@ $scope.openOtherCurrentMedicationView = function(model) {
                       });
 
                     var newCurrentMedicationItem = { text: $scope.data.CurrentMedicationOther,checked: true };
-                    
+
                       $rootScope.currentMedicationsearchList.splice(1, 0, newCurrentMedicationItem);
                     var users = $rootScope.currentMedicationsearchList;
                     var userslength=users.length;
@@ -530,14 +530,14 @@ $scope.openOtherCurrentMedicationView = function(model) {
                       tmp[letter].push( users[i] );
                     }
                   $rootScope.sorted_users= tmp;
-  
+
               $rootScope.gotoList = function(id){
                  // var myEl = angular.element(document.querySelector('#cursearch'));
                    //  myEl.addClass('currmedication');
                    $location.hash(id);
                    $ionicScrollDelegate.anchorScroll();
-                }  
-                    
+                }
+
                       if($rootScope.checkedMedication === 4) {
 							$scope.medicationdone();
 						}
@@ -548,7 +548,7 @@ $scope.openOtherCurrentMedicationView = function(model) {
 			]
 		  });
     };
-    
+
 
 
 
@@ -575,7 +575,7 @@ $scope.openOtherCurrentMedicationView = function(model) {
                     success: function (data) {
                        $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
                        $rootScope.medicationAllergiesearchList = angular.fromJson(data.data[2].codes);
-                       
+
                     var usersallergie = $rootScope.medicationAllergiesearchList;
                     var usersallergielength=usersallergie.length;
                     var log = [];
@@ -588,19 +588,19 @@ $scope.openOtherCurrentMedicationView = function(model) {
                       tmpallergie[letter].push( usersallergie[i] );
                     }
                   $scope.sorted_usersallergie = tmpallergie;
-  
+
                  $scope.gotoallergyList = function(codeid){
                    $location.hash(codeid);
                    $ionicScrollDelegate.anchorScroll();
-                }  
-                       
-                       
+                }
+
+
                     },
                     error: function (data) {
                         $rootScope.serverErrorMessageValidation();
                     }
                 };
-            
+
         LoginService.getCodesSet(params);
         $scope.cancelshow = false;
         $scope.doneshow = true;
@@ -616,15 +616,15 @@ $scope.OnSelectAllergies = function(allergie) {
 	  }  else  {
 	  $rootScope.checkedAllergies--;
 	  }
-     
+
   if(allergie.text === "Other"){
             $scope.openOtherAllergiesView(allergie);
         } else {
 			if($rootScope.checkedAllergies === 4) {
 				$scope.allergiedone();
 			}
-		}   
-      
+		}
+
  }
 
 
@@ -672,11 +672,11 @@ $scope.openOtherAllergiesView = function(model) {
                       tmpallergie[letter].push( usersallergie[i] );
                     }
                   $scope.sorted_usersallergie = tmpallergie;
-  
+
                  $scope.gotoallergyList = function(codeid){
                    $location.hash(codeid);
                    $ionicScrollDelegate.anchorScroll();
-                }  
+                }
 
 						if($rootScope.checkedAllergies === 4) {
 							$scope.allergiedone();
@@ -714,7 +714,7 @@ $scope.chronicsearch=function(){
                     success: function (data) {
                      $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
                      $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
-                      
+
                   var userschronic = $rootScope.chronicConditionsearchList;
                     var userschroniclength=userschronic.length;
                     var log = [];
@@ -727,17 +727,17 @@ $scope.chronicsearch=function(){
                       tmpchronic[ chletter].push( userschronic[i] );
                     }
                   $scope.sortedchronic_users = tmpchronic;
-  
+
                  $scope.gotochronicList = function(codeid){
                    $location.hash(codeid);
                    $ionicScrollDelegate.anchorScroll();
-                }  
+                }
   },
   error: function (data) {
            $rootScope.serverErrorMessageValidation();
        }
  };
-            
+
   LoginService.getCodesSet(params);
         $scope.cancelshow = false;
         $scope.doneshow = true;
@@ -757,6 +757,34 @@ $scope.OnSelectChronicCondition = function(chronic) {
 	  }
  }
 
+ $scope.doGetListOfCoUsers = function() {
+             var params = {
+               	accessToken: $rootScope.accessToken,
+ 			            authorizedOnly: true,
+              success: function(data) {
+                 //$scope.listOfCoUser = JSON.stringify(data, null, 2);
+                $rootScope.listOfCoUserDetails = [];
+                angular.forEach(data.data, function(index, item) {
+                  $rootScope.listOfCoUserDetails.push({
+                     'description': index.description,
+                    'imagePath': $rootScope.APICommonURL + index.imagePath,
+                     'lastname': index.lastname,
+                     'name': index.name,
+                     'patientId': index.patientId,
+                     'personId': index.personId,
+                     'roleId': index.roleId,
+                     'userId': index.userId
+                  });
+                 });
+                 $state.go('tab.relatedusers');
+               },
+               error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+               }
+            };
+             LoginService.getListOfCoUsers(params);
+         }
+
+
 
     });
- 

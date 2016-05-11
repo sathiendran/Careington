@@ -1,23 +1,23 @@
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ngStorage', 'ion-google-place', 'ngIOS9UIWebViewPatch'])
+angular.module('starter.controllers')
 
 //InterimController - To manipulate URL Schemes
-.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $localstorage, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,$localStorage,$sessionStorage,StateList, CustomCalendar, CreditCardValidations) {
+.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,StateList, CustomCalendar, CreditCardValidations) {
 
 	$rootScope.deploymentEnv = deploymentEnv;
-     if(deploymentEnv !== 'Multiple') {
+     if(deploymentEnv != 'Multiple') {
          $rootScope.APICommonURL = apiCommonURL;
      }
 
-	/*if(deploymentEnv === "Sandbox"){
+	/*if(deploymentEnv == "Sandbox"){
 		$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		apiCommonURL = 'https://sandbox.connectedcare.md';
-	}else if(deploymentEnv === "Production"){
+	}else if(deploymentEnv == "Production"){
 		$rootScope.APICommonURL = 'https://connectedcare.md';
 		apiCommonURL = 'https://connectedcare.md';
-	}else if(deploymentEnv === "QA"){
+	}else if(deploymentEnv == "QA"){
 		$rootScope.APICommonURL = 'https://snap-qa.com';
 		apiCommonURL = 'https://snap-qa.com';
-	}else if(deploymentEnv === "Single"){
+	}else if(deploymentEnv == "Single"){
 		//$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
 		//apiCommonURL = 'https://sandbox.connectedcare.md';
 	//	$rootScope.APICommonURL = 'https://snap-qa.com';
@@ -27,34 +27,34 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.APICommonURL = 'https://snap-stage.com';
 		apiCommonURL = ' https://snap-stage.com';
 
-	} else if(deploymentEnv === "Staging") {
+	} else if(deploymentEnv == "Staging") {
 		$rootScope.APICommonURL = 'https://snap-stage.com';
 		apiCommonURL = ' https://snap-stage.com';
 		api_keys_env = "Staging";
 	}*/
 
-	$localstorage.set('ChkVideoConferencePage', "");
+	$window.localStorage.setItem('ChkVideoConferencePage', "");
 
 	$ionicPlatform.registerBackButtonAction(function (event, $state) {
-        if ( ($rootScope.currState.$current.name==="tab.userhome") ||
-			  ($rootScope.currState.$current.name==="tab.addCard") ||
-			  ($rootScope.currState.$current.name==="tab.submitPayment") ||
-			  ($rootScope.currState.$current.name==="tab.waitingRoom") ||
-			 ($rootScope.currState.$current.name==="tab.receipt") ||
-             ($rootScope.currState.$current.name==="tab.videoConference") ||
-			  ($rootScope.currState.$current.name==="tab.connectionLost") ||
-			 ($rootScope.currState.$current.name==="tab.ReportScreen")
+        if ( ($rootScope.currState.$current.name=="tab.userhome") ||
+			  ($rootScope.currState.$current.name=="tab.addCard") ||
+			  ($rootScope.currState.$current.name=="tab.submitPayment") ||
+			  ($rootScope.currState.$current.name=="tab.waitingRoom") ||
+			 ($rootScope.currState.$current.name=="tab.receipt") ||
+             ($rootScope.currState.$current.name=="tab.videoConference") ||
+			  ($rootScope.currState.$current.name=="tab.connectionLost") ||
+			 ($rootScope.currState.$current.name=="tab.ReportScreen")
             ){
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
-            }else if($rootScope.currState.$current.name==="tab.login"){
+            }else if($rootScope.currState.$current.name=="tab.login"){
                 navigator.app.exitApp();
-			}else if($rootScope.currState.$current.name==="tab.loginSingle"){
+			}else if($rootScope.currState.$current.name=="tab.loginSingle"){
                 navigator.app.exitApp();
-            }else if($rootScope.currState.$current.name==="tab.cardDetails"){
+            }else if($rootScope.currState.$current.name=="tab.cardDetails"){
 				var gSearchLength = $('.ion-google-place-container').length;
-				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block')	{
+				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block')	{
 					$ionicBackdrop.release();
 					$(".ion-google-place-container").css({"display": "none"});
 
@@ -82,16 +82,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					$rootScope.getDetails = data.data[0].enabledModules;
-					if($rootScope.getDetails !== '') {
+					if($rootScope.getDetails != '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
-							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
 								$rootScope.insuranceMode = 'on';
 							}
-							//if ($rootScope.getDetails[i] === 'PaymentPageBeforeWaitingRoom') {
-							if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
+							//if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
 								$rootScope.paymentMode = 'on';
 							}
-							if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
 								$rootScope.onDemandMode = 'on';
 							}
 						}
@@ -99,7 +99,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
-                    if(deploymentEnvLogout === 'Multiple') {
+                    if(deploymentEnvLogout == 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase =  'Virtual Care';
                     } else {
@@ -123,8 +123,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 
 
-	$scope.doGetScheduledConsulatation = function () {
-            if ($scope.accessToken === 'No Token') {
+	/*$scope.doGetScheduledConsulatation = function () {
+            if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
@@ -135,7 +135,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 success: function (data) {
 					console.log(data);
                     $scope.scheduledConsultationList = data.data;
-					if(data !== "") {
+					if(data != "") {
 						$rootScope.scheduledList = [];
 						var currentDate = new Date();
 						currentDate = $scope.addMinutes(currentDate, -30);
@@ -167,7 +167,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						d.setHours(d.getHours() + 12);
 						var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 
-						if($rootScope.scheduledList !== undefined && $rootScope.scheduledList.length !== 0)
+						if($rootScope.scheduledList != '')
 						{
 							//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
 							//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
@@ -195,9 +195,95 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             };
 
             LoginService.getScheduledConsulatation(params);
-        };
+        };*/
+
+	$scope.doGetScheduledConsulatation = function () {
+		if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+		 $rootScope.scheduledConsultationList = [];
+		var params = {
+			patientId: $rootScope.primaryPatientId,
+			accessToken: $rootScope.accessToken,
+			success: function (data) {
+				if(data != "") {
+					$scope.scheduledConsultationList = data.data;
+					$rootScope.getScheduledList = [];
+					$rootScope.scheduleParticipants = [];
+					var currentDate = new Date();
+					currentDate = $scope.addMinutes(currentDate, -30);
+					//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+
+
+					angular.forEach($scope.scheduledConsultationList, function(index, item) {
+						if(currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+							 $rootScope.getScheduledList.push({
+								'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+								'appointmentId': index.appointmentId,
+								'appointmentStatusCode': index.appointmentStatusCode,
+								'appointmentTypeCode': index.appointmentTypeCode,
+								'availabilityBlockId': index.availabilityBlockId,
+								'endTime': index.endTime,
+								'intakeMetadata': angular.fromJson(index.intakeMetadata),
+								'participants': angular.fromJson(index.participants),
+								'waiveFee': index.waiveFee
+							});
+							angular.forEach(index.participants, function(index, item) {
+								$rootScope.scheduleParticipants.push({
+								'appointmentId': index.appointmentId,
+								'attendenceCode': index.attendenceCode,
+								'participantId': index.participantId,
+								'participantTypeCode': index.participantTypeCode,
+								'person': angular.fromJson(index.person),
+								'referenceType': index.referenceType,
+								'status': index.status
+							});
+							})
+						}
+					});
+			$rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
+
+					console.log($rootScope.scheduledList);
+					$rootScope.nextAppointmentDisplay = 'none';
+
+					var d = new Date();
+					d.setHours(d.getHours() + 12);
+					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+
+					if($rootScope.scheduledList != '')
+					{
+						//var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+						//var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+						var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
+						var currentUserHomeDate = currentUserHomeDate;
+
+						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+							console.log('scheduledTime <= getTwelveHours UserHome');
+							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+							$rootScope.timerCOlor = '#FEEFE8';
+							var beforAppointmentTime = 	getReplaceTime;
+							var doGetAppointmentTime =  $scope.addMinutes(beforAppointmentTime, -30);
+							if((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime()))
+							{
+								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+								$rootScope.timerCOlor = '#E1FCD4';
+							}
+						}
+					}
+				}
+			},
+			error: function (data) {
+			   $rootScope.serverErrorMessageValidation();
+			}
+		};
+
+		LoginService.getScheduledConsulatation(params);
+	}
+
 	$scope.doGetPrimaryPatientLastName = function() {
-			if ($scope.accessToken === 'No Token') {
+			if ($scope.accessToken == 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
 			}
@@ -236,7 +322,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			LoginService.getPrimaryPatientLastName(params);
 		};
 	$scope.doGetPatientProfiles = function() {
-		if ($rootScope.accessToken === 'No Token') {
+		if ($rootScope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
@@ -251,7 +337,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
 				$rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
 				//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
-				$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
+				//$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
+				$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
 				$rootScope.address = data.data[0].address;
 				$rootScope.city = data.data[0].city;
 				$rootScope.createDate = data.data[0].createDate;
@@ -260,21 +347,21 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.gender = data.data[0].gender;
 				$rootScope.homePhone = data.data[0].homePhone;
 
-				if(typeof data.data[0].location !== 'undefined') {
+				if(typeof data.data[0].location != 'undefined') {
 					$rootScope.location = data.data[0].location;
 				} else {
 					$rootScope.location = '';
 				}
 				$rootScope.mobilePhone = data.data[0].mobilePhone;
 
-				if(typeof data.data[0].organization !== 'undefined') {
+				if(typeof data.data[0].organization != 'undefined') {
 					$rootScope.organization = data.data[0].organization;
 				} else {
 					$rootScope.organization = '';
 				}
 				$rootScope.primaryPatientName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
 				$rootScope.userCountry = data.data[0].country;
-				if(typeof $rootScope.userCountry === 'undefined') {
+				if(typeof $rootScope.userCountry == 'undefined') {
 					$rootScope.userCountry = '';
 				}
 				$rootScope.primaryPatientGuardianName = '';
@@ -317,7 +404,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		LoginService.getPatientProfiles(params);
 	};
 	$scope.doGetRelatedPatientProfiles = function(redirectPage) {
-		if ($scope.accessToken === 'No Token') {
+		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
@@ -333,7 +420,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'id': index.$id,
 							'patientId': index.patientId,
 							'patientName': index.patientName,
-							'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
+							'profileImagePath': index.profileImagePath,
 							'relationCode': index.relationCode,
 							'isAuthorized': index.isAuthorized,
 							'birthdate': index.birthdate,
@@ -348,7 +435,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					});
 
 					$rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
-					if(redirectPage === 'userhome'){
+					if(redirectPage == 'userhome'){
 						$state.go('tab.userhome');
 					}else{
 						//$state.go('tab.waitingRoom');
@@ -371,7 +458,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.appointmentsPatientDOB = '';
 		$rootScope.appointmentsPatientGurdianName = '';
 		$rootScope.appointmentsPatientImage = '';
-		if ($scope.accessToken === 'No Token') {
+		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
@@ -385,7 +472,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
 				$rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
 				if(!angular.isUndefined($rootScope.consultationStatusId)) {
-						if($rootScope.consultationStatusId === 71 ) {
+						if($rootScope.consultationStatusId == 71 ) {
 							navigator.notification.alert(
 								'Your consultation is already started on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
@@ -393,7 +480,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'Done'                  // buttonName
 							);
 							return false;
-						} else if($rootScope.consultationStatusId === 72 ) {
+						} else if($rootScope.consultationStatusId == 72 ) {
 							navigator.notification.alert(
 								'Your consultation is already ended.',  // message
 								function(){ $state.go('tab.userhome'); return;},
@@ -401,7 +488,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'Done'                  // buttonName
 							);
 							return false;
-						} else if($rootScope.consultationStatusId === 79 ) {
+						} else if($rootScope.consultationStatusId == 79 ) {
 							navigator.notification.alert(
 								'Your consultation is cancelled.',  // message
 								function(){ $state.go('tab.userhome'); return;},
@@ -409,7 +496,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'Done'                  // buttonName
 							);
 							return false;
-						} else if($rootScope.consultationStatusId === 80 ) {
+						} else if($rootScope.consultationStatusId == 80 ) {
 							navigator.notification.alert(
 								'Your consultation is in progress on other device.',  // message
 								function(){ $state.go('tab.userhome'); return;},
@@ -454,7 +541,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		LoginService.getPrimaryPatientLastName(params);
 	}
 
-	if($stateParams.token !== "" && $stateParams.hospitalId !== "" && $stateParams.consultationId !== ""){
+	if($stateParams.token != "" && $stateParams.hospitalId != "" && $stateParams.consultationId != ""){
 		$rootScope.accessToken = $stateParams.token;
 		$rootScope.hospitalId = $stateParams.hospitalId;
 		$rootScope.consultationId = $stateParams.consultationId;
@@ -463,7 +550,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		//$scope.doGetExistingConsulatation();
 		$scope.doGetRelatedPatientProfiles('waitingRoom');
 		//$state.go('tab.waitingRoom');
-	}else if($stateParams.token !== "" && $stateParams.hospitalId !== "" && $stateParams.consultationId === ""){
+	}else if($stateParams.token != "" && $stateParams.hospitalId != "" && $stateParams.consultationId == ""){
 		$rootScope.accessToken = $stateParams.token;
 		$rootScope.hospitalId = $stateParams.hospitalId;
 		//$rootScope.accessToken = "RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ";
@@ -472,9 +559,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.doGetPatientProfiles();
 		$scope.doGetRelatedPatientProfiles('userhome');
 	}else{
-		if(deploymentEnvLogout === "Multiple"){
+		if(deploymentEnvLogout == "Multiple"){
 			$state.go('tab.chooseEnvironment');
-		}else if(deploymentEnvLogout === "Single"){
+		}else if(deploymentEnvLogout == "Single"){
 			$state.go('tab.loginSingle');
 		}else{
 			$state.go('tab.login');

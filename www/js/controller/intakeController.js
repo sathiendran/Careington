@@ -587,7 +587,8 @@ angular.module('starter.controllers')
 				);
 			}
 		}
-		if(typeof $rootScope.SecondaryConcernText !== 'undefined') {
+
+		if(typeof $rootScope.SecondaryConcernText !== 'undefined' && $rootScope.SecondaryConcernText !=="" ) {
 			$scope.sceondFilter = $filter('filter')($scope.OnDemandConsultationSaveData.concerns, {description:$rootScope.SecondaryConcernText});
 			if($scope.sceondFilter.length === 0) {
 				$scope.OnDemandConsultationSaveData.concerns.push(
