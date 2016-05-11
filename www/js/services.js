@@ -194,7 +194,7 @@ angular.module('starter.services', [])
 		this.getListOfCodeSet = function(params) {
 			var PatientDetailsList = {
 				headers: util.getHeaders(params.accessToken),
-							url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=eyecolor,haircolor,ethnicity,relationship',
+							url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=eyecolor,haircolor,ethnicity,relationship,heightunit,weightunit',
 							method: 'GET'
 			};
 

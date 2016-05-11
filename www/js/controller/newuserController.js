@@ -78,4 +78,192 @@ angular.module('starter.controllers')
         $scope.addmore = false;
         $scope.showless= false;
     };
+    
+       $('input').blur(function () {                        
+       $(this).val(
+       $.trim($(this).val())
+      );
+   });
+  
+  
+   var minDate = new Date();
+   var maxDate=minDate.getDay();
+   var maxMonth=minDate.getMonth()+1;
+   var maxYear=minDate.getFullYear();
+   if(maxDate<10){
+       var maxD="0"+maxDate;
+   }
+   if(maxMonth<10){
+       var maxM="0"+maxMonth;
+   }
+   var maxDay=maxYear+"-"+maxM+"-"+maxD;
+   var mDate="2016-05-04";
+     $scope.maxDay = maxDay;
+     $scope.minimum ="1950-01-01";
+  
+  $('input').blur(function(){
+		var value=$.trim($(this).val());
+		$(this).val(value);
+	});
+    
+  
+  /*  $("#userphone").blur(function () { 
+        
+      if (this.value.match(/^[0-9]{1,14}$/)) {
+          this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
+        
+      }
+    });
+    $("#usermobile").blur(function () { 
+        
+      if (this.value.match(/^[0-9]{1,14}$/)) {
+          this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
+       
+      }
+    });*/
+ 
+  
+    $scope.postNewuserDetails=function(){
+           $scope.firstName=$("#userfirstname").val();
+           $scope.lastName=$("#userlastname").val();
+           $scope.email= $("#useremail").val();
+           $scope.dob= $("#userdob").val();
+           $scope.relation= $("#userrelation").val();
+           $scope.gender=$("input[name='userInfoGender']:checked").val();
+           $scope.height= $("#userheight").val();
+           $scope.weight= $("#userWeight").val();
+           $scope.homephone= $("#userphone").val();
+           $scope.mobile= $("#usermobile").val();
+           $scope.homeaddress= $("#address").val();
+           $scope.organization= $("#userorg").val();
+           $scope.location= $("#userloc").val();
+           $scope.hairColor= $("#userhaircolor").val().split("@").slice(0,1);
+           $scope.getHairColorId =_.first($scope.hairColor);
+           $scope.eyeColor= $("#usereyecolor").val().split("@").slice(0,1);
+           $scope.getEyeColorId =_.first($scope.eyeColor);  
+           $scope.ethnicity= $("#userethnicity").val().split("@").slice(0,1);
+           $scope.getEthnicityId =_.first($scope.ethnicity); 
+        //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
+          // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
+         
+       if( (typeof $scope.lastName === 'undefined' || $scope.lastName === '')  &&
+             (typeof $scope.email === 'undefined' || $scope.email === '')  &&
+             (typeof $scope.dob === 'undefined' || $scope.dob === '')  &&
+             (typeof $scope.gender === 'undefined' || $scope.gender === '')  &&
+             (typeof $scope.height === 'undefined' || $scope.height === '')  &&
+             (typeof $scope.weight === 'undefined' || $scope.weight === '')  && 
+             (typeof $scope.splitHairColor === 'undefined' || $scope.splitHairColor === '')  && 
+             (typeof $scope.eyeColor === 'undefined' || $scope.eyeColor === '')  && 
+             (typeof $scope.ethnicity === 'undefined' || $scope.ethnicity === '')  
+        ) {
+        //  $scope.ErrorMessage = "Please Enter All Required Fields";
+            alert("Please Enter All Required Fields");  
+       }
+       else{
+           alert("fail");
+          
+       }
+       
+    }
+
+ 
+ $scope.cancelcouser=function(){
+          $('#couserform')[0].reset();
+           $('select').prop('selectedIndex', 0);
+          $state.go('tab.relatedusers');
+    }
+ 
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+})
+
+
+.directive('phoneInput', function($filter, $browser) {
+    return {
+        require: 'ngModel',
+        link: function($scope, $element, $attrs, ngModelCtrl) {
+            var listener = function() {
+                var value = $element.val().replace(/[^0-9]/g, '');
+                $element.val($filter('tel')(value, false));
+            };
+
+            // This runs when we update the text field
+            ngModelCtrl.$parsers.push(function(viewValue) {
+                return viewValue.replace(/[^0-9]/g, '').slice(0,10);
+            });
+
+            // This runs when the model gets updated on the scope directly and keeps our view in sync
+            ngModelCtrl.$render = function() {
+                $element.val($filter('tel')(ngModelCtrl.$viewValue, false));
+            };
+
+            $element.bind('change', listener);
+            $element.bind('keydown', function(event) {
+                var key = event.keyCode;
+                // If the keys include the CTRL, SHIFT, ALT, or META keys, or the arrow keys, do nothing.
+                // This lets us support copy and paste too
+                if (key == 91 || (15 < key && key < 19) || (37 <= key && key <= 40)){
+                    return;
+                }
+                $browser.defer(listener); // Have to do this or changes don't get picked up properly
+            });
+
+            $element.bind('paste cut', function() {
+                $browser.defer(listener);
+            });
+        }
+
+    };
+})
+.filter('tel', function () {
+    return function (tel) {
+        console.log(tel);
+        if (!tel) { return ''; }
+
+        var value = tel.toString().trim().replace(/^\+/, '');
+
+        if (value.match(/[^0-9]/)) {
+            return tel;
+        }
+
+        var country, city, number;
+
+        switch (value.length) {
+            case 1:
+            case 2:
+            case 3:
+                city = value;
+                break;
+
+            default:
+                city = value.slice(0, 3);
+                number = value.slice(3);
+        }
+
+        if(number){
+            if(number.length>3){
+                number = number.slice(0, 3) + '-' + number.slice(3,7);
+            }
+            else{
+                number = number;
+            }
+
+            return ("(" + city + ") " + number).trim();
+        }
+        else{
+            return "(" + city;
+        }
+
+    };
 });
+
+

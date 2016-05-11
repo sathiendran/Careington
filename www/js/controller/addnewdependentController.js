@@ -64,42 +64,42 @@ angular.module('starter.controllers')
            $scope.relation= $("#relation").val();
            $scope.gender=$("input[name='depgender']:checked").val();
            $scope.height= $("#height").val();
-           $scope.weight= $("#Weight").val();
+           $scope.weight= $("#weight").val();
            $scope.homephone= $("#homephone").val();
            $scope.mobile= $("#mobile").val();
            $scope.homeaddress= $("#homeadd").val();
            $scope.organization= $("#organization").val();
            $scope.location= $("#location").val();
            $scope.organization= $("#organization").val();
-            $scope.hairColor = $('#hairColor').val();
-            $scope.splitHairColor =   $scope.hairColor.split("@");
-            $scope.getHairColorId = $scope.splitHairColor[0];
-            $scope.getHairColorText = $scope.splitHairColor[1];
-        $scope.eyeColor = $('#eyeColor').val();
-            $scope.splitEyeColor =   $scope.eyeColor.split("@");
-            $scope.getEyeColorId = $scope.splitEyeColor[0];
-            $scope.getEyeColorText = $scope.splitEyeColor[1];
-        $scope.ethnicity = $('#ethnicity').val();
-            $scope.splitEthnicity =   $scope.ethnicity.split("@");
-            $scope.getEthnicityId = $scope.splitEthnicity[0];
-            $scope.getEthnicityText = $scope.splitEthnicity[1];
-         //  $scope.hairColor= $("#hairColor").val().split("@").slice(0,1);
-        //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
+           $scope.hairColor= $("#hairColor").val().split("@").slice(0,1);
+           $scope.getHairColorId =_.first($scope.hairColor);
+           $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
+           $scope.getEyeColorId =_.first($scope.eyeColor);  
+           $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);
+           $scope.getEthnicityId =_.first($scope.ethnicity); 
+           $scope.heightunit= $("#heightunit").val().split("@").slice(0,1);
+           $scope.getHeightunit =_.first($scope.heightunit); 
+           $scope.weightunit= $("#weightunit").val().split("@").slice(0,1);
+           $scope.getWeightunit =_.first($scope.weightunit); 
           // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
          
-       if( (typeof $scope.lastName === 'undefined' || $scope.lastName === '')  &&
+       if(  (typeof $scope.firstName === 'undefined' || $scope.firstName === '')  &&
+            (typeof $scope.lastName === 'undefined' || $scope.lastName === '')  &&
              (typeof $scope.email === 'undefined' || $scope.email === '')  &&
              (typeof $scope.dob === 'undefined' || $scope.dob === '')  &&
              (typeof $scope.gender === 'undefined' || $scope.gender === '')  &&
              (typeof $scope.height === 'undefined' || $scope.height === '')  &&
-             (typeof $scope.weight === 'undefined' || $scope.weight === '')  
+             (typeof $scope.weight === 'undefined' || $scope.weight === '')  && 
+             (typeof $scope.hairColor === 'undefined' || $scope.hairColor === '')  && 
+             (typeof $scope.eyeColor === 'undefined' || $scope.eyeColor === '')  && 
+             (typeof $scope.ethnicity === 'undefined' || $scope.ethnicity === '')  
         ) {
         //  $scope.ErrorMessage = "Please Enter All Required Fields";
             alert("Please Enter All Required Fields");  
        }
        else{
           // alert("fail");
-            $scope.doPostNewDependentuser();
+           $scope.doPostNewDependentuser();
        }
        
     }
@@ -109,16 +109,16 @@ angular.module('starter.controllers')
 						EmailAddress: $scope.email,						
 						PatientProfileData: {
 							patientId: $rootScope.patientId,
-							patientName:   $scope.firstName,
-							lastName:    $scope.lastName,
+							patientName: $scope.firstName,
+							lastName:  $scope.lastName,
 							dob: $scope.dob,
 							bloodType: 1,
-							eyeColor: $scope.getEyeColorId,
+							eyeColor:  $scope.getEyeColorId,
 							gender:  $scope.gender,
-							enthicity:$scope.getEthnicityId,
-							hairColor:$scope.getHairColorId,
-							homePhone: $scope.homephone,
-							mobilePhone:$scope.mobile,
+							enthicity: $scope.getEthnicityId,
+							hairColor: $scope.getHairColorId,
+							homePhone:  $scope.homephone,
+							mobilePhone: $scope.mobile,
 							schoolName: "",
 							schoolContact: "",
 							primaryPhysician: null,
@@ -127,14 +127,14 @@ angular.module('starter.controllers')
 							physicianSpecialistContact: null,
 							preferedPharmacy: null,
 							pharmacyContact: null,
-							address:  $scope.homeaddress,
+							address:   $scope.homeaddress,
 							profileImagePath: "/images/Patient-Male.gif",
-							height:  $scope.height,
+							height: $scope.height,
 							weight: $scope.weight,
-							heightUnit: 1,
-							weightUnit: 1,
-							organization:  $scope.organization,
-							location:   $scope.location,
+							heightUnit: $scope.getHeightunit,
+							weightUnit: $scope.getWeightunit,
+							organization: "sample string 19",
+							location: "sample string 20",
 							organizationId: "",
 							locationId: "",
 							country: "+1"
@@ -160,11 +160,13 @@ angular.module('starter.controllers')
 							timeZone: true
 						},
 						PatientMedicalHistoryData: {
-							patientId: $rootScope.patientId,							
-						},
+							patientId: $scope.patientId,							
+						},					
+					
                         success: function (data) {
                            
                                $('#dependentuserform')[0].reset();
+                               $('select').prop('selectedIndex', 0);
                                $state.go('tab.relatedusers');
                             console.log(data);
                         },
@@ -175,5 +177,12 @@ angular.module('starter.controllers')
             LoginService.postNewDependentuser(params);
            
        }
+    
+    
+    $scope.canceldependent=function(){
+          $('#dependentuserform')[0].reset();
+           $('select').prop('selectedIndex', 0);
+           $state.go('tab.relatedusers');
+    }
     
 });

@@ -88,6 +88,8 @@ angular.module('starter.controllers')
                $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Hair Color" });
                $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Ethnicity" });
                $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Relationship" });
+               $rootScope.listOfHeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Height" });
+               $rootScope.listOfWeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Weight" });
                  $state.go('tab.healthinfo');
              },
              error: function(data) {
