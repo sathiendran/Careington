@@ -1184,8 +1184,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				error: function (data, status) {
 					 var networkState = navigator.connection.type;
 					if(networkState != 'none') {
-						if(status == '401' || status == '403') {						      
-					 		navigator.notification.confirm(
+						//if(status == '401' || status == '403') {						      
+					 	/*	navigator.notification.confirm(
 					 			'Your account is not verified yet. Do you want to resend?',
 					 			 function(index){
 									if(index == 1){					
@@ -1196,9 +1196,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					 			 },
 								'Confirmation:',
 					 			['Cancel','Resend']     
-							);
+							);*/
 
-					 	} else {
+					 	//} else {
 					 		$scope.ErrorMessage = "Incorrect Password. Please try again";
 					 		$rootScope.Validation($scope.ErrorMessage);
 					 	}
