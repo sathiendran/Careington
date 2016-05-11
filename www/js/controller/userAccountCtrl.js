@@ -90,10 +90,11 @@ angular.module('starter.controllers')
                $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Relationship" });
                $rootScope.listOfHeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Height" });
                $rootScope.listOfWeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Weight" });
+               $rootScope.listOfBloodtype= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Blood Type" });
                  $state.go('tab.healthinfo');
              },
              error: function(data) {
-               $scope.codeSets = 'Error getting List of CodeSets such as Eye color, Hair Color, Ethnicity, RelationCode';
+               $scope.codeSets = 'Error getting List of CodeSets such as Eye color, Hair Color, Ethnicity, RelationCode,Blood type,Height unit,Weight unit';
              }
            };
            LoginService.getListOfCodeSet(params);
