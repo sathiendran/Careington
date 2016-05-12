@@ -1201,7 +1201,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					 	//} else {
 					 		$scope.ErrorMessage = "Incorrect Password. Please try again";
 					 		$rootScope.Validation($scope.ErrorMessage);
-					 	}
+					 	//}
 					 } else {
 					 	$rootScope.serverErrorMessageValidation();
 					 }
