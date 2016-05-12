@@ -552,27 +552,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         }, 100);
 
-		/* $ionicPlatform.registerBackButtonAction(function (event, $state) {
-			if($rootScope.currState.$current.name==="tab.login"){
-                navigator.app.exitApp();
-            }else if($rootScope.currState.$current.name==="tab.cardDetails"){
-				var gSearchLength = $('.ion-google-place-container').length;
-				if(($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block')	{
-					$ionicBackdrop.release();
-					$(".ion-google-place-container").css({"display": "none"});
-
-				}else{
-					$(".ion-google-place-container").css({"display": "none"});
-					navigator.app.backHistory();
-				}
-
-			}else {
-
-            }
-        }, 100); */
-
-
-/*	var dtNow = new Date("2015-05-26T13:20:04.268Z");	*/
 
     $scope.$storage = $window.localStorage;
 
@@ -960,7 +939,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 
 	$scope.doGetSingleHospitalInformation = function () {
-
 			$rootScope.paymentMode = '';
 			$rootScope.insuranceMode = '';
 			$rootScope.onDemandMode = '';
@@ -968,16 +946,16 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					$rootScope.getDetails = data.data[0].enabledModules;
-					if($rootScope.getDetails !== '') {
+					if($rootScope.getDetails != '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
-							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
 								$rootScope.insuranceMode = 'on';
 							}
-							//if ($rootScope.getDetails[i] === 'PaymentPageBeforeWaitingRoom') {
-							if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
+
+							if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
 								$rootScope.paymentMode = 'on';
 							}
-							if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
+							if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
 								$rootScope.onDemandMode = 'on';
 							}
 						}
@@ -986,12 +964,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     //$rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                     $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
-                     if(deploymentEnvLogout === 'Multiple') {
-                        $rootScope.alertMsgName = 'Virtual Care';
-                        $rootScope.reportHospitalUpperCase =  'Virtual Care';
-                    } else {
-                         $rootScope.alertMsgName = $rootScope.Hospital;
+                     if(deploymentEnvLogout == 'Single') {
+						$rootScope.alertMsgName = $rootScope.Hospital;
                          $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
+                    } else {
+                          $rootScope.alertMsgName = 'Virtual Care';
+                        $rootScope.reportHospitalUpperCase =  'Virtual Care';
                     }
 					$rootScope.HospitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = data.data[0].contactNumber;
@@ -1421,7 +1399,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $scope.searched = false;
             }
         }
-    });
+    })
 
 	$scope.doGetPatientProfiles = function() {
 			if ($rootScope.accessToken === 'No Token') {
@@ -3543,7 +3521,16 @@ LoginService.getScheduledConsulatation(params);
 							}
 						console.log($rootScope.selectedPatientDetails);
 						$state.go(nextPage);
-					}
+					
+					 }
+    },
+    error: function (data) {
+     $rootScope.serverErrorMessageValidation();
+    }
+   };
+
+   LoginService.getSelectedPatientProfiles(params);
+  }
 
 
 	$rootScope.doGetIndividualScheduledConsulatation = function () {
