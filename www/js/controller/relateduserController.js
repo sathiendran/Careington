@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter,$localstorage) {
+.controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter,$window) {
   $ionicPlatform.registerBackButtonAction(function(event, $state) {
       if (($rootScope.currState.$current.name === "tab.userhome") ||
           ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -108,13 +108,13 @@ angular.module('starter.controllers')
     $scope.showtab=function(tabview){
          $scope.tabView = true;
          $scope.moretab = false;
-        $scope.patientIDWithTab = $localstorage.get('patientIDWithTab');
+        $scope.patientIDWithTab = $window.localStorage.getItem('patientIDWithTab');
         if($scope.patientIDWithTab === tabview) {
             $scope.tabWithPatientId = '';
-              $localstorage.set('patientIDWithTab', '');
+              $window.localStorage.setItem('patientIDWithTab', '');
         } else {
           $scope.tabWithPatientId = tabview;
-          $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
+          $window.localStorage.setItem('patientIDWithTab', $scope.tabWithPatientId);
           if(typeof $scope.tabview === 'undefined') {
             $scope.tabview = false;
           }
@@ -126,7 +126,7 @@ angular.module('starter.controllers')
     $scope.moreclickval=function(tabview){
          $scope.tabView = false;
          $scope.tabWithPatientId = tabview;
-         $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
+         $window.localStorage.setItem('patientIDWithTab', $scope.tabWithPatientId);
          $scope.moretab=true;
     }
 
@@ -135,13 +135,13 @@ angular.module('starter.controllers')
        $scope.tabView = true;
     }
    $scope.authorizeduser=function(tabWithPatientId){
-     $scope.patientIDWithTab = $localstorage.get('patientIDWithTab');
+     $scope.patientIDWithTab = $window.localStorage.getItem('patientIDWithTab');
      if($scope.patientIDWithTab === tabWithPatientId) {
          $scope.tabWithPatientId = '';
-           $localstorage.set('patientIDWithTab', '');
+           $window.localStorage.setItem('patientIDWithTab', '');
      } else {
        $scope.tabWithPatientId = tabWithPatientId;
-       $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
+       $window.localStorage.setItem('patientIDWithTab', $scope.tabWithPatientId);
       //var myEl = angular.element( document.querySelector( '#authorizeddiv' ));
       // myEl.removeClass('fadediv');
       //  $scope.viewunauthorized = $scope.viewunauthorized === false ? true: false;
@@ -154,7 +154,7 @@ angular.module('starter.controllers')
 
     $scope.addauthorized=function(tabWithPatientId){
       $scope.tabWithPatientId = tabWithPatientId;
-      $localstorage.set('patientIDWithTab', $scope.tabWithPatientId);
+      $window.localStorage.setItem('patientIDWithTab', $scope.tabWithPatientId);
         $scope.viewunauthorized=false;
         $scope.authorizedview=true;
     }
@@ -245,7 +245,7 @@ angular.module('starter.controllers')
 
     $scope.dependentslist=function(){
       $scope.tabWithPatientId = '';
-      $localstorage.set('patientIDWithTab', '');
+      $window.localStorage.setItem('patientIDWithTab', '');
         var myEl = angular.element( document.querySelector( '#dependents' ) );
             myEl.addClass('btcolor');
             myEl.removeClass('btnextcolor');

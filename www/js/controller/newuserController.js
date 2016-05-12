@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter,$localstorage) {
+.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter,$window) {
   $ionicPlatform.registerBackButtonAction(function(event, $state) {
       if (($rootScope.currState.$current.name === "tab.userhome") ||
           ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -78,14 +78,14 @@ angular.module('starter.controllers')
         $scope.addmore = false;
         $scope.showless= false;
     };
-    
-       $('input').blur(function () {                        
+
+       $('input').blur(function () {
        $(this).val(
        $.trim($(this).val())
       );
    });
-  
-  
+
+
    var minDate = new Date();
    var maxDate=minDate.getDay();
    var maxMonth=minDate.getMonth()+1;
@@ -100,29 +100,29 @@ angular.module('starter.controllers')
    var mDate="2016-05-04";
      $scope.maxDay = maxDay;
      $scope.minimum ="1950-01-01";
-  
+
   $('input').blur(function(){
 		var value=$.trim($(this).val());
 		$(this).val(value);
 	});
-    
-  
-  /*  $("#userphone").blur(function () { 
-        
+
+
+  /*  $("#userphone").blur(function () {
+
       if (this.value.match(/^[0-9]{1,14}$/)) {
           this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
-        
+
       }
     });
-    $("#usermobile").blur(function () { 
-        
+    $("#usermobile").blur(function () {
+
       if (this.value.match(/^[0-9]{1,14}$/)) {
           this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
-       
+
       }
     });*/
- 
-  
+
+
     $scope.postNewuserDetails=function(){
            $scope.firstName=$("#userfirstname").val();
            $scope.lastName=$("#userlastname").val();
@@ -140,50 +140,50 @@ angular.module('starter.controllers')
            $scope.hairColor= $("#userhaircolor").val().split("@").slice(0,1);
            $scope.getHairColorId =_.first($scope.hairColor);
            $scope.eyeColor= $("#usereyecolor").val().split("@").slice(0,1);
-           $scope.getEyeColorId =_.first($scope.eyeColor);  
+           $scope.getEyeColorId =_.first($scope.eyeColor);
            $scope.ethnicity= $("#userethnicity").val().split("@").slice(0,1);
-           $scope.getEthnicityId =_.first($scope.ethnicity); 
+           $scope.getEthnicityId =_.first($scope.ethnicity);
         //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
           // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
-         
+
        if( (typeof $scope.lastName === 'undefined' || $scope.lastName === '')  &&
              (typeof $scope.email === 'undefined' || $scope.email === '')  &&
              (typeof $scope.dob === 'undefined' || $scope.dob === '')  &&
              (typeof $scope.gender === 'undefined' || $scope.gender === '')  &&
              (typeof $scope.height === 'undefined' || $scope.height === '')  &&
-             (typeof $scope.weight === 'undefined' || $scope.weight === '')  && 
-             (typeof $scope.splitHairColor === 'undefined' || $scope.splitHairColor === '')  && 
-             (typeof $scope.eyeColor === 'undefined' || $scope.eyeColor === '')  && 
-             (typeof $scope.ethnicity === 'undefined' || $scope.ethnicity === '')  
+             (typeof $scope.weight === 'undefined' || $scope.weight === '')  &&
+             (typeof $scope.splitHairColor === 'undefined' || $scope.splitHairColor === '')  &&
+             (typeof $scope.eyeColor === 'undefined' || $scope.eyeColor === '')  &&
+             (typeof $scope.ethnicity === 'undefined' || $scope.ethnicity === '')
         ) {
         //  $scope.ErrorMessage = "Please Enter All Required Fields";
-            alert("Please Enter All Required Fields");  
+            alert("Please Enter All Required Fields");
        }
        else{
            alert("fail");
-          
+
        }
-       
+
     }
 
- 
+
  $scope.cancelcouser=function(){
           $('#couserform')[0].reset();
            $('select').prop('selectedIndex', 0);
           $state.go('tab.relatedusers');
     }
- 
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 
@@ -265,5 +265,3 @@ angular.module('starter.controllers')
 
     };
 });
-
-

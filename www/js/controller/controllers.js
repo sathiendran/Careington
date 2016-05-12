@@ -246,12 +246,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	$scope.ChangeEnv = function(env){
 		if(env == "Snap.QA"){
-			$rootScope.APICommonURL = 'https://snap-qa.com';
-			apiCommonURL = 'https://snap-qa.com';
+			//$rootScope.APICommonURL = 'https://snap-qa.com';
+			//apiCommonURL = 'https://snap-qa.com';
 			//$rootScope.APICommonURL ='http://emerald.snap.local';
 			//apiCommonURL ='http://emerald.snap.local';
-			//$rootScope.APICommonURL ='https://snapmd-api.azurewebsites.net';
-			//apiCommonURL ='https://snapmd-api.azurewebsites.net';
+			$rootScope.APICommonURL ='https://snapmd-api.azurewebsites.net';
+			apiCommonURL ='https://snapmd-api.azurewebsites.net';
 			api_keys_env = "Snap.QA";
 		}else if(env == "Sandbox"){
 			$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
@@ -1166,7 +1166,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				error: function (data, status) {
 					 var networkState = navigator.connection.type;
 					if(networkState != 'none') {
-						//if(status == '401' || status == '403') {						      
+						//if(status == '401' || status == '403') {
 					 	/*	navigator.notification.confirm(
 					 			'Your account is not verified yet. Do you want to resend?',
 					 			 function(index){
@@ -1177,7 +1177,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 									}
 					 			 },
 								'Confirmation:',
-					 			['Cancel','Resend']     
+					 			['Cancel','Resend']
 							);*/
 					 	//} else {
 					 		$scope.ErrorMessage = "Incorrect Password. Please try again";
@@ -2946,7 +2946,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
 					$rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
                     $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
-					$state.go('tab.patientConcerns');
+				//	$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
 					$rootScope.serverErrorMessageValidation();
@@ -3520,7 +3520,7 @@ LoginService.getScheduledConsulatation(params);
 							}
 						console.log($rootScope.selectedPatientDetails);
 						$state.go(nextPage);
-					
+
 					 }
     },
     error: function (data) {
@@ -3679,7 +3679,7 @@ LoginService.getScheduledConsulatation(params);
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					$rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
-					$state.go('tab.patientDetail');
+				//	$state.go('tab.patientDetail');
 
 				},
 				error: function (data) {
@@ -3718,10 +3718,10 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.patientId = P_Id;
 
 		$rootScope.P_isAuthorized = P_isAuthorized;
-		$scope.doGetCodesSet();
-		$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
 		$rootScope.doGetIndividualScheduledConsulatation();
 		$rootScope.doGetonDemandAvailability();
+		$scope.doGetCodesSet();
+		$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
 		//$state.go('tab.patientDetail');
 		//$scope.doGetUserHospitalInformation();
 
