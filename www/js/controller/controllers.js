@@ -1365,8 +1365,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$scope.Zip = 91302;
 	//$scope.Country = 'US';
 	//$scope.Cvv = 123;
-	//$scope.profileId = 31867222;
-	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
+	//$scope.profileId = 31867222; medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns, eyecolor, haircolor, ethnicity, bloodtype, relationship, heightunit, weightunit
+	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns,eyecolor,haircolor,ethnicity,bloodtype,relationship,heightunit,weightunit';
 
 
 
@@ -2945,7 +2945,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
 					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
 					$rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-                    $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+          $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+
+					$rootScope.eyeHairEthnicityRelationCodeSets = [];
+					angular.forEach(data.data, function(index, item) {
+						$rootScope.eyeHairEthnicityRelationCodeSets.push({
+							'codes': angular.fromJson(index.codes),
+							'hospitalId': index.hospitalId,
+							'name': index.name
+						});
+					});
+
+					$rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Eye Color" });
+					 $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Hair Color" });
+					 $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Ethnicity" });
+					 $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Relationship" });
+					 $rootScope.listOfHeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Height" });
+					 $rootScope.listOfWeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Weight" });
+					 $rootScope.listOfBloodtype= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Blood Type" });
+
 				//	$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
@@ -3220,6 +3238,7 @@ LoginService.getScheduledConsulatation(params);
 
 					console.log($rootScope.scheduledList);
 					$rootScope.nextAppointmentDisplay = 'none';
+					$rootScope.accountClinicianFooter = 'block';
 
 					var d = new Date();
 					d.setHours(d.getHours() + 12);
@@ -3235,6 +3254,7 @@ LoginService.getScheduledConsulatation(params);
 						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							console.log('scheduledTime <= getTwelveHours UserHome');
 							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.accountClinicianFooter = 'none';
 							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
 							$rootScope.timerCOlor = '#FEEFE8';
 							var beforAppointmentTime = 	getReplaceTime;
@@ -3901,7 +3921,7 @@ LoginService.getScheduledConsulatation(params);
 			LoginService.getHospitalInfo(params);
     }*/
 
-     $scope.GoToappoimentDetails = function(scheduledListData) {
+     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData) {
 		$rootScope.scheduledListDatas = scheduledListData;
 		//$scope.doGetUserHospitalInformationForUserHome();
 		$rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);

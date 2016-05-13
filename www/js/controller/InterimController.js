@@ -246,6 +246,7 @@ angular.module('starter.controllers')
 
 					console.log($rootScope.scheduledList);
 					$rootScope.nextAppointmentDisplay = 'none';
+					$rootScope.accountClinicianFooter = 'block';
 
 					var d = new Date();
 					d.setHours(d.getHours() + 12);
@@ -261,6 +262,7 @@ angular.module('starter.controllers')
 						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							console.log('scheduledTime <= getTwelveHours UserHome');
 							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.accountClinicianFooter = 'none';
 							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
 							$rootScope.timerCOlor = '#FEEFE8';
 							var beforAppointmentTime = 	getReplaceTime;

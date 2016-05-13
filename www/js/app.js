@@ -797,7 +797,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
   })
 
-   .state('tab.patientappointmentdetails', {
+   /*.state('tab.patientappointmentdetails', {
        url: '/patientappointmentdetails',
     views: {
       'tab-login': {
@@ -805,7 +805,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
         controller: ''
       }
       }
-  })
+  })*/
 
 
      .state('tab.currentmedicationsearch', {

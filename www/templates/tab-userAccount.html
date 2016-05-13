@@ -76,15 +76,17 @@
 			</ion-list>
 		</ion-content>
 	</ion-view>
-	<ion-footer-bar class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
+	<div ng-controller="appoimentDetailsCtrl"></div>
+	<div ng-controller="LoginCtrl"></div>
+	<ion-footer-bar style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
 		<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 	</ion-footer-bar>
 
-	<ion-item class="apptdetails" style="display: {{nextAppointmentDisplay}}" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-if="$first">
-		<a ng-href="#tab/patientappointmentdetails">
+	<ion-item class="apptdetails" style="display: {{nextAppointmentDisplay}}" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-if="$first">
+	<!--	<a ng-href="#tab/patientappointmentdetails">-->
       <div>
-        <h3 class="appth3"> <span class="appointment">Appointment @ 2:45 pm</span>
+        <h3 class="appth3"> <span class="appointment">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
          <span id="viewicon">
 	        <a class="appalignrighticon"> View Details</a>
 	         <span  class="aslignspan"><i class="iconchevron ion-chevron-right" ></i>
@@ -93,7 +95,7 @@
 	</h3>
 
 	</div>
-	</a>
+	<!--</a>-->
 </ion-item>
  <ion-footer-bar style="display: {{nextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" >
 

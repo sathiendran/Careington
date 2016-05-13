@@ -38,6 +38,38 @@ angular.module('starter.controllers')
             }
         }, 100);
 
+
+				var checkAndChangeMenuIcon;
+				$interval.cancel(checkAndChangeMenuIcon);
+
+				$rootScope.checkAndChangeMenuIcon = function() {
+								if (!$ionicSideMenuDelegate.isOpen(true)) {
+										if ($('#BackButtonIcon').hasClass("ion-close")) {
+												$('#BackButtonIcon').removeClass("ion-close");
+												$('#BackButtonIcon').addClass("ion-navicon-round");
+										}
+								} else {
+										if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
+												$('#BackButtonIcon').removeClass("ion-navicon-round");
+												$('#BackButtonIcon').addClass("ion-close");
+										}
+								}
+						}
+						//$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
+						//$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+				$scope.toggleLeft = function() {
+						$ionicSideMenuDelegate.toggleLeft();
+						$rootScope.checkAndChangeMenuIcon();
+						if (checkAndChangeMenuIcon) {
+								$interval.cancel(checkAndChangeMenuIcon);
+						}
+						if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
+								checkAndChangeMenuIcon = $interval(function() {
+										$rootScope.checkAndChangeMenuIcon();
+								}, 300);
+						}
+				};
+
 	$scope.addMinutes = function (inDate, inMinutes) {
 		var newdate = new Date();
 		newdate.setTime(inDate.getTime() + inMinutes * 60000);
@@ -347,6 +379,7 @@ angular.module('starter.controllers')
 	}
 
 	$scope.doGetDoctorDetails = function () {
+			$rootScope.doctorGender = '';
 		if ($scope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
@@ -376,6 +409,11 @@ angular.module('starter.controllers')
 				});
 				//document.getElementsByTagName('timer')[0].stop();
 				//document.getElementsByTagName('timer')[0].start();
+				if($rootScope.scheduledDoctorDetails[0].gender === 'M') {
+					$rootScope.doctorGender = "Male";
+				} else if($rootScope.scheduledDoctorDetails[0].gender === 'F') {
+					$rootScope.doctorGender = "FeMale";
+				}
 				$state.go('tab.appoimentDetails');
             },
             error: function (data) {

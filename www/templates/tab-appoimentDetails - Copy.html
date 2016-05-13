@@ -1,0 +1,106 @@
+<ion-view title="Appointment Details">
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
+	 
+		<!--<div class="buttons" >
+			<a class="button_new icon ion-chevron-left calendarBack" ng-href="#/tab/patientCalendar"  >
+				<span>Back</span>
+			</a>				
+		</div>-->
+		
+       <div class="calendarBack AppointBack" style="{{BackBotton}}">
+            <site-header-ios ng-if="IOSDevice == true" back="Back"></site-header-ios>			
+			<site-header1 ng-if="AndroidDevice == true" back="Back"></site-header1>
+
+		</div>  
+		<h1 class="{{title_patient}} calendarTitle" style="{{Appoinmentwaitcenter}}{{PatientTitle}}" >Appt Details</h1>
+	  
+        <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{PatientCalentarInnerStyleDetail}}" >
+			<div class="calendar_subHeader">
+				<div class="subHeader_image" >
+					<img src="{{appointmentsPatientImage}}"  class="listImgView"   />
+				</div>
+				<div class="subHeader_content-{{deviceName}} ellipsis" >					
+					<div class="subHeader_content_name ellipsis" >
+						<span class="PatintHeaderFontStyle patientName ellipsis">{{appointmentsPatientFirstName}}</span>
+						<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{appointmentsPatientLastName}}</span> <!--{{appointmentsPatientDOB | ageFilter}}-->
+					</div>
+                    <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{appointmentsPatientDOB | ageFilter}} <span ng-if="primaryPatientId != appointmentsPatientId"> | Guardian: {{appointmentsPatientGurdianName}} </span></div>
+				</div>
+			</div>
+		</div>
+	   
+	</ion-header-bar>
+
+	<ion-content class="ContentHomeUser" style="{{appointContent}}">
+		<ion-list>
+			<ion-item class="Appointment_heading" style="{{PatientCalentarInnerStyleAppointmentWith}}">
+				 <h1 class="title appointment_with" style="{{appoinmentStyle}}">Appointment With</h1>
+			</ion-item>
+			
+			<ion-item class="doctor_details">
+				 <a class="HrefListView"  href="#" >   
+				     <img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="listImgView doctorImgeSize">
+				  <!-- <img class="listImgView doctorImgeSize" src="https://sandbox.connectedcare.md/images/Patient-Male.gif">-->
+					<span class = "ListText doctorName" ><span style="font-size: 22px; font-family: Glober xBold;"></span>
+						<div class="SubTitleSpan docName ellipsis">{{scheduledDoctorDetails[0].fullName}}</div>								
+						<list style="top: -69px; position: relative; display: none;" class="ion-chevron-right ListLinkHref doctorArrow" ></list>
+					</span>	
+				 </a>
+			</ion-item >
+			
+			<ion-item class="appointmentTimeDetails">
+				<div class = "title" >			  
+					<span class="appinmentTime">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}</span><span class="appinmentTimeAM">{{scheduledListDatas.scheduledTime | date: "a"}}</span>  <br>
+					<span class="appinmentTimeDate"> 
+						{{scheduledListDatas.scheduledTime | date: "EEEE, MMMM dd"}}
+					</span>
+				</div>
+			</ion-item>
+			
+			<ion-item class="concernsItem">
+				 <div class="primary" style="{{PrimaryMarginTop}}"><span>1 </span> <div>Primary Concern</div></div>
+				 <p class="ptagprimary concernsItempTag">{{appointPrimaryConcern}} </p>				
+
+				 <div class="secondary"  ><span>2 </span><div>Secondary Concern</div></div>
+				 <p class="ptagprimary concernsItempTag" >{{appointSecondConcern}} </p>
+			</ion-item>
+			
+			<ion-item class="concernsItemNotes">
+				<div class="pre_consultant" style="margin-top: -16px;"><div style="left: 38px;">Pre-Consult Notes:</div></div>
+	<!-- <p class="ptagprimary" style="position: relative; top: 8px;" ng-if="preConsultantNotes != ''" >{{consultionInformation.note | filterHtmlChars}} </p>-->
+				 <p class="ptagprimary" style="position: relative; top: 8px;" id="appointNotes" > </p>
+			</ion-item>
+			
+	</ion-content>
+
+		
+	<ion-footer-bar  align-title="left" class="bar-assertive AvailableIn" style="display: {{timeNew}}" >
+		<div>		
+			<div class="title availableImage" >
+				<div class="AvailableText">
+					<i class="ion-clock" style=" font-size: 18px; padding-right: 7px;"></i> Can enter in: 
+				</div>
+				<div class="AvailableTimer" style="display: {{hourDisplay}}" >
+					<b><timer end-time="time">  {{hhours}}:{{mminutes}}:{{sseconds}}</timer></b>
+				</div>
+				<div class="AvailableTimer" style="display: {{daysDisplay}}">
+					<b><timer end-time="time">{{days}} days</timer></b>
+				</div>
+				<div class="AvailableTimer" style="display: {{dayDisplay}}">
+					<b><timer end-time="time">{{days}} day</timer></b>
+				</div>
+			</div>		
+		</div>
+		
+	</ion-footer-bar>
+		<div style="display: none;"><timer end-time="time"  ></timer></div>
+	<ion-footer-bar align-title="left" class="bar-assertive enterAppoinment" style=" display: {{timeNew1}}" >
+			<a ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName)">
+				<div >		
+					<div class="title EnterText">Enter Appointment</div>
+				</div>
+			</a>
+	</ion-footer-bar>
+
+</ion-view>

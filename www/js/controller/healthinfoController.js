@@ -132,7 +132,10 @@
             $scope.splitEthnicity =   $scope.healthInfoEthnicity.split("@");
             $scope.getEthnicityId = $scope.splitEthnicity[0];
             $scope.getEthnicityText = $scope.splitEthnicity[1];
-        $scope.healthInfoEthnicity = $('#healthInfoBloodType').val();
+        $scope.healthInfoBloodType = $('#healthInfoBloodType').val();
+            $scope.splitBloodType =   $scope.healthInfoBloodType.split("@");
+            $scope.getBloodTypeId = $scope.splitBloodType[0];
+            $scope.getBloodTypeText = $scope.splitBloodType[1];
 
         $scope.ValidateEmail = function(email){
                     var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -176,13 +179,13 @@
             $scope.ErrorMessage = "Please Enter Your Height";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === ''){
-            $scope.ErrorMessage = "Please Enter Your Height Unit";
+            $scope.ErrorMessage = "Please Select Your Height Unit";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === ''){
             $scope.ErrorMessage = "Please Enter Your Weight";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === ''){
-            $scope.ErrorMessage = "Please Enter Your Weight Unit";
+            $scope.ErrorMessage = "Please Select Your Weight Unit";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === ''){
             $scope.ErrorMessage = "Please Select Your Ethnicity";
@@ -192,6 +195,9 @@
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === ''){
             $scope.ErrorMessage = "Please Select Your Eye Color";
+            $rootScope.Validation($scope.ErrorMessage);
+        }else if(typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === ''){
+            $scope.ErrorMessage = "Please Select Your Blood Type";
             $rootScope.Validation($scope.ErrorMessage);
         }else {
             $scope.doPutProfileUpdation();
@@ -207,7 +213,7 @@
                                 patientName: $scope.healthInfoFirstName,
                                 lastName: $scope.healthInfoLastName,
                                 dob: $scope.healthInfoDOB,
-                                bloodType: 1,
+                                bloodType: $scope.getBloodTypeId,
                                 eyeColor: $scope.getEyeColorId,
                                 gender: $scope.healthInfoGender,
                                 enthicity: $scope.getEthnicityId,

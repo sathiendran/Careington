@@ -92,7 +92,7 @@
     <h3 ng-show="showless" ng-click="lessdetails()"  class="lessdet"><span>Show Less </span> <span><i class="ion-ios-arrow-down deticon"></i></span></h3>
 
  <div class="list deptlist" ng-show="showme">
-     
+
     <div class="item itemtab row">
       <div class="col clo-50">
         <span class="input-label labelcolor">
@@ -104,43 +104,43 @@
             <input type="radio" ng-model="gender" name="userInfoGender" value="F" >FeMale
        </div>
      </div>
-   
- 
+
+
     <div class="item item-input itemtab validated row">
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
         </div>
-        <div>        
+        <div>
           <input id="userheight" class="usertext textalign" type="text" value="" placeholder="Optional" ng-model="userheight" name="userheight" required >
         </div>
         <div>
            <select class=" " name="userheightunit" id="userheightunit" ng-model="userheightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightunit"><b>{{getUserheightunit.text}}</b></option>
-           </select>   
-         
+           </select>
+
         </div>
    </div>
-   
-   
-   
+
+
+
    <div class="item item-input itemtab validated row">
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
         </div>
-        <div>        
+        <div>
           <input id="userWeight" class="usertext textalign" type="text" value="" placeholder="Optional" ng-model="userWeight" name="userWeight" required >
         </div>
         <div>
            <select class=" " name="userweightunit" id="userweightunit" ng-model="userweightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightunit"><b>{{getUserweightunit.text}}</b></option>
-           </select>   
-         
+           </select>
+
         </div>
    </div>
-   
-   
+
+
   <div class="item item-input validated">
      <div class="col clo-50">
         <span class="input-label labelcolor">
