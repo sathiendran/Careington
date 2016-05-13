@@ -424,45 +424,47 @@ function iterateAlphabet()
 
 
 $scope.medicationdone=function(){
+    
       $rootScope.CurrentmedicationupdateList = [];
       $rootScope.CurrentMedicationsearchItem = $filter('filter')($rootScope.currentMedicationsearchList, {checked:true});
       $rootScope.CurrentMedicationsearchSelected = $filter('filter')($rootScope.currentMedicationsearchList, {checked:true});
       if($rootScope.CurrentMedicationsearchItem !== '') {
             $rootScope.patientmedicationsSearch = $rootScope.CurrentMedicationsearchItem;
 		    $rootScope.MedicationsCount = $rootScope.patientmedicationsSearch.length;
-
+		
          for (var i = 0; i < $rootScope.MedicationsCount; i++) {
                  $rootScope.CurrentmedicationupdateList.push(
 					{code: $rootScope.CurrentMedicationsearchItem[i].codeId, description: $rootScope.CurrentMedicationsearchItem[i].text}
-					);
+					); 
           }
             console.log($rootScope.patientsearchmedications);
 			console.log($rootScope.MedicationsCount);
              $scope.modal.hide();
 			}
-
+       
         $scope.InfantData = [];
-
+       
 				console.log($rootScope.patientmedicalsurgeries);
                 console.log($rootScope.CurrentMedicationsearchSelected);
                 console.log($rootScope.patientmedicalConditions);
                 console.log($rootScope.patientmedicationsallergies);
         var params = {
-					accessToken: $rootScope.accessToken,
+         
+					accessToken: $rootScope.accessToken,  
 					MedicationAllergies:$rootScope.patientmedicationsallergies,
-					Surgeries:$rootScope.patientmedicalsurgeries,
+					Surgeries: $rootScope.PatientMedicalProfileList[0].surgeries,
 					MedicalConditions:$rootScope.patientmedicalConditions,
 					Medications:$rootScope.CurrentmedicationupdateList,
 					InfantData:$scope.InfantData,
-					patientId:$rootScope.patientId,
-					success: function (data) {
+					PatientId:$rootScope.patientId,					
+					success: function (data) {					
 						 $scope.health();
 					},
 					error: function (data) {
-						$scope.postPatientMedicalProfile = 'Error getting Patient Medical Profile';
+						$scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
 					}
 				};
-
+				
 			 LoginService.putPatientMedicalProfile(params);
 }
 
@@ -609,6 +611,47 @@ $scope.openOtherCurrentMedicationView = function(model) {
 $scope.allergiedone=function(){
       $scope.modal.hide();
 
+     $rootScope.AllergiesupdateList = [];
+      $rootScope.AllergiessearchItem = $filter('filter')($rootScope.medicationAllergiesearchList, {checked:true});
+      $rootScope.AllergiesearchSelected = $filter('filter')($rootScope.medicationAllergiesearchList, {checked:true});
+      if($rootScope.AllergiessearchItem !== '') {
+            $rootScope.patientallergiesSearch = $rootScope.AllergiessearchItem;
+		    $rootScope.AllergiesCount = $rootScope.patientallergiesSearch.length;
+		
+         for (var i = 0; i < $rootScope.AllergiesCount; i++) {
+                 $rootScope.AllergiesupdateList.push(
+					{code: $rootScope.AllergiessearchItem[i].codeId, description: $rootScope.AllergiessearchItem[i].text}
+					); 
+          }
+           
+			console.log($rootScope.AllergiesCount);
+             $scope.modal.hide();
+			}
+       
+        $scope.InfantData = [];
+       
+				console.log($rootScope.patientmedicalsurgeries);
+                console.log($rootScope.AllergiesearchSelected);
+                console.log($rootScope.patientmedicalConditions);
+                console.log($rootScope.patientmedicationsallergies);
+        var params = {
+         
+					accessToken: $rootScope.accessToken,  
+					MedicationAllergies:$rootScope.AllergiesupdateList,
+					Surgeries: $rootScope.PatientMedicalProfileList[0].surgeries,
+					MedicalConditions:$rootScope.patientmedicalConditions,
+					Medications:$rootScope.patientmedications,
+					InfantData:$scope.InfantData,
+					PatientId:$rootScope.patientId,					
+					success: function (data) {					
+						 $scope.health();
+					},
+					error: function (data) {
+						$scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
+					}
+				};
+				
+			 LoginService.putPatientMedicalProfile(params);
 }
 $scope.OnSelectAllergies = function(allergie) {
        if(allergie.checked === true) {
@@ -746,8 +789,53 @@ $scope.chronicsearch=function(){
 
 $scope.chronicdone=function(){
     $scope.modal.hide();
+    
+    
+    
+     $rootScope.ChronicupdateList = [];
+      $rootScope.ChronicsearchItem = $filter('filter')($rootScope.chronicConditionsearchList, {checked:true});
+      $rootScope.ChronicsearchSelected = $filter('filter')($rootScope.chronicConditionsearchList, {checked:true});
+      if($rootScope.ChronicsearchItem !== '') {
+            $rootScope.patientchronicSearch = $rootScope.ChronicsearchItem;
+		    $rootScope.ChronicCount = $rootScope.patientchronicSearch.length;
+		
+         for (var i = 0; i < $rootScope.ChronicCount; i++) {
+                 $rootScope.ChronicupdateList.push(
+					{code: $rootScope.ChronicsearchItem[i].codeId, description: $rootScope.ChronicsearchItem[i].text}
+					); 
+          }
+           
+			console.log($rootScope.AllergiesCount);
+             $scope.modal.hide();
+			}
+       
+        $scope.InfantData = [];
+       
+				console.log($rootScope.patientmedicalsurgeries);
+                console.log($rootScope.ChronicsearchSelected);
+                console.log($rootScope.patientmedicalConditions);
+                console.log($rootScope.patientmedicationsallergies);
+        var params = {
+         
+					accessToken: $rootScope.accessToken,  
+					MedicationAllergies:$rootScope.patientmedicationsallergies,
+					Surgeries: $rootScope.PatientMedicalProfileList[0].surgeries,
+					MedicalConditions:$rootScope.ChronicupdateList,
+					Medications:$rootScope.patientmedications,
+					InfantData:$scope.InfantData,
+					PatientId:$rootScope.patientId,					
+					success: function (data) {					
+						 $scope.health();
+					},
+					error: function (data) {
+						$scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
+					}
+				};
+				
+			 LoginService.putPatientMedicalProfile(params);
+    
+    
 }
-
 
 $scope.OnSelectChronicCondition = function(chronic) {
        if(chronic.checked === true) {
@@ -776,7 +864,7 @@ $scope.OnSelectChronicCondition = function(chronic) {
                      'userId': index.userId
                   });
                  });
-                 $state.go('tab.relatedusers');
+                $state.go('tab.relatedusers');
                },
                error: function(data) {
                 $rootScope.serverErrorMessageValidation();
@@ -785,6 +873,8 @@ $scope.OnSelectChronicCondition = function(chronic) {
              LoginService.getListOfCoUsers(params);
          }
 
-
+ $scope.removemodal = function(model) {
+        $scope.modal.hide();
+ };
 
     });

@@ -80,7 +80,9 @@ angular.module('starter.controllers')
            $scope.heightunit= $("#heightunit").val().split("@").slice(0,1);
            $scope.getHeightunit =_.first($scope.heightunit); 
            $scope.weightunit= $("#weightunit").val().split("@").slice(0,1);
-           $scope.getWeightunit =_.first($scope.weightunit); 
+           $scope.getWeightunit =_.first($scope.weightunit);
+            $scope.bloodtype= $("#bloodtype").val().split("@").slice(0,1);
+           $scope.getBloodtypeid =_.first($scope.bloodtype); 
           // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
          
        if(  (typeof $scope.firstName === 'undefined' || $scope.firstName === '')  &&
@@ -112,7 +114,7 @@ angular.module('starter.controllers')
 							patientName: $scope.firstName,
 							lastName:  $scope.lastName,
 							dob: $scope.dob,
-							bloodType: 1,
+							bloodType:  $scope.getBloodtypeid,
 							eyeColor:  $scope.getEyeColorId,
 							gender:  $scope.gender,
 							enthicity: $scope.getEthnicityId,

@@ -22,14 +22,14 @@
             </h1>
          </div>
          <div class="item item-image-icon " style="background-color:#444444;">
-            <a class="lefthome">
+            <a class="lefthome" ng-href="#/tab/userAccount">
                <i class="icon ion-home headerlefticons" style=""></i>
                <p class="homecontent">Account Home</p>
             </a>
             <a class="item-avatar itemhead">
                <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" style=""></p>
             </a>
-            <a class="rightpatient">
+            <a class="rightpatient" ng-href="#/tab/userhome">
                <i class="icon ion-ios-people headerrighticon" style=""></i>
                <p class="patientcontent">Change Patient</p>
             </a>
@@ -271,12 +271,20 @@
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
-                    <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description == '' ">
+                
+                <li  ng-repeat=" chronic in patientmedicalConditions" >
+                 {{$index + 1}}.{{chronic.description}}
+                    </li>
+                
+                <!--   <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description == '' ">
+                  N/A
+                 </li>
+                  <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description == '' ">
                  {{$index + 1}}. N/A
                     </li>
                         <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description != '' ">
                  {{$index + 1}}.{{chronic.description}}
-                    </li>
+                    </li>-->
 
 
             </ul>

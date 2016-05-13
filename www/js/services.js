@@ -294,7 +294,7 @@ angular.module('starter.services', [])
 		this.getListOfCodeSet = function(params) {
 			var PatientDetailsList = {
 				headers: util.getHeaders(params.accessToken),
-							url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=eyecolor,haircolor,ethnicity,relationship,heightunit,weightunit',
+							url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=eyecolor,haircolor,ethnicity,relationship,heightunit,weightunit,bloodtype',
 							method: 'GET'
 			};
 
@@ -335,9 +335,19 @@ this.getPatientMedicalProfile = function(params){
    this.putPatientMedicalProfile = function(params){
       var requestpatientInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.patientId,
+          url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.PatientId
+          ,
           method: 'PUT',
-           data: {patientId: params.patientId  }
+             data: {
+                MedicationAllergies: params.MedicationAllergies,
+				Surgeries: params.Surgeries,
+				MedicalConditions: params.MedicalConditions,
+				Medications: params.Medications,
+				InfantData: params.InfantData,
+				PatientId: params.PatientId				
+              }
+          
+           
       };
       $http(requestpatientInfo).
           success(function (data, status, headers, config) {
@@ -351,7 +361,6 @@ this.getPatientMedicalProfile = function(params){
               }
           });
     }
-
     this.putProfileUpdation = function(params){
        var requestpatientInfo = {
            headers: util.getHeaders(params.accessToken),
@@ -1128,21 +1137,64 @@ this.getPatientMedicalProfile = function(params){
 					params.error(data);
 				}
 		})
+ }
 
 
-   }
+
+
+ this.postAddCousers = function(params) {
+
+		var registerCouserdetails = {
+			headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL +'/v2/patients/cousers',
+			  method: 'POST',
+			  data: {
+                 email: params.email,
+				familyGroupId: params.familyGroupId,
+				relationshipId: params.relationshipId,
+				heightUnitId: params.heightUnitId,
+				weightUnitId: params.weightUnitId,
+				photo: params.photo,
+				height: params.height,
+				weight: params.weight,
+				heightUnit: params.heightUnit,
+				weightUnit: params.weightUnit,
+				address: params.address,
+				homePhone: params.homePhone,
+				mobilePhone: params.mobilePhone,
+				dob: params.dob,
+				gender: params.gender,
+				organizationName: params.organizationName,
+				locationName: params.locationName,
+				firstName: params.firstName,
+				lastName: params.lastName,
+				profileImagePath: params.profileImagePath,
+              }
+		};
+
+		$http(registerCouserdetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		})
+ }
+
+
+
+
+
+
+
 
 
 
       })
-
-
-
-
-
-
-
-
 
 
 
