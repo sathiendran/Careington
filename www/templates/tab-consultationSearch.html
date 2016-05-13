@@ -28,8 +28,13 @@ ng-click="toggleLeft()"></button>
    </div>
  <div class="csearch">
       <h6 class="hsearch">
-          <i class="icon ion-search fontcolor"></i> 
-          <span class="fontcolor">Search</span>
+         <!-- <i class="icon ion-search fontcolor"></i> 
+          <span class="fontcolor">Search</span>-->
+           <div class="search_home UserHmeSub concernListSearchHome">
+       <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
+	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="data.searchQuery" >
+        </label>
+	</div> 
        </h6>
  </div>
 
