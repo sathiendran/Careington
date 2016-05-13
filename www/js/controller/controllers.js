@@ -111,13 +111,21 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
 				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
 				return request;
-			}else{
+			}else if(api_keys_env == 'Production'){
 				if (typeof credentials != 'undefined') {
 					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 				}
 				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
 				request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
 				request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+				return request;
+			}else if(api_keys_env == 'QA'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+				request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 				return request;
 			}
 		},
@@ -133,10 +141,21 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				}
 				
 				return headers;
-			}else{
+			}else if(api_keys_env == 'Production'){
 				var headers = {
 						'X-Developer-Id': '1f9480321986463b822a981066cad094',
 						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
+			}else if(api_keys_env == 'QA'){
+				var headers = {
+						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -237,11 +256,18 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 	}else if(deploymentEnv == "QA"){
 		apiCommonURL = 'https://snap-qa.com';
 	}else if(deploymentEnv == "Single"){		
-	//	apiCommonURL = 'https://sandbox.connectedcare.md';	
-		//apiCommonURL = 'https://snap-qa.com';
-		apiCommonURL = 'https://connectedcare.md';	
-		//apiCommonURL = 'https://demo.connectedcare.md';
-		//apiCommonURL = 'https://snap-stage.com';  
+	//	apiCommonURL = 'https://sandbox.connectedcare.md';				
+		//apiCommonURL = 'https://demo.connectedcare.md';		  
+		if(deploymentEnvForProduction == 'Production') {
+			apiCommonURL = 'https://connectedcare.md';
+			api_keys_env = "Production";
+		} else if(deploymentEnvForProduction == 'Staging') {
+			apiCommonURL = 'https://snap-stage.com';
+			api_keys_env = "Staging";
+		} else if(deploymentEnvForProduction == 'QA') {
+			apiCommonURL = 'https://snap-qa.com';	
+			api_keys_env = "QA";			
+		}
 	} else if(deploymentEnv == "Staging") {
 		apiCommonURL = 'https://snap-stage.com';
 		api_keys_env = "Staging";
@@ -840,8 +866,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.Validation($scope.ErrorMessage);
 			
 			}else{
-				if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-					//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
+				if(deploymentEnvLogout == 'Single') {
+					if(deploymentEnvForProduction =='Production') {					
 						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
 							//deploymentEnv = "Staging";
 							$rootScope.hospitalId = singleStagingHospitalId;
@@ -852,12 +878,17 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							//deploymentEnv = "Production";
 							$rootScope.hospitalId = singleHospitalId;
 							apiCommonURL = 'https://connectedcare.md';
-							api_keys_env = '';
+							api_keys_env = 'Production';
 							$rootScope.APICommonURL = 'https://connectedcare.md';
 						}
-					}else {
+					} else if(deploymentEnvForProduction =='Staging') {	
 						$rootScope.hospitalId = singleStagingHospitalId;
+						api_keys_env = "Staging";	
+					} else if(deploymentEnvForProduction =='QA') {	
+						$rootScope.hospitalId = singleQAHospitalId;
+						api_keys_env = "QA";
 					}
+				}
 				if($("#squaredCheckbox").prop('checked') == true) {
 					$window.localStorage.setItem('username', $("#UserEmail").val());
 					$window.localStorage.oldEmail = $scope.userLogin.UserEmail;  
@@ -895,7 +926,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.hospitalDetailsList.push({							
 							'id': index.$id,
 							'domainName': index.domainName,
-							'logo': $rootScope.APICommonURL + index.logo,
+							'logo': index.logo,
 							'name': index.name,
 							'operatingHours': index.operatingHours,
 							'providerId': index.providerId,	
@@ -1070,7 +1101,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     }
                 }
                 //$rootScope.brandColor = data.data[0].brandColor;
-                $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                $rootScope.logo =  data.data[0].hospitalImage;
                 //$rootScope.Hospital = data.data[0].brandName; 
                 if(deploymentEnvLogout == 'Single') {
                      $rootScope.alertMsgName = $rootScope.Hospital;
@@ -1114,7 +1145,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     }
                 }
                 //$rootScope.brandColor = data.data[0].brandColor;
-                $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                $rootScope.logo = data.data[0].hospitalImage;
                 //$rootScope.Hospital = data.data[0].brandName; 
                 if(deploymentEnvLogout == 'Single') {
                      $rootScope.alertMsgName = $rootScope.Hospital;
@@ -1238,24 +1269,29 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.Validation($scope.ErrorMessage);
 				} else {
 					if(deploymentEnv == "Single"){ 
-						if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-							if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-								//deploymentEnv = "Staging";
+						if(deploymentEnvLogout == 'Single') {
+							if(deploymentEnvForProduction =='Production') {					
+								if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+									//deploymentEnv = "Staging";
+									$rootScope.hospitalId = singleStagingHospitalId;
+									apiCommonURL = 'https://snap-stage.com';
+									api_keys_env = 'Staging';
+									$rootScope.APICommonURL = 'https://snap-stage.com';
+								} else {
+									//deploymentEnv = "Production";
+									$rootScope.hospitalId = singleHospitalId;
+									apiCommonURL = 'https://connectedcare.md';
+									api_keys_env = 'Production';
+									$rootScope.APICommonURL = 'https://connectedcare.md';
+								}
+							} else if(deploymentEnvForProduction =='Staging') {	
 								$rootScope.hospitalId = singleStagingHospitalId;
-								apiCommonURL = 'https://snap-stage.com';
-								api_keys_env = 'Staging';
-								$rootScope.APICommonURL = 'https://snap-stage.com';
-							} else {
-								//deploymentEnv = "Production";
-								$rootScope.hospitalId = singleHospitalId;
-								apiCommonURL = 'https://connectedcare.md';
-								api_keys_env = '';
-								$rootScope.APICommonURL = 'https://connectedcare.md';
+								api_keys_env = "Staging";
+							} else if(deploymentEnvForProduction =='QA') {	
+								$rootScope.hospitalId = singleQAHospitalId;
+								api_keys_env = "QA";
 							}
-						}else {
-							$rootScope.hospitalId = singleStagingHospitalId;
-						}
-						
+						}						
 						
 						//$rootScope.UserEmail = $('#UserEmail').val();
 						if($("#squaredCheckbox").prop('checked') == true) {
@@ -1318,23 +1354,28 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.hospitalId = singleHospitalId;
 		}*/
 		
-		if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-		//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
-			if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-				//deploymentEnv = "Staging";
+		if(deploymentEnvLogout == 'Single') {
+			if(deploymentEnvForProduction =='Production') {					
+				if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+					//deploymentEnv = "Staging";
+					$rootScope.hospitalId = singleStagingHospitalId;
+					apiCommonURL = 'https://snap-stage.com';
+					api_keys_env = 'Staging';
+					$rootScope.APICommonURL = 'https://snap-stage.com';
+				} else {
+					//deploymentEnv = "Production";
+					$rootScope.hospitalId = singleHospitalId;
+					apiCommonURL = 'https://connectedcare.md';
+					api_keys_env = 'Production';
+					$rootScope.APICommonURL = 'https://connectedcare.md';
+				}
+			} else if(deploymentEnvForProduction =='Staging') {	
 				$rootScope.hospitalId = singleStagingHospitalId;
-				apiCommonURL = 'https://snap-stage.com';
-				api_keys_env = 'Staging';
-				$rootScope.APICommonURL = 'https://snap-stage.com';
-			} else {
-				//deploymentEnv = "Production";
-				$rootScope.hospitalId = singleHospitalId;
-				apiCommonURL = 'https://connectedcare.md';
-				api_keys_env = '';
-				$rootScope.APICommonURL = 'https://connectedcare.md';
+				api_keys_env = "Staging";
+			} else if(deploymentEnvForProduction =='QA') {	
+				$rootScope.hospitalId = singleQAHospitalId;
+				api_keys_env = "QA";
 			}
-		}else {
-			$rootScope.hospitalId = singleStagingHospitalId;
 		}
 
 		if ($scope.accessToken == 'No Token') {
