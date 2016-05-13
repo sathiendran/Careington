@@ -86,7 +86,7 @@ angular.module('starter.controllers')
    });
 
 
-   var minDate = new Date();
+  /* var minDate = new Date();
    var maxDate=minDate.getDay();
    var maxMonth=minDate.getMonth()+1;
    var maxYear=minDate.getFullYear();
@@ -99,7 +99,7 @@ angular.module('starter.controllers')
    var maxDay=maxYear+"-"+maxM+"-"+maxD;
    var mDate="2016-05-04";
      $scope.maxDay = maxDay;
-     $scope.minimum ="1950-01-01";
+     $scope.minimum ="1950-01-01";*/
 
   $('input').blur(function(){
 		var value=$.trim($(this).val());
@@ -128,7 +128,6 @@ angular.module('starter.controllers')
            $scope.lastName=$("#userlastname").val();
            $scope.email= $("#useremail").val();
            $scope.dob= $("#userdob").val();
-           $scope.relation= $("#userrelation").val();
            $scope.gender=$("input[name='userInfoGender']:checked").val();
            $scope.height= $("#userheight").val();
            $scope.weight= $("#userWeight").val();
@@ -137,6 +136,14 @@ angular.module('starter.controllers')
            $scope.homeaddress= $("#address").val();
            $scope.organization= $("#userorg").val();
            $scope.location= $("#userloc").val();
+           $scope.sptheightunit=$('#userheightunit').val().split("@");
+           $scope.heightunitid=_.first($scope.sptheightunit);
+           $scope.heightunit=_.last($scope.sptheightunit);
+           $scope.sptweightunit=$('#userweightunit').val().split("@");
+           $scope.weightunitid=_.first($scope.sptweightunit);
+           $scope.weightunit=_.last($scope.sptweightunit);
+           $scope.relation= $("#userrelation").val().split("@").slice(0,1);
+           $scope.getRelationId=_.first($scope.relation); 
            $scope.hairColor= $("#userhaircolor").val().split("@").slice(0,1);
            $scope.getHairColorId =_.first($scope.hairColor);
            $scope.eyeColor= $("#usereyecolor").val().split("@").slice(0,1);
@@ -146,25 +153,65 @@ angular.module('starter.controllers')
         //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
           // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
 
-       if( (typeof $scope.lastName === 'undefined' || $scope.lastName === '')  &&
+        
+       if(  (typeof $scope.firstName === 'undefined' || $scope.firstName === '')  &&
+            (typeof $scope.lastName === 'undefined' || $scope.lastName === '')  &&
              (typeof $scope.email === 'undefined' || $scope.email === '')  &&
              (typeof $scope.dob === 'undefined' || $scope.dob === '')  &&
              (typeof $scope.gender === 'undefined' || $scope.gender === '')  &&
              (typeof $scope.height === 'undefined' || $scope.height === '')  &&
-             (typeof $scope.weight === 'undefined' || $scope.weight === '')  &&
-             (typeof $scope.splitHairColor === 'undefined' || $scope.splitHairColor === '')  &&
-             (typeof $scope.eyeColor === 'undefined' || $scope.eyeColor === '')  &&
-             (typeof $scope.ethnicity === 'undefined' || $scope.ethnicity === '')
+             (typeof $scope.weight === 'undefined' || $scope.weight === '')   
+              
         ) {
         //  $scope.ErrorMessage = "Please Enter All Required Fields";
-            alert("Please Enter All Required Fields");
+            alert("Please Enter All Required Fields");  
        }
        else{
-           alert("fail");
+          // alert("fail");
+           $scope.doPostAddCousers();
+       }
+       
+    }
 
+
+ $scope.doPostAddCousers = function() {
+           var params = {					
+				accessToken: $scope.accessToken,
+			    email:$scope.email,
+				familyGroupId: "",
+				relationshipId: $scope.getRelationId,
+				heightUnitId: $scope.heightunitid,
+				weightUnitId: $scope.weightunitid,
+				photo:"",
+				height: $scope.height,
+				weight: $scope.weight,
+				heightUnit:$scope.heightunit,
+				weightUnit:$scope.weightunit,
+				address:$scope.homeaddress,
+				homePhone:$scope.homephone,
+				mobilePhone: $scope.mobile,
+				dob: $scope.dob,
+				gender: $scope.gender,
+				organizationName: "org",
+				locationName:"loc",
+				firstName: $scope.firstName,
+				lastName: $scope.lastName,
+				profileImagePath:"/images/Patient-Male.gif",
+            
+              success: function (data) {
+                      $('#couserform')[0].reset();
+                      $('select').prop('selectedIndex', 0);
+                      $state.go('tab.relatedusers');
+                    
+                    },
+               error: function (data) {
+                            $rootScope.serverErrorMessageValidation();
+               }
+            };
+           // LoginService.postCousers(params);
+            LoginService.postAddCousers(params);
        }
 
-    }
 
 
  $scope.cancelcouser=function(){
