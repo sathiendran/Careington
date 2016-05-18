@@ -27,8 +27,8 @@ var loginPageEnv = 'Single';
 
 
 if(deploymentEnv == 'Single') {
-	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-	deploymentEnvForProduction = 'Staging';  //'Production', 'Staging', 'QA'; // Set 'Production' Only for Single Production - For Apple testing purpose
+	//appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
+	deploymentEnvForProduction = 'Staging';  //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
     
     var singleStagingHospitalId;
     var singleHospitalId;	
@@ -37,7 +37,7 @@ if(deploymentEnv == 'Single') {
     var Hospital;
     var HospitalTag;
     
-	var cobrandApp = 'DYW';
+	var cobrandApp = 'TelehealthOne';
     
     if(cobrandApp == 'EpicMD'){
         singleStagingHospitalId = 155;
@@ -68,7 +68,16 @@ if(deploymentEnv == 'Single') {
         logo= 'img/dyw.jpg';
         Hospital = "DocYourWay's Global Care Management";
         HospitalTag = 'Virtual Care Concierge';
-    }
+    } else if(cobrandApp == 'Hello420'){
+		singleStagingHospitalId = 160;
+        singleHospitalId = 197;	
+		singleQAHospitalId = '';
+		singleSandboxHospitalId = 142;
+        brandColor = '#000080';
+        logo= 'img/hello420.png';
+        Hospital = "Hello420";
+        HospitalTag = 'Medical marijuana cards, quickly';
+	}
 
     
 }

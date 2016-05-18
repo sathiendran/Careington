@@ -127,6 +127,14 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
 				request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 				return request;
+			}else if(api_keys_env == 'Sandbox'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
+				request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+				return request;
 			}
 		},
 		getHeaders: function (accessToken) {
@@ -156,6 +164,17 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 				var headers = {
 						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
 						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
+			}else if(api_keys_env == 'Sandbox'){
+				var headers = {
+						'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
+						'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken != 'undefined') {
@@ -266,7 +285,10 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 			api_keys_env = "Staging";
 		} else if(deploymentEnvForProduction == 'QA') {
 			apiCommonURL = 'https://snap-qa.com';	
-			api_keys_env = "QA";			
+			api_keys_env = "QA";
+		} else if(deploymentEnvForProduction == 'Sandbox') {
+			apiCommonURL = 'https://hello420.sandbox.connectedcare.md';	
+			api_keys_env = "Sandbox";		
 		}
 	} else if(deploymentEnv == "Staging") {
 		apiCommonURL = 'https://snap-stage.com';
@@ -887,6 +909,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					} else if(deploymentEnvForProduction =='QA') {	
 						$rootScope.hospitalId = singleQAHospitalId;
 						api_keys_env = "QA";
+					} else if(deploymentEnvForProduction =='Sandbox') {	
+						$rootScope.hospitalId = singleSandboxHospitalId;
+						api_keys_env = "Sandbox";							
 					}
 				}
 				if($("#squaredCheckbox").prop('checked') == true) {
@@ -1290,6 +1315,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							} else if(deploymentEnvForProduction =='QA') {	
 								$rootScope.hospitalId = singleQAHospitalId;
 								api_keys_env = "QA";
+							} else if(deploymentEnvForProduction =='Sandbox') {	
+								$rootScope.hospitalId = singleSandboxHospitalId;
+								api_keys_env = "Sandbox";	
 							}
 						}						
 						
@@ -1375,6 +1403,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			} else if(deploymentEnvForProduction =='QA') {	
 				$rootScope.hospitalId = singleQAHospitalId;
 				api_keys_env = "QA";
+			} else if(deploymentEnvForProduction =='Sandbox') {	
+				$rootScope.hospitalId = singleSandboxHospitalId;
+				api_keys_env = "Sandbox";	
 			}
 		}
 
