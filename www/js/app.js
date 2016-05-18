@@ -28,7 +28,7 @@ var loginPageEnv = 'Single';
 
 if(deploymentEnv == 'Single') {
 	//appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-	deploymentEnvForProduction = 'Staging';  //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+	deploymentEnvForProduction = 'Sandbox';  //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
     
     var singleStagingHospitalId;
     var singleHospitalId;	
@@ -37,7 +37,7 @@ if(deploymentEnv == 'Single') {
     var Hospital;
     var HospitalTag;
     
-	var cobrandApp = 'TelehealthOne';
+	var cobrandApp = 'Hello420';
     
     if(cobrandApp == 'EpicMD'){
         singleStagingHospitalId = 155;
