@@ -42,6 +42,8 @@ if(deploymentEnv == 'Single') {
     if(cobrandApp == 'EpicMD'){
         singleStagingHospitalId = 155;
         singleHospitalId = 190;	
+		singleQAHospitalId = '';
+		singleSandboxHospitalId = '';
         brandColor = '#66c3b0';
         logo= 'img/epicmd_logotypebg.png';
         Hospital = 'EpicMD';
@@ -49,6 +51,8 @@ if(deploymentEnv == 'Single') {
     } else if(cobrandApp == 'TelehealthOne'){
         singleStagingHospitalId = 142;
         singleHospitalId = 142;	
+		singleQAHospitalId = '';
+		singleSandboxHospitalId = '';
         brandColor = '#5ec4fe';
         logo= 'img/teleLogo.png';
         Hospital = 'telehealthONE';
@@ -56,6 +60,8 @@ if(deploymentEnv == 'Single') {
     } else if(cobrandApp == 'Dokita'){
         singleStagingHospitalId = 156;
         singleHospitalId = 184;	
+		singleQAHospitalId = '';
+		singleSandboxHospitalId = '';
         brandColor = '#ff0000';
         logo= 'img/dokita.png';
         Hospital = 'Dokita247';
@@ -64,6 +70,7 @@ if(deploymentEnv == 'Single') {
         singleStagingHospitalId = 157;
         singleHospitalId = 168;	
 		singleQAHospitalId = 156;
+		singleSandboxHospitalId = '';
         brandColor = '#22508b';
         logo= 'img/dyw.jpg';
         Hospital = "DocYourWay's Global Care Management";
