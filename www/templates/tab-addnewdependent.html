@@ -10,7 +10,8 @@
 				ng-click="toggleLeft()"></button>
 	</div>
  
-   
+   <div class="Server_Error ErrorMessageDiv" ></div>
+<div id="Error_Message"></div>
         <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User </span> <span >
             <a  ng-click="canceldependent()" class="headerval"  >Cancel</a></span></h1>
 
@@ -54,7 +55,7 @@
      </div>
       <div class="col clo-50"> 
         <input class="usertex" type="text" ng-model="firstname" name="firstname" id="firstname" placeholder="Required" required />
-        <span  class="error" ng-show="myForm.firstname.$error.required && buttonClicked">required</span>
+      
       </div>     
     </div>
   <div class="item item-input validated">
@@ -64,7 +65,7 @@
      </div>
      <div class="col clo-50">    
          <input class="usertext " type="text" value="" placeholder="Required" ng-model="lastname" name="lastname" id="lastname" required >
-         <span  class="error" ng-show="myForm.lastname.$error.required && buttonClicked " >required</span>
+        
       </div>
    </div>
   <div class="item item-input validated">
@@ -74,7 +75,7 @@
      </div>
      <div class="col clo-50">     
          <input class="usertext" id="email"  type="email" value="" placeholder="Required" ng-model="email" required="required"  name="email" >
-         <span class="error" ng-show="myForm.email.$error.required  && buttonClicked">required</span>
+        
          <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
      </div>
    </div>
@@ -85,7 +86,7 @@
       </div>
       <div class="col clo-50">    
          <input  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" >
-         <span  class="error" ng-show="myForm.dob.$error.required  && buttonClicked" >required</span>
+       
       </div>
     </div>
    <div class="item item-input validated">
@@ -95,7 +96,7 @@
       </div>
       <div class="col clo-50">      
          <input class="usertext" id="relation" type="text" value=""  placeholder="Required"   name="relation" ng-model="relation" required>
-          <span  class="error" ng-show="myForm.relation.$error.required  && buttonClicked " >required</span>
+          
       </div>
     </div>
    <div class="item itemtab row">
@@ -105,7 +106,7 @@
       <div class="col clo-50">          
           <input type="radio" name="depgender" ng-model="gender"  value="M" ng-checked="isCheckedMale" /> Male
           <input type="radio" name="depgender"  ng-model="gender"  value="F" ng-checked="isCheckedFeMale" /> FeMale
-         <span  class="error" ng-show="myForm.gender.$error.required " >required</span>
+         
       </div>           
     </div>
     <div class="item item-input itemtab validated row">
@@ -114,34 +115,38 @@
         </div>
         <div>        
           <input id="height" class="usertext textalign" type="text" value="" placeholder="Required" ng-model="height" name="height" required >
-                   <span  class="error" ng-show="myForm.height.$error.required  && buttonClicked" >required</span>
+                  
         </div>
         <div>
            <select class=" " name="heightunit" id="heightunit" ng-model="heightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ng-selected="getHeightunit.text == currentPatientDetails[0].anatomy.heightunit"><b>{{getHeightunit.text}}</b></option>
            </select>   
-           <span  class="error" ng-show="myForm.heightunit.$error.required  && buttonClicked" >required</span>
+           
         </div>
    </div>
     
- <div class="item item-input validated">
-     <div class="col col-50">
-         <span class="input-label labelcolor">
-         <i class="iconsize ion-ios-person"></i><b class="formlabel">Weight</b></span>
-     </div>
-      <div>        
+    
+    
+  
+   
+   <div class="item item-input itemtab validated row">
+        <div class="col col-50">
+           <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Weight</b></span>
+        </div>
+        <div>        
           <input id="weight" class="usertext textalign" type="text" value="" placeholder="Required" ng-model="weight" name="weight" required >
-                   <span  class="error" ng-show="myForm.weight.$error.required  && buttonClicked" >required</span>
         </div>
         <div>
            <select class=" " name="weightunit" id="weightunit" ng-model="weightunit" required>
                <option value=""><b>Choose</b></option>
-               <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}" ng-selected="getWeightunittext == currentPatientDetails[0].anatomy.weightunit"><b>{{getWeightunit.text}}</b></option>
+               <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}" ng-selected="getWeightunit.text == currentPatientDetails[0].anatomy.weightunit"><b>{{getWeightunit.text}}</b></option>
            </select>   
-           <span  class="error" ng-show="myForm.weightunit.$error.required  && buttonClicked" >required</span>
+            
         </div>
    </div>
+     
+     
 <div class="item item-input validated">
     <div class="col clo-50"> 
         <span class="input-label labelcolor">
@@ -206,7 +211,7 @@
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getBloodType in listOfBloodtype[0].codes" value="{{getBloodType.codeId + '@' + getBloodType.text}}" ng-selected="getBloodType.text == currentPatientDetails[0].anatomy.bloodtype"><b>{{getBloodType.text}}</b></option>
          </select>
-           <span  class="error" ng-show="myForm.bloodtype.$error.required && buttonClicked">required</span>
+          
      </div>  
  </div>
  
@@ -221,7 +226,7 @@
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}" ng-selected="getHairColor.text == currentPatientDetails[0].anatomy.hairColor"><b>{{getHairColor.text}}</b></option>
          </select>
-           <span  class="error" ng-show="myForm.hairColor.$error.required && buttonClicked">required</span>
+          
      </div>  
  </div>
  <div class="item item-input validated">
@@ -234,7 +239,7 @@
               <option value=""><b>Choose</b></option>
               <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}" ng-selected="getEyeColor.text == currentPatientDetails[0].anatomy.eyeColor"><b>{{getEyeColor.text}}</b></option>
           </select>
-          <span  class="error" ng-show="myForm.eyeColor.$error.required && buttonClicked">required</span>
+         
       </div>  
     </div>
  <div class="item item-input validated">
@@ -247,7 +252,7 @@
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.enthicity"><b>{{getEthnicity.text}}</b></option>
            </select>
-                    <span  class="error" ng-show="myForm.ethnicity.$error.required && buttonClicked">required</span>
+                  
       </div>   
     </div>
  </div>

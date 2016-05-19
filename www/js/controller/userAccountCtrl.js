@@ -102,9 +102,9 @@ angular.module('starter.controllers')
 
         $scope.getManageProfile = function(currentPatientDetails) {
           $rootScope.currentPatientDetails = currentPatientDetails;
-          var date = new Date($rootScope.currentPatientDetails[0].dob);
+     //     var date = new Date($rootScope.currentPatientDetails[0].dob);
           //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-        $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+    //   $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
           if($rootScope.currentPatientDetails[0].gender == 'M') {
             $rootScope.userGender = "Male";
             $rootScope.isCheckedMale = true;

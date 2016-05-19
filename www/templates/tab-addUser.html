@@ -7,6 +7,8 @@
  <div class="buttons" >
   <button class="button icon button-clear ion-navicon-round iconbackbutton  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
 </div>
+  <div class="Server_Error ErrorMessageDiv" ></div>
+<div id="Error_Message"></div>
    <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User </span> <span >
            <a  ng-click="cancelcouser()" class="headerval"  >Cancel</a></span></h1>
 
@@ -41,7 +43,7 @@
      </div>
      <div class="col clo-50">
         <input class="usertex" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" required  >
-        <span  class="error" ng-show="myForm.firstname.$error.required && buttonClicked">required</span>
+       
      </div>
   </div>
   <div class="item item-input validated">
@@ -51,7 +53,7 @@
      </div>
      <div class="col clo-50">
         <input class="usertext" id="userlastname" type="text" ng-model="lastname" value="" placeholder="Required" required name="lastname" >
-          <span  class="error" ng-show="myForm.lastname.$error.required && buttonClicked">required</span>
+         
      </div>
   </div>
   <div class="item item-input validated">
@@ -61,7 +63,7 @@
      </div>
      <div class="col clo-50">
          <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email" required>
-         <span  class="error" ng-show="myForm.email.$error.required && buttonClicked">required</span>
+         
          <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
      </div>
   </div>
@@ -72,7 +74,7 @@
      </div>
      <div class="col clo-50">
        <input   class="usertext" id="userdob" type="date" min="{{minimum}}" max="{{maxDay}}"   value=""  placeholder="Required"  ng-model="dob"  name="dob" required>
-      <span  class="error" ng-show="myForm.dob.$error.required && buttonClicked">required</span>
+      
      </div>
   </div>
   <div class="item item-input validated">
@@ -126,7 +128,7 @@
 
    <div class="item item-input itemtab validated row">
         <div class="col col-50">
-           <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
+           <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Weight</b></span>
         </div>
         <div>
           <input id="userWeight" class="usertext textalign" type="text" value="" placeholder="Optional" ng-model="userWeight" name="userWeight" required >
