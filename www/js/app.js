@@ -741,7 +741,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-appointmentpatientdetails.html',
-        controller: 'patientdetailsController'
+        controller: 'patientCalendarCtrl'
       }
       }
   })

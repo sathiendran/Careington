@@ -275,11 +275,11 @@
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
-                
+
                 <li  ng-repeat=" chronic in patientmedicalConditions" >
                  {{$index + 1}}.{{chronic.description}}
                     </li>
-                
+
                 <!--   <li  ng-repeat=" chronic in patientmedicalConditions" ng-if="chronic.description == '' ">
                   N/A
                  </li>
@@ -312,6 +312,7 @@
 
    </ion-content>
   </form>
-</ion-side-menu-content>
-
 	<div ng-include src="'templates/account_footer.html'"></div>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>

@@ -26,7 +26,7 @@
 					<p class="homecontent">Account Home</p>
 				</a>
 				<a class="item-avatar itemhead">
-					<p><img src="{{PatientImageSelectUser}}" class="topimage"></p>
+					<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
 				</a>
 				<a class="rightpatient" ng-href="#/tab/userhome">
 					<i class="icon ion-ios-people headerrighticon"></i>
@@ -64,7 +64,7 @@
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan"><i class="ion-calendar profileicon profilecalendar"></i></span>
 										<span class="content">
-										<a ng-href="#tab/appointmentpatientdetails"  >
+										<a ng-click ="doGetCurrentUserAppointment()"  >
 										View your Appointments</a>
 										</span>
 									</h2>

@@ -120,5 +120,9 @@ angular.module('starter.controllers')
           $state.go('tab.patientConcerns');
         }
 
+        $rootScope.doGetCurrentUserAppointment = function() {
+          $state.go('tab.appointmentpatientdetails');
+        }
+
 
     })
