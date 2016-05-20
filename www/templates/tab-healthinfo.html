@@ -106,7 +106,7 @@
             </label>
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Ethnicity</b> </span>
-            <input type="text" value="{{currentPatientDetails[0].anatomy.enthicity}}" ng-readonly="flag" class="valuealign textdata">
+            <input type="text" value="{{currentPatientDetails[0].anatomy.ethnicity}}" ng-readonly="flag" class="valuealign textdata">
             </label>
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"> <i class="ion-ios-person iconfont"></i><b class="formlabel labelfont">Hair Color</b> </span>
@@ -190,7 +190,7 @@
                <div>
                   <select class="valuealign textdata" name="healthInfoEthnicity" id="healthInfoEthnicity" >
                      <option value=""><b>Choose</b></option>
-                     <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.enthicity"><b>{{getEthnicity.text}}</b></option>
+                     <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.ethnicity"><b>{{getEthnicity.text}}</b></option>
                   </select>
                </div>
             </div>

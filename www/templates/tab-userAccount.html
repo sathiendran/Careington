@@ -76,8 +76,6 @@
 			</ion-list>
 		</ion-content>
 	</ion-view>
-	<div ng-controller="appoimentDetailsCtrl"></div>
-	<div ng-controller="LoginCtrl"></div>
 	<ion-footer-bar style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
 		<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
@@ -106,3 +104,5 @@
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
+<div ng-controller="appoimentDetailsCtrl"></div>
+<div ng-controller="LoginCtrl"></div>

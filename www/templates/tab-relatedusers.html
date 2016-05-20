@@ -61,7 +61,7 @@
       <ion-content class="relatedusercontent" ng-hide="userinfoshow">
          <div class="list couses animated slideInLeft " id="couserlist" >
 					 <div ng-repeat="getCoUserDetails in listOfCoUserDetails">
-							<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails, getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized)"  ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-right="showActions{{getCoUserDetails.userId}} = true">
+							<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'patientClick')"  ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-right="showActions{{getCoUserDetails.userId}} = true">
 								 <img class="imgsize" src="{{getCoUserDetails.imagePath}}">
 								 <h2 class="relatedhead"> <span class="fname sfont">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
 										<i class="icon ion-chevron-right avataricon" ></i>
@@ -78,7 +78,7 @@
 										</div>
 								 </div>
 								 <div class="col col-75">
-										<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails, getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized)"  style="border-right: none;width:105%;">
+										<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'patientClick')"  style="border-right: none;width:105%;">
 											 <img src="{{getCoUserDetails.imagePath}}">
 											 <h2><span class="fname">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span> </h2>
 											 <p>Female . 29yrs . Sister</p>

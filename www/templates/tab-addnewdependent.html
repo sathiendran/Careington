@@ -1,21 +1,21 @@
 
 
 <ion-side-menus>
-	<ion-side-menu-content> 
+	<ion-side-menu-content>
  <form name="myForm" id="dependentuserform" ng-submit="postDependentDetails()">
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-	<div class="buttons" > 
+	<div class="buttons" >
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
- 
+
    <div class="Server_Error ErrorMessageDiv" ></div>
 <div id="Error_Message"></div>
         <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User </span> <span >
             <a  ng-click="canceldependent()" class="headerval"  >Cancel</a></span></h1>
 
-    
+
 <div class="bar bar-subheader bar-dark subheaderheight">
     <div class="row">
       <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
@@ -23,49 +23,49 @@
 		 <span class="patientLastName ellipsis lnamefont" >Dependent</span>
 		</div></h1>
        </div>
-  
+
     <div class="circlenew" >
        <div class="" >
-        <a class="circlecanh"> 
+        <a class="circlecanh">
           <i class="icon ion-camera circlecam"></i>
         </a>
-        <span class="circletext" > Add a Picture</span>  
-       
+        <span class="circletext" > Add a Picture</span>
+
       </div>
-  
+
   </div>
 
-  
-</div>  
-   
+
+</div>
+
 </ion-header-bar>
 
- 
+
 
 <ion-view title="">
  <ion-content class="userdeptcontent">
 	<h4 class="userhead"><b>User Details</b></h4>
-   
+
   <div class="list deptlist" >
-      
+
    <div class="item item-input validated">
      <div class="col clo-50">
        <span class="input-label labelcolor">
        <i class="iconsize ion-ios-person"></i><b class="formlabel">First Name</b></span>
      </div>
-      <div class="col clo-50"> 
+      <div class="col clo-50">
         <input class="usertex" type="text" ng-model="firstname" name="firstname" id="firstname" placeholder="Required" required />
-      
-      </div>     
+
+      </div>
     </div>
   <div class="item item-input validated">
      <div class="col clo-50">
          <span class="input-label labelcolor">
          <i class="iconsize ion-ios-person"></i><b class="formlabel">Last Name</b></span>
      </div>
-     <div class="col clo-50">    
+     <div class="col clo-50">
          <input class="usertext " type="text" value="" placeholder="Required" ng-model="lastname" name="lastname" id="lastname" required >
-        
+
       </div>
    </div>
   <div class="item item-input validated">
@@ -73,187 +73,187 @@
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-email"></i><b class="formlabel">Email</b></span>
      </div>
-     <div class="col clo-50">     
+     <div class="col clo-50">
          <input class="usertext" id="email"  type="email" value="" placeholder="Required" ng-model="email" required="required"  name="email" >
-        
+
          <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
      </div>
    </div>
    <div class="item item-input validated">
-      <div class="col clo-50">   
+      <div class="col clo-50">
           <span class="input-label labelcolor">
           <i class="iconsize ion-ios-calendar-outline"></i><b class="formlabel">Date of Birth</b></span>
       </div>
-      <div class="col clo-50">    
+      <div class="col clo-50">
          <input  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" >
-       
+
       </div>
     </div>
    <div class="item item-input validated">
-     <div class="col clo-50">   
+     <div class="col clo-50">
        <span class="input-label labelcolor">
        <i class="iconsize ion-person-stalker"></i><b class="formlabel">Reltionship</b></span>
       </div>
-      <div class="col clo-50">      
+      <div class="col clo-50">
          <input class="usertext" id="relation" type="text" value=""  placeholder="Required"   name="relation" ng-model="relation" required>
-          
+
       </div>
     </div>
    <div class="item itemtab row">
-      <div class="col clo-50">  
+      <div class="col clo-50">
          <span class="input-label labelcolor" style="float: left;"> <i class="ion-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
       </div>
-      <div class="col clo-50">          
+      <div class="col clo-50">
           <input type="radio" name="depgender" ng-model="gender"  value="M" ng-checked="isCheckedMale" /> Male
           <input type="radio" name="depgender"  ng-model="gender"  value="F" ng-checked="isCheckedFeMale" /> FeMale
-         
-      </div>           
+
+      </div>
     </div>
     <div class="item item-input itemtab validated row">
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
         </div>
-        <div>        
+        <div>
           <input id="height" class="usertext textalign" type="text" value="" placeholder="Required" ng-model="height" name="height" required >
-                  
+
         </div>
         <div>
            <select class=" " name="heightunit" id="heightunit" ng-model="heightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ng-selected="getHeightunit.text == currentPatientDetails[0].anatomy.heightunit"><b>{{getHeightunit.text}}</b></option>
-           </select>   
-           
+           </select>
+
         </div>
    </div>
-    
-    
-    
-  
-   
+
+
+
+
+
    <div class="item item-input itemtab validated row">
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Weight</b></span>
         </div>
-        <div>        
+        <div>
           <input id="weight" class="usertext textalign" type="text" value="" placeholder="Required" ng-model="weight" name="weight" required >
         </div>
         <div>
            <select class=" " name="weightunit" id="weightunit" ng-model="weightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}" ng-selected="getWeightunit.text == currentPatientDetails[0].anatomy.weightunit"><b>{{getWeightunit.text}}</b></option>
-           </select>   
-            
+           </select>
+
         </div>
    </div>
-     
-     
+
+
 <div class="item item-input validated">
-    <div class="col clo-50"> 
+    <div class="col clo-50">
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Home Phone</b></span>
     </div>
-     <div class="col clo-50">             
+     <div class="col clo-50">
         <input  class="usertext" id="homephone" type="number" value=""  placeholder="Optional" ng-model="phone"   name="phone" ng-pattern="/^[0-9]{1,14}$/"  >
         <span class="error" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>
-     </div>      
+     </div>
 </div>
  <div class="item item-input validated">
    <div class="col clo-50">
        <span class="input-label labelcolor">
        <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
    </div>
-    <div class="col clo-50">   
+    <div class="col clo-50">
        <input class="usertext" id="mobile" type="number" value=""  placeholder="Optional" ng-model="mobile"   name="mobile" ng-pattern="/^[0-9]{1,14}$/" >
        <span class="error" id="ermobile" ng-show="myForm.mobile.$error.pattern">Not a valid number!</span>
-    </div>   
+    </div>
 </div>
 <div class="item item-input validated">
-   <div class="col clo-50">  
+   <div class="col clo-50">
      <span class="input-label labelcolor" style="margin-bottom:50px;">
      <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
    </div>
-    <div class="col clo-50">    
+    <div class="col clo-50">
      <textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>
-    </div>  
+    </div>
 </div>
  <div class="item item-input validated">
-     <div class="col clo-50">          
+     <div class="col clo-50">
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-people"></i><b class="formlabel">Organization</b></span>
      </div>
-    <div class="col clo-50">    
+    <div class="col clo-50">
        <select class=" textdata" name="organization" id="organization" >
           <option value=""><b>Choose</b></option>
           <option ><b></b></option>
        </select>
-     </div> 
+     </div>
   </div>
  <div class="item item-input validated">
     <div class="col clo-50">
        <span class="input-label labelcolor">
        <i class="iconsize ion-location"></i><b class="formlabel">Location</b></span>
     </div>
-    <div class="col clo-50">  
+    <div class="col clo-50">
        <select class=" textdata" name="location" id="location" >
            <option value=""><b>Choose</b></option>
            <option ><b></b></option>
        </select>
     </div>
  </div>
- 
+
  <div class="item item-input validated">
     <div class="col clo-50">
        <span class="input-label labelcolor">
        <i class="iconsize ion-ios-person"></i><b class="formlabel">Blood type</b></span>
      </div>
-     <div class="col clo-50">  
+     <div class="col clo-50">
         <select class=" textdata" name="bloodtype" id="bloodtype" ng-model="bloodtype" required>
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getBloodType in listOfBloodtype[0].codes" value="{{getBloodType.codeId + '@' + getBloodType.text}}" ng-selected="getBloodType.text == currentPatientDetails[0].anatomy.bloodtype"><b>{{getBloodType.text}}</b></option>
          </select>
-          
-     </div>  
+
+     </div>
  </div>
- 
- 
+
+
  <div class="item item-input validated">
     <div class="col clo-50">
        <span class="input-label labelcolor">
        <i class="iconsize ion-ios-person"></i><b class="formlabel">Hair Color</b></span>
      </div>
-     <div class="col clo-50">  
+     <div class="col clo-50">
         <select class=" textdata" name="hairColor" id="hairColor" ng-model="hairColor" required>
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}" ng-selected="getHairColor.text == currentPatientDetails[0].anatomy.hairColor"><b>{{getHairColor.text}}</b></option>
          </select>
-          
-     </div>  
+
+     </div>
  </div>
  <div class="item item-input validated">
-     <div class="col clo-50"> 
+     <div class="col clo-50">
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-eye"></i><b class="formlabel">Eye Color</b></span>
      </div>
-     <div class="col clo-50">   
+     <div class="col clo-50">
           <select class=" textdata" name="eyeColor" id="eyeColor" ng-model="eyeColor" required>
               <option value=""><b>Choose</b></option>
               <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}" ng-selected="getEyeColor.text == currentPatientDetails[0].anatomy.eyeColor"><b>{{getEyeColor.text}}</b></option>
           </select>
-         
-      </div>  
+
+      </div>
     </div>
  <div class="item item-input validated">
      <div class="col clo-50">
         <span class="input-label labelcolor">
          <i class="iconsize ion-earth"></i><b class="formlabel">Ethnicity</b></span>
      </div>
-      <div class="col clo-50">   
+      <div class="col clo-50">
           <select class=" textdata" name="ethnicity" id="ethnicity" ng-model="ethnicity" required>
                <option value=""><b>Choose</b></option>
-               <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.enthicity"><b>{{getEthnicity.text}}</b></option>
+               <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.ethnicity"><b>{{getEthnicity.text}}</b></option>
            </select>
-                  
-      </div>   
+
+      </div>
     </div>
  </div>
  </ion-content>
@@ -279,5 +279,4 @@
   <h1 class="title" id="centercolor" >Add Dependent</h1>
 </button>
 </ion-footer-bar>
-</div> 
-
+</div>

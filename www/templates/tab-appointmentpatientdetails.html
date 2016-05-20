@@ -69,7 +69,7 @@
      <div ng-hide="addmore">
            <div class="list listfirst" >
 					<a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
-				     <img class="apptimage" src="img\patient.png">
+				     <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
             <h2 class="aptsname">Next Appointment</h2>
             <p class="appmarg">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -78,7 +78,7 @@
         </a>
 
 					<a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
-            <img class="apptimage" src="img\patient.png">
+            <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
            <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span> <span class="fonttime"> {{scheduledListData.scheduledTime | date: "a"}}</span>
             <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -93,64 +93,25 @@
    <div ng-hide="healthhide">
         <div class="list listall">
 
-        <a class="item item-avatar avatheight" >
+        <a class="item item-avatar avatheight" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
              <img class="apptimage" src="img\patient.png">
             <h2 class="aptsname">Next Appointment</h2>
              <p class="appmarg">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
-                <h4 class=""><span class="fname">Nov 13</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span></h4>
-        </a>
+								<h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span> <span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+          </a>
 
-        <a class="item item-avatar appitem">
+        <a class="item item-avatar appitem" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
             <img class="apptimage" src="img\patient.png">
-           <h4 class="appalign"><span class="fname">Nov 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-             <p class="appfloat">
+					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span> <span class="fonttime"> {{scheduledListData.scheduledTime | date: "a"}}</span>
+            <p class="appfloat">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
            </h4>
          </a>
+				  <ion-item ng-if="!scheduledList.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
 
-          <a class="item item-avatar appitem">
-              <img class="apptimage" src="img\patient.png">
-             <h4 class="appalign"><span class="fname">Dec 02</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-             <p class="appfloat">
-                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
-              </p>
-           </h4>
-         </a>
-          <a class="item item-avatar appitem">
-             <img class="apptimage" src="img\patient.png">
-          <h4 class="appalign"><span class="fname">Dec 08</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-             <p class="appfloat">
-                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
-              </p>
-           </h4>
-         </a>
-        <a class="item item-avatar appitem">
-             <img class="apptimage" src="img\patient.png">
-            <h4 class="appalign"><span class="fname">Dec 13</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-               <p class="appfloat">
-                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
-              </p>
-           </h4>
-         </a>
-          <a class="item item-avatar appitem">
-             <img class="apptimage" src="img\patient.png">
-            <h4 class="appalign"><span class="fname">Dec 16</span><span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-               <p class="appfloat">
-                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
-              </p>
-           </h4>
-         </a>
-          <a class="item item-avatar appitem">
-                <img class="apptimage" src="img\patient.png">
-             <h4 class="appalign"><span class="fname">Dec 21</span> <span class="fontsymbol"> @ </span><span class="fname">3:45</span> <span class="fonttime"> PM</span>
-              <p class="appfloat">
-                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
-              </p>
-           </h4>
-         </a>
    </div>
    </div>
 

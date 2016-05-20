@@ -43,7 +43,7 @@
      </div>
      <div class="col clo-50">
         <input class="usertex" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" required  >
-       
+
      </div>
   </div>
   <div class="item item-input validated">
@@ -53,7 +53,7 @@
      </div>
      <div class="col clo-50">
         <input class="usertext" id="userlastname" type="text" ng-model="lastname" value="" placeholder="Required" required name="lastname" >
-         
+
      </div>
   </div>
   <div class="item item-input validated">
@@ -63,7 +63,7 @@
      </div>
      <div class="col clo-50">
          <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email" required>
-         
+
          <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
      </div>
   </div>
@@ -74,7 +74,7 @@
      </div>
      <div class="col clo-50">
        <input   class="usertext" id="userdob" type="date" min="{{minimum}}" max="{{maxDay}}"   value=""  placeholder="Required"  ng-model="dob"  name="dob" required>
-      
+
      </div>
   </div>
   <div class="item item-input validated">
@@ -229,13 +229,13 @@
       <div class="col clo-50">
          <select class=" textdata" name="healthInfoEthnicity" id="userethnicity" >
                <option value=""><b>Choose</b></option>
-               <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.enthicity"><b>{{getEthnicity.text}}</b></option>
+               <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.ethnicity"><b>{{getEthnicity.text}}</b></option>
            </select>
       </div>
      </div>
     </div>
    </ion-content>
- 
+
  </form>
 </ion-side-menu-content>
  <!--Side Menu File Include --->

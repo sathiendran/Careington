@@ -317,7 +317,7 @@ angular.module('starter.controllers')
 				myEl.addClass('btnextcolor');
 	 $scope.addmore=true;
 		$scope.healthhide=false;
-
+		$rootScope.doGetScheduledConsulatation();
 
 	 }
 

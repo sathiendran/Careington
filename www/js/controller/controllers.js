@@ -444,7 +444,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
 
-    } else if($rootScope.AndroidDevice) {
+    } else if(!$rootScope.AndroidDevice) {
 
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -1450,7 +1450,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.createDate = data.data[0].createDate;
 					$rootScope.dob = data.data[0].dob;
 					$rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
-					$rootScope.gender = data.data[0].gender;
+					if(typeof data.data[0].gender !== 'undefined') {
+							if(data.data[0].gender === 'F') {
+								$rootScope.gender = "FeMale";
+							} else {
+									$rootScope.gender = "Male";
+							}
+						//$rootScope.gender = data.data[0].gender;
+					}
 					$rootScope.homePhone = data.data[0].homePhone;
 					if(typeof data.data[0].location !== 'undefined') {
 						$rootScope.location = data.data[0].location;
@@ -3710,7 +3717,7 @@ LoginService.getScheduledConsulatation(params);
 			LoginService.getonDemandAvailability(params);
     }
 
-    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
+    $rootScope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized, clickEvent) {
         if($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined"){
 
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
@@ -3741,7 +3748,13 @@ LoginService.getScheduledConsulatation(params);
 		$rootScope.doGetIndividualScheduledConsulatation();
 		$rootScope.doGetonDemandAvailability();
 		$scope.doGetCodesSet();
-		$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
+		if(clickEvent === "patientClick") {
+			$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
+		} else if(clickEvent === "sideMenuClick") {
+				$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.healthinfo');
+		} else if(clickEvent === "sideMenuClickApoointments") {
+				$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.appointmentpatientdetails');
+		}
 		//$state.go('tab.patientDetail');
 		//$scope.doGetUserHospitalInformation();
 
