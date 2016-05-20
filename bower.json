@@ -2,7 +2,9 @@
   "name": "ConnectedCare",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-rc.4",
-    "platform.js": "platform#^1.3.1"
+    "ionic": "driftyco/ionic-bower#1.0.0-rc.4"
+  },
+  "dependencies": {
+    "ion-alpha-scroll": "^0.1.3"
   }
 }

@@ -71,7 +71,7 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
-        $rootScope.doGetListOfCodeSet = function() {
+      /*  $rootScope.doGetListOfCodeSet = function() {
            var params = {
              accessToken: $rootScope.accessToken,
              hospitalId: $rootScope.hospitalId,
@@ -94,11 +94,11 @@ angular.module('starter.controllers')
                  $state.go('tab.healthinfo');
              },
              error: function(data) {
-               $scope.codeSets = 'Error getting List of CodeSets such as Eye color, Hair Color, Ethnicity, RelationCode,Blood type,Height unit,Weight unit';
+                 $rootScope.serverErrorMessageValidation();
              }
            };
            LoginService.getListOfCodeSet(params);
-         }
+         }*/
 
         $scope.getManageProfile = function(currentPatientDetails) {
           $rootScope.currentPatientDetails = currentPatientDetails;
@@ -112,11 +112,16 @@ angular.module('starter.controllers')
             $rootScope.userGender = "FeMale";
               $rootScope.isCheckedFeMale = true;
           }
-          $rootScope.doGetListOfCodeSet();
+          $state.go('tab.healthinfo');
+        //  $rootScope.doGetListOfCodeSet();
         }
 
         $scope.goToPatientConcerns = function() {
           $state.go('tab.patientConcerns');
+        }
+
+        $rootScope.doGetCurrentUserAppointment = function() {
+          $state.go('tab.appointmentpatientdetails');
         }
 
 

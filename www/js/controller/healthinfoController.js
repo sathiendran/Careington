@@ -132,7 +132,10 @@
             $scope.splitEthnicity =   $scope.healthInfoEthnicity.split("@");
             $scope.getEthnicityId = $scope.splitEthnicity[0];
             $scope.getEthnicityText = $scope.splitEthnicity[1];
-        $scope.healthInfoEthnicity = $('#healthInfoBloodType').val();
+        $scope.healthInfoBloodType = $('#healthInfoBloodType').val();
+            $scope.splitBloodType =   $scope.healthInfoBloodType.split("@");
+            $scope.getBloodTypeId = $scope.splitBloodType[0];
+            $scope.getBloodTypeText = $scope.splitBloodType[1];
 
         $scope.ValidateEmail = function(email){
                     var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -163,12 +166,12 @@
         }else if(typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === ''){
             $scope.ErrorMessage = "Please Enter Your Address";
             $rootScope.Validation($scope.ErrorMessage);
-        }else if(typeof $scope.healthInfoOrganization === 'undefined' || $scope.healthInfoOrganization === ''){
+      /*  }else if(typeof $scope.healthInfoOrganization === 'undefined' || $scope.healthInfoOrganization === ''){
             $scope.ErrorMessage = "Please Enter Your Organization";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoLocation === 'undefined' || $scope.healthInfoLocation === ''){
             $scope.ErrorMessage = "Please Enter Your Location";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);*/
         }else if(typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === ''){
             $scope.ErrorMessage = "Please Select Your Gender";
             $rootScope.Validation($scope.ErrorMessage);
@@ -176,13 +179,13 @@
             $scope.ErrorMessage = "Please Enter Your Height";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === ''){
-            $scope.ErrorMessage = "Please Enter Your Height Unit";
+            $scope.ErrorMessage = "Please Select Your Height Unit";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === ''){
             $scope.ErrorMessage = "Please Enter Your Weight";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === ''){
-            $scope.ErrorMessage = "Please Enter Your Weight Unit";
+            $scope.ErrorMessage = "Please Select Your Weight Unit";
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === ''){
             $scope.ErrorMessage = "Please Select Your Ethnicity";
@@ -192,6 +195,9 @@
             $rootScope.Validation($scope.ErrorMessage);
         }else if(typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === ''){
             $scope.ErrorMessage = "Please Select Your Eye Color";
+            $rootScope.Validation($scope.ErrorMessage);
+        }else if(typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === ''){
+            $scope.ErrorMessage = "Please Select Your Blood Type";
             $rootScope.Validation($scope.ErrorMessage);
         }else {
             $scope.doPutProfileUpdation();
@@ -207,10 +213,10 @@
                                 patientName: $scope.healthInfoFirstName,
                                 lastName: $scope.healthInfoLastName,
                                 dob: $scope.healthInfoDOB,
-                                bloodType: 1,
+                                bloodType: $scope.getBloodTypeId,
                                 eyeColor: $scope.getEyeColorId,
                                 gender: $scope.healthInfoGender,
-                                enthicity: $scope.getEthnicityId,
+                                ethnicity: $scope.getEthnicityId,
                                 hairColor: $scope.getHairColorId,
                                 homePhone: $scope.healthInfoHomePhone,
                                 mobilePhone: $scope.healthInfoMobilePhone,
@@ -425,47 +431,47 @@ function iterateAlphabet()
 
 
 $scope.medicationdone=function(){
-    
+
       $rootScope.CurrentmedicationupdateList = [];
       $rootScope.CurrentMedicationsearchItem = $filter('filter')($rootScope.currentMedicationsearchList, {checked:true});
       $rootScope.CurrentMedicationsearchSelected = $filter('filter')($rootScope.currentMedicationsearchList, {checked:true});
       if($rootScope.CurrentMedicationsearchItem !== '') {
             $rootScope.patientmedicationsSearch = $rootScope.CurrentMedicationsearchItem;
 		    $rootScope.MedicationsCount = $rootScope.patientmedicationsSearch.length;
-		
+
          for (var i = 0; i < $rootScope.MedicationsCount; i++) {
                  $rootScope.CurrentmedicationupdateList.push(
 					{code: $rootScope.CurrentMedicationsearchItem[i].codeId, description: $rootScope.CurrentMedicationsearchItem[i].text}
-					); 
+					);
           }
             console.log($rootScope.patientsearchmedications);
 			console.log($rootScope.MedicationsCount);
              $scope.modal.hide();
 			}
-       
+
         $scope.InfantData = [];
-       
+
 				console.log($rootScope.patientmedicalsurgeries);
                 console.log($rootScope.CurrentMedicationsearchSelected);
                 console.log($rootScope.patientmedicalConditions);
                 console.log($rootScope.patientmedicationsallergies);
         var params = {
-         
-					accessToken: $rootScope.accessToken,  
+
+					accessToken: $rootScope.accessToken,
 					MedicationAllergies:$rootScope.patientmedicationsallergies,
 					Surgeries: $rootScope.PatientMedicalProfileList[0].surgeries,
 					MedicalConditions:$rootScope.patientmedicalConditions,
 					Medications:$rootScope.CurrentmedicationupdateList,
 					InfantData:$scope.InfantData,
-					PatientId:$rootScope.patientId,					
-					success: function (data) {					
+					PatientId:$rootScope.patientId,
+					success: function (data) {
 						 $scope.health();
 					},
 					error: function (data) {
 						$scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
 					}
 				};
-				
+
 			 LoginService.putPatientMedicalProfile(params);
 }
 
@@ -618,40 +624,40 @@ $scope.allergiedone=function(){
       if($rootScope.AllergiessearchItem !== '') {
             $rootScope.patientallergiesSearch = $rootScope.AllergiessearchItem;
 		    $rootScope.AllergiesCount = $rootScope.patientallergiesSearch.length;
-		
+
          for (var i = 0; i < $rootScope.AllergiesCount; i++) {
                  $rootScope.AllergiesupdateList.push(
 					{code: $rootScope.AllergiessearchItem[i].codeId, description: $rootScope.AllergiessearchItem[i].text}
-					); 
+					);
           }
-           
+
 			console.log($rootScope.AllergiesCount);
              $scope.modal.hide();
 			}
-       
+
         $scope.InfantData = [];
-       
+
 				console.log($rootScope.patientmedicalsurgeries);
                 console.log($rootScope.AllergiesearchSelected);
                 console.log($rootScope.patientmedicalConditions);
                 console.log($rootScope.patientmedicationsallergies);
         var params = {
-         
-					accessToken: $rootScope.accessToken,  
+
+					accessToken: $rootScope.accessToken,
 					MedicationAllergies:$rootScope.AllergiesupdateList,
 					Surgeries: $rootScope.PatientMedicalProfileList[0].surgeries,
 					MedicalConditions:$rootScope.patientmedicalConditions,
 					Medications:$rootScope.patientmedications,
 					InfantData:$scope.InfantData,
-					PatientId:$rootScope.patientId,					
-					success: function (data) {					
+					PatientId:$rootScope.patientId,
+					success: function (data) {
 						 $scope.health();
 					},
 					error: function (data) {
 						$scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
 					}
 				};
-				
+
 			 LoginService.putPatientMedicalProfile(params);
 }
 $scope.OnSelectAllergies = function(allergie) {
@@ -790,52 +796,52 @@ $scope.chronicsearch=function(){
 
 $scope.chronicdone=function(){
     $scope.modal.hide();
-    
-    
-    
+
+
+
      $rootScope.ChronicupdateList = [];
       $rootScope.ChronicsearchItem = $filter('filter')($rootScope.chronicConditionsearchList, {checked:true});
       $rootScope.ChronicsearchSelected = $filter('filter')($rootScope.chronicConditionsearchList, {checked:true});
       if($rootScope.ChronicsearchItem !== '') {
             $rootScope.patientchronicSearch = $rootScope.ChronicsearchItem;
 		    $rootScope.ChronicCount = $rootScope.patientchronicSearch.length;
-		
+
          for (var i = 0; i < $rootScope.ChronicCount; i++) {
                  $rootScope.ChronicupdateList.push(
 					{code: $rootScope.ChronicsearchItem[i].codeId, description: $rootScope.ChronicsearchItem[i].text}
-					); 
+					);
           }
-           
+
 			console.log($rootScope.AllergiesCount);
              $scope.modal.hide();
 			}
-       
+
         $scope.InfantData = [];
-       
+
 				console.log($rootScope.patientmedicalsurgeries);
                 console.log($rootScope.ChronicsearchSelected);
                 console.log($rootScope.patientmedicalConditions);
                 console.log($rootScope.patientmedicationsallergies);
         var params = {
-         
-					accessToken: $rootScope.accessToken,  
+
+					accessToken: $rootScope.accessToken,
 					MedicationAllergies:$rootScope.patientmedicationsallergies,
 					Surgeries: $rootScope.PatientMedicalProfileList[0].surgeries,
 					MedicalConditions:$rootScope.ChronicupdateList,
 					Medications:$rootScope.patientmedications,
 					InfantData:$scope.InfantData,
-					PatientId:$rootScope.patientId,					
-					success: function (data) {					
+					PatientId:$rootScope.patientId,
+					success: function (data) {
 						 $scope.health();
 					},
 					error: function (data) {
 						$scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
 					}
 				};
-				
+
 			 LoginService.putPatientMedicalProfile(params);
-    
-    
+
+
 }
 
 $scope.OnSelectChronicCondition = function(chronic) {

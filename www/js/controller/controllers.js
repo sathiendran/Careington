@@ -114,13 +114,29 @@ if(deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv 
 				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
 				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
 				return request;
-			}else{
-				if (typeof credentials !== 'undefined') {
+			}else if(api_keys_env == 'Production'){
+				if (typeof credentials != 'undefined') {
 					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
 				}
 				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
 				request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
 				request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+				return request;
+			}else if(api_keys_env == 'QA'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+				request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
+				return request;
+			}else if(api_keys_env == 'Sandbox'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
+				request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
 				return request;
 			}
 		},
@@ -136,13 +152,35 @@ if(deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv 
 				}
 
 				return headers;
-			}else{
+			}else if(api_keys_env == 'Production'){
 				var headers = {
 						'X-Developer-Id': '1f9480321986463b822a981066cad094',
 						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
 						'Content-Type': 'application/json; charset=utf-8'
 					};
 				if (typeof accessToken !== 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+
+				return headers;
+			}else if(api_keys_env == 'QA'){
+				var headers = {
+						'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
+						'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+
+				return headers;
+			}else if(api_keys_env == 'Sandbox'){
+				var headers = {
+						'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
+						'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
 					headers['Authorization'] = 'Bearer ' + accessToken;
 				}
 
@@ -215,13 +253,22 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 		apiCommonURL = 'https://connectedcare.md';
 	}else if(deploymentEnv === "QA"){
 		apiCommonURL = 'https://snap-qa.com';
-
 	}else if(deploymentEnv == "Single"){
 	//	apiCommonURL = 'https://sandbox.connectedcare.md';
-		//apiCommonURL = 'https://snap-qa.com';
-		apiCommonURL = 'https://connectedcare.md';
 		//apiCommonURL = 'https://demo.connectedcare.md';
-		//apiCommonURL = 'https://snap-stage.com';
+		if(deploymentEnvForProduction == 'Production') {
+			apiCommonURL = 'https://connectedcare.md';
+			api_keys_env = "Production";
+		} else if(deploymentEnvForProduction == 'Staging') {
+			apiCommonURL = 'https://snap-stage.com';
+			api_keys_env = "Staging";
+		} else if(deploymentEnvForProduction == 'QA') {
+			apiCommonURL = 'https://snap-qa.com';
+			api_keys_env = "QA";
+		} else if(deploymentEnvForProduction == 'Sandbox') {
+			apiCommonURL = 'https://hello420.sandbox.connectedcare.md';
+			api_keys_env = "Sandbox";
+		}
 	} else if(deploymentEnv == "Staging") {
 
 		apiCommonURL = 'https://snap-stage.com';
@@ -444,7 +491,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
 
-    } else if($rootScope.AndroidDevice) {
+    } else if(!$rootScope.AndroidDevice) {
 
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
@@ -813,8 +860,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$rootScope.Validation($scope.ErrorMessage);
 
 			}else{
-				if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-					//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
+				if(deploymentEnvLogout == 'Single') {
+					if(deploymentEnvForProduction =='Production') {
 						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
 							//deploymentEnv = "Staging";
 							$rootScope.hospitalId = singleStagingHospitalId;
@@ -825,13 +872,20 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							//deploymentEnv = "Production";
 							$rootScope.hospitalId = singleHospitalId;
 							apiCommonURL = 'https://connectedcare.md';
-							api_keys_env = '';
+							api_keys_env = 'Production';
 							$rootScope.APICommonURL = 'https://connectedcare.md';
 						}
-					}else {
-
+					} else if(deploymentEnvForProduction =='Staging') {
 						$rootScope.hospitalId = singleStagingHospitalId;
+						api_keys_env = "Staging";
+					} else if(deploymentEnvForProduction =='QA') {
+						$rootScope.hospitalId = singleQAHospitalId;
+						api_keys_env = "QA";
+					} else if(deploymentEnvForProduction =='Sandbox') {
+						$rootScope.hospitalId = singleSandboxHospitalId;
+						api_keys_env = "Sandbox";
 					}
+				}
 				if($("#squaredCheckbox").prop('checked') == true) {
 					$window.localStorage.setItem('username', $("#UserEmail").val());
 					$window.localStorage.oldEmail = $scope.userLogin.UserEmail;
@@ -871,7 +925,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 						$rootScope.hospitalDetailsList.push({
 							'id': index.$id,
 							'domainName': index.domainName,
-							'logo': $rootScope.APICommonURL + index.logo,
+							'logo': index.logo,
 							'name': index.name,
 							'operatingHours': index.operatingHours,
 							'providerId': index.providerId,
@@ -1047,7 +1101,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     }
                 }
                 //$rootScope.brandColor = data.data[0].brandColor;
-                $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+
+                $rootScope.logo =  data.data[0].hospitalImage;
                 //$rootScope.Hospital = data.data[0].brandName;
                 if(deploymentEnvLogout == 'Single') {
                      $rootScope.alertMsgName = $rootScope.Hospital;
@@ -1092,11 +1147,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     }
                 }
                 //$rootScope.brandColor = data.data[0].brandColor;
-                $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+
+                $rootScope.logo = data.data[0].hospitalImage;
                 //$rootScope.Hospital = data.data[0].brandName;
-                if(deploymentEnvLogout === 'Multiple') {
-                    $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase =  'Virtual Care';
+                if(deploymentEnvLogout == 'Single') {
+                     $rootScope.alertMsgName = $rootScope.Hospital;
+                        $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
+
                 } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
                         $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
@@ -1221,24 +1278,33 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$scope.ErrorMessage = "Please enter a valid email address";
 					$rootScope.Validation($scope.ErrorMessage);
 				} else {
-					if(deploymentEnv == "Single"){
-						if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-							if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-								//deploymentEnv = "Staging";
-								$rootScope.hospitalId = singleStagingHospitalId;
-								apiCommonURL = 'https://snap-stage.com';
-								api_keys_env = 'Staging';
-								$rootScope.APICommonURL = 'https://snap-stage.com';
-							} else {
-								//deploymentEnv = "Production";
-								$rootScope.hospitalId = singleHospitalId;
-								apiCommonURL = 'https://connectedcare.md';
-								api_keys_env = '';
-								$rootScope.APICommonURL = 'https://connectedcare.md';
-							}
-						}else {
 
-							$rootScope.hospitalId = singleStagingHospitalId;
+					if(deploymentEnv == "Single"){
+						if(deploymentEnvLogout == 'Single') {
+							if(deploymentEnvForProduction =='Production') {
+								if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+									//deploymentEnv = "Staging";
+									$rootScope.hospitalId = singleStagingHospitalId;
+									apiCommonURL = 'https://snap-stage.com';
+									api_keys_env = 'Staging';
+									$rootScope.APICommonURL = 'https://snap-stage.com';
+								} else {
+									//deploymentEnv = "Production";
+									$rootScope.hospitalId = singleHospitalId;
+									apiCommonURL = 'https://connectedcare.md';
+									api_keys_env = 'Production';
+									$rootScope.APICommonURL = 'https://connectedcare.md';
+								}
+							} else if(deploymentEnvForProduction =='Staging') {
+								$rootScope.hospitalId = singleStagingHospitalId;
+								api_keys_env = "Staging";
+							} else if(deploymentEnvForProduction =='QA') {
+								$rootScope.hospitalId = singleQAHospitalId;
+								api_keys_env = "QA";
+							} else if(deploymentEnvForProduction =='Sandbox') {
+								$rootScope.hospitalId = singleSandboxHospitalId;
+								api_keys_env = "Sandbox";
+							}
 						}
 
 
@@ -1306,23 +1372,32 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.hospitalId = singleHospitalId;
 		}*/
 
-		if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
-		//	if($("#UserEmail").val() == 'itunesmobiletester@gmail.com') {
-			if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-				//deploymentEnv = "Staging";
+
+		if(deploymentEnvLogout == 'Single') {
+			if(deploymentEnvForProduction =='Production') {
+				if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+					//deploymentEnv = "Staging";
+					$rootScope.hospitalId = singleStagingHospitalId;
+					apiCommonURL = 'https://snap-stage.com';
+					api_keys_env = 'Staging';
+					$rootScope.APICommonURL = 'https://snap-stage.com';
+				} else {
+					//deploymentEnv = "Production";
+					$rootScope.hospitalId = singleHospitalId;
+					apiCommonURL = 'https://connectedcare.md';
+					api_keys_env = 'Production';
+					$rootScope.APICommonURL = 'https://connectedcare.md';
+				}
+			} else if(deploymentEnvForProduction =='Staging') {	
 				$rootScope.hospitalId = singleStagingHospitalId;
-				apiCommonURL = 'https://snap-stage.com';
-				api_keys_env = 'Staging';
-				$rootScope.APICommonURL = 'https://snap-stage.com';
-			} else {
-				//deploymentEnv = "Production";
-				$rootScope.hospitalId = singleHospitalId;
-				apiCommonURL = 'https://connectedcare.md';
-				api_keys_env = '';
-				$rootScope.APICommonURL = 'https://connectedcare.md';
+				api_keys_env = "Staging";
+			} else if(deploymentEnvForProduction =='QA') {
+				$rootScope.hospitalId = singleQAHospitalId;
+				api_keys_env = "QA";
+			} else if(deploymentEnvForProduction =='Sandbox') {
+				$rootScope.hospitalId = singleSandboxHospitalId;
+				api_keys_env = "Sandbox";
 			}
-		}else {
-			$rootScope.hospitalId = singleStagingHospitalId;
 		}
 
 		if ($scope.accessToken == 'No Token') {
@@ -1365,8 +1440,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	//$scope.Zip = 91302;
 	//$scope.Country = 'US';
 	//$scope.Cvv = 123;
-	//$scope.profileId = 31867222;
-	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
+	//$scope.profileId = 31867222; medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns, eyecolor, haircolor, ethnicity, bloodtype, relationship, heightunit, weightunit
+	$scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns,eyecolor,haircolor,ethnicity,bloodtype,relationship,heightunit,weightunit';
 
 
 
@@ -1450,7 +1525,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.createDate = data.data[0].createDate;
 					$rootScope.dob = data.data[0].dob;
 					$rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
-					$rootScope.gender = data.data[0].gender;
+					if(typeof data.data[0].gender !== 'undefined') {
+							if(data.data[0].gender === 'F') {
+								$rootScope.gender = "FeMale";
+							} else {
+									$rootScope.gender = "Male";
+							}
+						//$rootScope.gender = data.data[0].gender;
+					}
 					$rootScope.homePhone = data.data[0].homePhone;
 					if(typeof data.data[0].location !== 'undefined') {
 						$rootScope.location = data.data[0].location;
@@ -2945,7 +3027,25 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
 					$rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
 					$rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-                    $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+          $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+
+					$rootScope.eyeHairEthnicityRelationCodeSets = [];
+					angular.forEach(data.data, function(index, item) {
+						$rootScope.eyeHairEthnicityRelationCodeSets.push({
+							'codes': angular.fromJson(index.codes),
+							'hospitalId': index.hospitalId,
+							'name': index.name
+						});
+					});
+
+					$rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Eye Color" });
+					 $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Hair Color" });
+					 $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Ethnicity" });
+					 $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Relationship" });
+					 $rootScope.listOfHeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Height" });
+					 $rootScope.listOfWeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Weight" });
+					 $rootScope.listOfBloodtype= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Blood Type" });
+
 				//	$state.go('tab.patientConcerns');
 				},
 				error: function (data) {
@@ -3220,6 +3320,7 @@ LoginService.getScheduledConsulatation(params);
 
 					console.log($rootScope.scheduledList);
 					$rootScope.nextAppointmentDisplay = 'none';
+					$rootScope.accountClinicianFooter = 'block';
 
 					var d = new Date();
 					d.setHours(d.getHours() + 12);
@@ -3235,6 +3336,7 @@ LoginService.getScheduledConsulatation(params);
 						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
 							console.log('scheduledTime <= getTwelveHours UserHome');
 							$rootScope.nextAppointmentDisplay = 'block';
+							$rootScope.accountClinicianFooter = 'none';
 							$rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
 							$rootScope.timerCOlor = '#FEEFE8';
 							var beforAppointmentTime = 	getReplaceTime;
@@ -3690,7 +3792,7 @@ LoginService.getScheduledConsulatation(params);
 			LoginService.getonDemandAvailability(params);
     }
 
-    $scope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized) {
+    $rootScope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized, clickEvent) {
         if($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined"){
 
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
@@ -3721,7 +3823,13 @@ LoginService.getScheduledConsulatation(params);
 		$rootScope.doGetIndividualScheduledConsulatation();
 		$rootScope.doGetonDemandAvailability();
 		$scope.doGetCodesSet();
-		$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
+		if(clickEvent === "patientClick") {
+			$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.userAccount');
+		} else if(clickEvent === "sideMenuClick") {
+				$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.healthinfo');
+		} else if(clickEvent === "sideMenuClickApoointments") {
+				$rootScope.doGetSelectedPatientProfiles(P_Id,'tab.appointmentpatientdetails');
+		}
 		//$state.go('tab.patientDetail');
 		//$scope.doGetUserHospitalInformation();
 
@@ -3901,7 +4009,7 @@ LoginService.getScheduledConsulatation(params);
 			LoginService.getHospitalInfo(params);
     }*/
 
-     $scope.GoToappoimentDetails = function(scheduledListData) {
+     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData) {
 		$rootScope.scheduledListDatas = scheduledListData;
 		//$scope.doGetUserHospitalInformationForUserHome();
 		$rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);

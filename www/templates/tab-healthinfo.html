@@ -10,7 +10,7 @@
          <span class="headerval" ng-click="edittext()" ng-show="editshow">Edit</span>
          <span ng-click="edittext()" ng-show="cancelshow"><a class="headerval" >cancel</a></span>
          <span class="headerval"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
-       
+
       </h1>
       <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
@@ -49,7 +49,7 @@
             </div>
          </div>
       </div>
-     
+
    </ion-header-bar>
    <ion-view title="Health Info Details" >
    <ion-content class="ioncontentalign" >
@@ -106,7 +106,7 @@
             </label>
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Ethnicity</b> </span>
-            <input type="text" value="{{currentPatientDetails[0].anatomy.enthicity}}" ng-readonly="flag" class="valuealign textdata">
+            <input type="text" value="{{currentPatientDetails[0].anatomy.ethnicity}}" ng-readonly="flag" class="valuealign textdata">
             </label>
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"> <i class="ion-ios-person iconfont"></i><b class="formlabel labelfont">Hair Color</b> </span>
@@ -169,7 +169,9 @@
                   <input type="text" name="healthInfoHeight" id="healthInfoHeight" value="{{currentPatientDetails[0].anatomy.height}}" class="valuealign textdata">
                </div>
                <div>
-                  <input type="text" name="healthInfoHeightUnit" id="healthInfoHeightUnit" value="{{currentPatientDetails[0].anatomy.heightUnit}}" class="valuealign textdata">
+                   <select class="valuealign textdata"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" >
+                         <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
+                     </select>
                </div>
             </div>
             <div class="item item-input itemtab validated">
@@ -178,7 +180,9 @@
                   <input type="text" name="healthInfoWeight" id="healthInfoWeight"  value="{{currentPatientDetails[0].anatomy.weight}}" class="valuealign textdata">
                </div>
                <div>
-                  <input type="text" name="healthInfoWeightUnit" id="healthInfoWeightUnit" value="{{currentPatientDetails[0].anatomy.weightUnit}}" class="valuealign textdata">
+                  <select class="valuealign textdata" name="healthInfoWeightUnit" id="healthInfoWeightUnit">
+                      <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightUnit"><b>{{getUserweightunit.text}}</b></option>
+                  </select>
                </div>
             </div>
             <div class="item item-input itemtab validated">
@@ -186,7 +190,7 @@
                <div>
                   <select class="valuealign textdata" name="healthInfoEthnicity" id="healthInfoEthnicity" >
                      <option value=""><b>Choose</b></option>
-                     <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.enthicity"><b>{{getEthnicity.text}}</b></option>
+                     <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.ethnicity"><b>{{getEthnicity.text}}</b></option>
                   </select>
                </div>
             </div>
@@ -213,7 +217,7 @@
                <div>
                   <select class="valuealign textdata" name="healthInfoBloodType" id="healthInfoBloodType" >
                      <option value=""><b>Choose</b></option>
-                     <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.enthicity"><b>{{getEthnicity.text}}</b></option>
+                     <option ng-repeat="getBloodType in listOfBloodtype[0].codes" value="{{getBloodType.codeId + '@' + getBloodType.text}}" ng-selected="getBloodType.text == currentPatientDetails[0].anatomy.bloodType"><b>{{getBloodType.text}}</b></option>
                   </select>
                </div>
             </div>
@@ -250,33 +254,40 @@
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
+
               <li ng-if="patientmedicationsallergies == ''"  >N/A</li>
               <li ng-repeat="allergies in patientmedicationsallergies"> {{$index + 1}}.{{allergies.description}}</li>
           </ul>
+
             <h4 class="h4align">
                <div class="alignnexttext chronic">Chronic Conditions</div>
                <span><a ng-click="chronicsearch()" ><i class="ion-edit editicon" ></i></a></span>
             </h4>
             <hr class="dothr">
             <ul class="aligntext alvalue">
+
                 <li ng-if="patientmedicalConditions==''"  >N/A</li>
                 <li ng-repeat=" chronic in patientmedicalConditions" >{{$index + 1}}.{{chronic.description}}</li>
-              
+
+
             </ul>
             <h4 class="h4align">
                <div class="alignnexttext chronic">Prior Surgeries</div>
-               
+
             </h4>
             <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
+
                <li  ng-if="patientmedicalsurgeries==''" >N/A </li>
                 <li  ng-repeat="surgeries in patientmedicalsurgeries">{{$index + 1}}.{{surgeries.description}} </li>
+
             </ul>
-         </div>  
-          
-         
+         </div>
+
+
    </ion-content>
   </form>
-</ion-side-menu-content>
-
 	<div ng-include src="'templates/account_footer.html'"></div>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>

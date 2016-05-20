@@ -294,8 +294,8 @@ angular.module('starter.services', [])
 		this.getListOfCodeSet = function(params) {
 			var PatientDetailsList = {
 				headers: util.getHeaders(params.accessToken),
-							url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=eyecolor,haircolor,ethnicity,relationship,heightunit,weightunit,bloodtype',
-							method: 'GET'
+        url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns, eyecolor, haircolor, ethnicity, bloodtype, relationship, heightunit, weightunit',
+	             method: 'GET'
 			};
 
 			$http(PatientDetailsList).
@@ -344,10 +344,10 @@ this.getPatientMedicalProfile = function(params){
 				MedicalConditions: params.MedicalConditions,
 				Medications: params.Medications,
 				InfantData: params.InfantData,
-				PatientId: params.PatientId				
+				PatientId: params.PatientId
               }
-          
-           
+
+
       };
       $http(requestpatientInfo).
           success(function (data, status, headers, config) {
