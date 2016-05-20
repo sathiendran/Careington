@@ -56,6 +56,15 @@ angular.module('starter.controllers')
     });
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     $scope.postDependentDetails=function(){
            $scope.firstName=$("#firstname").val();
            $scope.lastName=$("#lastname").val();

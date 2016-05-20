@@ -8,18 +8,39 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-network-information/www/network.js",
-        "id": "cordova-plugin-network-information.network",
-        "clobbers": [
-            "navigator.connection",
-            "navigator.network.connection"
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "id": "cordova-plugin-dialogs.notification",
+        "merges": [
+            "navigator.notification"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-network-information/www/Connection.js",
-        "id": "cordova-plugin-network-information.Connection",
+        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+        "id": "cordova-plugin-dialogs.notification_android",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
         "clobbers": [
-            "Connection"
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
+        "id": "cordova-plugin-insomnia.Insomnia",
+        "clobbers": [
+            "window.plugins.insomnia"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
         ]
     },
     {
@@ -28,48 +49,6 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.backgroundMode",
             "plugin.backgroundMode"
-        ]
-    },
-    {
-        "file": "plugins/nl.x-services.plugins.insomnia/www/Insomnia.js",
-        "id": "nl.x-services.plugins.insomnia.Insomnia",
-        "clobbers": [
-            "window.plugins.insomnia"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.dialogs/www/notification.js",
-        "id": "org.apache.cordova.dialogs.notification",
-        "merges": [
-            "navigator.notification"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.dialogs/www/android/notification.js",
-        "id": "org.apache.cordova.dialogs.notification_android",
-        "merges": [
-            "navigator.notification"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
-        "id": "org.apache.cordova.splashscreen.SplashScreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.inappbrowser/www/InAppBrowser.js",
-        "id": "org.apache.cordova.inappbrowser.InAppBrowser",
-        "clobbers": [
-            "window.open"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-customurlscheme/www/android/LaunchMyApp.js",
-        "id": "cordova-plugin-customurlscheme.LaunchMyApp",
-        "clobbers": [
-            "window.plugins.launchmyapp"
         ]
     },
     {
@@ -85,14 +64,13 @@ module.exports.metadata =
 {
     "com.ionic.keyboard": "1.0.4",
     "com.tokbox.cordova.opentok": "1.0.3",
-    "cordova-plugin-network-information": "1.0.2-dev",
+    "cordova-plugin-dialogs": "1.2.0",
+    "cordova-plugin-inappbrowser": "1.3.1-dev",
+    "cordova-plugin-insomnia": "4.2.0",
+    "cordova-plugin-splashscreen": "2.1.0",
     "de.appplant.cordova.plugin.background-mode": "0.6.4",
-    "nl.x-services.plugins.insomnia": "4.0.1",
-    "org.apache.cordova.dialogs": "0.3.0",
-    "org.apache.cordova.splashscreen": "1.0.0",
-    "org.apache.cordova.inappbrowser": "0.2.4",
-    "cordova-plugin-customurlscheme": "4.1.5",
+    "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.device": "0.3.0"
-}
+};
 // BOTTOM OF METADATA
 });

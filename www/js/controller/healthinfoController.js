@@ -331,7 +331,9 @@ function iterateAlphabet()
                     $rootScope.PatientMedicalProfileList = data.data;
                     $rootScope.patvalues= $rootScope.PatientMedicalProfileList;
                     $rootScope.patientmedications= $rootScope.PatientMedicalProfileList[0].medications;
+                    $rootScope.medicationslength= $rootScope.patientmedications.length;
                     $rootScope.patientmedicationsallergies= $rootScope.PatientMedicalProfileList[0].medicationAllergies;
+                     $rootScope.allergieslength= $rootScope.patientmedicationsallergies.length;
                     $rootScope.patientmedicalConditions= $rootScope.PatientMedicalProfileList[0].medicalConditions;
                     $rootScope.patientmedicalsurgeries= $rootScope.PatientMedicalProfileList[0].surgeries;
                     // var patientmedical=$scope.PatientMedicalProfileList;
@@ -342,8 +344,9 @@ function iterateAlphabet()
                     }
                 };
             LoginService.getPatientMedicalProfile(params);
-
-
+             
+        
+ 
 
             var myEl = angular.element(document.querySelector('#healid'));
             myEl.removeClass('btnextcolor');
