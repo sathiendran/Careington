@@ -97,7 +97,7 @@ angular.module('starter.controllers')
 						}
 					}
                     $rootScope.brandColor = data.data[0].brandColor;
-                    $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                    $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
                     if(deploymentEnvLogout == 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
@@ -300,7 +300,7 @@ angular.module('starter.controllers')
 								'id': index.$id,
 								'patientName': index.patientName,
 								'lastName': index.lastName,
-								'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+								'profileImagePath': index.profileImagePath,
 								'mobilePhone': index.mobilePhone,
 								'homePhone': index.homePhone,
 								'primaryPhysician': index.primaryPhysician,
@@ -340,7 +340,12 @@ angular.module('starter.controllers')
 				$rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
 				//alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
 				//$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-				$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
+				//$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
+				if(data.data[0].account.profileImagePath !== '' && typeof data.data[0].account.profileImagePath !== 'undefined') {
+					$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
+				} else {
+					$rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
+				}
 				$rootScope.address = data.data[0].address;
 				$rootScope.city = data.data[0].city;
 				$rootScope.createDate = data.data[0].createDate;
@@ -414,10 +419,13 @@ angular.module('starter.controllers')
 			patientId: $rootScope.patientId,
 			accessToken: $rootScope.accessToken,
 			success: function (data) {
-				//$scope.RelatedPatientProfiles = data.data;
+
 				$rootScope.RelatedPatientProfiles = [];
 
 					angular.forEach(data.data, function(index, item) {
+						if(!index.profileImagePath){
+								index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
+							}
 						$rootScope.RelatedPatientProfiles.push({
 							'id': index.$id,
 							'patientId': index.patientId,
@@ -514,7 +522,7 @@ angular.module('starter.controllers')
 				$rootScope.PatientAge = $rootScope.patientExistInfomation.dob;
 				$rootScope.PatientGuardian = $rootScope.patientExistInfomation.guardianName;
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
-				$rootScope.PatientImageSelectUser = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				$rootScope.PatientImageSelectUser = $rootScope.patientExistInfomation.profileImagePath;
 				$scope.doGetExistingPatientName();
             },
             error: function (data) {
