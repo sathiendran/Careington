@@ -23,6 +23,13 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
+    },
+    {
         "file": "plugins/de.appplant.cordova.plugin.background-mode/www/background-mode.js",
         "id": "de.appplant.cordova.plugin.background-mode.BackgroundMode",
         "clobbers": [
@@ -52,24 +59,10 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.splashscreen/www/splashscreen.js",
-        "id": "org.apache.cordova.splashscreen.SplashScreen",
-        "clobbers": [
-            "navigator.splashscreen"
-        ]
-    },
-    {
         "file": "plugins/org.apache.cordova.inappbrowser/www/InAppBrowser.js",
         "id": "org.apache.cordova.inappbrowser.InAppBrowser",
         "clobbers": [
             "window.open"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-customurlscheme/www/android/LaunchMyApp.js",
-        "id": "cordova-plugin-customurlscheme.LaunchMyApp",
-        "clobbers": [
-            "window.plugins.launchmyapp"
         ]
     },
     {
@@ -86,12 +79,12 @@ module.exports.metadata =
     "com.ionic.keyboard": "1.0.4",
     "com.tokbox.cordova.opentok": "1.0.3",
     "cordova-plugin-network-information": "1.0.2-dev",
+    "cordova-plugin-splashscreen": "2.1.0",
     "de.appplant.cordova.plugin.background-mode": "0.6.4",
     "nl.x-services.plugins.insomnia": "4.0.1",
+    "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.dialogs": "0.3.0",
-    "org.apache.cordova.splashscreen": "1.0.0",
     "org.apache.cordova.inappbrowser": "0.2.4",
-    "cordova-plugin-customurlscheme": "4.1.5",
     "org.apache.cordova.device": "0.3.0"
 }
 // BOTTOM OF METADATA

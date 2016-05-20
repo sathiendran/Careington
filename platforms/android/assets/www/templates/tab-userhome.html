@@ -41,7 +41,7 @@
 	<div><ion-refresher on-refresh="doRefreshUserHome()"  >
     </ion-refresher></div>
 
-	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(primaryPatientDetails, PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
+	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true)">
 		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border-top: none; top: -2px; height: 93px;">
 			 <div class="HrefListView">
 				<div class="UserhmePatientDetails">
@@ -65,7 +65,7 @@
 		</ion-item>-->
 		<div style="display: none;"><timer end-time="time"  ></timer></div>
 
-		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-if="$first">
+		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-if="$first">
 			<a class="HrefListView"  >
 			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 			   <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2>
@@ -77,7 +77,7 @@
 
 
 
-		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-click = "GoToPatientDetails(dependentDetails, dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
+		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized)">
 			<!-- <a class="HrefListView">   -->
 			 <div class="HrefListViewDependent">
 				<div class="UserhmePatientDetails">
@@ -91,7 +91,8 @@
 		</ion-item>
 
 		<ion-item ng-if="searched == true && filteredResult == ''" class="noResult" > Search result not found! </ion-item>
-
+		<div ng-controller="appoimentDetailsCtrl">
+		</div>
 
 	</ion-list>
 </ion-content>
