@@ -79,25 +79,48 @@ if(deploymentEnv == "Sandbox" || deploymentEnv == "Multiple" || deploymentEnv ==
 }else if(deploymentEnv == "Production"){
 	var util = {
 		setHeaders: function (request, credentials) {
-			if (typeof credentials != 'undefined') {
-				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			if(api_keys_env == 'Production'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
+				request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+				return request;
+			} else if(api_keys_env == 'Staging'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+				return request;
 			}
-			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-			request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
-			return request;
 		},
 		getHeaders: function (accessToken) {
-			var headers = {
-					'X-Developer-Id': '1f9480321986463b822a981066cad094',
-					'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
-					'Content-Type': 'application/json; charset=utf-8'
-				};
-			if (typeof accessToken != 'undefined') {
-				headers['Authorization'] = 'Bearer ' + accessToken;
+			if(api_keys_env == 'Production'){
+				var headers = {
+						'X-Developer-Id': '1f9480321986463b822a981066cad094',
+						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
+			} else if(api_keys_env == 'Staging'){
+				var headers = {
+						'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+						'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+				
+				return headers;
 			}
-			
-			return headers;
 		}
 	}
 }else if(deploymentEnv == "Single"){
@@ -861,7 +884,18 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                    $window.localStorage.oldEmail = '';
                    $window.localStorage.setItem('username', ""); 				  				
 				   $rootScope.chkedchkbox = false;
-                }                
+                } 
+				if(deploymentEnv == "Production") {
+						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {	
+									apiCommonURL = 'https://snap-stage.com';
+									api_keys_env = 'Staging';
+									$rootScope.APICommonURL = 'https://snap-stage.com';
+								} else {
+									apiCommonURL = 'https://connectedcare.md';
+									api_keys_env = 'Production';
+									$rootScope.APICommonURL = 'https://connectedcare.md';
+								}						
+					}               
 				$scope.doGetFacilitiesList();
 			}
 		}
