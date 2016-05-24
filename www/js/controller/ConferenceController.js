@@ -211,7 +211,7 @@ angular.module('starter.controllers')
 					if(hosImage.indexOf($rootScope.apiCommonURL) >= 0) {
 						$rootScope.hospitalImage = hosImage;
 					} else {
-						$rootScope.hospitalImage = $rootScope.apiCommonURL + hosImage;
+						$rootScope.hospitalImage = apiCommonURL + hosImage;
 					}
 				} else {
 					$rootScope.hospitalImage = '';
