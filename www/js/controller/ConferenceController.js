@@ -208,10 +208,10 @@ angular.module('starter.controllers')
 				}
 				if(typeof data.data[0].details[0].hospitalImage != 'undefined' && data.data[0].details[0].hospitalImage != '') {
 					var hosImage = data.data[0].details[0].hospitalImage;
-					if(hosImage.indexOf($rootScope.apiCommonURL) >= 0) {
+					if(hosImage.indexOf(apiCommonURL) >= 0) {
 						$rootScope.hospitalImage = hosImage;
 					} else {
-						$rootScope.hospitalImage = $rootScope.apiCommonURL + hosImage;
+						$rootScope.hospitalImage = apiCommonURL + hosImage;
 					}
 				} else {
 					$rootScope.hospitalImage = '';
