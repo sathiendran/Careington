@@ -20,11 +20,11 @@
 
 var deploymentEnv = 'Multiple'; //Production //Multiple //Single //Demo
 var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
-var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
+var appStoreTestUserEmail = '';
 var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
 
-var oAuthResponseURL = "";
+
 
 if(deploymentEnv == 'Single') {
 	//appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
@@ -36,6 +36,7 @@ if(deploymentEnv == 'Single') {
     var logo;
     var Hospital;
     var HospitalTag;
+
 
 	var cobrandApp = 'Hello420';
 
@@ -94,29 +95,13 @@ var handleOpenURL = function (url) {
         window.localStorage.setItem("external_load", null);
         window.localStorage.setItem("external_load", url);
 
-				if(url.indexOf('jwt') > -1){
-				  var event = document.createEvent('Event');
-				  event.initEvent('ssoCallbackFromWeb', true, true);
-				  document.dispatchEvent(event);
-				  ref.close();
-				}
-
     }, 0);
-
 }
 
 angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $state, $rootScope,  LoginService, $ionicPopup, $window) {
   $ionicPlatform.ready(function() {
-		setTimeout(function() {
-
-      document.addEventListener("ssoCallbackFromWeb", function() {
-					$state.go('tab.interimpage', { token: 'jwt', hospitalId: 0, consultationId: 0 });
-      }, false);
-
-		 }, 100);
-
   // Check for network connection
    /* if(window.Connection) {
       if(navigator.connection.type == Connection.NONE) {
@@ -180,16 +165,17 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
             'Please make sure that you have network connection.',  // message
             null,
             'No Internet Connection',            // title
-            'Ok'                  // buttonName
+            'Ok'                 // buttonName
             );
 			return false;
             if($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
-              $state.go('tab.connectionLost');
+							$state.go('tab.connectionLost');
             }
         }
+
         function onOnline() {
             if($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
-           $state.go('tab.videoConference');
+							$state.go('tab.videoConference');
             }
         }
 

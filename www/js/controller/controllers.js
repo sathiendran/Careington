@@ -678,7 +678,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
   $scope.doRefreshUserHome = function() {
 	$scope.doGetPatientProfiles();
-	$scope.doGetRelatedPatientProfiles();
+	$scope.doGetRelatedPatientProfiles('tab.userhome');
 	//$scope.doGetScheduledConsulatation();
 	 $timeout( function() {
 		//$scope.getScheduledDetails($rootScope.patientId);
@@ -1275,7 +1275,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					} else {
 						$scope.tokenStatus = 'alert-success';
 						$scope.doGetPatientProfiles();
-						$scope.doGetRelatedPatientProfiles();
+						$scope.doGetRelatedPatientProfiles('tab.userhome');
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
 					}
 				},
@@ -1530,7 +1530,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         }
     })
-
+		$scope.$on("callPatientAndDependentProfiles", function (event, args) {
+			$scope.doGetPatientProfiles();
+			$scope.doGetRelatedPatientProfiles('tab.Health');
+		});
 
 	$scope.doGetPatientProfiles = function() {
 			if ($rootScope.accessToken === 'No Token') {
@@ -1697,7 +1700,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		}
 
 
-	$scope.doGetRelatedPatientProfiles = function() {
+	$scope.doGetRelatedPatientProfiles = function(ReDirectPage) {
 			if ($scope.accessToken === 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -1736,12 +1739,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							});
 						});
                         $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
-						if(deploymentEnv === "Single"){
-                            $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
-                        }else{
-                          $state.go('tab.userhome');
-													//$state.go('tab.userAccount');
-                        }
+						if(ReDirectPage == 'tab.userhome') {
+							if(deploymentEnv === "Single"){
+                    $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
+              }else{
+                    $state.go('tab.userhome');
+								//$state.go('tab.userAccount');
+              }
+						}
 
 
 				},
@@ -4226,7 +4231,7 @@ $scope.ErrorMessages = "Please select the card to use for payment";
 
 	$rootScope.EnableBackButton = function () {
 		$scope.doGetPatientProfiles();
-		$scope.doGetRelatedPatientProfiles();
+		$scope.doGetRelatedPatientProfiles('tab.userhome');
         $state.go('tab.userhome');
     }
 

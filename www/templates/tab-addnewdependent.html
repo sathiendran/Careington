@@ -25,13 +25,18 @@
        </div>
 
     <div class="circlenew" >
-       <div class="" ng-click="addImage()" >
-        <a class="circlecanh"> 
+       <div ng-if="newDependentImagePath == ''" ng-click="showCameraActions()" >
+        <a class="circlecanh">
           <i class="icon ion-camera circlecam"></i>
         </a>
         <span class="circletext" > Add a Picture</span>
 
       </div>
+
+			<div ng-if="newDependentImagePath != ''" ng-click="showCameraActions()">
+			 <img ng-src="{{newDependentImagePath}}" >
+
+		 </div>
 
   </div>
 
@@ -186,7 +191,7 @@
        <option value=""><b>Choose</b></option>
      </select>
      <input type="hidden" id="organ" value="{{firstSelect}}" />
-   
+
      </div>
   </div>
  <div class="item item-input validated">

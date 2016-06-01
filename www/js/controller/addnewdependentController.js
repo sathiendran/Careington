@@ -72,12 +72,12 @@ angular.module('starter.controllers')
            var dependentorgan = org.options[org.selectedIndex].text;
            $scope.organization= dependentorgan;
            $scope.orgid= $("#organ").val();
-           
+
            var loc = document.getElementById("location");
            var dependentloc = loc.options[loc.selectedIndex].text;
            $scope.location= dependentloc;
            $scope.locationid= $("#locate").val();
-          
+
            $scope.hairColor= $("#hairColor").val().split("@").slice(0,1);
            $scope.getHairColorId =_.first($scope.hairColor);
            $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
@@ -193,7 +193,7 @@ angular.module('starter.controllers')
 							preferedPharmacy: null,
 							pharmacyContact: null,
 							address:   $scope.homeaddress,
-							profileImagePath: "/images/Patient-Male.gif",
+							profileImagePath: $rootScope.newDependentImagePath,
 							height: $scope.height,
 							weight: $scope.weight,
 							heightUnit: $scope.getHeightunit,
@@ -250,6 +250,107 @@ angular.module('starter.controllers')
            $state.go('tab.relatedusers');
     }
 
+    //Function to open ActionSheet when clicking Camera Button
+    //================================================================================================================
+    var options;
+
+    $scope.showCameraActions = function(){
+     options = {
+       'buttonLabels': ['Take Photo', 'Choose Photo From Gallery'],
+       'addCancelButtonWithLabel': 'Cancel',
+     };
+     window.plugins.actionsheet.show(options, cameraActionCallback);
+    }
+
+    var fileMimeType = "image/jpeg";
+    //var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+    var fileUploadUrl = "http://emerald.snap.local/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+    function cameraActionCallback(buttonIndex) {
+     if(buttonIndex==3)
+      {
+        return false;
+      }
+      else{
+       var saveToPhotoAlbumFlag = false;
+       var cameraSourceType = navigator.camera.PictureSourceType.CAMERA;
+       var cameraMediaType = navigator.camera.MediaType.PICTURE;
+
+       if (buttonIndex === 1) {
+           saveToPhotoAlbumFlag = true;
+           cameraSourceType = navigator.camera.PictureSourceType.CAMERA;
+           cameraMediaType = navigator.camera.MediaType.PICTURE;
+       }
+       if (buttonIndex === 2) {
+           cameraSourceType = navigator.camera.PictureSourceType.PHOTOLIBRARY;
+           cameraMediaType = navigator.camera.MediaType.PICTURE;
+       }
+
+       navigator.camera.getPicture(onCameraCaptureSuccess, onCameraCaptureFailure, {
+           destinationType: navigator.camera.DestinationType.FILE_URI,
+           quality: 75,
+           //targetWidth: 500,
+           //targetHeight: 500,
+           allowEdit: true,
+           saveToPhotoAlbum: saveToPhotoAlbumFlag,
+           sourceType: cameraSourceType,
+           mediaType: cameraMediaType,
+       });
+     }
+    }
+
+    // Function to call when the user choose image or video to upload
+    function onCameraCaptureSuccess(imageData) {
+
+       //File for Upload
+       var targetPath = imageData;
+
+     //	$rootScope.imagePath = imageData;
+
+       // File name only
+       var filename = targetPath.split("/").pop();
+
+    var options = {
+           //fileKey: "file",
+           //fileName: filename,
+           //chunkedMode: false,
+           //mimeType: fileMimeType,
+           headers: { 'Authorization': "Bearer ZaxYTeT_v1bvq3jCP2xsdM4s44J0gXpHxSXS8XMxSz64T4Mls9EZEtSTh7iQdw28aPEd3lLHVYJflaJa-MdHt8grqUA244cAPvTSLDI1aCEZ-j_lskACfyOY1X_mMg_ZbRqtO1eGo2wWzkpeb-hne91VmiQnEflaaFZI6FxwHDI1psbPFm2lPHGpn7kxq7bmZxHIvR_Zl-qqJsXG5NFmAoBJO_AWatAc2tdQuw-wu8wUsQh90piJy-PfeeShtxb-NxKSKrYhYLrPM5OFm_eo8VhjrX4n3fWMN1LnZStuLx0iyt_H7puUW2IyTtJUlsMD-mvkIvcexQXEe0P8XzIkzCA3KdP7UOrGCfpk42BJnHvM_zWgpE307dss0c5DwgYj7VCNtXB7WhXiy7Udzc1VSw",
+                       'X-Api-Key': "c69fe0477e08cb4352e07c502ddd2d146b316112",
+                       'X-Developer-Id': "84f6101ff82d494f8fcc5c0e54005895"
+                     },
+         };
+
+       $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function (result) {
+         // Upload Success on server
+         //console.log(result);
+         var getImageURLFromResponse = angular.fromJson(result.response);
+         $rootScope.newDependentImagePath = getImageURLFromResponse.data[0].uri;
+         //$rootScope.$broadcast('loading:hide');
+       //  navigator.notification.alert('Uploaded successfully!',null,$rootScope.alertMsgName,'OK');
+       //  getImageList();
+     }, function (err) {
+         // Upload Failure on server
+         //navigator.notification.alert('Upload Failed! Please try again!',null,'Inflight','OK');
+         //$rootScope.$broadcast('loading:hide');
+         navigator.notification.alert('Error in upload!',null,$rootScope.alertMsgName,'OK');
+     }, function (progress) {
+         // PROGRESS HANDLING GOES HERE
+         $rootScope.$broadcast('loading:show');
+     });
+
+
+
+    }
+
+    // Function to call when the user cancels the operation
+    function onCameraCaptureFailure(err) {
+     //alert('Failure');
+    }
+    // End Photo Functionality
+
+
+
+
 }).filter('secondDropdown', function () {
     return function (secondSelect, firstSelect) {
         var filtered = [];
@@ -263,7 +364,7 @@ angular.module('starter.controllers')
             }
         });
         }
-        
+
         return filtered;
     };
 });

@@ -69,20 +69,22 @@ $ionicPopup,ageFilter,$window) {
 
   $rootScope.adddependent = function(){
    $rootScope.doGetOrgLoclist();
+   $rootScope.newDependentImagePath = '';
     $state.go('tab.addnewdependent');
    }
- 
+
   $rootScope.addcouser = function(){
+    $rootScope.newCoUserImagePath = '';
     $rootScope.doGetOrgLoclist();
     $state.go('tab.addUser');
    }
   $rootScope.doGetOrgLoclist = function () {
-       
+
        if ($rootScope.accessToken == 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
-       
+
 			var params = {
 				 accessToken: $rootScope.accessToken,
 				success: function(data) {
@@ -102,11 +104,10 @@ $ionicPopup,ageFilter,$window) {
 					$rootScope.serverErrorMessageValidation();
 				}
 			};
-			LoginService.getListofLocationOrganization(params);
-		
+			LoginService.getListOfLocationOrganization(params);
+
 	}
 
- 
- 
- 
+
+
 });

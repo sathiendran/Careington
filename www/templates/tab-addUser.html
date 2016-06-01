@@ -21,12 +21,16 @@
        </div>
 
     <div class="circlenew" >
-       <div class="">
-        <a class="circlecanh">
-          <i class="icon ion-camera circlecam"></i>
-        </a>
-        <span class="circletext" > Add a Picture</span>
-      </div>
+         <div ng-if="newCoUserImagePath == ''" ng-click="showCameraActions()">
+          <a class="circlecanh">
+            <i class="icon ion-camera circlecam"></i>
+          </a>
+          <span class="circletext" > Add a Picture</span>
+        </div>
+
+        <div ng-if="newCoUserImagePath != ''" ng-click="showCameraActions()">
+         <img ng-src="{{newCoUserImagePath}}">
+       </div>
     </div>
    </div>
  </ion-header-bar>
@@ -182,7 +186,7 @@
        <select class=" textdata" id="userorganization" ng-model="userorg" ng-options="option.id as option.name for option in listOfOrganization">
        <option value=""><b>Choose</b></option>
      </select>
-    
+
     <input type="hidden" id="userorgan" value="{{userorg}}" />
      </div>
   </div>

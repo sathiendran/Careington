@@ -26,11 +26,11 @@
                <i class="icon ion-home headerlefticons" style=""></i>
                <p class="homecontent">Account Home</p>
             </a>
-            <a class="item-avatar itemhead" ng-if="imagePath == ''">
+            <a class="item-avatar itemhead" ng-hide="doneshow">
                <p><img ng-src="{{PatientImageSelectUser}}" class="topimage" ng-click="showCameraActions();"></p>
             </a>
-            <a class="item-avatar itemhead" ng-if="imagePath != ''">
-               <p><img ng-src="{{imagePath}}" class="topimage" ng-click="showCameraActions();"></p>
+            <a class="item-avatar itemhead" ng-show="editshow">
+               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
             </a>
             <a class="rightpatient" ng-href="#/tab/userhome">
                <i class="icon ion-ios-people headerrighticon" style=""></i>
@@ -293,6 +293,8 @@
             </ul>
          </div>
 
+         <div ng-controller="LoginCtrl">
+         </div>
 
    </ion-content>
   </form>

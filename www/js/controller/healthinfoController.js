@@ -235,7 +235,7 @@
                                 preferedPharmacy: null,
                                 pharmacyContact: null,
                                 address: $scope.healthInfoAddress,
-                                profileImagePath: $rootScope.imagePath,
+                                profileImagePath: $rootScope.PatientImageSelectUser,
                                 height: $scope.healthInfoHeight,
                                 weight: $scope.healthInfoWeight,
                                 heightUnit: $scope.healthInfoHeightUnit,
@@ -944,7 +944,8 @@ $scope.OnSelectChronicCondition = function(chronic) {
  	}
 
  	var fileMimeType = "image/jpeg";
-  var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+  //var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+  var fileUploadUrl = "http://emerald.snap.local/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
  	function cameraActionCallback(buttonIndex) {
  	  if(buttonIndex==3)
  	   {
@@ -984,17 +985,17 @@ $scope.OnSelectChronicCondition = function(chronic) {
  	    //File for Upload
  	    var targetPath = imageData;
 
- 			$rootScope.imagePath = imageData;
+ 		//	$rootScope.imagePath = imageData;
 
  	    // File name only
  	    var filename = targetPath.split("/").pop();
 
  	 var options = {
- 	        fileKey: "file",
- 	        fileName: filename,
- 	        chunkedMode: false,
- 	        mimeType: fileMimeType,
- 	        headers: { 'Authorization': "Bearer " + $rootScope.accessToken,
+ 	        //fileKey: "file",
+ 	        //fileName: filename,
+ 	        //chunkedMode: false,
+ 	        //mimeType: fileMimeType,
+ 	        headers: { 'Authorization': "Bearer ZaxYTeT_v1bvq3jCP2xsdM4s44J0gXpHxSXS8XMxSz64T4Mls9EZEtSTh7iQdw28aPEd3lLHVYJflaJa-MdHt8grqUA244cAPvTSLDI1aCEZ-j_lskACfyOY1X_mMg_ZbRqtO1eGo2wWzkpeb-hne91VmiQnEflaaFZI6FxwHDI1psbPFm2lPHGpn7kxq7bmZxHIvR_Zl-qqJsXG5NFmAoBJO_AWatAc2tdQuw-wu8wUsQh90piJy-PfeeShtxb-NxKSKrYhYLrPM5OFm_eo8VhjrX4n3fWMN1LnZStuLx0iyt_H7puUW2IyTtJUlsMD-mvkIvcexQXEe0P8XzIkzCA3KdP7UOrGCfpk42BJnHvM_zWgpE307dss0c5DwgYj7VCNtXB7WhXiy7Udzc1VSw",
                       'X-Api-Key': "c69fe0477e08cb4352e07c502ddd2d146b316112",
                       'X-Developer-Id': "84f6101ff82d494f8fcc5c0e54005895"
                     },
@@ -1002,14 +1003,18 @@ $scope.OnSelectChronicCondition = function(chronic) {
 
       $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function (result) {
         // Upload Success on server
-        $rootScope.$broadcast('loading:hide');
-        navigator.notification.alert('Uploaded successfully!',null,'Inflight','OK');
+        //console.log(result);
+        var getImageURLFromResponse = angular.fromJson(result.response);
+        $rootScope.PatientImageSelectUser = getImageURLFromResponse.data[0].uri;
+        $scope.$root.$broadcast("callPatientAndDependentProfiles");
+        //$rootScope.$broadcast('loading:hide');
+      //  navigator.notification.alert('Uploaded successfully!',null,$rootScope.alertMsgName,'OK');
       //  getImageList();
     }, function (err) {
         // Upload Failure on server
         //navigator.notification.alert('Upload Failed! Please try again!',null,'Inflight','OK');
-        $rootScope.$broadcast('loading:hide');
-        navigator.notification.alert('Error in upload!',null,'Inflight','OK');
+        //$rootScope.$broadcast('loading:hide');
+        navigator.notification.alert('Error in upload!',null,$rootScope.alertMsgName,'OK');
     }, function (progress) {
         // PROGRESS HANDLING GOES HERE
         $rootScope.$broadcast('loading:show');
