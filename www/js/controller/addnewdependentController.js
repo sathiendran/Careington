@@ -68,9 +68,16 @@ angular.module('starter.controllers')
            $scope.homephone= $("#homephone").val();
            $scope.mobile= $("#mobile").val();
            $scope.homeaddress= $("#homeadd").val();
-           $scope.organization= $("#organization").val();
-           $scope.location= $("#location").val();
-           $scope.organization= $("#organization").val();
+           var org = document.getElementById("organization");
+           var dependentorgan = org.options[org.selectedIndex].text;
+           $scope.organization= dependentorgan;
+           $scope.orgid= $("#organ").val();
+           
+           var loc = document.getElementById("location");
+           var dependentloc = loc.options[loc.selectedIndex].text;
+           $scope.location= dependentloc;
+           $scope.locationid= $("#locate").val();
+          
            $scope.hairColor= $("#hairColor").val().split("@").slice(0,1);
            $scope.getHairColorId =_.first($scope.hairColor);
            $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
@@ -191,10 +198,10 @@ angular.module('starter.controllers')
 							weight: $scope.weight,
 							heightUnit: $scope.getHeightunit,
 							weightUnit: $scope.getWeightunit,
-							organization: "sample string 19",
-							location: "sample string 20",
-							organizationId: "",
-							locationId: "",
+							organization: $scope.organization,
+							location:  $scope.location,
+							organizationId:$scope.orgid,
+							locationId: $scope.locationid,
 							country: "+1"
 						},
 						TimeZoneId: 2,
@@ -243,4 +250,20 @@ angular.module('starter.controllers')
            $state.go('tab.relatedusers');
     }
 
+}).filter('secondDropdown', function () {
+    return function (secondSelect, firstSelect) {
+        var filtered = [];
+        if (firstSelect === null) {
+            return filtered;
+        }
+        if(secondSelect!=undefined){
+            angular.forEach(secondSelect[0], function (s2) {
+            if (s2.organizationId == firstSelect) {
+                filtered.push(s2);
+            }
+        });
+        }
+        
+        return filtered;
+    };
 });

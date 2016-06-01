@@ -134,8 +134,16 @@ angular.module('starter.controllers')
            $scope.homephone= $("#userphone").val();
            $scope.mobile= $("#usermobile").val();
            $scope.homeaddress= $("#address").val();
-           $scope.organization= $("#userorg").val();
-           $scope.location= $("#userloc").val();
+           var org = document.getElementById("userorganization");
+           var couserorgan = org.options[org.selectedIndex].text;
+           $scope.coorganization= couserorgan;
+           $scope.coorgid= $("#userorgan").val();
+           var loc = document.getElementById("userlocation");
+           var couserloc = loc.options[loc.selectedIndex].text;
+           $scope.colocation= couserloc;
+           $scope.colocationid= $("#userlocate").val();
+           
+           
            $scope.sptheightunit=$('#userheightunit').val().split("@");
            $scope.heightunitid=_.first($scope.sptheightunit);
            $scope.heightunit=_.last($scope.sptheightunit);
@@ -220,8 +228,8 @@ angular.module('starter.controllers')
 				mobilePhone: $scope.mobile,
 				dob: $scope.dob,
 				gender: $scope.gender,
-				organizationName: "org",
-				locationName:"loc",
+				organizationName: $scope.coorganization,
+				locationName: $scope.colocation,
 				firstName: $scope.firstName,
 				lastName: $scope.lastName,
 				profileImagePath:"/images/Patient-Male.gif",
@@ -338,5 +346,21 @@ angular.module('starter.controllers')
             return "(" + city;
         }
 
+    };
+}).filter('userloc', function () {
+    return function (userloc, userorg) {
+        var userfiltered = [];
+        if (userorg === null) {
+            return filtered;
+        }
+        if(userloc!=undefined){
+            angular.forEach(userloc[0], function (users2) {
+            if (s2.organizationId == userorg) {
+                userfiltered.push(users2);
+            }
+        });
+        }
+        
+        return userfiltered;
     };
 });

@@ -178,25 +178,26 @@
         <span class="input-label labelcolor">
         <i class="iconsize ion-ios-people"></i><b class="formlabel">Organization</b></span>
      </div>
-      <div class="col clo-50">
-        <select class=" textdata" name="healthInfoEthnicity" id="userorg" >
-          <option value=""><b>Choose</b></option>
-          <option ><b></b></option>
-       </select>
-      </div>
+    <div class="col clo-50">
+       <select class=" textdata" id="userorganization" ng-model="userorg" ng-options="option.id as option.name for option in listOfOrganization">
+       <option value=""><b>Choose</b></option>
+     </select>
+    
+    <input type="hidden" id="userorgan" value="{{userorg}}" />
+     </div>
   </div>
  <div class="item item-input validated">
-      <div class="col clo-50">
-         <span class="input-label labelcolor">
-         <i class="iconsize ion-location"></i><b class="formlabel">Location</b></span>
-      </div>
-      <div class="col clo-50">
-         <select class=" textdata" name="healthInfoEthnicity" id="userloc" >
-           <option value=""><b>Choose</b></option>
-           <option ><b></b></option>
-       </select>
-      </div>
-  </div>
+    <div class="col clo-50">
+       <span class="input-label labelcolor">
+       <i class="iconsize ion-location"></i><b class="formlabel">Location</b></span>
+    </div>
+    <div class="col clo-50">
+       <select class=" textdata"  id="userlocation" ng-model="userloc" ng-options="option.name for option in locationdetails | secondDropdown: userorg">
+      <option value=""><b>Choose</b></option>
+    </select>
+        <input type="hidden" id="userlocate" value="{{userloc.id}}" />
+    </div>
+ </div>
  <div class="item item-input validated">
     <div class="col clo-50">
        <span class="input-label labelcolor">
