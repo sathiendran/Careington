@@ -27,7 +27,7 @@
                <p class="homecontent">Account Home</p>
             </a>
             <a class="item-avatar itemhead" ng-if="imagePath == ''">
-               <p><img ng-src="{{apiCommonURL}}{{currentPatientDetails[0].account.profileImage}}" class="topimage" ng-click="showCameraActions();"></p>
+               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage" ng-click="showCameraActions();"></p>
             </a>
             <a class="item-avatar itemhead" ng-if="imagePath != ''">
                <p><img ng-src="{{imagePath}}" class="topimage" ng-click="showCameraActions();"></p>
