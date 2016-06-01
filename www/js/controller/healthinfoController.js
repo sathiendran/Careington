@@ -1,6 +1,6 @@
     angular.module('starter.controllers')
 
-    .controller('healthinfoController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicModal,$ionicPopup,$ionicHistory, $filter) {
+    .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicModal,$ionicPopup,$ionicHistory, $filter, ageFilter) {
 
 
 
@@ -68,7 +68,7 @@
                 }, 300);
             }
         };
-
+        $scope.healthInfoModel = {};
         $scope.addmore = false;
         $scope.healthhide = true;
         $scope.headerval = false;
@@ -112,11 +112,17 @@
         $scope.healthInfoEmail = $('#healthInfoEmail').val();
         $scope.healthInfoGender = $("input[name='healthInfoGender']:checked").val();
         $scope.healthInfoHeight = $('#healthInfoHeight').val();
-        $scope.healthInfoHeightUnit = $('#healthInfoHeightUnit').val()
-        $scope.healthInfoWeight = $('#healthInfoWeight').val()
-        $scope.healthInfoWeightUnit = $('#healthInfoWeightUnit').val()
+        $scope.HeightUnit = $('#healthInfoHeightUnit').val();
+            $scope.HeightUnit1 =   $scope.HeightUnit.split("@");
+            $scope.healthInfoHeightUnit = $scope.HeightUnit1[0];
+            $scope.healthInfoHeightUnitText = $scope.HeightUnit1[1];
+        $scope.healthInfoWeight = $('#healthInfoWeight').val();
+        $scope.WeightUnit = $('#healthInfoWeightUnit').val();
+            $scope.WeightUnit1 =   $scope.WeightUnit.split("@");
+            $scope.healthInfoWeightUnit = $scope.WeightUnit1[0];
+            $scope.healthInfoWeightUnitText = $scope.WeightUnit1[1];
         $scope.healthInfoHomePhone = $('#healthInfoHomePhone').val()
-        $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val()
+        $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
         $scope.healthInfoAddress = $('#healthInfoAddress').val();
         $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
         $scope.healthInfoLocation = $('#healthInfoLocation').val();
@@ -229,7 +235,7 @@
                                 preferedPharmacy: null,
                                 pharmacyContact: null,
                                 address: $scope.healthInfoAddress,
-                                profileImagePath: "/images/Patient-Male.gif",
+                                profileImagePath: $rootScope.imagePath,
                                 height: $scope.healthInfoHeight,
                                 weight: $scope.healthInfoWeight,
                                 heightUnit: $scope.healthInfoHeightUnit,
@@ -348,9 +354,9 @@ function iterateAlphabet()
                     }
                 };
             LoginService.getPatientMedicalProfile(params);
-             
-        
- 
+
+
+
 
             var myEl = angular.element(document.querySelector('#healid'));
             myEl.removeClass('btnextcolor');
@@ -860,15 +866,43 @@ $scope.OnSelectChronicCondition = function(chronic) {
                  //$scope.listOfCoUser = JSON.stringify(data, null, 2);
                 $rootScope.listOfCoUserDetails = [];
                 angular.forEach(data.data, function(index, item) {
+                  var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, { codeId: index.relationCodeId })
+                  if(getCoUserRelationShip.length !== 0) {
+                    var relationShip = getCoUserRelationShip[0].text;
+                  } else {
+                    var relationShip = '';
+                  }
+                  var dob = ageFilter.getDateFilter(index.dob);
+                    if(index.gender == 'M') {
+                      var gender = "Male";
+                    } else if(index.gender == 'F') {
+                      var gender = "FeMale";
+                    }
                   $rootScope.listOfCoUserDetails.push({
+                    'address' : index.address,
+                    'bloodType' : index.bloodType,
                      'description': index.description,
-                    'imagePath': $rootScope.APICommonURL + index.imagePath,
+                     'dob': dob,
+                     'emailId': index.emailId,
+                     'ethnicity': index.ethnicity,
+                     'eyeColor': index.eyeColor,
+                     'gender': gender,
+                     'hairColor': index.hairColor,
+                     'height': index.height,
+                     'heightUnit': index.heightUnit,
+                     'homePhone' : index.homePhone,
+                    'imagePath':  index.imagePath,
                      'lastname': index.lastname,
+                     'mobilePhone': index.mobilePhone,
                      'name': index.name,
                      'patientId': index.patientId,
                      'personId': index.personId,
+                     'relationship': relationShip,
+                     'relationCodeId': index.relationCodeId,
                      'roleId': index.roleId,
-                     'userId': index.userId
+                     'userId': index.userId,
+                     'weight' : index.weight,
+                     'weightUnit': index.weightUnit
                   });
                  });
                 $state.go('tab.relatedusers');
@@ -883,5 +917,112 @@ $scope.OnSelectChronicCondition = function(chronic) {
  $scope.removemodal = function(model) {
         $scope.modal.hide();
  };
+
+
+   $scope.$watch('healthInfoModel.healthInfoOrganization', function(newVal) {
+     if(!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
+        $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, { organizationId: $rootScope.currentPatientDetails[0].organizationId });
+     } else {
+      if (newVal) {
+        $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, { organizationId: newVal });
+      }else {
+        $rootScope.listOfLocForCurntOrg = '';
+      }
+    }
+   });
+
+   //Function to open ActionSheet when clicking Camera Button
+ 	//================================================================================================================
+ 	var options;
+
+ 	$scope.showCameraActions = function(){
+ 	  options = {
+ 	    'buttonLabels': ['Take Photo', 'Choose Photo From Gallery'],
+ 	    'addCancelButtonWithLabel': 'Cancel',
+ 	  };
+ 	  window.plugins.actionsheet.show(options, cameraActionCallback);
+ 	}
+
+ 	var fileMimeType = "image/jpeg";
+  var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+ 	function cameraActionCallback(buttonIndex) {
+ 	  if(buttonIndex==3)
+ 	   {
+ 	     return false;
+ 	   }
+ 	   else{
+ 	    var saveToPhotoAlbumFlag = false;
+ 	    var cameraSourceType = navigator.camera.PictureSourceType.CAMERA;
+ 	    var cameraMediaType = navigator.camera.MediaType.PICTURE;
+
+ 	    if (buttonIndex === 1) {
+ 	        saveToPhotoAlbumFlag = true;
+ 	        cameraSourceType = navigator.camera.PictureSourceType.CAMERA;
+ 	        cameraMediaType = navigator.camera.MediaType.PICTURE;
+ 	    }
+ 	    if (buttonIndex === 2) {
+ 	        cameraSourceType = navigator.camera.PictureSourceType.PHOTOLIBRARY;
+ 	        cameraMediaType = navigator.camera.MediaType.PICTURE;
+ 	    }
+
+ 	    navigator.camera.getPicture(onCameraCaptureSuccess, onCameraCaptureFailure, {
+ 	        destinationType: navigator.camera.DestinationType.FILE_URI,
+ 	        quality: 75,
+ 	        //targetWidth: 500,
+ 	        //targetHeight: 500,
+ 	        allowEdit: true,
+ 	        saveToPhotoAlbum: saveToPhotoAlbumFlag,
+ 	        sourceType: cameraSourceType,
+ 	        mediaType: cameraMediaType,
+ 	    });
+ 	  }
+ 	}
+
+ 	// Function to call when the user choose image or video to upload
+ 	function onCameraCaptureSuccess(imageData) {
+
+ 	    //File for Upload
+ 	    var targetPath = imageData;
+
+ 			$rootScope.imagePath = imageData;
+
+ 	    // File name only
+ 	    var filename = targetPath.split("/").pop();
+
+ 	 var options = {
+ 	        fileKey: "file",
+ 	        fileName: filename,
+ 	        chunkedMode: false,
+ 	        mimeType: fileMimeType,
+ 	        headers: { 'Authorization': "Bearer " + $rootScope.accessToken,
+                      'X-Api-Key': "c69fe0477e08cb4352e07c502ddd2d146b316112",
+                      'X-Developer-Id': "84f6101ff82d494f8fcc5c0e54005895"
+                    },
+ 	      };
+
+      $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function (result) {
+        // Upload Success on server
+        $rootScope.$broadcast('loading:hide');
+        navigator.notification.alert('Uploaded successfully!',null,'Inflight','OK');
+      //  getImageList();
+    }, function (err) {
+        // Upload Failure on server
+        //navigator.notification.alert('Upload Failed! Please try again!',null,'Inflight','OK');
+        $rootScope.$broadcast('loading:hide');
+        navigator.notification.alert('Error in upload!',null,'Inflight','OK');
+    }, function (progress) {
+        // PROGRESS HANDLING GOES HERE
+        $rootScope.$broadcast('loading:show');
+    });
+
+
+
+ 	}
+
+ 	// Function to call when the user cancels the operation
+ 	function onCameraCaptureFailure(err) {
+ 	  //alert('Failure');
+ 	}
+ 	// End Photo Functionality
 
     });

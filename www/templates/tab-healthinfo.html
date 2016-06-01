@@ -26,8 +26,11 @@
                <i class="icon ion-home headerlefticons" style=""></i>
                <p class="homecontent">Account Home</p>
             </a>
-            <a class="item-avatar itemhead">
-               <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" style=""></p>
+            <a class="item-avatar itemhead" ng-if="imagePath == ''">
+               <p><img ng-src="{{apiCommonURL}}{{currentPatientDetails[0].account.profileImage}}" class="topimage" ng-click="showCameraActions();"></p>
+            </a>
+            <a class="item-avatar itemhead" ng-if="imagePath != ''">
+               <p><img ng-src="{{imagePath}}" class="topimage" ng-click="showCameraActions();"></p>
             </a>
             <a class="rightpatient" ng-href="#/tab/userhome">
                <i class="icon ion-ios-people headerrighticon" style=""></i>
@@ -152,11 +155,17 @@
             </div>
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"><i class="ion-ios-people iconfont"></i><b class="formlabel labelfont">Organization</b></span>
-               <input type="text" name="healthInfoOrganization" id="healthInfoOrganization"  value="{{currentPatientDetails[0].organization}}" class="valorg textdata">
+               <select class="valuealign textdata"  name="healthInfoOrganization" id="healthInfoOrganization" ng-model="healthInfoModel.healthInfoOrganization" >
+                  <option value="">Choose Organization</option>
+                     <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ng-selected="getOrganization.name == currentPatientDetails[0].organization"><b>{{getOrganization.name}}</b></option>
+                </select>
             </div>
-            <div class="item item-input itemtab validated">
+            <div class="item item-input itemtab validated" ng-disabled="!listOfLocForCurntOrg">
                <span class="input-label labelcolor"> <i class="ion-android-pin iconfont"></i><b class="formlabel labelfont">Location</b> </span>
-               <input type="text" name="healthInfoLocation" id="healthInfoLocation" value="{{currentPatientDetails[0].location}}" class="valuealign textdata">
+              <select class="valuealign textdata"  name="healthInfoLocation" id="healthInfoLocation" >
+                      <option>Choose Location</option>
+                     <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
+                </select>
             </div>
             <div class="item itemtab">
                <span class="input-label labelcolor" style="float: left;"> <i class="ion-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
@@ -287,7 +296,28 @@
 
    </ion-content>
   </form>
-	<div ng-include src="'templates/account_footer.html'"></div>
+  <div class="Server_Error ErrorMessageDiv" ></div>
+  <div id="Error_Message"></div>
+  <!--Side Menu File Include --->
+  <div class="hide-on-keyboard-open">
+     <ion-tabs class=" tabs-icon-top tabs-dark">
+        <a class="tab-item" ng-click="doGetListOfCoUsers()" >
+        <i class="icon ion-person-stalker tabfont"></i> User
+        </a>
+        <a class="tab-item" ng-href="#tab/consultations">
+        <i class="icon ion-card tabfont"></i> Consultations
+        </a>
+        <a class="tab-item active" ng-href="/#tab/healthinfo">
+        <i class="icon ion-android-clipboard tabfont"></i> My Health
+        </a>
+        <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
+        <i class="icon ion-calendar tabfont"></i> Appointments
+        </a>
+        <a class="tab-item" ng-href="#tab/profileoption">
+        <i class="icon ion-more tabfont"></i> More
+        </a>
+     </ion-tabs>
+  </div>
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>

@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter,$window) {
+.controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService,$stateParams,$location,$ionicScrollDelegate,$log, $ionicPopup,ageFilter,$window, $filter) {
   $ionicPlatform.registerBackButtonAction(function(event, $state) {
       if (($rootScope.currState.$current.name === "tab.userhome") ||
           ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -179,12 +179,23 @@ angular.module('starter.controllers')
 
 
 
-     $scope.showPopup = function(relateDependentId,relateDependentFirstName,relateDependentLastName,relateDependentImage,relateDependentRelationCode,relateDependentAuthorize) {
+     $scope.showPopup = function(dependentDetails,relateDependentAuthorize) {
+
+       if(!angular.isUndefined(dependentDetails.birthdate) &&  dependentDetails.birthdate !== '' ) {
+          $scope.dob = " . " + dependentDetails.birthdate;
+        } else {
+          $scope.dob = '';
+        }
+        if(!angular.isUndefined(dependentDetails.relationship) &&  dependentDetails.relationship !== '' ) {
+          $scope.relationship = " . " + dependentDetails.relationship;
+        } else {
+          $scope.relationship = '';
+        }
 
    var myPopup = $ionicPopup.show({
 
-     title: "<a class='item-avatar'>  <img src='"+$rootScope.APICommonURL+relateDependentImage+"'><span><span class='fname'><b>"+relateDependentFirstName+"</b></span> <span class='sname'>"+relateDependentLastName+"</span></span></a> ",
-     subTitle:"<p class='fontcolor'>Female.16 Step-Daughter</p>",
+     title: "<a class='item-avatar'>  <img src='"+dependentDetails.profileImagePath+"'><span><span class='fname'><b>"+dependentDetails.patientFirstName+"</b></span> <span class='sname'>"+dependentDetails.patientLastName+"</span></span></a> ",
+     subTitle:"<p class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship +"</p>",
   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
      templateUrl: 'templates/popupTemplate.html',
      scope: $scope,
@@ -215,7 +226,7 @@ angular.module('starter.controllers')
    });
    myPopup.then(function(res) {
      if(res) {
-       $rootScope.doUpdateDependentsAuthorize(relateDependentId,relateDependentRelationCode,relateDependentAuthorize);
+       $rootScope.doUpdateDependentsAuthorize(dependentDetails.patientId,dependentDetails.relationCode,relateDependentAuthorize);
      } else {
 
      }
@@ -267,24 +278,46 @@ angular.module('starter.controllers')
       var params = {
             accessToken: $rootScope.accessToken,
            success: function(data) {
-            // $scope.listOfDependents = JSON.stringify(data, null, 2);
              $rootScope.listOfAccountDependents = [];
              angular.forEach(data.data, function(index, item) {
+               var getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, { codeId: index.relationCode })
+               if(getRelationShip.length !== 0) {
+                 var relationShip = getRelationShip[0].text;
+               } else {
+                 var relationShip = '';
+               }
+               if(index.gender == 'M') {
+                   var gender = "Male";
+                 } else if(index.gender == 'F') {
+                   var gender = "FeMale";
+                 }
                $rootScope.listOfAccountDependents.push({
                  'addresses': index.addresses,
-                 'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+                 'profileImagePath':  index.profileImagePath,
                  'birthdate': ageFilter.getDateFilter(index.birthdate),
+                 'bloodType' : index.bloodType,
+                 'ethnicity': index.ethnicity,
+                 'eyeColor': index.eyeColor,
+                 'gender' : gender,
                  'guardianFirstName': index.guardianFirstName,
                  'guardianLastName': index.guardianLastName,
                  'guardianName': index.guardianName,
+                 'hairColor' : index.hairColor,
+                 'height' : index.height,
+                 'heightUnit' : index.heightUnit,
+                 'homePhone' : index.homePhone,
                  'isAuthorized': index.isAuthorized,
+                 'mobilePhone' : index.mobilePhone,
                  'patientFirstName': index.patientFirstName,
                  'patientId': index.patientId,
                  'tabPatientId': 'tab' + index.patientId,
                  'patientLastName': index.patientLastName,
                  'patientName': index.patientName,
                  'personId': index.personId,
-                 'relationCode': index.relationCode
+                 'relationCode': index.relationCode,
+                 'relationship': relationShip,
+                 'weight' : index.weight,
+                 'weightUnit' : index.weightUnit
                });
              });
            },
@@ -343,5 +376,46 @@ angular.module('starter.controllers')
        $scope.usersearchinfocontent=false;
        $scope.usertab=false;
     }
+
+    $rootScope.coUserArchieve = function(coUserDetails) {
+      if(!angular.isUndefined(coUserDetails.dob) &&  coUserDetails.dob !== '' ) {
+         $scope.dob = " . " + coUserDetails.dob;
+       } else {
+         $scope.dob = '';
+       }
+       if(!angular.isUndefined(coUserDetails.relationship) &&  coUserDetails.relationship !== '' ) {
+         $scope.relationship = " . " + coUserDetails.relationship;
+       } else {
+         $scope.relationship = '';
+       }
+        var confirmPopup = $ionicPopup.confirm({
+            title: "<a class='item-avatar'>  <img src='" + coUserDetails.imagePath + "'><span><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
+            subTitle: "<p class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship +"</p>",
+            //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
+            templateUrl: 'templates/coUserTemplate.html',
+            buttons: [{
+                text: 'Cancel',
+                onTap: function(e) {
+                    return false;
+                }
+            }, {
+                text: '<b>Archieve</b>',
+                type: 'button-assertive',
+                onTap: function(e) {
+                    return true;
+                }
+            }, ],
+        });
+        confirmPopup.then(function(res) {
+            if (res) {
+                $rootScope.doDeleteAccountUser(coUserDetails.userId);
+            } else {
+                $scope.showdnewetails = false;
+                $scope.allval = false;
+            }
+        });
+    }
+
+
 
 });

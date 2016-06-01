@@ -24,7 +24,7 @@
                <p class="homecontent">Account Home</p>
             </a>
             <a class="item-avatar itemhead">
-               <p><img src="{{APICommonURL}}{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" ></p>
+               <p><img src="{{currentPatientDetails[0].account.profileImagePath}}" class="topimage" ></p>
             </a>
             <a class="rightpatient" ng-href="#/tab/userhome">
                <i class="icon ion-ios-people headerrighticon"></i>
@@ -66,10 +66,10 @@
 								 <h2 class="relatedhead"> <span class="fname sfont">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
 										<i class="icon ion-chevron-right avataricon" ></i>
 								 </h2>
-								 <p class="relatedfont">Female . 29yrs . Spouse </p>
+                  <p class="relatedfont">{{getCoUserDetails.gender}} <span ng-if = "getCoUserDetails.dob != ''">. {{getCoUserDetails.dob}}</span> <span ng-if = "getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
 							</a>
 							<div class="row archiveCoUser"  ng-show="showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = false">
-								 <div class="col col-25 archieve">
+								 <div class="col col-25 archieve" ng-click="coUserArchieve(getCoUserDetails)">
 										<div>
 											 <div class="aligncenicon" >
 													<i class="icon ion-ios-box iconbox" style=""></i>
@@ -81,7 +81,7 @@
 										<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'patientClick')"  style="border-right: none;width:105%;">
 											 <img src="{{getCoUserDetails.imagePath}}">
 											 <h2><span class="fname">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span> </h2>
-											 <p>Female . 29yrs . Sister</p>
+											  <p>{{getCoUserDetails.gender}} <span ng-if = "getCoUserDetails.dob != ''">. {{getCoUserDetails.dob}}</span> <span ng-if = "getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
 										</a>
 								 </div>
 							</div>
@@ -94,7 +94,7 @@
 					 <img class="imgsize" src="{{getDependentDetails.profileImagePath}}" >
 					 <span ng-click="showtab(getDependentDetails.tabPatientId)">
 							<h2  class="relatedhead"><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-							<p class="relatediconfont">Female . 19yrs . Son </p>
+							<p class="relatediconfont">{{getDependentDetails.gender}} <span ng-if = "getDependentDetails.birthdate != ''"> . {{getDependentDetails.birthdate}}</span> <span ng-if = "getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
 					 </span>
 				</a>
 				<div class="row archeight"  ng-show='showdnewetails{{getDependentDetails.patientId}}' ng-swipe-left="showdnewetails{{getDependentDetails.patientId}} = false" >
@@ -110,7 +110,7 @@
 							<a class="item item-avatar"  style="border-right: none;width:105%;">
 								 <img src="{{getDependentDetails.profileImagePath}}">
 								 <h2><span class="fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-								 <p>Female . 19yrs . Son</p>
+								 <p>{{getDependentDetails.gender}} <span ng-if = "getDependentDetails.birthdate != ''"> . {{getDependentDetails.birthdate}}</span> <span ng-if = "getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
 							</a>
 					 </div>
 				</div>
@@ -155,7 +155,7 @@
 								 </div>
 							</div>
 					 </div>
-					 <div class="col col-35 statuscol" ng-click="showPopup(getDependentDetails.patientId,getDependentDetails.patientFirstName,getDependentDetails.patientLastName,getDependentDetails.profileImagePath, getDependentDetails.relationCode,'F')">
+					 <div class="col col-35 statuscol" ng-click="showPopup(getDependentDetails,'F')">
 							<div  class="tabvalue">
 								 <p class="status">Status</p>
 								 <p class="avatarclass"><i class="icon ion-chevron-right avatlefticon " style=""></i></p>
@@ -177,7 +177,7 @@
      <a class="item item-avatar fadediv" id="authorizeddiv"   ng-click="authorizeduser(getDependentDetails.tabPatientId)">
            <img class="imgsize" src="{{getDependentDetails.profileImagePath}}">
            <h2><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-           <p class="relatediconfont">Female . 16yrs . Step-Daughter</p>
+           <p class="relatediconfont">{{getDependentDetails.gender}} <span ng-if = "getDependentDetails.birthdate != ''"> . {{getDependentDetails.birthdate}}</span> <span ng-if = "getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
         </a>
         <a class="item authorizedval" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="viewunauthorized" ng-click="addauthorized(getDependentDetails.tabPatientId)">
            <p class="authorizedicon"><i class="ion-chevron-down"></i></p>
@@ -192,7 +192,7 @@
                  <p><a>Update <i class="icon ion-chevron-right avatarlefticon "></i></a> </p>
               </div>
            </div>
-           <div class="col col-35 statustab" ng-click="showPopup(getDependentDetails.patientId,getDependentDetails.patientFirstName,getDependentDetails.patientLastName,getDependentDetails.profileImagePath, getDependentDetails.relationCode, 'T')">
+           <div class="col col-35 statustab" ng-click="showPopup(getDependentDetails, 'Y')">
               <div  class="tabvalue">
                  <p class="unstatus">Status</p>
                  <p class="avatrelationclass">
@@ -228,8 +228,28 @@
             </li>
          </ul>-->
       </ion-content>
-
-  	<div ng-include src="'templates/account_footer.html'"></div>
+      <div class="Server_Error ErrorMessageDiv" ></div>
+      <div id="Error_Message"></div>
+      <!--Side Menu File Include --->
+      <div class="hide-on-keyboard-open">
+         <ion-tabs class=" tabs-icon-top tabs-dark">
+            <a class="tab-item active" ng-click="doGetListOfCoUsers()" >
+            <i class="icon ion-person-stalker tabfont"></i> User
+            </a>
+            <a class="tab-item" ng-href="#tab/consultations">
+            <i class="icon ion-card tabfont"></i> Consultations
+            </a>
+            <a class="tab-item" ng-href="/#tab/healthinfo">
+            <i class="icon ion-android-clipboard tabfont"></i> My Health
+            </a>
+            <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
+            <i class="icon ion-calendar tabfont"></i> Appointments
+            </a>
+            <a class="tab-item" ng-href="#tab/profileoption">
+            <i class="icon ion-more tabfont"></i> More
+            </a>
+         </ion-tabs>
+      </div>  
 		</ion-side-menu-content>
     <div ng-include src="'templates/SideMenu.html'"></div>
     </ion-view>

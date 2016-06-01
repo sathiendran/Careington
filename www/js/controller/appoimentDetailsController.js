@@ -336,7 +336,7 @@ angular.module('starter.controllers')
 				$rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
 				$rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.patientExistInfomation.guardianName);
 				$rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
-				$rootScope.appointmentsPatientImage = $rootScope.APICommonURL + $rootScope.patientExistInfomation.profileImagePath;
+				$rootScope.appointmentsPatientImage = $rootScope.patientExistInfomation.profileImagePath;
 				/*$rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[0].customCode.description);
 				if(typeof $rootScope.intakeForm.concerns[1] != 'undefined') {
 					$rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.intakeForm.concerns[1].customCode.description);
@@ -401,8 +401,8 @@ angular.module('starter.controllers')
 					'medicalLicense': index.medicalLicense,
 					'medicalSpeciality': index.medicalSpeciality,
 					'medicalSchool': index.medicalSchool,
-					'profileImage': $rootScope.APICommonURL + index.profileImage,
-					'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+					'profileImage':  index.profileImage,
+					'profileImagePath':  index.profileImagePath,
 					'statesLicenced': index.statesLicenced,
 					'subSpeciality': index.subSpeciality
 					});

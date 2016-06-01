@@ -276,7 +276,7 @@ angular.module('ngIOS9UIWebViewPatch', ['ng']).config(function($provide) {
 	}
 
 
-angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ion-google-place', 'ngIOS9UIWebViewPatch'])
+angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 'timer','ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova'])
 
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists,CountryList,UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService,$filter, $timeout,StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
@@ -1206,7 +1206,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				success: function (data) {
 					//Get default payment profile from localstorage if already stored.
 
-
+					$rootScope.imagePath = '';
 					$rootScope.accessToken = data.data[0].access_token;
 					console.log($scope.accessToken);
 					if(typeof data.data[0].access_token == 'undefined') {
@@ -1388,7 +1388,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					api_keys_env = 'Production';
 					$rootScope.APICommonURL = 'https://connectedcare.md';
 				}
-			} else if(deploymentEnvForProduction =='Staging') {	
+			} else if(deploymentEnvForProduction =='Staging') {
 				$rootScope.hospitalId = singleStagingHospitalId;
 				api_keys_env = "Staging";
 			} else if(deploymentEnvForProduction =='QA') {
@@ -3548,12 +3548,30 @@ LoginService.getScheduledConsulatation(params);
 								$rootScope.dependentGender = "FeMale";
 									$rootScope.isCheckedMaleDependent = true;
 							}
+							$scope.getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, { codeId: $rootScope.selectedRelatedDependentDetails[0].account.relationshipCodeId })
+							if(	$scope.getRelationShip.length !== 0) {
+									$rootScope.dependentRelationShip = $scope.getRelationShip[0].text;
+							} else {
+									$rootScope.dependentRelationShip = '';
+							}
+
 							if($rootScope.selectedRelatedDependentDetails.length !== 0) {
 						 		$rootScope.dependentDOB = ageFilter.getDateFilter($rootScope.dependentDOB);
+								if(!angular.isUndefined($rootScope.dependentDOB) &&  $rootScope.dependentDOB !== '' ) {
+									$scope.dob = " . " + $rootScope.dependentDOB;
+								} else {
+									$scope.dob = '';
+								}
+								if(!angular.isUndefined($rootScope.dependentRelationShip) &&  $rootScope.dependentRelationShip !== '' ) {
+									$scope.relationship = " . " + $rootScope.dependentRelationShip;
+								} else {
+									$scope.relationship = '';
+								}
 						 			var confirmPopup = $ionicPopup.confirm({
 
 						  title: "<a class='item-avatar'>  <img src='"+$rootScope.APICommonURL+$rootScope.selectedRelatedDependentDetails[0].account.profileImagePath+"'><span><span class='fname'><b>"+$rootScope.selectedRelatedDependentDetails[0].patientName+"</b></span> <span class='sname'>"+$rootScope.selectedRelatedDependentDetails[0].lastName+"</span></span></a> ",
-						  subTitle:"<p class='fontcolor'>"+$rootScope.dependentGender+"."+$rootScope.dependentDOB+" Step-Daughter</p>",
+						//  subTitle:"<p class='fontcolor'>"+$rootScope.dependentGender+"<span ng-if="+ $rootScope.dependentDOB+ "!= ''" >. "+$rootScope.dependentDOB+ "<span ng-if="+ dependentRelationShip + "!= ''" >. " + dependentRelationShip +"</p>",
+						  subTitle:"<p class='fontcolor'>"+ $rootScope.dependentGender + $scope.dob + $scope.relationship +"</p>",
 						 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 						  templateUrl: 'templates/archiveTemplate.html',
 
@@ -3597,12 +3615,19 @@ LoginService.getScheduledConsulatation(params);
 								'anatomy': angular.fromJson(index.anatomy),
 								'countryCode': index.countryCode,
 								'createDate': index.createDate,
+								'fieldChangesTrackingDetails': angular.fromJson(index.fieldChangesTrackingDetails),
 								'dob': index.dob,
 								'gender': index.gender,
 								'homePhone': index.homePhone,
 								'lastName': index.lastName,
+								'location': index.location,
+								'locationId': index.locationId,
+								'medicalHistory': angular.fromJson(index.medicalHistory),
 								'mobilePhone': index.mobilePhone,
+								'organization': index.organization,
+								'organizationId': index.organizationId,
 								'patientName': index.patientName,
+								'personId' : index.personId,
 								'pharmacyDetails': index.pharmacyDetails,
 								'physicianDetails': index.physicianDetails,
 								'schoolContact': index.schoolContact,
@@ -3792,6 +3817,50 @@ LoginService.getScheduledConsulatation(params);
 			LoginService.getonDemandAvailability(params);
     }
 
+		$rootScope.doGetLocations = function() {
+						$rootScope.listOfOrganization = '';
+							$rootScope.listOfLocation = '';
+            var params = {
+            accessToken: $rootScope.accessToken,
+              success: function(data) {
+								$rootScope.listOfOrganization = [];
+								$rootScope.listOfLocation = [];
+								if(data.data[0] !== '') {
+									angular.forEach(data.data, function(index, item) {
+											 $rootScope.listOfOrganization.push({
+												'addresses': index.addresses,
+												'createdByUserId': index.createdByUserId,
+												'createdDate': index.createdDate,
+												'hospitalId': index.hospitalId,
+												'id': index.id,
+												'locations': angular.fromJson(index.locations),
+												'modifiedByUserId': index.modifiedByUserId,
+												'modifiedDate': index.modifiedDate,
+												'name': index.name,
+												'organizationTypeId' : index.organizationTypeId
+											});
+											angular.forEach(index.locations, function(index, item) {
+												$rootScope.listOfLocation.push({
+												'createdByUserId': index.createdByUserId,
+												'createdDate': index.createdDate,
+												'id': index.id,
+												'modifiedByUserId': index.modifiedByUserId,
+												'modifiedDate': index.modifiedDate,
+												'name': index.name,
+												'organizationId': index.organizationId
+											});
+											})
+									});
+								}
+
+              },
+              error: function(data) {
+              	$rootScope.serverErrorMessageValidation();
+              }
+            };
+            LoginService.getListOfLocationOrganization(params);
+        }
+
     $rootScope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,P_Id,P_isAuthorized, clickEvent) {
         if($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined"){
 
@@ -3820,6 +3889,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.patientId = P_Id;
 
 		$rootScope.P_isAuthorized = P_isAuthorized;
+		$rootScope.doGetLocations();
 		$rootScope.doGetIndividualScheduledConsulatation();
 		$rootScope.doGetonDemandAvailability();
 		$scope.doGetCodesSet();

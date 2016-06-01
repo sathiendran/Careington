@@ -38,6 +38,37 @@ angular.module('starter.controllers')
             }
         }, 100);
 
+				var checkAndChangeMenuIcon;
+        $interval.cancel(checkAndChangeMenuIcon);
+
+        $rootScope.checkAndChangeMenuIcon = function() {
+                if (!$ionicSideMenuDelegate.isOpen(true)) {
+                    if ($('#BackButtonIcon').hasClass("ion-close")) {
+                        $('#BackButtonIcon').removeClass("ion-close");
+                        $('#BackButtonIcon').addClass("ion-navicon-round");
+                    }
+                } else {
+                    if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
+                        $('#BackButtonIcon').removeClass("ion-navicon-round");
+                        $('#BackButtonIcon').addClass("ion-close");
+                    }
+                }
+            }
+            //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
+            //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+        $scope.toggleLeft = function() {
+            $ionicSideMenuDelegate.toggleLeft();
+            $rootScope.checkAndChangeMenuIcon();
+            if (checkAndChangeMenuIcon) {
+                $interval.cancel(checkAndChangeMenuIcon);
+            }
+            if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
+                checkAndChangeMenuIcon = $interval(function() {
+                    $rootScope.checkAndChangeMenuIcon();
+                }, 300);
+            }
+        };
+
 	$scope.addMinutes = function (inDate, inMinutes) {
 		var newdate = new Date();
 		newdate.setTime(inDate.getTime() + inMinutes * 60000);
