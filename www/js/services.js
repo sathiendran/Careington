@@ -1107,6 +1107,27 @@ this.getPatientMedicalProfile = function(params){
                     }
                 });
     }
+ 
+this.getListofLocationOrganization = function(params){
+      
+      var orglocInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/v2/organizations',
+          method: 'GET',
+      };
+       $http(orglocInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
 
 
 
@@ -1139,7 +1160,7 @@ this.getPatientMedicalProfile = function(params){
 		})
  }
 
-
+  
 
 
  this.postAddCousers = function(params) {

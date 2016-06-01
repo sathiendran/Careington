@@ -65,10 +65,48 @@ $ionicPopup,ageFilter,$window) {
               $rootScope.checkAndChangeMenuIcon();
           }, 300);
       }
-  };
+  }
 
-    $scope.adddependent = function(){
+  $rootScope.adddependent = function(){
+   $rootScope.doGetOrgLoclist();
+    $state.go('tab.addnewdependent');
+   }
+ 
+  $rootScope.addcouser = function(){
+    $rootScope.doGetOrgLoclist();
+    $state.go('tab.addUser');
+   }
+  $rootScope.doGetOrgLoclist = function () {
+       
+       if ($rootScope.accessToken == 'No Token') {
+			alert('No token.  Get token first then attempt operation.');
+			return;
+		}
+       
+			var params = {
+				 accessToken: $rootScope.accessToken,
+				success: function(data) {
+               $rootScope.orgloclist = [];
+               angular.forEach(data.data, function(index, item) {
+                 $rootScope.orgloclist.push({
+                  'locations': angular.fromJson(index.locations),
+                   'name': index.name,
+                   'id':index.id
+                 });
+               });
+               $rootScope.listOfOrganization = $rootScope.orgloclist;
+                var listOfLocation=$rootScope.orgloclist;
+                $rootScope.locationdetails=_.pluck(listOfLocation,'locations');
+             },
+				error: function (data) {
+					$rootScope.serverErrorMessageValidation();
+				}
+			};
+			LoginService.getListofLocationOrganization(params);
+		
+	}
 
-        $state.go('tab.addnewdependent');
-    }
+ 
+ 
+ 
 });
