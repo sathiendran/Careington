@@ -72,35 +72,56 @@ if(deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv 
 				if (typeof accessToken !== 'undefined') {
 					headers['Authorization'] = 'Bearer ' + accessToken;
 				}
-
-
 				return headers;
-
 			}
 		}
 	}
 }else if(deploymentEnv === "Production"){
 	var util = {
 		setHeaders: function (request, credentials) {
-			if (typeof credentials !== 'undefined') {
-				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			if(api_keys_env == 'Production'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
+				request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
+				return request;
+			} else if(api_keys_env == 'Staging'){
+				if (typeof credentials != 'undefined') {
+					request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+				}
+				request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+				request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
+				request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
+				return request;
+
 			}
-			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-			request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
-			request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
-			return request;
 		},
 		getHeaders: function (accessToken) {
-			var headers = {
-					'X-Developer-Id': '1f9480321986463b822a981066cad094',
-					'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
-					'Content-Type': 'application/json; charset=utf-8'
-				};
-			if (typeof accessToken !== 'undefined') {
-				headers['Authorization'] = 'Bearer ' + accessToken;
-			}
+			if(api_keys_env == 'Production'){
+				var headers = {
+						'X-Developer-Id': '1f9480321986463b822a981066cad094',
+						'X-Api-Key': 'd3d2f653608d25c080810794928fcaa12ef372a2',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
 
-			return headers;
+				return headers;
+			} else if(api_keys_env == 'Staging'){
+				var headers = {
+						'X-Developer-Id': 'cc552a3733af44a88ccb0c88ecec2d78',
+						'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
+						'Content-Type': 'application/json; charset=utf-8'
+					};
+				if (typeof accessToken != 'undefined') {
+					headers['Authorization'] = 'Bearer ' + accessToken;
+				}
+
+				return headers;
+			}
 		}
 	}
 }else if(deploymentEnv === "Single"){
@@ -186,6 +207,31 @@ if(deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv 
 
 				return headers;
 			}
+		}
+	}
+
+}else if(deploymentEnv == "Demo"){
+	var util = {
+		setHeaders: function (request, credentials) {
+			if (typeof credentials != 'undefined') {
+				request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
+			}
+			request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
+			request.defaults.headers.post['X-Developer-Id'] = 'f92f6017f3f043809e0f317c1d0cde4c';
+			request.defaults.headers.post['X-Api-Key'] = 'ddc9e736777f130b97f7fff5976c5bc9e7f3b337';
+			return request;
+		},
+		getHeaders: function (accessToken) {
+			var headers = {
+					'X-Developer-Id': 'f92f6017f3f043809e0f317c1d0cde4c',
+					'X-Api-Key': 'ddc9e736777f130b97f7fff5976c5bc9e7f3b337',
+					'Content-Type': 'application/json; charset=utf-8'
+				};
+			if (typeof accessToken != 'undefined') {
+				headers['Authorization'] = 'Bearer ' + accessToken;
+			}
+
+			return headers;
 		}
 	}
 }
@@ -339,9 +385,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 	*/
 
-
 	$window.localStorage.setItem('ChkVideoConferencePage', "");
-
 	$rootScope.currState = $state;
     $rootScope.monthsList = CustomCalendar.getMonthsList();
     $rootScope.ccYearsList = CustomCalendar.getCCYearsList();
@@ -352,7 +396,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     $rootScope.isWebView = ionic.Platform.isWebView();
     $rootScope.isIPad = ionic.Platform.isIPad();
     $rootScope.isWindow = true;
-
 
     /******** Prabin: Code to implement static brand color, logo and tagline. *******/
     if(deploymentEnvLogout == 'Single') {
@@ -370,8 +413,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.reportHospitalUpperCase =  'Virtual Care';
     }
 
-    /******** Code to implement static brand color ends here **********/
 
+    /******** Code to implement static brand color ends here **********/
 
     if($rootScope.IOSDevice || $rootScope.isIPad) {
 		$rootScope.screenwidth = window.innerWidth;
@@ -490,9 +533,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.ConstantTreat = "font-size: 16px;";
 		$rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-
-    } else if(!$rootScope.AndroidDevice) {
-
+    } else if($rootScope.AndroidDevice) {
 		$rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -691,7 +732,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			}
 			refresh_close();
 
-
 			var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> '+ $errorMsg+'! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 
@@ -789,12 +829,14 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 			}
 
+
     });
 
 
 
 
     $('#UserEmail').val($window.localStorage.getItem('username'));
+
 
 
 
@@ -830,9 +872,19 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
                    $window.localStorage.oldEmail = '';
                    $window.localStorage.setItem('username', "");
-
 				   $rootScope.chkedchkbox = false;
                 }
+				if(deploymentEnv == "Production") {
+						if(appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+									apiCommonURL = 'https://snap-stage.com';
+									api_keys_env = 'Staging';
+									$rootScope.APICommonURL = 'https://snap-stage.com';
+								} else {
+									apiCommonURL = 'https://connectedcare.md';
+									api_keys_env = 'Production';
+									$rootScope.APICommonURL = 'https://connectedcare.md';
+								}
+					}
 				$scope.doGetFacilitiesList();
 			}
 		}
@@ -939,6 +991,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.appointmentsContactNumber = $rootScope.hospitalDetailsList[0].appointmentsContactNumber;
 
 					if(typeof $rootScope.contactNumber !== 'undefined') {
+
 						$rootScope.contactNumber = $rootScope.contactNumber;
 					} else if(typeof $rootScope.contactNumber === 'undefined') {
 						if(typeof $rootScope.appointmentsContactNumber !== 'undefined') {
@@ -1058,7 +1111,10 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.id = hospitalDetailsDatas.id;
       //  $rootScope.brandColor = hospitalDetailsDatas.brandColor;
         $rootScope.backgroundimage = "background-image: none;";
-		$scope.doGetSingleHospitalInformation();
+				$scope.doGetSingleHospitalInformation();
+				/*
+				ref = window.open('http://emerald.snap.local/auth/Login?app_url=snapmdconnectedcare://&state=userhome', '_blank', 'location=no,toolbar=no');
+				*/
 	}
 
 	$scope.textboxUp = function() {
@@ -1077,7 +1133,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	$scope.goBackProvider = function() {
 		$state.go('tab.provider');
 	};
-
 
 	$scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function () {
         $rootScope.paymentMode = '';
@@ -1124,7 +1179,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
     }
 
 
-    //
     $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function () {
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
@@ -1135,7 +1189,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 $rootScope.getDetails = data.data[0].enabledModules;
                 if($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
+
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+
                             $rootScope.insuranceMode = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
@@ -1157,6 +1213,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                 } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
                         $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
+
                 }
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
@@ -1191,6 +1248,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	//Password functionality
 
+
 	$scope.pass = {};
 	$scope.doGetToken = function () {
 		if($('#password').val() === ''){
@@ -1205,6 +1263,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					//Get default payment profile from localstorage if already stored.
+
 
 					$rootScope.imagePath = '';
 					$rootScope.accessToken = data.data[0].access_token;
@@ -1267,7 +1326,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				$scope.ErrorMessage = "Please enter an email!";
 				$rootScope.Validation($scope.ErrorMessage);
 			} else {
-
 
 				$scope.ValidateEmail = function(email){
 					//var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -1359,8 +1417,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 	}
 
 
-
-
 	$rootScope.doGetTermsandCondition = function (registerRedirectPage, registerCurrentPage) {
 
 		/*if(deploymentEnvLogout == 'Single' && deploymentEnvForProduction =='Production') {
@@ -1371,7 +1427,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		} else if(deploymentEnvLogout == 'Single') {
 			$rootScope.hospitalId = singleHospitalId;
 		}*/
-
 
 		if(deploymentEnvLogout == 'Single') {
 			if(deploymentEnvForProduction =='Production') {
@@ -1445,6 +1500,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 
+
     $rootScope.searchPatientList = {};
     $scope.searched = false;
     //$rootScope.age = 25;
@@ -1475,6 +1531,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         }
     })
 
+
 	$scope.doGetPatientProfiles = function() {
 			if ($rootScope.accessToken === 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -1483,6 +1540,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			 var params = {
                 accessToken: $rootScope.accessToken,
 				success: function (data) {
+
 					$rootScope.primaryPatientDetails = [];
 //angular.fromJson(index.billingAddress)
 					angular.forEach(data.data, function(index, item) {
@@ -1505,7 +1563,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							'schoolName': index.schoolName
 						});
 					});
-
 
 					$rootScope.patientInfomation = data.data[0];
 					$rootScope.patientAccount = data.data[0].account;
@@ -1542,11 +1599,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$rootScope.mobilePhone = data.data[0].mobilePhone;
 
 					if(typeof data.data[0].organization !== 'undefined') {
+
 						$rootScope.organization = data.data[0].organization;
 					} else {
 						$rootScope.organization = '';
 					}
 					$rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
+
 					$rootScope.userCountry = data.data[0].country;
 					if(typeof $rootScope.userCountry === 'undefined') {
 						$rootScope.userCountry = '';
@@ -1622,7 +1681,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							});
 						});
 					//$rootScope.primaryPatientLastName = $rootScope.primaryPatientLastName[0].lastName;
+
 					$rootScope.primaryPatientLastName = angular.element('<div>').html($rootScope.primaryPatientLastName[0].lastName).text();
+
 
 					$rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' '+$rootScope.primaryPatientLastName;
 
@@ -1665,11 +1726,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								'birthdate': index.birthdate,
 								'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
 								'addresses': angular.fromJson(index.addresses),
+
 								'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
 								'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
 								'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
 								'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
 								'guardianName': angular.element('<div>').html(index.guardianName).text(),
+
 							});
 						});
                         $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
@@ -1766,6 +1829,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 				}
 				if(typeof $rootScope.consultionInformation.note !== 'undefined') {
 					$rootScope.preConsultantNotes = angular.element('<div>').html($rootScope.consultionInformation.note).text();
+
 				} else {
 					$rootScope.preConsultantNotes = '';
 				}
@@ -1789,6 +1853,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			success: function (data) {
 				$rootScope.appointmentsPatientFirstName = angular.element('<div>').html(data.data[0].patientName).text();
 				$rootScope.appointmentsPatientLastName = angular.element('<div>').html(data.data[0].lastName).text();
+
 
 			},
 			error: function (data) {
@@ -1830,6 +1895,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$rootScope.appointmentsPatientDOB = '';
 		$rootScope.appointmentsPatientGurdianName = '';
 		$rootScope.appointmentsPatientImage = '';
+
 
 		 if ($scope.accessToken === 'No Token') {
 			alert('No token.  Get token first then attempt operation.');
@@ -1885,7 +1951,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 		$scope.doGetPatientHealthPlansList();
 	}
 
+
 	if(typeof $rootScope.providerName === 'undefined' || $rootScope.providerName === "")
+
 		{
 			$rootScope.chooseHealthHide = 'initial';
 			$rootScope.chooseHealthShow = 'none';
@@ -1942,6 +2010,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			success: function (data) {
 				//$scope.patientHealthPlanList = data;
 
+
 				if(data.data !== '') {
 						$rootScope.patientHealthPlanList = [];
 						angular.forEach(data.data, function(index, item) {
@@ -1963,7 +2032,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 
+
 						if($rootScope.currState.$current.name==="tab.consultCharge")
+
 						{
 							$rootScope.enableAddHealthPlan = "block";
 							$rootScope.disableAddHealthPlan = "none;";
@@ -2164,6 +2235,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					//$('.userDateofbirth').css('display', 'none');
 
                     if(data !== "")
+
                     $rootScope.ProviderList = [];
                     angular.forEach($scope.HealthPlanProvidersList, function(index, item) {
 						  $rootScope.ProviderList.push({
@@ -2204,7 +2276,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $rootScope.PolicyNo = $scope.AddHealth.policyNumber;
 		$rootScope.healthPlanID = HealthPlanProviders[1];
 
+
         if(typeof $rootScope.patientHealthPlanList !== 'undefined') {
+
                 var subsciberNewID = $rootScope.patientHealthPlanList.length + 1;
             } else {
                 var subsciberNewID = 1;
@@ -2454,6 +2528,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
             }  else if(typeof $scope.Health.addHealthPlan === 'undefined') {
+
                  $rootScope.providerName = $rootScope.providerName;
                  $rootScope.PolicyNo = $rootScope.PolicyNo;
                  $rootScope.healthPlanID = $rootScope.healthPlanID;
@@ -2462,9 +2537,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
             }
         }
 
+
         if($rootScope.currState.$current.name==="tab.consultCharge") {
                        if(typeof $scope.Health.addHealthPlan !== 'undefined') {
                             if($scope.Health.addHealthPlan !== 'Choose Your Health Plan') {
+
                                  $rootScope.NewHealth = $scope.Health.addHealthPlan;
                                  $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
                                  var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
@@ -2559,6 +2636,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	 $scope.doPostVerifyHealthPlan = function() {
 
+
 		 if ($scope.accessToken === 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -2567,9 +2645,11 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         console.log($scope.Health.addHealthPlan);
 
 
+
         if($rootScope.currState.$current.name==="tab.consultCharge") {
                        if(typeof $scope.Health.addHealthPlan !== 'undefined') {
                             if($scope.Health.addHealthPlan !== 'Choose Your Health Plan') {
+
                                  $rootScope.NewHealth = $scope.Health.addHealthPlan;
                                  $rootScope.SelectedHealthPlans = $rootScope.NewHealth;
                                  var healthInsurance = $rootScope.SelectedHealthPlans.split('@');
@@ -2646,6 +2726,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	 $scope.doGetSkipHealthPlan = function () {
 
+
 			if ($scope.accessToken === 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
 				return;
@@ -2681,6 +2762,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 
 	$rootScope.doGetPatientPaymentProfiles = function () {
+
 
 			if ($scope.accessToken === 'No Token') {
 				alert('No token.  Get token first then attempt operation.');
@@ -2804,7 +2886,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 			$rootScope.alertMsgName,
 			['No','Yes']
-
 		);
 	}
 
@@ -2821,7 +2902,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 			$rootScope.alertMsgName,
 			['No','Yes']
-
 		);
 	}
 
@@ -2890,8 +2970,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
         $scope.Country = $scope.getCardDetails.Country;
 
 
+
       if($('#FirstName').val() === '' || $('#LastName').val() === '' || $('#CardNumber').val() === '' || $('#datepicker').val() === '' || $('#Cvv').val() === '' || $('#BillingAddress').val() === '' ||  $('#City').val() === '' || $('#State').val() === ''|| $('#Zip').val() === '' )  {
-			$scope.ErrorMessage = "Required fields can't be empty";
+				$scope.ErrorMessage = "Required fields can't be empty";
 			$rootScope.Validation($scope.ErrorMessage);
 		}else if(!CreditCardValidations.validCreditCard($rootScope.CardNumber)){
 			$scope.invalidZip = "";
@@ -2925,6 +3006,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.Validation($scope.ErrorMessage);
         }
         else {
+
             if ($scope.accessToken === 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -2956,7 +3038,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $scope.PostPaymentDetails = data;
 
 
+
                     //if(data.message === "Success")	{
+
                        $rootScope.userCardDetails = data.data[0].paymentProfileId;
 					   if(typeof $rootScope.CardNumber === 'undefined') {
 							$rootScope.choosePaymentShow = 'none';
@@ -2995,7 +3079,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 		}
 	}
-
 
 
 
@@ -3065,7 +3148,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.patinentCurrentMedication = "";
 			$rootScope.patinentMedicationAllergies = "";
 			$rootScope.patientSurgeriess = "";
-			$rootScope.MedicationCount === 'undefined'
+			$rootScope.MedicationCount === 'undefined';
 			$rootScope.checkedChronic = 0;
 			$rootScope.ChronicCount = "";
 			$rootScope.AllegiesCount = "";
@@ -3322,6 +3405,7 @@ LoginService.getScheduledConsulatation(params);
 					$rootScope.nextAppointmentDisplay = 'none';
 					$rootScope.accountClinicianFooter = 'block';
 
+
 					var d = new Date();
 					d.setHours(d.getHours() + 12);
 					var currentUserHomeDate = CustomCalendar.getLocalTime(d);
@@ -3403,6 +3487,7 @@ LoginService.getScheduledConsulatation(params);
 	}
 	$scope.VerifyPlanDetailsValidation = function(model) {
 
+
 		if($('#firstName').val() === '' || $('#lastName').val() === '' || $('#policyNumber').val() === '' || $('#date').val() === '' ){
 			$scope.ErrorMessage = "Required fields can't be empty";
 			$rootScope.Validation($scope.ErrorMessage);
@@ -3445,8 +3530,9 @@ LoginService.getScheduledConsulatation(params);
     $scope.cardPaymentId = [];
     $scope.doPostCoPayDetails = function () {
 
+
 		if($('#addNewCard').val() === 'Choose Your Card' || $('#addNewCard_addCard').val() === 'Choose Your Card' || $('#addNewCard_submitPay').val() === 'Choose Your Card'){
-			$scope.ErrorMessages = "Please select the card to use for payment";
+$scope.ErrorMessages = "Please select the card to use for payment";
 			$rootScope.SubmitCardValidation($scope.ErrorMessages);
 
 		} else {
@@ -3806,8 +3892,7 @@ LoginService.getScheduledConsulatation(params);
 				hospitalId: $rootScope.hospitalId,
 				success: function (data) {
 					$rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
-				//	$state.go('tab.patientDetail');
-
+	//	$state.go('tab.patientDetail');
 				},
 				error: function (data) {
 					$rootScope.serverErrorMessageValidation();
@@ -3887,7 +3972,6 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.patientId = P_Id;
-
 		$rootScope.P_isAuthorized = P_isAuthorized;
 		$rootScope.doGetLocations();
 		$rootScope.doGetIndividualScheduledConsulatation();
@@ -3904,6 +3988,7 @@ LoginService.getScheduledConsulatation(params);
 		//$scope.doGetUserHospitalInformation();
 
     }
+
 
      $scope.doToPatientCalendar = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -3991,6 +4076,7 @@ LoginService.getScheduledConsulatation(params);
 						}
 						$rootScope.enableInsuranceVerificationSuccess = "none";
 						if($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode !== 'on') {
+
 							$rootScope.enablePaymentSuccess = "none";
 							$state.go('tab.receipt');
 								$scope.ReceiptTimeout();
@@ -4057,6 +4143,7 @@ LoginService.getScheduledConsulatation(params);
 					if($rootScope.getDetails !== '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
 							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+
 								$rootScope.insuranceMode = 'on';
 							}
 							//if ($rootScope.getDetails[i] === 'PaymentPageBeforeWaitingRoom') {
@@ -4079,7 +4166,9 @@ LoginService.getScheduledConsulatation(params);
 			LoginService.getHospitalInfo(params);
     }*/
 
+
      $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData) {
+
 		$rootScope.scheduledListDatas = scheduledListData;
 		//$scope.doGetUserHospitalInformationForUserHome();
 		$rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
@@ -4162,7 +4251,6 @@ LoginService.getScheduledConsulatation(params);
 	}
 
 
-
 })
 
 
@@ -4198,6 +4286,7 @@ LoginService.getScheduledConsulatation(params);
         var newVal = String(text);
         if(typeof oldLength !== "undefined"){
             if(oldLength !== 3 && String(text).length === 2){
+
                 //newVal = newVal.substr(0,2) + "/" + newVal.substr(2, newVal.length);//
                 newVal = String(text) + "/";
             }
@@ -4279,6 +4368,7 @@ LoginService.getScheduledConsulatation(params);
 	  else dayString = " day";
 
 
+
 	   if(age.years === 0 ) {
 			if(age.days <= 15) {
 				return ageString =  age.months + monthString;
@@ -4299,6 +4389,7 @@ LoginService.getScheduledConsulatation(params);
 			}
 			return ageString = age.years + yearString +'/'+ month; }
 		*/
+
 
 		if(age.years === 0 ) {
 			if(age.days <= 15) {

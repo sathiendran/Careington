@@ -57,6 +57,27 @@ angular.module('starter.services', [])
                 });
     }
 
+
+    this.getTokenFromJWT = function (params) {
+         var requestInfo = {
+             headers: util.getHeaders(),
+             url: apiCommonURL + '/api/v2/account/token?jwt=' + params.jwtKey,
+             method: 'GET'
+         };
+
+         $http(requestInfo).
+                 success(function (data, status, headers, config) {
+                     if (typeof params.success != 'undefined') {
+                         params.success(data);
+                     }
+                 }).
+                 error(function (data, status, headers, config) {
+                     if (typeof params.error != 'undefined') {
+                        params.error(data, status);
+                     }
+                 });
+     }
+
 	this.postSendPasswordResetEmail = function(params) {
 		var confirmSendPasswordResetEmail = {
 			headers: util.getHeaders(params.accessToken),
@@ -249,7 +270,7 @@ angular.module('starter.services', [])
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 			//url: apiCommonURL + '/api/v2/patients/profile?include=Appointments',
-			url: apiCommonURL + '/v2.1/patients/appointments',
+	url: apiCommonURL + '/v2.1/patients/appointments',
             method: 'GET'
         };
 
@@ -272,6 +293,7 @@ angular.module('starter.services', [])
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
+
 			url: apiCommonURL + '/v2.1/patients/' + params.patientId +'/details?include=Appointments',
             method: 'GET'
 
@@ -289,6 +311,7 @@ angular.module('starter.services', [])
                     }
                 });
     }
+
 
 
 		this.getListOfCodeSet = function(params) {
@@ -396,6 +419,7 @@ this.getPatientMedicalProfile = function(params){
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),
               url: apiCommonURL + '/v2.1/patients/'+params.personID+'/encounters',
+
 			  method: 'POST',
 			  data: {
                 AppointmentId: params.AppointmentId,
@@ -507,10 +531,12 @@ this.getPatientMedicalProfile = function(params){
     }
 
     this.getHealthPlanProvidersList = function (params) {
+
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/v2/healthplan/providers',
+
             method: 'GET'
         };
 
@@ -532,7 +558,9 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
+
             url: apiCommonURL + '/v2/patients/consultations/' + params.consultationId + '/all',
+
             method: 'GET'
         };
 
@@ -553,7 +581,9 @@ this.getPatientMedicalProfile = function(params){
 
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
+
             url: apiCommonURL + '/v2/clinicianprofiles/' + params.doctorId,
+
             method: 'GET'
         };
 
@@ -575,8 +605,10 @@ this.getPatientMedicalProfile = function(params){
 
 		var requestInfo = {
 			headers: util.getHeaders(params.accessToken),
+
 			url: apiCommonURL + '/v2/healthplans?patientId=' + params.patientId ,
 			//url: apiCommonURL + '/v2/healthplans',
+
 			method: 'get'
 		};
 
@@ -639,6 +671,7 @@ this.getPatientMedicalProfile = function(params){
           //  url: apiCommonURL + '/reports/consultationreportdetails/' + params.consultationId,
 		   url: apiCommonURL + '/v2/reports/consultation/'+ params.consultationId +'?include=',
 		   // url: apiCommonURL + '/v2/reports/consultation/4461?include=',
+
             method: 'GET'
         };
 
@@ -679,10 +712,12 @@ this.getPatientMedicalProfile = function(params){
     this.getPatientPaymentProfile = function (params) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
+
            // url: apiCommonURL + '/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
 		   // url: apiCommonURL + '/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
 		   // url: apiCommonURL + '/patients/' + params.patientId + '/payments',
 		    url: apiCommonURL + '/v2/patients/payments',
+
             method: 'GET'
         };
 
@@ -711,6 +746,7 @@ this.getPatientMedicalProfile = function(params){
             headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/Hospital/Get',
 		    url: apiCommonURL + '/v2/hospital/' + params.hospitalId,
+
             method: 'GET'
         };
 
@@ -754,12 +790,14 @@ this.getPatientMedicalProfile = function(params){
 		});
 	}
 
+
     this.getFacilitiesList = function (params) {
         //GET v2/patients/hospitals?email=<email>
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/v2/hospitals?patient=' + params.emailAddress,
+
             method: 'GET'
         };
 
@@ -811,7 +849,9 @@ this.getPatientMedicalProfile = function(params){
         //"fields" is a comma-delimited list of the following: medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
+
             url: apiCommonURL + '/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
+
             method: 'GET'
         };
 
@@ -969,6 +1009,7 @@ this.getPatientMedicalProfile = function(params){
         var conferenceKeyInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/v2/physicians/appointments/' + params.consultationId + '/videokey',
+
             method: 'GET'
         };
 
@@ -984,6 +1025,7 @@ this.getPatientMedicalProfile = function(params){
                     }
             });
     }
+
 
 		/*Account API Start*/
 
@@ -1072,6 +1114,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer&patientId=0',
+
             method: 'GET'
         };
 
@@ -1092,6 +1135,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/v2/filesharing/file/customer/' + params.attachmentFileId,
+
             method: 'GET'
         };
 
@@ -1107,9 +1151,10 @@ this.getPatientMedicalProfile = function(params){
                     }
                 });
     }
- 
+
+
 this.getListofLocationOrganization = function(params){
-      
+
       var orglocInfo = {
           headers: util.getHeaders(params.accessToken),
           url: apiCommonURL + '/v2/organizations',
@@ -1160,7 +1205,8 @@ this.getListofLocationOrganization = function(params){
 		})
  }
 
-  
+
+
 
 
  this.postAddCousers = function(params) {
@@ -1307,6 +1353,7 @@ this.getCountryDetails = function () {
 /*var request = {
             headers: util.getHeaders(params.accessToken),
             url: 'http://maps.google.com/maps/geocode/json?address=' + params.SearchKeys + '&sensor  =false&components=country:' + params.CountryCode,
+
             method: 'GET'
         };
 

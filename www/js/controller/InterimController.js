@@ -551,7 +551,56 @@ angular.module('starter.controllers')
 		LoginService.getPrimaryPatientLastName(params);
 	}
 
-	if($stateParams.token != "" && $stateParams.hospitalId != "" && $stateParams.consultationId != ""){
+
+	$rootScope.jwtKey = '';
+	$scope.doGetTokenFromJWT = function () {
+			var params = {
+				jwtKey: $rootScope.jwtKey,
+				success: function (data) {
+					$rootScope.accessToken = data.data[0].access_token;
+					$scope.doGetSingleUserHospitalInformation();
+					$scope.doGetPatientProfiles();
+					$scope.doGetRelatedPatientProfiles('userhome');
+				},
+				error: function (data, status) {
+					 var networkState = navigator.connection.type;
+					if(networkState != 'none') {
+
+							$scope.ErrorMessage = "Incorrect Password. Please try again";
+							$rootScope.Validation($scope.ErrorMessage);
+
+					 } else {
+						$rootScope.serverErrorMessageValidation();
+					 }
+				}
+			};
+
+			LoginService.getTokenFromJWT(params);
+  }
+	if($stateParams.token == "jwt" && $stateParams.hospitalId == "0" && $stateParams.consultationId == "0"){
+			if(window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != ""){
+					var ssoCallbackJWT = window.localStorage.getItem("external_load");
+					if(ssoCallbackJWT.indexOf('jwt') > -1){
+						var EXTRA = {};
+						var extQuery = window.localStorage.getItem("external_load").split('?')
+						var extQueryOnly = extQuery[1];
+
+						var query = extQueryOnly.split("&");
+
+						for (var i = 0, max = query.length; i < max; i++)
+						{
+							 if (query[i] === "") // check for trailing & with no param
+									 continue;
+							 var param = query[i].split("=");
+							 EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+						}
+						var jwtToken = EXTRA['jwt'];
+						$rootScope.jwtKey = jwtToken;
+						$scope.doGetTokenFromJWT();
+				}
+		 }
+	}
+	else if($stateParams.token != "" && $stateParams.token != "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId != ""){
 		$rootScope.accessToken = $stateParams.token;
 		$rootScope.hospitalId = $stateParams.hospitalId;
 		$rootScope.consultationId = $stateParams.consultationId;
@@ -560,7 +609,7 @@ angular.module('starter.controllers')
 		//$scope.doGetExistingConsulatation();
 		$scope.doGetRelatedPatientProfiles('waitingRoom');
 		//$state.go('tab.waitingRoom');
-	}else if($stateParams.token != "" && $stateParams.hospitalId != "" && $stateParams.consultationId == ""){
+	}else if($stateParams.token != "" && $stateParams.token != "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId == ""){
 		$rootScope.accessToken = $stateParams.token;
 		$rootScope.hospitalId = $stateParams.hospitalId;
 		//$rootScope.accessToken = "RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ";
