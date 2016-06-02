@@ -3364,6 +3364,7 @@ LoginService.getScheduledConsulatation(params);
 			alert('No token.  Get token first then attempt operation.');
 			return;
 		}
+		$rootScope.appointmentPatientId = '';
 		 $rootScope.scheduledConsultationList = [];
 		var params = {
 			patientId: $rootScope.primaryPatientId,
@@ -3389,6 +3390,7 @@ LoginService.getScheduledConsulatation(params);
 								'endTime': index.endTime,
 								'intakeMetadata': angular.fromJson(index.intakeMetadata),
 								'participants': angular.fromJson(index.participants),
+								'patientId': index.patientId,
 								'waiveFee': index.waiveFee
 							});
 							angular.forEach(index.participants, function(index, item) {
@@ -3409,7 +3411,6 @@ LoginService.getScheduledConsulatation(params);
 					console.log($rootScope.scheduledList);
 					$rootScope.nextAppointmentDisplay = 'none';
 					$rootScope.accountClinicianFooter = 'block';
-
 
 					var d = new Date();
 					d.setHours(d.getHours() + 12);
@@ -3434,6 +3435,7 @@ LoginService.getScheduledConsulatation(params);
 							{
 								$rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
 								$rootScope.timerCOlor = '#E1FCD4';
+								$rootScope.appointmentPatientId = $rootScope.scheduledList[0].patientId;
 							}
 						}
 					}
