@@ -23,6 +23,8 @@ var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProdu
 var appStoreTestUserEmail = '';
 var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
+var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
+var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 
 
 
@@ -744,11 +746,11 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
       }
   })
 
-   .state('tab.removerelatedusers', {
-      url: '/removerelatedusers',
+   .state('tab.removerelatedUsers', {
+      url: '/removerelatedUsers',
     views: {
       'tab-login': {
-        templateUrl: 'templates/tab-removerelatedusers.html',
+        templateUrl: 'templates/tab-removerelatedUsers.html',
         controller: 'removeuserController'
       }
       }

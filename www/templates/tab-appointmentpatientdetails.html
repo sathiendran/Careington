@@ -92,7 +92,7 @@
    <div ng-hide="healthhide">
         <div class="list listall">
 
-        <a class="item item-avatar avatheight" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+        <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
              <img class="apptimage" src="img\patient.png">
             <h2 class="aptsname">Next Appointment</h2>
              <p class="appmarg">

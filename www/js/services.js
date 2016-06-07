@@ -1086,6 +1086,25 @@ this.getPatientMedicalProfile = function(params){
           });
     }
 
+    this.deleteAccountCoUser = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/v2.1/patients/cousers/'+ params.PatientId,
+          method: 'DELETE',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
     this.updateDependentsAuthorize = function(params) {
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),
@@ -1247,14 +1266,24 @@ this.getPatientMedicalProfile = function(params){
           });
     }
 
-
-
-
-
-
-
-
-
+    this.getListOfMissedConsultation = function(params){
+         var requestInfo = {
+             headers: util.getHeaders(params.accessToken),
+             url: apiCommonURL + '/v2.1/patients/filtered-appointments',
+             method: 'GET',
+         };
+         $http(requestInfo).
+             success(function (data, status, headers, config) {
+                 if (typeof params.success != 'undefined') {
+                     params.success(data);
+                 }
+             }).
+             error(function (data, status, headers, config) {
+                 if (typeof params.error != 'undefined') {
+                     params.success(data);
+                 }
+             });
+       }
 
       })
 

@@ -914,6 +914,22 @@ $scope.OnSelectChronicCondition = function(chronic) {
              LoginService.getListOfCoUsers(params);
          }
 
+
+         $rootScope.doDeleteAccountCoUser = function(patientId) {
+                   var params = {
+                     accessToken: $rootScope.accessToken,
+                     PatientId : patientId,
+                     success: function(data) {
+                     //  $scope.deleteCoUser = JSON.stringify(data, null, 2);
+                       $scope.doGetListOfCoUsers();
+                     },
+                     error: function(data) {
+                         $rootScope.serverErrorMessageValidation();
+                     }
+                   };
+                   LoginService.deleteAccountCoUser(params);
+               }
+
  $scope.removemodal = function(model) {
         $scope.modal.hide();
  };
@@ -944,8 +960,8 @@ $scope.OnSelectChronicCondition = function(chronic) {
  	}
 
  	var fileMimeType = "image/jpeg";
-  //var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
-  var fileUploadUrl = "http://emerald.snap.local/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+  var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+//  var fileUploadUrl = "http://emerald.snap.local/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
  	function cameraActionCallback(buttonIndex) {
  	  if(buttonIndex==3)
  	   {
@@ -995,10 +1011,14 @@ $scope.OnSelectChronicCondition = function(chronic) {
  	        //fileName: filename,
  	        //chunkedMode: false,
  	        //mimeType: fileMimeType,
- 	        headers: { 'Authorization': "Bearer ZaxYTeT_v1bvq3jCP2xsdM4s44J0gXpHxSXS8XMxSz64T4Mls9EZEtSTh7iQdw28aPEd3lLHVYJflaJa-MdHt8grqUA244cAPvTSLDI1aCEZ-j_lskACfyOY1X_mMg_ZbRqtO1eGo2wWzkpeb-hne91VmiQnEflaaFZI6FxwHDI1psbPFm2lPHGpn7kxq7bmZxHIvR_Zl-qqJsXG5NFmAoBJO_AWatAc2tdQuw-wu8wUsQh90piJy-PfeeShtxb-NxKSKrYhYLrPM5OFm_eo8VhjrX4n3fWMN1LnZStuLx0iyt_H7puUW2IyTtJUlsMD-mvkIvcexQXEe0P8XzIkzCA3KdP7UOrGCfpk42BJnHvM_zWgpE307dss0c5DwgYj7VCNtXB7WhXiy7Udzc1VSw",
+ 	      /*  headers: { 'Authorization': "Bearer ZaxYTeT_v1bvq3jCP2xsdM4s44J0gXpHxSXS8XMxSz64T4Mls9EZEtSTh7iQdw28aPEd3lLHVYJflaJa-MdHt8grqUA244cAPvTSLDI1aCEZ-j_lskACfyOY1X_mMg_ZbRqtO1eGo2wWzkpeb-hne91VmiQnEflaaFZI6FxwHDI1psbPFm2lPHGpn7kxq7bmZxHIvR_Zl-qqJsXG5NFmAoBJO_AWatAc2tdQuw-wu8wUsQh90piJy-PfeeShtxb-NxKSKrYhYLrPM5OFm_eo8VhjrX4n3fWMN1LnZStuLx0iyt_H7puUW2IyTtJUlsMD-mvkIvcexQXEe0P8XzIkzCA3KdP7UOrGCfpk42BJnHvM_zWgpE307dss0c5DwgYj7VCNtXB7WhXiy7Udzc1VSw",
                       'X-Api-Key': "c69fe0477e08cb4352e07c502ddd2d146b316112",
                       'X-Developer-Id': "84f6101ff82d494f8fcc5c0e54005895"
-                    },
+                    },*/
+            headers: { 'Authorization': $rootScope.accessToken,
+                        'X-Api-Key': xApiKey,
+                        'X-Developer-Id': xDeveloperId
+                      },
  	      };
 
       $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function (result) {

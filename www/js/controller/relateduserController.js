@@ -416,6 +416,45 @@ angular.module('starter.controllers')
         });
     }
 
+    $rootScope.coUserUnlink = function(coUserDetails) {
+      if(!angular.isUndefined(coUserDetails.dob) &&  coUserDetails.dob !== '' ) {
+         $scope.dob = " . " + coUserDetails.dob;
+       } else {
+         $scope.dob = '';
+       }
+       if(!angular.isUndefined(coUserDetails.relationship) &&  coUserDetails.relationship !== '' ) {
+         $scope.relationship = " . " + coUserDetails.relationship;
+       } else {
+         $scope.relationship = '';
+       }
+        var confirmPopup = $ionicPopup.confirm({
+            title: "<a class='item-avatar'>  <img src='" + coUserDetails.imagePath + "'><span><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
+            subTitle: "<p class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship +"</p>",
+            //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
+            templateUrl: 'templates/coUserTemplate.html',
+            buttons: [{
+                text: 'Cancel',
+                onTap: function(e) {
+                    return false;
+                }
+            }, {
+                text: '<b>Unlink</b>',
+                type: 'button-assertive',
+                onTap: function(e) {
+                    return true;
+                }
+            }, ],
+        });
+        confirmPopup.then(function(res) {
+            if (res) {
+                $rootScope.doDeleteAccountCoUser(coUserDetails.patientId);
+            } else {
+                $scope.showdnewetails = false;
+                $scope.allval = false;
+            }
+        });
+    }
+
 
 
 });
