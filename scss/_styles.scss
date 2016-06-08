@@ -6949,8 +6949,10 @@ Pagination Styles
   }
 }
 .loading-container{
-    background-color: #ececec !important;
+    background-color: #000000 !important;
+    opacity: 0.5 !important;
 }
 .loading-container .loading{
-    background-color: #ececec !important;
+    background-color: #000000 !important;
+    opacity: 1 !important;
 }
