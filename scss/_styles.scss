@@ -358,7 +358,7 @@ html, body { background: transparent !important; }
 }
 
 
-.header_imageAndroid { 
+.header_imageAndroid {
 	margin-top: 35px;
 	text-align: center;
 	width: 100%;
@@ -6947,4 +6947,10 @@ Pagination Styles
   .item {
     padding: 10px;
   }
+}
+.loading-container{
+    background-color: #ececec !important;
+}
+.loading-container .loading{
+    background-color: #ececec !important;
 }

@@ -1,13 +1,16 @@
 angular.module('starter.controllers')
 
-.controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+.controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $ionicLoading) {
+	$ionicLoading.show({
+      template: '<ion-spinner icon="ripple"></ion-spinner>'
+  	});
 	$rootScope.hospitalId = singleHospitalId;
 	if(deploymentEnvLogout === 'Single' && deploymentEnvForProduction ==='Production') {
 			apiCommonURL = 'https://connectedcare.md';
 			api_keys_env = '';
 			$rootScope.APICommonURL = 'https://connectedcare.md';
 	}
-	
+
 
     $scope.doGetSingleUserHospitalInformation = function () {
 			$rootScope.paymentMode = '';
@@ -44,13 +47,14 @@ angular.module('starter.controllers')
 					$rootScope.contactNumber = data.data[0].contactNumber;
 					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
 					$rootScope.clientName = data.data[0].hospitalName;
-
+					$ionicLoading.hide();
                      $state.go('tab.loginSingle');
 
 
 				},
 				error: function (data) {
-					$rootScope.serverErrorMessageValidation();
+					$ionicLoading.hide();
+					//$rootScope.serverErrorMessageValidation();
 				}
 			};
 			LoginService.getHospitalInfo(params);
