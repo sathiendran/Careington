@@ -101,7 +101,6 @@ angular.module('starter.controllers')
 
 		$scope.$on('timer-tick', function (event, args){
 			//$timeout(function(){
-			console.log('Timer tick events by Prabin');
 			if(args.days == 0) {
 				$rootScope.hourDisplay = 'initial';
 				$rootScope.daysDisplay = 'none';
