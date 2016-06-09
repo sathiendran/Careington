@@ -368,8 +368,8 @@ angular.module('starter.controllers')
 					'medicalLicense': index.medicalLicense,
 					'medicalSpeciality': index.medicalSpeciality,
 					'medicalSchool': index.medicalSchool,
-					'profileImage': $rootScope.APICommonURL + index.profileImage,
-					'profileImagePath': $rootScope.APICommonURL + index.profileImagePath,
+					'profileImage': index.profileImage,
+					'profileImagePath': index.profileImagePath,
 					'statesLicenced': index.statesLicenced,
 					'subSpeciality': index.subSpeciality					
 					});	

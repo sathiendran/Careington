@@ -201,7 +201,21 @@ angular.module('starter.controllers')
 					if($rootScope.vaccinationsCurrent == 'N') { $rootScope.vaccinationsCurrent = 'No'; } else if($rootScope.vaccinationsCurrent == 'T') { $rootScope.vaccinationsCurrent = 'True'; } 
 				
 				var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
-				$rootScope.userReportDOB = usDOB.search("y");
+				if(typeof usDOB != 'undefined' && usDOB != '') { 
+					$rootScope.userReportDOB = usDOB.search("y");
+				} else {
+					$rootScope.userReportDOB = 'None Reported';
+				}
+				if(typeof data.data[0].details[0].hospitalImage != 'undefined' && data.data[0].details[0].hospitalImage != '') {
+					var hosImage = data.data[0].details[0].hospitalImage;
+					if(hosImage.indexOf(apiCommonURL) >= 0) {
+						$rootScope.hospitalImage = hosImage;
+					} else {
+						$rootScope.hospitalImage = apiCommonURL + hosImage;
+					}
+				} else {
+					$rootScope.hospitalImage = '';
+				}
 								
 				
 				$rootScope.gender = data.data[0].details[0].gender;
