@@ -86,6 +86,7 @@ if(deploymentEnv == 'Single') {
 				singleSandboxHospitalId = 142;
         brandColor = '#000080';
         logo= 'img/hello420.png';
+				logo= 'https://connectedcare.md/api/v2.1/images/91e9aff7-4236-415e-aff5-17434a17c17b';
         Hospital = "Hello420";
         HospitalTag = 'Medical marijuana cards, quickly';
 				ssoURL = "http://52.34.151.119/hello420/login/";
@@ -707,8 +708,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
   }else if(deploymentEnv == "Single"){
-    //$urlRouterProvider.otherwise('/tab/singleTheme');
-    $urlRouterProvider.otherwise('/tab/loginSingle');
+		if(cobrandApp == 'Hello420')
+    	$urlRouterProvider.otherwise('/tab/singleTheme');
+		else
+    	$urlRouterProvider.otherwise('/tab/loginSingle');
   }else{
     $urlRouterProvider.otherwise('/tab/login');
   }
