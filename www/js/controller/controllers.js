@@ -2225,7 +2225,6 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                     $rootScope.ProviderList = [];
                     angular.forEach($scope.HealthPlanProvidersList, function(index, item) {
 						  $rootScope.ProviderList.push({
-							'id': index.$id,
 							'id': index.id,
 							'payerId': index.payerId,
 							'payerName': index.payerName,
@@ -3104,7 +3103,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$rootScope.patinentCurrentMedication = "";
 			$rootScope.patinentMedicationAllergies = "";
 			$rootScope.patientSurgeriess = "";
-			$rootScope.MedicationCount == 'undefined'
+			$rootScope.MedicationCount == 'undefined';
 			$rootScope.checkedChronic = 0;
 			$rootScope.ChronicCount = "";
 			$rootScope.AllegiesCount = "";
@@ -3765,9 +3764,9 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 								$rootScope.verifyInsuranceSection = "none";
 								$rootScope.verifyConsultChargeSection = "block";
 								if(typeof $rootScope.userDefaultPaymentProfile == "undefined"){
-									$('#addNewCard').val() == 'Choose Your Card';
-									$('#addNewCard_addCard').val() == 'Choose Your Card';
-									$('#addNewCard_submitPay').val() == 'Choose Your Card';
+									$('#addNewCard').val('Choose Your Card');
+									$('#addNewCard_addCard').val('Choose Your Card');
+									$('#addNewCard_submitPay').val('Choose Your Card');
 									$rootScope.userDefaultPaymentProfileText = null;
 								}else{
 									$('#addNewCard').val($rootScope.userDefaultPaymentProfile);
