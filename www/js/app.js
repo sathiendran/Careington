@@ -18,8 +18,8 @@
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
 
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single //Demo
-var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Single'; //Production //Multiple //Single //Demo
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = '';  //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -27,8 +27,8 @@ var loginPageEnv = 'Single';
 var oAuthResponseURL = "";
 
 if(deploymentEnv == 'Single') {
-	//appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-	deploymentEnvForProduction = 'Sandbox';  //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+	appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
+	deploymentEnvForProduction = 'Production';  //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -42,48 +42,54 @@ if(deploymentEnv == 'Single') {
     if(cobrandApp == 'EpicMD'){
         singleStagingHospitalId = 155;
         singleHospitalId = 190;
-		singleQAHospitalId = '';
-		singleSandboxHospitalId = '';
+				singleQAHospitalId = '';
+				singleSandboxHospitalId = '';
         brandColor = '#66c3b0';
         logo= 'img/epicmd_logotypebg.png';
         Hospital = 'EpicMD';
         HospitalTag = 'Virtual Care Concierge';
+				ssoURL = "";
     } else if(cobrandApp == 'TelehealthOne'){
         singleStagingHospitalId = 142;
         singleHospitalId = 142;
-		singleQAHospitalId = '';
-		singleSandboxHospitalId = '';
+				singleQAHospitalId = '';
+				singleSandboxHospitalId = '';
         brandColor = '#5ec4fe';
         logo= 'img/teleLogo.png';
         Hospital = 'telehealthONE';
         HospitalTag = 'Virtual Care Concierge';
+				ssoURL = "";
     } else if(cobrandApp == 'Dokita'){
         singleStagingHospitalId = 156;
         singleHospitalId = 184;
-		singleQAHospitalId = '';
-		singleSandboxHospitalId = '';
+				singleQAHospitalId = '';
+				singleSandboxHospitalId = '';
         brandColor = '#ff0000';
         logo= 'img/dokita.png';
         Hospital = 'Dokita247';
         HospitalTag = 'Virtual Care Concierge';
+				ssoURL = "";
     } else if(cobrandApp == 'DYW'){
         singleStagingHospitalId = 157;
         singleHospitalId = 168;
-		singleQAHospitalId = 156;
-		singleSandboxHospitalId = '';
+				singleQAHospitalId = 156;
+				singleSandboxHospitalId = '';
         brandColor = '#22508b';
         logo= 'img/dyw.jpg';
         Hospital = "DocYourWay's Global Care Management";
         HospitalTag = 'Virtual Care Concierge';
+				ssoURL = "";
     } else if(cobrandApp == 'Hello420'){
 		singleStagingHospitalId = 160;
         singleHospitalId = 197;
-		singleQAHospitalId = '';
-		singleSandboxHospitalId = 142;
+				singleQAHospitalId = '';
+				singleSandboxHospitalId = 142;
         brandColor = '#000080';
         logo= 'img/hello420.png';
+				logo= 'https://connectedcare.md/api/v2.1/images/91e9aff7-4236-415e-aff5-17434a17c17b';
         Hospital = "Hello420";
         HospitalTag = 'Medical marijuana cards, quickly';
+				ssoURL = "http://52.34.151.119/hello420/login/";
 	}
 
 
@@ -643,6 +649,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/singleTheme',
     views: {
       'tab-login': {
+				templateUrl: 'templates/tab-singleTheme.html',
         controller: 'singleHospitalThemeCtrl',
       }
     }
@@ -701,8 +708,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   if(deploymentEnv == "Multiple"){
     $urlRouterProvider.otherwise('/tab/chooseEnvironment');
   }else if(deploymentEnv == "Single"){
-    //$urlRouterProvider.otherwise('/tab/singleTheme');
-    $urlRouterProvider.otherwise('/tab/loginSingle');
+		if(cobrandApp == 'Hello420')
+    	$urlRouterProvider.otherwise('/tab/singleTheme');
+		else
+    	$urlRouterProvider.otherwise('/tab/loginSingle');
   }else{
     $urlRouterProvider.otherwise('/tab/login');
   }

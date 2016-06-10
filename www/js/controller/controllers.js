@@ -960,7 +960,8 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 					$window.localStorage.setItem('username', "");
 					$rootScope.chkedchkbox = false;
 				}
-				$scope.doGetToken();
+				//$scope.doGetToken();
+				$scope.doGetTokenSSO();
 			}
 		}
 	};
@@ -1246,6 +1247,58 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	}
 
+	$scope.doGetTokenSSO = function(){
+		var loginEmail = $rootScope.UserEmail;
+		if(cobrandApp === "Hello420" && loginEmail.toLowerCase() != "itunesmobiletester@gmail.com"){
+				$scope.checkForSSOUserExistsInHello420();
+		}else{
+			$scope.doGetToken();
+		}
+	}
+
+	$scope.checkForSSOUserExistsInHello420 = function(){
+		var Hello420HospitalId = 197;
+		var params = {
+				emailAddress: $rootScope.UserEmail,
+				success: function (data) {
+						$rootScope.FacilitiesList = data.data;
+						if($rootScope.FacilitiesList.length > 0){
+							angular.forEach($rootScope.FacilitiesList, function(index, item) {
+								if(index.providerId == Hello420HospitalId){
+									if(ssoURL !== ""){
+										$scope.ErrorMessage = "You will be redirected to Hello420 website in a moment.";
+										$rootScope.Validation($scope.ErrorMessage);
+										setTimeout(function(){
+											//ssoURL = "http://52.34.151.119/hello420/login/";
+											window.open(ssoURL, '_system', '');
+											return;
+										}, 2000);
+										/*navigator.notification.alert(
+											'You will be redirected to Hello420 website to continue.',  // message
+											function(){
+												ssoURL = "http://52.34.151.119/hello420/login/";
+												window.open(ssoURL, '_system', '');
+												return;
+											},
+											$rootScope.alertMsgName,
+											'OK'
+										);
+										*/
+
+									}
+								}
+							});
+						}else{
+							$scope.ErrorMessage = "Login Failed! Please try again";
+							$rootScope.Validation($scope.ErrorMessage);
+						}
+				},error: function (data) {
+						$scope.ErrorMessage = "Login Failed! Please try again";
+						$rootScope.Validation($scope.ErrorMessage);
+				}
+		};
+		LoginService.getFacilitiesList(params);
+	}
 	//Password functionality
 	$scope.pass = {};
 	$scope.doGetToken = function () {
@@ -1253,56 +1306,56 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 			$scope.ErrorMessage = "Please enter your password";
 			$rootScope.Validation($scope.ErrorMessage);
 		} else {
-			console.log($scope.password);
-			var params = {
-				email: $rootScope.UserEmail,
-				password: $scope.pass.password,
-				userTypeId: 1,
-				hospitalId: $rootScope.hospitalId,
-				success: function (data) {
-					//Get default payment profile from localstorage if already stored.
+				console.log($scope.password);
+				var params = {
+					email: $rootScope.UserEmail,
+					password: $scope.pass.password,
+					userTypeId: 1,
+					hospitalId: $rootScope.hospitalId,
+					success: function (data) {
+						//Get default payment profile from localstorage if already stored.
 
-					$rootScope.accessToken = data.data[0].access_token;
-					console.log($scope.accessToken);
-					if(typeof data.data[0].access_token == 'undefined') {
-						$scope.ErrorMessage = "Incorrect Password. Please try again";
-						$rootScope.Validation($scope.ErrorMessage);
-					} else {
-						$scope.tokenStatus = 'alert-success';
-						$scope.doGetPatientProfiles();
-						$scope.doGetRelatedPatientProfiles();
-                        //$rootScope.CountryLists = CountryList.getCountryDetails();
+						$rootScope.accessToken = data.data[0].access_token;
+						console.log($scope.accessToken);
+						if(typeof data.data[0].access_token == 'undefined') {
+							$scope.ErrorMessage = "Incorrect Password. Please try again";
+							$rootScope.Validation($scope.ErrorMessage);
+						} else {
+							$scope.tokenStatus = 'alert-success';
+							$scope.doGetPatientProfiles();
+							$scope.doGetRelatedPatientProfiles();
+	                        //$rootScope.CountryLists = CountryList.getCountryDetails();
+						}
+					},
+					error: function (data, status) {
+						 var networkState = navigator.connection.type;
+						if(networkState != 'none') {
+							//if(status == '401' || status == '403') {
+						 	/*	navigator.notification.confirm(
+						 			'Your account is not verified yet. Do you want to resend?',
+						 			 function(index){
+										if(index == 1){
+
+						 				}else if(index == 2){
+											$scope.doPostResendEmail();
+										}
+						 			 },
+									'Confirmation:',
+						 			['Cancel','Resend']
+								);*/
+
+						 	//} else {
+						 		$scope.ErrorMessage = "Incorrect Password. Please try again";
+						 		$rootScope.Validation($scope.ErrorMessage);
+						 	//}
+						 } else {
+						 	$rootScope.serverErrorMessageValidation();
+						 }
 					}
-				},
-				error: function (data, status) {
-					 var networkState = navigator.connection.type;
-					if(networkState != 'none') {
-						//if(status == '401' || status == '403') {
-					 	/*	navigator.notification.confirm(
-					 			'Your account is not verified yet. Do you want to resend?',
-					 			 function(index){
-									if(index == 1){
+				};
 
-					 				}else if(index == 2){
-										$scope.doPostResendEmail();
-									}
-					 			 },
-								'Confirmation:',
-					 			['Cancel','Resend']
-							);*/
-
-					 	//} else {
-					 		$scope.ErrorMessage = "Incorrect Password. Please try again";
-					 		$rootScope.Validation($scope.ErrorMessage);
-					 	//}
-					 } else {
-					 	$rootScope.serverErrorMessageValidation();
-					 }
-				}
-			};
-
-			LoginService.getToken(params);
-		}
+				LoginService.getToken(params);
+			}
     }
 	$scope.emailType = 'resetpassword';
 
