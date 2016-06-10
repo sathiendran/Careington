@@ -422,7 +422,7 @@ this.getPatientMedicalProfile = function(params){
 
 			  method: 'POST',
 			  data: {
-                AppointmentId: params.AppointmentId,
+                AppointmentId: params.AppointmentId
               }
 		};
 

@@ -28,7 +28,6 @@ angular.module('starter.controllers')
 						if($rootScope.consultationStatusId === 72 ) {
 							$scope.doGetExistingConsulatationReport();
 						}
-
 				}
 
             },
@@ -40,7 +39,6 @@ angular.module('starter.controllers')
         LoginService.getExistingConsulatation(params);
 
 	}
-
 
     $rootScope.doGetExistingConsulatationReport = function () {
 			$state.go('tab.ReportScreen');
@@ -71,14 +69,15 @@ angular.module('starter.controllers')
 					$rootScope.reportLocation = '';
 				}*/
 
-				if($rootScope.existingConsultationReport.height !=='' && typeof $rootScope.existingConsultationReport.height !== 'undefined')
+                if($rootScope.existingConsultationReport.height !='' && typeof $rootScope.existingConsultationReport.height != 'undefined')
+
 				{
 					$rootScope.reportHeight = $rootScope.existingConsultationReport.height +" "+$rootScope.existingConsultationReport.heightUnit;
 				} else {
 					$rootScope.reportHeight = 'NA';
 				}
 
-				if($rootScope.existingConsultationReport.weight !=='' && typeof $rootScope.existingConsultationReport.weight !== 'undefined')
+				if($rootScope.existingConsultationReport.weight !='' && typeof $rootScope.existingConsultationReport.weight != 'undefined')
 				{
 					$rootScope.reportWeight = $rootScope.existingConsultationReport.weight +" "+$rootScope.existingConsultationReport.weightUnit;
 				} else {
@@ -87,28 +86,28 @@ angular.module('starter.controllers')
 				$rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
 				$rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
 
-				if($rootScope.existingConsultationReport.patientAddress !=='' && typeof $rootScope.existingConsultationReport.patientAddress !== 'undefined')
+				if($rootScope.existingConsultationReport.patientAddress !='' && typeof $rootScope.existingConsultationReport.patientAddress != 'undefined')
 				{
 					$rootScope.reportPatientAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientAddress);
 				} else {
 					$rootScope.reportPatientAddress = 'None Reported';
 				}
 
-				if($rootScope.existingConsultationReport.homePhone !=='' && typeof $rootScope.existingConsultationReport.homePhone !== 'undefined')
+				if($rootScope.existingConsultationReport.homePhone !='' && typeof $rootScope.existingConsultationReport.homePhone != 'undefined')
 				{
 					$rootScope.reportHomePhone = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.homePhone);
 				} else {
 					$rootScope.reportHomePhone = 'NA';
 				}
 
-				if($rootScope.existingConsultationReport.hospitalAddress !=='' && typeof $rootScope.existingConsultationReport.hospitalAddress !== 'undefined')
+				if($rootScope.existingConsultationReport.hospitalAddress !='' && typeof $rootScope.existingConsultationReport.hospitalAddress != 'undefined')
 				{
 					$rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
 				} else {
 					$rootScope.reportHospitalAddress = 'None Reported';
 				}
 
-				if($rootScope.existingConsultationReport.doctorFirstName !=='' && typeof $rootScope.existingConsultationReport.doctorFirstName !== 'undefined')
+				if($rootScope.existingConsultationReport.doctorFirstName !='' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined')
 				{
 					$rootScope.reportDoctorFirstName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorFirstName);
 				} else {
@@ -121,14 +120,14 @@ angular.module('starter.controllers')
 					$rootScope.reportMedicalSpeciality = '';
 				}
 
-				if($rootScope.existingConsultationReport.doctorFirstName !=='' && typeof $rootScope.existingConsultationReport.doctorFirstName !== 'undefined')
+				if($rootScope.existingConsultationReport.doctorFirstName !='' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined')
 				{
 					$rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
 				} else {
 					$rootScope.reportDoctorLastName = 'None Reported';
 				}
 
-				if($rootScope.existingConsultationReport.rx !=='' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
+				if($rootScope.existingConsultationReport.rx !='' && typeof $rootScope.existingConsultationReport.rx != 'undefined') {
 					$rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
 				} else {
 					$rootScope.reportrx = 'None Reported';
@@ -138,7 +137,8 @@ angular.module('starter.controllers')
 				 var startTime = new Date(startTimeISOString );
 				 $rootScope.consultationDate =   new Date( startTime.getTime() + ( startTime.getTimezoneOffset() * 60000 ) );
 
-		if($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined')
+		if($rootScope.existingConsultationReport.consultationDuration != 0 && typeof $rootScope.existingConsultationReport.consultationDuration != 'undefined')
+
 			{
 					$rootScope.displayCOnsultationDuration = "display";
 				   var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
@@ -151,7 +151,7 @@ angular.module('starter.controllers')
 						$rootScope.consultDurationMinutes = consultationMinutes;
 					}
 
-					if(consultationSeconds === 0){
+					if(consultationSeconds == 0){
 						$rootScope.consultDurationSeconds = '00';
 					} else if(consultationSeconds < 10) {
 						$rootScope.consultDurationSeconds = '0' + consultationSeconds;
@@ -190,16 +190,17 @@ angular.module('starter.controllers')
 				$rootScope.intake = $rootScope.existingConsultationReport.intake;
 
 				$rootScope.fullTerm = $rootScope.intake.infantData.fullTerm;
-					if($rootScope.fullTerm === 'N') { $rootScope.fullTerm = 'No'; } else if($rootScope.fullTerm === 'T') { $rootScope.fullTerm = 'True'; }
+
+					if($rootScope.fullTerm == 'N') { $rootScope.fullTerm = 'No'; } else if($rootScope.fullTerm == 'T') { $rootScope.fullTerm = 'True'; }
 
 				$rootScope.vaginalBirth = $rootScope.intake.infantData.vaginalBirth;
-					if($rootScope.vaginalBirth === 'N') { $rootScope.vaginalBirth = 'No'; } else if($rootScope.vaginalBirth === 'T') { $rootScope.vaginalBirth = 'True'; }
+					if($rootScope.vaginalBirth == 'N') { $rootScope.vaginalBirth = 'No'; } else if($rootScope.vaginalBirth == 'T') { $rootScope.vaginalBirth = 'True'; }
 
 				$rootScope.dischargedWithMother = $rootScope.intake.infantData.dischargedWithMother;
-					if($rootScope.dischargedWithMother === 'N') { $rootScope.dischargedWithMother = 'No'; } else if($rootScope.dischargedWithMother === 'T') { $rootScope.dischargedWithMother = 'True'; }
+					if($rootScope.dischargedWithMother == 'N') { $rootScope.dischargedWithMother = 'No'; } else if($rootScope.dischargedWithMother == 'T') { $rootScope.dischargedWithMother = 'True'; }
 
 				$rootScope.vaccinationsCurrent = $rootScope.intake.infantData.vaccinationsCurrent;
-					if($rootScope.vaccinationsCurrent === 'N') { $rootScope.vaccinationsCurrent = 'No'; } else if($rootScope.vaccinationsCurrent === 'T') { $rootScope.vaccinationsCurrent = 'True'; }
+					if($rootScope.vaccinationsCurrent == 'N') { $rootScope.vaccinationsCurrent = 'No'; } else if($rootScope.vaccinationsCurrent == 'T') { $rootScope.vaccinationsCurrent = 'True'; }
 
 				var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
 
@@ -222,7 +223,8 @@ angular.module('starter.controllers')
 				$rootScope.gender = data.data[0].details[0].gender;
 				if(data.data[0].details[0].gender !=='' && typeof data.data[0].details[0].gender !== 'undefined')
 				{
-					if($rootScope.gender === 'M') { $rootScope.gender = 'Male'; } else if($rootScope.gender === 'F') { $rootScope.gender = 'Female'; }
+
+					if($rootScope.gender == 'M') { $rootScope.gender = 'Male'; } else if($rootScope.gender == 'F') { $rootScope.gender = 'Female'; }
 				} else {
 					$rootScope.gender = 'NA';
 				}
@@ -373,7 +375,8 @@ angular.module('starter.controllers')
 			});
 	}
 
-  if(session != null) {
+
+	if(session != null) {
 		session.unpublish(publisher);
 		session.disconnect();
 		 session = null;
@@ -464,7 +467,7 @@ angular.module('starter.controllers')
 
 				var thumbSwiper = new Swiper('.swiper-container',{
 					mode:'horizontal',
-					slidesPerView: 3,
+					slidesPerView: 3
 				});
 
 				session.on('streamCreated', function(event) {
