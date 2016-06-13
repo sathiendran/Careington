@@ -1788,11 +1788,13 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
                         $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
 						if(ReDirectPage == 'tab.userhome') {
 							if(deploymentEnv === "Single"){
-                    $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
-              }else{
-                    $state.go('tab.userhome');
-								//$state.go('tab.userAccount');
-              }
+                    			$scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
+				              }else{
+				                    $state.go('tab.userhome');
+									$state.go('tab.userAccount');
+				              }
+						}else{
+							$state.go('tab.userhome');
 						}
 
 
