@@ -1,83 +1,86 @@
-
 <ion-side-menus>
-	<ion-side-menu-content> 
+<ion-side-menu-content>
 
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-	<div class="buttons"> 
+	<div class="buttons" >
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
+			ng-click="toggleLeft()"></button>
 	</div>
 
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultationSearch" ><i class="icon ion-search" ></i></a></span></h1>
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-click="consultsearch()" ><i class="icon ion-search" ></i></a></span></h1>
 
 
 <div class="bar bar-subheader bar-dark subheaderheight">
-                  <div class="row">
-                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
-					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >Jonathan</span>
-				      <span class="patientLastName ellipsis lnamefont">Fitzpztrick</span>
-				     </div></h1>
-                </div>
-       
+	<div class="row">
+		 <h1 class="headertitle">
+			<div class="ellipsis subHeader_content_name" >
+				<span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
+				<span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+			</div>
+		</h1>
+ </div>
+
        <div class="item item-image-icon" >
 				   <a class="lefthome" ng-href="#/tab/userAccount">
 					<i class="icon ion-home headerlefticons"></i>
 					<p class="homecontent">Account Home</p>
 				</a>
 				<a class="item-avatar itemhead">
-					<p><img src="img\patient.png" class="topimage"></p>
-				</a>
+ 					 <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
+ 			 </a>
 				<a class="rightpatient" ng-href="#/tab/userhome">
 					<i class="icon ion-ios-people headerrighticon"></i>
 					<p class="patientcontent"  >Change Patient</p>
 				</a>
-			</div>	
+			</div>
 
-</div>  
-   
+</div>
+
 </ion-header-bar>
 
 
 
 <ion-view title="">
 	<ion-content class="paticoncontent">
-      
+
       <div class="row">
-         
-       <div class="buttons backbtn"> 
+
+       <div class="buttons backbtn">
 		    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
 			</button>
 	</div>
         <div class=" button-bar">
-          <label class="button button-small btcolor btn-first "  id=""> <span class="tabheading">Past</span></label>
-          <label class="button button-small btnextcolor btn-first tabcontent" ><span class="tabheading">Missed</span></label>
-          <label class="button button-small btnextcolor btn-first tabcontent"><span class="tabheading">Dropped</span></label>
-         
+          <label class="button button-small btcolor btn-first "  id="passed" ng-click="passedconsult()"> <span class="tabheading">Past</span></label>
+          <label class="button button-small btn-first btnextcolor" id="missed" ng-click="missedconsult()"><span class="tabheading">Missed</span></label>
+          <label class="button button-small btn-first btnextcolor" id="dropped" ng-click="droppedconsult()"><span class="tabheading">Dropped</span></label>
+
     </div>
-    
-       <div class="buttons backbtn"> 
+
+       <div class="buttons backbtn">
 		 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
 		 </button>
 	  </div>
    </div>
-      <div class="row rheader">
-           <div class="col col-20"><span></span></div>
-          <div class="col col-20"><span class="topfont">Date</span></div>
-          <div class="col col-15 headertime"><span class="topfont">Time</span></div>
-          <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
-      </div>
-        <hr style="margin-top:-12px;">
- <div class="list listfirst" >      
-   <div class="row">
-      <div class="col col-20 contalign">
+
+<div ng-show="pastshow">
+   <div class="row rheader">
+      <div class="col col-20"><span></span></div>
+      <div class="col col-20"><span class="topfont">Date</span></div>
+      <div class="col col-15 headertime"><span class="topfont">Time</span></div>
+      <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
+   </div>
+  <hr style="margin-top:-12px;">
+  <div class="list listfirst" >
+    <div class="row" ng-repeat="passedData in Passedconsultations">
+       <div class="col col-20 contalign">
          <a class="item item-avatar avatitem">
           <img class="consimg" src="img\patient.png" >
           </a>
-      </div>
-      <div class="col col-20">
+       </div>
+       <div class="col col-20">
            <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
+       </div>
       <div class="col col-15 coltime">
           <p class="colfamily">2:35 PM</p>
       </div>
@@ -87,161 +90,89 @@
           <span ><i class=" ion-chevron-right rghticon"></i></span>
           </p>
        </div>
-  </div>
-      <hr class="dotedhr">
-    
-   <div class="row">
-      <div class="col col-20 contalign">
+     </div>
+		 <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;" >No Passed Consultations Found</ion-item>
+
+   </div>
+	<hr class="dotedhr">
+</div>
+
+<!---- Past Consult End ----->
+
+<div ng-show="missedshow">
+   <div class="row rheader">
+      <div class="col col-20"><span></span></div>
+      <div class="col col-20"><span class="topfont">Date</span></div>
+      <div class="col col-15 headertime"><span class="topfont">Time</span></div>
+      <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
+   </div>
+  <hr style="margin-top:-12px;">
+  <div class="list listfirst" >
+    <div class="row" ng-repeat="missedlist in totlist">
+       <div class="col col-20 contalign">
          <a class="item item-avatar avatitem">
-          <img class="consimg"  src="img\patient.png" >
+          <img class="consimg" src="img\patient.png" >
           </a>
-      </div>
-      <div class="col col-20">
+       </div>
+       <div class="col col-20">
            <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
+       </div>
       <div class="col col-15 coltime">
           <p class="colfamily">2:35 PM</p>
       </div>
       <div class="col col-30">
-           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
+          <p class="coldetails">
+          <span class="colfamily">Dr.McGrath Missed</span>  <span class="vreport" >Details</span>
           <span ><i class=" ion-chevron-right rghticon"></i></span>
           </p>
        </div>
-  </div>
-      <hr class="dotedhr">
-      
-  <div class="row">
-      <div class="col col-20 contalign">
+		 </div>
+   </div>
+	<hr class="dotedhr">
+</div>
+
+<!--- Missed Consult End--->
+
+<div ng-show="droppedshow">
+   <div class="row rheader">
+      <div class="col col-20"><span></span></div>
+      <div class="col col-20"><span class="topfont">Date</span></div>
+      <div class="col col-15 headertime"><span class="topfont">Time</span></div>
+      <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
+   </div>
+  <hr style="margin-top:-12px;">
+  <div class="list listfirst" >
+    <div class="row" ng-repeat="droppedData in Droppedconsultations">
+       <div class="col col-20 contalign">
          <a class="item item-avatar avatitem">
-          <img class="consimg"  src="img\patient.png" >
+          <img class="consimg" src="img\patient.png" >
           </a>
-      </div>
-      <div class="col col-20">
+       </div>
+       <div class="col col-20">
            <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
+       </div>
       <div class="col col-15 coltime">
           <p class="colfamily">2:35 PM</p>
       </div>
       <div class="col col-30">
-           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
+          <p class="coldetails">
+          <span class="colfamily">Dr.McGrath Drop</span>  <span class="vreport" >Details</span>
           <span ><i class=" ion-chevron-right rghticon"></i></span>
           </p>
-      </div>
-  </div>
-      <hr class="dotedhr">
-      
-  <div class="row">
-      <div class="col col-20 contalign">
-         <a class="item item-avatar avatitem">
-          <img class="consimg"  src="img\patient.png" >
-          </a>
-      </div>
-      <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
-      <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
-      </div>
-      <div class="col col-30">
-           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
-          <span ><i class=" ion-chevron-right rghticon"></i></span>
-          </p>
-      </div>
-  </div>
-      <hr class="dotedhr">
-      
-  <div class="row">
-      <div class="col col-20 contalign">
-         <a class="item item-avatar avatitem">
-          <img class="consimg"  src="img\patient.png" >
-          </a>
-      </div>
-      <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
-      <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
-      </div>
-      <div class="col col-30">
-           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
-          <span ><i class=" ion-chevron-right rghticon"></i></span>
-          </p>
-      </div>
-  </div>
-      <hr class="dotedhr">
-      
-   <div class="row">
-      <div class="col col-20 contalign">
-         <a class="item item-avatar avatitem">
-          <img class="consimg"  src="img\patient.png" >
-          </a>
-      </div>
-      <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
-      <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
-      </div>
-      <div class="col col-30">
-           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
-          <span ><i class=" ion-chevron-right rghticon"></i></span>
-          </p>
-      </div>
-  </div>
-      <hr class="dotedhr">
-      
-   <div class="row">
-      <div class="col col-20 contalign">
-         <a class="item item-avatar avatitem">
-          <img class="consimg"  src="img\patient.png" >
-          </a>
-      </div>
-      <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
-      <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
-      </div>
-      <div class="col col-30">
-           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
-          <span ><i class=" ion-chevron-right rghticon"></i></span>
-          </p>
-      </div>
-  </div>
-      <hr class="dotedhr">
-      
-    <div class="row">
-      <div class="col col-20 contalign">
-         <a class="item item-avatar avatitem">
-          <img class="consimg"  src="img\patient.png" >
-          </a>
-      </div>
-      <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
-      </div>
-      <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
-      </div>
-      <div class="col col-30">
-           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
-          <span ><i class=" ion-chevron-right rghticon"></i></span>
-          </p>
-      </div>
-  </div>
-      <hr class="dotedhr">                
- </div>    
-      
+       </div>
+		 </div>
+
+		 <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;" >No Dropped Consultations Found</ion-item>
+
+   </div>
+	<hr class="dotedhr">
+</div>
+<!--- Dropped Consult End--->
+
 	</ion-content>
-  
+
     </ion-side-menu-content>
-</ion-view>     
+</ion-view>
 
 
 <ion-tabs  class=" tabs-icon-top tabs-dark">

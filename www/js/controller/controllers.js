@@ -339,12 +339,12 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 
 	$scope.ChangeEnv = function(env){
 		if(env == "Snap.QA"){
-			//$rootScope.APICommonURL = 'https://snap-qa.com';
-			//apiCommonURL = 'https://snap-qa.com';
+			$rootScope.APICommonURL = 'https://snap-qa.com';
+			apiCommonURL = 'https://snap-qa.com';
 			//$rootScope.APICommonURL ='http://emerald.snap.local';
 			//apiCommonURL ='http://emerald.snap.local';
-			$rootScope.APICommonURL ='https://snapmd-api.azurewebsites.net';
-			apiCommonURL ='https://snapmd-api.azurewebsites.net';
+			//$rootScope.APICommonURL ='https://snapmd-api.azurewebsites.net';
+			//apiCommonURL ='https://snapmd-api.azurewebsites.net';
 			api_keys_env = "Snap.QA";
 		}else if(env == "Sandbox"){
 			$rootScope.APICommonURL = 'https://sandbox.connectedcare.md';

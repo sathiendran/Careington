@@ -34,7 +34,7 @@ angular.module('starter.services', [])
 	 this.getToken = function (params) {
         var requestInfo = {
             headers: util.getHeaders(),
-            url: apiCommonURL + '/v2/Account/Token',
+            url: apiCommonURL + '/api/v2/Account/Token',
             method: 'POST',
             data: {
                 UserTypeId: params.userTypeId,
@@ -81,8 +81,8 @@ angular.module('starter.services', [])
 	this.postSendPasswordResetEmail = function(params) {
 		var confirmSendPasswordResetEmail = {
 			headers: util.getHeaders(params.accessToken),
-          //  url: apiCommonURL + '/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
-              url: apiCommonURL + '/v2/patients/mail/' + params.emailType,
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+              url: apiCommonURL + '/api/v2/patients/mail/' + params.emailType,
 			 //http://emeraldg.local/v2/patients/mail/resetPassword
 			method: 'POST',
 			 data: {
@@ -108,7 +108,7 @@ angular.module('starter.services', [])
 	this.postResendEmail = function(params) {
 		var confirmResendMail = {
 			headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL + '/v2/patients/single-trip-registration/resend-onboarding-email',
+              url: apiCommonURL + '/api/v2/patients/single-trip-registration/resend-onboarding-email',
 			  method: 'POST',
 			  data: {
                 email: params.email,
@@ -133,7 +133,7 @@ angular.module('starter.services', [])
 		var searchProviderList = {
 			headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/v2/hospitals/providers/'+ params.providerSearchKey,
+		   url: apiCommonURL + '/api/v2/hospitals/providers/'+ params.providerSearchKey,
             method: 'GET'
 		};
 
@@ -181,8 +181,8 @@ angular.module('starter.services', [])
 	this.getPatientProfiles = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
-      // url: apiCommonURL + '/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+      // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		   url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
        method: 'GET'
 		};
 
@@ -202,8 +202,8 @@ angular.module('starter.services', [])
 	this.getSelectedPatientProfiles = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/v2/patients/profile/'+params.patientId+'?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
+           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		   url: apiCommonURL + '/api/v2/patients/profile/'+params.patientId+'?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
             method: 'GET'
 		};
 
@@ -223,7 +223,7 @@ angular.module('starter.services', [])
 	this.getPrimaryPatientLastName = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/patients/profiles/' + params.patientId,
+            url: apiCommonURL + '/api/v2/patients/profiles/' + params.patientId,
             method: 'GET'
 		};
 
@@ -244,7 +244,7 @@ angular.module('starter.services', [])
 	this.getRelatedPatientProfiles = function(params) {
 		var confirmHealthPlanList = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/patients/familyprofiles/' + /*params.patientID +*/ 'dependents',
+            url: apiCommonURL + '/api/v2/patients/familyprofiles/' + /*params.patientID +*/ 'dependents',
             method: 'GET'
 		};
 
@@ -264,13 +264,13 @@ angular.module('starter.services', [])
 
 
     this.getScheduledConsulatation = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/scheduledconsultations?patientId={patientId}
+        //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 			//url: apiCommonURL + '/api/v2/patients/profile?include=Appointments',
-	url: apiCommonURL + '/v2.1/patients/appointments',
+	url: apiCommonURL + '/api/v2.1/patients/appointments',
             method: 'GET'
         };
 
@@ -288,13 +288,13 @@ angular.module('starter.services', [])
     }
 
 	this.getIndividualScheduledConsulatation = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/scheduledconsultations?patientId={patientId}
+        //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 
-			url: apiCommonURL + '/v2.1/patients/' + params.patientId +'/details?include=Appointments',
+			url: apiCommonURL + '/api/v2.1/patients/' + params.patientId +'/details?include=Appointments',
             method: 'GET'
 
         };
@@ -317,7 +317,7 @@ angular.module('starter.services', [])
 		this.getListOfCodeSet = function(params) {
 			var PatientDetailsList = {
 				headers: util.getHeaders(params.accessToken),
-        url: apiCommonURL + '/v2/codesets?hospitalId='+params.hospitalId+'&fields=medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns, eyecolor, haircolor, ethnicity, bloodtype, relationship, heightunit, weightunit',
+        url: apiCommonURL + '/api/v2/codesets?hospitalId='+params.hospitalId+'&fields=medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns, eyecolor, haircolor, ethnicity, bloodtype, relationship, heightunit, weightunit',
 	             method: 'GET'
 			};
 
@@ -337,7 +337,7 @@ angular.module('starter.services', [])
 this.getPatientMedicalProfile = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.patientId,
+          url: apiCommonURL + '/api/v2/patients/medicalprofile/'+ params.patientId,
           method: 'GET',
       };
       $http(requestInfo).
@@ -358,7 +358,7 @@ this.getPatientMedicalProfile = function(params){
    this.putPatientMedicalProfile = function(params){
       var requestpatientInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2/patients/medicalprofile/'+ params.PatientId
+          url: apiCommonURL + '/api/v2/patients/medicalprofile/'+ params.PatientId
           ,
           method: 'PUT',
              data: {
@@ -387,7 +387,7 @@ this.getPatientMedicalProfile = function(params){
     this.putProfileUpdation = function(params){
        var requestpatientInfo = {
            headers: util.getHeaders(params.accessToken),
-             url: apiCommonURL + '/patients/profile',
+             url: apiCommonURL + '/api/patients/profile',
            method: 'PUT',
            data: {
                    emailAddress: params.emailAddress,
@@ -418,7 +418,7 @@ this.getPatientMedicalProfile = function(params){
 	this.postGetConsultationId = function(params) {
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL + '/v2.1/patients/'+params.personID+'/encounters',
+              url: apiCommonURL + '/api/v2.1/patients/'+params.personID+'/encounters',
 
 			  method: 'POST',
 			  data: {
@@ -443,7 +443,7 @@ this.getPatientMedicalProfile = function(params){
 
 		var confirmOnDemandConsultationSave = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/patients/consultations',
+            url: apiCommonURL + '/api/v2/patients/consultations',
             method: 'POST',
 			data: params.OnDemandConsultationData
 		};
@@ -465,8 +465,8 @@ this.getPatientMedicalProfile = function(params){
 	this.postClearHealthPlan = function(params) {
 		var confirmPostClearHealthPlan = {
 			headers: util.getHeaders(params.accessToken),
-          //  url: apiCommonURL + '/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
-      url: apiCommonURL + '/healthplan/' + params.healthPlanID +'/clear',
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+      url: apiCommonURL + '/api/healthplan/' + params.healthPlanID +'/clear',
 			method: 'POST',
 			 data: {
                 InsuranceCompanyName: params.InsuranceCompanyName,
@@ -491,7 +491,7 @@ this.getPatientMedicalProfile = function(params){
 	this.getConcentToTreat = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/publicdocuments?documentType=' + params.documentType +'&hospitalId=' + params.hospitalId,
+            url: apiCommonURL + '/api/v2/publicdocuments?documentType=' + params.documentType +'&hospitalId=' + params.hospitalId,
             method: 'GET'
 		};
 
@@ -512,7 +512,7 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/patients/consultations/' + params.consultationId + '/intake',
+            url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/intake',
             method: 'PUT',
 			data: params.ConsultationSaveData
         };
@@ -535,7 +535,7 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/healthplan/providers',
+            url: apiCommonURL + '/api/v2/healthplan/providers',
 
             method: 'GET'
         };
@@ -559,7 +559,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
 
-            url: apiCommonURL + '/v2/patients/consultations/' + params.consultationId + '/all',
+            url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/all',
 
             method: 'GET'
         };
@@ -582,7 +582,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
 
-            url: apiCommonURL + '/v2/clinicianprofiles/' + params.doctorId,
+            url: apiCommonURL + '/api/v2/clinicianprofiles/' + params.doctorId,
 
             method: 'GET'
         };
@@ -606,8 +606,8 @@ this.getPatientMedicalProfile = function(params){
 		var requestInfo = {
 			headers: util.getHeaders(params.accessToken),
 
-			url: apiCommonURL + '/v2/healthplans?patientId=' + params.patientId ,
-			//url: apiCommonURL + '/v2/healthplans',
+			url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
+			//url: apiCommonURL + '/api/v2/healthplans',
 
 			method: 'get'
 		};
@@ -628,7 +628,7 @@ this.getPatientMedicalProfile = function(params){
 	this.postNewHealthPlan = function(params) {
 		var confirmPatientProfile = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/healthplan',
+            url: apiCommonURL + '/api/healthplan',
             method: 'POST',
 			data: {
                 healthPlanId: params.healthPlanID,
@@ -668,9 +668,9 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-          //  url: apiCommonURL + '/reports/consultationreportdetails/' + params.consultationId,
-		   url: apiCommonURL + '/v2/reports/consultation/'+ params.consultationId +'?include=',
-		   // url: apiCommonURL + '/v2/reports/consultation/4461?include=',
+          //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
+		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
 
             method: 'GET'
         };
@@ -691,7 +691,7 @@ this.getPatientMedicalProfile = function(params){
 	this.getPatientsSoapNotes = function (params) {
 		var confirmSoapPost = {
 			headers: util.getHeaders(params.accessToken),
-			url: apiCommonURL + '/Soapnotes/Get/'+ params.consultationId,
+			url: apiCommonURL + '/api/Soapnotes/Get/'+ params.consultationId,
             method: 'GET'
 		};
 
@@ -713,10 +713,10 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
 
-           // url: apiCommonURL + '/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
-		   // url: apiCommonURL + '/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
-		   // url: apiCommonURL + '/patients/' + params.patientId + '/payments',
-		    url: apiCommonURL + '/v2/patients/payments',
+           // url: apiCommonURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+		   // url: apiCommonURL + '/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
+		   // url: apiCommonURL + '/api/patients/' + params.patientId + '/payments',
+		    url: apiCommonURL + '/api/v2/patients/payments',
 
             method: 'GET'
         };
@@ -744,8 +744,8 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/Hospital/Get',
-		    url: apiCommonURL + '/v2/hospital/' + params.hospitalId,
+           // url: apiCommonURL + '/api/Hospital/Get',
+		    url: apiCommonURL + '/api/v2/hospital/' + params.hospitalId,
 
             method: 'GET'
         };
@@ -773,7 +773,7 @@ this.getPatientMedicalProfile = function(params){
 	this.getonDemandAvailability = function(params) {
 		var onDemandAvailability = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2.1/patients/ondemand/availability?providerId=' + params.hospitalId,
+            url: apiCommonURL + '/api/v2.1/patients/ondemand/availability?providerId=' + params.hospitalId,
             method: 'GET'
 		};
 
@@ -796,7 +796,7 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/hospitals?patient=' + params.emailAddress,
+            url: apiCommonURL + '/api/v2/hospitals?patient=' + params.emailAddress,
 
             method: 'GET'
         };
@@ -818,7 +818,7 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/patients/copay',
+            url: apiCommonURL + '/api/v2/patients/copay',
             method: 'POST',
             data: {
                 ProfileId: params.profileId,
@@ -850,7 +850,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
 
-            url: apiCommonURL + '/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
+            url: apiCommonURL + '/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
 
             method: 'GET'
         };
@@ -872,8 +872,8 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/patients/' + params.userId + '/payments',
-		    url: apiCommonURL + '/v2/patients/payments',
+           // url: apiCommonURL + '/api/patients/' + params.userId + '/payments',
+		    url: apiCommonURL + '/api/v2/patients/payments',
             method: 'POST',
             data: {
                 EmailId: params.EmailId,
@@ -908,7 +908,7 @@ this.getPatientMedicalProfile = function(params){
     this.postApplyHealthPlan = function(params) {
 		var confirmPatientProfile = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/healthplan/' + params.healthPlanId + '/apply',
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/apply',
             method: 'POST',
 			data: {
                 insuranceCompanyName: params.insuranceCompanyName,
@@ -933,7 +933,7 @@ this.getPatientMedicalProfile = function(params){
 	 this.postVerifyHealthPlan = function(params) {
 		var confirmPatientProfile = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/healthplan/' + params.healthPlanId + '/apply?retry=1',
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/apply?retry=1',
             method: 'POST',
 			data: {
                 InsuranceCompanyName: params.insuranceCompanyName,
@@ -958,7 +958,7 @@ this.getPatientMedicalProfile = function(params){
 	this.postSkipHealthPlan = function(params) {
 		var confirmPatientProfile = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/healthplan/' + params.healthPlanId + '/skip',
+            url: apiCommonURL + '/api/healthplan/' + params.healthPlanId + '/skip',
             method: 'POST',
 			data: {
                 InsuranceCompanyName: params.insuranceCompanyName,
@@ -983,7 +983,7 @@ this.getPatientMedicalProfile = function(params){
     this.updateConsultationEvent = function(params) {
 		var updatedConsultationEvent = {
 			headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/consultations/events',
+            url: apiCommonURL + '/api/v2/consultations/events',
             method: 'POST',
 			data: {
 				eventType: params.eventType,
@@ -1008,7 +1008,7 @@ this.getPatientMedicalProfile = function(params){
     this.getVideoConferenceKeys = function(params) {
         var conferenceKeyInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/physicians/appointments/' + params.consultationId + '/videokey',
+            url: apiCommonURL + '/api/v2/physicians/appointments/' + params.consultationId + '/videokey',
 
             method: 'GET'
         };
@@ -1032,7 +1032,7 @@ this.getPatientMedicalProfile = function(params){
 		this.getListOfCoUsers = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2/patients/familygroup/adults?authorizedOnly=False',
+          url: apiCommonURL + '/api/v2/patients/familygroup/adults?authorizedOnly=False',
           method: 'GET',
       };
       $http(requestInfo).
@@ -1051,7 +1051,7 @@ this.getPatientMedicalProfile = function(params){
     this.getAccountDependentDetails = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2/patients/familyprofiles/dependents',
+          url: apiCommonURL + '/api/v2/patients/familyprofiles/dependents',
           method: 'GET',
       };
       $http(requestInfo).
@@ -1070,7 +1070,7 @@ this.getPatientMedicalProfile = function(params){
     this.deleteAccountUser = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2/patients/profiles/'+ params.PatientId,
+          url: apiCommonURL + '/api/v2/patients/profiles/'+ params.PatientId,
           method: 'DELETE',
       };
       $http(requestInfo).
@@ -1089,7 +1089,7 @@ this.getPatientMedicalProfile = function(params){
     this.deleteAccountCoUser = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2.1/patients/cousers/'+ params.PatientId,
+          url: apiCommonURL + '/api/v2.1/patients/cousers/'+ params.PatientId,
           method: 'DELETE',
       };
       $http(requestInfo).
@@ -1108,7 +1108,7 @@ this.getPatientMedicalProfile = function(params){
     this.updateDependentsAuthorize = function(params) {
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL + '/v2/patients/familygroup/'+params.patientId+'/relationship',
+              url: apiCommonURL + '/api/v2/patients/familygroup/'+params.patientId+'/relationship',
 			  method: 'PUT',
 			  data: {
                 RelationCodeId: params.RelationCodeId,
@@ -1132,7 +1132,7 @@ this.getPatientMedicalProfile = function(params){
 	this.getAttachmentList = function (params) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer&patientId=0',
+            url: apiCommonURL + '/api/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer&patientId=0',
 
             method: 'GET'
         };
@@ -1153,7 +1153,7 @@ this.getPatientMedicalProfile = function(params){
 	this.getAttachmentURL = function (params) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/v2/filesharing/file/customer/' + params.attachmentFileId,
+            url: apiCommonURL + '/api/v2/filesharing/file/customer/' + params.attachmentFileId,
 
             method: 'GET'
         };
@@ -1250,7 +1250,25 @@ this.getPatientMedicalProfile = function(params){
  this.getListOfLocationOrganization = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
-          url: apiCommonURL + '/v2/organizations',
+          url: apiCommonURL + '/api/v2/organizations',
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+    this.getListOfPassedConsultations = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+           url: apiCommonURL+'/v2/patients/'+params.patientId+'/consultations/status/'+ 72,
           method: 'GET',
       };
       $http(requestInfo).
@@ -1266,10 +1284,31 @@ this.getPatientMedicalProfile = function(params){
           });
     }
 
+     this.getListOfDroppedConsultations = function(params){
+       var requestInfo = {
+           headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL+'/v2/patients/'+params.patientId+'/consultations/status/'+81,
+           method: 'GET',
+       };
+       $http(requestInfo).
+           success(function (data, status, headers, config) {
+               if (typeof params.success != 'undefined') {
+                   params.success(data);
+               }
+           }).
+           error(function (data, status, headers, config) {
+               if (typeof params.error != 'undefined') {
+                   params.success(data);
+               }
+           });
+     }
+
+
+
     this.getListOfMissedConsultation = function(params){
          var requestInfo = {
-             headers: util.getHeaders(params.accessToken),
-             url: apiCommonURL + '/v2.1/patients/filtered-appointments',
+             headers:util.getHeaders(params.accessToken),
+             url: apiCommonURL+'/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes,
              method: 'GET',
          };
          $http(requestInfo).
@@ -1286,6 +1325,7 @@ this.getPatientMedicalProfile = function(params){
        }
 
       })
+
 
 
 

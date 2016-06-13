@@ -11603,6 +11603,9 @@ a {
     .ContentSearchHomeUser .item-input input {
       font-size: 19px; }
 
+#guardian {
+  display: none; }
+
 .PatintHeaderFontStyleInner {
   font-family: "Glober Thin"; }
 
@@ -11628,8 +11631,7 @@ form input + i.icon.error {
   display: none;
   margin-left: 8px; }
 
-s
-form.ng-submitted input.ng-invalid + i.icon.error {
+s form.ng-submitted input.ng-invalid + i.icon.error {
   display: block; }
 
 form .has-error {
@@ -15618,3 +15620,11 @@ Pagination Styles
 
 .menu-left .item {
   padding: 10px; }
+
+.loading-container {
+  background-color: #000000 !important;
+  opacity: 0.5 !important; }
+
+.loading-container .loading {
+  background-color: #000000 !important;
+  opacity: 1 !important; }

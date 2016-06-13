@@ -812,7 +812,7 @@ angular.module('starter', ['ionic','ngTouch', 'starter.controllers', 'starter.se
     views: {
       'tab-login': {
         templateUrl: 'templates/tab-consultationSearch.html',
-        controller: ''
+        controller: 'consultationsearchController'
       }
       }
   })

@@ -112,6 +112,8 @@ angular.module('starter.controllers')
             $rootScope.userGender = "FeMale";
               $rootScope.isCheckedFeMale = true;
           }
+         $rootScope.passededconsultants();
+
           $state.go('tab.healthinfo');
         //  $rootScope.doGetListOfCodeSet();
         }
@@ -122,7 +124,33 @@ angular.module('starter.controllers')
 
         $rootScope.doGetCurrentUserAppointment = function() {
           $state.go('tab.appointmentpatientdetails');
+           $rootScope.passededconsultants();
         }
+
+
+        $rootScope.passededconsultants=function(){
+
+          if ($rootScope.accessToken == 'No Token') {
+         alert('No token.  Get token first then attempt operation.');
+         return;
+       }
+          var params = {
+             patientId: $rootScope.patientId,
+             accessToken: $rootScope.accessToken,
+             statusId :72,
+              success: function (data) {
+              $rootScope.Passedconsultations= data.data;
+
+              },
+              error: function (data) {
+              $scope.listOfConsultations = 'Error getting List Of Consultations';
+              }
+          };
+         LoginService.getListOfPassedConsultations(params);
+
+}
+
+
 
 
     })

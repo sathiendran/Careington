@@ -1,10 +1,10 @@
 
 <ion-side-menus>
-<ion-side-menu-content> 
+<ion-side-menu-content>
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-<div class="buttons" > 
+<div class="buttons" >
 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 ng-click="toggleLeft()"></button>
 </div>
@@ -13,28 +13,28 @@ ng-click="toggleLeft()"></button>
 
 <div class="bar bar-subheader csubheader">
       <div class="row">
-           <div class="buttons backbtn"  > 
+           <div class="buttons backbtn"  >
    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
      </div>
         <div class=" button-bar">
-          <label class="button button-small btcolor btn-first "  id=""> <span class="tabheading">Past</span></label>
-          <label class="button button-small btnextcolor btn-first tabcontent" ><span class="tabheading">Missed</span></label>
-          <label class="button button-small btnextcolor btn-first tabcontent"><span class="tabheading">Dropped</span></label>
-         
+          <label class="button button-small btcolor btn-first "  id="passedsearch" ng-click="passedsearchconsult()"> <span class="tabheading">Past</span></label>
+          <label class="button button-small btn-first btnextcolor" id="missedsearch" ng-click="missedsearchconsult()"><span class="tabheading">Missed</span></label>
+          <label class="button button-small btn-first btnextcolor" id="droppedsearch" ng-click="droppedsearchconsult()"><span class="tabheading">Dropped</span></label>
+
     </div>
-       <div class="buttons backbtn"> 
+       <div class="buttons backbtn">
 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
- </div>        
+ </div>
    </div>
  <div class="csearch">
       <h6 class="hsearch">
-         <!-- <i class="icon ion-search fontcolor"></i> 
+         <!-- <i class="icon ion-search fontcolor"></i>
           <span class="fontcolor">Search</span>-->
            <div class="search_home UserHmeSub concernListSearchHome">
        <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
 	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="data.searchQuery" >
         </label>
-	</div> 
+	</div>
        </h6>
  </div>
 
@@ -42,32 +42,19 @@ ng-click="toggleLeft()"></button>
           <div class="col col-25 dsheader">Date</div>
           <div class="col col-20 csheader">Time</div>
           <div class="col col-60 csheader">Provider</div>
-          
-          
+
+
     </div>
-</div>  
-   
+</div>
+
 </ion-header-bar>
 <ion-view>
 	<ion-content class="consultcontent">
-     
-     <div class="row rowalign">
-         <div class="row fstrow" >
-     <div class="col col-25 sfont">
-        <p class="colfamily">Nov 16, 2015</p>
-     </div>
-     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
-     <div class="col col-60">
-       <p>
-         <span class="colfamily">Dr.McGrath</span>
-         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
-       </p>
-     </div>
-         </div>
-    </div>
-   <hr class="dotedhr">   
-   
-    <div class="row rowalign">
+
+
+
+<div ng-show="passedsearchshow" >
+    <div class="row rowalign" ng-repeat="passedsearchData in Passedconsultations">
       <div class="row">
      <div class="col col-25 sfont">
         <p class="colfamily">Nov 16, 2015</p>
@@ -80,76 +67,79 @@ ng-click="toggleLeft()"></button>
        </p>
      </div>
       </div>
-    </div>
-   <hr class="dotedhr">      
-       
-  <div class="row rowalign">
-    <div class="row"> 
-     <div class="col col-25 sfont">
-        <p class="colfamily">Nov 16, 2015</p>
-     </div>
-     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
-     <div class="col col-60">
-       <p>
-         <span class="colfamily">Dr.McGrath</span>
-         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
-       </p>
-     </div>
-    </div>
-    </div>
-   <hr class="dotedhr">   
-    
-    <div class="row rowalign">
-    <div class="row">   
-     <div class="col col-25 sfont" >
-        <p class="colfamily">Nov 16, 2015</p>
-     </div>
-     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
-     <div class="col col-60">
-       <p>
-         <span class="colfamily">Dr.McGrath</span>
-         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon" ></i></span>
-       </p>
-     </div>
-    </div>
-    </div>
-   <hr class="dotedhr">      
-   
-   <div class="row rowalign">
-    <div class="row">  
-      <div class="col col-25 sfont">
-        <p class="colfamily">Nov 16, 2015</p>
+  </div>
+   <hr class="dotedhr">
+   <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;" >No Passed Search Consultations Found</ion-item>
+</div>
+
+
+<div ng-show="missedsearchshow" >
+    <div class="row rowalign" ng-repeat="missedsearchData in Passedconsultations">
+      <div class="row">
+        <div class="col col-25 sfont">
+         <p class="colfamily">Nov 16, 2015</p>
+        </div>
+        <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+        <div class="col col-60">
+          <p>
+            <span class="colfamily">Dr.McGrath</span>
+            <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
+          </p>
+        </div>
       </div>
-     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
-     <div class="col col-60">
-       <p>
-         <span class="colfamily">Dr.McGrath</span>
-         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon" ></i></span>
-       </p>
-     </div>
     </div>
+  <ion-item ng-if="!Missedconsultations.length" class="noResult" style="white-space: normal;" >No Missed Search Consultations Found</ion-item>
+
+</div>
+
+<!--
+<div ng-show="missedsearchshow" >
+
+  <div class="row rowalign" ng-repeat="missedsearchData in Passedconsultations">
+    <div class="row">
+   <div class="col col-25 sfont">
+      <p class="colfamily">Nov 16, 2015</p>
+   </div>
+   <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+   <div class="col col-60">
+     <p>
+       <span class="colfamily">Dr.McGrath</span>
+       <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
+     </p>
+   </div>
     </div>
-   <hr class="dotedhr">  
-   
-   <div class="row rowalign">
-    <div class="row">   
-     <div class="col col-25 sfont">
-        <p class="colfamily">Nov 16, 2015</p>
-     </div>
-     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
-     <div class="col col-60">
-       <p>
-         <span class="colfamily">Dr.McGrath</span>
-         <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon" ></i></span>
-       </p>
-     </div>
+</div>
+ <hr class="dotedhr">
+</div>
+<ion-item ng-if="!Missedconsultations.length" class="noResult" style="white-space: normal;" >No Missed Search Consultations Found</ion-item>
+</div>-->
+
+<div ng-show="droppedsearchshow" >
+
+  <div class="row rowalign" ng-repeat="droppedsearchData in Droppedconsultations">
+    <div class="row">
+   <div class="col col-25 sfont">
+      <p class="colfamily">Nov 16, 2015</p>
+   </div>
+   <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+   <div class="col col-60">
+     <p>
+       <span class="colfamily">Dr.McGrath</span>
+       <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
+     </p>
+   </div>
     </div>
-    </div>
-   <hr class="dotedhr">  
+</div>
+ <hr class="dotedhr">
+
+<ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;" >No Dropped Search Consultations Found</ion-item>
+</div>
+
+
 	</ion-content>
-  
+
     </ion-side-menu-content>
-</ion-view>     
+</ion-view>
 
 
 <ion-tabs  class=" tabs-icon-top tabs-dark">
