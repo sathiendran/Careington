@@ -1026,6 +1026,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     };
 
       // Onchange of Current Medication
+  	$scope.OnSelectCurrentMedication = function(item) {
         if(item.checked == true) {
 	        $rootScope.checkedMedication++;
       	}  else  {
