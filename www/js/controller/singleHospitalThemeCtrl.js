@@ -2,8 +2,9 @@ angular.module('starter.controllers')
 
 .controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $ionicLoading) {
 	$ionicLoading.show({
-      template: '<ion-spinner icon="ripple"></ion-spinner>'
-  	});
+      template: '<img src="img/puff.svg" alt="Loading" />'
+  });
+
 	$rootScope.hospitalId = singleHospitalId;
 	if(deploymentEnvLogout === 'Single' && deploymentEnvForProduction ==='Production') {
 			apiCommonURL = 'https://connectedcare.md';
@@ -22,7 +23,8 @@ angular.module('starter.controllers')
 					$rootScope.getDetails = data.data[0].enabledModules;
 					if($rootScope.getDetails !== '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
-							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+
+							if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
 								$rootScope.insuranceMode = 'on';
 							}
 							if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
@@ -34,9 +36,10 @@ angular.module('starter.controllers')
 						}
 					}
                     $rootScope.brandColor = data.data[0].brandColor;
-                    $rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+					//$rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                    $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
-                    if(deploymentEnvLogout === 'Multiple') {
+                    if(deploymentEnvLogout == 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase =  'Virtual Care';
                     } else {
@@ -47,14 +50,26 @@ angular.module('starter.controllers')
 					$rootScope.contactNumber = data.data[0].contactNumber;
 					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
 					$rootScope.clientName = data.data[0].hospitalName;
+
+					brandColor = $rootScope.brandColor;
+					logo = $rootScope.logo;
+				 	HospitalTag = $rootScope.HospitalTag;
+					Hospital = $rootScope.Hospital;
+					if(!angular.isUndefined(data.data[0].customerSso)){
+						if(data.data[0].customerSso === "Mandatory"){
+							ssoURL = data.data[0].patientLogin;
+							//"Mandatory"
+							//patientConsultEndUrl
+						}
+
+					}
 					$ionicLoading.hide();
-                     $state.go('tab.loginSingle');
-
-
+					$state.go('tab.loginSingle');
 				},
 				error: function (data) {
 					$ionicLoading.hide();
 					//$rootScope.serverErrorMessageValidation();
+
 				}
 			};
 			LoginService.getHospitalInfo(params);
