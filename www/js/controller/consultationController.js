@@ -73,7 +73,7 @@ angular.module('starter.controllers')
   $scope.isdiplay = !$scope.isdiplay;
 
   }
-  $rootScope.passedsearchconsult=function(){
+  $rootScope.passedconsult=function(){
    $rootScope.passededconsultants();
     var myEl = angular.element(document.querySelector('#passed'));
     myEl.removeClass('btnextcolor');

@@ -79,14 +79,14 @@
           </a>
        </div>
        <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
+           <p class="colfamily coldate"> {{ passedData.consultationDate }} </p>
        </div>
       <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
+          <p class="colfamily"> {{ passedData.consultationTime}}</p>
       </div>
       <div class="col col-30">
           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath </span>  <span class="vreport" >Details</span>
+          <span class="colfamily"> {{ passedData.assignedDoctorName }}</span>  <span class="vreport" >Details</span>
           <span ><i class=" ion-chevron-right rghticon"></i></span>
           </p>
        </div>
