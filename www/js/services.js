@@ -1176,7 +1176,7 @@ this.getPatientMedicalProfile = function(params){
 
 		var registerDependentdetails = {
 			headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL +'/v2/familygroups/dependents',
+              url: apiCommonURL +'/api/v2/familygroups/dependents',
 			  method: 'POST',
 			  data: {
                  EmailAddress: params.EmailAddress,
@@ -1208,7 +1208,7 @@ this.getPatientMedicalProfile = function(params){
 
 		var registerCouserdetails = {
 			headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL +'/v2/patients/cousers',
+              url: apiCommonURL +'/api/v2/patients/cousers',
 			  method: 'POST',
 			  data: {
                  email: params.email,
@@ -1268,7 +1268,7 @@ this.getPatientMedicalProfile = function(params){
     this.getListOfPassedConsultations = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
-           url: apiCommonURL+'/v2/patients/'+params.patientId+'/consultations/status/'+ 72,
+           url: apiCommonURL+'/api/v2/patients/'+params.patientId+'/consultations/status/'+ 72,
           method: 'GET',
       };
       $http(requestInfo).
@@ -1287,7 +1287,7 @@ this.getPatientMedicalProfile = function(params){
      this.getListOfDroppedConsultations = function(params){
        var requestInfo = {
            headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL+'/v2/patients/'+params.patientId+'/consultations/status/'+81,
+            url: apiCommonURL+'/api/v2/patients/'+params.patientId+'/consultations/status/'+81,
            method: 'GET',
        };
        $http(requestInfo).
@@ -1308,7 +1308,7 @@ this.getPatientMedicalProfile = function(params){
     this.getListOfMissedConsultation = function(params){
          var requestInfo = {
              headers:util.getHeaders(params.accessToken),
-             url: apiCommonURL+'/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes,
+             url: apiCommonURL+'/api/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes,
              method: 'GET',
          };
          $http(requestInfo).
