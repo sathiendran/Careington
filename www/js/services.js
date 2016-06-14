@@ -294,7 +294,7 @@ angular.module('starter.services', [])
               url: apiCommonURL + '/api/v2.1/patients/'+params.personID+'/encounters',
 			  method: 'POST',
 			  data: {
-                AppointmentId: params.AppointmentId,
+                AppointmentId: params.AppointmentId
               }
 		};
 

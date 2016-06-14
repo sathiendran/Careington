@@ -462,7 +462,7 @@ angular.module('starter.controllers')
 
 				var thumbSwiper = new Swiper('.swiper-container',{
 					mode:'horizontal',
-					slidesPerView: 3,
+					slidesPerView: 3
 				});
 
 				session.on('streamCreated', function(event) {

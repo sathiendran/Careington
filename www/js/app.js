@@ -650,7 +650,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-login': {
 				templateUrl: 'templates/tab-singleTheme.html',
-        controller: 'singleHospitalThemeCtrl',
+        controller: 'singleHospitalThemeCtrl'
       }
     }
   })
