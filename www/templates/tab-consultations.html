@@ -108,21 +108,21 @@
    </div>
   <hr style="margin-top:-12px;">
   <div class="list listfirst" >
-    <div class="row" ng-repeat="missedlist in totlist">
+    <div class="row" ng-repeat="misseddata in missedlist">
        <div class="col col-20 contalign">
          <a class="item item-avatar avatitem">
-          <img class="consimg" src="img\patient.png" >
+          <img class="consimg" ng-src="{{PatientImageSelectUser}}">
           </a>
        </div>
        <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
+           <p class="colfamily coldate">{{misseddata.enddate}}</p>
        </div>
       <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
+          <p class="colfamily">{{misseddata.time}}</p>
       </div>
       <div class="col col-30">
           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath Missed</span>  <span class="vreport" >Details</span>
+          <span class="colfamily">{{misseddata.docname}}</span>  <span class="vreport" >Details</span>
           <span ><i class=" ion-chevron-right rghticon"></i></span>
           </p>
        </div>
@@ -149,14 +149,14 @@
           </a>
        </div>
        <div class="col col-20">
-           <p class="colfamily coldate">Nov 16, 2015</p>
+           <p class="colfamily coldate">{{droppedData.consultationDate}}</p>
        </div>
       <div class="col col-15 coltime">
-          <p class="colfamily">2:35 PM</p>
+          <p class="colfamily">{{droppedData.consultationTime}}</p>
       </div>
       <div class="col col-30">
           <p class="coldetails">
-          <span class="colfamily">Dr.McGrath Drop</span>  <span class="vreport" >Details</span>
+          <span class="colfamily">{{droppedData.assignedDoctorName}}</span>  <span class="vreport" >Details</span>
           <span ><i class=" ion-chevron-right rghticon"></i></span>
           </p>
        </div>

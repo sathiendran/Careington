@@ -50,8 +50,7 @@ angular.module('starter.controllers')
 										}
 								}
 						}
-						//$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-						//$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+
 				$scope.toggleLeft = function() {
 						$ionicSideMenuDelegate.toggleLeft();
 						$rootScope.checkAndChangeMenuIcon();
@@ -84,21 +83,6 @@ angular.module('starter.controllers')
     var myEl = angular.element(document.querySelector('#dropped'));
     myEl.removeClass('btcolor').css('color', '#11c1f3');
     myEl.addClass('btnextcolor');
-/*
-    var params = {
-        accessToken: $rootScope.accessToken,
-       patientId: $rootScope.patientId
-       statusId : 72,
-                success: function(data) {
-                  $scope.listOfConsultations = JSON.stringify(data, null, 2);
-                },
-                error: function(data) {
-                  $scope.listOfConsultations = 'Error getting List Of Consultations';
-                }
-              };
-              LoginService.getListOfPassedconsultations(params);
-*/
-
 
     $scope.pastshow=true;
     $scope.missedshow=false;
@@ -112,9 +96,9 @@ angular.module('starter.controllers')
      var start= new Date(stdate);
      var day=start.getDate();
      var mnth=start.getMonth()+1;
-  //   var year=start.getFullYear();
-  var year=2000;
-     /*if(mnth<10){
+     var year=start.getFullYear();
+
+     if(mnth<10){
         var smonth="0"+mnth;
       }
       else{
@@ -125,24 +109,20 @@ angular.module('starter.controllers')
       }
       else{
         var sdate=day;
-      }*/
-      var smonth="0"+"2";
-      var sdate="0"+"1";
+      }
+
    $scope.startDate=year+"-"+smonth+"-"+sdate+"T"+"00"+":"+"00"+":"+"00.000";
-  //  $scope.startDate=2000-02-01T00:00:00.000;
+
       var eddate=duedate.setDate(now.getDate());
 
       var end= new Date(eddate);
       var eday=end.getDate();
       var emnth=end.getMonth()+1;
-      //var eyear=end.getFullYear();
-        var eyear=2016;
-          var emonth="0"+"6";
-          var edate="0"+"9";
+      var eyear=end.getFullYear();
       var time=end.getHours();
       var mints=end.getMinutes();
       var sec=end.getMilliseconds();
-    /*  if(emnth<10){
+    if(emnth<10){
         var emonth="0"+emnth;
       }
       else{
@@ -153,10 +133,9 @@ angular.module('starter.controllers')
       }
       else{
         var edate=eday;
-      }*/
-    //  $scope.endDate=eyear+"-"+emonth+"-"+edate+"T"+time+":"+mints+":"+sec;
-        $scope.endDate=eyear+"-"+emonth+"-"+edate+"T"+"09"+":"+"03"+":"+"07.000";
-    //  $scope.endDate=2016-06-09T09:03:07.000,
+      }
+   $scope.endDate=eyear+"-"+emonth+"-"+edate+"T"+time+":"+mints+":"+sec;
+
     var params = {
 
        accessToken: $rootScope.accessToken,
@@ -164,82 +143,45 @@ angular.module('starter.controllers')
        endDate:$scope.endDate,
        appointmentStatusCodes :1,
         success: function (data) {
-        $rootScope.Missedconsultations= data.data;
- var missedconsultsdata=$rootScope.Missedconsultations;
+          $scope.Missedconsultations= data.data;
+          $rootScope.missedlist=[];
+          angular.forEach($scope.Missedconsultations,function(item,index){
+            var nowDateTime = new Date();
+        var nowDateTimeEightHours = new Date(nowDateTime);
+        nowDateTimeEightHours.setMinutes(nowDateTime.getMinutes() + 15);
+        var todaydatetime=nowDateTimeEightHours.getTime();
+        var edtime=item.endTime;
+        var endtimeEightHours = new Date(edtime);
 
-
-        var totval=_.uniq(_.pluck(missedconsultsdata,'patientId'));
-
-        _.each(totval,function(patientId){
-
-				 $rootScope.totlist=[];
-				var paiddetail =_.where(missedconsultsdata,{patientId:patientId});
-        var now = new Date();
-        var start= new Date(now );
-         var day=start.getDate();
-         var mnth=start.getMonth()+1;
-         var year=start.getFullYear();
-        if(mnth<10){
-                var smonth="0"+mnth;
-              }
-              else{
-                var smonth=mnth;
-              }
-              if(day<10){
-                var sdate="0"+day;
-              }
-              else{
-                var sdate=day;
-              }
-        var today=year+"-"+smonth+"-"+sdate;
-        var packed={};
-        _.each(missedconsultsdata,function(allendtime){
-          var edtime=allendtime.endTime;
-          var asd=edtime.split('T');
-          var enddate=asd[0];
-					if(enddate<today){
-
-              var astime=asd[1].split('+');
-              var newt=astime[0].split(':');
-              var time=newt[0]+":"+newt[1];
-              var asds=allendtime.participants;
-              var patientdata=_.where(asds,{participantTypeCode:1});
-              var drdata=_.where(asds,{participantTypeCode:2});
-              var patimg=patientdata[0].person;
-              var photo=_.pick(patimg,'photoUrl');
-              var patphoto= _.values(photo);
+          if(enddatetime<todaydatetime) {
+                var asd=edtime.split('T');
+                var enddate=asd[0];
+                var enddate=asd[0];
+                var astime=asd[1].split('+');
+                var newt=astime[0].split(':');
+                var time=newt[0]+":"+newt[1];
+                var asds=item.participants;
+                var patientdata=_.where(asds,{participantTypeCode:1});
+                var drdata=_.where(asds,{participantTypeCode:2});
+                var patimg=patientdata[0].person;
+                var photo=_.pick(patimg,'photoUrl');
+                var patphoto= _.values(photo);
               if(drdata.length>0){
                 var drlist=drdata[0].person.name;
                 var nlist=_.pick(drlist,'given');
                 var drname=_.values(nlist);
+                var docname=drname.join();
               }
                else{
                  var drname="";
                }
-               packed.photo=patphoto;
-               packed.namelist=drname;
-               packed.enddate=enddate;
-               packed.time=time;
-					}
-
-              $rootScope.totlist.push(packed);
-				});
-
-        return $rootScope.totlist;
-});
-
-    /*  var filtered = [];
-          angular.forEach(missedconsultsdata[0], function (sdates) {
-        var end=sdates.endTime;
-        var asd=end.split('T');
-        var enddate=asd[0];
-                    if (enddate == today) {
-                      filtered.push(sdates);
-        }
-      });*/
-
-
-
+               $rootScope.missedlist.push({
+                      'time' : time,
+                      'docname' : docname,
+                      'enddate':enddate,
+                     });
+                   }
+          });
         },
         error: function (data) {
         $scope.listOfConsultations = 'Error getting List Of Consultations';
@@ -247,15 +189,7 @@ angular.module('starter.controllers')
     };
    LoginService.getListOfMissedConsultation(params);
 
-
-
-
-
-
-
-
-
-    var myEl = angular.element( document.querySelector( '#missed' ) );
+   var myEl = angular.element( document.querySelector( '#missed' ) );
     myEl.addClass('btcolor');
     myEl.removeClass('btnextcolor');
     var myEl = angular.element( document.querySelector( '#passed' ) );
