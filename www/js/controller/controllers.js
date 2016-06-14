@@ -1266,7 +1266,7 @@ angular.module('starter.controllers', ['starter.services','ngLoadingSpinner', 't
 							angular.forEach($rootScope.FacilitiesList, function(index, item) {
 								if(index.providerId == Hello420HospitalId){
 									if(ssoURL !== ""){
-										$scope.ErrorMessage = "You will be redirected to Hello420 website in a moment.";
+										$scope.ErrorMessage = "You will be directed to the Hello420 website momentarily";
 										$rootScope.Validation($scope.ErrorMessage);
 										setTimeout(function(){
 											//ssoURL = "http://52.34.151.119/hello420/login/";
