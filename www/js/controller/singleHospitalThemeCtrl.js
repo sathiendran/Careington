@@ -12,6 +12,7 @@ angular.module('starter.controllers')
 			$rootScope.APICommonURL = 'https://connectedcare.md';
 	}
 
+		$rootScope.patientConsultEndUrl = "";
 
     $scope.doGetSingleUserHospitalInformation = function () {
 			$rootScope.paymentMode = '';
@@ -46,6 +47,7 @@ angular.module('starter.controllers')
                          $rootScope.alertMsgName = $rootScope.Hospital;
                          $rootScope.reportHospitalUpperCase =  $rootScope.Hospital.toUpperCase();
                     }
+					$rootScope.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
 					$rootScope.HospitalTag = data.data[0].brandTitle;
 					$rootScope.contactNumber = data.data[0].contactNumber;
 					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;

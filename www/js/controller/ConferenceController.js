@@ -756,7 +756,17 @@ angular.module('starter.controllers')
 			//$('#subscriber').css('display', 'none');
 
 		//$scope.doGetPatientsSoapNotes();
-		$rootScope.doGetExistingConsulatationReport();
+    if(cobrandApp == 'Hello420'){
+      var consulationEndRedirectURL = $rootScope.patientConsultEndUrl;
+      if(consulationEndRedirectURL != ""){
+        $state.go('tab.singleTheme');
+        setTimeout(function(){
+          window.open(consulationEndRedirectURL, '_system', '');
+        }, 1000);
+      }
+    }else{
+		    $rootScope.doGetExistingConsulatationReport();
+    }
 		window.plugins.insomnia.allowSleepAgain();
 	}
 
