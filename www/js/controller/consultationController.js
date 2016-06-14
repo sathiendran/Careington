@@ -50,7 +50,8 @@ angular.module('starter.controllers')
 										}
 								}
 						}
-
+						//$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
+						//$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
 				$scope.toggleLeft = function() {
 						$ionicSideMenuDelegate.toggleLeft();
 						$rootScope.checkAndChangeMenuIcon();
@@ -83,12 +84,27 @@ angular.module('starter.controllers')
     var myEl = angular.element(document.querySelector('#dropped'));
     myEl.removeClass('btcolor').css('color', '#11c1f3');
     myEl.addClass('btnextcolor');
+/*
+    var params = {
+        accessToken: $rootScope.accessToken,
+       patientId: $rootScope.patientId
+       statusId : 72,
+                success: function(data) {
+                  $scope.listOfConsultations = JSON.stringify(data, null, 2);
+                },
+                error: function(data) {
+                  $scope.listOfConsultations = 'Error getting List Of Consultations';
+                }
+              };
+              LoginService.getListOfPassedconsultations(params);
+*/
+
 
     $scope.pastshow=true;
     $scope.missedshow=false;
     $scope.droppedshow=false;
   }
-  $rootScope.missedconsult=function(){
+  $rootScope.missedconsultants=function(){
 
      var now = new Date();
      var duedate = new Date(now);
@@ -97,7 +113,7 @@ angular.module('starter.controllers')
      var day=start.getDate();
      var mnth=start.getMonth()+1;
      var year=start.getFullYear();
-
+//  var year=2000;
      if(mnth<10){
         var smonth="0"+mnth;
       }
@@ -110,15 +126,19 @@ angular.module('starter.controllers')
       else{
         var sdate=day;
       }
-
+    //  var smonth="0"+"2";
+    //  var sdate="0"+"1";
    $scope.startDate=year+"-"+smonth+"-"+sdate+"T"+"00"+":"+"00"+":"+"00.000";
-
+  //  $scope.startDate=2000-02-01T00:00:00.000;
       var eddate=duedate.setDate(now.getDate());
 
       var end= new Date(eddate);
       var eday=end.getDate();
       var emnth=end.getMonth()+1;
       var eyear=end.getFullYear();
+        //var eyear=2016;
+        //  var emonth="0"+"6";
+        //  var edate="0"+"9";
       var time=end.getHours();
       var mints=end.getMinutes();
       var sec=end.getMilliseconds();
@@ -150,14 +170,16 @@ angular.module('starter.controllers')
         var nowDateTimeEightHours = new Date(nowDateTime);
         nowDateTimeEightHours.setMinutes(nowDateTime.getMinutes() + 15);
         var todaydatetime=nowDateTimeEightHours.getTime();
-        var edtime=item.endTime;
-        var endtimeEightHours = new Date(edtime);
+
+          var edtime=item.endTime;
+          var endtimeEightHours = new Date(edtime);
+          var enddatetime= endtimeEightHours.setMinutes(endtimeEightHours.getMinutes() + 15);
 
           if(enddatetime<todaydatetime) {
-                var asd=edtime.split('T');
-                var enddate=asd[0];
-                var enddate=asd[0];
-                var astime=asd[1].split('+');
+            var asd=edtime.split('T');
+            var enddate=asd[0];
+
+              var astime=asd[1].split('+');
                 var newt=astime[0].split(':');
                 var time=newt[0]+":"+newt[1];
                 var asds=item.participants;
@@ -175,13 +197,17 @@ angular.module('starter.controllers')
                else{
                  var drname="";
                }
-               $rootScope.missedlist.push({
+
+
+            $rootScope.missedlist.push({
                       'time' : time,
                       'docname' : docname,
                       'enddate':enddate,
                      });
-                   }
+
+             }
           });
+
         },
         error: function (data) {
         $scope.listOfConsultations = 'Error getting List Of Consultations';
@@ -189,7 +215,7 @@ angular.module('starter.controllers')
     };
    LoginService.getListOfMissedConsultation(params);
 
-   var myEl = angular.element( document.querySelector( '#missed' ) );
+    var myEl = angular.element( document.querySelector( '#missed' ) );
     myEl.addClass('btcolor');
     myEl.removeClass('btnextcolor');
     var myEl = angular.element( document.querySelector( '#passed' ) );
@@ -237,7 +263,7 @@ angular.module('starter.controllers')
     $scope.droppedshow=true;
   }
   $scope.consultsearch=function(){
-    $rootScope.passedsearchconsult();
+    $scope.passededconsultants();
     $state.go('tab.consultationSearch');
   }
 });

@@ -327,9 +327,29 @@ angular.module('starter.controllers')
          };
          LoginService.getAccountDependentDetails(params);
     }
+    $scope.gpToAppointments=function(){
+      $state.go('tab.appointmentpatientdetails');
+    }
+    $scope.goToConsultations=function(){
+      $state.go('tab.consultations');
+    }   
+    $scope.seeaPatientConcerns = function() {
+      $state.go('tab.patientConcerns');
+    }
+    $rootScope.patientprofile=function(currentPatientDetails){
+      $rootScope.currentPatientDetails = currentPatientDetails;
 
+      if($rootScope.currentPatientDetails[0].gender == 'M') {
+        $rootScope.userGender = "Male";
+        $rootScope.isCheckedMale = true;
+      } else if($rootScope.currentPatientDetails[0].gender == 'F') {
+        $rootScope.userGender = "FeMale";
+          $rootScope.isCheckedFeMale = true;
+      }
+       $rootScope.passededconsultants();
+       $state.go('tab.healthinfo');
 
-
+    }
 
     /* Relationship Search */
  $scope.alphabet = iterateAlphabet();

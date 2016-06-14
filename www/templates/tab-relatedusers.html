@@ -134,25 +134,25 @@
 					 </div>
 				</div>
 				<div class="row dotrow" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="tabView"  >
-					 <a class="col col-20 dotcol">
+					 <a class="col col-20 dotcol" ng-click="seeaPatientConcerns()">
 							<div class="tabicon"> <i class="ion-chevron-down"></i></div>
 							<i class="icon ion-person-stalker contacticon "></i>
 							<p class="dotcont" style="">See a Doc Now</p>
 					 </a>
-					 <div class="col col-20 rowalign">
+					 <div class="col col-20 rowalign" ng-click="patientprofile(currentPatientDetails)">
 							<div  class="tabvalue">
 								 <i class="icon ion-eye-disabled doticon"></i>
 								 <div class="dotfont">View Profile</div>
 							</div>
 					 </div>
-					 <div class="col col-25 colpad" >
+					 <div class="col col-25 colpad"  ng-click="gpToAppointments()">
 							<div  class="tabvalue">
 								 <i class="icon ion-calendar doticon"></i>
 								 <div class="dotfont">Appointments</div>
 							</div>
 					 </div>
 					 <div class="col col-20 colpad">
-							<div  class="tabvalue">
+							<div  class="tabvalue" ng-click="goToConsultations()">
 								 <i class="icon ion-card doticon" ></i>
 								 <div class="dotfont">Consultations</div>
 							</div>

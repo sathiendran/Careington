@@ -54,15 +54,15 @@ ng-click="toggleLeft()"></button>
 
 
 <div ng-show="passedsearchshow" >
-    <div class="row rowalign" ng-repeat="passedsearchData in Passedconsultations">
+    <div class="row rowalign" ng-repeat="passedData in Passedconsultations">
       <div class="row">
      <div class="col col-25 sfont">
-        <p class="colfamily">Nov 16, 2015</p>
+        <p class="colfamily">{{ passedData.consultationDate }} </p>
      </div>
-     <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+     <div class="col col-20" ><p class="colfamily">{{ passedData.consultationTime}}</p></div>
      <div class="col col-60">
        <p>
-         <span class="colfamily">Dr.McGrath</span>
+         <span class="colfamily">{{ passedData.assignedDoctorName }}</span>
          <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
        </p>
      </div>
@@ -74,21 +74,21 @@ ng-click="toggleLeft()"></button>
 
 
 <div ng-show="missedsearchshow" >
-    <div class="row rowalign" ng-repeat="missedsearchData in Passedconsultations">
+    <div class="row rowalign" ng-repeat="misseddata in missedlist">
       <div class="row">
         <div class="col col-25 sfont">
-         <p class="colfamily">Nov 16, 2015</p>
+         <p class="colfamily">{{misseddata.enddate}}</p>
         </div>
-        <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+        <div class="col col-20" ><p class="colfamily">{{misseddata.time}}</p></div>
         <div class="col col-60">
           <p>
-            <span class="colfamily">Dr.McGrath</span>
+            <span class="colfamily">{{misseddata.docname}}</span>
             <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
           </p>
         </div>
       </div>
     </div>
-  <ion-item ng-if="!Missedconsultations.length" class="noResult" style="white-space: normal;" >No Missed Search Consultations Found</ion-item>
+  <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;" >No Missed Search Consultations Found</ion-item>
 
 </div>
 
@@ -116,15 +116,15 @@ ng-click="toggleLeft()"></button>
 
 <div ng-show="droppedsearchshow" >
 
-  <div class="row rowalign" ng-repeat="droppedsearchData in Droppedconsultations">
+  <div class="row rowalign"  ng-repeat="droppedData in Droppedconsultations">
     <div class="row">
    <div class="col col-25 sfont">
-      <p class="colfamily">Nov 16, 2015</p>
+      <p class="colfamily">{{droppedData.consultationDate}}</p>
    </div>
-   <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
+   <div class="col col-20" ><p class="colfamily">{{droppedData.consultationTime}}</p></div>
    <div class="col col-60">
      <p>
-       <span class="colfamily">Dr.McGrath</span>
+       <span class="colfamily">{{droppedData.assignedDoctorName}}</span>
        <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
      </p>
    </div>

@@ -100,7 +100,7 @@ angular.module('starter.controllers')
            LoginService.getListOfCodeSet(params);
          }*/
 
-        $scope.getManageProfile = function(currentPatientDetails) {
+        $rootScope.getManageProfile = function(currentPatientDetails) {
           $rootScope.currentPatientDetails = currentPatientDetails;
      //     var date = new Date($rootScope.currentPatientDetails[0].dob);
           //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
