@@ -879,4 +879,23 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
 
 });
 
+function generateTextImage(text, bgcolor){
+    if(!bgcolor){
+        bgcolor = 'f54f2b';
+    }
+    bgcolor = bgcolor.replace('#', '');
+    return "https://placeholdit.imgix.net/~text?txtsize=150&txtclr=ffffff&w=200&h=200&bg=" + bgcolor + "&txt=" + text;
+}
+function getInitialForName(name){
+    var initial = "";
+    if(name){
+        name = name.replace('  ', ' ');
+        name = name.trim()
+        var names = name.split(' ');
+        initial = initial + names[0].substring(0, 1);
+        if(names[1])
+            initial = initial + names[1].substring(0, 1);
+    }
+    return initial;
+}
 //snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=

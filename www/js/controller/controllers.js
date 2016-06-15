@@ -1648,6 +1648,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 } else {
                     $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
+                    var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
+                    $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }
                 $rootScope.address = data.data[0].address;
                 $rootScope.city = data.data[0].city;
@@ -1784,7 +1786,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 angular.forEach(data.data, function(index, item) {
                     if (!index.profileImagePath) {
+                        var ptInitial = getInitialForName(index.patientName);
                         index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
+                        index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
                     }
 
                     $rootScope.RelatedPatientProfiles.push({
@@ -3483,6 +3487,22 @@ LoginService.getScheduledConsulatation(params);
 
                     angular.forEach($scope.scheduledConsultationList, function(index, item) {
                         if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+                            $scope.paticipatingPatient = $filter('filter')(angular.fromJson(index.participants), {"participantTypeCode":"1"})[0];
+                            $scope.paticipatingPatientName = $scope.paticipatingPatient.person.name.given + ' ' + $scope.paticipatingPatient.person.name.family;
+                            $scope.paticipatingPatientInitial = getInitialForName($scope.paticipatingPatientName);
+                            if($scope.paticipatingPatient.person.photoUrl){
+                                $scope.paticipatingPatientPhoto = $scope.paticipatingPatient.person.photoUrl;
+                            }else{
+                                $scope.paticipatingPatientPhoto = generateTextImage($scope.paticipatingPatientInitial, $rootScope.brandColor);
+                            }
+                            $scope.paticipatingPhysician = $filter('filter')(angular.fromJson(index.participants), {"participantTypeCode":"2"})[0];
+                            $scope.paticipatingPhysicianName = $scope.paticipatingPhysician.person.name.given + ' ' + $scope.paticipatingPhysician.person.name.family;
+                            $scope.paticipatingPhysicianInitial = getInitialForName($scope.paticipatingPhysicianName);
+                            if($scope.paticipatingPhysician.person.photoUrl){
+                                $scope.paticipatingPhysicianPhoto = $scope.paticipatingPhysician.person.photoUrl;
+                            }else{
+                                $scope.paticipatingPhysicianPhoto = generateTextImage($scope.paticipatingPhysicianInitial, $rootScope.brandColor);
+                            }
                             $rootScope.getScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
                                 'appointmentId': index.appointmentId,
@@ -3493,7 +3513,13 @@ LoginService.getScheduledConsulatation(params);
                                 'intakeMetadata': angular.fromJson(index.intakeMetadata),
                                 'participants': angular.fromJson(index.participants),
                                 'patientId': index.patientId,
-                                'waiveFee': index.waiveFee
+                                'waiveFee': index.waiveFee,
+                                'patientName' : $scope.paticipatingPatientName,
+                                'patientInitial' : $scope.paticipatingPatientInitial,
+                                'patientImage' : $scope.paticipatingPatientPhoto,
+                                'physicianName' : $scope.paticipatingPhysicianName,
+                                'physicianInitial' : $scope.paticipatingPhysicianInitial,
+                                'physicianImage' : $scope.paticipatingPhysicianPhoto
                             });
                             angular.forEach(index.participants, function(index, item) {
                                 $rootScope.scheduleParticipants.push({
