@@ -517,7 +517,9 @@ angular.module('starter.controllers')
 					}
 					document.getElementById('subscriber').appendChild(vdioContainer);
 					document.getElementById('video-' + streamIdVal).appendChild(vdioPlayer);
-
+          var canvasContainer = document.createElement("canvas");
+          canvasContainer.setAttribute("id", 'opentok_canvas');
+          document.getElementById('video-' + streamIdVal).appendChild(canvasContainer);
 					lastSubscriber = event.stream.streamId;
 
 					session.subscribe(event.stream, streamIdVal, {
