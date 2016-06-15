@@ -71,84 +71,84 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
-      /*  $rootScope.doGetListOfCodeSet = function() {
-           var params = {
-             accessToken: $rootScope.accessToken,
-             hospitalId: $rootScope.hospitalId,
-             success: function(data) {
-               $rootScope.eyeHairEthnicityRelationCodeSets = [];
-               angular.forEach(data.data, function(index, item) {
-                 $rootScope.eyeHairEthnicityRelationCodeSets.push({
-                   'codes': angular.fromJson(index.codes),
-                   'hospitalId': index.hospitalId,
-                   'name': index.name
+        /*  $rootScope.doGetListOfCodeSet = function() {
+             var params = {
+               accessToken: $rootScope.accessToken,
+               hospitalId: $rootScope.hospitalId,
+               success: function(data) {
+                 $rootScope.eyeHairEthnicityRelationCodeSets = [];
+                 angular.forEach(data.data, function(index, item) {
+                   $rootScope.eyeHairEthnicityRelationCodeSets.push({
+                     'codes': angular.fromJson(index.codes),
+                     'hospitalId': index.hospitalId,
+                     'name': index.name
+                   });
                  });
-               });
-               $rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Eye Color" });
-               $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Hair Color" });
-               $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Ethnicity" });
-               $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Relationship" });
-               $rootScope.listOfHeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Height" });
-               $rootScope.listOfWeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Weight" });
-               $rootScope.listOfBloodtype= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Blood Type" });
-                 $state.go('tab.healthinfo');
-             },
-             error: function(data) {
-                 $rootScope.serverErrorMessageValidation();
-             }
-           };
-           LoginService.getListOfCodeSet(params);
-         }*/
+                 $rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Eye Color" });
+                 $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Hair Color" });
+                 $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Ethnicity" });
+                 $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Relationship" });
+                 $rootScope.listOfHeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Height" });
+                 $rootScope.listOfWeightunit= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Patient Weight" });
+                 $rootScope.listOfBloodtype= $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, { name: "Blood Type" });
+                   $state.go('tab.healthinfo');
+               },
+               error: function(data) {
+                   $rootScope.serverErrorMessageValidation();
+               }
+             };
+             LoginService.getListOfCodeSet(params);
+           }*/
 
         $rootScope.getManageProfile = function(currentPatientDetails) {
-          $rootScope.currentPatientDetails = currentPatientDetails;
-     //     var date = new Date($rootScope.currentPatientDetails[0].dob);
-          //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    //   $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-          if($rootScope.currentPatientDetails[0].gender == 'M') {
-            $rootScope.userGender = "Male";
-            $rootScope.isCheckedMale = true;
-          } else if($rootScope.currentPatientDetails[0].gender == 'F') {
-            $rootScope.userGender = "FeMale";
-              $rootScope.isCheckedFeMale = true;
-          }
-         $rootScope.passededconsultants();
+            $rootScope.currentPatientDetails = currentPatientDetails;
+            //     var date = new Date($rootScope.currentPatientDetails[0].dob);
+            //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+            //   $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+            if ($rootScope.currentPatientDetails[0].gender == 'M') {
+                $rootScope.userGender = "Male";
+                $rootScope.isCheckedMale = true;
+            } else if ($rootScope.currentPatientDetails[0].gender == 'F') {
+                $rootScope.userGender = "FeMale";
+                $rootScope.isCheckedFeMale = true;
+            }
+            $rootScope.passededconsultants();
 
-          $state.go('tab.healthinfo');
-        //  $rootScope.doGetListOfCodeSet();
+            $state.go('tab.healthinfo');
+            //  $rootScope.doGetListOfCodeSet();
         }
 
         $scope.goToPatientConcerns = function() {
-          $state.go('tab.patientConcerns');
+            $state.go('tab.patientConcerns');
         }
 
         $rootScope.doGetCurrentUserAppointment = function() {
-          $state.go('tab.appointmentpatientdetails');
-           $rootScope.passededconsultants();
+            $state.go('tab.appointmentpatientdetails');
+            $rootScope.passededconsultants();
         }
 
 
-        $rootScope.passededconsultants=function(){
+        $rootScope.passededconsultants = function() {
 
-          if ($rootScope.accessToken == 'No Token') {
-         alert('No token.  Get token first then attempt operation.');
-         return;
-       }
-          var params = {
-             patientId: $rootScope.patientId,
-             accessToken: $rootScope.accessToken,
-             statusId :72,
-              success: function (data) {
-              $rootScope.Passedconsultations= data.data;
+            if ($rootScope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                patientId: $rootScope.patientId,
+                accessToken: $rootScope.accessToken,
+                statusId: 72,
+                success: function(data) {
+                    $rootScope.Passedconsultations = data.data;
 
-              },
-              error: function (data) {
-              $scope.listOfConsultations = 'Error getting List Of Consultations';
-              }
-          };
-         LoginService.getListOfPassedConsultations(params);
+                },
+                error: function(data) {
+                    $scope.listOfConsultations = 'Error getting List Of Consultations';
+                }
+            };
+            LoginService.getListOfPassedConsultations(params);
 
-}
+        }
 
 
 

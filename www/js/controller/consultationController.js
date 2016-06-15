@@ -93,7 +93,9 @@ angular.module('starter.controllers')
             $scope.missedshow = false;
             $scope.droppedshow = false;
         }
+
         $rootScope.missedconsult = function() {
+
 
             var now = new Date();
             var duedate = new Date(now);
@@ -116,28 +118,27 @@ angular.module('starter.controllers')
             //  var smonth="0"+"2";
             //  var sdate="0"+"1";
             $scope.startDate = year + "-" + smonth + "-" + sdate + "T" + "00" + ":" + "00" + ":" + "00.000";
-            //  $scope.startDate=2000-02-01T00:00:00.000;
             var eddate = duedate.setDate(now.getDate());
 
-            var end = new Date(eddate);
-            var eday = end.getDate();
-            var emnth = end.getMonth() + 1;
-            var eyear = end.getFullYear();
+              var end = new Date(eddate);
+              var eday = end.getDate();
+              var emnth = end.getMonth() + 1;
+              var eyear = end.getFullYear();
 
-            var time = end.getHours();
-            var mints = end.getMinutes();
-            var sec = end.getMilliseconds();
-            if (emnth < 10) {
-                var emonth = "0" + emnth;
-            } else {
-                var emonth = emnth;
-            }
-            if (eday < 10) {
-                var edate = "0" + eday;
-            } else {
-                var edate = eday;
-            }
-            $scope.endDate = eyear + "-" + emonth + "-" + edate + "T" + time + ":" + mints + ":" + sec;
+              var time = end.getHours();
+              var mints = end.getMinutes();
+              var sec = end.getMilliseconds();
+              if (emnth < 10) {
+                  var emonth = "0" + emnth;
+              } else {
+                  var emonth = emnth;
+              }
+              if (eday < 10) {
+                  var edate = "0" + eday;
+              } else {
+                  var edate = eday;
+              }
+              $scope.endDate = eyear + "-" + emonth + "-" + edate + "T" + time + ":" + mints + ":" + sec;
 
             var params = {
 
@@ -525,6 +526,7 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $scope.getSoapNotes();
                     $rootScope.getAttachmentList = []
+
                     angular.forEach(data.data[0].snapFile.files, function(index, item) {
                         var attachImage = index.name.split(".");
                         $rootScope.getAttachmentList.push({
@@ -535,6 +537,20 @@ angular.module('starter.controllers')
                         //$scope.doGetAttachmentURL(index.id, index.name);
 
                     });
+
+                    if (data.data[0].snapFile.files.length > 0) {
+                        angular.forEach(data.data[0].snapFile.files, function(index, item) {
+                            var attachImage = index.name.split(".");
+                            $rootScope.getAttachmentList.push({
+                                'id': index.id,
+                                'name': index.name,
+                                'image': attachImage[attachImage.length - 1]
+                            });
+                            //$scope.doGetAttachmentURL(index.id, index.name);
+
+                        });
+                    }
+
                     $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
                     $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
@@ -542,8 +558,9 @@ angular.module('starter.controllers')
                         focusFirstInput: false,
                         backdropClickToClose: false
                     }).then(function(modal) {
-                        $scope.modal = modal;
-                        $scope.modal.show();
+                        $rootScope.reportModal = modal;
+                        $rootScope.reportModal.show();
+
                     });
                 },
                 error: function(data) {
@@ -553,8 +570,12 @@ angular.module('starter.controllers')
                         focusFirstInput: false,
                         backdropClickToClose: false
                     }).then(function(modal) {
-                        $scope.modal = modal;
-                        $scope.modal.show();
+
+                    //    $scope.modal = modal;
+                      //  $scope.modal.show();
+                        $rootScope.reportModal = modal;
+                        $rootScope.reportModal.show();
+
                     });
                     //$rootScope.serverErrorMessageValidation();
                 }
@@ -604,8 +625,9 @@ angular.module('starter.controllers')
         }
 
         $scope.closeReportView = function() {
-
-            $scope.modal.remove();
+            $rootScope.reportModal.hide();
+            $('.modal-backdrop').hide();
         }
+
 
     });
