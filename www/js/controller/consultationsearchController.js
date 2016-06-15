@@ -89,7 +89,7 @@ angular.module('starter.controllers')
     $scope.droppedsearchshow=false;
   }
   $scope.missedsearchconsult=function(){
-      $scope.missedconsultants();
+      $scope.missedconsult();
     var myEl = angular.element( document.querySelector( '#missedsearch' ) );
     myEl.addClass('btcolor');
     myEl.removeClass('btnextcolor');
