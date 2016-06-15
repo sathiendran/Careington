@@ -762,13 +762,14 @@ angular.module('starter.controllers')
 
     };
 
+
     function consultationEndedAlertDismissed() {
         conHub.invoke("endConsultation").then(function() {});
         //$('#publisher').css('display', 'none');
         //$('#subscriber').css('display', 'none');
 
         //$scope.doGetPatientsSoapNotes();
-        if (cobrandApp == 'Hello420') {
+        if (deploymentEnv == 'Single' && cobrandApp == 'Hello420') {
             var consulationEndRedirectURL = $rootScope.patientConsultEndUrl;
             if (consulationEndRedirectURL != "") {
                 $state.go('tab.singleTheme');
