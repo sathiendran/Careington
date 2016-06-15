@@ -70,7 +70,7 @@
                         <div class="row" ng-repeat="passedData in Passedconsultations">
                             <div class="col col-20 contalign">
                                 <a class="item item-avatar avatitem">
-                                    <img class="consimg" src="img\patient.png">
+                                    <img class="consimg" ng-src="{{PatientImageSelectUser}}">
                                 </a>
                             </div>
                             <div class="col col-20">
@@ -122,6 +122,7 @@
                                 </p>
                             </div>
                         </div>
+                        <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found</ion-item>
                     </div>
                     <hr class="dotedhr">
                 </div>
@@ -137,10 +138,10 @@
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
-                        <div class="row" ng-repeat="droppedData in Droppedconsultations">
+                        <div class="row" ng-repeat="droppedData in c">
                             <div class="col col-20 contalign">
                                 <a class="item item-avatar avatitem">
-                                    <img class="consimg" src="img\patient.png">
+                                    <img class="consimg" ng-src="{{PatientImageSelectUser}}">
                                 </a>
                             </div>
                             <div class="col col-20">
