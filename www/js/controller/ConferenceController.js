@@ -751,7 +751,7 @@ angular.module('starter.controllers')
 			//$('#subscriber').css('display', 'none');
 
 		//$scope.doGetPatientsSoapNotes();
-    if(cobrandApp == 'Hello420'){
+    if(deploymentEnv == 'Single' && cobrandApp == 'Hello420'){
       var consulationEndRedirectURL = $rootScope.patientConsultEndUrl;
       if(consulationEndRedirectURL != ""){
         $state.go('tab.singleTheme');
