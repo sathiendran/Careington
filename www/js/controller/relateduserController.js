@@ -291,9 +291,15 @@ angular.module('starter.controllers')
                         } else if (index.gender == 'F') {
                             var gender = "FeMale";
                         }
+                        if(index.profileImagePath){
+                            $scope.iDependentPatientPhoto = index.profileImagePath;
+                        }else{
+                            $scope.iDependentPatientInitial = getInitialForName(index.patientName);
+                            $scope.iDependentPatientPhoto = generateTextImage($scope.iDependentPatientInitial, $rootScope.brandColor);
+                        }
                         $rootScope.listOfAccountDependents.push({
                             'addresses': index.addresses,
-                            'profileImagePath': index.profileImagePath,
+                            'profileImagePath': $scope.iDependentPatientPhoto,
                             'birthdate': ageFilter.getDateFilter(index.birthdate),
                             'bloodType': index.bloodType,
                             'ethnicity': index.ethnicity,
