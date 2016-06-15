@@ -1308,7 +1308,7 @@ this.getPatientMedicalProfile = function(params){
     this.getListOfMissedConsultation = function(params){
          var requestInfo = {
              headers:util.getHeaders(params.accessToken),
-             url: apiCommonURL+'/api/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes,
+             url: apiCommonURL+'/api/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&patientId='+params.patientId+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes,
              method: 'GET',
          };
          $http(requestInfo).
