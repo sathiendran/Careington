@@ -884,7 +884,7 @@ function generateTextImage(text, bgcolor){
         bgcolor = 'f54f2b';
     }
     bgcolor = bgcolor.replace('#', '');
-    return "https://placeholdit.imgix.net/~text?txtsize=150&txtclr=ffffff&w=200&h=200&bg=" + bgcolor + "&txt=" + text;
+    return "https://placeholdit.imgix.net/~text?txtsize=120&txtclr=ffffff&w=200&h=200&bg=" + bgcolor + "&txt=" + text;
 }
 function getInitialForName(name){
     var initial = "";
