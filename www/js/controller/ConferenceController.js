@@ -570,7 +570,7 @@ angular.module('starter.controllers')
             participantName = participantName.replace('Screen Share By :', '');
             thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 90px;text-align: center !important;'><img style='width: 50px; height: 50px; border-radius: 50%;' src='" + imgThumbPath + "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
         };
->>>>>>> a8865ea5f712c3b9999ecc00452651c7d246c270
+
 
         $scope.removeVideoThumbnail = function(streamIdVal) {
             $('#thumbPlayer-' + streamIdVal).hide();

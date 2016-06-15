@@ -619,7 +619,7 @@ angular.module('starter.controllers')
                 angular.element(this).attr('onclick', onClickLink);
             });
         }
-        $scope.showReportView = function(consultation) {
+        $rootScope.showReportView = function(consultation) {
             $rootScope.consultationId = consultation.consultationId;
             $rootScope.doGetExistingConsulatationReport();
         }
@@ -628,6 +628,57 @@ angular.module('starter.controllers')
             $rootScope.reportModal.hide();
             $('.modal-backdrop').hide();
         }
+
+<!-- Consultation search -->
+$scope.passedsearchshow = true;
+$scope.missedsearchshow = false;
+$scope.droppedsearcshow = false;
+
+$rootScope.passedsearchconsult=function(){
+$scope.passededconsultants();
+var myEl = angular.element(document.querySelector('#passedsearch'));
+myEl.removeClass('btnextcolor');
+myEl.addClass('btcolor');
+var myEl = angular.element(document.querySelector('#missedsearch'));
+myEl.removeClass('btcolor').css('color', '#11c1f3');
+myEl.addClass('btnextcolor');
+var myEl = angular.element(document.querySelector('#droppedsearch'));
+myEl.removeClass('btcolor').css('color', '#11c1f3');
+myEl.addClass('btnextcolor');
+$scope.passedsearchshow=true;
+$scope.missedsearchshow=false;
+$scope.droppedsearchshow=false;
+}
+$scope.missedsearchconsult=function(){
+$scope.missedconsult();
+var myEl = angular.element( document.querySelector( '#missedsearch' ) );
+myEl.addClass('btcolor');
+myEl.removeClass('btnextcolor');
+var myEl = angular.element( document.querySelector( '#passedsearch' ) );
+myEl.removeClass('btcolor').css('color','#11c1f3');
+myEl.addClass('btnextcolor');
+var myEl = angular.element(document.querySelector('#droppedsearch'));
+myEl.removeClass('btcolor').css('color', '#11c1f3');
+myEl.addClass('btnextcolor');
+$scope.missedsearchshow=true;
+$scope.passedsearchshow=false;
+$scope.droppedsearchshow=false;
+}
+$scope.droppedsearchconsult=function(){
+$scope.droppedconsult();
+var myEl = angular.element( document.querySelector('#droppedsearch'));
+myEl.addClass('btcolor');
+myEl.removeClass('btnextcolor');
+var myEl = angular.element( document.querySelector('#passedsearch'));
+myEl.removeClass('btcolor').css('color','#11c1f3');
+myEl.addClass('btnextcolor');
+var myEl = angular.element(document.querySelector('#missedsearch'));
+myEl.removeClass('btcolor').css('color', '#11c1f3');
+myEl.addClass('btnextcolor');
+$scope.passedsearchshow=false;
+$scope.missedsearchshow=false;
+$scope.droppedsearchshow=true;
+}
 
 
     });

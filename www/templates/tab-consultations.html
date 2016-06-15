@@ -34,20 +34,10 @@
                     </a>
                 </div>
 
-            </div>
-
-        </ion-header-bar>
-
-
-
-        <ion-view title="">
-            <ion-content class="paticoncontent">
 
                 <div class="row">
-
-                    <div class="buttons backbtn">
-                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
-			</button>
+                  <div class="buttons backbtn">
+                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
                     </div>
                     <div class=" button-bar">
                         <label class="button button-small btcolor btn-first " id="passed" ng-click="passedconsult()"> <span class="tabheading">Past</span></label>
@@ -57,12 +47,18 @@
                     </div>
 
                     <div class="buttons backbtn">
-                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
-		 </button>
+                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
                     </div>
                 </div>
+            </div>
 
-                <div ng-show="pastshow">
+        </ion-header-bar>
+
+
+
+        <ion-view title="">
+            <ion-content class="paticoncontent">
+              <div ng-show="pastshow">
                     <div class="row rheader">
                         <div class="col col-20"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>

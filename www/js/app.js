@@ -824,7 +824,8 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-consultationSearch.html',
-                controller: 'consultationsearchController'
+                controller: 'consultationController'
+                //controller: 'consultationsearchController'
             }
         }
     })
