@@ -406,6 +406,7 @@ angular.module('starter.controllers')
 
     $scope.PatientConcernsDirectory = function(ChronicValid) {
         $rootScope.ChronicValid = ChronicValid; // pre populated valid value
+        $rootScope.IsValue = $rootScope.PatientPrimaryConcern.length;
         if ($rootScope.IsValue === 0 || $rootScope.IsValue === undefined) {
             if ($rootScope.PrimaryNext === 0) {
                 $scope.ErrorMessage = "Primary Concern Can't be Empty";
