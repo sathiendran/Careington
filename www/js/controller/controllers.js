@@ -1820,7 +1820,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
                     } else {
                         $state.go('tab.userhome');
-                        $state.go('tab.userAccount');
+                        //$state.go('tab.userAccount');
                     }
                 } else {
                     $state.go('tab.userhome');
