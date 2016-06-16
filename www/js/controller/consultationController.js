@@ -120,31 +120,32 @@ angular.module('starter.controllers')
             $scope.startDate = year + "-" + smonth + "-" + sdate + "T" + "00" + ":" + "00" + ":" + "00.000";
             var eddate = duedate.setDate(now.getDate());
 
-              var end = new Date(eddate);
-              var eday = end.getDate();
-              var emnth = end.getMonth() + 1;
-              var eyear = end.getFullYear();
+            var end = new Date(eddate);
+            var eday = end.getDate();
+            var emnth = end.getMonth() + 1;
+            var eyear = end.getFullYear();
 
-              var time = end.getHours();
-              var mints = end.getMinutes();
-              var sec = end.getMilliseconds();
-              if (emnth < 10) {
-                  var emonth = "0" + emnth;
-              } else {
-                  var emonth = emnth;
-              }
-              if (eday < 10) {
-                  var edate = "0" + eday;
-              } else {
-                  var edate = eday;
-              }
-              $scope.endDate = eyear + "-" + emonth + "-" + edate + "T" + time + ":" + mints + ":" + sec;
+            var time = end.getHours();
+            var mints = end.getMinutes();
+            var sec = end.getMilliseconds();
+            if (emnth < 10) {
+                var emonth = "0" + emnth;
+            } else {
+                var emonth = emnth;
+            }
+            if (eday < 10) {
+                var edate = "0" + eday;
+            } else {
+                var edate = eday;
+            }
+            $scope.endDate = eyear + "-" + emonth + "-" + edate + "T" + time + ":" + mints + ":" + sec;
 
             var params = {
 
                 accessToken: $rootScope.accessToken,
                 startDate: $scope.startDate,
                 endDate: $scope.endDate,
+                patientId: $rootScope.patientId,
                 appointmentStatusCodes: 1,
                 success: function(data) {
                     $scope.Missedconsultations = data.data;
@@ -154,10 +155,12 @@ angular.module('starter.controllers')
                         var nowDateTimeEightHours = new Date(nowDateTime);
                         nowDateTimeEightHours.setMinutes(nowDateTime.getMinutes() + 15);
                         var todaydatetime = nowDateTimeEightHours.getTime();
-
+                        var patientId=item.patientId;
                         var edtime = item.endTime;
                         var endtimeEightHours = new Date(edtime);
                         var enddatetime = endtimeEightHours.setMinutes(endtimeEightHours.getMinutes() + 15);
+         if($rootScope.patientId==patientId){
+
 
                         if (enddatetime < todaydatetime) {
                             var asd = edtime.split('T');
@@ -193,6 +196,8 @@ angular.module('starter.controllers')
                             });
 
                         }
+
+                      }
                     });
 
                 },
@@ -571,8 +576,8 @@ angular.module('starter.controllers')
                         backdropClickToClose: false
                     }).then(function(modal) {
 
-                    //    $scope.modal = modal;
-                      //  $scope.modal.show();
+                        //    $scope.modal = modal;
+                        //  $scope.modal.show();
                         $rootScope.reportModal = modal;
                         $rootScope.reportModal.show();
 
@@ -629,56 +634,56 @@ angular.module('starter.controllers')
             $('.modal-backdrop').hide();
         }
 
-<!-- Consultation search -->
-$scope.passedsearchshow = true;
-$scope.missedsearchshow = false;
-$scope.droppedsearcshow = false;
+        <!-- Consultation search -->
+        $scope.passedsearchshow = true;
+        $scope.missedsearchshow = false;
+        $scope.droppedsearcshow = false;
 
-$rootScope.passedsearchconsult=function(){
-$scope.passededconsultants();
-var myEl = angular.element(document.querySelector('#passedsearch'));
-myEl.removeClass('btnextcolor');
-myEl.addClass('btcolor');
-var myEl = angular.element(document.querySelector('#missedsearch'));
-myEl.removeClass('btcolor').css('color', '#11c1f3');
-myEl.addClass('btnextcolor');
-var myEl = angular.element(document.querySelector('#droppedsearch'));
-myEl.removeClass('btcolor').css('color', '#11c1f3');
-myEl.addClass('btnextcolor');
-$scope.passedsearchshow=true;
-$scope.missedsearchshow=false;
-$scope.droppedsearchshow=false;
-}
-$scope.missedsearchconsult=function(){
-$scope.missedconsult();
-var myEl = angular.element( document.querySelector( '#missedsearch' ) );
-myEl.addClass('btcolor');
-myEl.removeClass('btnextcolor');
-var myEl = angular.element( document.querySelector( '#passedsearch' ) );
-myEl.removeClass('btcolor').css('color','#11c1f3');
-myEl.addClass('btnextcolor');
-var myEl = angular.element(document.querySelector('#droppedsearch'));
-myEl.removeClass('btcolor').css('color', '#11c1f3');
-myEl.addClass('btnextcolor');
-$scope.missedsearchshow=true;
-$scope.passedsearchshow=false;
-$scope.droppedsearchshow=false;
-}
-$scope.droppedsearchconsult=function(){
-$scope.droppedconsult();
-var myEl = angular.element( document.querySelector('#droppedsearch'));
-myEl.addClass('btcolor');
-myEl.removeClass('btnextcolor');
-var myEl = angular.element( document.querySelector('#passedsearch'));
-myEl.removeClass('btcolor').css('color','#11c1f3');
-myEl.addClass('btnextcolor');
-var myEl = angular.element(document.querySelector('#missedsearch'));
-myEl.removeClass('btcolor').css('color', '#11c1f3');
-myEl.addClass('btnextcolor');
-$scope.passedsearchshow=false;
-$scope.missedsearchshow=false;
-$scope.droppedsearchshow=true;
-}
+        $rootScope.passedsearchconsult = function() {
+            $scope.passededconsultants();
+            var myEl = angular.element(document.querySelector('#passedsearch'));
+            myEl.removeClass('btnextcolor');
+            myEl.addClass('btcolor');
+            var myEl = angular.element(document.querySelector('#missedsearch'));
+            myEl.removeClass('btcolor').css('color', '#11c1f3');
+            myEl.addClass('btnextcolor');
+            var myEl = angular.element(document.querySelector('#droppedsearch'));
+            myEl.removeClass('btcolor').css('color', '#11c1f3');
+            myEl.addClass('btnextcolor');
+            $scope.passedsearchshow = true;
+            $scope.missedsearchshow = false;
+            $scope.droppedsearchshow = false;
+        }
+        $scope.missedsearchconsult = function() {
+            $scope.missedconsult();
+            var myEl = angular.element(document.querySelector('#missedsearch'));
+            myEl.addClass('btcolor');
+            myEl.removeClass('btnextcolor');
+            var myEl = angular.element(document.querySelector('#passedsearch'));
+            myEl.removeClass('btcolor').css('color', '#11c1f3');
+            myEl.addClass('btnextcolor');
+            var myEl = angular.element(document.querySelector('#droppedsearch'));
+            myEl.removeClass('btcolor').css('color', '#11c1f3');
+            myEl.addClass('btnextcolor');
+            $scope.missedsearchshow = true;
+            $scope.passedsearchshow = false;
+            $scope.droppedsearchshow = false;
+        }
+        $scope.droppedsearchconsult = function() {
+            $scope.droppedconsult();
+            var myEl = angular.element(document.querySelector('#droppedsearch'));
+            myEl.addClass('btcolor');
+            myEl.removeClass('btnextcolor');
+            var myEl = angular.element(document.querySelector('#passedsearch'));
+            myEl.removeClass('btcolor').css('color', '#11c1f3');
+            myEl.addClass('btnextcolor');
+            var myEl = angular.element(document.querySelector('#missedsearch'));
+            myEl.removeClass('btcolor').css('color', '#11c1f3');
+            myEl.addClass('btnextcolor');
+            $scope.passedsearchshow = false;
+            $scope.missedsearchshow = false;
+            $scope.droppedsearchshow = true;
+        }
 
 
     });

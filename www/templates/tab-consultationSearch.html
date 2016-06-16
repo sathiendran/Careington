@@ -1,33 +1,31 @@
-
 <ion-side-menus>
-<ion-side-menu-content>
+    <ion-side-menu-content>
 
-<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+        <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-<div class="buttons" >
-<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-ng-click="toggleLeft()"></button>
-</div>
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
+            <div class="buttons">
+                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+            </div>
+            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
 
 
-<div class="bar bar-subheader csubheader">
-      <div class="row">
-           <div class="buttons backbtn"  >
-   <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
-     </div>
-        <div class=" button-bar">
-          <label class="button button-small btcolor btn-first "  id="passedsearch" ng-click="passedsearchconsult()"> <span class="tabheading">Past</span></label>
-          <label class="button button-small btn-first btnextcolor" id="missedsearch" ng-click="missedsearchconsult()"><span class="tabheading">Missed</span></label>
-          <label class="button button-small btn-first btnextcolor" id="droppedsearch" ng-click="droppedsearchconsult()"><span class="tabheading">Dropped</span></label>
+            <div class="bar bar-subheader csubheader">
+                <div class="row">
+                    <div class="buttons backbtn">
+                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
+                    </div>
+                    <div class=" button-bar">
+                        <label class="button button-small btcolor btn-first " id="passedsearch" ng-click="passedsearchconsult()"> <span class="tabheading">Past</span></label>
+                        <label class="button button-small btn-first btnextcolor" id="missedsearch" ng-click="missedsearchconsult()"><span class="tabheading">Missed</span></label>
+                        <label class="button button-small btn-first btnextcolor" id="droppedsearch" ng-click="droppedsearchconsult()"><span class="tabheading">Dropped</span></label>
 
-    </div>
-       <div class="buttons backbtn">
-<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
- </div>
-   </div>
- <div class="csearch">
-      <h6 class="hsearch">
+                    </div>
+                    <div class="buttons backbtn">
+                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
+                    </div>
+                </div>
+                <div class="csearch">
+                    <h6 class="hsearch">
          <!-- <i class="icon ion-search fontcolor"></i>
           <span class="fontcolor">Search</span>-->
            <div class="search_home UserHmeSub concernListSearchHome">
@@ -36,134 +34,113 @@ ng-click="toggleLeft()"></button>
         </label>
 	</div>
        </h6>
- </div>
+                </div>
 
-   <div class="row sheader">
-          <div class="col col-25 dsheader">Date</div>
-          <div class="col col-20 csheader">Time</div>
-          <div class="col col-60 csheader">Provider</div>
-
-
-    </div>
-</div>
-
-</ion-header-bar>
-<ion-view>
-	<ion-content class="consultcontent">
+                <div class="row sheader">
+                    <div class="col col-25 dsheader">Date</div>
+                    <div class="col col-20 csheader">Time</div>
+                    <div class="col col-60 csheader">Provider</div>
 
 
+                </div>
+            </div>
 
-<div ng-show="passedsearchshow" >
-    <div class="row rowalign" ng-repeat="passedData in Passedconsultations  | filter: data.searchQuery">
-      <div class="row">
-     <div class="col col-25 sfont">
-        <p class="colfamily">{{ passedData.consultationDate }} </p>
-     </div>
-     <div class="col col-20" ><p class="colfamily">{{ passedData.consultationTime}}</p></div>
-     <div class="col col-60">
-       <p>
-         <span class="colfamily">{{ passedData.assignedDoctorName }}</span>
-         <span class="vreport" ng-click="showReportView({{passedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
-       </p>
-     </div>
-      </div>
-  </div>
-   <hr class="dotedhr">
-   <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;" >No Passed Search Consultations Found</ion-item>
-</div>
+        </ion-header-bar>
+        <ion-view>
+            <ion-content class="consultcontent">
 
 
-<div ng-show="missedsearchshow" >
-    <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: data.searchQuery">
-      <div class="row">
-        <div class="col col-25 sfont">
-         <p class="colfamily">{{misseddata.enddate}}</p>
-        </div>
-        <div class="col col-20" ><p class="colfamily">{{misseddata.time}}</p></div>
-        <div class="col col-60">
-          <p>
-            <span class="colfamily">{{misseddata.docname}}</span>
-            <span class="vreport"></span><span><i class="icon ion-chevron-right right-icon"></i></span>
-          </p>
-        </div>
-      </div>
-    </div>
-  <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;" >No Missed Search Consultations Found</ion-item>
 
-</div>
-
-<!--
-<div ng-show="missedsearchshow" >
-
-  <div class="row rowalign" ng-repeat="missedsearchData in Passedconsultations">
-    <div class="row">
-   <div class="col col-25 sfont">
-      <p class="colfamily">Nov 16, 2015</p>
-   </div>
-   <div class="col col-20" ><p class="colfamily">2:35 PM</p></div>
-   <div class="col col-60">
-     <p>
-       <span class="colfamily">Dr.McGrath</span>
-       <span class="vreport">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
-     </p>
-   </div>
-    </div>
-</div>
- <hr class="dotedhr">
-</div>
-<ion-item ng-if="!Missedconsultations.length" class="noResult" style="white-space: normal;" >No Missed Search Consultations Found</ion-item>
-</div>-->
-
-<div ng-show="droppedsearchshow" >
-
-  <div class="row rowalign"  ng-repeat="droppedData in Droppedconsultations  | filter: data.searchQuery">
-    <div class="row">
-   <div class="col col-25 sfont">
-      <p class="colfamily">{{droppedData.consultationDate}}</p>
-   </div>
-   <div class="col col-20" ><p class="colfamily">{{droppedData.consultationTime}}</p></div>
-   <div class="col col-60">
-     <p>
-       <span class="colfamily">{{droppedData.assignedDoctorName}}</span>
-       <span class="vreport" ng-click="showReportView({{droppedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
-     </p>
-   </div>
-    </div>
-</div>
- <hr class="dotedhr">
-
-<ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;" >No Dropped Search Consultations Found</ion-item>
-</div>
+                <div ng-show="passedsearchshow">
+                    <div class="row rowalign" ng-repeat="passedData in Passedconsultations  | filter: data.searchQuery">
+                        <div class="row">
+                            <div class="col col-25 sfont">
+                                <p class="colfamily">{{ passedData.consultationDate }} </p>
+                            </div>
+                            <div class="col col-20">
+                                <p class="colfamily">{{ passedData.consultationTime}}</p>
+                            </div>
+                            <div class="col col-60">
+                                <p>
+                                    <span class="colfamily">{{ passedData.assignedDoctorName }}</span>
+                                    <span class="vreport" ng-click="showReportView({{passedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="dotedhr">
+                    <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Search Consultations Found</ion-item>
+                </div>
 
 
-	</ion-content>
+                <div ng-show="missedsearchshow">
+                    <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: data.searchQuery">
+                        <div class="row">
+                            <div class="col col-25 sfont">
+                                <p class="colfamily">{{misseddata.enddate}}</p>
+                            </div>
+                            <div class="col col-20">
+                                <p class="colfamily">{{misseddata.time}}</p>
+                            </div>
+                            <div class="col col-60">
+                                <p>
+                                    <span class="colfamily">{{misseddata.docname}}</span>
+                                    <span class="vreport"></span><span><i class="icon ion-chevron-right right-icon"></i></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Search Consultations Found</ion-item>
+
+                </div>
+
+                <div ng-show="droppedsearchshow">
+
+                    <div class="row rowalign" ng-repeat="droppedData in Droppedconsultations  | filter: data.searchQuery">
+                        <div class="row">
+                            <div class="col col-25 sfont">
+                                <p class="colfamily">{{droppedData.consultationDate}}</p>
+                            </div>
+                            <div class="col col-20">
+                                <p class="colfamily">{{droppedData.consultationTime}}</p>
+                            </div>
+                            <div class="col col-60">
+                                <p>
+                                    <span class="colfamily">{{droppedData.assignedDoctorName}}</span>
+                                    <span class="vreport" ng-click="showReportView({{droppedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="dotedhr">
+
+                    <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Search Consultations Found</ion-item>
+                </div>
+
+
+            </ion-content>
 
     </ion-side-menu-content>
-</ion-view>
+    </ion-view>
 
 
-<ion-tabs  class=" tabs-icon-top tabs-dark">
+    <ion-tabs class=" tabs-icon-top tabs-dark">
 
-  <a class="tab-item " ng-href="#tab/relatedusers">
-    <i class="icon ion-android-people"></i>
-   User
-  </a>
-  <a class="tab-item active">
-    <i class="icon ion-card"></i>
-    Consultations
-  </a>
-  <a class="tab-item " ng-href="#tab/healthinfo">
-    <i class="icon ion-clipboard"></i>
-    My Health
-  </a>
+        <a class="tab-item " ng-href="#tab/relatedusers">
+            <i class="icon ion-android-people"></i> Users
+        </a>
+        <a class="tab-item active">
+            <i class="icon ion-card"></i> Consultations
+        </a>
+        <a class="tab-item " ng-href="#tab/healthinfo">
+            <i class="icon ion-clipboard"></i> My Health
+        </a>
 
-<a class="tab-item " ng-href="#tab/appointmentpatientdetails">
-    <i class="icon ion-calendar"></i>
-    Appointments
-  </a>
-<a class="tab-item"  ng-href="#tab/profileoption">
-    <i class="icon ion-more"></i>
-    More
-  </a>
+        <a class="tab-item " ng-href="#tab/appointmentpatientdetails">
+            <i class="icon ion-calendar"></i> Appointments
+        </a>
+        <a class="tab-item" ng-href="#tab/profileoption">
+            <i class="icon ion-more"></i> More
+        </a>
 
-      </ion-tabs>
+    </ion-tabs>

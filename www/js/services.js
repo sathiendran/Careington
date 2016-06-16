@@ -1200,10 +1200,6 @@ this.getPatientMedicalProfile = function(params){
 		})
  }
 
-
-
-
-
  this.postAddCousers = function(params) {
 
 		var registerCouserdetails = {
@@ -1211,7 +1207,7 @@ this.getPatientMedicalProfile = function(params){
               url: apiCommonURL +'/api/v2/patients/cousers',
 			  method: 'POST',
 			  data: {
-                 email: params.email,
+       email: params.email,
 				familyGroupId: params.familyGroupId,
 				relationshipId: params.relationshipId,
 				heightUnitId: params.heightUnitId,

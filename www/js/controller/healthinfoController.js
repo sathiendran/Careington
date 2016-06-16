@@ -95,11 +95,11 @@ angular.module('starter.controllers')
         $rootScope.flag = false;
         $('#aaa').show();
         $('#ss').hide();
-        var editvalues = angular.element(document.getElementsByTagName('input'));
+        var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
 
-        editvalues.removeClass('textdata');
-        editvalues.addClass('editdata');
+        editsvalues.removeClass('textdata');
+        editsvalues.addClass('editdata');
         edittextarea.removeClass('textdata');
         edittextarea.addClass('editdata');
     }
@@ -172,12 +172,6 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
                 $scope.ErrorMessage = "Please Enter Your Address";
                 $rootScope.Validation($scope.ErrorMessage);
-                /*  }else if(typeof $scope.healthInfoOrganization === 'undefined' || $scope.healthInfoOrganization === ''){
-                      $scope.ErrorMessage = "Please Enter Your Organization";
-                      $rootScope.Validation($scope.ErrorMessage);
-                  }else if(typeof $scope.healthInfoLocation === 'undefined' || $scope.healthInfoLocation === ''){
-                      $scope.ErrorMessage = "Please Enter Your Location";
-                      $rootScope.Validation($scope.ErrorMessage);*/
             } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
                 $scope.ErrorMessage = "Please Select Your Gender";
                 $rootScope.Validation($scope.ErrorMessage);
@@ -205,12 +199,15 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
                 $scope.ErrorMessage = "Please Select Your Blood Type";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else {
+            }
+            else {
                 $scope.doPutProfileUpdation();
             }
+
+
         }
         //$rootScope.currentPatientDetails[0].account.email
-    $scope.doPutProfileUpdation = function() {
+    $rootScope.doPutProfileUpdation = function() {
         var params = {
             accessToken: $rootScope.accessToken,
             emailAddress: $scope.healthInfoEmail,

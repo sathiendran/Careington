@@ -77,7 +77,8 @@ angular.module('starter.controllers')
             var dependentloc = loc.options[loc.selectedIndex].text;
             $scope.location = dependentloc;
             $scope.locationid = $("#locate").val();
-
+            $scope.relation = $("#dependentrelation").val().split("@").slice(0, 1);
+            $rootScope.getRelationId = _.first($scope.relation);
             $scope.hairColor = $("#hairColor").val().split("@").slice(0, 1);
             $scope.getHairColorId = _.first($scope.hairColor);
             $scope.eyeColor = $("#eyeColor").val().split("@").slice(0, 1);
@@ -226,10 +227,15 @@ angular.module('starter.controllers')
 
                 success: function(data) {
 
-                    $('#dependentuserform')[0].reset();
-                    $('select').prop('selectedIndex', 0);
-                    $state.go('tab.relatedusers');
-                    console.log(data);
+                    var updatepatientdetail = data.data;
+                    $rootScope.deppatientId = updatepatientdetail[0].patientId;
+                    $scope.updateDependentRelation();
+
+
+                    /*  $('#dependentuserform')[0].reset();
+                      $('select').prop('selectedIndex', 0);
+                      $state.go('tab.relatedusers');
+                      console.log(data);*/
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();
@@ -239,6 +245,27 @@ angular.module('starter.controllers')
 
         }
 
+
+        $scope.updateDependentRelation = function() {
+            var params = {
+                accessToken: $rootScope.accessToken,
+                patientId: $rootScope.deppatientId,
+                RelationCodeId: $rootScope.getRelationId,
+                IsAuthorized: "N",
+                success: function(data) {
+
+                    $('#dependentuserform')[0].reset();
+                    $('select').prop('selectedIndex', 0);
+                    $state.go('tab.relatedusers');
+
+
+                },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+            LoginService.updateDependentsAuthorize(params);
+        }
 
         $scope.canceldependent = function() {
             $('#dependentuserform')[0].reset();

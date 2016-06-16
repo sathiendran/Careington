@@ -100,8 +100,10 @@
        <i class="iconsize ion-person-stalker"></i><b class="formlabel">Reltionship</b></span>
       </div>
       <div class="col clo-50">
-         <input class="usertext" id="relation" type="text" value=""  placeholder="Required"   name="relation" ng-model="relation" required>
-
+				<select class=" textdata" name="healthInforelation" id="dependentrelation" >
+			               <option value=""><b>Choose</b></option>
+			               <option ng-repeat="getRelation in listOfRelationship[0].codes" value="{{getRelation.codeId + '@' + getRelation.text}}" ng-selected="getRelation.text == currentPatientDetails[0].anatomy.relationship"><b>{{getRelation.text}}</b></option>
+			           </select>
       </div>
     </div>
    <div class="item itemtab row">
