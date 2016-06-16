@@ -1,3 +1,4 @@
+
 angular.module('starter.controllers')
     .controller('consultationController', function($scope, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue, $ionicModal) {
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
@@ -149,13 +150,14 @@ angular.module('starter.controllers')
                 appointmentStatusCodes: 1,
                 success: function(data) {
                     $scope.Missedconsultations = data.data;
-                    $rootScope.missedlist = [];
+                    $rootScope.missedlist = [];     $rootScope.missedReport = [];
                     angular.forEach($scope.Missedconsultations, function(item, index) {
                         var nowDateTime = new Date();
                         var nowDateTimeEightHours = new Date(nowDateTime);
                         nowDateTimeEightHours.setMinutes(nowDateTime.getMinutes() + 15);
                         var todaydatetime = nowDateTimeEightHours.getTime();
                         var patientId=item.patientId;
+                        var consultationId=item.consultationId;
                         var edtime = item.endTime;
                         var endtimeEightHours = new Date(edtime);
                         var enddatetime = endtimeEightHours.setMinutes(endtimeEightHours.getMinutes() + 15);
@@ -193,11 +195,14 @@ angular.module('starter.controllers')
                                 'time': time,
                                 'docname': docname,
                                 'enddate': enddate,
+                                'consultationId':consultationId,
                             });
 
                         }
-
                       }
+
+
+
                     });
 
                 },
@@ -633,6 +638,27 @@ angular.module('starter.controllers')
             $rootScope.reportModal.hide();
             $('.modal-backdrop').hide();
         }
+
+        $rootScope.showmissedReportView = function(consultation) {
+            $rootScope.consultationId = consultation.consultationId;
+
+            $ionicModal.fromTemplateUrl('templates/tab-missedreport.html', {
+                scope: $scope,
+                animation: 'slide-in-up',
+                focusFirstInput: false,
+                backdropClickToClose: false
+            }).then(function(modal) {
+                $rootScope.missedmodal = modal;
+                $rootScope.missedmodal.show();
+            });
+              $scope.missedconsult();
+              //  $rootScope.doGetExistingConsulatationReport();
+        }
+        $scope.closeMissedView = function() {
+            $rootScope.missedmodal.hide();
+            $('.modal-backdrop').hide();
+        }
+
 
         <!-- Consultation search -->
         $scope.passedsearchshow = true;
