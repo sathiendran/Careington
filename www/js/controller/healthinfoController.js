@@ -883,7 +883,7 @@ angular.module('starter.controllers')
                 //$scope.listOfCoUser = JSON.stringify(data, null, 2);
                 $rootScope.listOfCoUserDetails = [];
                 angular.forEach(data.data, function(index, item) {
-                    var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                 var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                         codeId: index.relationCodeId
                     })
                     if (getCoUserRelationShip.length !== 0) {

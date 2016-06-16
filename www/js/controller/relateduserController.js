@@ -278,7 +278,7 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $rootScope.listOfAccountDependents = [];
                     angular.forEach(data.data, function(index, item) {
-                        var getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                var getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                             codeId: index.relationCode
                         })
                         if (getRelationShip.length !== 0) {

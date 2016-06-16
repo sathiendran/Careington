@@ -44,7 +44,7 @@ angular.module('starter.controllers')
 
             if (!this.value.match(/^[0-9]{1,18}$/)) {
                 this.value = this.value.replace(/^[0-9]{1,18}$/g, '');
-                alert("fail");
+        //        alert("fail");
             }
         });
         $("#mobile").blur(function() {
