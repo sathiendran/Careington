@@ -639,6 +639,277 @@ angular.module('starter.controllers')
             $('.modal-backdrop').hide();
         }
 
+
+
+
+
+        $rootScope.doGetMissedConsulatationReport = function() {
+            if ($scope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+
+            var params = {
+                consultationId: $rootScope.consultationId,
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+                    $rootScope.attachmentLength = '';
+                    $rootScope.existingConsultationReport = data.data[0].details[0];
+                    if ($rootScope.existingConsultationReport.height != '' && typeof $rootScope.existingConsultationReport.height != 'undefined') {
+                        $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
+                    } else {
+                        $rootScope.reportHeight = 'NA';
+                    }
+                    if ($rootScope.existingConsultationReport.weight != '' && typeof $rootScope.existingConsultationReport.weight != 'undefined') {
+                        $rootScope.reportWeight = $rootScope.existingConsultationReport.weight + " " + $rootScope.existingConsultationReport.weightUnit;
+                    } else {
+                        $rootScope.reportWeight = 'NA';
+                    }
+                    $rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
+                    $rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
+
+                    if ($rootScope.existingConsultationReport.patientAddress != '' && typeof $rootScope.existingConsultationReport.patientAddress != 'undefined') {
+                        $rootScope.reportPatientAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientAddress);
+                    } else {
+                        $rootScope.reportPatientAddress = 'None Reported';
+                    }
+
+                    if ($rootScope.existingConsultationReport.homePhone != '' && typeof $rootScope.existingConsultationReport.homePhone != 'undefined') {
+                        $rootScope.reportHomePhone = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.homePhone);
+                    } else {
+                        $rootScope.reportHomePhone = 'NA';
+                    }
+
+                    if ($rootScope.existingConsultationReport.hospitalAddress != '' && typeof $rootScope.existingConsultationReport.hospitalAddress != 'undefined') {
+                        $rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
+                    } else {
+                        $rootScope.reportHospitalAddress = 'None Reported';
+                    }
+
+                    if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
+                        $rootScope.reportDoctorFirstName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorFirstName);
+                    } else {
+                        $rootScope.reportDoctorFirstName = 'None Reported';
+                    }
+                    if ($rootScope.existingConsultationReport.medicalSpeciality !== '' && typeof $rootScope.existingConsultationReport.medicalSpeciality !== 'undefined') {
+                        $rootScope.reportMedicalSpeciality = ', ' + htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.medicalSpeciality);
+                    } else {
+                        $rootScope.reportMedicalSpeciality = '';
+                    }
+
+                    if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
+                        $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
+                    } else {
+                        $rootScope.reportDoctorLastName = 'None Reported';
+                    }
+
+                    if ($rootScope.existingConsultationReport.rx != '' && typeof $rootScope.existingConsultationReport.rx != 'undefined') {
+                        $rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
+                    } else {
+                        $rootScope.reportrx = 'None Reported';
+                    }
+
+                    var startTimeISOString = $rootScope.existingConsultationReport.consultationDate;
+                    var startTime = new Date(startTimeISOString);
+                    $rootScope.comsultationTime=new Date(startTimeISOString);
+                    $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
+
+                    if ($rootScope.existingConsultationReport.consultationDuration != 0 && typeof $rootScope.existingConsultationReport.consultationDuration != 'undefined') {
+                        $rootScope.displayCOnsultationDuration = "display";
+                        var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
+                        var consultationSeconds = $rootScope.existingConsultationReport.consultationDuration - (consultationMinutes * 60);
+                        if (consultationMinutes === 0) {
+                            $rootScope.consultDurationMinutes = '00';
+                        } else if (consultationMinutes < 10) {
+                            $rootScope.consultDurationMinutes = '0' + consultationMinutes;
+                        } else {
+                            $rootScope.consultDurationMinutes = consultationMinutes;
+                        }
+
+                        if (consultationSeconds == 0) {
+                            $rootScope.consultDurationSeconds = '00';
+                        } else if (consultationSeconds < 10) {
+                            $rootScope.consultDurationSeconds = '0' + consultationSeconds;
+                        } else {
+                            $rootScope.consultDurationSeconds = consultationSeconds;
+                        }
+                    } else {
+                        $rootScope.displayCOnsultationDuration = "none";
+                    }
+
+
+                    $rootScope.reportScreenPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.primaryConcern);
+                    if (typeof $rootScope.reportScreenPrimaryConcern !== 'undefined') {
+                        var n = $rootScope.reportScreenPrimaryConcern.indexOf("?");
+                        if (n < 0) {
+                            $rootScope.reportScreenPrimaryConcern = $rootScope.reportScreenPrimaryConcern;
+                        } else {
+                            $rootScope.reportScreenPrimaryConcern1 = $rootScope.reportScreenPrimaryConcern.split("?");
+                            $rootScope.reportScreenPrimaryConcern = $rootScope.reportScreenPrimaryConcern1[1];
+                        }
+                    } else {
+                        $rootScope.reportScreenPrimaryConcern = "";
+                    }
+                    $rootScope.reportScreenSecondaryConcern = $rootScope.existingConsultationReport.secondaryConcern;
+                    if (typeof $rootScope.reportScreenSecondaryConcern !== 'undefined') {
+                        var n = $rootScope.reportScreenSecondaryConcern.indexOf("?");
+                        if (n < 0) {
+                            $rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.reportScreenSecondaryConcern);
+                        } else {
+                            $rootScope.reportScreenSecondaryConcern1 = $rootScope.reportScreenSecondaryConcern.split("?");
+                            $rootScope.reportScreenSecondaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.reportScreenSecondaryConcern1[1]);
+                        }
+                    } else {
+                        $rootScope.reportScreenSecondaryConcern = "None Reported";
+                    }
+                    $rootScope.intake = $rootScope.existingConsultationReport.intake;
+
+                    $rootScope.fullTerm = $rootScope.intake.infantData.fullTerm;
+
+                    if ($rootScope.fullTerm == 'N') {
+                        $rootScope.fullTerm = 'No';
+                    } else if ($rootScope.fullTerm == 'T') {
+                        $rootScope.fullTerm = 'True';
+                    }
+
+                    $rootScope.vaginalBirth = $rootScope.intake.infantData.vaginalBirth;
+                    if ($rootScope.vaginalBirth == 'N') {
+                        $rootScope.vaginalBirth = 'No';
+                    } else if ($rootScope.vaginalBirth == 'T') {
+                        $rootScope.vaginalBirth = 'True';
+                    }
+
+                    $rootScope.dischargedWithMother = $rootScope.intake.infantData.dischargedWithMother;
+                    if ($rootScope.dischargedWithMother == 'N') {
+                        $rootScope.dischargedWithMother = 'No';
+                    } else if ($rootScope.dischargedWithMother == 'T') {
+                        $rootScope.dischargedWithMother = 'True';
+                    }
+
+                    $rootScope.vaccinationsCurrent = $rootScope.intake.infantData.vaccinationsCurrent;
+                    if ($rootScope.vaccinationsCurrent == 'N') {
+                        $rootScope.vaccinationsCurrent = 'No';
+                    } else if ($rootScope.vaccinationsCurrent == 'T') {
+                        $rootScope.vaccinationsCurrent = 'True';
+                    }
+
+                    var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
+
+                    if (typeof usDOB != 'undefined' && usDOB != '') {
+                        $rootScope.userReportDOB = usDOB.search("y");
+                    } else {
+                        $rootScope.userReportDOB = 'None Reported';
+                    }
+                    if (typeof data.data[0].details[0].hospitalImage != 'undefined' && data.data[0].details[0].hospitalImage != '') {
+                        var hosImage = data.data[0].details[0].hospitalImage;
+                        if (hosImage.indexOf(apiCommonURL) >= 0) {
+                            $rootScope.hospitalImage = hosImage;
+                        } else {
+                            $rootScope.hospitalImage = apiCommonURL + hosImage;
+                        }
+                    } else {
+                        $rootScope.hospitalImage = '';
+                    }
+
+                    $rootScope.gender = data.data[0].details[0].gender;
+                    if (data.data[0].details[0].gender !== '' && typeof data.data[0].details[0].gender !== 'undefined') {
+
+                        if ($rootScope.gender == 'M') {
+                            $rootScope.gender = 'Male';
+                        } else if ($rootScope.gender == 'F') {
+                            $rootScope.gender = 'Female';
+                        }
+                    } else {
+                        $rootScope.gender = 'NA';
+                    }
+
+                    $rootScope.ReportMedicalConditions = [];
+                    angular.forEach($rootScope.intake.medicalConditions, function(index, item) {
+                        $rootScope.ReportMedicalConditions.push({
+                            'Number': item + 1,
+                            'id': index.$id,
+                            'code': index.code,
+                            'description': index.description,
+                        });
+                    });
+
+                    $rootScope.ReportMedicationAllergies = [];
+                    angular.forEach($rootScope.intake.medicationAllergies, function(index, item) {
+                        $rootScope.ReportMedicationAllergies.push({
+                            'Number': item + 1,
+                            'id': index.$id,
+                            'code': index.code,
+                            'description': index.description,
+                        });
+                    });
+
+                    $rootScope.ReportMedications = [];
+                    angular.forEach($rootScope.intake.medications, function(index, item) {
+                        $rootScope.ReportMedications.push({
+                            'Number': item + 1,
+                            'id': index.$id,
+                            'code': index.code,
+                            'description': index.description,
+                        });
+                    });
+
+                    $rootScope.ReportSurgeries = [];
+                    angular.forEach($rootScope.intake.surgeries, function(index, item) {
+                        $rootScope.ReportSurgeries.push({
+                            'Number': item + 1,
+                            'id': index.$id,
+                            'description': index.description,
+                            'month': index.month,
+                            'year': index.year,
+                        });
+                    });
+
+                    $rootScope.reportMedicalCodeDetails = [];
+
+                    if ($rootScope.existingConsultationReport.medicalCodeDetails != '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails != 'undefined') {
+                        angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
+                            $rootScope.reportMedicalCodeDetails.push({
+                                'Number': item + 1,
+                                'shortDescription': index.shortDescription,
+                                'medicalCodingSystem': index.medicalCodingSystem
+                            });
+                        });
+                        $rootScope.reportMediCPT = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'CPT'
+                        });
+                        $rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'ICD-10-DX'
+                        });
+
+                    } else {
+                        $rootScope.reportMedicalCodeDetails = '';
+                    }
+                    session = null;
+                  //  $scope.getSoapNotes();
+                  //  $scope.doGetAttachmentList();
+
+                            },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+
+            LoginService.getConsultationFinalReport(params);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $rootScope.showmissedReportView = function(consultation) {
             $rootScope.consultationId = consultation.consultationId;
 
@@ -651,7 +922,7 @@ angular.module('starter.controllers')
                 $rootScope.missedmodal = modal;
                 $rootScope.missedmodal.show();
             });
-              $scope.missedconsult();
+              $scope.doGetMissedConsulatationReport();
               //  $rootScope.doGetExistingConsulatationReport();
         }
         $scope.closeMissedView = function() {

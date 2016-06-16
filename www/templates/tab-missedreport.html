@@ -36,9 +36,9 @@
     <div class="list">
 
         <a class="item item-avatar patavatar">
-             <img ng-src="{{reportdocimage}}" class="patimage">
+             <img ng-src="{{profileImagePath}}" class="patimage">
               <p class="pathead">With</p>
-              <h2 class="appfname"><span >{{consultation.consultationId}}</h2>
+              <h2 class="appfname"><span >{{reportDoctorFirstName}}</h2>
                 <span class="appfloat"><i class="icon ion-chevron-right "></i></span>
               </p>
               <p class="patage">{{gender}} </p>
@@ -47,8 +47,8 @@
         <ion-item class="ionitem contalign" >
            <div class="item item-text-wrap textwrap">
               <div class="datecontent">
-                 <h2 class="fdate"><span class="fname ftime">{{missedReport.reporttime | date: "hh:mm"}}{{scheduledListDatas.scheduledTime | date: "a"}}</span> </h2>
-                   <p class="fday">{{missedReport.reporttime | date: "EEEE, MMMM dd, yyyy"}}</p>
+                 <h2 class="fdate"><span class="fname ftime">{{consultationDate |date: "hh:mm"}}{{consultationDate | date: "a"}}</span> </h2>
+                   <p class="fday">{{consultationDate| date: "EEEE, MMMM dd, yyyy"}}</p>
                </div>
          </div>
        </ion-item>
