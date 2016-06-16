@@ -683,7 +683,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
             checkAndChangeMenuIcon = $interval(function() {
-                $rootScope.checkAndChangeMenuIcon();
+                if($rootScope.checkAndChangeMenuIcon){
+                    $rootScope.checkAndChangeMenuIcon();
+                }
             }, 300);
         }
     };
@@ -1812,6 +1814,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     });
                 });
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+                $scope.doGetCodesSet();
                 if (ReDirectPage == 'tab.userhome') {
                     if (deploymentEnv === "Single") {
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
@@ -3180,101 +3183,95 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
     $scope.doGetCodesSet = function() {
-        if ($rootScope.P_isAuthorized === true) {
-
-            if ($rootScope.accessToken === 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-            var params = {
-                hospitalId: $rootScope.hospitalId,
-                accessToken: $rootScope.accessToken,
-                fields: $scope.codesFields,
-                success: function(data) {
-                    //console.log(data.data[3].codes);
-                    $rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
-                    $rootScope.primaryConcernList = $rootScope.hospitalCodesList;
-                    $rootScope.primaryConcernDataList = angular.fromJson(data.data[3].codes);
-                    $rootScope.getSecondaryConcernAPIList = angular.fromJson(data.data[4].codes);
-                    if (angular.fromJson(data.data[4].codes) !== "") {
-                        $rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
-                    } else {
-                        $rootScope.scondaryConcernsCodesList = $rootScope.primaryConcernDataList;
-                    }
-                    $rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
-                    $rootScope.chronicConditionList = $rootScope.chronicConditionsCodesList;
-                    $rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);
-                    $rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
-                    $rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
-                    $rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
-                    $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
-
-                    $rootScope.eyeHairEthnicityRelationCodeSets = [];
-                    angular.forEach(data.data, function(index, item) {
-                        $rootScope.eyeHairEthnicityRelationCodeSets.push({
-                            'codes': angular.fromJson(index.codes),
-                            'hospitalId': index.hospitalId,
-                            'name': index.name
-                        });
-                    });
-
-                    $rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
-                        name: "Eye Color"
-                    });
-                    $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
-                        name: "Hair Color"
-                    });
-                    $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
-                        name: "Ethnicity"
-                    });
-                    $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
-                        name: "Relationship"
-                    });
-                    $rootScope.listOfHeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
-                        name: "Height Units"
-                    });
-                    $rootScope.listOfWeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
-                        name: "Weight Units"
-                    });
-                    $rootScope.listOfBloodtype = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
-                        name: "Blood Type"
-                    });
-
-                    //	$state.go('tab.patientConcerns');
-                },
-                error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            };
-            $rootScope.MedicationAllegiesItem = "";
-            $rootScope.CurrentMedicationItem = "";
-            $rootScope.PatientChronicConditionsSelected = "";
-
-            $rootScope.SecondaryConcernText = "";
-            $rootScope.PrimaryConcernText = "";
-
-            $rootScope.PatientPrimaryConcern = "";
-            $rootScope.PatientSecondaryConcern = "";
-            $rootScope.PatientChronicCondition = "";
-            $rootScope.patinentCurrentMedication = "";
-            $rootScope.patinentMedicationAllergies = "";
-            $rootScope.patientSurgeriess = "";
-            $rootScope.MedicationCount == 'undefined';
-            $rootScope.checkedChronic = 0;
-            $rootScope.ChronicCount = "";
-            $rootScope.AllegiesCount = "";
-            $rootScope.checkedAllergies = 0;
-            $rootScope.MedicationCount = "";
-            $rootScope.checkedMedication = 0;
-            $rootScope.IsValue = "";
-            $rootScope.IsToPriorCount = "";
-            $rootScope.IsToPriorCount = "";
-            SurgeryStocksListService.ClearSurgery();
-            LoginService.getCodesSet(params);
-        } else {
-            $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
-            $rootScope.SubmitCardValidation($scope.ErrorMessage);
+        if ($rootScope.accessToken === 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
         }
+        var params = {
+            hospitalId: $rootScope.hospitalId,
+            accessToken: $rootScope.accessToken,
+            fields: $scope.codesFields,
+            success: function(data) {
+                //console.log(data.data[3].codes);
+                $rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
+                $rootScope.primaryConcernList = $rootScope.hospitalCodesList;
+                $rootScope.primaryConcernDataList = angular.fromJson(data.data[3].codes);
+                $rootScope.getSecondaryConcernAPIList = angular.fromJson(data.data[4].codes);
+                if (angular.fromJson(data.data[4].codes) !== "") {
+                    $rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
+                } else {
+                    $rootScope.scondaryConcernsCodesList = $rootScope.primaryConcernDataList;
+                }
+                $rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
+                $rootScope.chronicConditionList = $rootScope.chronicConditionsCodesList;
+                $rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);
+                $rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
+                $rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
+                $rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
+                $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+
+                $rootScope.eyeHairEthnicityRelationCodeSets = [];
+                angular.forEach(data.data, function(index, item) {
+                    $rootScope.eyeHairEthnicityRelationCodeSets.push({
+                        'codes': angular.fromJson(index.codes),
+                        'hospitalId': index.hospitalId,
+                        'name': index.name
+                    });
+                });
+
+                $rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Eye Color"
+                });
+                $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Hair Color"
+                });
+                $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Ethnicity"
+                });
+                $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Relationship"
+                });
+                $rootScope.listOfHeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Height Units"
+                });
+                $rootScope.listOfWeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Weight Units"
+                });
+                $rootScope.listOfBloodtype = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Blood Type"
+                });
+
+                //	$state.go('tab.patientConcerns');
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        $rootScope.MedicationAllegiesItem = "";
+        $rootScope.CurrentMedicationItem = "";
+        $rootScope.PatientChronicConditionsSelected = "";
+
+        $rootScope.SecondaryConcernText = "";
+        $rootScope.PrimaryConcernText = "";
+
+        $rootScope.PatientPrimaryConcern = "";
+        $rootScope.PatientSecondaryConcern = "";
+        $rootScope.PatientChronicCondition = "";
+        $rootScope.patinentCurrentMedication = "";
+        $rootScope.patinentMedicationAllergies = "";
+        $rootScope.patientSurgeriess = "";
+        $rootScope.MedicationCount == 'undefined';
+        $rootScope.checkedChronic = 0;
+        $rootScope.ChronicCount = "";
+        $rootScope.AllegiesCount = "";
+        $rootScope.checkedAllergies = 0;
+        $rootScope.MedicationCount = "";
+        $rootScope.checkedMedication = 0;
+        $rootScope.IsValue = "";
+        $rootScope.IsToPriorCount = "";
+        $rootScope.IsToPriorCount = "";
+        SurgeryStocksListService.ClearSurgery();
+        LoginService.getCodesSet(params);
     }
 
     $scope.addMinutes = function(inDate, inMinutes) {
@@ -4111,7 +4108,10 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.doGetLocations();
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetonDemandAvailability();
-        $scope.doGetCodesSet();
+        if (!$rootScope.P_isAuthorized) {
+            $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+            $rootScope.SubmitCardValidation($scope.ErrorMessage);
+        }
         if (clickEvent === "patientClick") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount');
         } else if (clickEvent === "sideMenuClick") {
