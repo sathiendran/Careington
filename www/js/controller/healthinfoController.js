@@ -2,8 +2,8 @@ angular.module('starter.controllers')
 
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter) {
 
-
-
+    $rootScope.couserdetails=false;
+  $rootScope.dupcouser=false;
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -923,7 +923,17 @@ angular.module('starter.controllers')
                         'weight': index.weight,
                         'weightUnit': index.weightUnit
                     });
+
+
+                   $rootScope.patient=    $rootScope.listOfCoUserDetails[0].patientId;
                 });
+
+                if( $rootScope.patientId !=  $rootScope.patient){
+                  $rootScope.couserdetails=true;
+                }else{
+                   $rootScope.dupcouser=true;
+                }
+
                 $state.go('tab.relatedusers');
             },
             error: function(data) {

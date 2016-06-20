@@ -1,12 +1,12 @@
 <div class="modal" >
 
 <ion-view>
-    
-    
+
+
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-  <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">cancel</span> My health <span ng-click="chronicdone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
- 
+  <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">Cancel</span> My health <span ng-click="chronicdone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
+
 
 
  <div class="bar bar-subheader searchstyle">
@@ -15,47 +15,36 @@
        <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
 	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="data.searchQuery" >
         </label>
-	</div>  
- </div>  
+	</div>
+ </div>
 </ion-header-bar>
 	<ion-content class="consultcontent has-header" scroll="true" padding="true">
      <ion-list  style="margin-top:44px;" ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
-       
-       
-       
+
+
+
         <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: data.searchQuery"
-						  ng-model="chronic.checked" 
+						  ng-model="chronic.checked"
 						  ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)" >
 			  <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
 
 
-		  </ion-checkbox> 
-       
-   <!--     <div ng-repeat="(letter, chronicConditionsearchList) in sorted_users"  > 
+		  </ion-checkbox>
+
+   <!--     <div ng-repeat="(letter, chronicConditionsearchList) in sorted_users"  >
            <div id="index_{{letter}}" class="item item-divider"    ng-repeat="chronic in chronicConditionsearchList">
               {{chronic.text}}
             </div>
        </div>-->
      </ion-list>
-      
+
        <ul class="alpha_sidebar">
          <li ng-click="gotochronicList('index_{{letter}}')"ng-repeat="letter in alphabet">
             {{letter}}
          </li>
       </ul>
 	</ion-content>
-   
-</ion-view>     
+
+</ion-view>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
