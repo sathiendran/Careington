@@ -180,7 +180,7 @@ angular.module('starter.controllers')
 
 
         $scope.showPopup = function(dependentDetails, relateDependentAuthorize) {
-
+$rootScope.authorised=relateDependentAuthorize;
             if (!angular.isUndefined(dependentDetails.birthdate) && dependentDetails.birthdate !== '') {
                 $scope.dob = " . " + dependentDetails.birthdate;
             } else {
@@ -191,37 +191,43 @@ angular.module('starter.controllers')
             } else {
                 $scope.relationship = '';
             }
+            if($rootScope.authorised=="F")
+            {
+              var myPopup = $ionicPopup.show({
 
-            var myPopup = $ionicPopup.show({
+                  title: "<a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
+                  subTitle: "<p class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                  //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 
-                title: "<a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></span></a> ",
-                subTitle: "<p class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
-                //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
-                templateUrl: 'templates/popupTemplate.html',
-                scope: $scope,
-                buttons: [{
-                    text: '<b class="fonttype">Cancel</b>',
-                    onTap: function(e) {
-                        return false;
-                    }
-                }, {
-                    text: '<b class="fonttype">Confirm</b>',
-                    type: 'button-positive',
-                    onTap: function(e) {
-                            return true;
-                        }
-                        /*onTap: function(e) {
-                          if (!$scope.Confirm) {
-                               $scope.authorizedview=false;
-                                myPopup.close();
-                            //don't allow the user to close unless he enters wifi password
-                            e.preventDefault();
-                          } else {
-
+  templateUrl: 'templates/popupTemplate.html',
+                  scope: $scope,
+                  buttons: [{
+                      text: '<b class="fonttype">Cancel</b>',
+                      onTap: function(e) {
+                          return false;
+                      }
+                  }, {
+                      text: '<b class="fonttype">Confirm</b>',
+                      type: 'button-positive',
+                      onTap: function(e) {
+                              return true;
                           }
-                        }*/
-                }, ]
-            });
+                          /*onTap: function(e) {
+                            if (!$scope.Confirm) {
+                                 $scope.authorizedview=false;
+                                  myPopup.close();
+                              //don't allow the user to close unless he enters wifi password
+                              e.preventDefault();
+                            } else {
+
+                            }
+                          }*/
+                  }, ]
+              });
+            }else{
+alert("fail");
+            }
+
             myPopup.then(function(res) {
                 if (res) {
                     $rootScope.doUpdateDependentsAuthorize(dependentDetails.patientId, dependentDetails.relationCode, relateDependentAuthorize);
