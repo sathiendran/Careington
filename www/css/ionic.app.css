@@ -9098,7 +9098,7 @@ html, body {
   right: 1px; }
 
 .bar .button-bar > .button {
-  line-height: 37px !important; }
+  line-height: 35px !important; }
 
 .login_content, .ContentSearchHomeUser {
   margin: 92px 0 0 0;
@@ -11331,7 +11331,8 @@ a {
   height: 45px;
   border-radius: 50%;
   margin-top: 1px;
-  margin-left: 8px; }
+  margin-left: 8px;
+  border: 2px solid white; }
 
 .UserHmelistImgView {
   width: 55px;
@@ -12523,7 +12524,7 @@ input, button, select, textarea {
   padding: 12px !important; }
 
 .paticoncontent {
-  margin-top: 120px; }
+  margin-top: 197px; }
 
 .userrow {
   margin-top: -12px !important; }
@@ -12722,7 +12723,7 @@ input, button, select, textarea {
 
 .rightpatient {
   float: right;
-  margin-top: -88px; }
+  margin-top: -91px; }
 
 .formlabel {
   margin-left: 10px;
@@ -13005,9 +13006,9 @@ hr {
   margin-left: -19px; }
 
 .list .unlink {
-  margin-left: 26px;
-  margin-top: -5px;
-  margin-bottom: 4px;
+  margin-left: 7px;
+  /* margin-top: 28px; */
+  margin-bottom: -5px;
   color: white;
   background-color: red !important; }
 
@@ -13267,10 +13268,10 @@ hr {
     font-size: 15px; } }
 
 .ioncontentalign {
-  margin-top: 188px; }
+  margin-top: 192px; }
 
 .ioncontentsalign {
-  margin-top: 188px; }
+  margin-top: 200px; }
 
 .pfontsize {
   font-size: 16px !important;
@@ -13390,8 +13391,7 @@ hr {
   .appth3 {
     margin: 20px 0px 0px 0px !important; }
   .rightpatient {
-    float: right;
-    margin-top: -80px; }
+    float: right; }
   .chronic {
     margin-top: 24px; }
   .alignchronic {
@@ -13426,7 +13426,7 @@ hr {
   .userdetcontent {
     margin-top: 58px !important; }
   .ioncontentalign {
-    margin-top: 141px; }
+    margin-top: 160px; }
   .ioncontentsalign {
     margin-top: 165px; }
   .item-input .inputtext {
@@ -13463,7 +13463,7 @@ hr {
   .userdetcontent {
     margin-top: 138px !important; }
   .ioncontentalign {
-    margin-top: 185px; }
+    margin-top: 192px; }
   .ioncontentsalign {
     margin-top: 185px; }
   .valuealign {
@@ -13496,7 +13496,7 @@ hr {
   .userdeptcontent {
     margin-top: 155px !important; }
   .ioncontentalign {
-    margin-top: 185px; }
+    margin-top: 192px; }
   .ioncontentsalign {
     margin-top: 185px; }
   .valuealign {
@@ -13522,7 +13522,7 @@ hr {
   .userdetcontent {
     margin-top: 138px !important; }
   .ioncontentalign {
-    margin-top: 185px; }
+    margin-top: 195px; }
   .ioncontentsalign {
     margin-top: 185px; }
   .valuealign {
@@ -13554,7 +13554,8 @@ hr {
        .userdetcontent{
              margin-top:151px !important;
          }
-      .ioncontentalign{
+      .
+      {
              margin-top:176px;
          }
       .ioncontentsalign{
@@ -14203,7 +14204,6 @@ top: inherit !important;
 
 .alpha_sidebar {
   position: absolute;
-  top: 90px;
   right: 10px;
   z-index: 10; }
 

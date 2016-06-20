@@ -136,7 +136,7 @@ html, body { background: transparent !important; }
 	right:1px;
 }
  .bar .button-bar  > .button{
-     line-height:37px !important;
+     line-height:35px !important;
  }
 .login_content {
 	margin: 92px 0 0 0;
@@ -3758,7 +3758,7 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 .rightpatient{
     float:right;
-    margin-top:-88px;
+    margin-top:-91px;
 }
 .formlabel {
      margin-left: 10px;
@@ -4041,11 +4041,11 @@ font-size: 20px;
 
 }
 .unlink{
-    margin-left: 26px;
-    margin-top: -5px;
-    margin-bottom: 4px;
-    color: white;
-     background-color:red !important;
+  margin-left: 7px;
+ /* margin-top: 28px; */
+ margin-bottom: -5px;
+ color: white;
+ background-color: red !important;
 }
 .tabicon{
    margin-left: 22px;
@@ -4320,10 +4320,11 @@ p{
          }
     }
     .ioncontentalign{
-        margin-top: 188px;
+      //  margin-top: 188px;
+        margin-top: 192px;
     }
     .ioncontentsalign{
-        margin-top: 188px;
+        margin-top: 200px;
     }
 
   .pfontsize{
@@ -4467,7 +4468,7 @@ p{
 
          .rightpatient {
            float: right;
-           margin-top: -80px;
+          // margin-top: -80px;
            }
 
           .chronic { margin-top: 24px;}
@@ -4516,8 +4517,8 @@ p{
              margin-top:58px !important;
          }
          .ioncontentalign{
-            // margin-top:160px;
-            margin-top:141px;
+            margin-top:160px;
+          //  margin-top:141px;
          }
          .ioncontentsalign{
              margin-top:165px;
@@ -4566,7 +4567,8 @@ p{
              margin-top:138px !important;
          }
          .ioncontentalign{
-             margin-top:185px;;
+             //margin-top:185px;
+              margin-top:192px;
          }
          .ioncontentsalign{
              margin-top:185px;;
@@ -4610,7 +4612,7 @@ p{
               margin-top:155px !important;
          }
          .ioncontentalign{
-             margin-top:185px;
+             margin-top:192px;
          }
           .ioncontentsalign{
              margin-top:185px;
@@ -4648,7 +4650,7 @@ p{
              margin-top:138px !important;
          }
          .ioncontentalign{
-             margin-top:185px;
+             margin-top:195px;
          }
           .ioncontentsalign{
              margin-top:185px;
@@ -4685,7 +4687,8 @@ p{
        .userdetcontent{
              margin-top:151px !important;
          }
-      .ioncontentalign{
+      .
+      {
              margin-top:176px;
          }
       .ioncontentsalign{
@@ -5356,7 +5359,7 @@ margin-left: 13px !important;
 
 .alpha_sidebar{
 	position: absolute;
-	top:90px;
+//	top:90px;
 	right: 	10px;
 	z-index: 10;
 }

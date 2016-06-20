@@ -3,8 +3,8 @@ angular.module('starter.controllers')
 
 
         // $scope.myForm.firstname.$error.required=true;
-        // $scope.myForm.firstname.$error.required=false;
-
+      // $scope.myForm.firstname.$error.required=false;
+  //     $scope.loctdetail=false;
         $('input').blur(function() {
             $(this).val(
                 $.trim($(this).val())
@@ -51,7 +51,7 @@ angular.module('starter.controllers')
 
             if (!this.value.match(/^[0-9]{1,18}$/)) {
                 this.value = this.value.replace(/^[0-9]{1,18}$/g, '');
-                alert("fail");
+            //    alert("fail");
             }
         });
 
@@ -383,9 +383,14 @@ angular.module('starter.controllers')
                 angular.forEach(secondSelect[0], function(s2) {
                     if (s2.organizationId == firstSelect) {
                         filtered.push(s2);
-                    }
+                    //   $scope.loctdetail=true;
+                      }
+                      else{
+                      //$scope.loctdetail=false;
+                      }
                 });
             }
+
 
             return filtered;
         };

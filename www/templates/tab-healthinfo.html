@@ -21,28 +21,27 @@
                </div>
             </h1>
          </div>
-         <div class="item item-image-icon " style="background-color:#444444;">
-            <a class="lefthome" ng-href="#/tab/userAccount">
+         <div class="item item-image-icon itemiconcolor">
+
+         <a class="lefthome" ng-href="#/tab/userAccount">
                <i class="icon ion-home headerlefticons" style=""></i>
                <p class="homecontent">Account Home</p>
-            </a>
-            <a class="item-avatar itemhead" ng-hide="doneshow">
-               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage" ng-click="showCameraActions();"></p>
-            </a>
-            <a class="item-avatar itemhead" ng-show="editshow">
+          </a>
+           <a class="item-avatar itemhead">
                <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
-            </a>
-            <a class="rightpatient" ng-href="#/tab/userhome">
+           </a>
+           <a class="rightpatient" ng-href="#/tab/userhome">
                <i class="icon ion-ios-people headerrighticon" style=""></i>
-               <p class="patientcontent">Change Patient</p>
-            </a>
-         </div>
+               <p class="patientcontent" >Change Patient</p>
+           </a>
+   </div>
+
          <div class="row">
             <div class="buttons backbtn">
                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
                </button>
             </div>
-            <div class=" button-bar">
+            <div class="button-bar">
                <label class="button button-small btcolor btn-first" ng-click="profile()" id="profid"> Profile</label>
                <label class="button button-small btn-first btnextcolor" ng-click="health()" id="healid">Health History</label>
             </div>
@@ -69,6 +68,7 @@
             </label>
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"><i class="ion-ios-calendar-outline iconfont"></i><b class="formlabel">D.O.B</b></span>
+
             <input type="date" value="{{userDOB}}"  ng-readonly="flag"  class="valuealign textdata" id="dobdate">
             </label>
             <label class="item item-input itemtab validated">
@@ -110,6 +110,7 @@
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Ethnicity</b> </span>
             <input type="text" value="{{currentPatientDetails[0].anatomy.ethnicity}}" ng-readonly="flag" class="valuealign textdata">
+
             </label>
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"> <i class="ion-ios-person iconfont"></i><b class="formlabel labelfont">Hair Color</b> </span>
@@ -261,7 +262,7 @@
                <span><a ng-click="alergiessearch()" ><i class="ion-edit editicons" ></i></a>
                </span>
             </h4>
-            <hr class="dothr">
+            <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
 
               <li ng-if="patientmedicationsallergies == ''"  >N/A</li>
@@ -272,7 +273,7 @@
                <div class="alignnexttext chronic">Chronic Conditions</div>
                <span><a ng-click="chronicsearch()" ><i class="ion-edit editicon" ></i></a></span>
             </h4>
-            <hr class="dothr">
+            <hr class="dothr dotalign">
             <ul class="aligntext alvalue">
 
                 <li ng-if="patientmedicalConditions==''"  >N/A</li>

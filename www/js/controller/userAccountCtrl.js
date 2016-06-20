@@ -123,8 +123,9 @@ angular.module('starter.controllers')
         }
 
         $rootScope.doGetCurrentUserAppointment = function() {
-            $state.go('tab.appointmentpatientdetails');
-            $rootScope.passededconsultants();
+
+              $scope.passededconsultants();
+              $state.go('tab.appointmentpatientdetails');
         }
 
 

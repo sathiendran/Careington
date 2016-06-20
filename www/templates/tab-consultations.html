@@ -117,7 +117,9 @@
                             </div>
                             <div class="col col-30">
                                 <p class="coldetails">
-                                    <span class="colfamily">{{misseddata.docname}}</span> <span class="vreport" ng-click="showmissedReportView({{misseddata}});">Details</span>
+                                    <span class="colfamily" ng-if="!misseddata.docname">N/A</span>
+                                     <span class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}</span>
+                                    <span class="vreport" ng-click="showmissedReportView({{misseddata}});">Details</span>
                                     <span><i class=" ion-chevron-right rghticon"></i></span>
                                 </p>
                             </div>

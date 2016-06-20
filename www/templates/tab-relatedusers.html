@@ -185,7 +185,10 @@
 					 </div>
 					 <div class="col col-40 relationcol"  ng-click="selectrelation()">
 							<p><a class="relation" >Relationsship</a></p>
-							<p class="relationcont"> <span>Adobe Daughter</span>
+
+							<p class="relationcont">
+                 <span ng-if="!getDependentDetails.relationship">N/A</span>
+                 <span ng-if="getDependentDetails.relationship">{{getDependentDetails.relationship}}</span>
 								 <i class="ion-chevron-right avataricon" ></i>
 							</p>
 					 </div>
@@ -224,7 +227,10 @@
            </div>
            <div class="col col-40 relationtab">
               <p class="conticon relationstatus"><a>Relationsship</a></p>
-              <p class="unauthorrelationship"> <span>Adobe Daughter</span>
+              <p class="unauthorrelationship">
+<span ng-if="!getDependentDetails.relationship">N/A</span>
+<span ng-if="getDependentDetails.relationship">{{getDependentDetails.relationship}}</span>
+
                  <i class="ion-chevron-right avataricon"></i>
               </p>
            </div>
