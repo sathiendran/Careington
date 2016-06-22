@@ -337,8 +337,8 @@ angular.module('starter.controllers')
                 //mimeType: fileMimeType,
                 headers: {
                     'Authorization': $rootScope.accessToken,
-                    'X-Api-Key': xApiKey,
-                    'X-Developer-Id': xDeveloperId
+                    'X-Api-Key': util.getHeaders()["X-Api-Key"],
+                    'X-Developer-Id': util.getHeaders()["X-Developer-Id"]
                 },
             };
 
