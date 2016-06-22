@@ -345,6 +345,7 @@ angular.module('starter.controllers')
 
         // Function to call when the user choose image or video to upload
         function onCameraCaptureSuccess(imageData) {
+            $rootScope.newDependentImagePath = imageData;
             newUploadedPhoto = imageData;
         }
 
