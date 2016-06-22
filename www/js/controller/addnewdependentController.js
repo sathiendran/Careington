@@ -293,18 +293,20 @@ angular.module('starter.controllers')
                     'X-Developer-Id': util.getHeaders()["X-Developer-Id"]
                 },
             };
-
+            $ionicLoading.show({
+                template: '<img src="img/puff.svg" alt="Loading" />'
+            });
             $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function(result) {
                 var getImageURLFromResponse = angular.fromJson(result.response);
                 $rootScope.newDependentImagePath = getImageURLFromResponse.data[0].uri;
+                $ionicLoading.hide();
                 $state.go('tab.relatedusers');
             }, function(err) {
+                $ionicLoading.hide();
                 navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
                 $state.go('tab.relatedusers');
             }, function(progress) {
-                $ionicLoading.show({
-                    template: '<img src="img/puff.svg" alt="Loading" />'
-                });
+
             });
         };
 
