@@ -12,12 +12,12 @@
       </h1>
       <div class="bar bar-subheader bar-dark subheaderheight" ng-hide="userinfosubheader">
          <div class="row">
-            <h1 class="headertitle">
-               <div class="ellipsis subHeader_content_name" >
-                  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >{{currentPatientDetails[0].patientName}}</span>
-                  <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
-               </div>
-            </h1>
+           <h1 class="headertitle">
+              <div class="ellipsis subHeader_content_name" >
+                 <span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >{{currentPatientDetails[0].patientName}}</span>
+                 <span class="patientLastName ellipsis lnamefont">{{currentPatientDetails[0].lastName}}</span>
+              </div>
+           </h1>
          </div>
          <div class="item item-image-icon itemiconcolor">
             <a class="lefthome" ng-href="#/tab/userAccount">
@@ -114,17 +114,20 @@
 						</div>
          </div>
          <div class="list dependusers animated slideInRight" id="dependuserlist">
+
+
 					 <div ng-repeat="getDependentDetails in listOfAccountDependents">
              <div ng-if="getDependentDetails.isAuthorized == true">
-				<a class="item item-avatar"  ng-show="!showdnewetails{{getDependentDetails.patientId}}" ng-swipe-right="showdnewetails{{getDependentDetails.patientId}} = true">
+			<!--	<a class="item item-avatar"  ng-show="!showdnewetails{{getDependentDetails.patientId}}" ng-swipe-right="showdnewetails{{getDependentDetails.patientId}} = true">-->
+      <a class="item item-avatar"  ng-show="!showdnewetails{{getDependentDetails.patientId}}" >
 					 <img class="imgsize" src="{{getDependentDetails.profileImagePath}}" >
 					 <span ng-click="showtab(getDependentDetails.tabPatientId)">
 							<h2  class="relatedhead"><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
 							<p class="relatediconfont">{{getDependentDetails.gender}} <span ng-if = "getDependentDetails.birthdate != ''"> . {{getDependentDetails.birthdate}}</span> <span ng-if = "getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
 					 </span>
 				</a>
-				<div class="row archeight"  ng-show='showdnewetails{{getDependentDetails.patientId}}' ng-swipe-left="showdnewetails{{getDependentDetails.patientId}} = false" >
-					 <div class="col col-25 listarchieved" ng-click="archieve(getDependentDetails.patientId)">
+			<!--	<div class="row archeight"  ng-show='showdnewetails{{getDependentDetails.patientId}}' ng-swipe-left="showdnewetails{{getDependentDetails.patientId}} = false" >
+					 <div class="col col-25 listarchieved" ng-click="archieve(getDependentDetails)">
 							<div>
 								 <div class="aligncentericon" >
 										<i class="icon ion-ios-box iconbox"></i>
@@ -139,7 +142,7 @@
 								 <p>{{getDependentDetails.gender}} <span ng-if = "getDependentDetails.birthdate != ''"> . {{getDependentDetails.birthdate}}</span> <span ng-if = "getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
 							</a>
 					 </div>
-				</div>
+				</div>-->
 				<div class="row dotrow" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="tabView"  >
 					 <a class="col col-20 dotcol" ng-click="seeaPatientConcerns()">
 							<div class="tabicon"> <i class="ion-chevron-down"></i></div>

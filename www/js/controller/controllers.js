@@ -3727,14 +3727,14 @@ LoginService.getScheduledConsulatation(params);
         LoginService.deleteAccountUser(params);
     }
 
-    $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage) {
+    $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage,profileImagePath) {
         if ($rootScope.accessToken === 'No Token') {
             alert('No token.  Get token first then attempt operation.');
             return;
         }
         var params = {
             accessToken: $rootScope.accessToken,
-            patientId: patientId,
+            patientId:$rootScope.patientId,
             success: function(data) {
                 if (nextPage == 'tab.relatedusers') {
                     $rootScope.selectedRelatedDependentDetails = [];
@@ -3756,9 +3756,12 @@ LoginService.getScheduledConsulatation(params);
                             'pharmacyDetails': index.pharmacyDetails,
                             'physicianDetails': index.physicianDetails,
                             'schoolContact': index.schoolContact,
-                            'schoolName': index.schoolName
+                            'schoolName': index.schoolName,
+
                         });
                     });
+                    var dependentaccount=$rootScope.selectedRelatedDependentDetails[0].account;
+                    $rootScope.profileImage=dependentaccount.profileImage;
                     var date = new Date($rootScope.selectedRelatedDependentDetails[0].dob);
                     $rootScope.dependentDOB = $filter('date')(date, "yyyy-MM-dd");
                     if ($rootScope.selectedRelatedDependentDetails[0].gender == 'M') {
@@ -3791,7 +3794,7 @@ LoginService.getScheduledConsulatation(params);
                         }
                         var confirmPopup = $ionicPopup.confirm({
 
-                            title: "<a class='item-avatar'>  <img src='" + $rootScope.APICommonURL + $rootScope.selectedRelatedDependentDetails[0].account.profileImagePath + "'><span><span class='fname'><b>" + $rootScope.selectedRelatedDependentDetails[0].patientName + "</b></span> <span class='sname'>" + $rootScope.selectedRelatedDependentDetails[0].lastName + "</span></span></a> ",
+                            title: "<a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + $rootScope.selectedRelatedDependentDetails[0].patientName + "</b></span> <span class='fname'><b>" + $rootScope.selectedRelatedDependentDetails[0].patientName + "</b></span></span></a> ",
                             //  subTitle:"<p class='fontcolor'>"+$rootScope.dependentGender+"<span ng-if="+ $rootScope.dependentDOB+ "!= ''" >. "+$rootScope.dependentDOB+ "<span ng-if="+ dependentRelationShip + "!= ''" >. " + dependentRelationShip +"</p>",
                             subTitle: "<p class='fontcolor'>" + $rootScope.dependentGender + $scope.dob + $scope.relationship + "</p>",
                             //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',

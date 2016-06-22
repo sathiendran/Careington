@@ -265,8 +265,10 @@ angular.module('starter.controllers')
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
+                  $rootScope.currentPatientDetails=$rootScope.currentPatientDetails[0];
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
+            //    $rootScope.getManageProfile(currentPatientDetails);
                 $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 $scope.readattr = true;
                 $scope.editshow = true;

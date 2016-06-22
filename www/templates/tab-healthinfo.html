@@ -69,7 +69,7 @@
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"><i class="ion-ios-calendar-outline iconfont"></i><b class="formlabel">D.O.B</b></span>
 
-            <input type="date" value="{{userDOB}}"  ng-readonly="flag"  class="valuealign textdata" id="dobdate">
+            <input type="date" value="{{userDOB}}"  ng-readonly="flag" name="healthInfoDOB"  class="valuealign textdata" id="dobdate">
             </label>
             <label class="item item-input itemtab validated">
             <span class="input-label labelcolor"> <i class="ion-android-mail iconfont"></i><b class="formlabel labelfont">Email</b></span>
@@ -144,11 +144,11 @@
             </div>
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
-               <input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone" value="{{currentPatientDetails[0].homePhone}}" class="valhome textdata">
+               <input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone" value="{{currentPatientDetails[0].homePhone}}" phone-input  ng-model="phoneVal" class="valhome textdata">
             </div>
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"><i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Mobile</b> </span>
-               <input type="text" name="healthInfoMobilePhone" id="healthInfoMobilePhone" value="{{currentPatientDetails[0].mobilePhone}}" class="valuealign textdata">
+               <input type="text" name="healthInfoMobilePhone" id="healthInfoMobilePhone" value="{{currentPatientDetails[0].mobilePhone}}" phone-input ng-model="mobileVal" class="valuealign textdata">
             </div>
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="ion-location iconfont"></i><b class="formlabel labelfont">Home Address</b></span>
@@ -156,14 +156,14 @@
             </div>
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"><i class="ion-ios-people iconfont"></i><b class="formlabel labelfont">Organization</b></span>
-               <select class="valuealign textdata"  name="healthInfoOrganization" id="healthInfoOrganization" ng-model="healthInfoModel.healthInfoOrganization" >
+               <select class="valuealign textdata optionselect"  name="healthInfoOrganization" id="healthInfoOrganization" ng-model="healthInfoModel.healthInfoOrganization" >
                   <option value="">Choose Organization</option>
                      <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ng-selected="getOrganization.name == currentPatientDetails[0].organization"><b>{{getOrganization.name}}</b></option>
                 </select>
             </div>
             <div class="item item-input itemtab validated" ng-disabled="!listOfLocForCurntOrg">
                <span class="input-label labelcolor"> <i class="ion-android-pin iconfont"></i><b class="formlabel labelfont">Location</b> </span>
-              <select class="valuealign textdata"  name="healthInfoLocation" id="healthInfoLocation" >
+              <select class="valuealign textdata optionselect"  name="healthInfoLocation" id="healthInfoLocation" >
                       <option>Choose Location</option>
                      <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
                 </select>
@@ -179,7 +179,7 @@
                   <input type="text" name="healthInfoHeight" id="healthInfoHeight" value="{{currentPatientDetails[0].anatomy.height}}" class="valuealign textdata">
                </div>
                <div>
-                   <select class="valuealign textdata"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" >
+                   <select class="valuealign textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" >
                          <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
                      </select>
                </div>
@@ -190,7 +190,7 @@
                   <input type="text" name="healthInfoWeight" id="healthInfoWeight"  value="{{currentPatientDetails[0].anatomy.weight}}" class="valuealign textdata">
                </div>
                <div>
-                  <select class="valuealign textdata" name="healthInfoWeightUnit" id="healthInfoWeightUnit">
+                  <select class="valuealign textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit">
                       <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightUnit"><b>{{getUserweightunit.text}}</b></option>
                   </select>
                </div>
@@ -198,7 +198,7 @@
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Ethnicity</b> </span>
                <div>
-                  <select class="valuealign textdata" name="healthInfoEthnicity" id="healthInfoEthnicity" >
+                  <select class="valuealign textdata optionselect" name="healthInfoEthnicity" id="healthInfoEthnicity" >
                      <option value=""><b>Choose</b></option>
                      <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.ethnicity"><b>{{getEthnicity.text}}</b></option>
                   </select>
@@ -207,7 +207,7 @@
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="ion-ios-person iconfont"></i><b class="formlabel labelfont">Hair Color</b> </span>
                <div>
-                  <select class="valuealign textdata" name="healthInfoHairColor" id="healthInfoHairColor">
+                  <select class="valuealign textdata optionselect" name="healthInfoHairColor" id="healthInfoHairColor">
                      <option value=""><b>Choose</b></option>
                      <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}" ng-selected="getHairColor.text == currentPatientDetails[0].anatomy.hairColor"><b>{{getHairColor.text}}</b></option>
                   </select>
@@ -216,7 +216,7 @@
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="ion-ios-eye iconfont"></i><b class="formlabel labelfont">Eye Color</b> </span>
                <div>
-                  <select class="valuealign textdata" name="healthInfoEyeColor" id="healthInfoEyeColor" >
+                  <select class="valuealign textdata optionselect" name="healthInfoEyeColor" id="healthInfoEyeColor" >
                      <option value=""><b>Choose</b></option>
                      <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}" ng-selected="getEyeColor.text == currentPatientDetails[0].anatomy.eyeColor"><b>{{getEyeColor.text}}</b></option>
                   </select>
@@ -225,7 +225,7 @@
             <div class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Blood Type</b> </span>
                <div>
-                  <select class="valuealign textdata" name="healthInfoBloodType" id="healthInfoBloodType" >
+                  <select class="valuealign textdata optionselect" name="healthInfoBloodType" id="healthInfoBloodType" >
                      <option value=""><b>Choose</b></option>
                      <option ng-repeat="getBloodType in listOfBloodtype[0].codes" value="{{getBloodType.codeId + '@' + getBloodType.text}}" ng-selected="getBloodType.text == currentPatientDetails[0].anatomy.bloodType"><b>{{getBloodType.text}}</b></option>
                   </select>

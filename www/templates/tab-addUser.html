@@ -154,7 +154,7 @@
      </div>
      <div class="col clo-50">
          <input class="input-phone" id="userphone" type='text' phone-input ng-model="phoneVal"/>
-       <!-- <input class="usertext" id="userphone" type="tel" value="" phoneInput placeholder="Optional" ng-model="phone"   name="phone"  >
+       <!-- <input class="usertext" id="userphone" type="tel" value="" phoneInput placeholder="Optional" ng-model="phone"  ng-pattern="/^[0-9]{1,14}$/"  name="phone"  >
         <span class="error" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>-->
      </div>
    </div>
@@ -164,7 +164,7 @@
        <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
     </div>
     <div class="col clo-50">
-       <input class="usertext" id="usermobile" type="tel" value=""  placeholder="Optional" ng-model="mobile"   name="mobile" ng-pattern="/^[0-9]{1,14}$/" >
+       <input class="usertext" id="usermobile" type="tel" value=""  placeholder="Optional" ng-model="mobile"   name="mobile" phone-input ng-model="phoneVal" >
        <span class="error" id="ermobile" ng-show="myForm.mobile.$error.pattern">Not a valid number!</span>
      </div>
    </div>
