@@ -3727,14 +3727,14 @@ LoginService.getScheduledConsulatation(params);
         LoginService.deleteAccountUser(params);
     }
 
-    $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage,profileImagePath) {
+    $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage) {
         if ($rootScope.accessToken === 'No Token') {
             alert('No token.  Get token first then attempt operation.');
             return;
         }
         var params = {
             accessToken: $rootScope.accessToken,
-            patientId:$rootScope.patientId,
+            patientId:patientId,
             success: function(data) {
                 if (nextPage == 'tab.relatedusers') {
                     $rootScope.selectedRelatedDependentDetails = [];
@@ -3760,8 +3760,7 @@ LoginService.getScheduledConsulatation(params);
 
                         });
                     });
-                    var dependentaccount=$rootScope.selectedRelatedDependentDetails[0].account;
-                    $rootScope.profileImage=dependentaccount.profileImage;
+
                     var date = new Date($rootScope.selectedRelatedDependentDetails[0].dob);
                     $rootScope.dependentDOB = $filter('date')(date, "yyyy-MM-dd");
                     if ($rootScope.selectedRelatedDependentDetails[0].gender == 'M') {
