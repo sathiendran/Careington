@@ -87,7 +87,7 @@
        <i class="iconsize ion-person-stalker"></i><b class="formlabel">Reltionship</b></span>
     </div>
     <div class="col clo-50">
-  <select class=" textdata" name="healthInforelation" id="userrelation" >
+  <select class="optionselect textdata" name="healthInforelation" id="userrelation" >
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getRelation in listOfRelationship[0].codes" value="{{getRelation.codeId + '@' + getRelation.text}}" ng-selected="getRelation.text == currentPatientDetails[0].anatomy.relationship"><b>{{getRelation.text}}</b></option>
            </select>
@@ -120,8 +120,8 @@
           <input id="userheight" class="usertext textalign" type="text" value="" placeholder="Optional" ng-model="userheight" name="userheight" required >
         </div>
         <div>
-           <select class=" " name="userheightunit" id="userheightunit" ng-model="userheightunit" required>
-               <option value=""><b>Choose</b></option>
+           <select class="optionselect " name="userheightunit" id="userheightunit" ng-model="userheightunit" required>
+               <!--<option value=""><b>Choose</b></option>-->
                <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightunit"><b>{{getUserheightunit.text}}</b></option>
            </select>
 
@@ -138,8 +138,8 @@
           <input id="userWeight" class="usertext textalign" type="text" value="" placeholder="Optional" ng-model="userWeight" name="userWeight" required >
         </div>
         <div>
-           <select class=" " name="userweightunit" id="userweightunit" ng-model="userweightunit" required>
-               <option value=""><b>Choose</b></option>
+           <select class="optionselect " name="userweightunit" id="userweightunit" ng-model="userweightunit" required>
+              <!-- <option value=""><b>Choose</b></option>-->
                <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightunit"><b>{{getUserweightunit.text}}</b></option>
            </select>
 
@@ -183,7 +183,7 @@
         <i class="iconsize ion-ios-people"></i><b class="formlabel">Organization</b></span>
      </div>
     <div class="col clo-50">
-       <select class=" textdata" id="userorganization" ng-model="userorg" ng-options="option.id as option.name for option in listOfOrganization">
+       <select class="optionselect textdata" id="userorganization" ng-model="userorg" ng-options="option.id as option.name for option in listOfOrganization">
        <option value=""><b>Choose</b></option>
      </select>
 
@@ -196,7 +196,7 @@
        <i class="iconsize ion-location"></i><b class="formlabel">Location</b></span>
     </div>
     <div class="col clo-50">
-       <select class=" textdata"  id="userlocation" ng-model="userloc" ng-options="option.name for option in locationdetails | secondDropdown: userorg">
+       <select class="optionselect textdata"  id="userlocation" ng-model="userloc" ng-options="option.name for option in locationdetails | secondDropdown: userorg">
       <option value=""><b>Choose</b></option>
     </select>
         <input type="hidden" id="userlocate" value="{{userloc.id}}" />
@@ -208,7 +208,7 @@
        <i class="iconsize ion-ios-person"></i><b class="formlabel">Hair Color</b></span>
     </div>
     <div class="col clo-50">
-        <select class=" textdata" name="healthInfoHairColor" id="userhaircolor">
+        <select class="optionselect textdata" name="healthInfoHairColor" id="userhaircolor">
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}" ng-selected="getHairColor.text == currentPatientDetails[0].anatomy.hairColor"><b>{{getHairColor.text}}</b></option>
          </select>
@@ -220,7 +220,7 @@
         <i class="iconsize ion-ios-eye"></i><b class="formlabel">Eye Color</b></span>
      </div>
       <div class="col clo-50">
-        <select class=" textdata" name="healthInfoEyeColor" id="usereyecolor" >
+        <select class="optionselect textdata" name="healthInfoEyeColor" id="usereyecolor" >
               <option value=""><b>Choose</b></option>
               <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}" ng-selected="getEyeColor.text == currentPatientDetails[0].anatomy.eyeColor"><b>{{getEyeColor.text}}</b></option>
           </select>
@@ -232,7 +232,7 @@
          <i class="iconsize ion-earth"></i><b class="formlabel">Ethnicity</b></span>
      </div>
       <div class="col clo-50">
-         <select class=" textdata" name="healthInfoEthnicity" id="userethnicity" >
+         <select class="optionselect textdata" name="healthInfoEthnicity" id="userethnicity" >
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}" ng-selected="getEthnicity.text == currentPatientDetails[0].anatomy.ethnicity"><b>{{getEthnicity.text}}</b></option>
            </select>
