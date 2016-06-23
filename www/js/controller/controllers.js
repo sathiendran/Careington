@@ -328,6 +328,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
 
 
+       $rootScope.canceloption=function(){
+          $window.history.back();
+          $scope.apply();
+       }
+
+
     $rootScope.deploymentEnv = deploymentEnv;
     if (deploymentEnv !== 'Multiple') {
         $rootScope.APICommonURL = apiCommonURL;
@@ -552,7 +558,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.MenuIconBottomRecipt = "top: -8px;";
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
-        $rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
+        //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
+        $rootScope.PasswordOverlop = "margin: 82px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
@@ -703,7 +710,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
 
-    $scope.ClearRootScope = function() {
+    $rootScope.ClearRootScope = function() {
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         if (deploymentEnvLogout === "Multiple") {

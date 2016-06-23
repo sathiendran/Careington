@@ -129,7 +129,7 @@ angular.module('starter.controllers')
         $scope.email = $("#useremail").val();
         $scope.dob = $("#userdob").val();
         $scope.gender = $("input[name='userInfoGender']:checked").val();
-        $scope.height = $("#userheight").val();
+        $scope.heights = $("#userheight").val();
         $scope.weight = $("#userWeight").val();
         $scope.homephone = $("#userphone").val();
         $scope.mobile = $("#usermobile").val();
@@ -177,7 +177,7 @@ angular.module('starter.controllers')
         } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
             $scope.ErrorMessage = "Please Select Your Gender";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+        } else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
             $scope.ErrorMessage = "Please Enter Your Height";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.heightunitid === 'undefined' || $scope.heightunitid === '') {
@@ -218,8 +218,9 @@ angular.module('starter.controllers')
             relationshipId: $scope.getRelationId,
             heightUnitId: $scope.heightunitid,
             weightUnitId: $scope.weightunitid,
-            photo: $rootScope.newCoUserImagePath,
-            height: $scope.height,
+            //photo: $rootScope.newCoUserImagePath,
+            photo: "",
+            height: $scope.heights,
             weight: $scope.weight,
             heightUnit: $scope.heightunit,
             weightUnit: $scope.weightunit,
@@ -232,8 +233,8 @@ angular.module('starter.controllers')
             locationName: $scope.colocation,
             firstName: $scope.firstName,
             lastName: $scope.lastName,
-            profileImagePath: $rootScope.newCoUserImagePath,
-
+          //  profileImagePath: $rootScope.newCoUserImagePath,
+           profileImagePath:"",
             success: function(data) {
                 $('#couserform')[0].reset();
                 $('select').prop('selectedIndex', 0);

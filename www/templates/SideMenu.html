@@ -14,14 +14,14 @@
 	</ion-item>
 </ion-list>
 </a>
-
+<!--
 	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
 <ion-list>
 	<ion-item class="ion-ios-list" id="{{sidemenuHome}}">
 		<span>  My Files</span>
 	</ion-item>
 </ion-list>
-</a>
+</a>-->
 
 	<a ng-href="#/tab/appointmentpatientdetails" class="sidemenuContent1" >
 <ion-list>
@@ -31,53 +31,61 @@
 </ion-list>
 </a>
 
-	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
+	<a ng-href="#/tab/consultations" class="sidemenuContent1" >
 <ion-list>
 	<ion-item class="icon ion-card tabfont" id="{{sidemenuHome}}">
 		<span>  My Consultations</span>
 	</ion-item>
 </ion-list>
 </a>
-
+<!--
 	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
 <ion-list>
 	<ion-item class="ion-ios-list" id="{{sidemenuHome}}">
 		<span>  Billing & Insurance</span>
 	</ion-item>
 </ion-list>
-</a>
-
+</a>-->
+		<!--
 	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
+
 <ion-list>
 	<ion-item class="icon ion-gear-a tabfont" id="{{sidemenuHome}}">
 		<span>  Settings</span>
 	</ion-item>
 </ion-list>
+</a>-->
+<a ng-click="ClearRootScope()" class="SidemenuLogOut1" >
+<ion-list>
+<ion-item class="ion-power LogOutText" >
+	<span>  Logout</span>
+</ion-item>
+</ion-list>
 </a>
-			<a ng-click="ClearRootScope()" class="SidemenuLogOut1" >
-		<ion-list>
-			<ion-item class="ion-power LogOutText" >
-				<span>  Logout</span>
-			</ion-item>
-		</ion-list>
-			</a>
 
 </div>
 
 <div>
-	<a class="SidemenuLogOut1" >
+<a class="SidemenuLogOut1" >
 <ion-list>
+<!--<ion-item class="ion-power LogOutText" >
+<div style="float: left;"><img ng-src=""></div>
+<div style="float: right; width: 78%;">
+<div>Poomani R</div>
+<div> FeMale.29yrs</div>
+</div>
+</ion-item>-->
 <div class="HrefListView">
- <div class="UserhmePatientDetails">
-	 <img ng-src="{{PatientImageSelectUser}}" class="UserHmelistImgView">
-	 <div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{PatientFirstName}} </b><span class="SubTitleSpan ellipsis"> {{PatientLastName}}</span></div>
-	 <!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-	 <p class="ListHomeUser_pTitle DateFormateStyle">{{userGender}} . {{PatientAge | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
+<div class="UserhmePatientDetails">
+<img ng-src="{{PatientImage}}" class="UserHmelistImgView">
+<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
+<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
+<p class="ListHomeUser_pTitle DateFormateStyle">{{gender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 </div>
 </div>
 <div style="border-bottom: 1px solid black; padding-top: 5px;"></div>
 </ion-list>
-	</a>
+</a>
 </div>
 
 </ion-side-menu>
