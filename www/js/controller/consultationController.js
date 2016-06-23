@@ -150,7 +150,7 @@ angular.module('starter.controllers')
                 appointmentStatusCodes: 1,
                 success: function(data) {
                     $scope.Missedconsultations = data.data;
-                    $rootScope.missedlist = [];     $rootScope.missedReport = [];
+                    $rootScope.missedlist = [];     $rootScope.missedlistReport = [];
                     angular.forEach($scope.Missedconsultations, function(item, index) {
                         var nowDateTime = new Date();
                         var nowDateTimeEightHours = new Date(nowDateTime);
@@ -200,6 +200,46 @@ angular.module('starter.controllers')
 
                         }
                       }
+   if($rootScope.patientId==patientId && $rootScope.consultationId==consultationId){
+     if (enddatetime < todaydatetime) {
+         var asd = edtime.split('T');
+         var enddate = asd[0];
+
+         var astime = asd[1].split('+');
+         var newt = astime[0].split(':');
+         var time = newt[0] + ":" + newt[1];
+         var asds = item.participants;
+         var patientdata = _.where(asds, {
+             participantTypeCode: 1
+         });
+         var drdata = _.where(asds, {
+             participantTypeCode: 2
+         });
+         var patimg = patientdata[0].person;
+         var photo = _.pick(patimg, 'photoUrl');
+         var patphoto = _.values(photo);
+         if (drdata.length > 0) {
+             var drlist = drdata[0].person.name;
+             var nlist = _.pick(drlist, 'given');
+             var drname = _.values(nlist);
+             var docname = drname.join();
+         } else {
+             var drname = "";
+         }
+
+
+         $rootScope.missedlistReport.push({
+             'reptime': time,
+             'repdocname': docname,
+             'rependdate': enddate,
+             'repconsultationId':consultationId,
+             'repimage':patphoto,
+         });
+
+     }
+   }
+
+
 
 
 
@@ -922,8 +962,8 @@ angular.module('starter.controllers')
                 $rootScope.missedmodal = modal;
                 $rootScope.missedmodal.show();
             });
-              $scope.doGetMissedConsulatationReport();
-              //  $rootScope.doGetExistingConsulatationReport();
+            //  $scope.doGetMissedConsulatationReport();
+             $rootScope.doGetExistingConsulatationReport();
         }
         $scope.closeMissedView = function() {
             $rootScope.missedmodal.hide();

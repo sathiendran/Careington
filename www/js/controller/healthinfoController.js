@@ -368,6 +368,27 @@ angular.module('starter.controllers')
 
 
     $scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
+
+    $scope.getCodesSetsForHospital = function(){
+      var params = {
+          hospitalId: $rootScope.hospitalId,
+          accessToken: $rootScope.accessToken,
+          fields: $scope.codesFields,
+          success: function(data) {
+              $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
+              $rootScope.currentMedicationsearchList = angular.fromJson(data.data[1].codes);
+              $rootScope.medicationAllergiesearchList = angular.fromJson(data.data[2].codes);
+              $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
+          },
+          error: function(data) {
+              $rootScope.serverErrorMessageValidation();
+          }
+      };
+      LoginService.getCodesSet(params);
+    };
+
+    $scope.getCodesSetsForHospital();
+
     $scope.healthsearch = function() {
         $scope.alphabet = iterateAlphabet();
         if (typeof $rootScope.MedicationsCount === 'undefined') {
@@ -385,44 +406,25 @@ angular.module('starter.controllers')
             $scope.modal.show();
         });
 
-        if ($rootScope.accessToken === 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
-            hospitalId: $rootScope.hospitalId,
-            accessToken: $rootScope.accessToken,
-            fields: $scope.codesFields,
-            success: function(data) {
-                $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
-                $rootScope.currentMedicationsearchList = angular.fromJson(data.data[1].codes);
-
-                var users = $rootScope.currentMedicationsearchList;
-                var userslength = users.length;
-                var log = [];
-                var tmp = {};
-                for (i = 0; i < userslength; i++) {
-                    var letter = users[i].text.toUpperCase().charAt(0);
-                    if (tmp[letter] == undefined) {
-                        tmp[letter] = []
-                    }
-                    tmp[letter].push(users[i]);
-                }
-                $rootScope.sorted_users = tmp;
-
-                $rootScope.gotoList = function(id) {
-
-                    $location.hash(id);
-                    $ionicScrollDelegate.anchorScroll();
-
-                }
-
-            },
-            error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+        var users = $rootScope.currentMedicationsearchList;
+        var userslength = users.length;
+        var log = [];
+        var tmp = {};
+        for (i = 0; i < userslength; i++) {
+            var letter = users[i].text.toUpperCase().charAt(0);
+            if (tmp[letter] == undefined) {
+                tmp[letter] = []
             }
-        };
-        LoginService.getCodesSet(params);
+            tmp[letter].push(users[i]);
+        }
+        $rootScope.sorted_users = tmp;
+
+        $rootScope.gotoList = function(id) {
+
+            $location.hash(id);
+            $ionicScrollDelegate.anchorScroll();
+
+        }
 
         $scope.cancelshow = false;
         $scope.doneshow = true;
@@ -581,44 +583,23 @@ angular.module('starter.controllers')
             $scope.modal = modal;
             $scope.modal.show();
         });
-        if ($rootScope.accessToken === 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
-            hospitalId: $rootScope.hospitalId,
-            accessToken: $rootScope.accessToken,
-            fields: $scope.codesFields,
-            success: function(data) {
-                $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
-                $rootScope.medicationAllergiesearchList = angular.fromJson(data.data[2].codes);
-
-                var usersallergie = $rootScope.medicationAllergiesearchList;
-                var usersallergielength = usersallergie.length;
-                var log = [];
-                var tmpallergie = {};
-                for (i = 0; i < usersallergielength; i++) {
-                    var letter = usersallergie[i].text.toUpperCase().charAt(0);
-                    if (tmpallergie[letter] == undefined) {
-                        tmpallergie[letter] = [];
-                    }
-                    tmpallergie[letter].push(usersallergie[i]);
-                }
-                $scope.sorted_usersallergie = tmpallergie;
-
-                $scope.gotoallergyList = function(codeid) {
-                    $location.hash(codeid);
-                    $ionicScrollDelegate.anchorScroll();
-                }
-
-
-            },
-            error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+        var usersallergie = $rootScope.medicationAllergiesearchList;
+        var usersallergielength = usersallergie.length;
+        var log = [];
+        var tmpallergie = {};
+        for (i = 0; i < usersallergielength; i++) {
+            var letter = usersallergie[i].text.toUpperCase().charAt(0);
+            if (tmpallergie[letter] == undefined) {
+                tmpallergie[letter] = [];
             }
-        };
+            tmpallergie[letter].push(usersallergie[i]);
+        }
+        $scope.sorted_usersallergie = tmpallergie;
 
-        LoginService.getCodesSet(params);
+        $scope.gotoallergyList = function(codeid) {
+            $location.hash(codeid);
+            $ionicScrollDelegate.anchorScroll();
+        }
         $scope.cancelshow = false;
         $scope.doneshow = true;
         $scope.editshow = false;
@@ -770,42 +751,23 @@ angular.module('starter.controllers')
             $scope.modal = modal;
             $scope.modal.show();
         });
-        if ($rootScope.accessToken === 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
-            hospitalId: $rootScope.hospitalId,
-            accessToken: $rootScope.accessToken,
-            fields: $scope.codesFields,
-            success: function(data) {
-                $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
-                $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
-
-                var userschronic = $rootScope.chronicConditionsearchList;
-                var userschroniclength = userschronic.length;
-                var log = [];
-                var tmpchronic = {};
-                for (i = 0; i < userschroniclength; i++) {
-                    var chletter = userschronic[i].text.toUpperCase().charAt(0);
-                    if (tmpchronic[chletter] == undefined) {
-                        tmpchronic[chletter] = [];
-                    }
-                    tmpchronic[chletter].push(userschronic[i]);
-                }
-                $scope.sortedchronic_users = tmpchronic;
-
-                $scope.gotochronicList = function(codeid) {
-                    $location.hash(codeid);
-                    $ionicScrollDelegate.anchorScroll();
-                }
-            },
-            error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+        var userschronic = $rootScope.chronicConditionsearchList;
+        var userschroniclength = userschronic.length;
+        var log = [];
+        var tmpchronic = {};
+        for (i = 0; i < userschroniclength; i++) {
+            var chletter = userschronic[i].text.toUpperCase().charAt(0);
+            if (tmpchronic[chletter] == undefined) {
+                tmpchronic[chletter] = [];
             }
-        };
+            tmpchronic[chletter].push(userschronic[i]);
+        }
+        $scope.sortedchronic_users = tmpchronic;
 
-        LoginService.getCodesSet(params);
+        $scope.gotochronicList = function(codeid) {
+            $location.hash(codeid);
+            $ionicScrollDelegate.anchorScroll();
+        }
         $scope.cancelshow = false;
         $scope.doneshow = true;
         $scope.editshow = false;
