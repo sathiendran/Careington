@@ -1,10 +1,13 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
+
    <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <div class="buttons">
          <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
       </div>
+
+
+
       <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
          <span> My Health </span>
          <span class="headerval" ng-click="edittext()" ng-show="editshow">Edit</span>
@@ -12,6 +15,8 @@
          <span class="headerval"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
 
       </h1>
+      <div class="Server_Error ErrorMessageDiv" ></div>
+      <div id="Error_Message"></div>
       <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
             <h1 class="headertitle">
@@ -53,6 +58,7 @@
       </div>
 
    </ion-header-bar>
+    <form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
    <ion-view title="Health Info Details" >
    <ion-content class="ioncontentalign" >
       <div ng-hide="addmore">
@@ -299,8 +305,7 @@
 
    </ion-content>
   </form>
-  <div class="Server_Error ErrorMessageDiv" ></div>
-  <div id="Error_Message"></div>
+
   <!--Side Menu File Include --->
   <div class="hide-on-keyboard-open">
      <ion-tabs class=" tabs-icon-top tabs-dark">

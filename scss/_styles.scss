@@ -3927,6 +3927,9 @@ font-size: 20px;
    margin-right:16px;
    margin-top:-32px ;
 }
+.contright{
+  float:right;
+}
 .currentedit{
     float:right;
     margin-right:12px;
@@ -5010,7 +5013,7 @@ color: white;
 }
 .rghticon{
      color:#616161;
-     float:right;
+    // float:right;
 }
 .rowalign{
   padding:0px;
@@ -5248,7 +5251,7 @@ box-shadow: 0 1px 3px transparent !important;
 .profilecontent{
     margin-top:187px;
 }
-.paticoncontent{ margin-top:207px;}
+.paticoncontent{ margin-top:180px;}
 .apptdetails{
 background-color: #ffc900;
 height: 123px;

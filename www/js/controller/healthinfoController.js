@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter) {
 
-    $rootScope.couserdetails=false;
+  $rootScope.couserdetails=false;
   $rootScope.dupcouser=false;
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
@@ -160,10 +160,7 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                 $scope.ErrorMessage = "Please Enter Your Email Id";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (!$scope.ValidateEmail($scope.healthInfoEmail)) {
-                $scope.ErrorMessage = "Please enter a valid Email Address";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+            }  else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
                 $scope.ErrorMessage = "Please Enter Your Home Phone";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
@@ -966,7 +963,7 @@ angular.module('starter.controllers')
     };
 
 
-    $scope.$watch('healthInfoModel.healthInfoOrganization', function(newVal) {
+ $scope.$watch('healthInfoModel.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
             $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
                 organizationId: $rootScope.currentPatientDetails[0].organizationId
