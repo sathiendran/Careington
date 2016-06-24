@@ -50,7 +50,8 @@
 		<div class="ConcernsFooter">
 
 			<div class="FooterLeft">
-				<a class="button_new icon ion-chevron-left" href="#/tab/patientConcerns" style="cursor: pointer;"><span> Back</span></a>
+				<a class="button_new icon ion-chevron-left" href="#/tab/patientConcerns" style="cursor: pointer;">
+					<span> Back</span></a>
 			</div>
 
 			<div class="FooterCenter" ng-click="clearRootScopeConce()">
@@ -58,9 +59,10 @@
 			</div>
 
 			<div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
-				<a class="button_new icon ion-chevron-right">
+				<a class="">Next
                     <!--<span  class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};"   class="ConcernFooterNext" style="{{FootNextButton}};{{FootNextButtonRight}}">Next<span>-->
-					<span  class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span>
+				<!--	<span  class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span>-->
+				<span class="ion-chevron-right"> </span>
                 </a>
 			</div>
 

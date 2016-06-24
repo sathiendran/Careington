@@ -37,12 +37,12 @@
                 </div>
 
                 <div class="row sheader">
-                    <div class="col col-25 dsheader">Date</div>
+                    <div class="col col-30 dsheader">Date</div>
                     <div class="col col-20 csheader">Time</div>
-                    <div class="col col-60 csheader">Provider</div>
+                    <div class="col col-30 csheader">Provider</div>
+                    <div class="col col-25 "></div>
 
-
-                </div>
+              </div>
             </div>
 
         </ion-header-bar>
@@ -52,23 +52,31 @@
 
 
                 <div ng-show="passedsearchshow">
-                    <div class="row rowalign" ng-repeat="passedData in Passedconsultations  | filter: data.searchQuery">
-                        <div class="row">
-                            <div class="col col-25 sfont">
+
+
+                    <div class="row rowalign" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: data.searchQuery)">
+                        <div class="row" >
+                            <div class="col col-30 sfont">
                                 <p class="colfamily">{{ passedData.consultationDate }} </p>
                             </div>
                             <div class="col col-20">
                                 <p class="colfamily">{{ passedData.consultationTime}}</p>
                             </div>
-                            <div class="col col-60">
+                            <div class="col col-30">
                                 <p>
                                     <span class="colfamily">{{ passedData.assignedDoctorName }}</span>
-                                    <span class="vreport" ng-click="showReportView({{passedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
+                                  <!--  <span class="vreport" ng-click="showReportView({{passedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>-->
                                 </p>
                             </div>
+                            <div class="col col-20">
+                              <span class="contright"  ng-click="showReportView({{passedData}});">Report
+                              <span><i class="icon ion-chevron-right right-icon"></i></span></span>
+
+                            </div>
                         </div>
+
                     </div>
-                    <hr class="dotedhr">
+                     <ion-item ng-if="filteredItems.length==0">No Data</ion-item>
                     <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Search Consultations Found</ion-item>
                 </div>
 
@@ -76,19 +84,23 @@
                 <div ng-show="missedsearchshow">
                     <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: data.searchQuery">
                         <div class="row">
-                            <div class="col col-25 sfont">
+                            <div class="col col-30 sfont">
                                 <p class="colfamily">{{misseddata.enddate}}</p>
                             </div>
                             <div class="col col-20">
                                 <p class="colfamily">{{misseddata.time}}</p>
                             </div>
-                            <div class="col col-60">
-                                <p>
-                                    <span class="colfamily">{{misseddata.docname}}</span>
-                                    <span class="vreport"></span><span><i class="icon ion-chevron-right right-icon"></i></span>
-                                </p>
+                            <div class="col col-30">
+                                <p><span class="colfamily" ng-if="!misseddata.docname">NA</span></p>
+                                <p><span class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}</span></p>
+                            </div>
+                            <div class="col col-25">
+                              <span class="contright"  ng-click="showReportView({{misseddata}});">Report
+                              <span><i class="icon ion-chevron-right right-icon"></i></span></span>
+
                             </div>
                         </div>
+
                     </div>
                     <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Search Consultations Found</ion-item>
 
@@ -98,21 +110,26 @@
 
                     <div class="row rowalign" ng-repeat="droppedData in Droppedconsultations  | filter: data.searchQuery">
                         <div class="row">
-                            <div class="col col-25 sfont">
+                            <div class="col col-30 sfont">
                                 <p class="colfamily">{{droppedData.consultationDate}}</p>
                             </div>
                             <div class="col col-20">
                                 <p class="colfamily">{{droppedData.consultationTime}}</p>
                             </div>
-                            <div class="col col-60">
+                            <div class="col col-30">
                                 <p>
                                     <span class="colfamily">{{droppedData.assignedDoctorName}}</span>
-                                    <span class="vreport" ng-click="showReportView({{droppedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>
+
                                 </p>
+                            </div>
+                            <div class="col col-25">
+                              <span class="contright"  ng-click="showReportView({{droppedData}});">Report
+                              <span><i class="icon ion-chevron-right right-icon"></i></span></span>
+
                             </div>
                         </div>
                     </div>
-                    <hr class="dotedhr">
+                
 
                     <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Search Consultations Found</ion-item>
                 </div>

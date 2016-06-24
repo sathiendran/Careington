@@ -71,10 +71,7 @@
                   <p class="relatedfont">{{getCoUserDetails.gender}} <span ng-if = "getCoUserDetails.dob != ''">. {{getCoUserDetails.dob}}</span> <span ng-if = "getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
 							</a>
             </div>
-            <div ng-show="dupcouser">
-            <a style="display: block; text-align: center;">No Co-Users Found</a>
 
-            </div>
 						<!--	<div class="row archiveCoUser"  ng-show="showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = false">
 								 <div class="col col-25 archieve" ng-click="coUserArchieve(getCoUserDetails)">
 										<div>
@@ -112,6 +109,10 @@
               </div>
 
 						</div>
+
+            <div ng-show="dupcouser">
+            <a style="display: block; text-align: center;">No Co-Users Found</a>
+            </div>
          </div>
          <div class="list dependusers animated slideInRight" id="dependuserlist">
 

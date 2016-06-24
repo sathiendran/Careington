@@ -1583,7 +1583,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.searched = false;
     //$rootScope.age = 25;
 
-    $scope.$watch('data.searchQuery', function(searchKey) {
+  /*  $scope.$watch('data.searchQuery', function(searchKey) {
         if (searchKey !== '' && typeof searchKey !== 'undefined') {
             $rootScope.patientSearchKey = searchKey;
             var loggedInPatient = {
@@ -1607,7 +1607,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.searched = false;
             }
         }
-    })
+    })*/
     $scope.$on("callPatientAndDependentProfiles", function(event, args) {
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('tab.Health');
@@ -4094,7 +4094,7 @@ LoginService.getScheduledConsulatation(params);
             if ($rootScope.RelatedPatientProfiles !== '') {
                 if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
                     $rootScope.RelatedPatientProfiles.shift();
-                    $scope.searched = false;
+                  //  $scope.searched = false;
                 }
             }
             $rootScope.providerName = '';

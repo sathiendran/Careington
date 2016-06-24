@@ -369,7 +369,7 @@ angular.module('starter.controllers')
 
     $scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 
-    $scope.getCodesSetsForHospital = function(){
+    $rootScope.getCodesSetsForHospital = function(){
       var params = {
           hospitalId: $rootScope.hospitalId,
           accessToken: $rootScope.accessToken,
@@ -390,6 +390,7 @@ angular.module('starter.controllers')
     $scope.getCodesSetsForHospital();
 
     $scope.healthsearch = function() {
+     $rootScope.patientmedications;
         $scope.alphabet = iterateAlphabet();
         if (typeof $rootScope.MedicationsCount === 'undefined') {
             $rootScope.checkedMedication = 0;
@@ -404,6 +405,12 @@ angular.module('starter.controllers')
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
+            $rootScope.CurrentMedicationsearchItem = $filter('filter')($rootScope.currentMedicationsearchList, {
+                checked: true
+            });
+            $rootScope.CurrentMedicationsearchSelected = $filter('filter')($rootScope.currentMedicationsearchList, {
+                checked: true
+            });
         });
 
         var users = $rootScope.currentMedicationsearchList;

@@ -358,7 +358,8 @@ html, body { background: transparent !important; }
 
 
 .header_imageAndroid {
-	margin-top: 35px;
+//	margin-top: 35px;
+	margin-top: 24px;
 	text-align: center;
 	width: 100%;
 	border-color: #B03A21;
@@ -2174,7 +2175,8 @@ html, body { background: transparent !important; }
 		 Color: #4D4D4D;
 }
 .ContentList_provider-Android {
-	margin: 153px 0 0 0;
+	//margin: 153px 0 0 0;
+  	margin: 133px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
@@ -2340,6 +2342,7 @@ float:right;
 font-size: 18px !important;
 }
 .healthhead{
+   margin-top:15px;
     text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober Bold;
 }
 .appmarg{
@@ -4141,6 +4144,9 @@ p{
  }
 }
 }
+.list:last-child {
+    padding-bottom: 150px;
+}
 .consimg{
     max-width:30px !important;
     max-height:30px !important;
@@ -4363,6 +4369,8 @@ p{
   }
 
   @media (max-width:481px) and (min-width:322px)    {
+    .ContentUserHome {
+     margin:45px 0 0 0;}
      .tabs-top > .tabs, .tabs.tabs-top {
         top: inherit !important;
      }
@@ -4395,8 +4403,14 @@ p{
 .avatarclass{margin-left:-26px;  }
 .fstrow{ margin-top:4px;}
   .statuscont{   margin-left:-27px !important;}
-.consultcontent{ margin-top:102px;}
-.paticoncontent{ margin-top:157px;}
+.consultcontent{
+   //margin-top:102px;
+    margin-top:120px;
+ }
+.paticoncontent{
+  //margin-top:157px;
+  margin-top:170px;
+}
 .addphoto{   width:38%; }
 .relatedfont { margin-top: -9px;}
       .appfloat{
@@ -4525,8 +4539,8 @@ p{
              margin-top:58px !important;
          }
          .ioncontentalign{
-            margin-top:160px;
-          //  margin-top:141px;
+          //  margin-top:160px;
+             margin-top:170px;
          }
          .ioncontentsalign{
              margin-top:165px;
@@ -4547,7 +4561,8 @@ p{
              font-size: 15px;
          }*/
        .has-header {
-         top:90px;
+         //top:90px;
+          top:70px;
        }
 
     }
@@ -4555,6 +4570,8 @@ p{
 
 
   @media (max-width:640px) and (min-width:482px)    {
+    .ContentUserHome {
+     margin:45px 0 0 0;}
  .addphoto{
       width:42%;
         }
@@ -4596,6 +4613,9 @@ p{
      }
 
      @media (max-width:768px) and (min-width:641px)    {
+
+       .ContentUserHome {
+       	margin:45px 0 0 0;}
          .addphoto{
       width:44%;
         }
@@ -4727,7 +4747,7 @@ p{
 .subcontent{ margin-left:-32px !important;}
 
 .consultcontent{
-    margin-top:105px;
+    margin-top:120px;
 }
 .dsheader{
     margin-left:3px;
@@ -5070,7 +5090,7 @@ color: white;
    background-color:#e9e9e9;
 }
  .coldate{
-     width:80px;
+     width:82px;
      margin-left:-10px;
      margin-top:-4px;
  }
@@ -5101,7 +5121,7 @@ color: white;
     margin-top:122px;
 }
 .relatedusercontent{
-    margin-top:150px;
+    margin-top:175px;
 }
 .usercard{
     margin: 38px 10px !important;
