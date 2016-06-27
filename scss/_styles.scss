@@ -1707,6 +1707,13 @@ html, body { background: transparent !important; }
 
 }
 
+.searchdata{
+    text-align: center;
+    font-family: Glober Bold;
+    font-size: 20px;
+    margin-top: 51px;
+}
+
 .platform-ios {
 	.ConcernsFooter {
 		opacity: 2;
@@ -4404,8 +4411,8 @@ p{
 .fstrow{ margin-top:4px;}
   .statuscont{   margin-left:-27px !important;}
 .consultcontent{
-   //margin-top:102px;
-    margin-top:120px;
+   margin-top:108px;
+    //margin-top:120px;
  }
 .paticoncontent{
   //margin-top:157px;
@@ -4747,7 +4754,8 @@ p{
 .subcontent{ margin-left:-32px !important;}
 
 .consultcontent{
-    margin-top:120px;
+    //margin-top:120px;
+    margin-top:106px;
 }
 .dsheader{
     margin-left:3px;
@@ -5191,6 +5199,7 @@ color: white;
   bottom: 0;
   position: absolute;
   width: 100%;
+  margin-bottom: 45px;
 }
 /*End SideMenu by Poomani*/
 
