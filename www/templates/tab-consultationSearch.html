@@ -30,7 +30,7 @@
           <span class="fontcolor">Search</span>-->
            <div class="search_home UserHmeSub concernListSearchHome">
        <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="data.searchQuery" >
+	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
         </label>
 	</div>
        </h6>
@@ -47,14 +47,14 @@
 
         </ion-header-bar>
         <ion-view>
-            <ion-content class="consultcontent">
+            <ion-content class="consultsearchcontent">
 
 
 
                 <div ng-show="passedsearchshow">
 
 
-                    <div class="row rowalign" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: data.searchQuery)">
+                    <div class="row rowalign" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: searchQuery)">
                         <div class="row" >
                             <div class="col col-30 sfont">
                                 <p class="colfamily">{{ passedData.consultationDate }} </p>
@@ -76,13 +76,13 @@
                         </div>
 
                     </div>
-                     <ion-item ng-if="filteredItems.length==0">No Data</ion-item>
-                    <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Search Consultations Found</ion-item>
+
+                    <ion-item class="searchdata" ng-show="(Passedconsultations | filter:searchQuery).length==0">No Passed Search Consultations Found</ion-item>
                 </div>
 
 
                 <div ng-show="missedsearchshow">
-                    <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: data.searchQuery">
+                    <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: searchQuery">
                         <div class="row">
                             <div class="col col-30 sfont">
                                 <p class="colfamily">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
@@ -102,13 +102,13 @@
                         </div>
 
                     </div>
-                    <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Search Consultations Found</ion-item>
+                    <ion-item class="searchdata" ng-show="(missedlist | filter:searchQuery).length==0">No Missed Search Consultations Found</ion-item>
 
                 </div>
 
                 <div ng-show="droppedsearchshow">
 
-                    <div class="row rowalign" ng-repeat="droppedData in Droppedconsultations  | filter: data.searchQuery">
+                    <div class="row rowalign" ng-repeat="droppedData in Droppedconsultations  | filter: searchQuery">
                         <div class="row">
                             <div class="col col-30 sfont">
                                 <p class="colfamily">{{droppedData.consultationDate}}</p>
@@ -131,7 +131,7 @@
                     </div>
 
 
-                    <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Search Consultations Found</ion-item>
+                    <ion-item class="searchdata" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Dropped Search Consultations Found</ion-item>
                 </div>
 
 
