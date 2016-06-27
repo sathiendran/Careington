@@ -85,7 +85,7 @@
                     <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: data.searchQuery">
                         <div class="row">
                             <div class="col col-30 sfont">
-                                <p class="colfamily">{{misseddata.enddate}}</p>
+                                <p class="colfamily">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
                             </div>
                             <div class="col col-20">
                                 <p class="colfamily">{{misseddata.time}}</p>
@@ -129,7 +129,7 @@
                             </div>
                         </div>
                     </div>
-                
+
 
                     <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Search Consultations Found</ion-item>
                 </div>
