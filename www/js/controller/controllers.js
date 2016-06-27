@@ -559,7 +559,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
-        $rootScope.PasswordOverlop = "margin: 82px 0 0 0;";
+        $rootScope.PasswordOverlop = "margin: 106px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
@@ -568,9 +568,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.concernListDoneStyle = "concernListDone";
         $rootScope.PrimaryMarginTop = "margin-top: -16px";
         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
-        $rootScope.providerItamTop = "top: 6px;";
+      //  $rootScope.providerItamTop = "top: 6px;";
         $rootScope.appointContent = "margin: 76px 0 0 0;";
-        $rootScope.MarginHomeTop = "margin-top: -50px;";
+        //$rootScope.MarginHomeTop = "margin-top: -130px;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
     }
@@ -636,7 +636,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             // Do not go to the previous state (or view) for these states.
             // Do nothing here to disable H/W back button.
         } else if ($rootScope.currState.$current.name === "tab.login") {
-            navigator.app.exitApp();
+            navigator.app.exitApp();       
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {

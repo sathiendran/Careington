@@ -1745,7 +1745,7 @@ html, body { background: transparent !important; }
 	.FooterRight {
 			.ion-chevron-right:before {
 			  content: "\f125";
-			  font-size: 22px;
+			  font-size: 22px !important;
 			  margin-top: -2px;
 			}
 		text-align:right; float:left;width:33%; position: relative; top: -7px;
@@ -2175,8 +2175,8 @@ html, body { background: transparent !important; }
 		 Color: #4D4D4D;
 }
 .ContentList_provider-Android {
-	//margin: 153px 0 0 0;
-  	margin: 133px 0 0 0;
+	margin: 157px 0 0 0;
+  	//margin: 133px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
@@ -3235,6 +3235,9 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
   height: auto;
   line-height: 1.0em;
   padding-top: 47px;
+  box-shadow: 0px 3px 3px #ADABAB;
+    -moz-box-shadow: 0px 3px 3px #ADABAB;
+    -webkit-box-shadow: 0px 3px 3px #ADABAB;
 }
 .consentIAgree {
 	position: relative; top: 3px;
@@ -4369,8 +4372,8 @@ p{
   }
 
   @media (max-width:481px) and (min-width:322px)    {
-    .ContentUserHome {
-     margin:45px 0 0 0;}
+    /*.ContentUserHome {
+     margin:45px 0 0 0;}*/
      .tabs-top > .tabs, .tabs.tabs-top {
         top: inherit !important;
      }
@@ -4560,10 +4563,10 @@ p{
              width: 145px;
              font-size: 15px;
          }*/
-       .has-header {
+       /*.has-header {
          //top:90px;
           top:70px;
-       }
+       }*/
 
     }
 
