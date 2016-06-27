@@ -64,6 +64,7 @@
                         <div class="col col-20"><span class="topfont">Date</span></div>
                         <div class="col col-15 headertime"><span class="topfont">Time</span></div>
                         <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
+                        <div class="col col-15 "><span class="topfont"></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
@@ -82,19 +83,14 @@
                             </div>
                             <div class="col col-30">
                                 <p class="coldetails">
-                                  <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A
-                                     <span class="contright" ng-click="showReportView({{passedData}});">
-                                        Details
-                                          <span><i class=" ion-chevron-right "></i></span>
-                                    </span>
-                                  </a>
-                                    <a class="colfamily" ng-if="passedData.assignedDoctorName">{{passedData.assignedDoctorName}}
-                                       <span class="contright" ng-click="showReportView({{passedData}});">
-                                          Details
-                                            <span><i class=" ion-chevron-right "></i></span>
-                                      </span>
-                                    </a>
+                                  <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
+                                    <a class="colfamily" ng-if="passedData.assignedDoctorName">{{passedData.assignedDoctorName}}</a>
                                   </p>
+                            </div>
+
+                            <div class="col col-15 ">
+                                <span class="contright"  ng-click="showReportView({{passedData}});">Details
+                                <span><i class="icon ion-chevron-right "></i></span></span>
                             </div>
                           </div>
 
@@ -114,6 +110,7 @@
                         <div class="col col-20"><span class="topfont">Date</span></div>
                         <div class="col col-15 headertime"><span class="topfont">Time</span></div>
                         <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
+                        <div class="col col-15 "><span class=""></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
@@ -126,7 +123,7 @@
                                 </a>
                             </div>
                             <div class="col col-20">
-                                <p class="colfamily coldate">{{misseddata.enddate}}</p>
+                                <p class="colfamily coldate">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
                             </div>
                             <div class="col col-15 coltime">
                                 <p class="colfamily">{{misseddata.time}}</p>
@@ -134,24 +131,22 @@
                             <div class="col col-30">
                               <p class="coldetails">
                                 <a class="colfamily" ng-if="!misseddata.docname">N/A
-                                   <span class="contright" ng-click="showReportView({{misseddata}});">
+                                  <!-- <span class="contright" ng-click="showReportView({{misseddata}});">
                                       Details
                                         <span><i class=" ion-chevron-right "></i></span>
-                                  </span>
+                                  </span>-->
                                 </a>
                                   <a class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}
-                                     <span class="contright" ng-click="showReportView({{misseddata}});">
+                                    <!-- <span class="contright" ng-click="showReportView({{misseddata}});">
                                         Details
                                           <span><i class=" ion-chevron-right "></i></span>
-                                    </span>
+                                    </span>-->
                                   </a>
                               </p>
-                              <!--  <p class="coldetails">
-                                    <span class="colfamily" ng-if="!misseddata.docname">N/A</span>
-                                     <span class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}</span>
-                                    <span class="vreport" ng-click="showmissedReportView({{misseddata}});">Details</span>
-                                    <span><i class=" ion-chevron-right rghticon"></i></span>
-                                </p>-->
+                            </div>
+                            <div class="col col-15 ">
+                                <span class="contright"  ng-click="showReportView({{misseddata}});">Details
+                                <span><i class="icon ion-chevron-right "></i></span></span>
                             </div>
                           </div>
                           <hr class="dotedhr">
@@ -169,6 +164,7 @@
                         <div class="col col-20"><span class="topfont">Date</span></div>
                         <div class="col col-15 headertime"><span class="topfont">Time</span></div>
                         <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
+                        <div class="col col-15 "><span class=""></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
@@ -187,13 +183,13 @@
                             </div>
                             <div class="col col-30">
                                 <p class="coldetails">
-                                    <a class="colfamily">{{droppedData.assignedDoctorName}}
-                                       <span class="contright" ng-click="showReportView({{droppedData}});">
-                                          Details
-                                            <span><i class=" ion-chevron-right "></i></span>
-                                      </span>
-                                    </a>
+                                    <a class="colfamily" ng-if="!droppedData.docname">N/A</a>
+                                    <a class="colfamily" ng-if="droppedData.docname">{{droppedData.assignedDoctorName}}</a>
                                 </p>
+                            </div>
+                            <div class="col col-15 ">
+                                <span class="contright"  ng-click="showReportView({{droppedData}});">Details
+                                <span><i class="icon ion-chevron-right "></i></span></span>
                             </div>
                           </div>
                               <hr class="dotedhr">
