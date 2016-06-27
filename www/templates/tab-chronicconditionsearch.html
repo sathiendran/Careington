@@ -13,7 +13,7 @@
     <h2  class="subname">Chronic Conditions</h2>
      <div class="search_home UserHmeSub concernListSearchHome">
        <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="data.searchQuery" >
+	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchText" >
         </label>
 	</div>
  </div>
@@ -23,7 +23,7 @@
 
 
 
-        <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: data.searchQuery"
+        <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: searchText"
 						  ng-model="chronic.checked"
 						  ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)" >
 			  <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
@@ -43,6 +43,7 @@
             {{letter}}
          </li>
       </ul>
+      <p class="searchdata" ng-show="(chronicConditionsearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
 	</ion-content>
 
 </ion-view>

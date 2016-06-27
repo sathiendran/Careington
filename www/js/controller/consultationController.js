@@ -171,6 +171,13 @@ angular.module('starter.controllers')
                             var astime = asd[1].split('+');
                             var newt = astime[0].split(':');
                             var time = newt[0] + ":" + newt[1];
+                            var timeString = time;
+                            var hourEnd = timeString.indexOf(":");
+                            var H = +timeString.substr(0, hourEnd);
+                            var h = H % 12 || 12;
+                            var ampm = H < 12 ? "AM" : "PM";
+                            timeString = h + timeString.substr(hourEnd, 3) + ampm;
+                            var missedtime=timeString;
                             var asds = item.participants;
                             var patientdata = _.where(asds, {
                                 participantTypeCode: 1
@@ -192,7 +199,7 @@ angular.module('starter.controllers')
 
 
                             $rootScope.missedlist.push({
-                                'time': time,
+                                'time': missedtime,
                                 'docname': docname,
                                 'enddate': enddate,
                                 'consultationId':consultationId,

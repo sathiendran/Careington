@@ -929,6 +929,7 @@ angular.module('starter.controllers')
 
     $scope.removemodal = function(model) {
         $scope.modal.hide();
+            $scope.cancelshow = true;
     };
 
 
