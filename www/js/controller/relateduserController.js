@@ -261,7 +261,7 @@ $rootScope.authorised=relateDependentAuthorize;
         };
 
         $scope.userslist = function() {
-
+            $scope.doGetListOfCoUsers();
             var myEl = angular.element(document.querySelector('#users'));
             myEl.addClass('btcolor');
             myEl.removeClass('btnextcolor');

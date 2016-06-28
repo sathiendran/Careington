@@ -843,7 +843,7 @@ angular.module('starter.controllers')
         }
     }
 
-    $scope.doGetListOfCoUsers = function() {
+    $rootScope.doGetListOfCoUsers = function() {
         var params = {
             accessToken: $rootScope.accessToken,
             authorizedOnly: true,

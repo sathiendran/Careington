@@ -1965,7 +1965,7 @@ html, body { background: transparent !important; }
     margin-left:5px;padding:0px;background-color: #f3f2ea;height: 50px;
 }
 .colpad{
-  width: 73px;padding: 0px;background-color: #f3f2ea;height: 50px;
+  width: 73px;padding: 0px;background-color: #f3f2ea;height: 50px;margin-top:0px !important;margin-left: 0px !important;
 }
 .moretab{
     max-width: 20% !important;
@@ -2353,7 +2353,8 @@ font-size: 18px !important;
     text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober Bold;
 }
 .appmarg{
-    float:right;margin-top:-4px;font-size:18px !important;
+    //;margin-top:-4px;
+    float:right;margin-top:0px;font-size:18px !important;
 }
 
 .pathead{
@@ -2419,7 +2420,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 70px 0 0 0;
+	margin: 80px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;

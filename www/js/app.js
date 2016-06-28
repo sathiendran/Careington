@@ -292,6 +292,21 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }, 2000);
         });
 
+        $ionicPlatform.registerBackButtonAction(function (e) {
+              if ($ionicHistory.backView()) {
+                   $ionicHistory.goBack();
+               } else {
+                   navigator.app.exitApp();
+                 }
+               e.preventDefault();
+               return false;
+           }, 101);
+
+        // });
+
+
+
+
     });
 
 })
