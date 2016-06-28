@@ -636,7 +636,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             // Do not go to the previous state (or view) for these states.
             // Do nothing here to disable H/W back button.
         } else if ($rootScope.currState.$current.name === "tab.login") {
-            navigator.app.exitApp();       
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
@@ -3874,7 +3874,7 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.userGender = "FeMale";
                         $rootScope.isCheckedFeMale = true;
                     }
-                    console.log($rootScope.selectedPatientDetails);
+                    //console.log($rootScope.selectedPatientDetails);
                     $state.go(nextPage);
 
                 }
@@ -4653,7 +4653,7 @@ LoginService.getScheduledConsulatation(params);
 .directive('siteHeader1', function() {
     return {
         restrict: 'E',
-        template: '<a class="button_new icon ion-chevron-left calendarBack"><span style="margin-left: 3px;">{{back}}</span></a>',
+        template: '<a class="headerval"><span style="margin-left: 3px;">{{back}}</span></a>',
         scope: {
             back: '@back',
             icons: '@icons'
@@ -4670,7 +4670,7 @@ LoginService.getScheduledConsulatation(params);
 .directive('siteHeaderIos', function() {
         return {
             restrict: 'E',
-            template: '<a class="button_new icon ion-chevron-left calendarBack" style="top: 13px !important;"><span style="margin-left: 3px;">{{back}}</span></a>',
+            template: '<a class="headerval" style="top: 13px !important;"><span style="margin-left: 3px;">{{back}}</span></a>',
             scope: {
                 back: '@back',
                 icons: '@icons'
