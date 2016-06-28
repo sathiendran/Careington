@@ -2349,7 +2349,7 @@ float:right;
 font-size: 18px !important;
 }
 .healthhead{
-   margin-top:15px;
+   margin-top:46px;
     text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober Bold;
 }
 .appmarg{
@@ -3172,7 +3172,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
     height: 87%; }
 
 #BackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
-
+#SearchBackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
 .iconbackbutton { top:0px !important;}
 
 #WhoNeeds { font-size: 23px;  width: 85%; }
@@ -4155,7 +4155,7 @@ p{
 }
 }
 .list:last-child {
-    padding-bottom: 150px;
+    padding-bottom: 150px !important;
 }
 .consimg{
     max-width:30px !important;
@@ -4418,8 +4418,8 @@ p{
     //margin-top:120px;
  }
 .paticoncontent{
-  //margin-top:157px;
-  margin-top:170px;
+  margin-top:200px;
+  //margin-top:170px;
 }
 .addphoto{   width:38%; }
 .relatedfont { margin-top: -9px;}
@@ -4742,7 +4742,7 @@ p{
      }*/
      .deptlist:last-child{
           margin-bottom:130px;
-           padding-bottom:85px;
+           padding-bottom:140px !important;
        }
       .footerrsheight{
             height:80px !important;
@@ -5105,7 +5105,7 @@ color: white;
    background-color:#e9e9e9;
 }
  .coldate{
-     width:82px;
+     width:86px;
      margin-left:-10px;
      margin-top:-4px;
  }
@@ -5136,7 +5136,7 @@ color: white;
     margin-top:122px;
 }
 .relatedusercontent{
-    margin-top:175px;
+    margin-top:200px;
 }
 .usercard{
     margin: 38px 10px !important;
