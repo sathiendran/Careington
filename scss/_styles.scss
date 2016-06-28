@@ -2419,7 +2419,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 80px 0 0 0;
+	margin: 70px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -4573,18 +4573,18 @@ p{
              width: 145px;
              font-size: 15px;
          }*/
-       .has-header {
+       /*.has-header {
          //top:90px;
           top:70px;
-       }
+       }*/
 
     }
 
 
 
   @media (max-width:640px) and (min-width:482px)    {
-    .ContentUserHome {
-     margin:45px 0 0 0;}
+  /*  .ContentUserHome {
+     margin:45px 0 0 0;}*/
  .addphoto{
       width:42%;
         }
