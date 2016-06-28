@@ -292,7 +292,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }, 2000);
         });
 
-        $ionicPlatform.registerBackButtonAction(function (e) {
+ $ionicPlatform.registerBackButtonAction(function (e) {
               if ($ionicHistory.backView()) {
                    $ionicHistory.goBack();
                } else {
@@ -302,7 +302,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                return false;
            }, 101);
 
-        // });
+    //    });
 
 
 
