@@ -4104,7 +4104,7 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.healthPlanID = '';
             $rootScope.NewHealth = '';
         }
-
+        $rootScope.updatedPatientImagePath = '';
         $rootScope.appointmentDisplay = '';
         $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
         $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
