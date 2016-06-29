@@ -1949,7 +1949,7 @@ html, body { background: transparent !important; }
   background-color:#9bca82; height:50px;margin-left:-4px;min-width:90px;
 }
 .dotcont{
-    color:white;font-size:10px;margin-top:-7px !important;
+    color:white;font-size:10px;margin-top:-8px !important;
 }
 .doticon{
     font-size:22px;
@@ -1969,8 +1969,7 @@ html, body { background: transparent !important; }
     max-width: 20% !important;
     background-color:#9bca82;
     .moralign{
-        margin-top: -15px;
-        margin-left: 3px;
+       margin-top:-15px;
        .moreicon{
            font-size:22px;margin-left: 23px;color:#888;
        }
@@ -1980,7 +1979,7 @@ html, body { background: transparent !important; }
     }
 }
 .tabmoreicon{ // margin-top:-11px!important;
-    margin-top:-17px;font-size:20px !important;color: white;margin-left: 22px;
+    margin-top:-9px;font-size:20px !important;color: white;margin-left: 22px;
 }
 .statuscol{
     background-color:#e3e3e3;
@@ -2181,8 +2180,8 @@ html, body { background: transparent !important; }
 		 Color: #4D4D4D;
 }
 .ContentList_provider-Android {
-	//margin: 157px 0 0 0;
-  	margin: 133px 0 0 0;
+	margin: 157px 0 0 0;
+  	//margin: 133px 0 0 0;
       background-color: #EFEFED;
 	.item {
 		  padding: 42px 18px 27px 35px;
@@ -2250,7 +2249,7 @@ html, body { background: transparent !important; }
 	}
 
 }
-.aptlist:last-child { padding-bottom:120px;}
+
 
 .ContentList {
 	margin: 138px 0 0 0;
@@ -2295,7 +2294,7 @@ html, body { background: transparent !important; }
      border-color: #5D5959 !important;
 }
 .appiconcontent{
-    margin-top:210px;    //margin-top:165px;
+    margin-top:165px;
 }
 .avatpad{
     padding:14px !important;
@@ -2419,7 +2418,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 70px 0 0 0;
+	margin: 80px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -3597,7 +3596,7 @@ font-family: $fontFamily_regular;
 	}
 .brand {text-align: center;}
 .itemtab{padding:12px !important;}
-.aptpaticoncontent{ margin-top:197px;}
+
 .paticoncontent{ margin-top:197px;}
  .userrow{
     margin-top: -12px !important;
@@ -3798,7 +3797,7 @@ font-size: 20px;
   }
 .avatlefticon{
     float:left;
-    margin-left:-22px;
+    margin-left:-18px;
     color: #9bca82;
     font-size:16 px!important;
  }
@@ -4099,12 +4098,10 @@ font-size: 20px;
     margin-top:18px !important
 }
 .ftime{
-    //font-size:60px;
-    margin: 0 0 11px 0;font-size:49px;font-family:Glober Bold;margin-left: 24px;
+    margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;margin-left: 24px
 }
 .fday{
-    //font-size:31px;
-    font-size:28px;margin-top:10px;font-family:Glober Regular;
+    font-size:31px;margin-top:10px;font-family:Glober Regular;
 }
 .apptitem{
     background-color:#ffc900;
@@ -4419,10 +4416,9 @@ p{
    margin-top:108px;
     //margin-top:120px;
  }
- .aptpaticoncontent{margin-top:165px;padding-bottom: 89px;}
 .paticoncontent{
  // margin-top:200px;
-  margin-top:198px;
+  margin-top:170px;
 }
 .addphoto{   width:38%; }
 .relatedfont { margin-top: -9px;}
@@ -4573,18 +4569,18 @@ p{
              width: 145px;
              font-size: 15px;
          }*/
-       /*.has-header {
+       .has-header {
          //top:90px;
           top:70px;
-       }*/
+       }
 
     }
 
 
 
   @media (max-width:640px) and (min-width:482px)    {
-  /*  .ContentUserHome {
-     margin:45px 0 0 0;}*/
+    .ContentUserHome {
+     margin:45px 0 0 0;}
  .addphoto{
       width:42%;
         }
@@ -4765,7 +4761,7 @@ p{
 }
 .consultsearchcontent{
     //margin-top:120px;
-    margin-top:146px;
+    margin-top:120px;
 }
 .dsheader{
     margin-left:3px;
@@ -5290,7 +5286,6 @@ box-shadow: 0 1px 3px transparent !important;
 .profilecontent{
     margin-top:187px;
 }
-.aptpaticoncontent{ margin-top:180px;}
 .paticoncontent{ margin-top:180px;}
 .apptdetails{
 background-color: #ffc900;
