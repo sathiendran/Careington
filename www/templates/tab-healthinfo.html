@@ -33,9 +33,13 @@
                <p class="homecontent">Account Home</p>
           </a>
 
-         <a class="item-avatar itemhead" ng-show="editimg">
+         <a ng-if="updatedPatientImagePath == ''" class="item-avatar itemhead" ng-show="editimg">
               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"  ng-click="showCameraActions();"></p>
            </a>
+           <a ng-if="updatedPatientImagePath != ''" class="item-avatar itemhead" ng-show="editimg">
+                <p><img ng-src="{{updatedPatientImagePath}}" class="topimage"  ng-click="showCameraActions();"></p>
+             </a>
+
            <a class="item-avatar itemhead" ng-show="viewimg">
               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
            </a>
