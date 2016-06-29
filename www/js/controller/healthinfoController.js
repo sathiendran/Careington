@@ -1016,7 +1016,7 @@ angular.module('starter.controllers')
                   'X-Developer-Id': "84f6101ff82d494f8fcc5c0e54005895"
                 },*/
             headers: {
-                'Authorization': $rootScope.accessToken,
+                'Authorization': "Bearer " + $rootScope.accessToken,
                 'X-Api-Key': xApiKey,
                 'X-Developer-Id': xDeveloperId
             },

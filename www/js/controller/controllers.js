@@ -506,7 +506,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
             $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
             $rootScope.PositionIOS = "position:fixed; top:105px;";
-            $rootScope.MarginHomeTop = "margin-top: -10px";
+            $rootScope.MarginHomeTop = "margin-top: -50px";
             $rootScope.concernsItemDivs = "top: 5px;";
             $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
             $rootScope.FootNextButton = "left: 24px;";
@@ -570,7 +570,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
       //  $rootScope.providerItamTop = "top: 6px;";
         $rootScope.appointContent = "margin: 76px 0 0 0;";
-        //$rootScope.MarginHomeTop = "margin-top: -130px;";
+        $rootScope.MarginHomeTop = "margin-top: -130px;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
     }

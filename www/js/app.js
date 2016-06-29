@@ -138,7 +138,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
             cordova.plugins.Keyboard.disableScroll(true);
-        }
+       }
 
         var initialScreenSize = window.innerHeight;
         window.addEventListener("resize", function() {
@@ -320,7 +320,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
-    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
+   // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider
