@@ -93,7 +93,10 @@ angular.module('starter.controllers')
         $state.go('tab.waitingRoom');
     }
     if ($rootScope.appointmentDisplay == "test") {
-
+      $timeout(function() {
+          document.getElementsByTagName('timer')[0].stop();
+          document.getElementsByTagName('timer')[0].start();
+      }, 10);
         $("#appointNotes").html($rootScope.appointNotes);
         $rootScope.consultationId = $rootScope.consultationId;
         var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
@@ -154,6 +157,12 @@ angular.module('starter.controllers')
             $('.AvailableIn').hide();
             $('.enterAppoinment').show();
             $rootScope.timerCOlor = '#E1FCD4';
+        } else {
+          $rootScope.timeNew = 'block';
+          $rootScope.timeNew1 = 'none';
+          $('.AvailableIn').show();
+          $('.enterAppoinment').hide();
+          $rootScope.timerCOlor = '#FEEFE8';
         }
     }
 

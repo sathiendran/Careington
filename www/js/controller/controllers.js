@@ -3556,9 +3556,11 @@ LoginService.getScheduledConsulatation(params);
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
-                            $rootScope.nextAppointmentDisplay = 'block';
-                            $rootScope.accountClinicianFooter = 'none';
                             $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                            if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
+                              $rootScope.nextAppointmentDisplay = 'block';
+                              $rootScope.accountClinicianFooter = 'none';
+                            }
                             $rootScope.timerCOlor = '#FEEFE8';
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
