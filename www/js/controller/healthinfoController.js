@@ -76,6 +76,9 @@ angular.module('starter.controllers')
     $scope.doneshow = true;
     $scope.readattr = false;
     $scope.doneedit = false;
+    $scope.editshow = true;
+    $scope.editimg = false;
+    $scope.viewimg = true;
     //  $scope.healthinfoshow=true;
     // $scope.healthinfosubheader=true;
     //   $scope.searchdone=true;
@@ -93,6 +96,8 @@ angular.module('starter.controllers')
         $scope.editshow = false;
         $scope.doneedit = true;
         $rootScope.flag = false;
+        $scope.editimg = true;
+        $scope.viewimg = false;
         $('#aaa').show();
         $('#ss').hide();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
@@ -106,6 +111,8 @@ angular.module('starter.controllers')
 
     //$scope.healthInfo = {};
     $scope.putUpdatePatientDetails = function() {
+      $scope.editimg = true;
+      $scope.viewimg = false;
             $scope.healthInfoFirstName = $('#healthInfoFirstName').val();
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
             $scope.healthInfoDOB = $('#healthInfoDOB').val();

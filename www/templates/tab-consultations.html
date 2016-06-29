@@ -57,7 +57,7 @@
 
 
         <ion-view title="">
-            <ion-content class="paticoncontent">
+            <ion-content class="consultcontent">
               <div ng-show="pastshow">
                     <div class="row rheader">
                         <div class="col col-20"><span></span></div>
@@ -211,7 +211,7 @@
 
     <ion-tabs class=" tabs-icon-top tabs-dark">
 
-        <a class="tab-item " ng-href="#tab/relatedusers">
+        <a class="tab-item " ng-href="#tab/relatedusers" ng-click="doGetListOfCoUsers()">
             <i class="icon ion-person-stalker tabfont"></i> Users
         </a>
         <a class="tab-item active" ng-href="#tab/consultations">
