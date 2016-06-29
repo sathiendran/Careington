@@ -316,7 +316,7 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 patientId: $rootScope.deppatientId,
                 RelationCodeId: $rootScope.getRelationId,
-                IsAuthorized: "N",
+                IsAuthorized: "Y",
                 success: function(data) {
                     $('#dependentuserform')[0].reset();
                     $('select').prop('selectedIndex', 0);

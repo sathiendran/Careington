@@ -332,7 +332,7 @@ angular.module('starter.controllers')
             //chunkedMode: false,
             //mimeType: fileMimeType,
             headers: {
-                'Authorization': $rootScope.accessToken,
+                'Authorization': 'Bearer' + $rootScope.accessToken,
                 'X-Api-Key': xApiKey,
                 'X-Developer-Id': xDeveloperId
             },
