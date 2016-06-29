@@ -4,8 +4,9 @@
         <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
             <div class="buttons">
-                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="SearchBackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
             </div>
+
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
 
 
@@ -70,7 +71,7 @@
                             </div>
                             <div class="col col-20">
                               <span class="contright"  ng-click="showReportView({{passedData}});">Report
-                              <span><i class="icon ion-chevron-right right-icon"></i></span></span>
+                              <span><i class="icon ion-chevron-right"></i></span></span>
 
                             </div>
                         </div>
@@ -91,12 +92,12 @@
                                 <p class="colfamily">{{misseddata.time}}</p>
                             </div>
                             <div class="col col-30">
-                                <p><span class="colfamily" ng-if="!misseddata.docname">NA</span></p>
-                                <p><span class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}</span></p>
+                                <p><span class="colfamily" ng-if="!misseddata.docname">NA</span>
+                                <span class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}</span>
                             </div>
                             <div class="col col-25">
                               <span class="contright"  ng-click="showReportView({{misseddata}});">Report
-                              <span><i class="icon ion-chevron-right right-icon"></i></span></span>
+                              <span><i class="icon ion-chevron-right"></i></span></span>
 
                             </div>
                         </div>
@@ -124,7 +125,7 @@
                             </div>
                             <div class="col col-25">
                               <span class="contright"  ng-click="showReportView({{droppedData}});">Report
-                              <span><i class="icon ion-chevron-right right-icon"></i></span></span>
+                              <span><i class="icon ion-chevron-right"></i></span></span>
 
                             </div>
                         </div>
