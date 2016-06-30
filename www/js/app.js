@@ -135,10 +135,13 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             //navigator.splashscreen.hide();
             //}, 10000);
         }
-        if (window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
+        if(window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
-       }
+         }
+         if(window.StatusBar) {
+            StatusBar.styleDefault();
+          }       
 
         var initialScreenSize = window.innerHeight;
         window.addEventListener("resize", function() {
@@ -150,12 +153,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             } else {
                 $(".footer").show();
             }
-        });
-
-
-        if (window.StatusBar) {
-            StatusBar.styleDefault();
-        }
+        });        
 
         setTimeout(function() {
             document.addEventListener("offline", onOffline, false);
