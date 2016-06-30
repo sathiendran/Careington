@@ -271,6 +271,19 @@ angular.module('starter.controllers')
 
     //Function to open ActionSheet when clicking Camera Button
     //================================================================================================================
+
+    $scope.showUploadImageAlert = function() {
+      navigator.notification.alert(
+          'Photo can be uploaded only after activating co-user account.', // message
+          function() {
+            //  $state.go('tab.userhome');
+              return;
+          },
+          $rootScope.alertMsgName, // title
+          'Ok' // buttonName
+      );
+    }
+
     var options;
 
     $scope.showCameraActions = function() {
