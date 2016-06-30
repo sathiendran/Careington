@@ -49,10 +49,7 @@
         </ion-header-bar>
         <ion-view>
             <ion-content class="consultcontentsearch">
-
-
-
-                <div ng-show="passedsearchshow">
+  <div ng-show="passedsearchshow">
 
 
                     <div class="row rowalign" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: searchQuery)">
@@ -144,10 +141,10 @@
 
     <ion-tabs class=" tabs-icon-top tabs-dark">
 
-        <a class="tab-item " ng-href="#tab/relatedusers">
+        <a class="tab-item " ng-click="doGetListOfCoUsers()">
             <i class="icon ion-android-people"></i> Users
         </a>
-        <a class="tab-item active">
+        <a class="tab-item active" ng-href="#tab/consultations">
             <i class="icon ion-card"></i> Consultations
         </a>
         <a class="tab-item " ng-href="#tab/healthinfo">
