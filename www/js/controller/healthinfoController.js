@@ -102,7 +102,8 @@ angular.module('starter.controllers')
         $('#ss').hide();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-
+        $scope.phoneval=$rootScope.currentPatientDetails[0].homePhone;
+        $scope.mobileval=$rootScope.currentPatientDetails[0].mobilePhone;
         editsvalues.removeClass('textdata');
         editsvalues.addClass('editdata');
         edittextarea.removeClass('textdata');
