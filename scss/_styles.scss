@@ -2055,7 +2055,8 @@ html, body { background: transparent !important; }
 }
 
 .UserHomeIcon {
-	margin-top: 15px;
+	//margin-top: 15px;
+	color:#888;margin-top: -34px;
 }
 .UserNeeds {
 	border-bottom: 1px solid #9D9E9C;
@@ -2149,7 +2150,7 @@ html, body { background: transparent !important; }
 .bar-TitleLess-IOS{
 	display: block;
 	background-color: #EFEFED;
-	height: 63px;
+	height: 70px;
     //position: relative;
 	//top: 136px;
     margin-top: 144px;
@@ -2418,7 +2419,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 80px 0 0 0;
+	margin: 77px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -3159,7 +3160,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 .HeaderListIOS {
 font-size: 18px; text-align: center; width: 100%;
-margin-left: 32px;margin-top:12px;
+margin-left: 32px;margin-top:23px;
 }
 .HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px;;
@@ -3665,7 +3666,7 @@ font-family: $fontFamily_regular;
       font-size:14px;
   }
  .usercontent{
-      margin-top: 170px !important;
+      margin-top: 200px !important;
  }
   .userappcontent{
       margin-top: 170px !important;
@@ -4571,7 +4572,7 @@ p{
          }*/
        .has-header {
          //top:90px;
-          top:70px;
+         // top:70px; 
        }
 
     }
@@ -4579,8 +4580,8 @@ p{
 
 
   @media (max-width:640px) and (min-width:482px)    {
-    .ContentUserHome {
-     margin:45px 0 0 0;}
+   /* .ContentUserHome {
+     margin:45px 0 0 0;}*/
  .addphoto{
       width:42%;
         }
@@ -4623,8 +4624,8 @@ p{
 
      @media (max-width:768px) and (min-width:641px)    {
 
-       .ContentUserHome {
-       	margin:45px 0 0 0;}
+      /* .ContentUserHome {
+       	margin:45px 0 0 0;}*/
          .addphoto{
       width:44%;
         }
@@ -5090,7 +5091,7 @@ color: white;
     margin-left:3px;
 }
 .ion-chevron-right:before {
-  font-size: 10px !important; }
+  font-size: 17px !important; }
 .cardshadow{
      box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 }
@@ -7006,4 +7007,13 @@ Pagination Styles
 .loading-container .loading{
     background-color: #000000 !important;
     opacity: 1 !important;
+}
+
+.accountHeader-IOS {
+	position: relative;
+	top: -13px;
+}
+.accountCancel-IOS {
+	position: relative;
+	top: -13px;
 }
