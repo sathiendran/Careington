@@ -843,14 +843,21 @@ angular.module('starter.controllers')
 
 
     }
-
     $scope.OnSelectChronicCondition = function(chronic) {
         if (chronic.checked === true) {
             $rootScope.checkedChronic++;
         } else {
             $rootScope.checkedChronic--;
         }
+        if (chronic.text === "Other") {
+          //  $scope.openOtherAllergiesView(allergie);
+        } else {
+            if ($rootScope.checkedChronic === 4) {
+                $scope.chronicdone();
+            }
+        }
     }
+
 
     $rootScope.doGetListOfCoUsers = function() {
         var params = {

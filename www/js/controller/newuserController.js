@@ -245,11 +245,11 @@ angular.module('starter.controllers')
                         return;
                     },
                     $rootScope.alertMsgName, // title
-                    'Done' // buttonName
+                    'OK' // buttonName
                 );
                 return false;
 
-               $state.go('tab.relatedusers');
+
 
             },
             error: function(data) {
