@@ -1046,7 +1046,7 @@ angular.module('starter.controllers')
 
         //File for Upload
         $rootScope.updatedPatientImagePath = imageData;
-        newUploadedPhoto = imageData;
+        var newUploadedPhoto = imageData;
 
         //	$rootScope.imagePath = imageData;
 
