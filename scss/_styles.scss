@@ -4529,11 +4529,12 @@ p{
           font-family: "Glober Regular";
           border-top: 1px solid #C4C5C3;
       }
-<<<<<<< HEAD
+
     .ContentList_provider-Android {
       margin: 110px 0 0 0;
       background-color: #EFEFED;
-=======
+    }
+
        .userdeptcontent{
                margin-top:120px !important;
        }
@@ -4565,10 +4566,10 @@ p{
          }*/
        .has-header {
          //top:90px;
-         // top:70px; 
+         // top:70px;
        }
 
->>>>>>> 397fff8fa8b4c2545d0a3c1d709f6fadd084c63b
+
     }
     .header_imageAndroid {
      margin-top: 20px;  }
@@ -4582,8 +4583,7 @@ p{
 
 
   @media (max-width:640px) and (min-width:482px)    {
-   /* .ContentUserHome {
-     margin:45px 0 0 0;}*/
+
  .addphoto{
       width:42%;
         }
@@ -5174,12 +5174,12 @@ color: white;
         margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:16px;
      }
  .valuealign{
-   margin-left:45px;
+   margin-left:70px;
   }
 
    .valtex {
-      margin-left:9px;
-      width: 160px;
+     margin-left:41px;
+      width: 145px;
      }
 .textdata{
     font-size:17px;
@@ -5187,15 +5187,11 @@ color: white;
     background-color: #e9e9e9;
   }
   .valhome{
-     margin-left:43px;
+    margin-left:43px;
+   }
+  .valorg{
+     margin-left:28px;
     }
-    .valhomephone{
-      margin-left: 22px;
-    }
-   .valorg{
-    //  margin-left:28px;
-    margin-left:15px;
-     }
 
  .editdata{
      font-size:12px;
