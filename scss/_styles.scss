@@ -2180,7 +2180,7 @@ html, body { background: transparent !important; }
 		 Color: #4D4D4D;
 }
 .ContentList_provider-Android {
-	margin: 157px 0 0 0;
+	margin: 153px 0 0 0;
   	//margin: 133px 0 0 0;
       background-color: #EFEFED;
 	.item {
@@ -4377,205 +4377,170 @@ p{
       color: #888;
   }
 
-  @media (max-width:481px) and (min-width:322px)    {
-    /*.ContentUserHome {
-     margin:45px 0 0 0;}*/
-     .tabs-top > .tabs, .tabs.tabs-top {
-        top: inherit !important;
-     }
-      .useracctheader { margin-left: 20px !important;}
-      .headerfont{ font-family:Glober SemiBold;  }
-      .shadowcard {
-         box-shadow: 0 1px 3px transparent !important;
-         margin: 21px 10px !important;
+  @media (max-width: 481px) and (min-width: 322px) {
+
+    .dependusers:last-child{padding-bottom: 200px;}
+    .password_home_top {
+      margin-top:-110px !important;  }
+
+    .tabs-top > .tabs, .tabs.tabs-top {
+      top: inherit !important; }
+      .ReportContent {
+      margin: 50px 0px 0 0px !important;}
+    .useracctheader {
+      margin-left: 20px !important; }
+    .headerfont {
+      font-family: Glober SemiBold; }
+    .shadowcard {
+      box-shadow: 0 1px 3px transparent !important;
+      margin: 21px 10px !important; }
+    .newusercontent {
+      margin-top: 110px; }
+    .alpha_sidebar {
+      position: absolute;
+      top: 3px;
+      right: 90px;
+      z-index: 10; }
+      .sidemenu{
+        bottom:60px !important;
       }
-  .newusercontent{
-    margin-top: 110px ;
-}
-.alpha_sidebar{
-	position: absolute;
-	top:3px;
-	right: 	90px;
-	z-index: 10;
-}
-.searchcontent{margin-top:84px;}
-   .lefthome{
-    padding-left: 20px;
-}
-  .colmore {min-width:42px; margin-left:-3px;}
-      .searchrow{
-          margin-top:-5px;
-      }
-.tabs-striped .tabs {
-    border-bottom:none;
-}
-.avatarclass{margin-left:-26px;  }
-.fstrow{ margin-top:4px;}
-  .statuscont{   margin-left:-27px !important;}
-.consultcontent{
-   margin-top:108px;
-    //margin-top:120px;
- }
-.paticoncontent{
- // margin-top:200px;
-  margin-top:170px;
-}
-.addphoto{   width:38%; }
-.relatedfont { margin-top: -9px;}
-      .appfloat{
-      margin-top: 0px !important;
-      .ion-chevron-right:before{
-          font-size: 14px !important;
-      }
-}
-.archeight {
-    height: 75px;
-}
-.appmarg{
-     .ion-chevron-right:before{
-          font-size: 14px !important;
-      }
-}
+    .searchcontent {
+      margin-top: 84px; }
+    .lefthome {
+      padding-left: 20px; }
+    .colmore {
+      min-width: 42px;
+      margin-left: -3px; }
+    .searchrow {
+      margin-top: -5px; }
+    .tabs-striped .tabs {
+      border-bottom: none; }
+    .avatarclass {
+      margin-left: -26px; }
+    .fstrow {
+      margin-top: 4px; }
+    .statuscont {
+      margin-left: -27px !important; }
+    .consultcontent {
+      margin-top: 102px; }
+    .paticoncontent {
+      margin-top: 194px; }
+    .addphoto {
+      width: 38%; }
+    .relatedfont {
+      margin-top: -9px; }
+    .appfloat {
+      margin-top: 0px !important; }
+      .appfloat .ion-chevron-right:before {
+        font-size: 14px !important; }
+    .archeight {
+      height: 75px; }
+    .appmarg .ion-chevron-right:before {
+      font-size: 14px !important; }
     .popup-container .popup {
-        width: 85% !important;
-         }
-         .topimage {
-             margin-left:34% !important;
-         }
-         .footerheight{
-            height:66px !important;
-             background-image:none;
-         }
-
-         .footerrsheight{
-            height:80px !important;
-             background-image:none;
-             #centercolor {
-                color: white;
-                margin-top: 20px !important;
-                font-size: 21px;
-                font-family:Glober Bold;
-                }
-         }
-         .userappheight{
-             margin-top:15px !important;
-             height:47px!important;
-         }
-         .userappcontent{
-             font-family:Glober Bold;
-             margin-top: 100px !important;
-          //   margin-top:5px !important;
-             color:#fff;
-             font-size:22px !important;
-         }
-         .fooheight
-         {
-         height: 67.5px !important;
-         background-image:none;
-          }
-           .footheight
-         {
-         height: 79px !important;
-         background-image:none;
-          }
-          .btnclass{
-              font-size:14px;
-              line-height: 2.5 !important;
-          }
-          .addheight{
-          height: 54px !important;
-         background-image:none;
-          }
-          .aptsname{
-            font-size: 14px !important;
-            color: #888;
-            font-family: Glober SemiBold;
-          }
-         .usercontent{
-            // margin-top:156px !important;
-              margin-top:111px !important;
-         }
-         .appth3 {margin: 20px 0px 0px 0px !important;}
-
-         .rightpatient {
-           float: right;
-          // margin-top: -80px;
-           }
-
-          .chronic { margin-top: 24px;}
-         .alignchronic{
-             margin-left:40px !important;
-         }
-           .useracctheader { margin-left: 12px;}
-      /*   .has-header{
-            top:104px;
-         }*/
-         .useraddcontent{
-              margin-top:5px !important;
-         }
-         .itemclass{
-             height:237px;
-         }
-         .itemsecclass{
-             height:140px;
-         }
-         .item-text-wrap{
-
-             margin-top:-13px;
-         }
-         alignedchronic {
-               margin-right:40px !important;
-         }
-         .newcard{
-             margin:42px 10px !important;
-              box-shadow: 0 1px 3px rgba(0, 0, 0, 0);
-         }
-         .hidecard{
-             margin:40px 10px !important;
-         }
-          .ionappointment{
-          height:75px !important;
-         }
-         .appointment{
-           color:white;
-           font-size:22px;
+      width: 85% !important; }
+    .topimage {
+      margin-left: 34% !important; }
+    .footerheight {
+      height: 66px !important;
+      background-image: none; }
+    .footerrsheight {
+      height: 80px !important;
+      background-image: none; }
+      .footerrsheight #centercolor {
+        color: white;
+        margin-top: 20px !important;
+        font-size: 21px;
+        font-family: Glober Bold; }
+    .userappheight {
+      margin-top: 15px !important;
+      height: 47px !important; }
+    .userappcontent {
+      font-family: Glober Bold;
+      margin-top: 100px !important;
+      color: #fff;
+      font-size: 22px !important; }
+    .fooheight {
+      height: 67.5px !important;
+      background-image: none; }
+    .footheight {
+      height: 79px !important;
+      background-image: none; }
+    .btnclass {
+      font-size: 14px;
+      line-height: 2.5 !important; }
+    .addheight {
+      height: 54px !important;
+      background-image: none; }
+    .aptsname {
+      font-size: 14px !important;
+      color: #888;
+      font-family: Glober SemiBold; }
+    .usercontent {
+      margin-top: 111px !important; }
+    .appth3 {
+      margin: 20px 0px 0px 0px !important; }
+    .rightpatient {
+      float: right; }
+    .chronic {
+      margin-top: 24px; }
+    .alignchronic {
+      margin-left: 40px !important; }
+    .useracctheader {
+      margin-left: 12px; }
+    /*   .has-header{
+              top:104px;
+           }*/
+    .useraddcontent {
+      margin-top: 5px !important; }
+    .itemclass {
+      height: 237px; }
+    .itemsecclass {
+      height: 140px; }
+    .item-text-wrap {
+      margin-top: -13px; }
+    .alignedchronic {
+      margin-right: 40px !important; }
+    .newcard {
+      margin: 42px 10px !important;
+      box-shadow: 0 1px 3px transparent; }
+    .hidecard {
+      margin: 40px 10px !important; }
+    .ionappointment {
+      height: 75px !important; }
+    .appointment {
+      color: white;
+      font-size: 22px; }
+    .userdeptcontent {
+      margin-top: 120px !important; }
+    .userdetcontent {
+      margin-top: 58px !important; }
+    .ioncontentalign {
+      margin-top: 160px; }
+    .ioncontentsalign {
+      margin-top: 165px; }
+    .item-input .inputtext {
+      max-width: 100%; }
+   .has-header {
+      top: 90px; }
+      .ContentUserHome {
+          margin: 29px 0 0 0;
+          font-family: "Glober Regular";
+          border-top: 1px solid #C4C5C3;
       }
-       .userdeptcontent{
-               margin-top:120px !important;
-       }
-
-       .userdetcontent{
-             margin-top:58px !important;
-         }
-         .ioncontentalign{
-          //  margin-top:160px;
-             margin-top:170px;
-         }
-         .ioncontentsalign{
-             margin-top:165px;
-         }
-.item-input{
-       .inputtext{ max-width:100%; }
-}
-       /*  .valhome{
-            margin-left:36px;
-          }
-          .valorg{
-             margin-left:24px;
-          }
-         .valtex {
-             margin-left:32px;
-             color: #888;
-             width: 145px;
-             font-size: 15px;
-         }*/
-       .has-header {
-         //top:90px;
-          top:70px;
-       }
+    .ContentList_provider-Android {
+      margin: 110px 0 0 0;
+      background-color: #EFEFED;
+    }
+    .header_imageAndroid {
+     margin-top: 20px;  }
+     .password_sub_headerAndroid {
+         margin-top: 54px;
+         color: #A80532;
+     }
+  .consultcontentsearch{margin-top:102px;}
 
     }
-
 
 
   @media (max-width:640px) and (min-width:482px)    {
@@ -5171,12 +5136,12 @@ color: white;
         margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:16px;
      }
  .valuealign{
-   margin-left:43px;
+   margin-left:45px;
   }
 
    .valtex {
-      margin-left:41px;
-      width: 145px;
+      margin-left:9px;
+      width: 160px;
      }
 .textdata{
     font-size:17px;
@@ -5186,8 +5151,12 @@ color: white;
   .valhome{
      margin-left:43px;
     }
+    .valhomephone{
+      margin-left: 22px;
+    }
    .valorg{
-      margin-left:28px;
+    //  margin-left:28px;
+    margin-left:15px;
      }
 
  .editdata{
@@ -5205,7 +5174,7 @@ color: white;
   bottom: 0;
   position: absolute;
   width: 100%;
-  margin-bottom: 45px;
+  bottom: 60px;
 }
 /*End SideMenu by Poomani*/
 
