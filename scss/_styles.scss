@@ -559,7 +559,7 @@ html, body { background: transparent !important; }
 	text-align: center;
 	left: 0px;
 	right: 0px;
-   /* height: 45px;*/
+   height: 45px;
     /*line-height: 61px;*/
     /*margin: 7px 10px;*/
     min-width: 30px;
@@ -965,6 +965,7 @@ html, body { background: transparent !important; }
 }
 .optionselect{
   border:none;
+  width: 80%;
 }
 //Consult Charge page
 
@@ -1643,7 +1644,7 @@ html, body { background: transparent !important; }
 		.PrimaryContent {
 			margin-top: 30px;
 			h1 {
-				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px;
+				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px; padding-top: 5px; 
 			}
 			p {
 				margin-left: 19px;margin-bottom: 10px; font-size: 16px; margin-top: -7px; width: 80%;  white-space: normal;
@@ -2420,7 +2421,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 77px 0 0 0;
+	margin: 77px 0 0 0 !important;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -3161,7 +3162,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 .HeaderListIOS {
 font-size: 18px; text-align: center; width: 100%;
-margin-left: 32px;margin-top:23px;
+margin-left: 32px;margin-top:13px !important;
 }
 .HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px;;
@@ -3854,6 +3855,7 @@ font-size: 20px;
 .labelcolor{
     color: #cccccc;
     margin-left:5px;
+	width: 45%;
     .iconsize{
     font-size:25px;
     }
@@ -4523,8 +4525,8 @@ p{
       margin-top: 165px; }
     .item-input .inputtext {
       max-width: 100%; }
-   .has-header {
-      top: 90px; }
+   /*.has-header {
+      top: 90px; }*/
       .ContentUserHome {
           margin: 29px 0 0 0;
           font-family: "Glober Regular";
@@ -4610,7 +4612,7 @@ p{
              margin-top:185px;;
          }
           .valuealign{
-             margin-left: 70px;
+             //margin-left: 70px;
              color:#888;
          }
          .genderclass{margin-left:70px;}
@@ -4657,7 +4659,7 @@ p{
              margin-top:185px;
          }
          .valuealign{
-             margin-left: 92px;
+            // margin-left: 92px;
              color:#888;
          }
            .valtex {
@@ -4695,7 +4697,7 @@ p{
              margin-top:185px;
          }
            .valuealign{
-             margin-left: 108px;
+            // margin-left: 108px;
              color:#888;
          }
           .valtex {
@@ -4759,7 +4761,7 @@ p{
 
 .consultcontent{
     //margin-top:120px;
-    margin-top:106px;
+    margin-top:210px;
 }
 .consultsearchcontent{
     //margin-top:120px;
@@ -5173,7 +5175,7 @@ color: white;
         margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:16px;
      }
  .valuealign{
-   margin-left:70px;
+  // margin-left:70px;
   }
 
    .valtex {
@@ -5196,6 +5198,7 @@ color: white;
      font-size:12px;
      color:#7c7c7c;
      background-color:#e9e9e9;;
+	 width: 70%;
    }
 }
 .itemtab{
