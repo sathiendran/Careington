@@ -8,10 +8,14 @@
 			<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>
 		</div>
 		<h1 class="{{title_patient}} {{HeaderList}}" style="margin-left: -30px;">Patient List</h1>
-
+		<span> 
+			<a class="headerval" ng-href="#/tab/addnewuser" style="position: relative; top: 28px;">
+				<i class="ion-plus"></i>
+			</a>
+		</span>			
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
-				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who needs care today?</div>
+				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today:</div>
 
 					<div class="SearchImage" ng-click="showSearchInput();">
 						<i class="ion-search" style="float: right; font-size: 26px;color: #616462;"></i>
@@ -48,7 +52,7 @@
 					<img ng-src="{{PatientImage}}" class="UserHmelistImgView">
 					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
+					<p class="ListHomeUser_pTitle DateFormateStyle">{{gender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 					<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>
 				</div>
 			 </div>
@@ -84,6 +88,7 @@
 					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
 					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
 					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} <span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span></p>
+					<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>
 				</div>
 			</div>
 			<!-- </a>-->

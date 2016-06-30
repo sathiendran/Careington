@@ -506,7 +506,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
             $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
             $rootScope.PositionIOS = "position:fixed; top:105px;";
-            $rootScope.MarginHomeTop = "margin-top: -50px";
+            $rootScope.MarginHomeTop = "margin-top: -130px";
             $rootScope.concernsItemDivs = "top: 5px;";
             $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
             $rootScope.FootNextButton = "left: 24px;";
@@ -1672,6 +1672,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.gender = "Male";
                     }
                     //$rootScope.gender = data.data[0].gender;
+                }else {
+                    $rootScope.gender = "NA";
                 }
                 $rootScope.homePhone = data.data[0].homePhone;
                 if (typeof data.data[0].location !== 'undefined') {
@@ -1817,7 +1819,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
                         'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
                         'guardianName': angular.element('<div>').html(index.guardianName).text(),
-
+                        'personId': index.personId,
+                        
                     });
                 });
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
