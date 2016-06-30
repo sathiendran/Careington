@@ -1360,8 +1360,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 error: function(data, status) {
                     var networkState = navigator.connection.type;
                     if (networkState != 'none') {
-                        //if(status == '401' || status == '403') {
-                        /*	navigator.notification.confirm(
+                        if(status == '401' || status == '403') {
+                        	navigator.notification.confirm(
 						 			'Your account is not verified yet. Do you want to resend?',
 						 			 function(index){
 										if(index == 1){
@@ -1372,12 +1372,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 						 			 },
 									'Confirmation:',
 						 			['Cancel','Resend']
-								);*/
+								);
 
-                        //} else {
+                        } else {
                         $scope.ErrorMessage = "Incorrect Password. Please try again";
                         $rootScope.Validation($scope.ErrorMessage);
-                        //}
+                        }
                     } else {
                         $rootScope.serverErrorMessageValidation();
                     }
@@ -1820,7 +1820,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
                         'guardianName': angular.element('<div>').html(index.guardianName).text(),
                         'personId': index.personId,
-                        
+
                     });
                 });
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
