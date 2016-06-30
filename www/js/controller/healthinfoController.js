@@ -961,6 +961,7 @@ angular.module('starter.controllers')
     //Function to open ActionSheet when clicking Camera Button
     //================================================================================================================
     var options;
+    var newUploadedPatientPhoto;
 
     $scope.showCameraActions = function() {
         options = {
@@ -974,7 +975,7 @@ angular.module('starter.controllers')
     $scope.uploadPhotoForExistingPatient = function(){
         var fileMimeType = "image/jpeg";
         var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
-        var targetPath = newUploadedPhoto;
+        var targetPath = newUploadedPatientPhoto;
         var filename = targetPath.split("/").pop();
         var options = {
             headers: {
@@ -1047,7 +1048,7 @@ angular.module('starter.controllers')
 
         //File for Upload
         $rootScope.updatedPatientImagePath = imageData;
-        var newUploadedPhoto = imageData;
+        newUploadedPatientPhoto = imageData;
 
         //	$rootScope.imagePath = imageData;
 
