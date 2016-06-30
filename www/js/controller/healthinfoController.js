@@ -980,39 +980,41 @@ angular.module('starter.controllers')
 
 
     $scope.uploadPhotoForExistingPatient = function(){
-        var fileMimeType = "image/jpeg";
-        var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
-        var targetPath = newUploadedPatientPhoto;
-        var filename = targetPath.split("/").pop();
-        var options = {
-            headers: {
-                'Authorization': 'Bearer ' + $rootScope.accessToken,
-                'X-Api-Key': util.getHeaders()["X-Api-Key"],
-                'X-Developer-Id': util.getHeaders()["X-Developer-Id"]
-            },
-        };
-        $ionicLoading.show({
-            template: '<img src="img/puff.svg" alt="Loading" />'
-        });
+        if($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
+            var fileMimeType = "image/jpeg";
+            var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
+            var targetPath = newUploadedPatientPhoto;
+            var filename = targetPath.split("/").pop();
+            var options = {
+                headers: {
+                    'Authorization': 'Bearer ' + $rootScope.accessToken,
+                    'X-Api-Key': util.getHeaders()["X-Api-Key"],
+                    'X-Developer-Id': util.getHeaders()["X-Developer-Id"]
+                },
+            };
+            $ionicLoading.show({
+                template: '<img src="img/puff.svg" alt="Loading" />'
+            });
 
-        $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function(result) {
-            // Upload Success on server
-            //console.log(result);
-            var getImageURLFromResponse = angular.fromJson(result.response);
-            $rootScope.PatientImageSelectUser = getImageURLFromResponse.data[0].uri;
-            $scope.$root.$broadcast("callPatientAndDependentProfiles");
-            //$rootScope.$broadcast('loading:hide');
-            //  navigator.notification.alert('Uploaded successfully!',null,$rootScope.alertMsgName,'OK');
-            //  getImageList();
-        }, function(err) {
-            // Upload Failure on server
-            //navigator.notification.alert('Upload Failed! Please try again!',null,'Inflight','OK');
-            //$rootScope.$broadcast('loading:hide');
-              navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
-        }, function(progress) {
-            // PROGRESS HANDLING GOES HERE
-            $rootScope.$broadcast('loading:show');
-        });
+            $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function(result) {
+                // Upload Success on server
+                //console.log(result);
+                var getImageURLFromResponse = angular.fromJson(result.response);
+                $rootScope.PatientImageSelectUser = getImageURLFromResponse.data[0].uri;
+                $scope.$root.$broadcast("callPatientAndDependentProfiles");
+                //$rootScope.$broadcast('loading:hide');
+                //  navigator.notification.alert('Uploaded successfully!',null,$rootScope.alertMsgName,'OK');
+                //  getImageList();
+            }, function(err) {
+                // Upload Failure on server
+                //navigator.notification.alert('Upload Failed! Please try again!',null,'Inflight','OK');
+                //$rootScope.$broadcast('loading:hide');
+                navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
+            }, function(progress) {
+                // PROGRESS HANDLING GOES HERE
+                $rootScope.$broadcast('loading:show');
+            });
+        }
 
     };
 
