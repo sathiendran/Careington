@@ -249,7 +249,7 @@ angular.module('starter.controllers')
                 );
                 return false;
 
-                //  $state.go('tab.relatedusers');
+               $state.go('tab.relatedusers');
 
             },
             error: function(data) {
