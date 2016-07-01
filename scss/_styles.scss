@@ -1644,7 +1644,7 @@ html, body { background: transparent !important; }
 		.PrimaryContent {
 			margin-top: 30px;
 			h1 {
-				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px; padding-top: 5px; 
+				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px; padding-top: 5px;
 			}
 			p {
 				margin-left: 19px;margin-bottom: 10px; font-size: 16px; margin-top: -7px; width: 80%;  white-space: normal;
@@ -2421,7 +2421,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 77px 0 0 0 !important;
+	margin: 77px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -4528,7 +4528,7 @@ p{
    /*.has-header {
       top: 90px; }*/
       .ContentUserHome {
-          margin: 29px 0 0 0;
+        //  margin: 29px 0 0 0;
           font-family: "Glober Regular";
           border-top: 1px solid #C4C5C3;
       }
