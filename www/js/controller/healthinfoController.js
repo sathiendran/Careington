@@ -908,11 +908,19 @@ angular.module('starter.controllers')
                         'weightUnit': index.weightUnit
                     });
 
-
-                   $rootScope.patient=    $rootScope.listOfCoUserDetails[0].patientId;
+                    $rootScope.CImage = apiCommonURL + '/images/default-user.jpg';
+                    var couInitial = getInitialForName($rootScope.cousername + ' ' + $rootScope.couselrname);
+                    $rootScope.couserImage = generateTextImage(couInitial, $rootScope.brandColor);
+                    $rootScope.patient=    $rootScope.listOfCoUserDetails[0].patientId;
                 });
+                       $rootScope.cousername = data.data[0].name;
+                       $rootScope.couselrname = data.data[0].lastname;
 
-                if( $rootScope.patientId !=  $rootScope.patient){
+
+
+
+
+        if( $rootScope.patientId !=  $rootScope.patient){
                   $rootScope.couserdetails=true;
                 }else{
                    $rootScope.dupcouser=true;

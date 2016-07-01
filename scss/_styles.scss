@@ -3946,6 +3946,10 @@ font-size: 20px;
 }
 .contright{
   float:right;
+  .ion-chevron-right:before {
+     font-size: 12px !important;
+ }
+
 }
 .currentedit{
     float:right;
@@ -4521,8 +4525,7 @@ p{
       margin-top: 120px !important; }
     .userdetcontent {
       margin-top: 58px !important; }
-    .ioncontentalign {
-      margin-top: 160px; }
+
     .ioncontentsalign {
       margin-top: 165px; }
     .item-input .inputtext {
@@ -4549,15 +4552,14 @@ p{
          }
          .ioncontentalign{
           //  margin-top:160px;
-             margin-top:170px;
+             margin-top:125px;
          }
          .ioncontentsalign{
              margin-top:165px;
          }
 .item-input{
        .inputtext{ max-width:100%; }
-}
-       /*  .valhome{
+       .valhome{
             margin-left:36px;
           }
           .valorg{
@@ -4568,7 +4570,8 @@ p{
              color: #888;
              width: 145px;
              font-size: 15px;
-         }*/
+         }}
+
        .has-header {
          //top:90px;
          // top:70px;
@@ -5178,10 +5181,12 @@ color: white;
      }
  .valuealign{
   // margin-left:70px;
+   margin-left: 45px;
   }
 
    .valtex {
-     margin-left:41px;
+     margin-left:2px;
+     //margin-left:41px;
       width: 145px;
      }
 .textdata{
@@ -5192,8 +5197,11 @@ color: white;
   .valhome{
     margin-left:43px;
    }
+   .valhomephone{ margin-left: 15px;}
+   .valmobile { margin-left: 41px;}
   .valorg{
-     margin-left:28px;
+    // margin-left:28px;
+      margin-left:8px;
     }
 
  .editdata{
