@@ -2350,7 +2350,7 @@ float:right;
 font-size: 18px !important;
 }
 .healthhead{
-   margin-top:46px;
+   margin-top:26px;
     text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober Bold;
 }
 .appmarg{
@@ -3163,7 +3163,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .HeaderListIOS {
 font-size: 18px; text-align: center; width: 100%;
 /*margin-left: 32px;*/
-margin-top:13px;
+margin-top:13px !important;
 }
 .HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px;;
@@ -4482,7 +4482,8 @@ p{
       color: #888;
       font-family: Glober SemiBold; }
     .usercontent {
-      //margin-top: 111px !important; }
+     // margin-top: 111px !important;	  
+	  }
     .appth3 {
       margin: 20px 0px 0px 0px !important; }
     .rightpatient {
@@ -4521,7 +4522,7 @@ p{
     .userdetcontent {
       margin-top: 58px !important; }
     .ioncontentalign {
-      margin-top: 160px; }
+      margin-top: 200px; }
     .ioncontentsalign {
       margin-top: 165px; }
     .item-input .inputtext {
@@ -4548,7 +4549,7 @@ p{
          }
          .ioncontentalign{
           //  margin-top:160px;
-             margin-top:170px;
+             margin-top:200px;
          }
          .ioncontentsalign{
              margin-top:165px;
@@ -4692,7 +4693,7 @@ p{
              margin-top:138px !important;
          }
          .ioncontentalign{
-             margin-top:197px;
+             margin-top:200px;
          }
           .ioncontentsalign{
              margin-top:185px;
@@ -7023,16 +7024,15 @@ Pagination Styles
 	top: -13px;
 }
 .userTit-IOS {
-	margin-top: 25px;
-	height: auto;
-}
-.DOBClass-IOS {
-	width: 180px;
-}
-.healthTextArea-IOS {
-	margin-left: 0px;
-}
-.healthTitle-IOS {
-	margin-top: 13px !important;
-}
-
+ 	margin-top: 25px;
+ 	height: auto;
+ }
+ .DOBClass-IOS {
+ 	width: 180px;
+ }
+ .healthTextArea-IOS {
+ margin-left: 0px;
+ }
+ .healthTitle-IOS {
+ 	margin-top: 13px !important;
+ }
