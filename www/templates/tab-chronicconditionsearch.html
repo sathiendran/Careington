@@ -18,18 +18,20 @@
 	</div>
  </div>
 </ion-header-bar>
-	<ion-content class="healthcontentsearch" style="margin-top:44px;">
-     <ion-list   ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
+	<ion-content class="healthcontentsearch-{{deviceName}}" >
+     <ion-list  style="margin-top:44px;" >
+
+     <div  ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
+
+       <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: searchText"
+             ng-model="chronic.checked"
+             ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)"  ng-disabled="checkedChronic==limit && !chronic.checked">
+       <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
+      </ion-checkbox>
+
+     </div>
 
 
-
-        <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: searchText"
-						  ng-model="chronic.checked"
-						  ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)"  ng-disabled="checkedChronic==limit && !chronic.checked">
-			  <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
-
-
-		  </ion-checkbox>
 
    <!--     <div ng-repeat="(letter, chronicConditionsearchList) in sorted_users"  >
            <div id="index_{{letter}}" class="item item-divider"    ng-repeat="chronic in chronicConditionsearchList">
