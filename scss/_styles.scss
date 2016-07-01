@@ -4395,7 +4395,8 @@ p{
     .tabs-top > .tabs, .tabs.tabs-top {
       top: inherit !important; }
       .ReportContent {
-      margin: 50px 0px 0 0px !important;}
+      //margin: 50px 0px 0 0px !important;
+    }
     .useracctheader {
       margin-left: 20px !important; }
     .headerfont {
@@ -4538,10 +4539,10 @@ p{
           border-top: 1px solid #C4C5C3;
       }
 
-    .ContentList_provider-Android {
+  /*  .ContentList_provider-Android {
       margin: 110px 0 0 0;
       background-color: #EFEFED;
-    }
+    }*/
 
        .userdeptcontent{
                margin-top:120px !important;
