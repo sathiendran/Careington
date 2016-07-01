@@ -276,6 +276,21 @@ $rootScope.authorised=relateDependentAuthorize;
             var myEl = angular.element(document.querySelector('#dependuserlist'));
             myEl.removeClass('couses');
             myEl.addClass('dependusers');
+
+
+
+        /*    $rootScope.CImage = apiCommonURL + '/images/default-user.jpg';
+            var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
+            $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);*/
+
+
+
+
+
+
+
+
+
         };
 
 

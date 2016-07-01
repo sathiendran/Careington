@@ -1644,7 +1644,7 @@ html, body { background: transparent !important; }
 		.PrimaryContent {
 			margin-top: 30px;
 			h1 {
-				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px; padding-top: 5px; 
+				font-size: 25px;  margin-bottom: 2px; width: 100%;position: relative; top: -6px; padding-top: 5px;
 			}
 			p {
 				margin-left: 19px;margin-bottom: 10px; font-size: 16px; margin-top: -7px; width: 80%;  white-space: normal;
@@ -2421,7 +2421,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 77px 0 0 0 !important;
+	margin: 77px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -3946,6 +3946,10 @@ font-size: 20px;
 }
 .contright{
   float:right;
+  .ion-chevron-right:before {
+     font-size: 12px !important;
+ }
+
 }
 .currentedit{
     float:right;
@@ -4482,8 +4486,8 @@ p{
       color: #888;
       font-family: Glober SemiBold; }
     .usercontent {
-     // margin-top: 111px !important;	  
-	  }
+      //margin-top: 111px !important;
+    }
     .appth3 {
       margin: 20px 0px 0px 0px !important; }
     .rightpatient {
@@ -4530,7 +4534,7 @@ p{
    /*.has-header {
       top: 90px; }*/
       .ContentUserHome {
-          margin: 29px 0 0 0;
+        //  margin: 29px 0 0 0;
           font-family: "Glober Regular";
           border-top: 1px solid #C4C5C3;
       }
@@ -4556,8 +4560,7 @@ p{
          }
 .item-input{
        .inputtext{ max-width:100%; }
-}
-       /*  .valhome{
+       .valhome{
             margin-left:36px;
           }
           .valorg{
@@ -4567,8 +4570,9 @@ p{
              margin-left:32px;
              color: #888;
              width: 145px;
-             font-size: 15px;
-         }*/
+             font-size: 15px; 
+         }}
+
        .has-header {
          //top:90px;
          // top:70px;
@@ -5178,10 +5182,12 @@ color: white;
      }
  .valuealign{
   // margin-left:70px;
+   margin-left: 45px;
   }
 
    .valtex {
-     margin-left:41px;
+     margin-left:2px;
+     //margin-left:41px;
       width: 145px;
      }
 .textdata{
@@ -5192,8 +5198,11 @@ color: white;
   .valhome{
     margin-left:43px;
    }
+   .valhomephone{ margin-left: 15px;}
+   .valmobile { margin-left: 41px;}
   .valorg{
-     margin-left:28px;
+    // margin-left:28px;
+      margin-left:8px;
     }
 
  .editdata{
@@ -7024,15 +7033,16 @@ Pagination Styles
 	top: -13px;
 }
 .userTit-IOS {
- 	margin-top: 25px;
- 	height: auto;
- }
- .DOBClass-IOS {
- 	width: 180px;
- }
- .healthTextArea-IOS {
- margin-left: 0px;
- }
- .healthTitle-IOS {
- 	margin-top: 13px !important;
- }
+	margin-top: 25px;
+	height: auto;
+}
+.DOBClass-IOS {
+	width: 180px;
+}
+.healthTextArea-IOS {
+	margin-left: 0px;
+}
+.healthTitle-IOS {
+	margin-top: 13px !important;
+}
+
