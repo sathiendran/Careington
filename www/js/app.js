@@ -141,7 +141,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
          }
          if(window.StatusBar) {
             StatusBar.styleDefault();
-          }       
+          }
 
         var initialScreenSize = window.innerHeight;
         window.addEventListener("resize", function() {
@@ -153,7 +153,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             } else {
                 $(".footer").show();
             }
-        });        
+        });
 
         setTimeout(function() {
             document.addEventListener("offline", onOffline, false);
@@ -714,7 +714,8 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                 }
             }
         })
-        .state('tab.relateduseroptions', {
+    /*
+     .state('tab.relateduseroptions', {
             url: '/relateduseroptions',
             views: {
                 'tab-login': {
@@ -722,7 +723,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                     controller: ''
                 }
             }
-        })
+        })*/
         .state('tab.addUser', {
             url: '/addUser',
             views: {
@@ -772,7 +773,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         }
     })
 
-    .state('tab.removerelatedUsers', {
+/*    .state('tab.removerelatedUsers', {
         url: '/removerelatedUsers',
         views: {
             'tab-login': {
@@ -780,7 +781,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                 controller: 'removeuserController'
             }
         }
-    })
+    })*/
 
     .state('tab.appointmentpatientdetails', {
         url: '/appointmentpatientdetails',
@@ -839,7 +840,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             'tab-login': {
                 templateUrl: 'templates/tab-consultationSearch.html',
                 controller: 'consultationController'
-                //controller: 'consultationsearchController'
+
             }
         }
     })
@@ -865,7 +866,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         }
     })
 
-    .state('tab.check', {
+  /*  .state('tab.check', {
         url: '/check',
         views: {
             'tab-login': {
@@ -874,7 +875,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }
         }
     })
-
+*/
 
 
     // if none of the above states are matched, use this as the fallback tab-chooseEnvironment
