@@ -3584,7 +3584,7 @@ font-family: $fontFamily_regular;
 }
 .noResult {
 	text-align: center; border: none;
-    color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 40px;
+    color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 90px;
 }
 
 .dobRequired {
@@ -4571,7 +4571,7 @@ p{
              margin-left:32px;
              color: #888;
              width: 145px;
-             font-size: 15px; 
+             font-size: 15px;
          }}
 
        .has-header {
@@ -7046,4 +7046,3 @@ Pagination Styles
 .healthTitle-IOS {
 	margin-top: 13px !important;
 }
-
