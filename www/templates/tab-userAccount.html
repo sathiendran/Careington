@@ -39,17 +39,17 @@
 		<ion-content class="usercontent-{{deviceName}}" >
 			<ion-list >
 				<div class="list userlist">
-					<ion-item class="ioniictem userionitem" >
+					<ion-item class="ioniictem userionitem" ng-click="getManageProfile(currentPatientDetails)" style="padding: 38px 10px !important;">
 
-						<div class="card cardshadow usercard">
+						<div class="cardshadow">
 							<div class="item-text-wrap itemtextwap">
 
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan">  <i class="ion-ios-person profileicon profileperson"></i></span>
 										<span class="content">
-										<a ng-click="getManageProfile(currentPatientDetails)" _ng-href="#/tab/healthinfo" >
+
 										Manage Your Profile
-										</a>
+
 										</span>
 									</h2>
 
@@ -57,17 +57,17 @@
 						</div>
                         </a>
 					</ion-item>
-			 		<ion-item class="ionicitem userionitem">
-						<div class="card cardshadow usercard">
+			 		<ion-item class="ionicitem userionitem" ng-click ="doGetCurrentUserAppointment()" style="padding: 38px 10px !important;">
+						<div class="cardshadow">
 							<div class="item-text-wrap itemtextwap">
 
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan"><i class="ion-calendar profileicon profilecalendar"></i></span>
 										<span class="content">
-										<a ng-click ="doGetCurrentUserAppointment()"  >
-										View your Appointments
-										{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}
-									</a>
+
+										View Your Appointments
+									<!--	{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}-->
+
 										</span>
 									</h2>
 

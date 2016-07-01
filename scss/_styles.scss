@@ -3163,7 +3163,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .HeaderListIOS {
 font-size: 18px; text-align: center; width: 100%;
 /*margin-left: 32px;*/
-margin-top:13px !important;
+margin-top:13px;
 }
 .HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px;;
@@ -3669,7 +3669,9 @@ font-family: $fontFamily_regular;
       font-size:14px;
   }
  .usercontent-IOS{
-      margin-top: 200px !important;
+      //margin-top: 200px !important;
+      position: relative;
+      top: 210px;
  }
  .usercontent-Android{
    position: relative;
@@ -3764,8 +3766,8 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 #centercolor{
     color:white;
-    margin-top:20px !important;
-    font-size:20px;
+    margin-top:15px !important;
+    font-size:22px;
     font-family:Glober Bold;
 }
 .userionitem{
@@ -4643,9 +4645,13 @@ p{
          .addphoto{
       width:44%;
         }
+        .usercontent-IOS {
+          position: relative;
+          top:  300px;
+        }
 
       .alignchronic{
-             margin-left:345px !important;
+             margin-left:235px !important;
          }
         .topimage {
            position: absolute;
