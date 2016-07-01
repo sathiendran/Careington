@@ -36,7 +36,7 @@
 
 
                 <div class="row">
-                  <div class="buttons backbtn">
+                    <div class="buttons backbtn">
                         <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
                     </div>
                     <div class=" button-bar">
@@ -57,8 +57,8 @@
 
 
         <ion-view title="">
-            <ion-content class="consultcontent">
-              <div ng-show="pastshow">
+            <ion-content class="consultcontent" ng-show="pastshow">
+                <div>
                     <div class="row rheader">
                         <div class="col col-20"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
@@ -69,42 +69,43 @@
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
                         <div ng-repeat="passedData in Passedconsultations">
-                          <div  class="row">
-                            <div class="col col-20 contalign">
-                                <a class="item item-avatar avatitem">
-                                    <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                                </a>
-                            </div>
-                            <div class="col col-20">
-                                <p class="colfamily coldate"> {{ passedData.consultationDate }} </p>
-                            </div>
-                            <div class="col col-15 coltime">
-                                <p class="colfamily"> {{ passedData.consultationTime}}</p>
-                            </div>
-                            <div class="col col-30">
-                                <p class="coldetails">
-                                  <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
-                                    <a class="colfamily" ng-if="passedData.assignedDoctorName">{{passedData.assignedDoctorName}}</a>
-                                  </p>
+                            <div class="row">
+                                <div class="col col-20 contalign">
+                                    <a class="item item-avatar avatitem">
+                                        <img class="consimg" ng-src="{{PatientImageSelectUser}}">
+                                    </a>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="colfamily coldate"> {{ passedData.consultationDate }} </p>
+                                </div>
+                                <div class="col col-15 coltime">
+                                    <p class="colfamily"> {{ passedData.consultationTime}}</p>
+                                </div>
+                                <div class="col col-30">
+                                    <p class="coldetails">
+                                        <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
+                                        <a class="colfamily" ng-if="passedData.assignedDoctorName">{{passedData.assignedDoctorName}}</a>
+                                    </p>
+                                </div>
+
+                                <div class="col col-15 ">
+                                    <span class="contright" ng-click="showReportView({{passedData}});">Details
+                                    <span><i class="icon ion-chevron-right "></i></span></span>
+                                </div>
                             </div>
 
-                            <div class="col col-15 ">
-                                <span class="contright"  ng-click="showReportView({{passedData}});">Details
-                                <span><i class="icon ion-chevron-right "></i></span></span>
-                            </div>
-                          </div>
-
-                              <hr class="dotedhr">
+                            <hr class="dotedhr">
                         </div>
                         <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found</ion-item>
 
                     </div>
 
                 </div>
+         </ion-content>
 
-                <!---- Past Consult End ----->
-
-                <div ng-show="missedshow">
+             <!---- Past Consult End ----->
+            <ion-content class="consultcontent" ng-show="missedshow">
+                <div>
                     <div class="row rheader">
                         <div class="col col-20"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
@@ -116,49 +117,44 @@
                     <div class="list listfirst">
                         <div ng-repeat="misseddata in missedlist">
 
-                          <div class="row">
-                            <div class="col col-20 contalign">
-                                <a class="item item-avatar avatitem">
-                                    <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                                </a>
+                            <div class="row">
+                                <div class="col col-20 contalign">
+                                    <a class="item item-avatar avatitem">
+                                        <img class="consimg" ng-src="{{PatientImageSelectUser}}">
+                                    </a>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="colfamily coldate">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
+                                </div>
+                                <div class="col col-15 coltime">
+                                    <p class="colfamily">{{misseddata.time}}</p>
+                                </div>
+                                <div class="col col-30">
+                                    <p class="coldetails">
+                                        <a class="colfamily" ng-if="!misseddata.docname">N/A
+
+                                        </a>
+                                        <a class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}
+
+                                          </a>
+                                    </p>
+                                </div>
+                                <div class="col col-15 ">
+                                    <span class="contright" ng-click="showReportView({{misseddata}});">Details
+                                        <span><i class="icon ion-chevron-right "></i></span></span>
+                                </div>
                             </div>
-                            <div class="col col-20">
-                                <p class="colfamily coldate">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
-                            </div>
-                            <div class="col col-15 coltime">
-                                <p class="colfamily">{{misseddata.time}}</p>
-                            </div>
-                            <div class="col col-30">
-                              <p class="coldetails">
-                                <a class="colfamily" ng-if="!misseddata.docname">N/A
-                                  <!-- <span class="contright" ng-click="showReportView({{misseddata}});">
-                                      Details
-                                        <span><i class=" ion-chevron-right "></i></span>
-                                  </span>-->
-                                </a>
-                                  <a class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}
-                                    <!-- <span class="contright" ng-click="showReportView({{misseddata}});">
-                                        Details
-                                          <span><i class=" ion-chevron-right "></i></span>
-                                    </span>-->
-                                  </a>
-                              </p>
-                            </div>
-                            <div class="col col-15 ">
-                                <span class="contright"  ng-click="showReportView({{misseddata}});">Details
-                                <span><i class="icon ion-chevron-right "></i></span></span>
-                            </div>
-                          </div>
-                          <hr class="dotedhr">
+                            <hr class="dotedhr">
                         </div>
                         <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found</ion-item>
                     </div>
 
                 </div>
+              </ion-content>
 
-                <!--- Missed Consult End--->
-
-                <div ng-show="droppedshow">
+                  <!---- Missed Consult End ----->
+            <ion-content class="consultcontent" ng-show="droppedshow">
+              <div>
                     <div class="row rheader">
                         <div class="col col-20"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
@@ -168,31 +164,31 @@
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
-                        <div  ng-repeat="droppedData in Droppedconsultations">
-                          <div class="row">
-                            <div class="col col-20 contalign">
-                                <a class="item item-avatar avatitem">
-                                    <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                                </a>
+                        <div ng-repeat="droppedData in Droppedconsultations">
+                            <div class="row">
+                                <div class="col col-20 contalign">
+                                    <a class="item item-avatar avatitem">
+                                        <img class="consimg" ng-src="{{PatientImageSelectUser}}">
+                                    </a>
+                                </div>
+                                <div class="col col-20">
+                                    <p class="colfamily coldate">{{droppedData.consultationDate}}</p>
+                                </div>
+                                <div class="col col-15 coltime">
+                                    <p class="colfamily">{{droppedData.consultationTime}}</p>
+                                </div>
+                                <div class="col col-30">
+                                    <p class="coldetails">
+                                        <a class="colfamily" ng-if="!droppedData.docname">N/A</a>
+                                        <a class="colfamily" ng-if="droppedData.docname">{{droppedData.assignedDoctorName}}</a>
+                                    </p>
+                                </div>
+                                <div class="col col-15 ">
+                                    <span class="contright" ng-click="showReportView({{droppedData}});">Details
+                                          <span><i class="icon ion-chevron-right "></i></span></span>
+                                </div>
                             </div>
-                            <div class="col col-20">
-                                <p class="colfamily coldate">{{droppedData.consultationDate}}</p>
-                            </div>
-                            <div class="col col-15 coltime">
-                                <p class="colfamily">{{droppedData.consultationTime}}</p>
-                            </div>
-                            <div class="col col-30">
-                                <p class="coldetails">
-                                    <a class="colfamily" ng-if="!droppedData.docname">N/A</a>
-                                    <a class="colfamily" ng-if="droppedData.docname">{{droppedData.assignedDoctorName}}</a>
-                                </p>
-                            </div>
-                            <div class="col col-15 ">
-                                <span class="contright"  ng-click="showReportView({{droppedData}});">Details
-                                <span><i class="icon ion-chevron-right "></i></span></span>
-                            </div>
-                          </div>
-                              <hr class="dotedhr">
+                            <hr class="dotedhr">
                         </div>
 
                         <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found</ion-item>
@@ -200,9 +196,12 @@
                     </div>
 
                 </div>
-                <!--- Dropped Consult End--->
 
             </ion-content>
+
+            <!--- Dropped Consult End--->
+
+
 
     </ion-side-menu-content>
     <div ng-include src="'templates/SideMenu.html'"></div>
@@ -211,7 +210,7 @@
 
     <ion-tabs class=" tabs-icon-top tabs-dark">
 
-        <a class="tab-item "  ng-href="#tab/relatedusers" ng-click="doGetListOfCoUsers()">
+        <a class="tab-item " ng-href="#tab/relatedusers" ng-click="doGetListOfCoUsers()">
             <i class="icon ion-person-stalker tabfont"></i> Users
         </a>
         <a class="tab-item active" ng-href="#tab/consultations">

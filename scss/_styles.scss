@@ -2350,7 +2350,7 @@ float:right;
 font-size: 18px !important;
 }
 .healthhead{
-   margin-top:46px;
+   margin-top:26px;
     text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober Bold;
 }
 .appmarg{
@@ -3163,7 +3163,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .HeaderListIOS {
 font-size: 18px; text-align: center; width: 100%;
 /*margin-left: 32px;*/
-margin-top:13px;
+margin-top:13px !important;
 }
 .HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px;;
@@ -4526,7 +4526,8 @@ p{
       margin-top: 120px !important; }
     .userdetcontent {
       margin-top: 58px !important; }
-
+    .ioncontentalign {
+      margin-top: 200px; }
     .ioncontentsalign {
       margin-top: 165px; }
     .item-input .inputtext {
@@ -4553,7 +4554,7 @@ p{
          }
          .ioncontentalign{
           //  margin-top:160px;
-             margin-top:125px;
+             margin-top:200px;
          }
          .ioncontentsalign{
              margin-top:165px;
@@ -4570,7 +4571,7 @@ p{
              margin-left:32px;
              color: #888;
              width: 145px;
-             font-size: 15px;
+             font-size: 15px; 
          }}
 
        .has-header {
@@ -4697,7 +4698,7 @@ p{
              margin-top:138px !important;
          }
          .ioncontentalign{
-             margin-top:197px;
+             margin-top:200px;
          }
           .ioncontentsalign{
              margin-top:185px;
@@ -7045,3 +7046,4 @@ Pagination Styles
 .healthTitle-IOS {
 	margin-top: 13px !important;
 }
+
