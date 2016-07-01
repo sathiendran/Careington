@@ -36,7 +36,7 @@
 		</div>
 	</ion-header-bar>
 	<ion-view title="User Account">
-		<ion-content class="usercontent" >
+		<ion-content class="usercontent-{{deviceName}}" >
 			<ion-list >
 				<div class="list userlist">
 					<ion-item class="ioniictem userionitem" >
@@ -65,7 +65,9 @@
 										<span class="profileSpan"><i class="ion-calendar profileicon profilecalendar"></i></span>
 										<span class="content">
 										<a ng-click ="doGetCurrentUserAppointment()"  >
-										View your Appointments</a>
+										View your Appointments
+										{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}
+									</a>
 										</span>
 									</h2>
 

@@ -294,7 +294,9 @@ angular.module('starter.controllers')
 
                     var updatepatientdetail = data.data;
                     $rootScope.deppatientId = updatepatientdetail[0].patientId;
-                    $scope.updateDependentRelation();
+                    if($rootScope.newDependentImagePath !== '' && typeof $rootScope.newDependentImagePath !=='undefined') {
+                      $scope.updateDependentRelation();
+                    }
 
 
                     /*  $('#dependentuserform')[0].reset();

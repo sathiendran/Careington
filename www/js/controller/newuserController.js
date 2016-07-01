@@ -127,7 +127,11 @@ angular.module('starter.controllers')
         $scope.firstName = $("#userfirstname").val();
         $scope.lastName = $("#userlastname").val();
         $scope.email = $("#useremail").val();
-        $scope.dob = $("#userdob").val();
+        $scope.dob1 = $("#userdob").val();
+        var month = $scope.dob1.getUTCMonth() + 1; //months from 1-12
+        var day = $scope.dob1.getUTCDate();
+        var year = $scope.dob1.getUTCFullYear();
+        $scope.dob = day + "/" + month + "/" + year;
         $scope.gender = $("input[name='userInfoGender']:checked").val();
         $scope.heights = $("#userheight").val();
         $scope.weight = $("#userWeight").val();

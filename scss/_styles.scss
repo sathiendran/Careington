@@ -2297,7 +2297,7 @@ html, body { background: transparent !important; }
      border-color: #5D5959 !important;
 }
 .appiconcontent{
-    margin-top:165px;
+    margin-top: 212px;
 }
 .avatpad{
     padding:14px !important;
@@ -3668,8 +3668,12 @@ font-family: $fontFamily_regular;
       color:#b2b2b2;
       font-size:14px;
   }
- .usercontent{
+ .usercontent-IOS{
       margin-top: 200px !important;
+ }
+ .usercontent-Android{
+   position: relative;
+   top: 210px;
  }
   .userappcontent{
       margin-top: 170px !important;
@@ -4680,7 +4684,7 @@ p{
      @media (min-width:770px) and (max-width:1024px){
 
        .usercontent {
-         margin-top: 177px !important
+        // margin-top: 177px !important
         }
        .usercard {
          margin: 90px 10px !important;
@@ -5229,7 +5233,7 @@ color: white;
 
 @media only screen and (min-device-width: 710px) and (max-device-width: 1280px) {
 .usercontent {
-margin-top: 100px !important
+//margin-top: 100px !important
 }
 .footerstyle{
       height:70px !important;
@@ -5252,7 +5256,7 @@ margin-top: 100px !important
     }
 .chronic { margin-top: 19px;}
 .usercontent {
-margin-top: 120px !important
+//margin-top: 120px !important
 }
  .userappcontent{margin-top: 177px !important;}
 .aptviewicons{
@@ -5350,7 +5354,7 @@ font-size: 18px !important;
 .userdeptcontent { margin-top:155px !important; }
 .newusercontent{  margin-top: 170px; }
 .appiconcontent {
-margin-top: 217px;
+margin-top: 212px;
 }
 .alignchronic {
 font-size:22px !important;
@@ -5926,7 +5930,7 @@ margin-left: 13px !important;
 
 }
 .usercontent{
-	margin-top: 30px;
+	//margin-top: 30px;
 	label{
 		background-color: #e3e4e6;
 		color: #444444;
@@ -7040,9 +7044,16 @@ Pagination Styles
 .DOBClass-IOS {
 	width: 180px;
 }
+.DOBClass-Android {
+  width: 180px;
+}
 .healthTextArea-IOS {
 	margin-left: 0px;
 }
 .healthTitle-IOS {
 	margin-top: 13px !important;
+}
+.healthViewDetails {
+  width: 55%;
+  white-space: normal;
 }
