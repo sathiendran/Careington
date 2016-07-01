@@ -965,7 +965,7 @@ html, body { background: transparent !important; }
 }
 .optionselect{
   border:none;
-  width: 80%;
+  width: 70%;
 }
 //Consult Charge page
 
@@ -2421,7 +2421,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 77px 0 0 0 !important;
+	margin: 77px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -2758,7 +2758,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -moz-flex: 0 0 60%;
   -ms-flex: 0 0 60%;
   flex: 0 0 60%;
-  max-width: 80%;
+ // max-width: 80%;
 }
 
 .validated error {
@@ -3162,7 +3162,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 .HeaderListIOS {
 font-size: 18px; text-align: center; width: 100%;
-margin-left: 32px;margin-top:13px !important;
+/*margin-left: 32px;*/
+margin-top:13px;
 }
 .HeaderListAndroid {
 font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px;;
@@ -4485,7 +4486,7 @@ p{
       color: #888;
       font-family: Glober SemiBold; }
     .usercontent {
-      margin-top: 111px !important; }
+      //margin-top: 111px !important; }
     .appth3 {
       margin: 20px 0px 0px 0px !important; }
     .rightpatient {
@@ -4531,7 +4532,7 @@ p{
    /*.has-header {
       top: 90px; }*/
       .ContentUserHome {
-          margin: 29px 0 0 0;
+        //  margin: 29px 0 0 0;
           font-family: "Glober Regular";
           border-top: 1px solid #C4C5C3;
       }
@@ -5203,10 +5204,10 @@ color: white;
     }
 
  .editdata{
-     font-size:12px;
+     font-size:15px;
      color:#7c7c7c;
      background-color:#e9e9e9;;
-	 width: 70%;
+	 width: 90%;
    }
 }
 .itemtab{
@@ -7029,3 +7030,17 @@ Pagination Styles
 	position: relative;
 	top: -13px;
 }
+.userTit-IOS {
+	margin-top: 25px;
+	height: auto;
+}
+.DOBClass-IOS {
+	width: 180px;
+}
+.healthTextArea-IOS {
+	margin-left: 0px;
+}
+.healthTitle-IOS {
+	margin-top: 13px !important;
+}
+
