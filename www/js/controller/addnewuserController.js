@@ -70,14 +70,17 @@ angular.module('starter.controllers')
         $rootScope.adddependent = function() {
             $rootScope.doGetOrgLoclist();
             $rootScope.newDependentImagePath = '';
+            $('select').prop('selectedIndex', 0);
             $state.go('tab.addnewdependent');
         }
 
         $rootScope.addcouser = function() {
             $rootScope.newCoUserImagePath = '';
             $rootScope.doGetOrgLoclist();
+            $('select').prop('selectedIndex', 0);
+        
             $state.go('tab.addUser');
-        }
+  }
         $rootScope.doGetOrgLoclist = function() {
 
             if ($rootScope.accessToken == 'No Token') {

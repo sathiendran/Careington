@@ -104,6 +104,8 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
 
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window) {
     $ionicPlatform.ready(function() {
+
+
         // Check for network connection
         /* if(window.Connection) {
       if(navigator.connection.type == Connection.NONE) {
