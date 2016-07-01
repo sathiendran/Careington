@@ -7,7 +7,7 @@
 		<div class="buttons {{menuicon}}" >
 			<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>
 		</div>
-		<h1 class="{{title_patient}} {{HeaderList}}" style="margin-left: -30px;">Patient List</h1>
+		<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -30px;">Patient List</h1>
 		<!--<span>
 			<a class="headerval" ng-href="#/tab/addnewuser" style="position: relative; top: 28px;">
 				<i class="ion-plus"></i>
@@ -87,7 +87,7 @@
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
 					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
-					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} <span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span></p>
+					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} <!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
 					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
 				</div>
 			</div>
