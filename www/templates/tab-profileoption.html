@@ -1,4 +1,4 @@
-<div class="animated slideInRight">
+
   <ion-side-menus>
 	 <ion-side-menu-content>
     <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
@@ -70,7 +70,7 @@
        <a class="tab-item" ng-href="#tab/consultations" ng-click="passededconsultants()">
        <i class="icon ion-card tabfont"></i> Consultations
        </a>
-       <a class="tab-item" ng-href="/#tab/healthinfo">
+       <a class="tab-item" ng-click="getManageProfile(currentPatientDetails)" _ng-href="#/tab/healthinfo">
        <i class="icon ion-android-clipboard tabfont"></i> My Health
        </a>
        <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
