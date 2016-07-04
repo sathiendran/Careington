@@ -692,7 +692,7 @@ angular.module('starter.controllers')
         $scope.droppedsearcshow = false;
 
         $rootScope.passedsearchconsult = function() {
-            $('.SearchBox').val('');
+          
             $scope.passededconsultants();
             var myEl = angular.element(document.querySelector('#passedsearch'));
             myEl.removeClass('btnextcolor');
@@ -708,7 +708,7 @@ angular.module('starter.controllers')
             $scope.droppedsearchshow = false;
         }
         $scope.missedsearchconsult = function() {
-            $('.SearchBox').val('');
+
             $scope.missedconsult();
             var myEl = angular.element(document.querySelector('#missedsearch'));
             myEl.addClass('btcolor');
@@ -724,7 +724,7 @@ angular.module('starter.controllers')
             $scope.droppedsearchshow = false;
         }
         $scope.droppedsearchconsult = function() {
-                $('.SearchBox').val('');
+
             $scope.droppedconsult();
             var myEl = angular.element(document.querySelector('#droppedsearch'));
             myEl.addClass('btcolor');
