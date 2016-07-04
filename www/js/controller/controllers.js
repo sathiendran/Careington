@@ -4108,6 +4108,8 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.healthPlanID = '';
             $rootScope.NewHealth = '';
         }
+        $scope.healthInfoModel = {};
+        $scope.healthInfoModel.userDOB = $rootScope.userDOB;
         $rootScope.updatedPatientImagePath = '';
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';

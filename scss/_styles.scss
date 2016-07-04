@@ -2351,7 +2351,7 @@ font-size: 18px !important;
 }
 .healthhead{
    margin-top:26px;
-    text-align: center;color:#6c6c6c;font-size:21px;font-family:Glober Bold;
+    text-align: center;color:#6c6c6c;font-size:25px;font-family:Glober SemiBold;
 }
 .appmarg{
     //;margin-top:-4px;
@@ -3670,12 +3670,10 @@ font-family: $fontFamily_regular;
   }
  .usercontent-IOS{
       //margin-top: 200px !important;
-      position: relative;
-      top: 210px;
+    margin-top: 210px;
  }
  .usercontent-Android{
-   position: relative;
-   top: 210px;
+   margin-top: 210px;
  }
 .healthcontentsearch-Android{
       margin-top: 108px;
@@ -3692,7 +3690,7 @@ font-family: $fontFamily_regular;
  .profileSpan {
    margin-left:-18px;
    .profileicon {
-     margin-left:-18px;font-size:26px;
+     margin-left:-18px;font-size:36px;
    }
  }
  .content{
@@ -3852,7 +3850,7 @@ font-size: 20px;
 .appalignrighticon{
          margin-left:42px;
          color:#fff;
-         font-size:13px;
+         font-size:15px;
   }
  .aslignspan{margin-left:3px;   }
   #viewicon{
@@ -3860,6 +3858,8 @@ font-size: 20px;
      color:white;
      margin-top:3px;
      font-size:12px !important;
+     width: 50%;
+     text-align: right
   }
 
 .typealign{
@@ -3869,6 +3869,7 @@ font-size: 20px;
     color: #cccccc;
     margin-left:5px;
 	width: 45%;
+  max-width: 50%;
     .iconsize{
     font-size:25px;
     }
@@ -4042,7 +4043,7 @@ font-size: 20px;
   }
 
   .appth3{
-      margin:20px 0px 0px 0px;
+      margin:20px 0px 0px 0px !important;
   }
 .list{
 
@@ -4383,7 +4384,7 @@ p{
   }
   .headerrighticon{
       border:1px solid #888;
-      border-radius:50%;
+      border-radius:65%;
       padding-left:5px;
       padding-right:6px;
       padding-top:5px;
@@ -4394,7 +4395,7 @@ p{
 
   .headerlefticons{
       border:1px solid #888;
-      border-radius: 50%;
+      border-radius: 65%;
       padding-left: 7px;
       padding-right: 8px;
       padding-top: 6px;
@@ -4655,8 +4656,7 @@ p{
       width:44%;
         }
         .usercontent-IOS {
-          position: relative;
-          top:  300px;
+          margin-top: 300px;
         }
 
       .alignchronic{
@@ -4928,6 +4928,7 @@ top: inherit !important;
   color: white;
   font-size: 22px;
   font-family: Glober xBold;
+  width: 50%;
    }
 .item-image-icon{
     background-color: #444444;
@@ -5028,7 +5029,9 @@ color: white;
  float:right;
  margin-right:8px;
  font-weight: normal;
-
+ padding: 7px;
+ position: relative;
+ top: -7px;
 }
 
 .headerleftval{
@@ -5226,7 +5229,7 @@ color: white;
     }
 
  .editdata{
-     font-size:15px;
+     font-size:20px;
      color:#7c7c7c;
      background-color:#e9e9e9;;
 	 width: 90%;
@@ -5357,7 +5360,7 @@ height: 57px !important;
 .appalignrighticon {
 margin-left: 210px;
 color: #fff;
-font-size: 13px;
+font-size: 15px;
 }
 .appfloat {
 float: right;
@@ -7055,10 +7058,10 @@ Pagination Styles
 	height: auto;
 }
 .DOBClass-IOS {
-	width: 180px;
+	width: 55%;
 }
 .DOBClass-Android {
-  width: 180px;
+  width: 55%;
 }
 .healthTextArea-IOS {
 	margin-left: 0px;
@@ -7069,4 +7072,14 @@ Pagination Styles
 .healthViewDetails {
   width: 55%;
   white-space: normal;
+  font-size: 20px;
+}
+.subHeadIcons {
+  position:relative; top: 5px;
+}
+
+.ioncontentalign {
+  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    padding: 5px 0 0 5px;
+  }
 }
