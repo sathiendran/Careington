@@ -22,21 +22,21 @@
 
 			<div class="item item-image-icon" >
 				<a class="lefthome">
-					<i class="icon ion-home headerlefticons"></i>
+					<span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
 					<p class="homecontent">Account Home</p>
 				</a>
 				<a class="item-avatar itemhead">
 					<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
 				</a>
 				<a class="rightpatient" ng-href="#/tab/userhome">
-					<i class="icon ion-ios-people headerrighticon"></i>
+					<span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
 					<p class="patientcontent" >Change Patient</p>
 				</a>
 			</div>
 		</div>
 	</ion-header-bar>
 	<ion-view title="User Account">
-		<ion-content class="usercontent-{{deviceName}}" >
+		<div class="usercontent-{{deviceName}}" >
 			<ion-list >
 				<div class="list userlist">
 					<ion-item class="ioniictem userionitem" ng-click="getManageProfile(currentPatientDetails)" style="padding: 38px 10px !important;">
@@ -76,7 +76,7 @@
 					</ion-item>
 				</div>
 			</ion-list>
-		</ion-content>
+		</div>
 	</ion-view>
 	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
 		<!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->

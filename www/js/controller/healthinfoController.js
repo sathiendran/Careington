@@ -69,6 +69,7 @@ angular.module('starter.controllers')
         }
     };
     $scope.healthInfoModel = {};
+    $scope.healthInfoModel.userDOB = $rootScope.userDOB;
     $scope.addmore = false;
     $scope.healthhide = true;
     $scope.headerval = false;
@@ -94,19 +95,19 @@ angular.module('starter.controllers')
         $scope.readattr = false;
         $scope.doneshow = false;
         $scope.editshow = false;
-        $scope.doneedit = true;
         $rootScope.flag = false;
-        $scope.editimg = true;
         $scope.viewimg = false;
-        $('#aaa').show();
+        $scope.doneedit = true;
+        $scope.editimg = true;
         $('#ss').hide();
+        $('#aaa').show();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
         $scope.phoneval=$rootScope.currentPatientDetails[0].homePhone;
         $scope.mobileval=$rootScope.currentPatientDetails[0].mobilePhone;
         editsvalues.removeClass('textdata');
-        editsvalues.addClass('editdata');
         edittextarea.removeClass('textdata');
+        editsvalues.addClass('editdata');
         edittextarea.addClass('editdata');
     }
 
