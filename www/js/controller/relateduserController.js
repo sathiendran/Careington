@@ -227,7 +227,7 @@ $rootScope.authorised=relateDependentAuthorize;
             }else{
               var myPopup = $ionicPopup.show({
 
-                  title: "<a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
+                  title: "<div class='ion-close-round closeicon' ></div><a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
                   subTitle: "<p class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 
@@ -381,8 +381,9 @@ $rootScope.authorised=relateDependentAuthorize;
         $scope.goToConsultations = function() {
             $state.go('tab.consultations');
         }
-        $scope.seeaPatientConcerns = function() {
-            $state.go('tab.patientConcerns');
+        $scope.seeaPatientConcerns = function(patientId,clickEvent) {
+          $state.go('tab.patientConcerns');
+
         }
         $rootScope.patientprofile = function(currentPatientDetails) {
             $rootScope.currentPatientDetails = currentPatientDetails;
