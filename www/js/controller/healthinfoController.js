@@ -279,7 +279,8 @@ angular.module('starter.controllers')
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
             //    $rootScope.getManageProfile(currentPatientDetails);
-                $rootScope.doGetSelectedPatientProfiles(data.patientID);
+                $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.patientLastName, $rootScope.currentPatientDetails.birthdate, $rootScope.currentPatientDetails.guardianName, $rootScope.currentPatientDetails.patientId, $rootScope.currentPatientDetails.isAuthorized, ' ');
+              //  $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 $scope.readattr = true;
                 $scope.editshow = true;
                 $scope.doneshow = true;

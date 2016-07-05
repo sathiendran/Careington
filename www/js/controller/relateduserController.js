@@ -377,30 +377,36 @@ $rootScope.authorised=relateDependentAuthorize;
             };
             LoginService.getAccountDependentDetails(params);
         }
-        $scope.gpToAppointments = function() {
-            $state.go('tab.appointmentpatientdetails');
+        $scope.gpToAppointments = function(getDependentDetails) {
+          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
+          //  $state.go('tab.appointmentpatientdetails');
         }
-        $scope.goToConsultations = function() {
-            $state.go('tab.consultations');
+        $scope.goToConsultations = function(getDependentDetails) {
+          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
+          //  $state.go('tab.consultations');
         }
-        $scope.seeaPatientConcerns = function(patientId,clickEvent) {
+        $scope.seeaPatientConcerns = function(getDependentDetails) {
           if($rootScope.onDemandAvailability > 0) {
-            $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
+            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+          //  console.log(getDependentDetails);
+          //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
           } else {
             $scope.ErrorMessage = "Physician or On demand unavailable. Please try again later!";
             $rootScope.Validation($scope.ErrorMessage);
           }
         }
-        $rootScope.patientprofile = function(currentPatientDetails) {
-            $rootScope.currentPatientDetails = currentPatientDetails;
+        $rootScope.patientprofile = function(getDependentDetails) {
+          /*  $rootScope.currentPatientDetails[0] = currentPatientDetails;
 
-            if ($rootScope.currentPatientDetails[0].gender == 'M') {
+            if ($rootScope.currentPatientDetails[0].gender == 'M' || $rootScope.currentPatientDetails[0].gender == 'Male') {
                 $rootScope.userGender = "Male";
                 $rootScope.isCheckedMale = true;
-            } else if ($rootScope.currentPatientDetails[0].gender == 'F') {
+            } else if ($rootScope.currentPatientDetails[0].gender == 'F' || $rootScope.currentPatientDetails[0].gender == 'FeMale') {
                 $rootScope.userGender = "FeMale";
                 $rootScope.isCheckedFeMale = true;
-            }
+            }*/
+          //  $rootScope.doGetSelectedPatientProfiles(currentPatientDetails.patientId,'tab.healthinfo', '')
+            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
             $rootScope.passededconsultants();
             $state.go('tab.healthinfo');
 
