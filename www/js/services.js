@@ -1669,18 +1669,26 @@ this.getCountryDetails = function () {
 
 	 if(age.years == 0 ) {
 			if(age.days <= 15) {
-				return ageString = age.months + monthString;;
+				return ageString = age.months + monthString;
 			} else if (age.days > 15) {
-				 return ageString = (age.months + 1) + monthString;;
+				 return ageString = (age.months + 1) + monthString;
 			}
 	   }
 		if (age.years > 0) {
 			if(age.days <= 15) {
-				 var month = age.months + monthString;;
+				 var month = age.months + monthString;
 			} else if (age.days > 15) {
-				  var month = (age.months + 1) + monthString;;
+				  var month = (age.months + 1) + monthString;
 			}
-		return ageString = age.years + yearString +'/'+ month; }
+		//return ageString = age.years + yearString +'/'+ month;
+
+    if(age.months !== 0) {
+        return ageString = age.years + yearString +'/'+ month;
+    } else {
+        return ageString = age.years + yearString;
+    }
+
+  }
 
 
 

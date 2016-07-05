@@ -9,7 +9,7 @@
 </div>
   <div class="Server_Error ErrorMessageDiv" ></div>
 <div id="Error_Message"></div>
-   <h1 class= "chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User </span> <span >
+   <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> New User </span> <span >
            <a  ng-click="cancelcouser()" class="headerval"  >Cancel</a></span></h1>
 
   <div class="bar bar-subheader bar-dark subheaderheight">
@@ -120,7 +120,7 @@
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
         </div>
-        <div style="width: 180px;padding-right: 10px;" >
+        <div style="width: 200px;padding-right: 10px;" >
           <input id="userheight" class="usertext textalign" type="number" value="" placeholder="Optional" ng-model="userheight" name="userheight" required >
         </div>
         <div style="width: 50%;">
@@ -135,7 +135,7 @@
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Weight</b></span>
         </div>
-        <div style="width: 180px;padding-right: 10px;">
+        <div style="width: 200px;padding-right: 10px;">
           <input id="userWeight" class="usertext textalign" type="number" value="" placeholder="Optional" ng-model="userWeight" name="userWeight" required >
         </div>
         <div style="width: 50%;">
@@ -154,7 +154,7 @@
         <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Home Phone</b></span>
      </div>
      <div class="col col-50">
-         <input class="input-phone" id="userphone" type='tel' phone-input ng-model="phoneVal" >
+         <input style="line-height: 26px;" class="input-phone homeadd" id="userphone" type='tel' value="" placeholder="Optional"  phone-input ng-model="phoneVal" >
        <!-- <input class="usertext" id="userphone" type="tel" value="" phoneInput placeholder="Optional" ng-model="phone"  ng-pattern="/^[0-9]{1,14}$/"  name="phone"  >
         <span class="error" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>-->
      </div>
@@ -165,7 +165,7 @@
        <i class="iconsize ion-ios-telephone"></i><b class="formlabel">Mobile</b></span>
     </div>
     <div class="col col-50">
-       <input class="input-phone" id="usermobile" type="tel" value=""  placeholder="Optional" ng-model="mobile"   name="mobile" phone-input>
+       <input style="line-height: 26px;" class="input-phone homeadd" id="usermobile" type="tel" value=""  placeholder="Optional" ng-model="mobile"   name="mobile" phone-input>
        <span class="error" id="ermobile" ng-show="myForm.mobile.$error.pattern">Not a valid number!</span>
      </div>
    </div>

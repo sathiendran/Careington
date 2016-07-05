@@ -3873,6 +3873,7 @@ LoginService.getScheduledConsulatation(params);
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+                    $rootScope.userDOBDateFormat = $filter('date')(date, "MM-dd-yyyy");
                     if ($rootScope.currentPatientDetails[0].gender == 'M') {
                         $rootScope.userGender = "Male";
                         $rootScope.isCheckedMale = true;
@@ -4554,7 +4555,13 @@ LoginService.getScheduledConsulatation(params);
             } else if (age.days > 15) {
                 var month = (age.months + 1) + monthString;;
             }
-            return ageString = age.years + yearString + '/' + month;
+            //return ageString = age.years + yearString + '/' + month;
+            if(age.months !== 0) {
+                return ageString = age.years + yearString +'/'+ month;
+            } else {
+                return ageString = age.years + yearString;
+            }
+
         }
 
 

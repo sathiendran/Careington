@@ -11,7 +11,7 @@
       <h1 class="healthTitle-{{deviceName}} chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
          <div class="HealthTitle-{{deviceName}}"> My Health </div>
          <span class="headerval healthLeft-{{deviceName}}" ng-click="edittext()" ng-show="editshow">Edit</span>
-         <span class="searchCancel-{{deviceName}}"  ng-show="cancelshow"><a class="headerval" >cancel</a></span>
+         <span class="searchCancel-{{deviceName}}"  ng-show="cancelshow"><a class="headerval" >Cancel</a></span>
          <span class="headerval healthLeft-{{deviceName}}"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
 
       </h1>
@@ -85,7 +85,7 @@
            </label>
            <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"><i class="ion-ios-calendar-outline iconfont"></i><b class="formlabel">D.O.B</b></span>
-           <div ng-if="userDOB" class="healthViewDetails">{{userDOB}}</div>
+           <div ng-if="userDOB" class="healthViewDetails">{{userDOBDateFormat}}</div>
            <div ng-if="!userDOB" class="healthViewDetails">NA</div>
            <!--<input type="date" value="{{userDOB}}"  ng-readonly="flag" name="healthInfoDOB"  class="valuealign textdata" id="dobdate">-->
            </label>
@@ -190,7 +190,11 @@
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-location iconfont"></i><b class="formlabel labelfont">Home Address</b></span>
-             <span class="DOBClass-{{deviceName}}"> <textarea name="healthInfoAddress" id="healthInfoAddress" rows="3" cols="3" class="textdata healthTextArea-{{deviceName}}" style="padding-top: 10px;">{{currentPatientDetails[0].address}}</textarea></span>
+             <span class="DOBClass-{{deviceName}}">
+
+               <!--<textarea name="healthInfoAddress" id="healthInfoAddress" rows="3" cols="3" class="textdata healthTextArea-{{deviceName}}" style="padding-top: 10px;">{{currentPatientDetails[0].address}}</textarea>-->
+               <ion-google-place placeholder="Full Address" style="line-height:25px" ng-model="healthInfoModel.address" />
+             </span>
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="ion-ios-people iconfont"></i><b class="formlabel labelfont">Organization</b></span>
@@ -214,10 +218,10 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
               <div>
-                 <input type="text" name="healthInfoHeight" id="healthInfoHeight" value="{{currentPatientDetails[0].anatomy.height}}" class="textdata" style="width: 80px; margin-right: 10px;">
+                 <input type="number" name="healthInfoHeight" id="healthInfoHeight" value="{{currentPatientDetails[0].anatomy.height}}" class="textdata" style="width: 80px; margin-right: 10px;">
               </div>
               <div class="healthViewDetails" style="width: 40% !important;">
-                  <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" >
+                  <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit"  style="width: 70%;">
                         <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
                     </select>
               </div>
@@ -225,10 +229,10 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor">  <i class="ion-ios-filing iconfont"></i><b class="formlabel labelfont">Weight</b></span>
               <div>
-                 <input type="text" name="healthInfoWeight" id="healthInfoWeight"  value="{{currentPatientDetails[0].anatomy.weight}}" class="textdata" style="width: 80px; margin-right: 10px;">
+                 <input type="number" name="healthInfoWeight" id="healthInfoWeight"  value="{{currentPatientDetails[0].anatomy.weight}}" class="textdata" style="width: 80px; margin-right: 10px;">
               </div>
               <div style="width: 40% !important;">
-                 <select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit">
+                 <select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 70%;">
                      <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightUnit"><b>{{getUserweightunit.text}}</b></option>
                  </select>
               </div>

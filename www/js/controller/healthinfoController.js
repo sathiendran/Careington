@@ -69,6 +69,7 @@ angular.module('starter.controllers')
         }
     };
     $scope.healthInfoModel = {};
+    $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
     $scope.addmore = false;
     $scope.healthhide = true;
     $scope.headerval = false;
@@ -133,7 +134,8 @@ angular.module('starter.controllers')
             $scope.healthInfoWeightUnitText = $scope.WeightUnit1[1];
             $scope.healthInfoHomePhone = $('#healthInfoHomePhone').val()
             $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
-            $scope.healthInfoAddress = $('#healthInfoAddress').val();
+            //$scope.healthInfoAddress = $('#healthInfoAddress').val();
+            $scope.healthInfoAddress = $scope.healthInfoModel.address;
             $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
             $scope.healthInfoLocation = $('#healthInfoLocation').val();
             $scope.healthInfoHairColor = $('#healthInfoHairColor').val();
