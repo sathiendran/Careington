@@ -1,73 +1,72 @@
-
 angular.module('starter.controllers')
     .controller('consultationController', function($scope, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue, $ionicModal) {
 
-        $rootScope.couserdetails=false;
-        $rootScope.dupcouser=false;
-          $ionicPlatform.registerBackButtonAction(function(event, $state) {
-              if (($rootScope.currState.$current.name === "tab.userhome") ||
-                  ($rootScope.currState.$current.name === "tab.addCard") ||
-                  ($rootScope.currState.$current.name === "tab.submitPayment") ||
-                  ($rootScope.currState.$current.name === "tab.waitingRoom") ||
-                  ($rootScope.currState.$current.name === "tab.receipt") ||
-                  ($rootScope.currState.$current.name === "tab.videoConference") ||
-                  ($rootScope.currState.$current.name === "tab.connectionLost") ||
-                  ($rootScope.currState.$current.name === "tab.ReportScreen")
-              ) {
-                  // H/W BACK button is disabled for these states (these views)
-                  // Do not go to the previous state (or view) for these states.
-                  // Do nothing here to disable H/W back button.
-              } else if ($rootScope.currState.$current.name === "tab.login") {
-                  navigator.app.exitApp();
-              } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
-                  navigator.app.exitApp();
-              } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
-                  var gSearchLength = $('.ion-google-place-container').length;
-                  if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
-                      $ionicBackdrop.release();
-                      $(".ion-google-place-container").css({
-                          "display": "none"
-                      });
-                  } else {
-                      $(".ion-google-place-container").css({
-                          "display": "none"
-                      });
-                      navigator.app.backHistory();
-                  }
-              } else {
-                  navigator.app.backHistory();
-              }
-          }, 100);
+        $rootScope.couserdetails = false;
+        $rootScope.dupcouser = false;
+        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+            if (($rootScope.currState.$current.name === "tab.userhome") ||
+                ($rootScope.currState.$current.name === "tab.addCard") ||
+                ($rootScope.currState.$current.name === "tab.submitPayment") ||
+                ($rootScope.currState.$current.name === "tab.waitingRoom") ||
+                ($rootScope.currState.$current.name === "tab.receipt") ||
+                ($rootScope.currState.$current.name === "tab.videoConference") ||
+                ($rootScope.currState.$current.name === "tab.connectionLost") ||
+                ($rootScope.currState.$current.name === "tab.ReportScreen")
+            ) {
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states.
+                // Do nothing here to disable H/W back button.
+            } else if ($rootScope.currState.$current.name === "tab.login") {
+                navigator.app.exitApp();
+            } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+                navigator.app.exitApp();
+            } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
+                var gSearchLength = $('.ion-google-place-container').length;
+                if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
+                    $ionicBackdrop.release();
+                    $(".ion-google-place-container").css({
+                        "display": "none"
+                    });
+                } else {
+                    $(".ion-google-place-container").css({
+                        "display": "none"
+                    });
+                    navigator.app.backHistory();
+                }
+            } else {
+                navigator.app.backHistory();
+            }
+        }, 100);
 
-          var checkAndChangeMenuIcon;
-          $interval.cancel(checkAndChangeMenuIcon);
-          $rootScope.checkAndChangeMenuIcon = function() {
-                  if (!$ionicSideMenuDelegate.isOpen(true)) {
-                      if ($('#BackButtonIcon').hasClass("ion-close")) {
-                          $('#BackButtonIcon').removeClass("ion-close");
-                          $('#BackButtonIcon').addClass("ion-navicon-round");
-                      }
-                  } else {
-                      if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
-                          $('#BackButtonIcon').removeClass("ion-navicon-round");
-                          $('#BackButtonIcon').addClass("ion-close");
-                      }
-                  }
-              }
-              //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-              //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
-          $scope.toggleLeft = function() {
-              $ionicSideMenuDelegate.toggleLeft();
-              $rootScope.checkAndChangeMenuIcon();
-              if (checkAndChangeMenuIcon) {
-                  $interval.cancel(checkAndChangeMenuIcon);
-              }
-              if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
-                  checkAndChangeMenuIcon = $interval(function() {
-                      $rootScope.checkAndChangeMenuIcon();
-                  }, 300);
-              }
-          };
+        var checkAndChangeMenuIcon;
+        $interval.cancel(checkAndChangeMenuIcon);
+        $rootScope.checkAndChangeMenuIcon = function() {
+                if (!$ionicSideMenuDelegate.isOpen(true)) {
+                    if ($('#BackButtonIcon').hasClass("ion-close")) {
+                        $('#BackButtonIcon').removeClass("ion-close");
+                        $('#BackButtonIcon').addClass("ion-navicon-round");
+                    }
+                } else {
+                    if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
+                        $('#BackButtonIcon').removeClass("ion-navicon-round");
+                        $('#BackButtonIcon').addClass("ion-close");
+                    }
+                }
+            }
+            //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
+            //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+        $scope.toggleLeft = function() {
+            $ionicSideMenuDelegate.toggleLeft();
+            $rootScope.checkAndChangeMenuIcon();
+            if (checkAndChangeMenuIcon) {
+                $interval.cancel(checkAndChangeMenuIcon);
+            }
+            if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
+                checkAndChangeMenuIcon = $interval(function() {
+                    $rootScope.checkAndChangeMenuIcon();
+                }, 300);
+            }
+        };
         $scope.pastshow = true;
         $scope.missedshow = false;
         $scope.droppedshow = false;
@@ -148,106 +147,102 @@ angular.module('starter.controllers')
                 appointmentStatusCodes: 1,
                 success: function(data) {
                     $scope.Missedconsultations = data.data;
-                    $rootScope.missedlist = [];     $rootScope.missedlistReport = [];
+                    $rootScope.missedlist = [];
+                    $rootScope.missedlistReport = [];
                     angular.forEach($scope.Missedconsultations, function(item, index) {
                         var nowDateTime = new Date();
                         var nowDateTimeEightHours = new Date(nowDateTime);
                         nowDateTimeEightHours.setMinutes(nowDateTime.getMinutes() + 15);
                         var todaydatetime = nowDateTimeEightHours.getTime();
-                        var patientId=item.patientId;
-                        var consultationId=item.consultationId;
+                        var patientId = item.patientId;
+                        var consultationId = item.consultationId;
                         var edtime = item.endTime;
                         var endtimeEightHours = new Date(edtime);
                         var enddatetime = endtimeEightHours.setMinutes(endtimeEightHours.getMinutes() + 15);
-         if($rootScope.patientId==patientId){
+                        if ($rootScope.patientId == patientId) {
 
 
-                        if (enddatetime < todaydatetime) {
-                            var asd = edtime.split('T');
-                            var enddate = asd[0];
+                            if (enddatetime < todaydatetime) {
+                                var asd = edtime.split('T');
+                                var enddate = asd[0];
 
-                            var astime = asd[1].split('+');
-                            var newt = astime[0].split(':');
-                            var time = newt[0] + ":" + newt[1];
-                            var timeString = time;
-                            var hourEnd = timeString.indexOf(":");
-                            var H = +timeString.substr(0, hourEnd);
-                            var h = H % 12 || 12;
-                            var ampm = H < 12 ? "AM" : "PM";
-                            timeString = h + timeString.substr(hourEnd, 3) + ampm;
-                            var missedtime=timeString;
-                            var asds = item.participants;
-                            var patientdata = _.where(asds, {
-                                participantTypeCode: 1
-                            });
-                            var drdata = _.where(asds, {
-                                participantTypeCode: 2
-                            });
-                            var patimg = patientdata[0].person;
-                            var photo = _.pick(patimg, 'photoUrl');
-                            var patphoto = _.values(photo);
-                            if (drdata.length > 0) {
-                                var drlist = drdata[0].person.name;
-                                var nlist = _.pick(drlist, 'given');
-                                var drname = _.values(nlist);
-                                var docname = drname.join();
-                            } else {
-                                var drname = "";
+                                var astime = asd[1].split('+');
+                                var newt = astime[0].split(':');
+                                var time = newt[0] + ":" + newt[1];
+                                var timeString = time;
+                                var hourEnd = timeString.indexOf(":");
+                                var H = +timeString.substr(0, hourEnd);
+                                var h = H % 12 || 12;
+                                var ampm = H < 12 ? "AM" : "PM";
+                                timeString = h + timeString.substr(hourEnd, 3) + ampm;
+                                var missedtime = timeString;
+                                var asds = item.participants;
+                                var patientdata = _.where(asds, {
+                                    participantTypeCode: 1
+                                });
+                                var drdata = _.where(asds, {
+                                    participantTypeCode: 2
+                                });
+                                var patimg = patientdata[0].person;
+                                var photo = _.pick(patimg, 'photoUrl');
+                                var patphoto = _.values(photo);
+                                if (drdata.length > 0) {
+                                    var drlist = drdata[0].person.name;
+                                    var nlist = _.pick(drlist, 'given');
+                                    var drname = _.values(nlist);
+                                    var docname = drname.join();
+                                } else {
+                                    var drname = "";
+                                }
+
+
+                                $rootScope.missedlist.push({
+                                    'time': missedtime,
+                                    'docname': docname,
+                                    'enddate': enddate,
+                                    'consultationId': consultationId,
+                                });
+
                             }
-
-
-                            $rootScope.missedlist.push({
-                                'time': missedtime,
-                                'docname': docname,
-                                'enddate': enddate,
-                                'consultationId':consultationId,
-                            });
-
                         }
-                      }
-   if($rootScope.patientId==patientId && $rootScope.consultationId==consultationId){
-     if (enddatetime < todaydatetime) {
-         var asd = edtime.split('T');
-         var enddate = asd[0];
+                        if ($rootScope.patientId == patientId && $rootScope.consultationId == consultationId) {
+                            if (enddatetime < todaydatetime) {
+                                var asd = edtime.split('T');
+                                var enddate = asd[0];
 
-         var astime = asd[1].split('+');
-         var newt = astime[0].split(':');
-         var time = newt[0] + ":" + newt[1];
-         var asds = item.participants;
-         var patientdata = _.where(asds, {
-             participantTypeCode: 1
-         });
-         var drdata = _.where(asds, {
-             participantTypeCode: 2
-         });
-         var patimg = patientdata[0].person;
-         var photo = _.pick(patimg, 'photoUrl');
-         var patphoto = _.values(photo);
-         if (drdata.length > 0) {
-             var drlist = drdata[0].person.name;
-             var nlist = _.pick(drlist, 'given');
-             var drname = _.values(nlist);
-             var docname = drname.join();
-         } else {
-             var drname = "";
-         }
-
-
-         $rootScope.missedlistReport.push({
-             'reptime': time,
-             'repdocname': docname,
-             'rependdate': enddate,
-             'repconsultationId':consultationId,
-             'repimage':patphoto,
-         });
-
-     }
-   }
+                                var astime = asd[1].split('+');
+                                var newt = astime[0].split(':');
+                                var time = newt[0] + ":" + newt[1];
+                                var asds = item.participants;
+                                var patientdata = _.where(asds, {
+                                    participantTypeCode: 1
+                                });
+                                var drdata = _.where(asds, {
+                                    participantTypeCode: 2
+                                });
+                                var patimg = patientdata[0].person;
+                                var photo = _.pick(patimg, 'photoUrl');
+                                var patphoto = _.values(photo);
+                                if (drdata.length > 0) {
+                                    var drlist = drdata[0].person.name;
+                                    var nlist = _.pick(drlist, 'given');
+                                    var drname = _.values(nlist);
+                                    var docname = drname.join();
+                                } else {
+                                    var drname = "";
+                                }
 
 
+                                $rootScope.missedlistReport.push({
+                                    'reptime': time,
+                                    'repdocname': docname,
+                                    'rependdate': enddate,
+                                    'repconsultationId': consultationId,
+                                    'repimage': patphoto,
+                                });
 
-
-
+                            }
+                        }
                     });
 
                 },
@@ -692,7 +687,7 @@ angular.module('starter.controllers')
         $scope.droppedsearcshow = false;
 
         $rootScope.passedsearchconsult = function() {
-          
+
             $scope.passededconsultants();
             var myEl = angular.element(document.querySelector('#passedsearch'));
             myEl.removeClass('btnextcolor');

@@ -3586,7 +3586,7 @@ font-family: $fontFamily_regular;
 }
 .noResult {
 	text-align: center; border: none;
-    color: #616462; font-weight: bold; font-size: 19px;position: relative; top: 90px;
+    color: #616462; font-weight: bold; font-size: 19px; top: 90px;
 }
 
 .dobRequired {
@@ -5062,8 +5062,11 @@ color: white;
 .relicon{
     color:#696969;font-size:18px;
 }
+.ion-close-round:before {
+    color: #888484 !important;
+}
 .csubheader{
-   margin-top:20px;border-bottom:none;border-image:none;
+   margin-top:20px;border-bottom:none;border-image:none;background-image:none;
 }
 .searchsubheader{
    margin-top:23px;height:110px;border-bottom: 1.5px solid #b5b5b5;border-image:none;
