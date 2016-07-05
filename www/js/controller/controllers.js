@@ -3881,21 +3881,6 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.userGender = "FeMale";
                         $rootScope.isCheckedFeMale = true;
                     }
-                    if($rootScope.currentPatientDetails[0].account.profileImage){
-                        $scope.selectedRelatedPatientImage = apiCommonURL + $rootScope.currentPatientDetails[0].account.profileImage;
-                    }else{
-                        var currPatientName = $rootScope.currentPatientDetails[0].patientName + ' '+ $rootScope.currentPatientDetails[0].lastName;
-                        $scope.selectedRelatedPatientImage1= getInitialForName(currPatientName);
-                        $scope.selectedRelatedPatientImage = generateTextImage($scope.selectedRelatedPatientImage1, $rootScope.brandColor);
-                    }
-                    if(seeADoc === "seeADoc") {
-                      $rootScope.PatientImageSelectUser = $scope.selectedRelatedPatientImage;
-                      $rootScope.PatientFirstName = $rootScope.currentPatientDetails[0].patientName;
-                      $rootScope.PatientLastName = $rootScope.currentPatientDetails[0].lastName;
-                      $rootScope.PatientAge = $rootScope.currentPatientDetails[0].dob;
-                      $rootScope.PatientGuardian = $rootScope.primaryPatientName + " " + $rootScope.primaryPatientLastName;
-                      $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
-                  }
                     $state.go(nextPage);
                 }
             },
@@ -4107,6 +4092,28 @@ LoginService.getScheduledConsulatation(params);
         LoginService.getListOfLocationOrganization(params);
     }
 
+    $rootScope.passededconsultants = function() {
+
+        if ($rootScope.accessToken == 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            statusId: 72,
+            success: function(data) {
+                $rootScope.Passedconsultations = data.data;
+
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.getListOfPassedConsultations(params);
+
+    }
+
     $rootScope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
         if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
 
@@ -4136,6 +4143,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.patientId = P_Id;
         $rootScope.P_isAuthorized = P_isAuthorized;
+        $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetonDemandAvailability();
@@ -4149,6 +4157,10 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
         } else if (clickEvent === "sideMenuClickApoointments") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
+        } else if(clickEvent ==="tab.patientConcerns") {
+          $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
+        } else {
+          $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
         }
         //$state.go('tab.patientDetail');
         //$scope.doGetUserHospitalInformation();

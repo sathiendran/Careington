@@ -4091,8 +4091,9 @@ font-size: 20px;
 
 }
 .aligncenicon{
-  margin-left: 22px;
+//  margin-left: 22px;
   margin-top: 13px;
+  text-align: center;
 }
 .unlink{
   margin-left: 22px !important;
@@ -5175,7 +5176,7 @@ color: white;
    background-color:#e9e9e9;
 }
 .profilecontent{
-    margin-top:160px;
+    margin-top:167px;
 }
 .relatedusercontent{
     margin-top:200px;
@@ -5331,7 +5332,7 @@ margin: 75px 10px !important;
 box-shadow: 0 1px 3px transparent !important;
 }
 .profilecontent{
-    margin-top:187px;
+    margin-top:167px;
 }
 .paticoncontent{ margin-top:180px;}
 .apptdetails{
@@ -7080,6 +7081,9 @@ Pagination Styles
 .healthTitle-IOS {
 	margin-top: 13px !important;
 }
+.healthTitle-Android {
+	margin-top: 22px !important;
+}
 .healthViewDetails {
   width: 55%;
   white-space: normal;
@@ -7098,7 +7102,14 @@ Pagination Styles
   left: -28px;
   position: relative;
 }
+.HealthTitle-Android {
+  left: -28px;
+  position: relative;
+}
 .healthLeft-IOS {
+  top: -29px !important;
+}
+.healthLeft-Android {
   top: -29px !important;
 }
 .searchListHead-IOS {
@@ -7119,6 +7130,10 @@ Pagination Styles
   position: relative;
     top: -22px !important;
 }
+.searchCancel-Android {
+  position: relative;
+    top: -22px !important;
+}
 .userContent-IOS {
   margin-top: 160px !important;
 //  position: relative;
@@ -7128,4 +7143,11 @@ Pagination Styles
   position: relative;
     margin-top: -26px;
     text-align: right
+}
+.bar.bar-dark {
+    border-color: transparent;
+
+}
+.tabs-dark > .tabs, .tabs.tabs-dark {
+  border-color: transparent;
 }

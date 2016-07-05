@@ -7,7 +7,7 @@
                 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
             </div>
 
-            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-click="consultsearch()" ><i class="icon ion-search" ></i></a></span></h1>
+            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="position: relative; left: -12px;" ><a class="headerval" ng-click="consultsearch()" ><i class="icon ion-search" style="font-size: 20px;"  ></i></a></span></h1>
 
 
             <div class="bar bar-subheader bar-dark subheaderheight">
@@ -81,7 +81,7 @@
                                 <div class="col col-15 coltime">
                                     <p class="colfamily"> {{ passedData.consultationTime}}</p>
                                 </div>
-                                <div class="col col-30">
+                                <div class="ellipsis col col-30" style="width: 38%;">
                                     <p class="coldetails">
                                         <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
                                         <a class="colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName}}</a>
@@ -96,7 +96,7 @@
 
                             <hr class="dotedhr">
                         </div>
-                        <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found</ion-item>
+                        <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found!</ion-item>
 
                     </div>
 
@@ -129,7 +129,7 @@
                                 <div class="col col-15 coltime">
                                     <p class="colfamily">{{misseddata.time}}</p>
                                 </div>
-                                <div class="col col-30">
+                                <div class="ellipsis col col-30" style="width: 38%;">
                                     <p class="coldetails">
                                         <a class="colfamily" ng-if="!misseddata.docname">N/A
 
@@ -146,7 +146,7 @@
                             </div>
                             <hr class="dotedhr">
                         </div>
-                        <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found</ion-item>
+                        <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found!</ion-item>
                     </div>
 
                 </div>
@@ -177,7 +177,7 @@
                                 <div class="col col-15 coltime">
                                     <p class="colfamily">{{droppedData.consultationTime}}</p>
                                 </div>
-                                <div class="col col-30">
+                                <div class="ellipsis col col-30" style="width: 38%;">
                                     <p class="coldetails">
                                         <a class="colfamily" ng-if="!droppedData.docname">N/A</a>
                                         <a class="colfamily" ng-if="droppedData.docname">Dr.{{droppedData.assignedDoctorName}}</a>
@@ -191,7 +191,7 @@
                             <hr class="dotedhr">
                         </div>
 
-                        <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found</ion-item>
+                        <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found!</ion-item>
 
                     </div>
 
