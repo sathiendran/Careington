@@ -382,8 +382,8 @@ $rootScope.authorised=relateDependentAuthorize;
             $state.go('tab.consultations');
         }
         $scope.seeaPatientConcerns = function(patientId,clickEvent) {
-          $state.go('tab.patientConcerns');
 
+          $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns');
         }
         $rootScope.patientprofile = function(currentPatientDetails) {
             $rootScope.currentPatientDetails = currentPatientDetails;
