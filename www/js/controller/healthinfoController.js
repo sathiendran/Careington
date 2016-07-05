@@ -508,7 +508,7 @@ angular.module('starter.controllers')
         }
 
         if ((currentmedication.text === "Other - (List below)") && $rootScope.checkedMedication <= 4) {
-            $scope.openOtherCurrentMedicationView(currentmedication);
+          //  $scope.openOtherCurrentMedicationView(currentmedication);
         } else {
             if ($rootScope.checkedMedication == 4) {
 
