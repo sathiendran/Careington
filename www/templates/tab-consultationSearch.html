@@ -1,19 +1,19 @@
 <ion-side-menus>
     <ion-side-menu-content>
 
-        <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-            <div class="buttons">
-                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="SearchBackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
-            </div>
+           <div class="buttons">
+               <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="SearchBackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+           </div>
 
-            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
+           <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
 
 
-            <div class="bar bar-subheader csubheader">
+             <div class="bar bar-subheader csubheader">
                 <div class="row">
                     <div class="buttons backbtn">
-                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
+                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
                     </div>
                     <div class=" button-bar">
                         <label class="button button-small btcolor btn-first " id="passedsearch" ng-click="passedsearchconsult()"> <span class="tabheading">Past</span></label>
@@ -21,16 +21,19 @@
                         <label class="button button-small btn-first btnextcolor" id="droppedsearch" ng-click="droppedsearchconsult()"><span class="tabheading">Dropped</span></label>
 
                     </div>
+
                     <div class="buttons backbtn">
-                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
+                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
                     </div>
                 </div>
-
             </div>
 
         </ion-header-bar>
-        <ion-view>
-            <ion-content ng-show="passedsearchshow" class="consultcontentsearch">
+
+
+
+        <ion-view title="">
+          <ion-content ng-show="passedsearchshow" class="consultcontentsearch">
               <div class="csearch">
                   <h6 class="hsearch">
             <!-- <i class="icon ion-search fontcolor"></i>
@@ -181,28 +184,31 @@
 <div class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Dropped Search Consultations Found</div>
 
             </ion-content>
+            <!--- Dropped Consult End--->
+
+
 
     </ion-side-menu-content>
+    <div ng-include src="'templates/SideMenu.html'"></div>
     </ion-view>
 
 
     <ion-tabs class=" tabs-icon-top tabs-dark">
 
-        <a class="tab-item " ng-click="doGetListOfCoUsers()">
-            <i class="icon ion-android-people"></i> Users
+        <a class="tab-item " ng-href="#tab/relatedusers" ng-click="doGetListOfCoUsers()">
+            <i class="icon ion-person-stalker tabfont"></i> Users
         </a>
         <a class="tab-item active" ng-href="#tab/consultations">
-            <i class="icon ion-card"></i> Consultations
+            <i class="icon ion-card tabfont"></i> Consultations
         </a>
         <a class="tab-item " ng-href="#tab/healthinfo">
-            <i class="icon ion-clipboard"></i> My Health
+            <i class="icon ion-android-clipboard tabfont"></i> My Health
         </a>
 
-        <a class="tab-item " ng-href="#tab/appointmentpatientdetails">
-            <i class="icon ion-calendar"></i> Appointments
+        <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
+            <i class="icon ion-calendar tabfont"></i> Appointments
         </a>
         <a class="tab-item" ng-href="#tab/profileoption">
-            <i class="icon ion-more"></i> More
+            <i class="icon ion-more tabfont"></i> More
         </a>
-
     </ion-tabs>
