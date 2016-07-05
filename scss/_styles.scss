@@ -3964,6 +3964,11 @@ font-size: 20px;
    margin-right:16px;
    margin-top:-32px ;
 }
+
+.closeicon{
+  float:right;
+  color:#888 !important;
+}
 .contright{
   float:right;
   .ion-chevron-right:before {
@@ -4603,7 +4608,7 @@ p{
          margin-top: 54px;
          color: #A80532;
      }
-  .consultcontentsearch{margin-top:102px;}
+  .consultcontentsearch{margin-top:26px;}
 
     }
 
@@ -5057,7 +5062,7 @@ color: white;
     color:#696969;font-size:18px;
 }
 .csubheader{
-   margin-top:20px;height:131px;border-bottom: 1.5px solid #b5b5b5;border-image:none;
+   margin-top:20px;border-bottom:none;border-image:none;
 }
 .searchsubheader{
    margin-top:23px;height:110px;border-bottom: 1.5px solid #b5b5b5;border-image:none;

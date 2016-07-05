@@ -25,34 +25,35 @@
                         <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;"></button>
                     </div>
                 </div>
-                <div class="csearch">
-                    <h6 class="hsearch">
-         <!-- <i class="icon ion-search fontcolor"></i>
-          <span class="fontcolor">Search</span>-->
-           <div class="search_home UserHmeSub concernListSearchHome">
-       <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
-        </label>
-	</div>
-       </h6>
-                </div>
 
-                <div class="row sheader">
-                    <div class="col col-30 dsheader">Date</div>
-                    <div class="col col-20 csheader">Time</div>
-                    <div class="col col-30 csheader">Provider</div>
-                    <div class="col col-25 "></div>
-
-              </div>
             </div>
 
         </ion-header-bar>
         <ion-view>
-            <ion-content class="consultcontentsearch">
-  <div ng-show="passedsearchshow">
+            <ion-content ng-show="passedsearchshow" class="consultcontentsearch">
+              <div class="csearch">
+                  <h6 class="hsearch">
+            <!-- <i class="icon ion-search fontcolor"></i>
+            <span class="fontcolor">Search</span>-->
+            <div class="search_home UserHmeSub concernListSearchHome">
+            <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
+            <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
+            </label>
+            </div>
+            </h6>
+              </div>
 
+              <div class="row sheader">
+                  <div class="col col-30 dsheader">Date</div>
+                  <div class="col col-20 csheader">Time</div>
+                  <div class="col col-30 csheader">Provider</div>
+                  <div class="col col-25 "></div>
 
-                    <div class="row rowalign" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: searchQuery)">
+            </div>
+            <hr style="margin-top: 0px; margin-bottom: 0px;color:#b5b5b5;">
+              <div><ion-refresher on-refresh="doRefresh()"  ></ion-refresher></div>
+  <div >
+  <div class="row rowalign" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: searchQuery)">
                         <div class="row" >
                             <div class="col col-30 sfont">
                                 <p class="colfamily">{{ passedData.consultationDate }} </p>
@@ -75,11 +76,33 @@
 
                     </div>
 
-                    <ion-item class="searchdata" ng-show="(Passedconsultations | filter:searchQuery).length==0">No Passed Search Consultations Found</ion-item>
+
                 </div>
+  <div class="searchdata noResult" style="white-space: normal;" ng-show="(Passedconsultations | filter:searchQuery).length==0">No Passed Search Consultations Found</div>
+</ion-content>
+<ion-content ng-show="missedsearchshow" class="consultcontentsearch">
+  <div class="csearch">
+      <h6 class="hsearch">
+<!-- <i class="icon ion-search fontcolor"></i>
+<span class="fontcolor">Search</span>-->
+<div class="search_home UserHmeSub concernListSearchHome">
+<label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
+<input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
+</label>
+</div>
+</h6>
+  </div>
 
+  <div class="row sheader">
+      <div class="col col-30 dsheader">Date</div>
+      <div class="col col-20 csheader">Time</div>
+      <div class="col col-30 csheader">Provider</div>
+      <div class="col col-25 "></div>
 
-                <div ng-show="missedsearchshow">
+</div>
+    <hr style="margin-top: 0px; margin-bottom: 0px;color:#b5b5b5;">
+  <div><ion-refresher on-refresh="doRefresh()"  ></ion-refresher></div>
+                <div >
                     <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: searchQuery">
                         <div class="row">
                             <div class="col col-30 sfont">
@@ -99,12 +122,34 @@
                             </div>
                         </div>
 
-                    </div>
-                    <ion-item class="searchdata" ng-show="(missedlist | filter:searchQuery).length==0">No Missed Search Consultations Found</ion-item>
 
                 </div>
+                </div>
+                      <div class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:searchQuery).length==0">No Missed Search Consultations Found</div>
+                </ion-content>
+                <ion-content ng-show="droppedsearchshow" class="consultcontentsearch">
+                  <div class="csearch">
+                      <h6 class="hsearch">
+           <!-- <i class="icon ion-search fontcolor"></i>
+            <span class="fontcolor">Search</span>-->
+             <div class="search_home UserHmeSub concernListSearchHome">
+         <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
+          <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
+          </label>
+    </div>
+         </h6>
+                  </div>
 
-                <div ng-show="droppedsearchshow">
+                  <div class="row sheader">
+                      <div class="col col-30 dsheader">Date</div>
+                      <div class="col col-20 csheader">Time</div>
+                      <div class="col col-30 csheader">Provider</div>
+                      <div class="col col-25 "></div>
+
+                </div>
+                    <hr style="margin-top: 0px; margin-bottom: 0px;color:#b5b5b5;">
+<div><ion-refresher on-refresh="doRefresh()"  ></ion-refresher></div>
+                <div >
 
                     <div class="row rowalign" ng-repeat="droppedData in Droppedconsultations  | filter: searchQuery">
                         <div class="row">
@@ -126,12 +171,14 @@
 
                             </div>
                         </div>
+
+
                     </div>
 
 
-                    <ion-item class="searchdata" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Dropped Search Consultations Found</ion-item>
-                </div>
 
+                </div>
+<div class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Dropped Search Consultations Found</div>
 
             </ion-content>
 

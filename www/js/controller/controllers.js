@@ -3873,8 +3873,6 @@ LoginService.getScheduledConsulatation(params);
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-                    //$rootScope.healthInfoModel = {};
-                  //  $rootScope.healthInfoModel.userDOB = $rootScope.userDOB;
                     if ($rootScope.currentPatientDetails[0].gender == 'M') {
                         $rootScope.userGender = "Male";
                         $rootScope.isCheckedMale = true;
