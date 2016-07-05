@@ -41,9 +41,7 @@
             <div class="col col-25 "></div>
          </div>
          <hr style="margin-top: 0px; margin-bottom: 0px;color:#b5b5b5;">
-         <div>
-            <ion-refresher on-refresh="doRefresh()"  ></ion-refresher>
-         </div>
+
          <div >
             <div class="row rowalign" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: searchQuery)">
                <div class="row" >
@@ -87,9 +85,7 @@
             <div class="col col-25 "></div>
          </div>
          <hr style="margin-top: 0px; margin-bottom: 0px;color:#b5b5b5;">
-         <div>
-            <ion-refresher on-refresh="doRefresh()"  ></ion-refresher>
-         </div>
+
          <div >
             <div class="row rowalign" ng-repeat="misseddata in missedlist  | filter: searchQuery">
                <div class="row">
@@ -131,9 +127,7 @@
             <div class="col col-25 "></div>
          </div>
          <hr style="margin-top: 0px; margin-bottom: 0px;color:#b5b5b5;">
-         <div>
-            <ion-refresher on-refresh="doRefresh()"  ></ion-refresher>
-         </div>
+
          <div >
             <div class="row rowalign" ng-repeat="droppedData in Droppedconsultations  | filter: searchQuery">
                <div class="row">
@@ -156,7 +150,7 @@
                </div>
             </div>
          </div>
-         <div class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Dropped Search Consultations Found</div>
+         <div class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Dropped Search Consultations Found!</div>
       </ion-content>
       <!--- Dropped Consult End--->
 </ion-side-menu-content>

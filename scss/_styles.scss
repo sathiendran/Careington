@@ -7142,7 +7142,7 @@ Pagination Styles
 .accountAppointview-IOS {
   position: relative;
     margin-top: -26px;
-    text-align: right
+    text-align: right; 
 }
 .bar.bar-dark {
     border-color: transparent;
@@ -7150,4 +7150,7 @@ Pagination Styles
 }
 .tabs-dark > .tabs, .tabs.tabs-dark {
   border-color: transparent;
+}
+.accoTitle-IOS {
+  margin-left: 20px !important;
 }
