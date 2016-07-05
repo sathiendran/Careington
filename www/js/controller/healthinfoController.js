@@ -341,8 +341,7 @@ angular.module('starter.controllers')
 
     $scope.health = function() {
 
-
-        $rootScope.PatientMedicalProfileList = [];
+      $rootScope.PatientMedicalProfileList = [];
         var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
@@ -350,8 +349,11 @@ angular.module('starter.controllers')
                 $rootScope.PatientMedicalProfileList = data.data;
                 $rootScope.patvalues = $rootScope.PatientMedicalProfileList;
                 $rootScope.patientmedications = $rootScope.PatientMedicalProfileList[0].medications;
+                $rootScope.CurMedicationCount = $scope.patientmedications.length;
                 $rootScope.patientmedicationsallergies = $rootScope.PatientMedicalProfileList[0].medicationAllergies;
+                $rootScope.CurAllergiesCount = $scope.patientmedicationsallergies.length;
                 $rootScope.patientmedicalConditions = $rootScope.PatientMedicalProfileList[0].medicalConditions;
+                $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
                 $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
                 // var patientmedical=$scope.PatientMedicalProfileList;
                 //var medicationvalues=patientmedical[0].medications;
@@ -361,9 +363,6 @@ angular.module('starter.controllers')
             }
         };
         LoginService.getPatientMedicalProfile(params);
-
-
-
 
         var myEl = angular.element(document.querySelector('#healid'));
         myEl.removeClass('btnextcolor');
@@ -402,14 +401,16 @@ angular.module('starter.controllers')
 
     $scope.getCodesSetsForHospital();
 
-    $scope.healthsearch = function() {
-     $rootScope.patientmedications;
-        $scope.alphabet = iterateAlphabet();
-        if (typeof $rootScope.MedicationsCount === 'undefined') {
+    $scope.healthsearch = function(patientmedications) {
+  $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedications, $rootScope.currentMedicationsearchList);
+
+        if (typeof $rootScope.CurMedicationCount === 'undefined') {
             $rootScope.checkedMedication = 0;
         } else {
-            $rootScope.checkedMedication = $rootScope.MedicationsCount;
+            $rootScope.checkedMedication = $rootScope.CurMedicationCount;
         }
+
+
         $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $ionicModal.fromTemplateUrl('templates/tab-currentmedicationsearch.html', {
             scope: $scope,
@@ -419,14 +420,9 @@ angular.module('starter.controllers')
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-            $rootScope.CurrentMedicationsearchItem = $filter('filter')($rootScope.currentMedicationsearchList, {
-                checked: true
-            });
-            $rootScope.CurrentMedicationsearchSelected = $filter('filter')($rootScope.currentMedicationsearchList, {
-                checked: true
-            });
-        });
 
+        });
+  $scope.alphabet = iterateAlphabet();
         var users = $rootScope.currentMedicationsearchList;
         var userslength = users.length;
         var log = [];
@@ -459,9 +455,7 @@ angular.module('starter.controllers')
         $rootScope.CurrentMedicationsearchItem = $filter('filter')($rootScope.currentMedicationsearchList, {
             checked: true
         });
-        $rootScope.CurrentMedicationsearchSelected = $filter('filter')($rootScope.currentMedicationsearchList, {
-            checked: true
-        });
+
         if ($rootScope.CurrentMedicationsearchItem !== '') {
             $rootScope.patientmedicationsSearch = $rootScope.CurrentMedicationsearchItem;
             $rootScope.MedicationsCount = $rootScope.patientmedicationsSearch.length;
@@ -504,18 +498,24 @@ angular.module('starter.controllers')
     }
 
     $scope.OnSelectMedication = function(currentmedication) {
-        if (currentmedication.checked === true) {
+        if (currentmedication.checked === true ) {
             $rootScope.checkedMedication++;
             console.log($rootScope.checkedMedication);
         } else {
             $rootScope.checkedMedication--;
+               currentmedication.checked === false;
         }
 
-        if (currentmedication.text === "Other - (List below)") {
+        if ((currentmedication.text === "Other - (List below)") && $rootScope.checkedMedication <= 4) {
             $scope.openOtherCurrentMedicationView(currentmedication);
         } else {
-            if ($rootScope.checkedMedication === 4) {
+            if ($rootScope.checkedMedication == 4) {
+
+             $rootScope.checkedMedication--;
                 $scope.medicationdone();
+            }if($rootScope.checkedMedication >= 4){
+               currentmedication.checked === false;
+                 $scope.modal.hide();
             }
         }
 
@@ -580,7 +580,7 @@ angular.module('starter.controllers')
                             $ionicScrollDelegate.anchorScroll();
                         }
 
-                        if ($rootScope.checkedMedication === 4) {
+                        if ($rootScope.checkedMedication >= 4) {
                             $scope.medicationdone();
                         }
                         return $scope.data.CurrentMedicationOther;
@@ -594,6 +594,13 @@ angular.module('starter.controllers')
 
 
     $scope.alergiessearch = function() {
+
+      $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicationsallergies, $rootScope.medicationAllergiesearchList);
+        if (typeof $rootScope.CurAllergiesCount === 'undefined') {
+                $rootScope.checkedAllergies = 0;
+            } else {
+                $rootScope.checkedAllergies = $rootScope.CurAllergiesCount;
+            }
         $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $scope.alphabets = iterateAlphabet();
         $ionicModal.fromTemplateUrl('templates/tab-allergiesearch.html', {
@@ -682,14 +689,19 @@ angular.module('starter.controllers')
         } else {
             $rootScope.checkedAllergies--;
         }
-
-        if (allergie.text === "Other") {
+        if ((allergie.text === "Other") && $rootScope.checkedAllergies <= 4) {
             $scope.openOtherAllergiesView(allergie);
         } else {
-            if ($rootScope.checkedAllergies === 4) {
+            if ($rootScope.checkedAllergies == 4) {
+
+             $rootScope.checkedAllergies--;
                 $scope.allergiedone();
+            }if($rootScope.checkedAllergies >= 4){
+                 allergie.checked === false;
+                 $scope.modal.hide();
             }
         }
+
 
     }
 
@@ -749,7 +761,8 @@ angular.module('starter.controllers')
                             $ionicScrollDelegate.anchorScroll();
                         }
 
-                        if ($rootScope.checkedAllergies === 4) {
+                        if ($rootScope.checkedAllergies >= 4) {
+                          allergie.checked === true
                             $scope.allergiedone();
                         }
                         return $scope.data.AllergiesOther;
@@ -763,6 +776,13 @@ angular.module('starter.controllers')
 
 
     $scope.chronicsearch = function() {
+      $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicalConditions, $rootScope.chronicConditionsearchList);
+        if (typeof $rootScope.ChronicCount === 'undefined') {
+                $rootScope.checkedChronic = 0;
+            } else {
+                $rootScope.checkedChronic = $rootScope.ChronicCount;
+            }
+
         $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $scope.chalphabet = iterateAlphabet();
         $ionicModal.fromTemplateUrl('templates/tab-chronicconditionsearch.html', {
@@ -856,13 +876,21 @@ angular.module('starter.controllers')
         } else {
             $rootScope.checkedChronic--;
         }
-        if (chronic.text === "Other") {
+
+        if ((chronic.text === "Other") && $rootScope.checkedChronic <= 4) {
           //  $scope.openOtherAllergiesView(allergie);
         } else {
-            if ($rootScope.checkedChronic === 4) {
+            if ($rootScope.checkedChronic == 4) {
+
+             $rootScope.checkedAllergies--;
                 $scope.chronicdone();
+            }if($rootScope.checkedChronic >= 4){
+                 chronic.checked === false;
+                 $scope.modal.hide();
             }
         }
+
+
     }
 
 
@@ -925,7 +953,6 @@ angular.module('starter.controllers')
                       });
                   }
                 });
-
                 $state.go('tab.relatedusers');
             },
             error: function(data) {
@@ -1097,5 +1124,24 @@ angular.module('starter.controllers')
         //alert('Failure');
     }
     // End Photo Functionality
+
+
+    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
+        angular.forEach(mainListItem, function(item, key2) {
+               item.checked = false;
+           });
+        if(!angular.isUndefined(selectedListItem)){
+
+           if(selectedListItem.length > 0){
+               angular.forEach(selectedListItem, function(value1, key1) {
+                   angular.forEach(mainListItem, function(value2, key2) {
+                     if (value1.description === value2.text) {
+                         value2.checked = true;
+                     }
+                   });
+               });
+           }
+       }
+    };
 
 });
