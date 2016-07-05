@@ -54,8 +54,8 @@
                      <p class="colfamily">{{ passedData.consultationTime}}</p>
                   </div>
                   <div class="col col-30">
-                     <p>
-                        <span class="colfamily">{{ passedData.assignedDoctorName }}</span>
+                     <p>  <span class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</span>
+                        <span class="colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName }}</span>
                         <!--  <span class="vreport" ng-click="showReportView({{passedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>-->
                      </p>
                   </div>
@@ -101,7 +101,7 @@
                   </div>
                   <div class="col col-30">
                      <p><span class="colfamily" ng-if="!misseddata.docname">NA</span>
-                        <span class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}</span>
+                        <span class="colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}</span>
                   </div>
                   <div class="col col-25">
                      <span class="contright"  ng-click="showReportView({{misseddata}});">Report
@@ -145,7 +145,8 @@
                   </div>
                   <div class="col col-30">
                      <p>
-                        <span class="colfamily">{{droppedData.assignedDoctorName}}</span>
+                       <span class="colfamily" ng-if="!droppedData.assignedDoctorName">NA</span>
+                        <span class="colfamily"  ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</span>
                      </p>
                   </div>
                   <div class="col col-25">
