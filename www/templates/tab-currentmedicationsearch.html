@@ -1,92 +1,36 @@
 <div class="modal">
-
-<ion-view>
-  <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-  <div class="ErrorMessage ErrorMessageDiv"  ></div>
-   <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
-    <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My health</h1>
-    <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="medicationdone()" >Done</button>
-  </header>
-
-
-  <!--
- <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-  <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} searchListHead-{{deviceName}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">Cancel</span> My health <span ng-click="medicationdone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
-
-
- <div class="bar bar-subheader searchstyle" >
-    <h2 class="subname subName-{{deviceName}}">Current Medication</h2>
-     <div class="search_home UserHmeSub concernListSearchHome searchListSubHead-{{deviceName}}">
-       <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor currentSearchBox-{{deviceName}}" ng-model="searchText" >
-        </label>
-	</div>
- </div>
-
-</ion-header-bar>-->
-
-<ion-content has-header="true" class="concernListContent">
-
-    <ion-list>
-      <ion-item class="search_home  concernListSearch">
-        <h2 class="subname subName-{{deviceName}}">Current Medication</h2>
-        <div class="search_home UserHmeSub concernListSearchHome">
-          <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
-            <input type="search" placeholder="Search" class="innerSearchPop SearchBox currentSearchBox-{{deviceName}}" ng-model="searchText"   >
-            <!--<i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>-->
-          </label>
-          </div>
-
-          <div class="" ng-repeat="(letter, currentMedicationsearchList) in sorted_users">
-
-            <ion-checkbox ng-repeat="currentmedication in filteredItems = (currentMedicationsearchList | filter:searchText)"
-     						  ng-model="currentmedication.checked"
-     						  ng-checked="currentmedication.checked" ng-change="OnSelectMedication(currentmedication)"  ng-disabled="checkedMedication==limit && !currentmedication.checked" checkbox-group>
-     			  <span id="index_{{letter}}">   {{ currentmedication.text }} </span>
-             </ion-checkbox>
-          </div>
-
-
-              <p class="searchdata noResult" style="white-space: normal;"  ng-show="(currentMedicationsearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
-
-      </ion-item>
-    </ion-list>
-    <ul class="alpha_sidebar">
-       <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
-          {{letter}}
-       </li>
-    </ul>
-</ion-content>
-
-<!--<ion-content class="healthcontentsearch-{{deviceName}}" delegate-handle="isScroll">
-
- <ion-list  style="margin-top:54px;" >
-
-         <div id="cursearch" class="" ng-repeat="(letter, currentMedicationsearchList) in sorted_users">
-
-       <ion-checkbox ng-repeat="currentmedication in filteredItems = (currentMedicationsearchList | filter:searchText)"
-						  ng-model="currentmedication.checked"
-						  ng-checked="currentmedication.checked" ng-change="OnSelectMedication(currentmedication)"  ng-disabled="checkedMedication==limit && !currentmedication.checked" checkbox-group>
-			  <span id="index_{{letter}}">   {{ currentmedication.text }} </span>
-        </ion-checkbox>
-
-
-         </div>
-    <p class="searchdata" ng-show="(currentMedicationsearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
-   </ion-list>
-
-
-
-
-
-
-      <ul class="alpha_sidebar">
-         <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
-            {{letter}}
-         </li>
-      </ul>
-
-</ion-content>-->
-</ion-view>
-
+   <ion-view>
+      <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+         <div class="ErrorMessage ErrorMessageDiv"  ></div>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
+         <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My health</h1>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="medicationdone()" >Done</button>
+      </header>
+      <ion-content has-header="true" class="concernListContent">
+         <ion-list>
+            <ion-item class="search_home  concernListSearch">
+               <h2 class="subname subName-{{deviceName}}">Current Medication</h2>
+               <div class="search_home UserHmeSub concernListSearchHome">
+                  <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
+                     <input type="search" placeholder="Search" class="innerSearchPop SearchBox currentSearchBox-{{deviceName}}" ng-model="searchText"   >
+                     <!--<i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>-->
+                  </label>
+               </div>
+               <div class="" ng-repeat="(letter, currentMedicationsearchList) in sorted_users">
+                  <ion-checkbox ng-repeat="currentmedication in filteredItems = (currentMedicationsearchList | filter:searchText)"
+                     ng-model="currentmedication.checked"
+                     ng-checked="currentmedication.checked" ng-change="OnSelectMedication(currentmedication)"  ng-disabled="checkedMedication==limit && !currentmedication.checked" checkbox-group>
+                     <span id="index_{{letter}}">   {{ currentmedication.text }} </span>
+                  </ion-checkbox>
+               </div>
+               <p class="searchdata noResult" style="white-space: normal;"  ng-show="(currentMedicationsearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
+            </ion-item>
+         </ion-list>
+         <ul class="alpha_sidebar">
+            <li ng-click="gotoList('index_{{letter}}')"ng-repeat="letter in alphabet">
+               {{letter}}
+            </li>
+         </ul>
+      </ion-content>
+   </ion-view>
 </div>
