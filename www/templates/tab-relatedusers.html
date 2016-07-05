@@ -6,7 +6,7 @@
             </div>
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
               <span> Related Users </span>
-              <span ng-hide="useradd"> <a class="headerval" ng-href="#tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
+              <span ng-hide="useradd"> <a class="headerval" style="position: relative;right: 8px;" ng-href="#tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
               <span class="headerval"  ng-click="usersearchdone()"  ng-show="userdone" >Done</span>
           </h1>
             <div class="bar bar-subheader bar-dark subheaderheight" ng-hide="userinfosubheader">
@@ -111,7 +111,7 @@
                     </div>
 
                     <div ng-if="listOfCoUserDetails.length == 0" class="noResult">
-                        <a style="display: block; text-align: center;">No Co-Users Found</a>
+                        <a style="display: block; text-align: center;">No Co-Users Found!</a>
                     </div>
                 </div>
 
