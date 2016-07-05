@@ -138,7 +138,8 @@ angular.module('starter.controllers')
         $scope.weight = $("#userWeight").val();
         $scope.homephone = $("#userphone").val();
         $scope.mobile = $("#usermobile").val();
-        $scope.homeaddress = $("#address").val();
+        //$scope.homeaddress = $("#address").val();
+        $scope.homeaddress = $scope.newUSer.address;
         var org = document.getElementById("userorganization");
         var couserorgan = org.options[org.selectedIndex].text;
         $scope.coorganization = couserorgan;

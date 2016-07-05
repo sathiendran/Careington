@@ -102,7 +102,7 @@ angular.module('starter.controllers')
             $scope.newarchieve = true;
             //  $scope.showdnewetails = false;
             //  $rootScope.selectedRelatedDependentDetails = [];
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.relatedusers');
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.relatedusers', '');
 
         };
         $scope.showtab = function(tabview) {
@@ -382,8 +382,12 @@ $rootScope.authorised=relateDependentAuthorize;
             $state.go('tab.consultations');
         }
         $scope.seeaPatientConcerns = function(patientId,clickEvent) {
-
-          $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns');
+          if($rootScope.onDemandAvailability > 0) {
+            $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
+          } else {
+            $scope.ErrorMessage = "Physician or On demand unavailable. Please try again later!";
+            $rootScope.Validation($scope.ErrorMessage);
+          }
         }
         $rootScope.patientprofile = function(currentPatientDetails) {
             $rootScope.currentPatientDetails = currentPatientDetails;

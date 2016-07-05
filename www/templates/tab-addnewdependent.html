@@ -171,11 +171,12 @@
 </div>
 <div class="item item-input validated">
    <div class="col col-50">
-     <span class="input-label labelcolor" style="margin-bottom:50px;">
+     <span class="input-label labelcolor" >
      <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
    </div>
     <div class="col col-50">
-     <textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>
+			  <ion-google-place style="line-height:25px; font-size: 17px;" placeholder="Full Address" ng-model="addNewDependent.homeadd" />
+     <!--<textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>-->
     </div>
 </div>
  <div class="item item-input validated">

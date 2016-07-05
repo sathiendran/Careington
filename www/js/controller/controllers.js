@@ -3740,7 +3740,7 @@ LoginService.getScheduledConsulatation(params);
         LoginService.deleteAccountUser(params);
     }
 
-    $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage) {
+    $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage, seeADoc) {
         if ($rootScope.accessToken === 'No Token') {
             alert('No token.  Get token first then attempt operation.');
             return;
@@ -3881,9 +3881,22 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.userGender = "FeMale";
                         $rootScope.isCheckedFeMale = true;
                     }
-                    //console.log($rootScope.selectedPatientDetails);
+                    if($rootScope.currentPatientDetails[0].account.profileImage){
+                        $scope.selectedRelatedPatientImage = apiCommonURL + $rootScope.currentPatientDetails[0].account.profileImage;
+                    }else{
+                        var currPatientName = $rootScope.currentPatientDetails[0].patientName + ' '+ $rootScope.currentPatientDetails[0].lastName;
+                        $scope.selectedRelatedPatientImage1= getInitialForName(currPatientName);
+                        $scope.selectedRelatedPatientImage = generateTextImage($scope.selectedRelatedPatientImage1, $rootScope.brandColor);
+                    }
+                    if(seeADoc === "seeADoc") {
+                      $rootScope.PatientImageSelectUser = $scope.selectedRelatedPatientImage;
+                      $rootScope.PatientFirstName = $rootScope.currentPatientDetails[0].patientName;
+                      $rootScope.PatientLastName = $rootScope.currentPatientDetails[0].lastName;
+                      $rootScope.PatientAge = $rootScope.currentPatientDetails[0].dob;
+                      $rootScope.PatientGuardian = $rootScope.primaryPatientName + " " + $rootScope.primaryPatientLastName;
+                      $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+                  }
                     $state.go(nextPage);
-
                 }
             },
             error: function(data) {
@@ -4131,11 +4144,11 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
         }
         if (clickEvent === "patientClick") {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount');
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
         } else if (clickEvent === "sideMenuClick") {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo');
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
         } else if (clickEvent === "sideMenuClickApoointments") {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails');
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
         }
         //$state.go('tab.patientDetail');
         //$scope.doGetUserHospitalInformation();

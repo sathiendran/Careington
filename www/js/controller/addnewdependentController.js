@@ -67,7 +67,7 @@ angular.module('starter.controllers')
       }
 
 
-
+        $scope.addNewDependent = {};
         var newUploadedPhoto;
 
         $('input').blur(function() {
@@ -132,7 +132,8 @@ angular.module('starter.controllers')
             $scope.weight = $("#weight").val();
             $scope.homephone = $("#homephone").val();
             $scope.mobile = $("#mobile").val();
-            $scope.homeaddress = $("#homeadd").val();
+            //$scope.homeaddress = $("#homeadd").val();
+            $scope.homeaddress = $scope.addNewDependent.homeadd;
             var org = document.getElementById("organization");
             var dependentorgan = org.options[org.selectedIndex].text;
             $scope.organization = dependentorgan;

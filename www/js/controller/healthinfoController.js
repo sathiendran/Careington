@@ -902,7 +902,7 @@ angular.module('starter.controllers')
                 //$scope.listOfCoUser = JSON.stringify(data, null, 2);
                 $rootScope.listOfCoUserDetails = [];
                 angular.forEach(data.data, function(index, item) {
-                  if(index.patientId !== $rootScope.patientId) {
+                  if(index.patientId !== $rootScope.primaryPatientId) {
                       var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                           codeId: index.relationCodeId
                       })
