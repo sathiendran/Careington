@@ -2,23 +2,23 @@
 	 <div class="Server_Error ErrorMessageDiv" ></div>
 	 <div class="Error_Message ErrorMessageDiv" ></div>
 <ion-view title="Consult Charge">
-	
+
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};">
-  
+
 		  <div class="buttons" style="{{BackBotton}}" >
 				<a class="button_new icon ion-chevron-left calendarBack" style="{{calendarBackStyle}}"  ng-click="backConsultCharge();" >
 					<span> Back</span>
-				</a>				
+				</a>
 		  </div>
 		  <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}" >Patient</h1>
-	  
-	  
+
+
 		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{PatientCalentarInnerStyle}}" >
 			<div class="calendar_subHeader">
-				<div class="subHeader_image">					
+				<div class="subHeader_image">
 					<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
 				</div>
-				<div class="subHeader_content-{{deviceName}} ellipsis" >					
+				<div class="subHeader_content-{{deviceName}} ellipsis" >
 				<div class="subHeader_content_name ellipsis" >
 					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
@@ -27,31 +27,31 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div ng-if="healthPlanPage != 'block'" class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 119px;	background-color: #fff; {{PaymentStyle}}" >
 			<span>Payment</span>
-		</div>	
+		</div>
 		<div ng-if="healthPlanPage == 'block'" class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 119px;	background-color: #fff; {{PaymentStyle}}" >
 			<span>Insurance</span>
-		</div>	
-	   
+		</div>
+
 	</ion-header-bar>
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	<ion-content class="consultCharge_content" style="{{ContentOverlop}}" >
 		<div class="password_home">
-		
+
 			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" style="display: {{verifyConsultChargeSection}}">
 				<div class="consultTittle">Consultation Charge</div>
 				<div class="consultation_number"> ${{consultationAmount}}*</div>
 			</div>
-	<!--Consult Charge Start-->		
+	<!--Consult Charge Start-->
 			<div style="display: {{consultChargeSection}}">
-				<div class="UseHealthPlan" style="display: {{verifyInsuranceSection}}">	
+				<div class="UseHealthPlan" style="display: {{verifyInsuranceSection}}">
 					<a ng-click="openAddHealthPlanSection()">
 						<button class="button button-block button-energized" style="padding: 3px;">
 							<span> Verify Health Plan </span>
@@ -59,7 +59,7 @@
 					</a>
 				</div>
 				<div style="display: {{verifyConsultChargeSection}}">
-					<div class="UseHealthPlan">	
+					<div class="UseHealthPlan">
 						<a ng-click="openAddHealthPlanSection()">
 							<button class="button button-block button-energized" style="padding: 3px;">
 								<span> Use Health Plan </span>
@@ -69,11 +69,11 @@
 					<div class="scheduled_appointments_text" >
 						Do you wish to use your health plan?
 					</div>
-					<div class="SkipToPayment">				
+					<div class="SkipToPayment">
 						<button class="button button-block button-royal"  type="submit" ng-click="GetConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.consultCharge')" style="padding: 3px;"  >
 								<span> Skip to Payment</span>
 						</button>
-					</div>				
+					</div>
 					<div class="scheduled_appointments_text" >
 						Don't use your health plan, pay full charge directly.
 					</div>
@@ -82,16 +82,16 @@
 					</div>
 				</div>
 			</div>
-	<!--Consult Charge End-->	
-	
-	<!--Add Health Plan Start-->		
+	<!--Consult Charge End-->
+
+	<!--Add Health Plan Start-->
 			<div class="animated slideInRight"  style="display: {{healthPlanSection}}">
 			<!--verify insurance Start-->
-				<!--<div style="display: {{verifyHealthPlanPage}};">	
-					<div style="display: {{enableAddHealthPlan}}">	
-						<div class="healthPlan_header"  >				
+				<!--<div style="display: {{verifyHealthPlanPage}};">
+					<div style="display: {{enableAddHealthPlan}}">
+						<div class="healthPlan_header"  >
 							<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
-								<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >				
+								<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
 									<div  class="dropdownContainer">
 										<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
 										<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
@@ -108,9 +108,9 @@
 									<span>Verify Health Plan</span>
 							</button>
 						</div>
-					</div>	
-					
-					<div style="display:{{disableAddHealthPlan}}">	
+					</div>
+
+					<div style="display:{{disableAddHealthPlan}}">
 						<div class="healthPlan_header AddCardNoPlan"  >
 							<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
 							<a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
@@ -118,16 +118,16 @@
 									<i style="position: relative; top: -5px;" class="ion-plus-round"></i><span class="addHealthPlan_text" >Add A Health Plan</span>
 								</div>
 							</a>
-						</div>						
+						</div>
 					</div>
 				</div>-->
-			<!--verify insurance end-->	
-			
-				<div style="display: {{healthPlanPage}};">	
-					<div style="display: {{enableAddHealthPlan}}">	
-						<div class="healthPlan_header"  >				
+			<!--verify insurance end-->
+
+				<div style="display: {{healthPlanPage}};">
+					<div style="display: {{enableAddHealthPlan}}">
+						<div class="healthPlan_header"  >
 							<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
-								<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >				
+								<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
 									<div  class="dropdownContainer">
 										<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
 										<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
@@ -149,9 +149,9 @@
 									<span>Verify Health Plan</span>
 							</button>
 						</div>
-					</div>	
-					
-					<div style="display:{{disableAddHealthPlan}}">	
+					</div>
+
+					<div style="display:{{disableAddHealthPlan}}">
 						<div class="healthPlan_header AddCardNoPlan"  >
 							<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
 							<a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
@@ -163,7 +163,7 @@
 						<div class="SkipToPayment" style="display: {{applyPlanMode}};" >
 							<button class="button button-block button-royal"  type="submit" ng-click="showConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.addHealthPlan')" style=" padding: 3px"  >
 								<span> Skip to Payment</span>
-							</button>				
+							</button>
 						</div>
 						<div class="scheduled_appointments_text" style="display: {{applyPlanMode}};" >
 							Don't add a health plan, pay full charge directly.
@@ -174,10 +174,10 @@
 					<div style="display: {{enableSubmitpayment}}">
 						<div class="healthPlan_header"  >
 							<div class="healthPlan_text NoPlanText" >Pay Using</div>
-							<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">					
+							<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
 								<div  class="dropdownContainer">
-									<div ng-if="userDefaultPaymentProfileText == null" id="cardViewport" class="cardViewport">Choose Your Card</div>	
-									<div ng-if="userDefaultPaymentProfileText != null" id="cardViewport" class="cardViewport">{{userDefaultPaymentProfileText}}</div>	
+									<div ng-if="userDefaultPaymentProfileText == null" id="cardViewport" class="cardViewport">Choose Your Card</div>
+									<div ng-if="userDefaultPaymentProfileText != null" id="cardViewport" class="cardViewport">{{userDefaultPaymentProfileText}}</div>
 									<select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
 										<option><b>Choose Your Card</b></option>
 										<option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
@@ -185,17 +185,17 @@
 									</select>
 								</div>
 							</div>
-						</div>				
-						
+						</div>
+
 						<div class="SkipToPayment">
 							<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
 							  <span>Submit Payment</span>
 							</button>
 						</div>
 					</div>
-				
+
 					<div style="display:{{disableSubmitpayment}}">
-						<div class="healthPlan_header AddCardNoPlan"> 
+						<div class="healthPlan_header AddCardNoPlan">
 							<div class="healthPlan_text" >Pay Using</div>
 							<a ng-click="goCardDetailsPage()">
 								<div class="addHealthPlan_header AddCard"  >
@@ -204,8 +204,8 @@
 								</div>
 							</a>
 						</div>
-						
-						
+
+
 						<div class="SkipToPayment" >
 							<button class="button button-block button-royal cardSubmitPayment" style="padding: 3px;" >
 									<span>  Submit Payment</span>
@@ -213,33 +213,33 @@
 						</div>
 					</div>
 					<div class="scheduled_appointments_text NoPlanBottomText"  >
-						<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p> 
+						<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
 					</div>
 				</div>
 			</div>
-	<!--Add Health Plan End-->		
-			
-			
+	<!--Add Health Plan End-->
+
+
 		</div>
 	</ion-content>
-	
+
 	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div> --->
-	
+
 	<div class="hide-on-keyboard-open">
-		<ion-footer-bar align-title="left" class="footer">			
+		<ion-footer-bar align-title="left" class="footer">
 			<div class="ConsultChargeFooter">
 				<div class="ConsultChargeBack" >
                    <a class="button_new icon ion-chevron-left" ng-click="backConsultCharge();"  ><span> Back</span></a>
 				  <!--  <site-header back="Back"></site-header>-->
 				</div>
-						
+
 				<div class="ConsultChargeCancel" >
 					<a class="button_new icon" ng-click="cancelConsultation()" >Cancel</a>
 				</div>
-						
+
 			</div>
-		</ion-footer-bar> 
+		</ion-footer-bar>
 	</div>
-	
-	
+
+
 </ion-view>
