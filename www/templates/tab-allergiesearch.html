@@ -2,23 +2,6 @@
 
 <ion-view>
 
-
-<!--<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} searchListHead-{{deviceName}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">Cancel</span> My health <span ng-click="allergiedone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
-
-
-
- <div class="bar bar-subheader searchstyle">
-    <h2 class="subname subName-{{deviceName}}">Medication Allergies</h2>
-     <div class="search_home UserHmeSub concernListSearchHome searchListSubHead-{{deviceName}}">
-       <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor currentSearchBox-{{deviceName}}" ng-model="searchText" >
-        </label>
-	</div>
- </div>
-
-</ion-header-bar> -->
-
 <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 <div class="ErrorMessage ErrorMessageDiv"  ></div>
  <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
@@ -30,6 +13,7 @@
 
   <ion-list>
     <ion-item class="search_home  concernListSearch">
+      <h2 class="subname subName-{{deviceName}}">Medication Allergies</h2>
       <div class="search_home UserHmeSub concernListSearchHome">
         <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
           <input type="search" placeholder="Search" class="innerSearchPop SearchBox currentSearchBox-{{deviceName}}" ng-model="searchText"   >
