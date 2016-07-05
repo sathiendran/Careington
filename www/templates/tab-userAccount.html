@@ -86,12 +86,12 @@
 	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails" style="display: {{nextAppointmentDisplay}}" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-if="$first">
 	<!--	<a ng-href="#tab/patientappointmentdetails">-->
       <div>
-        <h3 class="appth3"> <span class="appointment">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</span>
-         <span id="viewicon">
+        <h3 class="appth3"> <div class="appointment">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</div>
+         <div id="viewicon accountAppointview-{{deviceName}}">
 	        <a class="appalignrighticon"> View Details</a>
 	         <span  class="aslignspan"><i class="iconchevron ion-chevron-right" ></i>
-	</span>
-	</span>
+					 </span>
+				 </div>
 	</h3>
 
 	</div>

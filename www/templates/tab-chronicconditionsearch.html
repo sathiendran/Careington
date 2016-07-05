@@ -1,24 +1,24 @@
-<div class="modal" >
+<!<div class="modal" >
 
 <ion-view>
 
 
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
-  <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">Cancel</span> My health <span ng-click="chronicdone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
+  <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} searchListHead-{{deviceName}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">Cancel</span> My health <span ng-click="chronicdone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
 
 
 
  <div class="bar bar-subheader searchstyle">
-    <h2  class="subname">Chronic Conditions</h2>
-     <div class="search_home UserHmeSub concernListSearchHome">
+    <h2  class="subname subName-{{deviceName}}">Chronic Conditions</h2>
+     <div class="search_home UserHmeSub concernListSearchHome searchListSubHead-{{deviceName}}">
        <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchText" >
+	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor currentSearchBox-{{deviceName}}" ng-model="searchText" >
         </label>
 	</div>
  </div>
 </ion-header-bar>
-	<ion-content class="healthcontentsearch-{{deviceName}}" >
+	<ion-content class="healthcontentsearch-{{deviceName}}" delegate-handle="isScroll">
      <ion-list  style="margin-top:44px;" >
 
      <div  ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
@@ -32,12 +32,6 @@
      </div>
 
 
-
-   <!--     <div ng-repeat="(letter, chronicConditionsearchList) in sorted_users"  >
-           <div id="index_{{letter}}" class="item item-divider"    ng-repeat="chronic in chronicConditionsearchList">
-              {{chronic.text}}
-            </div>
-       </div>-->
      </ion-list>
 
        <ul class="alpha_sidebar">

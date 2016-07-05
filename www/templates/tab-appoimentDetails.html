@@ -8,7 +8,7 @@
   <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
    ng-click="toggleLeft()"></button>
  </div>
- <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
         <!--<a class="headerval" ng-href="#tab/appointmentpatientdetails"  >Done</a>-->
         <site-header-ios ng-if="IOSDevice == true" back="Done"></site-header-ios>
 			<site-header1 ng-if="AndroidDevice == true" back="Done"></site-header1>
@@ -46,7 +46,7 @@
 
 
 <ion-view title="Appointment Details">
- <ion-content class="aptpaticoncontent">
+ <ion-content class="aptpaticoncontent {{appointCOntent}}">
 
     <div class="list aptlist">
 
@@ -59,7 +59,7 @@
               <p class="patage">{{doctorGender}} <span> .</span> 36yrs</p>
            </a>
 
-        <ion-item class="ionitem contalign" >
+        <ion-item class="ionitem contalign" style="text-align:center;" >
            <div class="item item-text-wrap textwrap">
               <div class="datecontent">
                  <h2 class="fdate"><span class="fname ftime">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}{{scheduledListDatas.scheduledTime | date: "a"}}</span> </h2>
@@ -99,7 +99,7 @@
  </div>
 
  </ion-content>
-</ion-view>
+
 <ion-footer-bar  align-title="left" class="bar-assertive AvailableIn" style="display: {{timeNew}}" >
 		<div>
 			<div class="title availableImage" >
@@ -130,6 +130,7 @@
 			</a>
   <!-- <h1 class="title" id="centercolor" >Enter Appointment</h1>-->
 </ion-footer-bar>
+</ion-view>
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
