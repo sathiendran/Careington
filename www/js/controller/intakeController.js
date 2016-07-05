@@ -64,7 +64,7 @@ angular.module('starter.controllers')
     }
 
 
-    $scope.checkPreLoadDataAndSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
+    $rootScope.checkPreLoadDataAndSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
         angular.forEach(mainListItem, function(item, key2) {
             item.checked = false;
         });
@@ -648,7 +648,7 @@ angular.module('starter.controllers')
         LoginService.postOnDemandConsultation(params);
     };
 
-    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
+    $rootScope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
         angular.forEach(mainListItem, function(item, key2) {
             item.checked = false;
         });
@@ -1040,7 +1040,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 
     // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
-        $scope.clearSelectionAndRebindSelectionList($rootScope.CurrentMedicationItem, $rootScope.CurrentMedicationList);
+  $scope.clearSelectionAndRebindSelectionList($rootScope.CurrentMedicationItem, $rootScope.CurrentMedicationList);
 
         if (typeof $rootScope.MedicationCount == 'undefined') {
             $rootScope.checkedMedication = 0;

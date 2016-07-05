@@ -507,7 +507,7 @@ angular.module('starter.controllers')
             $scope.openOtherCurrentMedicationView(currentmedication);
         } else {
             if ($rootScope.checkedMedication >= 4) {
-              currentmedication.checked === false
+             currentmedication.checked === false
                 $scope.medicationdone();
             }
         }
