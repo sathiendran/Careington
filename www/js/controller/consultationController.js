@@ -243,11 +243,6 @@ angular.module('starter.controllers')
 
      }
    }
-
-
-
-
-
                     });
 
                 },
@@ -692,7 +687,7 @@ angular.module('starter.controllers')
         $scope.droppedsearcshow = false;
 
         $rootScope.passedsearchconsult = function() {
-          
+
             $scope.passededconsultants();
             var myEl = angular.element(document.querySelector('#passedsearch'));
             myEl.removeClass('btnextcolor');

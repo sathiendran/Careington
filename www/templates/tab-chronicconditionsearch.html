@@ -1,4 +1,4 @@
-<!<div class="modal" >
+<div class="modal" >
 
 <ion-view>
   <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
@@ -25,6 +25,7 @@
  </div>
 </ion-header-bar>-->
 <ion-content has-header="true" class="concernListContent">
+
   <ion-list>
     <ion-item class="search_home  concernListSearch">
       <h2 class="subname subName-{{deviceName}}">Chronic Conditions</h2>
@@ -35,7 +36,7 @@
         </label>
         </div>
 
-        <div class="" ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
+        <div ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
 
           <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: searchText"
                 ng-model="chronic.checked"
@@ -43,17 +44,18 @@
           <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
          </ion-checkbox>
         </div>
+        <ul class="alpha_sidebar">
+          <li ng-click="gotoallergyList('index_{{letter}}')"ng-repeat="letter in alphabets">
+             {{letter}}
+          </li>
+       </ul>
 
-
-            <p class="searchdata" ng-show="(chronicConditionsearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
+          <p class="searchdata noResult" style="white-space: normal;" ng-show="(chronicConditionsearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
 
     </ion-item>
   </ion-list>
-  <ul class="alpha_sidebar">
-    <li ng-click="gotochronicList('index_{{letter}}')"ng-repeat="letter in alphabet">
-       {{letter}}
-    </li>
- </ul>
+
+  
 </ion-content>
 <!--
 	<ion-content class="healthcontentsearch-{{deviceName}}" delegate-handle="isScroll">
