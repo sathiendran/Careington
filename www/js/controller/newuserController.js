@@ -65,7 +65,7 @@ angular.module('starter.controllers')
             }, 300);
         }
     };
-
+    $scope.newUSer = {};
     $scope.addmore = false;
 
     $scope.moredetails = function() {

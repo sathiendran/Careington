@@ -78,7 +78,7 @@ angular.module('starter.controllers')
             $rootScope.newCoUserImagePath = '';
             $rootScope.doGetOrgLoclist();
             $('select').prop('selectedIndex', 0);
-        
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addUser');
   }
         $rootScope.doGetOrgLoclist = function() {

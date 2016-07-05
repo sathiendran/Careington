@@ -429,6 +429,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.deviceName = "IOS";
+        $rootScope.appointCOntent = "margin-top: 180px;";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.loginSub = "height: 100px; top: 43px;";
@@ -3872,7 +3873,6 @@ LoginService.getScheduledConsulatation(params);
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-                    
                     if ($rootScope.currentPatientDetails[0].gender == 'M') {
                         $rootScope.userGender = "Male";
                         $rootScope.isCheckedMale = true;
@@ -4108,8 +4108,7 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.healthPlanID = '';
             $rootScope.NewHealth = '';
         }
-        $scope.healthInfoModel = {};
-        $scope.healthInfoModel.userDOB = $rootScope.userDOB;
+
         $rootScope.updatedPatientImagePath = '';
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
@@ -4679,7 +4678,7 @@ LoginService.getScheduledConsulatation(params);
 .directive('siteHeaderIos', function() {
         return {
             restrict: 'E',
-            template: '<a class="headerval" style="top: 13px !important;"><span style="margin-left: 3px;">{{back}}</span></a>',
+            template: '<a class="headerval" style="top: -5px !important;"><span style="margin-left: 3px;">{{back}}</span></a>',
             scope: {
                 back: '@back',
                 icons: '@icons'

@@ -9,7 +9,7 @@
 	</div>
 
 
-<h1  class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
+<h1  class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
           <span> Appointments </span>
           <span class="headerval" ><i class="icon ion-search"></i></span>
          </h1>
@@ -62,10 +62,10 @@
 
 
 <ion-view title="Appointment Details">
- <ion-content class="appiconcontent" ng-hide="addmore">
+ <ion-content class="appiconcontent" >
 	 <div><ion-refresher on-refresh="doRefresh()"  >
 		</ion-refresher></div>
-		 <div>
+		 <div ng-hide="addmore">
 					 <div class="list listfirst" >
 				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
@@ -88,11 +88,8 @@
 
  </div>
 	 </div>
-<ion-content>
 
-<ion-content class="appiconcontent" ng-hide="healthhide">
-	 <div><ion-refresher on-refresh="doRefresh()"  ></ion-refresher></div>
-   <div >
+	 <div ng-hide="healthhide" >
         <div class="list listall">
 
 
@@ -117,11 +114,12 @@
 
    </div>
    </div>
+<ion-content>
 
 
+	 <div ng-controller="LoginCtrl">
+	 </div>
 
-
-    </ion-content>
 
 
 

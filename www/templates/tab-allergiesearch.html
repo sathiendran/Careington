@@ -3,22 +3,62 @@
 <ion-view>
 
 
-<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
- <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">Cancel</span> My health <span ng-click="allergiedone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
+<!--<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} searchListHead-{{deviceName}}" style="width:100%; text-align:center;"><span class="headerleftval" ng-click="removemodal()">Cancel</span> My health <span ng-click="allergiedone()" style="width:100%;"><a class="headerval" >Done</a></span></h1>
 
 
 
  <div class="bar bar-subheader searchstyle">
-    <h2 class="subname">Medication Allergies</h2>
-     <div class="search_home UserHmeSub concernListSearchHome">
+    <h2 class="subname subName-{{deviceName}}">Medication Allergies</h2>
+     <div class="search_home UserHmeSub concernListSearchHome searchListSubHead-{{deviceName}}">
        <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchText" >
+	      <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor currentSearchBox-{{deviceName}}" ng-model="searchText" >
         </label>
 	</div>
  </div>
 
-</ion-header-bar>
-<ion-content class="healthcontentsearch-{{deviceName}}">
+</ion-header-bar> -->
+
+<header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+<div class="ErrorMessage ErrorMessageDiv"  ></div>
+ <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
+  <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My health</h1>
+  <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="allergiedone()" >Done</button>
+</header>
+
+<ion-content has-header="true" class="concernListContent">
+
+  <ion-list>
+    <ion-item class="search_home  concernListSearch">
+      <div class="search_home UserHmeSub concernListSearchHome">
+        <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
+          <input type="search" placeholder="Search" class="innerSearchPop SearchBox currentSearchBox-{{deviceName}}" ng-model="searchText"   >
+          <!--<i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>-->
+        </label>
+        </div>
+
+        <div ng-repeat="(letter, medicationAllergiesearchList) in sorted_usersallergie">
+
+        <ion-checkbox id="index_{{letter}}" ng-repeat="allergie in filterAllergies=( medicationAllergiesearchList | filter: searchText)"
+               ng-model="allergie.checked"
+               ng-checked="allergie.checked" ng-change="OnSelectAllergies(allergie)" ng-disabled="checkedAllergies==limit && !allergie.checked" >
+         <span class="ng-binding concernListDetails" >   {{ allergie.text }} </span>
+       </ion-checkbox>
+        </div>
+        <ul class="alpha_sidebar">
+          <li ng-click="gotoallergyList('index_{{letter}}')"ng-repeat="letter in alphabets">
+             {{letter}}
+          </li>
+       </ul>
+
+          <p class="searchdata" ng-show="(medicationAllergiesearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
+
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<!--<ion-content class="healthcontentsearch-{{deviceName}}" delegate-handle="isScroll">
     <ion-list  style="margin-top:44px;" >
        <div ng-repeat="(letter, medicationAllergiesearchList) in sorted_usersallergie">
 
@@ -37,7 +77,7 @@
       </ul>
 
          <p class="searchdata" ng-show="(medicationAllergiesearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
-</ion-content>
+</ion-content>-->
 
 </ion-view>
 

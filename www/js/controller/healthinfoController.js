@@ -69,7 +69,6 @@ angular.module('starter.controllers')
         }
     };
     $scope.healthInfoModel = {};
-    $scope.healthInfoModel.userDOB = $rootScope.userDOB;
     $scope.addmore = false;
     $scope.healthhide = true;
     $scope.headerval = false;
@@ -110,6 +109,7 @@ angular.module('starter.controllers')
         edittextarea.removeClass('textdata');
         editsvalues.addClass('editdata');
         edittextarea.addClass('editdata');
+        $scope.healthInfoModel.userDOB = $rootScope.userDOB;
     }
 
     //$scope.healthInfo = {};
@@ -410,6 +410,7 @@ angular.module('starter.controllers')
         } else {
             $rootScope.checkedMedication = $rootScope.CurMedicationCount;
         }
+        $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $ionicModal.fromTemplateUrl('templates/tab-currentmedicationsearch.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -587,6 +588,7 @@ angular.module('starter.controllers')
 
 
     $scope.alergiessearch = function() {
+        $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $scope.alphabets = iterateAlphabet();
         $ionicModal.fromTemplateUrl('templates/tab-allergiesearch.html', {
             scope: $scope,
@@ -755,6 +757,7 @@ angular.module('starter.controllers')
 
 
     $scope.chronicsearch = function() {
+        $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $scope.chalphabet = iterateAlphabet();
         $ionicModal.fromTemplateUrl('templates/tab-chronicconditionsearch.html', {
             scope: $scope,
@@ -865,57 +868,57 @@ angular.module('starter.controllers')
                 //$scope.listOfCoUser = JSON.stringify(data, null, 2);
                 $rootScope.listOfCoUserDetails = [];
                 angular.forEach(data.data, function(index, item) {
-                 var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
-                        codeId: index.relationCodeId
-                    })
-                    if (getCoUserRelationShip.length !== 0) {
-                        var relationShip = getCoUserRelationShip[0].text;
-                    } else {
-                        var relationShip = '';
-                    }
-                    var dob = ageFilter.getDateFilter(index.dob);
-                    if (index.gender == 'M') {
-                        var gender = "Male";
-                    } else if (index.gender == 'F') {
-                        var gender = "FeMale";
-                    }
-                    $rootScope.listOfCoUserDetails.push({
-                        'address': index.address,
-                        'bloodType': index.bloodType,
-                        'description': index.description,
-                        'dob': dob,
-                        'emailId': index.emailId,
-                        'ethnicity': index.ethnicity,
-                        'eyeColor': index.eyeColor,
-                        'gender': gender,
-                        'hairColor': index.hairColor,
-                        'height': index.height,
-                        'heightUnit': index.heightUnit,
-                        'homePhone': index.homePhone,
-                        'imagePath': index.imagePath,
-                        'lastname': index.lastname,
-                        'mobilePhone': index.mobilePhone,
-                        'name': index.name,
-                        'patientId': index.patientId,
-                        'personId': index.personId,
-                        'relationship': relationShip,
-                        'relationCodeId': index.relationCodeId,
-                        'roleId': index.roleId,
-                        'userId': index.userId,
-                        'weight': index.weight,
-                        'weightUnit': index.weightUnit
-                    });
+                  if(index.patientId !== $rootScope.patientId) {
+                      var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                          codeId: index.relationCodeId
+                      })
+                      if (getCoUserRelationShip.length !== 0) {
+                          var relationShip = getCoUserRelationShip[0].text;
+                      } else {
+                          var relationShip = '';
+                      }
+                      var dob = ageFilter.getDateFilter(index.dob);
+                      if (index.gender == 'M') {
+                          var gender = "Male";
+                      } else if (index.gender == 'F') {
+                          var gender = "FeMale";
+                      }
+                      if(index.imagePath){
+                          $scope.coUserImagePath = index.imagePath;
+                      }else{
+                          var coName = index.name + " " + index.lastname; //alert(coName);
+                          $scope.coUserName = getInitialForName(coName);
+                          $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
+                      }
 
-
-          //      $rootScope.patient= $rootScope.listOfCoUserDetails[0].patientId;
+                      $rootScope.listOfCoUserDetails.push({
+                          'address': index.address,
+                          'bloodType': index.bloodType,
+                          'description': index.description,
+                          'dob': dob,
+                          'emailId': index.emailId,
+                          'ethnicity': index.ethnicity,
+                          'eyeColor': index.eyeColor,
+                          'gender': gender,
+                          'hairColor': index.hairColor,
+                          'height': index.height,
+                          'heightUnit': index.heightUnit,
+                          'homePhone': index.homePhone,
+                          'imagePath': $scope.coUserImagePath,
+                          'lastname': index.lastname,
+                          'mobilePhone': index.mobilePhone,
+                          'name': index.name,
+                          'patientId': index.patientId,
+                          'personId': index.personId,
+                          'relationship': relationShip,
+                          'relationCodeId': index.relationCodeId,
+                          'roleId': index.roleId,
+                          'userId': index.userId,
+                          'weight': index.weight,
+                          'weightUnit': index.weightUnit
+                      });
+                  }
                 });
-
-                //if( $rootScope.patientId !=  $rootScope.patient){
-              //    $rootScope.couserdetails=true;
-              //  }else{
-              //     $rootScope.dupcouser=true;
-              //  }
-
                 $state.go('tab.relatedusers');
             },
             error: function(data) {
