@@ -7080,6 +7080,9 @@ Pagination Styles
 .healthTitle-IOS {
 	margin-top: 13px !important;
 }
+.healthTitle-Android {
+	margin-top: 22px !important;
+}
 .healthViewDetails {
   width: 55%;
   white-space: normal;
@@ -7098,7 +7101,14 @@ Pagination Styles
   left: -28px;
   position: relative;
 }
+.HealthTitle-Android {
+  left: -28px;
+  position: relative;
+}
 .healthLeft-IOS {
+  top: -29px !important;
+}
+.healthLeft-Android {
   top: -29px !important;
 }
 .searchListHead-IOS {
@@ -7116,6 +7126,10 @@ Pagination Styles
   text-align: center;
 }
 .searchCancel-IOS {
+  position: relative;
+    top: -22px !important;
+}
+.searchCancel-Android {
   position: relative;
     top: -22px !important;
 }
