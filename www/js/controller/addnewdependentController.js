@@ -79,7 +79,7 @@ angular.module('starter.controllers')
             $scope.tempfooter = true;
             $scope.permfooter = true;
         }
-        $timeout(countUp, 2000);
+        $timeout(countUp,5000);
 
 
         var minDate = new Date();
@@ -216,7 +216,8 @@ angular.module('starter.controllers')
             } else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
                 $scope.ErrorMessage = "Please Select Your bloodtype";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
+            }
+            /* else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
                 $scope.ErrorMessage = "Please Select Your hairColor";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '') {
@@ -225,7 +226,8 @@ angular.module('starter.controllers')
             } else if (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '') {
                 $scope.ErrorMessage = "Please Select Your ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else {
+            }*/
+             else {
                 // alert("fail");
                 $scope.doPostNewDependentuser();
             }
