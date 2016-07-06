@@ -437,7 +437,9 @@ $rootScope.authorised=relateDependentAuthorize;
         }
         /* Seach Done*/
 
-        $scope.selectrelation = function() {
+        $scope.selectrelation = function(selPatient) {
+            $rootScope.relationUpdatePatientId = selPatient.patientId;
+            $rootScope.relationUpdateAuthStatus = selPatient.isAuthorized;
             $scope.useradd = true;
             $scope.userdone = true;
             $scope.userinfosubheader = true;
@@ -455,6 +457,16 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.userinfoshow = false;
             $scope.usersearchinfocontent = false;
             $scope.usertab = false;
+        }
+
+        $rootScope.setNewRelation = function(newRelatioCodeId){
+            if($rootScope.relationUpdateAuthStatus){
+                relationUpdateAuthStatusVal = 'Y';
+            }else{
+                relationUpdateAuthStatusVal = 'N';
+            }
+            $rootScope.doUpdateDependentsAuthorize($rootScope.relationUpdatePatientId, newRelatioCodeId, relationUpdateAuthStatusVal);
+            $scope.usersearchdone();
         }
 
         $rootScope.coUserArchieve = function(coUserDetails) {

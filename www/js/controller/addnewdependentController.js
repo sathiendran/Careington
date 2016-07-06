@@ -68,6 +68,7 @@ angular.module('starter.controllers')
 
 
         $scope.addNewDependent = {};
+        $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
         var newUploadedPhoto;
 
         $('input').blur(function() {
@@ -79,7 +80,7 @@ angular.module('starter.controllers')
             $scope.tempfooter = true;
             $scope.permfooter = true;
         }
-        $timeout(countUp, 2000);
+        $timeout(countUp,5000);
 
 
         var minDate = new Date();
@@ -204,19 +205,22 @@ angular.module('starter.controllers')
             } else if (typeof $scope.getWeightunit == 'undefined' || $scope.getWeightunit === '') {
                 $scope.ErrorMessage = "Please Select Your Weight Unit";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.homephone === 'undefined' || $scope.homephone === '') {
-                $scope.ErrorMessage = "Please Enter Your Home Phone";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
-                $scope.ErrorMessage = "Please Enter Your mobile";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.homeaddress === 'undefined' || $scope.homeaddress === '') {
-                $scope.ErrorMessage = "Please Enter Your homeaddress";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
+            }
+            //else if (typeof $scope.homephone === 'undefined' || $scope.homephone === '') {
+            //     $scope.ErrorMessage = "Please Enter Your Home Phone";
+            //     $rootScope.Validation($scope.ErrorMessage);
+            // } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
+            //     $scope.ErrorMessage = "Please Enter Your mobile";
+            //     $rootScope.Validation($scope.ErrorMessage);
+            // } else if (typeof $scope.homeaddress === 'undefined' || $scope.homeaddress === '') {
+            //     $scope.ErrorMessage = "Please Enter Your homeaddress";
+            //     $rootScope.Validation($scope.ErrorMessage);
+            // }
+            else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
                 $scope.ErrorMessage = "Please Select Your bloodtype";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
+            }
+            /* else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
                 $scope.ErrorMessage = "Please Select Your hairColor";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '') {
@@ -225,7 +229,8 @@ angular.module('starter.controllers')
             } else if (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '') {
                 $scope.ErrorMessage = "Please Select Your ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else {
+            }*/
+             else {
                 // alert("fail");
                 $scope.doPostNewDependentuser();
             }
@@ -295,9 +300,8 @@ angular.module('starter.controllers')
 
                     var updatepatientdetail = data.data;
                     $rootScope.deppatientId = updatepatientdetail[0].patientId;
-                    if($rootScope.newDependentImagePath !== '' && typeof $rootScope.newDependentImagePath !=='undefined') {
-                      $scope.updateDependentRelation();
-                    }
+                    $scope.updateDependentRelation();
+
 
 
                     /*  $('#dependentuserform')[0].reset();
@@ -323,8 +327,12 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $('#dependentuserform')[0].reset();
                     $('select').prop('selectedIndex', 0);
-                    //$state.go('tab.relatedusers');
-                    $scope.uploadPhotoForDependant();
+                    if($rootScope.newDependentImagePath !== '' && typeof $rootScope.newDependentImagePath !=='undefined') {
+                        $scope.uploadPhotoForDependant();
+                    }else{
+                        $state.go('tab.relatedusers');
+                    }
+
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();

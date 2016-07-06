@@ -198,7 +198,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col col-40 relationcol" ng-click="selectrelation()">
+                                <div class="col col-40 relationcol" ng-click="selectrelation(getDependentDetails)">
                                     <p><a class="relation">Relationsship</a></p>
 
                                     <p class="relationcont">
@@ -258,7 +258,7 @@
             </ion-content>
             <ion-content class="searchcontent" ng-show="usersearchinfocontent">
                 <div class="list">
-                    <div class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | orderBy:'text'">
+                    <div ng-click="setNewRelation(relationShipDetails.codeId);" class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | orderBy:'text'">
                         {{relationShipDetails.text}}
                     </div>
                 </div>
