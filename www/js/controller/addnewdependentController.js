@@ -83,7 +83,7 @@ angular.module('starter.controllers')
 
 
         var minDate = new Date();
-        var maxDate = minDate.getDay();
+        var maxDate = minDate.getDate();
         var maxMonth = minDate.getMonth() + 1;
         var maxYear = minDate.getFullYear();
         if (maxDate < 10) {
@@ -93,7 +93,7 @@ angular.module('starter.controllers')
             var maxM = "0" + maxMonth;
         }
         var maxDay = maxYear + "-" + maxM + "-" + maxD;
-        var mDate = "2016-05-04";
+        var mDate = maxDay;
         $scope.maxDate1 = mDate;
         $scope.minimum = "1950-01-01";
 
@@ -109,17 +109,20 @@ angular.module('starter.controllers')
 
             if (!this.value.match(/^[0-9]{1,18}$/)) {
                 this.value = this.value.replace(/^[0-9]{1,18}$/g, '');
-        //        alert("fail");
+
             }
         });
         $("#mobile").blur(function() {
 
             if (!this.value.match(/^[0-9]{1,18}$/)) {
                 this.value = this.value.replace(/^[0-9]{1,18}$/g, '');
-            //    alert("fail");
+
             }
         });
-
+            var today = new Date();
+            var nowyear = today.getFullYear();
+            var nowmonth = today.getMonth()+1;
+            var nowday = today.getDate();
 
         $scope.postDependentDetails = function() {
             $scope.firstName = $("#firstname").val();
@@ -157,6 +160,19 @@ angular.module('starter.controllers')
             $scope.getWeightunit = _.first($scope.weightunit);
             $scope.bloodtype = $("#bloodtype").val().split("@").slice(0, 1);
             $scope.getBloodtypeid = _.first($scope.bloodtype);
+            var dateofb=new Date( $scope.dob)
+            var birthyear =dateofb.getFullYear();
+            var birthmonth = dateofb.getMonth();
+            var birthday = dateofb.getDate();
+            var age = nowyear - birthyear;
+            var age_month = nowmonth - birthmonth;
+            var age_day = nowday - birthday;
+            if(age_month < 0 || (age_month == 0 && age_day <0)) {
+            age = parseInt(age) -1;
+           }
+    
+
+
             // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
 
             /* if(  (typeof $scope.firstName === 'undefined' || $scope.firstName === '')  &&
@@ -183,13 +199,16 @@ angular.module('starter.controllers')
             } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
                 $scope.ErrorMessage = "Please Enter Your Last Name";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.email === 'undefined' || $scope.email === '') {
-                $scope.ErrorMessage = "Please Enter Your Email Id";
-                $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
-                $scope.ErrorMessage = "Please Enter Your DOB";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
+                  $scope.ErrorMessage = "Please Enter Your DOB";
+                  $rootScope.Validation($scope.ErrorMessage);
+              }else if ((age >=12  && age_month >= 0)  ) {
+                  if (typeof $scope.email === 'undefined' || $scope.email === '') {
+                      $scope.ErrorMessage = "Please Enter Your Email Id";
+                      $rootScope.Validation($scope.ErrorMessage);
+              }
+            }
+           else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
                 $scope.ErrorMessage = "Please Select Your Gender";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
@@ -229,7 +248,7 @@ angular.module('starter.controllers')
             }*/
              else {
                 // alert("fail");
-                $scope.doPostNewDependentuser();
+             $scope.doPostNewDependentuser();
             }
 
         }
