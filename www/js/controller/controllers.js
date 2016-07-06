@@ -491,7 +491,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
             $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
             $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
-            $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PrimaryConcernPopupDone = "margin-top: 14px; padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
             $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
             $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
@@ -3954,9 +3954,6 @@ LoginService.getScheduledConsulatation(params);
                         var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;
 
-                        if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
-                          $rootScope.accountClinicianFooter = 'none';
-                        }
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
@@ -3966,6 +3963,9 @@ LoginService.getScheduledConsulatation(params);
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
                                 $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+                                if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
+                                  $rootScope.accountClinicianFooter = 'none';
+                                }
                             }
                         }
 
