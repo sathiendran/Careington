@@ -27,10 +27,14 @@
             <h6 class="hsearch">
                <!-- <i class="icon ion-search fontcolor"></i>
                   <span class="fontcolor">Search</span>-->
+
+
+
+
                <div class="search_home UserHmeSub concernListSearchHome">
                   <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-                  <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor searchAlign" ng-model="searchQuery" >
-                  <i class="icon ion-search searchIconAlignment-{{deviceName}}"></i>
+                    <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
+                    <input type="search" placeholder="Search" class="innerSearchPop SearchBox " ng-model="searchQuery" >
                   </label>
                </div>
             </h6>
@@ -54,7 +58,7 @@
                   </div>
                   <div class="col col-30">
                      <p>  <span class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</span>
-                        <span class="colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName }}</span>
+                        <span class="ellipsis colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName }}</span>
                         <!--  <span class="vreport" ng-click="showReportView({{passedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>-->
                      </p>
                   </div>
@@ -64,8 +68,9 @@
                   </div>
                </div>
             </div>
+              <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found!</ion-item>
          </div>
-         <div class="searchdata noResult" style="white-space: normal;" ng-show="(Passedconsultations | filter:searchQuery).length==0">No Passed Search Consultations Found</div>
+         <div class="searchdata noResult" style="white-space: normal;" ng-show="(Passedconsultations | filter:searchQuery).length==0">No Search Results Found!</div>
       </ion-content>
       <ion-content ng-show="missedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
          <div class="csearch-{{deviceName}}">
@@ -99,7 +104,7 @@
                   </div>
                   <div class="col col-30">
                      <p><span class="colfamily" ng-if="!misseddata.docname">NA</span>
-                        <span class="colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}</span>
+                        <span class="ellipsis colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}</span>
                   </div>
                   <div class="col col-25">
                      <span class="contright"  ng-click="showReportView({{misseddata}});">Report
@@ -107,8 +112,9 @@
                   </div>
                </div>
             </div>
+            <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found!</ion-item>
          </div>
-         <div class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:searchQuery).length==0">No Missed Search Consultations Found</div>
+         <div class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:searchQuery).length==0">No Search Results Found!</div>
       </ion-content>
       <ion-content ng-show="droppedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
          <div class="csearch-{{deviceName}}">
@@ -143,7 +149,7 @@
                   <div class="col col-30">
                      <p>
                        <span class="colfamily" ng-if="!droppedData.assignedDoctorName">NA</span>
-                        <span class="colfamily"  ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</span>
+                        <span class="ellipsis colfamily"  ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</span>
                      </p>
                   </div>
                   <div class="col col-25">
@@ -152,8 +158,9 @@
                   </div>
                </div>
             </div>
+              <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found!</ion-item>
          </div>
-         <div class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Dropped Search Consultations Found!</div>
+         <div class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:searchQuery).length==0">No Search Results Found!</div>
       </ion-content>
       <!--- Dropped Consult End--->
 </ion-side-menu-content>

@@ -239,7 +239,10 @@ html, body { background: transparent !important; }
 	padding-top: 40px;
 	margin-bottom: 50px;
 }
-
+.item-input{
+  .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
+    overflow: hidden;  line-height: normal; }
+}
 
 .button.button-positive.button-outline {
 	@include buttons(#9BCA82, normal, 5px, 19px, 35px );
@@ -1793,7 +1796,7 @@ html, body { background: transparent !important; }
 	margin-top: 52px;
 	.concernListSearch {
 		padding:11px 0px; top: 0px; border: 0px;
-		.concernListSearchHome  {
+		.concernListSearchHome {
 			padding:20px 11px 16px 11px; top: 0px;
 			.SearchLabel-Android {
 				margin-top: -19px;
@@ -2780,7 +2783,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 //end Validation styles
 
 
-
+#healthInfoDOB{line-height:20px;}
 
 .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
   overflow: hidden;  line-height: normal; }
@@ -3801,7 +3804,7 @@ font-weight: normal !important;
 font-size: 20px;
 }
 .newusercontent{
-    margin-top: 168px;
+    margin-top: 120px;
 }
 .circle {
   position: relative;
@@ -4095,12 +4098,14 @@ font-size: 20px;
   margin-top: 13px;
 }
 .unlink{
-  margin-left: 22px !important;
+  margin-left: 4px !important;
       margin-top: -5px !important;
       margin-bottom: -5px;
       color: white;
       background-color: red !important;
+
 }
+.icons{margin-left:12px;}
 .tabicon{
    margin-left: 22px;
    margin-top: -14px; //-16
@@ -4430,7 +4435,7 @@ p{
       box-shadow: 0 1px 3px transparent !important;
       margin: 21px 10px !important; }
     .newusercontent {
-      margin-top: 168px; }
+      margin-top: 110px; }
     .alpha_sidebar {
       position: absolute;
       top: 3px;
@@ -4583,6 +4588,7 @@ p{
              margin-top:165px;
          }
 .item-input{
+
        .inputtext{ max-width:100%; }
        .valhome{
             margin-left:36px;
@@ -4946,7 +4952,6 @@ top: inherit !important;
     border-bottom: none;
     margin-left: -7px;
     margin-right: -8px;
-    border: none;
 }
 .hidecard{
  //   margin:36px 10px !important;
@@ -5074,7 +5079,7 @@ color: white;
 .sheader{
     color:#616161;
     font-size:12px !important;
-    margin-top: 25px !important;
+    margin-top: 20px !important;
 }
 .cdetcolor{
      color: #868686;
@@ -5101,11 +5106,11 @@ color: white;
   color: #616161;
    margin-left: 15px;
    }
-.csearch{
+.csearch-Android{
    background-color:#e8e8e8;
    height:27px;
    border-radius:5px;
-   margin-top:10px;
+   margin-top:80px;
  .hsearch{
    text-align: center;
    line-height: 2;
@@ -5159,7 +5164,7 @@ color: white;
     margin-top:-4px;
  }
  .coldetails{
-      margin-top:-3px;//-6
+      margin-top:-4px;//-6
  }
  .dotedsearchhr{
   // margin-top:-8px;
@@ -5379,7 +5384,7 @@ margin-top: -12px;
 font-size: 18px !important;
 }
 .userdeptcontent { margin-top:155px !important; }
-.newusercontent{  margin-top: 168px; }
+.newusercontent{  margin-top: 170px; }
 .appiconcontent {
 margin-top: 212px;
 }
@@ -7141,45 +7146,6 @@ Pagination Styles
 }
 .accountAppointview-IOS {
   position: relative;
-    margin-top: -26px !important;
-    text-align: right !important;
-}
-.bar.bar-dark {
-    border-color: transparent;
-
-}
-.tabs-dark > .tabs, .tabs.tabs-dark {
-  border-color: transparent;
-}
-.accoTitle-IOS {
-  margin-left: 20px !important;
-}
-.consultcontentsearch-IOS {
-      margin-top: 80px;
-}
-.csearch-IOS {
-  height: 27px;
-  border-radius: 5px;
-  margin-top: 10px;
-  padding: 0 3%;
-}
-
-.csearch-Android {
-  height: 27px;
-  border-radius: 5px;
-  margin-top: 10px;
-  padding: 0 3%;
-}
-.searchAlign {
-  text-align: center;
-}
-.searchIcon-IOS {
-  position: relative;
-  left: -12px;
-}
-.searchIconAlignment-IOS{
-  position: relative;
-  left: -217px;
-  font-size: 16px;
-  top: -2px;
+    margin-top: -26px;
+    text-align: right
 }
