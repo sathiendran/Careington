@@ -3,7 +3,10 @@ angular.module('starter.controllers')
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService) {
 
     $scope.getOnlyNumbers = function(text){
-        var newStr = text.replace(/[^0-9.]/g, "");
+        var newStr = "";
+        if(text){
+            newStr = text.replace(/[^0-9.]/g, "");
+        }
         return newStr;
     }
 
