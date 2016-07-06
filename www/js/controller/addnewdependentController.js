@@ -71,6 +71,10 @@ angular.module('starter.controllers')
           }
       }
 
+        $scope.getOnlyNumbers = function(text){
+            var newStr = text.replace(/[^0-9.]/g, "");
+            return newStr;
+        }
 
         $scope.addNewDependent = {};
         $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
@@ -288,8 +292,8 @@ angular.module('starter.controllers')
                     gender: $scope.gender,
                     ethnicity: $scope.getEthnicityId,
                     hairColor: $scope.getHairColorId,
-                    homePhone: $scope.homephone,
-                    mobilePhone: $scope.mobile,
+                    homePhone: $scope.getOnlyNumbers($scope.homephone),
+                    mobilePhone: $scope.getOnlyNumbers($scope.mobile),
                     schoolName: "",
                     schoolContact: "",
                     primaryPhysician: null,
