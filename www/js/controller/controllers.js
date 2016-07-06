@@ -1355,6 +1355,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.tokenStatus = 'alert-success';
                         $scope.doGetPatientProfiles();
                         $scope.doGetRelatedPatientProfiles();
+                        $scope.doGetConutriesList();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
                 },
@@ -1613,6 +1614,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('tab.Health');
     });
+
+    $scope.doGetConutriesList = function(){
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.serviceCountries = angular.fromJson(data.data);
+            },error: function(data) {
+
+            }
+        };
+        LoginService.getCountiesList(params);
+    }
 
     $scope.doGetPatientProfiles = function() {
         if ($rootScope.accessToken === 'No Token') {

@@ -263,7 +263,7 @@ $rootScope.authorised=relateDependentAuthorize;
         };
 
         $scope.userslist = function() {
-            $scope.doGetListOfCoUsers();
+          //  $rootScope.doGetListOfCoUsers();
             var myEl = angular.element(document.querySelector('#users'));
             myEl.addClass('btcolor');
             myEl.removeClass('btnextcolor');
@@ -278,20 +278,71 @@ $rootScope.authorised=relateDependentAuthorize;
             var myEl = angular.element(document.querySelector('#dependuserlist'));
             myEl.removeClass('couses');
             myEl.addClass('dependusers');
+            var params = {
+                accessToken: $rootScope.accessToken,
+                authorizedOnly: true,
+                success: function(data) {
+                    //$scope.listOfCoUser = JSON.stringify(data, null, 2);
+                    $rootScope.listOfCoUserDetails = [];
+                    angular.forEach(data.data, function(index, item) {
+                      if(index.patientId !== $rootScope.primaryPatientId) {
+                          var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                              codeId: index.relationCodeId
+                          })
+                          if (getCoUserRelationShip.length !== 0) {
+                              var relationShip = getCoUserRelationShip[0].text;
+                          } else {
+                              var relationShip = '';
+                          }
+                          var dob = ageFilter.getDateFilter(index.dob);
+                          if (index.gender == 'M') {
+                              var gender = "Male";
+                          } else if (index.gender == 'F') {
+                              var gender = "FeMale";
+                          }
+                          if(index.imagePath){
+                              $scope.coUserImagePath = index.imagePath;
+                          }else{
+                              var coName = index.name + " " + index.lastname; //alert(coName);
+                              $scope.coUserName = getInitialForName(coName);
+                              $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
+                          }
 
-
-
-        /*    $rootScope.CImage = apiCommonURL + '/images/default-user.jpg';
-            var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
-            $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);*/
-
-
-
-
-
-
-
-
+                          $rootScope.listOfCoUserDetails.push({
+                              'address': index.address,
+                              'bloodType': index.bloodType,
+                              'description': index.description,
+                              'dob': dob,
+                              'emailId': index.emailId,
+                              'ethnicity': index.ethnicity,
+                              'eyeColor': index.eyeColor,
+                              'gender': gender,
+                              'hairColor': index.hairColor,
+                              'height': index.height,
+                              'heightUnit': index.heightUnit,
+                              'homePhone': index.homePhone,
+                              'imagePath': $scope.coUserImagePath,
+                              'lastname': index.lastname,
+                              'mobilePhone': index.mobilePhone,
+                              'name': index.name,
+                              'patientId': index.patientId,
+                              'personId': index.personId,
+                              'relationship': relationShip,
+                              'relationCodeId': index.relationCodeId,
+                              'roleId': index.roleId,
+                              'userId': index.userId,
+                              'weight': index.weight,
+                              'weightUnit': index.weightUnit
+                          });
+                      }
+                    });
+                
+                },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+            LoginService.getListOfCoUsers(params);
 
         };
 

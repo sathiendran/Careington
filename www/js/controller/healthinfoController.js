@@ -2,6 +2,24 @@ angular.module('starter.controllers')
 
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService) {
 
+    $scope.getOnlyNumbers = function(text){
+        var newStr = text.replace(/[^0-9.]/g, "");
+        return newStr;
+    }
+
+    $rootScope.getCountryName = function(countryCode){
+        var countryInfo = $filter('filter')($rootScope.serviceCountries, {code: countryCode});
+        if(countryInfo[0])
+            return countryInfo[0].name;
+        else if(countryInfo)
+            return countryInfo.name;
+        else
+            return "";
+    };
+
+    $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
+    $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
+
   $rootScope.couserdetails=false;
   $rootScope.dupcouser=false;
   $rootScope.showNewSurgeryAdd = false;
@@ -117,8 +135,10 @@ angular.module('starter.controllers')
         $('#aaa').show();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-        $scope.phoneval=$rootScope.currentPatientDetails[0].homePhone;
-        $scope.mobileval=$rootScope.currentPatientDetails[0].mobilePhone;
+        $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
+        $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
+        $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
+        $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
 
         editsvalues.removeClass('textdata');
         edittextarea.removeClass('textdata');
@@ -146,6 +166,7 @@ angular.module('starter.controllers')
             $scope.WeightUnit1 = $scope.WeightUnit.split("@");
             $scope.healthInfoWeightUnit = $scope.WeightUnit1[0];
             $scope.healthInfoWeightUnitText = $scope.WeightUnit1[1];
+            $scope.healthInfoCountry = $('#healthInfoCountry').val()
             $scope.healthInfoHomePhone = $('#healthInfoHomePhone').val()
             $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
             //$scope.healthInfoAddress = $('#healthInfoAddress').val();
@@ -186,7 +207,10 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                 $scope.ErrorMessage = "Please Enter Your Email Id";
                 $rootScope.Validation($scope.ErrorMessage);
-            }  else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+            }  else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
+                $scope.ErrorMessage = "Please Select Your Country";
+                $rootScope.Validation($scope.ErrorMessage);
+        }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
                 $scope.ErrorMessage = "Please Enter Your Home Phone";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
@@ -244,8 +268,8 @@ angular.module('starter.controllers')
                 gender: $scope.healthInfoGender,
                 ethnicity: $scope.getEthnicityId,
                 hairColor: $scope.getHairColorId,
-                homePhone: $scope.healthInfoHomePhone,
-                mobilePhone: $scope.healthInfoMobilePhone,
+                homePhone: $scope.healthInfoCountry + $scope.getOnlyNumbers($scope.healthInfoHomePhone),
+                mobilePhone: $scope.healthInfoCountry + $scope.getOnlyNumbers($scope.healthInfoMobilePhone),
                 schoolName: "",
                 schoolContact: "",
                 primaryPhysician: null,
@@ -262,7 +286,7 @@ angular.module('starter.controllers')
                 weightUnit: $scope.healthInfoWeightUnit,
                 organizationId: $scope.healthInfoOrganization,
                 locationId: $scope.healthInfoLocation,
-                country: "+1"
+                country: $scope.healthInfoCountry
             },
             timeZoneId: 2,
             patientProfileFieldsTracing: {
@@ -289,7 +313,10 @@ angular.module('starter.controllers')
             },
             success: function(data) {
               $scope.uploadPhotoForExistingPatient();
+              $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
+              $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
                  $rootScope.currentPatientDetails=$rootScope.currentPatientDetails[0];
+
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
             //    $rootScope.getManageProfile(currentPatientDetails);
