@@ -1526,6 +1526,35 @@ this.getCountryDetails = function () {
         return new Date(dateTime);//localTime;
     }
 
+    this.getMonthName = function(PriorSurgerymonth) {
+        PriorSurgerymonth = Number(PriorSurgerymonth);
+        if(PriorSurgerymonth == 1) {
+            return 'Jan' ;
+        } else if(PriorSurgerymonth == 2) {
+         return 'Feb';
+        } else if(PriorSurgerymonth == 3) {
+         return 'Mar';
+         } else if(PriorSurgerymonth == 4) {
+             return 'Apr';
+         } else if(PriorSurgerymonth == 5) {
+             return 'May';
+         } else if(PriorSurgerymonth == 6) {
+             return 'Jun';
+         } else if(PriorSurgerymonth == 7) {
+             return 'Jul';
+         } else if(PriorSurgerymonth == 8) {
+             return 'Aug';
+         } else if(PriorSurgerymonth == 9) {
+             return 'Sep';
+         } else if(PriorSurgerymonth == 10) {
+             return 'Oct';
+         } else if(PriorSurgerymonth == 11) {
+             return 'Nov';
+         } else if(PriorSurgerymonth == 12) {
+         return 'Dec';
+        }
+    }
+
 })
 
 .service('CustomCalendarMonth', function(){

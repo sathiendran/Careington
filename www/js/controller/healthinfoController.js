@@ -1,9 +1,10 @@
 angular.module('starter.controllers')
 
-.controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading) {
+.controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService) {
 
   $rootScope.couserdetails=false;
   $rootScope.dupcouser=false;
+  $rootScope.showNewSurgeryAdd = false;
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -125,7 +126,7 @@ $scope.maximum= datemax;
         edittextarea.removeClass('textdata');
         editsvalues.addClass('editdata');
         edittextarea.addClass('editdata');
-        $scope.healthInfoModel.userDOB = $rootScope.userDOB;
+        $scope.healthInfoModel.userDOB = new Date($rootScope.userDOB);
     }
 
     //$scope.healthInfo = {};
@@ -371,6 +372,7 @@ $scope.maximum= datemax;
                 $rootScope.patientmedicalConditions = $rootScope.PatientMedicalProfileList[0].medicalConditions;
                 $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
                 $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
+                $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
                 // var patientmedical=$scope.PatientMedicalProfileList;
                 //var medicationvalues=patientmedical[0].medications;
             },
@@ -886,6 +888,7 @@ $scope.maximum= datemax;
 
 
     }
+
     $scope.OnSelectChronicCondition = function(chronic) {
         if (chronic.checked === true) {
             $rootScope.checkedChronic++;
@@ -999,6 +1002,140 @@ $scope.maximum= datemax;
             $scope.cancelshow = true;
     };
 
+    $scope.surgery = {};
+    $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+    $scope.showSurgeryPopup = function(){
+        $ionicModal.fromTemplateUrl('templates/tab-surgeries.html', {
+            scope: $scope,
+            animation: 'slide-in-up',
+            focusFirstInput: false,
+            backdropClickToClose: false
+        }).then(function(modal) {
+
+            $scope.modal = modal;
+            $scope.surgery.name = '';
+            $scope.surgery.dateString = '';
+            $scope.surgery.dateStringMonth = '';
+            $scope.surgery.dateStringYear = '';
+            $scope.modal.show();
+            $timeout(function() {
+                $('option').filter(function() {
+                    return this.value.indexOf('?') >= 0;
+                }).remove();
+            }, 100);
+        });
+    };
+
+
+
+    $scope.closeSurgeryPopup = function(model) {
+        $scope.surgery.name;
+        $scope.surgery.dateString;
+        $scope.surgery.dateStringMonthVal = $scope.surgery.dateStringMonth;
+        $scope.surgery.dateStringYearVal = $scope.surgery.dateStringYear;
+        var selectedSurgeryDate = new Date($scope.surgery.dateStringYear, $scope.surgery.dateStringMonth - 1, 01);
+        $scope.surgery.dateString = selectedSurgeryDate;
+        var patientBirthDateStr = new Date($rootScope.PatientAge);
+
+        var isSurgeryDateValid = true;
+        if (selectedSurgeryDate < patientBirthDateStr) {
+            isSurgeryDateValid = false;
+        }
+        var today = new Date();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        var isSurgeryDateIsFuture = true;
+        if ($scope.surgery.dateStringYear === yyyy) {
+            if ($scope.surgery.dateStringMonth > mm) {
+                var isSurgeryDateIsFuture = false;
+            }
+        }
+
+        if ($scope.surgery.name == '' || $scope.surgery.name == undefined) {
+            $scope.ErrorMessage = "Please provide a name/description for this surgery";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
+            $scope.ErrorMessage = "Please enter the date as MM/YYYY";
+            $rootScope.Validation($scope.ErrorMessage);
+        }else if(!isSurgeryDateValid){
+            $scope.ErrorMessage = "Surgery date should not be before your birthdate";
+			$rootScope.Validation($scope.ErrorMessage);
+        } else if (!isSurgeryDateIsFuture) {
+            $scope.ErrorMessage = "Surgery date should not be the future Date";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else {
+            $scope.newSurgery = {'Description': $scope.surgery.name, 'Month' : $scope.surgery.dateStringMonthVal, 'Year' : $scope.surgery.dateStringYearVal};
+            $rootScope.patientmedicalsurgeries.push($scope.newSurgery);
+            $scope.isToHideModal = false;
+            if($rootScope.patientmedicalsurgeries.length == 3)
+                $scope.isToHideModal = true;
+            $scope.surgery = {};
+            $rootScope.showNewSurgeryAdd = false;
+            $scope.updateMedicalProfile($scope.isToHideModal);
+        }
+    }
+
+    $scope.updateMedicalProfile = function(hide){
+        var params = {
+
+            accessToken: $rootScope.accessToken,
+            MedicationAllergies: $rootScope.patientmedicationsallergies,
+            Surgeries: $rootScope.patientmedicalsurgeries,
+            MedicalConditions: $rootScope.ChronicupdateList,
+            Medications: $rootScope.patientmedications,
+            InfantData: $scope.InfantData,
+            PatientId: $rootScope.patientId,
+            success: function(data) {
+
+                $scope.health();
+                $timeout(function() {
+                    $('option').filter(function() {
+                        return this.value.indexOf('?') >= 0;
+                    }).remove();
+                }, 100);
+                if(hide){
+                    $scope.modal.hide();
+                }
+
+            },
+            error: function(data) {
+                $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
+            }
+        };
+
+        LoginService.putPatientMedicalProfile(params);
+    };
+
+    $scope.hideSurgeryPopup = function(model) {
+        $scope.modal.hide();
+        $rootScope.showNewSurgeryAdd = false;
+    };
+
+    //$scope.CustomCalendar = CustomCalendar;
+
+    $scope.getMonthName = function(month){
+        var monthName = CustomCalendar.getMonthName(month);
+        return monthName;
+    };
+
+    $scope.showNewSurgeryAddScreen = function(){
+        $rootScope.showNewSurgeryAdd = true;
+    };
+
+    $scope.removeSurgeryItem = function(index){
+        $rootScope.patientmedicalsurgeries.splice(index, 1);
+        $scope.isToHideModal = false;
+        if($rootScope.patientmedicalsurgeries.length == 3)
+            $scope.isToHideModal = true;
+        $scope.updateMedicalProfile($scope.isToHideModal);
+    };
+
+    $scope.removePriorSurgeries = function(index, item) {
+        $rootScope.patientSurgeriess.splice(index, 1);
+        var indexPos = $rootScope.patientSurgeriess.indexOf(item);
+        $rootScope.IsToPriorCount--;
+        //console.log($rootScope.IsToPriorCount--);
+    }
 
  $scope.$watch('healthInfoModel.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
@@ -1159,5 +1296,10 @@ $scope.maximum= datemax;
            }
        }
     };
+    $timeout(function() {
+        $('option').filter(function() {
+            return this.value.indexOf('?') >= 0;
+        }).remove();
+    }, 100);
 
 });
