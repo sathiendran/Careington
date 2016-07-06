@@ -110,7 +110,7 @@
       <div class="col col-50">
          <span class="input-label labelcolor" style="float: left;"> <i class="ion-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
       </div>
-      <div class="col col-50">
+      <div class="col col-50" style="font-size: 20px;">
           <input type="radio" name="depgender" ng-model="gender"  value="M" ng-checked="isCheckedMale" /> Male
           <input type="radio" name="depgender"  ng-model="gender"  value="F" ng-checked="isCheckedFeMale" /> FeMale
 
@@ -175,7 +175,7 @@
      <i class="iconsize ion-location"></i><b class="formlabel">Home Address</b></span>
    </div>
     <div class="col col-50">
-			  <ion-google-place style="line-height:25px; font-size: 17px;" placeholder="Full Address" ng-model="addNewDependent.homeadd" />
+			  <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" />
      <!--<textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>-->
     </div>
 </div>
@@ -270,7 +270,7 @@
 
 
 <ion-footer-bar class="bar bar-footer footerrsheight" style="background-color:#dddddd;" ng-hide="tempfooter">
-  <p class="alterfooter">Please Complete
+  <p class="alterfooter">Please Complete</br>
   All Required Fields</p>
 </ion-footer-bar>
 

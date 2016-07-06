@@ -5025,9 +5025,10 @@ color: white;
 .alterfooter{
    font-size: 20px;
    font-family: Glober Bold;
-   width: 170px;
+   //width: 170px;
+   width: 100%;
    text-align: center;
-   margin-left: 80px;
+  // margin-left: 80px;
    color: #868686;
    word-wrap: break-word;
    margin-top: 15px;
@@ -5227,7 +5228,7 @@ color: white;
       width: 145px;
      }
 .textdata{
-    font-size:17px;
+    font-size:20px;
     color: #7c7c7c;
     background-color: #e9e9e9;
   }
@@ -7190,5 +7191,8 @@ Pagination Styles
   position: relative;
 }
 .coUserAddress-IOS {
-  line-height:25px; font-size: 20px;
+  line-height:25px !important; font-size: 20px !important;
+}
+.addUser-IOS {
+  color: #888 !important; margin-left: 53px;
 }
