@@ -9199,6 +9199,12 @@ html, body {
   padding-top: 40px;
   margin-bottom: 50px; }
 
+.item-input .ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: normal; }
+
 .button.button-positive.button-outline {
   background-color: #9BCA82;
   border-color: #9BCA82;
@@ -9314,7 +9320,7 @@ html, body {
 		}*/ }
 
 .header_imageAndroid {
-  margin-top: 35px;
+  margin-top: 24px;
   text-align: center;
   width: 100%;
   border-color: #B03A21;
@@ -9486,6 +9492,9 @@ html, body {
   line-height: 28px;
   padding-right: 4px; }
 
+.centerIntake-IOS {
+  left: -12px; }
+
 .title_patientIOS {
   font-family: "Glober SemiBold";
   font-weight: bold;
@@ -9493,9 +9502,9 @@ html, body {
   /*@include font($fontFamily_xBold, bold,30px);*/
   color: #fff;
   text-align: center;
-  left: 0px;
+  left: 15px;
   right: 0px;
-  /* height: 45px;*/
+  height: 45px;
   /*line-height: 61px;*/
   /*margin: 7px 10px;*/
   min-width: 30px;
@@ -9908,6 +9917,10 @@ html, body {
 
 .labelfont {
   font-size: 17px; }
+
+.optionselect {
+  border: none;
+  width: 90%; }
 
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
@@ -10543,7 +10556,8 @@ select {
         margin-bottom: 2px;
         width: 100%;
         position: relative;
-        top: -6px; }
+        top: -6px;
+        padding-top: 5px; }
       .ConcernsContent .PrimaryList .PrimaryContent p {
         margin-left: 19px;
         margin-bottom: 10px;
@@ -10608,6 +10622,12 @@ select {
         margin-right: -1px;
         margin-top: 10px; }
 
+.searchdata {
+  text-align: center;
+  font-family: Glober Bold;
+  font-size: 20px;
+  margin-top: 51px; }
+
 .platform-ios .ConcernsFooter {
   opacity: 2;
   font-weight: 600; }
@@ -10653,7 +10673,7 @@ select {
     top: -7px; }
     .ConcernsFooter .FooterRight .ion-chevron-right:before {
       content: "\f125";
-      font-size: 22px;
+      font-size: 22px !important;
       margin-top: -2px; }
     .ConcernsFooter .FooterRight a {
       cursor: pointer;
@@ -10867,7 +10887,9 @@ select {
   width: 73px;
   padding: 0px;
   background-color: #f3f2ea;
-  height: 50px; }
+  height: 50px;
+  margin-top: 0px !important;
+  margin-left: 0px !important; }
 
 .moretab {
   max-width: 20% !important;
@@ -10919,7 +10941,7 @@ select {
   background-color: rgba(12, 96, 238, 0.78);
   margin-left: -5px;
   margin-right: -4px;
-  margin-top: -5px;
+  margin-top: -5px !important;
   margin-bottom: -5px;
   color: white; }
 
@@ -10991,7 +11013,8 @@ select {
         color: #B2B2B2; }
 
 .UserHomeIcon {
-  margin-top: 15px; }
+  color: #888;
+  margin-top: -34px; }
 
 .UserNeeds {
   border-bottom: 1px solid #9D9E9C; }
@@ -11070,7 +11093,7 @@ a {
 .bar-TitleLess-IOS {
   display: block;
   background-color: #EFEFED;
-  height: 63px;
+  height: 70px;
   margin-top: 144px; }
 
 .bar-TitleLess-terms-Android {
@@ -11149,7 +11172,7 @@ a {
 
 .bar .buttons > .button {
   min-height: 31px;
-  line-height: 35px;
+  line-height: 45px;
   color: #fff;
   position: relative;
   top: -4px; }
@@ -11185,7 +11208,7 @@ a {
   border-color: #5D5959 !important; }
 
 .appiconcontent {
-  margin-top: 165px; }
+  margin-top: 212px; }
 
 .avatpad {
   padding: 14px !important; }
@@ -11247,14 +11270,15 @@ a {
   font-size: 18px !important; }
 
 .healthhead {
+  margin-top: 26px;
   text-align: center;
   color: #6c6c6c;
-  font-size: 21px;
-  font-family: Glober Bold; }
+  font-size: 25px;
+  font-family: Glober SemiBold; }
 
 .appmarg {
   float: right;
-  margin-top: -4px;
+  margin-top: 0px;
   font-size: 18px !important; }
 
 .pathead {
@@ -11322,7 +11346,7 @@ a {
   font-family: "Glober Regular"; }
 
 .ContentUserHome {
-  margin: 70px 0 0 0;
+  margin: 77px 0 0 0;
   font-family: "Glober Regular";
   border-top: 1px solid #C4C5C3; }
 
@@ -11670,8 +11694,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -moz-box-flex: 0;
   -moz-flex: 0 0 60%;
   -ms-flex: 0 0 60%;
-  flex: 0 0 60%;
-  max-width: 80%; }
+  flex: 0 0 60%; }
 
 .validated error {
   -webkit-box-flex: 0;
@@ -11685,6 +11708,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .item-radio input:checked ~ .radio-icon {
   visibility: visible;
   color: red; }
+
+#healthInfoDOB {
+  line-height: 20px; }
 
 .ellipsis {
   text-overflow: ellipsis;
@@ -12066,8 +12092,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 18px;
   text-align: center;
   width: 100%;
-  margin-left: 32px;
-  margin-top: 12px; }
+  /*margin-left: 32px;*/
+  margin-top: 13px; }
 
 .HeaderListAndroid {
   font-size: 20px;
@@ -12086,6 +12112,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
   height: 87%; }
 
 #BackButtonIcon {
+  color: #000;
+  font-size: 12px !important;
+  margin-top: 15px;
+  display: block !important; }
+
+#SearchBackButtonIcon {
   color: #000;
   font-size: 12px !important;
   margin-top: 15px;
@@ -12188,7 +12220,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .passwordSubHeader {
   height: auto;
   line-height: 1.0em;
-  padding-top: 47px; }
+  padding-top: 47px;
+  box-shadow: 0px 3px 3px #ADABAB;
+  -moz-box-shadow: 0px 3px 3px #ADABAB;
+  -webkit-box-shadow: 0px 3px 3px #ADABAB; }
 
 .consentIAgree {
   position: relative;
@@ -12504,8 +12539,7 @@ input, button, select, textarea {
   color: #616462;
   font-weight: bold;
   font-size: 19px;
-  position: relative;
-  top: 40px; }
+  top: 90px; }
 
 .dobRequired {
   color: #AAA;
@@ -12581,7 +12615,7 @@ input, button, select, textarea {
   -webkit-box-shadow: 0px 3px 3px #ADABAB !important; }
 
 .bar .buttons > .button {
-  line-height: 35px; }
+  line-height: 45px; }
 
 .button-rounded {
   display: block;
@@ -12606,8 +12640,18 @@ input, button, select, textarea {
   color: #b2b2b2;
   font-size: 14px; }
 
-.usercontent {
-  margin-top: 170px !important; }
+.usercontent-IOS {
+  margin-top: 210px; }
+
+.usercontent-Android {
+  margin-top: 210px; }
+
+.healthcontentsearch-Android {
+  margin-top: 108px; }
+
+.healthcontentsearch-IOS {
+  position: relative;
+  top: 168px; }
 
 .userappcontent {
   margin-top: 170px !important; }
@@ -12619,7 +12663,7 @@ input, button, select, textarea {
   margin-left: -18px; }
   .profileSpan .profileicon {
     margin-left: -18px;
-    font-size: 26px; }
+    font-size: 36px; }
 
 .content {
   margin-left: 38px;
@@ -12708,8 +12752,8 @@ input, button, select, textarea {
 
 #centercolor {
   color: white;
-  margin-top: 20px !important;
-  font-size: 20px;
+  margin-top: 15px !important;
+  font-size: 22px;
   font-family: Glober Bold; }
 
 .userionitem {
@@ -12788,7 +12832,7 @@ input, button, select, textarea {
 .appalignrighticon {
   margin-left: 42px;
   color: #fff;
-  font-size: 13px; }
+  font-size: 15px; }
 
 .aslignspan {
   margin-left: 3px; }
@@ -12797,14 +12841,17 @@ input, button, select, textarea {
   float: right;
   color: white;
   margin-top: 3px;
-  font-size: 12px !important; }
+  font-size: 12px !important;
+  text-align: right; }
 
 .typealign {
   margin-left: 54px; }
 
 .labelcolor {
   color: #cccccc;
-  margin-left: 5px; }
+  margin-left: 5px;
+  width: 45%;
+  max-width: 50%; }
   .labelcolor .iconsize {
     font-size: 25px; }
 
@@ -12873,7 +12920,8 @@ hr {
   line-height: 1.5; }
 
 .chronic {
-  margin-top: 12px; }
+  margin-top: 12px;
+  left: 15px; }
 
 .h4align {
   margin-top: -3px !important;
@@ -12886,7 +12934,16 @@ hr {
 .editicons {
   float: right;
   margin-right: 16px;
-  margin-top: -22px; }
+  margin-top: -32px; }
+
+.closeicon {
+  float: right;
+  color: #888 !important; }
+
+.contright {
+  float: right; }
+  .contright .ion-chevron-right:before {
+    font-size: 12px !important; }
 
 .currentedit {
   float: right;
@@ -12972,7 +13029,7 @@ hr {
   right: 0; }
 
 .appth3 {
-  margin: 20px 0px 0px 0px; }
+  margin: 20px 0px 0px 0px !important; }
 
 .list .archieve {
   background-color: rgba(12, 96, 238, 0.78);
@@ -13005,12 +13062,19 @@ hr {
   margin-top: -9px;
   margin-left: -19px; }
 
+.list .aligncenicon {
+  margin-left: 22px;
+  margin-top: 13px; }
+
 .list .unlink {
-  margin-left: 7px;
-  /* margin-top: 28px; */
+  margin-left: 4px !important;
+  margin-top: -5px !important;
   margin-bottom: -5px;
   color: white;
   background-color: red !important; }
+
+.list .icons {
+  margin-left: 12px; }
 
 .list .tabicon {
   margin-left: 22px;
@@ -13099,6 +13163,9 @@ hr {
     .list .tabvalue p .avaticon {
       margin-left: -14px;
       color: rgba(250, 130, 69, 0.32) !important; }
+
+.list .list:last-child {
+  padding-bottom: 150px !important; }
 
 .list .consimg {
   max-width: 30px !important;
@@ -13268,7 +13335,7 @@ hr {
     font-size: 15px; } }
 
 .ioncontentalign {
-  margin-top: 192px; }
+  margin-top: 200px; }
 
 .ioncontentsalign {
   margin-top: 200px; }
@@ -13279,7 +13346,7 @@ hr {
 
 .headerrighticon {
   border: 1px solid #888;
-  border-radius: 50%;
+  border-radius: 65%;
   padding-left: 5px;
   padding-right: 6px;
   padding-top: 5px;
@@ -13289,7 +13356,7 @@ hr {
 
 .headerlefticons {
   border: 1px solid #888;
-  border-radius: 50%;
+  border-radius: 65%;
   padding-left: 7px;
   padding-right: 8px;
   padding-top: 6px;
@@ -13298,6 +13365,10 @@ hr {
   color: #888; }
 
 @media (max-width: 481px) and (min-width: 322px) {
+  .dependusers:last-child {
+    padding-bottom: 200px; }
+  .password_home_top {
+    margin-top: -110px !important; }
   .tabs-top > .tabs, .tabs.tabs-top {
     top: inherit !important; }
   .useracctheader {
@@ -13314,6 +13385,8 @@ hr {
     top: 3px;
     right: 90px;
     z-index: 10; }
+  .sidemenu {
+    bottom: 60px !important; }
   .searchcontent {
     margin-top: 84px; }
   .lefthome {
@@ -13334,15 +13407,15 @@ hr {
   .consultcontent {
     margin-top: 102px; }
   .paticoncontent {
-    margin-top: 117px; }
+    margin-top: 194px; }
   .addphoto {
     width: 38%; }
   .relatedfont {
     margin-top: -9px; }
   .appfloat {
     margin-top: 0px !important; }
-    .appfloat .ion-chevron-right:before {
-      font-size: 14px !important; }
+  .appfloat .ion-chevron-right:before {
+    font-size: 14px !important; }
   .archeight {
     height: 75px; }
   .appmarg .ion-chevron-right:before {
@@ -13357,11 +13430,11 @@ hr {
   .footerrsheight {
     height: 80px !important;
     background-image: none; }
-    .footerrsheight #centercolor {
-      color: white;
-      margin-top: 20px !important;
-      font-size: 21px;
-      font-family: Glober Bold; }
+  .footerrsheight #centercolor {
+    color: white;
+    margin-top: 20px !important;
+    font-size: 21px;
+    font-family: Glober Bold; }
   .userappheight {
     margin-top: 15px !important;
     height: 47px !important; }
@@ -13386,8 +13459,6 @@ hr {
     font-size: 14px !important;
     color: #888;
     font-family: Glober SemiBold; }
-  .usercontent {
-    margin-top: 111px !important; }
   .appth3 {
     margin: 20px 0px 0px 0px !important; }
   .rightpatient {
@@ -13399,8 +13470,8 @@ hr {
   .useracctheader {
     margin-left: 12px; }
   /*   .has-header{
-            top:104px;
-         }*/
+              top:104px;
+           }*/
   .useraddcontent {
     margin-top: 5px !important; }
   .itemclass {
@@ -13409,7 +13480,7 @@ hr {
     height: 140px; }
   .item-text-wrap {
     margin-top: -13px; }
-  alignedchronic {
+  .alignedchronic {
     margin-right: 40px !important; }
   .newcard {
     margin: 42px 10px !important;
@@ -13426,25 +13497,46 @@ hr {
   .userdetcontent {
     margin-top: 58px !important; }
   .ioncontentalign {
-    margin-top: 160px; }
+    margin-top: 200px; }
   .ioncontentsalign {
     margin-top: 165px; }
   .item-input .inputtext {
     max-width: 100%; }
-  /*  .valhome{
-            margin-left:36px;
-          }
-          .valorg{
-             margin-left:24px;
-          }
-         .valtex {
-             margin-left:32px;
-             color: #888;
-             width: 145px;
-             font-size: 15px;
-         }*/
-  .has-header {
-    top: 90px; } }
+  /*.has-header {
+      top: 90px; }*/
+  .ContentUserHome {
+    font-family: "Glober Regular";
+    border-top: 1px solid #C4C5C3; }
+  /*  .ContentList_provider-Android {
+      margin: 110px 0 0 0;
+      background-color: #EFEFED;
+    }*/
+  .userdeptcontent {
+    margin-top: 120px !important; }
+  .userdetcontent {
+    margin-top: 58px !important; }
+  .ioncontentalign {
+    margin-top: 200px; }
+  .ioncontentsalign {
+    margin-top: 165px; }
+  .item-input .inputtext {
+    max-width: 100%; }
+  .item-input .valhome {
+    margin-left: 36px; }
+  .item-input .valorg {
+    margin-left: 24px; }
+  .item-input .valtex {
+    margin-left: 32px;
+    color: #888;
+    width: 145px;
+    font-size: 15px; }
+  .header_imageAndroid {
+    margin-top: 20px; }
+  .password_sub_headerAndroid {
+    margin-top: 54px;
+    color: #A80532; }
+  .consultcontentsearch {
+    margin-top: 26px; } }
 
 @media (max-width: 640px) and (min-width: 482px) {
   .addphoto {
@@ -13463,11 +13555,10 @@ hr {
   .userdetcontent {
     margin-top: 138px !important; }
   .ioncontentalign {
-    margin-top: 192px; }
+    margin-top: 200px; }
   .ioncontentsalign {
     margin-top: 185px; }
   .valuealign {
-    margin-left: 70px;
     color: #888; }
   .genderclass {
     margin-left: 70px; }
@@ -13478,10 +13569,14 @@ hr {
     font-size: 15px; } }
 
 @media (max-width: 768px) and (min-width: 641px) {
+  /* .ContentUserHome {
+       	margin:45px 0 0 0;}*/
   .addphoto {
     width: 44%; }
+  .usercontent-IOS {
+    margin-top: 300px; }
   .alignchronic {
-    margin-left: 345px !important; }
+    margin-left: 235px !important; }
   .topimage {
     position: absolute;
     top: 9px;
@@ -13496,11 +13591,10 @@ hr {
   .userdeptcontent {
     margin-top: 155px !important; }
   .ioncontentalign {
-    margin-top: 192px; }
+    margin-top: 200px; }
   .ioncontentsalign {
     margin-top: 185px; }
   .valuealign {
-    margin-left: 92px;
     color: #888; }
   .valtex {
     margin-left: 92px;
@@ -13509,8 +13603,6 @@ hr {
     font-size: 15px; } }
 
 @media (min-width: 770px) and (max-width: 1024px) {
-  .usercontent {
-    margin-top: 177px !important; }
   .usercard {
     margin: 90px 10px !important; }
   .userlist {
@@ -13522,11 +13614,10 @@ hr {
   .userdetcontent {
     margin-top: 138px !important; }
   .ioncontentalign {
-    margin-top: 195px; }
+    margin-top: 200px; }
   .ioncontentsalign {
     margin-top: 185px; }
   .valuealign {
-    margin-left: 108px;
     color: #888; }
   .valtex {
     margin-left: 109px;
@@ -13571,7 +13662,7 @@ hr {
      }*/
 .deptlist:last-child {
   margin-bottom: 130px;
-  padding-bottom: 85px; }
+  padding-bottom: 140px !important; }
 
 .footerrsheight {
   height: 80px !important;
@@ -13586,7 +13677,10 @@ hr {
   margin-left: -32px !important; }
 
 .consultcontent {
-  margin-top: 105px; }
+  margin-top: 210px; }
+
+.consultsearchcontent {
+  margin-top: 120px; }
 
 .dsheader {
   margin-left: 3px; }
@@ -13778,7 +13872,6 @@ top: inherit !important;
   display: none; }
 
 .tabheading {
-  padding: 2px 14px !important;
   font-size: 14px;
   line-height: 2.4; }
 
@@ -13815,7 +13908,10 @@ top: inherit !important;
   font-family: Glober Regular;
   float: right;
   margin-right: 8px;
-  font-weight: normal; }
+  font-weight: normal;
+  padding: 7px;
+  position: relative;
+  top: -7px; }
 
 .headerleftval {
   color: white;
@@ -13837,11 +13933,14 @@ top: inherit !important;
   color: #696969;
   font-size: 18px; }
 
+.ion-close-round:before {
+  color: #888484 !important; }
+
 .csubheader {
   margin-top: 20px;
-  height: 131px;
-  border-bottom: 1.5px solid #b5b5b5;
-  border-image: none; }
+  border-bottom: none;
+  border-image: none;
+  background-image: none; }
 
 .searchsubheader {
   margin-top: 23px;
@@ -13868,8 +13967,7 @@ top: inherit !important;
   color: #616161; }
 
 .rghticon {
-  color: #616161;
-  float: right; }
+  color: #616161; }
 
 .rowalign {
   padding: 0px;
@@ -13880,12 +13978,12 @@ top: inherit !important;
   color: #616161;
   margin-left: 15px; }
 
-.csearch {
+.csearch-Android {
   background-color: #e8e8e8;
   height: 27px;
   border-radius: 5px;
-  margin-top: 10px; }
-  .csearch .hsearch {
+  margin-top: 80px; }
+  .csearch-Android .hsearch {
     text-align: center;
     line-height: 2;
     font-size: 16px;
@@ -13911,7 +14009,7 @@ top: inherit !important;
   margin-left: 3px; }
 
 .ion-chevron-right:before {
-  font-size: 10px !important; }
+  font-size: 17px !important; }
 
 .cardshadow {
   box-shadow: 0 1px 3px transparent !important; }
@@ -13926,12 +14024,12 @@ top: inherit !important;
   background-color: #e9e9e9; }
 
 .coldate {
-  width: 80px;
+  width: 86px;
   margin-left: -10px;
   margin-top: -4px; }
 
 .coltime {
-  max-width: 65px;
+  max-width: 71px;
   margin-left: 10px;
   margin-top: -4px; }
 
@@ -13951,10 +14049,10 @@ top: inherit !important;
   background-color: #e9e9e9; }
 
 .profilecontent {
-  margin-top: 122px; }
+  margin-top: 160px; }
 
 .relatedusercontent {
-  margin-top: 150px; }
+  margin-top: 200px; }
 
 .usercard {
   margin: 38px 10px !important; }
@@ -14002,10 +14100,10 @@ top: inherit !important;
   line-height: 16px; }
 
 .item-input .valuealign {
-  margin-left: 43px; }
+  margin-left: 45px; }
 
 .item-input .valtex {
-  margin-left: 41px;
+  margin-left: 2px;
   width: 145px; }
 
 .item-input .textdata {
@@ -14016,13 +14114,20 @@ top: inherit !important;
 .item-input .valhome {
   margin-left: 43px; }
 
+.item-input .valhomephone {
+  margin-left: 15px; }
+
+.item-input .valmobile {
+  margin-left: 41px; }
+
 .item-input .valorg {
-  margin-left: 28px; }
+  margin-left: 8px; }
 
 .item-input .editdata {
-  font-size: 12px;
+  font-size: 20px;
   color: #7c7c7c;
-  background-color: #e9e9e9; }
+  background-color: #e9e9e9 !important;
+  width: 90%; }
 
 .itemtab .genderclass {
   margin-left: 45px; }
@@ -14031,12 +14136,11 @@ top: inherit !important;
 .sideMenu {
   bottom: 0;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  bottom: 60px; }
 
 /*End SideMenu by Poomani*/
 @media only screen and (min-device-width: 710px) and (max-device-width: 1280px) {
-  .usercontent {
-    margin-top: 100px !important; }
   .footerstyle {
     height: 70px !important; } }
 
@@ -14051,8 +14155,6 @@ top: inherit !important;
     margin-left: 32px !important; }
   .chronic {
     margin-top: 19px; }
-  .usercontent {
-    margin-top: 120px !important; }
   .userappcontent {
     margin-top: 177px !important; }
   .aptviewicons {
@@ -14102,7 +14204,7 @@ top: inherit !important;
   .profilecontent {
     margin-top: 187px; }
   .paticoncontent {
-    margin-top: 170px; }
+    margin-top: 180px; }
   .apptdetails {
     background-color: #ffc900;
     height: 123px;
@@ -14132,7 +14234,7 @@ top: inherit !important;
   .appalignrighticon {
     margin-left: 210px;
     color: #fff;
-    font-size: 13px; }
+    font-size: 15px; }
   .appfloat {
     float: right;
     margin-top: -12px;
@@ -14142,7 +14244,7 @@ top: inherit !important;
   .newusercontent {
     margin-top: 170px; }
   .appiconcontent {
-    margin-top: 217px; }
+    margin-top: 212px; }
   .alignchronic {
     font-size: 22px !important;
     font-family: "Glober Bold";
@@ -14150,9 +14252,9 @@ top: inherit !important;
     text-align: center;
     margin-left: 0px; }
   .headerprovider {
-    margin-left: 65px !important; }
+    margin-left: 57px !important; }
   .coldetails {
-    margin-left: 61px; }
+    margin-left: 45px; }
   .vreport {
     margin-left: 60px; }
   .rghticon {
@@ -14217,7 +14319,7 @@ top: inherit !important;
 
 .searchstyle {
   margin-top: 20px;
-  height: 90px;
+  height: auto;
   border-bottom: 1.5px solid #b5b5b5;
   border-image: none; }
 
@@ -14641,36 +14743,35 @@ top: inherit !important;
     font-size: 23px;
     color: #666666; }
 
-.usercontent {
-  margin-top: 30px; }
-  .usercontent label {
+.usercontent label {
+  background-color: #e3e4e6;
+  color: #444444;
+  margin-top: 2px;
+  margin-bottom: -2px; }
+
+.usercontent .item-input-inset {
+  padding-bottom: -4px !important; }
+  .usercontent .item-input-inset input {
     background-color: #e3e4e6;
-    color: #444444;
-    margin-top: 2px;
-    margin-bottom: -2px; }
-  .usercontent .item-input-inset {
-    padding-bottom: -4px !important; }
-    .usercontent .item-input-inset input {
-      background-color: #e3e4e6;
-      text-align: center;
-      width: 100%;
-      font-family: "Glober SemiBold";
-      font-weight: bold;
-      font-size: 14px;
-      color: #8e8e93;
-      padding-top: 5px !important;
-      height: 28px; }
-    .usercontent .item-input-inset i {
-      position: fixed;
-      text-align: center;
-      width: 100%;
-      margin-top: 4px;
-      padding-right: 100px;
-      font-size: 16px;
-      color: #8e8e93;
-      padding-top: 1px !important; }
-    .usercontent .item-input-inset input::-webkit-input-placeholder {
-      color: #8e8e93; }
+    text-align: center;
+    width: 100%;
+    font-family: "Glober SemiBold";
+    font-weight: bold;
+    font-size: 14px;
+    color: #8e8e93;
+    padding-top: 5px !important;
+    height: 28px; }
+  .usercontent .item-input-inset i {
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    margin-top: 4px;
+    padding-right: 100px;
+    font-size: 16px;
+    color: #8e8e93;
+    padding-top: 1px !important; }
+  .usercontent .item-input-inset input::-webkit-input-placeholder {
+    color: #8e8e93; }
 
 .userlist a:first-child {
   border-top: 2px solid #979797; }
@@ -15628,3 +15729,86 @@ Pagination Styles
 .loading-container .loading {
   background-color: #000000 !important;
   opacity: 1 !important; }
+
+.accountHeader-IOS {
+  position: relative;
+  top: -13px; }
+
+.accountCancel-IOS {
+  position: relative;
+  top: -13px; }
+
+.userTit-IOS {
+  margin-top: 25px;
+  height: auto; }
+
+.DOBClass-IOS {
+  width: 55%; }
+
+.DOBClass-Android {
+  width: 55%; }
+
+.healthTextArea-IOS {
+  margin-left: 0px; }
+
+.healthTitle-IOS {
+  margin-top: 13px !important; }
+
+.healthTitle-Android {
+  margin-top: 22px !important; }
+
+.healthViewDetails {
+  width: 55%;
+  white-space: normal;
+  font-size: 20px; }
+
+.subHeadIcons {
+  position: relative;
+  top: 5px; }
+
+.ioncontentalign textarea, .ioncontentalign input[type="text"], .ioncontentalign input[type="password"], .ioncontentalign input[type="datetime"], .ioncontentalign input[type="datetime-local"], .ioncontentalign input[type="date"], .ioncontentalign input[type="month"], .ioncontentalign input[type="time"], .ioncontentalign input[type="week"], .ioncontentalign input[type="number"], .ioncontentalign input[type="email"], .ioncontentalign input[type="url"], .ioncontentalign input[type="search"], .ioncontentalign input[type="tel"], .ioncontentalign input[type="color"] {
+  padding: 5px 0 0 5px; }
+
+.HealthTitle-IOS {
+  left: -28px;
+  position: relative; }
+
+.HealthTitle-Android {
+  left: -28px;
+  position: relative; }
+
+.healthLeft-IOS {
+  top: -29px !important; }
+
+.healthLeft-Android {
+  top: -29px !important; }
+
+.searchListHead-IOS {
+  position: relative;
+  top: 25px !important; }
+
+.subName-IOS {
+  margin-top: 18px !important; }
+
+.searchListSubHead-IOS {
+  margin-top: 17px;
+  padding-bottom: 10px; }
+
+.currentSearchBox-IOS {
+  text-align: center; }
+
+.searchCancel-IOS {
+  position: relative;
+  top: -22px !important; }
+
+.searchCancel-Android {
+  position: relative;
+  top: -22px !important; }
+
+.userContent-IOS {
+  margin-top: 160px !important; }
+
+.accountAppointview-IOS {
+  position: relative;
+  margin-top: -26px;
+  text-align: right; }
