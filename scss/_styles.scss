@@ -968,6 +968,8 @@ html, body { background: transparent !important; }
 .optionselect{
   border:none;
   width: 90%;
+  color: #7c7c7c;
+background-color: #e9e9e9;
 }
 //Consult Charge page
 
@@ -4546,7 +4548,7 @@ p{
       color: white;
       font-size: 22px; }
     .userdeptcontent {
-      margin-top: 120px !important; }
+      margin-top: 160px !important; }
     .userdetcontent {
       margin-top: 58px !important; }
     .ioncontentalign {
@@ -4569,7 +4571,7 @@ p{
     }*/
 
        .userdeptcontent{
-               margin-top:120px !important;
+               margin-top:160px !important;
        }
 
        .userdetcontent{
@@ -4683,7 +4685,7 @@ p{
              margin-top:138px !important;
          }
          .userdeptcontent {
-              margin-top:155px !important;
+              margin-top:160px !important;
          }
          .ioncontentalign{
              margin-top:200px;
@@ -5195,7 +5197,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:17px;font-family:Glober Semibold;line-height:22px;
+      font-size:20px;font-family:Glober Semibold;line-height:22px;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -5212,7 +5214,7 @@ color: white;
      }
      .homeadd{
          //margin-left:36px;
-        margin-top:10px;font-size:17px;font-family:Glober Semibold;line-height:16px;
+        margin-top:10px;font-size:20px;font-family:Glober Semibold;line-height:16px;
      }
  .valuealign{
   // margin-left:70px;
@@ -5378,7 +5380,7 @@ float: right;
 margin-top: -12px;
 font-size: 18px !important;
 }
-.userdeptcontent { margin-top:155px !important; }
+.userdeptcontent { margin-top:160px !important; }
 .newusercontent{  margin-top: 168px; }
 .appiconcontent {
 margin-top: 212px;
@@ -7182,4 +7184,11 @@ Pagination Styles
   left: -217px;
   font-size: 16px;
   top: -2px;
+}
+.newUserTitle-IOS{
+  left: 10px;
+  position: relative;
+}
+.coUserAddress-IOS {
+  line-height:25px; font-size: 20px;
 }
