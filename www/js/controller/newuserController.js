@@ -122,7 +122,10 @@ angular.module('starter.controllers')
         }
       });*/
 
-
+      $scope.getOnlyNumbers = function(text){
+          var newStr = text.replace(/[^0-9.]/g, "");
+          return newStr;
+      }
     $scope.postNewuserDetails = function() {
         $scope.firstName = $("#userfirstname").val();
         $scope.lastName = $("#userlastname").val();
@@ -231,8 +234,8 @@ angular.module('starter.controllers')
             heightUnit: $scope.heightunit,
             weightUnit: $scope.weightunit,
             address: $scope.homeaddress,
-            homePhone: $scope.homephone,
-            mobilePhone: $scope.mobile,
+            homePhone: $scope.getOnlyNumbers($scope.homephone),
+            mobilePhone: $scope.getOnlyNumbers($scope.mobile),
             dob: $scope.dob,
             gender: $scope.gender,
             organizationName: $scope.coorganization,

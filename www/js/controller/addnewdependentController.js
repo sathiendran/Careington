@@ -71,9 +71,13 @@ angular.module('starter.controllers')
           }
       }
 
+        $scope.getOnlyNumbers = function(text){
+            var newStr = text.replace(/[^0-9.]/g, "");
+            return newStr;
+        }
 
         $scope.addNewDependent = {};
-        $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
+      //  $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
         var newUploadedPhoto;
 
         $('input').blur(function() {
@@ -152,6 +156,7 @@ angular.module('starter.controllers')
             var dependentloc = loc.options[loc.selectedIndex].text;
             $scope.location = dependentloc;
             $scope.locationid = $("#locate").val();
+            $scope.dependentCountry = $("#dependentCountry").val();
             $scope.relation = $("#dependentrelation").val().split("@").slice(0, 1);
             $rootScope.getRelationId = _.first($scope.relation);
             $scope.hairColor = $("#hairColor").val().split("@").slice(0, 1);
@@ -195,7 +200,11 @@ angular.module('starter.controllers')
        else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
            $scope.ErrorMessage = "Please Select Your Gender";
            $rootScope.Validation($scope.ErrorMessage);
-       } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+       } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
+           $scope.ErrorMessage = "Please Choose Your Country";
+           $rootScope.Validation($scope.ErrorMessage);
+       }
+       else if (typeof $scope.height === 'undefined' || $scope.height === '') {
            $scope.ErrorMessage = "Please Enter Your Height";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
@@ -288,8 +297,8 @@ angular.module('starter.controllers')
                     gender: $scope.gender,
                     ethnicity: $scope.getEthnicityId,
                     hairColor: $scope.getHairColorId,
-                    homePhone: $scope.homephone,
-                    mobilePhone: $scope.mobile,
+                    homePhone: $scope.dependentCountry + $scope.getOnlyNumbers($scope.homephone),
+                    mobilePhone: $scope.dependentCountry + $scope.getOnlyNumbers($scope.mobile),
                     schoolName: "",
                     schoolContact: "",
                     primaryPhysician: null,
@@ -308,7 +317,7 @@ angular.module('starter.controllers')
                     location: $scope.location,
                     organizationId: $scope.orgid,
                     locationId: $scope.locationid,
-                    country: "+1"
+                    country: $scope.dependentCountry
                 },
                 TimeZoneId: 2,
                 PatientProfileFieldsTracing: {
