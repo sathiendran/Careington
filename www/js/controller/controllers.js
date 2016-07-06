@@ -469,7 +469,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ReportScreen = " top: 1px; position: relative;";
         $rootScope.PlanDetails = "margin-top: 17px;";
         $rootScope.SubDetailsPlanDetails = "margin-top: -16px;";
-        $rootScope.PatientTitle = "  margin-top: 26px;";
+        $rootScope.PatientTitle = "  margin-top: 26px; margin-left:-15px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";
         $rootScope.PatientConcerns = "margin-top: 90px;";
         $rootScope.GoogleSearchStyle = "top: 24px;";
@@ -513,7 +513,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.FootNextButton = "left: 24px;";
             $rootScope.PriorSurgeryContant = "margin-top: 43px;";
             $rootScope.reportDone = "padding-top: 26px;";
-            $rootScope.reportTitletop = "top:4px !important;";
+            $rootScope.reportTitletop = "top: 14px !important; left: -8px !important;";
             $rootScope.resetContent = "margin: -46px 0 0 0;";
             $rootScope.ConcernFooterNextIOS = "margin-left: -46px !important; left: -16px !important;";
             $rootScope.providerItamMarginTop = "top: 5px;";
