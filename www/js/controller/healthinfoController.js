@@ -88,22 +88,20 @@ angular.module('starter.controllers')
     //  $scope.healthsearchinfo=true;
     //   $scope.healthtab=true;
     $rootScope.flag = true;
-var today=new Date();
-var day = today.getDate();
-var month = today.getMonth() + 1;
-var year = today.getFullYear();
-if(day>=10){
-  var date=day;
-}else{
-  var date="0"+day;
-}
-if(month>=10){
-  var mnth=day;
-}else{
-  var month="0"+month;
-}
-var datemax = year + "/" + month + "/" + date;
-$scope.maximum= datemax;
+    var minDate = new Date();
+    var maxDate = minDate.getDate();
+    var maxMonth = minDate.getMonth() + 1;
+    var maxYear = minDate.getFullYear();
+    if (maxDate < 10) {
+        var maxD = "0" + maxDate;
+    }
+    if (maxMonth < 10) {
+        var maxM = "0" + maxMonth;
+    }
+    var maxDay = maxYear + "-" + maxM + "-" + maxD;
+    var mDate = maxDay;
+    $scope.maxDate1 = mDate;
+    $scope.minimum = "1950-01-01";
 
 
 
