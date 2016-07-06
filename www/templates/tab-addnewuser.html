@@ -63,7 +63,7 @@
          </ion-item>
 
 
-         <ion-item class="iionitem" ng-click="addcouser()">
+        <!-- <ion-item class="iionitem" ng-click="addcouser()">
            <div class="card shadowcard">
               <div class="item item-text-wrap">
                     <div class="" style="text-align:center;">
@@ -85,7 +85,37 @@
 				      </div>
                  </div>
               </div>
-         </ion-item>
+         </ion-item>-->
+
+				 <ion-item class="ionicitem userionitem" ng-click="addcouser()" style="padding: 50px 10px !important;">
+					 <div class="cardshadow">
+						 <div class="item-text-wrap itemtextwap">
+
+								 <h2 class="title alignchronic ChronicCondition" >
+
+									 <span class="content addUser-{{deviceName}}">
+									Invite A Co-User
+									 </span>
+								 </h2>
+
+						 </div>
+					 </div>
+				 </ion-item>
+
+				 <ion-item class="ionicitem userionitem" ng-click="adddependent()" style="padding: 50px 10px !important;">
+					 <div class="cardshadow">
+						 <div class="item-text-wrap itemtextwap">
+
+								 <h2 class="title alignchronic ChronicCondition" >
+
+									 <span class="content addUser-{{deviceName}}">
+								Add A Dependent
+									 </span>
+								 </h2>
+
+						 </div>
+					 </div>
+				 </ion-item>
 
 
 	</ion-list>

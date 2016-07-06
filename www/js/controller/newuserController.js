@@ -161,6 +161,8 @@ angular.module('starter.controllers')
         $scope.weightunit = _.last($scope.sptweightunit);
         $scope.relation = $("#userrelation").val().split("@").slice(0, 1);
         $scope.getRelationId = _.first($scope.relation);
+        $scope.bloodtype = $("#userbloodtype").val().split("@").slice(0, 1);
+        $scope.getBloodtypeId = _.first($scope.bloodtype);
         $scope.hairColor = $("#userhaircolor").val().split("@").slice(0, 1);
         $scope.getHairColorId = _.first($scope.hairColor);
         $scope.eyeColor = $("#usereyecolor").val().split("@").slice(0, 1);
@@ -229,6 +231,10 @@ angular.module('starter.controllers')
             weightUnitId: $scope.weightunitid,
             //photo: $rootScope.newCoUserImagePath,
             photo: "",
+            bloodType: $scope.getBloodtypeId,
+            eyeColor: $scope.getEyeColorId,
+            ethnicity: $scope.getEthnicityId,
+            hairColor: $scope.getHairColorId,
             height: $scope.heights,
             weight: $scope.weight,
             heightUnit: $scope.heightunit,
@@ -274,7 +280,7 @@ angular.module('starter.controllers')
     $scope.cancelcouser = function() {
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
-        $state.go('tab.relatedusers');
+        $state.go('tab.addnewuser');
     }
 
 
