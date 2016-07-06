@@ -156,6 +156,7 @@ angular.module('starter.controllers')
             var dependentloc = loc.options[loc.selectedIndex].text;
             $scope.location = dependentloc;
             $scope.locationid = $("#locate").val();
+            $scope.dependentCountry = $("#dependentCountry").val();
             $scope.relation = $("#dependentrelation").val().split("@").slice(0, 1);
             $rootScope.getRelationId = _.first($scope.relation);
             $scope.hairColor = $("#hairColor").val().split("@").slice(0, 1);
@@ -199,7 +200,11 @@ angular.module('starter.controllers')
        else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
            $scope.ErrorMessage = "Please Select Your Gender";
            $rootScope.Validation($scope.ErrorMessage);
-       } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+       } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
+           $scope.ErrorMessage = "Please Choose Your Country";
+           $rootScope.Validation($scope.ErrorMessage);
+       }
+       else if (typeof $scope.height === 'undefined' || $scope.height === '') {
            $scope.ErrorMessage = "Please Enter Your Height";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
@@ -292,8 +297,8 @@ angular.module('starter.controllers')
                     gender: $scope.gender,
                     ethnicity: $scope.getEthnicityId,
                     hairColor: $scope.getHairColorId,
-                    homePhone: $scope.getOnlyNumbers($scope.homephone),
-                    mobilePhone: $scope.getOnlyNumbers($scope.mobile),
+                    homePhone: $scope.dependentCountry + $scope.getOnlyNumbers($scope.homephone),
+                    mobilePhone: $scope.dependentCountry + $scope.getOnlyNumbers($scope.mobile),
                     schoolName: "",
                     schoolContact: "",
                     primaryPhysician: null,
