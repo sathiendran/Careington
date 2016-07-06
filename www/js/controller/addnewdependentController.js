@@ -1,6 +1,11 @@
 angular.module('starter.controllers')
     .controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate, $log,$window) {
 
+        $timeout(function() {
+            $('option').filter(function() {
+                return this.value.indexOf('?') >= 0;
+            }).remove();
+        }, 100);
       $ionicPlatform.registerBackButtonAction(function(event, $state) {
           if (($rootScope.currState.$current.name === "tab.userhome") ||
               ($rootScope.currState.$current.name === "tab.addCard") ||
