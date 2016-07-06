@@ -4,7 +4,7 @@
       <div class="buttons">
          <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
       </div>
-      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
       <div class="bar bar-subheader csubheader">
          <div class="row">
             <div class="buttons backbtn">
@@ -22,14 +22,15 @@
       </div>
    </ion-header-bar>
    <ion-view title="">
-      <ion-content ng-show="passedsearchshow" class="consultcontentsearch">
-         <div class="csearch">
+      <ion-content ng-show="passedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
+         <div class="csearch-{{deviceName}}">
             <h6 class="hsearch">
                <!-- <i class="icon ion-search fontcolor"></i>
                   <span class="fontcolor">Search</span>-->
                <div class="search_home UserHmeSub concernListSearchHome">
                   <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-                  <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
+                  <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor searchAlign" ng-model="searchQuery" >
+                  <i class="icon ion-search searchIconAlignment-{{deviceName}}"></i>
                   </label>
                </div>
             </h6>
@@ -66,14 +67,15 @@
          </div>
          <div class="searchdata noResult" style="white-space: normal;" ng-show="(Passedconsultations | filter:searchQuery).length==0">No Passed Search Consultations Found</div>
       </ion-content>
-      <ion-content ng-show="missedsearchshow" class="consultcontentsearch">
-         <div class="csearch">
+      <ion-content ng-show="missedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
+         <div class="csearch-{{deviceName}}">
             <h6 class="hsearch">
                <!-- <i class="icon ion-search fontcolor"></i>
                   <span class="fontcolor">Search</span>-->
                <div class="search_home UserHmeSub concernListSearchHome">
                   <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-                  <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
+                  <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor searchAlign" ng-model="searchQuery" >
+                  <i class="icon ion-search searchIconAlignment-{{deviceName}}"></i>
                   </label>
                </div>
             </h6>
@@ -108,14 +110,15 @@
          </div>
          <div class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:searchQuery).length==0">No Missed Search Consultations Found</div>
       </ion-content>
-      <ion-content ng-show="droppedsearchshow" class="consultcontentsearch">
-         <div class="csearch">
+      <ion-content ng-show="droppedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
+         <div class="csearch-{{deviceName}}">
             <h6 class="hsearch">
                <!-- <i class="icon ion-search fontcolor"></i>
                   <span class="fontcolor">Search</span>-->
                <div class="search_home UserHmeSub concernListSearchHome">
                   <label class="item-input popupstyleSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};">
-                  <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor" ng-model="searchQuery" >
+                  <input type="search" placeholder="Search" class="innerSearchPop SearchBox icon ion-search fontcolor searchAlign" ng-model="searchQuery" >
+                  <i class="icon ion-search searchIconAlignment-{{deviceName}}"></i>
                   </label>
                </div>
             </h6>

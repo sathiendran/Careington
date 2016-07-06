@@ -3546,7 +3546,7 @@ LoginService.getScheduledConsulatation(params);
 
                     console.log($rootScope.scheduledList);
                     $rootScope.nextAppointmentDisplay = 'none';
-                    $rootScope.accountClinicianFooter = 'block';
+                  //  $rootScope.accountClinicianFooter = 'block';
 
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
@@ -3561,10 +3561,7 @@ LoginService.getScheduledConsulatation(params);
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
                             $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
-                            if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
-                              $rootScope.nextAppointmentDisplay = 'block';
-                              $rootScope.accountClinicianFooter = 'none';
-                            }
+                            $rootScope.nextAppointmentDisplay = 'block';
                             $rootScope.timerCOlor = '#FEEFE8';
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
@@ -3949,12 +3946,17 @@ LoginService.getScheduledConsulatation(params);
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
                     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    $rootScope.accountClinicianFooter = 'block';
 
                     if ($rootScope.individualScheduledList != '') {
                         //var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
                         //var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
                         var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;
+
+                        if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
+                          $rootScope.accountClinicianFooter = 'none';
+                        }
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
