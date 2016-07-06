@@ -290,12 +290,12 @@ $scope.maximum= datemax;
             },
             success: function(data) {
               $scope.uploadPhotoForExistingPatient();
-                  $rootScope.currentPatientDetails=$rootScope.currentPatientDetails[0];
+                 $rootScope.currentPatientDetails=$rootScope.currentPatientDetails[0];
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
             //    $rootScope.getManageProfile(currentPatientDetails);
-                $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.patientLastName, $rootScope.currentPatientDetails.birthdate, $rootScope.currentPatientDetails.guardianName, $rootScope.currentPatientDetails.patientId, $rootScope.currentPatientDetails.isAuthorized, ' ');
-              //  $rootScope.doGetSelectedPatientProfiles(data.patientID);
+               $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.isAuthorized, ' ');
+              // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 $scope.readattr = true;
                 $scope.editshow = true;
                 $scope.doneshow = true;
