@@ -338,13 +338,17 @@
                </ul>
                <h4 class="h4align">
                   <div class="alignnexttext chronic">Prior Surgeries</div>
-
+                  <span><a ng-click="showSurgeryPopup()" ><i class="ion-edit editicons" ></i></a>
+                  </span>
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
 
                   <li  ng-if="patientmedicalsurgeries==''" >N/A </li>
-                   <li  ng-repeat="surgeries in patientmedicalsurgeries">{{$index + 1}}. {{surgeries.description}} </li>
+                  <li  ng-repeat="surgeries in patientmedicalsurgeries">
+                      {{$index + 1}}. <strong>{{surgeries.description}}</strong><br/>
+                      {{getMonthName(surgeries.month)}}, {{surgeries.year}}
+                  </li>
 
                </ul>
             </div>
