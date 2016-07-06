@@ -317,7 +317,7 @@ angular.module('starter.controllers')
                     location: $scope.location,
                     organizationId: $scope.orgid,
                     locationId: $scope.locationid,
-                    country: "+1"
+                    country: $scope.dependentCountry
                 },
                 TimeZoneId: 2,
                 PatientProfileFieldsTracing: {
