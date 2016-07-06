@@ -73,7 +73,7 @@ angular.module('starter.controllers')
 
 
         $scope.addNewDependent = {};
-        $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
+      //  $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
         var newUploadedPhoto;
 
         $('input').blur(function() {
