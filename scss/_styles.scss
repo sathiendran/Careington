@@ -1718,7 +1718,7 @@ background-color: #e9e9e9;
     text-align: center;
     font-family: Glober Bold;
     font-size: 20px;
-    margin-top: 51px;
+    margin-top:90px;
 }
 
 .platform-ios {
@@ -1958,7 +1958,7 @@ background-color: #e9e9e9;
   background-color:#9bca82; height:50px;margin-left:-4px;min-width:90px;
 }
 .dotcont{
-    color:white;font-size:10px;margin-top:-8px !important;
+    color:white;font-size:10px;margin-top:-10px !important;
 }
 .doticon{
     font-size:22px;
@@ -1983,7 +1983,7 @@ background-color: #e9e9e9;
            font-size:22px;margin-left: 23px;color:#888;
        }
        .morecont{
-         margin-left: 19px;font-size:11px;margin-top:-9px;color:#888;
+         margin-left: 23px;font-size:11px;margin-top:-9px;color:#888;
        }
     }
 }
@@ -2786,7 +2786,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 
 #healthInfoDOB{line-height:20px;}
-
+#healthInfoEmail{text-overflow: ellipsis;  white-space: nowrap;
+  overflow: hidden;  line-height: normal; }
 .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
   overflow: hidden;  line-height: normal; }
 
@@ -3818,7 +3819,7 @@ font-size: 20px;
 }
 .avatarclass{
   margin-top: 2px;
-  margin-left:  -34px;  //-34
+  margin-left:  -33px;  //-34
   }
 .avatlefticon{
     float:left;
@@ -4458,7 +4459,7 @@ p{
     .tabs-striped .tabs {
       border-bottom: none; }
     .avatarclass {
-      margin-left: -26px; }
+      margin-left: -33px; }
     .fstrow {
       margin-top: 4px; }
     .statuscont {
