@@ -126,7 +126,7 @@ $scope.maximum= datemax;
         edittextarea.removeClass('textdata');
         editsvalues.addClass('editdata');
         edittextarea.addClass('editdata');
-        $scope.healthInfoModel.userDOB = $rootScope.userDOB;
+        $scope.healthInfoModel.userDOB = new Date($rootScope.userDOB);
     }
 
     //$scope.healthInfo = {};
