@@ -98,9 +98,13 @@
                <div class="healthViewDetails ellipsis">{{getCountryName(currentPatientDetails[0].countryCode)}}</div>
            </label>
            <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-clock iconfont"></i><b class="formlabel labelfont">Timezone</b></span>
+               <div class="healthViewDetails ellipsis">{{getTimeZoneName(currentPatientDetails[0].account.timeZoneId)}}</div>
+           </label>
+           <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].homePhone">
-             <input type="text" readonly="true" value="{{currentPatientDetails[0].homePhone}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
+             <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].homePhone)}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].homePhone">
                NA
             </div>
@@ -108,7 +112,7 @@
            <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"><i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Mobile</b> </span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].mobilePhone">
-              <input type="text" readonly="true" value="{{currentPatientDetails[0].mobilePhone}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
+              <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].mobilePhone)}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].mobilePhone">
               NA
             </div>
@@ -191,6 +195,15 @@
                  <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == currentPatientDetails[0].countryCode"><b>{{country.name}}</b></option>
                </select></span>
            </div>
+           
+           <div class="item item-input itemtab validated">
+              <span class="input-label labelcolor"><i class="ion-clock iconfont"></i><b class="formlabel labelfont">Timezone</b></span>
+              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoTimezone" >
+                 <option value="">Choose</option>
+                 <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ng-selected="timeZone.id == currentPatientDetails[0].account.timeZoneId"><b>{{timeZone.name}}</b></option>
+               </select></span>
+           </div>
+           
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
               <span class="healthViewDetails"><input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone"  phone-input  ng-model="phoneval"  class="textdata"></span>
