@@ -51,12 +51,12 @@
     <div class="list aptlist">
 
         <a class="item item-avatar patavatar">
-             <img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">
+             <img ng-src="{{missedAppointDocDetails[0].profileImagePath}}" class="patimage">
               <p class="pathead">With</p>
-              <h2 class="appfname"><span >{{reportDoctorFirstName}} {{reportDoctorLastName}}</h2>
+              <h2 class="appfname"><span >{{missedAppointDocDetails[0].fullName}}</h2>
                 <span class="appfloat"><i class="icon ion-chevron-right "></i></span>
               </p>
-              <p class="patage">{{doctorGender}} <span> .</span> {{existingConsultationReport.dob | ageFilter}}</p>
+              <p class="patage">{{missedAppointDocDetails[0].gender}} <span> .</span> {{missedAppointDocDetails[0].dob | ageFilter}}</p>
            </a>
 
         <ion-item class="ionitem contalign" style="text-align:center;" >
@@ -88,7 +88,7 @@
        </div>
           <br>
 
-      <div class="row seccontentone" style="padding-bottom: 50px;" >
+      <div id="appointmentNote" class="row seccontentone" style="padding-bottom: 50px;" >
         <div class="col col-10 patcol10">a</div>
          <div class="col col-90 ">
            <p class="parafont"><b>Notes</b></p>

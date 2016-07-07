@@ -429,7 +429,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.deviceName = "IOS";
-        $rootScope.appointCOntent = "margin-top: 180px; margin-bottom: 46px;";
+        $rootScope.appointCOntent = "margin-top: 180px; ";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.loginSub = "height: 100px; top: 43px;";
@@ -3504,7 +3504,6 @@ LoginService.getScheduledConsulatation(params);
             alert('No token.  Get token first then attempt operation.');
             return;
         }
-        $rootScope.appointmentPatientId = '';
         $rootScope.scheduledConsultationList = [];
         var params = {
             patientId: $rootScope.primaryPatientId,
@@ -3594,7 +3593,6 @@ LoginService.getScheduledConsulatation(params);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
                                 $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
                                 $rootScope.timerCOlor = '#E1FCD4';
-                                $rootScope.appointmentPatientId = $rootScope.scheduledList[0].patientId;
                             }
                         }
                     }
@@ -3921,6 +3919,7 @@ LoginService.getScheduledConsulatation(params);
             alert('No token.  Get token first then attempt operation.');
             return;
         }
+        $rootScope.appointmentPatientId = '';
         $rootScope.individualScheduledConsultationList = [];
         var params = {
             patientId: $rootScope.patientId,
@@ -3972,8 +3971,8 @@ LoginService.getScheduledConsulatation(params);
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
                     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    $rootScope.individualNextAppointmentDisplay = 'none';
                     $rootScope.accountClinicianFooter = 'block';
-
                     if ($rootScope.individualScheduledList != '') {
                         //var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
                         //var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
@@ -3989,9 +3988,11 @@ LoginService.getScheduledConsulatation(params);
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
                                 $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
-                                if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
+                              //  if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
                                   $rootScope.accountClinicianFooter = 'none';
-                                }
+                                    $rootScope.individualNextAppointmentDisplay = 'block';
+                                    $rootScope.appointmentPatientId = $rootScope.patientId;
+                              //  }
                             }
                         }
 

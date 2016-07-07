@@ -237,7 +237,7 @@ angular.module('starter.controllers')
             eyeColor: $scope.getEyeColorId,
             ethnicity: $scope.getEthnicityId,
             hairColor: $scope.getHairColorId,
-            height: $scope.heights,
+            height: formatHeightVal($scope.heights),
             weight: $scope.weight,
             heightUnit: $scope.heightunit,
             weightUnit: $scope.weightunit,

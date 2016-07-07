@@ -77,7 +77,7 @@ angular.module('starter.controllers')
         }
 
         $scope.addNewDependent = {};
-      //  $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
+        $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
         var newUploadedPhoto;
 
         $('input').blur(function() {
@@ -312,7 +312,7 @@ angular.module('starter.controllers')
                     pharmacyContact: null,
                     address: $scope.homeaddress,
                     profileImagePath: $rootScope.newDependentImagePath,
-                    height: $scope.height,
+                    height: formatHeightVal($scope.height),
                     weight: $scope.weight,
                     heightUnit: $scope.getHeightunit,
                     weightUnit: $scope.getWeightunit,

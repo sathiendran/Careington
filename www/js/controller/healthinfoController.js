@@ -16,7 +16,16 @@ angular.module('starter.controllers')
             phoneNumberWithoutCountryCode = phoneNumber.substring(phoneNumber.length-10, phoneNumber.length);
         return phoneNumberWithoutCountryCode;
     };
-
+    
+    $rootScope.reformatHeight = function(heightVal){
+        var newHeight = "";
+        if(heightVal){
+            newHeight = heightVal.replace('ft ', '.');
+            newHeight = newHeight.replace('in', '');
+        }
+        return newHeight;
+    };
+    
     $rootScope.getCountryName = function(countryCode){
         var countryInfo = $filter('filter')($rootScope.serviceCountries, {code: countryCode});
         if(countryInfo[0])
@@ -305,7 +314,7 @@ angular.module('starter.controllers')
                 pharmacyContact: null,
                 address: $scope.healthInfoAddress,
                 profileImagePath: $rootScope.PatientImageSelectUser,
-                height: $scope.healthInfoHeight,
+                height: formatHeightVal($scope.healthInfoHeight),
                 weight: $scope.healthInfoWeight,
                 heightUnit: $scope.healthInfoHeightUnit,
                 weightUnit: $scope.healthInfoWeightUnit,
