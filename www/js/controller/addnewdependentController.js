@@ -157,6 +157,7 @@ angular.module('starter.controllers')
             $scope.location = dependentloc;
             $scope.locationid = $("#locate").val();
             $scope.dependentCountry = $("#dependentCountry").val();
+            $scope.dependentTimezone = $("#dependentTimezone").val();
             $scope.relation = $("#dependentrelation").val().split("@").slice(0, 1);
             $rootScope.getRelationId = _.first($scope.relation);
             $scope.hairColor = $("#hairColor").val().split("@").slice(0, 1);
@@ -203,8 +204,10 @@ angular.module('starter.controllers')
        } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
            $scope.ErrorMessage = "Please Choose Your Country";
            $rootScope.Validation($scope.ErrorMessage);
-       }
-       else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+       } else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
+           $scope.ErrorMessage = "Please Choose Your Time Zone";
+           $rootScope.Validation($scope.ErrorMessage);
+       }else if (typeof $scope.height === 'undefined' || $scope.height === '') {
            $scope.ErrorMessage = "Please Enter Your Height";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
@@ -319,7 +322,7 @@ angular.module('starter.controllers')
                     locationId: $scope.locationid,
                     country: $scope.dependentCountry
                 },
-                TimeZoneId: 2,
+                TimeZoneId: $scope.dependentTimezone,
                 PatientProfileFieldsTracing: {
                     ethnicity: true,
                     address: true,
