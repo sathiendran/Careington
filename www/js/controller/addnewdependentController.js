@@ -312,7 +312,7 @@ angular.module('starter.controllers')
                     pharmacyContact: null,
                     address: $scope.homeaddress,
                     profileImagePath: $rootScope.newDependentImagePath,
-                    height: $scope.height,
+                    height: formatHeightVal($scope.height),
                     weight: $scope.weight,
                     heightUnit: $scope.getHeightunit,
                     weightUnit: $scope.getWeightunit,
