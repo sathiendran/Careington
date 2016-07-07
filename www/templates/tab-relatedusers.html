@@ -223,13 +223,13 @@
                                 </p>
                             </a>
                             <div class="row authorizedview" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="authorizedview">
-                                <div class="col col-25 authorupdate">
+                                <div class="col col-30 authorupdate" style="max-width:85px;">
                                     <p class="tabicon authortab"> <i class="ion-chevron-down"></i></p>
                                     <div class="authorcont">
                                         <p><a>Update <i class="icon ion-chevron-right avatarlefticon "></i></a> </p>
                                     </div>
                                 </div>
-                                <div class="col col-35 statustab" ng-click="showPopup(getDependentDetails, 'Y')">
+                                <div class="col col-40 statustab" ng-click="showPopup(getDependentDetails, 'Y')">
                                     <div class="tabvalue">
                                         <p class="unstatus">Status</p>
                                         <p class="avatrelationclass">
@@ -240,7 +240,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col col-40 relationtab">
+                                <div class="col col-30 relationtab">
                                     <p class="conticon relationstatus"><a>Relationsship</a></p>
                                     <p class="unauthorrelationship">
                                         <span ng-if="!getDependentDetails.relationship">N/A</span>
