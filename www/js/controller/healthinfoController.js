@@ -9,7 +9,7 @@ angular.module('starter.controllers')
         }
         return newStr;
     }
-    
+
     $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber){
         var phoneNumberWithoutCountryCode = "";
         if(phoneNumber)
@@ -26,7 +26,7 @@ angular.module('starter.controllers')
         else
             return "";
     };
-    
+
     $rootScope.getTimeZoneName = function(timezoneCode){
         var timezoneInfo = $filter('filter')($rootScope.timeZones, {id: timezoneCode});
         if(timezoneInfo[0])
@@ -36,7 +36,7 @@ angular.module('starter.controllers')
         else
             return "";
     };
-    
+
 
     $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
     $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
@@ -961,6 +961,24 @@ angular.module('starter.controllers')
 
 
     }
+$scope.data = {};
+    $scope.$watch('data.searchText', function(searchKey) {
+        $rootScope.providerSearchKey = searchKey;
+        if (typeof $rootScope.providerSearchKey == 'undefined') {
+            $scope.data.searchText = $rootScope.backProviderSearchKey;
+        }
+        if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            $rootScope.iconDisplay = 'none';
+        } else {
+            $rootScope.iconDisplay = 'Block';
+        }
+
+    });
+
+
+
+
+
 
 
     $rootScope.doGetListOfCoUsers = function() {
