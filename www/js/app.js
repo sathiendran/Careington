@@ -815,6 +815,26 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         }
     })
 
+    .state('tab.reports', {
+        url: '/reports',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-reports.html',
+                controller: 'consultationController'
+            }
+        }
+    })
+
+    .state('tab.missedConsultAppoint', {
+        url: '/missedConsultAppoint',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-missedConsultAppoint.html',
+                controller: 'consultationController'
+            }
+        }
+    })
+
     .state('tab.addnewuser', {
         url: '/addnewuser',
         views: {

@@ -1133,7 +1133,6 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/api/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer&patientId=0',
-
             method: 'GET'
         };
 

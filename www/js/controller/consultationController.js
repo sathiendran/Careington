@@ -239,6 +239,8 @@ angular.module('starter.controllers')
                                     'rependdate': enddate,
                                     'repconsultationId': consultationId,
                                     'repimage': patphoto,
+                                    'startTime': index.startTime,
+                                    'additionalNotes': index.intakeMetadata.additionalNotes
                                 });
 
                             }
@@ -304,14 +306,16 @@ angular.module('starter.controllers')
             $state.go('tab.consultationSearch');
         }
 
-        $rootScope.doGetExistingConsulatationReport = function() {
+
+
+        $rootScope.doGetExistingConsulatationReport = function(consultationId,nextPage) {
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
 
             var params = {
-                consultationId: $rootScope.consultationId,
+                consultationId: consultationId,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $rootScope.attachmentLength = '';
@@ -350,7 +354,7 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
                         $rootScope.reportDoctorFirstName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorFirstName);
                     } else {
-                        $rootScope.reportDoctorFirstName = 'None Reported';
+                        $rootScope.reportDoctorFirstName = 'NA';
                     }
                     if ($rootScope.existingConsultationReport.medicalSpeciality !== '' && typeof $rootScope.existingConsultationReport.medicalSpeciality !== 'undefined') {
                         $rootScope.reportMedicalSpeciality = ', ' + htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.medicalSpeciality);
@@ -358,8 +362,18 @@ angular.module('starter.controllers')
                         $rootScope.reportMedicalSpeciality = '';
                     }
 
-                    if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
+                    if ($rootScope.existingConsultationReport.doctorLastName != '' && typeof $rootScope.existingConsultationReport.doctorLastName != 'undefined') {
                         $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
+                    } else {
+                        $rootScope.reportDoctorLastName = 'NA';
+                    }
+
+                    if ($rootScope.existingConsultationReport.gender != '' && typeof $rootScope.existingConsultationReport.gender != 'undefined') {
+                        if($rootScope.existingConsultationReport.gender === 'M') {
+                          $rootScope.doctorGender = "Male";
+                        } else {
+                          $rootScope.doctorGender = "FeMale";
+                        }
                     } else {
                         $rootScope.reportDoctorLastName = 'None Reported';
                     }
@@ -545,9 +559,11 @@ angular.module('starter.controllers')
                         $rootScope.reportMedicalCodeDetails = '';
                     }
                     session = null;
+                  //  $scope.doGetDoctorDetails();
                     $scope.getSoapNotes();
-                    $scope.doGetAttachmentList();
-                    $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
+                    $scope.doGetAttachmentList(consultationId);
+                    $state.go(nextPage);
+                  /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
                         focusFirstInput: false,
@@ -555,7 +571,7 @@ angular.module('starter.controllers')
                     }).then(function(modal) {
                         $scope.modal = modal;
                         $scope.modal.show();
-                    });
+                    });*/
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();
@@ -565,13 +581,13 @@ angular.module('starter.controllers')
             LoginService.getConsultationFinalReport(params);
         }
 
-        $scope.doGetAttachmentList = function() {
+        $scope.doGetAttachmentList = function(consultationId) {
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
-                consultationId: $rootScope.consultationId,
+                consultationId: consultationId,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $scope.getSoapNotes();
@@ -584,25 +600,14 @@ angular.module('starter.controllers')
                             'name': index.name,
                             'image': attachImage[attachImage.length - 1]
                         });
-                        //$scope.doGetAttachmentURL(index.id, index.name);
 
                     });
 
-                    if (data.data[0].snapFile.files.length > 0) {
-                        angular.forEach(data.data[0].snapFile.files, function(index, item) {
-                            var attachImage = index.name.split(".");
-                            $rootScope.getAttachmentList.push({
-                                'id': index.id,
-                                'name': index.name,
-                                'image': attachImage[attachImage.length - 1]
-                            });
-                            //$scope.doGetAttachmentURL(index.id, index.name);
 
-                        });
-                    }
 
                     $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
-                    $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
+
+                  /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
                         focusFirstInput: false,
@@ -611,10 +616,10 @@ angular.module('starter.controllers')
                         $rootScope.reportModal = modal;
                         $rootScope.reportModal.show();
 
-                    });
+                    });*/
                 },
                 error: function(data) {
-                    $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
+                    /*$ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
                         focusFirstInput: false,
@@ -626,8 +631,8 @@ angular.module('starter.controllers')
                         $rootScope.reportModal = modal;
                         $rootScope.reportModal.show();
 
-                    });
-                    //$rootScope.serverErrorMessageValidation();
+                    });*/
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
             LoginService.getAttachmentList(params);
@@ -669,14 +674,41 @@ angular.module('starter.controllers')
                 angular.element(this).attr('onclick', onClickLink);
             });
         }
-        $rootScope.showReportView = function(consultation) {
-            $rootScope.consultationId = consultation.consultationId;
-            $rootScope.doGetExistingConsulatationReport();
+        $rootScope.showReportView = function(consultation,nextPage) {
+          //  $scope.reportConsultationId = consultation.consultationId;
+            $rootScope.doGetExistingConsulatationReport(consultation.consultationId,nextPage);
         }
 
         $scope.closeReportView = function() {
-            $rootScope.reportModal.hide();
-            $('.modal-backdrop').hide();
+            //$rootScope.reportModal.hide();
+            //$('.modal-backdrop').hide();
+            $state.go('tab.consultations');
+        }
+
+
+
+        $scope.doGetDoctorDetails = function() {
+            if ($scope.accessToken === 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+
+            var params = {
+                doctorId: $rootScope.assignedDoctorId,
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+
+                    //$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;
+                    $rootScope.doctorImage = data.data[0].profileImagePath;
+                    $state.go('tab.appoimentDetails');
+                },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+
+            LoginService.getDoctorDetails(params);
+
         }
 
 
