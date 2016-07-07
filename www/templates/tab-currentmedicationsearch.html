@@ -10,20 +10,30 @@
          <ion-list>
             <ion-item class="search_home  concernListSearch">
                <h2 class="subname subName-{{deviceName}}">Current Medication</h2>
+
+
+               <div class="item-input-inset searchpopup">
+           				<label class="item-input-wrapper">
+           					<i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
+           					<input type="search"  placeholder="Search" ng-model="data.searchText">
+
+           				</label>
+           		</div>
+              <!--
                <div class="search_home UserHmeSub concernListSearchHome">
                   <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
                      <input type="search" placeholder="Search" class="innerSearchPop SearchBox currentSearchBox-{{deviceName}}" ng-model="searchText"   >
-                     <!--<i class="clear-search icon ion-ios7-close-empty" ng-click="clearSearch()"></i>-->
+
                   </label>
-               </div>
+               </div>-->
                <div class="" ng-repeat="(letter, currentMedicationsearchList) in sorted_users">
-                  <ion-checkbox ng-repeat="currentmedication in filteredItems = (currentMedicationsearchList | filter:searchText)"
+                  <ion-checkbox ng-repeat="currentmedication in filteredItems = (currentMedicationsearchList | filter:data.searchText)"
                      ng-model="currentmedication.checked"
                      ng-checked="currentmedication.checked" ng-change="OnSelectMedication(currentmedication)"  ng-disabled="checkedMedication==limit && !currentmedication.checked" checkbox-group>
                      <span id="index_{{letter}}">   {{ currentmedication.text }} </span>
                   </ion-checkbox>
                </div>
-               <p class="searchdata noResult" style="white-space: normal;"  ng-show="(currentMedicationsearchList | filter:searchText).length==0"> <b>Sorry No Result Found <b></p>
+               <p class="searchdata noResult" style="white-space: normal;"  ng-show="(currentMedicationsearchList | filter:data.searchText).length==0"> <b>Sorry No Result Found <b></p>
             </ion-item>
          </ion-list>
          <ul class="alpha_sidebar">
