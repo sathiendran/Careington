@@ -670,12 +670,6 @@ html, body { background: transparent !important; }
 .AppointBack {
 	top: 0px;
 }
-.alpha_sidebar{
-	position: absolute;
-	top:90px;
-	right: 	10px;
-	z-index: 10;
-}
 .alpha_sidebar li{
 	color: #49afcd;
 	margin-bottom: 0px;
@@ -1778,7 +1772,7 @@ background-color: #e9e9e9;
 .concernListHeader {
 	height: 55px;
 	.concernListTitle {
-		top: 6px !important; font-size:16px !important;
+		top: 8px !important; font-size:16px !important;
         font-family: $fontFamily_semibold;
 	}
 	.concernListDone {
@@ -4442,11 +4436,7 @@ p{
       margin: 21px 10px !important; }
     .newusercontent {
       margin-top: 110px; }
-    .alpha_sidebar {
-      position: absolute;
-      top: 3px;
-      right: 90px;
-      z-index: 10; }
+
       .sidemenu{
         bottom:60px !important;
       }
@@ -5466,7 +5456,7 @@ margin-left: 13px !important;
 
 .alpha_sidebar{
 	position: absolute;
-//	top:90px;
+  top: 100px;
 	right: 	10px;
 	z-index: 10;
 //  margin-top: 80px;
@@ -5495,7 +5485,7 @@ margin-left: 13px !important;
 .subname{
    text-align:center;
    font-family:Glober SemiBold;
-   margin-top:5px;font-size: 22px;
+   margin-top:5px;font-size:19px !important;
 }
 .currmedication{margin-top: -85px;}
 .error{color:red;}

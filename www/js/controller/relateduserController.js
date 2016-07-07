@@ -195,8 +195,9 @@ $rootScope.authorised=relateDependentAuthorize;
             {
               var myPopup = $ionicPopup.show({
 
-                  title: "<a class='item-avatar'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
-                  subTitle: "<p class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
+                 title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
+                  subTitle: "<p class='headerfont fontcolor popupaligneds'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 
                   templateUrl: 'templates/popupTemplate.html',
@@ -336,7 +337,7 @@ $rootScope.authorised=relateDependentAuthorize;
                           });
                       }
                     });
-                
+
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();
