@@ -119,13 +119,13 @@ angular.module('starter.controllers')
             var eddate = duedate.setDate(now.getDate());
 
             var end = new Date(eddate);
-            var eday = end.getDate();
-            var emnth = end.getMonth() + 1;
-            var eyear = end.getFullYear();
+            var eday = now.getDate();
+            var emnth = now.getMonth() + 1;
+            var eyear = now.getFullYear();
 
-            var time = end.getHours();
-            var mints = end.getMinutes();
-            var sec = end.getMilliseconds();
+            var time = now.getHours();
+            var mints = now.getMinutes();
+            var sec = now.getMilliseconds();
             if (emnth < 10) {
                 var emonth = "0" + emnth;
             } else {
@@ -148,7 +148,7 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $scope.Missedconsultations = data.data;
                     $rootScope.missedlist = [];
-                    $rootScope.missedlistReport = [];
+
                     angular.forEach($scope.Missedconsultations, function(item, index) {
                         var nowDateTime = new Date();
                         var nowDateTimeEightHours = new Date(nowDateTime);
@@ -201,44 +201,6 @@ angular.module('starter.controllers')
                                     'docname': docname,
                                     'enddate': enddate,
                                     'consultationId': consultationId,
-                                });
-
-                            }
-                        }
-                        if ($rootScope.patientId == patientId && $rootScope.consultationId == consultationId) {
-                            if (enddatetime < todaydatetime) {
-                                var asd = edtime.split('T');
-                                var enddate = asd[0];
-
-                                var astime = asd[1].split('+');
-                                var newt = astime[0].split(':');
-                                var time = newt[0] + ":" + newt[1];
-                                var asds = item.participants;
-                                var patientdata = _.where(asds, {
-                                    participantTypeCode: 1
-                                });
-                                var drdata = _.where(asds, {
-                                    participantTypeCode: 2
-                                });
-                                var patimg = patientdata[0].person;
-                                var photo = _.pick(patimg, 'photoUrl');
-                                var patphoto = _.values(photo);
-                                if (drdata.length > 0) {
-                                    var drlist = drdata[0].person.name;
-                                    var nlist = _.pick(drlist, 'given');
-                                    var drname = _.values(nlist);
-                                    var docname = drname.join();
-                                } else {
-                                    var drname = "";
-                                }
-
-
-                                $rootScope.missedlistReport.push({
-                                    'reptime': time,
-                                    'repdocname': docname,
-                                    'rependdate': enddate,
-                                    'repconsultationId': consultationId,
-                                    'repimage': patphoto,
                                 });
 
                             }
