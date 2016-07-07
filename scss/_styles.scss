@@ -926,7 +926,7 @@ html, body { background: transparent !important; }
 	-webkit-box-shadow:  0 0px 8px 3px #333 !important;
 	background-size: 100% 0 !important;
 		.availableImage {
-			font-size: 22px;margin-top: 2px;
+			font-size: 22px;margin-top: 17px;
 			.AvailableText {
 				float: left; text-align: right; width: 54%;  font-family: $fontFamily_semibold; font-weight: bold;
   color: #fff;
@@ -3858,6 +3858,7 @@ font-size: 20px;
          margin-left:42px;
          color:#fff;
          font-size:15px;
+         font-family: Glober Regular;
   }
  .aslignspan{margin-left:3px;   }
   #viewicon{
@@ -4039,9 +4040,10 @@ font-size: 20px;
       margin: 12px 0 0 0 !important;
   }
   .fonttime{
-      font-size: 14px;
+    font-size: 14px;
     color: #686868;
     font-family: Glober Regular;
+    text-transform: lowercase;
   }
   .apptdetails{
     background-color:#ffc900;height:80px;padding:10px !important; position: fixed;
@@ -4135,7 +4137,7 @@ font-size: 20px;
     margin-top:18px !important
 }
 .ftime{
-    margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;margin-left: 24px
+    margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;margin-left: 24px;text-transform: lowercase;
 }
 .fday{
     font-size:31px;margin-top:10px;font-family:Glober Regular;
@@ -5164,6 +5166,7 @@ color: white;
     max-width:71px;
     margin-left: 10px;
     margin-top:-4px;
+    text-transform: lowercase;
  }
  .coldetails{
       margin-top:-4px;//-6
@@ -5360,7 +5363,7 @@ right: 0;
 .fdate {
 margin-top:9px !important;
 .ftime{
-    margin-left: 0px !important;
+    margin-left: 0px !important; text-transform: lowercase;
 }
 }
 }
@@ -5379,6 +5382,7 @@ height: 57px !important;
 margin-left: 210px;
 color: #fff;
 font-size: 15px;
+font-family: Glober Regular;
 }
 .appfloat {
   float: right;
@@ -7153,7 +7157,7 @@ Pagination Styles
 }
 .accountAppointview-IOS {
   position: relative;
-    margin-top: -26px !important;
+    margin-top: -21px !important;
     text-align: right !important;
 }
 .newUserTitle-IOS{
@@ -7171,4 +7175,10 @@ Pagination Styles
   max-height: 50px !important;
   margin-left: -4px;
   margin-top: -5px;
+}
+.password-IOS {
+  margin-top: -315px !important;
+}
+.tabs-dark > .tabs, .tabs.tabs-dark {
+      background-image: none;
 }
