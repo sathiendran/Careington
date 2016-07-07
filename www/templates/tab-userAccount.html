@@ -83,10 +83,10 @@
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 	</ion-footer-bar>
 
-	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails" style="display: {{nextAppointmentDisplay}}" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-if="$first">
+	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails" style="display: {{individualNextAppointmentDisplay}}; height: height: 84px;" ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-if="$first">
 	<!--	<a ng-href="#tab/patientappointmentdetails">-->
       <div>
-        <h3 class="appth3"> <div class="appointment" style="font-size: 20px;">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</div>
+        <h3 class="appth3"> <div class="appointment" style="font-size: 20px;">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}}<span style="text-transform: lowercase;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
          <div id="viewicon" class="accountAppointview-{{deviceName}}">
 	        <a class="appalignrighticon"> View Details</a>
 	         <span  class="aslignspan"><i class="iconchevron ion-chevron-right" ></i>
@@ -98,7 +98,7 @@
 	<!--</a>-->
 </ion-item>
 
- <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{nextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns()" >
+ <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns()" >
 
 	<h1 class="title userappfootcontent" >See A Clinician Now</h1>
  </ion-footer-bar>
