@@ -264,6 +264,8 @@ angular.module('starter.controllers')
         $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
     };
 
+  //  $rootScope.appointCurrentPage = '';
+
     if ($rootScope.getIndividualScheduleDetails != '') {
         var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
         var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);

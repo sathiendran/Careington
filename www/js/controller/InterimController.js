@@ -347,6 +347,8 @@ angular.module('starter.controllers')
                     $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 } else {
                     $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
+                    var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
+                    $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }
                 $rootScope.address = data.data[0].address;
                 $rootScope.city = data.data[0].city;
@@ -425,8 +427,10 @@ angular.module('starter.controllers')
                 $rootScope.RelatedPatientProfiles = [];
 
                 angular.forEach(data.data, function(index, item) {
-                    if (!index.profileImagePath) {
+                    if (!index.profileImagePath) {                        
+                        var ptInitial = getInitialForName(index.patientName);
                         index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
+                        index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
                     }
                     $rootScope.RelatedPatientProfiles.push({
                         'id': index.$id,

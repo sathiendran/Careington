@@ -175,12 +175,12 @@
                                     <p class="colfamily coldate">{{droppedData.consultationDate}}</p>
                                 </div>
                                 <div class="col col-15 coltime">
-                                    <p class="colfamily">{{droppedData.consultationTime}}</p>
+                                    <p class="colfamily">{{droppedData.consultationTimeInfo | date: "h:mm a"}}</p>
                                 </div>
                                 <div class="ellipsis col col-30" style="width: 38%;">
                                     <p class="ellipsis coldetails">
-                                        <a class="colfamily" ng-if="!droppedData.docname">N/A</a>
-                                        <a class="colfamily" ng-if="droppedData.docname">Dr.{{droppedData.assignedDoctorName}}</a>
+                                        <a class="colfamily" ng-if="!droppedData.assignedDoctorName">N/A</a>
+                                        <a class="colfamily" ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</a>
                                     </p>
                                 </div>
                                 <div class="col col-15 ">

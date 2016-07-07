@@ -242,11 +242,38 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 statusId: 81,
                 success: function(data) {
-                    $rootScope.Droppedconsultations = data.data;
+                    $rootScope.Droppedconsultations = [];
+                    angular.forEach(data.data, function(index, item) {
+                      var startTimeISOString = index.consultationTimeInfo;
+                      var startTime = new Date(startTimeISOString);
+                      var consultDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
+                        $rootScope.Droppedconsultations.push({
+                            'appointmentId': index.appointmentId,
+                            'assignedDoctorFirstName': index.assignedDoctorFirstName,
+                            'assignedDoctorId': index.assignedDoctorId,
+                            'assignedDoctorLastName': index.assignedDoctorLastName,
+                            'assignedDoctorName': index.assignedDoctorName,
+                            'consultantUserId': index.consultantUserId,
+                            'consultationDate': index.consultationDate,
+                            'consultationDuration': index.consultationDuration,
+                            'consultationId': index.consultationId,
+                            'consultationTime': index.consultationTime,
+                            'consultationTimeInfo': consultDate,
+                            'dob': index.dob,
+                            'isDependent': index.isDependent,
+                            'patientFirstName': index.patientFirstName,
+                            'patientId': index.patientId,
+                            'patientLastName': index.patientLastName,
+                            'patientName': index.patientName,
+                            'startedConsultation': index.startedConsultation,
+                            'waitingConsultation': index.waitingConsultation
+                        });
+                    });
+
 
                 },
                 error: function(data) {
-                    $scope.listOfConsultations = 'Error getting List Of Consultations';
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
             LoginService.getListOfDroppedConsultations(params);
