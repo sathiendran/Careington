@@ -1341,6 +1341,25 @@ this.getPatientMedicalProfile = function(params){
                 }
             });
   }
+  
+  this.getTimezoneList = function(params){
+        var requestInfo = {
+            headers:util.getHeaders(params.accessToken),
+            url: apiCommonURL+'/api/v2/timezones',
+            method: 'GET',
+        };
+        $http(requestInfo).
+            success(function (data, status, headers, config) {
+                if (typeof params.success != 'undefined') {
+                    params.success(data);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                if (typeof params.error != 'undefined') {
+                    params.success(data);
+                }
+            });
+  }
 
 })
 

@@ -9,6 +9,13 @@ angular.module('starter.controllers')
         }
         return newStr;
     }
+    
+    $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber){
+        var phoneNumberWithoutCountryCode = "";
+        if(phoneNumber)
+            phoneNumberWithoutCountryCode = phoneNumber.substring(phoneNumber.length-10, phoneNumber.length);
+        return phoneNumberWithoutCountryCode;
+    };
 
     $rootScope.getCountryName = function(countryCode){
         var countryInfo = $filter('filter')($rootScope.serviceCountries, {code: countryCode});
@@ -19,6 +26,17 @@ angular.module('starter.controllers')
         else
             return "";
     };
+    
+    $rootScope.getTimeZoneName = function(timezoneCode){
+        var timezoneInfo = $filter('filter')($rootScope.timeZones, {id: timezoneCode});
+        if(timezoneInfo[0])
+            return timezoneInfo[0].name;
+        else if(timezoneInfo)
+            return timezoneInfo.name;
+        else
+            return "";
+    };
+    
 
     $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
     $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
@@ -169,8 +187,9 @@ angular.module('starter.controllers')
             $scope.WeightUnit1 = $scope.WeightUnit.split("@");
             $scope.healthInfoWeightUnit = $scope.WeightUnit1[0];
             $scope.healthInfoWeightUnitText = $scope.WeightUnit1[1];
-            $scope.healthInfoCountry = $('#healthInfoCountry').val()
-            $scope.healthInfoHomePhone = $('#healthInfoHomePhone').val()
+            $scope.healthInfoCountry = $('#healthInfoCountry').val();
+            $scope.healthInfoTimezone = $('#healthInfoTimezone').val();
+            $scope.healthInfoHomePhone = $('#healthInfoHomePhone').val();
             $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
             //$scope.healthInfoAddress = $('#healthInfoAddress').val();
             $scope.healthInfoAddress = $scope.healthInfoModel.address;
@@ -213,7 +232,10 @@ angular.module('starter.controllers')
             }  else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                 $scope.ErrorMessage = "Please Select Your Country";
                 $rootScope.Validation($scope.ErrorMessage);
-        }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+            }  else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                $scope.ErrorMessage = "Please Select Your Time Zone";
+                $rootScope.Validation($scope.ErrorMessage);
+            }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
                 $scope.ErrorMessage = "Please Enter Your Home Phone";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
@@ -291,7 +313,7 @@ angular.module('starter.controllers')
                 locationId: $scope.healthInfoLocation,
                 country: $scope.healthInfoCountry
             },
-            timeZoneId: 2,
+            timeZoneId: $scope.healthInfoTimezone,
             patientProfileFieldsTracing: {
                 ethnicity: true,
                 address: true,

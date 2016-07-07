@@ -67,7 +67,9 @@ angular.module('starter.controllers')
     };
     $scope.newUSer = {};
     $scope.addmore = false;
-
+    
+    $scope.newUSer.address = $rootScope.primaryPatientDetails[0].address;
+    
     $scope.moredetails = function() {
         $scope.showme = true;
         $scope.addmore = true;
