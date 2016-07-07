@@ -736,7 +736,7 @@ angular.module('starter.controllers')
             $rootScope.checkedAllergies--;
         }
         if ((allergie.text === "Other") && $rootScope.checkedAllergies <= 4) {
-            $scope.openOtherAllergiesView(allergie);
+        //    $scope.openOtherAllergiesView(allergie);
         } else {
             if ($rootScope.checkedAllergies == 4) {
 
@@ -751,7 +751,7 @@ angular.module('starter.controllers')
 
     }
 
-
+/*
     $scope.openOtherAllergiesView = function(model) {
         $scope.data = {}
         $ionicPopup.show({
@@ -808,7 +808,7 @@ angular.module('starter.controllers')
                         }
 
                         if ($rootScope.checkedAllergies >= 4) {
-                          allergie.checked === true
+                          item.checked === true
                             $scope.allergiedone();
                         }
                         return $scope.data.AllergiesOther;
@@ -817,7 +817,7 @@ angular.module('starter.controllers')
             }]
         });
     };
-
+*/
 
 
 
