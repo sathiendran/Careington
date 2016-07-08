@@ -75,6 +75,26 @@
   font-family: 'Glober xBold';
   src: url("Glober xBold.otf");
 }
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+    font-size: 32px;
+    color: red;
+}
+========================================== */
+
+.icon-search-users {
+    width: 1.1513671875em;
+}
 
 div {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -3683,7 +3703,7 @@ font-family: $fontFamily_regular;
   }
  .usercontent-IOS{
       //margin-top: 200px !important;
-    margin-top: 210px;
+    margin-top: 46%;
  }
  .usercontent-Android{
    margin-top: 120px;
@@ -3707,7 +3727,10 @@ font-family: $fontFamily_regular;
  .profileSpan {
    margin-left:-18px;
    .profileicon {
-     margin-left:-18px;font-size:36px;
+     margin-left: -18px;
+    font-size: 30px;
+    position: relative;
+left: -52px;
    }
  }
  .content{
@@ -3867,7 +3890,7 @@ font-size: 20px;
 .appalignrighticon{
          margin-left:42px;
          color:#fff;
-         font-size:15px;
+         font-size:95%;
          font-family: Glober Regular;
   }
  .aslignspan{margin-left:3px;   }
@@ -4384,7 +4407,7 @@ p{
           font-size:21px;
       }
       .appointment{
-        font-size:22px !important;
+        font-size: 138% !important;
         color:white;
         }
 
@@ -4557,7 +4580,7 @@ p{
       height: 75px !important; }
     .appointment {
       color: white;
-      font-size: 22px; }
+      font-size: 138% !important; }
     .userdeptcontent {
       margin-top: 160px !important; }
     .userdetcontent {
@@ -4677,7 +4700,7 @@ p{
       width:44%;
         }
         .usercontent-IOS {
-          margin-top: 300px;
+          margin-top: 46%;
         }
 
       .alignchronic{
@@ -4994,7 +5017,7 @@ color: white;
        font-family:Glober Bold;
        margin-top:5px !important;
        color:#fff;
-       font-size:22px !important;
+       font-size:138% !important;
          }
 .button-bar > .button:first-child {
     border-radius: 6px 0px 0px 6px !important;
@@ -5394,7 +5417,7 @@ height: 57px !important;
 .appalignrighticon {
 margin-left: 210px;
 color: #fff;
-font-size: 15px;
+font-size: 95%;
 font-family: Glober Regular;
 }
 .appfloat {
@@ -7170,7 +7193,7 @@ Pagination Styles
     top: -22px !important;
 }
 .userContent-IOS {
-  margin-top: 160px !important;
+  margin-top: 46% !important;
 //  position: relative;
 //  top: 200px;
 }
@@ -7205,6 +7228,18 @@ Pagination Styles
 }
 .tabs-dark > .tabs, .tabs.tabs-dark {
       background-image: none;
+}
+
+.content-IOS {
+  margin-left: -18px;
+  font-size: 138%;
+}
+.usrAppointIcon-IOS {
+  left: -7px !important;
+}
+.contentAppoint-IOS {
+  margin-left: 17px;
+  font-size: 138%;
 }
 .svg {
     fill: darkgray;

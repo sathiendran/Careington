@@ -3987,14 +3987,14 @@ LoginService.getScheduledConsulatation(params);
                             console.log('scheduledTime <= getTwelveHours UserHome');
                             //$rootScope.nextAppointmentDisplay = 'block';
                           //  $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                          $rootScope.accountClinicianFooter = 'none';
+                            $rootScope.individualNextAppointmentDisplay = 'block';
+                            $rootScope.appointmentPatientId = $rootScope.patientId;
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
                               //  $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
                               //  if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
-                                  $rootScope.accountClinicianFooter = 'none';
-                                    $rootScope.individualNextAppointmentDisplay = 'block';
-                                    $rootScope.appointmentPatientId = $rootScope.patientId;
                               //  }
                             }
                         }
