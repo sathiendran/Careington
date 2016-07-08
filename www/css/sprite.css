@@ -1,0 +1,2301 @@
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image: url(../img/sprite.svg);
+}
+.icon-medication {
+    width: 20px;
+    height: 20px;
+    background-position: 0 0;
+}
+.icon-lungs {
+    width: 20px;
+    height: 20px;
+    background-position: -36px 0;
+}
+.icon-subscription {
+    width: 20px;
+    height: 20px;
+    background-position: -72px 0;
+}
+.icon-task {
+    width: 20px;
+    height: 20px;
+    background-position: -108px 0;
+}
+.icon-office {
+    width: 20px;
+    height: 20px;
+    background-position: -144px 0;
+}
+.icon-pulse {
+    width: 20px;
+    height: 20px;
+    background-position: -180px 0;
+}
+.icon-search-users {
+    width: 23px;
+    height: 20px;
+    background-position: -216px 0;
+}
+.icon-codes {
+    width: 20px;
+    height: 20px;
+    background-position: -252px 0;
+}
+.icon-shapes {
+    width: 20px;
+    height: 20px;
+    background-position: -288px 0;
+}
+.icon-line {
+    width: 20px;
+    height: 20px;
+    background-position: -324px 0;
+}
+.icon-line-weight {
+    width: 20px;
+    height: 20px;
+    background-position: -360px 0;
+}
+.icon-creative-commons-attribution {
+    width: 20px;
+    height: 20px;
+    background-position: -396px 0;
+}
+.icon-creative-commons-noderivs {
+    width: 20px;
+    height: 20px;
+    background-position: -432px 0;
+}
+.icon-creative-commons-noncommercial-eu {
+    width: 20px;
+    height: 20px;
+    background-position: -468px 0;
+}
+.icon-creative-commons-noncommercial-us {
+    width: 20px;
+    height: 20px;
+    background-position: -504px 0;
+}
+.icon-creative-commons-public-domain {
+    width: 20px;
+    height: 20px;
+    background-position: -540px 0;
+}
+.icon-creative-commons-remix {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -36px;
+}
+.icon-creative-commons-share {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -36px;
+}
+.icon-creative-commons-sharealike {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -36px;
+}
+.icon-creative-commons {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -36px;
+}
+.icon-document-landscape {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -36px;
+}
+.icon-warning {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -36px;
+}
+.icon-arrow-bold-down {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -36px;
+}
+.icon-arrow-bold-left {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -36px;
+}
+.icon-arrow-bold-right {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -36px;
+}
+.icon-arrow-bold-up {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -36px;
+}
+.icon-arrow-down {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -36px;
+}
+.icon-arrow-left {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -36px;
+}
+.icon-arrow-long-down {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -36px;
+}
+.icon-arrow-long-left {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -36px;
+}
+.icon-arrow-long-right {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -36px;
+}
+.icon-arrow-long-up {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -36px;
+}
+.icon-arrow-right {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -72px;
+}
+.icon-arrow-up {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -72px;
+}
+.icon-arrow-with-circle-down {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -72px;
+}
+.icon-arrow-with-circle-left {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -72px;
+}
+.icon-arrow-with-circle-right {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -72px;
+}
+.icon-arrow-with-circle-up {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -72px;
+}
+.icon-chevron-down {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -72px;
+}
+.icon-chevron-left {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -72px;
+}
+.icon-chevron-right {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -72px;
+}
+.icon-chevron-small-down {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -72px;
+}
+.icon-chevron-small-left {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -72px;
+}
+.icon-chevron-small-right {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -72px;
+}
+.icon-chevron-small-up {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -72px;
+}
+.icon-chevron-thin-down {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -72px;
+}
+.icon-chevron-thin-left {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -72px;
+}
+.icon-chevron-thin-right {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -72px;
+}
+.icon-chevron-thin-up {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -108px;
+}
+.icon-chevron-up {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -108px;
+}
+.icon-chevron-with-circle-down {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -108px;
+}
+.icon-chevron-with-circle-left {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -108px;
+}
+.icon-chevron-with-circle-right {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -108px;
+}
+.icon-chevron-with-circle-up {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -108px;
+}
+.icon-level-down {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -108px;
+}
+.icon-level-up {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -108px;
+}
+.icon-back {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -108px;
+}
+.icon-loop {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -108px;
+}
+.icon-retweet {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -108px;
+}
+.icon-swap {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -108px;
+}
+.icon-shuffle {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -108px;
+}
+.icon-controller-fast-backward {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -108px;
+}
+.icon-controller-fast-forward {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -108px;
+}
+.icon-controller-jump-to-start {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -108px;
+}
+.icon-controller-next {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -144px;
+}
+.icon-controller-paus {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -144px;
+}
+.icon-controller-play {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -144px;
+}
+.icon-controller-record {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -144px;
+}
+.icon-controller-stop {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -144px;
+}
+.icon-reply {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -144px;
+}
+.icon-reply-all {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -144px;
+}
+.icon-forward {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -144px;
+}
+.icon-controller-volume {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -144px;
+}
+.icon-dot-single {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -144px;
+}
+.icon-dots-three-horizontal {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -144px;
+}
+.icon-dots-three-vertical {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -144px;
+}
+.icon-dots-two-horizontal {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -144px;
+}
+.icon-dots-two-vertical {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -144px;
+}
+.icon-flow-branch {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -144px;
+}
+.icon-flow-cascade {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -144px;
+}
+.icon-flow-line {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -180px;
+}
+.icon-flow-parallel {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -180px;
+}
+.icon-flow-tree {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -180px;
+}
+.icon-open-book {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -180px;
+}
+.icon-resize-100 {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -180px;
+}
+.icon-resize-full-screen {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -180px;
+}
+.icon-select-arrows {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -180px;
+}
+.icon-triangle-down {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -180px;
+}
+.icon-triangle-left {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -180px;
+}
+.icon-triangle-right {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -180px;
+}
+.icon-triangle-up {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -180px;
+}
+.icon-drive {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -180px;
+}
+.icon-install {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -180px;
+}
+.icon-uninstall {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -180px;
+}
+.icon-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -180px;
+}
+.icon-upload-to-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -180px;
+}
+.icon-thunder-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -216px;
+}
+.icon-database {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -216px;
+}
+.icon-inbox {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -216px;
+}
+.icon-upload {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -216px;
+}
+.icon-download {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -216px;
+}
+.icon-air {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -216px;
+}
+.icon-aircraft-landing {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -216px;
+}
+.icon-aircraft-take-off {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -216px;
+}
+.icon-aircraft {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -216px;
+}
+.icon-align-bottom {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -216px;
+}
+.icon-align-horizontal-middle {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -216px;
+}
+.icon-align-left {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -216px;
+}
+.icon-align-right {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -216px;
+}
+.icon-align-top {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -216px;
+}
+.icon-align-vertical-middle {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -216px;
+}
+.icon-music {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -216px;
+}
+.icon-note2 {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -252px;
+}
+.icon-beamed-note {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -252px;
+}
+.icon-bell {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -252px;
+}
+.icon-sound {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -252px;
+}
+.icon-sound-mute {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -252px;
+}
+.icon-bowl {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -252px;
+}
+.icon-drink {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -252px;
+}
+.icon-cake {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -252px;
+}
+.icon-water {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -252px;
+}
+.icon-check {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -252px;
+}
+.icon-cross {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -252px;
+}
+.icon-minus {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -252px;
+}
+.icon-plus {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -252px;
+}
+.icon-circle-with-cross {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -252px;
+}
+.icon-circle-with-minus {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -252px;
+}
+.icon-circle-with-plus {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -252px;
+}
+.icon-squared-cross {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -288px;
+}
+.icon-squared-minus {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -288px;
+}
+.icon-squared-plus {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -288px;
+}
+.icon-block {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -288px;
+}
+.icon-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -288px;
+}
+.icon-circular-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -288px;
+}
+.icon-ccw {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -288px;
+}
+.icon-cw {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -288px;
+}
+.icon-cycle {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -288px;
+}
+.icon-credit-card {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -288px;
+}
+.icon-wallet {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -288px;
+}
+.icon-credit {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -288px;
+}
+.icon-trash {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -288px;
+}
+.icon-bucket {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -288px;
+}
+.icon-cup {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -288px;
+}
+.icon-document {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -288px;
+}
+.icon-documents {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -324px;
+}
+.icon-drop {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -324px;
+}
+.icon-edit {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -324px;
+}
+.icon-pencil {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -324px;
+}
+.icon-brush {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -324px;
+}
+.icon-round-brush {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -324px;
+}
+.icon-flat-brush {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -324px;
+}
+.icon-eraser {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -324px;
+}
+.icon-scissors {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -324px;
+}
+.icon-ruler {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -324px;
+}
+.icon-colours {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -324px;
+}
+.icon-copy {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -324px;
+}
+.icon-layers {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -324px;
+}
+.icon-new-message {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -324px;
+}
+.icon-palette {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -324px;
+}
+.icon-hand {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -324px;
+}
+.icon-blackboard {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -360px;
+}
+.icon-code {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -360px;
+}
+.icon-email {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -360px;
+}
+.icon-emoji-happy {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -360px;
+}
+.icon-emoji-flirt {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -360px;
+}
+.icon-emoji-neutral {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -360px;
+}
+.icon-emoji-sad {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -360px;
+}
+.icon-erase {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -360px;
+}
+.icon-export {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -360px;
+}
+.icon-eye {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -360px;
+}
+.icon-popup {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -360px;
+}
+.icon-switch {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -360px;
+}
+.icon-feather {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -360px;
+}
+.icon-flag {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -360px;
+}
+.icon-flash {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -360px;
+}
+.icon-flashlight {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -360px;
+}
+.icon-lab-flask {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -396px;
+}
+.icon-clapperboard {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -396px;
+}
+.icon-folder-images {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -396px;
+}
+.icon-folder-music {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -396px;
+}
+.icon-folder-video {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -396px;
+}
+.icon-folder {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -396px;
+}
+.icon-archive {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -396px;
+}
+.icon-box {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -396px;
+}
+.icon-briefcase {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -396px;
+}
+.icon-suitcase {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -396px;
+}
+.icon-funnel {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -396px;
+}
+.icon-globe {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -396px;
+}
+.icon-network {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -396px;
+}
+.icon-graduation-cap {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -396px;
+}
+.icon-thumbs-down {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -396px;
+}
+.icon-thumbs-up {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -396px;
+}
+.icon-heart-outlined {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -432px;
+}
+.icon-heart {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -432px;
+}
+.icon-star-outlined {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -432px;
+}
+.icon-star {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -432px;
+}
+.icon-help-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -432px;
+}
+.icon-help {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -432px;
+}
+.icon-info-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -432px;
+}
+.icon-info {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -432px;
+}
+.icon-home {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -432px;
+}
+.icon-hair-cross {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -432px;
+}
+.icon-compass {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -432px;
+}
+.icon-direction {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -432px;
+}
+.icon-address {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -432px;
+}
+.icon-map {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -432px;
+}
+.icon-location-pin {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -432px;
+}
+.icon-location {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -432px;
+}
+.icon-hour-glass {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -468px;
+}
+.icon-image-inverted {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -468px;
+}
+.icon-image {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -468px;
+}
+.icon-images {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -468px;
+}
+.icon-key {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -468px;
+}
+.icon-keyboard {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -468px;
+}
+.icon-language {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -468px;
+}
+.icon-message {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -468px;
+}
+.icon-chat {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -468px;
+}
+.icon-typing {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -468px;
+}
+.icon-megaphone {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -468px;
+}
+.icon-modern-mic {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -468px;
+}
+.icon-mic {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -468px;
+}
+.icon-radio {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -468px;
+}
+.icon-calculator {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -468px;
+}
+.icon-old-phone {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -468px;
+}
+.icon-old-mobile {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -504px;
+}
+.icon-landline {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -504px;
+}
+.icon-phone {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -504px;
+}
+.icon-dial-pad {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -504px;
+}
+.icon-classic-computer {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -504px;
+}
+.icon-tv {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -504px;
+}
+.icon-laptop {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -504px;
+}
+.icon-tablet {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -504px;
+}
+.icon-mobile {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -504px;
+}
+.icon-print {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -504px;
+}
+.icon-mouse {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -504px;
+}
+.icon-game-controller {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -504px;
+}
+.icon-camera {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -504px;
+}
+.icon-save {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -504px;
+}
+.icon-book {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -504px;
+}
+.icon-leaf {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -504px;
+}
+.icon-lifebuoy {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -540px;
+}
+.icon-light-bulb {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -540px;
+}
+.icon-light-down {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -540px;
+}
+.icon-light-up {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -540px;
+}
+.icon-adjust {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -540px;
+}
+.icon-news {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -540px;
+}
+.icon-text-document {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -540px;
+}
+.icon-text-document-inverted {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -540px;
+}
+.icon-spreadsheet {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -540px;
+}
+.icon-text {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -540px;
+}
+.icon-list {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -540px;
+}
+.icon-add-to-list {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -540px;
+}
+.icon-grid2 {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -540px;
+}
+.icon-clipboard {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -540px;
+}
+.icon-man {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -540px;
+}
+.icon-calendar {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -540px;
+}
+.icon-moon {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -576px;
+}
+.icon-lock-open {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -576px;
+}
+.icon-lock {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -576px;
+}
+.icon-mask {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -576px;
+}
+.icon-shield {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -576px;
+}
+.icon-shop {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -576px;
+}
+.icon-shopping-bag {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -576px;
+}
+.icon-shopping-basket {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -576px;
+}
+.icon-shopping-cart {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -576px;
+}
+.icon-log-out {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -576px;
+}
+.icon-login {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -576px;
+}
+.icon-magnet {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -576px;
+}
+.icon-link {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -576px;
+}
+.icon-magnifying-glass {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -576px;
+}
+.icon-mail {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -576px;
+}
+.icon-paper-plane {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -576px;
+}
+.icon-attachment {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -612px;
+}
+.icon-pin {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -612px;
+}
+.icon-awareness-ribbon {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -612px;
+}
+.icon-new {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -612px;
+}
+.icon-notification {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -612px;
+}
+.icon-unread {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -612px;
+}
+.icon-browser {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -612px;
+}
+.icon-publish {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -612px;
+}
+.icon-menu {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -612px;
+}
+.icon-time-slot {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -612px;
+}
+.icon-pie-chart {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -612px;
+}
+.icon-bar-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -612px;
+}
+.icon-area-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -612px;
+}
+.icon-line-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -612px;
+}
+.icon-gauge {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -612px;
+}
+.icon-trophy {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -612px;
+}
+.icon-medal {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -648px;
+}
+.icon-price-ribbon {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -648px;
+}
+.icon-price-tag {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -648px;
+}
+.icon-battery {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -648px;
+}
+.icon-progress-full {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -648px;
+}
+.icon-progress-two {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -648px;
+}
+.icon-progress-one {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -648px;
+}
+.icon-progress-empty {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -648px;
+}
+.icon-quote {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -648px;
+}
+.icon-rss {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -648px;
+}
+.icon-signal {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -648px;
+}
+.icon-share-alternitive {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -648px;
+}
+.icon-share {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -648px;
+}
+.icon-shareable {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -648px;
+}
+.icon-infinity {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -648px;
+}
+.icon-cog {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -648px;
+}
+.icon-tools {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -684px;
+}
+.icon-sound-mix {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -684px;
+}
+.icon-traffic-cone {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -684px;
+}
+.icon-stopwatch {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -684px;
+}
+.icon-tree {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -684px;
+}
+.icon-tag {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -684px;
+}
+.icon-untag {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -684px;
+}
+.icon-bookmark {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -684px;
+}
+.icon-bookmarks {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -684px;
+}
+.icon-ticket {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -684px;
+}
+.icon-v-card {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -684px;
+}
+.icon-video {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -684px;
+}
+.icon-vinyl {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -684px;
+}
+.icon-voicemail {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -684px;
+}
+.icon-thermometer {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -684px;
+}
+.icon-power-plug {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -684px;
+}
+.icon-rocket {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -720px;
+}
+.icon-sweden {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -720px;
+}
+.icon-sports-club {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -720px;
+}
+.icon-px-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -720px;
+}
+.icon-px {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -720px;
+}
+.icon-basecamp {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -720px;
+}
+.icon-behance {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -720px;
+}
+.icon-creative-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -720px;
+}
+.icon-dropbox {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -720px;
+}
+.icon-evernote {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -720px;
+}
+.icon-flattr {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -720px;
+}
+.icon-foursquare {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -720px;
+}
+.icon-google-drive {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -720px;
+}
+.icon-google-hangouts {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -720px;
+}
+.icon-grooveshark {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -720px;
+}
+.icon-icloud {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -720px;
+}
+.icon-mixi {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -756px;
+}
+.icon-onedrive {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -756px;
+}
+.icon-paypal {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -756px;
+}
+.icon-picasa {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -756px;
+}
+.icon-qq {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -756px;
+}
+.icon-rdio-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -756px;
+}
+.icon-renren {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -756px;
+}
+.icon-scribd {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -756px;
+}
+.icon-sina-weibo {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -756px;
+}
+.icon-skype-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -756px;
+}
+.icon-skype {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -756px;
+}
+.icon-slideshare {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -756px;
+}
+.icon-smashing {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -756px;
+}
+.icon-soundcloud {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -756px;
+}
+.icon-spotify-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -756px;
+}
+.icon-spotify {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -756px;
+}
+.icon-swarm {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -792px;
+}
+.icon-vine-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -792px;
+}
+.icon-vine {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -792px;
+}
+.icon-vk-alternitive {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -792px;
+}
+.icon-vk-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -792px;
+}
+.icon-vk {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -792px;
+}
+.icon-xing-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -792px;
+}
+.icon-xing {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -792px;
+}
+.icon-yelp {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -792px;
+}
+.icon-dribbble-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -792px;
+}
+.icon-dribbble {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -792px;
+}
+.icon-facebook-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -792px;
+}
+.icon-facebook {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -792px;
+}
+.icon-flickr-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -792px;
+}
+.icon-flickr {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -792px;
+}
+.icon-github-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -792px;
+}
+.icon-github {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -828px;
+}
+.icon-google-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -828px;
+}
+.icon-google {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -828px;
+}
+.icon-instagram-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -828px;
+}
+.icon-instagram {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -828px;
+}
+.icon-lastfm-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -828px;
+}
+.icon-lastfm {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -828px;
+}
+.icon-linkedin-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -828px;
+}
+.icon-linkedin {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -828px;
+}
+.icon-pinterest-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -828px;
+}
+.icon-pinterest {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -828px;
+}
+.icon-rdio {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -828px;
+}
+.icon-stumbleupon-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -828px;
+}
+.icon-stumbleupon {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -828px;
+}
+.icon-tumblr-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -828px;
+}
+.icon-tumblr {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -828px;
+}
+.icon-twitter-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -864px;
+}
+.icon-twitter {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -864px;
+}
+.icon-vimeo-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -864px;
+}
+.icon-vimeo {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -864px;
+}
+.icon-youtube-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -864px;
+}
+.icon-youtube {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -864px;
+}
+.icon-user {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -864px;
+}
+.icon-users {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -864px;
+}
+.icon-user-add {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -864px;
+}
+.icon-vcard {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -864px;
+}
+.icon-airplane {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -864px;
+}
+.icon-clock {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -864px;
+}
+.icon-history {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -864px;
+}
+.icon-cc-nc-eu {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -864px;
+}
+.icon-cc-nc-jp {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -864px;
+}
+.icon-cc-zero {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -864px;
+}
+.icon-danielbruce2 {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -900px;
+}
+.icon-sort {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -900px;
+}
+.icon-dashboard {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -900px;
+}
+.icon-move-copy {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -900px;
+}
+.icon-treatment_plan {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -900px;
+}
+.icon-new_folder {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -900px;
+}
+.icon-health_card {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -900px;
+}
+.icon-user_info {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -900px;
+}
+.icon-hair {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -900px;
+}
+.icon-down_circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -900px;
+}
+.icon-user_clinician {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -900px;
+}
+.icon-no_charge {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -900px;
+}
+.icon-new_calendar_item {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -900px;
+}
+.icon-transgender {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -900px;
+}
+.icon-male {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -900px;
+}
+.icon-female {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -900px;
+}
+.icon-labs {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -936px;
+}
+.icon-vaccinations {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -936px;
+}
+.icon-data {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -936px;
+}
+.icon-bulk {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -936px;
+}
+.icon-share_screen {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -936px;
+}
+.icon-confirm {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -936px;
+}
+.icon-hash {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -936px;
+}
+.icon-height {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -936px;
+}
+.icon-weight {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -936px;
+}
+.icon-self_view {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -936px;
+}
+.icon-microphone_mute {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -936px;
+}
+.icon-video_camera {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -936px;
+}
+.icon-video_camera_mute {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -936px;
+}
+.icon-speaker {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -936px;
+}
+.icon-speaker_mute {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -936px;
+}
+.icon-intake {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -936px;
+}
+.icon-note {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -972px;
+}
+.icon-rx {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -972px;
+}
+.icon-disconnect {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -972px;
+}
+.icon-layout-active {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -972px;
+}
+.icon-layout-continuous {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -972px;
+}
+.icon-selfview-on {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -972px;
+}
+.icon-selfview-off {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -972px;
+}
+.icon-dial {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -972px;
+}
+.icon-grid {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -972px;
+}
+.icon-lego {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -972px;
+}
+.icon-group {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -972px;
+}
+.icon-bug {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -972px;
+}
+.icon-clock2 {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -972px;
+}
+.icon-crop {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -972px;
+}
+.icon-eye-with-line {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -972px;
+}
+.icon-fingerprint {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -972px;
+}
+.icon-flower {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -1008px;
+}
+.icon-merge {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -1008px;
+}
+.icon-mouse-pointer {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -1008px;
+}
+.icon-newsletter {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -1008px;
+}
+.icon-notifications-off {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -1008px;
+}
+.icon-quote2 {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -1008px;
+}
+.icon-remove-user {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -1008px;
+}
+.icon-tablet-mobile-combo {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -1008px;
+}
+.icon-user2 {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -1008px;
+}
+.icon-users2 {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -1008px;
+}
+.icon-video-camera {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -1008px;
+}
+
