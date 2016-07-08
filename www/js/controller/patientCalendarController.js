@@ -266,62 +266,68 @@ angular.module('starter.controllers')
 
   //  $rootScope.appointCurrentPage = '';
 
-    if ($rootScope.getIndividualScheduleDetails != '') {
-        var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
-        var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
-        var currentUserHomeDate = currentUserHomeDate;
-        if ((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-            $scope.$on('timer-tick', function(event, args) {
-                if (args.days == 0) {
-                    $rootScope.hourDisplay = 'initial';
-                    $rootScope.daysDisplay = 'none';
-                    $rootScope.dayDisplay = 'none';
-                } else if (args.days == 1) {
-                    $rootScope.daysDisplay = 'none';
-                    $rootScope.hourDisplay = 'none';
-                    $rootScope.dayDisplay = 'initial';
-                } else if (args.days > 1) {
-                    $rootScope.daysDisplay = 'initial';
-                    $rootScope.hourDisplay = 'none';
-                    $rootScope.dayDisplay = 'none';
-                }
+    if ($rootScope.getIndividualScheduleDetails !== 0) {
+        //if($rootScope.scheduledList[0].appointmentId !== $rootScope.getIndividualScheduleDetails[0].appointmentId) {
+          var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+          var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
+          var currentUserHomeDate = currentUserHomeDate;
+          if ((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+              $scope.$on('timer-tick', function(event, args) {
+                  if (args.days == 0) {
+                      $rootScope.hourDisplay = 'initial';
+                      $rootScope.daysDisplay = 'none';
+                      $rootScope.dayDisplay = 'none';
+                  } else if (args.days == 1) {
+                      $rootScope.daysDisplay = 'none';
+                      $rootScope.hourDisplay = 'none';
+                      $rootScope.dayDisplay = 'initial';
+                  } else if (args.days > 1) {
+                      $rootScope.daysDisplay = 'initial';
+                      $rootScope.hourDisplay = 'none';
+                      $rootScope.dayDisplay = 'none';
+                  }
 
-                if (args.millis < 600) {
-                    $rootScope.timeNew = 'none';
-                    $rootScope.timeNew1 = 'block';
-                    $rootScope.timerCOlor = '#E1FCD4';
-                } else if (args.millis > 600) {
-                    $rootScope.timeNew = 'block';
-                    $rootScope.timeNew1 = 'none';
-                    $rootScope.timerCOlor = '#FEEFE8';
-                }
-                /*else if(args.millis < 600000){
-                   $rootScope.timeNew = 'none';
-                   $rootScope.timeNew1 = 'block';
-                   $rootScope.timerCOlor = '#E1FCD4';
-                }else if(args.millis > 600000){
-                	$rootScope.timeNew = 'block';
-                   $rootScope.timeNew1 = 'none';
-                	$rootScope.timerCOlor = '#FEEFE8';
-                }*/
+                  if (args.millis < 600) {
+                      $rootScope.timeNew = 'none';
+                      $rootScope.timeNew1 = 'block';
+                      $rootScope.timerCOlor = '#E1FCD4';
+                  } else if (args.millis > 600) {
+                      $rootScope.timeNew = 'block';
+                      $rootScope.timeNew1 = 'none';
+                      $rootScope.timerCOlor = '#FEEFE8';
+                  }
+                  /*else if(args.millis < 600000){
+                     $rootScope.timeNew = 'none';
+                     $rootScope.timeNew1 = 'block';
+                     $rootScope.timerCOlor = '#E1FCD4';
+                  }else if(args.millis > 600000){
+                  	$rootScope.timeNew = 'block';
+                     $rootScope.timeNew1 = 'none';
+                  	$rootScope.timerCOlor = '#FEEFE8';
+                  }*/
 
-            });
-            $rootScope.time = new Date(getReplaceTime3).getTime();
+              });
+              $rootScope.time = new Date(getReplaceTime3).getTime();
 
-            $timeout(function() {
-                document.getElementsByTagName('timer')[0].start();
-            }, 10);
+            /*  $timeout(function() {
+                  document.getElementsByTagName('timer')[0].start();
+              }, 10);*/
+             $timeout(function() {
+                    document.getElementsByTagName('timer')[0].stop();
+                    document.getElementsByTagName('timer')[0].start();
+                }, 100);
 
-            var d = new Date();
+              var d = new Date();
 
-            var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+              var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 
-            if (getReplaceTime3 < currentUserHomeDate) {
-                $rootScope.timerCOlor = '#E1FCD4';
-            }
-        } else if ((new Date(getReplaceTime3).getTime()) >= (new Date(d).getTime())) {
-            $rootScope.timerCOlor = 'transparent';
-        }
+              if (getReplaceTime3 < currentUserHomeDate) {
+                  $rootScope.timerCOlor = '#E1FCD4';
+              }
+          } else if ((new Date(getReplaceTime3).getTime()) >= (new Date(d).getTime())) {
+              $rootScope.timerCOlor = 'transparent';
+          }
+       //}
     }
 
     $scope.addmore = false;
