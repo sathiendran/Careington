@@ -142,6 +142,7 @@ angular.module('starter.controllers')
             $scope.relation = $("#relation").val();
             $scope.gender = $("input[name='depgender']:checked").val();
             $scope.height = $("#height").val();
+            $scope.height2 = $("#height2").val();
             $scope.weight = $("#weight").val();
             $scope.homephone = $("#homephone").val();
             $scope.mobile = $("#mobile").val();
@@ -208,6 +209,9 @@ angular.module('starter.controllers')
            $scope.ErrorMessage = "Please Choose Your Time Zone";
            $rootScope.Validation($scope.ErrorMessage);
        }else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+           $scope.ErrorMessage = "Please Enter Your Height";
+           $rootScope.Validation($scope.ErrorMessage);
+       }else if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
            $scope.ErrorMessage = "Please Enter Your Height";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
@@ -312,7 +316,8 @@ angular.module('starter.controllers')
                     pharmacyContact: null,
                     address: $scope.homeaddress,
                     profileImagePath: $rootScope.newDependentImagePath,
-                    height: formatHeightVal($scope.height),
+                    //height: formatHeightVal($scope.height),
+                    height: $scope.height + "|" + $scope.height2,
                     weight: $scope.weight,
                     heightUnit: $scope.getHeightunit,
                     weightUnit: $scope.getWeightunit,

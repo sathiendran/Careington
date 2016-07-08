@@ -140,7 +140,7 @@
            </label>
            <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
-           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{currentPatientDetails[0].anatomy.height}}</div>
+           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height)}}</div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.height">NA</div>
            </label>
            <label class="item item-input itemtab validated">
@@ -242,7 +242,10 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
               <div>
-                 <input type="number" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height)}}" class="textdata" style="width: 80px; margin-right: 10px;">
+                 <input type="number" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" style="width: 40px; margin-right: 10px;">
+              </div>
+              <div>
+                 <input type="number" name="healthInfoHeight2" id="healthInfoHeight2" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 1)}}" class="textdata" style="width: 40px; margin-right: 10px;">
               </div>
               <div class="healthViewDetails" style="width: 40% !important;">
                   <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit"  style="width: 70%;">
