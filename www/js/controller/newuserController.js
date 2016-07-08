@@ -67,9 +67,9 @@ angular.module('starter.controllers')
     };
     $scope.newUSer = {};
     $scope.addmore = false;
-    
+
     $scope.newUSer.address = $rootScope.primaryPatientDetails[0].address;
-    
+
     $scope.moredetails = function() {
         $scope.showme = true;
         $scope.addmore = true;
@@ -138,7 +138,8 @@ angular.module('starter.controllers')
         var c = a.getFullYear();
         var d = a.getDate();
         $scope.dob = d + "/" + b + "/" + c;
-        $scope.gender = $("input[name='userInfoGender']:checked").val();
+      //  $scope.gender = $("input[name='userInfoGender']:checked").val();
+        $scope.gender = $("#gender").val();
         $scope.heights = $("#userheight").val();
         $scope.weight = $("#userWeight").val();
         $scope.homephone = $("#userphone").val();
@@ -217,7 +218,7 @@ angular.module('starter.controllers')
             $rootScope.Validation($scope.ErrorMessage);
         } else {
             // alert("fail");
-            $scope.doPostAddCousers();
+          $scope.doPostAddCousers();
         }
 
     }
