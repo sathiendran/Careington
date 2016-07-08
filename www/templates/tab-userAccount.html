@@ -35,7 +35,8 @@
 			</div>
 		</div>
 	</ion-header-bar>
-	<ion-view title="User Account">
+	<ion-content  title="User Account">
+
 		<div class="usercontent-{{deviceName}}" >
 			<ion-list >
 				<div class="list userlist">
@@ -55,7 +56,7 @@
 
 							</div>
 						</div>
-                        </a>
+
 					</ion-item>
 			 		<ion-item class="ionicitem userionitem" ng-click ="doGetCurrentUserAppointment()" style="padding: 38px 10px !important;">
 						<div class="cardshadow">
@@ -77,7 +78,8 @@
 				</div>
 			</ion-list>
 		</div>
-	</ion-view>
+
+</ion-content>
 	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
 		<!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
