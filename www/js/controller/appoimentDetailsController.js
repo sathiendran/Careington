@@ -146,6 +146,11 @@ angular.module('starter.controllers')
             //},1000);
         });
 
+        $timeout(function() {
+              document.getElementsByTagName('timer')[0].stop();
+              document.getElementsByTagName('timer')[0].start();
+          }, 100);
+
         var d = new Date();
         //d.setHours(d.getHours() + 12);
 

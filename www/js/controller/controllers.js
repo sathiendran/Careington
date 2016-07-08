@@ -1627,14 +1627,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
         LoginService.getCountiesList(params);
     }
-    
+
     $scope.getTimezoneList = function(){
          var params = {
              accessToken: $rootScope.accessToken,
              success: function(data) {
                  $rootScope.timeZones = angular.fromJson(data.data);
              },error: function(data) {
- 
+
              }
          };
          LoginService.getTimezoneList(params);
@@ -3983,11 +3983,11 @@ LoginService.getScheduledConsulatation(params);
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
                             //$rootScope.nextAppointmentDisplay = 'block';
-                            $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                          //  $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
-                                $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+                              //  $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
                               //  if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
                                   $rootScope.accountClinicianFooter = 'none';
                                     $rootScope.individualNextAppointmentDisplay = 'block';
