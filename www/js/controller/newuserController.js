@@ -67,9 +67,9 @@ angular.module('starter.controllers')
     };
     $scope.newUSer = {};
     $scope.addmore = false;
-    
+
     $scope.newUSer.address = $rootScope.primaryPatientDetails[0].address;
-    
+
     $scope.moredetails = function() {
         $scope.showme = true;
         $scope.addmore = true;
@@ -138,8 +138,10 @@ angular.module('starter.controllers')
         var c = a.getFullYear();
         var d = a.getDate();
         $scope.dob = d + "/" + b + "/" + c;
-        $scope.gender = $("input[name='userInfoGender']:checked").val();
+      //  $scope.gender = $("input[name='userInfoGender']:checked").val();
+        $scope.gender = $("#gender").val();
         $scope.heights = $("#userheight").val();
+        $scope.heights2 = $("#userheight2").val();
         $scope.weight = $("#userWeight").val();
         $scope.homephone = $("#userphone").val();
         $scope.mobile = $("#usermobile").val();
@@ -193,6 +195,9 @@ angular.module('starter.controllers')
         } else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
             $scope.ErrorMessage = "Please Enter Your Height";
             $rootScope.Validation($scope.ErrorMessage);
+        } else if (typeof $scope.heights2 === 'undefined' || $scope.heights2 === '') {
+            $scope.ErrorMessage = "Please Enter Your Height";
+            $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.heightunitid === 'undefined' || $scope.heightunitid === '') {
             $scope.ErrorMessage = "Please Select Your Height Unit";
             $rootScope.Validation($scope.ErrorMessage);
@@ -217,7 +222,7 @@ angular.module('starter.controllers')
             $rootScope.Validation($scope.ErrorMessage);
         } else {
             // alert("fail");
-            $scope.doPostAddCousers();
+          $scope.doPostAddCousers();
         }
 
     }
@@ -237,7 +242,8 @@ angular.module('starter.controllers')
             eyeColor: $scope.getEyeColorId,
             ethnicity: $scope.getEthnicityId,
             hairColor: $scope.getHairColorId,
-            height: formatHeightVal($scope.heights),
+            //height: formatHeightVal($scope.heights),
+            height: $scope.heights + "|" + $scope.heights2,
             weight: $scope.weight,
             heightUnit: $scope.heightunit,
             weightUnit: $scope.weightunit,
