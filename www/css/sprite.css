@@ -1,2299 +1,2299 @@
-[class^="icon-"], [class*=" icon-"] {
+[class^="snapicon-"], [class*=" snapicon-"] {
     display: inline-block;
     background-repeat: no-repeat;
     background-image: url(../img/sprite.svg);
 }
-.icon-medication {
+.snapicon-medication {
     width: 20px;
     height: 20px;
     background-position: 0 0;
 }
-.icon-lungs {
+.snapicon-lungs {
     width: 20px;
     height: 20px;
     background-position: -36px 0;
 }
-.icon-subscription {
+.snapicon-subscription {
     width: 20px;
     height: 20px;
     background-position: -72px 0;
 }
-.icon-task {
+.snapicon-task {
     width: 20px;
     height: 20px;
     background-position: -108px 0;
 }
-.icon-office {
+.snapicon-office {
     width: 20px;
     height: 20px;
     background-position: -144px 0;
 }
-.icon-pulse {
+.snapicon-pulse {
     width: 20px;
     height: 20px;
     background-position: -180px 0;
 }
-.icon-search-users {
+.snapicon-search-users {
     width: 23px;
     height: 20px;
     background-position: -216px 0;
 }
-.icon-codes {
+.snapicon-codes {
     width: 20px;
     height: 20px;
     background-position: -252px 0;
 }
-.icon-shapes {
+.snapicon-shapes {
     width: 20px;
     height: 20px;
     background-position: -288px 0;
 }
-.icon-line {
+.snapicon-line {
     width: 20px;
     height: 20px;
     background-position: -324px 0;
 }
-.icon-line-weight {
+.snapicon-line-weight {
     width: 20px;
     height: 20px;
     background-position: -360px 0;
 }
-.icon-creative-commons-attribution {
+.snapicon-creative-commons-attribution {
     width: 20px;
     height: 20px;
     background-position: -396px 0;
 }
-.icon-creative-commons-noderivs {
+.snapicon-creative-commons-noderivs {
     width: 20px;
     height: 20px;
     background-position: -432px 0;
 }
-.icon-creative-commons-noncommercial-eu {
+.snapicon-creative-commons-noncommercial-eu {
     width: 20px;
     height: 20px;
     background-position: -468px 0;
 }
-.icon-creative-commons-noncommercial-us {
+.snapicon-creative-commons-noncommercial-us {
     width: 20px;
     height: 20px;
     background-position: -504px 0;
 }
-.icon-creative-commons-public-domain {
+.snapicon-creative-commons-public-domain {
     width: 20px;
     height: 20px;
     background-position: -540px 0;
 }
-.icon-creative-commons-remix {
+.snapicon-creative-commons-remix {
     width: 20px;
     height: 20px;
     background-position: 0 -36px;
 }
-.icon-creative-commons-share {
+.snapicon-creative-commons-share {
     width: 20px;
     height: 20px;
     background-position: -36px -36px;
 }
-.icon-creative-commons-sharealike {
+.snapicon-creative-commons-sharealike {
     width: 20px;
     height: 20px;
     background-position: -72px -36px;
 }
-.icon-creative-commons {
+.snapicon-creative-commons {
     width: 20px;
     height: 20px;
     background-position: -108px -36px;
 }
-.icon-document-landscape {
+.snapicon-document-landscape {
     width: 20px;
     height: 20px;
     background-position: -144px -36px;
 }
-.icon-warning {
+.snapicon-warning {
     width: 20px;
     height: 20px;
     background-position: -180px -36px;
 }
-.icon-arrow-bold-down {
+.snapicon-arrow-bold-down {
     width: 20px;
     height: 20px;
     background-position: -216px -36px;
 }
-.icon-arrow-bold-left {
+.snapicon-arrow-bold-left {
     width: 20px;
     height: 20px;
     background-position: -252px -36px;
 }
-.icon-arrow-bold-right {
+.snapicon-arrow-bold-right {
     width: 20px;
     height: 20px;
     background-position: -288px -36px;
 }
-.icon-arrow-bold-up {
+.snapicon-arrow-bold-up {
     width: 20px;
     height: 20px;
     background-position: -324px -36px;
 }
-.icon-arrow-down {
+.snapicon-arrow-down {
     width: 20px;
     height: 20px;
     background-position: -360px -36px;
 }
-.icon-arrow-left {
+.snapicon-arrow-left {
     width: 20px;
     height: 20px;
     background-position: -396px -36px;
 }
-.icon-arrow-long-down {
+.snapicon-arrow-long-down {
     width: 20px;
     height: 20px;
     background-position: -432px -36px;
 }
-.icon-arrow-long-left {
+.snapicon-arrow-long-left {
     width: 20px;
     height: 20px;
     background-position: -468px -36px;
 }
-.icon-arrow-long-right {
+.snapicon-arrow-long-right {
     width: 20px;
     height: 20px;
     background-position: -504px -36px;
 }
-.icon-arrow-long-up {
+.snapicon-arrow-long-up {
     width: 20px;
     height: 20px;
     background-position: -540px -36px;
 }
-.icon-arrow-right {
+.snapicon-arrow-right {
     width: 20px;
     height: 20px;
     background-position: 0 -72px;
 }
-.icon-arrow-up {
+.snapicon-arrow-up {
     width: 20px;
     height: 20px;
     background-position: -36px -72px;
 }
-.icon-arrow-with-circle-down {
+.snapicon-arrow-with-circle-down {
     width: 20px;
     height: 20px;
     background-position: -72px -72px;
 }
-.icon-arrow-with-circle-left {
+.snapicon-arrow-with-circle-left {
     width: 20px;
     height: 20px;
     background-position: -108px -72px;
 }
-.icon-arrow-with-circle-right {
+.snapicon-arrow-with-circle-right {
     width: 20px;
     height: 20px;
     background-position: -144px -72px;
 }
-.icon-arrow-with-circle-up {
+.snapicon-arrow-with-circle-up {
     width: 20px;
     height: 20px;
     background-position: -180px -72px;
 }
-.icon-chevron-down {
+.snapicon-chevron-down {
     width: 20px;
     height: 20px;
     background-position: -216px -72px;
 }
-.icon-chevron-left {
+.snapicon-chevron-left {
     width: 20px;
     height: 20px;
     background-position: -252px -72px;
 }
-.icon-chevron-right {
+.snapicon-chevron-right {
     width: 20px;
     height: 20px;
     background-position: -288px -72px;
 }
-.icon-chevron-small-down {
+.snapicon-chevron-small-down {
     width: 20px;
     height: 20px;
     background-position: -324px -72px;
 }
-.icon-chevron-small-left {
+.snapicon-chevron-small-left {
     width: 20px;
     height: 20px;
     background-position: -360px -72px;
 }
-.icon-chevron-small-right {
+.snapicon-chevron-small-right {
     width: 20px;
     height: 20px;
     background-position: -396px -72px;
 }
-.icon-chevron-small-up {
+.snapicon-chevron-small-up {
     width: 20px;
     height: 20px;
     background-position: -432px -72px;
 }
-.icon-chevron-thin-down {
+.snapicon-chevron-thin-down {
     width: 20px;
     height: 20px;
     background-position: -468px -72px;
 }
-.icon-chevron-thin-left {
+.snapicon-chevron-thin-left {
     width: 20px;
     height: 20px;
     background-position: -504px -72px;
 }
-.icon-chevron-thin-right {
+.snapicon-chevron-thin-right {
     width: 20px;
     height: 20px;
     background-position: -540px -72px;
 }
-.icon-chevron-thin-up {
+.snapicon-chevron-thin-up {
     width: 20px;
     height: 20px;
     background-position: 0 -108px;
 }
-.icon-chevron-up {
+.snapicon-chevron-up {
     width: 20px;
     height: 20px;
     background-position: -36px -108px;
 }
-.icon-chevron-with-circle-down {
+.snapicon-chevron-with-circle-down {
     width: 20px;
     height: 20px;
     background-position: -72px -108px;
 }
-.icon-chevron-with-circle-left {
+.snapicon-chevron-with-circle-left {
     width: 20px;
     height: 20px;
     background-position: -108px -108px;
 }
-.icon-chevron-with-circle-right {
+.snapicon-chevron-with-circle-right {
     width: 20px;
     height: 20px;
     background-position: -144px -108px;
 }
-.icon-chevron-with-circle-up {
+.snapicon-chevron-with-circle-up {
     width: 20px;
     height: 20px;
     background-position: -180px -108px;
 }
-.icon-level-down {
+.snapicon-level-down {
     width: 20px;
     height: 20px;
     background-position: -216px -108px;
 }
-.icon-level-up {
+.snapicon-level-up {
     width: 20px;
     height: 20px;
     background-position: -252px -108px;
 }
-.icon-back {
+.snapicon-back {
     width: 20px;
     height: 20px;
     background-position: -288px -108px;
 }
-.icon-loop {
+.snapicon-loop {
     width: 20px;
     height: 20px;
     background-position: -324px -108px;
 }
-.icon-retweet {
+.snapicon-retweet {
     width: 20px;
     height: 20px;
     background-position: -360px -108px;
 }
-.icon-swap {
+.snapicon-swap {
     width: 20px;
     height: 20px;
     background-position: -396px -108px;
 }
-.icon-shuffle {
+.snapicon-shuffle {
     width: 20px;
     height: 20px;
     background-position: -432px -108px;
 }
-.icon-controller-fast-backward {
+.snapicon-controller-fast-backward {
     width: 20px;
     height: 20px;
     background-position: -468px -108px;
 }
-.icon-controller-fast-forward {
+.snapicon-controller-fast-forward {
     width: 20px;
     height: 20px;
     background-position: -504px -108px;
 }
-.icon-controller-jump-to-start {
+.snapicon-controller-jump-to-start {
     width: 20px;
     height: 20px;
     background-position: -540px -108px;
 }
-.icon-controller-next {
+.snapicon-controller-next {
     width: 20px;
     height: 20px;
     background-position: 0 -144px;
 }
-.icon-controller-paus {
+.snapicon-controller-paus {
     width: 20px;
     height: 20px;
     background-position: -36px -144px;
 }
-.icon-controller-play {
+.snapicon-controller-play {
     width: 20px;
     height: 20px;
     background-position: -72px -144px;
 }
-.icon-controller-record {
+.snapicon-controller-record {
     width: 20px;
     height: 20px;
     background-position: -108px -144px;
 }
-.icon-controller-stop {
+.snapicon-controller-stop {
     width: 20px;
     height: 20px;
     background-position: -144px -144px;
 }
-.icon-reply {
+.snapicon-reply {
     width: 20px;
     height: 20px;
     background-position: -180px -144px;
 }
-.icon-reply-all {
+.snapicon-reply-all {
     width: 20px;
     height: 20px;
     background-position: -216px -144px;
 }
-.icon-forward {
+.snapicon-forward {
     width: 20px;
     height: 20px;
     background-position: -252px -144px;
 }
-.icon-controller-volume {
+.snapicon-controller-volume {
     width: 20px;
     height: 20px;
     background-position: -288px -144px;
 }
-.icon-dot-single {
+.snapicon-dot-single {
     width: 20px;
     height: 20px;
     background-position: -324px -144px;
 }
-.icon-dots-three-horizontal {
+.snapicon-dots-three-horizontal {
     width: 20px;
     height: 20px;
     background-position: -360px -144px;
 }
-.icon-dots-three-vertical {
+.snapicon-dots-three-vertical {
     width: 20px;
     height: 20px;
     background-position: -396px -144px;
 }
-.icon-dots-two-horizontal {
+.snapicon-dots-two-horizontal {
     width: 20px;
     height: 20px;
     background-position: -432px -144px;
 }
-.icon-dots-two-vertical {
+.snapicon-dots-two-vertical {
     width: 20px;
     height: 20px;
     background-position: -468px -144px;
 }
-.icon-flow-branch {
+.snapicon-flow-branch {
     width: 20px;
     height: 20px;
     background-position: -504px -144px;
 }
-.icon-flow-cascade {
+.snapicon-flow-cascade {
     width: 20px;
     height: 20px;
     background-position: -540px -144px;
 }
-.icon-flow-line {
+.snapicon-flow-line {
     width: 20px;
     height: 20px;
     background-position: 0 -180px;
 }
-.icon-flow-parallel {
+.snapicon-flow-parallel {
     width: 20px;
     height: 20px;
     background-position: -36px -180px;
 }
-.icon-flow-tree {
+.snapicon-flow-tree {
     width: 20px;
     height: 20px;
     background-position: -72px -180px;
 }
-.icon-open-book {
+.snapicon-open-book {
     width: 20px;
     height: 20px;
     background-position: -108px -180px;
 }
-.icon-resize-100 {
+.snapicon-resize-100 {
     width: 20px;
     height: 20px;
     background-position: -144px -180px;
 }
-.icon-resize-full-screen {
+.snapicon-resize-full-screen {
     width: 20px;
     height: 20px;
     background-position: -180px -180px;
 }
-.icon-select-arrows {
+.snapicon-select-arrows {
     width: 20px;
     height: 20px;
     background-position: -216px -180px;
 }
-.icon-triangle-down {
+.snapicon-triangle-down {
     width: 20px;
     height: 20px;
     background-position: -252px -180px;
 }
-.icon-triangle-left {
+.snapicon-triangle-left {
     width: 20px;
     height: 20px;
     background-position: -288px -180px;
 }
-.icon-triangle-right {
+.snapicon-triangle-right {
     width: 20px;
     height: 20px;
     background-position: -324px -180px;
 }
-.icon-triangle-up {
+.snapicon-triangle-up {
     width: 20px;
     height: 20px;
     background-position: -360px -180px;
 }
-.icon-drive {
+.snapicon-drive {
     width: 20px;
     height: 20px;
     background-position: -396px -180px;
 }
-.icon-install {
+.snapicon-install {
     width: 20px;
     height: 20px;
     background-position: -432px -180px;
 }
-.icon-uninstall {
+.snapicon-uninstall {
     width: 20px;
     height: 20px;
     background-position: -468px -180px;
 }
-.icon-cloud {
+.snapicon-cloud {
     width: 20px;
     height: 20px;
     background-position: -504px -180px;
 }
-.icon-upload-to-cloud {
+.snapicon-upload-to-cloud {
     width: 20px;
     height: 20px;
     background-position: -540px -180px;
 }
-.icon-thunder-cloud {
+.snapicon-thunder-cloud {
     width: 20px;
     height: 20px;
     background-position: 0 -216px;
 }
-.icon-database {
+.snapicon-database {
     width: 20px;
     height: 20px;
     background-position: -36px -216px;
 }
-.icon-inbox {
+.snapicon-inbox {
     width: 20px;
     height: 20px;
     background-position: -72px -216px;
 }
-.icon-upload {
+.snapicon-upload {
     width: 20px;
     height: 20px;
     background-position: -108px -216px;
 }
-.icon-download {
+.snapicon-download {
     width: 20px;
     height: 20px;
     background-position: -144px -216px;
 }
-.icon-air {
+.snapicon-air {
     width: 20px;
     height: 20px;
     background-position: -180px -216px;
 }
-.icon-aircraft-landing {
+.snapicon-aircraft-landing {
     width: 20px;
     height: 20px;
     background-position: -216px -216px;
 }
-.icon-aircraft-take-off {
+.snapicon-aircraft-take-off {
     width: 20px;
     height: 20px;
     background-position: -252px -216px;
 }
-.icon-aircraft {
+.snapicon-aircraft {
     width: 20px;
     height: 20px;
     background-position: -288px -216px;
 }
-.icon-align-bottom {
+.snapicon-align-bottom {
     width: 20px;
     height: 20px;
     background-position: -324px -216px;
 }
-.icon-align-horizontal-middle {
+.snapicon-align-horizontal-middle {
     width: 20px;
     height: 20px;
     background-position: -360px -216px;
 }
-.icon-align-left {
+.snapicon-align-left {
     width: 20px;
     height: 20px;
     background-position: -396px -216px;
 }
-.icon-align-right {
+.snapicon-align-right {
     width: 20px;
     height: 20px;
     background-position: -432px -216px;
 }
-.icon-align-top {
+.snapicon-align-top {
     width: 20px;
     height: 20px;
     background-position: -468px -216px;
 }
-.icon-align-vertical-middle {
+.snapicon-align-vertical-middle {
     width: 20px;
     height: 20px;
     background-position: -504px -216px;
 }
-.icon-music {
+.snapicon-music {
     width: 20px;
     height: 20px;
     background-position: -540px -216px;
 }
-.icon-note2 {
+.snapicon-note2 {
     width: 20px;
     height: 20px;
     background-position: 0 -252px;
 }
-.icon-beamed-note {
+.snapicon-beamed-note {
     width: 20px;
     height: 20px;
     background-position: -36px -252px;
 }
-.icon-bell {
+.snapicon-bell {
     width: 20px;
     height: 20px;
     background-position: -72px -252px;
 }
-.icon-sound {
+.snapicon-sound {
     width: 20px;
     height: 20px;
     background-position: -108px -252px;
 }
-.icon-sound-mute {
+.snapicon-sound-mute {
     width: 20px;
     height: 20px;
     background-position: -144px -252px;
 }
-.icon-bowl {
+.snapicon-bowl {
     width: 20px;
     height: 20px;
     background-position: -180px -252px;
 }
-.icon-drink {
+.snapicon-drink {
     width: 20px;
     height: 20px;
     background-position: -216px -252px;
 }
-.icon-cake {
+.snapicon-cake {
     width: 20px;
     height: 20px;
     background-position: -252px -252px;
 }
-.icon-water {
+.snapicon-water {
     width: 20px;
     height: 20px;
     background-position: -288px -252px;
 }
-.icon-check {
+.snapicon-check {
     width: 20px;
     height: 20px;
     background-position: -324px -252px;
 }
-.icon-cross {
+.snapicon-cross {
     width: 20px;
     height: 20px;
     background-position: -360px -252px;
 }
-.icon-minus {
+.snapicon-minus {
     width: 20px;
     height: 20px;
     background-position: -396px -252px;
 }
-.icon-plus {
+.snapicon-plus {
     width: 20px;
     height: 20px;
     background-position: -432px -252px;
 }
-.icon-circle-with-cross {
+.snapicon-circle-with-cross {
     width: 20px;
     height: 20px;
     background-position: -468px -252px;
 }
-.icon-circle-with-minus {
+.snapicon-circle-with-minus {
     width: 20px;
     height: 20px;
     background-position: -504px -252px;
 }
-.icon-circle-with-plus {
+.snapicon-circle-with-plus {
     width: 20px;
     height: 20px;
     background-position: -540px -252px;
 }
-.icon-squared-cross {
+.snapicon-squared-cross {
     width: 20px;
     height: 20px;
     background-position: 0 -288px;
 }
-.icon-squared-minus {
+.snapicon-squared-minus {
     width: 20px;
     height: 20px;
     background-position: -36px -288px;
 }
-.icon-squared-plus {
+.snapicon-squared-plus {
     width: 20px;
     height: 20px;
     background-position: -72px -288px;
 }
-.icon-block {
+.snapicon-block {
     width: 20px;
     height: 20px;
     background-position: -108px -288px;
 }
-.icon-circle {
+.snapicon-circle {
     width: 20px;
     height: 20px;
     background-position: -144px -288px;
 }
-.icon-circular-graph {
+.snapicon-circular-graph {
     width: 20px;
     height: 20px;
     background-position: -180px -288px;
 }
-.icon-ccw {
+.snapicon-ccw {
     width: 20px;
     height: 20px;
     background-position: -216px -288px;
 }
-.icon-cw {
+.snapicon-cw {
     width: 20px;
     height: 20px;
     background-position: -252px -288px;
 }
-.icon-cycle {
+.snapicon-cycle {
     width: 20px;
     height: 20px;
     background-position: -288px -288px;
 }
-.icon-credit-card {
+.snapicon-credit-card {
     width: 20px;
     height: 20px;
     background-position: -324px -288px;
 }
-.icon-wallet {
+.snapicon-wallet {
     width: 20px;
     height: 20px;
     background-position: -360px -288px;
 }
-.icon-credit {
+.snapicon-credit {
     width: 20px;
     height: 20px;
     background-position: -396px -288px;
 }
-.icon-trash {
+.snapicon-trash {
     width: 20px;
     height: 20px;
     background-position: -432px -288px;
 }
-.icon-bucket {
+.snapicon-bucket {
     width: 20px;
     height: 20px;
     background-position: -468px -288px;
 }
-.icon-cup {
+.snapicon-cup {
     width: 20px;
     height: 20px;
     background-position: -504px -288px;
 }
-.icon-document {
+.snapicon-document {
     width: 20px;
     height: 20px;
     background-position: -540px -288px;
 }
-.icon-documents {
+.snapicon-documents {
     width: 20px;
     height: 20px;
     background-position: 0 -324px;
 }
-.icon-drop {
+.snapicon-drop {
     width: 20px;
     height: 20px;
     background-position: -36px -324px;
 }
-.icon-edit {
+.snapicon-edit {
     width: 20px;
     height: 20px;
     background-position: -72px -324px;
 }
-.icon-pencil {
+.snapicon-pencil {
     width: 20px;
     height: 20px;
     background-position: -108px -324px;
 }
-.icon-brush {
+.snapicon-brush {
     width: 20px;
     height: 20px;
     background-position: -144px -324px;
 }
-.icon-round-brush {
+.snapicon-round-brush {
     width: 20px;
     height: 20px;
     background-position: -180px -324px;
 }
-.icon-flat-brush {
+.snapicon-flat-brush {
     width: 20px;
     height: 20px;
     background-position: -216px -324px;
 }
-.icon-eraser {
+.snapicon-eraser {
     width: 20px;
     height: 20px;
     background-position: -252px -324px;
 }
-.icon-scissors {
+.snapicon-scissors {
     width: 20px;
     height: 20px;
     background-position: -288px -324px;
 }
-.icon-ruler {
+.snapicon-ruler {
     width: 20px;
     height: 20px;
     background-position: -324px -324px;
 }
-.icon-colours {
+.snapicon-colours {
     width: 20px;
     height: 20px;
     background-position: -360px -324px;
 }
-.icon-copy {
+.snapicon-copy {
     width: 20px;
     height: 20px;
     background-position: -396px -324px;
 }
-.icon-layers {
+.snapicon-layers {
     width: 20px;
     height: 20px;
     background-position: -432px -324px;
 }
-.icon-new-message {
+.snapicon-new-message {
     width: 20px;
     height: 20px;
     background-position: -468px -324px;
 }
-.icon-palette {
+.snapicon-palette {
     width: 20px;
     height: 20px;
     background-position: -504px -324px;
 }
-.icon-hand {
+.snapicon-hand {
     width: 20px;
     height: 20px;
     background-position: -540px -324px;
 }
-.icon-blackboard {
+.snapicon-blackboard {
     width: 20px;
     height: 20px;
     background-position: 0 -360px;
 }
-.icon-code {
+.snapicon-code {
     width: 20px;
     height: 20px;
     background-position: -36px -360px;
 }
-.icon-email {
+.snapicon-email {
     width: 20px;
     height: 20px;
     background-position: -72px -360px;
 }
-.icon-emoji-happy {
+.snapicon-emoji-happy {
     width: 20px;
     height: 20px;
     background-position: -108px -360px;
 }
-.icon-emoji-flirt {
+.snapicon-emoji-flirt {
     width: 20px;
     height: 20px;
     background-position: -144px -360px;
 }
-.icon-emoji-neutral {
+.snapicon-emoji-neutral {
     width: 20px;
     height: 20px;
     background-position: -180px -360px;
 }
-.icon-emoji-sad {
+.snapicon-emoji-sad {
     width: 20px;
     height: 20px;
     background-position: -216px -360px;
 }
-.icon-erase {
+.snapicon-erase {
     width: 20px;
     height: 20px;
     background-position: -252px -360px;
 }
-.icon-export {
+.snapicon-export {
     width: 20px;
     height: 20px;
     background-position: -288px -360px;
 }
-.icon-eye {
+.snapicon-eye {
     width: 20px;
     height: 20px;
     background-position: -324px -360px;
 }
-.icon-popup {
+.snapicon-popup {
     width: 20px;
     height: 20px;
     background-position: -360px -360px;
 }
-.icon-switch {
+.snapicon-switch {
     width: 20px;
     height: 20px;
     background-position: -396px -360px;
 }
-.icon-feather {
+.snapicon-feather {
     width: 20px;
     height: 20px;
     background-position: -432px -360px;
 }
-.icon-flag {
+.snapicon-flag {
     width: 20px;
     height: 20px;
     background-position: -468px -360px;
 }
-.icon-flash {
+.snapicon-flash {
     width: 20px;
     height: 20px;
     background-position: -504px -360px;
 }
-.icon-flashlight {
+.snapicon-flashlight {
     width: 20px;
     height: 20px;
     background-position: -540px -360px;
 }
-.icon-lab-flask {
+.snapicon-lab-flask {
     width: 20px;
     height: 20px;
     background-position: 0 -396px;
 }
-.icon-clapperboard {
+.snapicon-clapperboard {
     width: 20px;
     height: 20px;
     background-position: -36px -396px;
 }
-.icon-folder-images {
+.snapicon-folder-images {
     width: 20px;
     height: 20px;
     background-position: -72px -396px;
 }
-.icon-folder-music {
+.snapicon-folder-music {
     width: 20px;
     height: 20px;
     background-position: -108px -396px;
 }
-.icon-folder-video {
+.snapicon-folder-video {
     width: 20px;
     height: 20px;
     background-position: -144px -396px;
 }
-.icon-folder {
+.snapicon-folder {
     width: 20px;
     height: 20px;
     background-position: -180px -396px;
 }
-.icon-archive {
+.snapicon-archive {
     width: 20px;
     height: 20px;
     background-position: -216px -396px;
 }
-.icon-box {
+.snapicon-box {
     width: 20px;
     height: 20px;
     background-position: -252px -396px;
 }
-.icon-briefcase {
+.snapicon-briefcase {
     width: 20px;
     height: 20px;
     background-position: -288px -396px;
 }
-.icon-suitcase {
+.snapicon-suitcase {
     width: 20px;
     height: 20px;
     background-position: -324px -396px;
 }
-.icon-funnel {
+.snapicon-funnel {
     width: 20px;
     height: 20px;
     background-position: -360px -396px;
 }
-.icon-globe {
+.snapicon-globe {
     width: 20px;
     height: 20px;
     background-position: -396px -396px;
 }
-.icon-network {
+.snapicon-network {
     width: 20px;
     height: 20px;
     background-position: -432px -396px;
 }
-.icon-graduation-cap {
+.snapicon-graduation-cap {
     width: 20px;
     height: 20px;
     background-position: -468px -396px;
 }
-.icon-thumbs-down {
+.snapicon-thumbs-down {
     width: 20px;
     height: 20px;
     background-position: -504px -396px;
 }
-.icon-thumbs-up {
+.snapicon-thumbs-up {
     width: 20px;
     height: 20px;
     background-position: -540px -396px;
 }
-.icon-heart-outlined {
+.snapicon-heart-outlined {
     width: 20px;
     height: 20px;
     background-position: 0 -432px;
 }
-.icon-heart {
+.snapicon-heart {
     width: 20px;
     height: 20px;
     background-position: -36px -432px;
 }
-.icon-star-outlined {
+.snapicon-star-outlined {
     width: 20px;
     height: 20px;
     background-position: -72px -432px;
 }
-.icon-star {
+.snapicon-star {
     width: 20px;
     height: 20px;
     background-position: -108px -432px;
 }
-.icon-help-with-circle {
+.snapicon-help-with-circle {
     width: 20px;
     height: 20px;
     background-position: -144px -432px;
 }
-.icon-help {
+.snapicon-help {
     width: 20px;
     height: 20px;
     background-position: -180px -432px;
 }
-.icon-info-with-circle {
+.snapicon-info-with-circle {
     width: 20px;
     height: 20px;
     background-position: -216px -432px;
 }
-.icon-info {
+.snapicon-info {
     width: 20px;
     height: 20px;
     background-position: -252px -432px;
 }
-.icon-home {
+.snapicon-home {
     width: 20px;
     height: 20px;
     background-position: -288px -432px;
 }
-.icon-hair-cross {
+.snapicon-hair-cross {
     width: 20px;
     height: 20px;
     background-position: -324px -432px;
 }
-.icon-compass {
+.snapicon-compass {
     width: 20px;
     height: 20px;
     background-position: -360px -432px;
 }
-.icon-direction {
+.snapicon-direction {
     width: 20px;
     height: 20px;
     background-position: -396px -432px;
 }
-.icon-address {
+.snapicon-address {
     width: 20px;
     height: 20px;
     background-position: -432px -432px;
 }
-.icon-map {
+.snapicon-map {
     width: 20px;
     height: 20px;
     background-position: -468px -432px;
 }
-.icon-location-pin {
+.snapicon-location-pin {
     width: 20px;
     height: 20px;
     background-position: -504px -432px;
 }
-.icon-location {
+.snapicon-location {
     width: 20px;
     height: 20px;
     background-position: -540px -432px;
 }
-.icon-hour-glass {
+.snapicon-hour-glass {
     width: 20px;
     height: 20px;
     background-position: 0 -468px;
 }
-.icon-image-inverted {
+.snapicon-image-inverted {
     width: 20px;
     height: 20px;
     background-position: -36px -468px;
 }
-.icon-image {
+.snapicon-image {
     width: 20px;
     height: 20px;
     background-position: -72px -468px;
 }
-.icon-images {
+.snapicon-images {
     width: 20px;
     height: 20px;
     background-position: -108px -468px;
 }
-.icon-key {
+.snapicon-key {
     width: 20px;
     height: 20px;
     background-position: -144px -468px;
 }
-.icon-keyboard {
+.snapicon-keyboard {
     width: 20px;
     height: 20px;
     background-position: -180px -468px;
 }
-.icon-language {
+.snapicon-language {
     width: 20px;
     height: 20px;
     background-position: -216px -468px;
 }
-.icon-message {
+.snapicon-message {
     width: 20px;
     height: 20px;
     background-position: -252px -468px;
 }
-.icon-chat {
+.snapicon-chat {
     width: 20px;
     height: 20px;
     background-position: -288px -468px;
 }
-.icon-typing {
+.snapicon-typing {
     width: 20px;
     height: 20px;
     background-position: -324px -468px;
 }
-.icon-megaphone {
+.snapicon-megaphone {
     width: 20px;
     height: 20px;
     background-position: -360px -468px;
 }
-.icon-modern-mic {
+.snapicon-modern-mic {
     width: 20px;
     height: 20px;
     background-position: -396px -468px;
 }
-.icon-mic {
+.snapicon-mic {
     width: 20px;
     height: 20px;
     background-position: -432px -468px;
 }
-.icon-radio {
+.snapicon-radio {
     width: 20px;
     height: 20px;
     background-position: -468px -468px;
 }
-.icon-calculator {
+.snapicon-calculator {
     width: 20px;
     height: 20px;
     background-position: -504px -468px;
 }
-.icon-old-phone {
+.snapicon-old-phone {
     width: 20px;
     height: 20px;
     background-position: -540px -468px;
 }
-.icon-old-mobile {
+.snapicon-old-mobile {
     width: 20px;
     height: 20px;
     background-position: 0 -504px;
 }
-.icon-landline {
+.snapicon-landline {
     width: 20px;
     height: 20px;
     background-position: -36px -504px;
 }
-.icon-phone {
+.snapicon-phone {
     width: 20px;
     height: 20px;
     background-position: -72px -504px;
 }
-.icon-dial-pad {
+.snapicon-dial-pad {
     width: 20px;
     height: 20px;
     background-position: -108px -504px;
 }
-.icon-classic-computer {
+.snapicon-classic-computer {
     width: 20px;
     height: 20px;
     background-position: -144px -504px;
 }
-.icon-tv {
+.snapicon-tv {
     width: 20px;
     height: 20px;
     background-position: -180px -504px;
 }
-.icon-laptop {
+.snapicon-laptop {
     width: 20px;
     height: 20px;
     background-position: -216px -504px;
 }
-.icon-tablet {
+.snapicon-tablet {
     width: 20px;
     height: 20px;
     background-position: -252px -504px;
 }
-.icon-mobile {
+.snapicon-mobile {
     width: 20px;
     height: 20px;
     background-position: -288px -504px;
 }
-.icon-print {
+.snapicon-print {
     width: 20px;
     height: 20px;
     background-position: -324px -504px;
 }
-.icon-mouse {
+.snapicon-mouse {
     width: 20px;
     height: 20px;
     background-position: -360px -504px;
 }
-.icon-game-controller {
+.snapicon-game-controller {
     width: 20px;
     height: 20px;
     background-position: -396px -504px;
 }
-.icon-camera {
+.snapicon-camera {
     width: 20px;
     height: 20px;
     background-position: -432px -504px;
 }
-.icon-save {
+.snapicon-save {
     width: 20px;
     height: 20px;
     background-position: -468px -504px;
 }
-.icon-book {
+.snapicon-book {
     width: 20px;
     height: 20px;
     background-position: -504px -504px;
 }
-.icon-leaf {
+.snapicon-leaf {
     width: 20px;
     height: 20px;
     background-position: -540px -504px;
 }
-.icon-lifebuoy {
+.snapicon-lifebuoy {
     width: 20px;
     height: 20px;
     background-position: 0 -540px;
 }
-.icon-light-bulb {
+.snapicon-light-bulb {
     width: 20px;
     height: 20px;
     background-position: -36px -540px;
 }
-.icon-light-down {
+.snapicon-light-down {
     width: 20px;
     height: 20px;
     background-position: -72px -540px;
 }
-.icon-light-up {
+.snapicon-light-up {
     width: 20px;
     height: 20px;
     background-position: -108px -540px;
 }
-.icon-adjust {
+.snapicon-adjust {
     width: 20px;
     height: 20px;
     background-position: -144px -540px;
 }
-.icon-news {
+.snapicon-news {
     width: 20px;
     height: 20px;
     background-position: -180px -540px;
 }
-.icon-text-document {
+.snapicon-text-document {
     width: 20px;
     height: 20px;
     background-position: -216px -540px;
 }
-.icon-text-document-inverted {
+.snapicon-text-document-inverted {
     width: 20px;
     height: 20px;
     background-position: -252px -540px;
 }
-.icon-spreadsheet {
+.snapicon-spreadsheet {
     width: 20px;
     height: 20px;
     background-position: -288px -540px;
 }
-.icon-text {
+.snapicon-text {
     width: 20px;
     height: 20px;
     background-position: -324px -540px;
 }
-.icon-list {
+.snapicon-list {
     width: 20px;
     height: 20px;
     background-position: -360px -540px;
 }
-.icon-add-to-list {
+.snapicon-add-to-list {
     width: 20px;
     height: 20px;
     background-position: -396px -540px;
 }
-.icon-grid2 {
+.snapicon-grid2 {
     width: 20px;
     height: 20px;
     background-position: -432px -540px;
 }
-.icon-clipboard {
+.snapicon-clipboard {
     width: 20px;
     height: 20px;
     background-position: -468px -540px;
 }
-.icon-man {
+.snapicon-man {
     width: 20px;
     height: 20px;
     background-position: -504px -540px;
 }
-.icon-calendar {
+.snapicon-calendar {
     width: 20px;
     height: 20px;
     background-position: -540px -540px;
 }
-.icon-moon {
+.snapicon-moon {
     width: 20px;
     height: 20px;
     background-position: 0 -576px;
 }
-.icon-lock-open {
+.snapicon-lock-open {
     width: 20px;
     height: 20px;
     background-position: -36px -576px;
 }
-.icon-lock {
+.snapicon-lock {
     width: 20px;
     height: 20px;
     background-position: -72px -576px;
 }
-.icon-mask {
+.snapicon-mask {
     width: 20px;
     height: 20px;
     background-position: -108px -576px;
 }
-.icon-shield {
+.snapicon-shield {
     width: 20px;
     height: 20px;
     background-position: -144px -576px;
 }
-.icon-shop {
+.snapicon-shop {
     width: 20px;
     height: 20px;
     background-position: -180px -576px;
 }
-.icon-shopping-bag {
+.snapicon-shopping-bag {
     width: 20px;
     height: 20px;
     background-position: -216px -576px;
 }
-.icon-shopping-basket {
+.snapicon-shopping-basket {
     width: 20px;
     height: 20px;
     background-position: -252px -576px;
 }
-.icon-shopping-cart {
+.snapicon-shopping-cart {
     width: 20px;
     height: 20px;
     background-position: -288px -576px;
 }
-.icon-log-out {
+.snapicon-log-out {
     width: 20px;
     height: 20px;
     background-position: -324px -576px;
 }
-.icon-login {
+.snapicon-login {
     width: 20px;
     height: 20px;
     background-position: -360px -576px;
 }
-.icon-magnet {
+.snapicon-magnet {
     width: 20px;
     height: 20px;
     background-position: -396px -576px;
 }
-.icon-link {
+.snapicon-link {
     width: 20px;
     height: 20px;
     background-position: -432px -576px;
 }
-.icon-magnifying-glass {
+.snapicon-magnifying-glass {
     width: 20px;
     height: 20px;
     background-position: -468px -576px;
 }
-.icon-mail {
+.snapicon-mail {
     width: 20px;
     height: 20px;
     background-position: -504px -576px;
 }
-.icon-paper-plane {
+.snapicon-paper-plane {
     width: 20px;
     height: 20px;
     background-position: -540px -576px;
 }
-.icon-attachment {
+.snapicon-attachment {
     width: 20px;
     height: 20px;
     background-position: 0 -612px;
 }
-.icon-pin {
+.snapicon-pin {
     width: 20px;
     height: 20px;
     background-position: -36px -612px;
 }
-.icon-awareness-ribbon {
+.snapicon-awareness-ribbon {
     width: 20px;
     height: 20px;
     background-position: -72px -612px;
 }
-.icon-new {
+.snapicon-new {
     width: 20px;
     height: 20px;
     background-position: -108px -612px;
 }
-.icon-notification {
+.snapicon-notification {
     width: 20px;
     height: 20px;
     background-position: -144px -612px;
 }
-.icon-unread {
+.snapicon-unread {
     width: 20px;
     height: 20px;
     background-position: -180px -612px;
 }
-.icon-browser {
+.snapicon-browser {
     width: 20px;
     height: 20px;
     background-position: -216px -612px;
 }
-.icon-publish {
+.snapicon-publish {
     width: 20px;
     height: 20px;
     background-position: -252px -612px;
 }
-.icon-menu {
+.snapicon-menu {
     width: 20px;
     height: 20px;
     background-position: -288px -612px;
 }
-.icon-time-slot {
+.snapicon-time-slot {
     width: 20px;
     height: 20px;
     background-position: -324px -612px;
 }
-.icon-pie-chart {
+.snapicon-pie-chart {
     width: 20px;
     height: 20px;
     background-position: -360px -612px;
 }
-.icon-bar-graph {
+.snapicon-bar-graph {
     width: 20px;
     height: 20px;
     background-position: -396px -612px;
 }
-.icon-area-graph {
+.snapicon-area-graph {
     width: 20px;
     height: 20px;
     background-position: -432px -612px;
 }
-.icon-line-graph {
+.snapicon-line-graph {
     width: 20px;
     height: 20px;
     background-position: -468px -612px;
 }
-.icon-gauge {
+.snapicon-gauge {
     width: 20px;
     height: 20px;
     background-position: -504px -612px;
 }
-.icon-trophy {
+.snapicon-trophy {
     width: 20px;
     height: 20px;
     background-position: -540px -612px;
 }
-.icon-medal {
+.snapicon-medal {
     width: 20px;
     height: 20px;
     background-position: 0 -648px;
 }
-.icon-price-ribbon {
+.snapicon-price-ribbon {
     width: 20px;
     height: 20px;
     background-position: -36px -648px;
 }
-.icon-price-tag {
+.snapicon-price-tag {
     width: 20px;
     height: 20px;
     background-position: -72px -648px;
 }
-.icon-battery {
+.snapicon-battery {
     width: 20px;
     height: 20px;
     background-position: -108px -648px;
 }
-.icon-progress-full {
+.snapicon-progress-full {
     width: 20px;
     height: 20px;
     background-position: -144px -648px;
 }
-.icon-progress-two {
+.snapicon-progress-two {
     width: 20px;
     height: 20px;
     background-position: -180px -648px;
 }
-.icon-progress-one {
+.snapicon-progress-one {
     width: 20px;
     height: 20px;
     background-position: -216px -648px;
 }
-.icon-progress-empty {
+.snapicon-progress-empty {
     width: 20px;
     height: 20px;
     background-position: -252px -648px;
 }
-.icon-quote {
+.snapicon-quote {
     width: 20px;
     height: 20px;
     background-position: -288px -648px;
 }
-.icon-rss {
+.snapicon-rss {
     width: 20px;
     height: 20px;
     background-position: -324px -648px;
 }
-.icon-signal {
+.snapicon-signal {
     width: 20px;
     height: 20px;
     background-position: -360px -648px;
 }
-.icon-share-alternitive {
+.snapicon-share-alternitive {
     width: 20px;
     height: 20px;
     background-position: -396px -648px;
 }
-.icon-share {
+.snapicon-share {
     width: 20px;
     height: 20px;
     background-position: -432px -648px;
 }
-.icon-shareable {
+.snapicon-shareable {
     width: 20px;
     height: 20px;
     background-position: -468px -648px;
 }
-.icon-infinity {
+.snapicon-infinity {
     width: 20px;
     height: 20px;
     background-position: -504px -648px;
 }
-.icon-cog {
+.snapicon-cog {
     width: 20px;
     height: 20px;
     background-position: -540px -648px;
 }
-.icon-tools {
+.snapicon-tools {
     width: 20px;
     height: 20px;
     background-position: 0 -684px;
 }
-.icon-sound-mix {
+.snapicon-sound-mix {
     width: 20px;
     height: 20px;
     background-position: -36px -684px;
 }
-.icon-traffic-cone {
+.snapicon-traffic-cone {
     width: 20px;
     height: 20px;
     background-position: -72px -684px;
 }
-.icon-stopwatch {
+.snapicon-stopwatch {
     width: 20px;
     height: 20px;
     background-position: -108px -684px;
 }
-.icon-tree {
+.snapicon-tree {
     width: 20px;
     height: 20px;
     background-position: -144px -684px;
 }
-.icon-tag {
+.snapicon-tag {
     width: 20px;
     height: 20px;
     background-position: -180px -684px;
 }
-.icon-untag {
+.snapicon-untag {
     width: 20px;
     height: 20px;
     background-position: -216px -684px;
 }
-.icon-bookmark {
+.snapicon-bookmark {
     width: 20px;
     height: 20px;
     background-position: -252px -684px;
 }
-.icon-bookmarks {
+.snapicon-bookmarks {
     width: 20px;
     height: 20px;
     background-position: -288px -684px;
 }
-.icon-ticket {
+.snapicon-ticket {
     width: 20px;
     height: 20px;
     background-position: -324px -684px;
 }
-.icon-v-card {
+.snapicon-v-card {
     width: 20px;
     height: 20px;
     background-position: -360px -684px;
 }
-.icon-video {
+.snapicon-video {
     width: 20px;
     height: 20px;
     background-position: -396px -684px;
 }
-.icon-vinyl {
+.snapicon-vinyl {
     width: 20px;
     height: 20px;
     background-position: -432px -684px;
 }
-.icon-voicemail {
+.snapicon-voicemail {
     width: 20px;
     height: 20px;
     background-position: -468px -684px;
 }
-.icon-thermometer {
+.snapicon-thermometer {
     width: 20px;
     height: 20px;
     background-position: -504px -684px;
 }
-.icon-power-plug {
+.snapicon-power-plug {
     width: 20px;
     height: 20px;
     background-position: -540px -684px;
 }
-.icon-rocket {
+.snapicon-rocket {
     width: 20px;
     height: 20px;
     background-position: 0 -720px;
 }
-.icon-sweden {
+.snapicon-sweden {
     width: 20px;
     height: 20px;
     background-position: -36px -720px;
 }
-.icon-sports-club {
+.snapicon-sports-club {
     width: 20px;
     height: 20px;
     background-position: -72px -720px;
 }
-.icon-px-with-circle {
+.snapicon-px-with-circle {
     width: 20px;
     height: 20px;
     background-position: -108px -720px;
 }
-.icon-px {
+.snapicon-px {
     width: 20px;
     height: 20px;
     background-position: -144px -720px;
 }
-.icon-basecamp {
+.snapicon-basecamp {
     width: 20px;
     height: 20px;
     background-position: -180px -720px;
 }
-.icon-behance {
+.snapicon-behance {
     width: 20px;
     height: 20px;
     background-position: -216px -720px;
 }
-.icon-creative-cloud {
+.snapicon-creative-cloud {
     width: 20px;
     height: 20px;
     background-position: -252px -720px;
 }
-.icon-dropbox {
+.snapicon-dropbox {
     width: 20px;
     height: 20px;
     background-position: -288px -720px;
 }
-.icon-evernote {
+.snapicon-evernote {
     width: 20px;
     height: 20px;
     background-position: -324px -720px;
 }
-.icon-flattr {
+.snapicon-flattr {
     width: 20px;
     height: 20px;
     background-position: -360px -720px;
 }
-.icon-foursquare {
+.snapicon-foursquare {
     width: 20px;
     height: 20px;
     background-position: -396px -720px;
 }
-.icon-google-drive {
+.snapicon-google-drive {
     width: 20px;
     height: 20px;
     background-position: -432px -720px;
 }
-.icon-google-hangouts {
+.snapicon-google-hangouts {
     width: 20px;
     height: 20px;
     background-position: -468px -720px;
 }
-.icon-grooveshark {
+.snapicon-grooveshark {
     width: 20px;
     height: 20px;
     background-position: -504px -720px;
 }
-.icon-icloud {
+.snapicon-icloud {
     width: 20px;
     height: 20px;
     background-position: -540px -720px;
 }
-.icon-mixi {
+.snapicon-mixi {
     width: 20px;
     height: 20px;
     background-position: 0 -756px;
 }
-.icon-onedrive {
+.snapicon-onedrive {
     width: 20px;
     height: 20px;
     background-position: -36px -756px;
 }
-.icon-paypal {
+.snapicon-paypal {
     width: 20px;
     height: 20px;
     background-position: -72px -756px;
 }
-.icon-picasa {
+.snapicon-picasa {
     width: 20px;
     height: 20px;
     background-position: -108px -756px;
 }
-.icon-qq {
+.snapicon-qq {
     width: 20px;
     height: 20px;
     background-position: -144px -756px;
 }
-.icon-rdio-with-circle {
+.snapicon-rdio-with-circle {
     width: 20px;
     height: 20px;
     background-position: -180px -756px;
 }
-.icon-renren {
+.snapicon-renren {
     width: 20px;
     height: 20px;
     background-position: -216px -756px;
 }
-.icon-scribd {
+.snapicon-scribd {
     width: 20px;
     height: 20px;
     background-position: -252px -756px;
 }
-.icon-sina-weibo {
+.snapicon-sina-weibo {
     width: 20px;
     height: 20px;
     background-position: -288px -756px;
 }
-.icon-skype-with-circle {
+.snapicon-skype-with-circle {
     width: 20px;
     height: 20px;
     background-position: -324px -756px;
 }
-.icon-skype {
+.snapicon-skype {
     width: 20px;
     height: 20px;
     background-position: -360px -756px;
 }
-.icon-slideshare {
+.snapicon-slideshare {
     width: 20px;
     height: 20px;
     background-position: -396px -756px;
 }
-.icon-smashing {
+.snapicon-smashing {
     width: 20px;
     height: 20px;
     background-position: -432px -756px;
 }
-.icon-soundcloud {
+.snapicon-soundcloud {
     width: 20px;
     height: 20px;
     background-position: -468px -756px;
 }
-.icon-spotify-with-circle {
+.snapicon-spotify-with-circle {
     width: 20px;
     height: 20px;
     background-position: -504px -756px;
 }
-.icon-spotify {
+.snapicon-spotify {
     width: 20px;
     height: 20px;
     background-position: -540px -756px;
 }
-.icon-swarm {
+.snapicon-swarm {
     width: 20px;
     height: 20px;
     background-position: 0 -792px;
 }
-.icon-vine-with-circle {
+.snapicon-vine-with-circle {
     width: 20px;
     height: 20px;
     background-position: -36px -792px;
 }
-.icon-vine {
+.snapicon-vine {
     width: 20px;
     height: 20px;
     background-position: -72px -792px;
 }
-.icon-vk-alternitive {
+.snapicon-vk-alternitive {
     width: 20px;
     height: 20px;
     background-position: -108px -792px;
 }
-.icon-vk-with-circle {
+.snapicon-vk-with-circle {
     width: 20px;
     height: 20px;
     background-position: -144px -792px;
 }
-.icon-vk {
+.snapicon-vk {
     width: 20px;
     height: 20px;
     background-position: -180px -792px;
 }
-.icon-xing-with-circle {
+.snapicon-xing-with-circle {
     width: 20px;
     height: 20px;
     background-position: -216px -792px;
 }
-.icon-xing {
+.snapicon-xing {
     width: 20px;
     height: 20px;
     background-position: -252px -792px;
 }
-.icon-yelp {
+.snapicon-yelp {
     width: 20px;
     height: 20px;
     background-position: -288px -792px;
 }
-.icon-dribbble-with-circle {
+.snapicon-dribbble-with-circle {
     width: 20px;
     height: 20px;
     background-position: -324px -792px;
 }
-.icon-dribbble {
+.snapicon-dribbble {
     width: 20px;
     height: 20px;
     background-position: -360px -792px;
 }
-.icon-facebook-with-circle {
+.snapicon-facebook-with-circle {
     width: 20px;
     height: 20px;
     background-position: -396px -792px;
 }
-.icon-facebook {
+.snapicon-facebook {
     width: 20px;
     height: 20px;
     background-position: -432px -792px;
 }
-.icon-flickr-with-circle {
+.snapicon-flickr-with-circle {
     width: 20px;
     height: 20px;
     background-position: -468px -792px;
 }
-.icon-flickr {
+.snapicon-flickr {
     width: 20px;
     height: 20px;
     background-position: -504px -792px;
 }
-.icon-github-with-circle {
+.snapicon-github-with-circle {
     width: 20px;
     height: 20px;
     background-position: -540px -792px;
 }
-.icon-github {
+.snapicon-github {
     width: 20px;
     height: 20px;
     background-position: 0 -828px;
 }
-.icon-google-with-circle {
+.snapicon-google-with-circle {
     width: 20px;
     height: 20px;
     background-position: -36px -828px;
 }
-.icon-google {
+.snapicon-google {
     width: 20px;
     height: 20px;
     background-position: -72px -828px;
 }
-.icon-instagram-with-circle {
+.snapicon-instagram-with-circle {
     width: 20px;
     height: 20px;
     background-position: -108px -828px;
 }
-.icon-instagram {
+.snapicon-instagram {
     width: 20px;
     height: 20px;
     background-position: -144px -828px;
 }
-.icon-lastfm-with-circle {
+.snapicon-lastfm-with-circle {
     width: 20px;
     height: 20px;
     background-position: -180px -828px;
 }
-.icon-lastfm {
+.snapicon-lastfm {
     width: 20px;
     height: 20px;
     background-position: -216px -828px;
 }
-.icon-linkedin-with-circle {
+.snapicon-linkedin-with-circle {
     width: 20px;
     height: 20px;
     background-position: -252px -828px;
 }
-.icon-linkedin {
+.snapicon-linkedin {
     width: 20px;
     height: 20px;
     background-position: -288px -828px;
 }
-.icon-pinterest-with-circle {
+.snapicon-pinterest-with-circle {
     width: 20px;
     height: 20px;
     background-position: -324px -828px;
 }
-.icon-pinterest {
+.snapicon-pinterest {
     width: 20px;
     height: 20px;
     background-position: -360px -828px;
 }
-.icon-rdio {
+.snapicon-rdio {
     width: 20px;
     height: 20px;
     background-position: -396px -828px;
 }
-.icon-stumbleupon-with-circle {
+.snapicon-stumbleupon-with-circle {
     width: 20px;
     height: 20px;
     background-position: -432px -828px;
 }
-.icon-stumbleupon {
+.snapicon-stumbleupon {
     width: 20px;
     height: 20px;
     background-position: -468px -828px;
 }
-.icon-tumblr-with-circle {
+.snapicon-tumblr-with-circle {
     width: 20px;
     height: 20px;
     background-position: -504px -828px;
 }
-.icon-tumblr {
+.snapicon-tumblr {
     width: 20px;
     height: 20px;
     background-position: -540px -828px;
 }
-.icon-twitter-with-circle {
+.snapicon-twitter-with-circle {
     width: 20px;
     height: 20px;
     background-position: 0 -864px;
 }
-.icon-twitter {
+.snapicon-twitter {
     width: 20px;
     height: 20px;
     background-position: -36px -864px;
 }
-.icon-vimeo-with-circle {
+.snapicon-vimeo-with-circle {
     width: 20px;
     height: 20px;
     background-position: -72px -864px;
 }
-.icon-vimeo {
+.snapicon-vimeo {
     width: 20px;
     height: 20px;
     background-position: -108px -864px;
 }
-.icon-youtube-with-circle {
+.snapicon-youtube-with-circle {
     width: 20px;
     height: 20px;
     background-position: -144px -864px;
 }
-.icon-youtube {
+.snapicon-youtube {
     width: 20px;
     height: 20px;
     background-position: -180px -864px;
 }
-.icon-user {
+.snapicon-user {
     width: 20px;
     height: 20px;
     background-position: -216px -864px;
 }
-.icon-users {
+.snapicon-users {
     width: 20px;
     height: 20px;
     background-position: -252px -864px;
 }
-.icon-user-add {
+.snapicon-user-add {
     width: 20px;
     height: 20px;
     background-position: -288px -864px;
 }
-.icon-vcard {
+.snapicon-vcard {
     width: 20px;
     height: 20px;
     background-position: -324px -864px;
 }
-.icon-airplane {
+.snapicon-airplane {
     width: 20px;
     height: 20px;
     background-position: -360px -864px;
 }
-.icon-clock {
+.snapicon-clock {
     width: 20px;
     height: 20px;
     background-position: -396px -864px;
 }
-.icon-history {
+.snapicon-history {
     width: 20px;
     height: 20px;
     background-position: -432px -864px;
 }
-.icon-cc-nc-eu {
+.snapicon-cc-nc-eu {
     width: 20px;
     height: 20px;
     background-position: -468px -864px;
 }
-.icon-cc-nc-jp {
+.snapicon-cc-nc-jp {
     width: 20px;
     height: 20px;
     background-position: -504px -864px;
 }
-.icon-cc-zero {
+.snapicon-cc-zero {
     width: 20px;
     height: 20px;
     background-position: -540px -864px;
 }
-.icon-danielbruce2 {
+.snapicon-danielbruce2 {
     width: 20px;
     height: 20px;
     background-position: 0 -900px;
 }
-.icon-sort {
+.snapicon-sort {
     width: 20px;
     height: 20px;
     background-position: -36px -900px;
 }
-.icon-dashboard {
+.snapicon-dashboard {
     width: 20px;
     height: 20px;
     background-position: -72px -900px;
 }
-.icon-move-copy {
+.snapicon-move-copy {
     width: 20px;
     height: 20px;
     background-position: -108px -900px;
 }
-.icon-treatment_plan {
+.snapicon-treatment_plan {
     width: 20px;
     height: 20px;
     background-position: -144px -900px;
 }
-.icon-new_folder {
+.snapicon-new_folder {
     width: 20px;
     height: 20px;
     background-position: -180px -900px;
 }
-.icon-health_card {
+.snapicon-health_card {
     width: 20px;
     height: 20px;
     background-position: -216px -900px;
 }
-.icon-user_info {
+.snapicon-user_info {
     width: 20px;
     height: 20px;
     background-position: -252px -900px;
 }
-.icon-hair {
+.snapicon-hair {
     width: 20px;
     height: 20px;
     background-position: -288px -900px;
 }
-.icon-down_circle {
+.snapicon-down_circle {
     width: 20px;
     height: 20px;
     background-position: -324px -900px;
 }
-.icon-user_clinician {
+.snapicon-user_clinician {
     width: 20px;
     height: 20px;
     background-position: -360px -900px;
 }
-.icon-no_charge {
+.snapicon-no_charge {
     width: 20px;
     height: 20px;
     background-position: -396px -900px;
 }
-.icon-new_calendar_item {
+.snapicon-new_calendar_item {
     width: 20px;
     height: 20px;
     background-position: -432px -900px;
 }
-.icon-transgender {
+.snapicon-transgender {
     width: 20px;
     height: 20px;
     background-position: -468px -900px;
 }
-.icon-male {
+.snapicon-male {
     width: 20px;
     height: 20px;
     background-position: -504px -900px;
 }
-.icon-female {
+.snapicon-female {
     width: 20px;
     height: 20px;
     background-position: -540px -900px;
 }
-.icon-labs {
+.snapicon-labs {
     width: 20px;
     height: 20px;
     background-position: 0 -936px;
 }
-.icon-vaccinations {
+.snapicon-vaccinations {
     width: 20px;
     height: 20px;
     background-position: -36px -936px;
 }
-.icon-data {
+.snapicon-data {
     width: 20px;
     height: 20px;
     background-position: -72px -936px;
 }
-.icon-bulk {
+.snapicon-bulk {
     width: 20px;
     height: 20px;
     background-position: -108px -936px;
 }
-.icon-share_screen {
+.snapicon-share_screen {
     width: 20px;
     height: 20px;
     background-position: -144px -936px;
 }
-.icon-confirm {
+.snapicon-confirm {
     width: 20px;
     height: 20px;
     background-position: -180px -936px;
 }
-.icon-hash {
+.snapicon-hash {
     width: 20px;
     height: 20px;
     background-position: -216px -936px;
 }
-.icon-height {
+.snapicon-height {
     width: 20px;
     height: 20px;
     background-position: -252px -936px;
 }
-.icon-weight {
+.snapicon-weight {
     width: 20px;
     height: 20px;
     background-position: -288px -936px;
 }
-.icon-self_view {
+.snapicon-self_view {
     width: 20px;
     height: 20px;
     background-position: -324px -936px;
 }
-.icon-microphone_mute {
+.snapicon-microphone_mute {
     width: 20px;
     height: 20px;
     background-position: -360px -936px;
 }
-.icon-video_camera {
+.snapicon-video_camera {
     width: 20px;
     height: 20px;
     background-position: -396px -936px;
 }
-.icon-video_camera_mute {
+.snapicon-video_camera_mute {
     width: 20px;
     height: 20px;
     background-position: -432px -936px;
 }
-.icon-speaker {
+.snapicon-speaker {
     width: 20px;
     height: 20px;
     background-position: -468px -936px;
 }
-.icon-speaker_mute {
+.snapicon-speaker_mute {
     width: 20px;
     height: 20px;
     background-position: -504px -936px;
 }
-.icon-intake {
+.snapicon-intake {
     width: 20px;
     height: 20px;
     background-position: -540px -936px;
 }
-.icon-note {
+.snapicon-note {
     width: 20px;
     height: 20px;
     background-position: 0 -972px;
 }
-.icon-rx {
+.snapicon-rx {
     width: 20px;
     height: 20px;
     background-position: -36px -972px;
 }
-.icon-disconnect {
+.snapicon-disconnect {
     width: 20px;
     height: 20px;
     background-position: -72px -972px;
 }
-.icon-layout-active {
+.snapicon-layout-active {
     width: 20px;
     height: 20px;
     background-position: -108px -972px;
 }
-.icon-layout-continuous {
+.snapicon-layout-continuous {
     width: 20px;
     height: 20px;
     background-position: -144px -972px;
 }
-.icon-selfview-on {
+.snapicon-selfview-on {
     width: 20px;
     height: 20px;
     background-position: -180px -972px;
 }
-.icon-selfview-off {
+.snapicon-selfview-off {
     width: 20px;
     height: 20px;
     background-position: -216px -972px;
 }
-.icon-dial {
+.snapicon-dial {
     width: 20px;
     height: 20px;
     background-position: -252px -972px;
 }
-.icon-grid {
+.snapicon-grid {
     width: 20px;
     height: 20px;
     background-position: -288px -972px;
 }
-.icon-lego {
+.snapicon-lego {
     width: 20px;
     height: 20px;
     background-position: -324px -972px;
 }
-.icon-group {
+.snapicon-group {
     width: 20px;
     height: 20px;
     background-position: -360px -972px;
 }
-.icon-bug {
+.snapicon-bug {
     width: 20px;
     height: 20px;
     background-position: -396px -972px;
 }
-.icon-clock2 {
+.snapicon-clock2 {
     width: 20px;
     height: 20px;
     background-position: -432px -972px;
 }
-.icon-crop {
+.snapicon-crop {
     width: 20px;
     height: 20px;
     background-position: -468px -972px;
 }
-.icon-eye-with-line {
+.snapicon-eye-with-line {
     width: 20px;
     height: 20px;
     background-position: -504px -972px;
 }
-.icon-fingerprint {
+.snapicon-fingerprint {
     width: 20px;
     height: 20px;
     background-position: -540px -972px;
 }
-.icon-flower {
+.snapicon-flower {
     width: 20px;
     height: 20px;
     background-position: 0 -1008px;
 }
-.icon-merge {
+.snapicon-merge {
     width: 20px;
     height: 20px;
     background-position: -36px -1008px;
 }
-.icon-mouse-pointer {
+.snapicon-mouse-pointer {
     width: 20px;
     height: 20px;
     background-position: -72px -1008px;
 }
-.icon-newsletter {
+.snapicon-newsletter {
     width: 20px;
     height: 20px;
     background-position: -108px -1008px;
 }
-.icon-notifications-off {
+.snapicon-notifications-off {
     width: 20px;
     height: 20px;
     background-position: -144px -1008px;
 }
-.icon-quote2 {
+.snapicon-quote2 {
     width: 20px;
     height: 20px;
     background-position: -180px -1008px;
 }
-.icon-remove-user {
+.snapicon-remove-user {
     width: 20px;
     height: 20px;
     background-position: -216px -1008px;
 }
-.icon-tablet-mobile-combo {
+.snapicon-tablet-mobile-combo {
     width: 20px;
     height: 20px;
     background-position: -252px -1008px;
 }
-.icon-user2 {
+.snapicon-user2 {
     width: 20px;
     height: 20px;
     background-position: -288px -1008px;
 }
-.icon-users2 {
+.snapicon-users2 {
     width: 20px;
     height: 20px;
     background-position: -324px -1008px;
 }
-.icon-video-camera {
+.snapicon-video-camera {
     width: 20px;
     height: 20px;
     background-position: -360px -1008px;
