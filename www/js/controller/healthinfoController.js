@@ -17,10 +17,11 @@ angular.module('starter.controllers')
         return phoneNumberWithoutCountryCode;
     };
     
-    $rootScope.reformatHeight = function(heightVal){
-        var newHeight = "";
+    $rootScope.reformatHeight = function(heightVal, index){
+        var newHeight = "0";
         if(heightVal){
-            newHeight = heightVal.replace('|', '.');
+            var newHeightVal = heightVal.split('|');
+            newHeight = newHeightVal[index];
         }
         return newHeight;
     };
@@ -195,6 +196,7 @@ angular.module('starter.controllers')
             $scope.healthInfoEmail = $('#healthInfoEmail').val();
             $scope.healthInfoGender = $("input[name='healthInfoGender']:checked").val();
             $scope.healthInfoHeight = $('#healthInfoHeight').val();
+            $scope.healthInfoHeight2 = $('#healthInfoHeight2').val();
             $scope.HeightUnit = $('#healthInfoHeightUnit').val();
             $scope.HeightUnit1 = $scope.HeightUnit.split("@");
             $scope.healthInfoHeightUnit = $scope.HeightUnit1[0];
@@ -267,6 +269,9 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
                 $scope.ErrorMessage = "Please Enter Your Height";
                 $rootScope.Validation($scope.ErrorMessage);
+            } else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+                $scope.ErrorMessage = "Please Enter Your Height";
+                $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
                 $scope.ErrorMessage = "Please Select Your Height Unit";
                 $rootScope.Validation($scope.ErrorMessage);
@@ -322,7 +327,8 @@ angular.module('starter.controllers')
                 pharmacyContact: null,
                 address: $scope.healthInfoAddress,
                 profileImagePath: $rootScope.PatientImageSelectUser,
-                height: formatHeightVal($scope.healthInfoHeight),
+                //height: formatHeightVal($scope.healthInfoHeight),
+                height: $scope.healthInfoHeight + "|" + $scope.healthInfoHeight2,
                 weight: $scope.healthInfoWeight,
                 heightUnit: $scope.healthInfoHeightUnit,
                 weightUnit: $scope.healthInfoWeightUnit,

@@ -120,9 +120,11 @@
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
         </div>
-        <div style="width: 200px;padding-right: 10px;">
-          <input id="height" class="usertext textalign" type="text" value="" placeholder="Required" ng-model="height" name="height" required ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
-
+        <div style="width: 100px;padding-right: 10px;">
+          <input id="height" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="height" name="height" required>
+        </div>
+        <div style="width: 100px;padding-right: 10px;">
+            <input id="height2" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="height2" name="height2" required>
         </div>
         <div style="width: 50%;">
            <select style="width:90%;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
