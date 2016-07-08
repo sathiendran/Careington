@@ -140,7 +140,7 @@
            </label>
            <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
-           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{currentPatientDetails[0].anatomy.height}}</div>
+           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height)}}</div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.height">NA</div>
            </label>
            <label class="item item-input itemtab validated">

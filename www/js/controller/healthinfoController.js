@@ -20,8 +20,16 @@ angular.module('starter.controllers')
     $rootScope.reformatHeight = function(heightVal){
         var newHeight = "";
         if(heightVal){
-            newHeight = heightVal.replace('ft ', '.');
-            newHeight = newHeight.replace('in', '');
+            newHeight = heightVal.replace('|', '.');
+        }
+        return newHeight;
+    };
+    
+    $rootScope.reformatHeightForDisplay = function(heightVal){
+        var newHeight = "";
+        if(heightVal){
+            newHeight = heightVal.replace('|', ' ft ');
+            newHeight = newHeight + " in"
         }
         return newHeight;
     };
