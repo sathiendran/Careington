@@ -106,16 +106,20 @@
 			           </select>
       </div>
     </div>
-   <div class="item itemtab row">
-      <div class="col col-50">
-         <span class="input-label labelcolor" style="float: left;"> <i class="ion-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
-      </div>
-      <div class="col col-50" style="font-size: 20px;">
-          <input type="radio" name="depgender" ng-model="gender"  value="M" ng-checked="isCheckedMale" /> Male
-          <input type="radio" name="depgender"  ng-model="gender"  value="F" ng-checked="isCheckedFeMale" /> FeMale
+		<div class="item item-input validated">
+			<div class="col col-50">
+				<span class="input-label labelcolor">
+				<i class="iconsize ion-female"></i><b class="formlabel">Gender</b></span>
+			 </div>
 
-      </div>
-    </div>
+			 <div class="col col-50">
+				 <select class="optionselect textdata" name="userInfoGender" id="depgender"  >
+					 <option value=""><b>Choose</b></option>
+					 <option value="M">Male</option> >
+					 <option value="F">Female</option>
+				 </select>
+			 </div>
+	</div>
     <div class="item item-input itemtab validated row">
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>

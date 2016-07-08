@@ -140,7 +140,8 @@ angular.module('starter.controllers')
             $scope.email = $("#email").val();
             $scope.dob = $("#dob").val();
             $scope.relation = $("#relation").val();
-            $scope.gender = $("input[name='depgender']:checked").val();
+          //  $scope.gender = $("input[name='depgender']:checked").val();
+            $scope.gender = $("#depgender").val();
             $scope.height = $("#height").val();
             $scope.height2 = $("#height2").val();
             $scope.weight = $("#weight").val();

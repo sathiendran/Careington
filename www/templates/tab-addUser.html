@@ -2,11 +2,12 @@
 <ion-side-menus>
  <ion-side-menu-content>
 
-<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
- <div class="buttons" style="margin-top: 4px;" >
-  <button class="button icon button-clear ion-navicon-round iconbackbutton  {{menuiconIOS}}" id="BackButtonIcon" ng-click="toggleLeft()"></button>
-</div>
+ 	<div class="buttons" >
+ 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+ 				ng-click="toggleLeft()"></button>
+ 	</div>
   <div class="Server_Error ErrorMessageDiv" ></div>
 <div id="Error_Message"></div>
    <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> New User </span> <span >
@@ -100,28 +101,20 @@
        </div>
      </div>
 
-     <div class="item itemtab row" style="padding: 6px 0 5px 16px !important;">
+     <div class="item item-input validated">
        <div class="col col-50">
          <span class="input-label labelcolor">
          <i class="iconsize ion-female"></i><b class="formlabel">Gender</b></span>
         </div>
 
         <div class="col col-50">
-
           <select class="optionselect textdata" name="userInfoGender" id="gender"  >
-      <option value=""><b>Choose</b></option>
-      <option value="M">Male</option> >
-      <option value="F">Female</option>
-    </select>
-
+            <option value=""><b>Choose</b></option>
+            <option value="M">Male</option> >
+            <option value="F">Female</option>
+          </select>
         </div>
-
-      <!--  <div class="col col-50" style="font-size: 18px; padding-top: 18px;">
-
-             <input type="radio" ng-model="gender" name="userInfoGender" value="M" > Male
-             <span style="padding-left: 20px;"><input type="radio" ng-model="gender" name="userInfoGender" value="F" > FeMale </span>
-        </div>-->
-      </div>
+   </div>
 
 
      <div class="item item-input itemtab validated row">
