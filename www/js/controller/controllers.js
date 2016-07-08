@@ -1620,12 +1620,25 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $rootScope.serviceCountries = angular.fromJson(data.data);
+                $scope.getTimezoneList();
             },error: function(data) {
 
             }
         };
         LoginService.getCountiesList(params);
     }
+    
+    $scope.getTimezoneList = function(){
+         var params = {
+             accessToken: $rootScope.accessToken,
+             success: function(data) {
+                 $rootScope.timeZones = angular.fromJson(data.data);
+             },error: function(data) {
+ 
+             }
+         };
+         LoginService.getTimezoneList(params);
+     }
 
     $scope.doGetPatientProfiles = function() {
         if ($rootScope.accessToken === 'No Token') {
