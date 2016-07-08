@@ -327,11 +327,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
 
-
-       $rootScope.canceloption=function(){
-          $window.history.back();
-          $scope.apply();
-       }
+    $rootScope.drawSVGCIcon = function(iconName){
+        return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
+    };
+    
+    $rootScope.canceloption=function(){
+        $window.history.back();
+        $scope.apply();
+    }
 
 
     $rootScope.deploymentEnv = deploymentEnv;
