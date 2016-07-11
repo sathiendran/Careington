@@ -271,14 +271,14 @@
                    </div>
 
                    <div>
-                     <ion-checkbox ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText"
+                     <!-- <ion-checkbox ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText"
                         ng-model="relationShipDetailsrelationShipDetails.checked"
-                        ng-checked="relationShipDetails.checked" ng-change="OnSelectRelation(relationShipDetails.codeId)"  ng-disabled="relationShipDetails==limit && !relationShipDetails.checked" checkbox-group>
+                        ng-checked="relationShipDetails.checked" ng-change="OnSelectRelation(relationShipDetails.codeId)"  ng-disabled="relationShipChecked==limit && !relationShipDetails.checked" checkbox-group>
                         <span >   {{ relationShipDetails.text }} </span>
-                     </ion-checkbox>
-                         <!--<div ng-click="setNewRelation(relationShipDetails.codeId);" class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText">
+                     </ion-checkbox>-->
+                        <div ng-click="setNewRelation(relationShipDetails.codeId);" class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText">
                              {{relationShipDetails.text}}
-                         </div>-->
+                         </div>
                      </div>
 
 

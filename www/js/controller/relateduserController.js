@@ -511,7 +511,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.usertab = false;
         }
 
-        $rootScope.OnSelectRelation = function(newRelatioCodeId){
+        $rootScope.setNewRelation = function(newRelatioCodeId){
             if($rootScope.relationUpdateAuthStatus){
                 relationUpdateAuthStatusVal = 'Y';
             }else{
