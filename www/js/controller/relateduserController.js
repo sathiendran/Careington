@@ -260,7 +260,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.closepopup=function(){
                  myPopup.close();
             }
-          
+
         };
 
         $scope.userslist = function() {
@@ -511,7 +511,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.usertab = false;
         }
 
-        $rootScope.setNewRelation = function(newRelatioCodeId){
+        $rootScope.OnSelectRelation = function(newRelatioCodeId){
             if($rootScope.relationUpdateAuthStatus){
                 relationUpdateAuthStatusVal = 'Y';
             }else{
