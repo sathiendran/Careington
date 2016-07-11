@@ -6,7 +6,8 @@
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
 		<div class="buttons {{menuicon}}" >
-			<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>
+			<!--<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>-->
+			<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 		</div>
 		<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -45px;">Patient List</h1>
 		<!--<span>
@@ -129,14 +130,16 @@
 	<div class="sideMenu">
 			<a ng-href="#/tab/userhome" class="sidemenuContent1" >
 		<ion-list>
-			<ion-item class="icon ion-person-stalker tabfont" id="{{sidemenuHome}}">
+			<ion-item class="icon tabfont"  id="{{sidemenuHome}}">
+				<i ng-bind-html="drawSVGCIcon('users')"></i>
 				<span>  Patient List</span>
 			</ion-item>
 		</ion-list>
 	</a>
 	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon ion-android-clipboard tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+			<i ng-bind-html="drawSVGCIcon('clipboard')"></i>
 		<span>  My Health</span>
 	</ion-item>
 </ion-list>
@@ -144,7 +147,7 @@
 <!--
 	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="ion-ios-list" id="{{sidemenuHome}}">
+	<ion-item class="archive" id="{{sidemenuHome}}">
 		<span>  My Files</span>
 	</ion-item>
 </ion-list>
@@ -152,7 +155,8 @@
 
 	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon ion-calendar tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+		<i ng-bind-html="drawSVGCIcon('calendar')"></i>
 		<span>My Appointments</span>
 	</ion-item>
 </ion-list>
@@ -160,7 +164,8 @@
 
 	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon ion-card tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+		<i ng-bind-html="drawSVGCIcon('health_card')"></i>
 		<span>  My Consultations</span>
 	</ion-item>
 </ion-list>
@@ -168,7 +173,7 @@
 <!--
 	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="ion-ios-list" id="{{sidemenuHome}}">
+	<ion-item class="credit-card" id="{{sidemenuHome}}">
 		<span>  Billing & Insurance</span>
 	</ion-item>
 </ion-list>
@@ -176,7 +181,7 @@
 <!--
 	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon ion-gear-a tabfont" id="{{sidemenuHome}}">
+	<ion-item class="cog" id="{{sidemenuHome}}">
 		<span>  Settings</span>
 	</ion-item>
 </ion-list>

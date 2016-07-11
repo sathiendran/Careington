@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
 
 .controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $ionicLoading) {
+  
     $ionicLoading.show({
         template: '<img src="img/puff.svg" alt="Loading" />'
     });

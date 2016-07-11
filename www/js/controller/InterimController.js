@@ -2,7 +2,6 @@ angular.module('starter.controllers')
 
 //InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
-
     $rootScope.deploymentEnv = deploymentEnv;
     if (deploymentEnv != 'Multiple') {
         $rootScope.APICommonURL = apiCommonURL;
@@ -427,7 +426,7 @@ angular.module('starter.controllers')
                 $rootScope.RelatedPatientProfiles = [];
 
                 angular.forEach(data.data, function(index, item) {
-                    if (!index.profileImagePath) {                        
+                    if (!index.profileImagePath) {
                         var ptInitial = getInitialForName(index.patientName);
                         index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
                         index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);

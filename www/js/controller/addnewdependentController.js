@@ -1,7 +1,6 @@
 angular.module('starter.controllers')
     .controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate, $log,$window) {
-
-        $timeout(function() {
+      $timeout(function() {
             $('option').filter(function() {
                 return this.value.indexOf('?') >= 0;
             }).remove();

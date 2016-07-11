@@ -4,7 +4,8 @@
         <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
             <div class="buttons">
-                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+                <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>-->
+                <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
             </div>
 
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="position: relative; left: -12px;" ><a class="headerval" ng-click="consultsearch()" ><i class="icon ion-search" style="font-size: 20px;"  ></i></a></span></h1>

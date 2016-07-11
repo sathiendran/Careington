@@ -1,5 +1,9 @@
 angular.module('starter.controllers')
     .controller('userAccountCtrl', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter) {
+      $rootScope.drawSVGCIcon = function(iconName){
+          return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
+      };
+
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -129,7 +133,7 @@ angular.module('starter.controllers')
         }
 
 
-        
+
 
 
 

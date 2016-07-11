@@ -983,10 +983,16 @@ html, body { background: transparent !important; }
     font-size:17px;
 }
 .optionselect{
-  border:none;
   width: 90%;
   color: #7c7c7c;
-background-color: #e9e9e9;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background-color: white;
+  margin-top: -3px;
+//  padding-right: 5px;
+  padding: 5px;
+  //background-color: #e9e9e9;
 }
 //Consult Charge page
 
@@ -1456,7 +1462,7 @@ background-color: #e9e9e9;
 	width: 100%;
 	color:#7E807E;
 	.LogOutText {
-		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
+		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644; margin-top: 18px;
 		span {
 			position: relative;  font-size: 23px; padding-left: 15px;
 		}
@@ -2310,11 +2316,11 @@ background-color: #e9e9e9;
 }
 .lnamefont{
     font-family:Glober Regular;
-    font-size:28px;
+    font-size:138%;
 }
 .fnamefont{
     font-family:Glober Bold;
-    font-size:28px;
+    font-size:138%;
 }
 .headerheight{
     height:128px !important;
@@ -2383,7 +2389,7 @@ font-size: 18px !important;
 }
 .healthhead{
    margin-top:26px;
-    text-align: center;color:#6c6c6c;font-size:25px;font-family:Glober SemiBold;
+    text-align: center;color:#6c6c6c;font-size:155%;font-family:Glober Bold;
 }
 .appmarg{
     //;margin-top:-4px;
@@ -3752,7 +3758,7 @@ left: -52px;
  }
  .homecontent{
      padding-top:25px;
-     font-size:12px !important;
+     font-size:75% !important;
  }
  .patientcontent{
      padding-top: 19px; margin-left:-21px;font-size:12px !important; margin-top: 7px;
@@ -3812,8 +3818,8 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 #centercolor{
     color:white;
-    margin-top:15px !important;
-    font-size:22px;
+    margin-top: 23px !important;
+    font-size:138%;
     font-family:Glober Bold;
 }
 .userionitem{
@@ -3827,7 +3833,7 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 .rightpatient{
     float:right;
-    margin-top:-91px;
+    margin-top:-89px;
 }
 .formlabel {
      margin-left: 10px;
@@ -4445,7 +4451,7 @@ p{
       padding-right:6px;
       padding-top:5px;
       padding-bottom: 0px;
-      font-size:21px;
+      font-size:130%;
       color: #888;
   }
 
@@ -4456,7 +4462,7 @@ p{
       padding-right: 8px;
       padding-top: 6px;
       padding-bottom: 1px;
-      font-size: 21px;
+      font-size: 109%;
       color: #888;
   }
 
@@ -5231,6 +5237,7 @@ color: white;
 }
 .relatedusercontent{
     margin-top:200px;
+    margin-bottom: 50px;
 }
 .relatedsearchusercontent{
   margin-top:65px;
@@ -5279,9 +5286,10 @@ color: white;
       width: 145px;
      }
 .textdata{
-    font-size:16px;
+    font-size:20px;
     color: #7c7c7c;
     background-color: #e9e9e9;
+    padding-left: 5px;
   }
   .valhome{
     margin-left:43px;
@@ -5377,6 +5385,7 @@ padding-top: 177px !important;
 .colmore {margin-left: 0px !important;}
 .relatedusercontent{
     margin-top:200px;
+    margin-bottom: 50px;
 }
 .list.listtype {
 padding-top: 110px !important;
@@ -7233,7 +7242,7 @@ Pagination Styles
   margin-top: -5px;
 }
 .password-IOS {
-  margin-top: -315px !important;
+  margin-top: -162px !important;
 }
 .tabs-dark > .tabs, .tabs.tabs-dark {
       background-image: none;
@@ -7265,4 +7274,19 @@ Pagination Styles
     fill: darkgray;
     height: 20px;
     width: 20px;
+}
+[class^="icon-menu"] {
+  font-size: 30px !important;
+}
+[class^="icon-"], [class*=" icon-"] {
+  font-size: 24px;
+}
+.ioncontentalign {
+  .iconfontSVG {
+    position: relative;
+    top: 3px;
+  }
+  [class^="icon-"], [class*=" icon-"] {
+    font-size: 19px;
+  }
 }

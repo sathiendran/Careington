@@ -3,7 +3,8 @@
 
    <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <div class="buttons">
-         <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+         <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>-->
+         	<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
 
 
@@ -76,11 +77,11 @@
         <h4 class="healthhead">Demographics</h4>
         <div class="list listprofile" ng-show="flag">
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-android-person iconfont"></i><b class="formlabel labelfont">First</b></span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG"><svg class="icon-user"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-user"></use></svg></i><b class="formlabel labelfont">First</b></span>
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].patientName}}</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-android-person iconfont"></i><b class="formlabel labelfont">Last</b></span>
+           <span class="input-label labelcolor">  <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel labelfont">Last</b></span>
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].lastName}}</div>
            </label>
            <label class="item item-input itemtab validated">
@@ -90,19 +91,19 @@
            <!--<input type="date" value="{{userDOB}}"  ng-readonly="flag" name="healthInfoDOB"  class="valuealign textdata" id="dobdate">-->
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-android-mail iconfont"></i><b class="formlabel labelfont">Email</b></span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
            </label>
            <label class="item item-input itemtab validated">
-               <span class="input-label labelcolor"> <i class="ion-android-globe iconfont"></i><b class="formlabel labelfont">Country</b></span>
+               <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
                <div class="healthViewDetails ellipsis">{{getCountryName(currentPatientDetails[0].countryCode)}}</div>
            </label>
            <label class="item item-input itemtab validated">
-               <span class="input-label labelcolor"> <i class="ion-clock iconfont"></i><b class="formlabel labelfont">Timezone</b></span>
+               <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel labelfont">Timezone</b></span>
                <div class="healthViewDetails ellipsis">{{getTimeZoneName(currentPatientDetails[0].account.timeZoneId)}}</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont">Home Phone</b></span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].homePhone">
              <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].homePhone)}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].homePhone">
@@ -110,7 +111,7 @@
             </div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"><i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Mobile</b> </span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont">Mobile</b> </span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].mobilePhone">
               <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].mobilePhone)}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].mobilePhone">
@@ -119,77 +120,77 @@
 
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-location iconfont"></i><b class="formlabel labelfont">Home Address</b></span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel labelfont">Home Address</b></span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].address">{{currentPatientDetails[0].address}}</div>
            <div class="healthViewDetails" ng-if="!currentPatientDetails[0].address">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"><i class="ion-ios-people iconfont"></i><b class="formlabel labelfont">Organization</b></span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel labelfont">Organization</b></span>
            <div class="healthViewDetails ellipsis" ng-if="currentPatientDetails[0].organization">{{currentPatientDetails[0].organization}}</div>
             <div class="healthViewDetails ellipsis" ng-if="!currentPatientDetails[0].organization">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-android-pin iconfont"></i><b class="formlabel labelfont">Location</b> </span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel labelfont">Location</b> </span>
            <div class="healthViewDetails ellipsis" ng-if="currentPatientDetails[0].location">{{currentPatientDetails[0].location}}</div>
            <div class="healthViewDetails ellipsis" ng-if="!currentPatientDetails[0].location">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont">Gender</b> </span>
            <div class="healthViewDetails" ng-if="userGender">{{userGender}}</div>
            <div class="healthViewDetails" ng-if="!userGender">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b></span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height)}}</div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.height">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor">  <i class="ion-ios-filing iconfont"></i><b class="formlabel labelfont">Weight</b></span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b></span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.weight">{{currentPatientDetails[0].anatomy.weight}} {{currentPatientDetails[0].anatomy.weightUnit}}</div>
            <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.weight">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Ethnicity</b> </span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Ethnicity</b> </span>
            <div class="healthViewDetails ellipsis" ng-if="currentPatientDetails[0].anatomy.ethnicity">{{currentPatientDetails[0].anatomy.ethnicity}}</div>
            <div class="healthViewDetails ellipsis" ng-if="!currentPatientDetails[0].anatomy.ethnicity">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-ios-person iconfont"></i><b class="formlabel labelfont">Hair Color</b> </span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel labelfont">Hair Color</b> </span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.hairColor">{{currentPatientDetails[0].anatomy.hairColor}}</div>
            <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.hairColor">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-eye iconfont"></i><b class="formlabel labelfont">Eye Color</b> </span>
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel labelfont">Eye Color</b> </span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.eyeColor">{{currentPatientDetails[0].anatomy.eyeColor}}</div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.eyeColor">NA</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Blood Type</b> </span>
+           <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel labelfont">Blood Type</b> </span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.bloodType">{{currentPatientDetails[0].anatomy.bloodType}}</div>
            <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.bloodType">NA</div>
            </label>
         </div>
         <div class="list listprofile" ng-hide="flag">
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-android-person iconfont"></i><b class="formlabel labelfont">First</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel labelfont">First</b></span>
               <span class="healthViewDetails"><input type="text" name="healthInfoFirstName" id="healthInfoFirstName" value="{{currentPatientDetails[0].patientName}}" class="textdata"></span>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-android-person iconfont"></i><b class="formlabel labelfont">Last</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel labelfont">Last</b></span>
               <span class="healthViewDetails"><input type="text" name="healthInfoLastName" id="healthInfoLastName" value="{{currentPatientDetails[0].lastName}}" class="textdata"></span>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"><i class="ion-ios-calendar-outline iconfont"></i><b class="formlabel">D.O.B </b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B </b></span>
               <span class="DOBClass-{{deviceName}}">
                 <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}" class="textdata" >
               </span>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-android-mail iconfont"></i><b class="formlabel labelfont">Email</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
               <span class="healthViewDetails" ><input type="text" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata"></span>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"><i class="ion-android-globe iconfont"></i><b class="formlabel labelfont">Country</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
               <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoCountry" >
                  <option value="">Choose</option>
                  <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == currentPatientDetails[0].countryCode"><b>{{country.name}}</b></option>
@@ -197,7 +198,7 @@
            </div>
 
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"><i class="ion-clock iconfont"></i><b class="formlabel labelfont">Timezone</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('clock')"></i></i><b class="formlabel labelfont">Timezone</b></span>
               <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoTimezone" >
                  <option value="">Choose</option>
                  <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ng-selected="timeZone.id == currentPatientDetails[0].account.timeZoneId"><b>{{timeZone.name}}</b></option>
@@ -205,15 +206,15 @@
            </div>
 
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
+              <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont">Home Phone</b></span>
               <span class="healthViewDetails"><input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone"  phone-input  ng-model="phoneval"  class="textdata"></span>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"><i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Mobile</b> </span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont">Mobile</b> </span>
               <span class="healthViewDetails"><input type="text" name="healthInfoMobilePhone" id="healthInfoMobilePhone"  phone-input ng-model="mobileval" class=" textdata"></span>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-location iconfont"></i><b class="formlabel labelfont">Home Address</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel labelfont">Home Address</b></span>
              <span class="DOBClass-{{deviceName}}">
 
                <!--<textarea name="healthInfoAddress" id="healthInfoAddress" rows="3" cols="3" class="textdata healthTextArea-{{deviceName}}" style="padding-top: 10px;">{{currentPatientDetails[0].address}}</textarea>-->
@@ -221,22 +222,21 @@
              </span>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"><i class="ion-ios-people iconfont"></i><b class="formlabel labelfont">Organization</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel labelfont">Organization</b></span>
               <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoOrganization" id="healthInfoOrganization" ng-model="healthInfoModel.healthInfoOrganization" >
                  <option value="">Choose Organization</option>
                     <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ng-selected="getOrganization.name == currentPatientDetails[0].organization"><b>{{getOrganization.name}}</b></option>
                </select></span>
            </div>
            <div class="item item-input itemtab validated" ng-disabled="!listOfLocForCurntOrg">
-              <span class="input-label labelcolor"> <i class="ion-android-pin iconfont"></i><b class="formlabel labelfont">Location</b> </span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel labelfont">Location</b> </span>
              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoLocation" id="healthInfoLocation" >
                      <option>Choose Location</option>
                     <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
                </select></span>
            </div>
-
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="on-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
+              <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont">Gender</b> </span>
               <div class="healthViewDetails">
                 <select class="optionselect textdata" name="healthInfoGender" id="healthInfoGender"  >
                   <option value=""><b>Choose</b></option>
@@ -247,7 +247,7 @@
            </div>
 
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b></span>
               <div>
                  <input type="number" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" style="width: 40px; margin-right: 10px;">
               </div>
@@ -261,7 +261,7 @@
               </div>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor">  <i class="ion-ios-filing iconfont"></i><b class="formlabel labelfont">Weight</b></span>
+              <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b></span>
               <div>
                  <input type="number" name="healthInfoWeight" id="healthInfoWeight"  value="{{currentPatientDetails[0].anatomy.weight}}" class="textdata" style="width: 80px; margin-right: 10px;">
               </div>
@@ -272,7 +272,7 @@
               </div>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Ethnicity</b> </span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Ethnicity</b> </span>
               <div class="healthViewDetails">
                  <select class="textdata optionselect" name="healthInfoEthnicity" id="healthInfoEthnicity" >
                     <option value=""><b>Choose</b></option>
@@ -281,7 +281,7 @@
               </div>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-ios-person iconfont"></i><b class="formlabel labelfont">Hair Color</b> </span>
+              <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel labelfont">Hair Color</b> </span>
               <div class="healthViewDetails">
                  <select class="textdata optionselect" name="healthInfoHairColor" id="healthInfoHairColor">
                     <option value=""><b>Choose</b></option>
@@ -290,7 +290,7 @@
               </div>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-ios-eye iconfont"></i><b class="formlabel labelfont">Eye Color</b> </span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel labelfont">Eye Color</b> </span>
               <div class="healthViewDetails">
                  <select class="textdata optionselect" name="healthInfoEyeColor" id="healthInfoEyeColor" >
                     <option value=""><b>Choose</b></option>
@@ -299,7 +299,7 @@
               </div>
            </div>
            <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"> <i class="ion-earth iconfont"></i><b class="formlabel labelfont">Blood Type</b> </span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel labelfont">Blood Type</b> </span>
               <div class="healthViewDetails">
                  <select class="textdata optionselect" name="healthInfoBloodType" id="healthInfoBloodType" >
                     <option value=""><b>Choose</b></option>
@@ -336,7 +336,7 @@
              <div>
                <h4>
 
-      <span class="alignnexttext">Current Medications</span><span><a ng-click="healthsearch(patientmedications)" ><i class="ion-edit currentedit" ></i></a></span>
+      <span class="alignnexttext">Current Medications</span><span><a ng-click="healthsearch(patientmedications)" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a></span>
 
                   </h4>
                </div>
@@ -348,7 +348,7 @@
                </ul>
                <h4 class="h4align">
                   <div class="alignnexttext chronic"  >Medication Allergies</div>
-                  <span><a ng-click="alergiessearch()" ><i class="ion-edit editicons" ></i></a>
+                  <span><a ng-click="alergiessearch()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">
@@ -360,7 +360,7 @@
 
                <h4 class="h4align">
                   <div class="alignnexttext chronic">Chronic Conditions</div>
-                  <span><a ng-click="chronicsearch()" ><i class="ion-edit editicon" ></i></a></span>
+                  <span><a ng-click="chronicsearch()" ><i class="editicon" ng-bind-html="drawSVGCIcon('pencil')" ></i></a></span>
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
@@ -372,7 +372,7 @@
                </ul>
                <h4 class="h4align">
                   <div class="alignnexttext chronic">Prior Surgeries</div>
-                  <span><a ng-click="showSurgeryPopup()" ><i class="ion-edit editicons" ></i></a>
+                  <span><a ng-click="showSurgeryPopup()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">
@@ -402,27 +402,28 @@
   </form>
 
 
-</ion-side-menu-content>
-<div ng-include src="'templates/SideMenu.html'"></div>
 </ion-view>
 
-  <!--Side Menu File Include --->
+  <!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>--->
   <div class="hide-on-keyboard-open">
      <ion-tabs class=" tabs-icon-top tabs-dark">
         <a class="tab-item" ng-click="doGetListOfCoUsers()" >
-        <i class="icon ion-person-stalker tabfont"></i> Users
+        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
         </a>
-        <a class="tab-item" ng-href="#tab/consultations">
-        <i class="icon ion-card tabfont"></i> Consultations
+        <a class="tab-item" ng-href="#/tab/consultations">
+        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> Consultations
         </a>
-        <a class="tab-item active" ng-href="/#tab/healthinfo">
-        <i class="icon ion-android-clipboard tabfont"></i> My Health
+        <a class="tab-item active" ng-href="#/tab/healthinfo">
+        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> My Health
         </a>
-        <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
-        <i class="icon ion-calendar tabfont"></i> Appointments
+        <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
+        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i> Appointments
         </a>
-        <a class="tab-item" ng-href="#tab/profileoption">
-        <i class="icon ion-more tabfont"></i> More
+        <a class="tab-item" ng-href="#/tab/profileoption">
+        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
         </a>
      </ion-tabs>
   </div>
+
+  </ion-side-menu-content>
+  <div ng-include src="'templates/SideMenu.html'"></div>

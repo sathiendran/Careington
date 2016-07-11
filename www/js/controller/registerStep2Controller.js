@@ -1,5 +1,9 @@
 angular.module('starter.controllers')
     .controller('registerStep2Controller', function($scope, ageFilter, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+      $rootScope.drawSVGCIcon = function(iconName){
+          return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
+      };
+
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name == "tab.userhome") ||
                 ($rootScope.currState.$current.name == "tab.addCard") ||

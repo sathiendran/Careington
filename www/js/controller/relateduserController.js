@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
     .controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter) {
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+          $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||

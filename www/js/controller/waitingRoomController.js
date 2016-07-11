@@ -2,8 +2,7 @@ angular.module('starter.controllers')
 
 .controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList) {
     window.plugins.insomnia.keepAwake();
-    $rootScope.currState = $state;
-
+    $rootScope.currState = $state;    
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||

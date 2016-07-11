@@ -4,8 +4,9 @@
     <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
      <div class="buttons" >
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
+		<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>-->
+        <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 	 </div>
     <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}">
         <span>Profile Options</span> <span><a class="headerval" ng-click="canceloption()" >Cancel</a></span>

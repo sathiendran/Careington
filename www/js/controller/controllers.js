@@ -330,7 +330,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.drawSVGCIcon = function(iconName){
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
     };
-    
+
     $rootScope.canceloption=function(){
         $window.history.back();
         $scope.apply();
@@ -673,14 +673,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.checkAndChangeMenuIcon = function() {
             if (!$ionicSideMenuDelegate.isOpen(true)) {
-                if ($('#BackButtonIcon').hasClass("ion-close")) {
-                    $('#BackButtonIcon').removeClass("ion-close");
-                    $('#BackButtonIcon').addClass("ion-navicon-round");
+                if ($('#BackButtonIcon svg').hasClass("ion-close")) {
+                    $('#BackButtonIcon svg').removeClass("ion-close");
+                    $('#BackButtonIcon svg').addClass("icon-menu");
                 }
             } else {
-                if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
-                    $('#BackButtonIcon').removeClass("ion-navicon-round");
-                    $('#BackButtonIcon').addClass("ion-close");
+                if ($('#BackButtonIcon svg').hasClass("icon-menu")) {
+                    $('#BackButtonIcon svg').removeClass("icon-menu");
+                    $('#BackButtonIcon svg').addClass("ion-close");
                 }
             }
         }
