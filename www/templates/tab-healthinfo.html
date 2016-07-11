@@ -195,7 +195,7 @@
                  <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == currentPatientDetails[0].countryCode"><b>{{country.name}}</b></option>
                </select></span>
            </div>
-           
+
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="ion-clock iconfont"></i><b class="formlabel labelfont">Timezone</b></span>
               <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoTimezone" >
@@ -203,7 +203,7 @@
                  <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ng-selected="timeZone.id == currentPatientDetails[0].account.timeZoneId"><b>{{timeZone.name}}</b></option>
                </select></span>
            </div>
-           
+
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
               <span class="healthViewDetails"><input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone"  phone-input  ng-model="phoneval"  class="textdata"></span>
@@ -234,11 +234,18 @@
                     <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
                </select></span>
            </div>
-           <div class="item itemtab">
-              <span class="input-label labelcolor" style="float: left;"> <i class="ion-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
-              <span class="healthViewDetails"><input type="radio" name="healthInfoGender" id="healthInfoGender" value="M" ng-checked="isCheckedMale" _class="genderclass" /> Male
-              <input type="radio" name="healthInfoGender" id="healthInfoGender" value="F" ng-checked="isCheckedFeMale" /> FeMale</span>
+
+           <div class="item item-input itemtab validated">
+              <span class="input-label labelcolor"> <i class="on-female iconfont"></i><b class="formlabel labelfont">Gender</b> </span>
+              <div class="healthViewDetails">
+                <select class="optionselect textdata" name="healthInfoGender" id="healthInfoGender"  >
+                  <option value=""><b>Choose</b></option>
+                  <option value="M">Male</option> >
+                  <option value="F">Female</option>
+                </select>
+              </div>
            </div>
+
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
               <div>

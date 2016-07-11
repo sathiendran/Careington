@@ -108,22 +108,6 @@ angular.module('starter.controllers')
         $(this).val(value);
     });
 
-
-    /*  $("#userphone").blur(function () {
-
-        if (this.value.match(/^[0-9]{1,14}$/)) {
-            this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
-
-        }
-      });
-      $("#usermobile").blur(function () {
-
-        if (this.value.match(/^[0-9]{1,14}$/)) {
-            this.value = this.value.replace(/^[0-9]{1,14}$/g, '');
-
-        }
-      });*/
-
       $scope.getOnlyNumbers = function(text){
           var newStr = text.replace(/[^0-9.]/g, "");
           return newStr;
@@ -189,7 +173,12 @@ angular.module('starter.controllers')
         } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
             $scope.ErrorMessage = "Please Enter Your DOB";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
+        } else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
+            $scope.ErrorMessage = "Please Select Your Relation";
+            $rootScope.Validation($scope.ErrorMessage);
+        }
+
+        else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
             $scope.ErrorMessage = "Please Select Your Gender";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
@@ -217,10 +206,7 @@ angular.module('starter.controllers')
         } else if (typeof $scope.homeaddress === 'undefined' || $scope.homeaddress === '') {
             $scope.ErrorMessage = "Please Enter Your homeaddress";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
-            $scope.ErrorMessage = "Please Select Your Relation";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else {
+        }  else {
             // alert("fail");
           $scope.doPostAddCousers();
         }

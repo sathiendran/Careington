@@ -73,6 +73,15 @@
 
       </div>
    </div>
+	 <div class="item item-input validated">
+			<div class="col col-50">
+					<span class="input-label labelcolor">
+					<i class="iconsize ion-ios-calendar-outline"></i><b class="formlabel">Date of Birth</b></span>
+			</div>
+			<div class="col col-50">
+				 <input  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" >
+			</div>
+		</div>
   <div class="item item-input validated">
      <div class="col col-50">
         <span class="input-label labelcolor">
@@ -84,16 +93,6 @@
          <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
      </div>
    </div>
-   <div class="item item-input validated">
-      <div class="col col-50">
-          <span class="input-label labelcolor">
-          <i class="iconsize ion-ios-calendar-outline"></i><b class="formlabel">Date of Birth</b></span>
-      </div>
-      <div class="col col-50">
-         <input  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" >
-
-      </div>
-    </div>
    <div class="item item-input validated">
      <div class="col col-50">
        <span class="input-label labelcolor">

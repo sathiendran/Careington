@@ -16,7 +16,7 @@ angular.module('starter.controllers')
             phoneNumberWithoutCountryCode = phoneNumber.substring(phoneNumber.length-10, phoneNumber.length);
         return phoneNumberWithoutCountryCode;
     };
-    
+
     $rootScope.reformatHeight = function(heightVal, index){
         var newHeight = "0";
         if(heightVal){
@@ -25,7 +25,7 @@ angular.module('starter.controllers')
         }
         return newHeight;
     };
-    
+
     $rootScope.reformatHeightForDisplay = function(heightVal){
         var newHeight = "";
         if(heightVal){
@@ -34,7 +34,7 @@ angular.module('starter.controllers')
         }
         return newHeight;
     };
-    
+
     $rootScope.getCountryName = function(countryCode){
         var countryInfo = $filter('filter')($rootScope.serviceCountries, {code: countryCode});
         if(countryInfo[0])
@@ -194,7 +194,7 @@ angular.module('starter.controllers')
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
             $scope.healthInfoDOB = $('#healthInfoDOB').val();
             $scope.healthInfoEmail = $('#healthInfoEmail').val();
-            $scope.healthInfoGender = $("input[name='healthInfoGender']:checked").val();
+            $scope.healthInfoGender = $("#healthInfoGender").val();
             $scope.healthInfoHeight = $('#healthInfoHeight').val();
             $scope.healthInfoHeight2 = $('#healthInfoHeight2').val();
             $scope.HeightUnit = $('#healthInfoHeightUnit').val();
