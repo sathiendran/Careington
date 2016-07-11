@@ -7217,6 +7217,7 @@ Pagination Styles
 .addUser-IOS {
   color: #888 !important; margin-left: 53px;
 }
+.addUser-Android {   color: #888 !important;}
 .coUserImage-IOS {
   max-width: 50px !important;
   max-height: 50px !important;
@@ -7233,6 +7234,13 @@ Pagination Styles
 .content-IOS {
   margin-left: -18px;
   font-size: 138%;
+}
+.content-Android{
+  margin-left: -18px;
+  font-size: 138%;
+}
+.iconalign-Android{
+    left: -14px !important;
 }
 .usrAppointIcon-IOS {
   left: -7px !important;
