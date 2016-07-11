@@ -65,6 +65,7 @@
  <ion-content class="appiconcontent" >
 	 <div><ion-refresher on-refresh="doRefresh()"  >
 		</ion-refresher></div>
+
 		 <div ng-hide="addmore">
 					 <div class="list listfirst" >
 				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
@@ -78,17 +79,17 @@
 
 				 <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
 						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
-					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span> <span class="fonttime"> {{scheduledListData.scheduledTime | date: "a"}}</span>
-						<p class="appfloat">
+						<p class="appmarg" style="margin-top: 14px;">
 								<span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
-							</p>
+						</p>
+					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span> <span class="fonttime"> {{scheduledListData.scheduledTime | date: "a"}}</span>
 					 </h4>
 				 </a>
 				<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
 
  </div>
 	 </div>
-
+<div style="display: none;"><timer end-time="time"  ></timer></div>
 	 <div ng-hide="healthhide" >
         <div class="list listall">
 
@@ -104,10 +105,10 @@
 
         <a class="item item-avatar appitem" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
             <img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
-					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span> <span class="fonttime"> {{scheduledListData.scheduledTime | date: "a"}}</span>
-            <p class="appfloat">
+						<p class="appmarg" style="margin-top: 14px;">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
+					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span> <span class="fonttime"> {{scheduledListData.scheduledTime | date: "a"}}</span>
            </h4>
          </a>
 				  <ion-item ng-if="!scheduledList.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
@@ -154,5 +155,4 @@
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-controller="appoimentDetailsCtrl"></div>
-<div style="display: none;"><timer end-time="time"  ></timer></div>
 <div ng-include src="'templates/SideMenu.html'"></div>

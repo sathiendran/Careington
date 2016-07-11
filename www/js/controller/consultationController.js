@@ -118,14 +118,14 @@ angular.module('starter.controllers')
             $scope.startDate = year + "-" + smonth + "-" + sdate + "T" + "00" + ":" + "00" + ":" + "00.000";
             var eddate = duedate.setDate(now.getDate());
 
-            var end = new Date(eddate);
-            var eday = end.getDate();
-            var emnth = end.getMonth() + 1;
-            var eyear = end.getFullYear();
 
-            var time = end.getHours();
-            var mints = end.getMinutes();
-            var sec = end.getMilliseconds();
+            var eday = now.getDate();
+            var emnth = now.getMonth() + 1;
+            var eyear = now.getFullYear();
+
+            var time = now.getHours();
+            var mints = now.getMinutes();
+            var sec = now.getMilliseconds();
             if (emnth < 10) {
                 var emonth = "0" + emnth;
             } else {
@@ -148,7 +148,7 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $scope.Missedconsultations = data.data;
                     $rootScope.missedlist = [];
-                    $rootScope.missedlistReport = [];
+
                     angular.forEach($scope.Missedconsultations, function(item, index) {
                         var nowDateTime = new Date();
                         var nowDateTimeEightHours = new Date(nowDateTime);
@@ -201,48 +201,14 @@ angular.module('starter.controllers')
                                     'docname': docname,
                                     'enddate': enddate,
                                     'consultationId': consultationId,
+                                    'startTime': item.startTime,
+                                    'additionalNotes': item.intakeMetadata.additionalNotes,
+                                    'clinicianId':item.clinicianId
                                 });
 
                             }
                         }
-                        if ($rootScope.patientId == patientId && $rootScope.consultationId == consultationId) {
-                            if (enddatetime < todaydatetime) {
-                                var asd = edtime.split('T');
-                                var enddate = asd[0];
 
-                                var astime = asd[1].split('+');
-                                var newt = astime[0].split(':');
-                                var time = newt[0] + ":" + newt[1];
-                                var asds = item.participants;
-                                var patientdata = _.where(asds, {
-                                    participantTypeCode: 1
-                                });
-                                var drdata = _.where(asds, {
-                                    participantTypeCode: 2
-                                });
-                                var patimg = patientdata[0].person;
-                                var photo = _.pick(patimg, 'photoUrl');
-                                var patphoto = _.values(photo);
-                                if (drdata.length > 0) {
-                                    var drlist = drdata[0].person.name;
-                                    var nlist = _.pick(drlist, 'given');
-                                    var drname = _.values(nlist);
-                                    var docname = drname.join();
-                                } else {
-                                    var drname = "";
-                                }
-
-
-                                $rootScope.missedlistReport.push({
-                                    'reptime': time,
-                                    'repdocname': docname,
-                                    'rependdate': enddate,
-                                    'repconsultationId': consultationId,
-                                    'repimage': patphoto,
-                                });
-
-                            }
-                        }
                     });
 
                 },
@@ -276,11 +242,38 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 statusId: 81,
                 success: function(data) {
-                    $rootScope.Droppedconsultations = data.data;
+                    $rootScope.Droppedconsultations = [];
+                    angular.forEach(data.data, function(index, item) {
+                      var startTimeISOString = index.consultationTimeInfo;
+                      var startTime = new Date(startTimeISOString);
+                      var consultDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
+                        $rootScope.Droppedconsultations.push({
+                            'appointmentId': index.appointmentId,
+                            'assignedDoctorFirstName': index.assignedDoctorFirstName,
+                            'assignedDoctorId': index.assignedDoctorId,
+                            'assignedDoctorLastName': index.assignedDoctorLastName,
+                            'assignedDoctorName': index.assignedDoctorName,
+                            'consultantUserId': index.consultantUserId,
+                            'consultationDate': index.consultationDate,
+                            'consultationDuration': index.consultationDuration,
+                            'consultationId': index.consultationId,
+                            'consultationTime': index.consultationTime,
+                            'consultationTimeInfo': consultDate,
+                            'dob': index.dob,
+                            'isDependent': index.isDependent,
+                            'patientFirstName': index.patientFirstName,
+                            'patientId': index.patientId,
+                            'patientLastName': index.patientLastName,
+                            'patientName': index.patientName,
+                            'startedConsultation': index.startedConsultation,
+                            'waitingConsultation': index.waitingConsultation
+                        });
+                    });
+
 
                 },
                 error: function(data) {
-                    $scope.listOfConsultations = 'Error getting List Of Consultations';
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
             LoginService.getListOfDroppedConsultations(params);
@@ -304,14 +297,20 @@ angular.module('starter.controllers')
             $state.go('tab.consultationSearch');
         }
 
-        $rootScope.doGetExistingConsulatationReport = function() {
+
+
+        $rootScope.doGetExistingConsulatationReport = function(consultation,nextPage) {
+          $rootScope.consultationDate = '';
+          $rootScope.addNotes  = '';
+          $rootScope.existingConsultationReport='';
+          $rootScope.missedAppointDocDetails = '';
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
-
+            $state.go(nextPage);
             var params = {
-                consultationId: $rootScope.consultationId,
+                consultationId: consultation.consultationId,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $rootScope.attachmentLength = '';
@@ -350,7 +349,7 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
                         $rootScope.reportDoctorFirstName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorFirstName);
                     } else {
-                        $rootScope.reportDoctorFirstName = 'None Reported';
+                        $rootScope.reportDoctorFirstName = 'NA';
                     }
                     if ($rootScope.existingConsultationReport.medicalSpeciality !== '' && typeof $rootScope.existingConsultationReport.medicalSpeciality !== 'undefined') {
                         $rootScope.reportMedicalSpeciality = ', ' + htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.medicalSpeciality);
@@ -358,10 +357,20 @@ angular.module('starter.controllers')
                         $rootScope.reportMedicalSpeciality = '';
                     }
 
-                    if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
+                    if ($rootScope.existingConsultationReport.doctorLastName != '' && typeof $rootScope.existingConsultationReport.doctorLastName != 'undefined') {
                         $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
                     } else {
-                        $rootScope.reportDoctorLastName = 'None Reported';
+                      //  $rootScope.reportDoctorLastName = 'NA';
+                    }
+
+                    if ($rootScope.existingConsultationReport.gender != '' && typeof $rootScope.existingConsultationReport.gender != 'undefined') {
+                        if($rootScope.existingConsultationReport.gender === 'M') {
+                          $rootScope.doctorGender = "Male";
+                        } else {
+                          $rootScope.doctorGender = "FeMale";
+                        }
+                    } else {
+                        $rootScope.doctorGender = 'None Reported';
                     }
 
                     if ($rootScope.existingConsultationReport.rx != '' && typeof $rootScope.existingConsultationReport.rx != 'undefined') {
@@ -544,10 +553,27 @@ angular.module('starter.controllers')
                     } else {
                         $rootScope.reportMedicalCodeDetails = '';
                     }
+
+                    if(nextPage === "tab.missedConsultAppoint"){
+                      $rootScope.consultationDate = consultation.startTime;
+                    }
                     session = null;
-                    $scope.getSoapNotes();
-                    $scope.doGetAttachmentList();
-                    $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
+                    if(!angular.isUndefined(consultation.clinicianId)) {
+                      $scope.doGetDoctorDetails(consultation.clinicianId);
+                    }
+                    $scope.getSoapNotes(consultation);
+                    $scope.doGetAttachmentList(consultation.consultationId);
+
+
+                    $("#appointNotes").html(consultation.additionalNotes);
+                    $('#appointmentNote').find('a').each(function() {
+                        var aLink = angular.element(this).attr('href');
+                        var onClickLink = "window.open('" + aLink + "', '_system', 'location=yes'); return false;";
+                        angular.element(this).removeAttr('href', '');
+                        angular.element(this).attr('href', 'javascript:void(0);');
+                        angular.element(this).attr('onclick', onClickLink);
+                    });
+                  /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
                         focusFirstInput: false,
@@ -555,7 +581,7 @@ angular.module('starter.controllers')
                     }).then(function(modal) {
                         $scope.modal = modal;
                         $scope.modal.show();
-                    });
+                    });*/
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();
@@ -565,13 +591,13 @@ angular.module('starter.controllers')
             LoginService.getConsultationFinalReport(params);
         }
 
-        $scope.doGetAttachmentList = function() {
+        $scope.doGetAttachmentList = function(consultationId) {
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
             var params = {
-                consultationId: $rootScope.consultationId,
+                consultationId: consultationId,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $scope.getSoapNotes();
@@ -584,25 +610,14 @@ angular.module('starter.controllers')
                             'name': index.name,
                             'image': attachImage[attachImage.length - 1]
                         });
-                        //$scope.doGetAttachmentURL(index.id, index.name);
 
                     });
 
-                    if (data.data[0].snapFile.files.length > 0) {
-                        angular.forEach(data.data[0].snapFile.files, function(index, item) {
-                            var attachImage = index.name.split(".");
-                            $rootScope.getAttachmentList.push({
-                                'id': index.id,
-                                'name': index.name,
-                                'image': attachImage[attachImage.length - 1]
-                            });
-                            //$scope.doGetAttachmentURL(index.id, index.name);
 
-                        });
-                    }
 
                     $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
-                    $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
+
+                  /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
                         focusFirstInput: false,
@@ -611,10 +626,10 @@ angular.module('starter.controllers')
                         $rootScope.reportModal = modal;
                         $rootScope.reportModal.show();
 
-                    });
+                    });*/
                 },
                 error: function(data) {
-                    $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
+                    /*$ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
                         focusFirstInput: false,
@@ -626,14 +641,14 @@ angular.module('starter.controllers')
                         $rootScope.reportModal = modal;
                         $rootScope.reportModal.show();
 
-                    });
-                    //$rootScope.serverErrorMessageValidation();
+                    });*/
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
             LoginService.getAttachmentList(params);
         }
 
-        $scope.getSoapNotes = function() {
+        $scope.getSoapNotes = function(consultation) {
             $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
             $("#reportObjective").html($rootScope.existingConsultationReport.objective);
             $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
@@ -669,14 +684,56 @@ angular.module('starter.controllers')
                 angular.element(this).attr('onclick', onClickLink);
             });
         }
-        $rootScope.showReportView = function(consultation) {
-            $rootScope.consultationId = consultation.consultationId;
-            $rootScope.doGetExistingConsulatationReport();
+        $rootScope.showReportView = function(consultation,nextPage) {
+          //  $scope.reportConsultationId = consultation.consultationId;
+            $rootScope.doGetExistingConsulatationReport(consultation,nextPage);
         }
 
         $scope.closeReportView = function() {
-            $rootScope.reportModal.hide();
-            $('.modal-backdrop').hide();
+            //$rootScope.reportModal.hide();
+            //$('.modal-backdrop').hide();
+            $state.go('tab.consultations');
+        }
+
+
+
+        $scope.doGetDoctorDetails = function(clinicianId) {
+            if ($scope.accessToken === 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+
+            var params = {
+                doctorId: clinicianId,
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+
+                    //$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;
+                    $rootScope.missedAppointDocDetails = [];
+                    angular.forEach(data.data, function(index, item) {
+                    //  var docDob = $filter('date')(index.dob, "yyyy-MM-dd");
+                      if (index.gender === 'M') {
+                          var docGender = "Male";
+                      } else if (index.gender === 'F') {
+                          var docGender = "FeMale";
+                      }
+                        $rootScope.missedAppointDocDetails.push({
+                            'dob': index.dob,
+                            'firstName': index.firstName,
+                            'fullName': index.fullName,
+                            'gender': docGender,
+                            'profileImagePath': index.profileImagePath
+                        });
+                    });
+                  //  $state.go('tab.appoimentDetails');
+                },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+
+            LoginService.getDoctorDetails(params);
+
         }
 
 

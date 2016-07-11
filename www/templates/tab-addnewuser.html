@@ -12,7 +12,7 @@
 		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
 				ng-click="toggleLeft()"></button>
 	</div>
-	 <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> <span style="float:right;">
+	 <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> <span style="float:right;">
             <a class="headerval" ng-href="#tab/relatedusers">Cancel</a></span></h1>
 
 	<div class="bar bar-subheader bar-dark usersubheader" >
@@ -63,29 +63,59 @@
          </ion-item>
 
 
-         <ion-item class="iionitem ">
+        <!-- <ion-item class="iionitem" ng-click="addcouser()">
            <div class="card shadowcard">
               <div class="item item-text-wrap">
                     <div class="" style="text-align:center;">
                        <h2 class="title alignedchronic ChronicCondition ">
-                         <a class="fontcolor"   ng-click="addcouser()"  style="font-size:20px;"> Invite A Co-User</a>
+                         <a class="fontcolor" style="font-size:20px;"> Invite A Co-User</a>
                         </h2>
 				      </div>
                  </div>
               </div>
          </ion-item>
 
-          <ion-item class="iionitem">
+          <ion-item class="iionitem" ng-click="adddependent()" >
            <div class="card shadowcard">
               <div class="item item-text-wrap">
                     <div class=" chronictext">
                        <h2 class="title alignedchronic ChronicCondition ">
-                         <a class="fontcolor" ng-click="adddependent()" style="font-size:20px;">Add A Dependent</a>
+                         <a class="fontcolor" style="font-size:20px;">Add A Dependent</a>
                         </h2>
 				      </div>
                  </div>
               </div>
-         </ion-item>
+         </ion-item>-->
+
+				 <ion-item class="ionicitem userionitem" ng-click="addcouser()" style="padding: 40px 10px !important;">
+					 <div class="cardshadow">
+						 <div class="item-text-wrap itemtextwap">
+
+								 <h2 class="title alignchronic ChronicCondition" >
+
+									 <span class="content addUser-{{deviceName}}">
+									Invite A Co-User
+									 </span>
+								 </h2>
+
+						 </div>
+					 </div>
+				 </ion-item>
+
+				 <ion-item class="ionicitem userionitem" ng-click="adddependent()" style="padding: 44px 10px !important;">
+					 <div class="cardshadow">
+						 <div class="item-text-wrap itemtextwap">
+
+								 <h2 class="title alignchronic ChronicCondition" >
+
+									 <span class="content addUser-{{deviceName}}">
+								Add A Dependent
+									 </span>
+								 </h2>
+
+						 </div>
+					 </div>
+				 </ion-item>
 
 
 	</ion-list>
@@ -96,7 +126,7 @@
 
 <div class="bar bar-footer addheight" style="background-color:#484848;">
    <!--  <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
-   <h1 class="title" id="centercolor" style="margin-top: 5px !important;" >Cancel</h1>
+   <h1 class="title" id="centercolor" style="margin-top: 5px !important;" ><a ng-href="#tab/relatedusers" style="padding: 10px;">Cancel</a></h1>
 </div>
 
 </ion-side-menu-content>

@@ -48,12 +48,13 @@
             </div>
             <div class="bar bar-subheader searchsubheader" ng-show="usersearchsubheader">
                 <h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;">Relationship</h2>
-                <div class="csearch">
-                    <h6 class="hsearch">
-               <i class="icon ion-search fontcolor"></i>
-               <span class="fontcolor">Search</span>
-            </h6>
-                </div>
+              <!--  <div class="item-input-inset searchpopup">
+                    <label class="item-input-wrapper">
+                      <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
+                      <input type="search"  placeholder="Search" ng-model="data.searchText">
+
+                    </label>
+                </div>-->
             </div>
         </ion-header-bar>
         <ion-view title="Related User Details">
@@ -93,7 +94,7 @@
                         <div class="row archiveCoUser" ng-show="showActions{{getCoUserDetails.userId}}" ng-swipe-right="showActions{{getCoUserDetails.userId}} = false">
                             <div class="col col-75">
                                 <a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'patientClick')" style="border-right: none;width:105%;">
-                                    <img src="{{getCoUserDetails.imagePath}}">
+                                    <img class="coUserImage-{{deviceName}}" src="{{getCoUserDetails.imagePath}}">
                                     <h2><span class="fname">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span> </h2>
                                     <p>{{getCoUserDetails.gender}} <span ng-if="getCoUserDetails.dob != ''">. {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
                                 </a>
@@ -101,7 +102,7 @@
                             <div class="col col-25 unlink" ng-click="coUserUnlink(getCoUserDetails)">
                                 <div>
                                     <div class="aligncenicon">
-                                        <i class="icon ion-link icons"></i>
+                                        <i class="icon ion-link icons "></i>
                                         <div style="font-size: 18px;"> Unlink</div>
                                     </div>
                                 </div>
@@ -223,13 +224,13 @@
                                 </p>
                             </a>
                             <div class="row authorizedview" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="authorizedview">
-                                <div class="col col-25 authorupdate">
+                                <div class="col col-30 authorupdate" style="max-width:85px;">
                                     <p class="tabicon authortab"> <i class="ion-chevron-down"></i></p>
                                     <div class="authorcont">
                                         <p><a>Update <i class="icon ion-chevron-right avatarlefticon "></i></a> </p>
                                     </div>
                                 </div>
-                                <div class="col col-35 statustab" ng-click="showPopup(getDependentDetails, 'Y')">
+                                <div class="col col-40 statustab" ng-click="showPopup(getDependentDetails, 'Y')">
                                     <div class="tabvalue">
                                         <p class="unstatus">Status</p>
                                         <p class="avatrelationclass">
@@ -240,7 +241,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col col-40 relationtab">
+                                <div class="col col-30 relationtab">
                                     <p class="conticon relationstatus"><a>Relationsship</a></p>
                                     <p class="unauthorrelationship">
                                         <span ng-if="!getDependentDetails.relationship">N/A</span>
@@ -256,14 +257,36 @@
 
                 </div>
             </ion-content>
-            <ion-content class="searchcontent" ng-show="usersearchinfocontent">
-                <div class="list">
-                    <div ng-click="setNewRelation(relationShipDetails.codeId);" class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | orderBy:'text'">
-                        {{relationShipDetails.text}}
-                    </div>
-                </div>
+            <ion-content class="relatedsearchusercontent " ng-show="usersearchinfocontent">
+              <ion-list>
 
-            </ion-content>
+                <ion-list class="search_home  concernListSearch itemss">
+
+                   <div class="item-input-inset searchpopup">
+                       <label class="item-input-wrapper">
+                         <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
+                         <input type="search"  placeholder="Search" ng-model="data.searchText">
+
+                       </label>
+                   </div>
+
+                   <div>
+                         <div ng-click="setNewRelation(relationShipDetails.codeId);" class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText">
+                             {{relationShipDetails.text}}
+                         </div>
+                     </div>
+
+
+                   <p class="searchdata noResult" style="white-space: normal;" ng-show="(listOfRelationship[0].codes | filter:data.searchText).length==0"> <b>Sorry No Result Found <b></p>
+                </ion-list>
+
+
+</ion-list>
+
+           </ion-content>
+
+
+
             <div class="Server_Error ErrorMessageDiv"></div>
             <div id="Error_Message"></div>
             <!--Side Menu File Include --->

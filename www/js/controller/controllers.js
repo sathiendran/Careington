@@ -327,11 +327,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
 
-
-       $rootScope.canceloption=function(){
-          $window.history.back();
-          $scope.apply();
-       }
+    $rootScope.drawSVGCIcon = function(iconName){
+        return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
+    };
+    
+    $rootScope.canceloption=function(){
+        $window.history.back();
+        $scope.apply();
+    }
 
 
     $rootScope.deploymentEnv = deploymentEnv;
@@ -429,7 +432,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.deviceName = "IOS";
-        $rootScope.appointCOntent = "margin-top: 180px;";
+        $rootScope.appointCOntent = "margin-top: 180px; ";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.loginSub = "height: 100px; top: 43px;";
@@ -491,7 +494,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
             $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
             $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
-            $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PrimaryConcernPopupDone = "margin-top: 14px; padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
             $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
             $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
@@ -1355,6 +1358,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.tokenStatus = 'alert-success';
                         $scope.doGetPatientProfiles();
                         $scope.doGetRelatedPatientProfiles();
+                        $scope.doGetConutriesList();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
                 },
@@ -1613,6 +1617,31 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('tab.Health');
     });
+
+    $scope.doGetConutriesList = function(){
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.serviceCountries = angular.fromJson(data.data);
+                $scope.getTimezoneList();
+            },error: function(data) {
+
+            }
+        };
+        LoginService.getCountiesList(params);
+    }
+
+    $scope.getTimezoneList = function(){
+         var params = {
+             accessToken: $rootScope.accessToken,
+             success: function(data) {
+                 $rootScope.timeZones = angular.fromJson(data.data);
+             },error: function(data) {
+
+             }
+         };
+         LoginService.getTimezoneList(params);
+     }
 
     $scope.doGetPatientProfiles = function() {
         if ($rootScope.accessToken === 'No Token') {
@@ -3478,7 +3507,6 @@ LoginService.getScheduledConsulatation(params);
             alert('No token.  Get token first then attempt operation.');
             return;
         }
-        $rootScope.appointmentPatientId = '';
         $rootScope.scheduledConsultationList = [];
         var params = {
             patientId: $rootScope.primaryPatientId,
@@ -3546,7 +3574,7 @@ LoginService.getScheduledConsulatation(params);
 
                     console.log($rootScope.scheduledList);
                     $rootScope.nextAppointmentDisplay = 'none';
-                    $rootScope.accountClinicianFooter = 'block';
+                  //  $rootScope.accountClinicianFooter = 'block';
 
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
@@ -3561,17 +3589,13 @@ LoginService.getScheduledConsulatation(params);
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
                             $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
-                            if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
-                              $rootScope.nextAppointmentDisplay = 'block';
-                              $rootScope.accountClinicianFooter = 'none';
-                            }
+                            $rootScope.nextAppointmentDisplay = 'block';
                             $rootScope.timerCOlor = '#FEEFE8';
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
                                 $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
                                 $rootScope.timerCOlor = '#E1FCD4';
-                                $rootScope.appointmentPatientId = $rootScope.scheduledList[0].patientId;
                             }
                         }
                     }
@@ -3898,6 +3922,7 @@ LoginService.getScheduledConsulatation(params);
             alert('No token.  Get token first then attempt operation.');
             return;
         }
+        $rootScope.appointmentPatientId = '';
         $rootScope.individualScheduledConsultationList = [];
         var params = {
             patientId: $rootScope.patientId,
@@ -3949,21 +3974,28 @@ LoginService.getScheduledConsulatation(params);
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
                     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-
+                    $rootScope.individualNextAppointmentDisplay = 'none';
+                    $rootScope.accountClinicianFooter = 'block';
                     if ($rootScope.individualScheduledList != '') {
                         //var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
                         //var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
                         var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;
 
+
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
                             //$rootScope.nextAppointmentDisplay = 'block';
-                            $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                          //  $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                          $rootScope.accountClinicianFooter = 'none';
+                            $rootScope.individualNextAppointmentDisplay = 'block';
+                            $rootScope.appointmentPatientId = $rootScope.patientId;
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
-                                $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+                              //  $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
+                              //  if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {
+                              //  }
                             }
                         }
 

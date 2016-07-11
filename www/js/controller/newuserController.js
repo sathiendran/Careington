@@ -68,6 +68,8 @@ angular.module('starter.controllers')
     $scope.newUSer = {};
     $scope.addmore = false;
 
+    $scope.newUSer.address = $rootScope.primaryPatientDetails[0].address;
+
     $scope.moredetails = function() {
         $scope.showme = true;
         $scope.addmore = true;
@@ -122,7 +124,10 @@ angular.module('starter.controllers')
         }
       });*/
 
-
+      $scope.getOnlyNumbers = function(text){
+          var newStr = text.replace(/[^0-9.]/g, "");
+          return newStr;
+      }
     $scope.postNewuserDetails = function() {
         $scope.firstName = $("#userfirstname").val();
         $scope.lastName = $("#userlastname").val();
@@ -133,8 +138,10 @@ angular.module('starter.controllers')
         var c = a.getFullYear();
         var d = a.getDate();
         $scope.dob = d + "/" + b + "/" + c;
-        $scope.gender = $("input[name='userInfoGender']:checked").val();
+      //  $scope.gender = $("input[name='userInfoGender']:checked").val();
+        $scope.gender = $("#gender").val();
         $scope.heights = $("#userheight").val();
+        $scope.heights2 = $("#userheight2").val();
         $scope.weight = $("#userWeight").val();
         $scope.homephone = $("#userphone").val();
         $scope.mobile = $("#usermobile").val();
@@ -158,6 +165,8 @@ angular.module('starter.controllers')
         $scope.weightunit = _.last($scope.sptweightunit);
         $scope.relation = $("#userrelation").val().split("@").slice(0, 1);
         $scope.getRelationId = _.first($scope.relation);
+        $scope.bloodtype = $("#userbloodtype").val().split("@").slice(0, 1);
+        $scope.getBloodtypeId = _.first($scope.bloodtype);
         $scope.hairColor = $("#userhaircolor").val().split("@").slice(0, 1);
         $scope.getHairColorId = _.first($scope.hairColor);
         $scope.eyeColor = $("#usereyecolor").val().split("@").slice(0, 1);
@@ -186,6 +195,9 @@ angular.module('starter.controllers')
         } else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
             $scope.ErrorMessage = "Please Enter Your Height";
             $rootScope.Validation($scope.ErrorMessage);
+        } else if (typeof $scope.heights2 === 'undefined' || $scope.heights2 === '') {
+            $scope.ErrorMessage = "Please Enter Your Height";
+            $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.heightunitid === 'undefined' || $scope.heightunitid === '') {
             $scope.ErrorMessage = "Please Select Your Height Unit";
             $rootScope.Validation($scope.ErrorMessage);
@@ -210,7 +222,7 @@ angular.module('starter.controllers')
             $rootScope.Validation($scope.ErrorMessage);
         } else {
             // alert("fail");
-            $scope.doPostAddCousers();
+          $scope.doPostAddCousers();
         }
 
     }
@@ -226,13 +238,18 @@ angular.module('starter.controllers')
             weightUnitId: $scope.weightunitid,
             //photo: $rootScope.newCoUserImagePath,
             photo: "",
-            height: $scope.heights,
+            bloodType: $scope.getBloodtypeId,
+            eyeColor: $scope.getEyeColorId,
+            ethnicity: $scope.getEthnicityId,
+            hairColor: $scope.getHairColorId,
+            //height: formatHeightVal($scope.heights),
+            height: $scope.heights + "|" + $scope.heights2,
             weight: $scope.weight,
             heightUnit: $scope.heightunit,
             weightUnit: $scope.weightunit,
             address: $scope.homeaddress,
-            homePhone: $scope.homephone,
-            mobilePhone: $scope.mobile,
+            homePhone: $scope.getOnlyNumbers($scope.homephone),
+            mobilePhone: $scope.getOnlyNumbers($scope.mobile),
             dob: $scope.dob,
             gender: $scope.gender,
             organizationName: $scope.coorganization,
@@ -271,7 +288,7 @@ angular.module('starter.controllers')
     $scope.cancelcouser = function() {
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
-        $state.go('tab.relatedusers');
+        $state.go('tab.addnewuser');
     }
 
 

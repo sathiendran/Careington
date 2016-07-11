@@ -128,7 +128,7 @@ angular.module('starter.controllers')
                 $rootScope.timeNew1 = 'block';
                 $('.AvailableIn').hide();
                 $('.enterAppoinment').show();
-                $rootScope.timerCOlor = '#E1FCD4';
+                //$rootScope.timerCOlor = '#E1FCD4';
             } else if (args.millis > 600) {
                 $('.AvailableIn').show();
                 $('.enterAppoinment').hide();
@@ -147,6 +147,11 @@ angular.module('starter.controllers')
             //},1000);
         });
 
+        $timeout(function() {
+              document.getElementsByTagName('timer')[0].stop();
+              document.getElementsByTagName('timer')[0].start();
+          }, 100);
+
         var d = new Date();
         //d.setHours(d.getHours() + 12);
 
@@ -157,13 +162,13 @@ angular.module('starter.controllers')
             $rootScope.timeNew1 = 'block';
             $('.AvailableIn').hide();
             $('.enterAppoinment').show();
-            $rootScope.timerCOlor = '#E1FCD4';
+          //  $rootScope.timerCOlor = '#E1FCD4';
         } else {
           $rootScope.timeNew = 'block';
           $rootScope.timeNew1 = 'none';
           $('.AvailableIn').show();
           $('.enterAppoinment').hide();
-          $rootScope.timerCOlor = '#FEEFE8';
+        //  $rootScope.timerCOlor = '#FEEFE8';
         }
     }
 
@@ -403,6 +408,12 @@ angular.module('starter.controllers')
             success: function(data) {
                 $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
+                if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
+                  var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
+                  $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
+                }else {
+                  $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
+                }
 
             },
             error: function(data) {

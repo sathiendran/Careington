@@ -1133,7 +1133,6 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/api/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer&patientId=0',
-
             method: 'GET'
         };
 
@@ -1213,6 +1212,10 @@ this.getPatientMedicalProfile = function(params){
 				heightUnitId: params.heightUnitId,
 				weightUnitId: params.weightUnitId,
 				photo: params.photo,
+        bloodType: params.bloodType,
+        eyeColor: params.eyeColor,
+        ethnicity: params.ethnicity,
+        hairColor: params.hairColor,
 				height: params.height,
 				weight: params.weight,
 				heightUnit: params.heightUnit,
@@ -1318,9 +1321,47 @@ this.getPatientMedicalProfile = function(params){
                      params.success(data);
                  }
              });
-       }
+   }
 
-      })
+   this.getCountiesList = function(params){
+        var requestInfo = {
+            headers:util.getHeaders(params.accessToken),
+            url: apiCommonURL+'/api/CountryCode/Get',
+            method: 'GET',
+        };
+        $http(requestInfo).
+            success(function (data, status, headers, config) {
+                if (typeof params.success != 'undefined') {
+                    params.success(data);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                if (typeof params.error != 'undefined') {
+                    params.success(data);
+                }
+            });
+  }
+  
+  this.getTimezoneList = function(params){
+        var requestInfo = {
+            headers:util.getHeaders(params.accessToken),
+            url: apiCommonURL+'/api/v2/timezones',
+            method: 'GET',
+        };
+        $http(requestInfo).
+            success(function (data, status, headers, config) {
+                if (typeof params.success != 'undefined') {
+                    params.success(data);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                if (typeof params.error != 'undefined') {
+                    params.success(data);
+                }
+            });
+  }
+
+})
 
 
 
@@ -1524,6 +1565,35 @@ this.getCountryDetails = function () {
        var utcTime = moment.utc(dateTime).toDate();
 		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss');
         return new Date(dateTime);//localTime;
+    }
+
+    this.getMonthName = function(PriorSurgerymonth) {
+        PriorSurgerymonth = Number(PriorSurgerymonth);
+        if(PriorSurgerymonth == 1) {
+            return 'Jan' ;
+        } else if(PriorSurgerymonth == 2) {
+         return 'Feb';
+        } else if(PriorSurgerymonth == 3) {
+         return 'Mar';
+         } else if(PriorSurgerymonth == 4) {
+             return 'Apr';
+         } else if(PriorSurgerymonth == 5) {
+             return 'May';
+         } else if(PriorSurgerymonth == 6) {
+             return 'Jun';
+         } else if(PriorSurgerymonth == 7) {
+             return 'Jul';
+         } else if(PriorSurgerymonth == 8) {
+             return 'Aug';
+         } else if(PriorSurgerymonth == 9) {
+             return 'Sep';
+         } else if(PriorSurgerymonth == 10) {
+             return 'Oct';
+         } else if(PriorSurgerymonth == 11) {
+             return 'Nov';
+         } else if(PriorSurgerymonth == 12) {
+         return 'Dec';
+        }
     }
 
 })

@@ -32,7 +32,7 @@
       <p class="homecontent">Account Home</p>
     </a>
     <a class="item-avatar itemhead">
-      <p><img ng-src="{{PatientImage}}" class="topimage"></p>
+      <p><img ng-src="{{appointmentsPatientImage}}" class="topimage"></p>
     </a>
     <a class="rightpatient" ng-href="#/tab/userhome">
       <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
@@ -46,7 +46,7 @@
 
 
 <ion-view title="Appointment Details">
- <ion-content class="aptpaticoncontent {{appointCOntent}}">
+ <ion-content class="scroll-content ionic-scroll  has-header aptpaticoncontent" style="{{appointCOntent}}">
 
     <div class="list aptlist">
 
@@ -60,7 +60,7 @@
            </a>
 
         <ion-item class="ionitem contalign" style="text-align:center;" >
-           <div class="item item-text-wrap textwrap">
+           <div class="item item-text-wrap">
               <div class="datecontent">
                  <h2 class="fdate"><span class="fname ftime">{{scheduledListDatas.scheduledTime | date: "hh:mm"}}{{scheduledListDatas.scheduledTime | date: "a"}}</span> </h2>
                    <p class="fday">{{scheduledListDatas.scheduledTime | date: "EEEE, MMMM dd, yyyy"}}</p>
@@ -88,7 +88,7 @@
        </div>
           <br>
 
-      <div class="row seccontentone" >
+      <div class="row seccontentone" style="padding-bottom: 50px;" >
         <div class="col col-10 patcol10">a</div>
          <div class="col col-90 ">
            <p class="parafont"><b>Notes</b></p>
@@ -100,7 +100,7 @@
 
  </ion-content>
 
-<ion-footer-bar  align-title="left" class="bar-assertive AvailableIn" style="display: {{timeNew}}" >
+<ion-footer-bar  align-title="left" class="bar-assertive AvailableIn" style="height: 73px; display: {{timeNew}}" >
 		<div>
 			<div class="title availableImage" >
 				<div class="AvailableText">
@@ -121,7 +121,7 @@
 	</ion-footer-bar>
 
 <div style="display: none;"><timer end-time="time"  ></timer></div>
-<ion-footer-bar class="bar bar-footer  footer-color footheight" style=" display: {{timeNew1}}" >
+<ion-footer-bar class="bar bar-footer  footer-color footheight" style=" height: 73px; display: {{timeNew1}}" >
      <a ng-click="enterWaitingRoom(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName)">
 				<!--<div >
 					<div class="title EnterText">Enter Appointment</div>

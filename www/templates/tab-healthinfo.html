@@ -84,7 +84,7 @@
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].lastName}}</div>
            </label>
            <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"><i class="ion-ios-calendar-outline iconfont"></i><b class="formlabel">D.O.B</b></span>
+           <span class="input-label labelcolor"><i ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B</b></span>
            <div ng-if="userDOB" class="healthViewDetails">{{userDOBDateFormat}}</div>
            <div ng-if="!userDOB" class="healthViewDetails">NA</div>
            <!--<input type="date" value="{{userDOB}}"  ng-readonly="flag" name="healthInfoDOB"  class="valuealign textdata" id="dobdate">-->
@@ -94,9 +94,17 @@
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
            </label>
            <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-android-globe iconfont"></i><b class="formlabel labelfont">Country</b></span>
+               <div class="healthViewDetails ellipsis">{{getCountryName(currentPatientDetails[0].countryCode)}}</div>
+           </label>
+           <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="ion-clock iconfont"></i><b class="formlabel labelfont">Timezone</b></span>
+               <div class="healthViewDetails ellipsis">{{getTimeZoneName(currentPatientDetails[0].account.timeZoneId)}}</div>
+           </label>
+           <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].homePhone">
-             <input type="text" readonly="true" value="{{currentPatientDetails[0].homePhone}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
+             <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].homePhone)}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].homePhone">
                NA
             </div>
@@ -104,7 +112,7 @@
            <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"><i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Mobile</b> </span>
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].mobilePhone">
-              <input type="text" readonly="true" value="{{currentPatientDetails[0].mobilePhone}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
+              <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].mobilePhone)}}" style="background-color: #fff; font-size: 20px; color: #444;"></div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].mobilePhone">
               NA
             </div>
@@ -132,7 +140,7 @@
            </label>
            <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
-           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{currentPatientDetails[0].anatomy.height}} {{currentPatientDetails[0].anatomy.heightUnit}}</div>
+           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height)}}</div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.height">NA</div>
            </label>
            <label class="item item-input itemtab validated">
@@ -173,13 +181,29 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="ion-ios-calendar-outline iconfont"></i><b class="formlabel">D.O.B </b></span>
               <span class="DOBClass-{{deviceName}}">
-                <input type="date" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}" class="textdata" >
+                <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}" class="textdata" >
               </span>
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-android-mail iconfont"></i><b class="formlabel labelfont">Email</b></span>
-              <span class="healthViewDetails" ><input type="text" name="healthInfoEmail" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata"></span>
+              <span class="healthViewDetails" ><input type="text" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata"></span>
            </div>
+           <div class="item item-input itemtab validated">
+              <span class="input-label labelcolor"><i class="ion-android-globe iconfont"></i><b class="formlabel labelfont">Country</b></span>
+              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoCountry" >
+                 <option value="">Choose</option>
+                 <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == currentPatientDetails[0].countryCode"><b>{{country.name}}</b></option>
+               </select></span>
+           </div>
+           
+           <div class="item item-input itemtab validated">
+              <span class="input-label labelcolor"><i class="ion-clock iconfont"></i><b class="formlabel labelfont">Timezone</b></span>
+              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoTimezone" >
+                 <option value="">Choose</option>
+                 <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ng-selected="timeZone.id == currentPatientDetails[0].account.timeZoneId"><b>{{timeZone.name}}</b></option>
+               </select></span>
+           </div>
+           
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-ios-telephone iconfont"></i><b class="formlabel labelfont">Home Phone</b></span>
               <span class="healthViewDetails"><input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone"  phone-input  ng-model="phoneval"  class="textdata"></span>
@@ -218,7 +242,10 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
               <div>
-                 <input type="number" name="healthInfoHeight" id="healthInfoHeight" value="{{currentPatientDetails[0].anatomy.height}}" class="textdata" style="width: 80px; margin-right: 10px;">
+                 <input type="number" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" style="width: 40px; margin-right: 10px;">
+              </div>
+              <div>
+                 <input type="number" name="healthInfoHeight2" id="healthInfoHeight2" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 1)}}" class="textdata" style="width: 40px; margin-right: 10px;">
               </div>
               <div class="healthViewDetails" style="width: 40% !important;">
                   <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit"  style="width: 70%;">
@@ -338,13 +365,17 @@
                </ul>
                <h4 class="h4align">
                   <div class="alignnexttext chronic">Prior Surgeries</div>
-
+                  <span><a ng-click="showSurgeryPopup()" ><i class="ion-edit editicons" ></i></a>
+                  </span>
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
 
                   <li  ng-if="patientmedicalsurgeries==''" >N/A </li>
-                   <li  ng-repeat="surgeries in patientmedicalsurgeries">{{$index + 1}}. {{surgeries.description}} </li>
+                  <li class="ellipsis" ng-repeat="surgeries in patientmedicalsurgeries">
+                      {{$index + 1}}. <strong>{{surgeries.description}}</strong>
+                      {{getMonthName(surgeries.month)}}, {{surgeries.year}}
+                  </li>
 
                </ul>
             </div>

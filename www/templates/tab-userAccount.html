@@ -35,18 +35,17 @@
 			</div>
 		</div>
 	</ion-header-bar>
-	<ion-view title="User Account">
-		<div class="usercontent-{{deviceName}}" >
+	<ion-content  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header">
 			<ion-list >
 				<div class="list userlist">
 					<ion-item class="ioniictem userionitem" ng-click="getManageProfile(currentPatientDetails)" style="padding: 38px 10px !important;">
 
 						<div class="cardshadow">
-							<div class="item-text-wrap itemtextwap">
+							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
 										<span class="profileSpan">  <i class="ion-ios-person profileicon profileperson"></i></span>
-										<span class="content">
+										<span class="content content-{{deviceName}}">
 
 										Manage Your Profile
 
@@ -55,15 +54,15 @@
 
 							</div>
 						</div>
-                        </a>
+
 					</ion-item>
 			 		<ion-item class="ionicitem userionitem" ng-click ="doGetCurrentUserAppointment()" style="padding: 38px 10px !important;">
 						<div class="cardshadow">
-							<div class="item-text-wrap itemtextwap">
+							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
-										<span class="profileSpan"><i class="ion-calendar profileicon profilecalendar"></i></span>
-										<span class="content">
+										<span class="profileSpan"><i class="ion-calendar profileicon profilecalendar usrAppointIcon-{{deviceName}}"></i></span>
+										<span class="content contentAppoint-{{deviceName}}">
 
 										View Your Appointments
 									<!--	{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}-->
@@ -76,18 +75,18 @@
 					</ion-item>
 				</div>
 			</ion-list>
-		</div>
-	</ion-view>
+
+</ion-content>
 	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
 		<!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 	</ion-footer-bar>
 
-	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails" style="display: {{nextAppointmentDisplay}}" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-if="$first">
+	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails" style="display: {{individualNextAppointmentDisplay}}; height: 84px;" ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-show="$first">
 	<!--	<a ng-href="#tab/patientappointmentdetails">-->
       <div>
-        <h3 class="appth3"> <div class="appointment">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}} {{scheduledListData.scheduledTime | date: "a"}}</div>
-         <div id="viewicon accountAppointview-{{deviceName}}">
+        <h3 class="appth3"> <div class="appointment" style="font-size: 20px;">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}}<span style="text-transform: lowercase;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
+         <div id="viewicon" class="accountAppointview-{{deviceName}}">
 	        <a class="appalignrighticon"> View Details</a>
 	         <span  class="aslignspan"><i class="iconchevron ion-chevron-right" ></i>
 					 </span>
@@ -98,7 +97,7 @@
 	<!--</a>-->
 </ion-item>
 
- <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{nextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns()" >
+ <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns()" >
 
 	<h1 class="title userappfootcontent" >See A Clinician Now</h1>
  </ion-footer-bar>
