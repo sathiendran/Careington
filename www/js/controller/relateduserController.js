@@ -434,7 +434,7 @@ $rootScope.authorised=relateDependentAuthorize;
           //  $state.go('tab.appointmentpatientdetails');
         }
         $scope.goToConsultations = function(getDependentDetails) {
-          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
+          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
           //  $state.go('tab.consultations');
         }
         $scope.seeaPatientConcerns = function(getDependentDetails) {
