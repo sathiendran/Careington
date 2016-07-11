@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('addnewuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate,
         $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log,
-        $ionicPopup, ageFilter, $window, $timeout) {
+        $ionicPopup, ageFilter, $window, $timeout) {        
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||

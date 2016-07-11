@@ -2,7 +2,6 @@ angular.module('starter.controllers')
 
 
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
-
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
         $rootScope.appointmentsPatientFirstName = '';

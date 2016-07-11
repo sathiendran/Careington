@@ -2,14 +2,16 @@
 	<div class="sideMenu">
 			<a ng-href="#/tab/userhome" class="sidemenuContent1" >
 		<ion-list>
-			<ion-item class="icon ion-person-stalker tabfont" id="{{sidemenuHome}}">
+				<ion-item class="icon tabfont"  id="{{sidemenuHome}}">
+					<i ng-bind-html="drawSVGCIcon('users')"></i>
 				<span>  Patient List</span>
 			</ion-item>
 		</ion-list>
 	</a>
 	<a ng-href="#/tab/healthinfo" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon ion-android-clipboard tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+			<i ng-bind-html="drawSVGCIcon('clipboard')"></i>
 		<span>  My Health</span>
 	</ion-item>
 </ion-list>
@@ -25,7 +27,8 @@
 
 	<a ng-href="#/tab/appointmentpatientdetails" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon ion-calendar tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+		<i ng-bind-html="drawSVGCIcon('calendar')"></i>
 		<span>My Appointments</span>
 	</ion-item>
 </ion-list>
@@ -33,7 +36,8 @@
 
 	<a ng-href="#/tab/consultations" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon ion-card tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+		<i ng-bind-html="drawSVGCIcon('health_card')"></i>
 		<span>  My Consultations</span>
 	</ion-item>
 </ion-list>

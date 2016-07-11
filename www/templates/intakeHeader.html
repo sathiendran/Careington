@@ -6,8 +6,9 @@
 
 
 	<div class="buttons" >
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
+		<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>-->
+				<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 	</div>
 
 	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} centerIntake-{{deviceName}}" style="margin-left: -45px;">Intake Form</h1>

@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService) {
 
-    $scope.getOnlyNumbers = function(text){
+  $scope.getOnlyNumbers = function(text){
         var newStr = "";
         if(text){
             newStr = text.replace(/[^0-9.]/g, "");
@@ -16,7 +16,7 @@ angular.module('starter.controllers')
             phoneNumberWithoutCountryCode = phoneNumber.substring(phoneNumber.length-10, phoneNumber.length);
         return phoneNumberWithoutCountryCode;
     };
-    
+
     $rootScope.reformatHeight = function(heightVal, index){
         var newHeight = "0";
         if(heightVal){
@@ -25,7 +25,7 @@ angular.module('starter.controllers')
         }
         return newHeight;
     };
-    
+
     $rootScope.reformatHeightForDisplay = function(heightVal){
         var newHeight = "";
         if(heightVal){
@@ -34,7 +34,7 @@ angular.module('starter.controllers')
         }
         return newHeight;
     };
-    
+
     $rootScope.getCountryName = function(countryCode){
         var countryInfo = $filter('filter')($rootScope.serviceCountries, {code: countryCode});
         if(countryInfo[0])
@@ -1392,5 +1392,10 @@ $scope.data = {};
             return this.value.indexOf('?') >= 0;
         }).remove();
     }, 100);
+
+    $rootScope.drawSVGCIcon = function(iconName){
+        return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
+        exit;
+    };
 
 });

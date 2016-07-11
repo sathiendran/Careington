@@ -1,6 +1,5 @@
 angular.module('starter.controllers')
     .controller('consultationController', function($scope, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue, $ionicModal) {
-
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
         $ionicPlatform.registerBackButtonAction(function(event, $state) {

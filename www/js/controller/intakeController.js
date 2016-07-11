@@ -4,7 +4,6 @@ angular.module('starter.controllers')
 
 // Controller to be used by all intake forms
 .controller('IntakeFormsCtrl', function($scope, $ionicPlatform, htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
-
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name == "tab.userhome") ||
             ($rootScope.currState.$current.name == "tab.addCard") ||

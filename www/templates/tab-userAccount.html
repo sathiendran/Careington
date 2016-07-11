@@ -2,8 +2,9 @@
 <ion-side-menu-content>
 	<ion-header-bar align-title="left" class="homeheader bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 		<div class="buttons" >
-			<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
+			<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()">
+				<i class="ng-binding"><svg class="icon-menu"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="symbol-defs.svg#icon-menu"></use></svg></i>
+			</span>
 		</div>
 		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader accoTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">User</span>
         <span> <a class="headerval _accountCancel-{{deviceName}}" ng-href="#/tab/userhome" >Cancel</a>
@@ -44,7 +45,7 @@
 							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
-										<span class="profileSpan">  <i class="ion-ios-person profileicon profileperson"></i></span>
+										<span class="profileSpan"> <i class="profileicon profileperson" ng-bind-html="drawSVGCIcon('user')"></i> </span>
 										<span class="content content-{{deviceName}}">
 
 										Manage Your Profile
@@ -61,7 +62,7 @@
 							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
-										<span class="profileSpan"><i class="ion-calendar profileicon profilecalendar usrAppointIcon-{{deviceName}}"></i></span>
+										<span class="profileSpan"><i class="profileicon profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
 										<span class="content contentAppoint-{{deviceName}}">
 
 										View Your Appointments

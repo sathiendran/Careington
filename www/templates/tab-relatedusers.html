@@ -2,7 +2,8 @@
     <ion-side-menu-content>
         <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
             <div class="buttons">
-                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>
+                <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>-->
+                <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
             </div>
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
               <span> Related Users </span>
@@ -241,7 +242,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col col-30 relationtab">
+                                <div class="col col-30 relationtab" ng-click="selectrelation(getDependentDetails)">
                                     <p class="conticon relationstatus"><a>Relationsship</a></p>
                                     <p class="unauthorrelationship">
                                         <span ng-if="!getDependentDetails.relationship">N/A</span>
