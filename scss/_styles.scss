@@ -5248,7 +5248,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:18px;font-family:Glober Semibold;line-height:22px;
+      font-size:16px;font-family:Glober Semibold;line-height:22px;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -5265,7 +5265,7 @@ color: white;
      }
      .homeadd{
          //margin-left:36px;
-        margin-top:10px;font-size:18px;font-family:Glober Semibold;line-height:16px;
+        margin-top:10px;font-size:16px;font-family:Glober Semibold;line-height:16px;
      }
  .valuealign{
   // margin-left:70px;
@@ -7226,6 +7226,7 @@ Pagination Styles
 .addUser-IOS {
   color: #888 !important; margin-left: 53px;
 }
+.addUser-Android {   color: #888 !important;}
 .coUserImage-IOS {
   max-width: 50px !important;
   max-height: 50px !important;
@@ -7243,10 +7244,21 @@ Pagination Styles
   margin-left: -18px;
   font-size: 138%;
 }
+.content-Android{
+  margin-left: -18px;
+  font-size: 138%;
+}
+.iconalign-Android{
+    left: -14px !important;
+}
 .usrAppointIcon-IOS {
   left: -7px !important;
 }
 .contentAppoint-IOS {
+  margin-left: 17px;
+  font-size: 138%;
+}
+.contentAppoint-Android {
   margin-left: 17px;
   font-size: 138%;
 }

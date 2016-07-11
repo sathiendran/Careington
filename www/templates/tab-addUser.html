@@ -72,7 +72,6 @@
         </div>
         <div class="col col-50">
             <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email" required>
-
             <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
         </div>
      </div>
@@ -118,14 +117,17 @@
    </div>
 
 
-     <div class="item item-input itemtab validated row">
+       <div class="item item-input itemtab validated row">
          <div class="col col-50">
             <span class="input-label labelcolor"> <i class="ion-android-arrow-up iconfont"></i><b class="formlabel labelfont">Height</b></span>
          </div>
-         <div style="width: 223px;" >
+         <div style="width: 100px;padding-right: 10px;" >
            <input id="userheight" class="usertext textalign" type="number" value="" placeholder="Optional" ng-model="userheight" name="userheight" required >
          </div>
-         <div style="width: 50%;">
+        <div style="width: 100px;padding-right: 10px;">
+             <input id="userheight2" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="userheight2" name="userheight2" required>
+         </div>
+        <div style="width: 50%;">
             <select style="width:90%;" class="optionselect " name="userheightunit" id="userheightunit" ng-model="userheightunit" required>
                 <option value=""><b>Choose</b></option>
                 <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}"><b>{{getUserheightunit.text}}</b></option>

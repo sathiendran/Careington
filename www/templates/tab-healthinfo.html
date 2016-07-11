@@ -235,11 +235,17 @@
                     <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
                </select></span>
            </div>
-           <div class="item itemtab">
-              <span class="input-label labelcolor" style="float: left;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont">Gender</b> </span>
-              <span class="healthViewDetails"><input type="radio" name="healthInfoGender" id="healthInfoGender" value="M" ng-checked="isCheckedMale" _class="genderclass" /> Male
-              <input type="radio" name="healthInfoGender" id="healthInfoGender" value="F" ng-checked="isCheckedFeMale" /> Female</span>
+           <div class="item item-input itemtab validated">
+              <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont">Gender</b> </span>
+              <div class="healthViewDetails">
+                <select class="optionselect textdata" name="healthInfoGender" id="healthInfoGender"  >
+                  <option value=""><b>Choose</b></option>
+                  <option value="M">Male</option> >
+                  <option value="F">Female</option>
+                </select>
+              </div>
            </div>
+
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b></span>
               <div>

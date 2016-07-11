@@ -194,7 +194,7 @@ angular.module('starter.controllers')
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
             $scope.healthInfoDOB = $('#healthInfoDOB').val();
             $scope.healthInfoEmail = $('#healthInfoEmail').val();
-            $scope.healthInfoGender = $("input[name='healthInfoGender']:checked").val();
+            $scope.healthInfoGender = $("#healthInfoGender").val();
             $scope.healthInfoHeight = $('#healthInfoHeight').val();
             $scope.healthInfoHeight2 = $('#healthInfoHeight2').val();
             $scope.HeightUnit = $('#healthInfoHeightUnit').val();
