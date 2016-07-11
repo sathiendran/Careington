@@ -2017,7 +2017,7 @@ html, body { background: transparent !important; }
       margin-left: 10px;font-size: 11px;margin-top:-4px;
     }
     .statuscont{
-        margin-left:-38px;font-size:12px;font-family:Glober SemiBold;
+        margin-left:-31px;font-size:12px;font-family:Glober SemiBold;
     }
 }
 .relationcol{
@@ -2532,7 +2532,9 @@ color:#706A67;
 	top: -23px;
 	left: 102px;
 }
-
+.popupfont{
+  font-family:Glober-Regular;  color:#888 !important;
+}
 .ion-search::before {
     margin-left: 10px;
 }
@@ -2850,9 +2852,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .popup-head {
   padding: 8px 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #888;
   text-align: left;
-	width: 100%;
+  margin-top: 14px;
   }
 
  .popup-body {
@@ -4064,6 +4066,11 @@ font-size: 20px;
 .popupalign{
   margin-left:-20px;
 }
+.popupname{
+font-size: 21px;
+font-family: Glober Bold;
+color: #717171;
+}
 .fname{
     font-size: 21px;
     font-family: Glober SemiBold;
@@ -4497,7 +4504,7 @@ p{
     .fstrow {
       margin-top: 4px; }
     .statuscont {
-      margin-left: -27px !important; }
+      margin-left: -31px !important; }
     .consultcontent {
       margin-top: 102px; }
     .paticoncontent {
@@ -4886,12 +4893,13 @@ p{
          padding-bottom:50px;
        }
  .popup-head {
-    padding: 14px 12px;
-    border-bottom: 1px solid #888;
-    text-align: left;
+   padding: 8px 10px;
+ border-bottom: 1px solid #888;
+ text-align: left;
+ margin-top: 14px;
   }
   .popup-body{
-      padding: 38px !important;
+      padding: 30px !important;
     overflow: hidden;
   }
   .popup-buttons {
