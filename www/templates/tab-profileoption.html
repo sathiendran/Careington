@@ -63,7 +63,7 @@
  <div class="Server_Error ErrorMessageDiv" ></div>
  <div id="Error_Message"></div>
  <!--Side Menu File Include --->
- <div class="hide-on-keyboard-open">  
+ <div class="hide-on-keyboard-open">
     <ion-tabs class=" tabs-icon-top tabs-dark">
        <a class="tab-item" ng-click="doGetListOfCoUsers()" >
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
@@ -71,13 +71,13 @@
        <a class="tab-item" ng-click="passededconsultants()">
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> Consultations
        </a>
-       <a class="tab-item active" ng-click="getManageProfile(currentPatientDetails)" _ng-href="#/tab/healthinfo">
+       <a class="tab-item" ng-click="getManageProfile(currentPatientDetails)" _ng-href="#/tab/healthinfo">
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> My Health
        </a>
        <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i> Appointments
        </a>
-       <a class="tab-item" ng-href="#/tab/profileoption">
+       <a class="tab-item active" ng-href="#/tab/profileoption">
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
        </a>
     </ion-tabs>
