@@ -95,6 +95,10 @@
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
            </label>
            <label class="item item-input itemtab validated">
+               <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Relationship</b></span>
+               <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.relationship}}</div>
+           </label>
+           <label class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
                <div class="healthViewDetails ellipsis">{{getCountryName(currentPatientDetails[0].countryCode)}}</div>
            </label>
@@ -189,6 +193,15 @@
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
               <span class="healthViewDetails" ><input type="text" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata"></span>
            </div>
+           <div class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId">
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Relationship</b> </span>
+              <div class="healthViewDetails">
+                 <select class="textdata optionselect" name="healthInfoRelationship" id="healthInfoRelationship" >
+                    <option value=""><b>Choose</b></option>
+                    <option ng-repeat="getRelationship in listOfRelationship[0].codes" value="{{getRelationship.codeId + '@' + getRelationship.text}}" ng-selected="getRelationship.text == currentPatientDetails[0].account.relationship"><b>{{getRelationship.text}}</b></option>
+                 </select>
+              </div>
+           </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
               <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoCountry" >
@@ -240,8 +253,8 @@
               <div class="healthViewDetails">
                 <select class="optionselect textdata" name="healthInfoGender" id="healthInfoGender"  >
                   <option value=""><b>Choose</b></option>
-                  <option value="M">Male</option> >
-                  <option value="F">Female</option>
+                  <option value="M" ng-selected="currentPatientDetails[0].gender == 'M'">Male</option> >
+                  <option value="F" ng-selected="currentPatientDetails[0].gender == 'F'">Female</option>
                 </select>
               </div>
            </div>
