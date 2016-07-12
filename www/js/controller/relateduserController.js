@@ -516,7 +516,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.userinfoshow = true;
             $scope.usertab = true;
             $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
-                  $ionicModal.fromTemplateUrl('templates/tab-relationsearch.html', {
+                  $ionicModal.fromTemplateUrl('templates/tab-relationSearch.html', {
                       scope: $scope,
                       animation: 'slide-in-up',
                       focusFirstInput: false,
@@ -539,7 +539,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.usersearchinfocontent = false;
             $scope.usertab = false;
         }
-        $scope.removemodal = function(model) {
+        $scope.removemodal = function() {
             $scope.usersearchdone();
 
 
