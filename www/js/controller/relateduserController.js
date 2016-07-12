@@ -506,8 +506,10 @@ $rootScope.authorised=relateDependentAuthorize;
         /* Seach Done*/
 
         $scope.selectrelation = function(selPatient) {
+
             $rootScope.relationUpdatePatientId = selPatient.patientId;
             $rootScope.relationUpdateAuthStatus = selPatient.isAuthorized;
+            $scope.clearSelectionAndRebindSelectionList($rootScope.relationUpdatePatientId, $rootScope.listOfRelationship);
             $scope.useradd = true;
             $scope.userdone = true;
             $scope.userinfosubheader = true;
@@ -526,8 +528,14 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.usersearchinfocontent = false;
             $scope.usertab = false;
         }
-
-        $rootScope.setNewRelation = function(newRelatioCodeId){
+        $scope.setNewRelation = function(newRelatioCodeId) {
+            if (newRelatioCodeId.checked === true ) {
+                $rootScope.relationShipCheckedrelationShipChecked++;
+                console.log($rootScope.relationShipChecked);
+            } else {
+                $rootScope.relationShipChecked--;
+                   newRelatioCodeId.checked === false;
+            }
             if($rootScope.relationUpdateAuthStatus){
                 relationUpdateAuthStatusVal = 'Y';
             }else{
@@ -535,7 +543,18 @@ $rootScope.authorised=relateDependentAuthorize;
             }
             $rootScope.doUpdateDependentsAuthorize($rootScope.relationUpdatePatientId, newRelatioCodeId, relationUpdateAuthStatusVal);
             $scope.usersearchdone();
+
+
         }
+        /*$rootScope.setNewRelation = function(newRelatioCodeId){
+            if($rootScope.relationUpdateAuthStatus){
+                relationUpdateAuthStatusVal = 'Y';
+            }else{
+                relationUpdateAuthStatusVal = 'N';
+            }
+            $rootScope.doUpdateDependentsAuthorize($rootScope.relationUpdatePatientId, newRelatioCodeId, relationUpdateAuthStatusVal);
+            $scope.usersearchdone();
+        }*/
 
         $rootScope.coUserArchieve = function(coUserDetails) {
             if (!angular.isUndefined(coUserDetails.dob) && coUserDetails.dob !== '') {
@@ -615,6 +634,22 @@ $rootScope.authorised=relateDependentAuthorize;
             });
         }
 
+        $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
+            angular.forEach(mainListItem, function(item, key2) {
+                   item.checked = false;
+               });
+            if(!angular.isUndefined(selectedListItem)){
 
+               if(selectedListItem.length > 0){
+                   angular.forEach(selectedListItem, function(value1, key1) {
+                       angular.forEach(mainListItem, function(value2, key2) {
+                         if (value1.description === value2.text) {
+                             value2.checked = true;
+                         }
+                       });
+                   });
+               }
+           }
+        };
 
     });
