@@ -366,7 +366,7 @@ angular.module('starter.controllers')
                         if($rootScope.existingConsultationReport.gender === 'M') {
                           $rootScope.doctorGender = "Male";
                         } else {
-                          $rootScope.doctorGender = "FeMale";
+                          $rootScope.doctorGender = "Female";
                         }
                     } else {
                         $rootScope.doctorGender = 'None Reported';
@@ -714,7 +714,7 @@ angular.module('starter.controllers')
                       if (index.gender === 'M') {
                           var docGender = "Male";
                       } else if (index.gender === 'F') {
-                          var docGender = "FeMale";
+                          var docGender = "Female";
                       }
                         $rootScope.missedAppointDocDetails.push({
                             'dob': index.dob,

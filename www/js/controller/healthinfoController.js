@@ -194,6 +194,12 @@ angular.module('starter.controllers')
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
             $scope.healthInfoDOB = $('#healthInfoDOB').val();
             $scope.healthInfoEmail = $('#healthInfoEmail').val();
+            if($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
+              $scope.healthInfoRelationship = $("#healthInfoRelationship").val();
+              $scope.splitRelationship = $scope.healthInfoRelationship.split("@");
+              $scope.getRelationshipId = $scope.splitRelationship[0];
+              $scope.getRelationshipText = $scope.splitRelationship[1];
+            }
             $scope.healthInfoGender = $("#healthInfoGender").val();
             $scope.healthInfoHeight = $('#healthInfoHeight').val();
             $scope.healthInfoHeight2 = $('#healthInfoHeight2').val();
@@ -248,6 +254,9 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                 $scope.ErrorMessage = "Please Enter Your Email Id";
                 $rootScope.Validation($scope.ErrorMessage);
+            } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                      $scope.ErrorMessage = "Please Choose Relationship";
+                      $rootScope.Validation($scope.ErrorMessage);
             }  else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                 $scope.ErrorMessage = "Please Select Your Country";
                 $rootScope.Validation($scope.ErrorMessage);
@@ -361,6 +370,9 @@ angular.module('starter.controllers')
             },
             success: function(data) {
               $scope.uploadPhotoForExistingPatient();
+              if($rootScope.primaryPatientId !== data.patientID) {
+                $scope.updateDependentRelation(data.patientID,$scope.getRelationshipId,$rootScope.currentPatientDetails[0].account.isAuthorized);
+              }
               $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
               $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
                  $rootScope.currentPatientDetails=$rootScope.currentPatientDetails[0];
@@ -389,6 +401,22 @@ angular.module('starter.controllers')
         };
 
         LoginService.putProfileUpdation(params);
+    }
+
+    $scope.updateDependentRelation = function(patientID, relationshipID, authorizeID) {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            patientId: patientID,
+            RelationCodeId: relationshipID,
+            IsAuthorized: authorizeID,
+            success: function(data) {
+              console.log(date);
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.updateDependentsAuthorize(params);
     }
 
     function iterateAlphabet() {
@@ -1025,7 +1053,7 @@ $scope.data = {};
                       if (index.gender == 'M') {
                           var gender = "Male";
                       } else if (index.gender == 'F') {
-                          var gender = "FeMale";
+                          var gender = "Female";
                       }
                       if(index.imagePath){
                           $scope.coUserImagePath = index.imagePath;

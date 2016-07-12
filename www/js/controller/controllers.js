@@ -1697,7 +1697,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
                 if (typeof data.data[0].gender !== 'undefined') {
                     if (data.data[0].gender === 'F') {
-                        $rootScope.gender = "FeMale";
+                        $rootScope.gender = "Female";
                     } else {
                         $rootScope.gender = "Male";
                     }
@@ -3804,7 +3804,7 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.dependentGender = "Male";
                         $rootScope.isCheckedMaleDependent = true;
                     } else if ($rootScope.selectedRelatedDependentDetails[0].gender == 'F') {
-                        $rootScope.dependentGender = "FeMale";
+                        $rootScope.dependentGender = "Female";
                         $rootScope.isCheckedMaleDependent = true;
                     }
                     $scope.getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
@@ -3902,8 +3902,8 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.userGender = "Male";
                         $rootScope.isCheckedMale = true;
                     } else if ($rootScope.currentPatientDetails[0].gender == 'F') {
-                        $rootScope.userGender = "FeMale";
-                        $rootScope.isCheckedFeMale = true;
+                        $rootScope.userGender = "Female";
+                        $rootScope.isCheckedFemale = true;
                     }
                     $state.go(nextPage);
                 }

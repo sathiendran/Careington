@@ -113,8 +113,8 @@ angular.module('starter.controllers')
                 $rootScope.userGender = "Male";
                 $rootScope.isCheckedMale = true;
             } else if ($rootScope.currentPatientDetails[0].gender == 'F') {
-                $rootScope.userGender = "FeMale";
-                $rootScope.isCheckedFeMale = true;
+                $rootScope.userGender = "Female";
+                $rootScope.isCheckedFemale = true;
             }
             $rootScope.passededconsultants();
 

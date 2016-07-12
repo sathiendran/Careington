@@ -315,7 +315,7 @@ $rootScope.authorised=relateDependentAuthorize;
                           if (index.gender == 'M') {
                               var gender = "Male";
                           } else if (index.gender == 'F') {
-                              var gender = "FeMale";
+                              var gender = "Female";
                           }
                           if(index.imagePath){
                               $scope.coUserImagePath = index.imagePath;
@@ -401,7 +401,7 @@ $rootScope.authorised=relateDependentAuthorize;
                         if (index.gender == 'M') {
                             var gender = "Male";
                         } else if (index.gender == 'F') {
-                            var gender = "FeMale";
+                            var gender = "Female";
                         }
                         if(index.profileImagePath){
                             $scope.iDependentPatientPhoto = index.profileImagePath;
