@@ -88,7 +88,7 @@
         <h3 class="appth3"> <div class="appointment" style="font-size: 20px;">Appointment @ {{scheduledListData.scheduledTime | date: "hh:mm"}}<span style="text-transform: lowercase;">{{scheduledListData.scheduledTime | date: "a"}}</span></div>
          <div id="viewicon" class="accountAppointview-{{deviceName}}">
 	        <a class="appalignrighticon"> View Details</a>
-	         <span  class="aslignspan"><i class="iconchevron ion-chevron-right" ></i>
+	         <span  class="aslignspan"><i class="accNextAppoint-{{deviceName}}" ng-bind-html="drawSVGCIcon('chevron-with-circle-right');"  ></i>
 					 </span>
 				 </div>
 	</h3>

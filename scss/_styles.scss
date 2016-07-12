@@ -7217,7 +7217,7 @@ Pagination Styles
 }
 .accountAppointview-IOS {
   position: relative;
-    margin-top: -21px !important;
+    margin-top: -29px !important;
     text-align: right !important;
 }
 .accountAppointview-Android {
@@ -7290,4 +7290,8 @@ Pagination Styles
   [class^="icon-"], [class*=" icon-"] {
     font-size: 19px;
   }
+}
+.accNextAppoint-IOS {
+  position: relative;
+  top: 6px;
 }

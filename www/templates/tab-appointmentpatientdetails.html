@@ -129,30 +129,23 @@
 
 
 
-<ion-tabs  class=" tabs-icon-top tabs-dark">
-
-   <a class="tab-item " ng-href="#tab/relatedusers">
-    <i class="icon ion-person-stalker tabfont"></i>
-   Users
-  </a>
-  <a class="tab-item"  ng-href="#tab/consultations">
-    <i class="icon ion-card tabfont"></i>
-    Consultations
-  </a>
-  <a class="tab-item " ng-href="#tab/healthinfo">
-    <i class="icon ion-android-clipboard tabfont"></i>
-    My Health
-  </a>
-
-<a class="tab-item active" ng-href="#tab/appointmentpatientdetails">
-    <i class="icon ion-calendar tabfont"></i>
-    Appointments
-  </a>
-<a class="tab-item" ng-href="#tab/profileoption">
-    <i class="icon ion-more tabfont"></i>
-    More
-  </a>
- </ion-tabs>
+<ion-tabs class=" tabs-icon-top tabs-dark">
+	 <a class="tab-item" ng-click="doGetListOfCoUsers()" >
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/consultations">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> Consultations
+	 </a>
+	 <a class="tab-item active" ng-href="#/tab/healthinfo">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> My Health
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i> Appointments
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/profileoption">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
+	 </a>
+</ion-tabs>
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-controller="appoimentDetailsCtrl"></div>
