@@ -536,6 +536,8 @@ angular.module('starter.controllers')
     $scope.getCodesSetsForHospital();
 
     $scope.healthsearch = function(patientmedications) {
+
+        $scope.data.searchProvider='';
   $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedications, $rootScope.currentMedicationsearchList);
 
         if (typeof $rootScope.CurMedicationCount === 'undefined') {
@@ -728,7 +730,7 @@ angular.module('starter.controllers')
 
 
     $scope.alergiessearch = function() {
-
+          $scope.data.searchProvider='';
       $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicationsallergies, $rootScope.medicationAllergiesearchList);
         if (typeof $rootScope.CurAllergiesCount === 'undefined') {
                 $rootScope.checkedAllergies = 0;
@@ -910,6 +912,7 @@ angular.module('starter.controllers')
 
 
     $scope.chronicsearch = function() {
+        $scope.data.searchProvider='';
       $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicalConditions, $rootScope.chronicConditionsearchList);
         if (typeof $rootScope.ChronicCount === 'undefined') {
                 $rootScope.checkedChronic = 0;
@@ -1028,17 +1031,17 @@ angular.module('starter.controllers')
 
     }
 $scope.data = {};
-    $scope.$watch('data.searchText', function(searchKey) {
-        $rootScope.providerSearchKey = searchKey;
-        if (typeof $rootScope.providerSearchKey == 'undefined') {
-            $scope.data.searchText = $rootScope.backProviderSearchKey;
-        }
-        if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
-            $rootScope.iconDisplay = 'none';
-        } else {
-            $rootScope.iconDisplay = 'Block';
-        }
 
+      $scope.$watch('data.searchProvider', function(searchKey) {
+          $rootScope.providerSearchKey = searchKey;
+          if (typeof $rootScope.providerSearchKey == 'undefined') {
+              $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+          }
+          if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+              $rootScope.iconDisplay = 'none';
+          } else {
+              $rootScope.iconDisplay = 'Block';
+          }
     });
 
 
