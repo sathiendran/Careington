@@ -1588,7 +1588,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.searched = false;
     //$rootScope.age = 25;
 
-  /*  $scope.$watch('data.searchQuery', function(searchKey) {
+    $scope.$watch('data.searchQuery', function(searchKey) {
         if (searchKey !== '' && typeof searchKey !== 'undefined') {
             $rootScope.patientSearchKey = searchKey;
             var loggedInPatient = {
@@ -1612,7 +1612,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.searched = false;
             }
         }
-    })*/
+    })
     $scope.$on("callPatientAndDependentProfiles", function(event, args) {
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('tab.Health');
@@ -1694,6 +1694,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
                 $rootScope.dob = data.data[0].dob;
+                $rootScope.PatientAge = $rootScope.dob;
                 $rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
                 if (typeof data.data[0].gender !== 'undefined') {
                     if (data.data[0].gender === 'F') {

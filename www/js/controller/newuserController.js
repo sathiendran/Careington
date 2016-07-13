@@ -129,6 +129,8 @@ angular.module('starter.controllers')
         $scope.weight = $("#userWeight").val();
         $scope.homephone = $("#userphone").val();
         $scope.mobile = $("#usermobile").val();
+        $scope.userCountry = $('#userCountry').val();
+        $scope.userTimeZone = $('#userTimeZone').val();
         //$scope.homeaddress = $("#address").val();
         $scope.homeaddress = $scope.newUSer.address;
         var org = document.getElementById("userorganization");
@@ -176,9 +178,13 @@ angular.module('starter.controllers')
         } else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
             $scope.ErrorMessage = "Please Select Your Relation";
             $rootScope.Validation($scope.ErrorMessage);
-        }
-
-        else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
+        } else if (typeof $scope.userCountry === 'undefined' || $scope.userCountry === '') {
+            $scope.ErrorMessage = "Please Select Country";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if (typeof $scope.userTimeZone === 'undefined' || $scope.userTimeZone === '') {
+            $scope.ErrorMessage = "Please Select Timezone";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
             $scope.ErrorMessage = "Please Select Your Gender";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
@@ -234,8 +240,8 @@ angular.module('starter.controllers')
             heightUnit: $scope.heightunit,
             weightUnit: $scope.weightunit,
             address: $scope.homeaddress,
-            homePhone: $scope.getOnlyNumbers($scope.homephone),
-            mobilePhone: $scope.getOnlyNumbers($scope.mobile),
+            homePhone: $scope.userCountry + $scope.getOnlyNumbers($scope.homephone),
+            mobilePhone: $scope.userCountry + $scope.getOnlyNumbers($scope.mobile),
             dob: $scope.dob,
             gender: $scope.gender,
             organizationName: $scope.coorganization,
