@@ -6682,6 +6682,17 @@ input[type="checkbox"]:checked + label{
 
 	}
 }
+#searchtext::-webkit-input-placeholder
+{
+  text-align: left;
+
+}
+.searchboxpopup{
+margin-top: 0px;
+text-align: center;
+border: none;
+border-bottom: 2px solid #cbcbcb;
+}
 .searchpopup{
   align-items: center;
   border: none;
@@ -6730,7 +6741,7 @@ input[type="checkbox"]:checked + label{
 		   @include font($fontFamily_semibold, normal, 14px);
 		   /*color: #8e8e93;*/
 		   color : #000;
-		   height: 20px;
+		   height: 25px;
            line-height: 28px;
 		}
 		i{
@@ -6738,7 +6749,7 @@ input[type="checkbox"]:checked + label{
 		   text-align: center;
 		   width: 100%;
 		   margin-top: 4px;
-		   padding-right: 100px;
+		   padding-right: 83px;
 		   font-size: 16px;
 		   color: #8e8e93;
 		   padding-top: 1px !important;

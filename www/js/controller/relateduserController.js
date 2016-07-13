@@ -159,7 +159,19 @@ angular.module('starter.controllers')
             $scope.viewunauthorized = false;
             $scope.authorizedview = true;
         }
+        $scope.data = {};
 
+              $scope.$watch('data.searchProvider', function(searchKey) {
+                  $rootScope.providerSearchKey = searchKey;
+                  if (typeof $rootScope.providerSearchKey == 'undefined') {
+                      $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+                  }
+                  if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+                      $rootScope.iconDisplay = 'none';
+                  } else {
+                      $rootScope.iconDisplay = 'Block';
+                  }
+            });
         $rootScope.doUpdateDependentsAuthorize = function(relateDependentId, relateDependentRelationCode, relateDependentAuthorize) {
             var params = {
                 accessToken: $rootScope.accessToken,
@@ -506,7 +518,7 @@ $rootScope.authorised=relateDependentAuthorize;
 
 
         $scope.selectrelation = function(selPatient) {
-
+            $scope.data.searchProvider=null;
             $rootScope.relationUpdatePatientId = selPatient.patientId;
             $rootScope.relationUpdateAuthStatus = selPatient.isAuthorized;
             $rootScope.relationUpdateRelationId = selPatient.relationship;

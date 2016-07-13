@@ -13,13 +13,15 @@
                <h2 class="subname subName-{{deviceName}}">Relation</h2>
 
 
-               <div class="item-input-inset searchpopup">
-                  <label class="item-input-wrapper">
-                    <i style="display: {{iconDisplay}}; padding-left:87px;" class="icon ion-ios-search placeholder-icon"></i>
-                    <input type="search"  placeholder="Search" ng-model="data.searchText" style="text-align:center;margin-left:-18px;">
+               <div class=" searchbox" style="margin-top: 0px!important;">
+               <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                 <label class="item-input-wrapper">
+                  <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
+                  <input type="search"  placeholder="Search" ng-model="data.searchProvider">
 
-                  </label>
-              </div>
+                 </label>
+               </div>
+        </div>
               <!--
                <div class="search_home UserHmeSub concernListSearchHome">
                   <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
@@ -30,12 +32,10 @@
                <div class="" >
 
 
-                 <ion-radio ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText"
-                                 ng-value="relationShipDetails.text"
-                                ng-click="OnSelectRelation(relationShipDetails.codeId)"
-
-
-                                ng-model="checkedrelation">
+                 <ion-radio ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchProvider"
+                            ng-value="relationShipDetails.text"
+                            ng-click="OnSelectRelation(relationShipDetails.codeId)"
+                            ng-model="checkedrelation">
 
                         <span class="relationalign">  {{relationShipDetails.text }}</span>
                       </ion-radio>
@@ -43,8 +43,9 @@
 
 
                </div>
-               <p class="searchdata noResult" style="white-space: normal;"  ng-show="(listOfRelationship[0].codes | filter:data.searchText).length==0"> <b>Sorry No Result Found <b></p>
+
             </ion-item>
+            <ion-item  ng-show="(listOfRelationship[0].codes | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
          </ion-list>
 
       </ion-content>
