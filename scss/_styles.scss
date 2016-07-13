@@ -2014,7 +2014,7 @@ html, body { background: transparent !important; }
     }
 }
 .tabmoreicon{ // margin-top:-11px!important;
-    margin-top:-2px;font-size:20px !important;color: white;
+    margin-top:-4px;font-size:20px !important;color: white;
 }
 .statuscol{
     background-color:#e3e3e3;
@@ -3863,7 +3863,7 @@ font-size: 20px;
 }
 .avatarclass{
   margin-top: 2px;
-  margin-left:  -33px;  //-34
+  margin-left:  -34px;  //-34
   }
 .avatlefticon{
     float:left;
@@ -4167,7 +4167,7 @@ color: #717171;
 }
 .icons{margin-left:12px; font-size: 25px;}
 .tabicon{
-   margin-left: 22px;
+   margin-left:6px;
    margin-top: -14px; //-16
    color: white;
    font-size: 26px;
@@ -4338,10 +4338,10 @@ p{
             background-color: rgba(247, 166, 125, 0.28) !important;
        }
    .authorizedview {
-       height:60px;margin-left:-5px;margin-top:-4px;  width: 103%;  padding: 0px;
+       height:60px;margin-left:-5px;margin-top:0px;  width: 103%;  padding: 0px;
 
        .authortab{
-         margin-top: -15px !important;margin-left: 26px;font-size: 20px !important;
+         margin-top: -17px !important;margin-left:0px;font-size: 20px !important;
          .ion-chevron-down {
               position: relative;
               top: 3px;
@@ -4530,7 +4530,7 @@ p{
     .tabs-striped .tabs {
       border-bottom: none; }
     .avatarclass {
-      margin-left: -33px; }
+      margin-left: -34px; }
     .fstrow {
       margin-top: 4px; }
     .statuscont {
@@ -7339,6 +7339,10 @@ Pagination Styles
   position: relative;
   top: 6px;
 }
+.accNextAppoint-Android {
+  position: relative;
+  top: 6px;
+}
 .ion-chevron-down {
   position: relative;
   top: -2px;
@@ -7347,11 +7351,23 @@ Pagination Styles
   position: relative;
   top: -18px;
 }
+.authorizeRightIcon-Android {
+  position: relative;
+  top: -18px;
+}
 .unAuthorizeUpdate-IOS {
   position: relative;
   top: -4px;
 }
+.unAuthorizeUpdate-Android {
+  position: relative;
+  top: -4px;
+}
 .unAuthorizeSatus-IOS {
+  position: relative;
+  left: 3px;
+}
+.unAuthorizeSatus-Android {
   position: relative;
   left: 3px;
 }
@@ -7362,7 +7378,19 @@ Pagination Styles
     top: 3px;
   }
 }
+.authorizedIconSize-Android {
+  [class^="icon-"], [class*=" icon-"] {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+  }
+}
 .unAuthorizeUpdateMain-IOS {
+  width: 36%;
+  padding: 5px;
+  text-align: center;
+}
+.unAuthorizeUpdateMain-Android {
   width: 36%;
   padding: 5px;
   text-align: center;
@@ -7375,7 +7403,20 @@ Pagination Styles
     margin-top: 12px !important;
   }
 }
+.unAuthorizeStatusMain-Android {
+  width: 49%;
+  padding: 5px;
+    text-align: center;
+  .tabvalue {
+    margin-top: 12px !important;
+  }
+}
+
 .unAuthorizeRelativeMain-IOS {
+    width: 47%;
+    padding: 5px;
+}
+.unAuthorizeRelativeMain-Android {
     width: 47%;
     padding: 5px;
 }
@@ -7387,7 +7428,19 @@ Pagination Styles
   position: relative;
     top: 15px;
 }
+.chevronRelationship-Android {
+  float: right;
+  font-size: 26px;
+  margin-left: 0px !important;
+  color: #888;
+  position: relative;
+    top: 15px;
+}
 .unAuthorizeRelat-IOS {
+    position: relative;
+    left: -15px;
+}
+.unAuthorizeRelat-Android {
     position: relative;
     left: -15px;
 }
@@ -7395,7 +7448,16 @@ Pagination Styles
   position: relative;
       left: -5px;
 }
+.unAuthorizeRelation-Android{
+  position: relative;
+      left: -5px;
+}
 .unAuthorizeUserRelation-IOS {
+    width: 80%;
+    float: left;
+    margin-top: 5px;
+}
+.unAuthorizeUserRelation-Android {
     width: 80%;
     float: left;
     margin-top: 5px;
@@ -7432,6 +7494,44 @@ Pagination Styles
   }
 
 }
+.authorizePatient-Android {
+  .dotcolDoc-Android {
+    width: 23%;
+    text-align: center;
+    .seeDocIcon-Android {
+      position: relative;
+      left: -10px;
+    }
+    .tabiconDoc-Android{
+      position: relative;
+      top: -7px;
+    }
+  }
+  .rowalignProfile-Android {
+    width: 21%;
+    text-align: center;
+  }
+  .colpadAppoint-Android {
+    width: 23% !important;
+    text-align: center;
+  }
+  .colpadConsult-Android {
+    width: 23% !important;
+    text-align: center;
+  }
+  .colmoreMore-Android {
+    width: 13% !important;
+    text-align: center;
+    margin-left: 0px;
+  }
+
+}
+
+.moreicon-Android {
+  margin-left: 0px !important;
+  position: relative;
+  top: -5px;
+}
 .moreicon-IOS {
   margin-left: 0px !important;
   position: relative;
@@ -7441,7 +7541,15 @@ Pagination Styles
   position: relative;
   top: 11px;
 }
+.tabvalueAuthorize-Android{
+  position: relative;
+  top: 11px;
+}
 .TabAuthorize-IOS{
+  position: relative;
+  top: 10px;
+}
+.TabAuthorize-Android{
   position: relative;
   top: 10px;
 }
@@ -7449,7 +7557,15 @@ Pagination Styles
 position: relative;
 top: -12px;
 }
+.authorizeRightIcon-Android {
+position: relative;
+top: -12px;
+}
 .authorizeIcon-IOS {
+  position: relative;
+top: 3px;
+}
+.authorizeIcon-Android {
   position: relative;
 top: 3px;
 }

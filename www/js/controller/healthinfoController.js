@@ -537,7 +537,7 @@ angular.module('starter.controllers')
 
     $scope.healthsearch = function(patientmedications) {
 
-        $scope.data.searchProvider=null;
+        $scope.data.searchProvider='';
   $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedications, $rootScope.currentMedicationsearchList);
 
         if (typeof $rootScope.CurMedicationCount === 'undefined') {
@@ -730,7 +730,7 @@ angular.module('starter.controllers')
 
 
     $scope.alergiessearch = function() {
-          $scope.data.searchProvider=null;
+          $scope.data.searchProvider='';
       $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicationsallergies, $rootScope.medicationAllergiesearchList);
         if (typeof $rootScope.CurAllergiesCount === 'undefined') {
                 $rootScope.checkedAllergies = 0;
@@ -912,7 +912,7 @@ angular.module('starter.controllers')
 
 
     $scope.chronicsearch = function() {
-        $scope.data.searchProvider=null;
+        $scope.data.searchProvider='';
       $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicalConditions, $rootScope.chronicConditionsearchList);
         if (typeof $rootScope.ChronicCount === 'undefined') {
                 $rootScope.checkedChronic = 0;

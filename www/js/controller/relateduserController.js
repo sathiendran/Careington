@@ -518,7 +518,7 @@ $rootScope.authorised=relateDependentAuthorize;
 
 
         $scope.selectrelation = function(selPatient) {
-            $scope.data.searchProvider=null;
+            $scope.data.searchProvider='';
             $rootScope.relationUpdatePatientId = selPatient.patientId;
             $rootScope.relationUpdateAuthStatus = selPatient.isAuthorized;
             $rootScope.relationUpdateRelationId = selPatient.relationship;
