@@ -83,12 +83,12 @@
 
 
 
-		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-click = "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
+		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-if="dependentDetails.isAuthorized !== false"  ng-click= "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
 			<!-- <a class="HrefListView">   -->
 			 <div class="HrefListViewDependent">
 				<div class="UserhmePatientDetails">
 					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
-					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}}</b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
+					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}} </b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
 					<p class="ListHomeUser_pTitle DateFormateStyle">Age {{dependentDetails.birthdate | ageFilter}} <!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
 					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->
 				</div>

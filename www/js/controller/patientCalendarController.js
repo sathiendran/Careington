@@ -264,7 +264,7 @@ angular.module('starter.controllers')
 
   //  $rootScope.appointCurrentPage = '';
 
-    if ($rootScope.getIndividualScheduleDetails.length !== 0) {
+    if ($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
         //if($rootScope.scheduledList[0].appointmentId !== $rootScope.getIndividualScheduleDetails[0].appointmentId) {
           var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
           var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);

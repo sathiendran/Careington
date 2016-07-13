@@ -986,7 +986,7 @@ html, body { background: transparent !important; }
     font-size:17px;
 }
 .optionselect{
-  width: 90%;
+  width: 100%;
   color: #7c7c7c;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2340,9 +2340,6 @@ html, body { background: transparent !important; }
     top:65px;height:109px;
      border-color: #5D5959 !important;
 }
-.appiconcontent{
-    margin-top: 212px;
-}
 .avatpad{
     padding:14px !important;
 }
@@ -2400,7 +2397,7 @@ font-size: 18px !important;
 }
 .appmarg{
     //;margin-top:-4px;
-    float:right;margin-top:0px;font-size:16px !important;
+    float:right;margin-top:0px;font-size:14px !important;
 }
 
 .pathead{
@@ -2611,7 +2608,7 @@ margin-left: 16px;
     @include font($fontFamily_bold, bold, 30px);
  color:#535353;
  text-align: center;
- margin-left: -50px !important;
+// margin-left: -50px !important;
 }
 .PragraphContent {
 @include font($fontFamily_regular, normal,16px);
@@ -3633,7 +3630,9 @@ font-family: $fontFamily_regular;
 }
 .noResult {
 	text-align: center; border: none;
-    color: #616462; font-weight: bold; font-size: 19px; top: 90px;
+    color: #616462; font-weight: bold; font-size: 19px;
+    //top: 90px;
+    padding-top: 107px;
 }
 
 .dobRequired {
@@ -3741,7 +3740,7 @@ font-family: $fontFamily_regular;
      margin-top:258px !important;
  }
  .profileSpan {
-   margin-left:-18px;
+  // margin-left:-18px;
    .profileicon {
      margin-left: -18px;
     font-size: 30px;
@@ -4101,8 +4100,8 @@ color: #717171;
   .fonttime{
     font-size: 14px;
     color: #686868;
-    font-family: Glober Regular;
-    text-transform: lowercase;
+    font-family: Glober SemiBold;
+    //text-transform: lowercase;
   }
   .apptdetails{
     background-color:#ffc900;height:80px;padding:10px !important; position: fixed;
@@ -4194,7 +4193,7 @@ color: #717171;
     border:none;
 }
 .fdate{
-    margin-top:18px !important
+    margin-top:8px !important
 }
 .ftime{
     margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;margin-left: 24px;text-transform: lowercase;
@@ -4416,6 +4415,36 @@ p{
      .usercontent-IOS {
           margin-top: 29%;
       }
+      .fday {
+        font-size: 25px !important;
+            margin-top: 4px !important;
+      }
+      .ftime {
+        font-size: 55px !important;
+      }
+      .fdate {
+        margin-top: 0px !important;
+      }
+
+      .passedDate-IOS{
+        width: 28% !important;
+      }
+      .passedTime-IOS {
+        width: 23% !important;
+        margin-left: 5px !important;
+      }
+      .passedDoc-IOS {
+        width: 28% !important;
+        margin-left: 5px !important;
+      }
+      .passedDetails-IOS {
+        width: 20% !important;
+        margin-left: 5px !important;
+      }
+      .profileSpan {
+        margin-left: 33px;
+      }
+
        .addphoto{
       width:34%;
         }
@@ -4745,7 +4774,7 @@ p{
         }
 
       .alignchronic{
-             margin-left:235px !important;
+             //margin-left:235px !important;
          }
         .topimage {
            position: absolute;
@@ -5476,15 +5505,13 @@ font-family: Glober Regular;
 
 .userdeptcontent { margin-top:160px !important; }
 .newusercontent{  margin-top: 168px;}
-.appiconcontent {
-margin-top: 212px;
-}
+
 .alignchronic {
 font-size:22px !important;
 font-family: "Glober Bold";
 color: #535353;
 text-align:center;
-margin-left:0px;
+//margin-left:0px;
 }
 .headerprovider { margin-left:57px !important;}
 .coldetails {margin-left:45px; }//margin-left: 61px;
@@ -7266,7 +7293,7 @@ Pagination Styles
   line-height:25px !important; font-size: 20px !important;
 }
 .addUser-IOS {
-  color: #888 !important; margin-left: 53px;
+  color: #888 !important; margin-left: 0px !important;
 }
 .addUser-Android {   color: #888 !important;}
 .coUserImage-IOS {
@@ -7444,4 +7471,76 @@ top: 3px;
 }
 input.ion-google-place[readonly] {
   color: rgba(5, 4, 9, 0.54) !important;
+}
+.userdeptcontent {
+  margin-top: 160px !important;
+  [class^="icon-"], [class*=" icon-"] {
+    font-size: 19px;
+  }
+  .item-input {
+    padding: 6px 0 5px 0px !important;
+  }
+ }
+.dobDependent-IOS {
+  font-size: 20px;
+  color: rgba(5, 4, 9, 0.54) !important;
+  width: 159%;
+}
+.adduseWeight-IOS {
+  font-size: 18px;
+    margin-left: 5px;
+}
+.aptsname {
+  font-size: 14px !important;
+  color: #888;
+  font-family: Glober SemiBold; }
+  .appiconcontent{
+      margin-top: 212px;
+      .fname {
+        font-size: 200% !important;
+      }
+  }
+.enterAppoint-IOS {
+  font-size: 151% !important;
+  position: relative !important;
+    top: -10px !important;
+}
+.passedImage-IOS {
+  width: 13%;
+  margin-top: -15px;
+  padding: 7px 0px;
+  .consimg {
+    left: 3px !important;
+  }
+}
+.passedDate-IOS{
+  width: 25%;
+}
+.passedTime-IOS {
+
+  width: 19%;
+}
+.passedDoc-IOS {
+  width: 28%;
+  margin-left: 10px;
+}
+.passedDetails-IOS {
+  width: 17%;
+  margin-left: 10px;
+}
+.consultcontent {
+  .topfont{
+     margin-left:-28px;
+  }
+  .rheader {
+    .col {
+      margin-left: 3px;
+    }
+  }
+}
+.consultcontentsearch-IOS {
+      margin-top: 85px
+}
+.colReport-IOS {
+  margin-left: -1px;
 }

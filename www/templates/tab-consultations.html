@@ -63,34 +63,34 @@
                     <div class="row rheader">
                         <div class="col col-15"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15 headertime"><span class="topfont">Time</span></div>
-                        <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
+                        <div class="col col-15"><span class="topfont">Time</span></div>
+                        <div class="col col-30"><span class="topfont">Provider</span></div>
                         <div class="col col-15 "><span class="topfont"></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
                         <div ng-repeat="passedData in Passedconsultations">
                             <div class="row">
-                                <div class="col col-15 contalign">
+                                <div class="passedImage-{{deviceName}}">
                                     <a class="item item-avatar avatitem">
                                         <img class="consimg" ng-src="{{PatientImageSelectUser}}">
                                     </a>
                                 </div>
-                                <div class="col col-20">
-                                    <p class="colfamily coldate"> {{ passedData.consultationDate }} </p>
+                                <div class="passedDate-{{deviceName}}">
+                                    <p class="colfamily"> {{passedData.consultationDate}}</p>
                                 </div>
-                                <div class="col col-15 coltime">
-                                    <p class="colfamily"> {{ passedData.consultationTime}}</p>
+                                <div class="passedTime-{{deviceName}}">
+                                    <p class="colfamily">{{passedData.consultationTime}}</p>
                                 </div>
-                                <div class="ellipsis col col-30" style="width: 38%;">
-                                    <p class="ellipsis coldetails">
+                                <div class="ellipsis passedDoc-{{deviceName}}">
+                                    <p class="ellipsis">
                                         <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
                                         <a class="colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName}}</a>
                                     </p>
                                 </div>
 
-                                <div class="col col-15 ">
-                                    <span class="contreport" ng-click="showReportView({{passedData}}, 'tab.reports');">Details
+                                <div class="passedDetails-{{deviceName}}">
+                                    <span ng-click="showReportView({{passedData}}, 'tab.reports');">Report
                                     <span><i class="icon ion-chevron-right "></i></span></span>
                                 </div>
                             </div>
@@ -110,28 +110,28 @@
                     <div class="row rheader">
                         <div class="col col-15"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15 headertime"><span class="topfont">Time</span></div>
-                        <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
-                        <div class="col col-15 "><span class=""></span></div>
+                        <div class="col col-15"><span class="topfont">Time</span></div>
+                        <div class="col col-30"><span class="topfont">Provider</span></div>
+                        <div class="col col-15"><span class=""></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
                         <div ng-repeat="misseddata in missedlist">
 
                             <div class="row">
-                                <div class="col col-15 contalign">
+                                <div class="passedImage-{{deviceName}}">
                                     <a class="item item-avatar avatitem">
                                         <img class="consimg" ng-src="{{PatientImageSelectUser}}">
                                     </a>
                                 </div>
-                                <div class="col col-20">
-                                    <p class="colfamily coldate">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
+                                <div class="passedDate-{{deviceName}}">
+                                    <p class="colfamily">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
                                 </div>
-                                <div class="col col-15 coltime">
+                                <div class="passedTime-{{deviceName}}">
                                     <p class="colfamily">{{misseddata.time}}</p>
                                 </div>
-                                <div class="ellipsis col col-30" style="width: 38%;">
-                                    <p class="ellipsis coldetails">
+                                <div class="ellipsis passedDoc-{{deviceName}}">
+                                    <p class="ellipsis">
                                         <a class="colfamily" ng-if="!misseddata.docname">N/A
 
                                         </a>
@@ -140,8 +140,8 @@
                                           </a>
                                     </p>
                                 </div>
-                                <div class="col col-15 ">
-                                    <span class="contright contreport" ng-click="showReportView({{misseddata}},'tab.missedConsultAppoint');">Report
+                                <div class="passedDetails-{{deviceName}}">
+                                    <span ng-click="showReportView({{misseddata}},'tab.missedConsultAppoint');">details
                                         <span><i class="icon ion-chevron-right "></i></span></span>
                                 </div>
                             </div>
@@ -159,33 +159,33 @@
                     <div class="row rheader">
                         <div class="col col-15"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15 headertime"><span class="topfont">Time</span></div>
-                        <div class="col col-30 headerprovider"><span class="topfont">Provider</span></div>
-                        <div class="col col-15 "><span class=""></span></div>
+                        <div class="col col-15"><span class="topfont">Time</span></div>
+                        <div class="col col-30"><span class="topfont">Provider</span></div>
+                        <div class="col col-15"><span class=""></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
                         <div ng-repeat="droppedData in Droppedconsultations">
                             <div class="row">
-                                <div class="col col-15 contalign">
+                                <div class="passedImage-{{deviceName}}">
                                     <a class="item item-avatar avatitem">
                                         <img class="consimg" ng-src="{{PatientImageSelectUser}}">
                                     </a>
                                 </div>
-                                <div class="col col-20">
-                                    <p class="colfamily coldate">{{droppedData.consultationDate}}</p>
+                                <div class="passedDate-{{deviceName}}">
+                                    <p class="colfamily">{{droppedData.consultationDate}}</p>
                                 </div>
-                                <div class="col col-15 coltime">
+                                <div class="passedTime-{{deviceName}}">
                                     <p class="colfamily">{{droppedData.consultationTimeInfo | date: "h:mm a"}}</p>
                                 </div>
-                                <div class="ellipsis col col-30" style="width: 38%;">
-                                    <p class="ellipsis coldetails">
+                                <div class="ellipsis passedDoc-{{deviceName}}">
+                                    <p class="ellipsis">
                                         <a class="colfamily" ng-if="!droppedData.assignedDoctorName">N/A</a>
                                         <a class="colfamily" ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</a>
                                     </p>
                                 </div>
-                                <div class="col col-15 ">
-                                    <span class="contreport" ng-click="showReportView({{droppedData}},'tab.reports');">Details
+                                <div class="passedDetails-{{deviceName}}">
+                                    <span ng-click="showReportView({{droppedData}},'tab.reports');">Report
                                           <span><i class="icon ion-chevron-right "></i></span></span>
                                 </div>
                             </div>
