@@ -5218,7 +5218,7 @@ color: white;
    background-color:#e8e8e8;
    height:27px;
    border-radius:5px;
-   margin-top:80px;
+   //margin-top:80px;
  .hsearch{
    text-align: center;
    line-height: 2;
@@ -7307,7 +7307,7 @@ Pagination Styles
 .addUser-IOS {
   color: #888 !important; margin-left: 0px !important;
 }
-.addUser-Android {   color: #888 !important;}
+.addUser-Android {   color: #888 !important;margin-left:0px !important;}
 .coUserImage-IOS {
   max-width: 50px !important;
   max-height: 50px !important;
@@ -7633,7 +7633,20 @@ input.ion-google-place[readonly] {
   position: relative !important;
     top: -10px !important;
 }
+.enterAppoint-Android{
+  font-size: 151% !important;
+  position: relative !important;
+    top: -10px !important;
+}
 .passedImage-IOS {
+  width: 13%;
+  margin-top: -15px;
+  padding: 7px 0px;
+  .consimg {
+    left: 3px !important;
+  }
+}
+.passedImage-Android {
   width: 13%;
   margin-top: -15px;
   padding: 7px 0px;
@@ -7644,15 +7657,28 @@ input.ion-google-place[readonly] {
 .passedDate-IOS{
   width: 25%;
 }
+.passedDate-Android{
+  width: 25%;
+}
 .passedTime-IOS {
-
+  width: 19%;
+}
+.passedTime-Android {
   width: 19%;
 }
 .passedDoc-IOS {
   width: 28%;
   margin-left: 10px;
 }
+.passedDoc-Android {
+  width: 28%;
+  margin-left: 10px;
+}
 .passedDetails-IOS {
+  width: 17%;
+  margin-left: 10px;
+}
+.passedDetails-Android {
   width: 17%;
   margin-left: 10px;
 }
@@ -7667,15 +7693,30 @@ input.ion-google-place[readonly] {
   }
 }
 .consultcontentsearch-IOS {
-      margin-top: 85px
+  margin-top: 85px
+}
+.consultcontentsearch-Android {
+  margin-top: 85px
 }
 .colReport-IOS {
   margin-left: -1px;
 }
+
 .healthinfoHeight-IOS {
   width: 46%;
       margin-left: -37px;
 }
-.healthinfoHeight2-IOS {
-  width: 46%;
+
+.colReport-Android {
+  margin-left: -1px;
+  margin-top: -1px !important;
+}
+.appointment-Android{
+  margin-top:173px;
+}
+.apponitmentfday-Android{
+    font-size:25px;margin-top:10px;font-family:Glober Regular;
+}
+.apponitmentftime-Android{
+  margin: 0 0 11px 0;font-size:51px;font-family:Glober Bold;margin-left: 24px;text-transform: lowercase;
 }

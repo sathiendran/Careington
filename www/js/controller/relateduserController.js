@@ -81,12 +81,12 @@ angular.module('starter.controllers')
         $scope.moredetails = function() {
             $scope.showdetails = false;
             $scope.showarchieve = true;
-            $scope.usersearchinfocontent = false;
-            $scope.userinfoshow = false;
+          //  $scope.usersearchinfocontent = false;
+          //  $scope.userinfoshow = false;
             $scope.userdone = false;
             $scope.useradd = false;
-            $scope.userinfosubheader = false;
-            $scope.usersearchsubheader = false;
+            //$scope.userinfosubheader = false;
+          //  $scope.usersearchsubheader = false;
             $scope.usertab = false;
         };
 
@@ -523,9 +523,9 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.relationUpdateAuthStatus = selPatient.isAuthorized;
             $rootScope.relationUpdateRelationId = selPatient.relationship;
             $scope.clearSelectionAndRebindSelectionList($rootScope.relationUpdateRelationId, $rootScope.listOfRelationship[0].codes);
-            $scope.useradd = true;
-            $scope.userdone = true;
-            $scope.userinfoshow = true;
+    //        $scope.useradd = true;
+      //      $scope.userdone = true;
+          //  $scope.userinfoshow = true;
             $scope.usertab = true;
             $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
                   $ionicModal.fromTemplateUrl('templates/tab-relationSearch.html', {
@@ -543,19 +543,17 @@ $rootScope.authorised=relateDependentAuthorize;
 
         $scope.usersearchdone = function() {
             $scope.modal.hide();
-            $scope.useradd = false;
-            $scope.userdone = false;
-            $scope.userinfosubheader = false;
-            $scope.usersearchsubheader = false;
-            $scope.userinfoshow = false;
-            $scope.usersearchinfocontent = false;
-            $scope.usertab = false;
+          //  $scope.useradd = false;
+          //  $scope.userdone = false;
+          //  $scope.userinfosubheader = false;
+          //  $scope.usersearchsubheader = false;
+            //$scope.userinfoshow = false;
+        //    $scope.usersearchinfocontent = false;
+          //  $scope.usertab = false;
         }
         $scope.removemodal = function() {
             $scope.usersearchdone();
-
-
-        };
+};
         $scope.OnSelectRelation = function(newRelatioCodeId) {
             if (newRelatioCodeId.checked === true ) {
                 $rootScope.relationShipChecked++;

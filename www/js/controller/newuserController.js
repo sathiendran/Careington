@@ -187,7 +187,8 @@ angular.module('starter.controllers')
         } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
             $scope.ErrorMessage = "Please Select Your Gender";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
+        }
+        /*else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
             $scope.ErrorMessage = "Please Enter Your Height";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.heights2 === 'undefined' || $scope.heights2 === '') {
@@ -200,10 +201,12 @@ angular.module('starter.controllers')
         } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
             $scope.ErrorMessage = "Please Enter Your Weight";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.weightunitid == 'undefined' || $scope.weightunitid === '') {
+        }
+        else if (typeof $scope.weightunitid == 'undefined' || $scope.weightunitid === '') {
             $scope.ErrorMessage = "Please Select Your Weight Unit";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.homephone === 'undefined' || $scope.homephone === '') {
+        }*/
+         else if (typeof $scope.homephone === 'undefined' || $scope.homephone === '') {
             $scope.ErrorMessage = "Please Enter Your Home Phone";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {

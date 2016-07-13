@@ -1517,7 +1517,10 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     }
 
     $scope.goBackFromConcern = function() {
-        $ionicHistory.goBack();
+
+        //$ionicHistory.goBack();
+        history.go(-1);
+      //  navigator.app.backHistory();
     }
 
 
