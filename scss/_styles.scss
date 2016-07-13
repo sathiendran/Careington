@@ -1973,9 +1973,10 @@ html, body { background: transparent !important; }
    // height:50px;
    background-color: white;
    height: 54px;
+   padding: 0px;
 }
 .dotcol{
-  background-color:#9bca82; height:50px;margin-left:-4px;min-width:90px;
+  background-color:#9bca82; height:50px;margin-left:-4px;
 }
 .dotcont{
     color:white;font-size:10px;margin-top:-10px !important;
@@ -1987,6 +1988,7 @@ html, body { background: transparent !important; }
   font-size:10px;
   font-family:Glober Regular;
   color: #5c5c5c;
+      margin-top: -7px;
 }
 .colmore{
     margin-left:5px;padding:0px;background-color: #f3f2ea;height: 50px;
@@ -1995,24 +1997,25 @@ html, body { background: transparent !important; }
   width: 73px;padding: 0px;background-color: #f3f2ea;height: 50px;margin-top:0px !important;margin-left: 0px !important;
 }
 .moretab{
-    max-width: 20% !important;
+    width: 25%;
     background-color:#9bca82;
+    text-align: center;
     .moralign{
        margin-top:-15px;
        .moreicon{
            font-size:22px;margin-left: 35px;color:#888;
        }
        .morecont{
-         margin-left:33px;font-size:11px;margin-top:-12px;color:#888;
+         font-size:11px;margin-top:-12px;color:#888;
        }
     }
 }
 .tabmoreicon{ // margin-top:-11px!important;
-    margin-top:-12px;font-size:20px !important;color: white;margin-left: 33px;
+    margin-top:-2px;font-size:20px !important;color: white;
 }
 .statuscol{
     background-color:#e3e3e3;
-    max-width: 130px;
+    width: 37%;
     .status{
       margin-left: 10px;font-size: 11px;margin-top:-4px;
     }
@@ -2022,6 +2025,7 @@ html, body { background: transparent !important; }
 }
 .relationcol{
     background-color:#ededed;
+    width: 40%;
     .relation{
         margin-left:10px;font-size:10px;color:#888;
      }
@@ -2603,7 +2607,8 @@ margin-left: 16px;
 .alignchronic{
     @include font($fontFamily_bold, bold, 30px);
  color:#535353;
-    margin-left:40px !important;
+ text-align: center;
+ margin-left: -50px !important;
 }
 .PragraphContent {
 @include font($fontFamily_regular, normal,16px);
@@ -3743,7 +3748,7 @@ left: -52px;
  }
  .content{
      margin-left:38px;
-     font-size:22px;
+     font-size:138%;
      a{
          color :rgba(5, 4, 9, 0.54)!important;
          border: none !important;
@@ -4040,12 +4045,15 @@ font-size: 20px;
 }
 .newuserp{
     text-align:center;margin-bottom: 10px!important;
+    [class^="icon-user-add"], [class*=" icon-user-add"] {
+      font-size: 40px;
+    }
 }
 .newusertopcontent{
     text-align:center;}
 .newusertoph2 { margin-bottom:10px !important;}
 .usertopfont { font-size: 30px !important; font-family:Glober Bold ;}
-.topp{ color: #ababab; font-size: 14px;}
+.topp{ color: #ababab; font-size: 14px; line-height: 25px;}
 .donebutton{
   margin-bottom: 50px;
   height: 20px;
@@ -4236,7 +4244,7 @@ p{
     color: #9bca82;
  }
 .avaticon{
-      margin-left: -14px;
+      margin-left: -17px;
     color: rgba(250, 130, 69, 0.32) !important;
  }
 }
@@ -4254,8 +4262,8 @@ p{
     margin-left: -36px;
 }
 .avatrelationclass{
-  margin-top: 2px;
-  margin-left: -31px;
+  margin-top: 11px;
+  margin-left: -30px;
 }
 .righticon{
     margin-right: -12px;
@@ -4303,23 +4311,38 @@ p{
         font-size:22px;
 }
    .authorizedcont{
-          font-size: 12px !important;color:#838383;margin-top:-6px; 
+          font-size: 12px !important;color:#838383;margin-top:-3px;
       }
       .authorizedupdate{
       margin-bottom:4px;
       float:right;
       color: #222222;
       font-size:11px !important;
+      position: relative;
+      top: -25px;
+        [class^="icon-chevron-right"], [class*=" icon-chevron-right"] {
+          font-size: 19px;
+          position: relative;
+          top: 6px;
+        }
+        .ion-chevron-right {
+          position: relative;
+          top: 1px;
+        }
       }
    }
   .authorupdate{
             background-color: rgba(247, 166, 125, 0.28) !important;
        }
    .authorizedview {
-       height:60px;margin-left:-5px;margin-top:-4px;  width: 368px;
+       height:60px;margin-left:-5px;margin-top:-4px;  width: 103%;  padding: 0px;
 
        .authortab{
          margin-top: -15px !important;margin-left: 26px;font-size: 20px !important;
+         .ion-chevron-down {
+              position: relative;
+              top: 3px;
+          }
        }
        .authorcont{
          margin-top:-6px;
@@ -4333,16 +4356,16 @@ p{
          margin-left: 5px;font-size: 10px;margin-top: -4px;
      }
      .unstatuscont{//margin-left: -29px;
-       margin-top: -14px;margin-left: 2px;font-size: 12px;font-family: Glober SemiBold;
+       margin-top: 14px;margin-left: -28px;font-size: 12px;font-family: Glober SemiBold;
        }
        .thumbsdownicon{
-             float:right;margin-left:25px; font-size:22px;margin-top:-5px; //margin-top:-8px;margin-left:16px;
+             float:right;margin-left:12px; font-size:22px;margin-top:-11px; //margin-top:-8px;margin-left:16px;
          }
    }
  .relationtab{
     background-color:#ededed;
     .relationstatus{
-        margin-left:10px;font-size:10px;
+        margin-left:18px;font-size:10px;
     }
     .unauthorrelationship{
        margin-top: -15px;color:#6d6d6d;font-size:12px;margin-left:9px; font-family:Glober SemiBold;
@@ -4387,6 +4410,9 @@ p{
     margin-top: 125px !important;
 }
    @media (max-width:320px) and (min-width:315px)    {
+     .usercontent-IOS {
+          margin-top: 29%;
+      }
        .addphoto{
       width:34%;
         }
@@ -4421,7 +4447,7 @@ p{
           font-size:21px;
       }
       .appointment{
-        font-size: 138% !important;
+        font-size: 120% !important;
         color:white;
         }
 
@@ -4568,8 +4594,6 @@ p{
       float: right; }
     .chronic {
       margin-top: 24px; }
-    .alignchronic {
-      margin-left: 40px !important; }
     .useracctheader {
       margin-left: 12px; }
     /*   .has-header{
@@ -4594,7 +4618,7 @@ p{
       height: 75px !important; }
     .appointment {
       color: white;
-      font-size: 138% !important; }
+      font-size: 120% !important; }
     .userdeptcontent {
       margin-top: 160px !important; }
     .userdetcontent {
@@ -4986,7 +5010,7 @@ top: inherit !important;
  }
   .appointment {
   color: white;
-  font-size: 22px;
+  font-size: 120%;
   font-family: Glober xBold;
   //width: 50%;
    }
@@ -5042,6 +5066,8 @@ color: white;
       color:rgba(5, 4, 9, 0.54) !important;
       font-family:Glober SemiBold;
       font-size:19px;
+      position: relative;
+      top: 4px;
   }
 .button-bar > .button:last-child {
     border-right-width: 1px;
@@ -5234,11 +5260,16 @@ color: white;
    background-color:#e9e9e9;
 }
 .profilecontent{
-    margin-top:160px;
+    margin-top:167px;
 }
 .relatedusercontent{
     margin-top:200px;
     margin-bottom: 50px;
+    [class^=""], [class*=" "] {
+    //  font-size: 20px;
+    //  position: relative;
+    //  top: 2px;
+    }
 }
 .relatedsearchusercontent{
   margin-top:65px;
@@ -5257,7 +5288,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:16px;font-family:Glober Semibold;line-height:22px;
+      font-size:20px;font-family:Glober Semibold;line-height:22px;color: rgba(5, 4, 9, 0.54) !important;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -5274,7 +5305,7 @@ color: white;
      }
      .homeadd{
          //margin-left:36px;
-        margin-top:10px;font-size:16px;font-family:Glober Semibold;line-height:16px;
+        margin-top:10px;font-size:20px;font-family:Glober Semibold;line-height:16px;color: rgba(5, 4, 9, 0.54) !important;
      }
  .valuealign{
   // margin-left:70px;
@@ -5365,7 +5396,7 @@ height: 84px;
  margin-left: -43px;
 }
 .thumbsdownicon{
-margin-left: 40px !important;
+margin-left: 12px !important;
 margin-top: -24px !important;
 }
 .usercard {
@@ -5384,10 +5415,6 @@ padding-top: 177px !important;
   .userhome{margin-left: 30px !important;}
 }
 .colmore {margin-left: 0px !important;}
-.relatedusercontent{
-    margin-top:200px;
-    margin-bottom: 50px;
-}
 .list.listtype {
 padding-top: 110px !important;
 }
@@ -7294,4 +7321,121 @@ Pagination Styles
 .accNextAppoint-IOS {
   position: relative;
   top: 6px;
+}
+.ion-chevron-down {
+  position: relative;
+  top: -2px;
+}
+.authorizeIcon-IOS {
+  position: relative;
+  top: -18px;
+}
+.unAuthorizeUpdate-IOS {
+  position: relative;
+  top: -4px;
+}
+.unAuthorizeSatus-IOS {
+  position: relative;
+  left: 3px;
+}
+.authorizedIconSize-IOS {
+  [class^="icon-"], [class*=" icon-"] {
+    font-size: 20px;
+    position: relative;
+    top: 3px;
+  }
+}
+.unAuthorizeUpdateMain-IOS {
+  width: 36%;
+  padding: 5px;
+  text-align: center;
+}
+.unAuthorizeStatusMain-IOS {
+  width: 49%;
+  padding: 5px;
+    text-align: center;
+  .tabvalue {
+    margin-top: 12px !important;
+  }
+}
+.unAuthorizeRelativeMain-IOS {
+    width: 47%;
+    padding: 5px;
+}
+.chevronRelationship-IOS {
+  float: right;
+  font-size: 26px;
+  margin-left: 0px !important;
+  color: #888;
+  position: relative;
+    top: 15px;
+}
+.unAuthorizeRelat-IOS {
+    position: relative;
+    left: -15px;
+}
+.unAuthorizeRelation-IOS{
+  position: relative;
+      left: -5px;
+}
+.unAuthorizeUserRelation-IOS {
+    width: 80%;
+    float: left;
+    margin-top: 5px;
+}
+.authorizePatient-IOS {
+  .dotcolDoc-IOS {
+    width: 23%;
+    text-align: center;
+    .seeDocIcon-IOS {
+      position: relative;
+      left: -10px;
+    }
+    .tabiconDoc-IOS{
+      position: relative;
+      top: -7px;
+    }
+  }
+  .rowalignProfile-IOS {
+    width: 21%;
+    text-align: center;
+  }
+  .colpadAppoint-IOS {
+    width: 23% !important;
+    text-align: center;
+  }
+  .colpadConsult-IOS {
+    width: 23% !important;
+    text-align: center;
+  }
+  .colmoreMore-IOS {
+    width: 13% !important;
+    text-align: center;
+    margin-left: 0px;
+  }
+
+}
+.moreicon-IOS {
+  margin-left: 0px !important;
+  position: relative;
+  top: -5px;
+}
+.tabvalueAuthorize-IOS{
+  position: relative;
+  top: 11px;
+}
+.TabAuthorize-IOS{
+  position: relative;
+  top: 10px;
+}
+.authorizeRightIcon-IOS {
+position: relative;
+top: -12px;
+}
+.authorizeIcon-IOS {
+  position: relative;
+top: 3px;
+}
+input.ion-google-place[readonly] {
+  color: rgba(5, 4, 9, 0.54) !important;
 }

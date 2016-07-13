@@ -34,14 +34,14 @@
                <p class="homecontent">Account Home</p>
           </a>
 
-         <a ng-if="updatedPatientImagePath == ''" class="item-avatar itemhead" ng-show="editimg">
+         <a ng-if="updatedPatientImagePath == ''" class="item-avatar itemhead" ng-hide="flag">
               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"  ng-click="showCameraActions();"></p>
            </a>
-           <a ng-if="updatedPatientImagePath != ''" class="item-avatar itemhead" ng-show="editimg">
+           <a ng-if="updatedPatientImagePath != ''" class="item-avatar itemhead" ng-hide="flag">
                 <p><img ng-src="{{updatedPatientImagePath}}" class="topimage"  ng-click="showCameraActions();"></p>
              </a>
 
-           <a class="item-avatar itemhead" ng-show="viewimg">
+           <a class="item-avatar itemhead" ng-show="flag">
               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
            </a>
 
@@ -94,7 +94,7 @@
            <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
            </label>
-           <label class="item item-input itemtab validated">
+           <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Relationship</b></span>
                <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.relationship}}</div>
            </label>
@@ -145,7 +145,7 @@
            </label>
            <label class="item item-input itemtab validated">
            <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b></span>
-           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height)}}</div>
+           <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.height">{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}</div>
             <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.height">NA</div>
            </label>
            <label class="item item-input itemtab validated">
@@ -262,7 +262,7 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b></span>
               <div>
-                 <input type="number" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" style="width: 40px; margin-right: 10px;">
+                 <input type="number"  name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" style="width: 40px; margin-right: 10px;">
               </div>
               <div>
                  <input type="number" name="healthInfoHeight2" id="healthInfoHeight2" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 1)}}" class="textdata" style="width: 40px; margin-right: 10px;">

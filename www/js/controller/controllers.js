@@ -4168,6 +4168,11 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
         $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
 
+        if (angular.isUndefined(P_img)) {
+            var ptImage = getInitialForName(P_Fname + " " + P_Lname);
+            P_img = generateTextImage(ptImage, $rootScope.brandColor);
+        }
+
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;

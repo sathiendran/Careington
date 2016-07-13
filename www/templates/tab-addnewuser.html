@@ -9,8 +9,9 @@
 
 
 	<div class="buttons" >
-		<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>
+		<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+				ng-click="toggleLeft()"></button>-->
+				<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 	</div>
 	 <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> <span style="float:right;">
             <a class="headerval" ng-href="#tab/relatedusers">Cancel</a></span></h1>
@@ -53,7 +54,7 @@
         <ion-list>
            <ion-item class="iionitem item newuserdetails" style="">
 
-                  <p class="newuserp"><i class="fontcolor icon ion-person-add" style="font-size:50px;"></i></p>
+                  <p class="newuserp"><i class="fontcolor icon" ng-bind-html="drawSVGCIcon('user-add')" style="font-size:50px;"></i></p>
                   <div class="newusertopcontent">
                      <h2 class="newusertoph2"><p class="fontcolor usertopfont">Add A New User</p>
                       <p class="topp regularfamily">Select a user type to add</p>

@@ -26,11 +26,22 @@ angular.module('starter.controllers')
         return newHeight;
     };
 
-    $rootScope.reformatHeightForDisplay = function(heightVal){
+    $rootScope.reformatHeightForDisplay = function(heightVal,heightUnit){
         var newHeight = "";
         if(heightVal){
-            newHeight = heightVal.replace('|', ' ft ');
-            newHeight = newHeight + " in"
+          //  newHeight = heightVal.replace('|', ' ft ');
+          //  newHeight = newHeight + " in"
+          if(heightVal.indexOf('|') === -1) {
+            heightVal = heightVal + "|" +0;
+            var heightValSplit = heightVal.split("|");
+          }
+          var heightValSplit = heightVal.split("|");
+          var heightUnitSplit = heightUnit.split("/");
+          if(heightValSplit[1] == 0) {
+            newHeight = heightValSplit[0]+ " "+heightUnitSplit[0];
+          } else {
+            newHeight = heightValSplit[0]+ " "+heightUnitSplit[0]+ " "+heightValSplit[1]+ " "+heightUnitSplit[1];
+          }
         }
         return newHeight;
     };
@@ -199,6 +210,8 @@ angular.module('starter.controllers')
               $scope.splitRelationship = $scope.healthInfoRelationship.split("@");
               $scope.getRelationshipId = $scope.splitRelationship[0];
               $scope.getRelationshipText = $scope.splitRelationship[1];
+            } else {
+              $scope.healthInfoRelationship = "NA";
             }
             $scope.healthInfoGender = $("#healthInfoGender").val();
             $scope.healthInfoHeight = $('#healthInfoHeight').val();
@@ -369,7 +382,9 @@ angular.module('starter.controllers')
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
-              $scope.uploadPhotoForExistingPatient();
+              if($rootScope.newDependentImagePath !== '' && typeof $rootScope.newDependentImagePath !=='undefined') {
+                $scope.uploadPhotoForExistingPatient();
+              }
               if($rootScope.primaryPatientId !== data.patientID) {
                 $scope.updateDependentRelation(data.patientID,$scope.getRelationshipId,$rootScope.currentPatientDetails[0].account.isAuthorized);
               }

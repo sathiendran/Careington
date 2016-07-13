@@ -150,64 +150,65 @@
 							</a>
 					 </div>
 				</div>-->
-                            <div class="row dotrow" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="tabView">
-                                <a class="col col-20 dotcol" ng-click="seeaPatientConcerns(getDependentDetails)">
-                                    <div class="tabicon"> <i class="ion-chevron-down"></i></div>
-                                    <i class="icon ion-person-stalker contacticon "></i>
-                                    <p class="dotcont" style="">See a Doc Now</p>
-                                </a>
-                                <div class="col col-20 rowalign" ng-click="patientprofile(getDependentDetails)">
+                            <div class="row dotrow authorizePatient-{{deviceName}}" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="tabView">
+                                <div class="dotcol dotcolDoc-{{deviceName}}" ng-click="seeaPatientConcerns(getDependentDetails)">
+                                    <div class="tabicon" style="margin-top: -12px;"> <i class="ion-chevron-down"></i></div>
+                                    <div class="tabiconDoc-{{deviceName}}"><i class="icon contacticon seeDocIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('users')"></i>
+                                    <p class="dotcont" style="">See a Doc Now</p></div>
+                                </div>
+                                <div class="rowalign rowalignProfile-{{deviceName}}" ng-click="patientprofile(getDependentDetails)">
                                     <div class="tabvalue">
-                                        <i class="icon ion-eye-disabled doticon"></i>
+                                        <i class="icon doticon" ng-bind-html="drawSVGCIcon('eye')"></i>
                                         <div class="dotfont">View Profile</div>
                                     </div>
                                 </div>
-                                <div class="col col-25 colpad" ng-click="gpToAppointments(getDependentDetails)">
+                                <div class="colpad colpadAppoint-{{deviceName}}" ng-click="gpToAppointments(getDependentDetails)">
                                     <div class="tabvalue">
-                                        <i class="icon ion-calendar doticon"></i>
+                                        <i class="icon doticon" ng-bind-html="drawSVGCIcon('calendar')"></i>
                                         <div class="dotfont">Appointments</div>
                                     </div>
                                 </div>
-                                <div class="col col-20 colpad">
+                                <div class="colpad colpadConsult-{{deviceName}}">
                                     <div class="tabvalue" ng-click="goToConsultations(getDependentDetails)">
-                                        <i class="icon ion-card doticon"></i>
+                                        <i class="icon doticon" ng-bind-html="drawSVGCIcon('health_card')"></i>
                                         <div class="dotfont">Consultations</div>
                                     </div>
                                 </div>
-                                <div class="col col-13 colmore" style="" ng-click="moreclickval(getDependentDetails.tabPatientId)">
+                                <div class="colmore colmoreMore-{{deviceName}}" ng-click="moreclickval(getDependentDetails.tabPatientId)">
                                     <div class="tabvalue">
-                                        <i class="icon ion-more doticon"></i>
+                                        <i class="icon doticon"  ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
                                         <div class="dotfont">More</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row dotrow" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="moretab">
-                                <div class="col col-25 moretab" ng-click="hidemoretab()">
+                            <div class="row dotrow authorizedIconSize-{{deviceName}}" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="moretab">
+                                <div class="moretab" ng-click="hidemoretab()">
                                     <p class="tabmoreicon"> <i class="ion-chevron-down"></i></p>
                                     <div class="moralign">
-                                        <i class="icon ion-more moreicon"></i>
+                                        <i class="icon moreicon moreicon-{{deviceName}}" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
                                         <div>
                                             <p class="morecont">More</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col col-35 statuscol" ng-click="showPopup(getDependentDetails,'F')">
-                                    <div class="tabvalue">
+                                <div class="statuscol" ng-click="showPopup(getDependentDetails,'F')">
+                                    <div class="tabvalue tabvalueAuthorize-{{deviceName}} ">
                                         <p class="status">Status</p>
-                                        <p class="avatarclass"><i class="icon ion-chevron-right avatlefticon " style=""></i></p>
-                                        <p class="contentalign statuscont"><span>Authorized</span>
-                                            <i class="ion-thumbsup thumpsicon"></i>
+                                        <p class="avatarclass"><i class="icon avatlefticon" ng-bind-html="drawSVGCIcon('chevron-right')"></i></p>
+                                        <p class="contentalign statuscont"><span class="authorizeIcon-{{deviceName}}">Authorized</span>
+                                            <i class="thumpsicon" ng-bind-html="drawSVGCIcon('thumbs-down')"></i>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col col-40 relationcol" ng-click="selectrelation(getDependentDetails)">
-                                    <p><a class="relation">Relationsship</a></p>
+                                <div class="relationcol" ng-click="selectrelation(getDependentDetails)">
+                                    <div class="TabAuthorize-{{deviceName}}"><p><a class="relation">Relationship</a></p>
 
                                     <p class="relationcont">
                                         <span ng-if="!getDependentDetails.relationship">N/A</span>
                                         <span ng-if="getDependentDetails.relationship">{{getDependentDetails.relationship}}</span>
-                                        <i class="ion-chevron-right avataricon"></i>
+                                        <i class="avataricon chevronRelationship-{{deviceName}} authorizeRightIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('chevron-right')"></i>
                                     </p>
+                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -220,36 +221,39 @@
                             </a>
                             <a class="item authorizedval" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="viewunauthorized" ng-click="addauthorized(getDependentDetails.tabPatientId)">
                                 <p class="authorizedicon"><i class="ion-chevron-down"></i></p>
-                                <p class="authorizedcont">You are not authorized to view/manage this account
-                                    <span class="authorizedupdate">Update <i class="icon ion-chevron-right"></i></span>
-                                </p>
+                                <div class="authorizedcont ellipsis" style="width: 80%;margin-left: -10px;">You are not authorized to view/manage this account</div>
+                                <span class="authorizedupdate">Update <i class="icon" ng-bind-html="drawSVGCIcon('chevron-right')" ></i></span>
+
                             </a>
-                            <div class="row authorizedview" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="authorizedview">
-                                <div class="col col-30 authorupdate" style="max-width:85px;">
+                            <div class="row authorizedview authorizedIconSize-{{deviceName}}" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="authorizedview">
+                                <div class="authorupdate unAuthorizeUpdateMain-{{deviceName}}">
                                     <p class="tabicon authortab"> <i class="ion-chevron-down"></i></p>
                                     <div class="authorcont">
-                                        <p><a>Update <i class="icon ion-chevron-right avatarlefticon "></i></a> </p>
+                                        <p><a><span class="unAuthorizeUpdate-{{deviceName}}">Update</span> <i class="icon avatarlefticon " ng-bind-html="drawSVGCIcon('chevron-right')"></i></a> </p>
                                     </div>
                                 </div>
-                                <div class="col col-40 statustab" ng-click="showPopup(getDependentDetails, 'Y')">
+                                <div class="statustab unAuthorizeStatusMain-{{deviceName}}" ng-click="showPopup(getDependentDetails, 'Y')">
                                     <div class="tabvalue">
                                         <p class="unstatus">Status</p>
                                         <p class="avatrelationclass">
                                             <i class="icon ion-chevron-right avaticon"></i>
                                         </p>
                                         <p class="contentalign unstatuscont"> <span class="unauthor">UnAuthorized</span>
-                                            <i class="ion-thumbsdown thumbsdownicon"></i>
+                                            <i class="thumbsdownicon" ng-bind-html="drawSVGCIcon('thumbs-down')"></i>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col col-30 relationtab" ng-click="selectrelation(getDependentDetails)">
-                                    <p class="conticon relationstatus"><a>Relationsship</a></p>
-                                    <p class="unauthorrelationship">
-                                        <span ng-if="!getDependentDetails.relationship">N/A</span>
-                                        <span ng-if="getDependentDetails.relationship">{{getDependentDetails.relationship}}</span>
-
-                                        <i class="ion-chevron-right avataricon"></i>
-                                    </p>
+                                <div class="relationtab unAuthorizeRelativeMain-{{deviceName}}" ng-click="selectrelation(getDependentDetails)">
+                                  <div>
+                                    <span class="unAuthorizeUserRelation-{{deviceName}}">
+                                      <p class="conticon relationstatus unAuthorizeRelat-{{deviceName}}"><a>Relationship</a></p>
+                                      <p class="ellipsis unauthorrelationship unAuthorizeRelation-{{deviceName}}">
+                                          <span ng-if="!getDependentDetails.relationship">N/A</span>
+                                          <span ng-if="getDependentDetails.relationship">{{getDependentDetails.relationship}}</span>
+                                      </p>
+                                    </span>
+                                    <span style="float: left;"><i class="avataricon chevronRelationship-{{deviceName}}" ng-bind-html="drawSVGCIcon('chevron-right')"></i></span>
+                                  </div>
                                 </div>
                             </div>
                         </div>
