@@ -7,10 +7,10 @@
             </div>
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
               <span> Related Users </span>
-              <span ng-hide="useradd"> <a class="headerval" style="position: relative;right: 8px;" ng-href="#tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
-            <!--  <span class="headerval"  ng-click="usersearchdone()"  ng-show="userdone" >Done</span>-->
+              <span > <a class="headerval" style="position: relative;right: 8px;" ng-href="#tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
+
           </h1>
-            <div class="bar bar-subheader bar-dark subheaderheight" ng-hide="userinfosubheader">
+            <div class="bar bar-subheader bar-dark subheaderheight" >
                 <div class="row">
                     <h1 class="headertitle">
                       <div class="ellipsis subHeader_content_name" >
@@ -47,20 +47,11 @@
                     </div>
                 </div>
             </div>
-            <div class="bar bar-subheader searchsubheader" ng-show="usersearchsubheader">
-                <h2 style="text-align:center;font-family:Glober SemiBold;margin-top: 20px;font-size: 22px;">Relationship</h2>
-              <!--  <div class="item-input-inset searchpopup">
-                    <label class="item-input-wrapper">
-                      <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
-                      <input type="search"  placeholder="Search" ng-model="data.searchText">
 
-                    </label>
-                </div>-->
-            </div>
         </ion-header-bar>
         <ion-view title="Related User Details">
 
-            <ion-content class="relatedusercontent" ng-hide="userinfoshow">
+            <ion-content class="relatedusercontent" >
                 <div class="list couses animated slideInLeft " id="couserlist">
                     <div ng-repeat="getCoUserDetails in listOfCoUserDetails">
                         <div>
@@ -120,10 +111,7 @@
 
                 <div class="list dependusers animated slideInRight" id="dependuserlist">
 
-
-                    <ion-item ng-if="!listOfAccountDependents.length" class="noResult" style="white-space: normal;" >No Dependent Added!</ion-item>
-
-                    <div ng-repeat="getDependentDetails in listOfAccountDependents">
+                  <div ng-repeat="getDependentDetails in listOfAccountDependents">
                         <div ng-if="getDependentDetails.isAuthorized == true">
                             <!--	<a class="item item-avatar"  ng-show="!showdnewetails{{getDependentDetails.patientId}}" ng-swipe-right="showdnewetails{{getDependentDetails.patientId}} = true">-->
                             <a class="item item-avatar" ng-show="!showdnewetails{{getDependentDetails.patientId}}">
@@ -259,7 +247,7 @@
                         </div>
 
                     </div>
-
+  <ion-item ng-if="!listOfAccountDependents.length" class="noResult" style="white-space: normal;" >No Dependent Added!</ion-item>
                 </div>
             </ion-content>
             <ion-content class="relatedsearchusercontent " ng-show="">
@@ -301,25 +289,6 @@
             <div id="Error_Message"></div>
             <!--Side Menu File Include --->
             <div class="hide-on-keyboard-open">
-<<<<<<< HEAD
-                <ion-tabs class=" tabs-icon-top tabs-dark">
-                    <a class="tab-item active" ng-click="doGetListOfCoUsers()">
-                        <i class="icon ion-person-stalker tabfont"></i> Users
-                    </a>
-                    <a class="tab-item" ng-href="#tab/consultations">
-                        <i class="icon ion-card tabfont"></i> Consultations
-                    </a>
-                    <a class="tab-item" ng-href="#tab/healthinfo">
-                        <i class="icon ion-android-clipboard tabfont"></i> My Health
-                    </a>
-                    <a class="tab-item" ng-href="#tab/appointmentpatientdetails">
-                        <i class="icon ion-calendar tabfont"></i> Appointments
-                    </a>
-                    <a class="tab-item" ng-href="#tab/profileoption">
-                        <i class="icon ion-more tabfont"></i> More
-                    </a>
-                </ion-tabs>
-=======
               <ion-tabs class=" tabs-icon-top tabs-dark">
                  <a class="tab-item active" ng-click="doGetListOfCoUsers()" >
                  <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
@@ -337,7 +306,7 @@
                  <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
                  </a>
               </ion-tabs>
->>>>>>> 1825129dc0126897112b27fa92e8327c1c964e0a
+
             </div>
     </ion-side-menu-content>
     <div ng-include src="'templates/SideMenu.html'"></div>
