@@ -80,7 +80,7 @@
 					<i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">Date of Birth</b></span>
 			</div>
 			<div class="col col-50">
-				 <input  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" >
+				 <input cla id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" >
 			</div>
 		</div>
   <div class="item item-input validated">
@@ -125,10 +125,10 @@
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b></span>
         </div>
         <div style="width: 100px;padding-right: 10px;">
-          <input id="height" class="usertext textalign" type="number" value=""  ng-model="height" name="height" required>
+          <input id="height" class="usertext textalign" placeholder="Req" type="number" value=""  ng-model="height" name="height" required>
         </div>
         <div style="width: 100px;padding-right: 10px;">
-            <input id="height2" class="usertext textalign" type="number" value="" ng-model="height2" name="height2" required>
+            <input id="height2" class="usertext textalign" placeholder="Req" type="number" value="" ng-model="height2" name="height2" required>
         </div>
         <div style="width: 50%;">
            <select style="width:90%;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
@@ -290,9 +290,7 @@
  </div>
  </ion-content>
 </form>
-</ion-side-menu-content>
- <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+
 </ion-view>
 
 
@@ -312,3 +310,6 @@
 </button>
 </ion-footer-bar>
 </div>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>

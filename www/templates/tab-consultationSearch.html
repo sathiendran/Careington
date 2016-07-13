@@ -104,8 +104,8 @@
                      <p class="ellipsis"><span class="colfamily" ng-if="!misseddata.docname">NA</span>
                         <span class=" colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}</span>
                   </div>
-                  <div class="col col-25">
-                     <span class="contright"  ng-click="showReportView({{misseddata}},'tab.reports');">Report
+                  <div class="col col-25 colReport-{{deviceName}}" >
+                     <span class="contright"  ng-click="showReportView({{misseddata}},'tab.reports');">Details
                      <span><i class="icon ion-chevron-right"></i></span></span>
                   </div>
                </div>
@@ -150,7 +150,7 @@
                         <span class=" colfamily"  ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</span>
                      </p>
                   </div>
-                  <div class="col col-25">
+                  <div class="col col-25 colReport-{{deviceName}}">
                      <span class="contright"  ng-click="showReportView({{droppedData}},'tab.reports');">Report
                      <span><i class="icon ion-chevron-right"></i></span></span>
                   </div>
