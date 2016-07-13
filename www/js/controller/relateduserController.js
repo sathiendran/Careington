@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('relateduserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter) {
+    .controller('relateduserController', function($scope, $ionicPlatform,$ionicModal, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter) {
           $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -503,23 +503,34 @@ $rootScope.authorised=relateDependentAuthorize;
                 $scope.groups[i].items.push(i + '-' + j);
             }
         }
-        /* Seach Done*/
+
 
         $scope.selectrelation = function(selPatient) {
 
             $rootScope.relationUpdatePatientId = selPatient.patientId;
             $rootScope.relationUpdateAuthStatus = selPatient.isAuthorized;
-            $scope.clearSelectionAndRebindSelectionList($rootScope.relationUpdatePatientId, $rootScope.listOfRelationship);
+            $rootScope.relationUpdateRelationId = selPatient.relationship;
+            $scope.clearSelectionAndRebindSelectionList($rootScope.relationUpdateRelationId, $rootScope.listOfRelationship[0].codes);
             $scope.useradd = true;
             $scope.userdone = true;
-            $scope.userinfosubheader = true;
-            $scope.usersearchsubheader = true;
             $scope.userinfoshow = true;
-            $scope.usersearchinfocontent = true;
             $scope.usertab = true;
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+                  $ionicModal.fromTemplateUrl('templates/tab-relationSearch.html', {
+                      scope: $scope,
+                      animation: 'slide-in-up',
+                      focusFirstInput: false,
+                      backdropClickToClose: false
+                  }).then(function(modal) {
+                      $scope.modal = modal;
+                      $scope.modal.show();
+
+                  });
+
         }
 
         $scope.usersearchdone = function() {
+            $scope.modal.hide();
             $scope.useradd = false;
             $scope.userdone = false;
             $scope.userinfosubheader = false;
@@ -528,10 +539,15 @@ $rootScope.authorised=relateDependentAuthorize;
             $scope.usersearchinfocontent = false;
             $scope.usertab = false;
         }
-        $scope.setNewRelation = function(newRelatioCodeId) {
+        $scope.removemodal = function() {
+            $scope.usersearchdone();
+
+
+        };
+        $scope.OnSelectRelation = function(newRelatioCodeId) {
             if (newRelatioCodeId.checked === true ) {
-                $rootScope.relationShipCheckedrelationShipChecked++;
-                console.log($rootScope.relationShipChecked);
+                $rootScope.relationShipChecked++;
+                console.log($rootScope.newRelatioCodeId);
             } else {
                 $rootScope.relationShipChecked--;
                    newRelatioCodeId.checked === false;
@@ -541,11 +557,9 @@ $rootScope.authorised=relateDependentAuthorize;
             }else{
                 relationUpdateAuthStatusVal = 'N';
             }
-            $rootScope.doUpdateDependentsAuthorize($rootScope.relationUpdatePatientId, newRelatioCodeId, relationUpdateAuthStatusVal);
-            $scope.usersearchdone();
-
-
-        }
+          $rootScope.doUpdateDependentsAuthorize($rootScope.relationUpdatePatientId, newRelatioCodeId, relationUpdateAuthStatusVal);
+          $scope.usersearchdone();
+}
         /*$rootScope.setNewRelation = function(newRelatioCodeId){
             if($rootScope.relationUpdateAuthStatus){
                 relationUpdateAuthStatusVal = 'Y';
@@ -639,16 +653,13 @@ $rootScope.authorised=relateDependentAuthorize;
                    item.checked = false;
                });
             if(!angular.isUndefined(selectedListItem)){
+              angular.forEach(mainListItem, function(value, key){
+                     if(value.text ==selectedListItem){
+                         value.checked = true;
+                         $scope.checkedrelation = value.text;
+                     }
 
-               if(selectedListItem.length > 0){
-                   angular.forEach(selectedListItem, function(value1, key1) {
-                       angular.forEach(mainListItem, function(value2, key2) {
-                         if (value1.description === value2.text) {
-                             value2.checked = true;
-                         }
-                       });
-                   });
-               }
+    })
            }
         };
 
