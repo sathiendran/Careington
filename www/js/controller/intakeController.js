@@ -1253,9 +1253,9 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
         var mm = today.getMonth() + 1;
         var yyyy = today.getFullYear();
         var isSurgeryDateIsFuture = true;
-        if ($scope.surgery.dateStringYear === yyyy) {
-            if ($scope.surgery.dateStringMonth > mm) {
-                var isSurgeryDateIsFuture = false;
+        if (+$scope.surgery.dateStringYear === yyyy) {
+            if (+$scope.surgery.dateStringMonth > mm) {
+                isSurgeryDateIsFuture = false;
             }
         }
 
@@ -1265,9 +1265,9 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
         } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
             $scope.ErrorMessage = "Please enter the date as MM/YYYY";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
-            /* }else if(!isSurgeryDateValid){
+        }else if(!isSurgeryDateValid){
             $scope.ErrorMessage = "Surgery date should not be before your birthdate";
-			$rootScope.ValidationFunction1($scope.ErrorMessage);*/
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
         } else if (!isSurgeryDateIsFuture) {
             $scope.ErrorMessage = "Surgery date should not be the future Date";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
