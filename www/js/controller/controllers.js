@@ -4459,7 +4459,10 @@ LoginService.getScheduledConsulatation(params);
             attachmentFileId: fileId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                window.open(data.data[0].url, '_system', 'location=yes');
+                var fileUrl = data.data[0].url;
+                if(fileUrl.indexOf('https://') < 0)
+                    fileUrl = apiCommonURL + fileUrl;
+                window.open(fileUrl, '_system', 'location=yes');
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();
