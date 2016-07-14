@@ -291,10 +291,11 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
                 $scope.ErrorMessage = "Please Enter Your Height";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
-                $scope.ErrorMessage = "Please Enter Your Height";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
+            } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+            //     $scope.ErrorMessage = "Please Enter Your Height";
+            //     $rootScope.Validation($scope.ErrorMessage);
+            //} 
+            else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
                 $scope.ErrorMessage = "Please Select Your Height Unit";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === '') {
@@ -317,6 +318,9 @@ angular.module('starter.controllers')
                 $rootScope.Validation($scope.ErrorMessage);
             }
             else {
+                if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+                    $scope.healthInfoHeight2 = "0";
+                }
                 $scope.doPutProfileUpdation();
             }
 
@@ -383,6 +387,7 @@ angular.module('starter.controllers')
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
+                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
               if($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !=='undefined') {
                 $scope.uploadPhotoForExistingPatient();
               }

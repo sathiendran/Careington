@@ -207,9 +207,10 @@ angular.module('starter.controllers')
        } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
            $scope.ErrorMessage = "Please Enter Your Height";
            $rootScope.Validation($scope.ErrorMessage);
-       }else if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
-           $scope.ErrorMessage = "Please Enter Your Height";
-           $rootScope.Validation($scope.ErrorMessage);
+       // }else if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
+        //    //$scope.ErrorMessage = "Please Enter Your Height";
+        //    //$rootScope.Validation($scope.ErrorMessage);
+        //    $scope.height2 = "0";
        } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
            $scope.ErrorMessage = "Please Select Your Height Unit";
            $rootScope.Validation($scope.ErrorMessage);
@@ -244,7 +245,10 @@ angular.module('starter.controllers')
                 $rootScope.Validation($scope.ErrorMessage);
       }
        else {
-       $scope.doPostNewDependentuser();
+           if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
+               $scope.height2 = "0";
+           }
+            $scope.doPostNewDependentuser();
       }
    }else{
      if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
