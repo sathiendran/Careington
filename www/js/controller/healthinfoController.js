@@ -382,7 +382,7 @@ angular.module('starter.controllers')
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
-              if($rootScope.newDependentImagePath !== '' && typeof $rootScope.newDependentImagePath !=='undefined') {
+              if($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !=='undefined') {
                 $scope.uploadPhotoForExistingPatient();
               }
               if($rootScope.primaryPatientId !== data.patientID) {
