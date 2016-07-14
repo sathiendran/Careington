@@ -3249,7 +3249,9 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 	  font-size: 25px;
 	  margin-top: -2px;
 	}
-
+.popupnotification{
+  position: relative !important;
+}
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
 .ErrorContent { text-align: center;width: 93% !important;margin-top: 22px;  margin-bottom: -30px; }
@@ -7304,6 +7306,9 @@ Pagination Styles
 .coUserAddress-IOS {
   line-height:25px !important; font-size: 20px !important;
 }
+.coUserAddress-Android {
+  line-height:25px !important; font-size: 20px !important;
+}
 .addUser-IOS {
   color: #888 !important; margin-left: 0px !important;
 }
@@ -7608,12 +7613,20 @@ input.ion-google-place[readonly] {
   .item-input {
     padding: 6px 0 5px 0px !important;
   }
+  .dobDependent-Android {
+    font-size: 20px;
+    line-height: 20px;
+    font-family: Glober Semibold;
+    color: rgba(5, 4, 9, 0.54) !important;
+    width: 159%;
+  }
  }
 .dobDependent-IOS {
   font-size: 20px;
   color: rgba(5, 4, 9, 0.54) !important;
   width: 159%;
 }
+
 .adduseWeight-IOS {
   font-size: 18px;
     margin-left: 5px;

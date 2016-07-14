@@ -1,12 +1,15 @@
 <div class="modal">
     <ion-view>
-        <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-            <div class="ErrorMessage ErrorMessageDiv"  ></div>
+
+         <ion-header-bar  class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+  <div id="ErrorMessagepopupDiv" ></div>
             <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="hideSurgeryPopup()">Close</button>
             <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My Surgeries</h1>
             <button ng-show="showNewSurgeryAdd" class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="closeSurgeryPopup()" >Save</button>
-        </header>
+
+       </ion-header-bar>
         <ion-content has-header="true" class="concernListContent">
+
             <ion-list>
                 <div ng-show="showNewSurgeryAdd" class="list" style="padding-bottom: 0px !important; {{PriorSurgeryPopupTextBox}}">
                     <h5>&nbsp;&nbsp;&nbsp;Add New Surgery</h5>
