@@ -247,10 +247,10 @@ angular.module('starter.controllers')
         if ($rootScope.getSecondaryConcernAPIList == "") {
             if (typeof $scope.PatientPrimaryConcernItem != 'undefined') {
                 if ($rootScope.IsValue != '') {
-                    $scope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
+                    $rootScoperootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
                         text: $rootScope.PrimaryConcernText
                     });
-                    $scope.getCheckedPrimaryConcern[0].checked = true;
+                    $rootScope.getCheckedPrimaryConcern[0].checked = true;
                 }
             }
 
@@ -276,7 +276,7 @@ angular.module('starter.controllers')
 
 
     $scope.closePrimaryConcerns = function() {
-        $scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {
+        $rootScope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {
             checked: true
         });
         if ($scope.PatientPrimaryConcernItem != '') {
@@ -1532,8 +1532,16 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                 if (index == 1) {
 
                 } else if (index == 2) {
+  $rootScope.PatientPrimaryConcernItem;
 
                     $rootScope.PatientPrimaryConcern = "";
+                    $rootScope.primaryConcernList="";
+                    $rootScope.secondaryConcernList="";
+                    $scope.PatientPrimaryConcernItem="";
+                    $rootScope.primaryconcern=false;
+                    $rootScope.secondaryconcern=false;
+              //    $scope.primarylist= $scope.PatientPrimaryConcernItem[0].checked;
+                //    $scope.primarylist=false;
                     $rootScope.PatientSecondaryConcern = "";
                     $rootScope.PatientChronicCondition = "";
                     $rootScope.patinentCurrentMedication = "";
