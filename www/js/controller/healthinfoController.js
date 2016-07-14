@@ -291,10 +291,11 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
                 $scope.ErrorMessage = "Please Enter Your Height";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
-                $scope.ErrorMessage = "Please Enter Your Height";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
+            } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+            //     $scope.ErrorMessage = "Please Enter Your Height";
+            //     $rootScope.Validation($scope.ErrorMessage);
+            //} 
+            else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
                 $scope.ErrorMessage = "Please Select Your Height Unit";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === '') {
@@ -317,6 +318,9 @@ angular.module('starter.controllers')
                 $rootScope.Validation($scope.ErrorMessage);
             }
             else {
+                if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+                    $scope.healthInfoHeight2 = "0";
+                }
                 $scope.doPutProfileUpdation();
             }
 
@@ -337,7 +341,8 @@ angular.module('starter.controllers')
                 gender: $scope.healthInfoGender,
                 ethnicity: $scope.getEthnicityId,
                 hairColor: $scope.getHairColorId,
-                homePhone: $scope.healthInfoCountry + $scope.getOnlyNumbers($scope.healthInfoHomePhone),
+                //homePhone: $scope.healthInfoCountry + $scope.getOnlyNumbers($scope.healthInfoHomePhone),
+                homePhone: $scope.getOnlyNumbers($scope.healthInfoHomePhone),
                 mobilePhone: $scope.healthInfoCountry + $scope.getOnlyNumbers($scope.healthInfoMobilePhone),
                 schoolName: "",
                 schoolContact: "",
@@ -382,7 +387,8 @@ angular.module('starter.controllers')
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
-              if($rootScope.newDependentImagePath !== '' && typeof $rootScope.newDependentImagePath !=='undefined') {
+                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+              if($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !=='undefined') {
                 $scope.uploadPhotoForExistingPatient();
               }
               if($rootScope.primaryPatientId !== data.patientID) {

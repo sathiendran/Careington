@@ -4032,10 +4032,14 @@ LoginService.getScheduledConsulatation(params);
                                     $rootScope.timeNew = 'none';
                                     $rootScope.timeNew1 = 'block';
                                     $rootScope.timerCOlor = '#E1FCD4';
+                                    $('.AvailableIn').hide();
+                                    $('.enterAppoinment').show();
                                 } else if (args.millis > 600) {
                                     $rootScope.timeNew = 'block';
                                     $rootScope.timeNew1 = 'none';
                                     $rootScope.timerCOlor = '#FEEFE8';
+                                    $('.AvailableIn').show();
+                                    $('.enterAppoinment').hide();
                                 }
                             });
                             $rootScope.time = new Date(getReplaceTime).getTime();
@@ -4046,6 +4050,8 @@ LoginService.getScheduledConsulatation(params);
 
                             if (getReplaceTime < currentUserHomeDate) {
                                 $rootScope.timerCOlor = '#E1FCD4';
+                                $('.AvailableIn').hide();
+                                $('.enterAppoinment').show();
                             }
                         } else if ((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
                             $rootScope.timerCOlor = 'transparent';
@@ -4453,7 +4459,10 @@ LoginService.getScheduledConsulatation(params);
             attachmentFileId: fileId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                window.open(data.data[0].url, '_system', 'location=yes');
+                var fileUrl = data.data[0].url;
+                if(fileUrl.indexOf('https://') < 0)
+                    fileUrl = apiCommonURL + fileUrl;
+                window.open(fileUrl, '_system', 'location=yes');
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();

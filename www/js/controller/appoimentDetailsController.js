@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 
 .controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
     //$state.go('tab.appoimentDetails');
-    //document.getElementsByTagName('timer')[0].stop();
+    document.getElementsByTagName('timer')[0].stop();
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name == "tab.userhome") ||
             ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -149,38 +149,35 @@ angular.module('starter.controllers')
         $timeout(function() {
               document.getElementsByTagName('timer')[0].stop();
               document.getElementsByTagName('timer')[0].start();
-          }, 100);
-
-        var d = new Date();
-        //d.setHours(d.getHours() + 12);
-
-        var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-
-        if (getReplaceTime < currentUserHomeDate) {
-            $rootScope.timeNew = 'none';
-            $rootScope.timeNew1 = 'block';
-            $('.AvailableIn').hide();
-            $('.enterAppoinment').show();
-          //  $rootScope.timerCOlor = '#E1FCD4';
-        } else {
-          $rootScope.timeNew = 'block';
-          $rootScope.timeNew1 = 'none';
-          $('.AvailableIn').show();
-          $('.enterAppoinment').hide();
-        //  $rootScope.timerCOlor = '#FEEFE8';
-        }
+        }, 100);
     }
 
+    var d = new Date();
+    //d.setHours(d.getHours() + 12);
+
+    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+
+    if (getReplaceTime < currentUserHomeDate) {
+        $rootScope.timeNew = 'none';
+        $rootScope.timeNew1 = 'block';
+        $('.AvailableIn').hide();
+        $('.enterAppoinment').show();
+        $rootScope.timerCOlor = '#E1FCD4';
+    } else {
+        $rootScope.timeNew = 'block';
+        $rootScope.timeNew1 = 'none';
+        $('.AvailableIn').show();
+        $('.enterAppoinment').hide();
+        $rootScope.timerCOlor = '#FEEFE8';
+    }
+    
     $scope.showEnterWaitingRoomButton = function() {
         $rootScope.timeNew = 'none';
         $rootScope.timeNew1 = 'block';
         $('.AvailableIn').hide();
         $('.enterAppoinment').show();
     };
-    $timeout(function() {
-
-    }, 100);
-
+    
     $scope.doGetConcentToTreat = function() {
         if ($scope.accessToken == 'No Token') {
             alert('No token.  Get token first then attempt operation.');

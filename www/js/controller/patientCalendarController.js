@@ -2,6 +2,10 @@ angular.module('starter.controllers')
 
 
 .controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
+    setTimeout(function() {
+        document.getElementsByTagName('timer')[0].stop();    
+    }, 10);
+    
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name == "tab.userhome") ||
             ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -264,69 +268,7 @@ angular.module('starter.controllers')
 
   //  $rootScope.appointCurrentPage = '';
 
-    if ($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
-        //if($rootScope.scheduledList[0].appointmentId !== $rootScope.getIndividualScheduleDetails[0].appointmentId) {
-          var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
-          var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
-          var currentUserHomeDate = currentUserHomeDate;
-          if ((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-              $scope.$on('timer-tick', function(event, args) {
-                  if (args.days == 0) {
-                      $rootScope.hourDisplay = 'initial';
-                      $rootScope.daysDisplay = 'none';
-                      $rootScope.dayDisplay = 'none';
-                  } else if (args.days == 1) {
-                      $rootScope.daysDisplay = 'none';
-                      $rootScope.hourDisplay = 'none';
-                      $rootScope.dayDisplay = 'initial';
-                  } else if (args.days > 1) {
-                      $rootScope.daysDisplay = 'initial';
-                      $rootScope.hourDisplay = 'none';
-                      $rootScope.dayDisplay = 'none';
-                  }
-
-                  if (args.millis < 600) {
-                      $rootScope.timeNew = 'none';
-                      $rootScope.timeNew1 = 'block';
-                      $rootScope.timerCOlor = '#E1FCD4';
-                  } else if (args.millis > 600) {
-                      $rootScope.timeNew = 'block';
-                      $rootScope.timeNew1 = 'none';
-                      $rootScope.timerCOlor = '#FEEFE8';
-                  }
-                  /*else if(args.millis < 600000){
-                     $rootScope.timeNew = 'none';
-                     $rootScope.timeNew1 = 'block';
-                     $rootScope.timerCOlor = '#E1FCD4';
-                  }else if(args.millis > 600000){
-                  	$rootScope.timeNew = 'block';
-                     $rootScope.timeNew1 = 'none';
-                  	$rootScope.timerCOlor = '#FEEFE8';
-                  }*/
-
-              });
-              $rootScope.time = new Date(getReplaceTime3).getTime();
-
-            /*  $timeout(function() {
-                  document.getElementsByTagName('timer')[0].start();
-              }, 10);*/
-             $timeout(function() {
-                    document.getElementsByTagName('timer')[0].stop();
-                    document.getElementsByTagName('timer')[0].start();
-                }, 100);
-
-              var d = new Date();
-
-              var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-
-              if (getReplaceTime3 < currentUserHomeDate) {
-                  $rootScope.timerCOlor = '#E1FCD4';
-              }
-          } else if ((new Date(getReplaceTime3).getTime()) >= (new Date(d).getTime())) {
-              $rootScope.timerCOlor = 'transparent';
-          }
-       //}
-    }
+    
 
     $scope.addmore = false;
     $scope.healthhide = true;
@@ -360,5 +302,92 @@ angular.module('starter.controllers')
         $rootScope.doGetScheduledConsulatation();
 
     }
+    
+    if ($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
+        //if($rootScope.scheduledList[0].appointmentId !== $rootScope.getIndividualScheduleDetails[0].appointmentId) {
+          var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
+          var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
+          var currentUserHomeDate = currentUserHomeDate;
+          if ((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+              $scope.$on('timer-tick', function(event, args) {
+                  if (args.days == 0) {
+                      $rootScope.hourDisplay = 'initial';
+                      $rootScope.daysDisplay = 'none';
+                      $rootScope.dayDisplay = 'none';
+                  } else if (args.days == 1) {
+                      $rootScope.daysDisplay = 'none';
+                      $rootScope.hourDisplay = 'none';
+                      $rootScope.dayDisplay = 'initial';
+                  } else if (args.days > 1) {
+                      $rootScope.daysDisplay = 'initial';
+                      $rootScope.hourDisplay = 'none';
+                      $rootScope.dayDisplay = 'none';
+                  }
+
+                  if (args.millis < 600) {
+                      $rootScope.timeNew = 'none';
+                      $rootScope.timeNew1 = 'block';
+                      $rootScope.timerCOlor = '#E1FCD4';
+                      $('.AvailableIn').hide();
+                      $('.enterAppoinment').show();
+                  } else if (args.millis > 600) {
+                      $rootScope.timeNew = 'block';
+                      $rootScope.timeNew1 = 'none';
+                      $rootScope.timerCOlor = '#FEEFE8';
+                      $('.AvailableIn').show();
+                      $('.enterAppoinment').hide();
+                  }
+                  /*else if(args.millis < 600000){
+                     $rootScope.timeNew = 'none';
+                     $rootScope.timeNew1 = 'block';
+                     $rootScope.timerCOlor = '#E1FCD4';
+                  }else if(args.millis > 600000){
+                  	$rootScope.timeNew = 'block';
+                     $rootScope.timeNew1 = 'none';
+                  	$rootScope.timerCOlor = '#FEEFE8';
+                  }*/
+
+              });
+              $rootScope.time = new Date(getReplaceTime3).getTime();
+
+            /*  $timeout(function() {
+                  document.getElementsByTagName('timer')[0].start();
+              }, 10);*/
+             $timeout(function() {
+                    document.getElementsByTagName('timer')[0].stop();
+                    document.getElementsByTagName('timer')[0].start();
+                }, 100);
+
+              var d = new Date();
+
+              if (getReplaceTime3 < currentUserHomeDate) {
+                  $rootScope.timerCOlor = '#E1FCD4';
+              }
+              
+                var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+
+                if (getReplaceTime3 < currentUserHomeDate) {
+                    $rootScope.timeNew = 'none';
+                    $rootScope.timeNew1 = 'block';
+                    $('.AvailableIn').hide();
+                    $('.enterAppoinment').show();
+                    $rootScope.timerCOlor = '#E1FCD4';
+                } else {
+                    $rootScope.timeNew = 'block';
+                    $rootScope.timeNew1 = 'none';
+                    $('.AvailableIn').show();
+                    $('.enterAppoinment').hide();
+                    $rootScope.timerCOlor = '#FEEFE8';
+                }
+          } else if ((new Date(getReplaceTime3).getTime()) >= (new Date(d).getTime())) {
+              $rootScope.timerCOlor = 'transparent';
+          }
+       //}
+    }
+    
+    $timeout(function() {
+        document.getElementsByTagName('timer')[0].stop();
+        document.getElementsByTagName('timer')[0].start();
+    }, 1000);
 
 })
