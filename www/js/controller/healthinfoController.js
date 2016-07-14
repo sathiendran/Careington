@@ -294,7 +294,7 @@ angular.module('starter.controllers')
             } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
             //     $scope.ErrorMessage = "Please Enter Your Height";
             //     $rootScope.Validation($scope.ErrorMessage);
-            //} 
+            //}
             else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
                 $scope.ErrorMessage = "Please Select Your Height Unit";
                 $rootScope.Validation($scope.ErrorMessage);
@@ -1195,17 +1195,17 @@ $scope.data = {};
         }
 
         if ($scope.surgery.name == '' || $scope.surgery.name == undefined) {
-            $scope.ErrorMessagepopupDiv = "Please provide a name/description for this surgery";
-            $rootScope.Validationpopup($scope.ErrorMessagepopupDiv);
+            $scope.ErrorMessage = "Please provide a name/description for this surgery";
+            $rootScope.Validation($scope.ErrorMessage);
         } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
-            $scope.ErrorMessagepopupDiv = "Please enter the date as MM/YYYY";
-            $rootScope.Validationpopup($scope.ErrorMessagepopupDiv);
+            $scope.ErrorMessage = "Please enter the date as MM/YYYY";
+            $rootScope.Validation($scope.ErrorMessage);
         }else if(!isSurgeryDateValid){
-            $scope.ErrorMessagepopupDiv = "Surgery date should not be before your birthdate";
-			$rootScope.Validationpopup($scope.ErrorMessagepopupDiv);
+            $scope.ErrorMessage = "Surgery date should not be before your birthdate";
+			$rootScope.Validation($scope.ErrorMessage);
         } else if (!isSurgeryDateIsFuture) {
-            $scope.ErrorMessagepopupDiv = "Surgery date should not be the future Date";
-            $rootScope.Validationpopup($scope.ErrorMessagepopupDiv);
+            $scope.ErrorMessage = "Surgery date should not be the future Date";
+            $rootScope.Validation($scope.ErrorMessage);
         } else {
             $scope.newSurgery = {'Description': $scope.surgery.name, 'Month' : $scope.surgery.dateStringMonthVal, 'Year' : $scope.surgery.dateStringYearVal};
             $rootScope.patientmedicalsurgeries.push($scope.newSurgery);
@@ -1279,6 +1279,8 @@ $scope.data = {};
         $rootScope.IsToPriorCount--;
         //console.log($rootScope.IsToPriorCount--);
     }
+
+
 
  $scope.$watch('healthInfoModel.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
@@ -1451,24 +1453,7 @@ $scope.data = {};
     };
 
 
-    $rootScope.Validationpopup = function($errorMsg) {
-
-        function refresh_close() {
-            $('.close').click(function() {
-                $(this).parent().fadeOut(200);
-            });
-        }
-        refresh_close();
-
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $errorMsg + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
 
-        //$('#notifications-window-row-button').click(function(){
-        $("#notifications-top-center").remove();
-        $("#ErrorMessagepopupDiv").append(top);
-        //$("#notifications-top-center").addClass('animated ' + 'slideOutUp');
-        refresh_close();
-        //});
-    }
 
 });
