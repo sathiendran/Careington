@@ -276,9 +276,9 @@ angular.module('starter.controllers')
             }  else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
                 $scope.ErrorMessage = "Please Select Your Time Zone";
                 $rootScope.Validation($scope.ErrorMessage);
-            }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
-                $scope.ErrorMessage = "Please Enter Your Home Phone";
-                $rootScope.Validation($scope.ErrorMessage);
+            // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+            //     $scope.ErrorMessage = "Please Enter Your Home Phone";
+            //     $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
                 $scope.ErrorMessage = "Please Enter Your Mobile Phone";
                 $rootScope.Validation($scope.ErrorMessage);
