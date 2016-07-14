@@ -149,38 +149,35 @@ angular.module('starter.controllers')
         $timeout(function() {
               document.getElementsByTagName('timer')[0].stop();
               document.getElementsByTagName('timer')[0].start();
-          }, 100);
-
-        var d = new Date();
-        //d.setHours(d.getHours() + 12);
-
-        var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-
-        if (getReplaceTime < currentUserHomeDate) {
-            $rootScope.timeNew = 'none';
-            $rootScope.timeNew1 = 'block';
-            $('.AvailableIn').hide();
-            $('.enterAppoinment').show();
-          //  $rootScope.timerCOlor = '#E1FCD4';
-        } else {
-          $rootScope.timeNew = 'block';
-          $rootScope.timeNew1 = 'none';
-          $('.AvailableIn').show();
-          $('.enterAppoinment').hide();
-        //  $rootScope.timerCOlor = '#FEEFE8';
-        }
+        }, 100);
     }
 
+    var d = new Date();
+    //d.setHours(d.getHours() + 12);
+
+    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+
+    if (getReplaceTime < currentUserHomeDate) {
+        $rootScope.timeNew = 'none';
+        $rootScope.timeNew1 = 'block';
+        $('.AvailableIn').hide();
+        $('.enterAppoinment').show();
+        //  $rootScope.timerCOlor = '#E1FCD4';
+    } else {
+        $rootScope.timeNew = 'block';
+        $rootScope.timeNew1 = 'none';
+        $('.AvailableIn').show();
+        $('.enterAppoinment').hide();
+    //  $rootScope.timerCOlor = '#FEEFE8';
+    }
+    
     $scope.showEnterWaitingRoomButton = function() {
         $rootScope.timeNew = 'none';
         $rootScope.timeNew1 = 'block';
         $('.AvailableIn').hide();
         $('.enterAppoinment').show();
     };
-    $timeout(function() {
-
-    }, 100);
-
+    
     $scope.doGetConcentToTreat = function() {
         if ($scope.accessToken == 'No Token') {
             alert('No token.  Get token first then attempt operation.');
