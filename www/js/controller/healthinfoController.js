@@ -201,6 +201,10 @@ angular.module('starter.controllers')
     $scope.putUpdatePatientDetails = function() {
       $scope.editimg = true;
       $scope.viewimg = false;
+      var selectDate = document.getElementById('healthInfoDOB').value;
+       var now = new Date();
+       var dt1 = Date.parse(now),
+       dt2 = Date.parse(selectDate);
             $scope.healthInfoFirstName = $('#healthInfoFirstName').val();
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
             $scope.healthInfoDOB = $('#healthInfoDOB').val();
@@ -264,7 +268,11 @@ angular.module('starter.controllers')
             } else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
                 $scope.ErrorMessage = "Please Select Your DOB";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
+            } else if (dt2 >dt1) {
+               $scope.ErrorMessage = "DOB can not be in Future!";
+               $rootScope.Validation($scope.ErrorMessage);
+           }
+            else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                 $scope.ErrorMessage = "Please Enter Your Email Id";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {

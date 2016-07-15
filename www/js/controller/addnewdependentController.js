@@ -183,6 +183,12 @@ angular.module('starter.controllers')
             if(age_month < 0 || (age_month == 0 && age_day <0)) {
             age = parseInt(age) -1;
            }
+
+      var selectedDate = document.getElementById('dob').value;
+       var now = new Date();
+       var dt1 = Date.parse(now),
+       dt2 = Date.parse(selectedDate);
+
     if ((age >=12  && age_month >= 0)) {
       if ($scope.email === 'undefined' || $scope.email === '') {
           $scope.ErrorMessage = "Please Enter Your Email Id";
@@ -197,7 +203,11 @@ angular.module('starter.controllers')
        } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
              $scope.ErrorMessage = "Please Enter Your DOB";
              $rootScope.Validation($scope.ErrorMessage);
-       } else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
+       } else if (dt2 >dt1) {
+          $scope.ErrorMessage = "Future Date not allowed";
+          $rootScope.Validation($scope.ErrorMessage);
+      }
+        else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
             $scope.ErrorMessage = "Please Select Your Relation";
             $rootScope.Validation($scope.ErrorMessage);
         }
@@ -260,7 +270,11 @@ angular.module('starter.controllers')
      } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
            $scope.ErrorMessage = "Please Enter Your DOB";
            $rootScope.Validation($scope.ErrorMessage);
-    } else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
+    }else if (dt2 >dt1) {
+       $scope.ErrorMessage = "DOB can not be in Future!";
+       $rootScope.Validation($scope.ErrorMessage);
+   }
+     else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
          $scope.ErrorMessage = "Please Select Your Relation";
          $rootScope.Validation($scope.ErrorMessage);
     } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {

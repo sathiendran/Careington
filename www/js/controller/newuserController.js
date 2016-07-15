@@ -162,7 +162,10 @@ angular.module('starter.controllers')
         //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
         // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
 
-
+        var selectDate = document.getElementById('userdob').value;
+         var now = new Date();
+         var dt1 = Date.parse(now),
+         dt2 = Date.parse(selectDate);
         if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
             $scope.ErrorMessage = "Please Enter Your First Name";
             $rootScope.Validation($scope.ErrorMessage);
@@ -175,7 +178,10 @@ angular.module('starter.controllers')
         } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
             $scope.ErrorMessage = "Please Enter Your DOB";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
+        } else if (dt2 >dt1) {
+           $scope.ErrorMessage = "DOB can not be in Future!";
+           $rootScope.Validation($scope.ErrorMessage);
+       }  else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
             $scope.ErrorMessage = "Please Select Your Relation";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.userCountry === 'undefined' || $scope.userCountry === '') {
