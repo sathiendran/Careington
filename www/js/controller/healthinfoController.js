@@ -1169,7 +1169,24 @@ $scope.data = {};
         });
     };
 
+    $rootScope.ValidationFunction1 = function($a) {
+        function refresh_close() {
+            $('.close').click(function() {
+                $(this).parent().fadeOut(200);
+            });
+        }
+        refresh_close();
 
+        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+
+        $("#notifications-top-center").remove();
+        //$( ".ppp" ).prepend( top );
+        $(".ErrorMessage").append(top);
+        //$(".notifications-top-center").addClass('animated ' + 'bounce');
+        refresh_close();
+
+    }
 
     $scope.closeSurgeryPopup = function(model) {
         $scope.surgery.name;
@@ -1196,16 +1213,16 @@ $scope.data = {};
 
         if ($scope.surgery.name == '' || $scope.surgery.name == undefined) {
             $scope.ErrorMessage = "Please provide a name/description for this surgery";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
             $scope.ErrorMessage = "Please enter the date as MM/YYYY";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.ValidationFunction1($scope.ErrorMessage);
         }else if(!isSurgeryDateValid){
             $scope.ErrorMessage = "Surgery date should not be before your birthdate";
-			$rootScope.Validation($scope.ErrorMessage);
+			$rootScope.ValidationFunction1($scope.ErrorMessage);
         } else if (!isSurgeryDateIsFuture) {
             $scope.ErrorMessage = "Surgery date should not be the future Date";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else {
             $scope.newSurgery = {'Description': $scope.surgery.name, 'Month' : $scope.surgery.dateStringMonthVal, 'Year' : $scope.surgery.dateStringYearVal};
             $rootScope.patientmedicalsurgeries.push($scope.newSurgery);
