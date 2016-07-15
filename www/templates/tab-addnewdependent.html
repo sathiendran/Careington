@@ -133,10 +133,10 @@
           <input id="height" class="usertext textalign" placeholder="Req" type="number" value=""  ng-model="height" name="height" required>
         </div>
         <div class="healthinfoHeight2-{{deviceName}}">
-            <input id="height2" class="usertext textalign" placeholder="Req" type="number" value="" ng-model="height2" name="height2" required>
+            <input id="height2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="height2" name="height2" required>
         </div>
-        <div class="healthinfoHeight2-{{deviceName}}">
-           <select style="width:90%;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
+        <div class="healthinfoChoose-{{deviceName}}">
+           <select style="width:100%;margin-right:52px;font-size: 18px;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
 						 <option value=""><b>Choose</b></option>
              <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b>{{getHeightunit.text}}</b></option>
 					 </select>
@@ -147,11 +147,11 @@
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b></span>
         </div>
-        <div style="margin-left: -20px;padding-right: 10px;">
+        <div style="margin-left: -5px;padding-right: 10px;">
           <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="weight" name="weight" required ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
         </div>
         <div style="width: 50%;">
-           <select style="width:90%;" class="optionselect " name="weightunit" id="weightunit" ng-model="weightunit" required>
+           <select style="width:90%;font-size: 18px;" class="optionselect " name="weightunit" id="weightunit" ng-model="weightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
            </select>

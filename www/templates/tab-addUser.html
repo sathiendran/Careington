@@ -153,8 +153,8 @@
         <div class="healthinfoHeight2-{{deviceName}}">
              <input id="userheight2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="userheight2" name="userheight2" required>
          </div>
-        <div class="healthinfoHeight2-{{deviceName}}">
-            <select style="width:90%;" class="optionselect " name="userheightunit" id="userheightunit" ng-model="userheightunit" required>
+        <div class="healthinfoChoose-{{deviceName}} ">
+            <select style="width:100%;margin-right:52px;font-size: 18px;" class="optionselect " name="userheightunit" id="userheightunit" ng-model="userheightunit" required>
                 <option value=""><b>Choose</b></option>
                 <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}"><b>{{getUserheightunit.text}}</b></option>
             </select>
@@ -169,7 +169,7 @@
            <input id="userWeight" class="usertext textalign adduseWeight-{{deviceName}}" type="number" placeholder="Optional" value="" ng-model="userWeight" name="userWeight" required >
          </div>
          <div style="width: 50%;">
-            <select style="width:90%;" class="optionselect " name="userweightunit" id="userweightunit" ng-model="userweightunit" required>
+            <select style="width:90%;font-size: 18px;" class="optionselect " name="userweightunit" id="userweightunit" ng-model="userweightunit" required>
              <option value=""><b>Choose</b></option>
                 <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ><b>{{getUserweightunit.text}}</b></option>
             </select>

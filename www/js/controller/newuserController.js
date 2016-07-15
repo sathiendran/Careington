@@ -118,7 +118,13 @@ angular.module('starter.controllers')
         $scope.email = $("#useremail").val();
         //$scope.dob1 = $("#userdob").val();
         var a =  new Date($("#userdob").val());
-        var b = a.getMonth() + 1;
+        var da = a.getMonth() + 1;
+        if(da <= 10){
+          var b="0"+da;
+        }else{
+            var b=da;
+
+        }
         var c = a.getFullYear();
         var d = a.getDate();
         $scope.dob = d + "/" + b + "/" + c;
@@ -211,14 +217,14 @@ angular.module('starter.controllers')
         else if (typeof $scope.weightunitid == 'undefined' || $scope.weightunitid === '') {
             $scope.ErrorMessage = "Please Select Your Weight Unit";
             $rootScope.Validation($scope.ErrorMessage);
-        }*/
+        }
          else if (typeof $scope.homephone === 'undefined' || $scope.homephone === '') {
             $scope.ErrorMessage = "Please Enter Your Home Phone";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
             $scope.ErrorMessage = "Please Enter Your mobile";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.homeaddress === 'undefined' || $scope.homeaddress === '') {
+        } */else if (typeof $scope.homeaddress === 'undefined' || $scope.homeaddress === '') {
             $scope.ErrorMessage = "Please Enter Your homeaddress";
             $rootScope.Validation($scope.ErrorMessage);
         }  else {
