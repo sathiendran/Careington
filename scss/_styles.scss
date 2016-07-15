@@ -5323,7 +5323,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:20px;font-family:Glober Semibold;line-height:22px;color: rgba(5, 4, 9, 0.54) !important;
+      font-size:18px;font-family:Glober Semibold;line-height:22px;color: rgba(5, 4, 9, 0.54) !important;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -7717,7 +7717,13 @@ input.ion-google-place[readonly] {
 
 .healthinfoHeight-IOS {
   width: 46%;
-      margin-left: -37px;
+  margin-left: -37px;
+}
+.healthinfoHeight-Android {
+  width: 50%;
+}
+.healthinfoHeight2-Android {
+  width: 43%;
 }
 
 .colReport-Android {
