@@ -65,8 +65,8 @@ angular.module('starter.controllers')
             }
         };
 
-
-
+  $scope.couserslists = true;
+  $scope.dependentuserslist = true;
         $scope.showdetails = true;
 
         $scope.showarchieve = false;
@@ -292,6 +292,8 @@ $rootScope.authorised=relateDependentAuthorize;
         };
 
         $scope.userslist = function() {
+          $scope.couserslists = true;
+          $scope.dependentuserslist = true;
           //  $rootScope.doGetListOfCoUsers();
             var myEl = angular.element(document.querySelector('#users'));
             myEl.addClass('btcolor');
@@ -377,6 +379,8 @@ $rootScope.authorised=relateDependentAuthorize;
 
 
         $scope.dependentslist = function() {
+          $scope.couserslists = false;
+          $scope.dependentuserslist = false;
             $scope.tabWithPatientId = '';
             $window.localStorage.setItem('patientIDWithTab', '');
             var myEl = angular.element(document.querySelector('#dependents'));
