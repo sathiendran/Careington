@@ -136,7 +136,7 @@
 
             <input id="height2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="height2" name="height2" required>
 
-          
+
         </div>
         <div class="healthinfoChoose-{{deviceName}}">
            <select style="width:100%;margin-right:52px;font-size: 18px;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
@@ -150,7 +150,9 @@
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b></span>
         </div>
-        <div style="margin-left: -5px;padding-right: 10px;">
+
+        <div style="margin-left: -5px;width: 70%;padding-right: 10px;">
+
           <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="weight" name="weight" required ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
         </div>
         <div style="width: 50%;">
