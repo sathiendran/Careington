@@ -24,7 +24,7 @@ var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'Production'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'Hello420';
+    var cobrandApp = 'DYW';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
