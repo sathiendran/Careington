@@ -3251,6 +3251,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
                 $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
 
+
                 $rootScope.eyeHairEthnicityRelationCodeSets = [];
                 angular.forEach(data.data, function(index, item) {
                     $rootScope.eyeHairEthnicityRelationCodeSets.push({
@@ -4184,6 +4185,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
+         $rootScope.SelectPatientAge = $rootScope.PatientAge;
         $rootScope.PatientGuardian = P_Guardian;
         $rootScope.patientId = P_Id;
         $rootScope.P_isAuthorized = P_isAuthorized;
