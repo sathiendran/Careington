@@ -1182,7 +1182,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     $scope.getSurgeryPopup = function() {
         $rootScope.LastName1 = '';
         $rootScope.datestr = '';
-
+ $rootScope.selectYearsList = CustomCalendar.getSurgeryYearsList( $rootScope.SelectPatientAge);
         $ionicModal.fromTemplateUrl('templates/surgeryPopup.html', {
             scope: $scope,
             animation: 'slide-in-up',
