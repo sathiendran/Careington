@@ -1052,7 +1052,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.goToSearchProvider = function(currentPage) {
         $rootScope.frontPage = 'tab.' + currentPage;
         $rootScope.backProviderSearchKey = '';
-        $state.go('tab.searchprovider');
+        if(currentPage === "loginSingle") {
+            $state.go('tab.registerStep1');
+        }else {
+          $state.go('tab.searchprovider');
+        }
     }
 
     $rootScope.backtoPreviousPage = function() {

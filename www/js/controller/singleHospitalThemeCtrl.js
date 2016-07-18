@@ -1,17 +1,42 @@
 angular.module('starter.controllers')
 
 .controller('singleHospitalThemeCtrl', function($scope, ageFilter, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $ionicLoading) {
-  
+
     $ionicLoading.show({
         template: '<img src="img/puff.svg" alt="Loading" />'
     });
 
-    $rootScope.hospitalId = singleHospitalId;
-    if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production') {
+  //  $rootScope.hospitalId = singleHospitalId;
+  if (deploymentEnvLogout == 'Single') {
+      if (deploymentEnvForProduction == 'Production') {
+          /*if (appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+              $rootScope.hospitalId = singleStagingHospitalId;
+              apiCommonURL = 'https://snap-stage.com';
+              api_keys_env = 'Staging';
+              $rootScope.APICommonURL = 'https://snap-stage.com';
+          } else {   */
+              $rootScope.hospitalId = singleHospitalId;
+              apiCommonURL = 'https://connectedcare.md';
+              api_keys_env = 'Production';
+              $rootScope.APICommonURL = 'https://connectedcare.md';
+        //  }
+      } else if (deploymentEnvForProduction == 'Staging') {
+          $rootScope.hospitalId = singleStagingHospitalId;
+          api_keys_env = "Staging";
+      } else if (deploymentEnvForProduction == 'QA') {
+          $rootScope.hospitalId = singleQAHospitalId;
+          api_keys_env = "QA";
+      } else if (deploymentEnvForProduction == 'Sandbox') {
+          $rootScope.hospitalId = singleSandboxHospitalId;
+          api_keys_env = "Sandbox";
+      }
+    }
+
+  /*  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production') {
         apiCommonURL = 'https://connectedcare.md';
         api_keys_env = '';
         $rootScope.APICommonURL = 'https://connectedcare.md';
-    }
+    }*/
 
     $rootScope.patientConsultEndUrl = "";
 
