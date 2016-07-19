@@ -1516,7 +1516,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 
     }
 
-  
+
     $scope.clearRootScopeConce = function(model) {
         navigator.notification.confirm(
             'Are you sure that you want to cancel this consultation?',
