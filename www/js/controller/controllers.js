@@ -3124,7 +3124,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $scope.invalidZip = "";
             $scope.invalidMonth = "";
             $scope.invalidCVV = "";
-            $scope.invalidCard = "border: 1px solid red;";
+            $scope.invalidCard = "border: 1px solid red;max-width:50%;";
             $scope.ErrorMessage = "Invalid Card Number";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (ExpiryDateCheck < currentTime) {
