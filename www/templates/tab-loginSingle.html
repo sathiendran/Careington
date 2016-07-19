@@ -65,9 +65,9 @@
 				</div> -->
 					<div class="{{NeedanAcountStyle}}">
                         <h5><b>Need an account?</b></h5>
-                        <a style="cursor: pointer;" ng-click="goToSearchProvider('loginSingle');"> <p class="needanaccountPragraph">Click here to Register.</p></a>
+                        <a ng-if="customerSso != 'Mandatory'" style="cursor: pointer;" ng-click="goToSearchProvider('loginSingle');"> <p class="needanaccountPragraph">Click here to Register.</p></a>
 						 <!--<p class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>-->
-                    
+
                     </div>
 				</div>
         </form>

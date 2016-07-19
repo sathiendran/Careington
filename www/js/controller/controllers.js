@@ -1002,7 +1002,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 //console.log(data);
                 $rootScope.PostPaymentDetails = data.data;
-                if ($rootScope.PostPaymentDetails === "") {
+                if ($rootScope.PostPaymentDetails.length === 0) {
                     $scope.ErrorMessage = "No account associated with this email.  Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
@@ -4792,7 +4792,22 @@ LoginService.getScheduledConsulatation(params);
             }
         };
     })
-
+    .directive('siteHeaderConcernBack', function() {
+        return {
+            restrict: 'E',
+            template: '<a class="button_new icon ion-chevron-left"><span> {{back}}</span></a>',
+            scope: {
+                back: '@back',
+                icons: '@icons'
+            },
+            link: function(scope, element, attrs) {
+                $(element[0]).on('click', function() {
+                    history.back();
+                    scope.$apply();
+                });
+            }
+        };
+    })
 
 
 

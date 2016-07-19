@@ -21,8 +21,8 @@
    <div class="row">
     <h1 class="headertitle">
      <div class="ellipsis subHeader_content_name" >
-       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> {{PatientFirstName}}</span>
-       <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> {{missedAppointDetails.missedPatFirstName}}</span>
+       <span class="patientLastName ellipsis lnamefont" >{{missedAppointDetails.missedPatLastName}}</span>
     </div>
    </h1>
   </div>
@@ -33,7 +33,7 @@
       <p class="homecontent">Account Home</p>
     </a>
     <a class="item-avatar itemhead">
-      <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
+      <p><img ng-src="{{missedAppointDetails.patphoto}}" class="topimage"></p>
     </a>
     <a class="rightpatient" ng-href="#/tab/userhome">
       <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
@@ -75,7 +75,7 @@
           <div class="col col-10 patcol10">1</div>
             <div class="col col-90 ">
                 <p class="parafont"><b>Primary Concern</b></p>
-                <p class="pfontsize">{{reportScreenPrimaryConcern}}</p>
+                <p class="pfontsize">{{missedAppointDetails.priConcern}}</p>
             </div>
        </div>
           <br>
@@ -84,7 +84,7 @@
           <div class="col col-10 patcol10">2</div>
             <div class="col col-90 ">
                 <p class="parafont"><b>Secondary Concern</b></p>
-                <p class="pfontsize">{{reportScreenSecondaryConcern}}</p>
+                <p class="pfontsize">{{missedAppointDetails.secConcern}}</p>
             </div>
        </div>
           <br>
