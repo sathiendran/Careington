@@ -822,7 +822,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         refresh_close();
 
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to apply health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
         //$('#notifications-window-row-button').click(function(){
         $("#notifications-top-center").remove();
@@ -1002,7 +1002,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 //console.log(data);
                 $rootScope.PostPaymentDetails = data.data;
-                if ($rootScope.PostPaymentDetails === "") {
+                if ($rootScope.PostPaymentDetails==0) {
                     $scope.ErrorMessage = "No account associated with this email.  Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
