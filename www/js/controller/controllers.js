@@ -822,7 +822,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         refresh_close();
 
-        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Unable to apply health plan. Please correct and try again.! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
+        var top = '<div id="notifications-top-center" class="notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> Health Plan Enquiry failed! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline"></span></div></div>';
 
         //$('#notifications-window-row-button').click(function(){
         $("#notifications-top-center").remove();
@@ -1002,7 +1002,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 //console.log(data);
                 $rootScope.PostPaymentDetails = data.data;
-                if ($rootScope.PostPaymentDetails.length === 0) {
+                if ($rootScope.PostPaymentDetails==0) {
                     $scope.ErrorMessage = "No account associated with this email.  Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
@@ -3627,11 +3627,18 @@ LoginService.getScheduledConsulatation(params);
 
     $scope.PlanDetailsValidation = function(model) {
 
+
         var d = new Date();
         var curr_date = d.getDate();
         var curr_month = d.getMonth() + 1;
         var curr_year = d.getFullYear();
         var getCurntDate = curr_year + '-' + curr_month + '-' + curr_date;
+
+        var selectedDate = document.getElementById('date').value;
+        var now = new Date();
+        var dt1 = Date.parse(now),
+        dt2 = Date.parse(selectedDate);
+
 
         /*if($('#Provider').val() === '' || $('#firstName').val() === '' || $('#lastName').val() === '' || $('#policyNumber').val() === '' || $('#date').val() === '' ){ */
         if ($('#Provider').val() === '') {
@@ -3649,10 +3656,11 @@ LoginService.getScheduledConsulatation(params);
         } else if ($('#date').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if ($('#date').val() > getCurntDate) {
-            $scope.ErrorMessage = "Date of Birth Should not be Future Date";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else {
+        }else if (dt2 >dt1) {
+          $scope.ErrorMessage = "Date of Birth Should not be Future Date";
+          $rootScope.Validation($scope.ErrorMessage);
+       }
+       else {
             $rootScope.verifyPlanDisplay = "inherit";
             $rootScope.PlanDisplay = "none;";
             $scope.doPostNewHealthPlan();

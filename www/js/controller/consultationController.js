@@ -764,9 +764,22 @@ angular.module('starter.controllers')
         $scope.passedsearchshow = true;
         $scope.missedsearchshow = false;
         $scope.droppedsearcshow = false;
+        $scope.data = {};
+
+              $scope.$watch('data.searchProvider', function(searchKey) {
+                  $rootScope.providerSearchKey = searchKey;
+                  if (typeof $rootScope.providerSearchKey == 'undefined') {
+                      $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+                  }
+                  if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+                      $rootScope.iconDisplay = 'none';
+                  } else {
+                      $rootScope.iconDisplay = 'Block';
+                  }
+            });
 
         $rootScope.passedsearchconsult = function() {
-
+            $scope.data.searchProvider='';
             $scope.passededconsultants();
             var myEl = angular.element(document.querySelector('#passedsearch'));
             myEl.removeClass('btnextcolor');
@@ -782,7 +795,7 @@ angular.module('starter.controllers')
             $scope.droppedsearchshow = false;
         }
         $scope.missedsearchconsult = function() {
-
+            $scope.data.searchProvider='';
             $scope.missedconsult();
             var myEl = angular.element(document.querySelector('#missedsearch'));
             myEl.addClass('btcolor');
@@ -798,7 +811,7 @@ angular.module('starter.controllers')
             $scope.droppedsearchshow = false;
         }
         $scope.droppedsearchconsult = function() {
-
+            $scope.data.searchProvider='';
             $scope.droppedconsult();
             var myEl = angular.element(document.querySelector('#droppedsearch'));
             myEl.addClass('btcolor');
