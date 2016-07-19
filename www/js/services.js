@@ -313,7 +313,6 @@ angular.module('starter.services', [])
     }
 
 
-
 		this.getListOfCodeSet = function(params) {
 			var PatientDetailsList = {
 				headers: util.getHeaders(params.accessToken),
@@ -1302,12 +1301,12 @@ this.getPatientMedicalProfile = function(params){
            });
      }
 
-
+//appointmentStatusCodes=1&appointmentTypeCodes=1&appointmentTypeCodes=3&IncludePatientDependents=true
 
     this.getListOfMissedConsultation = function(params){
          var requestInfo = {
              headers:util.getHeaders(params.accessToken),
-             url: apiCommonURL+'/api/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&patientId='+params.patientId+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes,
+             url: apiCommonURL+'/api/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&patientId='+params.patientId+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes+'&appointmentTypeCodes=1&appointmentTypeCodes=3&IncludePatientDependents=true',
              method: 'GET',
          };
          $http(requestInfo).
@@ -1341,7 +1340,7 @@ this.getPatientMedicalProfile = function(params){
                 }
             });
   }
-  
+
   this.getTimezoneList = function(params){
         var requestInfo = {
             headers:util.getHeaders(params.accessToken),

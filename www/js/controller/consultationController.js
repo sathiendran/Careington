@@ -184,25 +184,60 @@ angular.module('starter.controllers')
                                 });
                                 var patimg = patientdata[0].person;
                                 var photo = _.pick(patimg, 'photoUrl');
-                                var patphoto = _.values(photo);
+                                var patphoto1 = _.values(photo);
+                                var patphoto = patphoto1.join();
+                                //item.intakeMetadata.concerns[0].customCode.description
+                                var intakeMetadata = item.intakeMetadata.concerns;
+                                var patientSecondConcern = _.where(intakeMetadata, {
+                                    isPrimary: false
+                                });
+
+                                if (patientSecondConcern.length > 0) {
+                                    var secConcern = patientSecondConcern[0].customCode.description;
+                                }else {
+                                    var secConcern = 'NA';
+                                }
+
+
                                 if (drdata.length > 0) {
                                     var drlist = drdata[0].person.name;
-                                    var nlist = _.pick(drlist, 'given');
-                                    var drname = _.values(nlist);
-                                    var docname = drname.join();
+                                    var nlist = _.pick(drlist, 'given', 'family');
+                                    var docname = _.values(nlist);
+                                    //var docname = drname.join();
+
+                                    var missedDocName = docname[0] + " " + docname[1];
+
                                 } else {
                                     var drname = "";
                                 }
 
+                                if (patientdata.length > 0) {
+                                    var patList = patientdata[0].person.name;
+                                    var patListGiven = _.pick(patList, 'given', 'family');
+                                    var patName = _.values(patListGiven);
+                                  //  var patName = patListGivenArr.join();
+
+                                    var missedPatName = patName[0] + " " + patName[1];
+
+                                } else {
+                                    var missedPatName = "";
+                                }
+
 
                                 $rootScope.missedlist.push({
+                                    'patphoto': patphoto,
                                     'time': missedtime,
-                                    'docname': docname,
+                                    'docname': missedDocName,
+                                    'missedPatFirstName': patName[0],
+                                    'missedPatLastName': patName[1],
                                     'enddate': enddate,
                                     'consultationId': consultationId,
                                     'startTime': item.startTime,
                                     'additionalNotes': item.intakeMetadata.additionalNotes,
-                                    'clinicianId':item.clinicianId
+                                    'clinicianId':item.clinicianId,
+                                    'appointmentId': item.appointmentId,
+                                    'priConcern': item.intakeMetadata.concerns[0].customCode.description,
+                                    'secConcern': secConcern
                                 });
 
                             }
@@ -302,7 +337,6 @@ angular.module('starter.controllers')
           $rootScope.consultationDate = '';
           $rootScope.addNotes  = '';
           $rootScope.existingConsultationReport='';
-          $rootScope.missedAppointDocDetails = '';
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -553,25 +587,9 @@ angular.module('starter.controllers')
                         $rootScope.reportMedicalCodeDetails = '';
                     }
 
-                    if(nextPage === "tab.missedConsultAppoint"){
-                      $rootScope.consultationDate = consultation.startTime;
-                    }
                     session = null;
-                    if(!angular.isUndefined(consultation.clinicianId)) {
-                      $scope.doGetDoctorDetails(consultation.clinicianId);
-                    }
                     $scope.getSoapNotes(consultation);
                     $scope.doGetAttachmentList(consultation.consultationId);
-
-
-                    $("#appointNotes").html(consultation.additionalNotes);
-                    $('#appointmentNote').find('a').each(function() {
-                        var aLink = angular.element(this).attr('href');
-                        var onClickLink = "window.open('" + aLink + "', '_system', 'location=yes'); return false;";
-                        angular.element(this).removeAttr('href', '');
-                        angular.element(this).attr('href', 'javascript:void(0);');
-                        angular.element(this).attr('onclick', onClickLink);
-                    });
                   /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
@@ -628,19 +646,6 @@ angular.module('starter.controllers')
                     });*/
                 },
                 error: function(data) {
-                    /*$ionicModal.fromTemplateUrl('templates/tab-reports.html', {
-                        scope: $scope,
-                        animation: 'slide-in-up',
-                        focusFirstInput: false,
-                        backdropClickToClose: false
-                    }).then(function(modal) {
-
-                        //    $scope.modal = modal;
-                        //  $scope.modal.show();
-                        $rootScope.reportModal = modal;
-                        $rootScope.reportModal.show();
-
-                    });*/
                     $rootScope.serverErrorMessageValidation();
                 }
             };
@@ -695,20 +700,28 @@ angular.module('starter.controllers')
         }
 
 
+        $rootScope.showMissedDetailsView = function(consultation,nextPage) {
+            $state.go('tab.missedConsultAppoint');
+            $rootScope.consultationDate = consultation.startTime;
+            $rootScope.missedAppointDetails = consultation;
+            if(!angular.isUndefined(consultation.clinicianId)) {
+              $scope.doGetDoctorDetails(consultation);
+            }
+        }
 
-        $scope.doGetDoctorDetails = function(clinicianId) {
+
+        $scope.doGetDoctorDetails = function(consultation) {
+            $rootScope.missedAppointDocDetails = '';
             if ($scope.accessToken === 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
             }
 
             var params = {
-                doctorId: clinicianId,
+                doctorId: consultation.clinicianId,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
-
-                    //$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;
-                    $rootScope.missedAppointDocDetails = [];
+                  $rootScope.missedAppointDocDetails = [];
                     angular.forEach(data.data, function(index, item) {
                     //  var docDob = $filter('date')(index.dob, "yyyy-MM-dd");
                       if (index.gender === 'M') {
@@ -724,7 +737,17 @@ angular.module('starter.controllers')
                             'profileImagePath': index.profileImagePath
                         });
                     });
-                  //  $state.go('tab.appoimentDetails');
+
+                    $("#appointNotes").html(consultation.additionalNotes);
+                    $('#appointmentNote').find('a').each(function() {
+                        var aLink = angular.element(this).attr('href');
+                        var onClickLink = "window.open('" + aLink + "', '_system', 'location=yes'); return false;";
+                        angular.element(this).removeAttr('href', '');
+                        angular.element(this).attr('href', 'javascript:void(0);');
+                        angular.element(this).attr('onclick', onClickLink);
+                    });
+
+
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();

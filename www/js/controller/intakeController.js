@@ -1516,15 +1516,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 
     }
 
-    $scope.goBackFromConcern = function() {
-
-        //$ionicHistory.goBack();
-        history.go(-1);
-      //  navigator.app.backHistory();
-    }
-
-
-
+  
     $scope.clearRootScopeConce = function(model) {
         navigator.notification.confirm(
             'Are you sure that you want to cancel this consultation?',

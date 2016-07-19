@@ -4800,7 +4800,22 @@ LoginService.getScheduledConsulatation(params);
             }
         };
     })
-
+    .directive('siteHeaderConcernBack', function() {
+        return {
+            restrict: 'E',
+            template: '<a class="button_new icon ion-chevron-left"><span> {{back}}</span></a>',
+            scope: {
+                back: '@back',
+                icons: '@icons'
+            },
+            link: function(scope, element, attrs) {
+                $(element[0]).on('click', function() {
+                    history.back();
+                    scope.$apply();
+                });
+            }
+        };
+    })
 
 
 

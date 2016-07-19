@@ -39,6 +39,7 @@ angular.module('starter.controllers')
 
         $scope.regStep1 = {};
         $rootScope.postRegisterStep1 = function() {
+            step1PostRegDetailsService.ClearPostRgDetails();
             if (typeof $scope.regStep1.FName == 'undefined' || $scope.regStep1.FName == '') {
                 $scope.ErrorMessage = "Please enter your First Name";
                 $scope.$root.$broadcast("callValidation", {

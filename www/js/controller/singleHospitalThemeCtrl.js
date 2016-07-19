@@ -5,6 +5,7 @@ angular.module('starter.controllers')
     $ionicLoading.show({
         template: '<img src="img/puff.svg" alt="Loading" />'
     });
+    $rootScope.customerSso = '';
 
   //  $rootScope.hospitalId = singleHospitalId;
   if (deploymentEnvLogout == 'Single') {
@@ -85,6 +86,7 @@ angular.module('starter.controllers')
                 Hospital = $rootScope.Hospital;
                 if (!angular.isUndefined(data.data[0].customerSso)) {
                     if (data.data[0].customerSso === "Mandatory") {
+                        $rootScope.customerSso = "Mandatory";
                         ssoURL = data.data[0].patientLogin;
                         //"Mandatory"
                         //patientConsultEndUrl
