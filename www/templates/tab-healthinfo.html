@@ -11,8 +11,8 @@
 
       <h1 class="healthTitle-{{deviceName}} chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
          <div class="HealthTitle-{{deviceName}}"> My Health </div>
-         <span class="headerval healthLeft-{{deviceName}}" ng-click="edittext()" ng-show="editshow">Edit</span>
-         <span class="searchCancel-{{deviceName}}"  ng-show="cancelshow" ><a ng-href="#/tab/userAccount" class="headerval" >Cancel</a></span>
+         <span ng-if="editOption !== 'None'" class="headerval healthLeft-{{deviceName}}" ng-click="edittext()" ng-show="editshow">Edit</span>
+          <span class="searchCancel-{{deviceName}}"  ng-show="cancelshow" ><a ng-href="#/tab/userAccount" class="headerval" >Cancel</a></span>
          <span class="headerval healthLeft-{{deviceName}}"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
 
       </h1>
@@ -95,7 +95,7 @@
            <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
            <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
            </label>
-           <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId">
+           <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Relationship</b></span>
                <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.relationship}}</div>
            </label>
@@ -350,7 +350,7 @@
              <div>
                <h4>
 
-      <span class="alignnexttext">Current Medications</span><span><a ng-click="healthsearch(patientmedications)" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a></span>
+      <span class="alignnexttext">Current Medications</span><span ng-if="editOption !== 'None'"><a ng-click="healthsearch(patientmedications)" ><i class="currentedit" ng-bind-html="drawSVGCIcon('pencil')"></i></a></span>
 
                   </h4>
                </div>
@@ -362,7 +362,7 @@
                </ul>
                <h4 class="h4align">
                   <div class="alignnexttext chronic"  >Medication Allergies</div>
-                  <span><a ng-click="alergiessearch()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
+                  <span ng-if="editOption !== 'None'"><a ng-click="alergiessearch()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">
@@ -374,7 +374,7 @@
 
                <h4 class="h4align">
                   <div class="alignnexttext chronic">Chronic Conditions</div>
-                  <span><a ng-click="chronicsearch()" ><i class="editicon" ng-bind-html="drawSVGCIcon('pencil')" ></i></a></span>
+                  <span ng-if="editOption !== 'None'"><a ng-click="chronicsearch()" ><i class="editicon" ng-bind-html="drawSVGCIcon('pencil')" ></i></a></span>
                </h4>
                <hr class="dothr dotalign">
                <ul class="aligntext alvalue">
@@ -386,7 +386,7 @@
                </ul>
                <h4 class="h4align">
                   <div class="alignnexttext chronic">Prior Surgeries</div>
-                  <span><a ng-click="showSurgeryPopup()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
+                  <span ng-if="editOption !== 'None'"><a ng-click="showSurgeryPopup()" ><i class="editicons" ng-bind-html="drawSVGCIcon('pencil')" ></i></a>
                   </span>
                </h4>
                <hr class="dothr dotalign">

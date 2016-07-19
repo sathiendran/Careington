@@ -3778,6 +3778,19 @@ LoginService.getScheduledConsulatation(params);
         LoginService.deleteAccountUser(params);
     }
 
+    $scope.checkEditOptionForCoUser = function(currentPatId) {
+      if($rootScope.listOfCoUserDetails !== 0 && !angular.isUndefined($rootScope.listOfCoUserDetails)) {
+        var coUserInfo = $filter('filter')($rootScope.listOfCoUserDetails, {patientId: currentPatId});
+        if(coUserInfo.length === 1) {
+          $rootScope.editOption = "None";
+        } else {
+             $rootScope.editOption = " ";
+        }
+      } else {
+         $rootScope.editOption = " ";
+      }
+    }
+
     $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage, seeADoc) {
         if ($rootScope.accessToken === 'No Token') {
             alert('No token.  Get token first then attempt operation.');
@@ -3919,6 +3932,7 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.userGender = "Female";
                         $rootScope.isCheckedFemale = true;
                     }
+                    $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     $state.go(nextPage);
                 }
             },

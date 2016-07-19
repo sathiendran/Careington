@@ -222,6 +222,11 @@ angular.module('starter.controllers')
                                 } else {
                                     var missedPatName = "";
                                 }
+                                if(item.intakeMetadata.additionalNotes !== '') {
+                                  var additionalNotes = item.intakeMetadata.additionalNotes;
+                                } else {
+                                    var additionalNotes = 'NA';
+                                }
 
 
                                 $rootScope.missedlist.push({
@@ -233,7 +238,7 @@ angular.module('starter.controllers')
                                     'enddate': enddate,
                                     'consultationId': consultationId,
                                     'startTime': item.startTime,
-                                    'additionalNotes': item.intakeMetadata.additionalNotes,
+                                    'additionalNotes': additionalNotes,
                                     'clinicianId':item.clinicianId,
                                     'appointmentId': item.appointmentId,
                                     'priConcern': item.intakeMetadata.concerns[0].customCode.description,
@@ -278,9 +283,9 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $rootScope.Droppedconsultations = [];
                     angular.forEach(data.data, function(index, item) {
-                      var startTimeISOString = index.consultationTimeInfo;
+                    /*  var startTimeISOString = index.consultationTimeInfo;
                       var startTime = new Date(startTimeISOString);
-                      var consultDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
+                      var consultDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));*/
                         $rootScope.Droppedconsultations.push({
                             'appointmentId': index.appointmentId,
                             'assignedDoctorFirstName': index.assignedDoctorFirstName,
@@ -292,7 +297,7 @@ angular.module('starter.controllers')
                             'consultationDuration': index.consultationDuration,
                             'consultationId': index.consultationId,
                             'consultationTime': index.consultationTime,
-                            'consultationTimeInfo': consultDate,
+                            'consultationTimeInfo': index.consultationTimeInfo,
                             'dob': index.dob,
                             'isDependent': index.isDependent,
                             'patientFirstName': index.patientFirstName,
