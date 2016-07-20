@@ -432,7 +432,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.deviceName = "IOS";
-        $rootScope.appointCOntent = "margin-top: 180px; ";
+      //  $rootScope.appointCOntent = "margin-top: 180px; ";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.loginSub = "height: 100px; top: 43px;";
@@ -1868,7 +1868,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         //$state.go('tab.userAccount');
                     }
                 } else {
-                    $state.go('tab.userhome');
+                    $state.go('tab.healthinfo');
                 }
 
 
