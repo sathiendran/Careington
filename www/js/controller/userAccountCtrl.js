@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('userAccountCtrl', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter) {
+    .controller('userAccountCtrl', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter,SurgeryStocksListService) {
       $rootScope.drawSVGCIcon = function(iconName){
           return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
       };
@@ -123,6 +123,36 @@ angular.module('starter.controllers')
         }
 
         $scope.goToPatientConcerns = function() {
+          $rootScope.PatientPrimaryConcernItem;
+        $rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
+            $rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
+                            $rootScope.PatientPrimaryConcern = "";
+                            $rootScope.primaryConcernList="";
+                            $rootScope.secondaryConcernList="";
+                            $scope.PatientPrimaryConcernItem="";
+                        //    $rootScope.chronicConditionList="";
+
+                      //    $scope.primarylist= $scope.PatientPrimaryConcernItem[0].checked;
+                        //    $scope.primarylist=false;
+                            $rootScope.PatientSecondaryConcern = "";
+                            $rootScope.PatientChronicCondition = "";
+                            $rootScope.patinentCurrentMedication = "";
+                            $rootScope.patinentMedicationAllergies = "";
+                            $rootScope.patientSurgeriess = "";
+                            $rootScope.MedicationCount == 'undefined';
+                            $rootScope.checkedChronic = 0;
+                            $rootScope.ChronicCount = "";
+                            $rootScope.AllegiesCount = "";
+                            $rootScope.checkedAllergies = 0;
+                            $rootScope.MedicationCount = "";
+                            $rootScope.checkedMedication = 0;
+                            $rootScope.IsValue = "";
+                            $rootScope.IsToPriorCount = "";
+                            $rootScope.ChronicCountValidCount = "";
+                            $rootScope.PriorSurgeryValidCount = "";
+                            $rootScope.AllegiesCountValid = "";
+                            $rootScope.MedicationCountValid = "";
+                            //SurgeryStocksListService.ClearSurgery();
             $state.go('tab.patientConcerns');
         }
 
