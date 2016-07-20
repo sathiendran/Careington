@@ -139,6 +139,7 @@ angular.module('starter.controllers')
             $scope.email = $("#email").val();
             $scope.dob = $("#dob").val();
             $scope.relation = $("#relation").val();
+            //$scope.healthInfoAuthorize = $("input[name='healthInfoAuthorize']:checked").val();
           //  $scope.gender = $("input[name='depgender']:checked").val();
             $scope.gender = $("#depgender").val();
             $scope.height = $("#height").val();
@@ -413,7 +414,7 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 patientId: $rootScope.deppatientId,
                 RelationCodeId: $rootScope.getRelationId,
-                IsAuthorized: "Y",
+                IsAuthorized: "Y", //healthInfoAuthorize,
                 success: function(data) {
                     $('#dependentuserform')[0].reset();
                     $('select').prop('selectedIndex', 0);
