@@ -80,7 +80,7 @@
                                     <p class="colfamily"> {{passedData.consultationDate}}</p>
                                 </div>
                                 <div class="passedTime-{{deviceName}}">
-                                    <p class="colfamily">{{passedData.consultationTime}}</p>
+                                    <p class="colfamily">{{passedData.consultationTimeInfo  | date: "hh:mm a"}}</p>
                                 </div>
                                 <div class="ellipsis passedDoc-{{deviceName}}">
                                     <p class="ellipsis">
@@ -128,7 +128,7 @@
                                     <p class="colfamily">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
                                 </div>
                                 <div class="passedTime-{{deviceName}}">
-                                    <p class="colfamily">{{misseddata.time}}</p>
+                                    <p class="colfamily">{{misseddata.startTime  | date: "hh:mm a"}}</p>
                                 </div>
                                 <div class="ellipsis passedDoc-{{deviceName}}">
                                     <p class="ellipsis">

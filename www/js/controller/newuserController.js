@@ -116,7 +116,7 @@ angular.module('starter.controllers')
         $scope.firstName = $("#userfirstname").val();
         $scope.lastName = $("#userlastname").val();
         $scope.email = $("#useremail").val();
-        //$scope.dob1 = $("#userdob").val();
+        $scope.dob1 = $("#userdob").val();
         var a =  new Date($("#userdob").val());
         var da = a.getMonth() + 1;
         if(da <= 10){
@@ -127,7 +127,7 @@ angular.module('starter.controllers')
         }
         var c = a.getFullYear();
         var d = a.getDate();
-        $scope.dob = d + "/" + b + "/" + c;
+        $scope.dob = b+ "/" + d + "/" + c;
       //  $scope.gender = $("input[name='userInfoGender']:checked").val();
         $scope.gender = $("#gender").val();
         $scope.heights = $("#userheight").val();
@@ -155,8 +155,8 @@ angular.module('starter.controllers')
         $scope.sptweightunit = $('#userweightunit').val().split("@");
         $scope.weightunitid = _.first($scope.sptweightunit);
         $scope.weightunit = _.last($scope.sptweightunit);
-        $scope.relation = $("#userrelation").val().split("@").slice(0, 1);
-        $scope.getRelationId = _.first($scope.relation);
+      /*  $scope.relation = $("#userrelation").val().split("@").slice(0, 1);
+        $scope.getRelationId = _.first($scope.relation);*/
         $scope.bloodtype = $("#userbloodtype").val().split("@").slice(0, 1);
         $scope.getBloodtypeId = _.first($scope.bloodtype);
         $scope.hairColor = $("#userhaircolor").val().split("@").slice(0, 1);
@@ -181,15 +181,15 @@ angular.module('starter.controllers')
         } else if (typeof $scope.email === 'undefined' || $scope.email === '') {
             $scope.ErrorMessage = "Please Enter Your Email Id";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
+        } else if (typeof $scope.dob1 === 'undefined' || $scope.dob1 === '') {
             $scope.ErrorMessage = "Please Enter Your DOB";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (dt2 >dt1) {
            $scope.ErrorMessage = "DOB can not be in Future!";
            $rootScope.Validation($scope.ErrorMessage);
-       }  else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
+       /*}  else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
             $scope.ErrorMessage = "Please Select Your Relation";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);*/
         } else if (typeof $scope.userCountry === 'undefined' || $scope.userCountry === '') {
             $scope.ErrorMessage = "Please Select Country";
             $rootScope.Validation($scope.ErrorMessage);
@@ -240,7 +240,8 @@ angular.module('starter.controllers')
             accessToken: $scope.accessToken,
             email: $scope.email,
             familyGroupId: "",
-            relationshipId: $scope.getRelationId,
+            //relationshipId: $scope.getRelationId,
+            relationshipId: "",
             heightUnitId: $scope.heightunitid,
             weightUnitId: $scope.weightunitid,
             //photo: $rootScope.newCoUserImagePath,

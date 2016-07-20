@@ -61,7 +61,7 @@
                      <p class="colfamily">{{ passedData.consultationDate }} </p>
                   </div>
                   <div class="col col-20">
-                     <p class="colfamily">{{ passedData.consultationTime}}</p>
+                     <p class="colfamily">{{passedData.consultationTimeInfo  | date: "hh:mm a"}}</p>
                   </div>
                   <div class="col col-30 ellipsis">
                      <p class="ellipsis">  <span class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</span>
@@ -111,7 +111,7 @@
                      <p class="colfamily">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
                   </div>
                   <div class="col col-20">
-                     <p class="colfamily">{{misseddata.time}}</p>
+                     <p class="colfamily">{{misseddata.startTime  | date: "hh:mm a"}}</p>
                   </div>
                   <div class="col col-30 ellipsis">
                      <p class="ellipsis"><span class="colfamily" ng-if="!misseddata.docname">NA</span>
@@ -158,7 +158,7 @@
                      <p class="colfamily">{{droppedData.consultationDate}}</p>
                   </div>
                   <div class="col col-20">
-                     <p class="colfamily">{{droppedData.consultationTime}}</p>
+                     <p class="colfamily">{{droppedData.consultationTimeInfo | date: "h:mm a"}}</p>
                   </div>
                   <div class="col col-30 ellipsis">
                      <p class="ellipsis">

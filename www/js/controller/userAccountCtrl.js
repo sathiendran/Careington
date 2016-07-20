@@ -130,10 +130,7 @@ angular.module('starter.controllers')
                             $rootScope.primaryConcernList="";
                             $rootScope.secondaryConcernList="";
                             $scope.PatientPrimaryConcernItem="";
-                        //    $rootScope.chronicConditionList="";
 
-                      //    $scope.primarylist= $scope.PatientPrimaryConcernItem[0].checked;
-                        //    $scope.primarylist=false;
                             $rootScope.PatientSecondaryConcern = "";
                             $rootScope.PatientChronicCondition = "";
                             $rootScope.patinentCurrentMedication = "";

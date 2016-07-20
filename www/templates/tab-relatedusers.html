@@ -55,7 +55,7 @@
               <div class="list couses animated slideInLeft " id="couserlist">
                   <div ng-repeat="getCoUserDetails in listOfCoUserDetails">
                       <div>
-                          <a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'patientClick')" ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = true">
+                          <a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')" ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = true">
                               <img ng-if="getCoUserDetails.imagePath!=''" class="imgsize" src="{{getCoUserDetails.imagePath}}">
                               <!--  <img ng-if="getCoUserDetails.imagePath==''" class="imgsize" src="{{couserImage}}">-->
                               <h2 class="relatedhead"> <span class="fname sfont">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
