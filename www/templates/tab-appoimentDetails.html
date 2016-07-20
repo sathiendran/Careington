@@ -57,7 +57,7 @@
               <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
                 <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
               </p>
-              <p class="patage">{{doctorGender}} <span> .</span> 36yrs</p>
+              <p class="patage">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
            </a>
 
         <ion-item class="ionitem contalign" style="text-align:center;" >

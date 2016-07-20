@@ -271,8 +271,7 @@ angular.module('starter.controllers')
             } else if (dt2 >dt1) {
                $scope.ErrorMessage = "DOB can not be in Future!";
                $rootScope.Validation($scope.ErrorMessage);
-           }
-            else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
+           }  else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                 $scope.ErrorMessage = "Please Enter Your Email Id";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
