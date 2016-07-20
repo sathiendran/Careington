@@ -432,7 +432,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
 
         $rootScope.deviceName = "IOS";
-      //  $rootScope.appointCOntent = "margin-top: 180px; ";
+        $rootScope.appointCOntent = "margin-top: 50px; ";
         $rootScope.BarHeaderLessDevice = "bar-headerLessIOS";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessIOS";
         $rootScope.loginSub = "height: 100px; top: 43px;";
@@ -1361,7 +1361,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else {
                         $scope.tokenStatus = 'alert-success';
                         $scope.doGetPatientProfiles();
-                        $scope.doGetRelatedPatientProfiles();
+                        $scope.doGetRelatedPatientProfiles('tab.userhome');
                         $scope.doGetConutriesList();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
@@ -4436,7 +4436,7 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
         }
         $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
-      //  $state.go('tab.appoimentDetails');
+        //$state.go('tab.appoimentDetails');
     };
 
 
