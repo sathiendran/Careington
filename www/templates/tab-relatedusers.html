@@ -7,7 +7,8 @@
             </div>
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
               <span> Related Users </span>
-              <span > <a class="headerval" style="position: relative;right: 8px;" ng-href="#tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
+              <span > <a ng-show="cousericon" class="headerval" style="position: relative;right: 8px;" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
+                <span > <a ng-show="dependenticon" class="headerval" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
 
           </h1>
             <div class="bar bar-subheader bar-dark subheaderheight" >

@@ -67,7 +67,8 @@ angular.module('starter.controllers')
 
   $scope.couserslists = true;
   $scope.dependentuserslist = true;
-        $scope.showdetails = true;
+    $scope.cousericon = true;
+        $scope.dependenticon = false;
 
         $scope.showarchieve = false;
         $scope.allval = true;
@@ -294,6 +295,8 @@ $rootScope.authorised=relateDependentAuthorize;
         $scope.userslist = function() {
           $scope.couserslists = true;
           $scope.dependentuserslist = true;
+          $scope.cousericon = true;
+          $scope.dependenticon = false;
           //  $rootScope.doGetListOfCoUsers();
             var myEl = angular.element(document.querySelector('#users'));
             myEl.addClass('btcolor');
@@ -381,6 +384,8 @@ $rootScope.authorised=relateDependentAuthorize;
         $scope.dependentslist = function() {
           $scope.couserslists = false;
           $scope.dependentuserslist = false;
+          $scope.cousericon = false;
+          $scope.dependenticon = true;
             $scope.tabWithPatientId = '';
             $window.localStorage.setItem('patientIDWithTab', '');
             var myEl = angular.element(document.querySelector('#dependents'));
@@ -461,6 +466,48 @@ $rootScope.authorised=relateDependentAuthorize;
             };
             LoginService.getAccountDependentDetails(params);
         }
+        $rootScope.doGetOrgLoclist = function() {
+
+            if ($rootScope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+
+            var params = {
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+                    $rootScope.orgloclist = [];
+                    angular.forEach(data.data, function(index, item) {
+                        $rootScope.orgloclist.push({
+                            'locations': angular.fromJson(index.locations),
+                            'name': index.name,
+                            'id': index.id
+                        });
+                    });
+                    $rootScope.listOfOrganization = $rootScope.orgloclist;
+                    var listOfLocation = $rootScope.orgloclist;
+                    $rootScope.locationdetails = _.pluck(listOfLocation, 'locations');
+                },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+            LoginService.getListOfLocationOrganization(params);
+
+        }
+        $rootScope.adddependent = function() {
+            $rootScope.doGetOrgLoclist();
+            $rootScope.newDependentImagePath = '';
+            $('select').prop('selectedIndex', 0);
+            $state.go('tab.addnewdependent');
+        }
+        $rootScope.addcouser = function() {
+            $rootScope.newCoUserImagePath = '';
+            $rootScope.doGetOrgLoclist();
+            $('select').prop('selectedIndex', 0);
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+            $state.go('tab.addUser');
+  }
         $scope.gpToAppointments = function(getDependentDetails) {
           $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
           //  $state.go('tab.appointmentpatientdetails');
