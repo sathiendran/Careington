@@ -65,8 +65,8 @@ angular.module('starter.controllers')
             }
         };
 
-  $scope.couserslists = true;
-  $scope.dependentuserslist = true;
+  $rootScope.couserslists = true;
+  $rootScope.dependentuserslist = true;
     $scope.cousericon = true;
         $scope.dependenticon = false;
 

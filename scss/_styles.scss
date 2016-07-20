@@ -4198,11 +4198,11 @@ color: #717171;
 .fdate{
     margin-top:8px !important
 }
-.ftime{
-    margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;margin-left: 24px;text-transform: lowercase;
+.ftime{//margin-left: 24px;
+    margin: 0 0 11px 0;font-size:200%;font-family:Glober Bold;text-transform: lowercase;
 }
 .fday{
-    font-size:31px;margin-top:10px;font-family:Glober Regular;
+    font-size:135%;margin-top:10px;font-family:Glober Regular;
 }
 .apptitem{
     background-color:#ffc900;
@@ -7299,7 +7299,7 @@ Pagination Styles
 }
 .accountAppointview-Android {
   position: relative;
-    margin-top: -5px !important;
+    margin-top: -24px !important;
     text-align: right !important;
 }
 .newUserTitle-IOS{

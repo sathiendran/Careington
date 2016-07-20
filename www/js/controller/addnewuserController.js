@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('addnewuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate,
         $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log,
-        $ionicPopup, ageFilter, $window, $timeout) {        
+        $ionicPopup, ageFilter, $window, $timeout) {
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -67,20 +67,7 @@ angular.module('starter.controllers')
             }
         }
 
-        $rootScope.adddependent = function() {
-            $rootScope.doGetOrgLoclist();
-            $rootScope.newDependentImagePath = '';
-            $('select').prop('selectedIndex', 0);
-            $state.go('tab.addnewdependent');
-        }
 
-        $rootScope.addcouser = function() {
-            $rootScope.newCoUserImagePath = '';
-            $rootScope.doGetOrgLoclist();
-            $('select').prop('selectedIndex', 0);
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
-            $state.go('tab.addUser');
-  }
         $rootScope.doGetOrgLoclist = function() {
 
             if ($rootScope.accessToken == 'No Token') {
@@ -110,6 +97,25 @@ angular.module('starter.controllers')
             LoginService.getListOfLocationOrganization(params);
 
         }
+
+        $rootScope.adddependent = function() {
+            $scope.doGetOrgLoclist();
+            $rootScope.newDependentImagePath = '';
+            $('select').prop('selectedIndex', 0);
+            $state.go('tab.addnewdependent');
+        }
+
+        $rootScope.addcouser = function() {
+            $rootScope.newCoUserImagePath = '';
+            $scope.doGetOrgLoclist();
+            $('select').prop('selectedIndex', 0);
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+            $state.go('tab.addUser');
+      }
+
+
+
+
         $timeout(function() {
             $('option').filter(function() {
                 return this.value.indexOf('?') >= 0;
