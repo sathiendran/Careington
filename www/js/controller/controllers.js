@@ -4004,6 +4004,7 @@ LoginService.getScheduledConsulatation(params);
                     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                     $rootScope.individualNextAppointmentDisplay = 'none';
                     $rootScope.accountClinicianFooter = 'block';
+                    $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
                     if ($rootScope.individualScheduledList != '') {
                         //var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
                         //var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
@@ -4017,6 +4018,7 @@ LoginService.getScheduledConsulatation(params);
                           //  $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
                           $rootScope.accountClinicianFooter = 'none';
                             $rootScope.individualNextAppointmentDisplay = 'block';
+                            $rootScope.accountStyle = "AppointDisplay" + $rootScope.deviceName;
                             $rootScope.appointmentPatientId = $rootScope.patientId;
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);

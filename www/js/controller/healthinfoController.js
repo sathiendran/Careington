@@ -500,7 +500,7 @@ angular.module('starter.controllers')
                   }
                   $scope.doPutProfileUpdation();
               }
-          
+
             }
     }
         //$rootScope.currentPatientDetails[0].account.email
@@ -575,10 +575,13 @@ angular.module('starter.controllers')
               $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
                  $rootScope.currentPatientDetails=$rootScope.currentPatientDetails[0];
 
+                 if(angular.isUndefined($rootScope.currentPatientDetails.guardianName)) {
+                   $rootScope.currentPatientDetails.guardianName = $rootScope.primaryPatientName + " " +$rootScope.primaryPatientLastName;
+                 }
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
             //    $rootScope.getManageProfile(currentPatientDetails);
-               $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.isAuthorized, ' ');
+               $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
               // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 $scope.readattr = true;
                 $scope.editshow = true;
@@ -593,8 +596,13 @@ angular.module('starter.controllers')
                 edittextarea.removeClass('editdata');
                 edittextarea.addClass('textdata');
             },
-            error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+            error: function(data, status) {
+                if(status === 400) {
+                  $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
+                  $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                  $rootScope.serverErrorMessageValidation();
+                }
             }
         };
 
