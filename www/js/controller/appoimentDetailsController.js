@@ -433,8 +433,13 @@ angular.module('starter.controllers')
             success: function(data) {
                 //$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;
                 angular.forEach(data.data, function(index, item) {
+                  if (index.gender === 'M') {
+                      var docGender = "Male";
+                  } else if (index.gender === 'F') {
+                      var docGender = "Female";
+                  }
                     $rootScope.scheduledDoctorDetails.push({
-                        'businessAddress': index.businessAddress,
+                        /*'businessAddress': index.businessAddress,
                         'firstName': index.firstName,
                         'fullName': index.fullName,
                         'gender': index.gender,
@@ -446,16 +451,22 @@ angular.module('starter.controllers')
                         'profileImage': index.profileImage,
                         'profileImagePath': index.profileImagePath,
                         'statesLicenced': index.statesLicenced,
-                        'subSpeciality': index.subSpeciality
+                        'subSpeciality': index.subSpeciality*/
+
+                        'dob': index.dob,
+                        'firstName': index.firstName,
+                        'fullName': index.fullName,
+                        'gender': docGender,
+                        'profileImagePath': index.profileImagePath
                     });
                 });
                 //document.getElementsByTagName('timer')[0].stop();
                 //document.getElementsByTagName('timer')[0].start();
-                if ($rootScope.scheduledDoctorDetails[0].gender === 'M') {
+                /*if ($rootScope.scheduledDoctorDetails[0].gender === 'M') {
                     $rootScope.doctorGender = "Male";
                 } else if ($rootScope.scheduledDoctorDetails[0].gender === 'F') {
                     $rootScope.doctorGender = "Female";
-                }
+                }*/
                 $state.go('tab.appoimentDetails');
             },
             error: function(data) {
