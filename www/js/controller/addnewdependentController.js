@@ -435,6 +435,8 @@ angular.module('starter.controllers')
         $scope.canceldependent = function() {
             $('#dependentuserform')[0].reset();
             $('select').prop('selectedIndex', 0);
+            $rootScope.couserslists = false;
+            $rootScope.dependentuserslist = false;
             $state.go('tab.relatedusers');
         }
 

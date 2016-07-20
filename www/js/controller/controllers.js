@@ -4434,7 +4434,7 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
         }
         $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
-        //$state.go('tab.appoimentDetails');
+      //  $state.go('tab.appoimentDetails');
     };
 
 
