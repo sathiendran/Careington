@@ -4653,7 +4653,7 @@ p{
       height: 75px !important; }
     .appointment {
       color: white;
-      font-size: 120% !important; }
+      font-size: 122% !important; }
     .userdeptcontent {
       margin-top: 160px !important; }
     .userdetcontent {
@@ -5045,7 +5045,7 @@ top: inherit !important;
  }
   .appointment {
   color: white;
-  font-size: 120%;
+  font-size: 122%;
   font-family: Glober xBold;
   //width: 50%;
    }
@@ -7296,7 +7296,7 @@ Pagination Styles
 }
 .accountAppointview-Android {
   position: relative;
-    margin-top: -24px !important;
+    margin-top: -5px !important;
     text-align: right !important;
 }
 .newUserTitle-IOS{
@@ -7375,6 +7375,9 @@ Pagination Styles
 .accNextAppoint-Android {
   position: relative;
   top: 6px;
+  .icon-chevron-with-circle-right{
+    font-size:18px !important;
+  }
 }
 .ion-chevron-down {
   position: relative;
