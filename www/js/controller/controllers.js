@@ -563,7 +563,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
-        $rootScope.PasswordOverlop = "margin: 106px 0 0 0;";
+        $rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
