@@ -269,10 +269,10 @@ angular.module('starter.controllers')
            }
 
 
-            $scope.ValidateEmail = function(email) {
+        /*    $scope.ValidateEmail = function(email) {
                 var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return expr.test(email);
-            };
+            };*/
 
             if($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
               if ((age >=12  && age_month >= 0)) {
