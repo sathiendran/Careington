@@ -174,6 +174,12 @@
            <div class="healthViewDetails" ng-if="currentPatientDetails[0].anatomy.bloodType">{{currentPatientDetails[0].anatomy.bloodType}}</div>
            <div class="healthViewDetails" ng-if="!currentPatientDetails[0].anatomy.bloodType">NA</div>
            </label>
+
+           <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
+               <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Authorization</b></span>
+               <div class="healthViewDetails ellipsis">Authorized</div>
+           </label>
+
         </div>
         <div class="list listprofile" ng-hide="flag">
            <div class="item item-input itemtab validated">
@@ -321,8 +327,16 @@
                  </select>
               </div>
            </div>
+           <div class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel labelfont">Authorization</b> </span>
+              <div class="healthViewDetails">
+                 <p id="patientAuthorize" ng-show="patientAuthorize" ng-click="doDependentToUnauthorized(currentPatientDetails[0])">Authorized</p>
+                 <p id="patientAuthorize" ng-show="patientUnAuthorize" ng-click="doDependentToAuthorized(currentPatientDetails[0])">Unauthorized</p>
+              </div>
+           </div>
+
            <div class="continue" style="padding-bottom: 5%;" ng-show="doneedit">
-              <!--<a style="width:40%;"></a>
+              <!--<a style="width:40%;"></a> ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'"
                  <a class="button footer-color donebutton" ng-show="doneedit" ng-click="putUpdatePatientDetails()"><span class="donetext">Done</span></a>
                  -->
               <button  ng-click="putUpdatePatientDetails()" type="submit" class="button button-outline button-positive" style="padding: 3px;">
@@ -416,7 +430,7 @@
   <!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>--->
   <div class="hide-on-keyboard-open">
      <ion-tabs class=" tabs-icon-top tabs-dark">
-        <a class="tab-item" ng-click="doGetListOfCoUsers()" >
+        <a class="tab-item" ng-click="#/tab/relatedusers" >
         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
         </a>
         <a class="tab-item" ng-href="#/tab/consultations">

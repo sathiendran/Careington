@@ -307,9 +307,21 @@
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}"><b>{{getEthnicity.text}}</b></option>
            </select>
-
       </div>
     </div>
+		<div class="item item-input validated fadediv">
+	      <div class="col col-50">
+	         <span class="input-label labelcolor">
+	          <i _style="display: none;" class="iconsize" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel" style="margin-left: 27px;">Authorization</b></span>
+	      </div>
+	       <div class="col col-50 dependentAddAuthorize" >
+	           Authorized
+	       </div>
+	     </div>
+			 <div class="dependentAuthorize" >
+				 	By clicking below I certify that I am legally empowered to request and/or manage care on behalf of this inividual.
+			 </div>
+
  </div>
  </ion-content>
 </form>

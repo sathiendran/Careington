@@ -75,20 +75,20 @@
             <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
         </div>
      </div>
-     <div class="item item-input validated">
+     <!--<div class="item item-input validated">
         <div class="col col-50">
            <span class="input-label labelcolor">
            <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">Date of Birth</b></span>
         </div>
         <div ng-if="deviceName == 'IOS'" class="col col-50" style="font-family: Glober Semibold;">
-          <!--<div class="dobRequired" ng-if="!newUSer.dob">Required</div>-->
+
           <input style="width: 136%; font-size:20px;" class="usertext" id="userdob" type="date" min="{{minimum}}" max="{{maxDay}}"   value=""  placeholder="Required"  ng-model="newUSer.dob"  name="dob" required>
        </div>
        <div ng-if="deviceName != 'IOS'" class="col col-50" style="font-family: Glober Semibold;">
          <input style="width: 136%;"  class="usertext" id="userdob" type="date" min="{{minimum}}" max="{{maxDay}}"   value=""  placeholder="Required"  ng-model="newUSer.dob"  name="dob" required>
       </div>
      </div>
-    <!-- <div class="item item-input validated">
+     <div class="item item-input validated">
        <div class="col col-50">
           <span class="input-label labelcolor">
           <i class="iconsize" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel">Relationship</b></span>
@@ -99,7 +99,7 @@
                   <option ng-repeat="getRelation in listOfRelationship[0].codes" value="{{getRelation.codeId + '@' + getRelation.text}}" ><b>{{getRelation.text}}</b></option>
               </select>
        </div>
-     </div>-->
+     </div>
      <div class="item item-input validated">
        <div class="col col-50">
           <span class="input-label labelcolor">
@@ -185,8 +185,6 @@
       </div>
       <div class="col col-50">
           <input style="line-height: 26px;" class="input-phone homeadd" id="userphone" type='tel' value="" placeholder="Optional"  phone-input ng-model="phoneVal" >
-        <!-- <input class="usertext" id="userphone" type="tel" value="" phoneInput placeholder="Optional" ng-model="phone"  ng-pattern="/^[0-9]{1,14}$/"  name="phone"  >
-         <span class="error" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>-->
       </div>
     </div>
    <div class="item item-input validated">
@@ -205,8 +203,7 @@
        <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Home Address</b></span>
      </div>
      <div class="col col-50">
-       <!--<textarea class="homeadd"  id="address" cols="30" rows="5"  placeholder="Optional"></textarea>-->
-       <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="newUSer.address" />
+      <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="newUSer.address" />
      </div>
     </div>
    <div class="item item-input validated">
@@ -285,9 +282,11 @@
              </select>
 
         </div>
-      </div>
+      </div>-->
   </div>
   </ion-content>
+  <div ng-controller="LoginCtrl">
+     </div>
  </form>
 
  </ion-view>

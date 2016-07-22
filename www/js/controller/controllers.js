@@ -1852,9 +1852,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                         'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
                         'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
-                        'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
-                        'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
-                        'guardianName': angular.element('<div>').html(index.guardianName).text(),
+                      //  'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
+                      //  'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
+                      //  'guardianName': angular.element('<div>').html(index.guardianName).text(),
                         'personId': index.personId,
 
                     });
@@ -2533,7 +2533,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.BackPage = P_Page;
         $rootScope.copayAmount = $rootScope.consultationAmount;
         $rootScope.consultChargeSection = "none";
@@ -2548,7 +2548,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.BackPage = P_Page;
         $rootScope.copayAmount = $rootScope.consultationAmount;
         $rootScope.healthPlanPage = "none";
@@ -3926,6 +3926,7 @@ LoginService.getScheduledConsulatation(params);
                     //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
                     $rootScope.userDOBDateFormat = $filter('date')(date, "MM-dd-yyyy");
+                    $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     if ($rootScope.currentPatientDetails[0].gender == 'M') {
                         $rootScope.userGender = "Male";
                         $rootScope.isCheckedMale = true;
@@ -4183,6 +4184,75 @@ LoginService.getScheduledConsulatation(params);
 
     }
 
+    $rootScope.doGetListOfCoUsers = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            authorizedOnly: true,
+            success: function(data) {
+                //$scope.listOfCoUser = JSON.stringify(data, null, 2);
+                $rootScope.listOfCoUserDetails = [];
+                angular.forEach(data.data, function(index, item) {
+                  if(index.patientId !== $rootScope.primaryPatientId) {
+                      var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                          codeId: index.relationCodeId
+                      })
+                      if (getCoUserRelationShip.length !== 0) {
+                          var relationShip = getCoUserRelationShip[0].text;
+                      } else {
+                          var relationShip = '';
+                      }
+                      var dob = ageFilter.getDateFilter(index.dob);
+                      if (index.gender == 'M') {
+                          var gender = "Male";
+                      } else if (index.gender == 'F') {
+                          var gender = "Female";
+                      }
+                      if(index.imagePath){
+                          $scope.coUserImagePath = index.imagePath;
+                      }else{
+                          var coName = index.name + " " + index.lastname; //alert(coName);
+                          $scope.coUserName = getInitialForName(coName);
+                          $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
+                      }
+
+                      $rootScope.listOfCoUserDetails.push({
+                          'address': index.address,
+                          'bloodType': index.bloodType,
+                          'description': index.description,
+                          'dob': dob,
+                          'emailId': index.emailId,
+                          'ethnicity': index.ethnicity,
+                          'eyeColor': index.eyeColor,
+                          'gender': gender,
+                          'hairColor': index.hairColor,
+                          'height': index.height,
+                          'heightUnit': index.heightUnit,
+                          'homePhone': index.homePhone,
+                          'imagePath': $scope.coUserImagePath,
+                          'lastname': index.lastname,
+                          'mobilePhone': index.mobilePhone,
+                          'name': index.name,
+                          'patientId': index.patientId,
+                          'personId': index.personId,
+                          'relationship': relationShip,
+                          'relationCodeId': index.relationCodeId,
+                          'roleId': index.roleId,
+                          'userId': index.userId,
+                          'weight': index.weight,
+                          'weightUnit': index.weightUnit
+                      });
+                  }
+                });
+
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.getListOfCoUsers(params);
+    }
+
+
     $rootScope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
         if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
 
@@ -4215,13 +4285,14 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
          $rootScope.SelectPatientAge = $rootScope.PatientAge;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.patientId = P_Id;
         $rootScope.P_isAuthorized = P_isAuthorized;
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetonDemandAvailability();
+        $rootScope.doGetListOfCoUsers();
         if (!$rootScope.P_isAuthorized) {
             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
@@ -4248,7 +4319,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $state.go('tab.patientCalendar');
     }
 
@@ -4257,7 +4328,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $state.go('tab.appoimentDetails');
     }
 
@@ -4266,7 +4337,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $scope.doGetWaitingRoom();
     }
 
@@ -4275,7 +4346,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        $rootScope.PatientGuardian = P_Guardian;
+        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
 
         if ($rootScope.appointmentsPage === false) {
             if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
