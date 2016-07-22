@@ -14,7 +14,7 @@
                <div class=" searchbox" style="margin-top: 0px!important;">
                <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
                  <label class="item-input-wrapper">
-                  <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
+                  <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
                   <input type="search"  placeholder="Search" ng-model="data.searchProvider">
 
                  </label>

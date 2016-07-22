@@ -563,7 +563,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
-        $rootScope.PasswordOverlop = "margin: 106px 0 0 0;";
+        $rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
@@ -577,6 +577,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.MarginHomeTop = "margin-top: -130px;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
+        $rootScope.appointCOntent = "margin-top:170px;";
     }
     $scope.showSearchInput = function() {
         var searchStyle = $('#divSearchInput').css('display');

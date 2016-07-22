@@ -151,7 +151,7 @@
 
         </div>
         <div class="healthinfoChoose-{{deviceName}}">
-           <select style="width:100%;margin-right:52px;font-size: 18px;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
+           <select style="width:100%;margin-right:52px;font-size: 19px;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
 						 <option value=""><b>Choose</b></option>
              <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b>{{getHeightunit.text}}</b></option>
 					 </select>
@@ -168,7 +168,7 @@
           <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="weight" name="weight" required ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
         </div>
         <div style="width: 50%;">
-           <select style="width:90%;font-size: 18px;" class="optionselect " name="weightunit" id="weightunit" ng-model="weightunit" required>
+           <select style="width:90%;font-size: 19px;" class="optionselect " name="weightunit" id="weightunit" ng-model="weightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
            </select>
