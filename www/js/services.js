@@ -1202,11 +1202,13 @@ this.getPatientMedicalProfile = function(params){
 
 		var registerCouserdetails = {
 			headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL +'/api/v2/patients/cousers',
+          //  url: apiCommonURL +'/api/v2/patients/cousers',
+       url: apiCommonURL +'/api/v2/familygroups/couser',
 			  method: 'POST',
 			  data: {
-       email: params.email,
-				familyGroupId: params.familyGroupId,
+          Name : params.firstName + " " + params.lastName,
+       Email: params.email,
+			/*	familyGroupId: params.familyGroupId,
 				relationshipId: params.relationshipId,
 				heightUnitId: params.heightUnitId,
 				weightUnitId: params.weightUnitId,
@@ -1225,10 +1227,10 @@ this.getPatientMedicalProfile = function(params){
 				dob: params.dob,
 				gender: params.gender,
 				organizationName: params.organizationName,
-				locationName: params.locationName,
-				firstName: params.firstName,
-				lastName: params.lastName,
-				profileImagePath: params.profileImagePath,
+				locationName: params.locationName,*/
+			//	firstName: params.firstName,
+			//	lastName: params.lastName,
+			//	profileImagePath: params.profileImagePath,
               }
 		};
 

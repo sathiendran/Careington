@@ -10,11 +10,11 @@
 			<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 		</div>
 		<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -45px;">Patient List</h1>
-		<!--<span>
-			<a class="headerval" ng-href="#/tab/addnewuser" style="position: relative; top: 28px;">
+	<span>
+			<a class="headerval" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" style="position: relative; top: 28px;">
 				<i class="ion-plus"></i>
 			</a>
-		</span>-->
+		</span>
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
 				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today:</div>
@@ -126,100 +126,8 @@
 	</ion-side-menu>
 </ion-side-menus>-->
 
-<ion-side-menu side="left" style="background-color: #464644;">
-	<div class="sideMenu">
-			<a ng-href="#/tab/userhome" class="sidemenuContent1" >
-		<ion-list>
-			<ion-item class="icon tabfont"  id="{{sidemenuHome}}">
-				<i ng-bind-html="drawSVGCIcon('users')"></i>
-				<span>  Patient List</span>
-			</ion-item>
-		</ion-list>
-	</a>
-	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="sidemenuContent1" >
-<ion-list>
-	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
-			<i ng-bind-html="drawSVGCIcon('clipboard')"></i>
-		<span>  My Health</span>
-	</ion-item>
-</ion-list>
-</a>
-<!--
-	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
-<ion-list>
-	<ion-item class="archive" id="{{sidemenuHome}}">
-		<span>  My Files</span>
-	</ion-item>
-</ion-list>
-</a>-->
+<div ng-include src="'templates/primaryPatientSideMenu.html'"></div>
 
-	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')" class="sidemenuContent1" >
-<ion-list>
-	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
-		<i ng-bind-html="drawSVGCIcon('calendar')"></i>
-		<span>My Appointments</span>
-	</ion-item>
-</ion-list>
-</a>
-
-	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')" class="sidemenuContent1" >
-<ion-list>
-	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
-		<i ng-bind-html="drawSVGCIcon('health_card')"></i>
-		<span>  My Consultations</span>
-	</ion-item>
-</ion-list>
-</a>
-<!--
-	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
-<ion-list>
-	<ion-item class="credit-card" id="{{sidemenuHome}}">
-		<span>  Billing & Insurance</span>
-	</ion-item>
-</ion-list>
-</a>-->
-<!--
-	<a ng-href="#/tab/userhome" class="sidemenuContent1" >
-<ion-list>
-	<ion-item class="cog" id="{{sidemenuHome}}">
-		<span>  Settings</span>
-	</ion-item>
-</ion-list>
-</a>-->
-			<a ng-click="ClearRootScope()" class="SidemenuLogOut1" >
-		<ion-list>
-			<ion-item class="ion-power LogOutText" >
-				<span>  Logout</span>
-			</ion-item>
-		</ion-list>
-			</a>
-
-</div>
-
-<div style="margin-top: 25px">
-	<a class="SidemenuLogOut1" >
-<ion-list>
-	<!--<ion-item class="ion-power LogOutText" >
-	<div style="float: left;"><img ng-src=""></div>
-	<div style="float: right; width: 78%;">
-			<div>Poomani R</div>
-			<div> FeMale.29yrs</div>
-	</div>
-</ion-item>-->
-<div class="HrefListView">
- <div class="UserhmePatientDetails">
-	 <img ng-src="{{PatientImage}}" class="UserHmelistImgView">
-	 <div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
-	 <!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-	 <p class="ListHomeUser_pTitle DateFormateStyle">{{gender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
-</div>
-</div>
-<div style="border-bottom: 1px solid black; padding-top: 5px;"></div>
-</ion-list>
-	</a>
-</div>
-
-</ion-side-menu>
 </ion-side-menus>
 
 

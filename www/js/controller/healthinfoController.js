@@ -1,7 +1,9 @@
 angular.module('starter.controllers')
 
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService) {
-
+  $rootScope.patientAuthorize = true;
+  $rootScope.patientUnAuthorize = false;
+   $rootScope.patientAuthorizeValue = 'Y';
   $scope.getOnlyNumbers = function(text){
         var newStr = "";
         if(text){
@@ -569,7 +571,7 @@ angular.module('starter.controllers')
                 $scope.uploadPhotoForExistingPatient();
               }
               if($rootScope.primaryPatientId !== data.patientID) {
-                $scope.updateDependentRelation(data.patientID,$scope.getRelationshipId,$rootScope.currentPatientDetails[0].account.isAuthorized);
+                $scope.updateDependentRelation(data.patientID,$scope.getRelationshipId,$rootScope.patientAuthorizeValue);
               }
               $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
               $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
@@ -608,6 +610,95 @@ angular.module('starter.controllers')
 
         LoginService.putProfileUpdation(params);
     }
+
+    $scope.doDependentToUnauthorized = function(currentPatientDetails) {
+      if (!angular.isUndefined($rootScope.userDOBDateFormat) && $rootScope.userDOBDateFormat !== '') {
+          $scope.dob = " . " +  ageFilter.getDateFilter($rootScope.userDOBDateFormat);
+      } else {
+          $scope.dob = '';
+      }
+      if (!angular.isUndefined(currentPatientDetails.account.relationship) && currentPatientDetails.account.relationship !== '') {
+          $scope.relationship = " . " + currentPatientDetails.account.relationship;
+      } else {
+          $scope.relationship = '';
+      }
+      var myPopup = $ionicPopup.show({
+              title: "<a class='item-avatar popupaligned'>  <img src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
+                  subTitle: "<p class='headerfont popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
+                  templateUrl: 'templates/healthUnauthorizedPopup.html',
+                  scope: $scope,
+                  buttons: [{
+                      text: '<b class="fonttype">Cancel</b>',
+                      onTap: function(e) {
+                          return false;
+                      }
+                  }, {
+                      text: '<b class="fonttype">Confirm</b>',
+                      type: 'button-positive',
+                      onTap: function(e) {
+                              return true;
+                          }
+                  }, ]
+              });
+
+              myPopup.then(function(res) {
+               if (res) {
+                 $rootScope.patientAuthorizeValue = 'N';
+                 $rootScope.patientAuthorize = false;
+                 $rootScope.patientUnAuthorize = true;
+                  // $rootScope.doUpdateDependentsAuthorize(dependentDetails.patientId, dependentDetails.relationCode, relateDependentAuthorize);
+               } else {
+               }
+             });
+             $scope.closepopup=function(){
+                  myPopup.close();
+             }
+      }
+
+    $scope.doDependentToAuthorized = function(currentPatientDetails) {
+      if (!angular.isUndefined($rootScope.userDOBDateFormat) && $rootScope.userDOBDateFormat !== '') {
+          $scope.dob = " . " +  ageFilter.getDateFilter($rootScope.userDOBDateFormat);
+      } else {
+          $scope.dob = '';
+      }
+      if (!angular.isUndefined(currentPatientDetails.account.relationship) && currentPatientDetails.account.relationship !== '') {
+          $scope.relationship = " . " + currentPatientDetails.account.relationship;
+      } else {
+          $scope.relationship = '';
+      }
+      var myPopup = $ionicPopup.show({
+              title: "<a class='item-avatar popupaligned'>  <img src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
+                  subTitle: "<p class='headerfont popupfont '>" + $rootScope.userGender +   $scope.dob + $scope.relationship + "</p>",
+                  templateUrl: 'templates/unauthorizedpopup.html',
+                  scope: $scope,
+                  buttons: [{
+                      text: '<b class="fonttype">Cancel</b>',
+                      onTap: function(e) {
+                          return false;
+                      }
+                  }, {
+                      text: '<b class="fonttype">Confirm</b>',
+                      type: 'button-positive',
+                      onTap: function(e) {
+                              return true;
+                          }
+                  }, ]
+              });
+
+              myPopup.then(function(res) {
+               if (res) {
+                 $rootScope.patientAuthorizeValue = 'Y';
+                 $rootScope.patientAuthorize = true;
+                  $rootScope.patientUnAuthorize = false;
+                  // $rootScope.doUpdateDependentsAuthorize(dependentDetails.patientId, dependentDetails.relationCode, relateDependentAuthorize);
+               } else {
+
+               }
+             });
+             $scope.closepopup=function(){
+                  myPopup.close();
+             }
+      }
 
     $scope.updateDependentRelation = function(patientID, relationshipID, authorizeID) {
         var params = {
@@ -1241,7 +1332,7 @@ $scope.data = {};
 
 
 
-    $rootScope.doGetListOfCoUsers = function() {
+    $scope.doGetListOfCoUsers = function() {
         var params = {
             accessToken: $rootScope.accessToken,
             authorizedOnly: true,
@@ -1300,7 +1391,7 @@ $scope.data = {};
                       });
                   }
                 });
-                $state.go('tab.relatedusers');
+
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();
