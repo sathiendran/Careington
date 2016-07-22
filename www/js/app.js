@@ -866,19 +866,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }
         }
     })
-
-    /*.state('tab.patientappointmentdetails', {
-       url: '/patientappointmentdetails',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-patientappointmentdetails.html',
-        controller: ''
-      }
-      }
-  })*/
-
-
-    .state('tab.currentmedicationsearch', {
+.state('tab.currentmedicationsearch', {
         url: '/currentmedicationsearch',
         views: {
             'tab-login': {
@@ -887,7 +875,15 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }
         }
     })
-
+    .state('tab.appointmentpatientdetailssearch', {
+        url: '/appointmentpatientdetailssearch',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-appointmentdetailssearch.html',
+                controller: 'patientCalendarCtrl'
+            }
+        }
+    })
   /*  .state('tab.check', {
         url: '/check',
         views: {

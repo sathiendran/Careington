@@ -3,9 +3,9 @@ angular.module('starter.controllers')
 
 .controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
     setTimeout(function() {
-        document.getElementsByTagName('timer')[0].stop();    
+        document.getElementsByTagName('timer')[0].stop();
     }, 10);
-    
+
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name == "tab.userhome") ||
             ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -268,7 +268,7 @@ angular.module('starter.controllers')
 
   //  $rootScope.appointCurrentPage = '';
 
-    
+
 
     $scope.addmore = false;
     $scope.healthhide = true;
@@ -302,7 +302,7 @@ angular.module('starter.controllers')
         $rootScope.doGetScheduledConsulatation();
 
     }
-    
+
     if ($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
         //if($rootScope.scheduledList[0].appointmentId !== $rootScope.getIndividualScheduleDetails[0].appointmentId) {
           var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
@@ -363,7 +363,7 @@ angular.module('starter.controllers')
               if (getReplaceTime3 < currentUserHomeDate) {
                   $rootScope.timerCOlor = '#E1FCD4';
               }
-              
+
                 var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 
                 if (getReplaceTime3 < currentUserHomeDate) {
@@ -384,10 +384,64 @@ angular.module('starter.controllers')
           }
        //}
     }
-    
+
     $timeout(function() {
         document.getElementsByTagName('timer')[0].stop();
         document.getElementsByTagName('timer')[0].start();
     }, 1000);
+
+
+
+<!-- Appointment Details search -->
+
+$scope.data = {};
+
+      $scope.$watch('data.searchProvider', function(searchKey) {
+          $rootScope.providerSearchKey = searchKey;
+          if (typeof $rootScope.providerSearchKey == 'undefined') {
+              $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+          }
+          if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+              $rootScope.iconDisplay = 'none';
+          } else {
+              $rootScope.iconDisplay = 'Block';
+          }
+    });
+
+
+    $scope.addmoresearch = false;
+    $scope.healthsearchhide = true;
+
+    $scope.usersearch = function() {
+
+        var myEl = angular.element(document.querySelector('#userssearch'));
+        myEl.addClass('btcolor');
+        myEl.removeClass('btnextcolor');
+        var myEl = angular.element(document.querySelector('#alluserssearch'));
+        myEl.removeClass('btcolor').css('color', '#11c1f3');
+        myEl.addClass('btnextcolor');
+
+        $scope.addmoresearch = false;
+        $scope.healthsearchhide = true;
+
+
+    }
+
+
+    $scope.allusersearch = function() {
+
+        var myEl = angular.element(document.querySelector('#alluserssearch'));
+        myEl.removeClass('btnextcolor');
+        myEl.addClass('btcolor');
+        var myEl = angular.element(document.querySelector('#userssearch'));
+        myEl.removeClass('btcolor').css('color', '#11c1f3');
+        myEl.addClass('btnextcolor');
+        $scope.healthsearchhide = false;
+        $scope.addmoresearch = true;
+
+        $rootScope.doGetScheduledConsulatation();
+
+    }
+
 
 })

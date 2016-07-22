@@ -5207,6 +5207,9 @@ color: white;
 .csubheader{
    margin-top:20px;border-bottom:none;border-image:none;background-image:none;
 }
+.asubheader{
+   margin-top:40px;border-bottom:none;border-image:none;background-image:none;
+}
 .searchsubheader{
    margin-top:23px;height:62px;border-bottom: none;border-image:none;background-image:none;
 }
@@ -7752,6 +7755,12 @@ input.ion-google-place[readonly] {
 }
 .consultcontentsearch-Android {
   margin-top:60px
+}
+.appointcontentsearch-Android {
+  margin-top:83px;
+}
+.allsearch-Android{
+     margin-top:25px;
 }
 .colReport-IOS {
   margin-left: -1px;
