@@ -137,9 +137,9 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             //navigator.splashscreen.hide();
             //}, 10000);
         }
-        if(window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            cordova.plugins.Keyboard.disableScroll(true);
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+           cordova.plugins.Keyboard.disableScroll(true);
          }
          if(window.StatusBar) {
             StatusBar.styleDefault();
