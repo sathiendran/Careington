@@ -5676,6 +5676,7 @@ margin-left: 13px !important;
 			line-height: 17px;
 		}
 		.card{
+
 			border: none !important;
 			border-radius: 13px;
 			margin-top: 35px;
@@ -6491,7 +6492,7 @@ input[type="checkbox"]:checked + label{
 							height: 37px;
 							background-color: #e6e6e6;
 							/*color: #000000;*/
-							color: #000;
+							color:#8e8e93;
 							width: 100%;
 							padding-top: 1%;
 							@include font($fontFamily_regular, bold, 13px);

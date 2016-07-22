@@ -9,12 +9,14 @@
 			<!--<button class="button icon button-clear ion-navicon-round UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()" ></button>-->
 			<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 		</div>
+
 		<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -45px;">Patient List</h1>
 	<span>
 			<a class="headerval" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" style="position: relative; top: 28px;">
 				<i class="ion-plus"></i>
 			</a>
 		</span>
+
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
 				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today:</div>
