@@ -1,0 +1,154 @@
+<ion-side-menus>
+<ion-side-menu-content>
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+   <div class="buttons">
+      <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>-->
+      <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+   </div>
+   <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Appointments <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#tab/appointmentpatientdetails" ><i class="icon ion-search" ></i></a></span></h1>
+   <div class="bar bar-subheader asubheader">
+      <div class="row">
+         <div class="buttons backbtn">
+            <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
+         </div>
+         <div class=" button-bar">
+           <label class="button button-small btcolor btn-first btnclass"  id="userssearch" ng-click="usersearch()"> This Patient</label>
+           <label class="button button-small btnextcolor btn-first tabcontent btnclass" id="alluserssearch" ng-click="allusersearch()">All</label>
+
+     </div>
+         <div class="buttons backbtn">
+            <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
+         </div>
+      </div>
+   </div>
+</ion-header-bar>
+
+<ion-view title="Appointment Details">
+
+    <ion-content  ng-hide="addmoresearch" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false">
+        <div><ion-refresher on-refresh="doRefresh()"  >
+           </ion-refresher></div>
+        <div class="csearch-{{deviceName}}">
+           <h6 class="hsearch">
+
+              <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
+                 <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                   <label class="item-input-wrapper">
+                     <i style="display: {{iconDisplay}}" class="icon doticon"  ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+                    <input type="search"  placeholder="Search" ng-model="data.searchProvider">
+
+                   </label>
+                 </div>
+               </div>
+           </h6>
+        </div>
+       <div class="list listfirst allsearch-{{deviceName}}">
+           <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+                  <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+                  <h2 class="aptsname">Next Appointment</h2>
+                  <p class="appmarg">
+                          <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+                      </p>
+                      <h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+           </a>
+           <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getIndividualScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+                  <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+                  <p class="appmarg" style="margin-top: 14px;">
+                          <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+                  </p>
+               <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+               </h4>
+           </a>
+           <ion-item  class="noResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There is no Scheduled Appointments!</ion-item>
+       </div>
+
+       <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noResu<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled appointments!</ion-item>lt" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
+       <div style="display: none;"><timer end-time="time"  ></timer></div>
+    </ion-content>
+
+
+    <ion-content  ng-hide="healthsearchhide" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false">
+        <div><ion-refresher on-refresh="doRefresh()"  >
+           </ion-refresher></div>
+        <div class="csearch-{{deviceName}}">
+           <h6 class="hsearch">
+
+              <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
+                 <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                   <label class="item-input-wrapper">
+                     <i style="display: {{iconDisplay}}" class="icon doticon"  ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+                    <input type="search"  placeholder="Search" ng-model="data.searchProvider">
+
+                   </label>
+                 </div>
+               </div>
+           </h6>
+        </div>
+        <div class="list listall allsearch-{{deviceName}}">
+
+        <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+            <img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
+            <h2 class="aptsname">Next Appointment</h2>
+             <p class="appmarg">
+                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+              </p>
+                                <h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+          </a>
+
+        <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(scheduledList  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+            <img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
+                        <p class="appmarg" style="margin-top: 14px;">
+                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+              </p>
+                     <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+           </h4>
+         </a>
+                <ion-item  class="noResult" ng-if="!scheduledList.length" style="white-space: normal;" >There is no Scheduled Appointments!</ion-item>
+
+    </div>
+    <div  ng-if="scheduledList.length"  class="searchdata noResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
+    </ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 <div ng-controller="LoginCtrl">
+	 </div>
+
+
+
+
+</ion-view>
+
+
+
+<ion-tabs class=" tabs-icon-top tabs-dark">
+	 <a class="tab-item" ng-click="#/tab/relatedusers" >
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/consultations">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> Consultations
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/healthinfo">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> My Health
+	 </a>
+	 <a class="tab-item active" ng-href="#/tab/appointmentpatientdetails">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i> Appointments
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/profileoption">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
+	 </a>
+</ion-tabs>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-controller="appoimentDetailsCtrl"></div>
+<div ng-include src="'templates/SideMenu.html'"></div>
