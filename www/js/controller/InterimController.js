@@ -443,9 +443,9 @@ angular.module('starter.controllers')
                         'addresses': angular.fromJson(index.addresses),
                         'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName),
                         'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName),
-                        'guardianFirstName': htmlEscapeValue.getHtmlEscapeValue(index.guardianFirstName),
-                        'guardianLastName': htmlEscapeValue.getHtmlEscapeValue(index.guardianLastName),
-                        'guardianName': htmlEscapeValue.getHtmlEscapeValue(index.guardianName),
+                      //  'guardianFirstName': htmlEscapeValue.getHtmlEscapeValue(index.guardianFirstName),
+                      //  'guardianLastName': htmlEscapeValue.getHtmlEscapeValue(index.guardianLastName),
+                      //  'guardianName': htmlEscapeValue.getHtmlEscapeValue(index.guardianName),
                     });
                 });
 
@@ -537,7 +537,7 @@ angular.module('starter.controllers')
                 $rootScope.patientExistInfomation = data.data[0].patientInformation;
                 $rootScope.intakeForm = data.data[0].intakeForm;
                 $rootScope.PatientAge = $rootScope.patientExistInfomation.dob;
-                $rootScope.PatientGuardian = $rootScope.patientExistInfomation.guardianName;
+                $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;;
                 $rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
                 $rootScope.PatientImageSelectUser = $rootScope.patientExistInfomation.profileImagePath;
                 $scope.doGetExistingPatientName();
