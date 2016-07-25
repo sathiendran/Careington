@@ -326,7 +326,7 @@ html, body { background: transparent !important; }
 
 
 .bar-footer {
-	background-position: 0px 40px;  height: 47px;
+	background-position: 0px 40px;  height: 48px;
     background-image:none;
 }
 .terms_footer_a {
@@ -1416,14 +1416,14 @@ html, body { background: transparent !important; }
 #SidemenuHomeAndroid {
 	margin-top:10px; border:none;color:#7E807E;font-family: Glober regular !important; background-color: #464644;
 	span {
-		top: 0px; position:relative; font-size: 23px; padding-left: 15px;
+		top: 0px; position:relative; font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);
 	}
 }
 
 #SidemenuHomeIOS {
 	margin-top:18px; border:none;color:#7E807E;font-family: Glober regular !important; background-color: #464644;
 	span {
-		top: 0px; position:relative; font-size: 23px; padding-left: 15px;
+		top: 0px; position:relative; font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);
 	}
 
 }
@@ -1465,10 +1465,20 @@ html, body { background: transparent !important; }
 .SidemenuLogOut1 {
 	width: 100%;
 	color:#7E807E;
+  .ListTextTitle {
+    color: #fff;
+    span {
+      color: #fff;
+    }
+  }
+  .ListHomeUser_pTitle {
+    color: #fff;
+  }
+
 	.LogOutText {
 		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644; margin-top: 18px;
 		span {
-			position: relative;  font-size: 23px; padding-left: 15px;
+			position: relative;  font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);
 		}
 	}
 	.item {
@@ -2485,7 +2495,7 @@ width:45px !important; height:45px; border-radius: 50%;margin-top: 1px; margin-l
     border: 2px solid white;
 }
 .UserHmelistImgView {
-width:55px; height:55px; border-radius: 50%;
+width:55px; height:55px; border-radius: 50%; border: 2px solid #FFFFFF;
 }
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
@@ -3839,14 +3849,14 @@ font-size: 20px;margin-left:120px; top: 5px;
 #centercolor{
     color:white;
     margin-top: 23px !important;
-    font-size:135%;
+    font-size:145%;
     font-family:Glober Bold;
 }
 .userionitem{
     padding: 10px!important;
 }
 .userlist{
-   padding-top: 77px !important;
+   padding-top: 105px;
 }
 .lefthome{
     padding-left: 30px;
@@ -4096,7 +4106,7 @@ color: #717171;
 }
 .fname{
     font-size: 21px;
-    font-family: Glober SemiBold;
+    font-family: Glober Bold;
     color: #717171;
     }
     .sname{
@@ -4265,7 +4275,7 @@ p{
 }
 }
 .list:last-child {
-    padding-bottom: 100px !important;
+  //  padding-bottom: 100px !important;
 }
 .consimg{
     max-width:30px !important;
@@ -4437,6 +4447,9 @@ p{
       }
       .fdate {
         margin-top: 0px !important;
+      }
+      .AppointNoneIOS {
+
       }
 
       .passedDate-IOS{
@@ -6495,7 +6508,7 @@ input[type="checkbox"]:checked + label{
 							height: 37px;
 							background-color: #e6e6e6;
 							/*color: #000000;*/
-							color:#8e8e93;
+							color:#8e8e93 !important;
 							width: 100%;
 							padding-top: 1%;
 							@include font($fontFamily_regular, bold, 13px);
@@ -6525,12 +6538,12 @@ input[type="checkbox"]:checked + label{
 	.acinfo1-IOS{
 			text-align: center;
 			h4{
-				@include font($fontFamily_semibold, bold, 12.5px);
+				@include font($fontFamily_semibold, bold, 14px);
 				color: #FFFFFF;
 				margin: 0;
 				padding-top: 12px;
 				span{
-					@include font($fontFamily_regular, bold, 10.5px);
+					@include font($fontFamily_regular, bold, 12px);
 					color: #FFFFFF;
 
 				}
@@ -6570,7 +6583,7 @@ input[type="checkbox"]:checked + label{
 
 .regcontent{
 	h2{
-		@include font($fontFamily_xBold, bold, 34px);
+		@include font($fontFamily_bold, bold, 34px);
 		color:#999999;
 		text-align: center;
 		padding-top: 25px !important;
@@ -6764,7 +6777,6 @@ border-bottom: 2px solid #cbcbcb;
 		@include font($fontFamily_bold, normal, 24px);
 		color:#999999;
 		margin-bottom: 0px;
-
 	}
 	p{
 	  @include font($fontFamily_regular, normal, 14px);
@@ -6785,8 +6797,8 @@ border-bottom: 2px solid #cbcbcb;
 	}
 
     .item-input-inset{
-		margin-bottom: -10px;
-		margin-top: 10px;
+		margin-bottom: -5px;
+		margin-top: 6px;
 		input{
 		   background-color: #e3e4e6;
 
@@ -6818,7 +6830,7 @@ border-bottom: 2px solid #cbcbcb;
 .content-height{
 	 /*position: relative;
 	 top:140px;*/
-		margin-top: 240px;
+		margin-top: 253px;
 		top: 0px;
 	 .list{
 		.item:first-child{
@@ -6828,6 +6840,11 @@ border-bottom: 2px solid #cbcbcb;
     #providerListDiv {
         top: 0px;
     }
+    .icon-arrow-with-circle-up {
+      font-size: 37px;
+      color: #90908f;
+    }
+
 	#startSearchProvider {
 		text-align: center;
 		margin: -75px 5% 0 5%;
@@ -7315,7 +7332,7 @@ Pagination Styles
 }
 .accountAppointview-IOS {
   position: relative;
-    margin-top: -29px !important;
+    margin-top: -9px !important;
     text-align: right !important;
 }
 .accountAppointview-Android {
@@ -7352,7 +7369,7 @@ Pagination Styles
 
 .content-IOS {
   margin-left: -18px;
-  font-size: 138%;
+  font-size: 122%;
 }
 .content-Android{
   margin-left: -18px;
@@ -7366,7 +7383,7 @@ Pagination Styles
 }
 .contentAppoint-IOS {
   margin-left: 17px;
-  font-size: 138%;
+  font-size: 122%;
 }
 .contentAppoint-Android {
   margin-left: 17px;
@@ -7381,7 +7398,7 @@ Pagination Styles
   font-size: 30px !important;
 }
 [class^="icon-"], [class*=" icon-"] {
-  font-size: 24px;
+  font-size: 21px;
 }
 .ioncontentalign {
   .iconfontSVG {
@@ -7792,3 +7809,35 @@ input.ion-google-place[readonly] {
 .dependentAddAuthorize {
   font-size: 18px;color: #7c7c7c;
 }
+.searchAccount {
+  p{
+    margin-top: 9px;
+  }
+  h3 {
+    margin-top: 3px;
+  }
+  .icon-magnifying-glass {
+    font-size: 16px;
+    position: relative;
+    top: 2px;
+    right: 4px;
+  }
+
+}
+.profileSpan {
+  .icon-user {
+    font-size: 19px;
+  }
+  .icon-calendar {
+    font-size: 19px;
+  }
+}
+.AppointNoneIOS{
+   padding-top: 105px;
+ }
+ .AppointDisplayIOS {
+   padding-top: 53px;
+ }
+ #accountMngeProfile-IOS {
+   padding: 47px 10px !important;
+ }
