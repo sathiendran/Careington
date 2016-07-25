@@ -429,7 +429,8 @@ angular.module('starter.controllers')
 
             }
 
-            }else{
+            }
+            else{
               if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
                   $scope.ErrorMessage = "Please Enter First Name";
                   $rootScope.Validation($scope.ErrorMessage);

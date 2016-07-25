@@ -4006,7 +4006,8 @@ LoginService.getScheduledConsulatation(params);
                     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
                     $rootScope.individualNextAppointmentDisplay = 'none';
                     $rootScope.accountClinicianFooter = 'block';
-                    $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
+                    $rootScope.accountStyle = "";
+                    $rootScope.userAccContent = "";
                     if ($rootScope.individualScheduledList != '') {
                         //var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
                         //var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
@@ -4020,7 +4021,9 @@ LoginService.getScheduledConsulatation(params);
                           //  $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
                           $rootScope.accountClinicianFooter = 'none';
                             $rootScope.individualNextAppointmentDisplay = 'block';
-                            $rootScope.accountStyle = "AppointDisplay" + $rootScope.deviceName;
+                            //$rootScope.accountStyle = "AppointDisplay" + $rootScope.deviceName;
+                            $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
+                            $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
                             $rootScope.appointmentPatientId = $rootScope.patientId;
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
@@ -4287,7 +4290,11 @@ LoginService.getScheduledConsulatation(params);
          $rootScope.SelectPatientAge = $rootScope.PatientAge;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.patientId = P_Id;
-        $rootScope.P_isAuthorized = P_isAuthorized;
+        if($rootScope.patientId == $rootScope.primaryPatientId) {
+          $rootScope.P_isAuthorized = true;
+        } else {
+             $rootScope.P_isAuthorized = P_isAuthorized;
+        }
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetIndividualScheduledConsulatation();
