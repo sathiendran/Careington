@@ -7288,6 +7288,12 @@ Pagination Styles
   textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
     padding: 5px 0 0 5px;
   }
+  .icon-star {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: -10px;
+  }
 }
 .HealthTitle-IOS {
   left: -28px;
