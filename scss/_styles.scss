@@ -5919,7 +5919,7 @@ margin-left: 13px !important;
 			z-index: -1;
 			opacity: 0.3;
 			width: 400px;
-			height: 100px;
+			height: 96px;
 		}
 		h2 {
 			margin-top: -150px;
@@ -6369,6 +6369,7 @@ input[type="checkbox"]:checked + label{
 				color: #FFFFFF;
 			}
 		}
+
 		.card{
 
 				background-color: #f4f4f4;
@@ -6448,7 +6449,9 @@ input[type="checkbox"]:checked + label{
 				color: #FFFFFF;
 			}
 }
-
+.step2-Android{
+    margin-top:-12px;
+}
 .register{
 				h2{
 					@include font($fontFamily_xBold, bold, 18px);
@@ -6537,6 +6540,7 @@ input[type="checkbox"]:checked + label{
 	}
 	.acinfo1-Android{
 			text-align: center;
+            margin-top: -10px;
 			h4{
 				@include font($fontFamily_bold, bold, 14.5px);
 				color: #FFFFFF;
@@ -6595,13 +6599,17 @@ input[type="checkbox"]:checked + label{
 
 	}
 }
-
+.epassbgreg2{
+    margin:-4px !important;
+}
+//.regstep2{margin-top:-14px;}
 .regcontent{
 	h2{
 		@include font($fontFamily_bold, bold, 34px);
 		color:#999999;
 		text-align: center;
-		padding-top: 25px !important;
+		//padding-top: 25px !important;
+        padding-top: 15px !important;
 	}
 	h3{
 		@include font($fontFamily_regular, bold, 27px);
@@ -6626,7 +6634,7 @@ input[type="checkbox"]:checked + label{
 	}
 	.lineheight{
 		line-height: 18px;
-		margin: -7px 0px 8px 0px ;
+		margin: -11px 0px 8px 0px ;
 		color: #888888;
 
 
@@ -6939,7 +6947,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 290px;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -6958,7 +6966,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 252px;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -6982,7 +6990,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 252px;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -7027,7 +7035,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 253;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -7842,6 +7850,9 @@ input.ion-google-place[readonly] {
   }
 
 }
+.reg2-Android{
+    margin-top:-12px;
+}
 .profileSpan {
   .icon-user {
     font-size: 19px;
@@ -7876,3 +7887,7 @@ input.ion-google-place[readonly] {
     top: 2px;
   }
 }
+
+ #accountMngeProfile-Android {
+   padding: 47px 10px !important;
+ }
