@@ -135,7 +135,7 @@ html, body { background: transparent !important; }
 		}
 	div {
 	position: relative;
-	top: 62px;
+//	top: 62px;
 }
 
 
@@ -266,7 +266,9 @@ html, body { background: transparent !important; }
   .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
     overflow: hidden;  line-height: normal; }
 }
-
+.item{
+    margin:0px !important;
+}
 .button.button-positive.button-outline {
 	@include buttons(#9BCA82, normal, 5px, 19px, 35px );
 	color: #fff;
@@ -421,7 +423,7 @@ html, body { background: transparent !important; }
 
 .password_sub_headerAndroid {
 	@extend .login_sub_header;
-	margin-top: 108px;
+	//margin-top: 108px;
 	color: $Shiraz;
 		.password_header_contentAndroid {
 			/*position: relative;
@@ -2466,7 +2468,7 @@ font-size: 18px !important;
 	height: 63%;
     top: 80px;
 	margin-top:-6px;
-	background-image: none;
+	//background-image: none;
 }
 
 .TitleHomeUser_Sub {
@@ -4046,6 +4048,7 @@ font-size: 18px;
   float:right;
   color: #616161;
   font-family: Glober Regular;
+  white-space: nowrap;
   .ion-chevron-right:before {
      font-size: 12px !important;
  }
@@ -4564,8 +4567,8 @@ p{
 
     .dependusers:last-child{padding-bottom: 200px;}
     .password_home_top {
-      margin-top:-110px !important;  }
-
+     // margin-top:-110px  }
+}
     .tabs-top > .tabs, .tabs.tabs-top {
       top: inherit !important; }
       .ReportContent {
@@ -4747,7 +4750,8 @@ p{
     .header_imageAndroid {
      margin-top: 20px;  }
      .password_sub_headerAndroid {
-         margin-top: 54px;
+        // margin-top: 54px;
+        margin-top: -31px;
          color: #A80532;
      }
   .consultcontentsearch{margin-top:26px;}
@@ -5548,6 +5552,12 @@ margin-left: 210px;
 color: #fff;
 font-size: 95%;
 font-family: Glober Regular;
+}
+
+.accountAppointview-Android {
+position: relative;
+margin-top: 0px !important;
+text-align: right !important;
 }
 .appfloat {
   float: right;
@@ -7780,7 +7790,7 @@ input.ion-google-place[readonly] {
   margin-top: 85px
 }
 .consultcontentsearch-Android {
-  margin-top:60px
+  margin-top:93px
 }
 .appointcontentsearch-Android {
   margin-top:83px;
