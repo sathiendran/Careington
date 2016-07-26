@@ -7321,6 +7321,12 @@ Pagination Styles
   textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
     padding: 5px 0 0 5px;
   }
+  .icon-star {
+    color: red;
+    font-size: 12px !important;
+    position: relative;
+    top: -10px;
+  }
 }
 .HealthTitle-IOS {
   left: -28px;
@@ -7688,6 +7694,12 @@ input.ion-google-place[readonly] {
   margin-top: 160px !important;
   [class^="icon-"], [class*=" icon-"] {
     font-size: 19px;
+  }
+  .icon-star {
+    color: red;
+    font-size: 12px !important;
+    position: relative;
+    top: -5px;
   }
   .item-input {
     padding: 6px 0 5px 0px !important;
