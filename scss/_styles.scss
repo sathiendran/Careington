@@ -7313,7 +7313,7 @@ Pagination Styles
   }
   .icon-star {
     color: red;
-    font-size: 12px;
+    font-size: 12px !important;
     position: relative;
     top: -10px;
   }
@@ -7684,6 +7684,12 @@ input.ion-google-place[readonly] {
   margin-top: 160px !important;
   [class^="icon-"], [class*=" icon-"] {
     font-size: 19px;
+  }
+  .icon-star {
+    color: red;
+    font-size: 12px !important;
+    position: relative;
+    top: -5px;
   }
   .item-input {
     padding: 6px 0 5px 0px !important;
