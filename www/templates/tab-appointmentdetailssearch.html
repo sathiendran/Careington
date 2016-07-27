@@ -25,7 +25,7 @@
 
 <ion-view title="Appointment Details">
 
-    <ion-content  ng-hide="addmoresearch" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false">
+    <ion-content  ng-hide="addmoresearch" class=" appointcontentsearch-{{deviceName}}">
         <div><ion-refresher on-refresh="doRefresh()"  >
            </ion-refresher></div>
         <div class="csearch-{{deviceName}}">
@@ -61,13 +61,13 @@
            </a>
            <ion-item  class="noResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There is no Scheduled Appointments!</ion-item>
        </div>
-
-       <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noResu<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled appointments!</ion-item>lt" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
+       <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noResult" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
+      
        <div style="display: none;"><timer end-time="time"  ></timer></div>
     </ion-content>
 
 
-    <ion-content  ng-hide="healthsearchhide" class="scroll-content ionic-scroll  has-header appointcontentsearch-{{deviceName}}" overflow-scroll="false">
+    <ion-content  ng-hide="healthsearchhide" class="r appointcontentsearch-{{deviceName}}">
         <div><ion-refresher on-refresh="doRefresh()"  >
            </ion-refresher></div>
         <div class="csearch-{{deviceName}}">

@@ -3596,9 +3596,9 @@ LoginService.getScheduledConsulatation(params);
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
-                            $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                            $rootScope.userHomeRecentAppointmentColor = '#FDD8C5';
                             $rootScope.nextAppointmentDisplay = 'block';
-                            $rootScope.timerCOlor = '#FEEFE8';
+                            $rootScope.timerCOlor = '#FDD8C5';
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
@@ -4072,7 +4072,7 @@ LoginService.getScheduledConsulatation(params);
                                 } else if (args.millis > 600) {
                                     $rootScope.timeNew = 'block';
                                     $rootScope.timeNew1 = 'none';
-                                    $rootScope.timerCOlor = '#FEEFE8';
+                                    $rootScope.timerCOlor = '#FDD8C5';
                                     $('.AvailableIn').show();
                                     $('.enterAppoinment').hide();
                                 }

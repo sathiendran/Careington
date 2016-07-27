@@ -59,11 +59,11 @@
 
 
 <ion-view title="Appointment Details">
- <ion-content class="appiconcontent" >
+ <ion-content class="appiconcontent" ng-hide="addmore" >
 	 <div><ion-refresher on-refresh="doRefresh()"  >
 		</ion-refresher></div>
 
-		 <div ng-hide="addmore">
+		 <div >
 					 <div class="list listfirst" >
 				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
@@ -87,7 +87,9 @@
  </div>
 	 </div>
 <div style="display: none;"><timer end-time="time"  ></timer></div>
-	 <div ng-hide="healthhide" >
+</ion-content>
+<ion-content class="appiconcontent" ng-hide="healthhide">
+	 <div >
         <div class="list listall">
 
 

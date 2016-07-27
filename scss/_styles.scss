@@ -270,13 +270,13 @@ html, body { background: transparent !important; }
     margin:0px ;
 }
 .button.button-positive.button-outline {
-	@include buttons(#9BCA82, normal, 5px, 19px, 35px );
+	@include buttons(#A2D28A, normal, 5px, 19px, 35px );
 	color: #fff;
 	width: 111px;
 	line-height: 35px;
 	padding-top: 5px;
 	/* background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);*/
-	background: linear-gradient(#9BCA82, #9BCA82);
+	background: linear-gradient(#A2D28A, #A2D28A);
 
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
@@ -287,8 +287,8 @@ html, body { background: transparent !important; }
 }
 
 .button.button-outline.button-positive.activated {
-	background-color: #9BCA82;
-	border-color: #9BCA82;
+	background-color: #A2D28A;
+	border-color: #A2D28A;
 }
 
 .footer {
@@ -1789,7 +1789,8 @@ html, body { background: transparent !important; }
 			font-weight: bold;
 			padding: 10px;
 			font-size: 17px;
-			color: #b8b8b8;
+			color: #FFFFFF;
+            font-family: Glober Bold;
 		}
 	}
 	.FooterRight {
@@ -2361,7 +2362,7 @@ html, body { background: transparent !important; }
     top:64px;height:88px;
     border-color: #5D5959 !important;
     .item{
-        margin:-8px ;
+        margin:-5px ;
     }
 }
 .usersubheaderheight{
@@ -2411,7 +2412,7 @@ text-align:center
 .appfname{
   height: 16px;
   font-size: 20px !important;
-  font-family: Glober SemiBold;
+  font-family: Glober Bold;
   color: #666666 !important;
   margin-top: -13px !important;
 }
@@ -4236,7 +4237,7 @@ color: #666666;
     margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;text-transform: lowercase;
 }
 .fday{
-    font-size:30px;margin-top:10px;font-family:Glober Regular;color:#666666;
+    font-size:28px;margin-top:10px;font-family:Glober Regular;color:#666666;
 }
 .apptitem{
     background-color:#ffc900;
@@ -4552,7 +4553,7 @@ p{
 
   .pfontsize{
       font-size:16px !important;
-     // width: 284px;
+     color:#666666 !important;
       white-space: normal !important;
       font-family:Glober Regular;
   }
@@ -4670,7 +4671,7 @@ p{
       background-image: none; }
     .aptsname {
       font-size: 14px !important;
-      color: #888;
+      color: #666666 ;
       font-family: Glober SemiBold; }
 
     .appth3 {
@@ -4968,6 +4969,11 @@ p{
     color:#666666;
     font-family: Glober SemiBold;
     margin-left:4px;
+}
+.cpheader{
+    color:#666666;
+    font-family: Glober SemiBold;
+    margin-left:-4px;
 }
  .popup-container .popup {
     border-radius: 7px;
@@ -5310,6 +5316,20 @@ color: white;
    color:#666666;
    font-family: Glober SemiBold;
 }
+.timetopfont{
+    max-width:60px;
+    margin-left:-25px;
+    font-size:11px;
+    color:#666666;
+    font-family: Glober SemiBold;
+}
+.providertopfont{
+    max-width:60px;
+    margin-left:-16px;
+    font-size:11px;
+    color:#666666;
+    font-family: Glober SemiBold;
+}
 .avatitem{
   border: none;
   min-height: 36px !important;
@@ -5371,7 +5391,7 @@ color: white;
     margin-top:167px;
 }
 .relatedusercontent{
-    margin-top:200px;
+    margin-top:215px;
     margin-bottom: 50px;
     [class^=""], [class*=" "] {
     //  font-size: 20px;
@@ -5707,7 +5727,7 @@ margin-left: 13px !important;
 /* enteremail */
 .bg{
 
-		background-color: #f54f2b;
+		background-color: #EF4B27;
 		border: none !important;
 		padding-top: 75px;
 		height: auto;
@@ -6509,7 +6529,7 @@ input[type="checkbox"]:checked + label{
 									text-align: center;
 									margin: 10px 0px 28px 0px;
 									.button{
-										@include buttons(#9BCA82, normal, 0px, 22px, 0px );
+										@include buttons(#A2D28A, normal, 0px, 22px, 0px );
 											font-family: $fontFamily_bold;
 											border-radius: 10px;
 											text-align: center;
@@ -6658,7 +6678,7 @@ input[type="checkbox"]:checked + label{
 
 	}
 	p{
-		@include font($fontFamily_semibold, normal, 14px);
+		@include font($fontFamily_regular, normal, 14px);
 		color:#999999;
 		text-align: center;
 		line-height: 8px;
@@ -7532,6 +7552,9 @@ Pagination Styles
     top: 3px;
 
   }
+  .avatlefticon {
+      .icon-chevron-right{color:#A2D28A !important;}
+  }
   .icon-chevron-right{color:#444444 !important;}
   .icon-thumbs-down{color:#999999 !important;}
 }
@@ -7760,11 +7783,14 @@ input.ion-google-place[readonly] {
 }
 .aptsname {
   font-size: 14px !important;
-  color: #888;
+  color: #666666;
   font-family: Glober SemiBold; }
   .appiconcontent{
       margin-top: 212px;
       .fname {
+          font-size: 21px;
+          font-family: Glober SemiBold !important;
+          color: #666666;
         font-size: 200% !important;
       }
   }
@@ -7828,7 +7854,7 @@ input.ion-google-place[readonly] {
 }
 .consultcontent {
   .topfont{
-     margin-left:-28px;
+     margin-left:-35px;
   }
   .rheader {
     .col {
@@ -7846,7 +7872,7 @@ input.ion-google-place[readonly] {
   margin-top:83px;
 }
 .allsearch-Android{
-     margin-top:25px;
+     margin-top:96px;
 }
 .colReport-IOS {
   margin-left: -1px;
