@@ -177,7 +177,8 @@
 
            <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel labelfont">Authorization</b></span>
-               <div class="healthViewDetails ellipsis">Authorized</div>
+               <div ng-if="currentPatientDetails[0].account.isAuthorized == 'Y'|| currentPatientDetails[0].account.isAuthorized == 'true'" class="healthViewDetails ellipsis">Authorized</div>
+               <div ng-if="currentPatientDetails[0].account.isAuthorized == 'N'|| currentPatientDetails[0].account.isAuthorized == 'false'" class="healthViewDetails ellipsis">Unauthorized</div>
            </label>
 
         </div>

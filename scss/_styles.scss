@@ -210,8 +210,8 @@ html, body { background: transparent !important; }
 	border: 2px solid $Camouflage_Green;
 	border-radius: 4px;
 	position: relative;
-  margin-left: 22px;
-  margin-top: -17px;
+  //margin-left: 22px;
+  //margin-top: -17px;
 		label {
 			@include measurement(0, 0, 22px, 22px);
 			cursor: pointer;
@@ -256,8 +256,8 @@ html, body { background: transparent !important; }
 	color: #7A7A7A;
 	font-size: 14px;//13px;
 	font-family: $fontFamily_regular;
-  position: relative;
-  top: -17px;
+  //position: relative;
+  //top: -17px;
 }
 .continue {
 	text-align: center;

@@ -4314,7 +4314,13 @@ LoginService.getScheduledConsulatation(params);
         if($rootScope.patientId == $rootScope.primaryPatientId) {
           $rootScope.P_isAuthorized = true;
         } else {
-             $rootScope.P_isAuthorized = P_isAuthorized;
+            if(P_isAuthorized == "T" || P_isAuthorized == true)
+            {
+              $rootScope.P_isAuthorized = true;
+          //  }else if(P_isAuthorized == "F" || P_isAuthorized == false) {
+          } else {
+              $rootScope.P_isAuthorized = false;
+            }
         }
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
