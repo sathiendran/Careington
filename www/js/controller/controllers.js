@@ -325,7 +325,7 @@ if (deploymentEnv === "Sandbox") {
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova'])
 
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
 
     $rootScope.drawSVGCIcon = function(iconName){
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
@@ -862,6 +862,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $window.localStorage.setItem('username', "");
             $rootScope.chkedchkbox = false;
         } else {
+          //if($("input[class=isRemChecked]").is(':checked') == true) {
             if ($("#squaredCheckbox").prop('checked') == true) {
                 $rootScope.chkedchkbox = true;
             }
@@ -896,6 +897,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ErrorMessage = "Please enter a valid email address";
                 $rootScope.Validation($scope.ErrorMessage);
             } else {
+              //if($("input[class=isRemChecked]").is(':checked') == true) {
                 if ($("#squaredCheckbox").prop('checked') == true) {
                     $window.localStorage.setItem('username', $("#UserEmail").val());
                     $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
@@ -921,6 +923,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.APICommonURL = 'https://connectedcare.md';
                     }
                 }
+                $('#loginEmail').hide();
+                $('#verifyEmail').show();
                 $scope.doGetFacilitiesList();
             }
         }
@@ -974,6 +978,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         api_keys_env = "Sandbox";
                     }
                 }
+                //if($("input[class=isRemChecked]").is(':checked') == true) {
                 if ($("#squaredCheckbox").prop('checked') == true) {
                     $window.localStorage.setItem('username', $("#UserEmail").val());
                     $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
@@ -1006,13 +1011,25 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if ($rootScope.PostPaymentDetails==0) {
                     $scope.ErrorMessage = "No account associated with this email.  Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
+                    $('#verifyEmail').hide();
+                    $('#loginEmail').show();
                 } else {
                     $rootScope.hospitalDetailsList = [];
                     angular.forEach($rootScope.PostPaymentDetails, function(index, item) {
+                      if (typeof index.logo != 'undefined' && index.logo != '') {
+                          var hosImage = index.logo;
+                          if (hosImage.indexOf(apiCommonURL) >= 0) {
+                              $scope.proImage = hosImage;
+                          } else {
+                              $scope.proImage = apiCommonURL + hosImage;
+                          }
+                      } else {
+                        $scope.proImage = get2CharInString.getProv2Char(index.name);
+                      }
                         $rootScope.hospitalDetailsList.push({
                             'id': index.$id,
                             'domainName': index.domainName,
-                            'logo': index.logo,
+                            'logo': $scope.proImage,
                             'name': index.name,
                             'operatingHours': index.operatingHours,
                             'providerId': index.providerId,
@@ -1044,6 +1061,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();
+                $('#verifyEmail').hide();
+                $('#loginEmail').show();
             }
         };
 
@@ -1143,7 +1162,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.ProviderFunction = function(hospitalDetailsDatas) {
         $rootScope.hospitalId = hospitalDetailsDatas.providerId;
-        // $rootScope.Hospital = hospitalDetailsDatas.name;
+         $rootScope.hospitalName = hospitalDetailsDatas.name;
         //  $rootScope.logo = hospitalDetailsDatas.logo;
         $rootScope.operatingHours = hospitalDetailsDatas.operatingHours;
         $rootScope.id = hospitalDetailsDatas.id;
@@ -1455,7 +1474,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
                     //$rootScope.UserEmail = $('#UserEmail').val();
-                    if ($("#squaredCheckbox").prop('checked') == true) {
+                  //  if ($("#squaredCheckbox").prop('checked') == true) {
+                  if($("input[class=isRemChecked]").is(':checked') == true) {
                         $window.localStorage.setItem('username', $("#UserEmail").val());
                         $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
                         $rootScope.UserEmail = $scope.userLogin.UserEmail;
