@@ -59,11 +59,11 @@
 
 
 <ion-view title="Appointment Details">
- <ion-content class="appiconcontent" >
+ <ion-content class="appiconcontent" ng-hide="addmore" >
 	 <div><ion-refresher on-refresh="doRefresh()"  >
 		</ion-refresher></div>
 
-		 <div ng-hide="addmore">
+		 <div >
 					 <div class="list listfirst" >
 				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
 						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
@@ -87,7 +87,9 @@
  </div>
 	 </div>
 <div style="display: none;"><timer end-time="time"  ></timer></div>
-	 <div ng-hide="healthhide" >
+</ion-content>
+<ion-content class="appiconcontent" ng-hide="healthhide">
+	 <div >
         <div class="list listall">
 
 
@@ -127,19 +129,24 @@
 
 <ion-tabs class=" tabs-icon-top tabs-dark">
 	 <a class="tab-item" ng-href="#/tab/relatedusers" >
-	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
+	 <span class="tabcolor">Users</span>
 	 </a>
 	 <a class="tab-item" ng-href="#/tab/consultations">
-	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> Consultations
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
+	 <span class="tabcolor">Consultations</span>
 	 </a>
 	 <a class="tab-item" ng-href="#/tab/healthinfo">
-	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> My Health
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
+	 <span class="tabcolor">My Health</span>
 	 </a>
 	 <a class="tab-item active" ng-href="#/tab/appointmentpatientdetails">
-	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i> Appointments
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
+	 <span class="tabcolor">Appointments</span>
 	 </a>
 	 <a class="tab-item" ng-href="#/tab/profileoption">
-	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
+	 <span class="tabcolor">More</span>
 	 </a>
 </ion-tabs>
 </ion-side-menu-content>

@@ -41,7 +41,7 @@
          <div class="row sheader">
             <div class="col col-30 dsheader"><span class="datealign">Date</span></div>
             <div class="col col-20 csheader">Time</div>
-            <div class="col col-30 csheader">Provider</div>
+            <div class="col col-30 cpheader">Provider</div>
             <div class="col col-25 "></div>
          </div>
          <hr style="margin-top: -10px; margin-bottom: 0px;color:#b5b5b5;">
@@ -93,7 +93,7 @@
          <div class="row sheader">
             <div class="col col-30 dsheader"><span class="datealign">Date</span></div>
             <div class="col col-20 csheader">Time</div>
-            <div class="col col-30 csheader">Provider</div>
+            <div class="col col-30 cpheader">Provider</div>
             <div class="col col-25 "></div>
          </div>
          <hr style="margin-top: -10px; margin-bottom: 0px;color:#b5b5b5;">
@@ -140,7 +140,7 @@
          <div class="row sheader">
             <div class="col col-30 dsheader"><span class="datealign">Date</span></div>
             <div class="col col-20 csheader">Time</div>
-            <div class="col col-30 csheader">Provider</div>
+            <div class="col col-30 cpheader">Provider</div>
             <div class="col col-25 "></div>
          </div>
          <hr style="margin-top: -10px; margin-bottom: 0px;color:#b5b5b5;">
@@ -176,19 +176,24 @@
 </ion-view>
 <ion-tabs class=" tabs-icon-top tabs-dark">
    <a class="tab-item" ng-href="#/tab/relatedusers" >
-   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
+   <span class="tabcolor">Users</span>
    </a>
    <a class="tab-item active" ng-href="#/tab/consultations">
-   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> Consultations
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
+   <span class="tabcolor">Consultations</span>
    </a>
    <a class="tab-item" ng-href="#/tab/healthinfo">
-   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> My Health
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
+   <span class="tabcolor">My Health</span>
    </a>
    <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
-   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i> Appointments
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
+    <span class="tabcolor">Appointments</span>
    </a>
    <a class="tab-item" ng-href="#/tab/profileoption">
-   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
+   <span class="tabcolor">More</span>
    </a>
 </ion-tabs>
 

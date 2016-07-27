@@ -211,7 +211,7 @@ $rootScope.authorised=relateDependentAuthorize;
 
                 //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
                  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class='headerfont popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 
                   templateUrl: 'templates/popupTemplate.html',
@@ -246,7 +246,7 @@ $rootScope.authorised=relateDependentAuthorize;
 
                 //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
                  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class='headerfont popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 
                   templateUrl: 'templates/unauthorizedpopup.html',
@@ -642,9 +642,10 @@ $rootScope.authorised=relateDependentAuthorize;
             } else {
                 $scope.relationship = '';
             }
+
             var confirmPopup = $ionicPopup.confirm({
-                title: "<a class='item-avatar'>  <img src='" + coUserDetails.imagePath + "'><span><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
-                subTitle: "<p class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                title: "<a class='item-avatar popupaligned'>  <img src='" + coUserDetails.imagePath + "'><span><span class='popupname popupalign'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
+                subTitle: "<p class=' popupfont'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</p>",
                 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
                 templateUrl: 'templates/coUserTemplate.html',
                 buttons: [{
@@ -668,6 +669,10 @@ $rootScope.authorised=relateDependentAuthorize;
                     $scope.allval = false;
                 }
             });
+            $scope.closepopup=function(){
+                 myPopup.close();
+
+            }
         }
 
         $rootScope.coUserUnlink = function(coUserDetails) {

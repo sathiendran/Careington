@@ -563,7 +563,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.AddhealthplanOverlop = "margin: 186px 0 0 0;";
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
-        $rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
+        //$rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
+        $rootScope.PasswordOverlop = "margin: 57px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
         $rootScope.calendarBackStyle = "";
@@ -574,7 +575,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConcernFooterNextIOS = "margin-left: -22px !important; left: -34px !important;";
       //  $rootScope.providerItamTop = "top: 6px;";
         $rootScope.appointContent = "margin: 76px 0 0 0;";
-        $rootScope.MarginHomeTop = "margin-top: -130px;";
+        //$rootScope.MarginHomeTop = "margin-top: -130px;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
         $rootScope.appointCOntent = "margin-top:170px;";
@@ -3615,9 +3616,9 @@ LoginService.getScheduledConsulatation(params);
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
-                            $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                            $rootScope.userHomeRecentAppointmentColor = '#FDD8C5';
                             $rootScope.nextAppointmentDisplay = 'block';
-                            $rootScope.timerCOlor = '#FEEFE8';
+                            $rootScope.timerCOlor = '#FDD8C5';
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
@@ -4091,7 +4092,7 @@ LoginService.getScheduledConsulatation(params);
                                 } else if (args.millis > 600) {
                                     $rootScope.timeNew = 'block';
                                     $rootScope.timeNew1 = 'none';
-                                    $rootScope.timerCOlor = '#FEEFE8';
+                                    $rootScope.timerCOlor = '#FDD8C5';
                                     $('.AvailableIn').show();
                                     $('.enterAppoinment').hide();
                                 }
