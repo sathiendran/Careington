@@ -267,7 +267,7 @@ html, body { background: transparent !important; }
     overflow: hidden;  line-height: normal; }
 }
 .item{
-    margin:0px ;
+    //margin:0px ;
 }
 .button.button-positive.button-outline {
 	@include buttons(#A2D28A, normal, 5px, 19px, 35px );
@@ -1335,6 +1335,7 @@ html, body { background: transparent !important; }
 			font-size: 23px !important;
 			width: 50%;
 			padding: 10px 10px 7px 0px;
+            color:#666666;
 		}
 		.cardDetailsHeading {
 			padding-top: 35px;
@@ -1418,7 +1419,7 @@ html, body { background: transparent !important; }
 #SidemenuHomeAndroid {
 	margin-top:10px; border:none;color:#7E807E;font-family: Glober regular !important; background-color: #464644;
 	span {
-		top: 0px; position:relative; font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);
+		top: 0px; position:relative; font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);font-weight:normal !important;
 	}
 }
 
@@ -1446,7 +1447,7 @@ html, body { background: transparent !important; }
 	.LogOutText {
 		border: none;color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
 		span {
-			position: relative;  font-size: 23px; padding-left: 15px;
+			position: relative;  font-size: 23px; padding-left: 15px;font-weight: normal !important;
 		}
 	}
 	.item {
@@ -1480,7 +1481,7 @@ html, body { background: transparent !important; }
 	.LogOutText {
 		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644; margin-top: 18px;
 		span {
-			position: relative;  font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);
+			position: relative;  font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);font-weight: normal !important;
 		}
 	}
 	.item {
@@ -2479,7 +2480,7 @@ font-size: 18px !important;
 }
 
 .TitleHomeUser_Sub {
-	@include font($fontFamily_semibold, bold, 23px);
+	@include font($fontFamily_bold, bold, 23px);
 	position:relative;
 	/*margin: 1px 7px 25px;*/
 	margin-left: 7px;
@@ -3250,8 +3251,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .subHeaderTop { top: 70px; padding-top: 19px;
     height: 87%; }
 
-#BackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
-#SearchBackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
+#BackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
+#SearchBackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
 .iconbackbutton { top:0px !important;}
 
 #WhoNeeds { font-size: 23px;  width: 85%; }
@@ -3752,8 +3753,15 @@ font-family: $fontFamily_regular;
       //margin-top: 200px !important;
     margin-top: 46%;
  }
+ .usercontentpat-IOS{
+      //margin-top: 200px !important;
+    margin-top: 46%;
+ }
  .usercontent-Android{
    margin-top: 120px;
+ }
+ .usercontentpat-Android{
+   margin-top: 74px;
  }
 .healthcontentsearch-Android{
       margin-top: 108px;
@@ -4079,9 +4087,13 @@ font-size: 18px;
 .tab-item.active{
     color:#23B5D6 !important;
 }
-.tab-item .icon {color:#999999 !important;}
+.tab-item.active{
+    color:#23B5D6 !important;
+    .icon {color:#23B5D6 !important;}
+}
+.tab-item .icon {color:#999999;}
 .newuserdetails{
-   border-top: none;padding: 10px !important;
+   border-top: none;padding: 0px !important;
 }
 .newuserp{
     text-align:center;margin-bottom: 10px!important;
@@ -4195,11 +4207,11 @@ color: #666666;
   margin-top: 13px;
 }
 .unlink{
-  margin-left: 15px !important;
-    margin-top: -5px !important;
-    margin-bottom: -5px;
+  margin-left: 7px !important;
+    margin-top: -4px !important;
+    margin-bottom: -6px;
     color: white;
-    background-color: red !important;
+    background-color:#D0021B !important;
 
 }
 .icons{margin-left:12px; font-size: 25px;}
@@ -5299,6 +5311,19 @@ color: white;
    color: #aaa;
    }
 }
+.casearch-Android{
+  // background-color:#e8e8e8;
+   height:27px;
+   border-radius:5px;
+   margin-top:134px;
+ .hsearch{
+   text-align: center;
+   line-height: 2;
+   font-size: 16px;
+   font-family: Glober Regular;
+   color: #aaa;
+   }
+}
 .consultsearch{
     .rowalign{
         background-color:none !important;
@@ -5711,8 +5736,8 @@ margin-left: 13px !important;
    color:#666666 !important;
 }
 .surname{
-   font-family:Glober SemiBold;
-   margin-bottom:0px !important;font-size:19px !important;
+   font-family:Glober Bold; color:#666666;
+   margin-bottom:0px !important;font-size:18px !important;
 }
 .currmedication{margin-top: -85px;}
 .error{color:red;}
@@ -5736,7 +5761,7 @@ margin-left: 13px !important;
 			color: #FFFFFF;
 			width: 100%;
 			text-align: center;
-			@include font($fontFamily_bold, bold, 37px);
+			@include font($fontFamily_xBold, bold, 37px);
 			font-weight: bold;
 			margin-top: 10px;
 		}
@@ -5935,7 +5960,7 @@ margin-left: 13px !important;
 .provider{
 
 		a{
-			border-bottom: 2px solid #C4C5C3;
+			border-bottom: 1px solid #C4C5C3;
 			.ion-chevron-right:before{
 				color: #999999;
 				font-size: 15.5px !important;
@@ -6580,7 +6605,7 @@ input[type="checkbox"]:checked + label{
 							color:#8e8e93 !important;
 							width: 100%;
 							padding-top: 1%;
-							@include font($fontFamily_regular, bold, 13px);
+							@include font($fontFamily_regular, bold, 14px);
                             -webkit-appearance: none;
                             -moz-appearance: none;
 						}
@@ -6678,7 +6703,7 @@ input[type="checkbox"]:checked + label{
 
 	}
 	p{
-		@include font($fontFamily_regular, normal, 14px);
+		@include font($fontFamily_regular, normal, 15px);
 		color:#999999;
 		text-align: center;
 		line-height: 8px;
@@ -6880,7 +6905,7 @@ border-bottom: 2px solid #cbcbcb;
 		   width: 100%;
 		   @include font($fontFamily_semibold, normal, 14px);
 		   /*color: #8e8e93;*/
-		   color : #000;
+		   color : #666666;
 		   height: 25px;
            line-height: 28px;
 		}
@@ -6956,11 +6981,11 @@ border-bottom: 2px solid #cbcbcb;
     border-radius: 50%;
 	margin-top: 3px;
 	p {
-		@include font($fontFamily_bold, Bold, 18px);
+		@include font($fontFamily_xBold, Bold, 23px);
 		z-index: 999;
 		width: 100%;
 		height: 100%;
-		padding-top: 27%;
+		padding-top: 36%;
 		//padding-left: 2px;
 		text-align: center;
 		color: #fff;
@@ -7425,6 +7450,12 @@ Pagination Styles
   left: 10px;
   position: relative;
 }
+#patientAuthorize{
+    font-size:18px;
+}
+.newUserTitle-Android{
+ margin-left:34px;
+}
 .coUserAddress-IOS {
   line-height:25px !important; font-size: 20px !important;
 }
@@ -7764,8 +7795,8 @@ input.ion-google-place[readonly] {
     padding: 6px 0 5px 0px !important;
   }
   .dobDependent-Android {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 23px;
     font-family: Glober Semibold;
     color: rgba(5, 4, 9, 0.54) !important;
     width: 159%;
@@ -7869,10 +7900,17 @@ input.ion-google-place[readonly] {
   margin-top:93px
 }
 .appointcontentsearch-Android {
-  margin-top:83px;
+    .fname {
+           font-size: 21px;
+           font-family: Glober SemiBold !important;
+           color: #666666;
+         font-size: 200% !important;
+       }
 }
+
+
 .allsearch-Android{
-     margin-top:96px;
+     margin-top:34px;
 }
 .colReport-IOS {
   margin-left: -1px;
@@ -7911,15 +7949,15 @@ input.ion-google-place[readonly] {
 }
 .dependentAuthorize {
   text-align: center;
-  padding: 55px 42px;
-  font-size: 18px;
+  padding: 34px 36px;
+  font-size: 17px;
   color: #7c7c7c;
   line-height: 27px;
   font-family: "Glober Regular";
     border-top: 1px solid #C4C5C3;
 }
 .dependentAddAuthorize {
-  font-size: 18px;color: #7c7c7c;
+  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;
 }
 .searchAccount {
   p{

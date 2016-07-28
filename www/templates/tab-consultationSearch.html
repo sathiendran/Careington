@@ -80,7 +80,7 @@
             <h6 class="hsearch">
 
                  <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
-                  <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                  <div class="item-input-inset" style="margin-top: -15px!important;margin-bottom: -16px!important;">
                     <label class="item-input-wrapper">
                        <i style="display: {{iconDisplay}}" class="icon doticon"  ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
                      <input type="search"  placeholder="Search" ng-model="data.searchProvider">
@@ -116,18 +116,20 @@
                      <span><i class="icon ion-chevron-right"></i></span></span>
                   </div>
                </div>
-                       <hr class="dotedhr">
             </div>
+               <hr class="dotedhr">
             <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found!</ion-item>
          </div>
          <div ng-if="missedlist.length" class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
+
+
       <ion-content ng-show="droppedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
          <div class="csearch-{{deviceName}}">
             <h6 class="hsearch">
 
                <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
-                  <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                  <div class="item-input-inset" style="margin-top: -15px!important;margin-bottom: -16px!important;">
                     <label class="item-input-wrapper">
                       <i style="display: {{iconDisplay}}" class="icon doticon"  ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
                      <input type="search"  placeholder="Search" ng-model="data.searchProvider">

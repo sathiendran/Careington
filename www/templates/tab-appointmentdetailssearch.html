@@ -28,7 +28,7 @@
     <ion-content  ng-hide="addmoresearch" class=" appointcontentsearch-{{deviceName}}">
         <div><ion-refresher on-refresh="doRefresh()"  >
            </ion-refresher></div>
-        <div class="csearch-{{deviceName}}">
+        <div class="casearch-{{deviceName}}">
            <h6 class="hsearch">
 
               <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
@@ -43,7 +43,7 @@
            </h6>
         </div>
        <div class="list listfirst allsearch-{{deviceName}}">
-           <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+           <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in filteredItems=(getIndividualScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
                   <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
                   <h2 class="aptsname">Next Appointment</h2>
                   <p class="appmarg">
@@ -62,15 +62,15 @@
            <ion-item  class="noResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There is no Scheduled Appointments!</ion-item>
        </div>
        <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noResult" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
-      
+
        <div style="display: none;"><timer end-time="time"  ></timer></div>
     </ion-content>
 
 
-    <ion-content  ng-hide="healthsearchhide" class="r appointcontentsearch-{{deviceName}}">
+    <ion-content  ng-hide="healthsearchhide" class=" appointcontentsearch-{{deviceName}}">
         <div><ion-refresher on-refresh="doRefresh()"  >
            </ion-refresher></div>
-        <div class="csearch-{{deviceName}}">
+        <div class="casearch-{{deviceName}}">
            <h6 class="hsearch">
 
               <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
@@ -86,7 +86,7 @@
         </div>
         <div class="list listall allsearch-{{deviceName}}">
 
-        <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+        <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in filteredItems=(scheduledList  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
             <img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
             <h2 class="aptsname">Next Appointment</h2>
              <p class="appmarg">
