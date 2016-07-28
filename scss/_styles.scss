@@ -941,7 +941,7 @@ html, body { background: transparent !important; }
 .enterAppoinment {
 	background-color:#A2D28A !important;
 	border:none !important;
-	box-shadow: 0 0px 8px 3px #333 !important;
+//	box-shadow: 0 0px 8px 3px #333 !important;
 	-moz-box-shadow:  0 0px 8px 3px #333 !important;
 	-webkit-box-shadow:  0 0px 8px 3px #333 !important;
 	background-size: 100% 0 !important;
@@ -3960,7 +3960,7 @@ font-size: 18px;
   #viewicon{
      float:right;
      color:white;
-     margin-top:3px;
+     //margin-top:3px;
      font-size:12px !important;
     // width: 50%;
      text-align: right
@@ -4603,6 +4603,12 @@ p{
     .password_home_top {
      // margin-top:-110px  }
 }
+
+.accountAppointview-Android {
+    position: relative;
+    margin-top: -25px !important;
+    text-align: right !important;
+}
     .tabs-top > .tabs, .tabs.tabs-top {
       top: inherit !important; }
       .ReportContent {
@@ -4795,6 +4801,11 @@ p{
 
   @media (max-width:640px) and (min-width:482px)    {
 
+
+      .tabs-top > .tabs, .tabs.tabs-top {
+      top: inherit !important;
+      }
+
  .addphoto{
       width:42%;
         }
@@ -4845,7 +4856,9 @@ p{
         .usercontent-IOS {
           margin-top: 46%;
         }
-
+        .tabs-top > .tabs, .tabs.tabs-top {
+        top: inherit !important;
+        }
       .alignchronic{
              //margin-left:235px !important;
          }
@@ -4884,7 +4897,9 @@ p{
      }
 
      @media (min-width:770px) and (max-width:1024px){
-
+         .tabs-top > .tabs, .tabs.tabs-top {
+         top: inherit !important;
+         }
        .usercontent {
         // margin-top: 177px !important
         }
@@ -4923,6 +4938,9 @@ p{
        @media (max-width:1366px) and (min-width:769px)    {
            .itemhead{
                text-align:center;
+           }
+           .tabs-top > .tabs, .tabs.tabs-top {
+           top: inherit !important;
            }
        }
    /*
@@ -7449,7 +7467,7 @@ Pagination Styles
 }
 .accountAppointview-Android {
   position: relative;
-    margin-top: -24px !important;
+    margin-top: -5px;
     text-align: right !important;
 }
 .newUserTitle-IOS{
@@ -8060,7 +8078,7 @@ input.ion-google-place[readonly] {
 .checkbox {
   position: relative;
   display: inline-block;
-  width: 22px;
+ // width: 22px;
   height: 22px;
   vertical-align: middle;
   cursor: pointer;
