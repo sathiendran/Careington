@@ -106,7 +106,28 @@ angular.module('starter.controllers')
 
         $rootScope.getManageProfile = function(currentPatientDetails) {
             $rootScope.currentPatientDetails = currentPatientDetails;
-            //     var date = new Date($rootScope.currentPatientDetails[0].dob);
+               var doddate = new Date($rootScope.currentPatientDetails[0].dob);
+               var today = new Date();
+               var nowyear = today.getFullYear();
+               var nowmonth = today.getMonth()+1;
+               var nowday = today.getDate();
+               var dateofb=new Date( doddate)
+               var birthyear =dateofb.getFullYear();
+               var birthmonth = dateofb.getMonth();
+               var birthday = dateofb.getDate();
+               var age = nowyear - birthyear;
+               var age_month = nowmonth - birthmonth;
+               var age_day = nowday - birthday;
+               if(age_month < 0 || (age_month == 0 && age_day <0)) {
+               age = parseInt(age) -1;
+              }
+              if(age >=12){
+                $rootScope.viewemailDisplay = 'flex';
+              }else{
+                   $rootScope.viewemailDisplay = 'none';
+
+              }
+
             //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
             //   $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
             if ($rootScope.currentPatientDetails[0].gender == 'M') {
