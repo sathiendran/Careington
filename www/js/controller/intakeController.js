@@ -440,6 +440,7 @@ angular.module('starter.controllers')
     }
 
     $scope.goToConsentToTreat = function() {
+    //  $state.go('tab.intakeBornHistory');
         $rootScope.appointmentsPage = false;
         $scope.doGetConcentToTreat();
         //$scope.doGetHospitalInformation();
