@@ -479,6 +479,16 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         }
     })
 
+    .state('tab.intakeBornHistory', {
+        url: '/intakeBornHistory',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-intakeBornHistory.html',
+                controller: 'IntakeFormsCtrl'
+            }
+        }
+    })
+
     .state('tab.MedicationAllegies', {
             url: '/MedicationAllegies',
             views: {
