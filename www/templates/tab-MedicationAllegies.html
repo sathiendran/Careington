@@ -2,16 +2,16 @@
 	<ion-side-menu-content>
 
 	<div ng-include src="'templates/intakeHeader.html'"></div>
-	
+
 <ion-view title="Medication Allergies">
 <ion-content class="ContentHomeUser ConcernsContent" >
  	<ion-list>
 		<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
-			<div class="Step1">Step <b style="color:#535353;">4</b> of <b style="color:#535353;">7</b></div>
-			<div ng-click="loadMedicationAllegies();" >            
+			<div class="Step1">Step <b style="color:#535353;">4</b> of <b style="color:#535353;">{{userAgeForIntake}}</b></div>
+			<div ng-click="loadMedicationAllegies();" >
 				<div class="PrimaryContent">
 					<h1 class="title ChronicCondition">Medication Allergies</h1>
-				
+
 					<p class="patientConternFontStyle">Select any medication allergies.
 						<br/>
                         <span class="patientConternFontStyleSubTitle">Select up to four </span></p>
@@ -19,8 +19,8 @@
 				</div>
 			</div>
 	    </ion-item>
-       
-		
+
+
 		 <ion-item ng-repeat="item in patinentMedicationAllergies">
 			<div class="PrimaryConcernList" >
 				<p class="intakeNote">{{item.text}} </p>
@@ -30,10 +30,10 @@
 
 			</div>
 		</ion-item>
-        
-       
-        
-        
+
+
+
+
 	</ion-list>
 </ion-content>
 </ion-side-menu-content>
@@ -48,17 +48,16 @@
 		<div class="FooterLeft">
 			<a class="button_new icon ion-chevron-left" href="#/tab/priorSurgeries" ><span> Back</span></a>
 		</div>
-		
+
 		<div class="FooterCenter" ng-click="clearRootScopeConce()">
 			<a class="button_new icon" >Cancel</a>
 		</div>
-		   
+
 		<div class="FooterRight" style="{{NextIntakeForm}};" >
 			<!--<a class="button_new icon ion-chevron-right"   ng-click="GoToCurrentMedication(MedicationCountValid)"> <span class="ConcernFooterNext" style="{{FootNextButton}}{{FootNextButtonRight}}">Next<span> </a>-->
 			<a class="button_new icon ion-chevron-right"   ng-click="GoToCurrentMedication(MedicationCountValid)"> <span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span> </a>
 		</div>
-						  
-	<div>
-    
-</ion-footer-bar>
 
+	<div>
+
+</ion-footer-bar>

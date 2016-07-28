@@ -4490,6 +4490,11 @@ p{
       #AppointNoneIOS {
         padding: 34px 10px !important;
       }
+      .birthContent {
+        .healthViewDetails {
+          margin-left: -7px;
+        }
+      }
 
       .passedDate-IOS{
         width: 25% !important;
@@ -8190,5 +8195,33 @@ input.ion-google-place[readonly] {
   }
   .pwdTextbox {
       padding-top: 20px;
+  }
+}
+.birthContent {
+  .labelcolor {
+    width: 73% !important;
+    max-width: 73% !important;
+    margin-left: 8px;
+  }
+  .ion-asterisk {
+    color: red;
+    font-size: 9px;
+  }
+  .formlabel {
+    font-size: 19px;
+    font-family: $fontFamily_regular;
+    margin-left: 0px;
+  }
+  .textdata {
+    font-size: 19px;
+    font-family: $fontFamily_regular;
+      width: 77px;
+  }
+  .PrimaryContent {
+    p {
+      width: 90% !important;
+      font-family: Glober SemiBold !important;
+      font-size: 13px !important;
+    }
   }
 }

@@ -4296,7 +4296,7 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.healthPlanID = '';
             $rootScope.NewHealth = '';
         }
-
+        $rootScope.userAgeForIntake = '';
         $rootScope.updatedPatientImagePath = '';
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
@@ -4312,6 +4312,17 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
+        if(P_Age !== "" && !angular.isUndefined(P_Age)) {
+          var ageDifMs = Date.now() - new Date(P_Age).getTime(); // parse string to date
+          var ageDate = new Date(ageDifMs); // miliseconds from epoch
+          $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+          if($scope.userAge === 0) {
+            $rootScope.userAgeForIntake = 8;
+          }else {
+            $rootScope.userAgeForIntake = 7;
+          }
+        }
+      //  $rootScope.userAgeForIntake = ageFilter.getDateFilter(P_Age);
          $rootScope.SelectPatientAge = $rootScope.PatientAge;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.patientId = P_Id;
