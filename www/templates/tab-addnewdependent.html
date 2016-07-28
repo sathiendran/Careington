@@ -13,7 +13,7 @@
 
    <div class="Server_Error ErrorMessageDiv" ></div>
 <div id="Error_Message"></div>
-        <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> New User </span> <span >
+        <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}" > New User </span> <span >
             <a  ng-click="canceldependent()" class="headerval"  >Cancel</a></span></h1>
 
 
@@ -151,7 +151,7 @@
 
         </div>
         <div class="healthinfoChoose-{{deviceName}}">
-           <select style="width:100%;margin-right:52px;font-size: 19px;" class=" optionselect" name="heightunit" id="heightunit" ng-model="heightunit" required>
+           <select style="width:100%;margin-right:53px;" class=" optionselect textdata" name="heightunit" id="heightunit" ng-model="heightunit" required>
 						 <option value=""><b>Choose</b></option>
              <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b>{{getHeightunit.text}}</b></option>
 					 </select>
@@ -168,7 +168,7 @@
           <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="weight" name="weight" required ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
         </div>
         <div style="width: 50%;">
-           <select style="width:90%;font-size: 19px;" class="optionselect " name="weightunit" id="weightunit" ng-model="weightunit" required>
+           <select style="width:90%;margin-left: 10px;" class="optionselect textdata" name="weightunit" id="weightunit" ng-model="weightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
            </select>
@@ -227,7 +227,7 @@
      <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Home Address</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
    </div>
     <div class="col col-50">
-			  <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" />
+			  <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Semibold;" />
      <!--<textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>-->
     </div>
 </div>
@@ -319,7 +319,7 @@
 	       </div>
 	     </div>
 			 <div class="dependentAuthorize" >
-				 	By clicking below I certify that I am legally empowered to request and/or manage care on behalf of this inividual.
+				 	By clicking below I certify that I am legally empowered to request and/or manage care on behalf of this individual.
 			 </div>
 
  </div>
