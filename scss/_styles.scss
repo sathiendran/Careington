@@ -8174,3 +8174,30 @@ input.ion-google-place[readonly] {
       padding-top: 20px;
   }
 }
+.birthContent {
+  .labelcolor {
+    width: 73% !important;
+    max-width: 73% !important;
+    margin-left: -4px;
+  }
+  .ion-asterisk {
+    color: red;
+    font-size: 9px;
+  }
+  .formlabel {
+    font-size: 13px;
+    font-family: $fontFamily_semibold;
+  }
+  .textdata {
+    font-size: 13px;
+    font-family: $fontFamily_semibold;
+      width: 60px;
+  }
+  .PrimaryContent {
+    p {
+      width: 90% !important;
+      font-family: Glober SemiBold !important;
+      font-size: 13px !important;
+    }
+  }
+}

@@ -441,15 +441,57 @@ angular.module('starter.controllers')
 
     $scope.goToConsentToTreat = function() {
     //  $state.go('tab.intakeBornHistory');
-        $rootScope.appointmentsPage = false;
-        $scope.doGetConcentToTreat();
+        if($rootScope.userAgeForIntake === 8) {
+          if (typeof $('#birthBorn').val() === 'undefined' || $('#birthBorn').val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patient was born at full term or not?";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          } else if (typeof $('#birthVagin').val() === 'undefined' || $('#birthVagin').val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patient was born vaginally or not?";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          } else if (typeof $('#birthDischargedwithMother').val() === 'undefined' || $('#birthDischargedwithMother').val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patient was discharged with the Mother or not? ";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          } else if (typeof $('#birthVaccination').val() === 'undefined' || $('#birthVaccination').val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patients vaccinations are up-to-date or not?";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          }else {
+            $scope.ConsultationSaveData.infantData = {
+              "patientAgeUnderOneYear": "Y",
+              "fullTerm": $('#birthBorn').val(),
+              "vaginalBirth": $('#birthVagin').val(),
+              "dischargedWithMother": $('#birthDischargedwithMother').val(),
+              "vaccinationsCurrent": $('#birthVaccination').val()
+            }
+            $rootScope.appointmentsPage = false;
+            $scope.doGetConcentToTreat();
+          }
+        } else {
+          $scope.ConsultationSaveData.infantData = {
+            "patientAgeUnderOneYear": "",
+            "fullTerm": "",
+            "vaginalBirth": "",
+            "dischargedWithMother": "",
+            "vaccinationsCurrent": ""
+          }
+          $rootScope.appointmentsPage = false;
+          $scope.doGetConcentToTreat();
+        }
+
         //$scope.doGetHospitalInformation();
         //$state.go('tab.ConsentTreat');
+    };
+
+    $scope.goToHealthHistory = function() {
+      if($rootScope.userAgeForIntake === 8) {
+            $state.go('tab.intakeBornHistory');
+      }else {
+            $scope.goToConsentToTreat();
+      }
+
     };
     /*Primary concern End here*/
 
     /*Secondary concern Start here*/
-
 
     $scope.secondaryConcernList = $rootScope.scondaryConcernsCodesList;
     //$rootScope.PatientSecondaryConcern = [];
@@ -1329,13 +1371,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
         "surgeries": [],
         "medicalConditions": [],
         "medications": [],
-        "infantData": {
-            "patientAgeUnderOneYear": "",
-            "fullTerm": "",
-            "vaginalBirth": "",
-            "dischargedWithMother": "",
-            "vaccinationsCurrent": ""
-        },
+        "infantData": [],
         "concerns": []
     };
 
