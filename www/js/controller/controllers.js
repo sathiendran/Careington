@@ -578,7 +578,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         //$rootScope.MarginHomeTop = "margin-top: -130px;";
         $rootScope.waitingContentIos = "margin-top: 120px; ";
         $rootScope.providerItamMarginTop = "";
-        $rootScope.appointCOntent = "margin-top:170px;";
+        $rootScope.appointCOntent = "margin-top:175px;";
     }
     $scope.showSearchInput = function() {
         var searchStyle = $('#divSearchInput').css('display');
