@@ -1169,6 +1169,26 @@ this.getPatientMedicalProfile = function(params){
                 });
     }
 
+    this.getChatTranscript = function (params) {
+          var requestInfo = {
+              headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL + '/api/reports/consultationreportdetails/chatnote/' + params.consultationId,
+              method: 'GET'
+          };
+
+          $http(requestInfo).
+                  success(function (data, status, headers, config) {
+                      if (typeof params.success != 'undefined') {
+                          params.success(data);
+                      }
+                  }).
+                  error(function (data, status, headers, config) {
+                      if (typeof params.error != 'undefined') {
+                         params.error(data);
+                      }
+                  });
+      }
+
 
    this.postNewDependentuser = function(params) {
 

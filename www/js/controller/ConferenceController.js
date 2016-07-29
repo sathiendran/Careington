@@ -223,7 +223,7 @@ angular.module('starter.controllers')
                   if($scope.userAge === 0) {
                     $rootScope.userReportDOB = $scope.userAge;
                   } else {
-                    $rootScope.userReportDOB = 'None Reported';
+                    $rootScope.userReportDOB = $scope.userAge;
                   }
                 }
 
@@ -336,7 +336,7 @@ angular.module('starter.controllers')
             success: function(data) {
                 $scope.getSoapNotes();
                 //$rootScope.attachmentFileId = data.data[0].snapFile.files[0].id;
-                $rootScope.getAttachmentList = []
+                $rootScope.getAttachmentList = [];
 
 
                 angular.forEach(data.data[0].snapFile.files, function(index, item) {
@@ -359,6 +359,40 @@ angular.module('starter.controllers')
         };
 
         LoginService.getAttachmentList(params);
+
+    }
+
+    $scope.doGetChatTranscript = function() {
+        if ($rootScope.accessToken == 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+
+              /*  angular.forEach(data.data[0].snapFile.files, function(index, item) {
+                    var attachImage = index.name.split(".");
+                    $rootScope.getAttachmentList.push({
+                        'id': index.id,
+                        'name': index.name,
+                        'image': attachImage[attachImage.length - 1]
+                    });
+
+                });  */
+
+                $rootScope.data123 = data;
+                $rootScope.data1234 = data.data;
+
+
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+
+        LoginService.getChatTranscript(params);
 
     }
 
