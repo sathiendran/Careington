@@ -406,7 +406,7 @@ html, body { background: transparent !important; }
 
 .password_sub_headerIOS {
 	@extend .login_sub_header;
-	margin-top: 99px;
+	margin-top: -99px;
 	color: $Shiraz;
 		.password_header_contentIOS {
 			/*position: relative;
@@ -8279,8 +8279,8 @@ input.ion-google-place[readonly] {
 }
 .birthContent {
   .labelcolor {
-    width: 73% !important;
-    max-width: 73% !important;
+    width: 100% !important;
+    max-width: 100% !important;
     margin-left: 8px;
   }
   .ion-asterisk {
@@ -8304,5 +8304,23 @@ input.ion-google-place[readonly] {
       font-size: 13px !important;
     }
   }
+  .bornBirth {
+    .disable-pointer-events {
+        margin-left: 8px;
+        font-size: 19px;
+        font-family: $fontFamily_regular;
+        color: #666666 !important;
+    }
+    .ion-checkmark-circled:before {
+      font-size: 30px;
+    }
+    .item-radio {
+      border: none;
+    }
+  }
+
+}
+.reset-IOS{
+  padding-top: 125px !important;
 }
 .healthchoose{width:100%;margin-right:53px;}

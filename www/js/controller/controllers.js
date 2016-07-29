@@ -510,7 +510,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
             $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
             $rootScope.PositionIOS = "position:fixed; top:105px;";
-            $rootScope.MarginHomeTop = "margin-top: -130px";
+            $rootScope.MarginHomeTop = "margin-top: 223px";
             $rootScope.concernsItemDivs = "top: 5px;";
             $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
             $rootScope.FootNextButton = "left: 24px;";
@@ -1375,6 +1375,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 success: function(data) {
                     //Get default payment profile from localstorage if already stored.
                     $rootScope.accessToken = data.data[0].access_token;
+                    console.log($filter('date')(data.data[0].expires, "yyyy-MM-ddTHH:mm:ss"));
                     console.log($scope.accessToken);
                     if (typeof data.data[0].access_token == 'undefined') {
                         $scope.ErrorMessage = "Incorrect Password. Please try again";
