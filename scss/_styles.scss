@@ -5569,6 +5569,11 @@ color: white;
       margin-left: -60px;
       color: #FDD8C5 !important;
 }
+.authorizedIcon-Android {
+position: relative;
+top: 6px !important;
+right: 0px;
+}
 .contentalign .statuscont{
     margin-top:14px;
 }
@@ -7888,6 +7893,14 @@ top: -12px;
 top: 3px;
 }
 .authorizeIcon-Android {
+  position: relative;
+top: 7px;
+}
+.authorizedIcon-IOS {
+  position: relative;
+top: 3px;
+}
+.authorizedIcon-Android {
   position: relative;
 top: 7px;
 }
