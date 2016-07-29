@@ -315,6 +315,7 @@ angular.module('starter.controllers')
                 $window.localStorage.setItem('ChkVideoConferencePage', "");
                 session = null;
                 $scope.getSoapNotes();
+                $scope.doGetChatTranscript();
                 $scope.doGetAttachmentList();
             },
             error: function(data) {
@@ -372,18 +373,14 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
 
-              /*  angular.forEach(data.data[0].snapFile.files, function(index, item) {
-                    var attachImage = index.name.split(".");
-                    $rootScope.getAttachmentList.push({
-                        'id': index.id,
-                        'name': index.name,
-                        'image': attachImage[attachImage.length - 1]
+              $rootScope.chatTranscript = [];
+              if(data.count !== 0) {
+                angular.forEach(data.data, function(index, item) {
+                    $rootScope.chatTranscript.push({
+                        'ChatMessage': index
                     });
-
-                });  */
-
-                $rootScope.data123 = data;
-                $rootScope.data1234 = data.data;
+                });
+              }
 
 
             },
