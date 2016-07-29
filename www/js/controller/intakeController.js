@@ -442,16 +442,16 @@ angular.module('starter.controllers')
     $scope.goToConsentToTreat = function() {
     //  $state.go('tab.intakeBornHistory');
         if($rootScope.userAgeForIntake === 8) {
-          if (typeof $('#birthBorn').val() === 'undefined' || $('#birthBorn').val() === ' ') {
+          if (typeof $("input[name='birthBorn']:checked").val() === 'undefined' || $("input[name='birthBorn']:checked").val() === ' ') {
               $scope.ErrorMessage = "Please choose if the patient was born at full term or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
-          } else if (typeof $('#birthVagin').val() === 'undefined' || $('#birthVagin').val() === ' ') {
+          } else if (typeof $("input[name='birthVagin']:checked").val() === 'undefined' || $("input[name='birthVagin']:checked").val() === ' ') {
               $scope.ErrorMessage = "Please choose if the patient was born vaginally or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
-          } else if (typeof $('#birthDischargedwithMother').val() === 'undefined' || $('#birthDischargedwithMother').val() === ' ') {
+          } else if (typeof $("input[name='birthDischargedwithMother']:checked").val() === 'undefined' ||$("input[name='birthDischargedwithMother']:checked").val() === ' ') {
               $scope.ErrorMessage = "Please choose if the patient was discharged with the Mother or not? ";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
-          } else if (typeof $('#birthVaccination').val() === 'undefined' || $('#birthVaccination').val() === ' ') {
+          } else if (typeof $("input[name='birthVaccination']:checked").val() === 'undefined' || $("input[name='birthVaccination']:checked").val() === ' ') {
               $scope.ErrorMessage = "Please choose if the patients vaccinations are up-to-date or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
           }else {

@@ -8199,8 +8199,8 @@ input.ion-google-place[readonly] {
 }
 .birthContent {
   .labelcolor {
-    width: 73% !important;
-    max-width: 73% !important;
+    width: 100% !important;
+    max-width: 100% !important;
     margin-left: 8px;
   }
   .ion-asterisk {
@@ -8224,4 +8224,19 @@ input.ion-google-place[readonly] {
       font-size: 13px !important;
     }
   }
+  .bornBirth {
+    .disable-pointer-events {
+        margin-left: 8px;
+        font-size: 19px;
+        font-family: $fontFamily_regular;
+        color: #666666 !important;
+    }
+    .ion-checkmark-circled:before {
+      font-size: 30px;
+    }
+    .item-radio {
+      border: none;
+    }
+  }
+
 }
