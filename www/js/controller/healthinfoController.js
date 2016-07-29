@@ -233,7 +233,7 @@ angular.module('starter.controllers')
         var nowmonth = today.getMonth() + 1;
         var nowday = today.getDate();
         $rootScope.doddate = $('#healthInfoDOB').val();
-        var dateofb = new Date($rootScope.doddate)
+        var dateofb = new Date($rootScope.doddate );
         var birthyear = dateofb.getFullYear();
         var birthmonth = dateofb.getMonth();
         var birthday = dateofb.getDate();
@@ -261,6 +261,7 @@ angular.module('starter.controllers')
                 dt2 = Date.parse(selectDate);
             $scope.healthInfoFirstName = $('#healthInfoFirstName').val();
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
+            $rootScope.healthInfoDOB = $('#healthInfoDOB').val();
             $scope.healthInfoDOB = $('#healthInfoDOB').val();
             $scope.healthInfoEmail = $('#healthInfoEmail').val();
             if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
@@ -311,7 +312,7 @@ angular.module('starter.controllers')
             var nowyear = today.getFullYear();
             var nowmonth = today.getMonth() + 1;
             var nowday = today.getDate();
-            var dateofb = new Date($scope.healthInfoDOB)
+            var dateofb = new Date($rootScope.healthInfoDOB);
             var birthyear = dateofb.getFullYear();
             var birthmonth = dateofb.getMonth();
             var birthday = dateofb.getDate();
@@ -633,7 +634,7 @@ angular.module('starter.controllers')
                 $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
                 // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 var editdate = $rootScope.currentPatientDetails.dob;
-                var doddate = new Date($rootScope.doddate);
+                var doddate = new Date($rootScope.healthInfoDOB);
                 var today = new Date();
                 var nowyear = today.getFullYear();
                 var nowmonth = today.getMonth() + 1;
