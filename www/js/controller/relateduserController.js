@@ -517,6 +517,34 @@ $rootScope.authorised=relateDependentAuthorize;
           //  $state.go('tab.consultations');
         }
         $scope.seeaPatientConcerns = function(getDependentDetails) {
+
+            $rootScope.PatientPrimaryConcernItem;
+            $rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
+            $rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
+            $rootScope.PatientPrimaryConcern = "";
+            $rootScope.primaryConcernList = "";
+            $rootScope.secondaryConcernList = "";
+            $scope.PatientPrimaryConcernItem = "";
+
+            $rootScope.PatientSecondaryConcern = "";
+            $rootScope.PatientChronicCondition = "";
+            $rootScope.patinentCurrentMedication = "";
+            $rootScope.patinentMedicationAllergies = "";
+            $rootScope.patientSurgeriess = "";
+            $rootScope.MedicationCount == 'undefined';
+            $rootScope.checkedChronic = 0;
+            $rootScope.ChronicCount = "";
+            $rootScope.AllegiesCount = "";
+            $rootScope.checkedAllergies = 0;
+            $rootScope.MedicationCount = "";
+            $rootScope.checkedMedication = 0;
+            $rootScope.IsValue = "";
+            $rootScope.IsToPriorCount = "";
+            $rootScope.ChronicCountValidCount = "";
+            $rootScope.PriorSurgeryValidCount = "";
+            $rootScope.AllegiesCountValid = "";
+            $rootScope.MedicationCountValid = "";
+
           if($rootScope.onDemandAvailability > 0) {
             $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
           //  console.log(getDependentDetails);
