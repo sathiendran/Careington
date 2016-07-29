@@ -3762,7 +3762,7 @@ font-family: $fontFamily_regular;
  }
  .usercontentpat-IOS{
       //margin-top: 200px !important;
-    margin-top: 46%;
+    margin-top: 34%;
  }
  .usercontent-Android{
    margin-top: 120px;
@@ -3879,7 +3879,7 @@ font-size: 20px;margin-left:120px; top: 5px;
     font-family:Glober Bold;
 }
 .userionitem{
-    padding: 10px!important;
+    padding: 10px;
 }
 .userlist{
    padding-top: 105px;
@@ -4491,6 +4491,13 @@ p{
       }*/
       #AppointNoneIOS {
         padding: 34px 10px !important;
+      }
+      .usercontentpat-IOS{
+           //margin-top: 200px !important;
+         margin-top: 29%;
+      }
+      #accountMngeProfile-IOS {
+          padding: 30px 10px !important;
       }
       .birthContent {
         .healthViewDetails {
@@ -5363,7 +5370,7 @@ color: white;
 }
 
 .ionicitem{
-    padding: 8px !important;
+    padding: 8px;
 }
 .topfont{
    max-width:60px;
@@ -7502,11 +7509,11 @@ Pagination Styles
   textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
     padding: 5px 0 0 5px;
   }
-  .icon-star {
-    color: red;
-    font-size: 12px !important;
+  .ion-asterisk {
+    font-size: 8px;
     position: relative;
     top: -10px;
+    color: red;
   }
 }
 .HealthTitle-IOS {
@@ -7907,11 +7914,12 @@ input.ion-google-place[readonly] {
   [class^="icon-"], [class*=" icon-"] {
     font-size: 19px;
   }
-  .icon-star {
-    color: red;
-    font-size: 12px !important;
+  .ion-asterisk {
+    font-size: 8px;
     position: relative;
     top: -5px;
+    color: red;
+    left: 2px;
   }
   .item-input {
     padding: 6px 0 5px 0px !important;
@@ -7925,9 +7933,11 @@ input.ion-google-place[readonly] {
   }
  }
 .dobDependent-IOS {
-  font-size: 20px;
+  font-size: 18px !important;
+  line-height: 23px !important;
+  font-family: Glober Semibold !important;
   color: rgba(5, 4, 9, 0.54) !important;
-  width: 159%;
+  width: 159% !important;
 }
 
 .adduseWeight-IOS {
@@ -8015,6 +8025,18 @@ input.ion-google-place[readonly] {
     }
   }
 }
+  .dependHeigh-IOS {
+    margin-left: -50px;
+    width: 47%;
+    padding-right: 6px;
+    .usertext{
+      width: 104%;
+    }
+  }
+  .dependwetUnit-IOS {
+    width: 81%;
+    margin-left: 10px;
+  }
 .consultcontentsearch-IOS {
   margin-top: 85px
 }
@@ -8038,15 +8060,6 @@ input.ion-google-place[readonly] {
   margin-left: -1px;
 }
 
-.healthinfoHeight-IOS {
-
-  width: 46%;
-  margin-left: -37px;
-}
-.healthinfoHeight2-IOS{
-  width: 60px;
-   margin-left: -60px;
-}
 .healthinfoHeight-Android {
   width: 56%;
   margin-left: -8px;
@@ -8054,6 +8067,12 @@ input.ion-google-place[readonly] {
 .healthinfoHeight2-Android {
   width: 63%;
   margin-left: -10px;
+}
+.dependHeigh-Android {
+  margin-left: -5px;width: 70%;padding-right: 10px;
+}
+.dependwetUnit-Android {
+  width:90%;margin-left: 10px;
 }
 
 .colReport-Android {
@@ -8115,7 +8134,7 @@ input.ion-google-place[readonly] {
  .AppointDisplayIOS {
    padding-top: 53px;
  }
- .accountMngeProfile-IOS {
+ #accountMngeProfile-IOS {
    padding: 47px 10px;
  }
  .userAccContentIOS {
@@ -8297,8 +8316,8 @@ input.ion-google-place[readonly] {
     margin-left: 8px;
   }
   .ion-asterisk {
-    color: red;
     font-size: 9px;
+    color: red;
   }
   .formlabel {
     font-size: 19px;
@@ -8335,5 +8354,28 @@ input.ion-google-place[readonly] {
 }
 .reset-IOS{
   padding-top: 125px !important;
+}
+
+.healthinfoHeight-IOS {
+  width: 14%;
+  margin-left: -38px;
+  .usertext {
+    margin-left: 0px;
+    width: 68px;
+  }
+}
+.healthinfoHeight2-IOS{
+  width: 15%;
+  margin-left: 11px;
+  .usertext {
+    margin-left: 0px;
+    width: 68px;
+  }
+}
+.healthinfoChoose-IOS {
+  select {
+    width: 80% !important;
+    margin-left: 8px;
+  }
 }
 .healthchoose{width:100%;margin-right:53px;}

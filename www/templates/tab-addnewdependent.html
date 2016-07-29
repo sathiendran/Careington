@@ -58,7 +58,7 @@
    <div class="item item-input validated">
      <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">First Name</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">First Name</b><i class="ion-asterisk"></i></span>
      </div>
       <div class="col colcolcol-50">
         <input class="usertext" type="text" placeholder="Required" ng-model="firstname" name="firstname" id="firstname"  required >
@@ -67,7 +67,7 @@
   <div class="item item-input validated">
      <div class="col col-50">
          <span class="input-label labelcolor">
-         <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Last Name</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+         <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Last Name</b><i class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50">
          <input class="usertext" type="text"  placeholder="Required" ng-model="lastname" name="lastname" id="lastname" required >
@@ -80,7 +80,7 @@
 	 <div class="item item-input validated">
 			<div class="col col-50">
 					<span class="input-label labelcolor">
-					<i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">Date of Birth</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+					<i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">Date of Birth</b><i class="ion-asterisk"></i></span>
 			</div>
 			<div class="col col-50">
 
@@ -92,7 +92,7 @@
    <div class="item item-input validated">
      <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel">Relationship</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel">Relationship</b><i class="ion-asterisk"></i></span>
       </div>
       <div class="col col-50">
 				<select class="optionselect textdata" name="healthInforelation" id="dependentrelation" >
@@ -105,7 +105,7 @@
 	<div class="item item-input validated" style="display: {{emailDisplay}};">
 	   <div class="col col-50">
 		  <span class="input-label labelcolor">
-		  <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+		  <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="ion-asterisk"></i></span>
 	   </div>
 	   <div class="col col-50">
 		   <input class="usertext" id="email"  type="email" value="" placeholder="Required" ng-model="email" required="required"  name="email" >
@@ -129,7 +129,7 @@
 		<div class="item item-input validated">
 			<div class="col col-50">
 				<span class="input-label labelcolor">
-				<i class="iconsize" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel">Gender</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+				<i class="iconsize" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel">Gender</b><i class="ion-asterisk"></i></span>
 			 </div>
 
 			 <div class="col col-50">
@@ -142,7 +142,7 @@
 	</div>
     <div class="item item-input itemtab validated row">
         <div class="col col-50">
-           <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+           <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
         </div>
         <div class="healthinfoHeight-{{deviceName}}">
           <input id="height" class="usertext textalign" placeholder="Req" type="number" value=""  ng-model="height" name="height" required>
@@ -163,15 +163,15 @@
    </div>
    <div class="item item-input itemtab validated row">
         <div class="col col-50">
-           <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+           <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b><i class="ion-asterisk"></i></span>
         </div>
 
-        <div style="margin-left: -5px;width: 70%;padding-right: 10px;">
+        <div class="dependHeigh-{{deviceName}}">
 
           <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="weight" name="weight" required ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
         </div>
         <div style="width: 50%;">
-           <select style="width:90%;margin-left: 10px;" class="optionselect textdata" name="weightunit" id="weightunit" ng-model="weightunit" required>
+           <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunit" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
            </select>
@@ -182,7 +182,7 @@
 <div class="item item-input validated">
      <div class="col col-50">
    	<span class="input-label labelcolor">
-   	<i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Country</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+   	<i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Country</b><i class="ion-asterisk"></i></span>
       </div>
       <div class="col col-50">
 		<select class="optionselect textdata" name="healthInfoCountry" id="dependentCountry" >
@@ -194,7 +194,7 @@
     <div class="item item-input validated">
       <div class="col col-50">
       <span class="input-label labelcolor">
-      <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel">Timezone</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+      <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel">Timezone</b><i class="ion-asterisk"></i></span>
         </div>
         <div class="col col-50">
       <select class="optionselect textdata" name="healthInfoTimezone" id="dependentTimezone" >
@@ -216,7 +216,7 @@
  <div class="item item-input validated">
    <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel">Mobile</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel">Mobile</b><i class="ion-asterisk"></i></span>
 
    </div>
     <div class="col col-50">
@@ -227,7 +227,7 @@
 <div class="item item-input validated">
    <div class="col col-50">
      <span class="input-label labelcolor" >
-     <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Home Address</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+     <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Home Address</b><i class="ion-asterisk"></i></span>
    </div>
     <div class="col col-50">
 			  <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Semibold;" />
@@ -262,7 +262,7 @@
  <div class="item item-input validated">
     <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel">Blood Type</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel">Blood Type</b><i class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50">
         <select class="optionselect textdata" name="bloodtype" id="bloodtype" ng-model="bloodtype" required>
@@ -277,7 +277,7 @@
  <div class="item item-input validated">
     <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel">Hair Color</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel">Hair Color</b><i class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50">
         <select class="optionselect textdata" name="hairColor" id="hairColor" ng-model="hairColor" required>
@@ -290,7 +290,7 @@
  <div class="item item-input validated">
      <div class="col col-50">
         <span class="input-label labelcolor">
-        <i class="iconsize" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel">Eye Color</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+        <i class="iconsize" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel">Eye Color</b><i class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50">
           <select class="optionselect textdata" name="eyeColor" id="eyeColor" ng-model="eyeColor" required>
@@ -303,7 +303,7 @@
  <div class="item item-input validated">
      <div class="col col-50">
         <span class="input-label labelcolor">
-         <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Ethnicity</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+         <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Ethnicity</b><i class="ion-asterisk"></i></span>
      </div>
       <div class="col col-50">
           <select class="optionselect textdata" name="ethnicity" id="ethnicity" ng-model="ethnicity" required>
@@ -315,7 +315,7 @@
 		<div class="item item-input validated fadediv">
 	      <div class="col col-50">
 	         <span class="input-label labelcolor">
-	          <i _style="display: none;" class="iconsize" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel" >Authorization</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+	          <i _style="display: none;" class="iconsize" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel" >Authorization</b><i class="ion-asterisk"></i></span>
 	      </div>
 	       <div class="col col-50 dependentAddAuthorize" >
 	           Authorized
