@@ -91,13 +91,14 @@
            <div ng-if="!userDOB" class="healthViewDetails">NA</div>
            <!--<input type="date" value="{{userDOB}}"  ng-readonly="flag" name="healthInfoDOB"  class="valuealign textdata" id="dobdate">-->
            </label>
-           <label class="item item-input itemtab validated">
-           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
-           <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
-           </label>
+
            <label class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Relationship</b></span>
                <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.relationship}}</div>
+           </label>
+           <label class="item item-input itemtab validated" style="display: {{viewemailDisplay}};">
+           <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
+           <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
            </label>
            <label class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
@@ -194,13 +195,10 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B </b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
               <span class="DOBClass-{{deviceName}}">
-                <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}"  class="textdata" placeholder="Required">
+                <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}"  class="textdata" placeholder="Required" ng-blur="ngBlur()">
               </span>
            </div>
-           <div class="item item-input itemtab validated">
-              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
-              <span class="healthViewDetails" ><input type="text" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required"></span>
-           </div>
+
            <div class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Relationship</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
               <div class="healthViewDetails">
@@ -209,6 +207,10 @@
                     <option ng-repeat="getRelationship in listOfRelationship[0].codes" value="{{getRelationship.codeId + '@' + getRelationship.text}}" ng-selected="getRelationship.text == currentPatientDetails[0].account.relationship"><b>{{getRelationship.text}}</b></option>
                  </select>
               </div>
+           </div>
+           <div class="item item-input itemtab validated" style="display: {{emailDisplay}};">
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>
+              <span class="healthViewDetails" ><input type="text" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required"></span>
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('star')"></i></span>

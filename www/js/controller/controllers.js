@@ -4051,6 +4051,8 @@ LoginService.getScheduledConsulatation(params);
                             $rootScope.appointmentPatientId = $rootScope.patientId;
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
+
+                            
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
                               //  $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
                               //  if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {

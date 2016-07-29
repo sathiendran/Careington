@@ -133,6 +133,29 @@ angular.module('starter.controllers')
             var nowmonth = today.getMonth()+1;
             var nowday = today.getDate();
 
+
+   $scope.ngBlur = function () {
+       var doddate=$('#dob').val();
+       var dateofb=new Date( doddate)
+       var birthyear =dateofb.getFullYear();
+       var birthmonth = dateofb.getMonth();
+       var birthday = dateofb.getDate();
+       var age = nowyear - birthyear;
+       var age_month = nowmonth - birthmonth;
+       var age_day = nowday - birthday;
+       if(age_month < 0 || (age_month == 0 && age_day <0)) {
+       age = parseInt(age) -1;
+      }
+      if(age >=12){
+        $rootScope.emailDisplay = 'flex';
+      }else{
+           $rootScope.emailDisplay = 'none';
+
+      }
+   }
+
+
+
         $scope.postDependentDetails = function() {
             $scope.firstName = $("#firstname").val();
             $scope.lastName = $("#lastname").val();
