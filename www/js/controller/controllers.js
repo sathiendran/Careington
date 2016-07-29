@@ -510,7 +510,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
             $rootScope.AddhealthplanOverlop = "margin: 187px 0 0 0;";
             $rootScope.PositionIOS = "position:fixed; top:105px;";
-            $rootScope.MarginHomeTop = "margin-top: -130px";
+            $rootScope.MarginHomeTop = "margin-top: 223px";
             $rootScope.concernsItemDivs = "top: 5px;";
             $rootScope.FootNextButtonRight = "margin-left: -83px !important;";
             $rootScope.FootNextButton = "left: 24px;";
@@ -4052,7 +4052,7 @@ LoginService.getScheduledConsulatation(params);
                             var beforAppointmentTime = getReplaceTime;
                             var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
 
-                            
+
                             if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
                               //  $rootScope.userHomeRecentAppointmentColor = '#E1FCD4';
                               //  if($rootScope.scheduledList[0].patientId == $rootScope.patientId) {

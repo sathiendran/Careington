@@ -406,7 +406,7 @@ html, body { background: transparent !important; }
 
 .password_sub_headerIOS {
 	@extend .login_sub_header;
-	margin-top: 99px;
+	margin-top: -99px;
 	color: $Shiraz;
 		.password_header_contentIOS {
 			/*position: relative;
@@ -8239,4 +8239,7 @@ input.ion-google-place[readonly] {
     }
   }
 
+}
+.reset-IOS{
+  padding-top: 125px !important;
 }
