@@ -154,7 +154,7 @@
 
         </div>
         <div class="healthinfoChoose-{{deviceName}}">
-           <select style="width:100%;margin-right:53px;" class=" optionselect textdata" name="heightunit" id="heightunit" ng-model="heightunit" required>
+           <select style="" class=" optionselect textdata healthchoose" name="heightunit" id="heightunit" ng-model="heightunit" required>
 						 <option value=""><b>Choose</b></option>
              <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b>{{getHeightunit.text}}</b></option>
 					 </select>

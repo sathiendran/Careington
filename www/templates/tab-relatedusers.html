@@ -224,7 +224,18 @@
                                         <p><a><span class="unAuthorizeUpdate-{{deviceName}}">Update</span> <i class="icon avatarlefticon " ng-bind-html="drawSVGCIcon('chevron-right')"></i></a> </p>
                                     </div>
                                 </div>
-                                <div class="statustab unAuthorizeStatusMain-{{deviceName}}" ng-click="showPopup(getDependentDetails, 'Y')">
+                                <div class="statuscol unAuthorizeStatusMain-{{deviceName}}" ng-click="showPopup(getDependentDetails,'Y')">
+                                    <div class="tabvalue tabvalueAuthorize-{{deviceName}} ">
+                                        <p class="status">Status</p>
+                                        <p class="avatrelationclass">    <i class="icon ion-chevron-right avaticon"></i></p>
+                                        <p class="contentalign statuscont"><span class="authorizeIcon-{{deviceName}}">UnAuthorized</span>
+                                            <i class="thumbsdownicon" ng-bind-html="drawSVGCIcon('thumbs-down')"></i>
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                            <!--    <div class="statustab unAuthorizeStatusMain-{{deviceName}}" ng-click="showPopup(getDependentDetails, 'Y')">
                                     <div class="tabvalue">
                                         <p class="unstatus">Status</p>
                                         <p class="avatrelationclass">
@@ -234,7 +245,7 @@
                                             <i class="thumbsdownicon" ng-bind-html="drawSVGCIcon('thumbs-down')"></i>
                                         </p>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="relationtab unAuthorizeRelativeMain-{{deviceName}}" ng-click="selectrelation(getDependentDetails)">
                                   <div>
                                     <span class="unAuthorizeUserRelation-{{deviceName}}">

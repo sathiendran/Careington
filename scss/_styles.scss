@@ -2129,6 +2129,7 @@ html, body { background: transparent !important; }
 }
 .UserNeeds {
 	border-bottom: 1px solid #9D9E9C;
+    border-bottom-right-radius: 1px;
 	.SearchImage {
 		width:10%;
 		margin-right: 10px;
@@ -4213,9 +4214,9 @@ color: #666666;
   margin-top: 13px;
 }
 .unlink{
-  margin-left: 7px !important;
-    margin-top: -4px !important;
-    margin-bottom: -6px;
+  margin-left: 6px !important;
+    margin-top: -6px !important;
+    margin-bottom: -5px;
     color: white;
     background-color:#D0021B !important;
 
@@ -4320,8 +4321,8 @@ p{
     margin-left: -36px;
 }
 .avatrelationclass{
-  margin-top: 11px;
-  margin-left: -30px;
+  margin-top: 5px;
+  margin-left: -38px;
 }
 .righticon{
     margin-right: -12px;
@@ -4416,12 +4417,13 @@ p{
          margin-left: 5px;font-size: 10px;margin-top: -4px;color:#999999 !important;
      }
      .unstatuscont{//margin-left: -29px;
-       margin-top: 14px;margin-left: -28px;font-size: 12px;font-family: Glober Regular;color:#666666 !important;
+       //margin-top: 14px;margin-left: -28px;font-size: 12px;font-family: Glober Regular;color:#666666 !important;
        }
-       .thumbsdownicon{
-             float:right;margin-left:12px; font-size:22px;margin-top:-11px; //margin-top:-8px;margin-left:16px;
-         }
+
    }
+   .thumbsdownicon{
+         float:right;margin-left:12px; font-size:22px;margin-top:0px; //margin-top:-8px;margin-left:16px;
+     }
  .relationtab{
     background-color:#ededed;
     .relationstatus{
@@ -5560,12 +5562,90 @@ color: white;
 
 @media only screen and (min-width: 595px) and (max-width: 610px){
 
+    .consultcontent .topfont{margin-left:-50px;}
+    .timetopfont{margin-left: -33px;}
+    .providertopfont{margin-left: -32px;}
+    .list .tabvalue p .avaticon {
+      margin-left: -60px;
+      color: #FDD8C5 !important;
+}
+.contentalign .statuscont{
+    margin-top:14px;
+}
+.authorizeIcon-Android {
+position: relative;
+top: 11px !important;
+right: 16px;
+}
+.unAuthorizeStatusMain-Android .tabvalue {
+margin-top: 1px !important;
+}
+.appiconcontent {
+margin-top: 226px;
+}
+.statuscol{
+    background-color:#ECECEC;
+    width: 37%;
+    .status{
+      margin-left: 10px;font-size: 11px;margin-top:-0px;
+    }
+    .statuscont{
+        margin-left:-31px;font-size:12px;font-family:Glober SemiBold;
+    }
+}
+.list .unlink {
+ margin-left: 9px !important;
+ margin-top: -5px !important;
+ margin-bottom: -8px;
+ color: white;
+ background-color: #D0021B !important;
+}
+.list .avatrelationclass {
+margin-top: 11px;
+margin-left: -15px;
+}
+.tabvalueAuthorize-Android {
+position: relative;
+top: 8px;
+color: #999999 !important;
+}
+.healthchoose{width:131%;margin-right:258px;}
+    .healthinfoHeight-Android {
+      width: 56%;
+      margin-left: -8px;
+    }
+    .healthinfoHeight2-Android {
+      width: 63%;
+      margin-left: -42px;
+    }
+
+    .ContentUserHome {
+    margin: 77px 0 0 0;
+    font-family: "Glober Regular";
+    border-top: 0px solid #C4C5C3;
+    }
+    .list .relatedfont {
+     margin-top: -6px;
+    color: #888 !important;
+     margin-left: 10px !important;
+}
+    .item-avatar{padding-bottom:18px;border-bottom-right-radius: 2px;}
+.list{
+    padding-top:0px !important;
+}
  .listprofile {padding-bottom:5 px;}
  .apticons{margin-left:-90px !important;}
 .fname {font-size: 24px;}
 .HeaderListAndroid {
-    margin-left:32px !important;
+//    margin-left:32px !important;
     }
+.list .unlink {
+ margin-left: 6px !important;
+ margin-top: -5px !important;
+ margin-bottom: -5px;
+ color: white;
+ background-color: #D0021B !important;
+}
 .chronic { margin-top: 19px;}
 
  .userappcontent{margin-top: 177px !important;}
@@ -5574,19 +5654,19 @@ color: white;
     margin-left:-52px !important;
 }
 .profileperson { margin-left:-90px !important; }
-.profilecalendar{margin-left: -45px !important; }
+.profilecalendar{margin-left: -70px !important; }
 
 .archeight {
 height: 84px;
 }
-.unauthor {margin-left: -25px;}
+.unauthor { margin-top: 17px;font-size: 12px;font-family: Glober Regular;color:#666666 !important;}
 .searchcontent{margin-top:112px;}
 .unstatuscont{
  margin-left: -43px;
 }
 .thumbsdownicon{
-margin-left: 12px !important;
-margin-top: -24px !important;
+margin-left: 16px !important;
+margin-top: -18px !important;
 }
 .usercard {
 margin: 70px 10px !important;
@@ -5643,7 +5723,7 @@ top: inherit !important;
 .tabs-striped .tabs {
     border-bottom:none;
 }
-.appth3{ margin: 36px 0px 0px 0px !important; }
+//.appth3{ margin: 36px 0px 0px 0px !important; }
 .userappheight {
 margin-top: 15px !important;
 height: 57px !important;
@@ -7648,7 +7728,7 @@ Pagination Styles
   padding: 5px;
     text-align: center;
   .tabvalue {
-    margin-top: 12px !important;
+    margin-top: 2px !important;
   }
 }
 
@@ -7809,7 +7889,7 @@ top: 3px;
 }
 .authorizeIcon-Android {
   position: relative;
-top: 3px;
+top: 7px;
 }
 input.ion-google-place[readonly] {
 //  color: rgba(5, 4, 9, 0.54) !important;
@@ -8262,6 +8342,7 @@ input.ion-google-place[readonly] {
 .reset-IOS{
   padding-top: 125px !important;
 }
+
 .healthinfoHeight-IOS {
   width: 14%;
   margin-left: -38px;
@@ -8284,3 +8365,4 @@ input.ion-google-place[readonly] {
     margin-left: 8px;
   }
 }
+.healthchoose{width:100%;margin-right:53px;}
