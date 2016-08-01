@@ -457,10 +457,10 @@ angular.module('starter.controllers')
           }else {
             $scope.ConsultationSaveData.infantData = {
               "patientAgeUnderOneYear": "Y",
-              "fullTerm": $('#birthBorn').val(),
-              "vaginalBirth": $('#birthVagin').val(),
-              "dischargedWithMother": $('#birthDischargedwithMother').val(),
-              "vaccinationsCurrent": $('#birthVaccination').val()
+              "fullTerm": $("input[name='birthBorn']:checked").val(),
+              "vaginalBirth": $("input[name='birthVagin']:checked").val(),
+              "dischargedWithMother": $("input[name='birthDischargedwithMother']:checked").val(),
+              "vaccinationsCurrent": $("input[name='birthVaccination']:checked").val()
             }
             $rootScope.appointmentsPage = false;
             $scope.doGetConcentToTreat();
