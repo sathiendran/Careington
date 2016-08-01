@@ -430,10 +430,13 @@ $rootScope.authorised=relateDependentAuthorize;
                             $scope.iDependentPatientInitial = getInitialForName(index.patientName);
                             $scope.iDependentPatientPhoto = generateTextImage($scope.iDependentPatientInitial, $rootScope.brandColor);
                         }
+                        $rootScope.spdate=index.birthdate;
+                        $rootScope.patage=new Date($rootScope.spdate);
                         $rootScope.listOfAccountDependents.push({
                             'addresses': index.addresses,
                             'profileImagePath': $scope.iDependentPatientPhoto,
                             'birthdate': ageFilter.getDateFilter(index.birthdate),
+                            'PatientAge':$rootScope.patage,
                             'bloodType': index.bloodType,
                             'ethnicity': index.ethnicity,
                             'eyeColor': index.eyeColor,
@@ -546,7 +549,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.MedicationCountValid = "";
 
           if($rootScope.onDemandAvailability > 0) {
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.PatientAge, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
           //  console.log(getDependentDetails);
           //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
           } else {

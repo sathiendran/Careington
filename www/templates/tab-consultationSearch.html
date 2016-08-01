@@ -116,8 +116,9 @@
                      <span><i class="icon ion-chevron-right"></i></span></span>
                   </div>
                </div>
+                 <hr class="dotedhr">
             </div>
-               <hr class="dotedhr">
+
             <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found!</ion-item>
          </div>
          <div ng-if="missedlist.length" class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:data.searchProvider).length==0">No Search Results Found!</div>
@@ -167,8 +168,9 @@
                      <span><i class="icon ion-chevron-right"></i></span></span>
                   </div>
                </div>
+               <hr class="dotedhr">
             </div>
-                <hr class="dotedhr">
+
               <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found!</ion-item>
          </div>
          <div ng-if="Droppedconsultations.length" class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
