@@ -207,16 +207,24 @@ angular.module('starter.controllers')
             if(age_month < 0 || (age_month == 0 && age_day <0)) {
             age = parseInt(age) -1;
            }
+           $scope.ValidateEmail = function(email) {
+               //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+               var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+               return expr.test(email);
+           };
 
-      var selectedDate = document.getElementById('dob').value;
-       var now = new Date();
-       var dt1 = Date.parse(now),
-       dt2 = Date.parse(selectedDate);
+           var selectedDate = document.getElementById('dob').value;
+           var now = new Date();
+           var dt1 = Date.parse(now),
+           dt2 = Date.parse(selectedDate);
 
     if ((age >=12  && age_month >= 0)) {
       if ($scope.email === 'undefined' || $scope.email === '') {
           $scope.ErrorMessage = "Please Enter Email Id";
           $rootScope.Validation($scope.ErrorMessage);
+       } else if(!$scope.ValidateEmail($("#email").val())) {
+           $scope.ErrorMessage = "Please enter a valid email address";
+           $rootScope.Validation($scope.ErrorMessage);
        }
        else if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
            $scope.ErrorMessage = "Please Enter First Name";

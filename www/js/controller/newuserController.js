@@ -116,6 +116,11 @@ angular.module('starter.controllers')
         $scope.firstName = $("#userfirstname").val();
         $scope.lastName = $("#userlastname").val();
         $scope.email = $("#useremail").val();
+        $scope.ValidateEmail = function(email) {
+            //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return expr.test(email);
+        };
       /*  $scope.dob1 = $("#userdob").val();
         var a =  new Date($("#userdob").val());
         var da = a.getMonth() + 1;
@@ -227,7 +232,12 @@ angular.module('starter.controllers')
         }else if (typeof $scope.homeaddress === 'undefined' || $scope.homeaddress === '') {
             $scope.ErrorMessage = "Please Enter Your homeaddress";
             $rootScope.Validation($scope.ErrorMessage);*/
-        }  else {
+        } else if(!$scope.ValidateEmail($("#useremail").val())) {
+            $scope.ErrorMessage = "Please enter a valid email address";
+            $rootScope.Validation($scope.ErrorMessage);
+        }
+
+         else {
             // alert("fail");
           $scope.doPostAddCousers();
         }
@@ -290,7 +300,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+                var Emailerror=data.message
+                if(Emailerror="Email ID Already Registered"){
+                    $scope.ErrorMessage = "Patient already exists with email " + $scope.email;
+                    $rootScope.Validation($scope.ErrorMessage);
+                }else{
+                    $rootScope.serverErrorMessageValidation();
+                }
+
             }
         };
         // LoginService.postCousers(params);

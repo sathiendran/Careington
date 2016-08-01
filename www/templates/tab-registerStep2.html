@@ -7,7 +7,9 @@
 			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>
 		</div>
 
-	<form ng-submit="postRegisterStep2()" class="regstep2">
+
+
+	<form ng-submit="postRegistersStep2()" class="regstep2">
 			<div class="card">
                 <div class="regcontent">
                     <h2>Hello, {{step1RegDetails[0].FName}}</h2>
@@ -15,7 +17,7 @@
                 </div>
                 <div class="item-input-inset">
                     <label class="item-input-wrapper place">
-                        <input type="email" ng-model="regStep2.emailID" placeholder="Email Address" >
+                        <input type="email" ng-model="regStep2.emailID" placeholder="Email Address" id="RegEmail">
                     </label>
                 </div>
                 <div class="item-input-inset">
@@ -31,14 +33,14 @@
                 <div class="birth"><p>Birthdate</p></div>
                 <div class="item-input-inset">
                     <label class="item-input-wrapper place">
-                        <!--<input type="date" ng-model="regStep2.dob"  >-->
+
                          <div class="regDOBRequired" ng-if="!regStep2.dob">MM/DD/YYYY</div>
-                      <input style="padding-top: 12px;" type="date" ng-model="regStep2.dob" required>
+                      <input style="padding-top: 12px;" type="date" ng-model="regStep2.dob" >
                     </label>
                 </div>
 
 					<div class="btn1" style="margin: 0px 0px 24px 0px !important;">
-						<button type="submit" class="button">
+						<button type="submit" class="button" ng-click="postRegistersStep2()">
 									Register
 						</button>
 
@@ -56,9 +58,6 @@
 		</div>
 
 	</ion-content>
-	<!--<ion-footer-bar class="bar bar-footer emailpassfooter" style="background-color: {{brandColor}}">
-		<a ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');"><button class="button button-clear"><span>Terms & Conditions</span></button></a>
-	</ion-footer-bar>-->
     <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
         <div class="ConcernsFooter">
             <div class="FooterLeft" style="width: 100%;">

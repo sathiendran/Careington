@@ -42,24 +42,31 @@ angular.module('starter.controllers')
         }, 100);
 
         $scope.regStep2 = {};
-        $scope.postRegisterStep2 = function() {
+
+  $rootScope.postRegistersStep2 = function() {
+    
+            $scope.reg2email=$('#RegEmail').val();
             $scope.ValidateEmail = function(email) {
                 var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return expr.test(email);
             };
             var pwdRegularExpress = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])^.{8,20}$/;
 
-            if (typeof $scope.regStep2.emailID == 'undefined' || $scope.regStep2.emailID == '') {
+            if (typeof $scope.reg2email == 'undefined' ||$scope.reg2email == '') {
                 $scope.ErrorMessage = "Please enter your Email Address";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
-            } else if (!$scope.ValidateEmail($scope.regStep2.emailID)) {
-                $scope.ErrorMessage = "Please enter a valid Email Address";
-                $scope.$root.$broadcast("callValidation", {
-                    errorMsg: $scope.ErrorMessage
-                });
-            } else if (typeof $scope.regStep2.password == 'undefined' || $scope.regStep2.password == '') {
+            }  else if(!$scope.ValidateEmail($("#RegEmail").val())){
+
+
+                    $scope.ErrorMessage = "Please enter a valid email address";
+                    $scope.$root.$broadcast("callValidation", {
+                        errorMsg: $scope.ErrorMessage
+                    });
+                }
+
+                else if (typeof $scope.regStep2.password == 'undefined' || $scope.regStep2.password == '') {
                 $scope.ErrorMessage = "Please enter your Password";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
@@ -95,6 +102,9 @@ angular.module('starter.controllers')
 
         }
 
+
+
+
         $scope.doPostUserRegisterDetails = function() {
             $scope.userFirstandLastName = {
                 "$id": "2",
@@ -104,7 +114,7 @@ angular.module('starter.controllers')
             var params = {
                 address: $rootScope.step1RegDetails[0].address,
                 dob: $scope.regStep2.dob,
-                email: $scope.regStep2.emailID,
+                email: $scope.reg2email,
                 name: $scope.userFirstandLastName,
                 password: $scope.regStep2.password,
                 providerId: $rootScope.hospitalId,

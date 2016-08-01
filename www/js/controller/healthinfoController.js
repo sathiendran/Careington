@@ -324,10 +324,11 @@ angular.module('starter.controllers')
             }
 
 
-            /*    $scope.ValidateEmail = function(email) {
-                    var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    return expr.test(email);
-                };*/
+            $scope.ValidateEmail = function(email) {
+                //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return expr.test(email);
+            };
 
             if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
                 if ((age >= 12 && age_month >= 0)) {
@@ -347,7 +348,10 @@ angular.module('starter.controllers')
                     } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                         $scope.ErrorMessage = "Please Enter Email Id";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                    }  else if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
+                        $scope.ErrorMessage = "Please enter a valid email address";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
                         $scope.ErrorMessage = "Please Choose Relationship";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
@@ -495,7 +499,10 @@ angular.module('starter.controllers')
                 } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                     $scope.ErrorMessage = "Please Enter Email Id";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                }  else if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
+                    $scope.ErrorMessage = "Please enter a valid email address";
+                    $rootScope.Validation($scope.ErrorMessage);
+                }else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
                     $scope.ErrorMessage = "Please Choose Relationship";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
@@ -777,7 +784,7 @@ angular.module('starter.controllers')
             RelationCodeId: relationshipID,
             IsAuthorized: authorizeID,
             success: function(data) {
-                console.log(date);
+                console.log(data);
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();
