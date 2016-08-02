@@ -44,7 +44,13 @@ angular.module('starter.controllers')
         $scope.regStep2 = {};
 
   $rootScope.postRegistersStep2 = function() {
-    
+
+      var selectedDob = document.getElementById('dob').value;
+      var now = new Date();
+      var dt1 = Date.parse(now),
+      dt2 = Date.parse(selectedDob);
+
+
             $scope.reg2email=$('#RegEmail').val();
             $scope.ValidateEmail = function(email) {
                 var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -96,7 +102,10 @@ angular.module('starter.controllers')
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
-            } else {
+            }else if (dt2 >dt1) {
+               $scope.ErrorMessage = "Future Date not allowed";
+               $rootScope.Validation($scope.ErrorMessage);
+           } else {
                 $scope.doPostUserRegisterDetails();
             }
 
