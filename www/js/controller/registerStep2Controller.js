@@ -66,7 +66,7 @@ angular.module('starter.controllers')
             }  else if(!$scope.ValidateEmail($("#RegEmail").val())){
 
 
-                    $scope.ErrorMessage = "Please enter a valid email address";
+                    $scope.ErrorMessage = "Please enter a valid Email Address";
                     $scope.$root.$broadcast("callValidation", {
                         errorMsg: $scope.ErrorMessage
                     });
@@ -103,7 +103,7 @@ angular.module('starter.controllers')
                     errorMsg: $scope.ErrorMessage
                 });
             }else if (dt2 >dt1) {
-               $scope.ErrorMessage = "Future Date not allowed";
+               $scope.ErrorMessage = "DOB can not be in Future";
                $rootScope.Validation($scope.ErrorMessage);
            } else {
                 $scope.doPostUserRegisterDetails();

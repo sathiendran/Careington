@@ -178,13 +178,13 @@ angular.module('starter.controllers')
          var dt1 = Date.parse(now),
          dt2 = Date.parse(selectDate);*/
         if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
-            $scope.ErrorMessage = "Please Enter First Name";
+            $scope.ErrorMessage = "Please enter First Name";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
-            $scope.ErrorMessage = "Please Enter Last Name";
+            $scope.ErrorMessage = "Please enter Last Name";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (typeof $scope.email === 'undefined' || $scope.email === '') {
-            $scope.ErrorMessage = "Please Enter Email Id";
+            $scope.ErrorMessage = "Please enter Email Id";
             $rootScope.Validation($scope.ErrorMessage);
         /*} else if (typeof $scope.dob1 === 'undefined' || $scope.dob1 === '') {
             $scope.ErrorMessage = "Please Enter Your DOB";
