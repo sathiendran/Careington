@@ -251,6 +251,14 @@ angular.module('starter.controllers')
         }
     }
 
+$scope.healthphoneblur=function(){
+    $scope.homephonelength= $('#healthInfoHomePhone').val().length;
+    if($scope.homephonelength < 14){
+        $scope.ErrorMessage = "Please enter valid Home Phone Number";
+        $rootScope.Validation($scope.ErrorMessage);
+    }
+
+}
 
     $scope.putUpdatePatientDetails = function() {
             $scope.editimg = true;

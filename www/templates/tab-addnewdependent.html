@@ -209,7 +209,7 @@
         <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel">Home Phone</b></span>
     </div>
      <div class="col col-50">
-        <input  class="usertext" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input >
+        <input  class="usertext" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input ng-blur="phoneBlur()">
         <span class="error" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>
      </div>
 </div>

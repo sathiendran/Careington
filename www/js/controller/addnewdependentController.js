@@ -154,7 +154,14 @@ angular.module('starter.controllers')
       }
    }
 
+$scope.phoneBlur=function(){
+$scope.phonelength=$("#homephone").val().length;
+    if($scope.phonelength < 14){
+        $scope.ErrorMessage = "Please enter valid Home Phone Number";
+        $rootScope.Validation($scope.ErrorMessage);
+    }
 
+}
 
         $scope.postDependentDetails = function() {
             $scope.firstName = $("#firstname").val();
@@ -169,6 +176,7 @@ angular.module('starter.controllers')
             $scope.height2 = $("#height2").val();
             $scope.weight = $("#weight").val();
             $scope.homephone = $("#homephone").val();
+            $scope.phonelength=$("#homephone").val().length;
             $scope.mobile = $("#mobile").val();
             $scope.mobilelength=$("#mobile").val().length;
             //$scope.homeaddress = $("#homeadd").val();

@@ -437,7 +437,7 @@ html, body { background: transparent !important; }
             margin-top: 108px;
 			.subHospital {
 				position: relative;
-				top: -8px;
+				top: -4px;
 			}
 			span {
 				color: #C4C4C4;
@@ -529,6 +529,9 @@ html, body { background: transparent !important; }
 }
 .pass_reset_content {
 	 font-size: 19px; color: #4D4D4D; padding-top: 12px;line-height: 24px;
+}
+.reset-Android{
+    padding-top: 54px !important;
 }
 .colmore {margin-left: 0px;}
 .login {
@@ -731,9 +734,11 @@ html, body { background: transparent !important; }
                  margin-left: 7px;
 				.patientName {
 					font-weight: bold;
+                    font-family:Glober Bold !important;
 				}
 				.patientLastName {
-					font-weight: bold;
+					//font-weight: bold;
+                    font-family:Glober Regular !important;
 				}
 			}
 			.subHeader_content_age {
@@ -1156,9 +1161,11 @@ html, body { background: transparent !important; }
 	.ConsultChargeCancel {
 		text-align:center;float:left;width:33%;  margin-top: -6px;
 		a {
-			color:#b8b8b8;
+			//color:#b8b8b8;
+             color:#FFFFFF;
 			font-weight: bold;
 			padding: 10px;font-size: 17px;
+            font-family:Glober Bold;
 		}
 	}
 }
@@ -3730,14 +3737,14 @@ font-family: $fontFamily_regular;
 	padding: 38px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
-    text-align: justify; position: relative; top: -153px;
+    text-align: justify; position: relative;top: -31px;
 }
 
 .singleTermsconContent-IOS {
     padding: 25px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
-    text-align: justify; position: relative; top: -115px;
+    text-align: justify; position: relative; top: -31px;
 }
 .sublogo{
     margin-top:205px;
@@ -8102,7 +8109,7 @@ input.ion-google-place[readonly] {
   margin-top:170px;
 }
 .apponitmentfday-Android{
-    font-size:25px;margin-top:10px;font-family:Glober Regular;
+    font-size:25px !important;margin-top:10px;font-family:Glober Regular;
 }
 .apponitmentftime-Android{
   margin: 0 0 11px 0;font-size:51px;font-family:Glober Bold;margin-left: 24px;text-transform: lowercase;
@@ -8351,8 +8358,8 @@ input.ion-google-place[readonly] {
   .PrimaryContent {
     p {
       width: 90% !important;
-      font-family: Glober SemiBold !important;
-      font-size: 13px !important;
+      font-family: Glober Bold !important;
+      font-size: 16px !important;
     }
   }
   .bornBirth {

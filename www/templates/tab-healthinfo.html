@@ -230,11 +230,11 @@
 
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont">Home Phone</b></span>
-              <span class="healthViewDetails"><input type="text" name="healthInfoHomePhone" id="healthInfoHomePhone"  phone-input  ng-model="phoneval"  class="textdata" placeholder="Optional"></span>
+              <span class="healthViewDetails"><input type="tel" name="healthInfoHomePhone" id="healthInfoHomePhone"  phone-input  ng-model="phoneval"  class="textdata" placeholder="Optional" ng-blur="healthphoneblur()"></span>
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont">Mobile</b><i class="ion-asterisk"></i></span>
-              <span class="healthViewDetails"><input type="text" name="healthInfoMobilePhone" id="healthInfoMobilePhone"  phone-input ng-model="mobileval" class=" textdata" placeholder="Required"></span>
+              <span class="healthViewDetails"><input type="tel" name="healthInfoMobilePhone" id="healthInfoMobilePhone"  phone-input ng-model="mobileval" class=" textdata" placeholder="Required"></span>
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel labelfont">Home Address</b><i class="ion-asterisk"></i></span>

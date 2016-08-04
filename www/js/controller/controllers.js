@@ -2175,7 +2175,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //$scope.patientHealthPlanList = data;
 
 
-                if (data.data !== '') {
+            //    if (data.data !== '') {
+              if (data.data !=0) {
                     $rootScope.patientHealthPlanList = [];
                     angular.forEach(data.data, function(index, item) {
                         $rootScope.patientHealthPlanList.push({
