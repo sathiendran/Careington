@@ -3954,7 +3954,7 @@ LoginService.getScheduledConsulatation(params);
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-                    $rootScope.userDOBDateFormat = $filter('date')(date, "MM-dd-yyyy");
+                    $rootScope.userDOBDateFormat = date;
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     if ($rootScope.currentPatientDetails[0].gender == 'M') {
                         $rootScope.userGender = "Male";
