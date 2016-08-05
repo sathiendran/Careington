@@ -177,7 +177,58 @@ angular.module('starter.controllers')
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
 
+    $scope.heightunit1=function(){
+         var max = 10;
 
+var heightval=$('#healthInfoHeight').val();
+if ( heightval > max)
+{
+   $("#healthInfoHeight").val(max);
+}
+
+    }
+    $scope.heightunit2=function(){
+           var max = 99;
+           var height2val= $("#healthInfoHeight2").val();
+           if ( height2val > max)
+          {
+              $("#healthInfoHeight2").val(max);
+          }
+
+          var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+          var getheightunit=_.first(heightunit);
+          if(getheightunit=="ft/in"){
+              var maxheight=11;
+              if ( height2val > maxheight)
+             {
+                 $("#healthInfoHeight2").val(maxheight);
+             }
+          }
+
+    }
+    $scope.weightunit=function(){
+           var maxweight = 999;
+           var weightval=$('#healthInfoWeight').val();
+           if ( weightval > maxweight)
+          {
+              $("#healthInfoWeight").val(maxweight);
+          }
+    }
+
+    $scope.heightunitchange=function(){
+        var maxheight=11;
+        var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+        var getheightunit=_.first(heightunit);
+        if(getheightunit="ft/in"){
+            var height2val=$('#healthInfoHeight2').val();
+            if(height2val!=""){
+                if ( height2val > maxheight)
+               {
+                   $("#healthInfoHeight2").val(maxheight);
+               }
+            }
+        }
+    }
 
     $scope.edittext = function() {
 
@@ -198,8 +249,10 @@ angular.module('starter.controllers')
         }
         if (age >= 12) {
             $rootScope.emailDisplay = 'flex';
+            $rootScope.timezoneDisplay='flex';
         } else {
             $rootScope.emailDisplay = 'none';
+            $rootScope.timezoneDisplay='none';
 
         }
 
@@ -245,8 +298,10 @@ angular.module('starter.controllers')
         }
         if (age >= 12) {
             $rootScope.emailDisplay = 'flex';
+            $rootScope.timezoneDisplay='flex';
         } else {
             $rootScope.emailDisplay = 'none';
+            $rootScope.timezoneDisplay='none';
 
         }
     }
@@ -443,13 +498,13 @@ $scope.healthphoneblur=function(){
                     } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                         $scope.ErrorMessage = "Please select Country";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                    } /*else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
                         $scope.ErrorMessage = "Please select Time Zone";
-                        $rootScope.Validation($scope.ErrorMessage);
+                        $rootScope.Validation($scope.ErrorMessage);}*/
                         // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
                         //     $scope.ErrorMessage = "Please Enter Your Home Phone";
                         //     $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
+                     else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
                         $scope.ErrorMessage = "Please enter Mobile Phone";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if($scope.healthmobilelength < 14){
@@ -676,8 +731,10 @@ $scope.healthphoneblur=function(){
                 }
                 if (age >= 12) {
                     $rootScope.viewemailDisplay = 'flex';
+                    $rootScope.viewtimezoneDisplay='flex';
                 } else {
                     $rootScope.viewemailDisplay = 'none';
+                    $rootScope.viewtimezoneDisplay='none';
 
                 }
 

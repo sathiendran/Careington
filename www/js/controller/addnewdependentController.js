@@ -153,6 +153,57 @@ angular.module('starter.controllers')
 
       }
    }
+ // $scope.height = 0;
+$scope.depheight1=function(){
+       var max = 10;
+       var heightval=$('#height').val();
+       if ( heightval > max)
+      {
+          $("#height").val(max);
+      }
+}
+$scope.depheight2=function(){
+       var max = 99;
+       var height2val=$('#height2').val();
+       if ( height2val > max)
+      {
+          $("#height2").val(max);
+      }
+
+      var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+      var getheightunit=_.first(heightunit);
+      if(getheightunit=="ft/in"){
+          var maxheight=11;
+          if ( height2val > maxheight)
+         {
+             $("#height2").val(maxheight);
+         }
+      }
+}
+$scope.weightunit=function(){
+       var maxweight = 999;
+       var weightval=$('#weight').val();
+       if ( weightval > maxweight)
+      {
+          $("#weight").val(maxweight);
+      }
+}
+
+$scope.unitchange=function(){
+    var maxheight=11;
+    var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+    var getheightunit=_.first(heightunit);
+    if(getheightunit="ft/in"){
+        var height2val=$('#height2').val();
+        if(height2val!=""){
+            if ( height2val > maxheight)
+           {
+               $("#height2").val(maxheight);
+           }
+        }
+    }
+}
+
 
 $scope.phoneBlur=function(){
 $scope.phonelength=$("#homephone").val().length;
