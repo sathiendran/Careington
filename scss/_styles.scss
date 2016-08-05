@@ -754,9 +754,11 @@ html, body { background: transparent !important; }
                  margin-left: 7px;
 				.patientName {
 					font-weight: bold;
+          font-family:Glober Bold !important;
 				}
 				.patientLastName {
 					font-weight: normal;
+          font-family:Glober Regular !important;
 				}
 			}
 			.subHeader_content_age {
@@ -2423,12 +2425,12 @@ text-align:center
     font-size:31px;margin-top:4px;font-family:Glober Regular;
 }
 .patage{
-   margin-top: 4px;
+   margin-top: -7px;
    font-size: 14px !important;
    color: #999999 !important;;
 }
 .appfname{
-  height: 16px;
+  height: 24px;
   font-size: 20px !important;
   font-family: Glober Bold;
   color: #666666 !important;
@@ -2585,7 +2587,7 @@ color:#666666;
 	left: 102px;
 }
 .popupfont{
-  font-family:Glober-Regular;  color:#999999 !important;
+  font-family:$fontFamily_regular;  color:#999999 !important;
 }
 .ion-search::before {
     margin-left: 10px;
@@ -3744,7 +3746,7 @@ font-family: $fontFamily_regular;
     padding: 25px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
-    text-align: justify; position: relative; top: -31px;
+    text-align: justify; position: relative; top: 31px;
 }
 .sublogo{
     margin-top:205px;
@@ -5477,7 +5479,7 @@ color: white;
    background-color:#e9e9e9;
 }
 .profilecontent{
-    margin-top:167px;
+    margin-top:177px;
 }
 .relatedusercontent{
     margin-top:215px;
