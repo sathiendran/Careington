@@ -123,8 +123,10 @@ angular.module('starter.controllers')
             }
             if (age >= 12) {
                 $rootScope.viewemailDisplay = 'flex';
+                $rootScope.viewtimezoneDisplay='flex';
             } else {
                 $rootScope.viewemailDisplay = 'none';
+                $rootScope.viewtimezoneDisplay='none';
 
             }
 

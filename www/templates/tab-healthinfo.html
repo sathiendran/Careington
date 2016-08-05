@@ -104,7 +104,7 @@
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
                <div class="healthViewDetails ellipsis">{{getCountryName(currentPatientDetails[0].countryCode)}}</div>
            </label>
-           <label class="item item-input itemtab validated">
+           <label class="item item-input itemtab validated" style="display: {{viewtimezoneDisplay}};">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel labelfont">Timezone</b></span>
                <div class="healthViewDetails ellipsis">{{getTimeZoneName(currentPatientDetails[0].account.timeZoneId)}}</div>
            </label>
@@ -220,7 +220,7 @@
                </select></span>
            </div>
 
-           <div class="item item-input itemtab validated">
+           <div class="item item-input itemtab validated" style="display: {{timezoneDisplay}};">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('clock')"></i></i><b class="formlabel labelfont">Timezone</b><i class="ion-asterisk"></i></span>
               <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoTimezone" >
                  <option value="">Choose</option>

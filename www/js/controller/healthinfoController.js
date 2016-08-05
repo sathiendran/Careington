@@ -249,8 +249,10 @@ if ( heightval > max)
         }
         if (age >= 12) {
             $rootScope.emailDisplay = 'flex';
+            $rootScope.timezoneDisplay='flex';
         } else {
             $rootScope.emailDisplay = 'none';
+            $rootScope.timezoneDisplay='none';
 
         }
 
@@ -296,8 +298,10 @@ if ( heightval > max)
         }
         if (age >= 12) {
             $rootScope.emailDisplay = 'flex';
+            $rootScope.timezoneDisplay='flex';
         } else {
             $rootScope.emailDisplay = 'none';
+            $rootScope.timezoneDisplay='none';
 
         }
     }
@@ -494,13 +498,13 @@ $scope.healthphoneblur=function(){
                     } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                         $scope.ErrorMessage = "Please select Country";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                    } /*else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
                         $scope.ErrorMessage = "Please select Time Zone";
-                        $rootScope.Validation($scope.ErrorMessage);
+                        $rootScope.Validation($scope.ErrorMessage);}*/
                         // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
                         //     $scope.ErrorMessage = "Please Enter Your Home Phone";
                         //     $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
+                     else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
                         $scope.ErrorMessage = "Please enter Mobile Phone";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if($scope.healthmobilelength < 14){
@@ -727,8 +731,10 @@ $scope.healthphoneblur=function(){
                 }
                 if (age >= 12) {
                     $rootScope.viewemailDisplay = 'flex';
+                    $rootScope.viewtimezoneDisplay='flex';
                 } else {
                     $rootScope.viewemailDisplay = 'none';
+                    $rootScope.viewtimezoneDisplay='none';
 
                 }
 
