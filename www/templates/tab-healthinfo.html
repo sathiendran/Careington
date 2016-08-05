@@ -272,13 +272,13 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
               <div>
-                 <input type="number" placeholder="Req" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" style="width: 40px; margin-right: 10px;">
+                 <input type="number" placeholder="Req" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" ng-blur="heightunit1()" style="width: 40px; margin-right: 10px;">
               </div>
               <div>
-                 <input type="number" placeholder="Opt" name="healthInfoHeight2" id="healthInfoHeight2" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 1)}}" class="textdata" style="width: 40px; margin-right: 10px;">
+                 <input type="number" placeholder="Opt" name="healthInfoHeight2" id="healthInfoHeight2" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 1)}}" class="textdata"  ng-blur="heightunit2()" style="width: 40px; margin-right: 10px;">
               </div>
               <div class="healthViewDetails" style="width: 40% !important;">
-                  <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit"  style="width: 70%;">
+                  <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 70%;">
                         <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
                     </select>
               </div>
@@ -286,7 +286,7 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b><i class="ion-asterisk"></i></span>
               <div>
-                 <input type="number" name="healthInfoWeight" id="healthInfoWeight"  value="{{currentPatientDetails[0].anatomy.weight}}" class="textdata" style="width: 80px; margin-right: 10px;" placeholder="Req">
+                 <input type="number" name="healthInfoWeight" id="healthInfoWeight"  value="{{currentPatientDetails[0].anatomy.weight}}" class="textdata" ng-blur="weightunit()" style="width: 80px; margin-right: 10px;" placeholder="Req">
               </div>
               <div style="width: 40% !important;">
                  <select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 70%;">

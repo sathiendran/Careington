@@ -177,7 +177,58 @@ angular.module('starter.controllers')
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
 
+    $scope.heightunit1=function(){
+         var max = 10;
 
+var heightval=$('#healthInfoHeight').val();
+if ( heightval > max)
+{
+   $("#healthInfoHeight").val(max);
+}
+
+    }
+    $scope.heightunit2=function(){
+           var max = 99;
+           var height2val= $("#healthInfoHeight2").val();
+           if ( height2val > max)
+          {
+              $("#healthInfoHeight2").val(max);
+          }
+
+          var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+          var getheightunit=_.first(heightunit);
+          if(getheightunit=="ft/in"){
+              var maxheight=11;
+              if ( height2val > maxheight)
+             {
+                 $("#healthInfoHeight2").val(maxheight);
+             }
+          }
+
+    }
+    $scope.weightunit=function(){
+           var maxweight = 999;
+           var weightval=$('#healthInfoWeight').val();
+           if ( weightval > maxweight)
+          {
+              $("#healthInfoWeight").val(maxweight);
+          }
+    }
+
+    $scope.heightunitchange=function(){
+        var maxheight=11;
+        var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+        var getheightunit=_.first(heightunit);
+        if(getheightunit="ft/in"){
+            var height2val=$('#healthInfoHeight2').val();
+            if(height2val!=""){
+                if ( height2val > maxheight)
+               {
+                   $("#healthInfoHeight2").val(maxheight);
+               }
+            }
+        }
+    }
 
     $scope.edittext = function() {
 

@@ -145,16 +145,16 @@
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
         </div>
         <div class="healthinfoHeight-{{deviceName}}">
-          <input id="height" class="usertext textalign" placeholder="Req" type="number" value=""  ng-model="height" name="height" required>
+          <input id="height" class="usertext textalign" placeholder="Req" type="number" value="" ng-model="height" name="height"  ng-change="depheight1()">
         </div>
         <div class="healthinfoHeight2-{{deviceName}}">
 
-            <input id="height2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="height2" name="height2" required>
+            <input id="height2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="height2" name="height2" ng-change="depheight2()" >
 
 
         </div>
         <div class="healthinfoChoose-{{deviceName}}">
-           <select style="" class=" optionselect textdata healthchoose" name="heightunit" id="heightunit" ng-model="heightunit" required>
+           <select style="" class=" optionselect textdata healthchoose" name="heightunit" id="heightunit" ng-model="heightunit"  ng-change="unitchange()" required>
 						 <option value=""><b>Choose</b></option>
              <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b>{{getHeightunit.text}}</b></option>
 					 </select>
@@ -168,7 +168,7 @@
 
         <div class="dependHeigh-{{deviceName}}">
 
-          <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required" ng-model="weight" name="weight" required ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+          <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required"  name="weight" ng-blur="weightunit()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
         </div>
         <div style="width: 50%;">
            <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunit" required>
