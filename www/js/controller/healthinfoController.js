@@ -308,9 +308,13 @@ if ( heightval > max)
 
 $scope.healthphoneblur=function(){
     $scope.homephonelength= $('#healthInfoHomePhone').val().length;
-    if($scope.homephonelength < 14){
-        $scope.ErrorMessage = "Please enter valid Home Phone Number";
-        $rootScope.Validation($scope.ErrorMessage);
+    var homephoneval= $('#healthInfoHomePhone').val();
+    if(homephoneval!=''){
+        if($scope.homephonelength < 14){
+            $scope.ErrorMessage = "Please enter valid Home Phone Number";
+            $rootScope.Validation($scope.ErrorMessage);
+        }
+    
     }
 
 }

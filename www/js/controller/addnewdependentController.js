@@ -209,10 +209,14 @@ $scope.unitchange=function(){
 
 $scope.phoneBlur=function(){
 $scope.phonelength=$("#homephone").val().length;
+var phonevalue=$("#homephone").val();
+if(phonevalue!=''){
     if($scope.phonelength < 14){
         $scope.ErrorMessage = "Please enter valid Home Phone Number";
         $rootScope.Validation($scope.ErrorMessage);
     }
+
+}
 
 }
 
