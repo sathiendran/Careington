@@ -4329,6 +4329,9 @@ LoginService.getScheduledConsulatation(params);
             } else {
                 $rootScope.userAgeForIntake = 7;
             }
+            if(P_Age.indexOf('T') == -1) {
+              $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
+             }
         }
         //  $rootScope.userAgeForIntake = ageFilter.getDateFilter(P_Age);
         $rootScope.SelectPatientAge = $rootScope.PatientAge;
