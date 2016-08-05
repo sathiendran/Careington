@@ -148,8 +148,10 @@ angular.module('starter.controllers')
       }
       if(age >=12){
         $rootScope.emailDisplay = 'flex';
+        $rootScope.timezoneDisplay='flex';
       }else{
            $rootScope.emailDisplay = 'none';
+           $rootScope.timezoneDisplay='none';
 
       }
    }
@@ -389,10 +391,10 @@ $scope.phonelength=$("#homephone").val().length;
      }else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
          $scope.ErrorMessage = "Please choose Country";
          $rootScope.Validation($scope.ErrorMessage);
-     } else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
+     } /*else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
          $scope.ErrorMessage = "Please choose Time Zone";
          $rootScope.Validation($scope.ErrorMessage);
-     }else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
+     }*/else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
            $scope.ErrorMessage = "Please enter Mobile Number";
            $rootScope.Validation($scope.ErrorMessage);
     }else if($scope.mobilelength < 14){
