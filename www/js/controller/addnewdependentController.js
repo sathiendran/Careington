@@ -316,7 +316,7 @@ $scope.phonelength=$("#homephone").val().length;
         //    //$rootScope.Validation($scope.ErrorMessage);
         //    $scope.height2 = "0";
        } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
-           $scope.ErrorMessage = "Please selectselect Height Unit";
+           $scope.ErrorMessage = "Please select Height Unit";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
            $scope.ErrorMessage = "Please select Weight";
@@ -371,7 +371,7 @@ $scope.phonelength=$("#homephone").val().length;
        $rootScope.Validation($scope.ErrorMessage);
    }
      else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
-         $scope.ErrorMessage = "Please selectselect Relation";
+         $scope.ErrorMessage = "Please select Relation";
          $rootScope.Validation($scope.ErrorMessage);
     } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
          $scope.ErrorMessage = "Please select Gender";

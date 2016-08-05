@@ -5390,6 +5390,19 @@ color: white;
    color: #aaa;
    }
 }
+.casearch-IOS{
+  // background-color:#e8e8e8;
+   height:50px;
+   border-radius:5px;
+   margin-top:134px;
+ .hsearch{
+   text-align: center;
+   line-height: 2;
+   font-size: 16px;
+   font-family: Glober Regular;
+   color: #aaa;
+   }
+}
 .consultsearch{
     .rowalign{
         background-color:none !important;
@@ -8077,6 +8090,14 @@ input.ion-google-place[readonly] {
 .appointcontentsearch-Android {
     .fname {
            font-size: 21px;
+           font-family: Glober SemiBold !important;
+           color: #666666;
+         font-size: 200% !important;
+       }
+}
+
+.appointcontentsearch-IOS {
+    .fname {
            font-family: Glober SemiBold !important;
            color: #666666;
          font-size: 200% !important;
