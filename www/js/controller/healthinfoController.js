@@ -855,8 +855,13 @@ $scope.healthphoneblur=function(){
             success: function(data) {
                 console.log(data);
             },
-            error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+            error: function(data, status) {
+                if(status === 401) {
+                  $scope.ErrorMessage = "Relation did not update";
+                  $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                  $rootScope.serverErrorMessageValidation();
+                }
             }
         };
         LoginService.updateDependentsAuthorize(params);
