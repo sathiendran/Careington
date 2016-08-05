@@ -413,6 +413,7 @@ angular.module('starter.controllers')
             }
         } else {
             //$scope.doGetHospitalInformation();
+            $rootScope.birHistory = {};
             $scope.doPostOnDemandConsultation();
         }
 
@@ -438,6 +439,7 @@ angular.module('starter.controllers')
 
         LoginService.getConcentToTreat(params);
     }
+
 
     $scope.goToConsentToTreat = function() {
     //  $state.go('tab.intakeBornHistory');
