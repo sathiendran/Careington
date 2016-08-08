@@ -107,6 +107,7 @@ angular.module('starter.controllers')
                $rootScope.Validation($scope.ErrorMessage);
            } else {
                 $scope.doPostUserRegisterDetails();
+                return false;
             }
 
         }
@@ -132,9 +133,9 @@ angular.module('starter.controllers')
                     $state.go('tab.registerSuccess');
                 },
                 error: function(data) {
-                    if (data.message == 'Email address already registered.') {
+                    if (data.message.indexOf('already registered') > 0) {
                         navigator.notification.alert(
-                            'Email address already registered. Please use different Email ID', // message
+                            data.message, // message
                             function() {},
                             $rootScope.alertMsgName, // title
                             'Done' // buttonName
