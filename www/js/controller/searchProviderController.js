@@ -115,7 +115,8 @@ angular.module('starter.controllers')
 
         $scope.goToRegisterStep1 = function(providerList) {
             $rootScope.selectedSearchProviderList = providerList;
-            $rootScope.hospitalId = providerList.hospitalId
+            $rootScope.hospitalId = providerList.hospitalId;
+            $rootScope.regStep1 = {};
             $scope.doGetSingleUserHospitalInformation();
 
         }

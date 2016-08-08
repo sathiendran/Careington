@@ -481,7 +481,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.NextButtonReduce = "right: 5px;";
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
-        $rootScope.loginLineHeight = "top: 2px; position: relative;";
+        //$rootScope.loginLineHeight = "top: 2px; position: relative;";
         $rootScope.passwordLineHeight = "top: 2px; position: relative;";
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
         $rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;";
