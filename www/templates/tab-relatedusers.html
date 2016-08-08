@@ -6,6 +6,8 @@
                 <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
             </div>
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+              <div class="Server_Error ErrorMessageDiv" ></div>
+           <div id="Error_Message"></div
               <span> Related Users </span>
               <span > <a ng-show="cousericon" class="headerval" style="position: relative;right: 8px;" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
                 <span > <a ng-show="dependenticon" class="headerval" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
