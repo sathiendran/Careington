@@ -8279,7 +8279,7 @@ input.ion-google-place[readonly] {
     bottom: 0;
     left: 0;
     border-radius: 4px;
-    border: 1px solid #666;
+    border: 1px solid #979797;
     background-color: #fff;
     transition: box-shadow 0.3s ease;
       width: 22px;
@@ -8484,4 +8484,9 @@ input.ion-google-place[readonly] {
       color: #666666;
       font-family: $fontFamily_bold;
   }
+}
+.enterEmailTextStart {
+  line-height: 2px !important;
+  padding-bottom: 15px;
+  font-size: 18px !important;
 }
