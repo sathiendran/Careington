@@ -1018,6 +1018,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.hospitalDetailsList = [];
                     angular.forEach($rootScope.PostPaymentDetails, function(index, item) {
                         if (typeof index.logo != 'undefined' && index.logo != '') {
+                            $scope.chkImageorNot = "image";
                             var hosImage = index.logo;
                             if (hosImage.indexOf("http") >= 0) {
                                 $scope.proImage = hosImage;
@@ -1025,12 +1026,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 $scope.proImage = apiCommonURL + hosImage;
                             }
                         } else {
+                            $scope.chkImageorNot = "";
                             $scope.proImage = get2CharInString.getProv2Char(index.name);
                         }
                         $rootScope.hospitalDetailsList.push({
                             'id': index.$id,
                             'domainName': index.domainName,
                             'logo': $scope.proImage,
+                            'chkImageorNot' : $scope.chkImageorNot,
                             'name': index.name,
                             'operatingHours': index.operatingHours,
                             'providerId': index.providerId,

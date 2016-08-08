@@ -72,12 +72,25 @@ angular.module('starter.controllers')
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();
                         angular.forEach(data.data, function(index, item) {
+                          if (typeof index.hospitalImage != 'undefined' && index.hospitalImage != '') {
+                              var hosImage = index.hospitalImage;
+                              $scope.chkImageorNot = "image";
+                              if (hosImage.indexOf("http") >= 0) {
+                                  $scope.proImage = hosImage;
+                              } else {
+                                  $scope.proImage = apiCommonURL + hosImage;
+                              }
+                          } else {
+                              $scope.chkImageorNot = "";
+                              $scope.proImage = get2CharInString.getProv2Char(index.hospitalName);
+                          }
                             $rootScope.searchProviderList.push({
-                                'id': index.$id,
                                 'customerSso': index.customerSso,
                                 'hospitalId': index.hospitalId,
                                 'hospitalName': index.hospitalName,
-                                'firstCharactOfHosName': get2CharInString.getProv2Char(index.hospitalName),
+                              //  'firstCharactOfHosName': get2CharInString.getProv2Char(index.hospitalName),
+                                'firstCharactOfHosName': $scope.proImage,
+                                'chkImageorNot' : $scope.chkImageorNot,
                                 'brandColor': index.brandColor,
                                 'brandName': index.brandName,
                                 'brandTitle': index.brandTitle,
