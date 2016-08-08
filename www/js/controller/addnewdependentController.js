@@ -133,6 +133,93 @@ angular.module('starter.controllers')
             var nowmonth = today.getMonth()+1;
             var nowday = today.getDate();
 
+
+   $scope.ngBlur = function () {
+       var doddate=$('#dob').val();
+       var dateofb=new Date( doddate)
+       var birthyear =dateofb.getFullYear();
+       var birthmonth = dateofb.getMonth();
+       var birthday = dateofb.getDate();
+       var age = nowyear - birthyear;
+       var age_month = nowmonth - birthmonth;
+       var age_day = nowday - birthday;
+       if(age_month < 0 || (age_month == 0 && age_day <0)) {
+       age = parseInt(age) -1;
+      }
+      if(age >=12){
+        $rootScope.emailDisplay = 'flex';
+        $rootScope.timezoneDisplay='flex';
+      }else{
+           $rootScope.emailDisplay = 'none';
+           $rootScope.timezoneDisplay='none';
+
+      }
+   }
+ // $scope.height = 0;
+$scope.depheight1=function(){
+       var max = 10;
+       var heightval=$('#height').val();
+       if ( heightval > max)
+      {
+          $("#height").val(max);
+      }
+}
+$scope.depheight2=function(){
+       var max = 99;
+       var height2val=$('#height2').val();
+       if ( height2val > max)
+      {
+          $("#height2").val(max);
+      }
+
+      var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+      var getheightunit=_.first(heightunit);
+      if(getheightunit=="ft/in"){
+          var maxheight=11;
+          if ( height2val > maxheight)
+         {
+             $("#height2").val(maxheight);
+         }
+      }
+}
+$scope.weightunit=function(){
+       var maxweight = 999;
+       var weightval=$('#weight').val();
+       if ( weightval > maxweight)
+      {
+          $("#weight").val(maxweight);
+      }
+}
+
+$scope.unitchange=function(){
+    var maxheight=11;
+    var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+    var getheightunit=_.first(heightunit);
+    if(getheightunit="ft/in"){
+        var height2val=$('#height2').val();
+        if(height2val!=""){
+            if ( height2val > maxheight)
+           {
+               $("#height2").val(maxheight);
+           }
+        }
+    }
+}
+
+
+$scope.phoneBlur=function(){
+$scope.phonelength=$("#homephone").val().length;
+var phonevalue=$("#homephone").val();
+if(phonevalue!=''){
+    if($scope.phonelength < 14){
+        $scope.ErrorMessage = "Please enter valid Home Phone Number";
+        $rootScope.Validation($scope.ErrorMessage);
+    }
+
+}
+
+}
+
         $scope.postDependentDetails = function() {
             $scope.firstName = $("#firstname").val();
             $scope.lastName = $("#lastname").val();
@@ -146,7 +233,9 @@ angular.module('starter.controllers')
             $scope.height2 = $("#height2").val();
             $scope.weight = $("#weight").val();
             $scope.homephone = $("#homephone").val();
+            $scope.phonelength=$("#homephone").val().length;
             $scope.mobile = $("#mobile").val();
+            $scope.mobilelength=$("#mobile").val().length;
             //$scope.homeaddress = $("#homeadd").val();
             $scope.homeaddress = $scope.addNewDependent.homeadd;
             var org = document.getElementById("organization");
@@ -184,75 +273,85 @@ angular.module('starter.controllers')
             if(age_month < 0 || (age_month == 0 && age_day <0)) {
             age = parseInt(age) -1;
            }
+           $scope.ValidateEmail = function(email) {
+               //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+               var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+               return expr.test(email);
+           };
 
-      var selectedDate = document.getElementById('dob').value;
-       var now = new Date();
-       var dt1 = Date.parse(now),
-       dt2 = Date.parse(selectedDate);
+           var selectedDate = document.getElementById('dob').value;
+           var now = new Date();
+           var dt1 = Date.parse(now),
+           dt2 = Date.parse(selectedDate);
 
     if ((age >=12  && age_month >= 0)) {
       if ($scope.email === 'undefined' || $scope.email === '') {
-          $scope.ErrorMessage = "Please Enter Your Email Id";
+          $scope.ErrorMessage = "Please enter Email Id";
           $rootScope.Validation($scope.ErrorMessage);
+       } else if(!$scope.ValidateEmail($("#email").val())) {
+           $scope.ErrorMessage = "Please enter a valid Email Address";
+           $rootScope.Validation($scope.ErrorMessage);
        }
        else if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
-           $scope.ErrorMessage = "Please Enter Your First Name";
+           $scope.ErrorMessage = "Please enterenter First Name";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
-           $scope.ErrorMessage = "Please Enter Your Last Name";
+           $scope.ErrorMessage = "Please enter Last Name";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
-             $scope.ErrorMessage = "Please Enter Your DOB";
+             $scope.ErrorMessage = "Please enter DOB";
              $rootScope.Validation($scope.ErrorMessage);
        } else if (dt2 >dt1) {
-          $scope.ErrorMessage = "Future Date not allowed";
+          $scope.ErrorMessage = "DOB can not be in Future";
           $rootScope.Validation($scope.ErrorMessage);
       }
         else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
-            $scope.ErrorMessage = "Please Select Your Relation";
+            $scope.ErrorMessage = "Please select Relation";
             $rootScope.Validation($scope.ErrorMessage);
         }
        else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
-           $scope.ErrorMessage = "Please Select Your Gender";
+           $scope.ErrorMessage = "Please select Gender";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
-           $scope.ErrorMessage = "Please Enter Your Height";
+           $scope.ErrorMessage = "Please enter Height";
            $rootScope.Validation($scope.ErrorMessage);
        // }else if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
         //    //$scope.ErrorMessage = "Please Enter Your Height";
         //    //$rootScope.Validation($scope.ErrorMessage);
         //    $scope.height2 = "0";
        } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
-           $scope.ErrorMessage = "Please Select Your Height Unit";
+           $scope.ErrorMessage = "Please select Height Unit";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
-           $scope.ErrorMessage = "Please Enter Your Weight";
+           $scope.ErrorMessage = "Please select Weight";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.getWeightunit == 'undefined' || $scope.getWeightunit === '') {
-           $scope.ErrorMessage = "Please Select Your Weight Unit";
+           $scope.ErrorMessage = "Please select Weight Unit";
            $rootScope.Validation($scope.ErrorMessage);
        }else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
-           $scope.ErrorMessage = "Please Choose Your Country";
+           $scope.ErrorMessage = "Please choose Country";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
-           $scope.ErrorMessage = "Please Choose Your Time Zone";
+           $scope.ErrorMessage = "Please choose Time Zone";
            $rootScope.Validation($scope.ErrorMessage);
        }else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
-             $scope.ErrorMessage = "Please Enter Your Mobile Number";
+             $scope.ErrorMessage = "Please enter Mobile Number";
              $rootScope.Validation($scope.ErrorMessage);
-           }
-       else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
-           $scope.ErrorMessage = "Please Select Your bloodtype";
+       }else if($scope.mobilelength < 14){
+           $scope.ErrorMessage = "Please enter valid Mobile Number";
+           $rootScope.Validation($scope.ErrorMessage);
+       }else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
+           $scope.ErrorMessage = "Please select Blood Type";
            $rootScope.Validation($scope.ErrorMessage);
        }
        else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
-                $scope.ErrorMessage = "Please Select Your hairColor";
+                $scope.ErrorMessage = "Please select Hair Color";
                 $rootScope.Validation($scope.ErrorMessage);
       } else if (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '') {
-                $scope.ErrorMessage = "Please Select Your eyeColor";
+                $scope.ErrorMessage = "Please select Eye Color";
                 $rootScope.Validation($scope.ErrorMessage);
       } else if (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '') {
-                $scope.ErrorMessage = "Please Select Your ethnicity";
+                $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
       }
        else {
@@ -263,58 +362,59 @@ angular.module('starter.controllers')
       }
    }else{
      if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
-         $scope.ErrorMessage = "Please Enter Your First Name";
+         $scope.ErrorMessage = "Please enter First Name";
          $rootScope.Validation($scope.ErrorMessage);
      } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
-         $scope.ErrorMessage = "Please Enter Your Last Name";
+         $scope.ErrorMessage = "Please enter Last Name";
          $rootScope.Validation($scope.ErrorMessage);
      } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {
-           $scope.ErrorMessage = "Please Enter Your DOB";
+           $scope.ErrorMessage = "Please enter DOB";
            $rootScope.Validation($scope.ErrorMessage);
     }else if (dt2 >dt1) {
-       $scope.ErrorMessage = "DOB can not be in Future!";
+       $scope.ErrorMessage = "DOB can not be in Future";
        $rootScope.Validation($scope.ErrorMessage);
    }
      else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
-         $scope.ErrorMessage = "Please Select Your Relation";
+         $scope.ErrorMessage = "Please select Relation";
          $rootScope.Validation($scope.ErrorMessage);
     } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
-         $scope.ErrorMessage = "Please Select Your Gender";
+         $scope.ErrorMessage = "Please select Gender";
          $rootScope.Validation($scope.ErrorMessage);
      } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
-         $scope.ErrorMessage = "Please Enter Your Height";
+         $scope.ErrorMessage = "Please enter Height";
          $rootScope.Validation($scope.ErrorMessage);
      } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
-         $scope.ErrorMessage = "Please Select Your Height Unit";
+         $scope.ErrorMessage = "Please select Height Unit";
          $rootScope.Validation($scope.ErrorMessage);
      } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
-         $scope.ErrorMessage = "Please Enter Your Weight";
+         $scope.ErrorMessage = "Please enter Weight";
          $rootScope.Validation($scope.ErrorMessage);
      } else if (typeof $scope.getWeightunit == 'undefined' || $scope.getWeightunit === '') {
-         $scope.ErrorMessage = "Please Select Your Weight Unit";
+         $scope.ErrorMessage = "Please select Weight Unit";
          $rootScope.Validation($scope.ErrorMessage);
      }else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
-         $scope.ErrorMessage = "Please Choose Your Country";
+         $scope.ErrorMessage = "Please choose Country";
          $rootScope.Validation($scope.ErrorMessage);
-     } else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
-         $scope.ErrorMessage = "Please Choose Your Time Zone";
+     } /*else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
+         $scope.ErrorMessage = "Please choose Time Zone";
          $rootScope.Validation($scope.ErrorMessage);
-     }else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
-           $scope.ErrorMessage = "Please Enter Your Mobile Number";
+     }*/else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
+           $scope.ErrorMessage = "Please enter Mobile Number";
            $rootScope.Validation($scope.ErrorMessage);
-         }
-
-     else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
-         $scope.ErrorMessage = "Please Select Your bloodtype";
+    }else if($scope.mobilelength < 14){
+        $scope.ErrorMessage = "Please enter valid Mobile Number";
+        $rootScope.Validation($scope.ErrorMessage);
+    }else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
+         $scope.ErrorMessage = "Please select Blood Type";
          $rootScope.Validation($scope.ErrorMessage);
      }else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
-                $scope.ErrorMessage = "Please Select Your hairColor";
+                $scope.ErrorMessage = "Please select Hair Color";
                 $rootScope.Validation($scope.ErrorMessage);
     } else if (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '') {
-                $scope.ErrorMessage = "Please Select Your eyeColor";
+                $scope.ErrorMessage = "Please select Eye Color";
                 $rootScope.Validation($scope.ErrorMessage);
     } else if (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '') {
-                $scope.ErrorMessage = "Please Select Your ethnicity";
+                $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
     }
      else {

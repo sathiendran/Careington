@@ -475,29 +475,29 @@ angular.module('starter.controllers')
 
                     if ($rootScope.fullTerm == 'N') {
                         $rootScope.fullTerm = 'No';
-                    } else if ($rootScope.fullTerm == 'T') {
-                        $rootScope.fullTerm = 'True';
+                    } else if ($rootScope.fullTerm == 'Y') {
+                        $rootScope.fullTerm = 'Yes';
                     }
 
                     $rootScope.vaginalBirth = $rootScope.intake.infantData.vaginalBirth;
                     if ($rootScope.vaginalBirth == 'N') {
                         $rootScope.vaginalBirth = 'No';
-                    } else if ($rootScope.vaginalBirth == 'T') {
-                        $rootScope.vaginalBirth = 'True';
+                    } else if ($rootScope.vaginalBirth == 'Y') {
+                        $rootScope.vaginalBirth = 'Yes';
                     }
 
                     $rootScope.dischargedWithMother = $rootScope.intake.infantData.dischargedWithMother;
                     if ($rootScope.dischargedWithMother == 'N') {
                         $rootScope.dischargedWithMother = 'No';
-                    } else if ($rootScope.dischargedWithMother == 'T') {
-                        $rootScope.dischargedWithMother = 'True';
+                    } else if ($rootScope.dischargedWithMother == 'Y') {
+                        $rootScope.dischargedWithMother = 'Yes';
                     }
 
                     $rootScope.vaccinationsCurrent = $rootScope.intake.infantData.vaccinationsCurrent;
                     if ($rootScope.vaccinationsCurrent == 'N') {
                         $rootScope.vaccinationsCurrent = 'No';
-                    } else if ($rootScope.vaccinationsCurrent == 'T') {
-                        $rootScope.vaccinationsCurrent = 'True';
+                    } else if ($rootScope.vaccinationsCurrent == 'Y') {
+                        $rootScope.vaccinationsCurrent = 'Yes';
                     }
 
                     var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);

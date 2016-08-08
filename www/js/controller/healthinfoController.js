@@ -1,66 +1,72 @@
 angular.module('starter.controllers')
 
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService) {
-
-  $scope.getOnlyNumbers = function(text){
+    $rootScope.patientAuthorize = true;
+    $rootScope.patientUnAuthorize = false;
+    $rootScope.patientAuthorizeValue = 'Y';
+    $scope.getOnlyNumbers = function(text) {
         var newStr = "";
-        if(text){
+        if (text) {
             newStr = text.replace(/[^0-9.]/g, "");
         }
         return newStr;
     }
 
-    $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber){
+    $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber) {
         var phoneNumberWithoutCountryCode = "";
-        if(phoneNumber)
-            phoneNumberWithoutCountryCode = phoneNumber.substring(phoneNumber.length-10, phoneNumber.length);
+        if (phoneNumber)
+            phoneNumberWithoutCountryCode = phoneNumber.substring(phoneNumber.length - 10, phoneNumber.length);
         return phoneNumberWithoutCountryCode;
     };
 
-    $rootScope.reformatHeight = function(heightVal, index){
+    $rootScope.reformatHeight = function(heightVal, index) {
         var newHeight = "0";
-        if(heightVal){
+        if (heightVal) {
             var newHeightVal = heightVal.split('|');
             newHeight = newHeightVal[index];
         }
         return newHeight;
     };
 
-    $rootScope.reformatHeightForDisplay = function(heightVal,heightUnit){
+    $rootScope.reformatHeightForDisplay = function(heightVal, heightUnit) {
         var newHeight = "";
-        if(heightVal){
-          //  newHeight = heightVal.replace('|', ' ft ');
-          //  newHeight = newHeight + " in"
-          if(heightVal.indexOf('|') === -1) {
-            heightVal = heightVal + "|" +0;
+        if (heightVal) {
+            //  newHeight = heightVal.replace('|', ' ft ');
+            //  newHeight = newHeight + " in"
+            if (heightVal.indexOf('|') === -1) {
+                heightVal = heightVal + "|" + 0;
+                var heightValSplit = heightVal.split("|");
+            }
             var heightValSplit = heightVal.split("|");
-          }
-          var heightValSplit = heightVal.split("|");
-          var heightUnitSplit = heightUnit.split("/");
-          if(heightValSplit[1] == 0) {
-            newHeight = heightValSplit[0]+ " "+heightUnitSplit[0];
-          } else {
-            newHeight = heightValSplit[0]+ " "+heightUnitSplit[0]+ " "+heightValSplit[1]+ " "+heightUnitSplit[1];
-          }
+            var heightUnitSplit = heightUnit.split("/");
+            if (heightValSplit[1] == 0) {
+                newHeight = heightValSplit[0] + " " + heightUnitSplit[0];
+            } else {
+                newHeight = heightValSplit[0] + " " + heightUnitSplit[0] + " " + heightValSplit[1] + " " + heightUnitSplit[1];
+            }
         }
         return newHeight;
     };
 
-    $rootScope.getCountryName = function(countryCode){
-        var countryInfo = $filter('filter')($rootScope.serviceCountries, {code: countryCode});
-        if(countryInfo[0])
+    $rootScope.getCountryName = function(countryCode) {
+        var countryInfo = $filter('filter')($rootScope.serviceCountries, {
+            code: countryCode
+        });
+        if (countryInfo[0])
             return countryInfo[0].name;
-        else if(countryInfo)
+        else if (countryInfo)
             return countryInfo.name;
         else
             return "";
     };
 
-    $rootScope.getTimeZoneName = function(timezoneCode){
-        var timezoneInfo = $filter('filter')($rootScope.timeZones, {id: timezoneCode});
-        if(timezoneInfo[0])
+    $rootScope.getTimeZoneName = function(timezoneCode) {
+        var timezoneInfo = $filter('filter')($rootScope.timeZones, {
+            id: timezoneCode
+        });
+        if (timezoneInfo[0])
             return timezoneInfo[0].name;
-        else if(timezoneInfo)
+        else if (timezoneInfo)
             return timezoneInfo.name;
         else
             return "";
@@ -70,9 +76,9 @@ angular.module('starter.controllers')
     $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
     $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
 
-  $rootScope.couserdetails=false;
-  $rootScope.dupcouser=false;
-  $rootScope.showNewSurgeryAdd = false;
+    $rootScope.couserdetails = false;
+    $rootScope.dupcouser = false;
+    $rootScope.showNewSurgeryAdd = false;
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -171,9 +177,85 @@ angular.module('starter.controllers')
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
 
+    $scope.heightunit1=function(){
+         var max = 10;
 
+var heightval=$('#healthInfoHeight').val();
+if ( heightval > max)
+{
+   $("#healthInfoHeight").val(max);
+}
+
+    }
+    $scope.heightunit2=function(){
+           var max = 99;
+           var height2val= $("#healthInfoHeight2").val();
+           if ( height2val > max)
+          {
+              $("#healthInfoHeight2").val(max);
+          }
+
+          var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+          var getheightunit=_.first(heightunit);
+          if(getheightunit=="ft/in"){
+              var maxheight=11;
+              if ( height2val > maxheight)
+             {
+                 $("#healthInfoHeight2").val(maxheight);
+             }
+          }
+
+    }
+    $scope.weightunit=function(){
+           var maxweight = 999;
+           var weightval=$('#healthInfoWeight').val();
+           if ( weightval > maxweight)
+          {
+              $("#healthInfoWeight").val(maxweight);
+          }
+    }
+
+    $scope.heightunitchange=function(){
+        var maxheight=11;
+        var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+        var getheightunit=_.first(heightunit);
+        if(getheightunit="ft/in"){
+            var height2val=$('#healthInfoHeight2').val();
+            if(height2val!=""){
+                if ( height2val > maxheight)
+               {
+                   $("#healthInfoHeight2").val(maxheight);
+               }
+            }
+        }
+    }
 
     $scope.edittext = function() {
+
+        var doddate = new Date($rootScope.currentPatientDetails[0].dob);
+        var today = new Date();
+        var nowyear = today.getFullYear();
+        var nowmonth = today.getMonth() + 1;
+        var nowday = today.getDate();
+        var dateofb = new Date(doddate)
+        var birthyear = dateofb.getFullYear();
+        var birthmonth = dateofb.getMonth();
+        var birthday = dateofb.getDate();
+        var age = nowyear - birthyear;
+        var age_month = nowmonth - birthmonth;
+        var age_day = nowday - birthday;
+        if (age_month < 0 || (age_month == 0 && age_day < 0)) {
+            age = parseInt(age) - 1;
+        }
+        if (age >= 12) {
+            $rootScope.emailDisplay = 'flex';
+            $rootScope.timezoneDisplay='flex';
+        } else {
+            $rootScope.emailDisplay = 'none';
+            $rootScope.timezoneDisplay='none';
+
+        }
+
         $scope.readattr = false;
         $scope.doneshow = false;
         $scope.editshow = false;
@@ -198,24 +280,64 @@ angular.module('starter.controllers')
     }
 
     //$scope.healthInfo = {};
+    $scope.ngBlur = function() {
+        var today = new Date();
+        var nowyear = today.getFullYear();
+        var nowmonth = today.getMonth() + 1;
+        var nowday = today.getDate();
+        $rootScope.doddate = $('#healthInfoDOB').val();
+        var dateofb = new Date($rootScope.doddate );
+        var birthyear = dateofb.getFullYear();
+        var birthmonth = dateofb.getMonth();
+        var birthday = dateofb.getDate();
+        var age = nowyear - birthyear;
+        var age_month = nowmonth - birthmonth;
+        var age_day = nowday - birthday;
+        if (age_month < 0 || (age_month == 0 && age_day < 0)) {
+            age = parseInt(age) - 1;
+        }
+        if (age >= 12) {
+            $rootScope.emailDisplay = 'flex';
+            $rootScope.timezoneDisplay='flex';
+        } else {
+            $rootScope.emailDisplay = 'none';
+            $rootScope.timezoneDisplay='none';
+
+        }
+    }
+
+$scope.healthphoneblur=function(){
+    $scope.homephonelength= $('#healthInfoHomePhone').val().length;
+    var homephoneval= $('#healthInfoHomePhone').val();
+    if(homephoneval!=''){
+        if($scope.homephonelength < 14){
+            $scope.ErrorMessage = "Please enter valid Home Phone Number";
+            $rootScope.Validation($scope.ErrorMessage);
+        }
+    
+    }
+
+}
+
     $scope.putUpdatePatientDetails = function() {
-      $scope.editimg = true;
-      $scope.viewimg = false;
-      var selectDate = document.getElementById('healthInfoDOB').value;
-       var now = new Date();
-       var dt1 = Date.parse(now),
-       dt2 = Date.parse(selectDate);
+            $scope.editimg = true;
+            $scope.viewimg = false;
+            var selectDate = document.getElementById('healthInfoDOB').value;
+            var now = new Date();
+            var dt1 = Date.parse(now),
+                dt2 = Date.parse(selectDate);
             $scope.healthInfoFirstName = $('#healthInfoFirstName').val();
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
+            $rootScope.healthInfoDOB = $('#healthInfoDOB').val();
             $scope.healthInfoDOB = $('#healthInfoDOB').val();
             $scope.healthInfoEmail = $('#healthInfoEmail').val();
-            if($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
-              $scope.healthInfoRelationship = $("#healthInfoRelationship").val();
-              $scope.splitRelationship = $scope.healthInfoRelationship.split("@");
-              $scope.getRelationshipId = $scope.splitRelationship[0];
-              $scope.getRelationshipText = $scope.splitRelationship[1];
+            if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
+                $scope.healthInfoRelationship = $("#healthInfoRelationship").val();
+                $scope.splitRelationship = $scope.healthInfoRelationship.split("@");
+                $scope.getRelationshipId = $scope.splitRelationship[0];
+                $scope.getRelationshipText = $scope.splitRelationship[1];
             } else {
-              $scope.healthInfoRelationship = "NA";
+                $scope.healthInfoRelationship = "NA";
             }
             $scope.healthInfoGender = $("#healthInfoGender").val();
             $scope.healthInfoHeight = $('#healthInfoHeight').val();
@@ -233,6 +355,7 @@ angular.module('starter.controllers')
             $scope.healthInfoTimezone = $('#healthInfoTimezone').val();
             $scope.healthInfoHomePhone = $('#healthInfoHomePhone').val();
             $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
+            $scope.healthmobilelength=$("#healthInfoMobilePhone").val().length;
             //$scope.healthInfoAddress = $('#healthInfoAddress').val();
             $scope.healthInfoAddress = $scope.healthInfoModel.address;
             $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
@@ -255,254 +378,265 @@ angular.module('starter.controllers')
             $scope.getBloodTypeText = $scope.splitBloodType[1];
             var today = new Date();
             var nowyear = today.getFullYear();
-            var nowmonth = today.getMonth()+1;
+            var nowmonth = today.getMonth() + 1;
             var nowday = today.getDate();
-            var dateofb=new Date($scope.healthInfoDOB)
-            var birthyear =dateofb.getFullYear();
+            var dateofb = new Date($rootScope.healthInfoDOB);
+            var birthyear = dateofb.getFullYear();
             var birthmonth = dateofb.getMonth();
             var birthday = dateofb.getDate();
             var age = nowyear - birthyear;
             var age_month = nowmonth - birthmonth;
             var age_day = nowday - birthday;
-            if(age_month < 0 || (age_month == 0 && age_day <0)) {
-            age = parseInt(age) -1;
-           }
+            if (age_month < 0 || (age_month == 0 && age_day < 0)) {
+                age = parseInt(age) - 1;
+            }
 
 
             $scope.ValidateEmail = function(email) {
+                //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                 var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return expr.test(email);
             };
 
-            if($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
-              if ((age >=12  && age_month >= 0)) {
+            if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
+                if ((age >= 12 && age_month >= 0)) {
 
+                    if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
+                        $scope.ErrorMessage = "Please enterenter First Name";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
+                        $scope.ErrorMessage = "Please enter Last Name";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
+                        $scope.ErrorMessage = "Please select DOB";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (dt2 > dt1) {
+                        $scope.ErrorMessage = "DOB can not be in Future";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
+                        $scope.ErrorMessage = "Please enter Email Id";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }  else if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
+                        $scope.ErrorMessage = "Please enter a valid Email Address";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                        $scope.ErrorMessage = "Please choose Relationship";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
+                        $scope.ErrorMessage = "Please select Country";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                        $scope.ErrorMessage = "Please select Time Zone";
+                        $rootScope.Validation($scope.ErrorMessage);
+                        // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+                        //     $scope.ErrorMessage = "Please Enter Your Home Phone";
+                        //     $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
+                        $scope.ErrorMessage = "Please enter Mobile Phone";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }else if($scope.healthmobilelength < 14){
+                        $scope.ErrorMessage = "Please enter valid Mobile Number";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
+                        $scope.ErrorMessage = "Please enter Address";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
+                        $scope.ErrorMessage = "Please select Gender";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
+                        $scope.ErrorMessage = "Please enter Height";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+                    //     $scope.ErrorMessage = "Please Enter Your Height";
+                    //     $rootScope.Validation($scope.ErrorMessage);
+                    //}
+                    else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
+                        $scope.ErrorMessage = "Please select Height Unit";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === '') {
+                        $scope.ErrorMessage = "Please enter Weight";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
+                        $scope.ErrorMessage = "Please select Weight Unit";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                        $scope.ErrorMessage = "Please select Ethnicity";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                        $scope.ErrorMessage = "Please select Hair Color";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                        $scope.ErrorMessage = "Please select Eye Color";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                        $scope.ErrorMessage = "Please select Blood Type";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else {
+                        if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+                            $scope.healthInfoHeight2 = "0";
+                        }
+                        $scope.doPutProfileUpdation();
+                    }
+
+
+
+                } else {
+                    if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
+                        $scope.ErrorMessage = "Please enter First Name";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
+                        $scope.ErrorMessage = "Please enter Last Name";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
+                        $scope.ErrorMessage = "Please select DOB";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (dt2 > dt1) {
+                        $scope.ErrorMessage = "DOB can not be in Future";
+                        $rootScope.Validation($scope.ErrorMessage);
+                        /*} else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
+                           $scope.ErrorMessage = "Please Enter Your Email Id";
+                             $rootScope.Validation($scope.ErrorMessage);*/
+                    } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                        $scope.ErrorMessage = "Please choose Relationship";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
+                        $scope.ErrorMessage = "Please select Country";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } /*else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                        $scope.ErrorMessage = "Please select Time Zone";
+                        $rootScope.Validation($scope.ErrorMessage);}*/
+                        // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+                        //     $scope.ErrorMessage = "Please Enter Your Home Phone";
+                        //     $rootScope.Validation($scope.ErrorMessage);
+                     else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
+                        $scope.ErrorMessage = "Please enter Mobile Phone";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if($scope.healthmobilelength < 14){
+                        $scope.ErrorMessage = "Please enter valid Mobile Number";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    }else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
+                        $scope.ErrorMessage = "Please enter Address";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
+                        $scope.ErrorMessage = "Please select Gender";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
+                        $scope.ErrorMessage = "Please enter Height";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+                    //     $scope.ErrorMessage = "Please Enter Your Height";
+                    //     $rootScope.Validation($scope.ErrorMessage);
+                    //}
+                    else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
+                        $scope.ErrorMessage = "Please select Height Unit";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === '') {
+                        $scope.ErrorMessage = "Please enter Weight";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
+                        $scope.ErrorMessage = "Please select Weight Unit";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                        $scope.ErrorMessage = "Please select Ethnicity";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                        $scope.ErrorMessage = "Please select Hair Color";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                        $scope.ErrorMessage = "Please select Eye Color";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                        $scope.ErrorMessage = "Please select Blood Type";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else {
+                        if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
+                            $scope.healthInfoHeight2 = "0";
+                        }
+                        $scope.doPutProfileUpdation();
+                    }
+
+                }
+
+            } else {
                 if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
-                    $scope.ErrorMessage = "Please Enter Your First Name";
+                    $scope.ErrorMessage = "Please enter First Name";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
-                    $scope.ErrorMessage = "Please Enter Your Last Name";
+                    $scope.ErrorMessage = "Please enter Last Name";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
-                    $scope.ErrorMessage = "Please Select Your DOB";
+                    $scope.ErrorMessage = "Please select Your DOB";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (dt2 >dt1) {
-                   $scope.ErrorMessage = "DOB can not be in Future!";
-                   $rootScope.Validation($scope.ErrorMessage);
-               }
-                else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
-                    $scope.ErrorMessage = "Please Enter Your Email Id";
+                } else if (dt2 > dt1) {
+                    $scope.ErrorMessage = "DOB can not be in Future";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
-                          $scope.ErrorMessage = "Please Choose Relationship";
-                          $rootScope.Validation($scope.ErrorMessage);
-                }  else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
-                    $scope.ErrorMessage = "Please Select Your Country";
+                } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
+                    $scope.ErrorMessage = "Please enter Email Id";
                     $rootScope.Validation($scope.ErrorMessage);
-                }  else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
-                    $scope.ErrorMessage = "Please Select Your Time Zone";
+                }  else if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
+                    $scope.ErrorMessage = "Please enter a valid Email Address";
                     $rootScope.Validation($scope.ErrorMessage);
-                // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
-                //     $scope.ErrorMessage = "Please Enter Your Home Phone";
-                //     $rootScope.Validation($scope.ErrorMessage);
+                }else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                    $scope.ErrorMessage = "Please choose Relationship";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
+                    $scope.ErrorMessage = "Please select Country";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                    $scope.ErrorMessage = "Please select Time Zone";
+                    $rootScope.Validation($scope.ErrorMessage);
+                    // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+                    //     $scope.ErrorMessage = "Please Enter Your Home Phone";
+                    //     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
-                    $scope.ErrorMessage = "Please Enter Your Mobile Phone";
+                    $scope.ErrorMessage = "Please enter Mobile Phone";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
-                    $scope.ErrorMessage = "Please Enter Your Address";
+                } else if($scope.healthmobilelength < 14){
+                    $scope.ErrorMessage = "Please enter valid Mobile Number";
+                    $rootScope.Validation($scope.ErrorMessage);
+                }else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
+                    $scope.ErrorMessage = "Please enter Address";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
-                    $scope.ErrorMessage = "Please Select Your Gender";
+                    $scope.ErrorMessage = "Please select Gender";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
-                    $scope.ErrorMessage = "Please Enter Your Height";
+                    $scope.ErrorMessage = "Please enter Height";
                     $rootScope.Validation($scope.ErrorMessage);
                 } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                 //     $scope.ErrorMessage = "Please Enter Your Height";
                 //     $rootScope.Validation($scope.ErrorMessage);
                 //}
                 else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
-                    $scope.ErrorMessage = "Please Select Your Height Unit";
+                    $scope.ErrorMessage = "Please select Height Unit";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === '') {
-                    $scope.ErrorMessage = "Please Enter Your Weight";
+                    $scope.ErrorMessage = "Please enter Weight";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
-                    $scope.ErrorMessage = "Please Select Your Weight Unit";
+                    $scope.ErrorMessage = "Please select Weight Unit";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
-                    $scope.ErrorMessage = "Please Select Your Ethnicity";
+                    $scope.ErrorMessage = "Please select Ethnicity";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
-                    $scope.ErrorMessage = "Please Select Your Hair Color";
+                    $scope.ErrorMessage = "Please select Hair Color";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
-                    $scope.ErrorMessage = "Please Select Your Eye Color";
+                    $scope.ErrorMessage = "Please select Eye Color";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
-                    $scope.ErrorMessage = "Please Select Your Blood Type";
+                    $scope.ErrorMessage = "Please select Blood Type";
                     $rootScope.Validation($scope.ErrorMessage);
-                }
-                else {
+                } else {
                     if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                         $scope.healthInfoHeight2 = "0";
                     }
                     $scope.doPutProfileUpdation();
                 }
 
-
-
-              }else{
-                        if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
-                            $scope.ErrorMessage = "Please Enter Your First Name";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
-                            $scope.ErrorMessage = "Please Enter Your Last Name";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
-                            $scope.ErrorMessage = "Please Select Your DOB";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (dt2 >dt1) {
-                           $scope.ErrorMessage = "DOB can not be in Future!";
-                           $rootScope.Validation($scope.ErrorMessage);
-                       /*} else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
-                          $scope.ErrorMessage = "Please Enter Your Email Id";
-                            $rootScope.Validation($scope.ErrorMessage);*/
-                        } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
-                                  $scope.ErrorMessage = "Please Choose Relationship";
-                                  $rootScope.Validation($scope.ErrorMessage);
-                        }  else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
-                            $scope.ErrorMessage = "Please Select Your Country";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        }  else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
-                            $scope.ErrorMessage = "Please Select Your Time Zone";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
-                        //     $scope.ErrorMessage = "Please Enter Your Home Phone";
-                        //     $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
-                            $scope.ErrorMessage = "Please Enter Your Mobile Phone";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
-                            $scope.ErrorMessage = "Please Enter Your Address";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
-                            $scope.ErrorMessage = "Please Select Your Gender";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
-                            $scope.ErrorMessage = "Please Enter Your Height";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
-                        //     $scope.ErrorMessage = "Please Enter Your Height";
-                        //     $rootScope.Validation($scope.ErrorMessage);
-                        //}
-                        else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
-                            $scope.ErrorMessage = "Please Select Your Height Unit";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === '') {
-                            $scope.ErrorMessage = "Please Enter Your Weight";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
-                            $scope.ErrorMessage = "Please Select Your Weight Unit";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
-                            $scope.ErrorMessage = "Please Select Your Ethnicity";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
-                            $scope.ErrorMessage = "Please Select Your Hair Color";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
-                            $scope.ErrorMessage = "Please Select Your Eye Color";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
-                            $scope.ErrorMessage = "Please Select Your Blood Type";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        }
-                        else {
-                            if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
-                                $scope.healthInfoHeight2 = "0";
-                            }
-                            $scope.doPutProfileUpdation();
-                        }
-
             }
-
-            }else{
-              if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
-                  $scope.ErrorMessage = "Please Enter Your First Name";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoLastName === 'undefined' || $scope.healthInfoLastName === '') {
-                  $scope.ErrorMessage = "Please Enter Your Last Name";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoDOB === 'undefined' || $scope.healthInfoDOB === '') {
-                  $scope.ErrorMessage = "Please Select Your DOB";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (dt2 >dt1) {
-                 $scope.ErrorMessage = "DOB can not be in Future!";
-                 $rootScope.Validation($scope.ErrorMessage);
-             }
-              else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
-                  $scope.ErrorMessage = "Please Enter Your Email Id";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
-                        $scope.ErrorMessage = "Please Choose Relationship";
-                        $rootScope.Validation($scope.ErrorMessage);
-              }  else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
-                  $scope.ErrorMessage = "Please Select Your Country";
-                  $rootScope.Validation($scope.ErrorMessage);
-              }  else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
-                  $scope.ErrorMessage = "Please Select Your Time Zone";
-                  $rootScope.Validation($scope.ErrorMessage);
-              // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
-              //     $scope.ErrorMessage = "Please Enter Your Home Phone";
-              //     $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
-                  $scope.ErrorMessage = "Please Enter Your Mobile Phone";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
-                  $scope.ErrorMessage = "Please Enter Your Address";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
-                  $scope.ErrorMessage = "Please Select Your Gender";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoHeight === 'undefined' || $scope.healthInfoHeight === '') {
-                  $scope.ErrorMessage = "Please Enter Your Height";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } //else if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
-              //     $scope.ErrorMessage = "Please Enter Your Height";
-              //     $rootScope.Validation($scope.ErrorMessage);
-              //}
-              else if (typeof $scope.healthInfoHeightUnit === 'undefined' || $scope.healthInfoHeightUnit === '') {
-                  $scope.ErrorMessage = "Please Select Your Height Unit";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoWeight === 'undefined' || $scope.healthInfoWeight === '') {
-                  $scope.ErrorMessage = "Please Enter Your Weight";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
-                  $scope.ErrorMessage = "Please Select Your Weight Unit";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
-                  $scope.ErrorMessage = "Please Select Your Ethnicity";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
-                  $scope.ErrorMessage = "Please Select Your Hair Color";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
-                  $scope.ErrorMessage = "Please Select Your Eye Color";
-                  $rootScope.Validation($scope.ErrorMessage);
-              } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
-                  $scope.ErrorMessage = "Please Select Your Blood Type";
-                  $rootScope.Validation($scope.ErrorMessage);
-              }
-              else {
-                  if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
-                      $scope.healthInfoHeight2 = "0";
-                  }
-                  $scope.doPutProfileUpdation();
-              }
-
-            }
-    }
+        }
         //$rootScope.currentPatientDetails[0].account.email
     $rootScope.doPutProfileUpdation = function() {
         var params = {
@@ -565,24 +699,49 @@ angular.module('starter.controllers')
             },
             success: function(data) {
                 $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
-              if($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !=='undefined') {
-                $scope.uploadPhotoForExistingPatient();
-              }
-              if($rootScope.primaryPatientId !== data.patientID) {
-                $scope.updateDependentRelation(data.patientID,$scope.getRelationshipId,$rootScope.currentPatientDetails[0].account.isAuthorized);
-              }
-              $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
-              $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
-                 $rootScope.currentPatientDetails=$rootScope.currentPatientDetails[0];
+                if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
+                    $scope.uploadPhotoForExistingPatient();
+                }
+                if ($rootScope.primaryPatientId !== data.patientID) {
+                    $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
+                }
+                $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
+                $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
+                $rootScope.currentPatientDetails = $rootScope.currentPatientDetails[0];
 
-                 if(angular.isUndefined($rootScope.currentPatientDetails.guardianName)) {
-                   $rootScope.currentPatientDetails.guardianName = $rootScope.primaryPatientName + " " +$rootScope.primaryPatientLastName;
-                 }
+                if (angular.isUndefined($rootScope.currentPatientDetails.guardianName)) {
+                    $rootScope.currentPatientDetails.guardianName = $rootScope.primaryPatientName + " " + $rootScope.primaryPatientLastName;
+                }
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
-            //    $rootScope.getManageProfile(currentPatientDetails);
-               $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
-              // $rootScope.doGetSelectedPatientProfiles(data.patientID);
+                //    $rootScope.getManageProfile(currentPatientDetails);
+                $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+                // $rootScope.doGetSelectedPatientProfiles(data.patientID);
+                var editdate = $rootScope.currentPatientDetails.dob;
+                var doddate = new Date($rootScope.healthInfoDOB);
+                var today = new Date();
+                var nowyear = today.getFullYear();
+                var nowmonth = today.getMonth() + 1;
+                var nowday = today.getDate();
+                var dateofb = new Date(doddate)
+                var birthyear = dateofb.getFullYear();
+                var birthmonth = dateofb.getMonth();
+                var birthday = dateofb.getDate();
+                var age = nowyear - birthyear;
+                var age_month = nowmonth - birthmonth;
+                var age_day = nowday - birthday;
+                if (age_month < 0 || (age_month == 0 && age_day < 0)) {
+                    age = parseInt(age) - 1;
+                }
+                if (age >= 12) {
+                    $rootScope.viewemailDisplay = 'flex';
+                    $rootScope.viewtimezoneDisplay='flex';
+                } else {
+                    $rootScope.viewemailDisplay = 'none';
+                    $rootScope.viewtimezoneDisplay='none';
+
+                }
+
                 $scope.readattr = true;
                 $scope.editshow = true;
                 $scope.doneshow = true;
@@ -597,16 +756,104 @@ angular.module('starter.controllers')
                 edittextarea.addClass('textdata');
             },
             error: function(data, status) {
-                if(status === 400) {
-                  $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
-                  $rootScope.Validation($scope.ErrorMessage);
+                if (status === 400) {
+                    $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
+                    $rootScope.Validation($scope.ErrorMessage);
                 } else {
-                  $rootScope.serverErrorMessageValidation();
+                    $rootScope.serverErrorMessageValidation();
                 }
             }
         };
 
         LoginService.putProfileUpdation(params);
+    }
+
+    $scope.doDependentToUnauthorized = function(currentPatientDetails) {
+        if (!angular.isUndefined($rootScope.userDOBDateFormat) && $rootScope.userDOBDateFormat !== '') {
+            $scope.dob = " . " + ageFilter.getDateFilter($rootScope.userDOBDateFormat);
+        } else {
+            $scope.dob = '';
+        }
+        if (!angular.isUndefined(currentPatientDetails.account.relationship) && currentPatientDetails.account.relationship !== '') {
+            $scope.relationship = " . " + currentPatientDetails.account.relationship;
+        } else {
+            $scope.relationship = '';
+        }
+        var myPopup = $ionicPopup.show({
+            title: "<a class='item-avatar popupaligned'>  <img src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
+            subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
+            templateUrl: 'templates/healthUnauthorizedPopup.html',
+            scope: $scope,
+            buttons: [{
+                text: '<b class="fonttype">Cancel</b>',
+                onTap: function(e) {
+                    return false;
+                }
+            }, {
+                text: '<b class="fonttype">Confirm</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    return true;
+                }
+            }, ]
+        });
+
+        myPopup.then(function(res) {
+            if (res) {
+                $rootScope.patientAuthorizeValue = 'N';
+                $rootScope.patientAuthorize = false;
+                $rootScope.patientUnAuthorize = true;
+                // $rootScope.doUpdateDependentsAuthorize(dependentDetails.patientId, dependentDetails.relationCode, relateDependentAuthorize);
+            } else {}
+        });
+        $scope.closepopup = function() {
+            myPopup.close();
+        }
+    }
+
+    $scope.doDependentToAuthorized = function(currentPatientDetails) {
+        if (!angular.isUndefined($rootScope.userDOBDateFormat) && $rootScope.userDOBDateFormat !== '') {
+            $scope.dob = " . " + ageFilter.getDateFilter($rootScope.userDOBDateFormat);
+        } else {
+            $scope.dob = '';
+        }
+        if (!angular.isUndefined(currentPatientDetails.account.relationship) && currentPatientDetails.account.relationship !== '') {
+            $scope.relationship = " . " + currentPatientDetails.account.relationship;
+        } else {
+            $scope.relationship = '';
+        }
+        var myPopup = $ionicPopup.show({
+            title: "<a class='item-avatar popupaligned'>  <img src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
+            subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
+            templateUrl: 'templates/unauthorizedpopup.html',
+            scope: $scope,
+            buttons: [{
+                text: '<b class="fonttype">Cancel</b>',
+                onTap: function(e) {
+                    return false;
+                }
+            }, {
+                text: '<b class="fonttype">Confirm</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    return true;
+                }
+            }, ]
+        });
+
+        myPopup.then(function(res) {
+            if (res) {
+                $rootScope.patientAuthorizeValue = 'Y';
+                $rootScope.patientAuthorize = true;
+                $rootScope.patientUnAuthorize = false;
+                // $rootScope.doUpdateDependentsAuthorize(dependentDetails.patientId, dependentDetails.relationCode, relateDependentAuthorize);
+            } else {
+
+            }
+        });
+        $scope.closepopup = function() {
+            myPopup.close();
+        }
     }
 
     $scope.updateDependentRelation = function(patientID, relationshipID, authorizeID) {
@@ -616,10 +863,15 @@ angular.module('starter.controllers')
             RelationCodeId: relationshipID,
             IsAuthorized: authorizeID,
             success: function(data) {
-              console.log(date);
+                console.log(data);
             },
-            error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+            error: function(data, status) {
+                if(status === 401) {
+                  $scope.ErrorMessage = "Relation did not update";
+                  $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                  $rootScope.serverErrorMessageValidation();
+                }
             }
         };
         LoginService.updateDependentsAuthorize(params);
@@ -665,7 +917,7 @@ angular.module('starter.controllers')
 
     $scope.health = function() {
 
-      $rootScope.PatientMedicalProfileList = [];
+        $rootScope.PatientMedicalProfileList = [];
         var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
@@ -706,30 +958,30 @@ angular.module('starter.controllers')
 
     $scope.codesFields = 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns';
 
-    $rootScope.getCodesSetsForHospital = function(){
-      var params = {
-          hospitalId: $rootScope.hospitalId,
-          accessToken: $rootScope.accessToken,
-          fields: $scope.codesFields,
-          success: function(data) {
-              $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
-              $rootScope.currentMedicationsearchList = angular.fromJson(data.data[1].codes);
-              $rootScope.medicationAllergiesearchList = angular.fromJson(data.data[2].codes);
-              $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
-          },
-          error: function(data) {
-              $rootScope.serverErrorMessageValidation();
-          }
-      };
-      LoginService.getCodesSet(params);
+    $rootScope.getCodesSetsForHospital = function() {
+        var params = {
+            hospitalId: $rootScope.hospitalId,
+            accessToken: $rootScope.accessToken,
+            fields: $scope.codesFields,
+            success: function(data) {
+                $rootScope.hospitalList = angular.fromJson(data.data[3].codes);
+                $rootScope.currentMedicationsearchList = angular.fromJson(data.data[1].codes);
+                $rootScope.medicationAllergiesearchList = angular.fromJson(data.data[2].codes);
+                $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.getCodesSet(params);
     };
 
     $scope.getCodesSetsForHospital();
 
     $scope.healthsearch = function(patientmedications) {
 
-        $scope.data.searchProvider='';
-  $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedications, $rootScope.currentMedicationsearchList);
+        $scope.data.searchProvider = '';
+        $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedications, $rootScope.currentMedicationsearchList);
 
         if (typeof $rootScope.CurMedicationCount === 'undefined') {
             $rootScope.checkedMedication = 0;
@@ -749,7 +1001,7 @@ angular.module('starter.controllers')
             $scope.modal.show();
 
         });
-  $scope.alphabet = iterateAlphabet();
+        $scope.alphabet = iterateAlphabet();
         var users = $rootScope.currentMedicationsearchList;
         var userslength = users.length;
         var log = [];
@@ -825,24 +1077,25 @@ angular.module('starter.controllers')
     }
 
     $scope.OnSelectMedication = function(currentmedication) {
-        if (currentmedication.checked === true ) {
+        if (currentmedication.checked === true) {
             $rootScope.checkedMedication++;
             console.log($rootScope.checkedMedication);
         } else {
             $rootScope.checkedMedication--;
-               currentmedication.checked === false;
+            currentmedication.checked === false;
         }
 
         if ((currentmedication.text === "Other - (List below)") && $rootScope.checkedMedication <= 4) {
-          //  $scope.openOtherCurrentMedicationView(currentmedication);
+            //  $scope.openOtherCurrentMedicationView(currentmedication);
         } else {
             if ($rootScope.checkedMedication == 4) {
 
-             $rootScope.checkedMedication--;
+                $rootScope.checkedMedication--;
                 $scope.medicationdone();
-            }if($rootScope.checkedMedication >= 4){
-               currentmedication.checked === false;
-                 $scope.modal.hide();
+            }
+            if ($rootScope.checkedMedication >= 4) {
+                currentmedication.checked === false;
+                $scope.modal.hide();
             }
         }
 
@@ -921,13 +1174,13 @@ angular.module('starter.controllers')
 
 
     $scope.alergiessearch = function() {
-          $scope.data.searchProvider='';
-      $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicationsallergies, $rootScope.medicationAllergiesearchList);
+        $scope.data.searchProvider = '';
+        $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicationsallergies, $rootScope.medicationAllergiesearchList);
         if (typeof $rootScope.CurAllergiesCount === 'undefined') {
-                $rootScope.checkedAllergies = 0;
-            } else {
-                $rootScope.checkedAllergies = $rootScope.CurAllergiesCount;
-            }
+            $rootScope.checkedAllergies = 0;
+        } else {
+            $rootScope.checkedAllergies = $rootScope.CurAllergiesCount;
+        }
         $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $scope.alphabets = iterateAlphabet();
         $ionicModal.fromTemplateUrl('templates/tab-allergiesearch.html', {
@@ -1017,99 +1270,100 @@ angular.module('starter.controllers')
             $rootScope.checkedAllergies--;
         }
         if ((allergie.text === "Other") && $rootScope.checkedAllergies <= 4) {
-        //    $scope.openOtherAllergiesView(allergie);
+            //    $scope.openOtherAllergiesView(allergie);
         } else {
             if ($rootScope.checkedAllergies == 4) {
 
-             $rootScope.checkedAllergies--;
+                $rootScope.checkedAllergies--;
                 $scope.allergiedone();
-            }if($rootScope.checkedAllergies >= 4){
-                 allergie.checked === false;
-                 $scope.modal.hide();
+            }
+            if ($rootScope.checkedAllergies >= 4) {
+                allergie.checked === false;
+                $scope.modal.hide();
             }
         }
 
 
     }
 
-/*
-    $scope.openOtherAllergiesView = function(model) {
-        $scope.data = {}
-        $ionicPopup.show({
-            template: '<textarea name="comment" id="comment-textarea" ng-model="data.AllergiesOther" class="textAreaPop">',
-            title: 'Enter Medication Allergie',
-            subTitle: '',
-            scope: $scope,
-            buttons: [{
-                text: 'Cancel',
-                onTap: function(e) {
-                    angular.forEach($rootScope.medicationAllergiesearchList, function(item, index) {
-                        if (item.checked) {
-                            if (item.text === "Other") item.checked = false;
-                        }
-                    });
-                    $rootScope.checkedAllergies--;
-                }
-            }, {
-                text: '<b>Done</b>',
-                type: 'button-positive',
-                onTap: function(e) {
-                    if (!$scope.data.AllergiesOther) {
-                        e.preventDefault();
-                    } else {
+    /*
+        $scope.openOtherAllergiesView = function(model) {
+            $scope.data = {}
+            $ionicPopup.show({
+                template: '<textarea name="comment" id="comment-textarea" ng-model="data.AllergiesOther" class="textAreaPop">',
+                title: 'Enter Medication Allergie',
+                subTitle: '',
+                scope: $scope,
+                buttons: [{
+                    text: 'Cancel',
+                    onTap: function(e) {
                         angular.forEach($rootScope.medicationAllergiesearchList, function(item, index) {
                             if (item.checked) {
-                                if (item.text === "Other") {
-                                    item.checked = false;
-                                }
+                                if (item.text === "Other") item.checked = false;
                             }
                         });
-                        var newAllergiwItem = {
-                            text: $scope.data.AllergiesOther,
-                            checked: true
-                        };
-                        $rootScope.medicationAllergiesearchList.splice(1, 0, newAllergiwItem);
-
-                        var usersallergie = $rootScope.medicationAllergiesearchList;
-                        var usersallergielength = usersallergie.length;
-                        var log = [];
-                        var tmpallergie = {};
-                        for (i = 0; i < usersallergielength; i++) {
-                            var letter = usersallergie[i].text.toUpperCase().charAt(0);
-                            if (tmpallergie[letter] == undefined) {
-                                tmpallergie[letter] = [];
-                            }
-                            tmpallergie[letter].push(usersallergie[i]);
-                        }
-                        $scope.sorted_usersallergie = tmpallergie;
-
-                        $scope.gotoallergyList = function(codeid) {
-                            $location.hash(codeid);
-                            $ionicScrollDelegate.anchorScroll();
-                        }
-
-                        if ($rootScope.checkedAllergies >= 4) {
-                          item.checked === true
-                            $scope.allergiedone();
-                        }
-                        return $scope.data.AllergiesOther;
+                        $rootScope.checkedAllergies--;
                     }
-                }
-            }]
-        });
-    };
-*/
+                }, {
+                    text: '<b>Done</b>',
+                    type: 'button-positive',
+                    onTap: function(e) {
+                        if (!$scope.data.AllergiesOther) {
+                            e.preventDefault();
+                        } else {
+                            angular.forEach($rootScope.medicationAllergiesearchList, function(item, index) {
+                                if (item.checked) {
+                                    if (item.text === "Other") {
+                                        item.checked = false;
+                                    }
+                                }
+                            });
+                            var newAllergiwItem = {
+                                text: $scope.data.AllergiesOther,
+                                checked: true
+                            };
+                            $rootScope.medicationAllergiesearchList.splice(1, 0, newAllergiwItem);
+
+                            var usersallergie = $rootScope.medicationAllergiesearchList;
+                            var usersallergielength = usersallergie.length;
+                            var log = [];
+                            var tmpallergie = {};
+                            for (i = 0; i < usersallergielength; i++) {
+                                var letter = usersallergie[i].text.toUpperCase().charAt(0);
+                                if (tmpallergie[letter] == undefined) {
+                                    tmpallergie[letter] = [];
+                                }
+                                tmpallergie[letter].push(usersallergie[i]);
+                            }
+                            $scope.sorted_usersallergie = tmpallergie;
+
+                            $scope.gotoallergyList = function(codeid) {
+                                $location.hash(codeid);
+                                $ionicScrollDelegate.anchorScroll();
+                            }
+
+                            if ($rootScope.checkedAllergies >= 4) {
+                              item.checked === true
+                                $scope.allergiedone();
+                            }
+                            return $scope.data.AllergiesOther;
+                        }
+                    }
+                }]
+            });
+        };
+    */
 
 
 
     $scope.chronicsearch = function() {
-        $scope.data.searchProvider='';
-      $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicalConditions, $rootScope.chronicConditionsearchList);
+        $scope.data.searchProvider = '';
+        $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedicalConditions, $rootScope.chronicConditionsearchList);
         if (typeof $rootScope.ChronicCount === 'undefined') {
-                $rootScope.checkedChronic = 0;
-            } else {
-                $rootScope.checkedChronic = $rootScope.ChronicCount;
-            }
+            $rootScope.checkedChronic = 0;
+        } else {
+            $rootScope.checkedChronic = $rootScope.ChronicCount;
+        }
 
         $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $scope.chalphabet = iterateAlphabet();
@@ -1207,41 +1461,39 @@ angular.module('starter.controllers')
         }
 
         if ((chronic.text === "Other") && $rootScope.checkedChronic <= 4) {
-          //  $scope.openOtherAllergiesView(allergie);
+            //  $scope.openOtherAllergiesView(allergie);
         } else {
             if ($rootScope.checkedChronic == 4) {
 
-             $rootScope.checkedAllergies--;
+                $rootScope.checkedAllergies--;
                 $scope.chronicdone();
-            }if($rootScope.checkedChronic >= 4){
-                 chronic.checked === false;
-                 $scope.modal.hide();
+            }
+            if ($rootScope.checkedChronic >= 4) {
+                chronic.checked === false;
+                $scope.modal.hide();
             }
         }
 
 
     }
-$scope.data = {};
+    $scope.data = {};
 
-      $scope.$watch('data.searchProvider', function(searchKey) {
-          $rootScope.providerSearchKey = searchKey;
-          if (typeof $rootScope.providerSearchKey == 'undefined') {
-              $scope.data.searchProvider = $rootScope.backProviderSearchKey;
-          }
-          if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
-              $rootScope.iconDisplay = 'none';
-          } else {
-              $rootScope.iconDisplay = 'Block';
-          }
+    $scope.$watch('data.searchProvider', function(searchKey) {
+        $rootScope.providerSearchKey = searchKey;
+        if (typeof $rootScope.providerSearchKey == 'undefined') {
+            $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+        }
+        if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            $rootScope.iconDisplay = 'none';
+        } else {
+            $rootScope.iconDisplay = 'Block';
+        }
     });
 
 
 
 
-
-
-
-    $rootScope.doGetListOfCoUsers = function() {
+    $scope.doGetListOfCoUsers = function() {
         var params = {
             accessToken: $rootScope.accessToken,
             authorizedOnly: true,
@@ -1249,58 +1501,58 @@ $scope.data = {};
                 //$scope.listOfCoUser = JSON.stringify(data, null, 2);
                 $rootScope.listOfCoUserDetails = [];
                 angular.forEach(data.data, function(index, item) {
-                  if(index.patientId !== $rootScope.primaryPatientId) {
-                      var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
-                          codeId: index.relationCodeId
-                      })
-                      if (getCoUserRelationShip.length !== 0) {
-                          var relationShip = getCoUserRelationShip[0].text;
-                      } else {
-                          var relationShip = '';
-                      }
-                      var dob = ageFilter.getDateFilter(index.dob);
-                      if (index.gender == 'M') {
-                          var gender = "Male";
-                      } else if (index.gender == 'F') {
-                          var gender = "Female";
-                      }
-                      if(index.imagePath){
-                          $scope.coUserImagePath = index.imagePath;
-                      }else{
-                          var coName = index.name + " " + index.lastname; //alert(coName);
-                          $scope.coUserName = getInitialForName(coName);
-                          $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
-                      }
+                    if (index.patientId !== $rootScope.primaryPatientId) {
+                        var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                            codeId: index.relationCodeId
+                        })
+                        if (getCoUserRelationShip.length !== 0) {
+                            var relationShip = getCoUserRelationShip[0].text;
+                        } else {
+                            var relationShip = '';
+                        }
+                        var dob = ageFilter.getDateFilter(index.dob);
+                        if (index.gender == 'M') {
+                            var gender = "Male";
+                        } else if (index.gender == 'F') {
+                            var gender = "Female";
+                        }
+                        if (index.imagePath) {
+                            $scope.coUserImagePath = index.imagePath;
+                        } else {
+                            var coName = index.name + " " + index.lastname; //alert(coName);
+                            $scope.coUserName = getInitialForName(coName);
+                            $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
+                        }
 
-                      $rootScope.listOfCoUserDetails.push({
-                          'address': index.address,
-                          'bloodType': index.bloodType,
-                          'description': index.description,
-                          'dob': dob,
-                          'emailId': index.emailId,
-                          'ethnicity': index.ethnicity,
-                          'eyeColor': index.eyeColor,
-                          'gender': gender,
-                          'hairColor': index.hairColor,
-                          'height': index.height,
-                          'heightUnit': index.heightUnit,
-                          'homePhone': index.homePhone,
-                          'imagePath': $scope.coUserImagePath,
-                          'lastname': index.lastname,
-                          'mobilePhone': index.mobilePhone,
-                          'name': index.name,
-                          'patientId': index.patientId,
-                          'personId': index.personId,
-                          'relationship': relationShip,
-                          'relationCodeId': index.relationCodeId,
-                          'roleId': index.roleId,
-                          'userId': index.userId,
-                          'weight': index.weight,
-                          'weightUnit': index.weightUnit
-                      });
-                  }
+                        $rootScope.listOfCoUserDetails.push({
+                            'address': index.address,
+                            'bloodType': index.bloodType,
+                            'description': index.description,
+                            'dob': dob,
+                            'emailId': index.emailId,
+                            'ethnicity': index.ethnicity,
+                            'eyeColor': index.eyeColor,
+                            'gender': gender,
+                            'hairColor': index.hairColor,
+                            'height': index.height,
+                            'heightUnit': index.heightUnit,
+                            'homePhone': index.homePhone,
+                            'imagePath': $scope.coUserImagePath,
+                            'lastname': index.lastname,
+                            'mobilePhone': index.mobilePhone,
+                            'name': index.name,
+                            'patientId': index.patientId,
+                            'personId': index.personId,
+                            'relationship': relationShip,
+                            'relationCodeId': index.relationCodeId,
+                            'roleId': index.roleId,
+                            'userId': index.userId,
+                            'weight': index.weight,
+                            'weightUnit': index.weightUnit
+                        });
+                    }
                 });
-                $state.go('tab.relatedusers');
+
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();
@@ -1327,12 +1579,12 @@ $scope.data = {};
 
     $scope.removemodal = function(model) {
         $scope.modal.hide();
-            $scope.cancelshow = true;
+        $scope.cancelshow = true;
     };
 
     $scope.surgery = {};
     $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
-    $scope.showSurgeryPopup = function(){
+    $scope.showSurgeryPopup = function() {
         $ionicModal.fromTemplateUrl('templates/tab-surgeries.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -1402,17 +1654,21 @@ $scope.data = {};
         } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
             $scope.ErrorMessage = "Please enter the date as MM/YYYY";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
-        }else if(!isSurgeryDateValid){
+        } else if (!isSurgeryDateValid) {
             $scope.ErrorMessage = "Surgery date should not be before your birthdate";
-			$rootScope.ValidationFunction1($scope.ErrorMessage);
+            $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else if (!isSurgeryDateIsFuture) {
             $scope.ErrorMessage = "Surgery date should not be the future Date";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else {
-            $scope.newSurgery = {'Description': $scope.surgery.name, 'Month' : $scope.surgery.dateStringMonthVal, 'Year' : $scope.surgery.dateStringYearVal};
+            $scope.newSurgery = {
+                'Description': $scope.surgery.name,
+                'Month': $scope.surgery.dateStringMonthVal,
+                'Year': $scope.surgery.dateStringYearVal
+            };
             $rootScope.patientmedicalsurgeries.push($scope.newSurgery);
             $scope.isToHideModal = false;
-            if($rootScope.patientmedicalsurgeries.length == 3)
+            if ($rootScope.patientmedicalsurgeries.length == 3)
                 $scope.isToHideModal = true;
             $scope.surgery = {};
             $rootScope.showNewSurgeryAdd = false;
@@ -1420,7 +1676,7 @@ $scope.data = {};
         }
     }
 
-    $scope.updateMedicalProfile = function(hide){
+    $scope.updateMedicalProfile = function(hide) {
         var params = {
 
             accessToken: $rootScope.accessToken,
@@ -1438,7 +1694,7 @@ $scope.data = {};
                         return this.value.indexOf('?') >= 0;
                     }).remove();
                 }, 100);
-                if(hide){
+                if (hide) {
                     $scope.modal.hide();
                 }
 
@@ -1458,19 +1714,19 @@ $scope.data = {};
 
     //$scope.CustomCalendar = CustomCalendar;
 
-    $scope.getMonthName = function(month){
+    $scope.getMonthName = function(month) {
         var monthName = CustomCalendar.getMonthName(month);
         return monthName;
     };
 
-    $scope.showNewSurgeryAddScreen = function(){
+    $scope.showNewSurgeryAddScreen = function() {
         $rootScope.showNewSurgeryAdd = true;
     };
 
-    $scope.removeSurgeryItem = function(index){
+    $scope.removeSurgeryItem = function(index) {
         $rootScope.patientmedicalsurgeries.splice(index, 1);
         $scope.isToHideModal = false;
-        if($rootScope.patientmedicalsurgeries.length == 3)
+        if ($rootScope.patientmedicalsurgeries.length == 3)
             $scope.isToHideModal = true;
         $scope.updateMedicalProfile($scope.isToHideModal);
     };
@@ -1484,7 +1740,7 @@ $scope.data = {};
 
 
 
- $scope.$watch('healthInfoModel.healthInfoOrganization', function(newVal) {
+    $scope.$watch('healthInfoModel.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
             $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
                 organizationId: $rootScope.currentPatientDetails[0].organizationId
@@ -1514,8 +1770,8 @@ $scope.data = {};
     }
 
 
-    $scope.uploadPhotoForExistingPatient = function(){
-        if($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
+    $scope.uploadPhotoForExistingPatient = function() {
+        if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
             var fileMimeType = "image/jpeg";
             var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
             var targetPath = newUploadedPatientPhoto;
@@ -1597,9 +1853,9 @@ $scope.data = {};
         //	$rootScope.imagePath = imageData;
 
         // File name only
-      //  var filename = targetPath.split("/").pop();
+        //  var filename = targetPath.split("/").pop();
 
-      /*  var options = {
+        /*  var options = {
             //fileKey: "file",
             //fileName: filename,
             //chunkedMode: false,
@@ -1626,22 +1882,22 @@ $scope.data = {};
     // End Photo Functionality
 
 
-    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
+    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
         angular.forEach(mainListItem, function(item, key2) {
-               item.checked = false;
-           });
-        if(!angular.isUndefined(selectedListItem)){
+            item.checked = false;
+        });
+        if (!angular.isUndefined(selectedListItem)) {
 
-           if(selectedListItem.length > 0){
-               angular.forEach(selectedListItem, function(value1, key1) {
-                   angular.forEach(mainListItem, function(value2, key2) {
-                     if (value1.description === value2.text) {
-                         value2.checked = true;
-                     }
-                   });
-               });
-           }
-       }
+            if (selectedListItem.length > 0) {
+                angular.forEach(selectedListItem, function(value1, key1) {
+                    angular.forEach(mainListItem, function(value2, key2) {
+                        if (value1.description === value2.text) {
+                            value2.checked = true;
+                        }
+                    });
+                });
+            }
+        }
     };
     $timeout(function() {
         $('option').filter(function() {
@@ -1649,11 +1905,10 @@ $scope.data = {};
         }).remove();
     }, 100);
 
-    $rootScope.drawSVGCIcon = function(iconName){
-        return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
+    $rootScope.drawSVGCIcon = function(iconName) {
+        return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         exit;
     };
-
 
 
 

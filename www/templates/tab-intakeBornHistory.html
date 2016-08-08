@@ -1,0 +1,116 @@
+<form>
+	<div class="ErrorMessage ErrorMessageDiv" ></div>
+	<div class="Server_Error ErrorMessageDiv" ></div>
+<ion-side-menus>
+	<ion-side-menu-content>
+		<div ng-include src="'templates/intakeHeader.html'"></div>
+
+<!-- <div ng-include src="'templates/healthPlan_header.html'"></div> --->
+<ion-view title="Current Medication">
+<ion-content class="ContentHomeUser ConcernsContent birthContent" >
+ 	<ion-list>
+		<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+			<div class="Step1">Step <b style="color:#535353;">6</b> of <b style="color:#535353;">{{userAgeForIntake}}</b></div>
+			<div ng-click="loadCurrentMedication();" >
+
+                <div class="PrimaryContent">
+                    <h1 class="title ChronicCondition">Birth History</h1>
+										<p class="patientConternFontStyle">If patient is under the age of 1, please answer the following:</p>
+
+				</div>
+			</div>
+
+		</ion-item>
+		<div style="padding-top: 25px;">
+			<div class="item-input itemtab validated" style="border: none;">
+				<span><i class="ion-asterisk"></i></span>
+				 <span class="input-label labelcolor"><b class="formlabel labelfont">Patient born at full term?</b></span>
+				<!-- <span class="healthViewDetails"><select class="textdata optionselect"  name="birthBorn" id="birthBorn"  >
+					 <option value=" ">Choose</option>
+						<option value="Y">Yes</option>
+						<option value="N">No</option>ion-checkmark-circled
+					</select>
+
+				</span>-->
+			</div>
+		</div>
+		<div class="bornBirth">
+			<ion-radio icon="ion-checkmark-circled" name="birthBorn"  ng-model="birHistory.birthBorn" ng-value="'Y'" ng-checked="birHistory.birthBorn == 'Y'">Yes</ion-radio>
+			<ion-radio icon="ion-checkmark-circled" name="birthBorn"  ng-model="birHistory.birthBorn" ng-value="'N'" ng-checked="birHistory.birthBorn == 'N'">No</ion-radio>
+		</div>
+
+		<div class="item-input itemtab validated" style="border: none;">
+			<span><i class="ion-asterisk"></i></span>
+			 <span class="input-label labelcolor"><b class="formlabel labelfont">Patient born Vaginally?</b></span>
+			 <!--<span class="healthViewDetails"><select class="textdata optionselect"  name="birthVagin" id="birthVagin" >
+				 <option value=" ">Choose</option>
+					<option value="Y">Yes</option>
+					<option value="N">No</option>
+				</select></span>-->
+		</div>
+		<div class="bornBirth">
+			<ion-radio icon="ion-checkmark-circled" name="birthVagin" ng-model="birHistory.birthVagin" ng-value="'Y'" ng-checked="birHistory.birthVagin == 'Y'">Yes</ion-radio>
+			<ion-radio icon="ion-checkmark-circled" name="birthVagin" ng-model="birHistory.birthVagin" ng-value="'N'" ng-checked="birHistory.birthVagin == 'N'">No</ion-radio>
+		</div>
+
+		<div class="item-input itemtab validated" style="border: none;">
+			<span><i class="ion-asterisk"></i></span>
+			 <span class="input-label labelcolor"><b class="formlabel labelfont">Patient discharged with mother?</b></span>
+			 <!--<span class="healthViewDetails"><select class="textdata optionselect"  name="birthDischargedwithMother" id="birthDischargedwithMother"  >
+				 	<option value=" ">Choose</option>
+					<option value="Y">Yes</option>
+					<option value="N">No</option>
+				</select></span>-->
+		</div>
+		<div class="bornBirth">
+			<ion-radio icon="ion-checkmark-circled" name="birthDischargedwithMother" ng-model="birHistory.birthDischargedwithMother" ng-value="'Y'" ng-checked="birHistory.birthDischargedwithMother == 'Y'">Yes</ion-radio>
+			<ion-radio icon="ion-checkmark-circled" name="birthDischargedwithMother" ng-model="birHistory.birthDischargedwithMother" ng-value="'N'" ng-checked="birHistory.birthDischargedwithMother == 'N'">No</ion-radio>
+		</div>
+
+		<div class="item-input itemtab validated" style="border: none;">
+			<span><i class="ion-asterisk"></i></span>
+			 <span class="input-label labelcolor"><b class="formlabel labelfont">Are the patient vaccinations up-to-date?</b></span>
+			 <!--<span class="healthViewDetails"><select class="textdata optionselect"  name="birthVaccination" id="birthVaccination"  >
+				 	<option value=" ">Choose</option>
+					<option value="Y">Yes</option>
+					<option value="N">No</option>
+				</select></span>-->
+		</div>
+		<div class="bornBirth">
+			<ion-radio  icon="ion-checkmark-circled" name="birthVaccination" ng-model="birHistory.birthVaccination" ng-value="'Y'" ng-checked="birHistory.birthVaccination == 'Y'">Yes</ion-radio>
+			<ion-radio  icon="ion-checkmark-circled" name="birthVaccination" ng-model="birHistory.birthVaccination" ng-value="'N'" ng-checked="birHistory.birthVaccination == 'N'">No</ion-radio>
+		</div>
+
+
+	</ion-list>
+</ion-content>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-view>
+
+
+
+
+
+
+<ion-footer-bar  class="footer">
+		<div class="ConcernsFooter">
+			<div class="FooterLeft">
+				<a class="button_new icon ion-chevron-left" href="#/tab/CurrentMedication" ><span> Back</span></a>
+			</div>
+
+			<div class="FooterCenter" ng-click="clearRootScopeConce()">
+				<a class="button_new icon" >Cancel</a>
+			</div>
+
+			<div class="FooterRight" style="{{NextIntakeForm}};">
+				<a class="button_new icon ion-chevron-right" ng-click="goToConsentToTreat();"  _href="#/tab/ConsentTreat"  >
+					<!--<span class="ConcernFooterNext" style="{{FootNextButton}};{{FootNextButtonRight}}">Next<span>-->
+					<span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span>
+				</a>
+			</div>
+
+		<div>
+	</ion-footer-bar>
+</form>

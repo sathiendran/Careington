@@ -63,8 +63,8 @@
                     <div class="row rheader">
                         <div class="col col-15"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15"><span class="topfont">Time</span></div>
-                        <div class="col col-30"><span class="topfont">Provider</span></div>
+                        <div class="col col-15"><span class="timetopfont">Time</span></div>
+                        <div class="col col-30"><span class="providertopfont">Provider</span></div>
                         <div class="col col-15 "><span class="topfont"></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
@@ -97,7 +97,7 @@
 
                             <hr class="dotedhr">
                         </div>
-                        <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found!</ion-item>
+                        <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Past consultations found!</ion-item>
 
                     </div>
 
@@ -110,9 +110,9 @@
                     <div class="row rheader">
                         <div class="col col-15"><span></span></div>
                         <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15"><span class="topfont">Time</span></div>
-                        <div class="col col-30"><span class="topfont">Provider</span></div>
-                        <div class="col col-15"><span class=""></span></div>
+                        <div class="col col-15"><span class="timetopfont">Time</span></div>
+                        <div class="col col-30"><span class="providertopfont">Provider</span></div>
+                        <div class="col col-15 "><span class="topfont"></span></div>
                     </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
@@ -125,7 +125,7 @@
                                     </a>
                                 </div>
                                 <div class="passedDate-{{deviceName}}">
-                                    <p class="colfamily">{{misseddata.enddate | date: "MMMM dd, yyyy"}}</p>
+                                    <p class="colfamily">{{misseddata.enddate | date: "MMM dd, yyyy"}}</p>
                                 </div>
                                 <div class="passedTime-{{deviceName}}">
                                     <p class="colfamily">{{misseddata.startTime  | date: "hh:mm a"}}</p>
@@ -156,13 +156,13 @@
                   <!---- Missed Consult End ----->
             <ion-content class="consultcontent" ng-show="droppedshow">
               <div>
-                    <div class="row rheader">
-                        <div class="col col-15"><span></span></div>
-                        <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15"><span class="topfont">Time</span></div>
-                        <div class="col col-30"><span class="topfont">Provider</span></div>
-                        <div class="col col-15"><span class=""></span></div>
-                    </div>
+                  <div class="row rheader">
+                      <div class="col col-15"><span></span></div>
+                      <div class="col col-20"><span class="topfont">Date</span></div>
+                      <div class="col col-15"><span class="timetopfont">Time</span></div>
+                      <div class="col col-30"><span class="providertopfont">Provider</span></div>
+                      <div class="col col-15 "><span class="topfont"></span></div>
+                  </div>
                     <hr style="margin-top:-12px;">
                     <div class="list listfirst">
                         <div ng-repeat="droppedData in Droppedconsultations">
@@ -208,20 +208,25 @@
 
 
     <ion-tabs class=" tabs-icon-top tabs-dark">
-       <a class="tab-item" ng-click="doGetListOfCoUsers()" >
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> Users
+       <a class="tab-item" ng-href="#/tab/relatedusers" >
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
+       <span class="tabcolor"> Users </span>
        </a>
        <a class="tab-item active" ng-href="#/tab/consultations">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> Consultations
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
+        <span class="tabcolor">Consultations </span>
        </a>
        <a class="tab-item" ng-href="#/tab/healthinfo">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> My Health
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
+       <span class="tabcolor">My Health</span>
        </a>
        <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i> Appointments
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
+       <span class="tabcolor">Appointments</span>
        </a>
        <a class="tab-item" ng-href="#/tab/profileoption">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> More
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
+       <span class="tabcolor">More</span>
        </a>
     </ion-tabs>
 

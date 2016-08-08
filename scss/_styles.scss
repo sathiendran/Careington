@@ -75,6 +75,7 @@
   font-family: 'Glober xBold';
   src: url("Glober xBold.otf");
 }
+
 [class^="icon-"], [class*=" icon-"] {
     display: inline-block;
     width: 1em;
@@ -135,7 +136,7 @@ html, body { background: transparent !important; }
 		}
 	div {
 	position: relative;
-	top: 62px;
+//	top: 62px;
 }
 
 
@@ -209,18 +210,20 @@ html, body { background: transparent !important; }
 	border: 2px solid $Camouflage_Green;
 	border-radius: 4px;
 	position: relative;
+  //margin-left: 22px;
+  //margin-top: -17px;
 		label {
 			@include measurement(0, 0, 22px, 22px);
 			cursor: pointer;
 			position: absolute;
 			left: 0px;
 			top: 0px;
-			background: -webkit-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-			background: -moz-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-			background: -o-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-			background: -ms-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-			background: linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9BCA82', endColorstr='#9BCA82',GradientType=0 );
+			background: -webkit-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: -moz-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: -o-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: -ms-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			background: linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A2D28A', endColorstr='#A2D28A',GradientType=0 );
 		}
 			label:after {
 				@include measurement(0, 0, 20px, 8px);
@@ -252,7 +255,9 @@ html, body { background: transparent !important; }
 	padding-top: 20px;
 	color: #7A7A7A;
 	font-size: 14px;//13px;
-	font-family: $fontFamily_semibold;
+	font-family: $fontFamily_regular;
+  //position: relative;
+  //top: -17px;
 }
 .continue {
 	text-align: center;
@@ -260,21 +265,23 @@ html, body { background: transparent !important; }
 	margin-bottom: 50px;
 }
 .relationalign{
-    margin-left: 51px !important;
+    margin-left: 51px !important;color:#666666;
 }
 .item-input{
   .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
     overflow: hidden;  line-height: normal; }
 }
-
+.item{
+    //margin:0px ;
+}
 .button.button-positive.button-outline {
-	@include buttons(#9BCA82, normal, 5px, 19px, 35px );
+	@include buttons(#A2D28A, normal, 5px, 19px, 35px );
 	color: #fff;
 	width: 111px;
 	line-height: 35px;
 	padding-top: 5px;
-	/* background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);*/
-	background: linear-gradient(#9BCA82, #9BCA82);
+	/* background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);*/
+	background: linear-gradient(#A2D28A, #A2D28A);
 
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
@@ -285,8 +292,8 @@ html, body { background: transparent !important; }
 }
 
 .button.button-outline.button-positive.activated {
-	background-color: #9BCA82;
-	border-color: #9BCA82;
+	background-color: #A2D28A;
+	border-color: #A2D28A;
 }
 
 .footer {
@@ -307,7 +314,8 @@ html, body { background: transparent !important; }
 					color: #fff;
 					  position: relative;
 					top: -5px;
-					padding: 10px;
+				//	padding: 10px;
+        margin-left: 11px !important;
 				}
 		}
 		.powerdBySnapMD {
@@ -326,7 +334,7 @@ html, body { background: transparent !important; }
 
 
 .bar-footer {
-	background-position: 0px 40px;  height: 47px;
+	background-position: 0px 40px;  height: 48px;
     background-image:none;
 }
 .terms_footer_a {
@@ -398,7 +406,7 @@ html, body { background: transparent !important; }
 
 .password_sub_headerIOS {
 	@extend .login_sub_header;
-	margin-top: 99px;
+	margin-top: -99px;
 	color: $Shiraz;
 		.password_header_contentIOS {
 			/*position: relative;
@@ -421,7 +429,7 @@ html, body { background: transparent !important; }
 
 .password_sub_headerAndroid {
 	@extend .login_sub_header;
-	margin-top: 108px;
+	//margin-top: 108px;
 	color: $Shiraz;
 		.password_header_contentAndroid {
 			/*position: relative;
@@ -429,13 +437,13 @@ html, body { background: transparent !important; }
             margin-top: 108px;
 			.subHospital {
 				position: relative;
-				top: -8px;
+				top: -4px;
 			}
 			span {
 				color: #C4C4C4;
 				font-size: 15px;
 				position: relative;
-				top: -18px;
+				top: -5px;
 				font-family: $fontFamily_regular;
 			}
 		}
@@ -522,6 +530,9 @@ html, body { background: transparent !important; }
 .pass_reset_content {
 	 font-size: 19px; color: #4D4D4D; padding-top: 12px;line-height: 24px;
 }
+.reset-Android{
+    padding-top: 54px !important;
+}
 .colmore {margin-left: 0px;}
 .login {
 	text-align: center;
@@ -583,7 +594,7 @@ html, body { background: transparent !important; }
 .title_patientIOS {
 	@include font($fontFamily_semibold, bold, 25px);
 	/*@include font($fontFamily_xBold, bold,30px);*/
-	color: #fff;
+	color:#FFFFFF;
 	text-align: center;
 	left: 15px;
 	right: 0px;
@@ -600,7 +611,7 @@ html, body { background: transparent !important; }
 .title_patientAndroid {
 	@include font($fontFamily_semibold, bold, 25px);
 	/*@include font($fontFamily_xBold, bold,30px);*/
-	color: #fff;
+	color: #FFFFFF;
 	text-align: center;
 	left: 0px;
 	right: 0px;
@@ -723,9 +734,11 @@ html, body { background: transparent !important; }
                  margin-left: 7px;
 				.patientName {
 					font-weight: bold;
+                    font-family:Glober Bold !important;
 				}
 				.patientLastName {
-					font-weight: bold;
+					//font-weight: bold;
+                    font-family:Glober Regular !important;
 				}
 			}
 			.subHeader_content_age {
@@ -741,9 +754,11 @@ html, body { background: transparent !important; }
                  margin-left: 7px;
 				.patientName {
 					font-weight: bold;
+          font-family:Glober Bold !important;
 				}
 				.patientLastName {
 					font-weight: normal;
+          font-family:Glober Regular !important;
 				}
 			}
 			.subHeader_content_age {
@@ -933,7 +948,7 @@ html, body { background: transparent !important; }
 .enterAppoinment {
 	background-color:#A2D28A !important;
 	border:none !important;
-	box-shadow: 0 0px 8px 3px #333 !important;
+//	box-shadow: 0 0px 8px 3px #333 !important;
 	-moz-box-shadow:  0 0px 8px 3px #333 !important;
 	-webkit-box-shadow:  0 0px 8px 3px #333 !important;
 	background-size: 100% 0 !important;
@@ -1148,9 +1163,11 @@ html, body { background: transparent !important; }
 	.ConsultChargeCancel {
 		text-align:center;float:left;width:33%;  margin-top: -6px;
 		a {
-			color:#b8b8b8;
+			//color:#b8b8b8;
+             color:#FFFFFF;
 			font-weight: bold;
 			padding: 10px;font-size: 17px;
+            font-family:Glober Bold;
 		}
 	}
 }
@@ -1333,6 +1350,7 @@ html, body { background: transparent !important; }
 			font-size: 23px !important;
 			width: 50%;
 			padding: 10px 10px 7px 0px;
+            color:#666666;
 		}
 		.cardDetailsHeading {
 			padding-top: 35px;
@@ -1416,14 +1434,14 @@ html, body { background: transparent !important; }
 #SidemenuHomeAndroid {
 	margin-top:10px; border:none;color:#7E807E;font-family: Glober regular !important; background-color: #464644;
 	span {
-		top: 0px; position:relative; font-size: 23px; padding-left: 15px;
+		top: 0px; position:relative; font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);font-weight:normal !important;
 	}
 }
 
 #SidemenuHomeIOS {
 	margin-top:18px; border:none;color:#7E807E;font-family: Glober regular !important; background-color: #464644;
 	span {
-		top: 0px; position:relative; font-size: 23px; padding-left: 15px;
+		top: 0px; position:relative; font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);
 	}
 
 }
@@ -1444,11 +1462,11 @@ html, body { background: transparent !important; }
 	.LogOutText {
 		border: none;color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644;
 		span {
-			position: relative;  font-size: 23px; padding-left: 15px;
+			position: relative;  font-size: 23px; padding-left: 15px;font-weight: normal !important;
 		}
 	}
 	.item {
-	  border-color: #a8a9a7;
+	  border-color: #979797;
 	}
 	.ion-power:before {
 	 font-size: 27px;
@@ -1465,10 +1483,20 @@ html, body { background: transparent !important; }
 .SidemenuLogOut1 {
 	width: 100%;
 	color:#7E807E;
+  .ListTextTitle {
+    color: #fff;
+    span {
+      color: #fff;
+    }
+  }
+  .ListHomeUser_pTitle {
+    color: #999999;
+  }
+
 	.LogOutText {
 		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644; margin-top: 18px;
 		span {
-			position: relative;  font-size: 23px; padding-left: 15px;
+			position: relative;  font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);font-weight: normal !important;
 		}
 	}
 	.item {
@@ -1653,6 +1681,9 @@ html, body { background: transparent !important; }
 			p {
 				text-align: justify; font-size: 14px; padding-top: 10px;
 			}
+      li {
+        text-align: justify; font-size: 14px;
+      }
 	}
 	.reportDOne {
 		padding-bottom: 10px; padding-top: 20px;
@@ -1777,7 +1808,8 @@ html, body { background: transparent !important; }
 			font-weight: bold;
 			padding: 10px;
 			font-size: 17px;
-			color: #b8b8b8;
+			color: #FFFFFF;
+            font-family: Glober Bold;
 		}
 	}
 	.FooterRight {
@@ -1802,7 +1834,7 @@ html, body { background: transparent !important; }
 .concernListHeader {
 	height: 55px;
 	.concernListTitle {
-		top: 8px !important; font-size:16px !important;
+		top: 8px !important; font-size:16px !important;color:#FFFFFF !important;
         font-family: $fontFamily_semibold;
 	}
 	.concernListDone {
@@ -1937,6 +1969,7 @@ html, body { background: transparent !important; }
 	.concernListDetails {
 		font-size: 19px;
         font-family:$fontFamily_regular;
+        color:#666666;
 	}
 }
 
@@ -1980,19 +2013,30 @@ html, body { background: transparent !important; }
    padding: 0px;
 }
 .dotcol{
-  background-color:#9bca82; height:50px;margin-left:-4px;
+  background-color:#A2D28A; height:50px;margin-left:-4px;
 }
 .dotcont{
     color:white;font-size:10px;margin-top:-10px !important;
 }
 .doticon{
     font-size:22px;
+    color:#888888;
+    .icon-magnifying-glass{
+        font-size: 18px !important;
+        margin-right: 22px !important;
+    }
+}
+.item-input-wrapper{
+    .icon-magnifying-glass{
+    font-size: 22px;
+    margin-right: 22px !important;
+}
 }
 .dotfont{
   font-size:10px;
   font-family:Glober Regular;
-  color: #5c5c5c;
-      margin-top: -7px;
+  color: #666666;
+  margin-top: -7px;
 }
 .colmore{
     margin-left:5px;padding:0px;background-color: #f3f2ea;height: 50px;
@@ -2002,15 +2046,15 @@ html, body { background: transparent !important; }
 }
 .moretab{
     width: 25%;
-    background-color:#9bca82;
+    background-color:#A2D28A;
     text-align: center;
     .moralign{
        margin-top:-15px;
        .moreicon{
-           font-size:22px;margin-left: 35px;color:#888;
+           font-size:22px;margin-left: 35px;color:#888888;
        }
        .morecont{
-         font-size:11px;margin-top:-12px;color:#888;
+         font-size:11px;margin-top:-12px;color:#666666;
        }
     }
 }
@@ -2018,7 +2062,7 @@ html, body { background: transparent !important; }
     margin-top:-4px;font-size:20px !important;color: white;
 }
 .statuscol{
-    background-color:#e3e3e3;
+    background-color:#ECECEC;
     width: 37%;
     .status{
       margin-left: 10px;font-size: 11px;margin-top:-4px;
@@ -2028,13 +2072,13 @@ html, body { background: transparent !important; }
     }
 }
 .relationcol{
-    background-color:#ededed;
+    background-color:#F4F4F4;
     width: 40%;
     .relation{
-        margin-left:10px;font-size:10px;color:#888;
+        margin-left:10px;font-size:10px;color:#999999;
      }
      .relationcont{
-         margin-top:-15px;color:#888;font-size:12px;margin-left:9px;font-family:Glober SemiBold;
+         margin-top:-15px;color:#666666;font-size:12px;margin-left:9px;font-family:Glober SemiBold;
      }
 }
 .listarchieved{
@@ -2093,10 +2137,11 @@ html, body { background: transparent !important; }
 
 .UserHomeIcon {
 	//margin-top: 15px;
-	color:#888;margin-top: -34px;
+	color:#999999;margin-top: -34px;
 }
 .UserNeeds {
 	border-bottom: 1px solid #9D9E9C;
+    border-bottom-right-radius: 1px;
 	.SearchImage {
 		width:10%;
 		margin-right: 10px;
@@ -2306,7 +2351,7 @@ html, body { background: transparent !important; }
  .bar .buttons > .button {
     min-height: 31px;
     line-height: 45px;
-	color: #fff;
+	color: #FFFFFF;
 	position: relative;
 	top: -4px;
 }
@@ -2336,10 +2381,14 @@ html, body { background: transparent !important; }
 .subheaderheight{
     top:64px;height:88px;
     border-color: #5D5959 !important;
+    .item{
+        margin:-5px ;
+    }
 }
 .usersubheaderheight{
     top:65px;height:109px;
-     border-color: #5D5959 !important;
+     border-color: #444444 !important;
+     background-color: #444444 !important;
 }
 .avatpad{
     padding:14px !important;
@@ -2376,15 +2425,15 @@ text-align:center
     font-size:31px;margin-top:4px;font-family:Glober Regular;
 }
 .patage{
-   margin-top: 4px;
+   margin-top: -7px;
    font-size: 14px !important;
-   color: #8c8c8c !important;;
+   color: #999999 !important;;
 }
 .appfname{
-  height: 16px;
+  height: 24px;
   font-size: 20px !important;
-  font-family: Glober SemiBold;
-  color: #4e4e4e !important;
+  font-family: Glober Bold;
+  color: #666666 !important;
   margin-top: -13px !important;
 }
 .appfloat{
@@ -2394,7 +2443,7 @@ font-size: 18px !important;
 }
 .healthhead{
    margin-top:26px;
-    text-align: center;color:#6c6c6c;font-size:155%;font-family:Glober Bold;
+    text-align: center;color:#666666;font-size:165%;font-family:Glober Bold;
 }
 .appmarg{
     //;margin-top:-4px;
@@ -2403,7 +2452,7 @@ font-size: 18px !important;
 
 .pathead{
     font-family: Glober SemiBold;
-    color: #979797 !important;
+    color: #888888 !important;
     margin-top: -10px !important;
     margin-bottom: 11px !important;
 }
@@ -2446,17 +2495,17 @@ font-size: 18px !important;
 	height: 63%;
     top: 80px;
 	margin-top:-6px;
-	background-image: none;
+	//background-image: none;
 }
 
 .TitleHomeUser_Sub {
-	@include font($fontFamily_semibold, bold, 23px);
+	@include font($fontFamily_bold, bold, 23px);
 	position:relative;
 	/*margin: 1px 7px 25px;*/
 	margin-left: 7px;
 	top: 3px;
 	width:90%;
-	color:#616462;
+	color:#666666;
 }
 .ContentHomeUser {
 	margin: 81px 0 0 0;
@@ -2475,7 +2524,7 @@ width:45px !important; height:45px; border-radius: 50%;margin-top: 1px; margin-l
     border: 2px solid white;
 }
 .UserHmelistImgView {
-width:55px; height:55px; border-radius: 50%;
+width:55px; height:55px; border-radius: 50%; border: 2px solid #FFFFFF;
 }
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
@@ -2494,7 +2543,7 @@ color:#000; font-size: 21px; margin: 6px 12px 6px 12px;
  position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_semibold;
 }
 .ListTextTitle {
- position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_bold; color: #616462;
+ position: relative; top: -54px;margin-left: 66px; font-family: $fontFamily_bold; color: #666666;
 }
 .listTitle {
 position: relative;top: -48px;left: 68px;width: 67%;font-size:24px;
@@ -2519,7 +2568,7 @@ padding: 8px; background-color:#FEEDE1;
 }
 
 .ListHomeUser_pTitle {
-    color: #706A67;
+    color: #999999 !important;
     font-size: 14px;
     margin-bottom: -1px;
     margin-left: 66px;
@@ -2529,7 +2578,7 @@ padding: 8px; background-color:#FEEDE1;
 }
 .SubTitleSpan {
 @include font($fontFamily_regular, normal, 100%);
-color:#706A67;
+color:#666666;
 }
 .docName {
 	width: 63%;
@@ -2538,7 +2587,7 @@ color:#706A67;
 	left: 102px;
 }
 .popupfont{
-  font-family:Glober-Regular;  color:#888 !important;
+  font-family:$fontFamily_regular;  color:#999999 !important;
 }
 .ion-search::before {
     margin-left: 10px;
@@ -2824,7 +2873,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 //end Validation styles
 
 
-#healthInfoDOB{line-height:20px;}
+#healthInfoDOB{line-height:22px;}
 #healthInfoEmail{text-overflow: ellipsis;  white-space: nowrap;
   overflow: hidden;  line-height: normal; }
 .ellipsis { text-overflow: ellipsis;  white-space: nowrap;
@@ -2919,7 +2968,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   }
   .userhead{
       text-align: center;
-      color:rgba(109, 109, 109, 0.91);
+      color:#666666;
       font-size:23px;
       font-family:Glober Bold;
       margin-top: 10px !important;
@@ -3056,27 +3105,27 @@ form.ng-submitted input.ng-valid + i.icon.error {
 					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
 					border: 1px solid $Altoa;
 					::-webkit-input-placeholder { /* WebKit browsers */
-						color:    $Tundora !important;
+						color:    #666666 !important;
 						font-size: 19px !important;
 						padding-top: 5px !important;
 						font-family: $fontFamily_regular;
 					}
 					::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-						   color:    $Tundora !important;
+						  color:    #666666 !important;
 						  font-size: 19px !important;
 							padding-top: 5px !important;
 						   opacity:  1;
 						   font-family: $fontFamily_regular;
 						}
 					input:-moz-placeholder { /* Mozilla Firefox 19+ */
-						   color:    $Tundora !important;
+						 color:    #666666 !important;
 						  font-size: 19px !important;
 						padding-top: 5px !important;
 						   opacity:  1;
 						   font-family: $fontFamily_regular;
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
-						   color:    $Tundora !important;
+						  color:    #666666 !important;
 						   font-size: 19px !important;
 						padding-top: 5px !important;
 						font-family: $fontFamily_regular;
@@ -3152,7 +3201,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 				width:67%;
 			}
 			.UserHomeIcon {
-				color:#888;margin-top: -34px;
+				color:#999999;margin-top: -34px;
 			}
 			.ion-chevron-right:before {
 			  content: "\f125";
@@ -3221,8 +3270,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .subHeaderTop { top: 70px; padding-top: 19px;
     height: 87%; }
 
-#BackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
-#SearchBackButtonIcon { color:#000;font-size:12px !important; margin-top: 15px; display: block !important;}
+#BackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
+#SearchBackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
 .iconbackbutton { top:0px !important;}
 
 #WhoNeeds { font-size: 23px;  width: 85%; }
@@ -3254,7 +3303,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 }
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
-.ErrorContent { text-align: center;width: 93% !important;margin-top: 22px;  margin-bottom: -30px; }
+.ErrorContent { text-align: center;width: 93% !important;margin-top: 12px;  margin-bottom: -30px; } 
 .NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px !important ; }
 .noticationIcon { left: 0px;position: relative;top: 19px  !important; }
 .pac-item > span:last-child {
@@ -3650,7 +3699,7 @@ font-family: $fontFamily_regular;
 		font-size: 20px;
 	}
 .brand {text-align: center;}
-.itemtab{padding:12px !important;}
+.itemtab{padding:9px !important;}
 
 .paticoncontent{ margin-top:197px;}
  .userrow{
@@ -3675,7 +3724,7 @@ font-family: $fontFamily_regular;
 	border-top: 1px solid #A9ABA7;position: relative; top: -90px;
 }
 .singleTermsContent-Android {
-	padding: 50px 7px 7px 7px;
+	padding: 101px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify; position: relative; top: -153px;
@@ -3685,6 +3734,22 @@ font-family: $fontFamily_regular;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify; position: relative; top: -115px;
+}
+.singleTermsconContent-Android {
+	padding: 38px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+    text-align: justify; position: relative;top: -31px;
+}
+
+.singleTermsconContent-IOS {
+    padding: 25px 7px 7px 7px;
+    font-size: 19px;
+    color: #4D4D4D;
+    text-align: justify; position: relative; top: 31px;
+}
+.sublogo{
+    margin-top:205px;
 }
 .SubHeadIOS {
     margin-top: 82px !important;
@@ -3723,8 +3788,15 @@ font-family: $fontFamily_regular;
       //margin-top: 200px !important;
     margin-top: 46%;
  }
+ .usercontentpat-IOS{
+      //margin-top: 200px !important;
+    margin-top: 34%;
+ }
  .usercontent-Android{
    margin-top: 120px;
+ }
+ .usercontentpat-Android{
+   margin-top: 74px;
  }
 .healthcontentsearch-Android{
       margin-top: 108px;
@@ -3769,13 +3841,14 @@ left: -52px;
  .homecontent{
      padding-top:25px;
      font-size:75% !important;
+     color:#444444 !important;
  }
  .patientcontent{
-     padding-top: 19px; margin-left:-21px;font-size:12px !important; margin-top: 7px;
+     padding-top: 19px; margin-left:-21px;font-size:12px !important; margin-top: 7px; color:#444444 !important;
  }
  .headertitle{
   font-size: 20px; text-align: center; width: 100%;top: 5px;
- color:white;
+ color:#FFFFFF;
  }
 .headertitle-Android{
 font-size: 20px; text-align: center; width: 100%;top: 5px;
@@ -3817,7 +3890,7 @@ font-size: 20px;margin-left:120px; top: 5px;
     margin-right: 10px;
 }
 .footer-color{
-    background-color:#a3d488;
+    background-color:#A2D28A;
 }
 #footleft{
     width:42px;
@@ -3825,18 +3898,19 @@ font-size: 20px;margin-left:120px; top: 5px;
 .usersubheader{
     top:64px;
     height:100px;
+    background-color: #444444 !important;
 }
 #centercolor{
     color:white;
     margin-top: 23px !important;
-    font-size:135%;
+    font-size:145%;
     font-family:Glober Bold;
 }
 .userionitem{
-    padding: 10px!important;
+    padding: 10px;
 }
 .userlist{
-   padding-top: 77px !important;
+   padding-top: 105px;
 }
 .lefthome{
     padding-left: 30px;
@@ -3847,13 +3921,13 @@ font-size: 20px;margin-left:120px; top: 5px;
 }
 .formlabel {
      margin-left: 10px;
-color: rgba(5, 4, 9, 0.54) !important;
+color: #666666 !important;
 font-family: Glober Bold;
 font-weight: normal !important;
-font-size: 20px;
+font-size: 18px;
 }
 .newusercontent{
-    margin-top: 155px;
+    margin-top: 166px;
 }
 .circle {
   position: relative;
@@ -3870,7 +3944,7 @@ font-size: 20px;
 .avatlefticon{
     float:left;
     margin-left:-18px;
-    color: #9bca82;
+    color: #A2D28A;
     font-size:16 px!important;
  }
 .circle:after {
@@ -3915,7 +3989,7 @@ font-size: 20px;
   #viewicon{
      float:right;
      color:white;
-     margin-top:3px;
+     //margin-top:3px;
      font-size:12px !important;
     // width: 50%;
      text-align: right
@@ -3948,14 +4022,14 @@ font-size: 20px;
      width:2%;
  }
 .btcolor{
-     background-color:#11c1f3 !important;
-     color:#fff !important;
-     border-color:#11c1f3 !important;
+     background-color:#23B4D6 !important;
+     color:#FFFFFF !important;
+     border-color:#23B4D6 !important;
  }
  .btnextcolor{
-      background-color:#fff !important;
-      color:#11c1f3 !important;
-      border-color:#11c1f3 !important;
+      background-color:#FFFFFF !important;
+      color:#23B4D6 !important;
+      border-color:#23B4D6 !important;
  }
 
 
@@ -3985,7 +4059,7 @@ font-size: 20px;
   margin-left: 12px;
   font-size: 18px;
   font-family:Glober bold;
-  color:#585858;
+  color:#666666;
 }
 .icondown{
     float: right;
@@ -3995,10 +4069,11 @@ font-size: 20px;
     color:#414141;
 }
 .alvalue{
-    color: #888;
+    color: #666666;
     font-size: 18px;
     margin-left: 28px;
     line-height:1.5;
+    font-family:Glober Regular;
 }
 .chronic{
     margin-top:12px;
@@ -4024,6 +4099,9 @@ font-size: 20px;
 }
 .contright{
   float:right;
+  color: #666666;
+  font-family: Glober Regular;
+  white-space: nowrap;
   .ion-chevron-right:before {
      font-size: 12px !important;
  }
@@ -4042,11 +4120,15 @@ font-size: 20px;
      margin-top:-8px;
  }
 .tab-item.active{
-    color:#11c1f3 !important;
+    color:#23B5D6 !important;
 }
-
+.tab-item.active{
+    color:#23B5D6 !important;
+    .icon {color:#23B5D6 !important;}
+}
+.tab-item .icon {color:#999999;}
 .newuserdetails{
-   border-top: none;padding: 10px !important;
+   border-top: none;padding: 0px !important;
 }
 .newuserp{
     text-align:center;margin-bottom: 10px!important;
@@ -4057,8 +4139,8 @@ font-size: 20px;
 .newusertopcontent{
     text-align:center;}
 .newusertoph2 { margin-bottom:10px !important;}
-.usertopfont { font-size: 30px !important; font-family:Glober Bold ;}
-.topp{ color: #ababab; font-size: 14px; line-height: 25px;}
+.usertopfont { font-size: 30px !important; font-family:Glober Bold ; color:#888888 !important;}
+.topp{ color: #999999 !important; font-size: 14px; line-height: 25px;}
 .donebutton{
   margin-bottom: 50px;
   height: 20px;
@@ -4082,16 +4164,16 @@ font-size: 20px;
 .popupname{
 font-size: 21px;
 font-family: Glober Bold;
-color: #717171;
+color: #666666;
 }
 .fname{
     font-size: 21px;
-    font-family: Glober SemiBold;
-    color: #717171;
+    font-family: Glober Bold;
+    color: #666666;
     }
     .sname{
     font-size: 21px !important;
-    color: #888;
+    color: #666666;
     font-family: Glober Regular;
   }
   .fontsymbol{
@@ -4160,11 +4242,11 @@ color: #717171;
   margin-top: 13px;
 }
 .unlink{
-  margin-left: 15px !important;
-    margin-top: -5px !important;
+  margin-left: 6px !important;
+    margin-top: -6px !important;
     margin-bottom: -5px;
     color: white;
-    background-color: red !important;
+    background-color:#D0021B !important;
 
 }
 .icons{margin-left:12px; font-size: 25px;}
@@ -4202,7 +4284,7 @@ color: #717171;
     margin: 0 0 11px 0;font-size:60px;font-family:Glober Bold;text-transform: lowercase;
 }
 .fday{
-    font-size:30px;margin-top:10px;font-family:Glober Regular;
+    font-size:25px;margin-top:10px;font-family:Glober Regular;color:#666666;
 }
 .apptitem{
     background-color:#ffc900;
@@ -4227,11 +4309,11 @@ color: #717171;
         float:right;
        font-size:26px;
        margin-left: 23px;
-       color:#888;
+
   }
 .relatediconfont{
     margin-top: -4px;
-    color: #888 !important;
+    color: #999999 !important;
     margin-left: 10px !important;
 }
 .tabvalue{
@@ -4246,16 +4328,16 @@ p{
     float:left;
  .avatarlefticon{
     margin-left: -12px;
-    color: #9bca82;
+    color: #A2D28A;
  }
 .avaticon{
-      margin-left: -17px;
-    color: rgba(250, 130, 69, 0.32) !important;
+      margin-left: -15px;
+    color:#FDD8C5 !important;
  }
 }
 }
 .list:last-child {
-    padding-bottom: 100px !important;
+  //  padding-bottom: 100px !important;
 }
 .consimg{
     max-width:30px !important;
@@ -4267,12 +4349,12 @@ p{
     margin-left: -36px;
 }
 .avatrelationclass{
-  margin-top: 11px;
-  margin-left: -30px;
+  margin-top: 5px;
+  margin-left: -38px;
 }
 .righticon{
     margin-right: -12px;
-    color: #9bca82;
+    color: #A2D28A;
     margin-bottom: 15px;
 }
 .contentvalue{
@@ -4294,7 +4376,7 @@ p{
          padding-top:29px !important;
      }
 .thumpsicon{
-        color:#11c1f3;
+        color:#23B4D6;
         margin-left: 22px;
         font-size: 24px;
     }
@@ -4307,7 +4389,7 @@ p{
     margin-left: 17px;
   }
   .authorizedval{
-     background-color: rgba(250, 130, 69, 0.32);
+     background-color: #FDD8C5;
      height:40px;
       .authorizedicon{
         margin-top:-26px; //-28
@@ -4316,12 +4398,12 @@ p{
         font-size:22px;
 }
    .authorizedcont{
-          font-size: 12px !important;color:#838383;margin-top:-6px;
+          font-size: 12px !important;color:#999999;margin-top:-6px;
       }
       .authorizedupdate{
       margin-bottom:4px;
       float:right;
-      color: #222222;
+      color: #666666;
       font-size:11px !important;
       position: relative;
       top: -25px;
@@ -4330,14 +4412,16 @@ p{
           position: relative;
           top: 6px;
         }
+
         .ion-chevron-right {
           position: relative;
           top: 1px;
+          color:#444444;
         }
       }
    }
   .authorupdate{
-            background-color: rgba(247, 166, 125, 0.28) !important;
+            background-color:#FDD8C5 !important;
        }
    .authorizedview {
        height:60px;margin-left:-5px;margin-top:0px;  width: 103%;  padding: 0px;
@@ -4358,28 +4442,30 @@ p{
    .statustab{
        background-color:#e3e3e3;//max-width: 130px;
      .unstatus{
-         margin-left: 5px;font-size: 10px;margin-top: -4px;
+         margin-left: 5px;font-size: 10px;margin-top: -4px;color:#999999 !important;
      }
      .unstatuscont{//margin-left: -29px;
-       margin-top: 14px;margin-left: -28px;font-size: 12px;font-family: Glober SemiBold;
+       //margin-top: 14px;margin-left: -28px;font-size: 12px;font-family: Glober Regular;color:#666666 !important;
        }
-       .thumbsdownicon{
-             float:right;margin-left:12px; font-size:22px;margin-top:-11px; //margin-top:-8px;margin-left:16px;
-         }
+
    }
+   .thumbsdownicon{
+         float:right;margin-left:12px; font-size:22px;margin-top:0px; //margin-top:-8px;margin-left:16px;
+     }
  .relationtab{
     background-color:#ededed;
     .relationstatus{
-        margin-left:18px;font-size:10px;
+        margin-left:18px;font-size:10px;color:#999999 !important;
     }
     .unauthorrelationship{
-       margin-top: -15px;color:#6d6d6d;font-size:12px;margin-left:9px; font-family:Glober SemiBold;
+       margin-top: -15px;color:#666666;font-size:12px;margin-left:9px; font-family:Glober SemiBold;
     }
  }
 
   .fontcolor{
-      color:#888 !important;
+      color:#999999 !important;
   }
+  .tabcolor{color:#929292;}
 .relatedfont{
     margin-top:-9px; //-12
     color:#888 !important;
@@ -4416,7 +4502,7 @@ p{
 }
    @media (max-width:320px) and (min-width:315px)    {
      .usercontent-IOS {
-          margin-top: 29%;
+          margin-top: 25% !important;
       }
       .fday {
         font-size: 25px !important;
@@ -4428,24 +4514,46 @@ p{
       .fdate {
         margin-top: 0px !important;
       }
+    /*  #accountMngeProfile-IOS {
+        padding: 34px 10px;
+      }*/
+      #AppointNoneIOS {
+        padding: 34px 10px !important;
+      }
+      .usercontentpat-IOS{
+           //margin-top: 200px !important;
+         margin-top: 29%;
+      }
+      #accountMngeProfile-IOS {
+          padding: 30px 10px !important;
+      }
+      .birthContent {
+        .healthViewDetails {
+          margin-left: -7px;
+        }
+      }
 
       .passedDate-IOS{
-        width: 28% !important;
+        width: 25% !important;
+        margin-left: 10px !important;
       }
       .passedTime-IOS {
-        width: 23% !important;
+        width: 20% !important;
         margin-left: 5px !important;
       }
       .passedDoc-IOS {
-        width: 28% !important;
+        width: 24% !important;
         margin-left: 5px !important;
       }
       .passedDetails-IOS {
         width: 20% !important;
         margin-left: 5px !important;
+        color: #666666;
+        font-family: Glober Regular;
       }
       .profileSpan {
         margin-left: 33px;
+        color:#666666;
       }
 
        .addphoto{
@@ -4476,6 +4584,8 @@ p{
       }
       #viewicon{
           height:24px;
+          margin-top: -28px !important;
+          left: 5px;
           }
 
       #centercolor{
@@ -4503,8 +4613,9 @@ p{
 
   .pfontsize{
       font-size:16px !important;
-     // width: 284px;
+     color:#666666 !important;
       white-space: normal !important;
+      font-family:Glober Regular;
   }
   .headerrighticon{
       border:1px solid #888;
@@ -4532,8 +4643,14 @@ p{
 
     .dependusers:last-child{padding-bottom: 200px;}
     .password_home_top {
-      margin-top:-110px !important;  }
+     // margin-top:-110px  }
+}
 
+.accountAppointview-Android {
+    position: relative;
+    margin-top: -25px !important;
+    text-align: right !important;
+}
     .tabs-top > .tabs, .tabs.tabs-top {
       top: inherit !important; }
       .ReportContent {
@@ -4594,7 +4711,7 @@ p{
       height: 80px !important;
       background-image: none; }
       .footerrsheight #centercolor {
-        color: white;
+        color: #FFFFFF;
         margin-top: 20px !important;
         font-size: 21px;
         font-family: Glober Bold; }
@@ -4620,7 +4737,7 @@ p{
       background-image: none; }
     .aptsname {
       font-size: 14px !important;
-      color: #888;
+      color: #666666 ;
       font-family: Glober SemiBold; }
 
     .appth3 {
@@ -4715,7 +4832,8 @@ p{
     .header_imageAndroid {
      margin-top: 20px;  }
      .password_sub_headerAndroid {
-         margin-top: 54px;
+        // margin-top: 54px;
+        margin-top: -31px;
          color: #A80532;
      }
   .consultcontentsearch{margin-top:26px;}
@@ -4724,6 +4842,11 @@ p{
 
 
   @media (max-width:640px) and (min-width:482px)    {
+
+
+      .tabs-top > .tabs, .tabs.tabs-top {
+      top: inherit !important;
+      }
 
  .addphoto{
       width:42%;
@@ -4775,7 +4898,9 @@ p{
         .usercontent-IOS {
           margin-top: 46%;
         }
-
+        .tabs-top > .tabs, .tabs.tabs-top {
+        top: inherit !important;
+        }
       .alignchronic{
              //margin-left:235px !important;
          }
@@ -4814,7 +4939,9 @@ p{
      }
 
      @media (min-width:770px) and (max-width:1024px){
-
+         .tabs-top > .tabs, .tabs.tabs-top {
+         top: inherit !important;
+         }
        .usercontent {
         // margin-top: 177px !important
         }
@@ -4853,6 +4980,9 @@ p{
        @media (max-width:1366px) and (min-width:769px)    {
            .itemhead{
                text-align:center;
+           }
+           .tabs-top > .tabs, .tabs.tabs-top {
+           top: inherit !important;
            }
        }
    /*
@@ -4914,7 +5044,14 @@ p{
     margin-left:3px;
 }
 .csheader{
+    color:#666666;
+    font-family: Glober SemiBold;
     margin-left:4px;
+}
+.cpheader{
+    color:#666666;
+    font-family: Glober SemiBold;
+    margin-left:-4px;
 }
  .popup-container .popup {
     border-radius: 7px;
@@ -4951,6 +5088,12 @@ p{
 .listprofile {
          //margin-bottom:120px;
          padding-bottom:50px;
+         .icondown {
+           font-size: 11px;
+         }
+         .icon-pencil {
+           font-size: 16px !important;
+         }
        }
  .popup-head {
    padding: 8px 10px;
@@ -4976,8 +5119,8 @@ p{
     font-family: Glober Semibold;
 }
  .button.button-positive {
-  background-color:#9bca82 !important;
-  border-color:#9bca82;
+  background-color:#A2D28A !important;
+  border-color:#A2D28A;
   }
 
 /* tab start
@@ -4994,8 +5137,8 @@ top: inherit !important;
 
 
  .button.button-default {
-  background-color:#888 !important;
-  border-color:#888;
+  background-color:#999999 !important;
+  border-color:none;
   color:white;
  }
  .popup-buttons .button {
@@ -5031,7 +5174,7 @@ top: inherit !important;
          font-family:Glober SemiBold;background-color: rgba(204, 204, 204, 0.46);color:#585858;
      }
      .parafont{
-         color:#555555;font-family:Glober SemiBold;
+         color:#666666;font-family:Glober Bold;
      }
  }
  .seccontentone{
@@ -5098,7 +5241,7 @@ color: white;
 }
 
 .fontcolorfamily{
-      color:rgba(5, 4, 9, 0.54) !important;
+      color:#666666 !important;
       font-family:Glober SemiBold;
       font-size:19px;
       position: relative;
@@ -5127,7 +5270,7 @@ color: white;
     line-height: 1.6;
     font-size:16px;
     font-family:Glober Regular;
-    color:#616462;
+    color:#666666;
 }
 
 .fonttype{
@@ -5141,20 +5284,20 @@ color: white;
    width: 100%;
    text-align: center;
   // margin-left: 80px;
-   color: #868686;
+   color: #666666;
    word-wrap: break-word;
    margin-top: 15px;
    line-height:1.2;
 }
 .headerval{
- color:white;
+ color:#FFFFFF;
  font-family:Glober Regular;
  float:right;
  margin-right:8px;
  font-weight: normal;
  padding: 7px;
  position: relative;
- top: -7px;
+ top: -8px;
 }
 
 .headerleftval{
@@ -5167,7 +5310,8 @@ color: white;
 }
 .colfamily{
     font-family:Glober Semibold;
-    color:#616161;
+    color:#666666;
+    width:90px;
 }
 .rheader{
     color:#616161;
@@ -5183,13 +5327,17 @@ color: white;
 .csubheader{
    margin-top:20px;border-bottom:none;border-image:none;background-image:none;
 }
+.asubheader{
+   margin-top:40px;border-bottom:none;border-image:none;background-image:none;
+}
 .searchsubheader{
    margin-top:23px;height:62px;border-bottom: none;border-image:none;background-image:none;
 }
 .sheader{
-    color:#616161;
+    color:#666666;
     font-size:12px !important;
     margin-top: 20px !important;
+    font-family: Glober SemiBold;
 }
 .cdetcolor{
      color: #868686;
@@ -5210,14 +5358,14 @@ color: white;
 }
 .rowalign{
   padding:0px;
- background-color: #f3f2ea;height: 50px;
+  background-color:none !important;height: 50px;
 }
 .right-icon {
   color: #616161;
    margin-left: 15px;
    }
 .csearch-Android{
-   background-color:#e8e8e8;
+  // background-color:#e8e8e8;
    height:27px;
    border-radius:5px;
    //margin-top:80px;
@@ -5229,13 +5377,62 @@ color: white;
    color: #aaa;
    }
 }
+.casearch-Android{
+  // background-color:#e8e8e8;
+   height:27px;
+   border-radius:5px;
+   margin-top:134px;
+ .hsearch{
+   text-align: center;
+   line-height: 2;
+   font-size: 16px;
+   font-family: Glober Regular;
+   color: #aaa;
+   }
+}
+.casearch-IOS{
+  // background-color:#e8e8e8;
+   height:50px;
+   border-radius:5px;
+   margin-top:134px;
+ .hsearch{
+   text-align: center;
+   line-height: 2;
+   font-size: 16px;
+   font-family: Glober Regular;
+   color: #aaa;
+   }
+}
+.consultsearch{
+    .rowalign{
+        background-color:none !important;
+    }
+    p{margin:0px !important; }
+}
+
 .ionicitem{
-    padding: 8px !important;
+    padding: 8px;
 }
 .topfont{
    max-width:60px;
    margin-left:-10px;
    font-size:11px;
+   color:#666666;
+   font-family: Glober SemiBold;
+}
+.timetopfont{
+    max-width:60px;
+    margin-left:-25px;
+    font-size:11px;
+    color:#666666;
+    font-family: Glober SemiBold;
+}
+.providertopfont{
+    max-width:60px;
+    margin-left:-16px;
+    font-size:11px;
+    color:#666666;
+    font-family: Glober SemiBold;
 }
 .avatitem{
   border: none;
@@ -5295,10 +5492,10 @@ color: white;
    background-color:#e9e9e9;
 }
 .profilecontent{
-    margin-top:167px;
+    margin-top:177px;
 }
 .relatedusercontent{
-    margin-top:200px;
+    margin-top:215px;
     margin-bottom: 50px;
     [class^=""], [class*=" "] {
     //  font-size: 20px;
@@ -5323,7 +5520,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:18px;font-family:Glober Semibold;line-height:22px;color: rgba(5, 4, 9, 0.54) !important;
+      font-size:19px;font-family:Glober Semibold;line-height:22px;color: rgba(5, 4, 9, 0.54) !important;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -5340,7 +5537,7 @@ color: white;
      }
      .homeadd{
          //margin-left:36px;
-        margin-top:10px;font-size:18px;font-family:Glober Semibold;line-height:16px;color: rgba(5, 4, 9, 0.54) !important;
+        margin-top:10px;font-size:19px;font-family:Glober Semibold;line-height:16px;color: rgba(5, 4, 9, 0.54) !important;
      }
  .valuealign{
   // margin-left:70px;
@@ -5406,12 +5603,95 @@ color: white;
 
 @media only screen and (min-width: 595px) and (max-width: 610px){
 
+    .consultcontent .topfont{margin-left:-50px;}
+    .timetopfont{margin-left: -33px;}
+    .providertopfont{margin-left: -32px;}
+    .list .tabvalue p .avaticon {
+      margin-left: -60px;
+      color: #FDD8C5 !important;
+}
+.authorizedIcon-Android {
+position: relative;
+top: 6px !important;
+right: 0px;
+}
+.contentalign .statuscont{
+    margin-top:14px;
+}
+.authorizeIcon-Android {
+position: relative;
+top: 11px !important;
+right: 16px;
+}
+.unAuthorizeStatusMain-Android .tabvalue {
+margin-top: 1px !important;
+}
+.appiconcontent {
+margin-top: 226px;
+}
+.statuscol{
+    background-color:#ECECEC;
+    width: 37%;
+    .status{
+      margin-left: 10px;font-size: 11px;margin-top:-0px;
+    }
+    .statuscont{
+        margin-left:-31px;font-size:12px;font-family:Glober SemiBold;
+    }
+}
+.list .unlink {
+ margin-left: 6px !important;
+ margin-top: -5px !important;
+ margin-bottom: -8px;
+ color: white;
+ background-color: #D0021B !important;
+}
+.list .avatrelationclass {
+margin-top: 11px;
+margin-left: -15px;
+}
+.tabvalueAuthorize-Android {
+position: relative;
+top: 8px;
+color: #999999 !important;
+}
+.healthchoose{width:131%;margin-right:258px;}
+    .healthinfoHeight-Android {
+      width: 56%;
+      margin-left: -8px;
+    }
+    .healthinfoHeight2-Android {
+      width: 63%;
+      margin-left: -42px;
+    }
+
+    .ContentUserHome {
+    margin: 77px 0 0 0;
+    font-family: "Glober Regular";
+    border-top: 0px solid #C4C5C3;
+    }
+    .list .relatedfont {
+     margin-top: -6px;
+    color: #888 !important;
+     margin-left: 10px !important;
+}
+    .item-avatar{padding-bottom:18px;border-bottom-right-radius: 2px;}
+.list{
+    padding-top:0px !important;
+}
  .listprofile {padding-bottom:5 px;}
  .apticons{margin-left:-90px !important;}
 .fname {font-size: 24px;}
 .HeaderListAndroid {
-    margin-left:32px !important;
+//    margin-left:32px !important;
     }
+.list .unlink {
+ margin-left: 6px !important;
+ margin-top: -5px !important;
+ margin-bottom: -8px;
+ color: white;
+ background-color: #D0021B !important;
+}
 .chronic { margin-top: 19px;}
 
  .userappcontent{margin-top: 177px !important;}
@@ -5420,19 +5700,19 @@ color: white;
     margin-left:-52px !important;
 }
 .profileperson { margin-left:-90px !important; }
-.profilecalendar{margin-left: -45px !important; }
+.profilecalendar{margin-left: -70px !important; }
 
 .archeight {
 height: 84px;
 }
-.unauthor {margin-left: -25px;}
+.unauthor { margin-top: 17px;font-size: 12px;font-family: Glober Regular;color:#666666 !important;}
 .searchcontent{margin-top:112px;}
 .unstatuscont{
  margin-left: -43px;
 }
 .thumbsdownicon{
-margin-left: 12px !important;
-margin-top: -24px !important;
+margin-left: 16px !important;
+margin-top: -18px !important;
 }
 .usercard {
 margin: 70px 10px !important;
@@ -5489,7 +5769,7 @@ top: inherit !important;
 .tabs-striped .tabs {
     border-bottom:none;
 }
-.appth3{ margin: 36px 0px 0px 0px !important; }
+//.appth3{ margin: 36px 0px 0px 0px !important; }
 .userappheight {
 margin-top: 15px !important;
 height: 57px !important;
@@ -5499,6 +5779,12 @@ margin-left: 210px;
 color: #fff;
 font-size: 95%;
 font-family: Glober Regular;
+}
+
+.accountAppointview-Android {
+position: relative;
+margin-top: 0px !important;
+text-align: right !important;
 }
 .appfloat {
   float: right;
@@ -5609,10 +5895,11 @@ margin-left: 13px !important;
    text-align:center;
    font-family:Glober SemiBold;
    margin-top:5px;font-size:19px !important;
+   color:#666666 !important;
 }
 .surname{
-   font-family:Glober SemiBold;
-   margin-bottom:0px !important;font-size:19px !important;
+   font-family:Glober Bold; color:#666666;
+   margin-bottom:0px !important;font-size:18px !important;
 }
 .currmedication{margin-top: -85px;}
 .error{color:red;}
@@ -5627,7 +5914,7 @@ margin-left: 13px !important;
 /* enteremail */
 .bg{
 
-		background-color: #f54f2b;
+		background-color: #EF4B27;
 		border: none !important;
 		padding-top: 75px;
 		height: auto;
@@ -5636,7 +5923,7 @@ margin-left: 13px !important;
 			color: #FFFFFF;
 			width: 100%;
 			text-align: center;
-			@include font($fontFamily_bold, bold, 37px);
+			@include font($fontFamily_xBold, bold, 37px);
 			font-weight: bold;
 			margin-top: 10px;
 		}
@@ -5658,6 +5945,7 @@ margin-left: 13px !important;
 			line-height: 17px;
 		}
 		.card{
+
 			border: none !important;
 			border-radius: 13px;
 			margin-top: 35px;
@@ -5834,7 +6122,7 @@ margin-left: 13px !important;
 .provider{
 
 		a{
-			border-bottom: 2px solid #C4C5C3;
+			border-bottom: 1px solid #C4C5C3;
 			.ion-chevron-right:before{
 				color: #999999;
 				font-size: 15.5px !important;
@@ -5869,7 +6157,7 @@ margin-left: 13px !important;
 			z-index: -1;
 			opacity: 0.3;
 			width: 400px;
-			height: 100px;
+			height: 96px;
 		}
 		h2 {
 			margin-top: -150px;
@@ -6319,6 +6607,7 @@ input[type="checkbox"]:checked + label{
 				color: #FFFFFF;
 			}
 		}
+
 		.card{
 
 				background-color: #f4f4f4;
@@ -6398,7 +6687,9 @@ input[type="checkbox"]:checked + label{
 				color: #FFFFFF;
 			}
 }
-
+.step2-Android{
+    margin-top:-12px;
+}
 .register{
 				h2{
 					@include font($fontFamily_xBold, bold, 18px);
@@ -6425,7 +6716,7 @@ input[type="checkbox"]:checked + label{
 									text-align: center;
 									margin: 10px 0px 28px 0px;
 									.button{
-										@include buttons(#9BCA82, normal, 0px, 22px, 0px );
+										@include buttons(#A2D28A, normal, 0px, 22px, 0px );
 											font-family: $fontFamily_bold;
 											border-radius: 10px;
 											text-align: center;
@@ -6451,13 +6742,13 @@ input[type="checkbox"]:checked + label{
 							input{
 								height: 37px;
 								background-color: #e6e6e6;
-								/*color: #8e8e93;*/
-								color: #000;
+								color: #8e8e93;
+								//color: #000;
 								width: 100%;
 								padding-top: 1%;
                                 -webkit-appearance: none;
                                 -moz-appearance: none;
-								@include font($fontFamily_regular, bold, 13px);
+								@include font($fontFamily_regular, bold, 14px);
 							}
 							input::-webkit-input-placeholder{
 						color: #adaeaf;
@@ -6473,10 +6764,10 @@ input[type="checkbox"]:checked + label{
 							height: 37px;
 							background-color: #e6e6e6;
 							/*color: #000000;*/
-							color: #000;
+							color:#8e8e93 !important;
 							width: 100%;
 							padding-top: 1%;
-							@include font($fontFamily_regular, bold, 13px);
+							@include font($fontFamily_regular, bold, 14px);
                             -webkit-appearance: none;
                             -moz-appearance: none;
 						}
@@ -6487,6 +6778,7 @@ input[type="checkbox"]:checked + label{
 	}
 	.acinfo1-Android{
 			text-align: center;
+            margin-top: -10px;
 			h4{
 				@include font($fontFamily_bold, bold, 14.5px);
 				color: #FFFFFF;
@@ -6503,12 +6795,12 @@ input[type="checkbox"]:checked + label{
 	.acinfo1-IOS{
 			text-align: center;
 			h4{
-				@include font($fontFamily_semibold, bold, 12.5px);
+				@include font($fontFamily_semibold, bold, 14px);
 				color: #FFFFFF;
 				margin: 0;
 				padding-top: 12px;
 				span{
-					@include font($fontFamily_regular, bold, 10.5px);
+					@include font($fontFamily_regular, bold, 12px);
 					color: #FFFFFF;
 
 				}
@@ -6545,13 +6837,17 @@ input[type="checkbox"]:checked + label{
 
 	}
 }
-
+.epassbgreg2{
+    margin:-4px !important;
+}
+//.regstep2{margin-top:-14px;}
 .regcontent{
 	h2{
-		@include font($fontFamily_semibold, bold, 30px);
+		@include font($fontFamily_bold, bold, 34px);
 		color:#999999;
 		text-align: center;
-		padding-top: 25px !important;
+		//padding-top: 25px !important;
+        padding-top: 15px !important;
 	}
 	h3{
 		@include font($fontFamily_regular, bold, 27px);
@@ -6569,14 +6865,14 @@ input[type="checkbox"]:checked + label{
 
 	}
 	p{
-		@include font($fontFamily_semibold, normal, 14px);
+		@include font($fontFamily_regular, normal, 15px);
 		color:#999999;
 		text-align: center;
 		line-height: 8px;
 	}
 	.lineheight{
 		line-height: 18px;
-		margin: -7px 0px 8px 0px ;
+		margin: -11px 0px 8px 0px ;
 		color: #888888;
 
 
@@ -6730,7 +7026,7 @@ border-bottom: 2px solid #cbcbcb;
 }
 .item-radio input:checked ~ .radio-icon {
   visibility: visible;
-  color: #9bca82 !important;
+  color: #A2D28A !important;
 }
 .searchbox{
 	 height: auto;
@@ -6742,7 +7038,6 @@ border-bottom: 2px solid #cbcbcb;
 		@include font($fontFamily_bold, normal, 24px);
 		color:#999999;
 		margin-bottom: 0px;
-
 	}
 	p{
 	  @include font($fontFamily_regular, normal, 14px);
@@ -6751,18 +7046,20 @@ border-bottom: 2px solid #cbcbcb;
 	}
 	.item-input-wrapper{
 		background-color: #e3e4e6;
+
 		.ion-ios-search:before {
 			    font-size: 18px;
 				padding-right: 26px;
 		}
 		input {
 			line-height: 25px;
+                padding-top: 4px;
 		}
 	}
 
     .item-input-inset{
-		margin-bottom: -10px;
-		margin-top: 10px;
+		margin-bottom: -5px;
+		margin-top: 6px;
 		input{
 		   background-color: #e3e4e6;
 
@@ -6770,7 +7067,7 @@ border-bottom: 2px solid #cbcbcb;
 		   width: 100%;
 		   @include font($fontFamily_semibold, normal, 14px);
 		   /*color: #8e8e93;*/
-		   color : #000;
+		   color : #666666;
 		   height: 25px;
            line-height: 28px;
 		}
@@ -6794,7 +7091,7 @@ border-bottom: 2px solid #cbcbcb;
 .content-height{
 	 /*position: relative;
 	 top:140px;*/
-		margin-top: 240px;
+		margin-top: 253px;
 		top: 0px;
 	 .list{
 		.item:first-child{
@@ -6804,6 +7101,11 @@ border-bottom: 2px solid #cbcbcb;
     #providerListDiv {
         top: 0px;
     }
+    .icon-arrow-with-circle-up {
+      font-size: 37px;
+      color: #90908f;
+    }
+
 	#startSearchProvider {
 		text-align: center;
 		margin: -75px 5% 0 5%;
@@ -6841,11 +7143,11 @@ border-bottom: 2px solid #cbcbcb;
     border-radius: 50%;
 	margin-top: 3px;
 	p {
-		@include font($fontFamily_bold, Bold, 18px);
+		@include font($fontFamily_xBold, Bold, 23px);
 		z-index: 999;
 		width: 100%;
 		height: 100%;
-		padding-top: 27%;
+		padding-top: 36%;
 		//padding-left: 2px;
 		text-align: center;
 		color: #fff;
@@ -6883,7 +7185,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 290px;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -6902,7 +7204,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 252px;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -6926,7 +7228,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 252px;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -6971,7 +7273,7 @@ border-bottom: 2px solid #cbcbcb;
 				z-index: -1;
 				opacity: 0.3;
 				width: 253;
-				height: 100px;
+				height: 96px;
 			}
 			h2 {
 				margin-top: -150px;
@@ -7238,6 +7540,7 @@ Pagination Styles
   width: 55%;
   white-space: normal;
   font-size: 18px;
+  color:#666666;
 }
 .subHeadIcons {
   position:relative; top: 5px;
@@ -7246,6 +7549,12 @@ Pagination Styles
 .ioncontentalign {
   textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
     padding: 5px 0 0 5px;
+  }
+  .ion-asterisk {
+    font-size: 8px;
+    position: relative;
+    top: -10px;
+    color: red;
   }
 }
 .HealthTitle-IOS {
@@ -7291,17 +7600,23 @@ Pagination Styles
 }
 .accountAppointview-IOS {
   position: relative;
-    margin-top: -29px !important;
+    margin-top: -9px !important;
     text-align: right !important;
 }
 .accountAppointview-Android {
   position: relative;
-    margin-top: -24px !important;
+    margin-top: -5px;
     text-align: right !important;
 }
 .newUserTitle-IOS{
   left: 10px;
   position: relative;
+}
+#patientAuthorize{
+    font-size:18px;
+}
+.newUserTitle-Android{
+ margin-left:34px;
 }
 .coUserAddress-IOS {
   line-height:25px !important; font-size: 20px !important;
@@ -7310,9 +7625,9 @@ Pagination Styles
   line-height:25px !important; font-size: 20px !important;
 }
 .addUser-IOS {
-  color: #888 !important; margin-left: 0px !important;
+  color: #666666 !important; margin-left: 0px !important;
 }
-.addUser-Android {   color: #888 !important;margin-left:0px !important;}
+.addUser-Android {   color: #666666 !important;margin-left:0px !important;}
 .coUserImage-IOS {
   max-width: 50px !important;
   max-height: 50px !important;
@@ -7328,11 +7643,13 @@ Pagination Styles
 
 .content-IOS {
   margin-left: -18px;
-  font-size: 138%;
+  font-size: 122%;
+   color:#666666;
 }
 .content-Android{
   margin-left: -18px;
   font-size: 122%;
+  color:#666666;
 }
 .iconalign-Android{
     left: -14px !important;
@@ -7342,11 +7659,13 @@ Pagination Styles
 }
 .contentAppoint-IOS {
   margin-left: 17px;
-  font-size: 138%;
+  font-size: 122%;
+   color:#666666;
 }
 .contentAppoint-Android {
   margin-left: 17px;
   font-size: 122%;
+   color:#666666;
 }
 .svg {
     fill: darkgray;
@@ -7357,7 +7676,7 @@ Pagination Styles
   font-size: 30px !important;
 }
 [class^="icon-"], [class*=" icon-"] {
-  font-size: 24px;
+  font-size: 21px;
 }
 .ioncontentalign {
   .iconfontSVG {
@@ -7365,7 +7684,7 @@ Pagination Styles
     top: 3px;
   }
   [class^="icon-"], [class*=" icon-"] {
-    font-size: 19px;
+    font-size: 18px;
   }
 }
 .accNextAppoint-IOS {
@@ -7394,10 +7713,12 @@ Pagination Styles
 .unAuthorizeUpdate-IOS {
   position: relative;
   top: -4px;
+  color:#666666;
 }
 .unAuthorizeUpdate-Android {
   position: relative;
   top: -4px;
+    color:#666666;
 }
 .unAuthorizeSatus-IOS {
   position: relative;
@@ -7412,14 +7733,23 @@ Pagination Styles
     font-size: 20px;
     position: relative;
     top: 3px;
+
   }
+  .icon-chevron-right{color:#444444 !important;}
+  .icon-thumbs-down{color:#999999 !important;}
 }
 .authorizedIconSize-Android {
   [class^="icon-"], [class*=" icon-"] {
     font-size: 20px;
     position: relative;
     top: 3px;
+
   }
+  .avatlefticon {
+      .icon-chevron-right{color:#A2D28A !important;}
+  }
+  .icon-chevron-right{color:#444444 !important;}
+  .icon-thumbs-down{color:#999999 !important;}
 }
 .unAuthorizeUpdateMain-IOS {
   width: 36%;
@@ -7433,10 +7763,13 @@ Pagination Styles
 }
 .unAuthorizeStatusMain-IOS {
   width: 49%;
-  padding: 5px;
+  //padding: 5px;
     text-align: center;
   .tabvalue {
-    margin-top: 12px !important;
+    margin-top: 10px !important;
+  }
+  .status {
+        margin-top: -7px;
   }
 }
 .unAuthorizeStatusMain-Android {
@@ -7444,7 +7777,7 @@ Pagination Styles
   padding: 5px;
     text-align: center;
   .tabvalue {
-    margin-top: 12px !important;
+    margin-top: 2px !important;
   }
 }
 
@@ -7460,7 +7793,7 @@ Pagination Styles
   float: right;
   font-size: 26px;
   margin-left: 0px !important;
-  color: #888;
+  color: #444444;
   position: relative;
     top: 15px;
 }
@@ -7468,7 +7801,7 @@ Pagination Styles
   float: right;
   font-size: 26px;
   margin-left: 0px !important;
-  color: #888;
+  color: #444444;
   position: relative;
     top: 15px;
 }
@@ -7576,10 +7909,12 @@ Pagination Styles
 .tabvalueAuthorize-IOS{
   position: relative;
   top: 11px;
+  color:#999999 !important;
 }
 .tabvalueAuthorize-Android{
   position: relative;
   top: 11px;
+  color:#999999 !important;
 }
 .TabAuthorize-IOS{
   position: relative;
@@ -7603,32 +7938,50 @@ top: 3px;
 }
 .authorizeIcon-Android {
   position: relative;
+top: 7px;
+}
+.authorizedIcon-IOS {
+  position: relative;
 top: 3px;
 }
+.authorizedIcon-Android {
+  position: relative;
+top: 7px;
+}
 input.ion-google-place[readonly] {
-  color: rgba(5, 4, 9, 0.54) !important;
+//  color: rgba(5, 4, 9, 0.54) !important;
   font-size:18px;
+  color: #7c7c7c;
 }
 .userdeptcontent {
   margin-top: 160px !important;
   [class^="icon-"], [class*=" icon-"] {
     font-size: 19px;
   }
+  .ion-asterisk {
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+    color: red;
+    left: 2px;
+  }
   .item-input {
     padding: 6px 0 5px 0px !important;
   }
   .dobDependent-Android {
-    font-size: 20px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 23px;
     font-family: Glober Semibold;
     color: rgba(5, 4, 9, 0.54) !important;
     width: 159%;
   }
  }
 .dobDependent-IOS {
-  font-size: 20px;
+  font-size: 18px !important;
+  line-height: 23px !important;
+  font-family: Glober Semibold !important;
   color: rgba(5, 4, 9, 0.54) !important;
-  width: 159%;
+  width: 159% !important;
 }
 
 .adduseWeight-IOS {
@@ -7637,11 +7990,14 @@ input.ion-google-place[readonly] {
 }
 .aptsname {
   font-size: 14px !important;
-  color: #888;
+  color: #666666;
   font-family: Glober SemiBold; }
   .appiconcontent{
       margin-top: 212px;
       .fname {
+          font-size: 21px;
+          font-family: Glober SemiBold !important;
+          color: #666666;
         font-size: 200% !important;
       }
   }
@@ -7694,14 +8050,18 @@ input.ion-google-place[readonly] {
 .passedDetails-IOS {
   width: 17%;
   margin-left: 10px;
+  color: #666666;
+  font-family: Glober Regular;
 }
 .passedDetails-Android {
   width: 17%;
   margin-left: 10px;
+  color: #616161;
+  font-family: Glober Regular;
 }
 .consultcontent {
   .topfont{
-     margin-left:-28px;
+     margin-left:-35px;
   }
   .rheader {
     .col {
@@ -7709,25 +8069,49 @@ input.ion-google-place[readonly] {
     }
   }
 }
+  .dependHeigh-IOS {
+    margin-left: -50px;
+    width: 47%;
+    padding-right: 6px;
+    .usertext{
+      width: 104%;
+    }
+  }
+  .dependwetUnit-IOS {
+    width: 81%;
+    margin-left: 10px;
+  }
 .consultcontentsearch-IOS {
   margin-top: 85px
 }
 .consultcontentsearch-Android {
-  margin-top: 85px
+  margin-top:93px
+}
+.appointcontentsearch-Android {
+    .fname {
+           font-size: 21px;
+           font-family: Glober SemiBold !important;
+           color: #666666;
+         font-size: 200% !important;
+       }
+}
+
+.appointcontentsearch-IOS {
+    .fname {
+           font-family: Glober SemiBold !important;
+           color: #666666;
+         font-size: 200% !important;
+       }
+}
+
+
+.allsearch-Android{
+     margin-top:34px;
 }
 .colReport-IOS {
   margin-left: -1px;
 }
 
-.healthinfoHeight-IOS {
-
-  width: 46%;
-  margin-left: -37px;
-}
-.healthinfoHeight2-IOS{
-  width: 60px;
-   margin-left: -60px;
-}
 .healthinfoHeight-Android {
   width: 56%;
   margin-left: -8px;
@@ -7735,6 +8119,12 @@ input.ion-google-place[readonly] {
 .healthinfoHeight2-Android {
   width: 63%;
   margin-left: -10px;
+}
+.dependHeigh-Android {
+  margin-left: -5px;width: 70%;padding-right: 10px;
+}
+.dependwetUnit-Android {
+  width:90%;margin-left: 10px;
 }
 
 .colReport-Android {
@@ -7745,8 +8135,299 @@ input.ion-google-place[readonly] {
   margin-top:170px;
 }
 .apponitmentfday-Android{
-    font-size:25px;margin-top:10px;font-family:Glober Regular;
+    font-size:25px !important;margin-top:10px;font-family:Glober Regular;
 }
 .apponitmentftime-Android{
   margin: 0 0 11px 0;font-size:51px;font-family:Glober Bold;margin-left: 24px;text-transform: lowercase;
 }
+.dependentAuthorize {
+  text-align: center;
+  padding: 34px 36px;
+  font-size: 17px;
+  color: #7c7c7c;
+  line-height: 27px;
+  font-family: "Glober Regular";
+    border-top: 1px solid #C4C5C3;
+}
+.dependentAddAuthorize {
+  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;
+}
+.searchAccount {
+  p{
+    margin-top: 9px;
+  }
+  h3 {
+    margin-top: 3px;
+  }
+  .icon-magnifying-glass {
+    font-size: 16px;
+    position: relative;
+    top: 2px;
+    right: 4px;
+  }
+
+}
+.reg2-Android{
+    margin-top:-12px;
+}
+.profileSpan {
+  .icon-user {
+    font-size: 19px;
+    color:#666666;
+  }
+  .icon-calendar {
+    font-size: 19px;
+    color:#666666;
+  }
+}
+.AppointNoneIOS{
+   padding-top: 105px;
+ }
+ .AppointDisplayIOS {
+   padding-top: 53px;
+ }
+ #accountMngeProfile-IOS {
+   padding: 47px 10px;
+ }
+ .userAccContentIOS {
+         margin-top: 33%;
+ }
+.tabs-dark {
+    [class^="icon-"], [class*=" icon-"] {
+      position: relative;
+      top: 8px;
+    }
+
+}
+.concernListSearch {
+  .icon-magnifying-glass {
+    font-size: 15px;
+    position: relative;
+    top: 2px;
+  }
+}
+
+ #accountMngeProfile-Android {
+   padding: 47px 10px !important;
+ }
+.loginEmail {
+  .icon-mail {
+    font-size: 50px;
+    color: #CBCBCB;
+  }
+  .enterEmailText {
+    line-height: 26px;
+    font-size: 18px;
+  }
+  .loginPlace {
+  //  padding-bottom: 0px;
+    input {
+      color: #999999 !important;
+      font-weight: normal !important;
+      position: relative !important;
+      /* top: 0px; */
+      padding-top: 5px !important;
+    }
+  }
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #CBCBCB !important;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color:    #CBCBCB !important;
+     //opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color:    #CBCBCB !important;
+     //opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color:    #CBCBCB !important;
+  }
+}
+.checkbox {
+  position: relative;
+  display: inline-block;
+ // width: 22px;
+  height: 22px;
+  vertical-align: middle;
+  cursor: pointer;
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer;
+  }
+  span {
+    cursor: pointer;
+    text-align: center;
+  }
+  .checkbox__control {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 4px;
+    border: 1px solid #666;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+  }
+  input:checked+span::before {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+  }
+  .checkbox__control::before {
+    opacity: 0;
+    position: absolute;
+    left: 1px;
+    top: 1px !important;
+  //  font-family: 'icomoon';
+    speak: none;
+    width: 18px;
+    height: 18px;
+    line-height: 20px;
+  //  border-radius: 3px;
+  //  color: #fff;
+  //  background-color: #a2d28a;
+   content: "\e0018";
+    background-image: url("../img/icon-check.png");
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+  }
+  span:last-child {
+    font-family: "GloberBold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    color: #666;
+    width: 200px;
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+    top: -4px;
+    left: 29px;
+    font-size: 0.875rem;
+    text-align: left;
+  }
+}
+#loginPwd {
+  margin-top: 33px;
+  .pwdPatImage {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    img {
+      width: 75px;
+      height: 75px;
+      position: relative;
+      top: -37px;
+      border-radius: 50%;
+    }
+  }
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #CBCBCB !important;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     color:    #CBCBCB !important;
+     //opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+     color:    #CBCBCB !important;
+     //opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     color:    #CBCBCB !important;
+  }
+  .pwdForgot {
+    font-family: $fontFamily_regular;
+  }
+  .regcontent {
+      margin-top: 32px;
+      h2 {
+        font-size: 23px;
+      }
+  }
+  .pwdTextbox {
+      padding-top: 20px;
+  }
+}
+.birthContent {
+  .labelcolor {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 8px;
+  }
+  .ion-asterisk {
+    font-size: 9px;
+    color: red;
+  }
+  .formlabel {
+    font-size: 19px;
+    font-family: $fontFamily_regular;
+    margin-left: 0px;
+  }
+  .textdata {
+    font-size: 19px;
+    font-family: $fontFamily_regular;
+      width: 77px;
+  }
+  .PrimaryContent {
+    p {
+      width: 90% !important;
+      font-family: Glober Bold !important;
+      font-size: 16px !important;
+    }
+  }
+  .bornBirth {
+    .disable-pointer-events {
+        margin-left: 8px;
+        font-size: 19px;
+        font-family: $fontFamily_regular;
+        color: #666666 !important;
+    }
+    .ion-checkmark-circled:before {
+      font-size: 30px;
+    }
+    .item-radio {
+      border: none;
+    }
+  }
+
+}
+.reset-IOS{
+  padding-top: 125px !important;
+}
+
+.healthinfoHeight-IOS {
+  width: 14%;
+  margin-left: -38px;
+  .usertext {
+    margin-left: 0px;
+    width: 68px;
+  }
+}
+.healthinfoHeight2-IOS{
+  width: 15%;
+  margin-left: 11px;
+  .usertext {
+    margin-left: 0px;
+    width: 68px;
+  }
+}
+.healthinfoChoose-IOS {
+  select {
+    width: 80% !important;
+    margin-left: 8px;
+  }
+}
+.healthchoose{width:100%;margin-right:53px;}

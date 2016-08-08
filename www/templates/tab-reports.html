@@ -36,7 +36,7 @@
 					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 				</div>
-                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="PatientGuardian"> | Guardian: {{PatientGuardian}} </span></div>
+                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="primaryPatientId != patientId"> | Guardian: {{PatientGuardian}} </span></div>
 			</div>
 		</div>
 	</div>
@@ -51,7 +51,7 @@
 		<div>
 			<div class="reportLogo">
 			   <!--<img ng-src="{{ReportHospitalImage}}">-->
-				<img style="max-height: 70px; max-width: 250px;" ng-src="{{hospitalImage}}">
+				<img style="max-height: 70px; max-width: 250px;" src="{{hospitalImage}}">
 			</div>
 			<div class="providerAddress">
 				<div>{{reportHospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
@@ -262,7 +262,8 @@
 			<div class="objectiveTitle" ><b>CHAT TRANSCRIPT</b></div>
 			<div class="objectiveUnderline"> </div>
 			<div>
-				<p>None Reported</p>
+        <p ng-if="chatTranscript.length"><li ng-repeat = "chatTranscript in chatTranscript">{{chatTranscript.ChatMessage}}</li></p>
+				<p ng-if="!chatTranscript.length">None Reported</p>
 			</div>
 		</div>
 
@@ -309,7 +310,7 @@
 
 					<div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" style="height: 60px;">
 						<div style="float: left;position: relative;top: 7px; padding-right: 10px;">
-							<img style="height: 40px; height: 45px;" src="{{apiCommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
+							<img style="width: 40px; height: 45px;" src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
 						</div>
 						<div style="font-size: 14px;position: relative;top: 22px;" class="ellipsis">{{getAttachment.name}}</div>
 					</div>

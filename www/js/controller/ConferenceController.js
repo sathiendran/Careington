@@ -40,7 +40,7 @@ angular.module('starter.controllers')
 
     $rootScope.doGetExistingConsulatationReport = function() {
         $state.go('tab.ReportScreen');
-
+        $rootScope.userReportDOB = "";
         if ($scope.accessToken == 'No Token') {
             alert('No token.  Get token first then attempt operation.');
             return;
@@ -184,38 +184,49 @@ angular.module('starter.controllers')
 
                 if ($rootScope.fullTerm == 'N') {
                     $rootScope.fullTerm = 'No';
-                } else if ($rootScope.fullTerm == 'T') {
-                    $rootScope.fullTerm = 'True';
+                } else if ($rootScope.fullTerm == 'Y') {
+                    $rootScope.fullTerm = 'Yes';
                 }
 
                 $rootScope.vaginalBirth = $rootScope.intake.infantData.vaginalBirth;
                 if ($rootScope.vaginalBirth == 'N') {
                     $rootScope.vaginalBirth = 'No';
-                } else if ($rootScope.vaginalBirth == 'T') {
-                    $rootScope.vaginalBirth = 'True';
+                } else if ($rootScope.vaginalBirth == 'Y') {
+                    $rootScope.vaginalBirth = 'Yes';
                 }
 
                 $rootScope.dischargedWithMother = $rootScope.intake.infantData.dischargedWithMother;
                 if ($rootScope.dischargedWithMother == 'N') {
                     $rootScope.dischargedWithMother = 'No';
-                } else if ($rootScope.dischargedWithMother == 'T') {
-                    $rootScope.dischargedWithMother = 'True';
+                } else if ($rootScope.dischargedWithMother == 'Y') {
+                    $rootScope.dischargedWithMother = 'Yes';
                 }
 
                 $rootScope.vaccinationsCurrent = $rootScope.intake.infantData.vaccinationsCurrent;
                 if ($rootScope.vaccinationsCurrent == 'N') {
                     $rootScope.vaccinationsCurrent = 'No';
-                } else if ($rootScope.vaccinationsCurrent == 'T') {
-                    $rootScope.vaccinationsCurrent = 'True';
+                } else if ($rootScope.vaccinationsCurrent == 'Y') {
+                    $rootScope.vaccinationsCurrent = 'Yes';
                 }
 
-                var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
+              /*  var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
 
                 if (typeof usDOB != 'undefined' && usDOB != '') {
                     $rootScope.userReportDOB = usDOB.search("y");
                 } else {
                     $rootScope.userReportDOB = 'None Reported';
+                }*/
+                if($rootScope.existingConsultationReport.dob !== "" && !angular.isUndefined($rootScope.existingConsultationReport.dob)) {
+                  var ageDifMs = Date.now() - new Date($rootScope.existingConsultationReport.dob).getTime(); // parse string to date
+                  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                  $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                  if($scope.userAge === 0) {
+                    $rootScope.userReportDOB = $scope.userAge;
+                  } else {
+                    $rootScope.userReportDOB = $scope.userAge;
+                  }
                 }
+
                 if (typeof data.data[0].details[0].hospitalImage != 'undefined' && data.data[0].details[0].hospitalImage != '') {
                     var hosImage = data.data[0].details[0].hospitalImage;
                     if (hosImage.indexOf(apiCommonURL) >= 0) {
@@ -304,6 +315,7 @@ angular.module('starter.controllers')
                 $window.localStorage.setItem('ChkVideoConferencePage', "");
                 session = null;
                 $scope.getSoapNotes();
+                $scope.doGetChatTranscript();
                 $scope.doGetAttachmentList();
             },
             error: function(data) {
@@ -325,7 +337,7 @@ angular.module('starter.controllers')
             success: function(data) {
                 $scope.getSoapNotes();
                 //$rootScope.attachmentFileId = data.data[0].snapFile.files[0].id;
-                $rootScope.getAttachmentList = []
+                $rootScope.getAttachmentList = [];
 
 
                 angular.forEach(data.data[0].snapFile.files, function(index, item) {
@@ -348,6 +360,36 @@ angular.module('starter.controllers')
         };
 
         LoginService.getAttachmentList(params);
+
+    }
+
+    $scope.doGetChatTranscript = function() {
+        if ($rootScope.accessToken == 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+
+              $rootScope.chatTranscript = [];
+              if(data.count !== 0) {
+                angular.forEach(data.data, function(index, item) {
+                    $rootScope.chatTranscript.push({
+                        'ChatMessage': index
+                    });
+                });
+              }
+
+
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+
+        LoginService.getChatTranscript(params);
 
     }
 

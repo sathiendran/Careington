@@ -211,7 +211,7 @@ $rootScope.authorised=relateDependentAuthorize;
 
                 //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
                  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class='headerfont popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 
                   templateUrl: 'templates/popupTemplate.html',
@@ -246,7 +246,7 @@ $rootScope.authorised=relateDependentAuthorize;
 
                 //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
                  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class='headerfont popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
 
                   templateUrl: 'templates/unauthorizedpopup.html',
@@ -430,17 +430,20 @@ $rootScope.authorised=relateDependentAuthorize;
                             $scope.iDependentPatientInitial = getInitialForName(index.patientName);
                             $scope.iDependentPatientPhoto = generateTextImage($scope.iDependentPatientInitial, $rootScope.brandColor);
                         }
+                        $rootScope.spdate=index.birthdate;
+                        $rootScope.patage=new Date($rootScope.spdate);
                         $rootScope.listOfAccountDependents.push({
                             'addresses': index.addresses,
                             'profileImagePath': $scope.iDependentPatientPhoto,
                             'birthdate': ageFilter.getDateFilter(index.birthdate),
+                            'PatientAge':$rootScope.patage,
                             'bloodType': index.bloodType,
                             'ethnicity': index.ethnicity,
                             'eyeColor': index.eyeColor,
                             'gender': gender,
-                            'guardianFirstName': index.guardianFirstName,
-                            'guardianLastName': index.guardianLastName,
-                            'guardianName': index.guardianName,
+                            //'guardianFirstName': index.guardianFirstName,
+                            //'guardianLastName': index.guardianLastName,
+                          //  'guardianName': index.guardianName,
                             'hairColor': index.hairColor,
                             'height': index.height,
                             'heightUnit': index.heightUnit,
@@ -517,8 +520,36 @@ $rootScope.authorised=relateDependentAuthorize;
           //  $state.go('tab.consultations');
         }
         $scope.seeaPatientConcerns = function(getDependentDetails) {
+
+            $rootScope.PatientPrimaryConcernItem;
+            $rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
+            $rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
+            $rootScope.PatientPrimaryConcern = "";
+            $rootScope.primaryConcernList = "";
+            $rootScope.secondaryConcernList = "";
+            $scope.PatientPrimaryConcernItem = "";
+
+            $rootScope.PatientSecondaryConcern = "";
+            $rootScope.PatientChronicCondition = "";
+            $rootScope.patinentCurrentMedication = "";
+            $rootScope.patinentMedicationAllergies = "";
+            $rootScope.patientSurgeriess = "";
+            $rootScope.MedicationCount == 'undefined';
+            $rootScope.checkedChronic = 0;
+            $rootScope.ChronicCount = "";
+            $rootScope.AllegiesCount = "";
+            $rootScope.checkedAllergies = 0;
+            $rootScope.MedicationCount = "";
+            $rootScope.checkedMedication = 0;
+            $rootScope.IsValue = "";
+            $rootScope.IsToPriorCount = "";
+            $rootScope.ChronicCountValidCount = "";
+            $rootScope.PriorSurgeryValidCount = "";
+            $rootScope.AllegiesCountValid = "";
+            $rootScope.MedicationCountValid = "";
+
           if($rootScope.onDemandAvailability > 0) {
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.PatientAge, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
           //  console.log(getDependentDetails);
           //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
           } else {
@@ -642,9 +673,10 @@ $rootScope.authorised=relateDependentAuthorize;
             } else {
                 $scope.relationship = '';
             }
+
             var confirmPopup = $ionicPopup.confirm({
-                title: "<a class='item-avatar'>  <img src='" + coUserDetails.imagePath + "'><span><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
-                subTitle: "<p class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                title: "<a class='item-avatar popupaligned'>  <img src='" + coUserDetails.imagePath + "'><span><span class='popupname popupalign'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
+                subTitle: "<p class=' popupfont'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</p>",
                 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
                 templateUrl: 'templates/coUserTemplate.html',
                 buttons: [{
@@ -668,6 +700,10 @@ $rootScope.authorised=relateDependentAuthorize;
                     $scope.allval = false;
                 }
             });
+            $scope.closepopup=function(){
+                 myPopup.close();
+
+            }
         }
 
         $rootScope.coUserUnlink = function(coUserDetails) {

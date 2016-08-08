@@ -137,9 +137,9 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             //navigator.splashscreen.hide();
             //}, 10000);
         }
-        if(window.cordova && window.cordova.plugins.Keyboard) {
-            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-            cordova.plugins.Keyboard.disableScroll(true);
+        if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+           cordova.plugins.Keyboard.disableScroll(true);
          }
          if(window.StatusBar) {
             StatusBar.styleDefault();
@@ -474,6 +474,16 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-CurrentMedication.html',
+                controller: 'IntakeFormsCtrl'
+            }
+        }
+    })
+
+    .state('tab.intakeBornHistory', {
+        url: '/intakeBornHistory',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-intakeBornHistory.html',
                 controller: 'IntakeFormsCtrl'
             }
         }
@@ -866,19 +876,7 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }
         }
     })
-
-    /*.state('tab.patientappointmentdetails', {
-       url: '/patientappointmentdetails',
-    views: {
-      'tab-login': {
-        templateUrl: 'templates/tab-patientappointmentdetails.html',
-        controller: ''
-      }
-      }
-  })*/
-
-
-    .state('tab.currentmedicationsearch', {
+.state('tab.currentmedicationsearch', {
         url: '/currentmedicationsearch',
         views: {
             'tab-login': {
@@ -887,7 +885,15 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }
         }
     })
-
+    .state('tab.appointmentpatientdetailssearch', {
+        url: '/appointmentpatientdetailssearch',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-appointmentdetailssearch.html',
+                controller: 'patientCalendarCtrl'
+            }
+        }
+    })
   /*  .state('tab.check', {
         url: '/check',
         views: {

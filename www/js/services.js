@@ -1122,7 +1122,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -1169,6 +1169,26 @@ this.getPatientMedicalProfile = function(params){
                 });
     }
 
+    this.getChatTranscript = function (params) {
+          var requestInfo = {
+              headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL + '/api/reports/consultationreportdetails/chatnote/' + params.consultationId,
+              method: 'GET'
+          };
+
+          $http(requestInfo).
+                  success(function (data, status, headers, config) {
+                      if (typeof params.success != 'undefined') {
+                          params.success(data);
+                      }
+                  }).
+                  error(function (data, status, headers, config) {
+                      if (typeof params.error != 'undefined') {
+                         params.error(data);
+                      }
+                  });
+      }
+
 
    this.postNewDependentuser = function(params) {
 
@@ -1202,11 +1222,13 @@ this.getPatientMedicalProfile = function(params){
 
 		var registerCouserdetails = {
 			headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL +'/api/v2/patients/cousers',
+          //  url: apiCommonURL +'/api/v2/patients/cousers',
+       url: apiCommonURL +'/api/v2/familygroups/couser',
 			  method: 'POST',
 			  data: {
-       email: params.email,
-				familyGroupId: params.familyGroupId,
+          Name : params.firstName + " " + params.lastName,
+       Email: params.email,
+			/*	familyGroupId: params.familyGroupId,
 				relationshipId: params.relationshipId,
 				heightUnitId: params.heightUnitId,
 				weightUnitId: params.weightUnitId,
@@ -1225,10 +1247,10 @@ this.getPatientMedicalProfile = function(params){
 				dob: params.dob,
 				gender: params.gender,
 				organizationName: params.organizationName,
-				locationName: params.locationName,
-				firstName: params.firstName,
-				lastName: params.lastName,
-				profileImagePath: params.profileImagePath,
+				locationName: params.locationName,*/
+			//	firstName: params.firstName,
+			//	lastName: params.lastName,
+			//	profileImagePath: params.profileImagePath,
               }
 		};
 

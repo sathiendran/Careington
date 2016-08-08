@@ -9,7 +9,7 @@
 	<ion-content class="ContentHomeUser ConcernsContent" >
 		<ion-list>
 			<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
-				<div class="Step1">Step <b style="color:#535353;">1</b> of <b style="color:#535353;">7</b></div>
+				<div class="Step1">Step <b style="color:#535353;">1</b> of <b style="color:#535353;">{{userAgeForIntake}}</b></div>
 				<div ng-click="loadPrimaryConcerns();" >
 					<div class="PrimaryContent">
 						<h1 class="title ChronicCondition">Primary Concerns</h1>
@@ -85,8 +85,8 @@
 				<a class="button_new icon" href="#/tab/patientDetail" ></a>
 			</div>-->
 			<div class="FooterLeft">
-			<!--	<a class="button_new icon ion-chevron-left" ng-click="goBackFromConcern()" ><span> Back</span></a>-->
-				<site-header-concern-back  back="Cancel"></site-header-concern-back>
+				<a class="button_new icon ion-chevron-left" href="#/tab/userAccount" ng-click="goBackFromConcern()" ><span> Back</span></a>
+				<!--<site-header-concern-back  back="Back"></site-header-concern-back>-->
 			</div>
 
 			<div class="FooterCenter" ng-click="clearRootScopeConce()">

@@ -413,6 +413,7 @@ angular.module('starter.controllers')
             }
         } else {
             //$scope.doGetHospitalInformation();
+            $rootScope.birHistory = {};
             $scope.doPostOnDemandConsultation();
         }
 
@@ -439,16 +440,60 @@ angular.module('starter.controllers')
         LoginService.getConcentToTreat(params);
     }
 
+
     $scope.goToConsentToTreat = function() {
-        $rootScope.appointmentsPage = false;
-        $scope.doGetConcentToTreat();
+    //  $state.go('tab.intakeBornHistory');
+        if($rootScope.userAgeForIntake === 8) {
+          if (typeof $("input[name='birthBorn']:checked").val() === 'undefined' || $("input[name='birthBorn']:checked").val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patient was born at full term or not?";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          } else if (typeof $("input[name='birthVagin']:checked").val() === 'undefined' || $("input[name='birthVagin']:checked").val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patient was born vaginally or not?";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          } else if (typeof $("input[name='birthDischargedwithMother']:checked").val() === 'undefined' ||$("input[name='birthDischargedwithMother']:checked").val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patient was discharged with the Mother or not? ";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          } else if (typeof $("input[name='birthVaccination']:checked").val() === 'undefined' || $("input[name='birthVaccination']:checked").val() === ' ') {
+              $scope.ErrorMessage = "Please choose if the patients vaccinations are up-to-date or not?";
+              $rootScope.ValidationFunction1($scope.ErrorMessage);
+          }else {
+            $scope.ConsultationSaveData.infantData = {
+              "patientAgeUnderOneYear": "Y",
+              "fullTerm": $("input[name='birthBorn']:checked").val(),
+              "vaginalBirth": $("input[name='birthVagin']:checked").val(),
+              "dischargedWithMother": $("input[name='birthDischargedwithMother']:checked").val(),
+              "vaccinationsCurrent": $("input[name='birthVaccination']:checked").val()
+            }
+            $rootScope.appointmentsPage = false;
+            $scope.doGetConcentToTreat();
+          }
+        } else {
+          $scope.ConsultationSaveData.infantData = {
+            "patientAgeUnderOneYear": "",
+            "fullTerm": "",
+            "vaginalBirth": "",
+            "dischargedWithMother": "",
+            "vaccinationsCurrent": ""
+          }
+          $rootScope.appointmentsPage = false;
+          $scope.doGetConcentToTreat();
+        }
+
         //$scope.doGetHospitalInformation();
         //$state.go('tab.ConsentTreat');
+    };
+
+    $scope.goToHealthHistory = function() {
+      if($rootScope.userAgeForIntake === 8) {
+            $state.go('tab.intakeBornHistory');
+      }else {
+            $scope.goToConsentToTreat();
+      }
+
     };
     /*Primary concern End here*/
 
     /*Secondary concern Start here*/
-
 
     $scope.secondaryConcernList = $rootScope.scondaryConcernsCodesList;
     //$rootScope.PatientSecondaryConcern = [];
@@ -1328,13 +1373,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
         "surgeries": [],
         "medicalConditions": [],
         "medications": [],
-        "infantData": {
-            "patientAgeUnderOneYear": "",
-            "fullTerm": "",
-            "vaginalBirth": "",
-            "dischargedWithMother": "",
-            "vaccinationsCurrent": ""
-        },
+        "infantData": [],
         "concerns": []
     };
 
