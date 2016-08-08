@@ -177,6 +177,25 @@ angular.module('starter.services', [])
 				}
 		});
 	}
+  this.chkAddressForReg = function(params) {
+		var AddressForReg = {
+			headers: util.getHeaders(params.accessToken),
+      url: apiCommonURL + '/api/v2.1/patients/registrations/availability?addressText='+params.AddressText+'&hospitalId='+params.HospitalId,
+       method: 'GET'
+		};
+
+		$http(AddressForReg).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data,status);
+				}
+		});
+	}
 
 	this.getPatientProfiles = function(params) {
 		var PatientDetailsList = {

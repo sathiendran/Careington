@@ -863,8 +863,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $window.localStorage.setItem('username', "");
             $rootScope.chkedchkbox = false;
         } else {
-            //if($("input[class=isRemChecked]").is(':checked') == true) {
-            if ($("#squaredCheckbox").prop('checked') == true) {
+            if($("input[class=isRemChecked]").is(':checked') == true) {
+            //if ($("#squaredCheckbox").prop('checked') == true) {
                 $rootScope.chkedchkbox = true;
             }
         }
@@ -898,8 +898,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ErrorMessage = "Please enter a valid email address";
                 $rootScope.Validation($scope.ErrorMessage);
             } else {
-                //if($("input[class=isRemChecked]").is(':checked') == true) {
-                if ($("#squaredCheckbox").prop('checked') == true) {
+                if($("input[class=isRemChecked]").is(':checked') == true) {
+              //  if ($("#squaredCheckbox").prop('checked') == true) {
                     $window.localStorage.setItem('username', $("#UserEmail").val());
                     $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
 
@@ -979,8 +979,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         api_keys_env = "Sandbox";
                     }
                 }
-                //if($("input[class=isRemChecked]").is(':checked') == true) {
-                if ($("#squaredCheckbox").prop('checked') == true) {
+                if($("input[class=isRemChecked]").is(':checked') == true) {
+              //  if ($("#squaredCheckbox").prop('checked') == true) {
                     $window.localStorage.setItem('username', $("#UserEmail").val());
                     $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
                     $rootScope.UserEmail = $scope.userLogin.UserEmail;
@@ -1019,7 +1019,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     angular.forEach($rootScope.PostPaymentDetails, function(index, item) {
                         if (typeof index.logo != 'undefined' && index.logo != '') {
                             var hosImage = index.logo;
-                            if (hosImage.indexOf(apiCommonURL) >= 0) {
+                            if (hosImage.indexOf("http") >= 0) {
                                 $scope.proImage = hosImage;
                             } else {
                                 $scope.proImage = apiCommonURL + hosImage;
@@ -1475,8 +1475,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
                     //$rootScope.UserEmail = $('#UserEmail').val();
-                    //  if ($("#squaredCheckbox").prop('checked') == true) {
-                    if ($("input[class=isRemChecked]").is(':checked') == true) {
+                     if ($("#squaredCheckbox").prop('checked') == true) {
+                    //if ($("input[class=isRemChecked]").is(':checked') == true) {
                         $window.localStorage.setItem('username', $("#UserEmail").val());
                         $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
                         $rootScope.UserEmail = $scope.userLogin.UserEmail;

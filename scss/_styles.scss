@@ -252,9 +252,9 @@ html, body { background: transparent !important; }
 }
 
 .remember {
-	padding-top: 20px;
-	color: #7A7A7A;
-	font-size: 14px;//13px;
+	padding-top: 2px;
+	color: #999999;
+	font-size: 13px;//13px;
 	font-family: $fontFamily_regular;
   //position: relative;
   //top: -17px;
@@ -1809,8 +1809,13 @@ html, body { background: transparent !important; }
 			padding: 10px;
 			font-size: 17px;
 			color: #FFFFFF;
-            font-family: Glober Bold;
+      font-family: $fontFamily_bold;
 		}
+    .newProCancel {
+      font-family: $fontFamily_regular;
+      color: #999999;
+      font-weight: normal;
+    }
 	}
 	.FooterRight {
 			.ion-chevron-right:before {
@@ -3303,7 +3308,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 }
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
-.ErrorContent { text-align: center;width: 93% !important;margin-top: 12px;  margin-bottom: -30px; } 
+.ErrorContent { text-align: center;width: 93% !important;margin-top: 12px;  margin-bottom: -30px; }
 .NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px !important ; }
 .noticationIcon { left: 0px;position: relative;top: 19px  !important; }
 .pac-item > span:last-child {
@@ -8277,6 +8282,7 @@ input.ion-google-place[readonly] {
     border: 1px solid #666;
     background-color: #fff;
     transition: box-shadow 0.3s ease;
+      width: 22px;
   }
   input:checked+span::before {
     opacity: 1;
@@ -8308,15 +8314,12 @@ input.ion-google-place[readonly] {
     transition: opacity 0.3s ease;
   }
   span:last-child {
-    font-family: "GloberBold","Helvetica Neue",Helvetica,Arial,Sans-Serif;
-    color: #666;
     width: 200px;
     display: inline-block;
     position: relative;
     margin-left: 5px;
     top: -4px;
-    left: 29px;
-    font-size: 0.875rem;
+    left: 18px;
     text-align: left;
   }
 }
@@ -8431,3 +8434,54 @@ input.ion-google-place[readonly] {
   }
 }
 .healthchoose{width:100%;margin-right:53px;}
+.newLogEmai {
+  font-family: $fontFamily_semibold !important;
+}
+.newLogVerify {
+    font-family: $fontFamily_bold !important;
+    color: #888888 !important;
+      font-size: 24px !important;
+        padding-top: 12px;
+}
+.newVerifyEmailId {
+    font-family: $fontFamily_regular;
+    color: #888888;
+    font-size: 15px;
+    text-align: center;
+    padding: 30px 0px 35px 0px;
+}
+.logCircle {
+  padding-bottom: 45px;
+  .ion-ios-circle-outline {
+    font-size: 47px;
+    color: #979797;
+  }
+}
+.newLogBut {
+  padding: 20px 0px 20px;
+}
+.newProviderSub {
+    padding: 28px;
+}
+.newProContent {
+  margin-top: 222px;
+  .newProImage {
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+}
+.addContent {
+  padding-top: 15px;
+  .h3 {
+    font-weight: normal;
+  }
+}
+.regibtn {
+  a{
+      color: #666666;
+      font-family: $fontFamily_bold;
+  }
+}

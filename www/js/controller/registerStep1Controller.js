@@ -57,9 +57,35 @@ angular.module('starter.controllers')
                 });
             } else {
                 step1PostRegDetailsService.addPostRegDetails($scope.regStep1);
-                $state.go('tab.registerStep2');
-                $rootScope.step1RegDetails = step1PostRegDetailsService.getPostRegDetails();
+                $scope.doChkAddressForReg($scope.regStep1);
+              //  $state.go('tab.registerStep2');
+              //  $rootScope.step1RegDetails = step1PostRegDetailsService.getPostRegDetails();
             }
+        }
+
+        $scope.doChkAddressForReg = function(regStep1) {
+          if ($scope.accessToken === 'No Token') {
+              alert('No token.  Get token first then attempt operation.');
+              return;
+          }
+          var params = {
+              AddressText: regStep1.address,
+              HospitalId: $rootScope.hospitalId,
+              accessToken: $rootScope.accessToken,
+              success: function(data) {
+                    if(data.data[0].isAvailable === true) {
+                      $state.go('tab.registerStep2');
+                      $rootScope.step1RegDetails = step1PostRegDetailsService.getPostRegDetails();
+                    } else {
+                      $state.go('tab.registerAddress');
+                    }
+              },
+              error: function(data) {
+                  $rootScope.serverErrorMessageValidation();
+              }
+          };
+
+          LoginService.chkAddressForReg(params);
         }
 
         $scope.registerStpe1BackToSearchProvider = function() {
