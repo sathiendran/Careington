@@ -438,6 +438,14 @@ angular.module('starter.controllers')
                   } else if (index.gender === 'F') {
                       var docGender = "Female";
                   }
+                  if (data.data[0].profileImagePath !== '' && typeof data.data[0].profileImagePath!== 'undefined') {
+                             $rootScope.DoctorImage = data.data[0].profileImagePath;
+                         } else {
+                             $rootScope.DoctorImage = apiCommonURL + '/images/default-user.jpg';
+                             var ptInitial = getInitialForName(data.data[0].firstName + ' ' + data.data[0].lastName);
+                             $rootScope.DoctorImage = generateTextImage(ptInitial, $rootScope.brandColor);
+                         }
+
                     $rootScope.scheduledDoctorDetails.push({
                         /*'businessAddress': index.businessAddress,
                         'firstName': index.firstName,
@@ -457,7 +465,7 @@ angular.module('starter.controllers')
                         'firstName': index.firstName,
                         'fullName': index.fullName,
                         'gender': docGender,
-                        'profileImagePath': index.profileImagePath
+                        'profileImagePath': $rootScope.DoctorImage
                     });
                 });
                 //document.getElementsByTagName('timer')[0].stop();
