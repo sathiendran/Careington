@@ -3741,14 +3741,14 @@ font-family: $fontFamily_regular;
     text-align: justify; position: relative; top: -115px;
 }
 .singleTermsconContent-Android {
-	padding: 38px 7px 7px 7px;
+	padding: 50px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify; position: relative;top: -31px;
 }
 
 .singleTermsconContent-IOS {
-    padding: 25px 7px 7px 7px;
+    padding: 35px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify; position: relative; top: 31px;
@@ -8279,7 +8279,7 @@ input.ion-google-place[readonly] {
     bottom: 0;
     left: 0;
     border-radius: 4px;
-    border: 1px solid #666;
+    border: 1px solid #979797;
     background-color: #fff;
     transition: box-shadow 0.3s ease;
       width: 22px;
@@ -8465,12 +8465,12 @@ input.ion-google-place[readonly] {
 }
 .newProContent {
   margin-top: 222px;
-  .newProImage {
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-    }
+}
+.newProImage {
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
   }
 }
 .addContent {
@@ -8484,4 +8484,33 @@ input.ion-google-place[readonly] {
       color: #666666;
       font-family: $fontFamily_bold;
   }
+}
+.enterEmailTextStart {
+  line-height: 2px !important;
+  padding-bottom: 15px;
+  font-size: 18px !important;
+}
+.newResetContent {
+  margin-top: 150px;
+  p {
+    font-size: 19px;
+    line-height: 25px;
+    font-family: $fontFamily_semibold;
+  }
+  .resetDone {
+      margin-top: 57px;
+      a {
+        padding-bottom: 24px;
+        border: none;
+      }
+      button{
+        border-color: #979797;
+        color: #999999;
+        font-family: $fontFamily_bold;
+      }
+  }
+  .resetPro {
+      margin-top: 120px;
+  }
+
 }

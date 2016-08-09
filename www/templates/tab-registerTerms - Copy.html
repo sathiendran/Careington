@@ -1,0 +1,57 @@
+
+
+<ion-view title="Terms&Conditions">
+
+
+	<div ng-include src="'templates/password_header.html'"></div>
+
+   <ion-content class="password_content BacgroundColorContent" style="{{PasswordOverlop}};" >
+
+    <div ng-if="IOSDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative;">
+		<div class="{{password_header_content}} passwordSubHeader SubHeadIOS">
+			<div class="subHospital" style="color: {{brandColor}};">{{Hopital}}</div>
+			<span>
+				{{HopitalTag}}
+			</span>
+		</div>
+	</div>
+
+	 <div ng-if="AndroidDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; top: -26px;">
+		<div class="{{password_header_content}} passwordSubHeader sublogo" style="background-color:#FFF;">
+			<div class="subHospital" style="color: {{brandColor}};">{{Hopital}}</div>
+			<span>
+				{{HopitalTag}}
+			</span>
+		</div>
+	</div>
+     <!-- <div class="singleTermsTitle-{{deviceName}}">
+		  <h2 class="TitleLess">Terms & Conditions</h2>
+		</div>
+	<div class="singleTermsLine-{{deviceName}}">&nbsp;</div>-->
+	<!-- Content Start-->
+
+	<!--<ion-content class="ContentList_terms-{{deviceName}} scroll-content ionic-scroll  has-header has-footer" style="padding: 50px 7px 7px 7px; font-size: 19px; color: #4D4D4D; text-align: justify; border-top: 1px solid #A9ABA7;" >-->
+		<div class="singleTermsconContent-{{deviceName}}" >
+			<!--<p>SnapMD Terms & Conditions, Privacy Policy and Consent to Treat.<p>
+			<p>&nbsp;</p>
+			<p>These Terms and Conditions define the obligations of SnapMD, its authorized agents and me, the service subscriber, and they establish the basic rules of safe and fair use of SnapMD services. SnapMD and its authorized agents reserve the right to immediately and without advance notice terminate the service and deny access to individuals who do not abide by the Terms and Conditions.</p>
+			<p>&nbsp;</p>
+			<p>By using the SnapMD public Website, the SnapMD secure Website and the SnapMD service, I signify my acceptance of the SnapMD Service Agreement Terms and Conditions. If I do not accept the SnapMD Service Agreement Terms and Conditions I should not use this service. If SnapMD changes the Service Agreement Terms and Conditions, they will post those changes prominently. My continued use of the services and Websites following the posting of changes to these terms will mean I accept those changes. Changes to the Service Agreement Terms and Conditions will become effective immediately upon posting on the SnapMD Websites and shall supersede all prior versions of the Terms and Conditions unless otherwise noted.</p>
+			-->
+			<div class="termscontent"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
+		</div>
+		</ion-content>
+
+			<!-- End Content -->
+
+
+			<!-- Start Footer -->
+			<ion-footer-bar align-title="left" class="footer">
+					  <div class="buttons footerBackButton">
+						<!--<a class="button_new icon ion-chevron-left" href="#/tab/login"> Back </a>-->
+						<a class="button_new icon ion-chevron-left terms_footer_a" ng-click="backtoPreviousPageFromTerms(registerCurrentPage);"><span>  Back</span></a>
+					  </div>
+			</ion-footer-bar>
+			<!-- End Footer -->
+
+</ion-view>

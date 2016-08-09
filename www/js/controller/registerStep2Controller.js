@@ -4,6 +4,7 @@ angular.module('starter.controllers')
           return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
       };
 
+        $rootScope.isRegistrationCompleted = false;
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name == "tab.userhome") ||
                 ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -107,14 +108,18 @@ angular.module('starter.controllers')
                $rootScope.Validation($scope.ErrorMessage);
            } else {
                 $scope.doPostUserRegisterDetails();
+                return false;
             }
 
         }
 
+        $rootScope.callRegisterFunction = function(){
+          $rootScope.postRegistersStep2();
+        }
 
 
 
-        $scope.doPostUserRegisterDetails = function() {
+        $rootScope.doPostUserRegisterDetails = function() {
             $scope.userFirstandLastName = {
                 "$id": "2",
                 "first": $rootScope.step1RegDetails[0].FName,
@@ -128,13 +133,15 @@ angular.module('starter.controllers')
                 password: $scope.regStep2.password,
                 providerId: $rootScope.hospitalId,
                 success: function(data) {
+                    $rootScope.isRegistrationCompleted = true;
                     console.log(data);
                     $state.go('tab.registerSuccess');
                 },
                 error: function(data) {
-                    if (data.message == 'Email address already registered.') {
+                    $rootScope.isRegistrationCompleted = false;
+                    if (data.message.indexOf('already registered') > 0) {
                         navigator.notification.alert(
-                            'Email address already registered. Please use different Email ID', // message
+                            data.message, // message
                             function() {},
                             $rootScope.alertMsgName, // title
                             'Done' // buttonName

@@ -37,27 +37,27 @@ angular.module('starter.controllers')
             }
         }, 100);
 
-        $scope.regStep1 = {};
+        
         $rootScope.postRegisterStep1 = function() {
             step1PostRegDetailsService.ClearPostRgDetails();
-            if (typeof $scope.regStep1.FName == 'undefined' || $scope.regStep1.FName == '') {
+            if (typeof $rootScope.regStep1.FName == 'undefined' || $rootScope.regStep1.FName == '') {
                 $scope.ErrorMessage = "Please enter your First Name";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
-            } else if (typeof $scope.regStep1.LName == 'undefined' || $scope.regStep1.LName == '') {
+            } else if (typeof $rootScope.regStep1.LName == 'undefined' || $rootScope.regStep1.LName == '') {
                 $scope.ErrorMessage = "Please enter your Last Name";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
-            } else if (typeof $scope.regStep1.address == 'undefined' || $scope.regStep1.address == '') {
+            } else if (typeof $rootScope.regStep1.address == 'undefined' || $rootScope.regStep1.address == '') {
                 $scope.ErrorMessage = "Please enter your Full Address";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
             } else {
-                step1PostRegDetailsService.addPostRegDetails($scope.regStep1);
-                $scope.doChkAddressForReg($scope.regStep1);
+                step1PostRegDetailsService.addPostRegDetails($rootScope.regStep1);
+                $scope.doChkAddressForReg($rootScope.regStep1);
               //  $state.go('tab.registerStep2');
               //  $rootScope.step1RegDetails = step1PostRegDetailsService.getPostRegDetails();
             }
