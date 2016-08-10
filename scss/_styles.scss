@@ -1024,7 +1024,7 @@ html, body { background: transparent !important; }
 	line-height: 3;
 	color:#666666;
 	 span {
-		color:#616462;
+		color:#666666;
 		font-size:26px;
 		top:-8px;
 		position: relative;
@@ -1263,7 +1263,7 @@ html, body { background: transparent !important; }
 					left: 18px;
 					position: relative;
 					top: -8px;
-					color: black;
+					color: #666666;
 				}
 		}
 }
@@ -3695,7 +3695,7 @@ font-family: $fontFamily_regular;
 .dobRequired {
 
 		color: #AAA;
-		position: absolute;
+	//	position: absolute;
 		width: 75%;
 		height: 100%;
 		z-index: 15;
@@ -5525,7 +5525,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:19px;font-family:Glober Semibold;line-height:22px;color: rgba(5, 4, 9, 0.54) !important;
+      font-size:19px;font-family:Glober Semibold;line-height:23px;color: rgba(5, 4, 9, 0.54) !important;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -5660,7 +5660,7 @@ position: relative;
 top: 8px;
 color: #999999 !important;
 }
-.healthchoose{width:131%;margin-right:258px;}
+.healthchoose{width:131%;margin-right:322px;}
     .healthinfoHeight-Android {
       width: 56%;
       margin-left: -8px;
@@ -6890,7 +6890,7 @@ input[type="checkbox"]:checked + label{
 		text-align: center;
 		margin: 10px 0px 28px 0px;
 			.button{
-					@include buttons(#f4f4f4, normal, 0px, 0px, 0px );
+					@include buttons(#FFFFFF, normal, 0px, 0px, 0px );
 					@include font($fontFamily_xBold, bold, 22px);
 					border-radius: 10px;
 					text-align: center;
@@ -6899,6 +6899,7 @@ input[type="checkbox"]:checked + label{
 					padding: 3px 30px 0px 30px;
 					margin: 0 !important;
 					height: 43px;
+          background-image:none;
 			}
 }
 .pad{
@@ -8493,8 +8494,8 @@ input.ion-google-place[readonly] {
 .newResetContent {
   margin-top: 150px;
   p {
-    font-size: 19px;
-    line-height: 25px;
+    font-size: 26px;
+    line-height: 27px;
     font-family: $fontFamily_semibold;
   }
   .resetDone {

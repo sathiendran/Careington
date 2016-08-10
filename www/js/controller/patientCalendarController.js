@@ -263,6 +263,8 @@ angular.module('starter.controllers')
         } else {
             $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
         }
+
+      
         $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
     };
 
