@@ -1170,7 +1170,7 @@ this.getPatientMedicalProfile = function(params){
 	this.getAttachmentURL = function (params) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/filesharing/file/customer/' + params.attachmentFileId,
+            url: apiCommonURL + '/api/v2/filesharing/file/customer/'+params.attachmentFileId +'?patientId=0',
 
             method: 'GET'
         };

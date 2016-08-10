@@ -592,7 +592,7 @@ html, body { background: transparent !important; }
 }
 
 .title_patientIOS {
-	@include font($fontFamily_semibold, bold, 25px);
+	@include font($fontFamily_bold, normal, 25px);
 	/*@include font($fontFamily_xBold, bold,30px);*/
 	color:#FFFFFF;
 	text-align: center;
@@ -609,7 +609,7 @@ html, body { background: transparent !important; }
 }
 
 .title_patientAndroid {
-	@include font($fontFamily_semibold, bold, 25px);
+	@include font($fontFamily_bold, normal, 25px);
 	/*@include font($fontFamily_xBold, bold,30px);*/
 	color: #FFFFFF;
 	text-align: center;
@@ -2533,7 +2533,7 @@ width:55px; height:55px; border-radius: 50%; border: 2px solid #FFFFFF;
 }
 .HrefListView {
 @include font($fontFamily_thin, normal, 21px);
-color:#000; font-size: 21px; margin: 9px 12px 6px 12px;
+color:#000; font-size: 21px; margin: 2px 12px 6px 12px;
 	.ion-chevron-right:before {
 			  content: "\f125";
 			  font-size: 19px;
@@ -2542,7 +2542,7 @@ color:#000; font-size: 21px; margin: 9px 12px 6px 12px;
 }
 .HrefListViewDependent {
 @include font($fontFamily_thin, normal, 21px);
-color:#000; font-size: 21px; margin: 6px 12px 6px 12px;
+color:#000; font-size: 21px; margin: 0px 12px 6px 12px;
 }
 .ListText {
  position: relative; top: -28px;margin-left: 10px; font-family: $fontFamily_semibold;
@@ -3106,39 +3106,54 @@ form.ng-submitted input.ng-valid + i.icon.error {
 	padding: 0 0%;
 	.UserHmeSub-Android {
 				padding:15px 10px 9px 10px;
+        .userhmeSeach {
+          position: fixed;
+          text-align: center;
+          width: 100%;
+          margin-top: 4px;
+          padding-right: 83px;
+          font-size: 16px;
+          color: #8e8e93;
+          padding-top: 1px !important;
+        }
+        .icon-magnifying-glass {
+          margin-right: 47px !important;
+          font-size: 16px;
+        }
 				.item-input {
-					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
-					border: 1px solid $Altoa;
+					margin-top: 5px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+					//border: 1px solid $Altoa;
+            padding: 0px;
 					::-webkit-input-placeholder { /* WebKit browsers */
-						color:    #666666 !important;
-						font-size: 19px !important;
+						color:    #999999 !important;
+						font-size: 14px !important;
 						padding-top: 5px !important;
 						font-family: $fontFamily_regular;
 					}
 					::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-						  color:    #666666 !important;
-						  font-size: 19px !important;
+						  color:    #999999 !important;
+						  font-size: 14px !important;
 							padding-top: 5px !important;
 						   opacity:  1;
 						   font-family: $fontFamily_regular;
 						}
 					input:-moz-placeholder { /* Mozilla Firefox 19+ */
-						 color:    #666666 !important;
-						  font-size: 19px !important;
+						 color:    #999999 !important;
+						  font-size: 14px !important;
 						padding-top: 5px !important;
 						   opacity:  1;
 						   font-family: $fontFamily_regular;
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
-						  color:    #666666 !important;
-						   font-size: 19px !important;
+						  color:    #999999 !important;
+						   font-size: 14px !important;
 						padding-top: 5px !important;
 						font-family: $fontFamily_regular;
 						}
 					input {
-					font-size: 19px;
+					font-size: 14px;
 					color:#616462;height: 26px;  margin-top: 0px;
-					font-family: $fontFamily_regular;
+					font-family: $fontFamily_regular; text-align: center;
 					}
 
 				}
@@ -3146,12 +3161,27 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 		.UserHmeSub-IOS {
 				padding:15px 10px 9px 10px;
+        .userhmeSeach {
+          position: fixed;
+          text-align: center;
+          width: 100%;
+          margin-top: 4px;
+          padding-right: 83px;
+          font-size: 16px;
+          color: #8e8e93;
+          padding-top: 1px !important;
+        }
+        .icon-magnifying-glass {
+          margin-right: 47px !important;
+          font-size: 16px;
+        }
 				.item-input {
-					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
-					border: 1px solid $Altoa;
+					margin-top: 5px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+				//	border: 1px solid $Altoa;
+        padding: 0px;
 					::-webkit-input-placeholder { /* WebKit browsers */
-						color:    $Tundora !important;
-						font-size: 19px !important;
+						color:    #999999 !important;
+						font-size: 14px !important;
 						padding-top: 5px !important;
 						font-family: $fontFamily_regular;
 						position: relative;
@@ -3159,8 +3189,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 					}
 					::-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-						   color:    $Tundora !important;
-						  font-size: 19px !important;
+						   color:   #999999 !important;
+						  font-size: 14px !important;
 						   font-family: $fontFamily_regular;
 						   position: relative;
 						top: 0px;
@@ -3168,8 +3198,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 						}
 					input:-moz-placeholder { /* Mozilla Firefox 19+ */
-						   color:    $Tundora !important;
-						  font-size: 19px !important;
+						   color:  #999999 !important;
+						  font-size: 14px !important;
 						   font-family: $fontFamily_regular;
 						   position: relative;
 						top: 0px;
@@ -3177,17 +3207,17 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 						}
 					:-ms-input-placeholder { /* Internet Explorer 10+ */
-						   color:    $Tundora !important;
-						   font-size: 19px !important;
+						   color:   #999999 !important;
+						   font-size: 14px !important;
 						font-family: $fontFamily_regular;
 						position: relative;
 						top: 0px;
 						padding-top: 5px !important;
 						}
 					input {
-					font-size: 19px;
+					font-size: 14px;
 					color:#616462;height: 21px;  margin-top: 0px;
-					font-family: $fontFamily_regular; position: relative; top: 2px;
+					font-family: $fontFamily_regular; position: relative; top: 2px; text-align: center;
 					}
 
 				}
@@ -3239,12 +3269,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
 			color:#888;margin-top: -35px;  margin-right: 12px;
 		}
 		.AppointmentView {
-			float: right;font-size: 14px; margin-right: 30px; color:#888;margin-top: -31px;
+			float: right;font-size: 14px; margin-right: 30px; color:#888;margin-top: -33px;
 		}
 	}
 }
 .DependentList {
-	padding:11px;  top: -2px;  height: 91px;
+	padding:11px;  top: -2px;  height: 79px;
 	a {
 		cursor: pointer;
 		p {
@@ -4653,7 +4683,7 @@ p{
 
 .accountAppointview-Android {
     position: relative;
-    margin-top: -25px !important;
+  //  margin-top: -25px !important;
     text-align: right !important;
 }
     .tabs-top > .tabs, .tabs.tabs-top {
@@ -4775,7 +4805,7 @@ p{
       height: 75px !important; }
     .appointment {
       color: white;
-      font-size: 122% !important; }
+      font-size: 118% !important; }
     .userdeptcontent {
       margin-top: 160px !important; }
     .userdetcontent {
@@ -5608,6 +5638,9 @@ color: white;
 
 @media only screen and (min-width: 595px) and (max-width: 610px){
 
+    .addhealthplan{
+      padding-top: 24px !important;
+    }
     .consultcontent .topfont{margin-left:-50px;}
     .timetopfont{margin-left: -33px;}
     .providertopfont{margin-left: -32px;}
@@ -5788,7 +5821,7 @@ font-family: Glober Regular;
 
 .accountAppointview-Android {
 position: relative;
-margin-top: 0px !important;
+bottom: 4px !important;
 text-align: right !important;
 }
 .appfloat {
@@ -7699,7 +7732,7 @@ Pagination Styles
 }
 .accNextAppoint-Android {
   position: relative;
-  top: 6px;
+  top: 5px;
   .icon-chevron-with-circle-right{
     font-size:18px !important;
   }
@@ -8514,4 +8547,23 @@ input.ion-google-place[readonly] {
       margin-top: 120px;
   }
 
+}
+.singEmail {
+  .newSingLogText {
+    font-size: 25px !important;
+    font-family: $fontFamily_semibold !important;
+  }
+  .icon-lock {
+    color: #CBCBCB;
+  }
+}
+.forgot_password_textSingle {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 22px;
+  a{
+    font-family: $fontFamily_semibold;
+    color: #fff;
+      font-size: 17px;
+  }
 }
