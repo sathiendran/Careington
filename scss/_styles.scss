@@ -8518,3 +8518,29 @@ input.ion-google-place[readonly] {
   }
 
 }
+.singEmail {
+  .newSingLogText {
+    font-size: 25px !important;
+    font-family: $fontFamily_semibold !important;
+  }
+  input {
+    color: #CBCBCB !important;
+    font-weight: normal !important;
+    position: relative !important;
+    /* top: 0px; */
+    padding-top: 5px !important;
+  }
+  .icon-lock {
+    color: #CBCBCB;
+  }
+}
+.forgot_password_textSingle {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 22px;
+  a{
+    font-family: $fontFamily_semibold;
+    color: #fff;
+      font-size: 17px;
+  }
+}
