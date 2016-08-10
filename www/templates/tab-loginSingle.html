@@ -1,5 +1,5 @@
 
-<ion-view>
+<ion-view title="loginSingle">
     <div id="Error_Message" ></div>
     <div class="Server_Error" ></div>
 
@@ -15,7 +15,7 @@
 						<h2 class="newSingLogText">Login</h2>
 					</div>
 					<div class="item-input-inset">
-						<label class="item-input-wrapper place singEmail">
+						<label class="item-input-wrapper place loginPlace singEmail">
 						<input style="{{loginLineHeight}}" type="email" placeholder="email address" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
 						</label>
 					</div>
@@ -32,7 +32,7 @@
             </div>
 
 						<div class="item-input-inset">
-							<label class="item-input-wrapper place singEmail">
+							<label class="item-input-wrapper place loginPlace singEmail">
 									 <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock')"></i>
 									<input style="{{loginLineHeight}}" type="password" placeholder="Password" ng-model="pass.password" name="password" id="password" >
 							</label>
