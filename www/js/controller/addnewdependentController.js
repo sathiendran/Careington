@@ -182,7 +182,7 @@ $scope.depheight2=function(){
          }
       }
 }
-$scope.weightunit=function(){
+$scope.weightunitchange=function(){
        var maxweight = 999;
        var weightval=$('#weight').val();
        if ( weightval > maxweight)

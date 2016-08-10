@@ -168,7 +168,7 @@
 
         <div class="dependHeigh-{{deviceName}}">
 
-          <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required"  name="weight" ng-blur="weightunit()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+          <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required"  name="weight" ng-model="heightunit" ng-change="weightunitchange()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
         </div>
         <div style="width: 50%;">
            <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunit" required>
