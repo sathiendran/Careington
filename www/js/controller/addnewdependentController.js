@@ -537,7 +537,9 @@ if(phonevalue!=''){
             $('select').prop('selectedIndex', 0);
             $rootScope.couserslists = false;
             $rootScope.dependentuserslist = false;
-            $state.go('tab.relatedusers');
+          //  $state.go('tab.relatedusers');
+          history.back();
+          $scope.apply();
         }
 
         //Function to open ActionSheet when clicking Camera Button
