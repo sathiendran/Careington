@@ -4653,7 +4653,7 @@ p{
 
 .accountAppointview-Android {
     position: relative;
-    margin-top: -25px !important;
+  //  margin-top: -25px !important;
     text-align: right !important;
 }
     .tabs-top > .tabs, .tabs.tabs-top {
@@ -4775,7 +4775,7 @@ p{
       height: 75px !important; }
     .appointment {
       color: white;
-      font-size: 122% !important; }
+      font-size: 118% !important; }
     .userdeptcontent {
       margin-top: 160px !important; }
     .userdetcontent {
@@ -5608,6 +5608,9 @@ color: white;
 
 @media only screen and (min-width: 595px) and (max-width: 610px){
 
+    .addhealthplan{
+      padding-top: 24px !important;
+    }
     .consultcontent .topfont{margin-left:-50px;}
     .timetopfont{margin-left: -33px;}
     .providertopfont{margin-left: -32px;}
@@ -5788,7 +5791,7 @@ font-family: Glober Regular;
 
 .accountAppointview-Android {
 position: relative;
-margin-top: 0px !important;
+bottom: 4px !important;
 text-align: right !important;
 }
 .appfloat {
@@ -7699,7 +7702,7 @@ Pagination Styles
 }
 .accNextAppoint-Android {
   position: relative;
-  top: 6px;
+  top: 5px;
   .icon-chevron-with-circle-right{
     font-size:18px !important;
   }
