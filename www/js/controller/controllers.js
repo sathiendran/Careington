@@ -601,7 +601,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     }, 290);
                 } else {
                     $('.ContentUserHome').animate({
-                        "margin": "138px 0 0 0"
+                        "margin": "125px 0 0 0"
                     }, 290);
                 }
             }
@@ -1365,6 +1365,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.pass = {};
     $scope.doGetToken = function() {
+          $scope.doGetCodesSet();
         if ($('#password').val() === '') {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
@@ -1388,6 +1389,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.doGetPatientProfiles();
                         $scope.doGetRelatedPatientProfiles('tab.userhome');
                         $scope.doGetConutriesList();
+
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
                 },
@@ -1635,10 +1637,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.RelatedPatientProfiles.splice(0, 0, loggedInPatient);
             }
             $scope.searched = true;
+            $rootScope.homeMagnifyDisplay = "none";
         } else {
             if ($scope.searched) {
                 $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
+                $rootScope.homeMagnifyDisplay = "none";
             }
         }
     })
@@ -1729,9 +1733,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
                 if (typeof data.data[0].gender !== 'undefined') {
                     if (data.data[0].gender === 'F') {
-                        $rootScope.gender = "Female";
+                        $rootScope.primaryPatGender = "Female";
                     } else {
-                        $rootScope.gender = "Male";
+                        $rootScope.primaryPatGender = "Male";
                     }
                     //$rootScope.gender = data.data[0].gender;
                 } else {
@@ -1864,6 +1868,25 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
                     }
 
+                    if (typeof index.gender !== 'undefined') {
+                        if (index.gender === 'F') {
+                            $scope.patGender = "Female";
+                        } else {
+                            $scope.patGender = "Male";
+                        }
+                    } else {
+                        $scope.patGender = "NA";
+                    }
+
+                    var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                        codeId: index.relationCode
+                    })
+                    if (getdependRelationShip.length !== 0) {
+                        var depRelationShip = getdependRelationShip[0].text;
+                    } else {
+                        var depRelationShip = '';
+                    }
+
                     $rootScope.RelatedPatientProfiles.push({
                         'id': index.$id,
                         'patientId': index.patientId,
@@ -1871,11 +1894,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         //'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
                         'profileImagePath': index.profileImagePath,
                         'relationCode': index.relationCode,
+                        'depRelationShip': depRelationShip,
                         'isAuthorized': index.isAuthorized,
                         'birthdate': index.birthdate,
                         'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
                         'addresses': angular.fromJson(index.addresses),
-
+                        'gender': $scope.patGender,
                         'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
                         'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
                         //  'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
@@ -4336,9 +4360,9 @@ LoginService.getScheduledConsulatation(params);
             } else {
                 $rootScope.userAgeForIntake = 7;
             }
-          /*if(P_Age.indexOf('T') == -1) {
+          if(P_Age.indexOf('T') == -1) {
               $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
-            }*/
+            }
         }
         //  $rootScope.userAgeForIntake = ageFilter.getDateFilter(P_Age);
         $rootScope.SelectPatientAge = $rootScope.PatientAge;

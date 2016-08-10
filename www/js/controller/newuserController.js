@@ -319,7 +319,9 @@ angular.module('starter.controllers')
     $scope.cancelcouser = function() {
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
-        $state.go('tab.relatedusers');
+        //$state.go('tab.relatedusers');
+        history.back();
+        scope.$apply();
     }
 
 

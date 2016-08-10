@@ -549,7 +549,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.MedicationCountValid = "";
 
           if($rootScope.onDemandAvailability > 0) {
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.PatientAge, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
           //  console.log(getDependentDetails);
           //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
           } else {
@@ -570,6 +570,31 @@ $rootScope.authorised=relateDependentAuthorize;
           //  $rootScope.doGetSelectedPatientProfiles(currentPatientDetails.patientId,'tab.healthinfo', '')
             $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
             $rootScope.passededconsultants();
+
+            var doddate = new Date(getDependentDetails.PatientAge);
+            var today = new Date();
+            var nowyear = today.getFullYear();
+            var nowmonth = today.getMonth() + 1;
+            var nowday = today.getDate();
+            var dateofb = new Date(doddate)
+            var birthyear = dateofb.getFullYear();
+            var birthmonth = dateofb.getMonth();
+            var birthday = dateofb.getDate();
+            var age = nowyear - birthyear;
+            var age_month = nowmonth - birthmonth;
+            var age_day = nowday - birthday;
+            if (age_month < 0 || (age_month == 0 && age_day < 0)) {
+                age = parseInt(age) - 1;
+            }
+            if (age >= 12) {
+                $rootScope.viewemailDisplay = 'flex';
+                $rootScope.viewtimezoneDisplay='flex';
+            } else {
+                $rootScope.viewemailDisplay = 'none';
+                $rootScope.viewtimezoneDisplay='none';
+
+            }
+
             $state.go('tab.healthinfo');
 
         }

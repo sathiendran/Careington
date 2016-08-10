@@ -182,7 +182,7 @@ $scope.depheight2=function(){
          }
       }
 }
-$scope.weightunit=function(){
+$scope.weightunitchange=function(){
        var maxweight = 999;
        var weightval=$('#weight').val();
        if ( weightval > maxweight)
@@ -537,7 +537,9 @@ if(phonevalue!=''){
             $('select').prop('selectedIndex', 0);
             $rootScope.couserslists = false;
             $rootScope.dependentuserslist = false;
-            $state.go('tab.relatedusers');
+          //  $state.go('tab.relatedusers');
+          history.back();
+          $scope.apply();
         }
 
         //Function to open ActionSheet when clicking Camera Button
