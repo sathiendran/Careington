@@ -1,0 +1,118 @@
+
+<div class="animated slideInRight">
+ <ion-side-menus>
+   <ion-side-menu-content>
+
+<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+ <div class="buttons" >
+  <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+   ng-click="toggleLeft()"></button>-->
+   <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+ </div>
+ <h1 class="chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
+        <a class="headerval" ng-href="#tab/appointmentpatientdetails"  >Done</a>
+       </span>
+ </h1>
+
+
+<div class="bar bar-subheader bar-dark subheaderheight" >
+   <div class="row">
+    <h1 class="headertitle">
+     <div class="ellipsis subHeader_content_name" >
+       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> Jonathan</span>
+       <span class="patientLastName ellipsis lnamefont" >Fitzpztrick</span>
+    </div>
+   </h1>
+  </div>
+
+ <div class="item item-image-icon" >
+    <a class="lefthome">
+      <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
+      <p class="homecontent">Account Home</p>
+    </a>
+    <a class="item-avatar itemhead">
+      <p><img src="img\patient.png" class="topimage"></p>
+    </a>
+    <a class="rightpatient">
+      <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
+      <p class="patientcontent"  >Change Patient</p>
+    </a>
+  </div>
+
+</div>
+
+</ion-header-bar>
+
+
+<ion-view title="">
+ <ion-content class="paticoncontent">
+
+    <div class="list">
+
+        <a class="item item-avatar patavatar">
+             <img src="img\patient.png" class="patimage">
+              <p class="pathead">With</p>
+              <h2 class="appfname"><span >Dr.McGrath</h2>
+                <span class="appfloat"><i class="icon ion-chevron-right "></i></span>
+              </p>
+              <p class="patage">Female <span> .</span> 36yrs</p>
+           </a>
+
+        <ion-item class="ionitem contalign" >
+           <div class="item item-text-wrap textwrap">
+              <div class="datecontent">
+                 <h2 class="fdate"><span class="fname ftime">12:25pm</span> </h2>
+                   <p class="fday">Monday, July 29, 2015</p>
+               </div>
+         </div>
+       </ion-item>
+
+      <a class="item" style="border-bottom:none; pointer-events: none;">
+
+        <div class="row seccontent" >
+          <div class="col col-10 patcol10">1</div>
+            <div class="col col-90 ">
+                <p class="parafont"><b>Primary Concern</b></p>
+                <p class="pfontsize">This is the primary reason for visit</p>
+            </div>
+       </div>
+          <br>
+
+       <div class="row seccontentone">
+          <div class="col col-10 patcol10">2</div>
+            <div class="col col-90 ">
+                <p class="parafont"><b>Secondary Concern</b></p>
+                <p class="pfontsize">This is the Secondary reason for this
+                visit. It may be significantly longer
+                than normal if it is a cunstom entry</p>
+            </div>
+       </div>
+          <br>
+
+      <div class="row seccontentone" >
+        <div class="col col-10 patcol10">a</div>
+         <div class="col col-90 ">
+           <p class="parafont"><b>Notes</b></p>
+          <p class="pfontsize">This is the Secondary reason for this
+                visit. It may be significantly longer
+                than normal if it is a cunstom entry
+                This is the Secondary reason for this
+                visit. It may be significantly longer
+                than normal if it is a cunstom entry</p>
+         </div>
+       </div>
+   </a>
+ </div>
+
+ </ion-content>
+   </ion-side-menu-content>
+</ion-view>
+
+
+<ion-footer-bar class="bar bar-footer  footer-color footheight">
+     <!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
+   <h1 class="title" id="centercolor" >Enter Appointment</h1>
+</ion-footer-bar>
+
+</div>

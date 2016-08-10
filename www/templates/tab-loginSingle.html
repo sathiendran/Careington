@@ -1,11 +1,11 @@
 
 
 <ion-view title="Login">
-	
+
 	<div ng-include src="'templates/password_header.html'"></div>
-    
+
    <ion-content class="password_content BacgroundColorContent" style="{{PasswordOverlop}};" >
-       
+
     <div ng-if="IOSDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; top: -119px;">
 		<div class="{{password_header_content}} passwordSubHeader SubHeadIOS">
 			<div class="subHospital" style="color: {{brandColor}};"></div>
@@ -14,7 +14,7 @@
 			</span>
 		</div>
 	</div>
-	
+
 	 <div ng-if="AndroidDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; top: -147px;">
 		<div class="{{password_header_content}} passwordSubHeader" style="margin-top: 54px;background-color:#FFF;">
 			<div class="subHospital" style="color: {{brandColor}};"></div>
@@ -23,58 +23,58 @@
 			</span>
 		</div>
 	</div>
-       
-	
+
+
 	<!-- Content Start-->
-	
+
 	<!--<ion-content class="login_content BacgroundColorContent" style="{{LoginContant}}">-->
-		 <form ng-submit="checkSingleHospitalLogin()">             
+		 <form ng-submit="checkSingleHospitalLogin()">
 			 <div class="password_home password_home_top" style="{{MarginHomeTop}}" >
 				<label class="item-input">
 					<!--<input type="email" placeholder="Email" ng-model="userLogin.email" >-->
 					<input style="{{loginLineHeight}}" type="email" placeholder="Email" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
-					
+
 				</label>
 				<label class="item-input" style="margin-top: 10px;">
 					<!--<input type="email" placeholder="Email" ng-model="userLogin.email" >-->
 					<input style="{{loginLineHeight}}" type="password" placeholder="Password" ng-model="pass.password" name="password" id="password" >
-					
+
 				</label>
 				<!-- <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()" ng-model="userLogin.remember"> -->
-				<div class="squaredCheckbox" ng-if="chkedchkbox == true">					
-                     <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()" checked="true"> 					
+				<div class="squaredCheckbox" ng-if="chkedchkbox == true">
+                     <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()" checked="true">
 				<label for="squaredCheckbox"></label>
 				</div>
-				
-				<div class="squaredCheckbox" ng-if="chkedchkbox != true">					
-                     <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()"  > 					
+
+				<div class="squaredCheckbox" ng-if="chkedchkbox != true">
+                     <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()"  >
 				<label for="squaredCheckbox"></label>
-				</div>				
-				
-				
-				<div class="remember"> Remember my email</div> 	
-                
-				<div class="continue" style="margin-bottom: 5px;">				
+				</div>
+
+
+				<div class="remember"> Remember my email</div>
+
+				<div class="continue" style="margin-bottom: 5px;">
 					<button type="submit" ng-click="checkSingleHospitalLogin()" class="button button-outline button-positive" style="font-size: 20px;">
 						Continue
-					</button>					
-				</div>	
+					</button>
+				</div>
 				<div class="forgot_password_text" style="margin-bottom: 45px;" > <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
 			<!--	<div id="notifications" style="height: auto;" >
 					<div id="notifications-window-row-button" ng-click="validation();">Sample Error Alert</div>
 				</div> -->
 					<div class="{{NeedanAcountStyle}}">
                         <h5><b>Need an account?</b></h5>
-                        <!--<a style="cursor: pointer;" ng-click="goToSearchProvider('loginSingle');"> <p class="needanaccountPragraph">Click here to find your provider.</p></a>-->
-						 <p class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>
-                    
+                        <a ng-if="customerSso != 'Mandatory'" style="cursor: pointer;" ng-click="goToSearchProvider('loginSingle');"> <p class="needanaccountPragraph">Click here to Register.</p></a>
+						 <!--<p class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>-->
+
                     </div>
 				</div>
         </form>
 	</ion-content>
 	<!-- Content End-->
-	
-	
+
+
 	<!-- Footer Start-->
 	<div class="hide-on-keyboard-open">
 		<ion-footer-bar class="footer"  >
@@ -82,17 +82,15 @@
 			 <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
 			 <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
 		  </div>
-		  
-		 
-		  <div class="powerdBySnapMD">			
+
+
+		  <div class="powerdBySnapMD">
 			<!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes');return false;"><b>v1.3.4<b></a>-->
 			<a><b>v5.0.4<b></a>
-		  </div> 
+		  </div>
 		</ion-footer-bar>
 	</div>
 	<!-- Footer End-->
-	
-	
+
+
 </ion-view>
-
-

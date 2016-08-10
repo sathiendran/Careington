@@ -1,53 +1,57 @@
-<ion-view>	
+<ion-view>
 	<ion-header-bar class="bg">
 		<div id="Error_Message" ></div>
 		<div class="Server_Error" ></div>
-		<h2>Virtual Care</h2> 	
-		<div class="bar bar-subheader-provider searchbox">		
-		
-			<h3>Find your provider</h3>			
+		<h2>Virtual Care</h2>
+		<div class="bar bar-subheader-provider searchbox searchAccount">
+
+			<h3>Find your provider</h3>
 			<p>Search for your provider to create an account.</p>
-		
+
 		<div class="item-input-inset">
 				<label class="item-input-wrapper">
-					<i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
+					<!--<i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>-->
+					<i style="display: {{iconDisplay}}" class="icon placeholder-icon" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
 					<input type="search"  placeholder="Search" ng-model="data.searchProvider">
-					
+
 				</label>
 		</div>
 	</div>
-	</ion-header-bar>		
-	
+	</ion-header-bar>
+
 	<ion-content class="content-height">
-			
-			<div id="providerListDiv" class="list has-subheader provider" >				
+
+			<div id="providerListDiv" class="list has-subheader provider" >
 				<a class="item item-avatar item-icon-right" ng-repeat="providerList in searchProviderList" ng-click="goToRegisterStep1(providerList)">
-					<!--<p  ><img src="{{providerList.hospitalImage}}"></p>-->
+					<!--<p  ><img src="{{providerList.hospitalImage}}"></p>
 					<div ng-if="providerList.brandColor" class="searchProvFirstLetterDiv" style="border: 2px solid {{providerList.brandColor}}; background-color: {{providerList.brandColor}};"><p>{{providerList.firstCharactOfHosName}}</p></div>
-                    <div ng-if="!providerList.brandColor" class="searchProvFirstLetterDiv" style="border: 2px solid #C4C5C3; background-color: {{providerList.brandColor}};"><p>{{providerList.firstCharactOfHosName}}</p></div>
-					<h2>{{providerList.hospitalName}}</h2>					
+          <div ng-if="!providerList.brandColor" class="searchProvFirstLetterDiv" style="border: 2px solid #C4C5C3; background-color: {{providerList.brandColor}};"><p>{{providerList.firstCharactOfHosName}}</p></div>-->
+					<div class="searchProvFirstLetterDiv newProImage" ng-if="!providerList.chkImageorNot" style="border: 2px solid {{providerList.brandColor}}; background-color: {{providerList.brandColor}};"><p>{{providerList.firstCharactOfHosName}}</p></div>
+          <div class="searchProvFirstLetterDiv newProImage" ng-if="providerList.chkImageorNot"  style="border: 2px solid #C4C5C3;" ><img ng-src="{{providerList.firstCharactOfHosName}}"  ></div>
+
+					<h2>{{providerList.hospitalName}}</h2>
 					<i class="icon ion-chevron-right"></i>
 				</a>
 			</div>
-			<div id="startSearchProvider" class="list has-subheader provider">		
-				<p><img ng-src="img/searchArrow.png" style="width: 40px;" ></p>
+			<div id="startSearchProvider" class="list has-subheader provider">
+				<p><!--<img ng-src="img/searchArrow.png" style="width: 40px;" >--><i  ng-bind-html="drawSVGCIcon('arrow-with-circle-up')"></i> </p>
 				<p class="startTyping">Start typing the name of your provider. </p>
 				<p class="startTypingSubHeader">Be sure to use the organization name and not the individual doctor.</p>
 			</div>
-			<div id="emptyProvider" class="list has-subheader provider" >		
+			<div id="emptyProvider" class="list has-subheader provider" >
 				<p class="startTyping">No results were found for your search</p>
 				<p class="startTypingSubHeader">Please be sure to search by the organization name and not the individual doctor.</p>
 			</div>
-			<div ng-controller="LoginCtrl">       
+			<div ng-controller="LoginCtrl">
 		</div>
 	</ion-content>
 	<ion-footer-bar class="footer">
 		<div class="ConcernsFooter">
 			<div class="FooterCenter" style="width: 100%;" ng-click="cancelProviderSearch()">
-				<a class="button_new icon" style="font-size: 13px;">Cancel</a>
+				<a class="button_new icon" style="font-size: 18px;">Cancel</a>
 			</div>
-		</div>		
+		</div>
 	</ion-footer-bar>
 
-	
+
 </ion-view>

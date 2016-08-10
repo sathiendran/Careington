@@ -1,0 +1,108 @@
+<div class="animated slideInRight">
+ <ion-side-menus>
+   <ion-side-menu-content>
+
+<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+ <div class="buttons" >
+  <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+   ng-click="toggleLeft()"></button>-->
+   <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+ </div>
+ <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
+        <site-header-ios ng-if="IOSDevice == true" back="Done"></site-header-ios>
+			<site-header1 ng-if="AndroidDevice == true" back="Done"></site-header1>
+       </span>
+ </h1>
+
+
+<div class="bar bar-subheader bar-dark subheaderheight" >
+   <div class="row">
+    <h1 class="headertitle">
+     <div class="ellipsis subHeader_content_name" >
+       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont"> {{missedAppointDetails.missedPatFirstName}}</span>
+       <span class="patientLastName ellipsis lnamefont" >{{missedAppointDetails.missedPatLastName}}</span>
+    </div>
+   </h1>
+  </div>
+
+ <div class="item item-image-icon" >
+    <a class="lefthome" ng-href="#/tab/userAccount">
+      <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
+      <p class="homecontent">Account Home</p>
+    </a>
+    <a class="item-avatar itemhead">
+      <p><img ng-src="{{missedAppointDetails.patphoto}}" class="topimage"></p>
+    </a>
+    <a class="rightpatient" ng-href="#/tab/userhome">
+      <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
+      <p class="patientcontent"  >Change Patient</p>
+    </a>
+  </div>
+
+</div>
+
+</ion-header-bar>
+
+
+<ion-view title="Appointment Details">
+ <ion-content class="scroll-content ionic-scroll  has-header aptpaticoncontent" style="{{appointCOntent}}">
+
+    <div class="list aptlist">
+
+        <a class="item item-avatar patavatar">
+             <img ng-src="{{missedAppointDocDetails[0].profileImagePath}}" class="patimage">
+              <p class="pathead">With</p>
+              <h2 class="appfname"><span >{{missedAppointDocDetails[0].fullName}}</h2>
+                <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
+              </p>
+              <p class="patage">{{missedAppointDocDetails[0].gender}} <span> .</span> {{missedAppointDocDetails[0].dob | ageFilter}}</p>
+           </a>
+
+        <ion-item class="ionitem contalign" style="text-align:center;" >
+           <div class="item item-text-wrap">
+              <div class="datecontent">
+                 <h2 class="fdate"><span class="fname ftime">{{consultationDate | date: "hh:mm"}}{{consultationDate | date: "a"}}</span> </h2>
+                   <p class="fday">{{consultationDate | date: "EEEE, MMMM dd, yyyy"}}</p>
+               </div>
+         </div>
+       </ion-item>
+
+      <a class="item" style="border-bottom:none; pointer-events: none;">
+
+        <div class="row seccontent" >
+          <div class="col col-10 patcol10">1</div>
+            <div class="col col-90 ">
+                <p class="parafont"><b>Primary Concern</b></p>
+                <p class="pfontsize">{{missedAppointDetails.priConcern}}</p>
+            </div>
+       </div>
+          <br>
+
+       <div class="row seccontentone">
+          <div class="col col-10 patcol10">2</div>
+            <div class="col col-90 ">
+                <p class="parafont"><b>Secondary Concern</b></p>
+                <p class="pfontsize">{{missedAppointDetails.secConcern}}</p>
+            </div>
+       </div>
+          <br>
+
+      <div id="appointmentNote" class="row seccontentone" style="padding-bottom: 50px;" >
+        <div class="col col-10 patcol10">a</div>
+         <div class="col col-90 ">
+           <p class="parafont"><b>Notes</b></p>
+		  <p class="pfontsize" style="position: relative; top: 8px;" id="appointNotes" > </p>
+         </div>
+       </div>
+   </a>
+ </div>
+
+ </ion-content>
+
+
+</ion-view>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
+</div>

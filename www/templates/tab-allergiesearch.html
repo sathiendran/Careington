@@ -1,0 +1,57 @@
+<div class="modal" >
+
+<ion-view>
+
+<header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+<div class="ErrorMessage ErrorMessageDiv"  ></div>
+ <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
+  <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My Health</h1>
+  <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="allergiedone()" >Done</button>
+</header>
+
+<ion-content has-header="true" class="concernListContent">
+
+  <ion-list>
+    <ion-item class="search_home  concernListSearch">
+      <h2 class="subname subName-{{deviceName}}">Medication Allergies</h2>
+      <div class=" searchbox" style="margin-top: 0px!important;">
+      <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+        <label class="item-input-wrapper">
+         <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+         <input type="search"  placeholder="Search" ng-model="data.searchProvider">
+        </label>
+      </div>
+ </div>
+    <!--  <div class="search_home UserHmeSub concernListSearchHome">
+        <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
+          <input type="search" placeholder="Search" class="innerSearchPop SearchBox currentSearchBox-{{deviceName}}" ng-model="searchText"   >
+
+        </label>
+      </div>-->
+
+        <div ng-repeat="(letter, medicationAllergiesearchList) in sorted_usersallergie">
+
+        <ion-checkbox id="index_{{letter}}" ng-repeat="allergie in filterAllergies=( medicationAllergiesearchList | filter: data.searchProvider)"
+               ng-model="allergie.checked"
+               ng-checked="allergie.checked" ng-change="OnSelectAllergies(allergie)" ng-disabled="checkedAllergies==limit && !allergie.checked" >
+         <span class="ng-binding concernListDetails" >   {{ allergie.text }} </span>
+       </ion-checkbox>
+        </div>
+
+          <!--<p class="searchdata noResult" style="white-space: normal;" ng-show="(medicationAllergiesearchList | filter:data.searchText).length==0"> <b>Sorry No Result Found <b></p>-->
+
+    </ion-item>
+        <ion-item  ng-show="(medicationAllergiesearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
+  </ion-list>
+  <ul class="alpha_sidebar" ng-show="(medicationAllergiesearchList | filter:data.searchProvider).length!=0">
+    <li ng-click="gotoallergyList('index_{{letter}}')"ng-repeat="letter in alphabets">
+       {{letter}}
+    </li>
+ </ul>
+
+</ion-content>
+
+
+</ion-view>
+
+</div>

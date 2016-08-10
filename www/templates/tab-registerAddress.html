@@ -1,0 +1,35 @@
+<ion-view>
+	<ion-content class="register" style="background-color: {{brandColor}}">
+		<div class="epassbg">
+			<img ng-src="{{logo}}" style="position:relative;"/>
+			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>
+		</div>
+		<form>
+			<div class="card">
+						<div class="regcontent addContent">
+							<h2>We’re Sorry</h2>
+							<h3>This service is <br> not available in <br>your area</h3>
+							<h5>Think we’re mistaken? <br> Please contact us at 555-654-9878</h5>
+						</div>
+
+
+						<div class="regibtn">
+							<a ng-href="#/tab/registerStep1"><button type="button" class="button">
+							Go Back
+							</button></a>
+						</div>
+			</div>
+		</form>
+		<div class="acinfo1-{{deviceName}}">
+			<h4>Already have an account? <a ng-click="backtoPreviousPage();"><span>Login</span></a></h4>
+		</div>
+			<div ng-controller="LoginCtrl"></div>
+	</ion-content>
+	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+		<div class="ConcernsFooter">
+			<div class="FooterLeft" style="width: 100%;">
+				<a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerAddress');">Terms & Conditions</a>
+			</div>
+		<div>
+	</ion-footer-bar>
+</ion-view>

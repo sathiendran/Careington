@@ -1,90 +1,90 @@
 <ion-view title="Plan Details">
 	 <form  ng-submit="PlanDetailsValidation()" name="HealthForm"  novalidate>
 		<ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};  {{HeadercardDetails}};{{backgroundimage}}" >
-		
+
 			<div id="Error_Message" class="ErrorMessageDiv" ></div>
 			<div class="Server_Error ErrorMessageDiv" ></div>
 			<div class="buttons" style="width: 50%; display: {{PlanDisplay}}; {{HeadercardDetailsBack}}">
 				<a class="button_new icon PlanCancel" ng-href="#/tab/consultCharge" >
 					<span>Cancel</span>
-				</a>				
+				</a>
 			 </div>
-			
+
 			<!--<h1 class="title_patient"></h1>--->
-			<div class="buttons" style="width: 50%; display: {{PlanDisplay}}" >	
-                
+			<div class="buttons" style="width: 50%; display: {{PlanDisplay}}" >
+
               <!--  <div ng-if="HealthForm.$invalid" class="disabled" >
                     <button type="submit" class="button_new icon PlanNext" >
-                                <span style="color:#999;">Next</span> 
-                    </button>   
+                                <span style="color:#999;">Next</span>
+                    </button>
                 </div>
-                <div ng-if="!HealthForm.$invalid">    
+                <div ng-if="!HealthForm.$invalid">
                     <button type="submit" class="button_new icon PlanNext" >
-                              <span>Next</span>  
+                              <span>Next</span>
                     </button>
                 </div> --->
-                
-                			
+
+
 
 		<div style="width: 100%; text-align: right;" ng-if="HealthForm.$invalid">
                     <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}};"  ng-disabled="HealthForm.$invalid" >
                         Next
-                    </button>	
+                    </button>
          </div>
         <div style="width: 100%; text-align: right;" ng-if="!HealthForm.$invalid">
             <button type="submit" class="button_new icon PlanNext" style="{{CardDetailsNextButton}}"   ng-disabled="HealthForm.$invalid" > Next
 
             </button>
          </div>
-                    
-               
-			</div>			
+
+
+			</div>
 		</ion-header-bar>
-		
-		
+
+
 		<ion-content class="planDetails_content"  >
-			<div>		
+			<div>
 				<div class="healthPlan_text" style="display: {{PlanDisplay}}; {{PlanDetails}}">
-					Health Plan				
-				</div>			
-				
+					Health Plan
+				</div>
+
 				<div class="healthPlan_header" style="display: {{PlanDisplay}}; {{PlanDetails}};"  >
 					<div class="planInformation"  style="{{SubDetailsPlanDetails}}">
-					Enter your health plan information			
+					Enter your health plan information
 					</div>
-       
-                    
+
+
 					<div class="provider">Select your provider</div>
-					<div class="addHealthPlan_header noPlanContainer-{{deviceName}}"  >					
-						<!--<div class="demo ProviderList">	                            
+					<div class="addHealthPlan_header noPlanContainer-{{deviceName}}"  >
+						<!--<div class="demo ProviderList">
 							 <select id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
 								<option value=""><b>Plan Provider</b></option>
 								<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName | truncate:22}}</b></option>
-							</select>                             
+							</select>
 						</div>-->
-						
+
 						<div  class="dropdownContainer">
-							<div class="viewport1">Plan Provider</div>	
+							<div class="viewport1">Plan Provider</div>
 							<select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
 								<option value=""><b>Plan Provider</b></option>
 								<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
-							</select>   
+							</select>
 						</div>
-						
-						
+
+
 					</div>
-					
+
 				</div>
-				
+
 				<div class="healthPlan_text verifyPlanHeading" style="display: {{verifyPlanDisplay}}">
-					Verifying Plan				
-				</div>			
-				
+					Verifying Plan
+				</div>
+
 				<div class="verifyPlan_subHeader" style="line-height: 30px; display: {{verifyPlanDisplay}}" >
 					{{providerName}}
 				</div>
-				
-				
+
+
 				<div class="list" >
 					<label class="item item-input" >
 						<span class="input-label">First Name</span>
@@ -94,42 +94,42 @@
 						<span class="input-label">Last Name</span>
 				<input type="text" placeholder="Required" ng-model="AddHealth.lastName" name="lastName" id="lastName" required >
 					</label>
-					
+
                     <label class="item item-input">
 						<span class="input-label">Policy Number</span>
 				<input type="text" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
 					</label>
-                    
+
 					<label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
 						<span class="input-label"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
 					<!--<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();"  id="date" max="{{PreviousDate}}" required style="font-size:18px;">  -->
 					<!--<div ng-if="deviceName != 'IOS'" class="dobRequired" ng-click="getDOBDiv()">Required</div>
 					<input ng-if="deviceName != 'IOS'" class="userDateofbirth" placeholder="Required"  ng-model="AddHealth.dateBirth" type="date" onfocus="this.type='date';" id="date" max="{{PreviousDate}}" required >-->
-					 <div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div> 
+					 <div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
             		<input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date"  required>
-					</label>	
-					
+					</label>
+
 					<label ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
 						<span class="input-label"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
 							<!--<input class="userDateofbirth_android" placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date';"  id="date" max="{{PreviousDate}}" required >-->
-							<div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div> 
+							<div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
 							<input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date"  required>
-					</label>				
+					</label>
 				</div>
-				
+
 				<div class="planDetails"  >
 					<p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
 				</div>
 				<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://connectedcare.md/Main/#/UserTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div> -->
-				<div class="privacy" ><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
+				<div class="privacy" ><a class="hospitalDynamicLink"  ng-click="hospitallink()" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
 				<!--<div class="privacy" ><a href="#" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" onclick="window.open('https://telehealthone.connectedcare.md/public/#/userTerms', '_system', 'location=yes'); return false;">About Connected Care Privacy</a></div>-->
 			</div>
-		   
+
 		</ion-content>
-	
+
     </form>
 
-	
+
 </ion-view>

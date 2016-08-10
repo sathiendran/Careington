@@ -1,0 +1,157 @@
+<ion-side-menus>
+<ion-side-menu-content>
+
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+
+	<div class="buttons" >
+		<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+			ng-click="toggleLeft()"></button>-->
+			<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+	</div>
+<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Appointments <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#tab/appointmentpatientdetailssearch" ><i class="icon ion-search" ></i></a></span></h1>
+
+
+<div class="bar bar-subheader bar-dark subheaderheight" >
+                  <div class="row">
+                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
+				      <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+				     </div></h1>
+                </div>
+
+         <div class="item item-image-icon itemiconcolor">
+
+         <a class="lefthome" ng-href="#/tab/userAccount">
+               <span class="subHeadIcons"><i class="icon ion-home headerlefticons" style=""></i></span>
+               <p class="homecontent">Account Home</p>
+          </a>
+           <a class="item-avatar itemhead">
+               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
+           </a>
+           <a class="rightpatient" ng-href="#/tab/userhome">
+               <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
+               <p class="patientcontent" >Change Patient</p>
+           </a>
+   </div>
+
+   <div class="row">
+
+       <div class="buttons backbtn">
+		    <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+			</button>
+	</div>
+        <div class=" button-bar">
+          <label class="button button-small btcolor btn-first btnclass"  id="users" ng-click="user()"> This Patient</label>
+          <label class="button button-small btnextcolor btn-first tabcontent btnclass" id="allusers" ng-click="alluser()">All</label>
+
+    </div>
+
+       <div class="buttons backbtn">
+		 <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
+		 </button>
+	  </div>
+   </div>
+
+
+</div>
+
+</ion-header-bar>
+
+
+<ion-view title="Appointment Details">
+ <ion-content class="appiconcontent" ng-hide="addmore" >
+	 <div><ion-refresher on-refresh="doRefresh()"  >
+		</ion-refresher></div>
+
+		 <div >
+					 <div class="list listfirst" >
+				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
+						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+						<h2 class="aptsname">Next Appointment</h2>
+						<p class="appmarg">
+								<span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+							</p>
+							<h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+				</a>
+
+				 <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+						<p class="appmarg" style="margin-top: 14px;">
+								<span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+						</p>
+					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+					 </h4>
+				 </a>
+				<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
+
+ </div>
+	 </div>
+<div style="display: none;"><timer end-time="time"  ></timer></div>
+</ion-content>
+<ion-content class="appiconcontent" ng-hide="healthhide">
+	<div><ion-refresher on-refresh="doRefresh()"  >
+	   </ion-refresher></div>
+	 <div >
+        <div class="list listall">
+
+
+        <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
+         	<img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
+            <h2 class="aptsname">Next Appointment</h2>
+             <p class="appmarg">
+                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+              </p>
+								<h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+          </a>
+
+        <a class="item item-avatar appitem" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
+            <img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
+						<p class="appmarg" style="margin-top: 14px;">
+                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
+              </p>
+					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+           </h4>
+         </a>
+				<ion-item  class="noResult" ng-if="!scheduledList.length" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
+
+   </div>
+   </div>
+<ion-content>
+
+
+	 <div ng-controller="LoginCtrl">
+	 </div>
+
+
+
+
+</ion-view>
+
+
+
+<ion-tabs class=" tabs-icon-top tabs-dark">
+	 <a class="tab-item" ng-href="#/tab/relatedusers" >
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
+	 <span class="tabcolor">Users</span>
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/consultations">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
+	 <span class="tabcolor">Consultations</span>
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/healthinfo">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
+	 <span class="tabcolor">My Health</span>
+	 </a>
+	 <a class="tab-item active" ng-href="#/tab/appointmentpatientdetails">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
+	 <span class="tabcolor">Appointments</span>
+	 </a>
+	 <a class="tab-item" ng-href="#/tab/profileoption">
+	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
+	 <span class="tabcolor">More</span>
+	 </a>
+</ion-tabs>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-controller="appoimentDetailsCtrl"></div>
+<div ng-include src="'templates/SideMenu.html'"></div>

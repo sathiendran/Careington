@@ -1,0 +1,48 @@
+<div class="Server_Error ErrorMessageDiv" ></div>
+
+<ion-view  title="Home">
+			<!-- Start Header -->
+	<ion-header-bar align-title="left" class="bar-positiveLess" style="padding: 0px;">
+
+		<div class="bar bar-headerLess">
+
+		</div>
+
+		<div class="bar {{SubHeaderLessDevice}}">
+		  <h2 class="{{HeadTitleLessDevice}}">Virtual Care</h2>
+		</div>
+
+		<div class="bar bar-TitleLess-{{deviceName}}" style="border-bottom: 1px solid #A9ABA7;{{providerItamMarginTop}}">
+		  <h2 class="TitleLess">Select Your Provider</h2>
+		</div>
+	</ion-header-bar>
+			<!-- End Header -->
+
+			<!-- Start Content -->
+		<ion-content class="ContentList_provider-{{deviceName}} scroll-content ionic-scroll  has-header has-footer"  >
+
+			<form>
+				<ion-list>
+                 <!--   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails.providerId,hospitalDetails.name)"> -->
+                    <ion-item class="item-remove-animate item-avatar item-icon-right providerIcon" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)"style="border-color: #A9ABA7;{{providerItamTop}};">
+                        <div class="ellipsis providerName">{{hospitalDetails.name}}</div>
+                        <i class="icon ion-chevron-right icon-accessory" style="top: 3px;"></i>
+                      </ion-item>
+
+                 </ion-list>
+			</form>
+		</ion-content>
+
+			<!-- End Content -->
+
+
+			<!-- Start Footer -->
+			<ion-footer-bar align-title="left" class="footer">
+					  <div class="buttons footerBackButton">
+						<!--<a class="button_new icon ion-chevron-left" href="#/tab/login"> Back </a>-->
+						<a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span>Back</span></a>
+					  </div>
+			</ion-footer-bar>
+			<!-- End Footer -->
+
+</ion-view>

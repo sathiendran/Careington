@@ -16,36 +16,65 @@ angular.module('ion-google-place', [])
                     scope.locations = [];
                     var geocoder = new google.maps.Geocoder();
                     var searchEventTimeout = undefined;
+					if($rootScope.currState.$current.name!="tab.registerStep1")  {
+						var POPUP_TPL = [
+							'<div class="ion-google-place-container" id="googleContainerId">',
+								'<div style=" {{BackgroundColorGoogle}}">',
+								 '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
+									'<label class="item-input-wrapper">',
+										'<i class="icon ion-ios7-search placeholder-icon"></i>',
+										'<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter a City or ZIP">',
+									'</label>',
+									'<button class="button button-clear">',
+										'Cancel',
+									'</button>',
+								 '</div>',
+							   '</div>',
+								'<ion-content class="has-header has-header" style="{{GoogleSearchContent}}">',
+									'<ion-list>',
+										'<ion-item ng-repeat="location in locations" style="{{CountrySearchItem}}" type="item-text-wrap" ng-click="selectLocation(location)">',
+											'{{location.formatted_address}}',
+										'</ion-item>',
+									'</ion-list>',
+								'</ion-content>',
+							'</div>'
+						].join('');
 
-                    var POPUP_TPL = [
-                        '<div class="ion-google-place-container" id="googleContainerId">',
-                            '<div style=" {{BackgroundColorGoogle}}">',
-                             '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
-                                '<label class="item-input-wrapper">',
-                                    '<i class="icon ion-ios7-search placeholder-icon"></i>',
-                                    '<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter a City or ZIP">',
-                                '</label>',
-                                '<button class="button button-clear">',
-                                    'Cancel',
-                                '</button>',
-                             '</div>',
-                           '</div>',
-                            '<ion-content class="has-header has-header" style="{{GoogleSearchContent}}">',
-                                '<ion-list>',
-                                    '<ion-item ng-repeat="location in locations" style="{{CountrySearchItem}}" type="item-text-wrap" ng-click="selectLocation(location)">',
-                                        '{{location.formatted_address}}',
-                                    '</ion-item>',
-                                '</ion-list>',
-                            '</ion-content>',
-                        '</div>'
-                    ].join('');
+						var popupPromise = $ionicTemplateLoader.compile({
+							template: POPUP_TPL,
+							scope: scope,
+							appendTo: $document[0].body
+						});
+					} else {
+						var POPUP_TPL = [
+							'<div class="ion-google-place-container" id="googleContainerId">',
+								'<div style=" {{BackgroundColorGoogle}}">',
+								 '<div class="bar bar-header item-input-inset" style="{{GoogleSearchStyle}}">',
+									'<label class="item-input-wrapper">',
+										'<i class="icon ion-ios7-search placeholder-icon"></i>',
+										'<input class="google-place-search placeHolderCountrySearch" type="search" ng-model="gPlaceSearchQuery" placeholder="Enter your Address" autofocus>',
+									'</label>',
+									'<button class="button button-clear">',
+										'Cancel',
+									'</button>',
+								 '</div>',
+							   '</div>',
+								'<ion-content class="has-header has-header" style="{{GoogleSearchContent}}">',
+									'<ion-list>',
+										'<ion-item ng-repeat="location in locations" style="{{CountrySearchItem}}" type="item-text-wrap" ng-click="selectLocationForRegister(location)">',
+											'{{location.formatted_address}}',
+										'</ion-item>',
+									'</ion-list>',
+								'</ion-content>',
+							'</div>'
+						].join('');
 
-                    var popupPromise = $ionicTemplateLoader.compile({
-                        template: POPUP_TPL,
-                        scope: scope,
-                        appendTo: $document[0].body
-                    });
-
+						var popupPromise = $ionicTemplateLoader.compile({
+							template: POPUP_TPL,
+							scope: scope,
+							appendTo: $document[0].body
+						});						
+					}
                     popupPromise.then(function(el){
                         var searchInputElement = angular.element(el.element.find('input'));
 
@@ -67,6 +96,14 @@ angular.module('ion-google-place', [])
                                 
                             }
                             ngModel.$setViewValue(scope.getCardDetails.City);
+                            ngModel.$render();
+                            el.element.css('display', 'none');
+                            $ionicBackdrop.release();
+                        };
+						
+						 scope.selectLocationForRegister = function(location){
+                            scope.regStep1.address = location.formatted_address;                          
+                            ngModel.$setViewValue(scope.regStep1.address);
                             ngModel.$render();
                             el.element.css('display', 'none');
                             $ionicBackdrop.release();

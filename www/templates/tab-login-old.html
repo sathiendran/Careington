@@ -1,0 +1,95 @@
+
+<div class="bar bar-headerLess">
+    <div id="Error_Message" ></div>
+	<div class="Server_Error" ></div>
+</div>
+
+<ion-view title="Login">
+
+	<!-- Header Start---->
+	<ion-header-bar align-title="left" class="bar-positiveLess">
+
+            <div class="bar bar-headerLess">
+                <!--<div id="Error_Message" ></div>-->
+            </div>
+
+            <div class="bar {{SubHeaderLessDevice}}" style="{{loginSub}}">
+                <h2 class="{{HeadTitleLessDevice}}" style="{{loginSubTitle}}">Virtual Care</h2>
+            </div>
+
+
+	</ion-header-bar>
+	<!-- Header end-->
+
+
+	<!-- Content Start-->
+
+	<ion-content class="login_content BacgroundColorContent" style="{{LoginContant}}">
+		 <form ng-submit="LoginFunction()">
+             <div style="{{LoginContantDiv}}"></div>
+			<div class="login_home">
+				<label class="item-input">
+					<!--<input type="email" placeholder="Email" ng-model="userLogin.email" >-->
+					<input style="{{loginLineHeight}}" type="email" placeholder="Email" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
+
+				</label>
+				<!-- <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()" ng-model="userLogin.remember"> -->
+				<div class="squaredCheckbox" ng-if="chkedchkbox == true">
+                     <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()" checked="true">
+				<label for="squaredCheckbox"></label>
+				</div>
+
+				<div class="squaredCheckbox" ng-if="chkedchkbox != true">
+                     <input type="checkbox" name="remember" id="squaredCheckbox" ng-click="rememberMe()"  >
+				<label for="squaredCheckbox"></label>
+				</div>
+
+
+				<div class="remember"> Remember my email</div>
+
+				<div class="continue">
+					<button type="submit" ng-click="LoginFunction()" class="button button-outline button-positive" style="font-size: 20px;">
+						Continue
+					</button>
+				</div>
+			<!--	<div id="notifications" style="height: auto;" >
+					<div id="notifications-window-row-button" ng-click="validation();">Sample Error Alert</div>
+				</div> -->
+					<div class="{{NeedanAcountStyle}}">
+                        <h5><b>Need an account?</b></h5>
+                        <a style="cursor: pointer;" ng-click="goToSearchProvider('login');"><p class="needanaccountPragraph">Click here to find your provider.</p></a>
+						<i class="ios-arrow-dropup-outline"></i>
+
+                      <!--  <p class="needanaccountPragraph">Contact your healthcare provider for details on creating your account.</p>-->
+
+					</div>
+				</div>
+        </form>
+
+	</ion-content>
+	<!-- Content End-->
+
+
+	<!-- Footer Start-->
+	<div class="hide-on-keyboard-open">
+		<ion-footer-bar class="footer"  >
+		 <div class="terms" >
+			 <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
+			 <a ng-if="deploymentEnv != 'Multiple'" ng-href="#/tab/terms"><b>Terms & Conditions</b></a>
+		  </div>
+
+
+		  <div class="powerdBySnapMD">
+			<!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes'); return false;"><b>v1.3.4<b></a>-->
+
+			<a><b>v7.1.6<b></a>
+
+		  </div>
+		</ion-footer-bar>
+	</div>
+	<!-- Footer End-->
+
+
+
+
+</ion-view>

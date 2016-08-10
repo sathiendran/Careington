@@ -57,6 +57,7 @@ angular.module('starter.services', [])
                 });
     }
 
+
     this.getTokenFromJWT = function (params) {
          var requestInfo = {
              headers: util.getHeaders(),
@@ -80,9 +81,9 @@ angular.module('starter.services', [])
 	this.postSendPasswordResetEmail = function(params) {
 		var confirmSendPasswordResetEmail = {
 			headers: util.getHeaders(params.accessToken),
-          //  url: apiCommonURL + '/api/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
               url: apiCommonURL + '/api/v2/patients/mail/' + params.emailType,
-			 //http://emeraldg.local/api/api/v2/patients/mail/resetPassword
+			 //http://emeraldg.local/v2/patients/mail/resetPassword
 			method: 'POST',
 			 data: {
 				userTypeId : 1,
@@ -176,12 +177,52 @@ angular.module('starter.services', [])
 				}
 		});
 	}
+  this.chkAddressForReg = function(params) {
+		var AddressForReg = {
+			headers: util.getHeaders(params.accessToken),
+      url: apiCommonURL + '/api/v2.1/patients/registrations/availability?addressText='+params.AddressText+'&hospitalId='+params.HospitalId,
+       method: 'GET'
+		};
+
+		$http(AddressForReg).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data,status);
+				}
+		});
+	}
 
 	this.getPatientProfiles = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/api/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+      // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
 		   url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+       method: 'GET'
+		};
+
+		$http(PatientDetailsList).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		});
+	}
+
+	this.getSelectedPatientProfiles = function(params) {
+		var PatientDetailsList = {
+			headers: util.getHeaders(params.accessToken),
+           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		   url: apiCommonURL + '/api/v2/patients/profile/'+params.patientId+'?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
             method: 'GET'
 		};
 
@@ -242,13 +283,13 @@ angular.module('starter.services', [])
 
 
     this.getScheduledConsulatation = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/scheduledconsultations?patientId={patientId}
+        //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 			//url: apiCommonURL + '/api/v2/patients/profile?include=Appointments',
-			url: apiCommonURL + '/api/v2.1/patients/appointments',
+	url: apiCommonURL + '/api/v2.1/patients/appointments',
             method: 'GET'
         };
 
@@ -266,13 +307,15 @@ angular.module('starter.services', [])
     }
 
 	this.getIndividualScheduledConsulatation = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/scheduledconsultations?patientId={patientId}
+        //https://snap-dev.com/api/v2/patients/scheduledconsultations?patientId={patientId}
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
+
 			url: apiCommonURL + '/api/v2.1/patients/' + params.patientId +'/details?include=Appointments',
             method: 'GET'
+
         };
 
         $http(requestInfo).
@@ -288,10 +331,113 @@ angular.module('starter.services', [])
                 });
     }
 
+
+		this.getListOfCodeSet = function(params) {
+			var PatientDetailsList = {
+				headers: util.getHeaders(params.accessToken),
+        url: apiCommonURL + '/api/v2/codesets?hospitalId='+params.hospitalId+'&fields=medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns, eyecolor, haircolor, ethnicity, bloodtype, relationship, heightunit, weightunit',
+	             method: 'GET'
+			};
+
+			$http(PatientDetailsList).
+				success(function (data, status, headers, config) {
+					if (typeof params.success != 'undefined') {
+						params.success(data);
+					}
+				}).
+				error(function (data, status, headers, config) {
+					if (typeof params.error != 'undefined') {
+						params.error(data);
+					}
+			});
+		}
+
+this.getPatientMedicalProfile = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2/patients/medicalprofile/'+ params.patientId,
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+
+
+   this.putPatientMedicalProfile = function(params){
+      var requestpatientInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2/patients/medicalprofile/'+ params.PatientId
+          ,
+          method: 'PUT',
+             data: {
+                MedicationAllergies: params.MedicationAllergies,
+				Surgeries: params.Surgeries,
+				MedicalConditions: params.MedicalConditions,
+				Medications: params.Medications,
+				InfantData: params.InfantData,
+				PatientId: params.PatientId
+              }
+
+
+      };
+      $http(requestpatientInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+    this.putProfileUpdation = function(params){
+       var requestpatientInfo = {
+           headers: util.getHeaders(params.accessToken),
+             url: apiCommonURL + '/api/patients/profile',
+           method: 'PUT',
+           data: {
+                   emailAddress: params.emailAddress,
+           timeZoneId: params.timeZoneId,
+           patientProfileData: params.patientProfileData,
+           patientMedicalHistoryData: params.patientMedicalHistoryData,
+           patientProfileFieldsTracing: params.patientProfileFieldsTracing
+                 }
+       };
+       $http(requestpatientInfo).
+           success(function (data, status, headers, config) {
+               if (typeof params.success != 'undefined') {
+                   params.success(data);
+               }
+           }).
+           error(function (data, status, headers, config) {
+               if (typeof params.error != 'undefined') {
+                   params.error(data,status);
+               }
+           });
+     }
+
+
+
+
+
+
 	this.postGetConsultationId = function(params) {
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),
               url: apiCommonURL + '/api/v2.1/patients/'+params.personID+'/encounters',
+
 			  method: 'POST',
 			  data: {
                 AppointmentId: params.AppointmentId
@@ -337,9 +483,8 @@ angular.module('starter.services', [])
 	this.postClearHealthPlan = function(params) {
 		var confirmPostClearHealthPlan = {
 			headers: util.getHeaders(params.accessToken),
-          //  url: apiCommonURL + '/api/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
-              url: apiCommonURL + '/api/healthplan/' + params.healthPlanID +'/clear',
-			 //http://emeraldg.local/api/api/v2/patients/mail/resetPassword
+          //  url: apiCommonURL + '/api/v2/patients/' + params.patientEmail + '/mail?type=' + params.emailType + '&hospitalId=' + params.hospitalId,
+      url: apiCommonURL + '/api/healthplan/' + params.healthPlanID +'/clear',
 			method: 'POST',
 			 data: {
                 InsuranceCompanyName: params.InsuranceCompanyName,
@@ -404,11 +549,12 @@ angular.module('starter.services', [])
     }
 
     this.getHealthPlanProvidersList = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/scheduledconsultations?patientId={patientId}
+
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/api/v2/healthplan/providers',
+
             method: 'GET'
         };
 
@@ -427,11 +573,12 @@ angular.module('starter.services', [])
 
 
     this.getExistingConsulatation = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/consultations/2440/all
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
+
             url: apiCommonURL + '/api/v2/patients/consultations/' + params.consultationId + '/all',
+
             method: 'GET'
         };
 
@@ -452,7 +599,9 @@ angular.module('starter.services', [])
 
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
+
             url: apiCommonURL + '/api/v2/clinicianprofiles/' + params.doctorId,
+
             method: 'GET'
         };
 
@@ -474,8 +623,10 @@ angular.module('starter.services', [])
 
 		var requestInfo = {
 			headers: util.getHeaders(params.accessToken),
+
 			url: apiCommonURL + '/api/v2/healthplans?patientId=' + params.patientId ,
-			//url: apiCommonURL + '/api/api/v2/healthplans',
+			//url: apiCommonURL + '/api/v2/healthplans',
+
 			method: 'get'
 		};
 
@@ -531,13 +682,14 @@ angular.module('starter.services', [])
 
 
     this.getConsultationFinalReport = function (params) {
-        //https://snap-dev.com/api/reports/consultationreportdetails/2440
+        //https://snap-dev.com/reports/consultationreportdetails/2440
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
           //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
 		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
-		   // url: apiCommonURL + '/api/api/v2/reports/consultation/4461?include=',
+		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
+
             method: 'GET'
         };
 
@@ -557,9 +709,7 @@ angular.module('starter.services', [])
 	this.getPatientsSoapNotes = function (params) {
 		var confirmSoapPost = {
 			headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/api/patients/consultations/' + params.consultationID + '/soapnote',
-		 //   url: apiCommonURL + '/api/patients/consultations/'+ params.consultationId +'/soapnote',
-			url: apiCommonURL + '/Soapnotes/Get/'+ params.consultationId,
+			url: apiCommonURL + '/api/Soapnotes/Get/'+ params.consultationId,
             method: 'GET'
 		};
 
@@ -578,14 +728,14 @@ angular.module('starter.services', [])
 	}
 
     this.getPatientPaymentProfile = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/profile/471/payments?hospitalId=126
-        //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/api/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
-		   // url: apiCommonURL + '/api/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
+
+           // url: apiCommonURL + '/api/v2/patients/profile/' + params.patientId + '/payments?hospitalId=' + params.hospitalId,
+		   // url: apiCommonURL + '/api/v2/patients/profile/payments?hospitalId=' + params.hospitalId,
 		   // url: apiCommonURL + '/api/patients/' + params.patientId + '/payments',
 		    url: apiCommonURL + '/api/v2/patients/payments',
+
             method: 'GET'
         };
 
@@ -609,12 +759,12 @@ angular.module('starter.services', [])
     }
 
 	this.getHospitalInfo = function (params) {
-        //https://snap-dev.com/api/api/v2/patients/profile/471/payments?hospitalId=126
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/Hospital/Get',
 		    url: apiCommonURL + '/api/v2/hospital/' + params.hospitalId,
+
             method: 'GET'
         };
 
@@ -636,6 +786,7 @@ angular.module('starter.services', [])
 					}
                 });
     }
+
 
 	this.getonDemandAvailability = function(params) {
 		var onDemandAvailability = {
@@ -664,6 +815,7 @@ angular.module('starter.services', [])
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/api/v2/hospitals?patient=' + params.emailAddress,
+
             method: 'GET'
         };
 
@@ -712,11 +864,12 @@ angular.module('starter.services', [])
     }
 
     this.getCodesSet = function(params) {
-        //sample uri: /api/api/v2/codesets?hospitalId=1&fields=medications
         //"fields" is a comma-delimited list of the following: medicalconditions, medications, medicationallergies, consultprimaryconcerns, consultsecondaryconcerns
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
+
             url: apiCommonURL + '/api/v2/codesets?hospitalId=' + params.hospitalId + '&fields=' + params.fields,
+
             method: 'GET'
         };
 
@@ -874,6 +1027,7 @@ angular.module('starter.services', [])
         var conferenceKeyInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/api/v2/physicians/appointments/' + params.consultationId + '/videokey',
+
             method: 'GET'
         };
 
@@ -889,6 +1043,109 @@ angular.module('starter.services', [])
                     }
             });
     }
+
+
+		/*Account API Start*/
+
+		this.getListOfCoUsers = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2/patients/familygroup/adults?authorizedOnly=False',
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+    this.getAccountDependentDetails = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2/patients/familyprofiles/dependents',
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+    this.deleteAccountUser = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2/patients/profiles/'+ params.PatientId,
+          method: 'DELETE',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+    this.deleteAccountCoUser = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2.1/patients/cousers/'+ params.PatientId,
+          method: 'DELETE',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+    this.updateDependentsAuthorize = function(params) {
+		var registerDetails = {
+			headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL + '/api/v2/patients/familygroup/'+params.patientId+'/relationship',
+			  method: 'PUT',
+			  data: {
+                RelationCodeId: params.RelationCodeId,
+				IsAuthorized: params.IsAuthorized
+              }
+		};
+	$http(registerDetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data,status);
+				}
+		});
+	}
+
 
 	this.getAttachmentList = function (params) {
         var requestInfo = {
@@ -914,6 +1171,7 @@ angular.module('starter.services', [])
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
             url: apiCommonURL + '/api/v2/filesharing/file/customer/' + params.attachmentFileId,
+
             method: 'GET'
         };
 
@@ -929,6 +1187,219 @@ angular.module('starter.services', [])
                     }
                 });
     }
+
+    this.getChatTranscript = function (params) {
+          var requestInfo = {
+              headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL + '/api/reports/consultationreportdetails/chatnote/' + params.consultationId,
+              method: 'GET'
+          };
+
+          $http(requestInfo).
+                  success(function (data, status, headers, config) {
+                      if (typeof params.success != 'undefined') {
+                          params.success(data);
+                      }
+                  }).
+                  error(function (data, status, headers, config) {
+                      if (typeof params.error != 'undefined') {
+                         params.error(data);
+                      }
+                  });
+      }
+
+
+   this.postNewDependentuser = function(params) {
+
+		var registerDependentdetails = {
+			headers: util.getHeaders(params.accessToken),
+              url: apiCommonURL +'/api/v2/familygroups/dependents',
+			  method: 'POST',
+			  data: {
+                 EmailAddress: params.EmailAddress,
+				TimeZoneId: params.TimeZoneId,
+				PatientProfileData: params.PatientProfileData,
+				PatientMedicalHistoryData: params.PatientMedicalHistoryData,
+				PatientProfileFieldsTracing: params.PatientProfileFieldsTracing
+              }
+		};
+
+		$http(registerDependentdetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		})
+ }
+
+ this.postAddCousers = function(params) {
+
+		var registerCouserdetails = {
+			headers: util.getHeaders(params.accessToken),
+          //  url: apiCommonURL +'/api/v2/patients/cousers',
+       url: apiCommonURL +'/api/v2/familygroups/couser',
+			  method: 'POST',
+			  data: {
+          Name : params.firstName + " " + params.lastName,
+       Email: params.email,
+			/*	familyGroupId: params.familyGroupId,
+				relationshipId: params.relationshipId,
+				heightUnitId: params.heightUnitId,
+				weightUnitId: params.weightUnitId,
+				photo: params.photo,
+        bloodType: params.bloodType,
+        eyeColor: params.eyeColor,
+        ethnicity: params.ethnicity,
+        hairColor: params.hairColor,
+				height: params.height,
+				weight: params.weight,
+				heightUnit: params.heightUnit,
+				weightUnit: params.weightUnit,
+				address: params.address,
+				homePhone: params.homePhone,
+				mobilePhone: params.mobilePhone,
+				dob: params.dob,
+				gender: params.gender,
+				organizationName: params.organizationName,
+				locationName: params.locationName,*/
+			//	firstName: params.firstName,
+			//	lastName: params.lastName,
+			//	profileImagePath: params.profileImagePath,
+              }
+		};
+
+		$http(registerCouserdetails).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data);
+				}
+		})
+ }
+
+ this.getListOfLocationOrganization = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2/organizations',
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+    this.getListOfPassedConsultations = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+           url: apiCommonURL+'/api/v2/patients/'+params.patientId+'/consultations/status/'+ 72,
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+     this.getListOfDroppedConsultations = function(params){
+       var requestInfo = {
+           headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL+'/api/v2/patients/'+params.patientId+'/consultations/status/'+81,
+           method: 'GET',
+       };
+       $http(requestInfo).
+           success(function (data, status, headers, config) {
+               if (typeof params.success != 'undefined') {
+                   params.success(data);
+               }
+           }).
+           error(function (data, status, headers, config) {
+               if (typeof params.error != 'undefined') {
+                   params.success(data);
+               }
+           });
+     }
+
+//appointmentStatusCodes=1&appointmentTypeCodes=1&appointmentTypeCodes=3&IncludePatientDependents=true
+
+    this.getListOfMissedConsultation = function(params){
+         var requestInfo = {
+             headers:util.getHeaders(params.accessToken),
+             url: apiCommonURL+'/api/v2.1/patients/filtered-appointments?startDate='+params.startDate+'&patientId='+params.patientId+'&endDate='+params.endDate+'&appointmentStatusCodes='+params.appointmentStatusCodes+'&appointmentTypeCodes=1&appointmentTypeCodes=3&IncludePatientDependents=true',
+             method: 'GET',
+         };
+         $http(requestInfo).
+             success(function (data, status, headers, config) {
+                 if (typeof params.success != 'undefined') {
+                     params.success(data);
+                 }
+             }).
+             error(function (data, status, headers, config) {
+                 if (typeof params.error != 'undefined') {
+                     params.success(data);
+                 }
+             });
+   }
+
+   this.getCountiesList = function(params){
+        var requestInfo = {
+            headers:util.getHeaders(params.accessToken),
+            url: apiCommonURL+'/api/CountryCode/Get',
+            method: 'GET',
+        };
+        $http(requestInfo).
+            success(function (data, status, headers, config) {
+                if (typeof params.success != 'undefined') {
+                    params.success(data);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                if (typeof params.error != 'undefined') {
+                    params.success(data);
+                }
+            });
+  }
+
+  this.getTimezoneList = function(params){
+        var requestInfo = {
+            headers:util.getHeaders(params.accessToken),
+            url: apiCommonURL+'/api/v2/timezones',
+            method: 'GET',
+        };
+        $http(requestInfo).
+            success(function (data, status, headers, config) {
+                if (typeof params.success != 'undefined') {
+                    params.success(data);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                if (typeof params.error != 'undefined') {
+                    params.success(data);
+                }
+            });
+  }
 
 })
 
@@ -992,7 +1463,7 @@ this.getCountryDetails = function () {
 
  .service('StateList', function($http){
     this.getStateDetails = function (params) {
-        var googlePlacesUrl = 'http://maps.google.com/maps/api/geocode/json?address=' + params.SearchKeys + '&sensor=false&components=country:' + params.CountryCode;
+        var googlePlacesUrl = 'http://maps.google.com/maps/geocode/json?address=' + params.SearchKeys + '&sensor=false&components=country:' + params.CountryCode;
     var obj = {State:null};
        $http.get(googlePlacesUrl).success(function(data) {
           obj.State = data;
@@ -1003,7 +1474,8 @@ this.getCountryDetails = function () {
 
 /*var request = {
             headers: util.getHeaders(params.accessToken),
-            url: 'http://maps.google.com/maps/api/geocode/json?address=' + params.SearchKeys + '&sensor  =false&components=country:' + params.CountryCode,
+            url: 'http://maps.google.com/maps/geocode/json?address=' + params.SearchKeys + '&sensor  =false&components=country:' + params.CountryCode,
+
             method: 'GET'
         };
 
@@ -1133,6 +1605,35 @@ this.getCountryDetails = function () {
        var utcTime = moment.utc(dateTime).toDate();
 		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss');
         return new Date(dateTime);//localTime;
+    }
+
+    this.getMonthName = function(PriorSurgerymonth) {
+        PriorSurgerymonth = Number(PriorSurgerymonth);
+        if(PriorSurgerymonth == 1) {
+            return 'Jan' ;
+        } else if(PriorSurgerymonth == 2) {
+         return 'Feb';
+        } else if(PriorSurgerymonth == 3) {
+         return 'Mar';
+         } else if(PriorSurgerymonth == 4) {
+             return 'Apr';
+         } else if(PriorSurgerymonth == 5) {
+             return 'May';
+         } else if(PriorSurgerymonth == 6) {
+             return 'Jun';
+         } else if(PriorSurgerymonth == 7) {
+             return 'Jul';
+         } else if(PriorSurgerymonth == 8) {
+             return 'Aug';
+         } else if(PriorSurgerymonth == 9) {
+             return 'Sep';
+         } else if(PriorSurgerymonth == 10) {
+             return 'Oct';
+         } else if(PriorSurgerymonth == 11) {
+             return 'Nov';
+         } else if(PriorSurgerymonth == 12) {
+         return 'Dec';
+        }
     }
 
 })
@@ -1278,18 +1779,26 @@ this.getCountryDetails = function () {
 
 	 if(age.years == 0 ) {
 			if(age.days <= 15) {
-				return ageString = age.months + monthString;;
+				return ageString = age.months + monthString;
 			} else if (age.days > 15) {
-				 return ageString = (age.months + 1) + monthString;;
+				 return ageString = (age.months + 1) + monthString;
 			}
 	   }
 		if (age.years > 0) {
 			if(age.days <= 15) {
-				 var month = age.months + monthString;;
+				 var month = age.months + monthString;
 			} else if (age.days > 15) {
-				  var month = (age.months + 1) + monthString;;
+				  var month = (age.months + 1) + monthString;
 			}
-		return ageString = age.years + yearString +'/'+ month; }
+		//return ageString = age.years + yearString +'/'+ month;
+
+    if(age.months !== 0) {
+        return ageString = age.years + yearString +'/'+ month;
+    } else {
+        return ageString = age.years + yearString;
+    }
+
+  }
 
 
 

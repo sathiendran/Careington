@@ -1,0 +1,331 @@
+<ion-side-menus>
+    <ion-side-menu-content>
+      <div id="Error_Message" class="ErrorMessageDiv" ></div>
+	 <div class="Server_Error ErrorMessageDiv" ></div>
+	 <div class="Error_Message ErrorMessageDiv" ></div>
+<ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};" >
+
+
+    <!--<div class="backButtonDiv">
+       <a ng-click="EnableBackButton()"> <Span  style="float:left;margin: 13px 0 0 17px;font-size:20px;color:#fff;"><B>Done</B></Span></a>
+		</div>-->
+
+		 <!--<div class="buttons" style="{{ReportScreen}};">
+				<a class="button_new icon ReportDone" style="{{reportDone}}" ng-click="closeReportView()"  >
+					<span>Done</span>
+				</a>
+		  </div>-->
+      <div class="buttons" >
+  			<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
+  				ng-click="toggleLeft()"></button>-->
+          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+  		</div>
+  		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader accoTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Consult Report</span>
+          <span> <a class="headerval _accountCancel-{{deviceName}}" ng-click="closeReportView();" >Done</a>
+         </span>
+          </h1>
+
+
+	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
+		<div class="calendar_subHeader" >
+			<div class="subHeader_image" >
+				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
+			</div>
+			<div class="subHeader_content-{{deviceName}} ellipsis" >
+				<div class="ellipsis subHeader_content_name" >
+					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
+				</div>
+                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="primaryPatientId != patientId"> | Guardian: {{PatientGuardian}} </span></div>
+			</div>
+		</div>
+	</div>
+
+
+</ion-header-bar>
+
+<ion-view title="Post Consult Report">
+
+<ion-content class="ReportContent"  >
+	<div style="margin: 0 3%;">
+		<div>
+			<div class="reportLogo">
+			   <!--<img ng-src="{{ReportHospitalImage}}">-->
+				<img style="max-height: 70px; max-width: 250px;" src="{{hospitalImage}}">
+			</div>
+			<div class="providerAddress">
+				<div>{{reportHospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
+				<div class="reportOrganization" ng-if="organization != ''"><b>Organization:</b> {{organization}}</div>
+				<div ng-if="location != ''">
+					<div><b>Location</b></div>
+					<div>{{location}} </div>
+				</div>
+			</div>
+		</div>
+		<div class="ConnectedCareDetails" >
+			<div class="ConnectedCareTitle">
+				<h1 class="ReportTitle">{{reportHospitalUpperCase}} CONSULTATION REPORT</h1>
+			</div>
+
+			<div class="Roundcircle CCAttachment">
+				<img ng-src="img/attached.png">
+				<p><b>{{attachmentLength}}</b></p>
+			</div>
+
+		</div>
+		<div class="attachmentSpace">&nbsp </div>
+
+		<div class="reportPatientDetails">
+			<div  class="reportPatient">
+				<div><b>Patient :</b></div>
+				<div>{{reportPatientName}} {{reportLastName}} </div>
+				<div ng-if="existingConsultationReport.patientAddress != ''">{{reportPatientAddress}}</div>
+				<div>Home: {{reportHomePhone}} </div>
+				<div>Cell: {{existingConsultationReport.mobilePhone}} </div>
+			</div>
+			<div class="reportEncounter"  >
+				<div><b>Encounter Date:</b></div>
+				<div>{{consultationDate | date:'MMM dd, yyyy h:mm a'}}</div>
+				<div><b>Clinician:</b> </div>
+				<div>{{reportDoctorFirstName}} {{reportDoctorLastName}} {{reportMedicalSpeciality}} </div>
+				<div ng-if="displayCOnsultationDuration == 'display'"><b>Consultation Duration:</b> </div>
+				<div ng-if="displayCOnsultationDuration == 'display'">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
+			</div>
+		</div>
+		<div class="reportPatientStatistics" >
+			<table  class="PatientStatistic" >
+				<tr>
+					<td colspan="6" class="statisticsTitle"  ><b>Patient Statistics</b>
+						<div></div>
+					</td>
+				</tr>
+				<tr >
+					<td class="statisticAge"><b>Age: </b></td>
+					<td><b><input type="text" style="" readonly value="{{existingConsultationReport.dob  | ageFilter}}"></b></td>
+					<td>&nbsp </td>
+					<td><b>Height: </b></td>
+					<td><b> <input type="text" style="" readonly value="{{reportHeight}}"></b></td>
+					<td>&nbsp </td>
+				</tr>
+
+				<tr>
+					<td class="statisticGender"><b>Gender:&nbsp </b></td>
+					<td><b> <input type="text" style="" readonly value="{{gender}}"></b></td>
+					<td>&nbsp </td>
+					<td><b> Weight: &nbsp</b></td>
+					<td><b> <input type="text" style="" readonly value="{{reportWeight}}"></b></td>
+					<td>&nbsp </td>
+				</tr>
+
+			</table>
+
+		</div>
+		<div class="reportPatientConcerns">
+			<div class="concernTitle"><b>PATIENT CONCERNS</b></div>
+			<div class="concernUnderline" >	</div>
+
+			<div class="reportConcerns" ng-if="reportScreenPrimaryConcern != ''">
+				<div class="concernNumber"> <span>1</span> </div>
+				<div class="primaryConcernText"> {{reportScreenPrimaryConcern}}</div>
+			</div>
+			<div class="reportConcerns"  >
+				<div class="concernNumber"> <span>2</span> </div>
+				<div class="primaryConcernText"> {{reportScreenSecondaryConcern}}</div>
+			</div>
+
+		</div>
+
+		<div class="reportSubjective" >
+			<!--<div class="subjectiveTitle"><b>SUBJECTIVE</b></div>
+			<div class="subjectiveUnderline">	</div>-->
+			<div>
+				<div class="intakeTitle">
+					<div><b>Intake Form Information</b></div>
+					<div class="intakeUnderline"></div>
+				</div>
+				<div class="intakeMedication">
+					<div>
+						<div class="medicationTitle"><b>Current Medication</b></div>
+						<div class="medicationUnderline"></div>
+					</div>
+					<div class="medicationList" ng-repeat="getMedicationList in ReportMedications">
+						<span> <b>{{getMedicationList.Number}}</b> </span>
+						<span>{{getMedicationList.description}}</span>
+					</div>
+					<div ng-if="intake.medications == ''" class="medicationNone" >None Reported</div>
+
+				</div>
+
+				<div class="intakeMedication">
+					<div>
+						<div class="medicationTitle"><b>Chronic Medication</b></div>
+						<div class="medicationUnderline"></div>
+					</div>
+					<div class="medicationList" ng-repeat="getmedicalConditionsList in ReportMedicalConditions" >
+						<span> <b>{{getmedicalConditionsList.Number}}</b> </span>
+						<span>{{getmedicalConditionsList.description}}</span>
+					</div>
+					<div ng-if="intake.medicalConditions == ''" class="medicationNone" >None Reported</div>
+				</div>
+
+				<div class="intakeMedication" >
+					<div>
+						<div class="medicationTitle"><b>Prior Surgeries</b></div>
+						<div class="medicationUnderline"></div>
+					</div>
+					<div class="medicationList" ng-repeat="getSurgeryList in ReportSurgeries">
+						<span> <b>{{getSurgeryList.Number}}</b> </span>
+						<span>{{getSurgeryList.description}} - {{getSurgeryList.month}} / {{getSurgeryList.year}}</span>
+					</div>
+					<div ng-if="intake.surgeries == ''" class="medicationNone" >None Reported</div>
+				</div>
+
+				<div class="intakeMedication" >
+					<div>
+						<div class="medicationTitle"><b>Medication Allergies</b></div>
+						<div class="medicationUnderline"></div>
+					</div>
+					<div class="medicationList" ng-repeat="getAllergyList in ReportMedicationAllergies">
+						<span> <b>{{getAllergyList.Number}}</b> </span>
+						<span>{{getAllergyList.description}}</span>
+					</div>
+					<div ng-if="intake.medicationAllergies == ''" class="medicationNone" >None Reported</div>
+				</div>
+
+				<div class="intakeMedication"  >
+					<div>
+						<div class="medicationTitle"><b>Birth Info</b></div>
+						<div class="medicationUnderline"></div>
+					</div>
+					<div class="medicationList" ng-if="userReportDOB < 1" >
+						<span>Child born at full term : {{fullTerm}}</span><br>
+						<span>Child born vaginally : {{vaginalBirth}}</span><br>
+						<span>Child discharged with mother : {{dischargedWithMother}}</span><br>
+						<span>Child vaccinations up-to-date : {{vaccinationsCurrent}}</span><br>
+					</div>
+					<div ng-if="userReportDOB >= 1" class="medicationNone" >None Reported</div>
+				</div>
+
+			</div>
+			<!--<div>
+				<p class="intakeParagraph"> {{reportSubjective}}</p>
+			</div>-->
+
+		</div>
+		<div id="soapReport">
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
+				<div class="objectiveUnderline">	</div>
+				<div>
+					<p ng-if="reportSubjective != 'None Reported'" id="reportSubjective" ></p>
+					<p ng-if="reportSubjective == 'None Reported'">{{reportSubjective}}</p>
+				</div>
+			</div>
+
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>OBJECTIVE</b></div>
+				<div class="objectiveUnderline">	</div>
+				<div>
+					<p ng-if="reportObjective != 'None Reported'" id="reportObjective"></p>
+					 <p ng-if="reportObjective == 'None Reported'">{{reportObjective}}</p>
+				</div>
+			</div>
+
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>ASSESSMENT</b></div>
+				<div class="objectiveUnderline">	</div>
+				<div>
+					<p ng-if="reportAssessment != 'None Reported'" id="reportAssessment"></p>
+				   <p ng-if="reportAssessment == 'None Reported'">{{reportAssessment}}</p>
+				</div>
+			</div>
+
+			<div class="reportObjective">
+				<div class="objectiveTitle" ><b>PLAN</b></div>
+				<div class="objectiveUnderline">	</div>
+				<div>
+					<p ng-if="reportPlan != 'None Reported'" id="reportPlan"></p>
+					 <p ng-if="reportPlan == 'None Reported'">{{reportPlan}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="reportObjective">
+			<div class="objectiveTitle" ><b>RX</b></div>
+			<div class="objectiveUnderline">	</div>
+			<div>
+				<p>{{reportrx}}  </p>
+                 <!--<p>None Reported</p>-->
+			</div>
+		</div>
+
+		<div class="reportObjective">
+			<div class="objectiveTitle" ><b>CHAT TRANSCRIPT</b></div>
+			<div class="objectiveUnderline"> </div>
+			<div>
+        <p ng-if="chatTranscript.length"><li ng-repeat = "chatTranscript in chatTranscript">{{chatTranscript.ChatMessage}}</li></p>
+				<p ng-if="!chatTranscript.length">None Reported</p>
+			</div>
+		</div>
+
+		<!--<div class="reportObjective">
+			<div class="objectiveTitle" ><b>MEDICAL CODES</b></div>
+			<div class="objectiveUnderline"> </div>
+			<div class="objectiveTitle" ><b>CPT Code</b></div>
+			<div>
+				<p>None Reported</p>
+			</div>
+			<div class="objectiveTitle" ><b>ICD-10-DX Code</b></div>
+			<div>
+				<p>None Reported</p>
+			</div>
+		</div>	-->
+
+		<div class="reportObjective" >
+					<div>
+						<div class="objectiveTitle"><b>MEDICAL CODES</b></div>
+						<div class="objectiveUnderline"></div>
+					</div>
+					<div ng-if="reportMedicalCodeDetails != ''">
+						<div ng-if="reportMediCPT != ''">
+							<div class="objectiveTitle" style="padding-top: 5%;"><b>CPT Code</b></div>
+							<div ng-repeat="reportMediCPT in reportMediCPT" style="margin-left: 10%;">
+								<p>{{reportMediCPT.shortDescription}}</p>
+							</div>
+						</div>
+
+						<div ng-if="reportMediICD != ''">
+							<div class="objectiveTitle"><b>ICD-10-DX Code</b></div>
+							<div ng-repeat="reportMediICD in reportMediICD"  style="margin-left: 10%;">
+								<p>{{reportMediICD.shortDescription}}</b>
+							</div>
+						</div>
+					</div>
+					<div ng-if="reportMedicalCodeDetails == ''"><p>None Reported</p></div>
+				</div>
+
+		<div class="reportObjective">
+			<div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
+			<div class="objectiveUnderline"></div>
+			<div ng-if="getAttachmentList != ''">
+
+					<div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" style="height: 60px;">
+						<div style="float: left;position: relative;top: 7px; padding-right: 10px;">
+							<img style="width: 40px; height: 45px;" src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
+						</div>
+						<div style="font-size: 14px;position: relative;top: 22px;" class="ellipsis">{{getAttachment.name}}</div>
+					</div>
+
+			</div>
+			<div ng-if="getAttachmentList == ''"> <p>No Attachment</p></div>
+
+		</div>
+
+
+
+	</div>
+</ion-content>
+
+</ion-view>
+</ion-side-menu-content>
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>

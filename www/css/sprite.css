@@ -1,0 +1,2301 @@
+[class^="snapicon-"], [class*=" snapicon-"] {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-image: url(../img/sprite.svg);
+}
+.snapicon-medication {
+    width: 20px;
+    height: 20px;
+    background-position: 0 0;
+}
+.snapicon-lungs {
+    width: 20px;
+    height: 20px;
+    background-position: -36px 0;
+}
+.snapicon-subscription {
+    width: 20px;
+    height: 20px;
+    background-position: -72px 0;
+}
+.snapicon-task {
+    width: 20px;
+    height: 20px;
+    background-position: -108px 0;
+}
+.snapicon-office {
+    width: 20px;
+    height: 20px;
+    background-position: -144px 0;
+}
+.snapicon-pulse {
+    width: 20px;
+    height: 20px;
+    background-position: -180px 0;
+}
+.snapicon-search-users {
+    width: 23px;
+    height: 20px;
+    background-position: -216px 0;
+}
+.snapicon-codes {
+    width: 20px;
+    height: 20px;
+    background-position: -252px 0;
+}
+.snapicon-shapes {
+    width: 20px;
+    height: 20px;
+    background-position: -288px 0;
+}
+.snapicon-line {
+    width: 20px;
+    height: 20px;
+    background-position: -324px 0;
+}
+.snapicon-line-weight {
+    width: 20px;
+    height: 20px;
+    background-position: -360px 0;
+}
+.snapicon-creative-commons-attribution {
+    width: 20px;
+    height: 20px;
+    background-position: -396px 0;
+}
+.snapicon-creative-commons-noderivs {
+    width: 20px;
+    height: 20px;
+    background-position: -432px 0;
+}
+.snapicon-creative-commons-noncommercial-eu {
+    width: 20px;
+    height: 20px;
+    background-position: -468px 0;
+}
+.snapicon-creative-commons-noncommercial-us {
+    width: 20px;
+    height: 20px;
+    background-position: -504px 0;
+}
+.snapicon-creative-commons-public-domain {
+    width: 20px;
+    height: 20px;
+    background-position: -540px 0;
+}
+.snapicon-creative-commons-remix {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -36px;
+}
+.snapicon-creative-commons-share {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -36px;
+}
+.snapicon-creative-commons-sharealike {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -36px;
+}
+.snapicon-creative-commons {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -36px;
+}
+.snapicon-document-landscape {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -36px;
+}
+.snapicon-warning {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -36px;
+}
+.snapicon-arrow-bold-down {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -36px;
+}
+.snapicon-arrow-bold-left {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -36px;
+}
+.snapicon-arrow-bold-right {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -36px;
+}
+.snapicon-arrow-bold-up {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -36px;
+}
+.snapicon-arrow-down {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -36px;
+}
+.snapicon-arrow-left {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -36px;
+}
+.snapicon-arrow-long-down {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -36px;
+}
+.snapicon-arrow-long-left {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -36px;
+}
+.snapicon-arrow-long-right {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -36px;
+}
+.snapicon-arrow-long-up {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -36px;
+}
+.snapicon-arrow-right {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -72px;
+}
+.snapicon-arrow-up {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -72px;
+}
+.snapicon-arrow-with-circle-down {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -72px;
+}
+.snapicon-arrow-with-circle-left {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -72px;
+}
+.snapicon-arrow-with-circle-right {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -72px;
+}
+.snapicon-arrow-with-circle-up {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -72px;
+}
+.snapicon-chevron-down {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -72px;
+}
+.snapicon-chevron-left {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -72px;
+}
+.snapicon-chevron-right {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -72px;
+}
+.snapicon-chevron-small-down {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -72px;
+}
+.snapicon-chevron-small-left {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -72px;
+}
+.snapicon-chevron-small-right {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -72px;
+}
+.snapicon-chevron-small-up {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -72px;
+}
+.snapicon-chevron-thin-down {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -72px;
+}
+.snapicon-chevron-thin-left {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -72px;
+}
+.snapicon-chevron-thin-right {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -72px;
+}
+.snapicon-chevron-thin-up {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -108px;
+}
+.snapicon-chevron-up {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -108px;
+}
+.snapicon-chevron-with-circle-down {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -108px;
+}
+.snapicon-chevron-with-circle-left {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -108px;
+}
+.snapicon-chevron-with-circle-right {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -108px;
+}
+.snapicon-chevron-with-circle-up {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -108px;
+}
+.snapicon-level-down {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -108px;
+}
+.snapicon-level-up {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -108px;
+}
+.snapicon-back {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -108px;
+}
+.snapicon-loop {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -108px;
+}
+.snapicon-retweet {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -108px;
+}
+.snapicon-swap {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -108px;
+}
+.snapicon-shuffle {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -108px;
+}
+.snapicon-controller-fast-backward {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -108px;
+}
+.snapicon-controller-fast-forward {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -108px;
+}
+.snapicon-controller-jump-to-start {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -108px;
+}
+.snapicon-controller-next {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -144px;
+}
+.snapicon-controller-paus {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -144px;
+}
+.snapicon-controller-play {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -144px;
+}
+.snapicon-controller-record {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -144px;
+}
+.snapicon-controller-stop {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -144px;
+}
+.snapicon-reply {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -144px;
+}
+.snapicon-reply-all {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -144px;
+}
+.snapicon-forward {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -144px;
+}
+.snapicon-controller-volume {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -144px;
+}
+.snapicon-dot-single {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -144px;
+}
+.snapicon-dots-three-horizontal {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -144px;
+}
+.snapicon-dots-three-vertical {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -144px;
+}
+.snapicon-dots-two-horizontal {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -144px;
+}
+.snapicon-dots-two-vertical {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -144px;
+}
+.snapicon-flow-branch {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -144px;
+}
+.snapicon-flow-cascade {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -144px;
+}
+.snapicon-flow-line {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -180px;
+}
+.snapicon-flow-parallel {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -180px;
+}
+.snapicon-flow-tree {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -180px;
+}
+.snapicon-open-book {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -180px;
+}
+.snapicon-resize-100 {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -180px;
+}
+.snapicon-resize-full-screen {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -180px;
+}
+.snapicon-select-arrows {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -180px;
+}
+.snapicon-triangle-down {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -180px;
+}
+.snapicon-triangle-left {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -180px;
+}
+.snapicon-triangle-right {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -180px;
+}
+.snapicon-triangle-up {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -180px;
+}
+.snapicon-drive {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -180px;
+}
+.snapicon-install {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -180px;
+}
+.snapicon-uninstall {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -180px;
+}
+.snapicon-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -180px;
+}
+.snapicon-upload-to-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -180px;
+}
+.snapicon-thunder-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -216px;
+}
+.snapicon-database {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -216px;
+}
+.snapicon-inbox {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -216px;
+}
+.snapicon-upload {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -216px;
+}
+.snapicon-download {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -216px;
+}
+.snapicon-air {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -216px;
+}
+.snapicon-aircraft-landing {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -216px;
+}
+.snapicon-aircraft-take-off {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -216px;
+}
+.snapicon-aircraft {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -216px;
+}
+.snapicon-align-bottom {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -216px;
+}
+.snapicon-align-horizontal-middle {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -216px;
+}
+.snapicon-align-left {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -216px;
+}
+.snapicon-align-right {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -216px;
+}
+.snapicon-align-top {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -216px;
+}
+.snapicon-align-vertical-middle {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -216px;
+}
+.snapicon-music {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -216px;
+}
+.snapicon-note2 {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -252px;
+}
+.snapicon-beamed-note {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -252px;
+}
+.snapicon-bell {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -252px;
+}
+.snapicon-sound {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -252px;
+}
+.snapicon-sound-mute {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -252px;
+}
+.snapicon-bowl {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -252px;
+}
+.snapicon-drink {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -252px;
+}
+.snapicon-cake {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -252px;
+}
+.snapicon-water {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -252px;
+}
+.snapicon-check {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -252px;
+}
+.snapicon-cross {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -252px;
+}
+.snapicon-minus {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -252px;
+}
+.snapicon-plus {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -252px;
+}
+.snapicon-circle-with-cross {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -252px;
+}
+.snapicon-circle-with-minus {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -252px;
+}
+.snapicon-circle-with-plus {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -252px;
+}
+.snapicon-squared-cross {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -288px;
+}
+.snapicon-squared-minus {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -288px;
+}
+.snapicon-squared-plus {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -288px;
+}
+.snapicon-block {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -288px;
+}
+.snapicon-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -288px;
+}
+.snapicon-circular-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -288px;
+}
+.snapicon-ccw {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -288px;
+}
+.snapicon-cw {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -288px;
+}
+.snapicon-cycle {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -288px;
+}
+.snapicon-credit-card {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -288px;
+}
+.snapicon-wallet {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -288px;
+}
+.snapicon-credit {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -288px;
+}
+.snapicon-trash {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -288px;
+}
+.snapicon-bucket {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -288px;
+}
+.snapicon-cup {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -288px;
+}
+.snapicon-document {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -288px;
+}
+.snapicon-documents {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -324px;
+}
+.snapicon-drop {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -324px;
+}
+.snapicon-edit {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -324px;
+}
+.snapicon-pencil {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -324px;
+}
+.snapicon-brush {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -324px;
+}
+.snapicon-round-brush {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -324px;
+}
+.snapicon-flat-brush {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -324px;
+}
+.snapicon-eraser {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -324px;
+}
+.snapicon-scissors {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -324px;
+}
+.snapicon-ruler {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -324px;
+}
+.snapicon-colours {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -324px;
+}
+.snapicon-copy {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -324px;
+}
+.snapicon-layers {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -324px;
+}
+.snapicon-new-message {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -324px;
+}
+.snapicon-palette {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -324px;
+}
+.snapicon-hand {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -324px;
+}
+.snapicon-blackboard {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -360px;
+}
+.snapicon-code {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -360px;
+}
+.snapicon-email {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -360px;
+}
+.snapicon-emoji-happy {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -360px;
+}
+.snapicon-emoji-flirt {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -360px;
+}
+.snapicon-emoji-neutral {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -360px;
+}
+.snapicon-emoji-sad {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -360px;
+}
+.snapicon-erase {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -360px;
+}
+.snapicon-export {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -360px;
+}
+.snapicon-eye {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -360px;
+}
+.snapicon-popup {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -360px;
+}
+.snapicon-switch {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -360px;
+}
+.snapicon-feather {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -360px;
+}
+.snapicon-flag {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -360px;
+}
+.snapicon-flash {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -360px;
+}
+.snapicon-flashlight {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -360px;
+}
+.snapicon-lab-flask {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -396px;
+}
+.snapicon-clapperboard {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -396px;
+}
+.snapicon-folder-images {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -396px;
+}
+.snapicon-folder-music {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -396px;
+}
+.snapicon-folder-video {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -396px;
+}
+.snapicon-folder {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -396px;
+}
+.snapicon-archive {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -396px;
+}
+.snapicon-box {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -396px;
+}
+.snapicon-briefcase {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -396px;
+}
+.snapicon-suitcase {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -396px;
+}
+.snapicon-funnel {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -396px;
+}
+.snapicon-globe {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -396px;
+}
+.snapicon-network {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -396px;
+}
+.snapicon-graduation-cap {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -396px;
+}
+.snapicon-thumbs-down {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -396px;
+}
+.snapicon-thumbs-up {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -396px;
+}
+.snapicon-heart-outlined {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -432px;
+}
+.snapicon-heart {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -432px;
+}
+.snapicon-star-outlined {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -432px;
+}
+.snapicon-star {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -432px;
+}
+.snapicon-help-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -432px;
+}
+.snapicon-help {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -432px;
+}
+.snapicon-info-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -432px;
+}
+.snapicon-info {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -432px;
+}
+.snapicon-home {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -432px;
+}
+.snapicon-hair-cross {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -432px;
+}
+.snapicon-compass {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -432px;
+}
+.snapicon-direction {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -432px;
+}
+.snapicon-address {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -432px;
+}
+.snapicon-map {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -432px;
+}
+.snapicon-location-pin {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -432px;
+}
+.snapicon-location {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -432px;
+}
+.snapicon-hour-glass {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -468px;
+}
+.snapicon-image-inverted {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -468px;
+}
+.snapicon-image {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -468px;
+}
+.snapicon-images {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -468px;
+}
+.snapicon-key {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -468px;
+}
+.snapicon-keyboard {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -468px;
+}
+.snapicon-language {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -468px;
+}
+.snapicon-message {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -468px;
+}
+.snapicon-chat {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -468px;
+}
+.snapicon-typing {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -468px;
+}
+.snapicon-megaphone {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -468px;
+}
+.snapicon-modern-mic {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -468px;
+}
+.snapicon-mic {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -468px;
+}
+.snapicon-radio {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -468px;
+}
+.snapicon-calculator {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -468px;
+}
+.snapicon-old-phone {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -468px;
+}
+.snapicon-old-mobile {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -504px;
+}
+.snapicon-landline {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -504px;
+}
+.snapicon-phone {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -504px;
+}
+.snapicon-dial-pad {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -504px;
+}
+.snapicon-classic-computer {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -504px;
+}
+.snapicon-tv {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -504px;
+}
+.snapicon-laptop {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -504px;
+}
+.snapicon-tablet {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -504px;
+}
+.snapicon-mobile {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -504px;
+}
+.snapicon-print {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -504px;
+}
+.snapicon-mouse {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -504px;
+}
+.snapicon-game-controller {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -504px;
+}
+.snapicon-camera {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -504px;
+}
+.snapicon-save {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -504px;
+}
+.snapicon-book {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -504px;
+}
+.snapicon-leaf {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -504px;
+}
+.snapicon-lifebuoy {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -540px;
+}
+.snapicon-light-bulb {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -540px;
+}
+.snapicon-light-down {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -540px;
+}
+.snapicon-light-up {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -540px;
+}
+.snapicon-adjust {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -540px;
+}
+.snapicon-news {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -540px;
+}
+.snapicon-text-document {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -540px;
+}
+.snapicon-text-document-inverted {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -540px;
+}
+.snapicon-spreadsheet {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -540px;
+}
+.snapicon-text {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -540px;
+}
+.snapicon-list {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -540px;
+}
+.snapicon-add-to-list {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -540px;
+}
+.snapicon-grid2 {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -540px;
+}
+.snapicon-clipboard {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -540px;
+}
+.snapicon-man {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -540px;
+}
+.snapicon-calendar {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -540px;
+}
+.snapicon-moon {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -576px;
+}
+.snapicon-lock-open {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -576px;
+}
+.snapicon-lock {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -576px;
+}
+.snapicon-mask {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -576px;
+}
+.snapicon-shield {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -576px;
+}
+.snapicon-shop {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -576px;
+}
+.snapicon-shopping-bag {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -576px;
+}
+.snapicon-shopping-basket {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -576px;
+}
+.snapicon-shopping-cart {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -576px;
+}
+.snapicon-log-out {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -576px;
+}
+.snapicon-login {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -576px;
+}
+.snapicon-magnet {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -576px;
+}
+.snapicon-link {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -576px;
+}
+.snapicon-magnifying-glass {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -576px;
+}
+.snapicon-mail {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -576px;
+}
+.snapicon-paper-plane {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -576px;
+}
+.snapicon-attachment {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -612px;
+}
+.snapicon-pin {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -612px;
+}
+.snapicon-awareness-ribbon {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -612px;
+}
+.snapicon-new {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -612px;
+}
+.snapicon-notification {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -612px;
+}
+.snapicon-unread {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -612px;
+}
+.snapicon-browser {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -612px;
+}
+.snapicon-publish {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -612px;
+}
+.snapicon-menu {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -612px;
+}
+.snapicon-time-slot {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -612px;
+}
+.snapicon-pie-chart {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -612px;
+}
+.snapicon-bar-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -612px;
+}
+.snapicon-area-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -612px;
+}
+.snapicon-line-graph {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -612px;
+}
+.snapicon-gauge {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -612px;
+}
+.snapicon-trophy {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -612px;
+}
+.snapicon-medal {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -648px;
+}
+.snapicon-price-ribbon {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -648px;
+}
+.snapicon-price-tag {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -648px;
+}
+.snapicon-battery {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -648px;
+}
+.snapicon-progress-full {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -648px;
+}
+.snapicon-progress-two {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -648px;
+}
+.snapicon-progress-one {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -648px;
+}
+.snapicon-progress-empty {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -648px;
+}
+.snapicon-quote {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -648px;
+}
+.snapicon-rss {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -648px;
+}
+.snapicon-signal {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -648px;
+}
+.snapicon-share-alternitive {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -648px;
+}
+.snapicon-share {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -648px;
+}
+.snapicon-shareable {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -648px;
+}
+.snapicon-infinity {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -648px;
+}
+.snapicon-cog {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -648px;
+}
+.snapicon-tools {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -684px;
+}
+.snapicon-sound-mix {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -684px;
+}
+.snapicon-traffic-cone {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -684px;
+}
+.snapicon-stopwatch {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -684px;
+}
+.snapicon-tree {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -684px;
+}
+.snapicon-tag {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -684px;
+}
+.snapicon-untag {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -684px;
+}
+.snapicon-bookmark {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -684px;
+}
+.snapicon-bookmarks {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -684px;
+}
+.snapicon-ticket {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -684px;
+}
+.snapicon-v-card {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -684px;
+}
+.snapicon-video {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -684px;
+}
+.snapicon-vinyl {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -684px;
+}
+.snapicon-voicemail {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -684px;
+}
+.snapicon-thermometer {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -684px;
+}
+.snapicon-power-plug {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -684px;
+}
+.snapicon-rocket {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -720px;
+}
+.snapicon-sweden {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -720px;
+}
+.snapicon-sports-club {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -720px;
+}
+.snapicon-px-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -720px;
+}
+.snapicon-px {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -720px;
+}
+.snapicon-basecamp {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -720px;
+}
+.snapicon-behance {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -720px;
+}
+.snapicon-creative-cloud {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -720px;
+}
+.snapicon-dropbox {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -720px;
+}
+.snapicon-evernote {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -720px;
+}
+.snapicon-flattr {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -720px;
+}
+.snapicon-foursquare {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -720px;
+}
+.snapicon-google-drive {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -720px;
+}
+.snapicon-google-hangouts {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -720px;
+}
+.snapicon-grooveshark {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -720px;
+}
+.snapicon-icloud {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -720px;
+}
+.snapicon-mixi {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -756px;
+}
+.snapicon-onedrive {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -756px;
+}
+.snapicon-paypal {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -756px;
+}
+.snapicon-picasa {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -756px;
+}
+.snapicon-qq {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -756px;
+}
+.snapicon-rdio-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -756px;
+}
+.snapicon-renren {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -756px;
+}
+.snapicon-scribd {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -756px;
+}
+.snapicon-sina-weibo {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -756px;
+}
+.snapicon-skype-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -756px;
+}
+.snapicon-skype {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -756px;
+}
+.snapicon-slideshare {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -756px;
+}
+.snapicon-smashing {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -756px;
+}
+.snapicon-soundcloud {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -756px;
+}
+.snapicon-spotify-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -756px;
+}
+.snapicon-spotify {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -756px;
+}
+.snapicon-swarm {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -792px;
+}
+.snapicon-vine-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -792px;
+}
+.snapicon-vine {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -792px;
+}
+.snapicon-vk-alternitive {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -792px;
+}
+.snapicon-vk-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -792px;
+}
+.snapicon-vk {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -792px;
+}
+.snapicon-xing-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -792px;
+}
+.snapicon-xing {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -792px;
+}
+.snapicon-yelp {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -792px;
+}
+.snapicon-dribbble-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -792px;
+}
+.snapicon-dribbble {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -792px;
+}
+.snapicon-facebook-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -792px;
+}
+.snapicon-facebook {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -792px;
+}
+.snapicon-flickr-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -792px;
+}
+.snapicon-flickr {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -792px;
+}
+.snapicon-github-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -792px;
+}
+.snapicon-github {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -828px;
+}
+.snapicon-google-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -828px;
+}
+.snapicon-google {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -828px;
+}
+.snapicon-instagram-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -828px;
+}
+.snapicon-instagram {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -828px;
+}
+.snapicon-lastfm-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -828px;
+}
+.snapicon-lastfm {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -828px;
+}
+.snapicon-linkedin-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -828px;
+}
+.snapicon-linkedin {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -828px;
+}
+.snapicon-pinterest-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -828px;
+}
+.snapicon-pinterest {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -828px;
+}
+.snapicon-rdio {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -828px;
+}
+.snapicon-stumbleupon-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -828px;
+}
+.snapicon-stumbleupon {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -828px;
+}
+.snapicon-tumblr-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -828px;
+}
+.snapicon-tumblr {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -828px;
+}
+.snapicon-twitter-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -864px;
+}
+.snapicon-twitter {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -864px;
+}
+.snapicon-vimeo-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -864px;
+}
+.snapicon-vimeo {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -864px;
+}
+.snapicon-youtube-with-circle {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -864px;
+}
+.snapicon-youtube {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -864px;
+}
+.snapicon-user {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -864px;
+}
+.snapicon-users {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -864px;
+}
+.snapicon-user-add {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -864px;
+}
+.snapicon-vcard {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -864px;
+}
+.snapicon-airplane {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -864px;
+}
+.snapicon-clock {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -864px;
+}
+.snapicon-history {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -864px;
+}
+.snapicon-cc-nc-eu {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -864px;
+}
+.snapicon-cc-nc-jp {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -864px;
+}
+.snapicon-cc-zero {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -864px;
+}
+.snapicon-danielbruce2 {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -900px;
+}
+.snapicon-sort {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -900px;
+}
+.snapicon-dashboard {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -900px;
+}
+.snapicon-move-copy {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -900px;
+}
+.snapicon-treatment_plan {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -900px;
+}
+.snapicon-new_folder {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -900px;
+}
+.snapicon-health_card {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -900px;
+}
+.snapicon-user_info {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -900px;
+}
+.snapicon-hair {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -900px;
+}
+.snapicon-down_circle {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -900px;
+}
+.snapicon-user_clinician {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -900px;
+}
+.snapicon-no_charge {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -900px;
+}
+.snapicon-new_calendar_item {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -900px;
+}
+.snapicon-transgender {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -900px;
+}
+.snapicon-male {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -900px;
+}
+.snapicon-female {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -900px;
+}
+.snapicon-labs {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -936px;
+}
+.snapicon-vaccinations {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -936px;
+}
+.snapicon-data {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -936px;
+}
+.snapicon-bulk {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -936px;
+}
+.snapicon-share_screen {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -936px;
+}
+.snapicon-confirm {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -936px;
+}
+.snapicon-hash {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -936px;
+}
+.snapicon-height {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -936px;
+}
+.snapicon-weight {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -936px;
+}
+.snapicon-self_view {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -936px;
+}
+.snapicon-microphone_mute {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -936px;
+}
+.snapicon-video_camera {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -936px;
+}
+.snapicon-video_camera_mute {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -936px;
+}
+.snapicon-speaker {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -936px;
+}
+.snapicon-speaker_mute {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -936px;
+}
+.snapicon-intake {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -936px;
+}
+.snapicon-note {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -972px;
+}
+.snapicon-rx {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -972px;
+}
+.snapicon-disconnect {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -972px;
+}
+.snapicon-layout-active {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -972px;
+}
+.snapicon-layout-continuous {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -972px;
+}
+.snapicon-selfview-on {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -972px;
+}
+.snapicon-selfview-off {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -972px;
+}
+.snapicon-dial {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -972px;
+}
+.snapicon-grid {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -972px;
+}
+.snapicon-lego {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -972px;
+}
+.snapicon-group {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -972px;
+}
+.snapicon-bug {
+    width: 20px;
+    height: 20px;
+    background-position: -396px -972px;
+}
+.snapicon-clock2 {
+    width: 20px;
+    height: 20px;
+    background-position: -432px -972px;
+}
+.snapicon-crop {
+    width: 20px;
+    height: 20px;
+    background-position: -468px -972px;
+}
+.snapicon-eye-with-line {
+    width: 20px;
+    height: 20px;
+    background-position: -504px -972px;
+}
+.snapicon-fingerprint {
+    width: 20px;
+    height: 20px;
+    background-position: -540px -972px;
+}
+.snapicon-flower {
+    width: 20px;
+    height: 20px;
+    background-position: 0 -1008px;
+}
+.snapicon-merge {
+    width: 20px;
+    height: 20px;
+    background-position: -36px -1008px;
+}
+.snapicon-mouse-pointer {
+    width: 20px;
+    height: 20px;
+    background-position: -72px -1008px;
+}
+.snapicon-newsletter {
+    width: 20px;
+    height: 20px;
+    background-position: -108px -1008px;
+}
+.snapicon-notifications-off {
+    width: 20px;
+    height: 20px;
+    background-position: -144px -1008px;
+}
+.snapicon-quote2 {
+    width: 20px;
+    height: 20px;
+    background-position: -180px -1008px;
+}
+.snapicon-remove-user {
+    width: 20px;
+    height: 20px;
+    background-position: -216px -1008px;
+}
+.snapicon-tablet-mobile-combo {
+    width: 20px;
+    height: 20px;
+    background-position: -252px -1008px;
+}
+.snapicon-user2 {
+    width: 20px;
+    height: 20px;
+    background-position: -288px -1008px;
+}
+.snapicon-users2 {
+    width: 20px;
+    height: 20px;
+    background-position: -324px -1008px;
+}
+.snapicon-video-camera {
+    width: 20px;
+    height: 20px;
+    background-position: -360px -1008px;
+}
+

@@ -1,0 +1,205 @@
+<ion-side-menus>
+<ion-side-menu-content>
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <div class="buttons">
+         <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>-->
+         <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+      </div>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#tab/consultations" ><i class="icon ion-search" ></i></a></span></h1>
+      <div class="bar bar-subheader csubheader">
+         <div class="row" style="position: relative; top: 10px;">
+            <div class="buttons backbtn">
+               <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
+            </div>
+            <div class=" button-bar">
+               <label class="button button-small btcolor btn-first " id="passedsearch" ng-click="passedsearchconsult()"> <span class="tabheading">Past</span></label>
+               <label class="button button-small btn-first btnextcolor" id="missedsearch" ng-click="missedsearchconsult()"><span class="tabheading">Missed</span></label>
+               <label class="button button-small btn-first btnextcolor" id="droppedsearch" ng-click="droppedsearchconsult()"><span class="tabheading">Dropped</span></label>
+            </div>
+            <div class="buttons backbtn">
+               <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
+            </div>
+         </div>
+      </div>
+   </ion-header-bar>
+   <ion-view title="">
+      <ion-content ng-show="passedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
+          <div class="csearch-{{deviceName}}">
+             <h6 class="hsearch">
+
+                   <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
+                   <div class="item-input-inset" style="margin-top: -15px!important;margin-bottom: -16px!important;">
+                     <label class="item-input-wrapper">
+                      <i style="display: {{iconDisplay}}" class="icon doticon"  ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+                      <input type="search"  placeholder="Search" ng-model="data.searchProvider">
+
+                     </label>
+                   </div>
+                 </div>
+             </h6>
+          </div>
+         <div class="row sheader">
+            <div class="col col-30 dsheader"><span class="datealign">Date</span></div>
+            <div class="col col-20 csheader">Time</div>
+            <div class="col col-30 cpheader">Provider</div>
+            <div class="col col-25 "></div>
+         </div>
+         <hr style="margin-top: -10px; margin-bottom: 0px;color:#b5b5b5;">
+
+         <div class="list listfirst">
+            <div class=" consultsearch" ng-repeat="passedData in filteredItems=(Passedconsultations  | filter: data.searchProvider)" style="background-color:none;">
+               <div class="row " >
+                  <div class="col col-30">
+                     <p class="colfamily">{{ passedData.consultationDate }} </p>
+                  </div>
+                  <div class="col col-20">
+                     <p class="colfamily">{{passedData.consultationTimeInfo  | date: "hh:mm a"}}</p>
+                  </div>
+                  <div class="col col-30 ellipsis">
+                     <p class="ellipsis">  <span class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</span>
+                        <span class="ellipsis colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName }}</span>
+                        <!--  <span class="vreport" ng-click="showReportView({{passedData}});">View Report</span><span><i class="icon ion-chevron-right right-icon"></i></span>-->
+                     </p>
+                  </div>
+                  <div class="col col-20">
+                     <span class="contright"  ng-click="showReportView({{passedData}},'tab.reports');">Report
+                     <span><i class="icon ion-chevron-right"></i></span></span>
+                  </div>
+               </div>
+               <hr class="dotedhr">
+            </div>
+
+              <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found!</ion-item>
+
+         </div>
+
+         <div  ng-if="Passedconsultations.length"  class="searchdata noResult" style="white-space: normal;" ng-show="(Passedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
+      </ion-content>
+      <ion-content ng-show="missedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
+         <div class="csearch-{{deviceName}}">
+            <h6 class="hsearch">
+
+                 <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
+                  <div class="item-input-inset" style="margin-top: -15px!important;margin-bottom: -16px!important;">
+                    <label class="item-input-wrapper">
+                       <i style="display: {{iconDisplay}}" class="icon doticon"  ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+                     <input type="search"  placeholder="Search" ng-model="data.searchProvider">
+
+                    </label>
+                  </div>
+                </div>
+            </h6>
+         </div>
+         <div class="row sheader">
+            <div class="col col-30 dsheader"><span class="datealign">Date</span></div>
+            <div class="col col-20 csheader">Time</div>
+            <div class="col col-30 cpheader">Provider</div>
+            <div class="col col-25 "></div>
+         </div>
+         <hr style="margin-top: -10px; margin-bottom: 0px;color:#b5b5b5;">
+
+         <div class="list listfirst ">
+            <div class="consultsearch" ng-repeat="misseddata in missedlist  | filter: data.searchProvider" style="background-color:none;">
+               <div class="row">
+                  <div class="col col-30">
+                     <p class="colfamily">{{misseddata.enddate | date: "MMM dd, yyyy"}}</p>
+                  </div>
+                  <div class="col col-20">
+                     <p class="colfamily">{{misseddata.startTime  | date: "hh:mm a"}}</p>
+                  </div>
+                  <div class="col col-30 ellipsis">
+                     <p class="ellipsis"><span class="colfamily" ng-if="!misseddata.docname">NA</span>
+                        <span class=" colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}</span>
+                  </div>
+                  <div class="col col-25 colReport-{{deviceName}}" >
+                     <span class="contright"  ng-click="showMissedDetailsView({{misseddata}},'tab.missedConsultAppoint');">Details
+                     <span><i class="icon ion-chevron-right"></i></span></span>
+                  </div>
+               </div>
+                 <hr class="dotedhr">
+            </div>
+
+            <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found!</ion-item>
+         </div>
+         <div ng-if="missedlist.length" class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:data.searchProvider).length==0">No Search Results Found!</div>
+      </ion-content>
+
+
+      <ion-content ng-show="droppedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
+         <div class="csearch-{{deviceName}}">
+            <h6 class="hsearch">
+
+               <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none!important;">
+                  <div class="item-input-inset" style="margin-top: -15px!important;margin-bottom: -16px!important;">
+                    <label class="item-input-wrapper">
+                      <i style="display: {{iconDisplay}}" class="icon doticon"  ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
+                     <input type="search"  placeholder="Search" ng-model="data.searchProvider">
+
+                    </label>
+                  </div>
+                </div>
+            </h6>
+         </div>
+         <div class="row sheader">
+            <div class="col col-30 dsheader"><span class="datealign">Date</span></div>
+            <div class="col col-20 csheader">Time</div>
+            <div class="col col-30 cpheader">Provider</div>
+            <div class="col col-25 "></div>
+         </div>
+         <hr style="margin-top: -10px; margin-bottom: 0px;color:#b5b5b5;">
+
+         <div class="list listfirst ">
+            <div class="consultsearch" ng-repeat="droppedData in Droppedconsultations  | filter: data.searchProvider" style="background-color:none;">
+               <div class="row">
+                  <div class="col col-30">
+                     <p class="colfamily">{{droppedData.consultationDate}}</p>
+                  </div>
+                  <div class="col col-20">
+                     <p class="colfamily">{{droppedData.consultationTimeInfo | date: "h:mm a"}}</p>
+                  </div>
+                  <div class="col col-30 ellipsis">
+                     <p class="ellipsis">
+                       <span class="colfamily" ng-if="!droppedData.assignedDoctorName">NA</span>
+                        <span class=" colfamily"  ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</span>
+                     </p>
+                  </div>
+                  <div class="col col-25 colReport-{{deviceName}}">
+                     <span class="contright"  ng-click="showReportView({{droppedData}},'tab.reports');">Report
+                     <span><i class="icon ion-chevron-right"></i></span></span>
+                  </div>
+               </div>
+               <hr class="dotedhr">
+            </div>
+
+              <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found!</ion-item>
+         </div>
+         <div ng-if="Droppedconsultations.length" class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
+      </ion-content>
+      <!--- Dropped Consult End--->
+
+</ion-view>
+<ion-tabs class=" tabs-icon-top tabs-dark">
+   <a class="tab-item" ng-href="#/tab/relatedusers" >
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
+   <span class="tabcolor">Users</span>
+   </a>
+   <a class="tab-item active" ng-href="#/tab/consultations">
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
+   <span class="tabcolor">Consultations</span>
+   </a>
+   <a class="tab-item" ng-href="#/tab/healthinfo">
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
+   <span class="tabcolor">My Health</span>
+   </a>
+   <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
+    <span class="tabcolor">Appointments</span>
+   </a>
+   <a class="tab-item" ng-href="#/tab/profileoption">
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
+   <span class="tabcolor">More</span>
+   </a>
+</ion-tabs>
+
+</ion-side-menu-content>
+<div ng-include src="'templates/SideMenu.html'"></div>
