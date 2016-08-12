@@ -645,6 +645,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
@@ -1379,8 +1381,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 success: function(data) {
                     //Get default payment profile from localstorage if already stored.
                     $rootScope.accessToken = data.data[0].access_token;
-                    console.log($filter('date')(data.data[0].expires, "yyyy-MM-ddTHH:mm:ss"));
-                    console.log($scope.accessToken);
+                    $window.localStorage.setItem('tokenExpireTime', data.data[0].expires);
+
                     if (typeof data.data[0].access_token == 'undefined') {
                         $scope.ErrorMessage = "Incorrect Password. Please try again";
                         $rootScope.Validation($scope.ErrorMessage);
@@ -1642,7 +1644,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             if ($scope.searched) {
                 $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
-                $rootScope.homeMagnifyDisplay = "none";
+                $rootScope.homeMagnifyDisplay = "block";
             }
         }
     })

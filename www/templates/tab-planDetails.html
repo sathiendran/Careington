@@ -67,7 +67,7 @@
 							<div class="viewport1">Plan Provider</div>
 							<select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
 								<option value=""><b>Plan Provider</b></option>
-								<option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
+								<option class="planDetailOption" ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
 							</select>
 						</div>
 
