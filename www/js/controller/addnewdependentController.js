@@ -182,14 +182,7 @@ $scope.depheight2=function(){
          }
       }
 }
-$scope.weightunitchange=function(){
-       var maxweight = 999;
-       var weightval=$('#weight').val();
-       if ( weightval > maxweight)
-      {
-          $("#weight").val(maxweight);
-      }
-}
+
 
 $scope.unitchange=function(){
     var maxheight=11;
@@ -206,7 +199,14 @@ $scope.unitchange=function(){
     }
 }
 
-
+$scope.weightunitchange=function(){
+       var maxweight = 999;
+       var weightval=$('#weight').val();
+       if ( weightval > maxweight)
+      {
+          $("#weight").val(maxweight);
+      }
+}
 $scope.phoneBlur=function(){
 $scope.phonelength=$("#homephone").val().length;
 var phonevalue=$("#homephone").val();
