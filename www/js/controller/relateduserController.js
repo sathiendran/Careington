@@ -17,6 +17,8 @@ angular.module('starter.controllers')
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
                 navigator.app.exitApp();
+            } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+                navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
                 var gSearchLength = $('.ion-google-place-container').length;
                 if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
@@ -549,7 +551,7 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.MedicationCountValid = "";
 
           if($rootScope.onDemandAvailability > 0) {
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.PatientAge, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
           //  console.log(getDependentDetails);
           //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
           } else {
