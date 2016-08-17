@@ -4872,7 +4872,10 @@ p{
          color: #A80532;
      }
   .consultcontentsearch{margin-top:26px;}
-
+  #accountMngeProfile-Android {
+    //padding: 47px 10px !important;
+    padding: 22px 10px ;
+  }
     }
 
 
@@ -8248,7 +8251,7 @@ input.ion-google-place[readonly] {
 
  #accountMngeProfile-Android {
    //padding: 47px 10px !important;
-   padding: 38px 10px !important;
+   padding: 27px 10px ;
  }
 .loginEmail {
   .icon-mail {
@@ -8568,3 +8571,21 @@ input.ion-google-place[readonly] {
       font-size: 17px;
   }
 }
+.addcouser{padding: 40px 10px;}
+.adddepuser{padding: 44px 10px;}
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px) {
+    #accountMngeProfile-Android {
+      padding: 27px 10px ;
+  }
+  .addcouser{padding: 40px 10px;}
+  .adddepuser{padding: 44px 10px;}
+  }
+  @media (max-width: 360px) and (min-width: 342px){
+    #accountMngeProfile-Android {
+        padding: 22px 10px ;
+    }
+    .addcouser{padding: 40px 10px;}
+    .adddepuser{padding: 40px 10px;}
+  }
