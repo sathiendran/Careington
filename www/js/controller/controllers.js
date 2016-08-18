@@ -1382,7 +1382,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 success: function(data) {
                     //Get default payment profile from localstorage if already stored.
                     $rootScope.accessToken = data.data[0].access_token;
-                    $window.localStorage.setItem('tokenExpireTime', data.data[0].expires);
+                  //  $window.localStorage.setItem('tokenExpireTime', data.data[0].expires);
+                    $scope.getCurrentTimeForSessionLogout = new Date();
+                		$rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
+                    $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
 
                     if (typeof data.data[0].access_token == 'undefined') {
                         $scope.ErrorMessage = "Incorrect Password. Please try again";
@@ -3997,6 +4000,15 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.userGender = "Female";
                         $rootScope.isCheckedFemale = true;
                     }
+                    if($rootScope.currentPatientDetails[0].account.patientId !== $rootScope.primaryPatientId) {
+                      if (!angular.isUndefined($rootScope.currentPatientDetails[0].account.relationship)) {
+                          $rootScope.patRelationShip =  $rootScope.currentPatientDetails[0].account.relationship;
+                      } else {
+                          $rootScope.patRelationShip = '';
+                      }
+                    } else {
+                        $rootScope.patRelationShip = '';
+                    }
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     $state.go(nextPage);
                 }
@@ -4363,8 +4375,10 @@ LoginService.getScheduledConsulatation(params);
             } else {
                 $rootScope.userAgeForIntake = 7;
             }
-          if(P_Age.indexOf('T') == -1) {
-              $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
+            if (P_Id !== $rootScope.primaryPatientId) {
+              if(P_Age.indexOf('T') == -1) {
+                $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
+              }
             }
         }
         //  $rootScope.userAgeForIntake = ageFilter.getDateFilter(P_Age);

@@ -1701,7 +1701,7 @@ html, body { background: transparent !important; }
 	.PrimaryList {
 		top:3px;padding: 1px;cursor:pointer;
 		.Step1 {
-			color:#888;float:right;margin-right: 10px; margin-top: 14px;
+			color:#888;float:right;margin-right: 10px; margin-top: 14px; font-family: $fontFamily_regular;
 		}
 		.PrimaryContent {
 			margin-top: 30px;
@@ -1793,7 +1793,8 @@ html, body { background: transparent !important; }
 		  }
 		float:left; width:33%;	cursor:pointer;	 position: relative; top: -10px; left: 10px;
 		span {
-			top: -2px;position: relative; 	font-weight: bold;
+			top: -2px;position: relative;
+      font-weight: bold;
 		}
 		a {
 			padding: 10px 10px 10px 0px;
@@ -2793,7 +2794,7 @@ margin-left: 16px;
 font-family: $fontFamily_thin;
 }
 .PatintHeaderFontStyleSub {
-font-family: $fontFamily_thin;
+font-family: $fontFamily_regular; font-weight: normal !important;
 }
 .ItalicSemiBoldStyle {
 font-family: $fontFamily_light;
@@ -3012,12 +3013,18 @@ form.ng-submitted input.ng-valid + i.icon.error {
     color: black;
     font-size: 30px;
     cursor: pointer;
+    .icon-circle-with-plus {
+      font-size: 34px !important;
+    }
 }
 
 .delBtn{
     color: red;
     font-size: 30px;
     cursor: pointer;
+    .icon-circle-with-cross {
+      font-size: 34px !important;
+    }
 
 }
 .disabled {
@@ -3110,7 +3117,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           position: fixed;
           text-align: center;
           width: 100%;
-          margin-top: 4px;
+          margin-top: 2px;
           padding-right: 83px;
           font-size: 16px;
           color: #8e8e93;
@@ -3165,7 +3172,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           position: fixed;
           text-align: center;
           width: 100%;
-          margin-top: 4px;
+          margin-top: 2px;
           padding-right: 83px;
           font-size: 16px;
           color: #8e8e93;
@@ -3636,10 +3643,12 @@ input, button, select, textarea {
   border-color: #C4C5C3;
   }
 .patientConternFontStyle {
-font-family: $fontFamily_bold;
+  font-family: $fontFamily_semibold;
+  color: #888888 !important;
+  font-size: 15px !important;
 }
 .patientConternFontStyle-ios {
-font-family: $fontFamily_bold;
+font-family: $fontFamily_semibold;
     font-size: 15px;
 }
 .patientConternFontStyleSubTitle {
@@ -8573,6 +8582,18 @@ input.ion-google-place[readonly] {
       font-size: 17px;
   }
 }
+
+.intakeNewEdit-IOS {
+  top: -5px;
+}
+.intakeNewEdit-Android {
+  top: -5px;
+}
+.concernsSubTit {
+  font-family: $fontFamily_semibold;
+  color: #666666;
+}
+
 .addcouser{padding: 44px 10px;}
 .adddepuser{padding: 44px 10px;}
 @media screen
