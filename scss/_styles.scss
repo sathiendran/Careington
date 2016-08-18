@@ -1494,7 +1494,7 @@ html, body { background: transparent !important; }
   }
 
 	.LogOutText {
-		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644; margin-top: 18px;
+		color:#7E807E;margin-left: -4px;font-family: Glober regular !important; background-color: #464644; margin-top: 18px;bottom:13px;
 		span {
 			position: relative;  font-size: 23px; padding-left: 15px; color: rgba(248, 248, 248, 0.57);font-weight: normal !important;
 		}
@@ -4479,7 +4479,8 @@ p{
           }
        }
        .authorcont{
-         margin-top:-6px;
+         //margin-top:-6px;
+         margin-top:0px;
          margin-left:14px;
         font-size:11px !important;
       }
