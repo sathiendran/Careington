@@ -4175,14 +4175,15 @@ font-size: 18px;
    border-top: none;padding: 0px !important;
 }
 .newuserp{
-    text-align:center;margin-bottom: 10px!important;
+    text-align:center;//margin-bottom: 10px!important;
     [class^="icon-user-add"], [class*=" icon-user-add"] {
       font-size: 40px;
     }
 }
 .newusertopcontent{
     text-align:center;}
-.newusertoph2 { margin-bottom:10px !important;}
+.newusertoph2 { //margin-bottom:10px !important;
+}
 .usertopfont { font-size: 30px !important; font-family:Glober Bold ; color:#888888 !important;}
 .topp{ color: #999999 !important; font-size: 14px; line-height: 25px;}
 .donebutton{
@@ -4558,9 +4559,9 @@ p{
       .fdate {
         margin-top: 0px !important;
       }
-    /*  #accountMngeProfile-IOS {
+     #accountMngeProfile-IOS {
         padding: 34px 10px;
-      }*/
+      }
       #AppointNoneIOS {
         padding: 34px 10px !important;
       }
@@ -4881,7 +4882,10 @@ p{
          color: #A80532;
      }
   .consultcontentsearch{margin-top:26px;}
-
+  #accountMngeProfile-Android {
+    //padding: 47px 10px !important;
+    padding: 22px 10px ;
+  }
     }
 
 
@@ -8257,7 +8261,7 @@ input.ion-google-place[readonly] {
 
  #accountMngeProfile-Android {
    //padding: 47px 10px !important;
-   padding: 38px 10px !important;
+   padding: 27px 10px ;
  }
 .loginEmail {
   .icon-mail {
@@ -8587,3 +8591,25 @@ input.ion-google-place[readonly] {
   font-family: $fontFamily_semibold;
   color: #666666;
 }
+
+.addcouser{padding: 40px 10px;}
+.adddepuser{padding: 44px 10px;}
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px) {
+    #accountMngeProfile-Android {
+      padding: 27px 10px ;
+  }
+  .addcouser{padding: 48px 10px;}
+  .adddepuser{padding: 48px 10px;}
+  }
+
+  @media screen
+    and (device-width: 384px)
+    and (device-height: 598px) {
+      #accountMngeProfile-Android {
+        padding: 22px 10px;
+    }
+    .addcouser{padding: 40px 10px;}
+    .adddepuser{padding: 40px 10px;}
+    }

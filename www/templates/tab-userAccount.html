@@ -42,9 +42,9 @@
 	<ion-content  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId != patientId"  style="display: {{individualwithoutAppointmentDisplay}};">
 			<ion-list>
 			<div class="list userlist {{accountStyle}}">
-					<ion-item class="ioniictem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
+					<ion-item class="ioniictem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 
-						<div class="cardshadow">
+						<div class="card" style="box-shadow:none !important;">
 							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
@@ -66,8 +66,8 @@
 						</div>
 
 					</ion-item>
-			 		<ion-item class="ionicitem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
-						<div class="cardshadow">
+			 		<ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
+							<div class="card" style="box-shadow:none !important;">
 							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
@@ -97,9 +97,9 @@
 <ion-content  title="User Account" class="usercontentpat-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId == patientId" style="display: {{individualNextAppointmentDisplay}};">
 		<ion-list>
 		<div class="list userlist {{accountStyle}}">
-				<ion-item class="ioniictem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
+				<ion-item class="ioniictem " id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 
-					<div class="cardshadow">
+						<div class="card" style="box-shadow:none !important;">
 						<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 								<h2 class="title alignchronic ChronicCondition" >
@@ -121,8 +121,8 @@
 					</div>
 
 				</ion-item>
-				<ion-item class="ionicitem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
-					<div class="cardshadow">
+				<ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
+						<div class="card" style="box-shadow:none !important;">
 						<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 								<h2 class="title alignchronic ChronicCondition" >

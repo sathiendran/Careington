@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('consultationController', function($scope, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue, $ionicModal) {
+    .controller('consultationController', function($scope,$sanitize,$ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue, $ionicModal) {
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
@@ -597,6 +597,7 @@ angular.module('starter.controllers')
                     session = null;
                     $scope.getSoapNotes(consultation);
                     $scope.doGetAttachmentList(consultation.consultationId);
+                    $scope.doGetChatTranscript(consultation.consultationId);
                   /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
                         scope: $scope,
                         animation: 'slide-in-up',
@@ -658,8 +659,36 @@ angular.module('starter.controllers')
             };
             LoginService.getAttachmentList(params);
         }
+         $scope.doGetChatTranscript = function(consultationId) {
+           if ($rootScope.accessToken == 'No Token') {
+               alert('No token.  Get token first then attempt operation.');
+               return;
+           }
+           var params = {
+               consultationId: consultationId,
+               accessToken: $rootScope.accessToken,
+               success: function(data) {
 
-        $scope.getSoapNotes = function(consultation) {
+                 $rootScope.chatTranscript = [];
+                 if(data.count !== 0) {
+                   angular.forEach(data.data, function(index, item) {
+                     $scope.charval=$('<textarea />').html(index).text();
+                $rootScope.chatTranscript.push({
+                         'ChatMessage': $scope.charval
+                       });
+                   });
+                 }
+  },
+               error: function(data) {
+                   $rootScope.serverErrorMessageValidation();
+               }
+           };
+
+           LoginService.getChatTranscript(params);
+
+         }
+
+      $scope.getSoapNotes = function(consultation) {
             $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
             $("#reportObjective").html($rootScope.existingConsultationReport.objective);
             $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);

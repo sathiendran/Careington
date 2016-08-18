@@ -541,7 +541,7 @@ if(phonevalue!=''){
             $rootScope.dependentuserslist = false;
           //  $state.go('tab.relatedusers');
           history.back();
-          $scope.apply();
+          $scope.$apply();
         }
 
         //Function to open ActionSheet when clicking Camera Button
