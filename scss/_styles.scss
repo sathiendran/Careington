@@ -4678,9 +4678,10 @@ p{
   @media (max-width: 481px) and (min-width: 322px) {
 
     .dependusers:last-child{padding-bottom: 200px;}
-    .password_home_top {
-     // margin-top:-110px  }
-}
+    .password_home_top {}
+
+    .addcouser{padding: 35px 10px  !important;}
+    .adddepuser{padding: 35px 10px  !important;}
 
 .accountAppointview-Android {
     position: relative;
@@ -4875,7 +4876,7 @@ p{
   .consultcontentsearch{margin-top:26px;}
   #accountMngeProfile-Android {
     //padding: 47px 10px !important;
-    padding: 22px 10px ;
+    padding: 16px 10px !important;
   }
     }
 
@@ -8572,16 +8573,16 @@ input.ion-google-place[readonly] {
       font-size: 17px;
   }
 }
-.addcouser{padding: 40px 10px;}
+.addcouser{padding: 44px 10px;}
 .adddepuser{padding: 44px 10px;}
 @media screen
   and (device-width: 360px)
   and (device-height: 640px) {
     #accountMngeProfile-Android {
-      padding: 27px 10px ;
+      padding: 27px 10px !important;
   }
-  .addcouser{padding: 48px 10px;}
-  .adddepuser{padding: 48px 10px;}
+  .addcouser{padding: 48px 10px !important;}
+  .adddepuser{padding: 48px 10px !important;}
   }
 
   @media screen
