@@ -7,7 +7,7 @@
 		<div>
 			<div class="ConsentSteps" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">6</b> of <b style="color:#535353;">7</b></div>
 			<div>
-				<h1 class="ChronicCondition consentTitle" style="{{IntakeFormInnerStyleTitle}}">Consent to Treat</h1>
+				<h1 class="ChronicCondition concernsSubTit consentTitle" style="{{IntakeFormInnerStyleTitle}}">Consent to Treat</h1>
 				<p class="consentSubTitle"><b>Read, Acknowledge, and Agree (Scroll to Bottom)</b></p>
 			</div>
 			<!-- <div class="consentLine" style=" top: -2px;position: relative;"></div>-->
@@ -161,7 +161,7 @@ By clicking "I Agree", I acknowledge and agree to the Terms and Conditions and C
 	 <img ng-src="{{PatientImage}}" class="UserHmelistImgView">
 	 <div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 	 <!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-	 <p class="ListHomeUser_pTitle DateFormateStyle">{{gender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
+	 <p class="ListHomeUser_pTitle DateFormateStyle">{{primaryPatGender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 </div>
 </div>
 <div style="border-bottom: 1px solid black; padding-top: 5px;"></div>
