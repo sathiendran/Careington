@@ -718,8 +718,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.$apply();
     };
 
-
-
+  
     $rootScope.ClearRootScope = function() {
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
