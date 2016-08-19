@@ -298,7 +298,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                    }*/
                 }
                 if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                    $scope.getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
+                      var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
                       var getCurrentTimeforLogout =  new Date();
                     //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
                       if(getTokenExpireTime <= getCurrentTimeforLogout) {
@@ -307,7 +307,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                             null,
                             $rootScope.alertMsgName,
                             'Ok' // buttonName
-                        );                      
+                        );
                         $rootScope.ClearRootScope();
                      }
                 }

@@ -1406,7 +1406,7 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 		}
 		.planDetails {
 			padding:0 5px 0 15px;
-			text-align: left;
+			text-align: center;;
 			font-size: 13px;
 			font-weight: normal;
       font-family:Glober Regular;margin-top:-5px;
@@ -1417,6 +1417,7 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 			padding:0 5px 50px 15px;
 			margin-top: -5px;
 			font-weight: bold;
+      text-align: center;
 		}
 		.list {
 			padding-top: 12px;
@@ -1797,7 +1798,7 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 	}
 	.PrimaryConcernList {
 		p {
-			width: 90%; padding-top: 6px;font-family:$fontFamily_regular;font-size: 19px;
+			width: 84%; padding-top: 6px;font-family:$fontFamily_regular;font-size: 19px;
           }
 		div {
 			float:right;left: 0px; position: relative;
@@ -2601,7 +2602,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 77px 0 0 0;
+	margin: 72px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -3210,7 +3211,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           font-size: 16px;
         }
 				.item-input {
-					margin-top: 5px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+					margin-top: 9px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
 					//border: 1px solid $Altoa;
             padding: 0px;
 					::-webkit-input-placeholder { /* WebKit browsers */
@@ -3265,7 +3266,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           font-size: 16px;
         }
 				.item-input {
-					margin-top: 5px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+					margin-top: 9px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
 				//	border: 1px solid $Altoa;
         padding: 0px;
 					::-webkit-input-placeholder { /* WebKit browsers */
@@ -3392,7 +3393,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .menuiconIOS {  position: relative;top: 4px; font-size: 22px !important;}
 
 .subHeaderTop { top: 70px; padding-top: 19px;
-    height: 87%; }
+    height: auto; }
 
 #BackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
 #SearchBackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
@@ -5801,7 +5802,7 @@ color: #999999 !important;
     }
 
     .ContentUserHome {
-    margin: 77px 0 0 0;
+    margin: 72px 0 0 0;
     font-family: "Glober Regular";
     border-top: 0px solid #C4C5C3;
     }
