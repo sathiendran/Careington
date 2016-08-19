@@ -1279,7 +1279,7 @@ html, body { background: transparent !important; }
 .PlanHeader {
 	height: 58px;
 	.PlanCancel {
-		font-weight: bold; cursor: pointer; width: 68px;
+		font-weight: normal;font-family:Glober Regular;color:#FFFFFF;font-size:19px; cursor: pointer; width: 68px;
 		span {
 			margin-top:17px; position:absolute;
 		}
@@ -1291,26 +1291,59 @@ html, body { background: transparent !important; }
 		}
 	}
 }
-
+.item-input{
+.cardfont{
+color:#444444 !important;font-size:20px !important;font-family:Glober Bold !important;}
+.cards{
+  ::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #CBCBCB !important;
+    font-size: 18px !important;
+    font-family: Glober Regular !important;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #CBCBCB !important;
+    font-size: 18px !important;
+    font-family: Glober Regular !important;
+    }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #CBCBCB !important;
+    font-size: 18px !important;
+    font-family: Glober Regular !important;
+    }
+  :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #CBCBCB !important;
+    font-size: 18px !important;
+    font-family: Glober Regular !important;
+    }
+}
+}
+.carddetails{
+  color:#666666;
+  font-family:Glober Regular;
+}
 .planDetails_content {
 	padding-top: 32px;
 	margin-top: 12px;
 		.healthPlan_text {
-			font-size: 37px;
+			font-size: 30px;
 			text-align: center;
-			color: $Scorpion;
+			color: #666666;
 			font-weight: normal;
+      font-family: Glober Regular;
 		}
 		.planInformation {
-			color: $Scorpion;
+			color: #666666;
 			font-size: 18px;
 			font-weight: normal;
+      font-family:Glober Regular;
 		}
 		.provider {
-			margin-left: 27px;
+			margin-left: 45px;
 			padding-top: 20px;
 			font-size: 15px;
 			text-align: left;
+      font-family:Glober Regular;
+      color:#666666;
 		}
 		.ProviderList {
 			margin-left: 50px;
@@ -1330,13 +1363,14 @@ html, body { background: transparent !important; }
 			padding:0 5px 0 15px;
 			text-align: left;
 			font-size: 13px;
-			font-weight: bold;
+			font-weight: normal;
+      font-family:Glober Regular;margin-top:-5px;
 		}
 		.privacy {
 			color: $Scooter;
 			font-size: 13px;
 			padding:0 5px 50px 15px;
-			margin-top: -10px;
+			margin-top: -5px;
 			font-weight: bold;
 		}
 		.list {
@@ -1347,7 +1381,7 @@ html, body { background: transparent !important; }
 		}
 		.input-label {
 			font-weight: bold;
-			font-size: 23px !important;
+			font-size: 23px;
 			width: 50%;
 			padding: 10px 10px 7px 0px;
             color:#666666;
@@ -1356,7 +1390,7 @@ html, body { background: transparent !important; }
 			padding-top: 35px;
 		}
 		.CardInformation {
-			padding-top: 27px; padding-bottom: 20px; color: #5C5C5C; text-align: center; font-size: 20px;
+			padding-top: 27px; padding-bottom: 20px; color: #666666; text-align: center; font-size: 13px;font-family:Glober Regular;
 		}
 		.verifyCardDisplay {
 			padding-top: 30px; padding-bottom: 20px;
@@ -3400,7 +3434,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 				position: relative;
 				-webkit-appearance: none;
 				  -moz-appearance: none;
-				  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
+				  background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
 				  width: 93%;
 				  text-indent: 0.01px;
 				  text-overflow: "";
@@ -3450,7 +3484,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 
 	.viewport1 {
 		 pointer-events: none;
-		  color: #60605D;
+		  color: #666666;
 		position: absolute;
 		width: 75%;
 		height: 100%;
@@ -3460,7 +3494,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		-ms-text-overflow: ellipsis;
 		-o-text-overflow: ellipsis;
 		text-overflow: ellipsis;
-		font-size: 19px;
+		font-size: 16px;
 		padding: 6px;
 		left: 25px;
 		top: 10px;
@@ -3733,12 +3767,12 @@ font-family: $fontFamily_regular;
 
 .dobRequired {
 
-		color: #AAA;
+		color: #CBCBCB;
 	//	position: absolute;
 		width: 75%;
 		height: 100%;
 		z-index: 15;
-		overflow: hidden;
+	//	overflow: hidden;
 		top: 24px;
 		font-size: 20px;
 	}
