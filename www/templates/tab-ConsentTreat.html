@@ -41,14 +41,17 @@
 			<div ng-if="userAgeForIntake != 7" class="ConsentSteps" style="{{IntakeFormInnerStyle}}" >Step <b style="color:#535353;">7</b> of <b style="color:#535353;">8</b></div>
 			<div>
 				<h1 class="ChronicCondition concernsSubTit consentTitle" style="{{IntakeFormInnerStyleTitle}}">Consent to Treat</h1>
-				<p class="consentSubTitle">Read, Acknowledge, and Agree (Scroll to Bottom)</p>
+				<!--<p class="consentSubTitle">Read, Acknowledge, and Agree (Scroll to Bottom)</p>-->
+				<p class="consentSubTitle patientConternFontStyle">Read, Acknowledge, and Agree
+						<br/>
+						<span class="patientConternFontStyleSubTitle">Scroll to the bottom</span></p>
 			</div>
 			<!-- <div class="consentLine" style=" top: -2px;position: relative;"></div>-->
 	   </div>
 
 <ion-content class="ContentHomeUser ConsentContent BacgroundColorContent" style="border-top: 1px solid #A9ABA7; {{consentScreenSize}}">
 
-
+<div style="padding: 0 5%;">
 
 <div class="ConsentMessageFirst" >
 <p  class="PragraphContent"> <b>
@@ -65,7 +68,7 @@
  <div style="border-bottom: 1px solid #ddd; margin: 12px 10px 10px 10px;" ng-bind-html="concentToTreatContent | sanitize"></div>
 
 
-<div class="ConsentMessageAgree">
+<div class="ConsentMessageAgreeText">
 <p  class="PragraphContent" style="color: #545454;">
 By clicking "I Agree", I acknowledge and agree to the Terms and Conditions and Consent To treatment as stated above.
 </p>
@@ -76,7 +79,7 @@ By clicking "I Agree", I acknowledge and agree to the Terms and Conditions and C
 	<button class="button button-block button-balanced" ng-click="GoToConsultCharge(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian)" style="padding: 3px;">
 				  <span class="consentIAgree">I Agree</span>
 				</button>
-   </div>
+   </div></div>
   <!-- <div class="ConsentMessageAgree BacgroundColorContent" >
    <a ng-click="cancelConsultation()" ><button class="button-block button-balanced ConsentCancel" style="background-color:#EFEFED">
 				Cancel

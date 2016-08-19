@@ -427,10 +427,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     /******** Code to implement static brand color ends here **********/
 
     if ($rootScope.IOSDevice || $rootScope.isIPad) {
-        $rootScope.screenwidth = window.innerWidth;
+      /*  $rootScope.screenwidth = window.innerWidth;
         if ($rootScope.screenwidth < 325) { //alert($rootScope.screenwidth);
             $rootScope.consentScreenSize = "margin-top: 224px !important;";
-        }
+        }*/
 
         $rootScope.deviceName = "IOS";
         $rootScope.appointCOntent = "margin-top: 175px; ";
@@ -471,7 +471,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.AddHealthPlanCancel = "margin-top: 6px";
         $rootScope.ReportScreen = " top: 1px; position: relative;";
-        $rootScope.PlanDetails = "margin-top: 17px;";
+        $rootScope.PlanDetails = "margin-top: 22px;";
         $rootScope.SubDetailsPlanDetails = "margin-top: -16px;";
         $rootScope.PatientTitle = "  margin-top: 26px; margin-left:-15px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";

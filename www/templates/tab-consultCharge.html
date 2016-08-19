@@ -59,7 +59,7 @@
 				<div>
 					<div style="display: {{enableAddHealthPlan}}">
 						<div class="healthPlan_header"  >
-							<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
+							<div class="healthPlan_text NoPlanText" >Select your Health Plan</div>
 								<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
 									<div  class="dropdownContainer">
 										<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
@@ -72,18 +72,18 @@
 									</div>
 								</div>
 						</div>
-						<div class="SkipToPayment" style="display: {{applyPlanMode}};" >
+						<div class="SkipToPaymentApplyPlan" style="display: {{applyPlanMode}};" >
 							<button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
 									<span>Apply Plan</span>
 							</button>
 						</div>
-						<div class="SkipToPayment" style="display: {{applyPlanMode}};" >
+						<div class="SkipToPaymentHealth" style="display: {{applyPlanMode}};" >
 							<button class="button button-block button-royal cardSkipPayment" ng-click="showConsultChargeNoPlan(PatientImageSelectUser, PatientFirstName, PatientLastName, PatientAge, PatientGuardian, 'tab.addHealthPlan')" style="padding: 3px;" >
 									<span>Skip to payment</span>
 							</button>
 						</div>
 						<div class="scheduled_appointments_text NoPlanBottomText" style="display: {{applyPlanMode}};"  >
-							<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
+							<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed</p>
 						</div>
 						<div class="SkipToPayment" style="display: {{verifyPlanMode}};" >
 							<button type="submit" ng-click="doPostVerifyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
@@ -94,7 +94,7 @@
 
 					<div style="display:{{disableAddHealthPlan}}">
 						<div class="healthPlan_header AddCardNoPlan"  >
-							<div class="healthPlan_text" style="margin-left: -80px;" >Select health plan</div>
+							<div class="healthPlan_text" style="margin-left: -68px;" >Select your health plan</div>
 							<a ng-click="doGetHealthPlanProvider()" style="cursor: pointer;">
 								<div class="addHealthPlan_header AddCard" >
 									<i style="position: relative; top: -5px;" class="ion-plus-round"></i><span class="addHealthPlan_text" >Add A Health Plan</span>
@@ -107,7 +107,7 @@
 							</button>
 						</div>
 						<div class="scheduled_appointments_text NoPlanBottomText" style="display: {{applyPlanMode}};"  >
-							<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
+							<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed</p>
 						</div>
 						<!--<div class="scheduled_appointments_text" style="display: {{applyPlanMode}};" >
 							Don't add a health plan, pay full charge directly.
@@ -126,7 +126,7 @@
 					<div style="display: {{enableSubmitpayment}}">
 						<div class="healthPlan_header"  >
 							<!--<div class="healthPlan_text NoPlanText" >Pay Using</div>-->
-							<div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
+							<div class="healthPlan_text NoPlanText payCardText"  >Select your Payment card</div>
 							<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
 								<div  class="dropdownContainer">
 									<div ng-if="userDefaultPaymentProfileText == null" id="cardViewport" class="cardViewport">Choose Your Card</div>
@@ -140,7 +140,7 @@
 							</div>
 						</div>
 
-						<div class="SkipToPayment" style="padding-top: 80px;">
+						<div class="SkipToPayment" style="padding-top: 68px;">
 							<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
 							  <span>Submit Payment</span>
 							</button>
@@ -159,14 +159,14 @@
 						</div>
 
 
-						<div class="SkipToPayment" style="padding-top: 80px;" >
+						<div class="SkipToPayment" style="padding-top: 68px;" >
 							<button class="button button-block button-royal cardSubmitPayment" style="padding: 3px;" >
 									<span>  Submit Payment</span>
 							</button>
 						</div>
 					</div>
 					<div class="scheduled_appointments_text NoPlanBottomText"  >
-						<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed.</p>
+						<p>*There may be additional fees or charges based on the outcome of this consultation. By submitting payment, I understand I may be billed for these charges after this consultation is completed</p>
 					</div>
 				</div>
 			</div>

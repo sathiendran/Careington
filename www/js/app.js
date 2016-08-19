@@ -720,6 +720,16 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }
     })
 
+    .state('tab.registerAddress', {
+        url: '/registerAddress',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-registerAddress.html',
+                controller: 'registerStep1Controller'
+            }
+        }
+    })
+
     .state('tab.userAccount', {
         url: '/userAccount',
         views: {

@@ -64,8 +64,8 @@
 						</div>-->
 
 						<div  class="dropdownContainer">
-							<div class="viewport1">Plan Provider</div>
-							<select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
+							<div class="viewport1" style="left: 62px;">Plan Provider</div>
+							<select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none; width: 75%;" required>
 								<option value=""><b>Plan Provider</b></option>
 								<option class="planDetailOption" ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
 							</select>
@@ -101,7 +101,7 @@
 					</label>
 
 					<label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
-						<span class="input-label cardfont">Date of Birth
+						<span class="input-label cardfont" style="padding: 5px 10px 3px 0px;">Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
 					<!--<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();"  id="date" max="{{PreviousDate}}" required style="font-size:18px;">  -->
 					<!--<div ng-if="deviceName != 'IOS'" class="dobRequired" ng-click="getDOBDiv()">Required</div>
@@ -111,7 +111,7 @@
 					</label>
 
 					<label ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
-						<span class="input-label cardfont"  >Date of Birth
+						<span class="input-label cardfont" style="padding: 5px 10px 3px 0px;"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
 							<!--<input class="userDateofbirth_android" placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date';"  id="date" max="{{PreviousDate}}" required >-->
 							<div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>

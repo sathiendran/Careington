@@ -152,7 +152,7 @@
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 	</ion-footer-bar>
 
-	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails" style="display: {{individualNextAppointmentDisplay}}; height: 84px;" ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-show="$first">
+	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails accountAppointHeight" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-show="$first">
 	<!--	<a ng-href="#tab/patientappointmentdetails">-->
       <div>
         <div class="appth3"> <div class="appointment">

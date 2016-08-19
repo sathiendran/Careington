@@ -596,7 +596,7 @@ html, body { background: transparent !important; }
 	/*@include font($fontFamily_xBold, bold,30px);*/
 	color:#FFFFFF;
 	text-align: center;
-	left: 15px;
+	left: 7px;
 	right: 0px;
    height: 45px;
     /*line-height: 61px;*/
@@ -679,11 +679,12 @@ html, body { background: transparent !important; }
 }
 
 .button.button-balanced {
-	@include buttons($Feijoa, bold, 5px, 23px, 35px);
+	@include buttons($Feijoa, bold, 5px, 22px, 35px);
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
-	  background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%);
+	  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+    line-height: 33px;
 }
 
 .button.button-balanced.activated {
@@ -1030,7 +1031,7 @@ html, body { background: transparent !important; }
 		position: relative;
 		left: 10px;
 		font-family: $fontFamily_semibold;
-
+    font-weight: normal;
 	 }
 }
 .consultConMargin {
@@ -1096,24 +1097,25 @@ html, body { background: transparent !important; }
 	}
 
 	.NoPlanBottomText {
-		text-align: justify; padding-bottom: 50px;
+		text-align: justify; padding-bottom: 50px;     margin: 0 -15px;
 	}
 }
 
 .button.button-royal {
-	@include buttons($Nobel, bold, 5px, 23px, 35px );
+	@include buttons($Nobel, bold, 5px, 22px, 35px );
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
+  line-height: 33px;
 }
 .button.button-royal.activated {
 	background-color : $Nobel;
 	border-color: $Nobel;
 }
 .consultation_head {
-	font-size: 27px;
+	font-size: 164%;
 	//text-align: center;
-	padding-top: 22px;
+	padding-top: 26px;
 	color:#2A2A2A;
 		.consultation_number {
 		//	font-weight: bold;
@@ -1138,7 +1140,7 @@ html, body { background: transparent !important; }
       span {
         //text-decoration: line-through;
         color: red;
-        font-size: 20px;
+        font-size: 22px;
       }
     }
 		.consultTittleCharge {
@@ -1162,7 +1164,7 @@ html, body { background: transparent !important; }
       float: left;
       width: 63%;
       text-align: right;
-        font-size: 20px;
+        font-size: 19px;
 		}
 		.Plancovers {
 			font-size: 12px; color: #C2C2C2;
@@ -1268,7 +1270,7 @@ html, body { background: transparent !important; }
 	}
 
 	.NoPlanBottomText {
-		text-align: justify; padding-bottom: 50px;
+		text-align: justify; padding-bottom: 50px;     margin: 0 -15px;
 	}
 }
 .cardSubmitPayment {
@@ -1289,7 +1291,7 @@ html, body { background: transparent !important; }
 	text-align: center;
 	color: #5C5C5C;
 		.healthPlan_text {
-			font-size: 15px;
+			font-size: 14px;
 			color: #666666;
 			margin-left: -100px;
       font-family: $fontFamily_regular;
@@ -1300,7 +1302,7 @@ html, body { background: transparent !important; }
     }
 		.addHealthPlan_header {
 			//padding-top: 10px;
-			margin-left:-35px;
+			margin-left:-57px;
 			margin-right: 17px;
 				.addHealthPlan_text {
 					font-size: 20px;
@@ -1338,7 +1340,7 @@ html, body { background: transparent !important; }
 }
 .item-input{
 .cardfont{
-color:#444444 !important;font-size:20px !important;font-family:Glober Bold !important;}
+color:#444444 !important;font-size:19px !important;font-family:Glober Bold !important;}
 .cards{
   ::-webkit-input-placeholder { /* WebKit browsers */
     color:    #CBCBCB !important;
@@ -1370,7 +1372,7 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 	padding-top: 32px;
 	margin-top: 12px;
 		.healthPlan_text {
-			font-size: 30px;
+			font-size: 34px;
 			text-align: center;
 			color: #666666;
 			font-weight: normal;
@@ -1400,23 +1402,23 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 			padding-top: 35px;
 		}
 		input[type="text"], input[type="number"], input[type="password"] {
-			font-size: 20px;
+			font-size: 19px;
 			line-height: 30px;
 			padding-top: 9px;
 		}
 		.planDetails {
 			padding:0 5px 0 15px;
 			text-align: center;;
-			font-size: 13px;
+			font-size: 14px;
 			font-weight: normal;
-      font-family:Glober Regular;margin-top:-5px;
+      font-family:Glober Regular;margin-top:-5px;color: #666666;
 		}
 		.privacy {
 			color: $Scooter;
-			font-size: 13px;
+			font-size: 14px;
 			padding:0 5px 50px 15px;
 			margin-top: -5px;
-			font-weight: bold;
+			font-family:Glober Regular;
       text-align: center;
 		}
 		.list {
@@ -1433,10 +1435,10 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
             color:#666666;
 		}
 		.cardDetailsHeading {
-			padding-top: 35px;
+			padding-top: 30px;
 		}
 		.CardInformation {
-			padding-top: 27px; padding-bottom: 20px; color: #666666; text-align: center; font-size: 13px;font-family:Glober Regular;
+			padding-top: 18px; padding-bottom: 20px; color: #666666; text-align: center; font-size: 18px;font-family:Glober Regular;
 		}
 		.verifyCardDisplay {
 			padding-top: 30px; padding-bottom: 20px;
@@ -1838,7 +1840,7 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 					}
 				}
 				.surgeryDate {
-					padding-top: 5px; font-size: 15px;
+					padding-top: 5px; font-size: 15px; color: #666666;
 				}
 			}
 			.surgerydelete {
@@ -2197,7 +2199,7 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 	border-bottom: 1px solid #A9ABA7;
 }
 .ConsentContent {
-	margin-top: 162px !important;
+	margin-top: 177px !important;
 	.ConsentMessageFirst {
 		border-bottom: 1px solid #ddd; margin: 12px 10px 10px 10px;
 		p {
@@ -2211,6 +2213,9 @@ color:#444444 !important;font-size:20px !important;font-family:Glober Bold !impo
 		}
 	}
 	.ConsentMessageAgree {
+		margin: 17px  15% 10px 15%;
+	}
+  .ConsentMessageAgreeText {
 		margin: 17px  10px 10px 17px;
 		p {
 			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#919191; font-weight: bold; font-size: 13px;
@@ -2602,7 +2607,7 @@ font-size: 18px !important;
 }
 
 .ContentUserHome {
-	margin: 72px 0 0 0;
+	margin: 70px 0 0 0;
 	font-family:$fontFamily_regular;
 	border-top: 1px solid #C4C5C3;
 	//border-bottom: 1px solid #C4C5C3;
@@ -3186,10 +3191,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
     color: red;
 }
 .userSearch-Android {
-	position: relative; top: 110px;
+	position: relative; top: 113px;
 }
 .userSearch-IOS {
-	position: relative; top: 110px;
+	position: relative; top: 113px;
 }
 
 .UserHme {
@@ -3211,7 +3216,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           font-size: 16px;
         }
 				.item-input {
-					margin-top: 9px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+					margin-top: 1px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
 					//border: 1px solid $Altoa;
             padding: 0px;
 					::-webkit-input-placeholder { /* WebKit browsers */
@@ -3242,7 +3247,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 						}
 					input {
 					font-size: 14px;
-					color:#616462;height: 26px;  margin-top: 0px;
+					color:#616462;height: 28px;  margin-top: 0px;
 					font-family: $fontFamily_regular; text-align: center;
 					}
 
@@ -3266,7 +3271,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           font-size: 16px;
         }
 				.item-input {
-					margin-top: 9px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
+					margin-top: 1px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
 				//	border: 1px solid $Altoa;
         padding: 0px;
 					::-webkit-input-placeholder { /* WebKit browsers */
@@ -3306,7 +3311,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 						}
 					input {
 					font-size: 14px;
-					color:#616462;height: 21px;  margin-top: 0px;
+					color:#616462;height: 28px;  margin-top: 0px;
 					font-family: $fontFamily_regular; position: relative; top: 2px; text-align: center;
 					}
 
@@ -3393,7 +3398,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .menuiconIOS {  position: relative;top: 4px; font-size: 22px !important;}
 
 .subHeaderTop { top: 70px; padding-top: 19px;
-    height: auto; }
+    height: 56px; }
 
 #BackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
 #SearchBackButtonIcon { color:#444444;font-size:12px !important; margin-top: 15px; display: block !important;}
@@ -3478,13 +3483,12 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .noPlanContainer-Android {
 	.dropdownContainer {
 		 .healthPlanDropDown {
-				width: 100%;
 				z-index: 2;
 				position: relative;
 				-webkit-appearance: none;
 				  -moz-appearance: none;
 				  background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
-				  width: 93%;
+				  width: 102%;
 				  text-indent: 0.01px;
 				  text-overflow: "";
 
@@ -3495,10 +3499,26 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
 				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
 				border: 1px solid #CDCACA !important;
-				  height: 48px;
+				  height: 42px;
 				  font-size: 18px;
 				  border: none;
 			}
+      ::-webkit-input-placeholder { /* WebKit browsers */
+        font-size: 14px !important;
+      }
+      :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          font-size: 14px !important;
+           opacity:  1;
+        }
+      ::-moz-placeholder { /* Mozilla Firefox 19+ */
+          font-size: 14px !important;
+           opacity:  1;
+        }
+      :-ms-input-placeholder { /* Internet Explorer 10+ */
+           font-size: 14px !important;
+        }
+
+
 	}
 	.healthPlanDropDown {
 		color: transparent;
@@ -3580,13 +3600,12 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .noPlanContainer-IOS {
 	.dropdownContainer {
 		 .healthPlanDropDown {
-				width: 100%;
+				width: 102%;
 				z-index: 2;
 				position: relative;
 				-webkit-appearance: none;
 				  -moz-appearance: none;
 				  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
-				  width: 93%;
 				  text-indent: 0.01px;
 				  text-overflow: "";
 
@@ -3597,10 +3616,24 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
 				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
 				border: 1px solid #CDCACA !important;
-				  height: 48px;
+				  height: 42px;
 				  font-size: 18px;
 				  border: none;
 			}
+      ::-webkit-input-placeholder { /* WebKit browsers */
+        font-size: 14px !important;
+      }
+      :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+          font-size: 14px !important;
+           opacity:  1;
+        }
+      ::-moz-placeholder { /* Mozilla Firefox 19+ */
+          font-size: 14px !important;
+           opacity:  1;
+        }
+      :-ms-input-placeholder { /* Internet Explorer 10+ */
+           font-size: 14px !important;
+        }
 	}
 	.healthPlanDropDown {
 		color: transparent;
@@ -4631,7 +4664,10 @@ p{
 }
    @media (max-width:320px) and (min-width:315px)    {
      .usercontent-IOS {
-          margin-top: 25% !important;
+          margin-top: 32% !important;
+          #accountMngeProfile-IOS {
+             padding: 19px 10px;
+           }
       }
       .fday {
         font-size: 25px !important;
@@ -4643,19 +4679,21 @@ p{
       .fdate {
         margin-top: 0px !important;
       }
-     #accountMngeProfile-IOS {
-        padding: 34px 10px;
-      }
       #AppointNoneIOS {
         padding: 34px 10px !important;
       }
       .usercontentpat-IOS{
            //margin-top: 200px !important;
          margin-top: 29%;
+         #accountMngeProfile-IOS {
+              padding: 12px 10px !important;
+          }
+
       }
-      #accountMngeProfile-IOS {
-          padding: 30px 10px !important;
+      .accountAppointHeight {
+        height: 70px !important;
       }
+
       .birthContent {
         .healthViewDetails {
           margin-left: -7px;
@@ -5802,7 +5840,7 @@ color: #999999 !important;
     }
 
     .ContentUserHome {
-    margin: 72px 0 0 0;
+    margin: 70px 0 0 0;
     font-family: "Glober Regular";
     border-top: 0px solid #C4C5C3;
     }
@@ -8302,6 +8340,10 @@ input.ion-google-place[readonly] {
     top: 2px;
     right: 4px;
   }
+  .logProvider {
+    position: relative;
+    top: 3px;
+  }
 
 }
 .reg2-Android{
@@ -8324,7 +8366,7 @@ input.ion-google-place[readonly] {
    padding-top: 53px;
  }
  #accountMngeProfile-IOS {
-   padding: 47px 10px;
+   padding: 27px 10px;
  }
  .userAccContentIOS {
          margin-top: 33%;
@@ -8520,8 +8562,8 @@ input.ion-google-place[readonly] {
   .PrimaryContent {
     p {
       width: 90% !important;
-      font-family: Glober Bold !important;
-      font-size: 16px !important;
+      font-family: $fontFamily_semibold !important;
+      font-size: 15px !important;
     }
   }
   .bornBirth {
@@ -8597,7 +8639,7 @@ input.ion-google-place[readonly] {
     padding: 28px;
 }
 .newProContent {
-  margin-top: 222px;
+  margin-top: 221px;
 }
 .newProImage {
   img {
@@ -8676,6 +8718,7 @@ input.ion-google-place[readonly] {
 .concernsSubTit {
   font-family: $fontFamily_semibold;
   color: #666666;
+  font-weight: normal;
 }
 
 .addcouser{padding: 44px 10px;}
@@ -8713,7 +8756,10 @@ input.ion-google-place[readonly] {
     box-shadow: none !important;
 }
 .contentPayHome {
-    padding-top: 55px;
+    padding-top: 15%;
+}
+.contentPayHomeAddCard {
+  padding-top: 5%;
 }
 .NoPlanText {
   margin-left: 37px !important;
@@ -8723,5 +8769,15 @@ input.ion-google-place[readonly] {
   text-align: left;
 }
 .NoPlanBottomText {
-  text-align: justify; padding-bottom: 50px;
+  text-align: justify; padding-bottom: 50px;     margin: 0 -15px;
+}
+.accountAppointHeight{
+  height: 84px;
+}
+.SkipToPaymentHealth {
+  margin-top: 14px;
+  padding-bottom: 7px;
+}
+.SkipToPaymentApplyPlan {
+  margin-top: 35px;
 }
