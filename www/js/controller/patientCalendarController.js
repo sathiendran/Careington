@@ -91,7 +91,7 @@ angular.module('starter.controllers')
     d.setHours(d.getHours() + 12);
     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 
-    $scope.doRefresh = function() {
+    $scope.doRefreshApptDetails = function() {
         $rootScope.doGetScheduledConsulatation();
         $rootScope.doGetIndividualScheduledConsulatation();
         $timeout(function() {
@@ -100,7 +100,7 @@ angular.module('starter.controllers')
         $scope.$apply();
     };
 
-
+  
     /*$scope.doGetScheduledConsulatation = function () {
     	if ($scope.accessToken == 'No Token') {
     		alert('No token.  Get token first then attempt operation.');
