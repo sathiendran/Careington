@@ -565,6 +565,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
         //$rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
+        $rootScope.PatientTitle = "  margin-top:-45px;"
         $rootScope.PasswordOverlop = "margin: 57px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
@@ -717,8 +718,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.$apply();
     };
 
-
-
+  
     $rootScope.ClearRootScope = function() {
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);

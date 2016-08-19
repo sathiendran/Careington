@@ -298,6 +298,20 @@ angular.module('starter.controllers')
         //$rootScope.Validation( $scope.errorMsg);
         $scope.doGeAppointmentExistingConsulatation();
     });
+    $scope.doRefresh = function() {
+      $rootScope.doGetScheduledConsulatation();
+      $rootScope.doGetIndividualScheduledConsulatation();
+      console.log('Refreshing!');
+      $timeout( function() {
+        //simulate async response
+
+
+        //Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+
+      }, 1000);
+
+    };
 
     $scope.doGeAppointmentExistingConsulatation = function() {
         $rootScope.consultionInformation = '';

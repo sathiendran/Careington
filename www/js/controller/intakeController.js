@@ -493,6 +493,22 @@ angular.module('starter.controllers')
       }
 
     };
+
+    $scope.data = {};
+
+    $scope.$watch('data.searchProvider', function(searchKey) {
+        $rootScope.providerSearchKey = searchKey;
+        if (typeof $rootScope.providerSearchKey == 'undefined') {
+            $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+        }
+        if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            $rootScope.iconDisplay = 'none';
+        } else {
+            $rootScope.iconDisplay = 'Block';
+        }
+    });
+
+
     /*Primary concern End here*/
 
     /*Secondary concern Start here*/
