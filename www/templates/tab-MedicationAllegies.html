@@ -15,7 +15,7 @@
 					<p class="patientConternFontStyle">Select any medication allergies.
 						<br/>
                         <span class="patientConternFontStyleSubTitle">Select up to four </span></p>
-					<div><i class="ion-plus-circled addBtn">  </i></div>
+					<div><i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i></div>
 				</div>
 			</div>
 	    </ion-item>
@@ -25,7 +25,7 @@
 			<div class="PrimaryConcernList" >
 				<p class="intakeNote">{{item.text}} </p>
                 <div ng-click="removeMedicationAllegies($index, item);">
-                    <i class="ion-close-circled delBtn"></i>
+                  <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
                 </div>
 
 			</div>
@@ -36,15 +36,13 @@
 
 	</ion-list>
 </ion-content>
-</ion-side-menu-content>
-<!-- Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+
 </ion-view>
 
 
 
 <ion-footer-bar  class="footer">
-	<div class="ConcernsFooter">
+	<span class="ConcernsFooter">
 		<div class="FooterLeft">
 			<a class="button_new icon ion-chevron-left" href="#/tab/priorSurgeries" ><span> Back</span></a>
 		</div>
@@ -58,6 +56,9 @@
 			<a class="button_new icon ion-chevron-right"   ng-click="GoToCurrentMedication(MedicationCountValid)"> <span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span> </a>
 		</div>
 
-	<div>
+	</span>
 
 </ion-footer-bar>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>

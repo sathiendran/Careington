@@ -1029,13 +1029,18 @@ html, body { background: transparent !important; }
 		top:-8px;
 		position: relative;
 		left: 10px;
-		font-family: $fontFamily_bold;
+		font-family: $fontFamily_semibold;
 
 	 }
 }
-
+.consultConMargin {
+  margin: 182px 0 0 0;
+}
+.consultConPaymentMargin {
+  margin: 139px 0 0 0;
+}
 .consultCharge_content {
-	margin: 140px 0 0 0; // 133px;
+	//margin: 182px 0 0 0; // 133px;
     padding-bottom: 30px;
     padding-top: 36px;
 	.consultChargeNoPlanText {
@@ -1107,21 +1112,57 @@ html, body { background: transparent !important; }
 }
 .consultation_head {
 	font-size: 27px;
-	text-align: center;
-	padding-top: 15px;
+	//text-align: center;
+	padding-top: 22px;
 	color:#2A2A2A;
 		.consultation_number {
-			font-weight: bold;
-			padding-top: 18px;
-			font-size: 30px;
-			font-family: $fontFamily_bold;
+		//	font-weight: bold;
+			//padding-top: 18px;
+      margin-right: 17px;
+			//font-size: 30px;
+			font-family: $fontFamily_semibold;
 			color:#666666;
+      text-align: right;
 			span {
-				text-decoration: line-through; color: red;
+				text-decoration: line-through; //color: red;
 			}
 		}
-		.consultTittle {
-			color:#000000;
+    .consultation_numberCopay {
+    //	font-weight: bold;
+      //padding-top: 18px;
+      margin-right: 17px;
+      //font-size: 30px;
+      font-family: $fontFamily_semibold;
+      color:#666666;
+      text-align: right;
+      span {
+        //text-decoration: line-through;
+        color: red;
+        font-size: 20px;
+      }
+    }
+		.consultTittleCharge {
+			color:#666666;
+      font-family: $fontFamily_semibold;
+      margin-left: 10px;
+      float: left;
+		}
+    .consultTittle {
+      color:#666666;
+      font-family: $fontFamily_semibold;
+      margin-left: 10px;
+      float: left;
+      width: 63%;
+      text-align: right;
+    }
+    .consultTittleCopay {
+			color:#666666;
+      font-family: $fontFamily_semibold;
+      margin-left: 10px;
+      float: left;
+      width: 63%;
+      text-align: right;
+        font-size: 20px;
 		}
 		.Plancovers {
 			font-size: 12px; color: #C2C2C2;
@@ -1249,10 +1290,14 @@ html, body { background: transparent !important; }
 	color: #5C5C5C;
 		.healthPlan_text {
 			font-size: 15px;
-			color: #888585;
+			color: #666666;
 			margin-left: -100px;
+      font-family: $fontFamily_regular;
 			/*font-weight: bold;*/
 		}
+    .payCardText {
+        padding-bottom: 5px;
+    }
 		.addHealthPlan_header {
 			//padding-top: 10px;
 			margin-left:-35px;
@@ -2108,13 +2153,16 @@ html, body { background: transparent !important; }
 	margin-top: 136px !important; font-size: 25px !important;  margin-left: 15px !important; width:100%; padding-top: 7px;
 }
 .consentSubTitle {
-	margin-top: -8px;margin-left: 16px;padding-bottom: 0px; color:#5E5F5D; font-family: $fontFamily_bold;
+	margin-top: -8px;margin-left: 16px;padding-bottom: 0px;
+  //color:#5E5F5D;
+   font-family: $fontFamily_semibold;
+   color: #888888; padding-right: 12%;
 }
 .consentLine {
 	border-bottom: 1px solid #A9ABA7;
 }
 .ConsentContent {
-	margin-top: 204px !important;
+	margin-top: 162px !important;
 	.ConsentMessageFirst {
 		border-bottom: 1px solid #ddd; margin: 12px 10px 10px 10px;
 		p {
@@ -2128,15 +2176,15 @@ html, body { background: transparent !important; }
 		}
 	}
 	.ConsentMessageAgree {
-		margin: 10px  10px 10px 10px;
+		margin: 17px  10px 10px 17px;
 		p {
 			text-overflow: clip; white-space: normal; text-align: justify; padding: 0.5em 0 0.5em 0; color:#919191; font-weight: bold; font-size: 13px;
 		}
 		.ConsentCancel {
 			background-color:#fff; border:none;
-			b {
-				font-size:16px;color:#B2B2B2;
-			}
+		//	b {
+				font-size:16px;color:#999999;
+		//	}
 		}
 	}
 }
@@ -3489,7 +3537,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 
 	.healthPlanDropDown {
 		option {
-			color: #60605D;
+			color: #666666;
 		}
 	}
 }
@@ -8613,3 +8661,29 @@ input.ion-google-place[readonly] {
     .addcouser{padding: 40px 10px;}
     .adddepuser{padding: 40px 10px;}
     }
+    .consultInsuranceTitle {
+        border-bottom: 1px solid #C5C5C5;
+      .concentHealthPlan {
+
+      }
+    }
+.cardSkipPayment {
+  background-color: #fff !important;
+  border: 1px solid #979797 !important;
+  background-image: linear-gradient(0deg, #fff, #fff 50%, transparent 50%) !important;
+  color: #888888 !important;
+    box-shadow: none !important;
+}
+.contentPayHome {
+    padding-top: 55px;
+}
+.NoPlanText {
+  margin-left: 37px !important;
+  padding-top: 30px;
+  font-size: 16px;
+  color: #888585;
+  text-align: left;
+}
+.NoPlanBottomText {
+  text-align: justify; padding-bottom: 50px;
+}

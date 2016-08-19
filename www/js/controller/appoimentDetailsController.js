@@ -189,6 +189,7 @@ angular.module('starter.controllers')
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
+                $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
                 $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
                 $state.go('tab.ConsentTreat');
 

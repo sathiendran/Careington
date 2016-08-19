@@ -1494,20 +1494,25 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                     $rootScope.doGetPatientPaymentProfiles();
                 }
                 $rootScope.enableInsuranceVerificationSuccess = "none";
-                $rootScope.healthPlanPage = "none";
+                // $rootScope.healthPlanPage = "none";
+
+                if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
+                    $rootScope.openAddHealthPlanSection();
+                }
+
                 if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
                     $rootScope.enablePaymentSuccess = "none";
                     $state.go('tab.receipt');
                     $scope.ReceiptTimeout();
                 } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
-                    $rootScope.verifyInsuranceSection = "none";
+                  //  $rootScope.verifyInsuranceSection = "none";
                     $rootScope.openAddHealthPlanSection();
                     $state.go('tab.consultCharge');
                 } else {
                     if ($rootScope.consultationAmount > 0) {
                         if ($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') {
-                            $rootScope.consultChargeSection = "none";
-                            $rootScope.healthPlanSection = "block";
+                          //  $rootScope.consultChargeSection = "none";
+                          //  $rootScope.healthPlanSection = "block";
                             $rootScope.healthPlanPage = "none";
                             $rootScope.consultChargeNoPlanPage = "block";
                         }
