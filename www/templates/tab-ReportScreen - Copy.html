@@ -45,8 +45,8 @@
 					{{existingConsultationReport.hospitalAddress}} | 555 345 3454  </p>
 				<p class="OrganizationDetails">
 					<b class="OrganizationName" ng-if="existingConsultationReport.organization != ''">Organization:</b> {{existingConsultationReport.organization}} <br>
-					<b class="OrganizationLocation">Location:</b> <br>
-					<span class="LocationName" ng-if="existingConsultationReport.location != ''">{{existingConsultationReport.location}} </span><span></span>
+					<b class="OrganizationLocation" ng-if="existingConsultationReport.location != ''">Location: {{existingConsultationReport.location}}</b> <br>
+				<!--	<span class="LocationName" ng-if="existingConsultationReport.location != ''">{{existingConsultationReport.location}} </span><span></span>-->
 				</p>
 			</div>
 		</div>

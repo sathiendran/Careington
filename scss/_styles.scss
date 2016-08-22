@@ -3206,7 +3206,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
           text-align: center;
           width: 100%;
           margin-top: 2px;
-          padding-right: 83px;
+          padding-right: 89px;
           font-size: 16px;
           color: #8e8e93;
           padding-top: 1px !important;
@@ -7253,7 +7253,7 @@ border-bottom: 2px solid #cbcbcb;
 		   position: fixed;
 		   text-align: center;
 		   width: 100%;
-		   margin-top: 4px;
+		   margin-top: 2px;
 		   padding-right: 83px;
 		   font-size: 16px;
 		   color: #8e8e93;
@@ -8783,4 +8783,16 @@ input.ion-google-place[readonly] {
 }
 .SkipToPaymentApplyPlan {
   margin-top: 35px;
+}
+	.item-input::-webkit-input-placeholder { /* WebKit browsers */
+  line-height: 1.5em;
+}
+	.item-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  line-height: 1.5em;
+}
+.item-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+  line-height: 1.5em;
+}
+	.item-input:-ms-input-placeholder { /* Internet Explorer 10+ */
+  line-height: 1.5em;
 }
