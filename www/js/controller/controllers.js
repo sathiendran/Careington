@@ -3119,7 +3119,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.verifyCardDisplay = "none";
     $rootScope.cardDisplay = "inherit;";
-
+      $rootScope.planverify="inherit";
     $scope.getCardDetails = {};
 
     $scope.ccCvvLength = 3;
@@ -3222,6 +3222,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             $rootScope.cardDisplay = "none;";
             $rootScope.verifyCardDisplay = "inherit";
+              $rootScope.planverify="0.3";
             var params = {
                 EmailId: $rootScope.UserEmail,
                 BillingAddress: $rootScope.BillingAddress,
@@ -3271,10 +3272,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     }*/
                     $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
+                    $rootScope.planverify="inherit";
                 },
                 error: function(data) {
                     $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
+                      $rootScope.planverify="inherit";
                     $rootScope.serverErrorMessageValidationForPayment();
                 }
             };
