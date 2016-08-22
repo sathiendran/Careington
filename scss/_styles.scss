@@ -8798,15 +8798,3 @@ input.ion-google-place[readonly] {
   text-align: left !important;
   margin-left: 0px !important;
 }
-	.item-input::-webkit-input-placeholder { /* WebKit browsers */
-  line-height: 1.5em;
-}
-	.item-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  line-height: 1.5em;
-}
-.item-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  line-height: 1.5em;
-}
-	.item-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-  line-height: 1.5em;
-}
