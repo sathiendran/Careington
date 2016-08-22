@@ -60,9 +60,7 @@
 
 <ion-view title="Appointment Details">
  <ion-content class="appiconcontent" ng-hide="addmore" >
-	 <div><ion-refresher on-refresh="doRefresh()"  >
-		</ion-refresher></div>
-
+	 
 		 <div >
 					 <div class="list listfirst" >
 				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
@@ -89,9 +87,7 @@
 <div style="display: none;"><timer end-time="time"  ></timer></div>
 </ion-content>
 <ion-content class="appiconcontent" ng-hide="healthhide">
-	<div><ion-refresher on-refresh="doRefresh()"  >
-	   </ion-refresher></div>
-	 <div >
+
         <div class="list listall">
 
 

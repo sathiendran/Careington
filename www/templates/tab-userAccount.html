@@ -42,9 +42,9 @@
 	<ion-content  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId != patientId"  style="display: {{individualwithoutAppointmentDisplay}};">
 			<ion-list>
 			<div class="list userlist {{accountStyle}}">
-					<ion-item class="ioniictem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
+					<ion-item class="ioniictem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 
-						<div class="cardshadow">
+						<div class="card" style="box-shadow:none !important;background:none !important;">
 							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
@@ -66,8 +66,8 @@
 						</div>
 
 					</ion-item>
-			 		<ion-item class="ionicitem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
-						<div class="cardshadow">
+			 		<ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
+							<div class="card" style="box-shadow:none !important;background:none !important;">
 							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 									<h2 class="title alignchronic ChronicCondition" >
@@ -75,9 +75,7 @@
 										<span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
 										<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId == patientId">
 
-										View Your Appointments <!-- {{accountClinicianFooter}} -- {{individualNextAppointmentDisplay}} - {{onDemandAvailability}} - {{P_isAuthorized}}-->
-									<!--	{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}-->
-
+										View Your Appointments
 										</span>
 										<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
 
@@ -99,9 +97,9 @@
 <ion-content  title="User Account" class="usercontentpat-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId == patientId" style="display: {{individualNextAppointmentDisplay}};">
 		<ion-list>
 		<div class="list userlist {{accountStyle}}">
-				<ion-item class="ioniictem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
+				<ion-item class="ioniictem " id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 
-					<div class="cardshadow">
+						<div class="card" style="box-shadow:none !important;background:none !important;">
 						<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 								<h2 class="title alignchronic ChronicCondition" >
@@ -123,8 +121,8 @@
 					</div>
 
 				</ion-item>
-				<ion-item class="ionicitem userionitem" id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
-					<div class="cardshadow">
+				<ion-item class="ionicitem " id="accountMngeProfile-{{deviceName}}" ng-click ="doGetCurrentUserAppointment()" >
+						<div class="card" style="box-shadow:none !important;background:none !important;">
 						<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
 								<h2 class="title alignchronic ChronicCondition" >
@@ -132,17 +130,11 @@
 									<span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
 									<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId == patientId">
 
-									View Your Appointments <!-- {{accountClinicianFooter}} -- {{individualNextAppointmentDisplay}} - {{onDemandAvailability}} - {{P_isAuthorized}}-->
-								<!--	{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}-->
-								<p>{{appointmentPatientId}}</p>
-								<p>{{patientId}}</p>
+									View Your Appointments
 									</span>
 									<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
 
-									View Appointments <!-- {{accountClinicianFooter}} -- {{individualNextAppointmentDisplay}} - {{onDemandAvailability}} - {{P_isAuthorized}}-->
-								<!--	{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}-->
-
-									</span>
+									View Appointments</span>
 								</h2>
 
 						</div>
@@ -160,7 +152,7 @@
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 	</ion-footer-bar>
 
-	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails" style="display: {{individualNextAppointmentDisplay}}; height: 84px;" ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-show="$first">
+	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails accountAppointHeight" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-show="$first">
 	<!--	<a ng-href="#tab/patientappointmentdetails">-->
       <div>
         <div class="appth3"> <div class="appointment">

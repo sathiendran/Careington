@@ -10,20 +10,29 @@
 			<span class="button icon button-clear UserHomeIcon {{menuicon}}" id="BackButtonIcon" style="{{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 		</div>
 
-		<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -38px;">Patient List</h1>
+
+		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+			<div class="Server_Error ErrorMessageDiv" ></div>
+	 <div id="Error_Message"></div
+			<span> Patient list </span>
+			<span > <a class="headerval" style="position: relative;right: 8px;" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
+
+	</h1>
+
+	<!--	<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -38px;">Patient List</h1>
 	<span>
-			<a class="headerval" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" style="position: relative; top:12px;">
-				<!--<i class="ion-plus" style="font-size:145% !important;"></i>icon-plus-->
-				<i class="iconfontSVG" style="font-size:145% !important;" ng-bind-html="drawSVGCIcon('plus')"></i>
+			<a class="headerval" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" style="position: relative; top:12px;">-->
+
+			<!--	<i class="iconfontSVG" style="font-size:145% !important;" ng-bind-html="drawSVGCIcon('plus')"></i>
 			</a>
-		</span>
+		</span>-->
 
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
 				<div class="TitleHomeUser_Sub" id="WhoNeeds">Who Needs Care Today:</div>
 
 					<div class="SearchImage" ng-click="showSearchInput();">
-						<i class="ion-search" style="float: right; font-size: 26px;color: #666666;"></i>
+						<i class="ion-search" style="float: right; font-size: 23px;color: #666666;"></i>
 					</div>
 			</div>
 
@@ -43,10 +52,7 @@
 </div>
 
 
-
-<ion-content class="ContentUserHome UserHme"  >
-
-
+<ion-content class="ContentUserHome UserHme" ng-controller="LoginCtrl" >
  	<ion-list>
 
 	<div><ion-refresher on-refresh="doRefreshUserHome()"  >

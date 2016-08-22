@@ -21,6 +21,8 @@ angular.module('starter.controllers')
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
                 navigator.app.exitApp();
+            } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+                navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
                 var gSearchLength = $('.ion-google-place-container').length;
                 if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
@@ -66,6 +68,7 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 providerSearchKey: providerSearchKey,
                 success: function(data) {
+                  cordova.plugins.Keyboard.close();
                     $rootScope.searchProviderList = [];
                     if (data.data != '') {
                         $('#startSearchProvider').hide();

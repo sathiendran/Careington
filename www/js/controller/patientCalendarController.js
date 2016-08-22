@@ -23,6 +23,8 @@ angular.module('starter.controllers')
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
@@ -89,7 +91,7 @@ angular.module('starter.controllers')
     d.setHours(d.getHours() + 12);
     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 
-    $scope.doRefresh = function() {
+    $scope.doRefreshApptDetails = function() {
         $rootScope.doGetScheduledConsulatation();
         $rootScope.doGetIndividualScheduledConsulatation();
         $timeout(function() {
@@ -116,8 +118,6 @@ angular.module('starter.controllers')
     				var currentDate = new Date();
     				currentDate = $scope.addMinutes(currentDate, -30);
     				//var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
-
-
     				angular.forEach($scope.scheduledConsultationList, function(index, item) {
     					if(currentDate < CustomCalendar.getLocalTime(index.scheduledTime)) {
     						 $rootScope.scheduledList.push({
@@ -135,21 +135,15 @@ angular.module('starter.controllers')
     						});
     					}
     				});
-
-
     				$rootScope.nextAppointmentDisplay = 'none';
-
     				var d = new Date();
     				d.setHours(d.getHours() + 12);
     				var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-
     				if($rootScope.scheduledList !== undefined && $rootScope.scheduledList.length !== 0)
     				{
     					$rootScope.getIndividualScheduleDetails = $filter('filter')($rootScope.scheduledList, {patientId:$rootScope.selectedPatientIdForDetails});
-
     					var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
     					var currentUserHomeDate = currentUserHomeDate;
-
     					if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
     						console.log('scheduledTime <= getTwelveHours UserHome');
     						$rootScope.nextAppointmentDisplay = 'block';
@@ -168,14 +162,11 @@ angular.module('starter.controllers')
     						var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
     						var currentUserHomeDate = currentUserHomeDate;
     						if((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-
     							$rootScope.time = new Date(getReplaceTime).getTime();
-
     							 $timeout(function() {
     								document.getElementsByTagName('timer')[0].stop();
     								document.getElementsByTagName('timer')[0].start();
     							}, 10);
-
     							$scope.$on('timer-tick', function (event, args){
     								if(args.days === 0) {
     									$rootScope.hourDisplay = 'initial';
@@ -190,8 +181,6 @@ angular.module('starter.controllers')
     									$rootScope.hourDisplay = 'none';
     									$rootScope.dayDisplay = 'none';
     								}
-
-
     								if(args.millis < 600){
     									$rootScope.timeNew = 'none';
     								   $rootScope.timeNew1 = 'block';
@@ -203,11 +192,8 @@ angular.module('starter.controllers')
     								}
     							});
     							$rootScope.time = new Date(getReplaceTime).getTime();
-
     							var d = new Date();
-
     							var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-
     							if(getReplaceTime < currentUserHomeDate){
     								 $rootScope.timerCOlor = '#E1FCD4';
     							}
@@ -216,14 +202,12 @@ angular.module('starter.controllers')
     						}
     					}
     				}
-
     			}
     		},
     		error: function (data) {
     		   $rootScope.serverErrorMessageValidation();
     		}
     	};
-
     	LoginService.getScheduledConsulatation(params);
     }*/
 
@@ -264,7 +248,7 @@ angular.module('starter.controllers')
             $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
         }
 
-      
+
         $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
     };
 

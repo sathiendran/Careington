@@ -21,6 +21,8 @@ angular.module('starter.controllers')
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
@@ -187,6 +189,7 @@ angular.module('starter.controllers')
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
+                $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
                 $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
                 $state.go('tab.ConsentTreat');
 
@@ -295,6 +298,20 @@ angular.module('starter.controllers')
         //$rootScope.Validation( $scope.errorMsg);
         $scope.doGeAppointmentExistingConsulatation();
     });
+    $scope.doRefresh = function() {
+      $rootScope.doGetScheduledConsulatation();
+      $rootScope.doGetIndividualScheduledConsulatation();
+      console.log('Refreshing!');
+      $timeout( function() {
+        //simulate async response
+
+
+        //Stop the ion-refresher from spinning
+        $scope.$broadcast('scroll.refreshComplete');
+
+      }, 1000);
+
+    };
 
     $scope.doGeAppointmentExistingConsulatation = function() {
         $rootScope.consultionInformation = '';

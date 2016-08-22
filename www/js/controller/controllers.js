@@ -329,6 +329,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.drawSVGCIcon = function(iconName) {
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
+        console.log("iconName");
     };
 
     $rootScope.canceloption = function() {
@@ -426,10 +427,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     /******** Code to implement static brand color ends here **********/
 
     if ($rootScope.IOSDevice || $rootScope.isIPad) {
-        $rootScope.screenwidth = window.innerWidth;
+      /*  $rootScope.screenwidth = window.innerWidth;
         if ($rootScope.screenwidth < 325) { //alert($rootScope.screenwidth);
             $rootScope.consentScreenSize = "margin-top: 224px !important;";
-        }
+        }*/
 
         $rootScope.deviceName = "IOS";
         $rootScope.appointCOntent = "margin-top: 175px; ";
@@ -470,7 +471,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.AddHealthPlanCancel = "margin-top: 6px";
         $rootScope.ReportScreen = " top: 1px; position: relative;";
-        $rootScope.PlanDetails = "margin-top: 17px;";
+        $rootScope.PlanDetails = "margin-top: 22px;";
         $rootScope.SubDetailsPlanDetails = "margin-top: -16px;";
         $rootScope.PatientTitle = "  margin-top: 26px; margin-left:-15px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";
@@ -564,6 +565,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
         //$rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
+        $rootScope.PatientTitle = "  margin-top:-45px;"
         $rootScope.PasswordOverlop = "margin: 57px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
@@ -645,6 +647,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
@@ -714,8 +718,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.$apply();
     };
 
-
-
+  
     $rootScope.ClearRootScope = function() {
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
@@ -1379,8 +1382,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 success: function(data) {
                     //Get default payment profile from localstorage if already stored.
                     $rootScope.accessToken = data.data[0].access_token;
-                    console.log($filter('date')(data.data[0].expires, "yyyy-MM-ddTHH:mm:ss"));
-                    console.log($scope.accessToken);
+                  //  $window.localStorage.setItem('tokenExpireTime', data.data[0].expires);
+                    $scope.getCurrentTimeForSessionLogout = new Date();
+                		$rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
+                    $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
+
                     if (typeof data.data[0].access_token == 'undefined') {
                         $scope.ErrorMessage = "Incorrect Password. Please try again";
                         $rootScope.Validation($scope.ErrorMessage);
@@ -1642,7 +1648,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             if ($scope.searched) {
                 $rootScope.RelatedPatientProfiles.shift();
                 $scope.searched = false;
-                $rootScope.homeMagnifyDisplay = "none";
+                $rootScope.homeMagnifyDisplay = "block";
             }
         }
     })
@@ -2165,8 +2171,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         $rootScope.consultChargeNoPlanPage = "none";
         //$rootScope.verifyHealthPlanPage = "none";
-        $rootScope.consultChargeSection = "block";
-        $rootScope.healthPlanSection = "none";
+      //  $rootScope.consultChargeSection = "block";
+      //  $rootScope.healthPlanSection = "block";
         $rootScope.healthPlanPage = "block";
         $rootScope.chooseHealthHide = 'initial';
         $rootScope.chooseHealthShow = 'none';
@@ -2177,8 +2183,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.openVerifyInsuranceSection = function() {
 
-        $rootScope.consultChargeSection = "none";
-        $rootScope.healthPlanSection = "block";
+      //  $rootScope.consultChargeSection = "none";
+      //  $rootScope.healthPlanSection = "block";
         $rootScope.verifyHealthPlanPage = "block";
         $rootScope.healthPlanPage = "none";
         $rootScope.consultChargeNoPlanPage = "none";
@@ -2230,14 +2236,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     {
                         $rootScope.enableAddHealthPlan = "block";
                         $rootScope.disableAddHealthPlan = "none;";
-                        $rootScope.consultChargeSection = "none";
-                        $rootScope.healthPlanSection = "block";
+                      //  $rootScope.consultChargeSection = "none";
+                      //  $rootScope.healthPlanSection = "block";
                         //$state.go('tab.addHealthPlan');
                     } else if ($rootScope.currState.$current.name === "tab.planDetails") {
                         //$rootScope.ApplyPlanPatientHealthPlanList =  $rootScope.patientHealthPlanList;
-                        $rootScope.consultChargeSection = "none";
+                    //    $rootScope.consultChargeSection = "none";
                         $rootScope.disableAddHealthPlan = "none";
-                        $rootScope.healthPlanSection = "block";
+                      //  $rootScope.healthPlanSection = "block";
                         $rootScope.enableAddHealthPlan = "block";
                         $state.go('tab.consultCharge');
 
@@ -2246,12 +2252,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     if ($rootScope.currState.$current.name === "tab.consultCharge") {
                         $rootScope.enableAddHealthPlan = "none";
                         $rootScope.disableAddHealthPlan = "block;";
-                        $rootScope.consultChargeSection = "none";
-                        $rootScope.healthPlanSection = "block";
+                    //    $rootScope.consultChargeSection = "none";
+                      //  $rootScope.healthPlanSection = "block";
                         //$state.go('tab.addHealthPlan');
                     } else if ($rootScope.currState.$current.name === "tab.planDetails") {
-                        $rootScope.consultChargeSection = "none";
-                        $rootScope.healthPlanSection = "block";
+                      //  $rootScope.consultChargeSection = "none";
+                      //  $rootScope.healthPlanSection = "block";
                         $state.go('tab.consultCharge');
                     }
                 }
@@ -2587,8 +2593,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.BackPage = P_Page;
         $rootScope.copayAmount = $rootScope.consultationAmount;
-        $rootScope.consultChargeSection = "none";
-        $rootScope.healthPlanSection = "block";
+      //  $rootScope.consultChargeSection = "none";
+      //  $rootScope.healthPlanSection = "block";
         $rootScope.healthPlanPage = "none";
         $rootScope.consultChargeNoPlanPage = "block";
         //$state.go('tab.consultChargeNoPlan');
@@ -2620,12 +2626,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.backConsultCharge = function() {
         if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
             $state.go('tab.ConsentTreat');
-        } else if ($rootScope.consultChargeSection === "block") {
+        } else if ($rootScope.healthPlanPage === "block") {
             $state.go('tab.ConsentTreat');
-        } else if ($rootScope.healthPlanSection === "block") {
-            $rootScope.healthPlanPage = "none";
-            $rootScope.healthPlanSection = "none";
-            $rootScope.consultChargeSection = "block";
+        } else if ($rootScope.consultChargeNoPlanPage === "block") {
+            $rootScope.consultChargeNoPlanPage = "none";
+            $rootScope.healthPlanPage = "block";
+          //  $rootScope.consultChargeSection = "block";
         }
 
     }
@@ -2640,8 +2646,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         } else {
         	$state.go('tab.consultCharge');
         }*/
-        $rootScope.consultChargeSection = "block";
-        $rootScope.healthPlanSection = "none";
+      //  $rootScope.consultChargeSection = "block";
+      //  $rootScope.healthPlanSection = "none";
         $state.go('tab.' + $rootScope.cardPage);
     }
 
@@ -3985,6 +3991,24 @@ LoginService.getScheduledConsulatation(params);
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+
+                    if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
+                        var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
+                        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                        $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                        if ($scope.userAge === 0) {
+                            $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                            $rootScope.userAgeForIntake = 8;
+                        } else {
+                            $rootScope.concentToTreatPreviousPage = "tab.CurrentMedication";
+                            $rootScope.userAgeForIntake = 7;
+                        }
+                        if ($rootScope.currentPatientDetails[0].account.patientId !== $rootScope.primaryPatientId) {
+                          if($rootScope.userDOB.indexOf('T') == -1) {
+                            $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
+                          }
+                        }
+                    }
                     $rootScope.userDOBDateFormat = date;
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     if ($rootScope.currentPatientDetails[0].gender == 'M') {
@@ -3993,6 +4017,15 @@ LoginService.getScheduledConsulatation(params);
                     } else if ($rootScope.currentPatientDetails[0].gender == 'F') {
                         $rootScope.userGender = "Female";
                         $rootScope.isCheckedFemale = true;
+                    }
+                    if($rootScope.currentPatientDetails[0].account.patientId !== $rootScope.primaryPatientId) {
+                      if (!angular.isUndefined($rootScope.currentPatientDetails[0].account.relationship)) {
+                          $rootScope.patRelationShip =  $rootScope.currentPatientDetails[0].account.relationship;
+                      } else {
+                          $rootScope.patRelationShip = '';
+                      }
+                    } else {
+                        $rootScope.patRelationShip = '';
                     }
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     $state.go(nextPage);
@@ -4351,19 +4384,6 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
-        if (P_Age !== "" && !angular.isUndefined(P_Age)) {
-            var ageDifMs = Date.now() - new Date(P_Age).getTime(); // parse string to date
-            var ageDate = new Date(ageDifMs); // miliseconds from epoch
-            $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
-            if ($scope.userAge === 0) {
-                $rootScope.userAgeForIntake = 8;
-            } else {
-                $rootScope.userAgeForIntake = 7;
-            }
-          if(P_Age.indexOf('T') == -1) {
-              $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
-            }
-        }
         //  $rootScope.userAgeForIntake = ageFilter.getDateFilter(P_Age);
         $rootScope.SelectPatientAge = $rootScope.PatientAge;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
@@ -4430,6 +4450,9 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $scope.doGetWaitingRoom();
     }
+    $scope.goBackFromConcernToTreat = function() {
+      $state.go($rootScope.concentToTreatPreviousPage);
+    }
 
     $scope.GoToConsultCharge = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
@@ -4439,7 +4462,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
 
         if ($rootScope.appointmentsPage === false) {
-            if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
+            /*if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
                 $rootScope.verifyInsuranceSection = "block";
                 $rootScope.verifyConsultChargeSection = "none";
             } else {
@@ -4448,6 +4471,15 @@ LoginService.getScheduledConsulatation(params);
             }
             $rootScope.consultChargeSection = "block";
             $rootScope.healthPlanSection = "none";
+            $rootScope.healthPlanSection = "block";*/
+            if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
+              $rootScope.healthPlanPage = "none";
+              $rootScope.consultChargeNoPlanPage = "block";
+            } else {
+              $rootScope.consultChargeNoPlanPage = "none";
+              $rootScope.healthPlanPage = "block";
+            }
+
             $rootScope.doPutConsultationSave();
         } else if ($rootScope.appointmentsPage === true) {
             $scope.doGetHospitalInformation();
@@ -4478,9 +4510,9 @@ LoginService.getScheduledConsulatation(params);
                     		$rootScope.onDemandMode = 'on';
                     	}
                     }*/
-                    $rootScope.consultChargeSection = "block";
+                  //  $rootScope.consultChargeSection = "block";
 
-                    $rootScope.healthPlanSection = "none";
+                  //  $rootScope.healthPlanSection = "block";
 
                     //Get Payment Details
                     if ($rootScope.paymentMode == 'on' && $rootScope.consultationAmount != 0 && typeof $rootScope.consultationAmount != 'undefined') {
@@ -4494,8 +4526,8 @@ LoginService.getScheduledConsulatation(params);
                         $state.go('tab.receipt');
                         $scope.ReceiptTimeout();
                     } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
-                        $rootScope.verifyInsuranceSection = "none";
-                        $rootScope.verifyConsultChargeSection = "none";
+                      //  $rootScope.verifyInsuranceSection = "none";
+                      //  $rootScope.verifyConsultChargeSection = "none";
                         $rootScope.openAddHealthPlanSection();
                         $state.go('tab.consultCharge');
                     } else {
@@ -4503,14 +4535,14 @@ LoginService.getScheduledConsulatation(params);
                         if ($rootScope.consultationAmount > 0 && typeof $rootScope.consultationAmount != 'undefined') {
                             if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode == 'on') {
 
-                                $rootScope.consultChargeSection = "none";
-                                $rootScope.healthPlanSection = "block";
+                              //  $rootScope.consultChargeSection = "none";
+                              //  $rootScope.healthPlanSection = "block";
                                 $rootScope.healthPlanPage = "none";
                                 $rootScope.consultChargeNoPlanPage = "block";
                             }
                             $state.go('tab.consultCharge');
-                            $rootScope.verifyInsuranceSection = "none";
-                            $rootScope.verifyConsultChargeSection = "block";
+                          //  $rootScope.verifyInsuranceSection = "none";
+                          //  $rootScope.verifyConsultChargeSection = "block";
 
                             if (typeof $rootScope.userDefaultPaymentProfile == "undefined") {
                                 $('#addNewCard').val('Choose Your Card');

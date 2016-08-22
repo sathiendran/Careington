@@ -362,6 +362,11 @@ angular.module('starter.controllers')
         LoginService.getAttachmentList(params);
 
     }
+    $scope.ConvChar=function( str ) {
+      c = {'<':'&lt;', '>':'&gt;', '&':'&amp;', '"':'&quot;', "'":'&#039;',
+           '#':'&#035;' };
+      return str.replace( /[<&>'"#]/g, function(s) { return c[s]; } );
+    }
 
     $scope.doGetChatTranscript = function() {
         if ($rootScope.accessToken == 'No Token') {
@@ -376,19 +381,16 @@ angular.module('starter.controllers')
               $rootScope.chatTranscript = [];
               if(data.count !== 0) {
                 angular.forEach(data.data, function(index, item) {
-                    $rootScope.chatTranscript.push({
-                        'ChatMessage': index
+                  $rootScope.chatTranscript.push({
+                      'ChatMessage':index
                     });
                 });
               }
-
-
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();
             }
         };
-
         LoginService.getChatTranscript(params);
 
     }
