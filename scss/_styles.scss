@@ -3214,6 +3214,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
         .icon-magnifying-glass {
           margin-right: 47px !important;
           font-size: 16px;
+          position: relative;
+          right: 7px;
+          top: -1px;
         }
 				.item-input {
 					margin-top: 1px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
@@ -3272,6 +3275,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
         .icon-magnifying-glass {
           margin-right: 47px !important;
           font-size: 16px;
+          position: relative;
+          right: 7px;
+          top: -1px;
         }
 				.item-input {
 					margin-top: 1px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
@@ -3558,7 +3564,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #666666;
 		position: absolute;
-		width: 75%;
+		width: 60%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3672,7 +3678,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 60%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -8783,4 +8789,11 @@ input.ion-google-place[readonly] {
 }
 .SkipToPaymentApplyPlan {
   margin-top: 35px;
+}
+.planProviderText {
+    margin-left: 65px !important;
+}
+.planSelectedBox {
+  text-align: left !important;
+  margin-left: 0px !important;
 }

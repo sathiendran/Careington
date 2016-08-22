@@ -54,8 +54,8 @@
 					</div>
 
 
-					<div class="provider">Select your provider</div>
-					<div class="addHealthPlan_header noPlanContainer-{{deviceName}}"  >
+					<div class="provider planProviderText">Select your provider</div>
+					<div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
 						<!--<div class="demo ProviderList">
 							 <select id="Provider" ng-model="AddHealth.Provider" style="border: none;" required>
 								<option value=""><b>Plan Provider</b></option>
@@ -64,7 +64,7 @@
 						</div>-->
 
 						<div  class="dropdownContainer">
-							<div class="viewport1" style="left: 62px;">Plan Provider</div>
+							<div class="viewport1" >Plan Provider</div>
 							<select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none; width: 75%;" required>
 								<option value=""><b>Plan Provider</b></option>
 								<option class="planDetailOption" ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
