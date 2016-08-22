@@ -3360,6 +3360,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PrimaryConcernText = "";
 
         $rootScope.PatientPrimaryConcern = "";
+        $rootScope.PatientPrimaryConcernItem="";
         $rootScope.PatientSecondaryConcern = "";
         $rootScope.PatientChronicCondition = "";
         $rootScope.patinentCurrentMedication = "";
@@ -3688,6 +3689,7 @@ LoginService.getScheduledConsulatation(params);
     $rootScope.PlanDisplay = "inherit";
     $rootScope.verifyPlanDisplay = "none;";
     $rootScope.planverify="inherit";
+    $rootScope.subdetailsdisplay="inherit";
     $scope.PlanDetailsValidation = function(model) {
 
       var today = new Date();
@@ -3728,7 +3730,8 @@ LoginService.getScheduledConsulatation(params);
         } else {
             $rootScope.verifyPlanDisplay = "inherit";
             $rootScope.PlanDisplay = "none;";
-              $rootScope.planverify="0.1";
+            $rootScope.planverify="0.3";
+            $rootScope.subdetailsdisplay="none";
             $scope.doPostNewHealthPlan();
         }
     }

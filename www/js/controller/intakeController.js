@@ -200,7 +200,8 @@ angular.module('starter.controllers')
     }
 
     $scope.goBackFromConcern = function() {
-      history.back();
+      history.go(-1);
+
       $scope.$apply();
     }
     $scope.model = null;
@@ -249,7 +250,13 @@ angular.module('starter.controllers')
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
   $scope.clearSelectionAndRebindSelectionList($rootScope.PatientPrimaryConcernItem, $scope.primaryConcernList);
-        if ($rootScope.getSecondaryConcernAPIList == "") {
+  /*if (typeof $rootScope.PrimaryCount == 'undefined') {
+      $rootScope.checkedPrimary = 0;
+  } else {
+      $rootScope.checkedPrimary = $rootScope.PrimaryCount;
+  }*/
+
+        if ($rootScope.getSecondaryConcernAPIList != "") {
             if (typeof $scope.PatientPrimaryConcernItem != 'undefined') {
                 if ($rootScope.IsValue != '') {
                     $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
@@ -266,7 +273,13 @@ angular.module('starter.controllers')
                 $scope.getCheckedSecondaryConcern[0].checked = false;
             }
         }
+        if (typeof $rootScope.PrimaryCount == "") {
 
+              $rootScope.checkedPrimary = "";
+        } else {
+            //  $rootScope.getCheckedPrimaryConcern[0].checked = false;
+            $rootScope.checkedPrimary = $rootScope.PrimaryCount;
+        }
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -298,12 +311,14 @@ angular.module('starter.controllers')
                 } else {
                     $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                     $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
+                      $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
                     $scope.modal.hide();
                     //	$scope.data.searchQuery = '';
                 }
             } else {
                 $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                 $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
+                  $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
                 $scope.modal.hide();
                 //	$scope.data.searchQuery = '';
             }
