@@ -30,7 +30,7 @@
       </div>-->
       <ion-checkbox ng-repeat="item in filteredItems = (secondaryConcernList | filter:data.searchProvider)"
          ng-model="item.checked"
-         ng-checked="secondaryconcern" ng-click="OnSelectPatientSecondaryConcern($index,secondaryConcernList, item)" ng-disabled="checked" >
+         ng-checked="item.checked" ng-click="OnSelectPatientSecondaryConcern($index,secondaryConcernList, item)" ng-disabled="checked" >
          <span class="ng-binding concernListDetails">   {{ item.text }} </span>
       </ion-checkbox>
 

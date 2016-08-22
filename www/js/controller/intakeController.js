@@ -245,11 +245,11 @@ angular.module('starter.controllers')
 
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
-
+  $scope.clearSelectionAndRebindSelectionList($rootScope.PatientPrimaryConcernItem, $scope.primaryConcernList);
         if ($rootScope.getSecondaryConcernAPIList == "") {
             if (typeof $scope.PatientPrimaryConcernItem != 'undefined') {
                 if ($rootScope.IsValue != '') {
-                    $rootScoperootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
+                    $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
                         text: $rootScope.PrimaryConcernText
                     });
                     $rootScope.getCheckedPrimaryConcern[0].checked = true;
