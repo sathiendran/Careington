@@ -264,6 +264,12 @@ angular.module('starter.controllers')
                     });
                     $rootScope.getCheckedPrimaryConcern[0].checked = true;
                 }
+                if ($rootScope.IsValue == '') {
+                    $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
+                        text: $rootScope.PrimaryConcernText
+                    });
+                    $rootScope.getCheckedPrimaryConcern[0].checked = false;
+                }
             }
 
             if (typeof $scope.PatientSecondaryConcernItem != 'undefined') {
@@ -536,7 +542,7 @@ angular.module('starter.controllers')
 
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
-        if ($rootScope.getSecondaryConcernAPIList == "") {
+        if ($rootScope.getSecondaryConcernAPIList != "") {
             //$scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
             if ($scope.PatientPrimaryConcernItem != '') {
                 $scope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
@@ -545,13 +551,30 @@ angular.module('starter.controllers')
                 $scope.getCheckedPrimaryConcern[0].checked = false;
             }
 
-            if (typeof $scope.PatientSecondaryConcernItem !== 'undefined') {
+            if (typeof $scope.PatientSecondaryConcernItem != 'undefined') {
                 if ($rootScope.secondaryConcernLength !== '') {
                     $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
                         text: $rootScope.SecondaryConcernText
                     });
                     $scope.getCheckedSecondaryConcern[0].checked = true;
                 }
+
+                if ($rootScope.secondaryConcernLength == '') {
+                    $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
+                        text: $rootScope.SecondaryConcernText
+                    });
+                    $scope.getCheckedSecondaryConcern[0].checked = false;
+                }
+            }
+            if (typeof $scope.PatientSecondaryConcernItem == 'undefined') {
+                if ($rootScope.secondaryConcernLength !== '') {
+                    $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
+                        text: $rootScope.SecondaryConcernText
+                    });
+                    $scope.getCheckedSecondaryConcern[0].checked = false;
+                }
+
+
             }
         }
 
