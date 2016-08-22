@@ -3994,43 +3994,8 @@ LoginService.getScheduledConsulatation(params);
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-                    $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-
-                    if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
-                        var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
-                        var ageDate = new Date(ageDifMs); // miliseconds from epoch
-                        $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
-                        if ($scope.userAge === 0) {
-                            $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
-                            $rootScope.userAgeForIntake = 8;
-                        } else {
-                            $rootScope.concentToTreatPreviousPage = "tab.CurrentMedication";
-                            $rootScope.userAgeForIntake = 7;
-                        }
-                        if ($rootScope.currentPatientDetails[0].account.patientId !== $rootScope.primaryPatientId) {
-                          if($rootScope.userDOB.indexOf('T') == -1) {
-                            $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
-                          }
-                        }
-                    }
                     $rootScope.userDOBDateFormat = date;
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
-                    if ($rootScope.currentPatientDetails[0].gender == 'M') {
-                        $rootScope.userGender = "Male";
-                        $rootScope.isCheckedMale = true;
-                    } else if ($rootScope.currentPatientDetails[0].gender == 'F') {
-                        $rootScope.userGender = "Female";
-                        $rootScope.isCheckedFemale = true;
-                    }
-                    if($rootScope.currentPatientDetails[0].account.patientId !== $rootScope.primaryPatientId) {
-                      if (!angular.isUndefined($rootScope.currentPatientDetails[0].account.relationship)) {
-                          $rootScope.patRelationShip =  $rootScope.currentPatientDetails[0].account.relationship;
-                      } else {
-                          $rootScope.patRelationShip = '';
-                      }
-                    } else {
-                        $rootScope.patRelationShip = '';
-                    }
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     $state.go(nextPage);
                 }
@@ -4057,6 +4022,55 @@ LoginService.getScheduledConsulatation(params);
             success: function(data) {
                 if (data != "") {
                     $scope.individualScheduledConsultationList = data.data[0];
+                    if ($rootScope.patientId == $rootScope.primaryPatientId) {
+                        $rootScope.P_isAuthorized = true;
+                    } else {
+                        if (data.data[0].account.isAuthorized == "T" || data.data[0].account.isAuthorized == true || data.data[0].account.isAuthorized == "Y") {
+                            $rootScope.P_isAuthorized = true;
+                            //  }else if(P_isAuthorized == "F" || P_isAuthorized == false) {
+                        } else {
+                            $rootScope.P_isAuthorized = false;
+                        }
+                    }
+
+                    var date = new Date($scope.individualScheduledConsultationList.dob);
+                    //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+                    $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+
+                    if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
+                        var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
+                        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                        $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                        if ($scope.userAge === 0) {
+                            $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                            $rootScope.userAgeForIntake = 8;
+                        } else {
+                            $rootScope.concentToTreatPreviousPage = "tab.CurrentMedication";
+                            $rootScope.userAgeForIntake = 7;
+                        }
+                        if ($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
+                          if($rootScope.userDOB.indexOf('T') == -1) {
+                            $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
+                          }
+                        }
+                    }
+                    if ($scope.individualScheduledConsultationList.gender == 'M') {
+                        $rootScope.userGender = "Male";
+                        $rootScope.isCheckedMale = true;
+                    } else if ($scope.individualScheduledConsultationList.gender == 'F') {
+                        $rootScope.userGender = "Female";
+                        $rootScope.isCheckedFemale = true;
+                    }
+                    if($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
+                      if (!angular.isUndefined($scope.individualScheduledConsultationList.account.relationship)) {
+                          $rootScope.patRelationShip =  $scope.individualScheduledConsultationList.account.relationship;
+                      } else {
+                          $rootScope.patRelationShip = '';
+                      }
+                    } else {
+                        $rootScope.patRelationShip = '';
+                    }
+
                     $rootScope.getIndividualScheduledList = [];
                     $rootScope.individualScheduleParticipants = [];
                     var currentDate = new Date();
@@ -4392,16 +4406,6 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.SelectPatientAge = $rootScope.PatientAge;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.patientId = P_Id;
-        if ($rootScope.patientId == $rootScope.primaryPatientId) {
-            $rootScope.P_isAuthorized = true;
-        } else {
-            if (P_isAuthorized == "T" || P_isAuthorized == true || P_isAuthorized == "Y") {
-                $rootScope.P_isAuthorized = true;
-                //  }else if(P_isAuthorized == "F" || P_isAuthorized == false) {
-            } else {
-                $rootScope.P_isAuthorized = false;
-            }
-        }
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetIndividualScheduledConsulatation();
@@ -4524,6 +4528,11 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.doGetPatientPaymentProfiles();
                     }
                     $rootScope.enableInsuranceVerificationSuccess = "none";
+
+                    if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
+                        $rootScope.openAddHealthPlanSection();
+                    }
+
                     if ($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode !== 'on') {
 
                         $rootScope.enablePaymentSuccess = "none";
@@ -4617,7 +4626,6 @@ LoginService.getScheduledConsulatation(params);
 
 
     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData) {
-
         $rootScope.scheduledListDatas = scheduledListData;
         //$scope.doGetUserHospitalInformationForUserHome();
         $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
@@ -4633,6 +4641,13 @@ LoginService.getScheduledConsulatation(params);
         } else {
             $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
         }
+        $rootScope.patientId = $rootScope.scheduledListDatas.patientId;
+        $rootScope.passededconsultants();
+        $rootScope.doGetLocations();
+        $rootScope.doGetIndividualScheduledConsulatation();
+        $rootScope.doGetonDemandAvailability();
+        $rootScope.doGetListOfCoUsers();
+      //  $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
         $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
         //$state.go('tab.appoimentDetails');
     };

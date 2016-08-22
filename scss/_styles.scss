@@ -684,7 +684,11 @@ html, body { background: transparent !important; }
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
-    line-height: 33px;
+    line-height: 35px;
+    span {
+      position: relative;
+      top: 2px;
+    }
 }
 
 .button.button-balanced.activated {
@@ -1106,7 +1110,11 @@ html, body { background: transparent !important; }
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
-  line-height: 33px;
+  line-height: 35px;
+  span {
+    position: relative;
+    top: 2px;
+  }
 }
 .button.button-royal.activated {
 	background-color : $Nobel;
@@ -1302,6 +1310,7 @@ html, body { background: transparent !important; }
     }
 		.addHealthPlan_header {
 			//padding-top: 10px;
+      text-align: left;
 			margin-left:-57px;
 			margin-right: 17px;
 				.addHealthPlan_text {
@@ -3214,6 +3223,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
         .icon-magnifying-glass {
           margin-right: 47px !important;
           font-size: 16px;
+          position: relative;
+          right: 7px;
+          top: -1px;
         }
 				.item-input {
 					margin-top: 1px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
@@ -3272,6 +3284,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
         .icon-magnifying-glass {
           margin-right: 47px !important;
           font-size: 16px;
+          position: relative;
+          right: 7px;
+          top: -1px;
         }
 				.item-input {
 					margin-top: 1px;background: #e3e4e6; margin-left: 5px;margin-right: 5px;border-radius: 9px;
@@ -3558,7 +3573,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #666666;
 		position: absolute;
-		width: 75%;
+		width: 60%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3672,7 +3687,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 60%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -4702,17 +4717,19 @@ p{
           margin-left: -7px;
         }
       }
+      .passedImage-IOS {
+        width: 12% !important;
+      }
 
       .passedDate-IOS{
         width: 25% !important;
-        margin-left: 10px !important;
       }
       .passedTime-IOS {
         width: 20% !important;
         margin-left: 5px !important;
       }
       .passedDoc-IOS {
-        width: 24% !important;
+        width: 19% !important;
         margin-left: 5px !important;
       }
       .passedDetails-IOS {
@@ -8784,15 +8801,11 @@ input.ion-google-place[readonly] {
 .SkipToPaymentApplyPlan {
   margin-top: 35px;
 }
-	.item-input::-webkit-input-placeholder { /* WebKit browsers */
-  line-height: 1.5em;
+
+.planProviderText {
+    margin-left: 65px !important;
 }
-	.item-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  line-height: 1.5em;
-}
-.item-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  line-height: 1.5em;
-}
-	.item-input:-ms-input-placeholder { /* Internet Explorer 10+ */
-  line-height: 1.5em;
+.planSelectedBox {
+  text-align: left !important;
+  margin-left: 0px !important;
 }

@@ -57,7 +57,7 @@
 										</span>
 										<span class="content content-{{deviceName}}" ng-if="primaryPatientId != patientId">
 
-										Manage Profile
+										Manage Profile <!--{{onDemandAvailability}} > 0 && {{P_isAuthorized}} {{appointmentPatientId}} {{patientId}}-->
 
 										</span>
 									</h2>
@@ -79,9 +79,7 @@
 										</span>
 										<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
 
-										View Appointments <!-- {{accountClinicianFooter}} -- {{individualNextAppointmentDisplay}} - {{onDemandAvailability}} - {{P_isAuthorized}}-->
-									<!--	{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}-->
-
+										View Appointments
 										</span>
 									</h2>
 
@@ -113,7 +111,6 @@
 									<span class="content content-{{deviceName}}" ng-if="primaryPatientId != patientId" >
 
 									Manage Profile
-
 									</span>
 								</h2>
 
@@ -133,7 +130,6 @@
 									View Your Appointments
 									</span>
 									<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
-
 									View Appointments</span>
 								</h2>
 
