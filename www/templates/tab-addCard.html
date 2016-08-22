@@ -49,15 +49,17 @@
 	<!--<ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}">-->
 		<ion-content class="consultCharge_contentPayment consultConPaymentMargin"  >
 
-			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-				<div class="consultTittle">Consultation Charge</div>
-				<div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
-				<!--<div class="Plancovers" ng-if="PlanCoversAmount != ''">Plan Covers ${{PlanCoversAmount}}**</div>-->
-			</div>
+			<div style="padding-right: 10%;">
+					<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+					<div class="consultTittle">Consultation Charge</div>
+					<div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
+					<!--<div class="Plancovers" ng-if="PlanCoversAmount != ''">Plan Covers ${{PlanCoversAmount}}**</div>-->
+				</div>
 
-			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-				<div class="consultTittleCopay">Your Copay</div>
-				<div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
+				<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+					<div class="consultTittleCopay">Your Copay</div>
+					<div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
+				</div>
 			</div>
 
 <div class="password_home contentPayHomeAddCard">
@@ -161,10 +163,7 @@
 			</div>
 		</div>
 	</ion-content>
-	</ion-side-menu-content>
 
-	<!--Side Menu File Include --->
-	<div ng-include src="'templates/SideMenu.html'"></div>
 
 	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div>-->
 
@@ -186,5 +185,8 @@
 	</div>
 
 
+</ion-side-menu-content>
 
+<!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>
 </ion-view>

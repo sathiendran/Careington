@@ -1245,7 +1245,8 @@ this.getPatientMedicalProfile = function(params){
        url: apiCommonURL +'/api/v2/familygroups/couser',
 			  method: 'POST',
 			  data: {
-          Name : params.firstName + " " + params.lastName,
+        //  Name : params.firstName + " " + params.lastName,
+        Name : params.firstName,
        Email: params.email,
 			/*	familyGroupId: params.familyGroupId,
 				relationshipId: params.relationshipId,

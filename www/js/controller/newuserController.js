@@ -116,7 +116,7 @@ angular.module('starter.controllers')
       }
     $scope.postNewuserDetails = function() {
         $scope.firstName = $("#userfirstname").val();
-        $scope.lastName = $("#userlastname").val();
+      //  $scope.lastName = $("#userlastname").val();
         $scope.email = $("#useremail").val();
         $scope.ValidateEmail = function(email) {
             //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -180,11 +180,11 @@ angular.module('starter.controllers')
          var dt1 = Date.parse(now),
          dt2 = Date.parse(selectDate);*/
         if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
-            $scope.ErrorMessage = "Please enter First Name";
+            $scope.ErrorMessage = "Please enter Name";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
+      /*  } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
             $scope.ErrorMessage = "Please enter Last Name";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);*/
         } else if (typeof $scope.email === 'undefined' || $scope.email === '') {
             $scope.ErrorMessage = "Please enter Email Id";
             $rootScope.Validation($scope.ErrorMessage);
@@ -277,13 +277,13 @@ angular.module('starter.controllers')
             locationName: $scope.colocation,
             firstName: $scope.firstName,
             lastName: $scope.lastName,
+            lastName: $scope.lastName,
           //  profileImagePath: $rootScope.newCoUserImagePath,
            profileImagePath:"",*/
            var params = {
                accessToken: $scope.accessToken,
                email: $scope.email,
                firstName: $scope.firstName,
-               lastName: $scope.lastName,
             success: function(data) {
                 $('#couserform')[0].reset();
                 $('select').prop('selectedIndex', 0);

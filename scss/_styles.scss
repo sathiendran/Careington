@@ -684,7 +684,11 @@ html, body { background: transparent !important; }
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
-    line-height: 33px;
+    line-height: 35px;
+    span {
+      position: relative;
+      top: 2px;
+    }
 }
 
 .button.button-balanced.activated {
@@ -1106,7 +1110,11 @@ html, body { background: transparent !important; }
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow:  1px 1px 1px rgba(0, 0, 0, 0.3);
-  line-height: 33px;
+  line-height: 35px;
+  span {
+    position: relative;
+    top: 2px;
+  }
 }
 .button.button-royal.activated {
 	background-color : $Nobel;
@@ -1302,6 +1310,7 @@ html, body { background: transparent !important; }
     }
 		.addHealthPlan_header {
 			//padding-top: 10px;
+      text-align: left;
 			margin-left:-57px;
 			margin-right: 17px;
 				.addHealthPlan_text {
