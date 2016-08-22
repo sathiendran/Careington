@@ -12,7 +12,7 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single //Demo
+var deploymentEnv = 'Multiple'; //Production //MultipleMultiple //Single //Demo
 var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
@@ -100,7 +100,7 @@ var handleOpenURL = function(url) {
     }, 0);
 }
 
-angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window) {
     $ionicPlatform.ready(function() {
@@ -237,6 +237,14 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                                 $state.go('tab.singleTheme');
                             }*/
             }
+          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                  $scope.getTokenExpireTime = new Date(window.localStorage.getItem("tokenExpireTime"));
+                  var getCurrentTimeforLogout =  new Date();
+                //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
+                  if(getTokenExpireTime <= getCurrentTimeforLogout) {
+                        $rootScope.ClearRootScope();
+                  }
+            }*/
         }, 2000);
         $ionicPlatform.on('resume', function() {
             setTimeout(function() {
@@ -289,6 +297,21 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                                        $state.go('tab.singleTheme');
                                    }*/
                 }
+                if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                      var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
+                      var getCurrentTimeforLogout =  new Date();
+                    //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
+                      if(getTokenExpireTime <= getCurrentTimeforLogout) {
+                        navigator.notification.alert(
+                            'Your session timeout.', // message
+                            null,
+                            $rootScope.alertMsgName,
+                            'Ok' // buttonName
+                        );
+                        $rootScope.ClearRootScope();
+                     }
+                }
+
             }, 2000);
         });
 /*
@@ -966,4 +989,6 @@ function formatHeightVal(height){
         hv = hv + "0";
     return hv;
 }
+
+
 //snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=

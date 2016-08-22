@@ -96,6 +96,8 @@ angular.module('starter.controllers')
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
@@ -314,7 +316,7 @@ $scope.healthphoneblur=function(){
             $scope.ErrorMessage = "Please enter valid Home Phone Number";
             $rootScope.Validation($scope.ErrorMessage);
         }
-    
+
     }
 
 }

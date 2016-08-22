@@ -21,6 +21,8 @@ angular.module('starter.controllers')
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
@@ -491,6 +493,22 @@ angular.module('starter.controllers')
       }
 
     };
+
+    $scope.data = {};
+
+    $scope.$watch('data.searchProvider', function(searchKey) {
+        $rootScope.providerSearchKey = searchKey;
+        if (typeof $rootScope.providerSearchKey == 'undefined') {
+            $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+        }
+        if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            $rootScope.iconDisplay = 'none';
+        } else {
+            $rootScope.iconDisplay = 'Block';
+        }
+    });
+
+
     /*Primary concern End here*/
 
     /*Secondary concern Start here*/
@@ -1492,20 +1510,25 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                     $rootScope.doGetPatientPaymentProfiles();
                 }
                 $rootScope.enableInsuranceVerificationSuccess = "none";
-                $rootScope.healthPlanPage = "none";
+                // $rootScope.healthPlanPage = "none";
+
+                if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
+                    $rootScope.openAddHealthPlanSection();
+                }
+
                 if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
                     $rootScope.enablePaymentSuccess = "none";
                     $state.go('tab.receipt');
                     $scope.ReceiptTimeout();
                 } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
-                    $rootScope.verifyInsuranceSection = "none";
+                  //  $rootScope.verifyInsuranceSection = "none";
                     $rootScope.openAddHealthPlanSection();
                     $state.go('tab.consultCharge');
                 } else {
                     if ($rootScope.consultationAmount > 0) {
                         if ($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') {
-                            $rootScope.consultChargeSection = "none";
-                            $rootScope.healthPlanSection = "block";
+                          //  $rootScope.consultChargeSection = "none";
+                          //  $rootScope.healthPlanSection = "block";
                             $rootScope.healthPlanPage = "none";
                             $rootScope.consultChargeNoPlanPage = "block";
                         }

@@ -51,6 +51,8 @@ angular.module('starter.controllers')
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
@@ -330,56 +332,90 @@ angular.module('starter.controllers')
             return;
         }
         var params = {
-            accessToken: $rootScope.accessToken,
-            success: function(data) {
+          accessToken: $rootScope.accessToken,
+          success: function(data) {
 
-                $rootScope.patientInfomation = data.data[0];
-                $rootScope.patientAccount = data.data[0].account;
-                $rootScope.patientAddresses = data.data[0].addresses;
-                $rootScope.patientAnatomy = data.data[0].anatomy;
-                $rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
-                $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
-                //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
-                //$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-                //$rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-                if (data.data[0].account.profileImagePath !== '' && typeof data.data[0].account.profileImagePath !== 'undefined') {
-                    $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-                } else {
-                    $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
-                    var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
-                    $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
-                }
-                $rootScope.address = data.data[0].address;
-                $rootScope.city = data.data[0].city;
-                $rootScope.createDate = data.data[0].createDate;
-                $rootScope.dob = data.data[0].dob;
-                $rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
-                $rootScope.gender = data.data[0].gender;
-                $rootScope.homePhone = data.data[0].homePhone;
+              $rootScope.primaryPatientDetails = [];
+              //angular.fromJson(index.billingAddress)
+              angular.forEach(data.data, function(index, item) {
+                  $rootScope.primaryPatientDetails.push({
+                      'account': angular.fromJson(index.account),
+                      'address': index.address,
+                      'addresses': angular.fromJson(index.addresses),
+                      'anatomy': angular.fromJson(index.anatomy),
+                      'countryCode': index.countryCode,
+                      'createDate': index.createDate,
+                      'dob': index.dob,
+                      'gender': index.gender,
+                      'homePhone': index.homePhone,
+                      'lastName': index.lastName,
+                      'mobilePhone': index.mobilePhone,
+                      'patientName': index.patientName,
+                      'pharmacyDetails': index.pharmacyDetails,
+                      'physicianDetails': index.physicianDetails,
+                      'schoolContact': index.schoolContact,
+                      'schoolName': index.schoolName
+                  });
+              });
 
-                if (typeof data.data[0].location != 'undefined') {
-                    $rootScope.location = data.data[0].location;
-                } else {
-                    $rootScope.location = '';
-                }
-                $rootScope.mobilePhone = data.data[0].mobilePhone;
+              $rootScope.patientInfomation = data.data[0];
+              $rootScope.patientAccount = data.data[0].account;
+              $rootScope.patientAddresses = data.data[0].addresses;
+              $rootScope.patientAnatomy = data.data[0].anatomy;
+              $rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
+              $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
+              //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
+              //$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
+              if (data.data[0].account.profileImagePath !== '' && typeof data.data[0].account.profileImagePath !== 'undefined') {
+                  $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
+              } else {
+                  $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
+                  var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
+                  $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
+              }
+              $rootScope.address = data.data[0].address;
+              $rootScope.city = data.data[0].city;
+              $rootScope.createDate = data.data[0].createDate;
+              $rootScope.dob = data.data[0].dob;
+              $rootScope.PatientAge = $rootScope.dob;
+              $rootScope.ageBirthDate = ageFilter.getDateFilter(data.data[0].dob);
+              if (typeof data.data[0].gender !== 'undefined') {
+                  if (data.data[0].gender === 'F') {
+                      $rootScope.primaryPatGender = "Female";
+                  } else {
+                      $rootScope.primaryPatGender = "Male";
+                  }
+                  //$rootScope.gender = data.data[0].gender;
+              } else {
+                  $rootScope.gender = "NA";
+              }
+              $rootScope.homePhone = data.data[0].homePhone;
+              if (typeof data.data[0].location !== 'undefined') {
+                  $rootScope.location = data.data[0].location;
+              } else {
+                  $rootScope.location = '';
+              }
+              $rootScope.mobilePhone = data.data[0].mobilePhone;
 
-                if (typeof data.data[0].organization != 'undefined') {
-                    $rootScope.organization = data.data[0].organization;
-                } else {
-                    $rootScope.organization = '';
-                }
-                $rootScope.primaryPatientName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
-                $rootScope.userCountry = data.data[0].country;
-                if (typeof $rootScope.userCountry == 'undefined') {
-                    $rootScope.userCountry = '';
-                }
-                $rootScope.primaryPatientGuardianName = '';
-                $rootScope.state = data.data[0].state;
-                $rootScope.zipCode = data.data[0].zipCode;
-                $rootScope.primaryPatientId = $rootScope.patientAccount.patientId;
-                $scope.doGetPrimaryPatientLastName();
-                $scope.doGetScheduledConsulatation();
+              if (typeof data.data[0].organization !== 'undefined') {
+
+                  $rootScope.organization = data.data[0].organization;
+              } else {
+                  $rootScope.organization = '';
+              }
+              $rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
+
+              $rootScope.userCountry = data.data[0].country;
+              if (typeof $rootScope.userCountry === 'undefined') {
+                  $rootScope.userCountry = '';
+              }
+              $rootScope.primaryPatientGuardianName = '';
+              $rootScope.state = data.data[0].state;
+              $rootScope.zipCode = data.data[0].zipCode;
+
+              $rootScope.primaryPatientId = $rootScope.patientAccount.patientId;
+              $scope.doGetPrimaryPatientLastName();
+              $rootScope.doGetScheduledConsulatation();
 
             },
             error: function(data) {
@@ -423,33 +459,57 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
 
-                $rootScope.RelatedPatientProfiles = [];
+              $rootScope.RelatedPatientProfiles = [];
 
-                angular.forEach(data.data, function(index, item) {
-                    if (!index.profileImagePath) {
-                        var ptInitial = getInitialForName(index.patientName);
-                        index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
-                        index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
-                    }
-                    $rootScope.RelatedPatientProfiles.push({
-                        'id': index.$id,
-                        'patientId': index.patientId,
-                        'patientName': index.patientName,
-                        'profileImagePath': index.profileImagePath,
-                        'relationCode': index.relationCode,
-                        'isAuthorized': index.isAuthorized,
-                        'birthdate': index.birthdate,
-                        'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
-                        'addresses': angular.fromJson(index.addresses),
-                        'patientFirstName': htmlEscapeValue.getHtmlEscapeValue(index.patientFirstName),
-                        'patientLastName': htmlEscapeValue.getHtmlEscapeValue(index.patientLastName),
-                      //  'guardianFirstName': htmlEscapeValue.getHtmlEscapeValue(index.guardianFirstName),
-                      //  'guardianLastName': htmlEscapeValue.getHtmlEscapeValue(index.guardianLastName),
-                      //  'guardianName': htmlEscapeValue.getHtmlEscapeValue(index.guardianName),
-                    });
-                });
+              angular.forEach(data.data, function(index, item) {
+                  if (!index.profileImagePath) {
+                      var ptInitial = getInitialForName(index.patientName);
+                      index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
+                      index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
+                  }
 
-                $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
+                  if (typeof index.gender !== 'undefined') {
+                      if (index.gender === 'F') {
+                          $scope.patGender = "Female";
+                      } else {
+                          $scope.patGender = "Male";
+                      }
+                  } else {
+                      $scope.patGender = "NA";
+                  }
+
+                  var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                      codeId: index.relationCode
+                  })
+                  if (getdependRelationShip.length !== 0) {
+                      var depRelationShip = getdependRelationShip[0].text;
+                  } else {
+                      var depRelationShip = '';
+                  }
+
+                  $rootScope.RelatedPatientProfiles.push({
+                      'id': index.$id,
+                      'patientId': index.patientId,
+                      'patientName': index.patientName,
+                      //'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
+                      'profileImagePath': index.profileImagePath,
+                      'relationCode': index.relationCode,
+                      'depRelationShip': depRelationShip,
+                      'isAuthorized': index.isAuthorized,
+                      'birthdate': index.birthdate,
+                      'ageBirthDate': ageFilter.getDateFilter(index.birthdate),
+                      'addresses': angular.fromJson(index.addresses),
+                      'gender': $scope.patGender,
+                      'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
+                      'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
+                      //  'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
+                      //  'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
+                      //  'guardianName': angular.element('<div>').html(index.guardianName).text(),
+                      'personId': index.personId,
+
+                  });
+              });
+              $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
                 if (redirectPage == 'userhome') {
                     $state.go('tab.userhome');
                 } else {
@@ -465,6 +525,99 @@ angular.module('starter.controllers')
 
         LoginService.getRelatedPatientProfiles(params);
     };
+
+    $scope.doGetCodesSet = function() {
+        if ($rootScope.accessToken === 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            hospitalId: $rootScope.hospitalId,
+            accessToken: $rootScope.accessToken,
+            fields: 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns,eyecolor,haircolor,ethnicity,bloodtype,relationship,heightunit,weightunit',
+            success: function(data) {
+                //console.log(data.data[3].codes);
+                $rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
+                $rootScope.primaryConcernList = $rootScope.hospitalCodesList;
+                $rootScope.primaryConcernDataList = angular.fromJson(data.data[3].codes);
+                $rootScope.getSecondaryConcernAPIList = angular.fromJson(data.data[4].codes);
+                if (angular.fromJson(data.data[4].codes) !== "") {
+                    $rootScope.scondaryConcernsCodesList = angular.fromJson(data.data[4].codes);
+                } else {
+                    $rootScope.scondaryConcernsCodesList = $rootScope.primaryConcernDataList;
+                }
+                $rootScope.chronicConditionsCodesList = angular.fromJson(data.data[0].codes);
+                $rootScope.chronicConditionList = $rootScope.chronicConditionsCodesList;
+                $rootScope.currentMedicationsCodesList = angular.fromJson(data.data[1].codes);
+                $rootScope.CurrentMedicationList = $rootScope.currentMedicationsCodesList;
+                $rootScope.medicationAllergiesCodesList = angular.fromJson(data.data[2].codes);
+                $rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
+                $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
+
+
+                $rootScope.eyeHairEthnicityRelationCodeSets = [];
+                angular.forEach(data.data, function(index, item) {
+                    $rootScope.eyeHairEthnicityRelationCodeSets.push({
+                        'codes': angular.fromJson(index.codes),
+                        'hospitalId': index.hospitalId,
+                        'name': index.name
+                    });
+                });
+
+                $rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Eye Color"
+                });
+                $rootScope.listOfHairColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Hair Color"
+                });
+                $rootScope.listOfEthnicity = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Ethnicity"
+                });
+                $rootScope.listOfRelationship = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Relationship"
+                });
+                $rootScope.listOfHeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Height Units"
+                });
+                $rootScope.listOfWeightunit = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Weight Units"
+                });
+                $rootScope.listOfBloodtype = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
+                    name: "Blood Type"
+                });
+
+                //	$state.go('tab.patientConcerns');
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        $rootScope.MedicationAllegiesItem = "";
+        $rootScope.CurrentMedicationItem = "";
+        $rootScope.PatientChronicConditionsSelected = "";
+
+        $rootScope.SecondaryConcernText = "";
+        $rootScope.PrimaryConcernText = "";
+
+        $rootScope.PatientPrimaryConcern = "";
+        $rootScope.PatientSecondaryConcern = "";
+        $rootScope.PatientChronicCondition = "";
+        $rootScope.patinentCurrentMedication = "";
+        $rootScope.patinentMedicationAllergies = "";
+        $rootScope.patientSurgeriess = "";
+        $rootScope.MedicationCount == 'undefined';
+        $rootScope.checkedChronic = 0;
+        $rootScope.ChronicCount = "";
+        $rootScope.AllegiesCount = "";
+        $rootScope.checkedAllergies = 0;
+        $rootScope.MedicationCount = "";
+        $rootScope.checkedMedication = 0;
+        $rootScope.IsValue = "";
+        $rootScope.IsToPriorCount = "";
+        $rootScope.IsToPriorCount = "";
+        SurgeryStocksListService.ClearSurgery();
+        LoginService.getCodesSet(params);
+    }
 
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -556,8 +709,19 @@ angular.module('starter.controllers')
             patientId: $rootScope.appointmentsPatientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
+              //$rootScope.PatientImageSelectUser = $rootScope.PatientImage; profileImagePath
                 $rootScope.PatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.PatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
+                if (typeof data.data[0].profileImagePath != 'undefined' && data.data[0].profileImagePath != '') {
+                    var hosImage = data.data[0].profileImagePath;
+                    if (hosImage.indexOf("http") >= 0) {
+                        $rootScope.PatientImageSelectUser = hosImage;
+                    } else {
+                        $rootScope.PatientImageSelectUser = apiCommonURL + hosImage;
+                    }
+                } else {
+                    $rootScope.PatientImageSelectUser = get2CharInString.getProv2Char(data.data[0].patientName + ' ' + data.data[0].lastName);
+                }
                 $state.go('tab.waitingRoom');
             },
             error: function(data) {
@@ -575,6 +739,7 @@ angular.module('starter.controllers')
             jwtKey: $rootScope.jwtKey,
             success: function(data) {
                 $rootScope.accessToken = data.data[0].access_token;
+                $scope.doGetCodesSet();
                 $scope.doGetSingleUserHospitalInformation();
                 $scope.doGetPatientProfiles();
                 $scope.doGetRelatedPatientProfiles('userhome');
@@ -618,6 +783,7 @@ angular.module('starter.controllers')
     } else if ($stateParams.token != "" && $stateParams.token != "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId != "") {
         $rootScope.accessToken = $stateParams.token;
         $rootScope.hospitalId = $stateParams.hospitalId;
+        $scope.doGetCodesSet();
         $rootScope.consultationId = $stateParams.consultationId;
         $scope.doGetSingleUserHospitalInformation();
         $scope.doGetPatientProfiles();
@@ -627,6 +793,7 @@ angular.module('starter.controllers')
     } else if ($stateParams.token != "" && $stateParams.token != "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId == "") {
         $rootScope.accessToken = $stateParams.token;
         $rootScope.hospitalId = $stateParams.hospitalId;
+        $scope.doGetCodesSet();
         //$rootScope.accessToken = "RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ";
         //localStorage.setItem("external_load", null);
         $scope.doGetSingleUserHospitalInformation();

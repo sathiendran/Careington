@@ -22,6 +22,8 @@ angular.module('starter.controllers')
               navigator.app.exitApp();
           } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
               navigator.app.exitApp();
+          } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+              navigator.app.exitApp();
           } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
               var gSearchLength = $('.ion-google-place-container').length;
               if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
@@ -182,14 +184,7 @@ $scope.depheight2=function(){
          }
       }
 }
-$scope.weightunitchange=function(){
-       var maxweight = 999;
-       var weightval=$('#weight').val();
-       if ( weightval > maxweight)
-      {
-          $("#weight").val(maxweight);
-      }
-}
+
 
 $scope.unitchange=function(){
     var maxheight=11;
@@ -206,7 +201,14 @@ $scope.unitchange=function(){
     }
 }
 
-
+$scope.weightunitchange=function(){
+       var maxweight = 999;
+       var weightval=$('#weight').val();
+       if ( weightval > maxweight)
+      {
+          $("#weight").val(maxweight);
+      }
+}
 $scope.phoneBlur=function(){
 $scope.phonelength=$("#homephone").val().length;
 var phonevalue=$("#homephone").val();
@@ -539,7 +541,7 @@ if(phonevalue!=''){
             $rootScope.dependentuserslist = false;
           //  $state.go('tab.relatedusers');
           history.back();
-          $scope.apply();
+          $scope.$apply();
         }
 
         //Function to open ActionSheet when clicking Camera Button
