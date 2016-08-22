@@ -146,16 +146,26 @@ angular.module('starter.controllers')
             $state.go('tab.healthinfo');
             //  $rootScope.doGetListOfCodeSet();
         }
-
+var primaryvalue=$rootScope.PatientPrimaryConcernItem;
+//var patvalue=primaryvalue[0].checked;
+//if($rootScope.PatientPrimaryConcernItem[0].checked=true){
+//$rootScope.Patconcern=$rootScope.PatientPrimaryConcernItem[0].checked==false;
+//alert($rootScope.Patoncern);
+//}
         $scope.goToPatientConcerns = function() {
+            $rootScope.getCheckedPrimaryConcern;
             $rootScope.PatientPrimaryConcernItem;
+              $scope.PatientPrimaryConcernItem=false;
+              $rootScope.Patconcern="";
+          //  $rootScope.PatientPrimaryConcernItem[0].checked=false;
             $rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
             $rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
             $rootScope.PatientPrimaryConcern = "";
-            $rootScope.primaryConcernList = "";
+            $rootScope.PrimaryCount = "";
+            $rootScope.checkedPrimary=0;
             $rootScope.secondaryConcernList = "";
             $scope.PatientPrimaryConcernItem = "";
-
+              $rootScope.getCheckedPrimaryConcern=false;
             $rootScope.PatientSecondaryConcern = "";
             $rootScope.PatientChronicCondition = "";
             $rootScope.patinentCurrentMedication = "";
