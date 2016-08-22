@@ -565,7 +565,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
         //$rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
-        $rootScope.PatientTitle = "  margin-top:-45px;"
+        $rootScope.PatientTitle = "  margin-left:-45px;"
         $rootScope.PasswordOverlop = "margin: 57px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
@@ -3687,7 +3687,7 @@ LoginService.getScheduledConsulatation(params);
 
     $rootScope.PlanDisplay = "inherit";
     $rootScope.verifyPlanDisplay = "none;";
-
+    $rootScope.planverify="inherit";
     $scope.PlanDetailsValidation = function(model) {
 
       var today = new Date();
@@ -3728,6 +3728,7 @@ LoginService.getScheduledConsulatation(params);
         } else {
             $rootScope.verifyPlanDisplay = "inherit";
             $rootScope.PlanDisplay = "none;";
+              $rootScope.planverify="0.1";
             $scope.doPostNewHealthPlan();
         }
     }

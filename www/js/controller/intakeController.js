@@ -199,7 +199,10 @@ angular.module('starter.controllers')
         LoginService.getExistingConsulatation(params);
     }
 
-
+    $scope.goBackFromConcern = function() {
+      history.back();
+      $scope.$apply();
+    }
     $scope.model = null;
     var today = new Date();
     var dd = today.getDate();
