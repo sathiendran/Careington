@@ -180,13 +180,12 @@ angular.module('starter.controllers')
     $scope.minimum = "1950-01-01";
 
     $scope.heightunit1=function(){
-         var max = 10;
-
-var heightval=$('#healthInfoHeight').val();
-if ( heightval > max)
-{
-   $("#healthInfoHeight").val(max);
-}
+       var max = 10;
+       var heightval=$('#healthInfoHeight').val();
+       if ( heightval > max)
+       {
+         $("#healthInfoHeight").val(max);
+       }
 
     }
     $scope.heightunit2=function(){
@@ -249,7 +248,7 @@ if ( heightval > max)
         if (age_month < 0 || (age_month == 0 && age_day < 0)) {
             age = parseInt(age) - 1;
         }
-        if (age >= 12) {
+        if (age >= 12 || ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';
             $rootScope.timezoneDisplay='flex';
         } else {
@@ -273,6 +272,10 @@ if ( heightval > max)
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
+        $scope.formatheight= $rootScope.currentPatientDetails[0].anatomy.height;
+        $scope.formatheightval=$scope.formatheight.split("|");
+        $scope.height=parseInt($scope.formatheightval[0]);
+        $scope.height2=parseInt($scope.formatheightval[1]);
 
         editsvalues.removeClass('textdata');
         edittextarea.removeClass('textdata');
@@ -298,7 +301,7 @@ if ( heightval > max)
         if (age_month < 0 || (age_month == 0 && age_day < 0)) {
             age = parseInt(age) - 1;
         }
-        if (age >= 12) {
+        if (age >= 12 || ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';
             $rootScope.timezoneDisplay='flex';
         } else {
@@ -735,7 +738,8 @@ $scope.healthphoneblur=function(){
                 if (age_month < 0 || (age_month == 0 && age_day < 0)) {
                     age = parseInt(age) - 1;
                 }
-                if (age >= 12) {
+
+                if (age >= 12 || ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId)) {
                     $rootScope.viewemailDisplay = 'flex';
                     $rootScope.viewtimezoneDisplay='flex';
                 } else {

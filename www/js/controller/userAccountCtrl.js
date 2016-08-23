@@ -123,7 +123,7 @@ angular.module('starter.controllers')
             if (age_month < 0 || (age_month == 0 && age_day < 0)) {
                 age = parseInt(age) - 1;
             }
-            if (age >= 12) {
+        if (age >= 12 || ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId)) {
                 $rootScope.viewemailDisplay = 'flex';
                 $rootScope.viewtimezoneDisplay='flex';
             } else {

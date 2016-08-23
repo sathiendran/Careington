@@ -521,6 +521,12 @@ $rootScope.authorised=relateDependentAuthorize;
           $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
           //  $state.go('tab.consultations');
         }
+        var currentLocation = window.location;
+        var loc=currentLocation.href;
+        var newloc=loc.split("#");
+        var locat=newloc[1];
+        var sploc=locat.split("/");
+        $rootScope.locations=sploc[1] +"."+sploc[2];
         $scope.seeaPatientConcerns = function(getDependentDetails) {
 
             $rootScope.PatientPrimaryConcernItem;

@@ -3727,7 +3727,7 @@ LoginService.getScheduledConsulatation(params);
         } else if ($('#date').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (age <=13) {
+        } else if (age <13) {
             $scope.ErrorMessage = "Subscriber should be atleast 13 years old";
             $rootScope.Validation($scope.ErrorMessage);
         } else {
