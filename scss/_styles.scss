@@ -5852,7 +5852,11 @@ color: #999999 !important;
 .healthchoose{width:131%;margin-right:322px;}
     .healthinfoHeight-Android {
       width: 56%;
-      margin-left: -8px;
+      margin-left: -37px;
+      input {
+        width: 111%;
+        margin-left: -2px;
+      }
     }
     .healthinfoHeight2-Android {
       width: 63%;
@@ -8277,10 +8281,17 @@ input.ion-google-place[readonly] {
     margin-left: 10px;
   }
 .consultcontentsearch-IOS {
-  margin-top: 85px
+  margin-top: 85px;
+  .listfirst {
+      margin-bottom: 120px;
+  }
 }
 .consultcontentsearch-Android {
-  margin-top:93px
+  margin-top:93px;
+  .listfirst {
+    margin-bottom: 120px;
+  }
+
 }
 .appointcontentsearch-Android {
     .fname {
@@ -8309,7 +8320,17 @@ input.ion-google-place[readonly] {
 
 .healthinfoHeight-Android {
   width: 56%;
-  margin-left: -8px;
+  margin-left: -37px;
+  input {
+    width: 111%;
+    margin-left: -2px;
+  }
+}
+.healthinfoChoose-Android {
+  select {
+    width: 80% !important;
+    margin-left: 8px;
+  }
 }
 .healthinfoHeight2-Android {
   width: 63%;
@@ -8319,7 +8340,7 @@ input.ion-google-place[readonly] {
   margin-left: -5px;width: 70%;padding-right: 10px;
 }
 .dependwetUnit-Android {
-  width:90%;margin-left: 10px;
+  width:80%;margin-left: 8px;
 }
 
 .colReport-Android {
@@ -8808,4 +8829,9 @@ input.ion-google-place[readonly] {
 .planSelectedBox {
   text-align: left !important;
   margin-left: 0px !important;
+}
+.relatedUserError {
+  .ErrorContent {
+      margin-top: 11px !important;
+  }
 }

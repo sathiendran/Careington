@@ -1298,8 +1298,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 //console.log('dopostsentpass');
-                console.log(data);
-                alert('ddd');
+              //  console.log(data);
+              //  alert('ddd');
+              $scope.ErrorMessage = "Account Activation link has been sent to the address you provided";
+              $rootScope.Validation($scope.ErrorMessage);
             },
             error: function(data) {
                 $rootScope.serverErrorMessageValidation();
@@ -1751,7 +1753,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if (typeof data.data[0].location !== 'undefined') {
                     $rootScope.location = data.data[0].location;
                 } else {
-                    $rootScope.location = '';
+                    $rootScope.location = 'N/A';
                 }
                 $rootScope.mobilePhone = data.data[0].mobilePhone;
 
@@ -1759,7 +1761,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                     $rootScope.organization = data.data[0].organization;
                 } else {
-                    $rootScope.organization = '';
+                    $rootScope.organization = 'N/A';
                 }
                 $rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
 
@@ -4064,6 +4066,8 @@ LoginService.getScheduledConsulatation(params);
                         $rootScope.userGender = "Female";
                         $rootScope.isCheckedFemale = true;
                     }
+
+
                     if($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
                       if (!angular.isUndefined($scope.individualScheduledConsultationList.account.relationship)) {
                           $rootScope.patRelationShip =  $scope.individualScheduledConsultationList.account.relationship;
@@ -4644,7 +4648,11 @@ LoginService.getScheduledConsulatation(params);
         } else {
             $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
         }
-        $rootScope.patientId = $rootScope.scheduledListDatas.patientId;
+        if (!angular.isUndefined($rootScope.scheduledListDatas.patientId)) {
+          $rootScope.patientId = $rootScope.scheduledListDatas.patientId;
+        } else {
+          $rootScope.patientId = $rootScope.patientId;
+        }
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetIndividualScheduledConsulatation();

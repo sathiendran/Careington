@@ -186,8 +186,15 @@ angular.module('starter.controllers')
                     //myPopup.close();
                     $rootScope.doGetAccountDependentDetails();
                 },
-                error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                error: function(data, status) {
+                    if(status == 401) {
+                      $scope.ErrorMessage = "You are not authorized to change authorization status of this dependent";
+                      $scope.$root.$broadcast("callValidation", {
+                          errorMsg: $scope.ErrorMessage
+                      });
+                    }else {
+                      $rootScope.serverErrorMessageValidation();
+                    }
                 }
             };
             LoginService.updateDependentsAuthorize(params);

@@ -374,6 +374,18 @@ angular.module('starter.controllers')
                         $rootScope.reportPatientAddress = 'None Reported';
                     }
 
+                    if (!angular.isUndefined($rootScope.existingConsultationReport.location)) {
+                        $rootScope.location = $rootScope.existingConsultationReport.location;
+                    } else {
+                        $rootScope.location = 'N/A';
+                    }
+
+                    if (!angular.isUndefined($rootScope.existingConsultationReport.organization)) {
+                        $rootScope.organization =$rootScope.existingConsultationReport.organization;
+                    } else {
+                        $rootScope.organization = 'N/A';
+                    }
+
                     if ($rootScope.existingConsultationReport.homePhone != '' && typeof $rootScope.existingConsultationReport.homePhone != 'undefined') {
                         $rootScope.reportHomePhone = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.homePhone);
                     } else {

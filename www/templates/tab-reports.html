@@ -54,11 +54,11 @@
 				<img style="max-height: 70px; max-width: 250px;" src="{{hospitalImage}}">
 			</div>
 			<div class="providerAddress">
-				<div>{{reportHospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
-				<div class="reportOrganization" ng-if="organization != ''"><b>Organization:</b> {{organization}}</div>
-				<div ng-if="location != ''">
+				<div>{{reportHospitalAddress}} <!--<span ng-if="contactNumber != ''">| {{contactNumber}}</span>--></div>
+				<div class="reportOrganization" _ng-if="organization != ''"><b>Organization:</b> {{organization}}</div>
+				<div _ng-if="location != ''">
 					<div><b>Location :</b>{{location}} </div>
-				
+
 				</div>
 			</div>
 		</div>
