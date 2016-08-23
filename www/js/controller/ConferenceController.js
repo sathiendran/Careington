@@ -381,8 +381,9 @@ angular.module('starter.controllers')
               $rootScope.chatTranscript = [];
               if(data.count !== 0) {
                 angular.forEach(data.data, function(index, item) {
-                  $rootScope.chatTranscript.push({
-                      'ChatMessage':index
+                  $scope.charval=$('<textarea />').html(index).text();
+             $rootScope.chatTranscript.push({
+                      'ChatMessage': $scope.charval
                     });
                 });
               }
