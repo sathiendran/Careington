@@ -1634,7 +1634,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 	.providerAddress {
 		text-align: right;
 		.reportOrganization {
-			padding-top: 10px;
+			padding-top: 2px;
 		}
 	}
 	.ConnectedCareDetails {
@@ -2810,7 +2810,7 @@ margin-left: 16px;
     border-radius: 28px;
     border-style: none;
     border-width: 1px;
-    content: " ";
+    content: "";
     display: table;
     height: 100%;
     transition: background-color 20ms ease-in-out 0s;
