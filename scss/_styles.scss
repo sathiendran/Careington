@@ -5791,9 +5791,10 @@ color: white;
 
 
 
-
 @media only screen and (min-width: 595px) and (max-width: 610px){
-
+#divSearchInput{
+  border-bottom: 1px solid #C4C5C3;
+}
     .addhealthplan{
       padding-top: 24px !important;
     }
