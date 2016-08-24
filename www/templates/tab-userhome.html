@@ -15,7 +15,7 @@
 			<div class="Server_Error ErrorMessageDiv" ></div>
 	 <div id="Error_Message"></div
 			<span> Patient list </span>
-			<span > <a class="headerval" style="position: relative;right: 8px;" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
+			<span > <a class="headerval" style="position: relative;right: 8px;" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
 
 	</h1>
 
@@ -58,7 +58,7 @@
 	<div><ion-refresher on-refresh="doRefreshUserHome()"  >
     </ion-refresher></div>
 
-	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'patientClick')">
+	<a ng-if="primaryPatientName != ''" class="UserHomePatient"  ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'patientClick')">
 		<ion-item class="UserHomeHeader" style="border-top: none; top: -2px; height: 79px;">
 			 <div class="HrefListView">
 				<div class="UserhmePatientDetails">
@@ -95,7 +95,7 @@
 
 
 
-		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-if="dependentDetails.isAuthorized !== false"  ng-click= "GoToPatientDetails(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
+		<ion-item class="DependentList" style="top: -2px;" ng-repeat="dependentDetails in (filteredResult = (RelatedPatientProfiles | filter: data.searchQuery))" ng-if="dependentDetails.isAuthorized !== false"  ng-click= "GoToPatientDetails(location,dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName,dependentDetails.birthdate,dependentDetails.guardianName,dependentDetails.patientId, dependentDetails.isAuthorized, 'patientClick')">
 			<!-- <a class="HrefListView">   -->
 			 <div class="HrefListViewDependent">
 				<div class="UserhmePatientDetails">

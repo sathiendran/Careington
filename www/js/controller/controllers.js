@@ -4378,7 +4378,7 @@ LoginService.getScheduledConsulatation(params);
     }
 
 
-    $rootScope.GoToPatientDetails = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
+    $rootScope.GoToPatientDetails = function(Pat_locat,P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
         if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
 
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
@@ -4404,7 +4404,7 @@ LoginService.getScheduledConsulatation(params);
             var ptImage = getInitialForName(P_Fname + " " + P_Lname);
             P_img = generateTextImage(ptImage, $rootScope.brandColor);
         }
-
+$rootScope.locationdet=Pat_locat;
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -4422,6 +4422,51 @@ LoginService.getScheduledConsulatation(params);
             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
         }
+        if (clickEvent === "patientClick") {
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+        } else if (clickEvent === "sideMenuClick") {
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
+        } else if (clickEvent === "sideMenuClickApoointments") {
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
+        } else if (clickEvent === "tab.patientConcerns") {
+            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
+        } else {
+            $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
+        }
+        //$state.go('tab.patientDetail');
+        //$scope.doGetUserHospitalInformation();
+
+    }
+
+
+    $rootScope.GoUserPatientDetails = function(Pat_locat, P_Id, clickEvent) {
+        if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
+
+            //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
+            if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
+                if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
+                    $rootScope.RelatedPatientProfiles.shift();
+                    //  $scope.searched = false;
+                }
+            }
+            $rootScope.providerName = '';
+            $rootScope.PolicyNo = '';
+            $rootScope.healthPlanID = '';
+            $rootScope.NewHealth = '';
+        }
+        $rootScope.userAgeForIntake = '';
+        $rootScope.updatedPatientImagePath = '';
+        $rootScope.newDependentImagePath = '';
+        $rootScope.appointmentDisplay = '';
+        $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+
+
+    $rootScope.locationdet=Pat_locat;
+
+        $rootScope.patientId = P_Id;
+
+
         if (clickEvent === "patientClick") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
         } else if (clickEvent === "sideMenuClick") {

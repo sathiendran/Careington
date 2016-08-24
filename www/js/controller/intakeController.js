@@ -82,6 +82,8 @@ angular.module('starter.controllers')
             }
         }
     };
+var locationdet=$rootScope.locationdet;
+$scope.locat=false;
 
     $scope.doGetExistingConsulatation = function() {
         if ($scope.accessToken === 'No Token') {
@@ -200,9 +202,7 @@ angular.module('starter.controllers')
     }
 
     $scope.goBackFromConcern = function() {
-      history.go(-1);
-
-      $scope.$apply();
+    $state.go(locationdet);
     }
     $scope.model = null;
     var today = new Date();
