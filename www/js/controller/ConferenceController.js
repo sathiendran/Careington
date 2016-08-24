@@ -2,6 +2,7 @@ angular.module('starter.controllers')
 
 
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+    var isCallEndedByPhysician = false;
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
         $rootScope.appointmentsPatientFirstName = '';
@@ -99,18 +100,6 @@ angular.module('starter.controllers')
                     $rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
                 } else {
                     $rootScope.reportHospitalAddress = 'None Reported';
-                }
-
-                if (!angular.isUndefined($rootScope.existingConsultationReport.location)) {
-                    $rootScope.location = $rootScope.existingConsultationReport.location;
-                } else {
-                    $rootScope.location = 'N/A';
-                }
-
-                if (!angular.isUndefined($rootScope.existingConsultationReport.organization)) {
-                    $rootScope.organization =$rootScope.existingConsultationReport.organization;
-                } else {
-                    $rootScope.organization = 'N/A';
                 }
 
                 if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
@@ -502,6 +491,7 @@ angular.module('starter.controllers')
                 $rootScope.waitingMsg = "The Clinician will be with you Shortly.";
             });
             conHub.on("onConsultationEnded", function() {
+                isCallEndedByPhysician = true;
                 $scope.disconnectConference();
             });
         };
@@ -775,47 +765,39 @@ angular.module('starter.controllers')
         if (!callEnded) {
             $('#thumbVideos').remove();
             $('#videoControls').remove();
-
-            //$timeout(function(){
-            //try {
             session.unpublish(publisher)
-                //publisher.destroy();
             session.disconnect();
-            //}
-            /*catch(err) {
-            	alert(err);
-            }*/
-            // }, 5000);
-
-
-
-            /*	$("#subscriber").width(0).height(0);
-            	$('#publisher').width(0).height(0);
-
-            	$("#subscriber").remove();
-            	$("#publisher").remove();*/
             $('#publisher').hide();
             $('#subscriber').hide();
-            //alert($('#publisher').html());
-            //alert($('#subscriber').html());
 
+            if(!isCallEndedByPhysician){
+              navigator.notification.confirm(
+                  'Are you sure want to end the Consultation?',
+                  function(index) {
+                      if (index == 1) {
 
+                      } else if (index == 2) {
+                        navigator.notification.alert(
+                            'Consultation ended successfully!', // message
+                            consultationEndedAlertDismissed, // callback
+                            $rootScope.alertMsgName, // title
+                            'Done' // buttonName
+                        );
+                      }
+                  },
+                  'Confirmation:', ['No', 'Yes']
+              );
+            }else{
+              navigator.notification.alert(
+                  'Consultation ended successfully!', // message
+                  consultationEndedAlertDismissed, // callback
+                  $rootScope.alertMsgName, // title
+                  'Done' // buttonName
+              );
+            }
 
-            //$timeout(function(){
-            //setTimeout(function() {
-            navigator.notification.alert(
-                'Consultation ended successfully!', // message
-                consultationEndedAlertDismissed, // callback
-                $rootScope.alertMsgName, // title
-                'Done' // buttonName
-            );
-            // }, 10000);
-
-            //alert('Consultation ended successfully!');
         }
-
         callEnded = true;
-
     };
 
 
