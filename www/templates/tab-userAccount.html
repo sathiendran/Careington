@@ -40,7 +40,12 @@
 		</div>
 	</ion-header-bar>
 	<ion-content  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId != patientId"  style="display: {{individualwithoutAppointmentDisplay}};">
+		<div><ion-refresher on-refresh="doRefreshUserPage()"  >
+			</ion-refresher></div>
+
 			<ion-list>
+
+
 			<div class="list userlist {{accountStyle}}">
 					<ion-item class="ioniictem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 
@@ -93,7 +98,10 @@
 
 
 <ion-content  title="User Account" class="usercontentpat-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId == patientId" style="display: {{individualNextAppointmentDisplay}};">
+	<div><ion-refresher on-refresh="doRefreshUser()"  >
+		</ion-refresher></div>
 		<ion-list>
+
 		<div class="list userlist {{accountStyle}}">
 				<ion-item class="ioniictem " id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 

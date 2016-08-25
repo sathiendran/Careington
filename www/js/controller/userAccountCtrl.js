@@ -105,7 +105,26 @@ angular.module('starter.controllers')
              };
              LoginService.getListOfCodeSet(params);
            }*/
-
+           $scope.doRefreshUser= function() {
+               $scope.getIndividualScheduleDetails();
+               $scope.doGetRelatedPatientProfiles('tab.userAccount');
+               //$scope.doGetScheduledConsulatation();
+               $timeout(function() {
+                   //$scope.getScheduledDetails($rootScope.patientId);
+                   $scope.$broadcast('scroll.refreshComplete');
+               }, 1000);
+               $scope.$apply();
+           };
+           $scope.doRefreshUserPage= function() {
+               $scope.getIndividualScheduleDetails();
+               $scope.doGetRelatedPatientProfiles('tab.userAccount');
+               //$scope.doGetScheduledConsulatation();
+               $timeout(function() {
+                   //$scope.getScheduledDetails($rootScope.patientId);
+                   $scope.$broadcast('scroll.refreshComplete');
+               }, 1000);
+               $scope.$apply();
+           };
         $rootScope.getManageProfile = function(currentPatientDetails) {
             $rootScope.currentPatientDetails = currentPatientDetails;
             var doddate = new Date($rootScope.currentPatientDetails[0].dob);
