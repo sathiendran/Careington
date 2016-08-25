@@ -1638,7 +1638,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 'profileImagePath': $rootScope.PatientImage,
                 'patientName': $rootScope.primaryPatientFullName,
                 'patientId': $rootScope.primaryPatientId,
-                'isAuthorized': true
+                'isAuthorized': true,
+                'gender': $rootScope.primaryPatGender,
+                'depRelationShip' : ''
             };
             if (!$scope.searched) {
                 //$rootScope.dependentDetails.push(loggedInPatient);
@@ -1748,6 +1750,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     //$rootScope.gender = data.data[0].gender;
                 } else {
                     $rootScope.gender = "NA";
+                    $rootScope.primaryPatGender = '';
                 }
                 $rootScope.homePhone = data.data[0].homePhone;
                 if (typeof data.data[0].location !== 'undefined') {
