@@ -3597,6 +3597,15 @@ LoginService.getScheduledConsulatation(params);
                             $scope.paticipatingPatient = $filter('filter')(angular.fromJson(index.participants), {
                                 "participantTypeCode": "1"
                             })[0];
+                            var apptdate=index.startTime
+                            var dataw=Date.parse(apptdate);
+                            var newda=new Date(dataw);
+                            var splitmnth=newda.getMonth()+1;
+                            var splitdate=newda.getDate();
+                            var splityear=newda.getFullYear();
+                            var Aptdate=splityear+"/"+splitmnth+"/"+splitdate;
+                            $scope.formatscheduleddate = moment(Aptdate, 'YYYY/MM/DD').format('MMM D');
+
                             $scope.paticipatingPatientName = $scope.paticipatingPatient.person.name.given + ' ' + $scope.paticipatingPatient.person.name.family;
                             $scope.paticipatingPatientInitial = getInitialForName($scope.paticipatingPatientName);
                             if ($scope.paticipatingPatient.person.photoUrl) {
@@ -3630,7 +3639,8 @@ LoginService.getScheduledConsulatation(params);
                                 'patientImage': $scope.paticipatingPatientPhoto,
                                 'physicianName': $scope.paticipatingPhysicianName,
                                 'physicianInitial': $scope.paticipatingPhysicianInitial,
-                                'physicianImage': $scope.paticipatingPhysicianPhoto
+                                'physicianImage': $scope.paticipatingPhysicianPhoto,
+                                'scheduledDate':$scope.formatscheduleddate
                             });
                             angular.forEach(index.participants, function(index, item) {
                                 $rootScope.scheduleParticipants.push({
@@ -4087,6 +4097,16 @@ LoginService.getScheduledConsulatation(params);
 
                     angular.forEach($scope.individualScheduledConsultationList.appointments, function(index, item) {
                         if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+
+
+                          var apptdate=index.startTime
+                            var dataw=Date.parse(apptdate);
+                            var newda=new Date(dataw);
+                            var splitmnth=newda.getMonth()+1;
+                            var splitdate=newda.getDate();
+                            var splityear=newda.getFullYear();
+                            var Aptdate=splityear+"/"+splitmnth+"/"+splitdate;
+                            $scope.formatscheduleddate = moment(Aptdate, 'YYYY/MM/DD').format('MMM D');
                             $rootScope.getIndividualScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
                                 'appointmentId': index.appointmentId,
@@ -4096,7 +4116,8 @@ LoginService.getScheduledConsulatation(params);
                                 'endTime': index.endTime,
                                 'intakeMetadata': angular.fromJson(index.intakeMetadata),
                                 'participants': angular.fromJson(index.participants),
-                                'waiveFee': index.waiveFee
+                                'waiveFee': index.waiveFee,
+                                'scheduledDate':$scope.formatscheduleddate
                             });
                             angular.forEach(index.participants, function(index, item) {
                                 $rootScope.individualScheduleParticipants.push({

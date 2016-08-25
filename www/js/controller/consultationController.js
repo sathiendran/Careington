@@ -165,8 +165,8 @@ angular.module('starter.controllers')
 
                             if (enddatetime < todaydatetime) {
                                 var asd = edtime.split('T');
-                                var enddate = asd[0];
-
+                                var formatted = asd[0];
+                                var enddate = moment(formatted, 'YYYY/MM/DD').format('MMM D,YYYY');
                                 var astime = asd[1].split('+');
                                 var newt = astime[0].split(':');
                                 var time = newt[0] + ":" + newt[1];
