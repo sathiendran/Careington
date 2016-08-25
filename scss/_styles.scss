@@ -5795,6 +5795,7 @@ color: white;
 #divSearchInput{
   border-bottom: 1px solid #C4C5C3;
 }
+.editheight{margin-left:0px;}
     .addhealthplan{
       padding-top: 24px !important;
     }
@@ -8321,7 +8322,7 @@ input.ion-google-place[readonly] {
 
 .healthinfoHeight-Android {
   width: 56%;
-  margin-left: -37px;
+  margin-left: -8px;
   input {
     width: 111%;
     margin-left: -2px;
@@ -8334,7 +8335,7 @@ input.ion-google-place[readonly] {
   }
 }
 .healthinfoHeight2-Android {
-  width: 63%;
+  width: 49%;
   margin-left: -10px;
 }
 .dependHeigh-Android {
@@ -8836,3 +8837,4 @@ input.ion-google-place[readonly] {
       margin-top: 11px !important;
   }
 }
+.editheight{margin-left: -36px;}
