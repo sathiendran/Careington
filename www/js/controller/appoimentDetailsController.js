@@ -214,7 +214,6 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 //Get Hospital Information
                 $rootScope.patientId = $rootScope.appointmentsPatientId;
@@ -330,7 +329,7 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-
+                $rootScope.doGetIndividualScheduledConsulatation();
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
@@ -421,11 +420,23 @@ angular.module('starter.controllers')
             success: function(data) {
                 $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
-                if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
+                /*if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
                   var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
                   $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }else {
                   $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
+                }*/
+
+                if (typeof data.data[0].profileImagePath != 'undefined' && data.data[0].profileImagePath != '') {
+                    var hosImage = data.data[0].profileImagePath;
+                    if (hosImage.indexOf("http") >= 0) {
+                        $rootScope.appointmentsPatientImage = hosImage;
+                    } else {
+                        $rootScope.appointmentsPatientImage = apiCommonURL + hosImage;
+                    }
+                } else {
+                    var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
+                    $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }
 
             },

@@ -1232,7 +1232,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data, status);
 				}
 		})
  }
