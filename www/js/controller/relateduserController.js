@@ -520,20 +520,21 @@ $rootScope.authorised=relateDependentAuthorize;
             $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addUser');
   }
+  var currentLocation = window.location;
+  var loc=currentLocation.href;
+  var newloc=loc.split("#");
+  var locat=newloc[1];
+  var sploc=locat.split("/");
+  var cutlocations=sploc[1] +"."+sploc[2];
         $scope.gpToAppointments = function(getDependentDetails) {
-          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
+          $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
           //  $state.go('tab.appointmentpatientdetails');
         }
         $scope.goToConsultations = function(getDependentDetails) {
-          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
+          $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
           //  $state.go('tab.consultations');
         }
-        var currentLocation = window.location;
-        var loc=currentLocation.href;
-        var newloc=loc.split("#");
-        var locat=newloc[1];
-        var sploc=locat.split("/");
-        $rootScope.locations=sploc[1] +"."+sploc[2];
+
         $scope.seeaPatientConcerns = function(getDependentDetails) {
 
             $rootScope.PatientPrimaryConcernItem;
@@ -564,7 +565,9 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.MedicationCountValid = "";
 
           if($rootScope.onDemandAvailability > 0) {
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+           $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+
+              //  $rootScope.GoToConcerns(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
           //  console.log(getDependentDetails);
           //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
           } else {
@@ -583,7 +586,7 @@ $rootScope.authorised=relateDependentAuthorize;
                 $rootScope.isCheckedFeMale = true;
             }*/
           //  $rootScope.doGetSelectedPatientProfiles(currentPatientDetails.patientId,'tab.healthinfo', '')
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
+            $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
             $rootScope.passededconsultants();
 
             var doddate = new Date(getDependentDetails.PatientAge);

@@ -152,7 +152,13 @@ var primaryvalue=$rootScope.PatientPrimaryConcernItem;
 //$rootScope.Patconcern=$rootScope.PatientPrimaryConcernItem[0].checked==false;
 //alert($rootScope.Patoncern);
 //}
-        $scope.goToPatientConcerns = function() {
+        $scope.goToPatientConcerns = function(currentPatientDetails ) {
+          var currentLocation = window.location;
+          var loc=currentLocation.href;
+          var newloc=loc.split("#");
+          var locat=newloc[1];
+          var sploc=locat.split("/");
+          var cutlocations=sploc[1] +"."+sploc[2];
             $rootScope.getCheckedPrimaryConcern;
             $rootScope.PatientPrimaryConcernItem;
               $scope.PatientPrimaryConcernItem=false;
@@ -185,7 +191,9 @@ var primaryvalue=$rootScope.PatientPrimaryConcernItem;
             $rootScope.AllegiesCountValid = "";
             $rootScope.MedicationCountValid = "";
             //SurgeryStocksListService.ClearSurgery();
-            $state.go('tab.patientConcerns');
+         $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+            //  $rootScope.GoToPatientDetailsview($rootScope.locations,'tab.patientConcerns');
+    //   $state.go('tab.patientConcerns');
         }
 
         $rootScope.doGetCurrentUserAppointment = function() {

@@ -716,7 +716,15 @@ angular.module('starter.controllers')
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
                 //    $rootScope.getManageProfile(currentPatientDetails);
-                $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+
+                var currentLocation = window.location;
+                var loc=currentLocation.href;
+                var newloc=loc.split("#");
+                var locat=newloc[1];
+                var sploc=locat.split("/");
+                var cutlocations=sploc[1] +"."+sploc[2];
+
+                $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
                 // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 var editdate = $rootScope.currentPatientDetails.dob;
                 var doddate = new Date($rootScope.healthInfoDOB);

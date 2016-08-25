@@ -143,7 +143,7 @@
 
 
 
-	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
+	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)">
 		<!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
 		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 	</ion-footer-bar>
@@ -166,7 +166,7 @@
 	<!--</a>-->
 </ion-item>
 
- <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns()" >
+ <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns(currentPatientDetails)" >
 
 	<h1 class="title userappfootcontent" >See A Clinician Now</h1>
  </ion-footer-bar>
