@@ -61,15 +61,17 @@ angular.module('starter.controllers')
     };
 
     $rootScope.getTimeZoneName = function(timezoneCode) {
-        var timezoneInfo = $filter('filter')($rootScope.timeZones, {
-            id: timezoneCode
-        });
-        if (timezoneInfo[0])
-            return timezoneInfo[0].name;
-        else if (timezoneInfo)
-            return timezoneInfo.name;
-        else
-            return "";
+      if(timezoneCode !== 0) {
+          var timezoneInfo = $filter('filter')($rootScope.timeZones, {
+              id: timezoneCode
+          });
+          if (timezoneInfo[0])
+              return timezoneInfo[0].name;
+          else if (timezoneInfo)
+              return timezoneInfo.name;
+          else
+              return "";
+      }
     };
 
 
@@ -263,6 +265,7 @@ angular.module('starter.controllers')
         $('#aaa').show();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+        $scope.healthInfoModel.userDOB = new Date($rootScope.userDOB);
         $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
@@ -276,7 +279,6 @@ angular.module('starter.controllers')
         edittextarea.removeClass('textdata');
         editsvalues.addClass('editdata');
         edittextarea.addClass('editdata');
-        $scope.healthInfoModel.userDOB = new Date($rootScope.userDOB);
     }
 
     //$scope.healthInfo = {};
@@ -644,7 +646,7 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             emailAddress: $scope.healthInfoEmail,
             patientProfileData: {
-                patientId: $rootScope.patientId, //$rootScope.currentPatientDetails[0].account.patientId,
+                patientId: $rootScope.currentPatientDetails[0].account.patientId, //$rootScope.currentPatientDetails[0].account.patientId,
                 patientName: $scope.healthInfoFirstName,
                 lastName: $scope.healthInfoLastName,
                 dob: $scope.healthInfoDOB,

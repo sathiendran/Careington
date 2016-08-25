@@ -502,8 +502,16 @@ if(phonevalue!=''){
                       $state.go('tab.relatedusers');
                       console.log(data);*/
                 },
-                error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                error: function(data, status) {
+                      $('select option').filter(function() {
+                          return this.value.indexOf('?') >= 0;
+                      }).remove();
+                    if(status === 400) {
+                      $scope.ErrorMessage = "Email ID Already Registered";
+                      $rootScope.Validation($scope.ErrorMessage);
+                    } else {
+                      $rootScope.serverErrorMessageValidation();
+                    }
                 }
             };
             LoginService.postNewDependentuser(params);

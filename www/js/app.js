@@ -249,7 +249,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
                   var getCurrentTimeforLogout =  new Date();
                 //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                  if(getTokenExpireTime <= getCurrentTimeforLogout) {
+                  if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
                     navigator.notification.alert(
                         'Your session timeout.', // message
                         null,
@@ -315,7 +315,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                       var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
                       var getCurrentTimeforLogout =  new Date();
                     //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                      if(getTokenExpireTime <= getCurrentTimeforLogout) {
+                    if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
                         navigator.notification.alert(
                             'Your session timeout.', // message
                             null,

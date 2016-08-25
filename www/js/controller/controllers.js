@@ -722,6 +722,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.ClearRootScope = function() {
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
+        for (var prop in $rootScope) {
+            if (prop.substring(0,1) !== '$') {
+                delete $rootScope[prop];
+            }
+        }
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
@@ -4080,12 +4085,15 @@ LoginService.getScheduledConsulatation(params);
                           }
                         }
                     }
-                    if ($scope.individualScheduledConsultationList.gender == 'M') {
+                    if ($scope.individualScheduledConsultationList.gender == 'M' || $scope.individualScheduledConsultationList.gender == 'Male') {
                         $rootScope.userGender = "Male";
                         $rootScope.isCheckedMale = true;
-                    } else if ($scope.individualScheduledConsultationList.gender == 'F') {
+                    } else if ($scope.individualScheduledConsultationList.gender == 'F' || $scope.individualScheduledConsultationList.gender == 'Female') {
                         $rootScope.userGender = "Female";
                         $rootScope.isCheckedFemale = true;
+                    } else {
+                      $rootScope.userGender = '';
+                      $rootScope.isCheckedFemale = '';
                     }
 
 
@@ -4486,7 +4494,7 @@ $rootScope.locationdet=Pat_locat;
             $rootScope.healthPlanID = '';
             $rootScope.NewHealth = '';
         }
-        $rootScope.userAgeForIntake = '';
+        //$rootScope.userAgeForIntake = '';
         $rootScope.updatedPatientImagePath = '';
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
@@ -4732,7 +4740,6 @@ $rootScope.locationdet=Pat_locat;
         }
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
-        $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetListOfCoUsers();
       //  $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
