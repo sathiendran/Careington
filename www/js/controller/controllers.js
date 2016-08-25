@@ -4494,7 +4494,7 @@ $rootScope.locationdet=Pat_locat;
             $rootScope.healthPlanID = '';
             $rootScope.NewHealth = '';
         }
-        $rootScope.userAgeForIntake = '';
+        //$rootScope.userAgeForIntake = '';
         $rootScope.updatedPatientImagePath = '';
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
@@ -4739,7 +4739,7 @@ $rootScope.locationdet=Pat_locat;
           $rootScope.patientId = $rootScope.patientId;
         }
         $rootScope.passededconsultants();
-        $rootScope.doGetLocations();        
+        $rootScope.doGetLocations();
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetListOfCoUsers();
       //  $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
