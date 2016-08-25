@@ -5850,10 +5850,10 @@ position: relative;
 top: 8px;
 color: #999999 !important;
 }
-.healthchoose{width:131%;margin-right:322px;}
+.healthchoose{width:131%;margin-right:310px !important;}
     .healthinfoHeight-Android {
       width: 56%;
-      margin-left: -9px;
+      margin-left: -2px !important;
       input {
         width: 111%;
         margin-left: -2px;
@@ -5861,7 +5861,7 @@ color: #999999 !important;
     }
     .healthinfoHeight2-Android {
       width: 63%;
-      margin-left: -42px;
+      margin-left: -38px !important;
     }
 
     .ContentUserHome {
