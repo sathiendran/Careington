@@ -3864,6 +3864,12 @@ font-family: $fontFamily_regular;
     //top: 90px;
     padding-top: 107px;
 }
+.noapptResult {
+	text-align: center; border: none;
+    color: #616462; font-weight: bold; font-size: 19px;
+    //top: 90px;
+    padding-top: 35px;
+}
 
 .dobRequired {
 
@@ -5572,7 +5578,7 @@ color: white;
   // background-color:#e8e8e8;
    height:27px;
    border-radius:5px;
-   margin-top:134px;
+   margin-top:260px;
  .hsearch{
    text-align: center;
    line-height: 2;
@@ -5585,7 +5591,7 @@ color: white;
   // background-color:#e8e8e8;
    height:50px;
    border-radius:5px;
-   margin-top:134px;
+   margin-top:260px;
  .hsearch{
    text-align: center;
    line-height: 2;
@@ -5606,7 +5612,7 @@ color: white;
 }
 .topfont{
    max-width:60px;
-   margin-left:-10px;
+   margin-left:-30px;
    font-size:11px;
    color:#666666;
    font-family: Glober SemiBold;
@@ -8289,7 +8295,7 @@ input.ion-google-place[readonly] {
   }
 }
 .consultcontentsearch-Android {
-  margin-top:93px;
+  margin-top:218px;
   .listfirst {
     margin-bottom: 120px;
   }
