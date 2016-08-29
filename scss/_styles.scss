@@ -1380,9 +1380,8 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 .planDetails_content {
 	padding-top: 32px;
 	margin-top: 12px;
-  position: relative;
 		.healthPlan_text {
-			font-size: 37px;
+			font-size: 34px;
 			text-align: center;
 			color: #666666;
 			font-weight: normal;
@@ -1390,7 +1389,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 		}
 		.planInformation {
 			color: #666666;
-			font-size: 20px;
+			font-size: 18px;
 			font-weight: normal;
       font-family:Glober Regular;
 		}
@@ -1949,7 +1948,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 	}
 }
 .concernListContent {
-	margin-top: 62px; text-align: center;
+	margin-top: 52px;
 	.concernListSearch {
 		padding:11px 0px; top: 0px; border: 0px;
 		.concernListSearchHome {
@@ -1957,7 +1956,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 			.SearchLabel-Android {
 				margin-top: -19px;
 				.SearchBox {
-					color:#535353; font-weight:normal;margin-top: 10px;
+					color:#535353; font-weight:normal;margin-top: 0px;
 				}
 				::-webkit-input-placeholder { /* WebKit browsers */
 						color:    $Tundora !important;
@@ -2030,7 +2029,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 		}
 	}
     .UserHmeSub {
-				padding:12px 10px 15px 10px;
+				padding:12px 10px 5px 10px;
 				.item-input {
 					margin-top: 5px;background: #E6E6E2; margin-left: 5px;margin-right: 5px;border-radius: 9px;
 					border: 1px solid $Altoa;
@@ -2057,8 +2056,8 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 						padding-top: 5px !important;
 						}
 					input {
-					font-size: 20px;
-					color:#616462;height: 30px;  margin-top: 0px;
+					font-size: 17px;
+					color:#616462;height: 26px;  margin-top: 0px;
 					font-family: $fontFamily_regular;
 					}
 
