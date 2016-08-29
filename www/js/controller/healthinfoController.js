@@ -230,22 +230,9 @@ angular.module('starter.controllers')
     $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
     $scope.edittext = function() {
 
-        var doddate = new Date($rootScope.currentPatientDetails[0].dob);
-        var today = new Date();
-        var nowyear = today.getFullYear();
-        var nowmonth = today.getMonth() + 1;
-        var nowday = today.getDate();
-        var dateofb = new Date(doddate)
-        var birthyear = dateofb.getFullYear();
-        var birthmonth = dateofb.getMonth();
-        var birthday = dateofb.getDate();
-        var age = nowyear - birthyear;
-        var age_month = nowmonth - birthmonth;
-        var age_day = nowday - birthday;
-        if (age_month < 0 || (age_month == 0 && age_day < 0)) {
-            age = parseInt(age) - 1;
-        }
-        if (age >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
+        $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
+        $rootScope.restage = getAge( $rootScope.doddate);
+        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
             $rootScope.emailDisplay = 'flex';
             $rootScope.timezoneDisplay = 'flex';
         } else {
@@ -288,17 +275,8 @@ angular.module('starter.controllers')
         var nowmonth = today.getMonth() + 1;
         var nowday = today.getDate();
         $rootScope.doddate = $('#healthInfoDOB').val();
-        var dateofb = new Date($rootScope.doddate);
-        var birthyear = dateofb.getFullYear();
-        var birthmonth = dateofb.getMonth();
-        var birthday = dateofb.getDate();
-        var age = nowyear - birthyear;
-        var age_month = nowmonth - birthmonth;
-        var age_day = nowday - birthday;
-        if (age_month < 0 || (age_month == 0 && age_day < 0)) {
-            age = parseInt(age) - 1;
-        }
-        if (age >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
+        $rootScope.restage = getAge( $rootScope.doddate);
+        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
             $rootScope.emailDisplay = 'flex';
             $rootScope.timezoneDisplay = 'flex';
         } else {
@@ -401,7 +379,7 @@ angular.module('starter.controllers')
             };
 
             if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
-                if ((age >= 12 && age_month >= 0)) {
+                if (($rootScope.restage >= 12 && age_month >= 0)) {
 
                     if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
                         $scope.ErrorMessage = "Please enterenter First Name";
@@ -729,23 +707,10 @@ angular.module('starter.controllers')
                 $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
                 // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 var editdate = $rootScope.currentPatientDetails.dob;
-                var doddate = new Date($rootScope.healthInfoDOB);
-                var today = new Date();
-                var nowyear = today.getFullYear();
-                var nowmonth = today.getMonth() + 1;
-                var nowday = today.getDate();
-                var dateofb = new Date(doddate)
-                var birthyear = dateofb.getFullYear();
-                var birthmonth = dateofb.getMonth();
-                var birthday = dateofb.getDate();
-                var age = nowyear - birthyear;
-                var age_month = nowmonth - birthmonth;
-                var age_day = nowday - birthday;
-                if (age_month < 0 || (age_month == 0 && age_day < 0)) {
-                    age = parseInt(age) - 1;
-                }
+                $rootScope.doddate = new Date($rootScope.healthInfoDOB);
+                $rootScope.restage = getAge( $rootScope.doddate);
 
-                if (age >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
+                if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
                     $rootScope.viewemailDisplay = 'flex';
                     $rootScope.viewtimezoneDisplay = 'flex';
                 } else {

@@ -137,18 +137,10 @@ angular.module('starter.controllers')
 
 
    $scope.ngBlur = function () {
-       var doddate=$('#dob').val();
-       var dateofb=new Date( doddate)
-       var birthyear =dateofb.getFullYear();
-       var birthmonth = dateofb.getMonth();
-       var birthday = dateofb.getDate();
-       var age = nowyear - birthyear;
-       var age_month = nowmonth - birthmonth;
-       var age_day = nowday - birthday;
-       if(age_month < 0 || (age_month == 0 && age_day <0)) {
-       age = parseInt(age) -1;
-      }
-      if(age >=12){
+     $rootScope.doddate=$('#dob').val();
+       $rootScope.restage = getAge(  $rootScope.doddate);
+      if($rootScope.restage>=12 ){
+
         $rootScope.emailDisplay = 'flex';
         $rootScope.timezoneDisplay='flex';
       }else{
@@ -265,16 +257,10 @@ if(phonevalue!=''){
             $scope.getWeightunit = _.first($scope.weightunit);
             $scope.bloodtype = $("#bloodtype").val().split("@").slice(0, 1);
             $scope.getBloodtypeid = _.first($scope.bloodtype);
-            var dateofb=new Date( $scope.dob)
-            var birthyear =dateofb.getFullYear();
-            var birthmonth = dateofb.getMonth();
-            var birthday = dateofb.getDate();
-            var age = nowyear - birthyear;
-            var age_month = nowmonth - birthmonth;
-            var age_day = nowday - birthday;
-            if(age_month < 0 || (age_month == 0 && age_day <0)) {
-            age = parseInt(age) -1;
-           }
+            $rootScope.doddate=$('#dob').val();
+              $rootScope.restage = getAge($scope.dob);
+
+          
            $scope.ValidateEmail = function(email) {
                //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -286,7 +272,8 @@ if(phonevalue!=''){
            var dt1 = Date.parse(now),
            dt2 = Date.parse(selectedDate);
 
-    if ((age >=12  && age_month >= 0)) {
+  //  if ((age >=12  && age_month >= 0)) {
+      if($rootScope.restage>=12 ){
       if ($scope.email === 'undefined' || $scope.email === '') {
           $scope.ErrorMessage = "Please enter Email Id";
           $rootScope.Validation($scope.ErrorMessage);
@@ -502,16 +489,8 @@ if(phonevalue!=''){
                       $state.go('tab.relatedusers');
                       console.log(data);*/
                 },
-                error: function(data, status) {
-                      $('select option').filter(function() {
-                          return this.value.indexOf('?') >= 0;
-                      }).remove();
-                    if(status === 400) {
-                      $scope.ErrorMessage = "Email ID Already Registered";
-                      $rootScope.Validation($scope.ErrorMessage);
-                    } else {
-                      $rootScope.serverErrorMessageValidation();
-                    }
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
                 }
             };
             LoginService.postNewDependentuser(params);

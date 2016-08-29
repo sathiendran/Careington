@@ -3764,28 +3764,8 @@ LoginService.getScheduledConsulatation(params);
     $rootScope.planverify="inherit";
     $rootScope.subdetailsdisplay="inherit";
     $scope.PlanDetailsValidation = function(model) {
-
-
-    var today = new Date();
-      var nowyear = today.getFullYear();
-      var nowmonth = today.getMonth();
-      var nowday = today.getDate();
-      var dobdate=$('#date').val();
-      var birth=new Date(dobdate);
-      var birthyear = birth.getFullYear();
-      var birthmonth = birth.getMonth();
-      var birthday = birth.getDate();
-
-      var age = nowyear - birthyear;
-      var age_month = nowmonth - birthmonth;
-      var age_day = nowday - birthday;
-
-      if(age_month < 0 || (age_month == 0 && age_day <0)) {
-            var  ptage = parseInt(age) -1;
-            var patage = Math.abs(ptage);
-          }
-
-
+      $rootScope.doddate=$('#date').val();
+        $rootScope.restage = getAge(  $rootScope.doddate);
 
 
 
@@ -3805,7 +3785,7 @@ LoginService.getScheduledConsulatation(params);
         } else if ($('#date').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (patage <13) {
+        } else if ( $rootScope.restage <13) {
             $scope.ErrorMessage = "Subscriber should be atleast 13 years old";
             $rootScope.Validation($scope.ErrorMessage);
         } else {
