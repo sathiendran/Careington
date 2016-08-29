@@ -1684,13 +1684,63 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                $rootScope.timeZones = angular.fromJson(data.data);
+                addGroupingToTimeZone(data.data);
+              //  $rootScope.timeZones = angular.fromJson(data.data);
             },
             error: function(data) {
 
             }
         };
         LoginService.getTimezoneList(params);
+    }
+
+    var isDST = function (t) {
+                var jan = new Date(t.getFullYear(),0,1);
+                var jul = new Date(t.getFullYear(),6,1);
+                return Math.min(jan.getTimezoneOffset(),jul.getTimezoneOffset()) == t.getTimezoneOffset();
+            };
+  function addGroupingToTimeZone(data) {
+      var x = new Date();
+      var displaytz = "GMT";
+      var currentTimeZoneOffsetInHours = (x.getTimezoneOffset() / 60);
+      if (isDST(x))
+      currentTimeZoneOffsetInHours = currentTimeZoneOffsetInHours + 1;
+      if (currentTimeZoneOffsetInHours > 0) {
+        if (currentTimeZoneOffsetInHours < 10)
+          displaytz = displaytz + '-0' + currentTimeZoneOffsetInHours;
+        else
+          displaytz = displaytz + '-' + currentTimeZoneOffsetInHours;
+      }
+      else {
+        if (currentTimeZoneOffsetInHours < -9)
+          displaytz = displaytz + '+0' + currentTimeZoneOffsetInHours * -1;
+        else
+          displaytz = displaytz + '+' + currentTimeZoneOffsetInHours * -1;
+      }
+
+      for (var i = 0; i < data.length; i++) {
+        //if (data[i].name.indexOf(displaytz) !== -1) {
+        // data[i].tzGroup = "0Your Browser";
+        // data[i].tzSort = "0";
+        // }
+        //else
+        if ((data[i].id === 75) || (data[i].id === 80) || (data[i].id === 74)
+        || (data[i].id === 77) || (data[i].id === 82) || (data[i].id === 83)
+        || (data[i].id === 85) || (data[i].id === 86) || (data[i].id === 87)) {
+          data[i].tzGroup = "1United States";
+          data[i].tzSort = "1";
+        }
+        else if ((data[i].id === 2) || (data[i].id === 4)) {
+          data[i].tzGroup = "2United Kingdom";
+          data[i].tzSort = "2";
+        }
+        else {
+          data[i].tzGroup = "3Global";
+          data[i].tzSort = "3";
+        }
+      }
+    $rootScope.timeZones = $filter('orderBy')(data, ['tzSort', 'id']);
+    console.log(data);
     }
 
     $scope.doGetPatientProfiles = function() {
