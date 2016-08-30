@@ -1512,14 +1512,27 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 			}
 		}
 	}
+  .CreditSuccess {
+    font-size: 35px; text-align: center; padding-top: 20px; color: #60605D;
+    .PaymentConfirmation {
+      font-size: 30px;  padding-top: 20px; color: #666666; font-family: $fontFamily_semibold;
+      .ConfirmationReceipt {
+        font-size: 20px;  color: #EF4B27;   padding-top: 15px; font-family: $fontFamily_regular;
+        span {
+          font-family: $fontFamily_heavy;
+        }
+      }
+    }
+  }
+
 	.EnterWaitingRoom {
-		padding: 50px 8% 25px 8%;
+		padding: 60px 8% 25px 8%;
 		span {
 			position: relative;top: 3px;
 		}
 	}
 	.ReceiptRedirect {
-		font-size: 12px; color: black; text-align: center;
+		font-size: 12px; color: #666666; text-align: center; font-family: $fontFamily_regular;
 	}
 }
 #SidemenuHomeAndroid {
@@ -8853,4 +8866,37 @@ input.ion-google-place[readonly] {
    position: relative;
    top: -8px;
    color: #666666;
+}
+.CreditClinician {
+  margin-left: -5px;
+  .creditSeeaCLinician {
+    float: left;  width: 63%; text-align: left;  position: relative;
+  left: 15px;
+  }
+  .creditCount {
+    border: 2px solid #FFF;
+    padding: 9px 10px 5px 4px;
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 3em;
+    border-bottom-left-radius: 3em;
+    border-top-left-radius: 3em;
+    font-family: $fontFamily_bold;
+    font-size: 13px;
+  }
+  .creditCountNo {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 6px 8px 1px 7px;
+    color: #666666;
+    font-size: 13px;
+    font-family: $fontFamily_bold;
+  }
+  .creditCountNoTwoDigit {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 6px 6px 1px 5px;
+    color: #666666;
+    font-size: 13px;
+    font-family: $fontFamily_bold;
+  }
 }

@@ -3008,6 +3008,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 console.log(data);
                 $rootScope.enablePaymentSuccess = "none";
+                $rootScope.enableCreditVerification = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
                 $scope.ReceiptTimeout();
@@ -3016,6 +3017,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             error: function(data) {
                 //$rootScope.serverErrorMessageValidation();
                 $rootScope.enablePaymentSuccess = "none";
+                $rootScope.enableCreditVerification = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
                 $scope.ReceiptTimeout();
@@ -3065,6 +3067,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.enableSubmitpayment = "block";
                         $rootScope.disableSubmitpayment = "none";
                         $rootScope.enablePaymentSuccess = "block";
+                        $rootScope.enableCreditVerification = "none";
                         if ($rootScope.copayAmount !== 0) {
                             $rootScope.enableSubmitpaymentAddCard = "block";
                             $rootScope.disableSubmitpaymentAddCard = "none";
@@ -3171,6 +3174,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.doGetReceipt = function() {
         $rootScope.enablePaymentSuccess = "none";
+        $rootScope.enableCreditVerification = "none";
         $state.go('tab.receipt');
         $scope.ReceiptTimeout();
     }
@@ -4447,6 +4451,46 @@ LoginService.getScheduledConsulatation(params);
         LoginService.getListOfCoUsers(params);
     }
 
+    $rootScope.doGetCreditDetails = function() {
+
+        if ($rootScope.accessToken == 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              if(data.data != '') {
+                  $rootScope.listOfCreditDetails = [];
+                  angular.forEach(data.data, function(index, item) {
+                      $rootScope.listOfCreditDetails.push({
+                          'appointmentTypeCode': index.appointmentTypeCode,
+                          'creditAmount': index.creditAmount,
+                          'creditDate': index.creditDate,
+                          'patientId': index.patientId,
+                          'patientPaymentId': index.patientPaymentId
+                      });
+                  });
+                  if($rootScope.listOfCreditDetails.length > 0) {
+                    $rootScope.getIndividualPatientCreditCount = $rootScope.listOfCreditDetails.length;
+                    $rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount - 1 ;
+                  } else {
+                      $rootScope.getIndividualPatientCreditCount = 0;
+                  }
+              } else {
+                $rootScope.listOfCreditDetails = '';
+                $rootScope.getIndividualPatientCreditCount = 0;
+              }
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.GetCreditDetails(params);
+
+    }
+
 
     $rootScope.GoToPatientDetails = function(Pat_locat,P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
         if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
@@ -4474,7 +4518,7 @@ LoginService.getScheduledConsulatation(params);
             var ptImage = getInitialForName(P_Fname + " " + P_Lname);
             P_img = generateTextImage(ptImage, $rootScope.brandColor);
         }
-$rootScope.locationdet=Pat_locat;
+        $rootScope.locationdet=Pat_locat;
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -4483,6 +4527,7 @@ $rootScope.locationdet=Pat_locat;
         $rootScope.SelectPatientAge = $rootScope.PatientAge;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.patientId = P_Id;
+        $rootScope.doGetCreditDetails();
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetIndividualScheduledConsulatation();
@@ -4584,35 +4629,61 @@ $rootScope.locationdet=Pat_locat;
       $state.go($rootScope.concentToTreatPreviousPage);
     }
 
+    $rootScope.doPostDepitDetails = function() {
+        if ($rootScope.accessToken === 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            patientId: $rootScope.patientId,
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $state.go('tab.receipt');
+              $rootScope.enablePaymentSuccess = "none";
+              $rootScope.enableInsuranceVerificationSuccess = "none";
+              $rootScope.enableCreditVerification = "block";
+              $scope.ReceiptTimeout();
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.postDepitDetails(params);
+    }
+
     $scope.GoToConsultCharge = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+        if($rootScope.getIndividualPatientCreditCount != 0) {
+          $rootScope.doPostDepitDetails();
+        } else {
+          if ($rootScope.appointmentsPage === false) {
+              /*if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
+                  $rootScope.verifyInsuranceSection = "block";
+                  $rootScope.verifyConsultChargeSection = "none";
+              } else {
+                  $rootScope.verifyInsuranceSection = "none";
+                  $rootScope.verifyConsultChargeSection = "block";
+              }
+              $rootScope.consultChargeSection = "block";
+              $rootScope.healthPlanSection = "none";
+              $rootScope.healthPlanSection = "block";*/
+              if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
+                $rootScope.healthPlanPage = "none";
+                $rootScope.consultChargeNoPlanPage = "block";
+              } else {
+                $rootScope.consultChargeNoPlanPage = "none";
+                $rootScope.healthPlanPage = "block";
+              }
 
-        if ($rootScope.appointmentsPage === false) {
-            /*if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
-                $rootScope.verifyInsuranceSection = "block";
-                $rootScope.verifyConsultChargeSection = "none";
-            } else {
-                $rootScope.verifyInsuranceSection = "none";
-                $rootScope.verifyConsultChargeSection = "block";
-            }
-            $rootScope.consultChargeSection = "block";
-            $rootScope.healthPlanSection = "none";
-            $rootScope.healthPlanSection = "block";*/
-            if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
-              $rootScope.healthPlanPage = "none";
-              $rootScope.consultChargeNoPlanPage = "block";
-            } else {
-              $rootScope.consultChargeNoPlanPage = "none";
-              $rootScope.healthPlanPage = "block";
-            }
-
-            $rootScope.doPutConsultationSave();
-        } else if ($rootScope.appointmentsPage === true) {
-            $scope.doGetHospitalInformation();
+              $rootScope.doPutConsultationSave();
+          } else if ($rootScope.appointmentsPage === true) {
+              $scope.doGetHospitalInformation();
+          }
         }
     }
 
@@ -4650,6 +4721,7 @@ $rootScope.locationdet=Pat_locat;
                         $rootScope.doGetPatientPaymentProfiles();
                     }
                     $rootScope.enableInsuranceVerificationSuccess = "none";
+                    $rootScope.enableCreditVerification = "none";
 
                     if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
                         $rootScope.openAddHealthPlanSection();
@@ -4658,6 +4730,7 @@ $rootScope.locationdet=Pat_locat;
                     if ($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode !== 'on') {
 
                         $rootScope.enablePaymentSuccess = "none";
+                        $rootScope.enableCreditVerification = "none";
                         $state.go('tab.receipt');
                         $scope.ReceiptTimeout();
                     } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
@@ -4694,6 +4767,7 @@ $rootScope.locationdet=Pat_locat;
                             }
                         } else {
                             $rootScope.enablePaymentSuccess = "none";
+                            $rootScope.enableCreditVerification = "none";
                             $state.go('tab.receipt');
                             $scope.ReceiptTimeout();
                         }
@@ -4768,6 +4842,7 @@ $rootScope.locationdet=Pat_locat;
         } else {
           $rootScope.patientId = $rootScope.patientId;
         }
+        $rootScope.doGetCreditDetails();
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetonDemandAvailability();

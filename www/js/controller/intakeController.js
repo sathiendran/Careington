@@ -1551,6 +1551,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                     $rootScope.doGetPatientPaymentProfiles();
                 }
                 $rootScope.enableInsuranceVerificationSuccess = "none";
+                $rootScope.enableCreditVerification = "none";
                 // $rootScope.healthPlanPage = "none";
 
                 if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
@@ -1559,6 +1560,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 
                 if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
                     $rootScope.enablePaymentSuccess = "none";
+                    $rootScope.enableCreditVerification = "none";
                     $state.go('tab.receipt');
                     $scope.ReceiptTimeout();
                 } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
@@ -1588,6 +1590,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                         }
                     } else {
                         $rootScope.enablePaymentSuccess = "none";
+                        $rootScope.enableCreditVerification = "none";
                         $state.go('tab.receipt');
                         $scope.ReceiptTimeout();
                     }
