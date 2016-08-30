@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('userAccountCtrl', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, SurgeryStocksListService) {
+    .controller('userAccountCtrl', function($scope,$ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter,$timeout, SurgeryStocksListService) {
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
@@ -77,6 +77,7 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
+
         /*  $rootScope.doGetListOfCodeSet = function() {
              var params = {
                accessToken: $rootScope.accessToken,
@@ -105,22 +106,21 @@ angular.module('starter.controllers')
              };
              LoginService.getListOfCodeSet(params);
            }*/
-           $scope.doRefreshUser= function() {
-               $scope.getIndividualScheduleDetails();
-               $scope.doGetRelatedPatientProfiles('tab.userAccount');
-               //$scope.doGetScheduledConsulatation();
+
+           $scope.doRefreshAccount= function() {
+          $rootScope.doGetIndividualScheduledConsulatation();
+
                $timeout(function() {
                    //$scope.getScheduledDetails($rootScope.patientId);
-                   $scope.$broadcast('scroll.refreshComplete');
+                     $scope.$broadcast('scroll.refreshComplete');
                }, 1000);
                $scope.$apply();
            };
            $scope.doRefreshUserPage= function() {
-               $scope.getIndividualScheduleDetails();
-               $scope.doGetRelatedPatientProfiles('tab.userAccount');
-               //$scope.doGetScheduledConsulatation();
+                   $rootScope.doGetIndividualScheduledConsulatation();
+
                $timeout(function() {
-                   //$scope.getScheduledDetails($rootScope.patientId);
+
                    $scope.$broadcast('scroll.refreshComplete');
                }, 1000);
                $scope.$apply();
