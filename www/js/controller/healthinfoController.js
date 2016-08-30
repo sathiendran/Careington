@@ -189,6 +189,14 @@ angular.module('starter.controllers')
         }
 
     }
+
+    $scope.heightunit1len=function(){
+       var max = 10;
+       var heightunitlen=$('#healthInfoHeight').val().length;
+       if(heightunitlen>2){
+           $("#healthInfoHeight").val(max);
+       }
+    }
     $scope.heightunit2 = function() {
         var max = 99;
         var height2val = $("#healthInfoHeight2").val();
@@ -206,10 +214,38 @@ angular.module('starter.controllers')
         }
 
     }
+    $scope.heightunit2len=function(){
+      var max = 99;
+      var heightunit2len=$('#healthInfoHeight2').val().length;
+
+      if(heightunit2len>2){
+          $("#healthInfoHeight2").val(max);
+      }
+      var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+      var getheightunit=_.first(heightunit);
+      if(getheightunit=="ft/in"){
+          var maxheight=11;
+          if ( height2val > maxheight)
+         {
+             $("#healthInfoHeight2").val(maxheight);
+         }
+      }
+    }
+    $scope.weightunitchange=function(){
+      var maxweight = 999;
+      var weightval = $('#healthInfoWeight').val();
+      if (weightval > maxweight) {
+          $("#healthInfoWeight").val(maxweight);
+      }
+    }
     $scope.weightunit = function() {
         var maxweight = 999;
         var weightval = $('#healthInfoWeight').val();
         if (weightval > maxweight) {
+            $("#healthInfoWeight").val(maxweight);
+        }
+        var weightvallen=$('#healthInfoWeight').val().length;
+        if(weightvallen>3){
             $("#healthInfoWeight").val(maxweight);
         }
     }
@@ -261,6 +297,8 @@ angular.module('starter.controllers')
         $scope.formatheightval = $scope.formatheight.split("|");
         $scope.height = parseInt($scope.formatheightval[0]);
         $scope.height2 = parseInt($scope.formatheightval[1]);
+        $scope.weightvalue=$rootScope.currentPatientDetails[0].anatomy.weight;
+        $scope.weight=parseInt($scope.weightvalue);
 
         editsvalues.removeClass('textdata');
         edittextarea.removeClass('textdata');

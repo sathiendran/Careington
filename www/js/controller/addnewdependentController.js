@@ -157,6 +157,17 @@ $scope.depheight1=function(){
       {
           $("#height").val(max);
       }
+      var heightvallen=$('#height').val().length;
+      if(heightvallen>2){
+          $("#height").val(max);
+      }
+}
+$scope.height1len=function(){
+   var max = 10;
+   var heightvallen=$('#height').val().length;
+   if(heightvallen>2){
+       $("#height").val(max);
+   }
 }
 $scope.depheight2=function(){
        var max = 99;
@@ -176,7 +187,23 @@ $scope.depheight2=function(){
          }
       }
 }
+$scope.height2len=function(){
+  var max = 99;
+  var height2vallen=$('#height2').val().length;
 
+  if(height2vallen>2){
+      $("#height2").val(max);
+  }
+  var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+  var getheightunit=_.first(heightunit);
+  if(getheightunit=="ft/in"){
+      var maxheight=11;
+      if ( height2val > maxheight)
+     {
+         $("#height2").val(maxheight);
+     }
+  }
+}
 
 $scope.unitchange=function(){
     var maxheight=11;
@@ -200,6 +227,13 @@ $scope.weightunitchange=function(){
       {
           $("#weight").val(maxweight);
       }
+}
+$scope.weight1len=function(){
+    var maxweight = 999;
+   var weightvallen=$('#weight').val().length;
+   if(weightvallen>3){
+       $("#weight").val(maxweight);
+   }
 }
 $scope.phoneBlur=function(){
 $scope.phonelength=$("#homephone").val().length;
@@ -260,7 +294,7 @@ if(phonevalue!=''){
             $rootScope.doddate=$('#dob').val();
               $rootScope.restage = getAge($scope.dob);
 
-          
+
            $scope.ValidateEmail = function(email) {
                //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
