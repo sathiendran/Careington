@@ -3222,7 +3222,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .UserHme {
 	padding: 0 0%;
 	.UserHmeSub-Android {
-				padding:15px 10px 9px 10px;
+				padding:20px 10px 9px 10px;
         .userhmeSeach {
           position: fixed;
           text-align: center;
@@ -4991,7 +4991,7 @@ p{
    /*.has-header {
       top: 90px; }*/
       .ContentUserHome {
-        //  margin: 29px 0 0 0;
+         margin: 136px 0 0 0;
           font-family: "Glober Regular";
           border-top: 1px solid #C4C5C3;
       }
@@ -8858,7 +8858,9 @@ input.ion-google-place[readonly] {
       font-weight:normal;
   }
 }
-.editheight{margin-left: -36px;}
+.editheight{
+  //margin-left: -36px;
+}
 .addHealthPlan_text{
   font-size: 20px;
    font-weight: bold;
