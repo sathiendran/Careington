@@ -515,20 +515,48 @@ if(phonevalue!=''){
                     var updatepatientdetail = data.data;
                     $rootScope.deppatientId = updatepatientdetail[0].patientId;
                     $scope.updateDependentRelation();
-
-
-
-                    /*  $('#dependentuserform')[0].reset();
-                      $('select').prop('selectedIndex', 0);
-                      $state.go('tab.relatedusers');
-                      console.log(data);*/
                 },
-                error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  error: function(data, status) {
+                      $('select option').filter(function() {
+                          return this.value.indexOf('?') >= 0;
+                      }).remove();
+                    if(status === 400) {
+                      $scope.doChkAddressForReg($scope.homeaddress);
+                    } else {
+                      $rootScope.serverErrorMessageValidation();
+                    }
+
                 }
+
             };
             LoginService.postNewDependentuser(params);
 
+        }
+
+        $scope.doChkAddressForReg = function(homeaddress) {
+          if ($scope.accessToken === 'No Token') {
+              alert('No token.  Get token first then attempt operation.');
+              return;
+          }
+          var params = {
+              AddressText: homeaddress,
+              HospitalId: $rootScope.hospitalId,
+              accessToken: $rootScope.accessToken,
+              success: function(data) {
+                    if(data.data[0].isAvailable === true) {
+                      $scope.ErrorMessage = "Email ID Already Registered";
+                      $rootScope.Validation($scope.ErrorMessage);
+                    } else {
+                      $scope.ErrorMessage = "Patient Registration is not allowed for this address";
+                      $rootScope.Validation($scope.ErrorMessage);
+                    }
+              },
+              error: function(data) {
+                  $rootScope.serverErrorMessageValidation();
+              }
+          };
+
+          LoginService.chkAddressForReg(params);
         }
 
 
@@ -548,7 +576,7 @@ if(phonevalue!=''){
                     }
 
                 },
-                error: function(data) {
+                error: function(data, status) {
                     $rootScope.serverErrorMessageValidation();
                 }
             };
