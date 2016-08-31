@@ -8522,6 +8522,8 @@ input.ion-google-place[readonly] {
     transition: box-shadow 0.3s ease;
       width: 22px;
   }
+
+
   input:checked+span::before {
     opacity: 1;
     -webkit-transition: opacity 0.3s ease;
@@ -8530,6 +8532,10 @@ input.ion-google-place[readonly] {
     -o-transition: opacity 0.3s ease;
     transition: opacity 0.3s ease;
   }
+
+
+
+
   .checkbox__control::before {
     opacity: 0;
     position: absolute;
@@ -8543,8 +8549,9 @@ input.ion-google-place[readonly] {
   //  border-radius: 3px;
   //  color: #fff;
   //  background-color: #a2d28a;
-   content: "\e0018";
-    background-image: url("../img/icon-check.png");
+   content: "";
+    background: url(../img/icon-check.png);
+
     -webkit-transition: opacity 0.3s ease;
     -moz-transition: opacity 0.3s ease;
     -ms-transition: opacity 0.3s ease;
