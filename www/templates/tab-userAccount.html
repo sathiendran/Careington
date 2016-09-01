@@ -39,8 +39,14 @@
 			</div>
 		</div>
 	</ion-header-bar>
+
+	<ion-view title="User Account Details" >
 	<ion-content  title="User Account" class="usercontent-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId != patientId"  style="display: {{individualwithoutAppointmentDisplay}};">
+	<ion-refresher on-refresh="doRefreshAccount()"></ion-refresher>
+
 			<ion-list>
+
+
 			<div class="list userlist {{accountStyle}}">
 					<ion-item class="ioniictem" id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 
@@ -57,7 +63,7 @@
 										</span>
 										<span class="content content-{{deviceName}}" ng-if="primaryPatientId != patientId">
 
-										Manage Profile
+										Manage Profile <!--{{onDemandAvailability}} > 0 && {{P_isAuthorized}} {{appointmentPatientId}} {{patientId}}-->
 
 										</span>
 									</h2>
@@ -79,9 +85,7 @@
 										</span>
 										<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
 
-										View Appointments <!-- {{accountClinicianFooter}} -- {{individualNextAppointmentDisplay}} - {{onDemandAvailability}} - {{P_isAuthorized}}-->
-									<!--	{{onDemandAvailability}} - {{P_isAuthorized}} - {{accountClinicianFooter}}-->
-
+										View Appointments
 										</span>
 									</h2>
 
@@ -95,7 +99,9 @@
 
 
 <ion-content  title="User Account" class="usercontentpat-{{deviceName}} scroll-content ionic-scroll  has-header" ng-if="appointmentPatientId == patientId" style="display: {{individualNextAppointmentDisplay}};">
+<ion-refresher on-refresh="doRefreshUserPage()"></ion-refresher>
 		<ion-list>
+
 		<div class="list userlist {{accountStyle}}">
 				<ion-item class="ioniictem " id="accountMngeProfile-{{deviceName}}" ng-click="getManageProfile(currentPatientDetails)">
 
@@ -113,7 +119,6 @@
 									<span class="content content-{{deviceName}}" ng-if="primaryPatientId != patientId" >
 
 									Manage Profile
-
 									</span>
 								</h2>
 
@@ -133,7 +138,6 @@
 									View Your Appointments
 									</span>
 									<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId != patientId">
-
 									View Appointments</span>
 								</h2>
 
@@ -145,11 +149,26 @@
 
 </ion-content>
 
+</ion-view>
 
 
-	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns()">
+	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)">
 		<!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
-		<h1 class="title" id="centercolor" >See A Clinician Now</h1>
+		<!--<h1 class="title" id="centercolor" >See A Clinician Now</h1>-->
+		<div ng-if="getIndividualPatientCreditCount != 0" class="title CreditClinician" id="centercolor" >
+			<div class="creditSeeaCLinician" >
+	  		See A Clinician Now
+			</div>
+			<div>
+				<span class="creditCount">
+					<span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
+					<span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> Credits
+				</span>
+			</div>
+		</div>
+		<div ng-if="getIndividualPatientCreditCount == 0">
+			<h1 class="title" id="centercolor" >See A Clinician Now</h1>
+		</div>
 	</ion-footer-bar>
 
 	<ion-item ng-if="appointmentPatientId == patientId" class="apptdetails accountAppointHeight" style="display: {{individualNextAppointmentDisplay}}; " ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-show="$first">
@@ -164,19 +183,31 @@
 					 </span>
 				 </span>
 				 </div>
-	</div>
-
+			 </div>
 	</div>
 	<!--</a>-->
 </ion-item>
 
- <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns()" >
+ <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns(currentPatientDetails)" >
 
-	<h1 class="title userappfootcontent" >See A Clinician Now</h1>
+	<!--<h1 class="title userappfootcontent" >See A Clinician Now</h1>-->
+	<div ng-if="getIndividualPatientCreditCount != 0" class="title CreditClinician userappfootcontent"  >
+		<div class="creditSeeaCLinician" >
+			See A Clinician Now
+		</div>
+		<div>
+			<span class="creditCount">
+				<span ng-if="getIndividualPatientCreditCount < 10" class="creditCountNo">{{getIndividualPatientCreditCount}}</span>
+				<span ng-if="getIndividualPatientCreditCount > 9" class="creditCountNoTwoDigit">{{getIndividualPatientCreditCount}}</span> Credits
+			</span>
+		</div>
+	</div>
+	<div ng-if="getIndividualPatientCreditCount == 0">
+		<h1 class="title userappfootcontent" >See A Clinician Now</h1>
+	</div>
  </ion-footer-bar>
-
+<div ng-controller="LoginCtrl"></div>
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
 <div ng-controller="appoimentDetailsCtrl"></div>
-<div ng-controller="LoginCtrl"></div>

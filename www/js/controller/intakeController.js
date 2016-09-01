@@ -82,6 +82,8 @@ angular.module('starter.controllers')
             }
         }
     };
+var locationdet=$rootScope.locationdet;
+$scope.locat=false;
 
     $scope.doGetExistingConsulatation = function() {
         if ($scope.accessToken === 'No Token') {
@@ -199,7 +201,9 @@ angular.module('starter.controllers')
         LoginService.getExistingConsulatation(params);
     }
 
-
+    $scope.goBackFromConcern = function() {
+    $state.go(locationdet);
+    }
     $scope.model = null;
     var today = new Date();
     var dd = today.getDate();
@@ -245,14 +249,26 @@ angular.module('starter.controllers')
 
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
+  $scope.clearSelectionAndRebindSelectionList($rootScope.PatientPrimaryConcernItem, $scope.primaryConcernList);
+  /*if (typeof $rootScope.PrimaryCount == 'undefined') {
+      $rootScope.checkedPrimary = 0;
+  } else {
+      $rootScope.checkedPrimary = $rootScope.PrimaryCount;
+  }*/
 
-        if ($rootScope.getSecondaryConcernAPIList == "") {
+        if ($rootScope.getSecondaryConcernAPIList != "") {
             if (typeof $scope.PatientPrimaryConcernItem != 'undefined') {
                 if ($rootScope.IsValue != '') {
-                    $rootScoperootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
+                    $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
                         text: $rootScope.PrimaryConcernText
                     });
                     $rootScope.getCheckedPrimaryConcern[0].checked = true;
+                }
+                if ($rootScope.IsValue == '') {
+                    $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
+                        text: $rootScope.PrimaryConcernText
+                    });
+                    $rootScope.getCheckedPrimaryConcern[0].checked = false;
                 }
             }
 
@@ -263,7 +279,13 @@ angular.module('starter.controllers')
                 $scope.getCheckedSecondaryConcern[0].checked = false;
             }
         }
+        if (typeof $rootScope.PrimaryCount == "") {
 
+              $rootScope.checkedPrimary = "";
+        } else {
+            //  $rootScope.getCheckedPrimaryConcern[0].checked = false;
+            $rootScope.checkedPrimary = $rootScope.PrimaryCount;
+        }
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -295,12 +317,14 @@ angular.module('starter.controllers')
                 } else {
                     $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                     $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
+                      $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
                     $scope.modal.hide();
                     //	$scope.data.searchQuery = '';
                 }
             } else {
                 $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                 $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
+                  $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
                 $scope.modal.hide();
                 //	$scope.data.searchQuery = '';
             }
@@ -518,7 +542,7 @@ angular.module('starter.controllers')
 
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
-        if ($rootScope.getSecondaryConcernAPIList == "") {
+        if ($rootScope.getSecondaryConcernAPIList != "") {
             //$scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
             if ($scope.PatientPrimaryConcernItem != '') {
                 $scope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
@@ -527,13 +551,30 @@ angular.module('starter.controllers')
                 $scope.getCheckedPrimaryConcern[0].checked = false;
             }
 
-            if (typeof $scope.PatientSecondaryConcernItem !== 'undefined') {
+            if (typeof $scope.PatientSecondaryConcernItem != 'undefined') {
                 if ($rootScope.secondaryConcernLength !== '') {
                     $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
                         text: $rootScope.SecondaryConcernText
                     });
                     $scope.getCheckedSecondaryConcern[0].checked = true;
                 }
+
+                if ($rootScope.secondaryConcernLength == '') {
+                    $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
+                        text: $rootScope.SecondaryConcernText
+                    });
+                    $scope.getCheckedSecondaryConcern[0].checked = false;
+                }
+            }
+            if (typeof $scope.PatientSecondaryConcernItem == 'undefined') {
+                if ($rootScope.secondaryConcernLength !== '') {
+                    $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
+                        text: $rootScope.SecondaryConcernText
+                    });
+                    $scope.getCheckedSecondaryConcern[0].checked = false;
+                }
+
+
             }
         }
 
@@ -1510,6 +1551,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                     $rootScope.doGetPatientPaymentProfiles();
                 }
                 $rootScope.enableInsuranceVerificationSuccess = "none";
+                $rootScope.enableCreditVerification = "none";
                 // $rootScope.healthPlanPage = "none";
 
                 if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
@@ -1518,6 +1560,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 
                 if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
                     $rootScope.enablePaymentSuccess = "none";
+                    $rootScope.enableCreditVerification = "none";
                     $state.go('tab.receipt');
                     $scope.ReceiptTimeout();
                 } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
@@ -1547,6 +1590,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                         }
                     } else {
                         $rootScope.enablePaymentSuccess = "none";
+                        $rootScope.enableCreditVerification = "none";
                         $state.go('tab.receipt');
                         $scope.ReceiptTimeout();
                     }

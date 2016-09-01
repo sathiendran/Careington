@@ -27,7 +27,7 @@
 					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 				</div>
-                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">{{userGender}} . {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}} </span></div>
 			</div>
 		</div>
 	</div>
@@ -47,12 +47,9 @@
 				<img style="max-height: 70px; max-width: 250px;" src="{{hospitalImage}}">
 			</div>
 			<div class="providerAddress">
-				<div>{{reportHospitalAddress}} <span ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
-				<div class="reportOrganization" ng-if="organization != ''"><b>Organization:</b> {{organization}}</div>
-				<div ng-if="location != ''">
-					<div><b>Location</b></div>
-					<div>{{location}} </div>
-				</div>
+				<div>{{reportHospitalAddress}} <span style="display: none;" ng-if="contactNumber != ''">| {{contactNumber}}</span></div>
+				<div class="reportOrganization" ><b>Organization:</b> {{organization}}</div>
+				<div ><b>Location:</b> {{location}} </div>
 			</div>
 		</div>
 		<div class="ConnectedCareDetails" >

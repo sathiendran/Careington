@@ -28,7 +28,7 @@
   </div>
 
  <div class="item item-image-icon" >
-    <a class="lefthome" ng-href="#/tab/userAccount">
+    <a class="lefthome"  ng-click="GoToPatientDetails(location,appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentsPatientId,'','tab.userAccount')" _ng-href="#/tab/userAccount">
       <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
       <p class="homecontent">Account Home</p>
     </a>
@@ -48,9 +48,9 @@
 
 <ion-view title="Appointment Details">
  <ion-content class="scroll-content ionic-scroll  has-header aptpaticoncontent" style="{{appointCOntent}}">
-   <div><ion-refresher on-refresh="doRefresh()">
-     </ion-refresher></div>
-
+  <!-- <div><ion-refresher on-refresh="doRefresh()">
+  </ion-refresher></div>-->
+<ion-refresher on-refresh="doRefreshAccountdetails()"></ion-refresher>
 
     <div class="list aptlist Appointmentdetails-{{devicename}}" >
 
