@@ -44,7 +44,7 @@
       <!--<div  id="index_{{letter}}"  ng-repeat="(letter, currentMedicationsearchList) in sorted_users">-->
          <ion-checkbox ng-repeat="item in filteredItems = (primaryConcernList | filter:data.searchProvider)"
             ng-model="item.checked"
-            ng-checked="primaryconcern" ng-click="OnSelectPatientPrimaryConcern(primaryConcernList,primaryConcernList, item)"  ng-disabled="checked" >
+            ng-checked="item.checked" ng-click="OnSelectPatientPrimaryConcern(primaryConcernList,primaryConcernList, item)"  ng-disabled="checked" >
             <span class="ng-binding concernListDetails">   {{ item.text }} </span>
          </ion-checkbox>
       <!--</div>-->

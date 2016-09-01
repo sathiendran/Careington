@@ -12,12 +12,14 @@
 
 
 <div class="bar bar-subheader bar-dark subheaderheight" >
-                  <div class="row">
-                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+        <div class="row">
+         <h1 class="headertitle">
+					 <div class="ellipsis subHeader_content_name" >
 					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
-				      <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
-				     </div></h1>
-                </div>
+				     <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+				     </div>
+					</h1>
+        </div>
 
          <div class="item item-image-icon itemiconcolor">
 
@@ -32,7 +34,7 @@
                <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
                <p class="patientcontent" >Change Patient</p>
            </a>
-   </div>
+   	 </div>
 
    <div class="row">
 
@@ -60,7 +62,7 @@
 
 <ion-view title="Appointment Details">
  <ion-content class="appiconcontent" ng-hide="addmore" >
-	 
+
 		 <div >
 					 <div class="list listfirst" >
 				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
@@ -80,7 +82,7 @@
 					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
 					 </h4>
 				 </a>
-				<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
+				<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There are no Scheduled Consultations!</ion-item>
 
  </div>
 	 </div>
@@ -108,7 +110,7 @@
 					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
            </h4>
          </a>
-				<ion-item  class="noResult" ng-if="!scheduledList.length" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
+				<ion-item  class="noResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no Scheduled Consultations!</ion-item>
 
    </div>
    </div>

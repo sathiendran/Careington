@@ -6,7 +6,31 @@
       <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
    </div>
    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Appointments <span ><a class="headerval searchIcon-{{deviceName}}" ng-href="#tab/appointmentpatientdetails" ><i class="icon ion-search" ></i></a></span></h1>
-   <div class="bar bar-subheader asubheader">
+  <!-- <div class="bar bar-subheader asubheader">-->
+
+<div class="bar bar-subheader bar-dark subheaderheight" >
+  <div class="row">
+   <h1 class="headertitle">
+     <div class="ellipsis subHeader_content_name" >
+      <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
+       <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+       </div>
+    </h1>
+  </div>
+  <div class="item item-image-icon itemiconcolor">
+
+  <a class="lefthome" ng-href="#/tab/userAccount">
+        <span class="subHeadIcons"><i class="icon ion-home headerlefticons" style=""></i></span>
+        <p class="homecontent">Account Home</p>
+   </a>
+    <a class="item-avatar itemhead">
+        <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
+    </a>
+    <a class="rightpatient" ng-href="#/tab/userhome">
+        <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
+        <p class="patientcontent" >Change Patient</p>
+    </a>
+</div>
       <div class="row">
          <div class="buttons backbtn">
             <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
@@ -48,26 +72,30 @@
                   <p class="appmarg">
                           <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
                       </p>
-                      <h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+                    <!--  <h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>-->
+                    <h4><span class="fname">{{scheduledListData.scheduledDate }}</span>
+                      <span class="fontsymbol"> @ </span>
+                      <span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span>
+                      <span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
            </a>
            <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getIndividualScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
                   <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
                   <p class="appmarg" style="margin-top: 14px;">
                           <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
                   </p>
-               <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+               <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                </h4>
            </a>
-           <ion-item  class="noResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There is no Scheduled Appointments!</ion-item>
+           <ion-item  class="noapptResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There are no Scheduled Appointments!</ion-item>
        </div>
-       <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noResult" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
+       <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
 
        <div style="display: none;"><timer end-time="time"  ></timer></div>
     </ion-content>
 
 
     <ion-content  ng-hide="healthsearchhide" class=" appointcontentsearch-{{deviceName}}">
-      
+
         <div class="casearch-{{deviceName}}">
            <h6 class="hsearch">
 
@@ -90,7 +118,7 @@
              <p class="appmarg">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
-                                <h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
+                                <h4><span class="fname">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
           </a>
 
         <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(scheduledList  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
@@ -98,25 +126,14 @@
                         <p class="appmarg" style="margin-top: 14px;">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
-                     <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
+                     <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
            </h4>
          </a>
-                <ion-item  class="noResult" ng-if="!scheduledList.length" style="white-space: normal;" >There is no Scheduled Appointments!</ion-item>
+                <ion-item  class="noapptResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no Scheduled Appointments!</ion-item>
 
     </div>
-    <div  ng-if="scheduledList.length"  class="searchdata noResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
+    <div  ng-if="scheduledList.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
     </ion-content>
-
-
-
-
-
-
-
-
-
-
-
 
 
 	 <div ng-controller="LoginCtrl">

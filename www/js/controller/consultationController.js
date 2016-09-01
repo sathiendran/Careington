@@ -57,10 +57,15 @@ angular.module('starter.controllers')
             //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
             //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
         $scope.toggleLeft = function() {
+          $rootScope.statename=$rootScope.currState.$current.name;
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
             if (checkAndChangeMenuIcon) {
                 $interval.cancel(checkAndChangeMenuIcon);
+            }
+            if($rootScope.statename="tab.consultations"){
+              $('.sidehomeconsult ').addClass("uhome");
+
             }
             if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
                 checkAndChangeMenuIcon = $interval(function() {
@@ -165,8 +170,8 @@ angular.module('starter.controllers')
 
                             if (enddatetime < todaydatetime) {
                                 var asd = edtime.split('T');
-                                var enddate = asd[0];
-
+                                var formatted = asd[0];
+                                var enddate = moment(formatted, 'YYYY/MM/DD').format('MMM D,YYYY');
                                 var astime = asd[1].split('+');
                                 var newt = astime[0].split(':');
                                 var time = newt[0] + ":" + newt[1];
@@ -372,6 +377,18 @@ angular.module('starter.controllers')
                         $rootScope.reportPatientAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientAddress);
                     } else {
                         $rootScope.reportPatientAddress = 'None Reported';
+                    }
+
+                    if (!angular.isUndefined($rootScope.existingConsultationReport.location)) {
+                        $rootScope.location = $rootScope.existingConsultationReport.location;
+                    } else {
+                        $rootScope.location = 'N/A';
+                    }
+
+                    if (!angular.isUndefined($rootScope.existingConsultationReport.organization)) {
+                        $rootScope.organization =$rootScope.existingConsultationReport.organization;
+                    } else {
+                        $rootScope.organization = 'N/A';
                     }
 
                     if ($rootScope.existingConsultationReport.homePhone != '' && typeof $rootScope.existingConsultationReport.homePhone != 'undefined') {
@@ -741,12 +758,12 @@ angular.module('starter.controllers')
             $rootScope.consultationDate = consultation.startTime;
             $rootScope.missedAppointDetails = consultation;
             if(!angular.isUndefined(consultation.clinicianId)) {
-              $scope.doGetDoctorDetails(consultation);
+              $rootScope.doGetDoctorDetails(consultation);
             }
         }
 
 
-        $scope.doGetDoctorDetails = function(consultation) {
+        $rootScope.doGetDoctorDetails = function(consultation) {
             $rootScope.missedAppointDocDetails = '';
             if ($scope.accessToken === 'No Token') {
                 alert('No token.  Get token first then attempt operation.');

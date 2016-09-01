@@ -214,7 +214,6 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 //Get Hospital Information
                 $rootScope.patientId = $rootScope.appointmentsPatientId;
@@ -298,20 +297,17 @@ angular.module('starter.controllers')
         //$rootScope.Validation( $scope.errorMsg);
         $scope.doGeAppointmentExistingConsulatation();
     });
-    $scope.doRefresh = function() {
-      $rootScope.doGetScheduledConsulatation();
-      $rootScope.doGetIndividualScheduledConsulatation();
-      console.log('Refreshing!');
-      $timeout( function() {
-        //simulate async response
+  /*  $scope.doRefreshAccountdetails= function() {
+    $rootScope.doGetDoctorDetails();
+
+        $timeout(function() {
+
+              $scope.$broadcast('scroll.refreshComplete');
+        }, 1000);
+        $scope.$apply();
+    };*/
 
 
-        //Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
-
-      }, 1000);
-
-    };
 
     $scope.doGeAppointmentExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -330,7 +326,7 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-
+                $rootScope.doGetIndividualScheduledConsulatation();
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
@@ -402,7 +398,7 @@ angular.module('starter.controllers')
                 	$rootScope.preConsultantNotes = '';
                 }*/
                 $scope.doGetExistingPatientName();
-                $scope.doGetDoctorDetails();
+                $rootScope.doGetDoctorDetails();
 
             },
             error: function(data) {
@@ -421,11 +417,23 @@ angular.module('starter.controllers')
             success: function(data) {
                 $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
-                if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
+                /*if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
                   var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
                   $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }else {
                   $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
+                }*/
+
+                if (typeof data.data[0].profileImagePath != 'undefined' && data.data[0].profileImagePath != '') {
+                    var hosImage = data.data[0].profileImagePath;
+                    if (hosImage.indexOf("http") >= 0) {
+                        $rootScope.appointmentsPatientImage = hosImage;
+                    } else {
+                        $rootScope.appointmentsPatientImage = apiCommonURL + hosImage;
+                    }
+                } else {
+                    var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
+                    $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }
 
             },
@@ -437,7 +445,7 @@ angular.module('starter.controllers')
         LoginService.getPrimaryPatientLastName(params);
     }
 
-    $scope.doGetDoctorDetails = function() {
+    $rootScope.doGetDoctorDetails = function() {
         $rootScope.doctorGender = '';
         if ($scope.accessToken == 'No Token') {
             alert('No token.  Get token first then attempt operation.');
