@@ -297,20 +297,17 @@ angular.module('starter.controllers')
         //$rootScope.Validation( $scope.errorMsg);
         $scope.doGeAppointmentExistingConsulatation();
     });
-    $scope.doRefresh = function() {
-      $rootScope.doGetScheduledConsulatation();
-      $rootScope.doGetIndividualScheduledConsulatation();
-      console.log('Refreshing!');
-      $timeout( function() {
-        //simulate async response
+  /*  $scope.doRefreshAccountdetails= function() {
+    $rootScope.doGetDoctorDetails();
+
+        $timeout(function() {
+
+              $scope.$broadcast('scroll.refreshComplete');
+        }, 1000);
+        $scope.$apply();
+    };*/
 
 
-        //Stop the ion-refresher from spinning
-        $scope.$broadcast('scroll.refreshComplete');
-
-      }, 1000);
-
-    };
 
     $scope.doGeAppointmentExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -401,7 +398,7 @@ angular.module('starter.controllers')
                 	$rootScope.preConsultantNotes = '';
                 }*/
                 $scope.doGetExistingPatientName();
-                $scope.doGetDoctorDetails();
+                $rootScope.doGetDoctorDetails();
 
             },
             error: function(data) {
@@ -448,7 +445,7 @@ angular.module('starter.controllers')
         LoginService.getPrimaryPatientLastName(params);
     }
 
-    $scope.doGetDoctorDetails = function() {
+    $rootScope.doGetDoctorDetails = function() {
         $rootScope.doctorGender = '';
         if ($scope.accessToken == 'No Token') {
             alert('No token.  Get token first then attempt operation.');

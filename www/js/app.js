@@ -949,6 +949,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
+    .state('primaryPatientSideMenu', {
+        url: '/',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/primaryPatientSideMenu.html',
+                controller: 'sidemenuController'
+            }
+        }
+    })
   /*  .state('tab.check', {
         url: '/check',
         views: {

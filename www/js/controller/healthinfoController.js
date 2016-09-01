@@ -136,10 +136,15 @@ angular.module('starter.controllers')
         //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
         //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
     $scope.toggleLeft = function() {
+        $rootScope.statename=$rootScope.currState.$current.name;
         $ionicSideMenuDelegate.toggleLeft();
         $rootScope.checkAndChangeMenuIcon();
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
+        }
+        if($rootScope.statename="tab.healthinfo"){
+          $('.sideuserhealth').addClass("uhome");
+
         }
         if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
             checkAndChangeMenuIcon = $interval(function() {
