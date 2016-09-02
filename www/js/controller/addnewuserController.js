@@ -93,7 +93,12 @@ angular.module('starter.controllers')
                     $rootScope.locationdetails = _.pluck(listOfLocation, 'locations');
                 },
                 error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  if(data =='null' ){
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                  }else{
+                      $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
             LoginService.getListOfLocationOrganization(params);

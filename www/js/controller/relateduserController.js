@@ -382,7 +382,12 @@ $rootScope.authorised=relateDependentAuthorize;
 
                 },
                 error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
                 }
             };
             LoginService.getListOfCoUsers(params);
@@ -473,7 +478,12 @@ $rootScope.authorised=relateDependentAuthorize;
                     });
                 },
                 error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
                 }
             };
             LoginService.getAccountDependentDetails(params);

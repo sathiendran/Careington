@@ -301,7 +301,13 @@ angular.module('starter.controllers')
 
 
             },
-            error: function(data) {
+            error: function(data,status) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 var Emailerror=data.message
                 if(Emailerror="Email ID Already Registered"){
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.email;
@@ -309,6 +315,8 @@ angular.module('starter.controllers')
                 }else{
                     $rootScope.serverErrorMessageValidation();
                 }
+              }
+
 
             }
         };
