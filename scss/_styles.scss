@@ -8987,10 +8987,36 @@ input.ion-google-place[readonly] {
         padding: 14px;
     }
   }
+  .labelcolor {
+    width: 49%;
+  }
 
 }
 .ioncontentalign {
   .item {
     border-color: #979797;
   }
+}
+.healthheight-IOS {
+  width: 45px;
+}
+.healthheight1-IOS {
+  width: 45px;
+}
+.healthheight2-IOS {
+//  width: 45px;
+  position: relative;
+    top: 3px;
+}
+.healthWeight-IOS {
+
+}
+.healthWeight1-IOS {
+  float: left;
+  position: relative;
+  top: 7px;
+  width: 50px;
+}
+.healthWeight1-Android {
+  width: 40% !important; float: left;margin-top:4px;
 }
