@@ -1073,7 +1073,7 @@ html, body { background: transparent !important; }
 				margin-left: -160px;
 			}
 			.AddCard {
-				margin-left: 8px;
+				//margin-left: 8px;
 				margin-top: 7px;
 				img {
 					width: 30px; height: 30px;
@@ -1310,9 +1310,9 @@ html, body { background: transparent !important; }
     }
 		.addHealthPlan_header {
 			//padding-top: 10px;
-      text-align: left;
-			margin-left:-57px;
-			margin-right: 17px;
+    //  text-align: left;
+		//	margin-left:-57px;
+		//	margin-right: 17px;
 				.addHealthPlan_text {
 					font-size: 20px;
 					font-weight: bold;
@@ -3127,7 +3127,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
       font-size: 34px !important;
     }
 }
-
+.AddCard{
+  .icon-circle-with-plus {
+    font-size: 30px !important;
+  }
+}
 .delBtn{
     color: red;
     font-size: 30px;
@@ -3464,7 +3468,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 }
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
-.ErrorContent { text-align: center;width: 93% !important;margin-top: 12px;  margin-bottom: -30px; }
+.ErrorContent { text-align: center;width: 93% !important;margin-top: 12px !important;  margin-bottom: -30px; }
 .NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px !important ; }
 .noticationIcon { left: 0px;position: relative;top: 19px  !important; }
 .pac-item > span:last-child {
@@ -5870,10 +5874,10 @@ position: relative;
 top: 8px;
 color: #999999 !important;
 }
-.healthchoose{width:131%;margin-right:310px !important;}
+.healthchoose{width:131%;margin-right:143px !important;}
     .healthinfoHeight-Android {
       width: 56%;
-      margin-left: -2px !important;
+      margin-left: -6px !important;
       input {
         width: 111%;
         margin-left: -2px;
@@ -8340,7 +8344,7 @@ input.ion-google-place[readonly] {
 }
 
 .healthinfoHeight-Android {
-  width: 56%;
+  width: 35%;
   margin-left: -8px;
 
   input {
@@ -8350,12 +8354,12 @@ input.ion-google-place[readonly] {
 }
 .healthinfoChoose-Android {
   select {
-    width: 80% !important;
-    margin-left: 8px;
+    width: 183% !important;
+    margin-left: 0px;
   }
 }
 .healthinfoHeight2-Android {
-  width: 49%;
+  width: 33%;
   margin-left: -10px;
 }
 .dependHeigh-Android {
@@ -8522,6 +8526,8 @@ input.ion-google-place[readonly] {
     transition: box-shadow 0.3s ease;
       width: 22px;
   }
+
+
   input:checked+span::before {
     opacity: 1;
     -webkit-transition: opacity 0.3s ease;
@@ -8530,6 +8536,10 @@ input.ion-google-place[readonly] {
     -o-transition: opacity 0.3s ease;
     transition: opacity 0.3s ease;
   }
+
+
+
+
   .checkbox__control::before {
     opacity: 0;
     position: absolute;
@@ -8543,8 +8553,9 @@ input.ion-google-place[readonly] {
   //  border-radius: 3px;
   //  color: #fff;
   //  background-color: #a2d28a;
-   content: "\e0018";
-    background-image: url("../img/icon-check.png");
+   content: "";
+    background: url(../img/icon-check.png);
+
     -webkit-transition: opacity 0.3s ease;
     -moz-transition: opacity 0.3s ease;
     -ms-transition: opacity 0.3s ease;
@@ -8902,3 +8913,4 @@ input.ion-google-place[readonly] {
     font-family: $fontFamily_bold;
   }
 }
+.uhome{background-color:#23B4D6;}

@@ -692,11 +692,17 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         //$window.localStorage.setItem("Cardben.ross.310.95348@gmail.com", undefined);
         //$window.localStorage.setItem("CardTextben.ross.310.95348@gmail.com", undefined);
-    $scope.toggleLeft = function() {
+
+  $scope.toggleLeft = function() {
+    $rootScope.statename=$rootScope.currState.$current.name;
         $ionicSideMenuDelegate.toggleLeft();
         $rootScope.checkAndChangeMenuIcon();
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
+        }
+        if($rootScope.statename="tab.userhome"){
+          $('.sideuserhome').addClass("uhome");
+
         }
         if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
             checkAndChangeMenuIcon = $interval(function() {
@@ -2094,7 +2100,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.preConsultantNotes = '';
                 }
                 $scope.doGetExistingPatientName();
-                $scope.doGetDoctorDetails();
+                $rootScope.doGetDoctorDetails();
 
             },
             error: function(data) {
@@ -2124,7 +2130,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getPrimaryPatientLastName(params);
     }
 
-    $scope.doGetDoctorDetails = function() {
+    $rootScope.doGetDoctorDetails = function() {
         if ($scope.accessToken === 'No Token') {
             alert('No token.  Get token first then attempt operation.');
             return;

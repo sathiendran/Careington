@@ -1,13 +1,14 @@
 <ion-side-menu side="left" style="background-color: #464644;">
 	<div class="sideMenu">
-			<a ng-href="#/tab/userhome" class="sidemenuContent1" >
-		<ion-list>
-			<ion-item class="icon tabfont"  id="{{sidemenuHome}}">
-				<i ng-bind-html="drawSVGCIcon('users')"></i>
-				<span>  Patient List</span>
-			</ion-item>
-		</ion-list>
-	</a>
+
+	<a ng-href="#/tab/userhome" id="userclass" class="sidemenuContent1 "  >
+<ion-list class="" id="">
+	<ion-item class="icon tabfont sideuserhome"  id="{{sidemenuHome}}  ">
+		<i ng-bind-html="drawSVGCIcon('users')"></i>
+		<span>  Patient List</span>
+	</ion-item>
+</ion-list>
+</a>
 	<a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="sidemenuContent1" >
 <ion-list>
 	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
