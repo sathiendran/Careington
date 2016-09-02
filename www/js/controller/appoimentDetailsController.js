@@ -538,12 +538,12 @@ angular.module('starter.controllers')
 
  $scope.doRefreshAccountdetails= function() {
    $rootScope.doGetScheduledConsulatation();
-  var schedulelist= $rootScope.scheduledList;
+  var schedulelist= $rootScope.scheduledListDatas;
     $rootScope.doGetDoctorDetails();
     $rootScope.doGetIndividualScheduledDetails();
     $rootScope.GoToappoimentDetailsFromUserHome(schedulelist);
         $timeout(function() {
-          $scope.$broadcast('scroll.refreshComplete',schedulelist);
+          $scope.$broadcast('scroll.refreshComplete');
         }, 1000);
         $scope.$apply();
     };
