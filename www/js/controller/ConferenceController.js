@@ -745,7 +745,7 @@ angular.module('starter.controllers')
             }
             $scope.cameraPosition = $scope.newCamPosition;
             publisher.setCameraPosition($scope.newCamPosition);
-            OT.updateViews();
+          //  OT.updateViews();
         };
 
         $scope.toggleMute = function() {
@@ -775,20 +775,15 @@ angular.module('starter.controllers')
     var callEnded = false;
     $scope.disconnectConference = function() {
         if (!callEnded) {
-            $('#thumbVideos').remove();
-            $('#videoControls').remove();
-            session.unpublish(publisher)
-            session.disconnect();
-            $('#publisher').hide();
-            $('#subscriber').hide();
 
             if(!isCallEndedByPhysician){
               navigator.notification.confirm(
-                  'Are you sure want to end the Consultation?',
+                  'You currently have a consultation in progress.Are you sure you want to end this consultation?',
                   function(index) {
                       if (index == 1) {
-
+                          $state.go('tab.videoConference');
                       } else if (index == 2) {
+                          callEnded = true;
                         navigator.notification.alert(
                             'Consultation ended successfully!', // message
                             consultationEndedAlertDismissed, // callback
@@ -800,6 +795,7 @@ angular.module('starter.controllers')
                   'Confirmation:', ['No', 'Yes']
               );
             }else{
+              callEnded = true;
               navigator.notification.alert(
                   'Consultation ended successfully!', // message
                   consultationEndedAlertDismissed, // callback
@@ -809,7 +805,6 @@ angular.module('starter.controllers')
             }
 
         }
-        callEnded = true;
     };
 
 
@@ -819,6 +814,13 @@ angular.module('starter.controllers')
         //$('#subscriber').css('display', 'none');
 
         //$scope.doGetPatientsSoapNotes();
+        $('#thumbVideos').remove();
+        $('#videoControls').remove();
+        session.unpublish(publisher)
+        session.disconnect();
+        $('#publisher').hide();
+        $('#subscriber').hide();
+
         if (deploymentEnv == 'Single' && cobrandApp == 'Hello420') {
             var consulationEndRedirectURL = $rootScope.patientConsultEndUrl;
             if (consulationEndRedirectURL != "") {
