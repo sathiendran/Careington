@@ -4381,7 +4381,9 @@ LoginService.getScheduledConsulatation(params);
             accessToken: $rootScope.accessToken,
             statusId: 72,
             success: function(data) {
-                $rootScope.Passedconsultations = data.data;
+                if(data.data !== '') {
+                  $rootScope.Passedconsultations = data.data;
+                }
 
             },
             error: function(data) {
