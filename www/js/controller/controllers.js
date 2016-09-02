@@ -4218,8 +4218,8 @@ LoginService.getScheduledConsulatation(params);
                     });
 
                     $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
+                    $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
 
-                  
                     console.log($rootScope.individualScheduledList);
                     //$rootScope.nextAppointmentDisplay = 'none';
 
