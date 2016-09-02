@@ -1079,7 +1079,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //console.log($rootScope.hospitalDetailsList);
             },
             error: function(data) {
+              if(data =='null' ){
+              $scope.ErrorMessage = "Internet connection not available, Try again later!";
+              $rootScope.Validation($scope.ErrorMessage);
+            }else{
                 $rootScope.serverErrorMessageValidation();
+            }
                 $('#verifyEmail').hide();
                 $('#loginEmail').show();
             }
@@ -1846,7 +1851,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+              if(data =='null' ){
+              $scope.ErrorMessage = "Internet connection not available, Try again later!";
+              $rootScope.Validation($scope.ErrorMessage);
+            }else{
                 $rootScope.serverErrorMessageValidation();
+            }
                 $rootScope.patientInfomation = '';
                 $rootScope.patientAccount = '';
                 $rootScope.patientAddresses = '';
@@ -2000,6 +2010,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+
                 $rootScope.serverErrorMessageValidation();
             }
         };
@@ -3425,7 +3436,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //	$state.go('tab.patientConcerns');
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }else{
+                  $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         $rootScope.MedicationAllegiesItem = "";
