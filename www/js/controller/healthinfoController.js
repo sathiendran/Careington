@@ -779,7 +779,10 @@ angular.module('starter.controllers')
                 if (status === 400) {
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
                     $rootScope.Validation($scope.ErrorMessage);
-                } else {
+                } else if(status === 0 ){
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+                }else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -990,7 +993,13 @@ angular.module('starter.controllers')
                 $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }else{
+                  $rootScope.serverErrorMessageValidation();
+              }
+
             }
         };
         LoginService.getCodesSet(params);
@@ -1575,7 +1584,12 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
             }
         };
         LoginService.getListOfCoUsers(params);
@@ -1591,7 +1605,12 @@ angular.module('starter.controllers')
                 $scope.doGetListOfCoUsers();
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                 $rootScope.Validation($scope.ErrorMessage);
+               }else{
+                   $rootScope.serverErrorMessageValidation();
+               }
             }
         };
         LoginService.deleteAccountCoUser(params);

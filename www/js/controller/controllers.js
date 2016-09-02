@@ -4075,8 +4075,14 @@ LoginService.getScheduledConsulatation(params);
                 }
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
-            }
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{  $rootScope.serverErrorMessageValidation();
+              }
+  }
         };
 
         LoginService.getSelectedPatientProfiles(params);
@@ -4198,7 +4204,24 @@ LoginService.getScheduledConsulatation(params);
                     $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
 
                     $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
-
+                    $rootScope.appointmentPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.getIndividualScheduleDetails.intakeMetadata.concerns[0].customCode.description);
+                    $rootScope.appointmentSecondConcern = $rootScope.getIndividualScheduleDetails.intakeMetadata.concerns[1];
+                    if ($rootScope.appointmentSecondConcern == '' || typeof $rootScope.appointmentSecondConcern == 'undefined') {
+                        $rootSecondConcern = 'None Reported';
+                    } else {
+                        $rootScope.appointmentSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.getIndividualScheduleDetails.intakeMetadata.concerns[1].customCode.description);
+                    }
+                    $rootScope.appointmentNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.getIndividualScheduleDetails.intakeMetadata.additionalNotes);
+                    if ($rootScope.appointmentNotes == '' || typeof $rootScope.appointmentNotes == 'undefined') {
+                        $rootScope.appointmentNotes = 'None Reported';
+                    } else {
+                        $rootScope.appointmentNotes = $rootScope.getIndividualScheduleDetails.intakeMetadata.additionalNotes;
+                    }
+                    if (!angular.isUndefined($rootScope.getIndividualScheduleDetails.patientId)) {
+                      $rootScope.patientId = $rootScope.getIndividualScheduleDetails.patientId;
+                    } else {
+                      $rootScope.patientId = $rootScope.patientId;
+                    }
                     console.log($rootScope.individualScheduledList);
                     //$rootScope.nextAppointmentDisplay = 'none';
 

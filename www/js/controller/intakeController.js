@@ -459,7 +459,12 @@ $scope.locat=false;
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+             $scope.ErrorMessage = "Internet connection not available, Try again later!";
+             $rootScope.Validation($scope.ErrorMessage);
+           }else{
+               $rootScope.serverErrorMessageValidation();
+           }
             }
         };
 
