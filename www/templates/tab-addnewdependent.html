@@ -48,7 +48,7 @@
 
 
 
-<ion-view title="" style="background-color: #e9e9e9;">
+<ion-view title="" >
 	 <form name="myForm" id="dependentuserform" ng-submit="postDependentDetails()">
  <ion-content class="userdeptcontent depenBackgroundColor">
 	<h4 class="userhead"><b>User Details</b></h4>
@@ -168,7 +168,7 @@
 
 	          <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required"  name="weight" ng-model="weightunit" ng-change="weightunitchange()" ng-blur="weight1len()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
 	        </div>
-	        <div style="width: 50%;">
+	        <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
 	           <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" required>
 	               <!--<option value=""><b>Choose</b></option>-->
 	               <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
