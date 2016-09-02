@@ -7782,6 +7782,9 @@ Pagination Styles
   white-space: normal;
   font-size: 18px;
   color:#666666;
+  .optionselect {
+    width: 94%;
+  }
 }
 .subHeadIcons {
   position:relative; top: 5px;
@@ -8966,12 +8969,7 @@ input.ion-google-place[readonly] {
 
 .uhome{background-color:#23B4D6 !important;}
 
-.depenBackgroundColor{
-    background-color: #e9e9e9;
-  .item-input {
-    background-color: #e9e9e9;
-  }
-}
+
 
 .listprofileEdit {
   .itemtab {
