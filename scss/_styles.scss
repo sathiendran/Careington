@@ -1043,6 +1043,10 @@ html, body { background: transparent !important; }
 }
 .consultConPaymentMargin {
   margin: 139px 0 0 0;
+  .AddCard {
+    margin-top: 7px;
+  }
+
 }
 .consultCharge_content {
 	//margin: 182px 0 0 0; // 133px;
@@ -1316,9 +1320,9 @@ html, body { background: transparent !important; }
 				.addHealthPlan_text {
 					font-size: 20px;
 					font-weight: bold;
-					left: 18px;
+					left: 7px;
 					position: relative;
-					top: -8px;
+					top: -11px;
 					color: #666666;
 				}
 		}
@@ -3635,7 +3639,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .noPlanContainer-IOS {
 	.dropdownContainer {
 		 .healthPlanDropDown {
-				width: 102%;
+				width: 100%;
 				z-index: 2;
 				position: relative;
 				-webkit-appearance: none;
@@ -3645,7 +3649,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 				  text-overflow: "";
 
 				  border-radius: 7px;
-				  margin-left: 8px;
+				  //margin-left: 8px;
 				  padding: 6px;
 				 /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
 				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
@@ -3673,13 +3677,13 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 	.healthPlanDropDown {
 		color: transparent;
 		background: none;
-
 	}
 
 	.dropdownContainer {
 		position: relative;
 		height: 50px;
-		margin-left: 50px;
+    text-align: center;
+	//	margin-left: 50px;
 	}
 
 	.viewport {
@@ -3714,7 +3718,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		text-overflow: ellipsis;
 		font-size: 19px;
 		padding: 6px;
-		left: 25px;
+		left: 45px;
 		top: 11px;
 		/*font-weight: bold;*/
 		text-align: left;
@@ -4730,6 +4734,12 @@ p{
               padding: 12px 10px !important;
           }
 
+      }
+      .consultConMargin {
+        margin: 202px 0 0 0;
+      }
+      .consultCharge_content {
+        padding-top: 0px;
       }
       .accountAppointHeight {
         height: 70px !important;
@@ -7505,6 +7515,7 @@ border-bottom: 2px solid #cbcbcb;
 				margin-top: -150px;
 			}
 		}
+
 	 }
 
 
@@ -8206,7 +8217,8 @@ input.ion-google-place[readonly] {
     background-color: #e9e9e9; //#e9e9e9
   }
   .optionselect {
-      padding: 10px;
+      padding: 2px;
+      height: 44px;
   }
   .item {
     border-color: #979797;
@@ -8313,12 +8325,23 @@ input.ion-google-place[readonly] {
   }
 }
   .dependHeigh-IOS {
-    margin-left: -50px;
+  //  margin-left: -50px;
     width: 47%;
     padding-right: 6px;
     float: left;
+    input {
+      margin-left: 2px !important;
+      width: 108px !important;
+    }
     .usertext{
       width: 104%;
+    }
+  }
+  .dependHeighUnit-IOS {
+    position: relative;
+    top: 2px;
+    select {
+      margin-left: 17px;
     }
   }
   .dependwetUnit-IOS {
@@ -8326,7 +8349,7 @@ input.ion-google-place[readonly] {
     margin-left: 10px;
   }
 .consultcontentsearch-IOS {
-  margin-top: 85px;
+  margin-top: 218px;
   .listfirst {
       margin-bottom: 120px;
   }
@@ -8413,7 +8436,7 @@ input.ion-google-place[readonly] {
     border-top: 1px solid #C4C5C3;
 }
 .dependentAddAuthorize {
-  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;   padding: 16px;
+  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;   padding: 16px 16px 16px 8px;
 }
 .searchAccount {
   p{
@@ -8682,8 +8705,8 @@ input.ion-google-place[readonly] {
 }
 
 .healthinfoHeight-IOS {
-  width: 14%;
-  margin-left: -9px;
+  width: 35px; //14%;
+  //margin-left: -9px;
     float: left;
   .usertext {
     margin-left: 0px;
@@ -8691,7 +8714,7 @@ input.ion-google-place[readonly] {
   }
 }
 .healthinfoHeight2-IOS{
-  width: 15%;
+  width: 35px; //15%;
   margin-left: 11px;
     float: left;
   .usertext {
@@ -8700,9 +8723,13 @@ input.ion-google-place[readonly] {
   }
 }
 .healthinfoChoose-IOS {
+  height: 50px;
+  margin-top: -4px;
   select {
     width: 80% !important;
     margin-left: 8px;
+    position: relative;
+    top: 7px;
   }
 }
 .healthchoose{margin-right:53px;}
@@ -8898,9 +8925,9 @@ input.ion-google-place[readonly] {
 .addHealthPlan_text{
   font-size: 20px;
    font-weight: bold;
-   left: 18px;
+   left: 7px;
    position: relative;
-   top: -8px;
+   top: -11px;
    color: #666666;
 }
 .CreditClinician {
@@ -8937,12 +8964,7 @@ input.ion-google-place[readonly] {
   }
 }
 .uhome{background-color:#23B4D6;}
-.depenBackgroundColor{
-    background-color: #e9e9e9;
-  .item-input {
-    background-color: #e9e9e9;
-  }
-}
+
 .listprofileEdit {
   .itemtab {
     padding: 0px !important;
