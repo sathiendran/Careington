@@ -5818,7 +5818,7 @@ color: white;
 #divSearchInput{
   border-bottom: 1px solid #C4C5C3;
 }
-.editheight{margin-left:0px;}
+.editheight{margin-left:0px; float: left;}
     .addhealthplan{
       padding-top: 24px !important;
     }
@@ -5878,6 +5878,7 @@ color: #999999 !important;
     .healthinfoHeight-Android {
       width: 56%;
       margin-left: -6px !important;
+        float: left;
       input {
         width: 111%;
         margin-left: -2px;
@@ -5886,6 +5887,7 @@ color: #999999 !important;
     .healthinfoHeight2-Android {
       width: 63%;
       margin-left: -38px !important;
+      float: left;
     }
 
     .ContentUserHome {
@@ -7747,9 +7749,13 @@ Pagination Styles
 }
 .DOBClass-IOS {
 	width: 55%;
+  background-color: #e9e9e9;
+  padding: 9px;
 }
 .DOBClass-Android {
   width: 55%;
+  background-color: #e9e9e9;
+  padding: 9px;
 }
 .healthTextArea-IOS {
 	margin-left: 0px;
@@ -8190,7 +8196,20 @@ input.ion-google-place[readonly] {
     left: 2px;
   }
   .item-input {
-    padding: 6px 0 5px 0px !important;
+    //padding: 6px 0 5px 0px !important;
+    padding: 0px !important;
+  }
+  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    height: 44px;
+  }
+  .depGreyLabel {
+    background-color: #e9e9e9; //#e9e9e9
+  }
+  .optionselect {
+      padding: 10px;
+  }
+  .item {
+    border-color: #979797;
   }
   .dobDependent-Android {
     font-size: 18px;
@@ -8297,6 +8316,7 @@ input.ion-google-place[readonly] {
     margin-left: -50px;
     width: 47%;
     padding-right: 6px;
+    float: left;
     .usertext{
       width: 104%;
     }
@@ -8346,7 +8366,7 @@ input.ion-google-place[readonly] {
 .healthinfoHeight-Android {
   width: 35%;
   margin-left: -8px;
-
+  float: left;
   input {
     width: 111%;
     margin-left: -2px;
@@ -8361,9 +8381,10 @@ input.ion-google-place[readonly] {
 .healthinfoHeight2-Android {
   width: 33%;
   margin-left: -10px;
+  float: left;
 }
 .dependHeigh-Android {
-  margin-left: -5px;width: 70%;padding-right: 10px;
+  margin-left: -5px;width: 70%;padding-right: 10px; float: left;
 }
 .dependwetUnit-Android {
   width:80%;margin-left: 8px;
@@ -8392,7 +8413,7 @@ input.ion-google-place[readonly] {
     border-top: 1px solid #C4C5C3;
 }
 .dependentAddAuthorize {
-  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;
+  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;   padding: 16px;
 }
 .searchAccount {
   p{
@@ -8663,6 +8684,7 @@ input.ion-google-place[readonly] {
 .healthinfoHeight-IOS {
   width: 14%;
   margin-left: -9px;
+    float: left;
   .usertext {
     margin-left: 0px;
     width: 68px;
@@ -8671,6 +8693,7 @@ input.ion-google-place[readonly] {
 .healthinfoHeight2-IOS{
   width: 15%;
   margin-left: 11px;
+    float: left;
   .usertext {
     margin-left: 0px;
     width: 68px;
@@ -8914,3 +8937,30 @@ input.ion-google-place[readonly] {
   }
 }
 .uhome{background-color:#23B4D6;}
+.depenBackgroundColor{
+    background-color: #e9e9e9;
+  .item-input {
+    background-color: #e9e9e9;
+  }
+}
+.listprofileEdit {
+  .itemtab {
+    padding: 0px !important;
+    .healthViewDetails {
+      background-color: #e9e9e9;
+        padding: 9px;
+      textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+        height: 41px;
+      }
+    }
+    .healthViewDetailsAuthenticat {
+        padding: 14px;
+    }
+  }
+
+}
+.ioncontentalign {
+  .item {
+    border-color: #979797;
+  }
+}

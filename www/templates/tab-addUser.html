@@ -50,7 +50,7 @@
             <span class="input-label labelcolor">
             <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Name</b><i class="ion-asterisk"></i></span>
         </div>
-        <div class="col col-50">
+        <div class="col col-50 depGreyLabel">
            <input class="usertext" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" required  >
 
         </div>
@@ -70,7 +70,7 @@
           <span class="input-label labelcolor">
           <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="ion-asterisk"></i></span>
         </div>
-        <div class="col col-50">
+        <div class="col col-50 depGreyLabel">
             <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email" required>
             <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
         </div>
