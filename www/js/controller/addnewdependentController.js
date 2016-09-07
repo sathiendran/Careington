@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate, $log,$window) {
+    .controller('addnewdependentController', function($scope,$ionicModal, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicPopup,$log,$window,$ionicBackdrop) {
       $timeout(function() {
             $('option').filter(function() {
                 return this.value.indexOf('?') >= 0;
@@ -134,7 +134,50 @@ angular.module('starter.controllers')
             var nowyear = today.getFullYear();
             var nowmonth = today.getMonth()+1;
             var nowday = today.getDate();
+$scope.hfeet=true;$scope.hinch=true;
+$scope.hmeter=true;$scope.hcmeter=true;
+$scope.heightmodal=function(){
+    $('#heightdep').val('');
+    $("#deptheight").val('');
+    $('#depheight2').val('');
+      document.getElementById('hunit').innerHTML = '';
 
+  $ionicModal.fromTemplateUrl('templates/tab-heighttemplate.html', {
+      scope: $scope,
+      animation: 'slide-in-up',
+      focusFirstInput: false,
+      backdropClickToClose: false
+  }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+      $scope.hfeet=true;$scope.hinch=true;
+      $scope.hmeter=true;$scope.hcmeter=true;
+      //  $("#heightvalue").val("");
+
+      $timeout(function() {
+          $('option').filter(function() {
+              return this.value.indexOf('?') >= 0;
+          }).remove();
+      }, 100);
+  });
+
+}
+$scope.removemodal = function(model) {
+  $scope.modal.remove()
+  .then(function() {
+    $scope.modal = null;
+  });
+     var input = $('input');
+     input.val('');
+     input.trigger('input');
+    $('option').filter(function() {
+        return this.value.indexOf('?') >= 0;
+    }).remove();
+    // $ionicBackdrop.retain();
+    $('#heightdep').val('');
+    $("#deptheight").val('');
+    $('#depheight2').val('');
+};
 
    $scope.ngBlur = function () {
      $rootScope.doddate=$('#dob').val();
@@ -150,73 +193,88 @@ angular.module('starter.controllers')
       }
    }
  // $scope.height = 0;
-$scope.depheight1=function(){
-       var max = 10;
-       var heightval=$('#height').val();
-       if ( heightval > max)
+  // var heights='';
+ $scope.depheight1=function(){
+var max= 10;
+
+
+        var heights=$("#deptheight").val();
+
+       if (heights > max)
       {
-          $("#height").val(max);
+
+          $("#deptheight").val(max);
       }
-      var heightvallen=$('#height').val().length;
-      if(heightvallen>2){
-          $("#height").val(max);
+      var heightlen=$("#deptheight").val().length;
+
+      if(heightlen>2){
+
+        $("#deptheight").val(max);
+
       }
 }
 $scope.height1len=function(){
    var max = 10;
-   var heightvallen=$('#height').val().length;
+   var heightvallen=$('#deptheight').val().length;
    if(heightvallen>2){
-       $("#height").val(max);
+       $("#deptheight").val(max);
    }
 }
 $scope.depheight2=function(){
        var max = 99;
-       var height2val=$('#height2').val();
+       var height2val=$('#deptheight2').val();
        if ( height2val > max)
       {
-          $("#height2").val(max);
+          $("#deptheight2").val(max);
       }
 
-      var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+      var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
       var getheightunit=_.first(heightunit);
       if(getheightunit=="ft/in"){
           var maxheight=11;
           if ( height2val > maxheight)
          {
-             $("#height2").val(maxheight);
+             $("#deptheight2").val(maxheight);
          }
       }
 }
 $scope.height2len=function(){
   var max = 99;
-  var height2vallen=$('#height2').val().length;
+  var height2vallen=$('#deptheight2').val().length;
 
   if(height2vallen>2){
-      $("#height2").val(max);
+      $("#deptheight2").val(max);
   }
-  var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+  var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
   var getheightunit=_.first(heightunit);
   if(getheightunit=="ft/in"){
       var maxheight=11;
-      if ( height2val > maxheight)
+      if ( height2vallen > maxheight)
      {
-         $("#height2").val(maxheight);
+         $("#deptheight2").val(maxheight);
      }
   }
 }
 
 $scope.unitchange=function(){
     var maxheight=11;
-    var heightunit = $("#heightunit").val().split("@").slice(1, 2);
-    var getheightunit=_.first(heightunit);
-    if(getheightunit="ft/in"){
-        var height2val=$('#height2').val();
+    //$scope.depunit=heightunit;
+   var heightunits = $("#heightunitval").val().split("@").slice(1, 2);
+   //var heightunit = $("#heightunit").val();
+    var getheightunit=_.first(heightunits);
+    if(getheightunit==="ft/in"){
+      $scope.hfeet=true;$scope.hinch=true;
+      $scope.hmeter=true;$scope.hcmeter=true;
+        var height2val=$('#deptheight').val();
         if(height2val!=""){
             if ( height2val > maxheight)
            {
-               $("#height2").val(maxheight);
+               $("#deptheight2").val(maxheight);
            }
         }
+    }else{
+      $scope.hfeet=false;$scope.hinch=false;
+      $scope.hmeter=false;$scope.hcmeter=false;
     }
 }
 
@@ -235,6 +293,50 @@ $scope.weight1len=function(){
        $("#weight").val(maxweight);
    }
 }
+
+$scope.heightsave=function(){
+  var height1=$('#deptheight').val();
+  var height2=$('#deptheight2').val();
+ var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
+ var heightunitid = $("#heightunitval").val().split("@").slice(0, 1);
+ var getheightunitid=_.first(heightunitid);
+ var getheightunit=_.first(heightunit);
+   if(getheightunit==="ft/in"){
+     if(height1!='' && height2!=undefined){
+       var heightdepval=$('#deptheight').val() +"'" +$('#deptheight2').val() +'"';
+       $('#heightdep').val(heightdepval);
+     }
+     else{
+       var heightdepval=$('#deptheight').val()+"'" +"0" +'"';
+       $('#heightdep').val(heightdepval);
+     }
+}else{
+     if(height1!='' && height2!=undefined){
+   var heightdepval=$('#deptheight').val() +"." +$('#deptheight2').val();
+   $('#heightdep').val(heightdepval);
+ }
+ else{
+   var heightdepval=$('#deptheight').val();
+   $('#heightdep').val(heightdepval);
+ }
+}
+ document.getElementById("hunit").innerHTML =getheightunitid;
+
+ if (height1 === 'undefined' || height1 === '') {
+
+ }else{
+   $scope.modal.remove()
+   .then(function() {
+     $scope.modal = null;
+   });
+ }
+
+  $('option').filter(function() {
+      return this.value.indexOf('?') >= 0;
+  }).remove();
+  //  $('#heightform')[0].reset();
+}
+
 $scope.phoneBlur=function(){
 $scope.phonelength=$("#homephone").val().length;
 var phonevalue=$("#homephone").val();
@@ -256,9 +358,13 @@ if(phonevalue!=''){
             $scope.relation = $("#relation").val();
             //$scope.healthInfoAuthorize = $("input[name='healthInfoAuthorize']:checked").val();
           //  $scope.gender = $("input[name='depgender']:checked").val();
+            var splitheight=$('#heightdep').val().split("'");
+            var inch=splitheight[1].split('"').splice(0,1);
+            $scope.heightinch=_.first(inch);
+            $scope.heightft=splitheight[0];
             $scope.gender = $("#depgender").val();
-            $scope.height = $("#height").val();
-            $scope.height2 = $("#height2").val();
+            $scope.height =$scope.heightft;
+            $scope.height2 =$scope.heightinch;
             $scope.weight = $("#weight").val();
             $scope.homephone = $("#homephone").val();
             $scope.phonelength=$("#homephone").val().length;
@@ -285,8 +391,8 @@ if(phonevalue!=''){
             $scope.getEyeColorId = _.first($scope.eyeColor);
             $scope.ethnicity = $("#ethnicity").val().split("@").slice(0, 1);
             $scope.getEthnicityId = _.first($scope.ethnicity);
-            $scope.heightunit = $("#heightunit").val().split("@").slice(0, 1);
-            $scope.getHeightunit = _.first($scope.heightunit);
+          //  $scope.heightunit = $('#hunit').text();
+            $scope.getHeightunit = $('#hunit').text();
             $scope.weightunit = $("#weightunit").val().split("@").slice(0, 1);
             $scope.getWeightunit = _.first($scope.weightunit);
             $scope.bloodtype = $("#bloodtype").val().split("@").slice(0, 1);

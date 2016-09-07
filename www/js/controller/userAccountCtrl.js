@@ -108,7 +108,7 @@ angular.module('starter.controllers')
            }*/
 
            $scope.doRefreshAccount= function() {
-          $rootScope.doGetIndividualScheduledConsulatation();
+             $rootScope.doGetIndividualScheduledConsulatation();
 
                $timeout(function() {
                    //$scope.getScheduledDetails($rootScope.patientId);
