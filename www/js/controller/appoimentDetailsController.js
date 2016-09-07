@@ -413,6 +413,7 @@ angular.module('starter.controllers')
                     $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
 
                     $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
+                    $rootScope.doGetScheduledConsulatation();
                     if($rootScope.getIndividualScheduleDetails.length==0){
                       navigator.notification.alert(
                           'Your appointment is no longer available.', // message
@@ -423,9 +424,7 @@ angular.module('starter.controllers')
                           $rootScope.alertMsgName, // title
                           'Done' // buttonName
                       );
-                    }else{}
-                    console.log($rootScope.individualScheduledList);
-
+                    }
 
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
@@ -438,6 +437,8 @@ angular.module('starter.controllers')
                     if ($rootScope.individualScheduledList != '') {
                         //var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
                         //var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+                        $scope.getScheduledList = $rootScope.individualScheduledList[0];
+                         $rootScope.GoToappoimentDetailsFromUserHome($scope.getScheduledList,"AppointmentPage");
                         var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;
 
@@ -533,15 +534,8 @@ angular.module('starter.controllers')
 
 
 
-
-
-
  $scope.doRefreshAccountdetails= function() {
-   $rootScope.doGetScheduledConsulatation();
-  var schedulelist= $rootScope.scheduledListDatas;
-    $rootScope.doGetDoctorDetails();
     $rootScope.doGetIndividualScheduledDetails();
-    $rootScope.GoToappoimentDetailsFromUserHome(schedulelist);
         $timeout(function() {
           $scope.$broadcast('scroll.refreshComplete');
         }, 1000);

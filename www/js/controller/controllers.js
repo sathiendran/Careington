@@ -322,10 +322,10 @@ if (deploymentEnv === "Sandbox") {
 }
 
 
-angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova'])
+angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
 
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
 
     $rootScope.drawSVGCIcon = function(iconName) {
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
@@ -348,6 +348,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.envList = ["Snap.QA", "Sandbox", "Staging"];
 
     $scope.ChangeEnv = function(env) {
+          $window.localStorage.setItem('tokenExpireTime', '');
         if (env == "Snap.QA") {
             $rootScope.APICommonURL = 'https://snap-qa.com';
             apiCommonURL = 'https://snap-qa.com';
@@ -1332,6 +1333,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.doGetTokenSSO = function() {
         var loginEmail = $rootScope.UserEmail;
         if (cobrandApp === "Hello420" && loginEmail.toLowerCase() != "itunesmobiletester@gmail.com") {
+              Idle.watch();
             $scope.checkForSSOUserExistsInHello420();
         } else {
             $scope.doGetToken();
@@ -1414,7 +1416,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.doGetPatientProfiles();
                         $scope.doGetRelatedPatientProfiles('tab.userhome');
                         $scope.doGetConutriesList();
-
+                        Idle.watch();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
                 },
@@ -1448,6 +1450,40 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             LoginService.getToken(params);
         }
     }
+
+    //Idle.watch();
+
+    $scope.$on('IdleStart', function() {
+            console.log("aaa");
+    });
+    $scope.$on('IdleWarn', function(e, countdown) {
+    });
+    $scope.$on('IdleTimeout', function() {
+        // the user has timed out (meaning idleDuration + timeout has passed without any activity)
+        // this is where you'd log them
+        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              navigator.notification.alert(
+                   'Your session timed out.', // message
+                   null,
+                   $rootScope.alertMsgName,
+                   'Ok' // buttonName
+               );
+              $rootScope.ClearRootScope();
+            }
+        }
+    });
+
+    $scope.$on('IdleEnd', function() {
+        // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+          console.log("aaa3");
+    });
+
+    $scope.$on('Keepalive', function() {
+        // do something to keep the user's session alive
+          console.log("aaa4");
+    });
+
     $scope.emailType = 'resetpassword';
 
     $scope.doPostSendPasswordResetEmail = function() {
@@ -4833,7 +4869,7 @@ LoginService.getScheduledConsulatation(params);
     }*/
 
 
-    $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData) {
+    $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData, fromPreviousPage) {
         $rootScope.scheduledListDatas = scheduledListData;
         //$scope.doGetUserHospitalInformationForUserHome();
         $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
@@ -4860,7 +4896,9 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetListOfCoUsers();
       //  $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
-        $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
+        if(fromPreviousPage != "AppointmentPage") {
+          $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
+        }
         //$state.go('tab.appoimentDetails');
     };
 
