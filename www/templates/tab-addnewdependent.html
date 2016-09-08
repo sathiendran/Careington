@@ -233,7 +233,7 @@
      <!--<textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>-->
     </div>
 </div>
- <div class="item item-input validated">
+ <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
      <div class="col col-50">
         <span class="input-label labelcolor">
         <i class="iconsize" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel">Organization</b></span>
@@ -246,7 +246,7 @@
 
      </div>
   </div>
- <div class="item item-input validated" >
+ <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
     <div class="col col-50">
        <span class="input-label labelcolor">
        <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Location</b></span>
@@ -261,7 +261,7 @@
  <div class="item item-input validated">
     <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel">Blood Type</b><i class="ion-asterisk"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel">Blood Type</b><i ng-if="PPIsBloodTypeRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50 depGreyLabel">
         <select class="optionselect textdata" name="bloodtype" id="bloodtype" ng-model="bloodtype" required>
@@ -276,7 +276,7 @@
  <div class="item item-input validated">
     <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel">Hair Color</b><i class="ion-asterisk"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel">Hair Color</b><i ng-if="PPIsHairColorRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50 depGreyLabel">
         <select class="optionselect textdata" name="hairColor" id="hairColor" ng-model="hairColor" required>
@@ -289,7 +289,7 @@
  <div class="item item-input validated">
      <div class="col col-50">
         <span class="input-label labelcolor">
-        <i class="iconsize" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel">Eye Color</b><i class="ion-asterisk"></i></span>
+        <i class="iconsize" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel">Eye Color</b><i ng-if="PPIsEyeColorRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50 depGreyLabel">
           <select class="optionselect textdata" name="eyeColor" id="eyeColor" ng-model="eyeColor" required>
@@ -302,7 +302,7 @@
  <div class="item item-input validated">
      <div class="col col-50">
         <span class="input-label labelcolor">
-         <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Ethnicity</b><i class="ion-asterisk"></i></span>
+         <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Ethnicity</b><i ng-if="PPIsEthnicityRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
       <div class="col col-50 depGreyLabel">
           <select class="optionselect textdata" name="ethnicity" id="ethnicity" ng-model="ethnicity" required>

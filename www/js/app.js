@@ -367,9 +367,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
    // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
-   IdleProvider.idle(120); // in seconds
-    IdleProvider.timeout(120); // in seconds
-    KeepaliveProvider.interval(20); // in seconds
+   IdleProvider.idle(1200); // in seconds
+    IdleProvider.timeout(1200); // in seconds
+    KeepaliveProvider.interval(60); // in seconds
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider

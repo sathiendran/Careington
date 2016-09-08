@@ -136,7 +136,7 @@
                <hr class="dotedhr">
             </div>
 
-              <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found!</ion-item>
+              <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
 
          </div>
 
@@ -219,7 +219,7 @@
                  <hr class="dotedhr">
             </div>
 
-            <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found!</ion-item>
+            <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
          </div>
          <div ng-if="missedlist.length" class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
@@ -300,7 +300,7 @@
                <hr class="dotedhr">
             </div>
 
-              <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found!</ion-item>
+              <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
          </div>
          <div ng-if="Droppedconsultations.length" class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>

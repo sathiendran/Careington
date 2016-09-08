@@ -55,8 +55,8 @@
 			</div>
 			<div class="providerAddress">
 				<div>{{reportHospitalAddress}} <!--<span ng-if="contactNumber != ''">| {{contactNumber}}</span>--></div>
-				<div class="reportOrganization" _ng-if="organization != ''"><b>Organization:</b> {{organization}}</div>
-				<div _ng-if="location != ''">
+				<div class="reportOrganization"ng-if="OrganizationLocation === 'on'"><b>Organization:</b> {{organization}}</div>
+				<div ng-if="OrganizationLocation === 'on'" >
 					<div><b>Location :</b>{{location}} </div>
 
 				</div>

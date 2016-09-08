@@ -229,6 +229,7 @@ angular.module('starter.controllers')
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId == 71) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
                             function() {
@@ -240,6 +241,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 72) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
                             function() {
@@ -251,6 +253,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 79) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
                             function() {
@@ -262,6 +265,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 80) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
                             function() {
@@ -445,6 +449,7 @@ angular.module('starter.controllers')
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                             console.log('scheduledTime <= getTwelveHours UserHome');
+                             $("#appointNotes").html($rootScope.appointNotes);
                             //$rootScope.nextAppointmentDisplay = 'block';
                             //  $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
                             $rootScope.accountClinicianFooter = 'none';
@@ -561,11 +566,12 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-                $rootScope.doGetIndividualScheduledConsulatation();
+                //$rootScope.doGetIndividualScheduledConsulatation();
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId == 71) {
+                          $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
                             function() {
@@ -577,6 +583,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 72) {
+                        $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
                             function() {
@@ -588,6 +595,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 79) {
+                        $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
                             function() {
@@ -599,6 +607,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 80) {
+                        $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
                             function() {

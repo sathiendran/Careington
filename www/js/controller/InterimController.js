@@ -83,6 +83,11 @@ angular.module('starter.controllers')
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
         $rootScope.onDemandMode = '';
+        $rootScope.OrganizationLocation = '';
+        $rootScope.PPIsBloodTypeRequired = '';
+        $rootScope.PPIsHairColorRequired = '';
+        $rootScope.PPIsEthnicityRequired = '';
+        $rootScope.PPIsEyeColorRequired = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -98,6 +103,21 @@ angular.module('starter.controllers')
                         }
                         if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
                 }
@@ -390,18 +410,19 @@ angular.module('starter.controllers')
                   $rootScope.gender = "NA";
               }
               $rootScope.homePhone = data.data[0].homePhone;
-              if (typeof data.data[0].location !== 'undefined') {
-                  $rootScope.location = data.data[0].location;
-              } else {
-                  $rootScope.location = '';
-              }
               $rootScope.mobilePhone = data.data[0].mobilePhone;
+              if($rootScope.OrganizationLocation === 'on') {
+                if (typeof data.data[0].location !== 'undefined') {
+                    $rootScope.location = data.data[0].location;
+                } else {
+                    $rootScope.location = '';
+                }
+                if (typeof data.data[0].organization !== 'undefined') {
 
-              if (typeof data.data[0].organization !== 'undefined') {
-
-                  $rootScope.organization = data.data[0].organization;
-              } else {
-                  $rootScope.organization = '';
+                    $rootScope.organization = data.data[0].organization;
+                } else {
+                    $rootScope.organization = '';
+                }
               }
               $rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
 

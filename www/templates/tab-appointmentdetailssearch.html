@@ -86,7 +86,7 @@
                <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledDate}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
                </h4>
            </a>
-           <ion-item  class="noapptResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There are no scheduled appointments for this user!</ion-item>
+           <ion-item  class="noapptResult" ng-if="!getIndividualScheduleDetails.length" style="white-space: normal;" >There are no appointments found!</ion-item>
        </div>
        <div  ng-if="getIndividualScheduleDetails.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(getIndividualScheduleDetails | filter:data.searchProvider).length==0">No Search Results Found!</div>
 
@@ -129,7 +129,7 @@
                      <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledDate }}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
            </h4>
          </a>
-                <ion-item  class="noapptResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no scheduled appointments for this user!</ion-item>
+                <ion-item  class="noapptResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no appointments found!</ion-item>
 
     </div>
     <div  ng-if="scheduledList.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>

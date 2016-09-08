@@ -1131,6 +1131,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
         $rootScope.onDemandMode = '';
+        $rootScope.OrganizationLocation = '';
+        $rootScope.PPIsBloodTypeRequired = '';
+        $rootScope.PPIsHairColorRequired = '';
+        $rootScope.PPIsEthnicityRequired = '';
+        $rootScope.PPIsEyeColorRequired = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1146,6 +1151,21 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
                 }
@@ -1220,6 +1240,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
         $rootScope.onDemandMode = '';
+        $rootScope.OrganizationLocation = '';
+        $rootScope.PPIsBloodTypeRequired = '';
+        $rootScope.PPIsHairColorRequired = '';
+        $rootScope.PPIsEthnicityRequired = '';
+        $rootScope.PPIsEyeColorRequired = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1234,6 +1259,21 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
                 }
@@ -1261,7 +1301,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
 
-    $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function() {
+  /*  $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function() {
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
         $rootScope.onDemandMode = '';
@@ -1281,6 +1321,21 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
                 }
@@ -1307,7 +1362,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             }
         };
         LoginService.getHospitalInfo(params);
-    }
+    }*/
 
 
     $scope.doPostResendEmail = function() {
@@ -1858,18 +1913,20 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.primaryPatGender = '';
                 }
                 $rootScope.homePhone = data.data[0].homePhone;
-                if (typeof data.data[0].location !== 'undefined') {
-                    $rootScope.location = data.data[0].location;
-                } else {
-                    $rootScope.location = 'N/A';
-                }
                 $rootScope.mobilePhone = data.data[0].mobilePhone;
+                if($rootScope.OrganizationLocation === 'on') {
+                  if (typeof data.data[0].location !== 'undefined') {
+                      $rootScope.location = data.data[0].location;
+                  } else {
+                      $rootScope.location = 'N/A';
+                  }
 
-                if (typeof data.data[0].organization !== 'undefined') {
+                  if (typeof data.data[0].organization !== 'undefined') {
 
-                    $rootScope.organization = data.data[0].organization;
-                } else {
-                    $rootScope.organization = 'N/A';
+                      $rootScope.organization = data.data[0].organization;
+                  } else {
+                      $rootScope.organization = 'N/A';
+                  }
                 }
                 $rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
 
@@ -2762,8 +2819,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         } else {
         	$state.go('tab.consultCharge');
         }*/
-      //  $rootScope.consultChargeSection = "block";
-      //  $rootScope.healthPlanSection = "none";
+       //$rootScope.consultChargeSection = "block";
+      // $rootScope.healthPlanSection = "none";
+        $rootScope.consultChargeNoPlanPage = "none";
+        $rootScope.healthPlanPage = "block";
         $state.go('tab.' + $rootScope.cardPage);
     }
 
