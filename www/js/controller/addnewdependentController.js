@@ -327,34 +327,41 @@ $scope.weight1len=function(){
 }
 
 $scope.heightsave=function(){
-  var height1=$('#deptheight').val();
-  var height2=$('#deptheight2').val();
+  $rootScope.height1=$('#deptheight').val();
+  $rootScope.height2=$('#deptheight2').val();
  var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
  var heightunitid = $("#heightunitval").val().split("@").slice(0, 1);
  var getheightunitid=_.first(heightunitid);
  var getheightunit=_.first(heightunit);
    if(getheightunit==="ft/in"){
-     if(height1!='' && height2!=undefined){
-       var heightdepval=$('#deptheight').val() +"'" +$('#deptheight2').val() +'"';
+     if($rootScope.height1!='' && $rootScope.height2 !=''  ){
+       var heightdepval=$('#deptheight').val() + " " + "ft" + " " +  $('#deptheight2').val() + " " + "in";
        $('#heightdep').val(heightdepval);
-     }
+     } else if($rootScope.height1!='' && $rootScope.height2==''){
+        var heightdepval=$('#deptheight').val()+ " " +  "ft" + " " + "0"  + " " + "in";
+        $('#heightdep').val(heightdepval);
+      }
      else{
-       var heightdepval=$('#deptheight').val()+"'" +"0" +'"';
+       var heightdepval=$('#deptheight').val() + " " + "ft" +" "+"0"+" " +'in';
        $('#heightdep').val(heightdepval);
      }
 }else{
-     if(height1!='' && height2!=undefined){
-   var heightdepval=$('#deptheight').val() +"." +$('#deptheight2').val();
+     if($rootScope.height1!='' && $rootScope.height2!=''){
+       var heightdepval=$('#deptheight').val() +" "+ "m" + " " +$('#deptheight2').val() + " " + "cm";
    $('#heightdep').val(heightdepval);
  }
- else{
-   var heightdepval=$('#deptheight').val();
+ else if($rootScope.height!='' && $rootScope.height==''){
+   var heightdepval=$('#deptheight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+   $('#heightdep').val(heightdepval);
+ }
+ else {
+   var heightdepval=$('#deptheight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
    $('#heightdep').val(heightdepval);
  }
 }
  document.getElementById("hunit").innerHTML =getheightunitid;
 
- if (height1 === 'undefined' || height1 === '') {
+ if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
 
  }else{
    $scope.modal.remove()
@@ -390,10 +397,16 @@ if(phonevalue!=''){
             $scope.relation = $("#relation").val();
             //$scope.healthInfoAuthorize = $("input[name='healthInfoAuthorize']:checked").val();
           //  $scope.gender = $("input[name='depgender']:checked").val();
-            var splitheight=$('#heightdep').val().split("'");
-            var inch=splitheight[1].split('"').splice(0,1);
-            $scope.heightinch=_.first(inch);
-            $scope.heightft=splitheight[0];
+            var splitheight=$('#heightdep').val();
+            var inch=splitheight.slice(6,8)
+
+            if($rootScope.height2==""){
+              $scope.heightinch="0";
+            }else{
+              $scope.heightinch=$rootScope.height2;
+            }
+          //  $scope.heightft=splitheight.slice(0,2)
+            $scope.heightft=$rootScope.height1;
             $scope.gender = $("#depgender").val();
             $scope.height =$scope.heightft;
             $scope.height2 =$scope.heightinch;
@@ -519,7 +532,7 @@ if(phonevalue!=''){
            if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
                $scope.height2 = "0";
            }
-            $scope.doPostNewDependentuser();
+          $scope.doPostNewDependentuser();
       }
    }else{
      if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
