@@ -48,18 +48,22 @@
 	<ion-content class="consultCharge_contentPayment consultConPaymentMargin" _style="{{ContentConsultCharge}}" >
 	<form>
 	<div style="padding-right: 10%;">
-		<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+		<div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
 			<div class="consultTittle">Consultation Charge</div>
 			<div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
-			<!--<div class="Plancovers" ng-if="PlanCoversAmount != ''">Plan Covers ${{PlanCoversAmount}}**</div>-->
 		</div>
 
-		<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+		<div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
 			<div class="consultTittleCopay">Your Copay</div>
 			<div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
 		</div>
+		<div ng-if="cardPage == 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+				<div class="consultTittleCharge">Consultation Charge</div>
+				<div class="consultation_number"> ${{consultationAmount}}*</div>
+			</div>
 
 </div>
+
 
 		<div class="password_home contentPayHomeAddCard">
 

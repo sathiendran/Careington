@@ -1,5 +1,7 @@
 angular.module('starter.controllers')
-    .controller('addnewdependentController', function($scope,$ionicModal, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicPopup,$log,$window,$ionicBackdrop) {
+
+    .controller('addnewdependentController',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$ionicPopup,$log,$window,$ionicBackdrop,Idle) {
+
       $timeout(function() {
             $('option').filter(function() {
                 return this.value.indexOf('?') >= 0;
@@ -71,6 +73,36 @@ angular.module('starter.controllers')
               }, 300);
           }
       }
+
+$scope.hghtunit=false;
+      $scope.$on('IdleStart', function() {
+              console.log("aaa");
+      });
+      $scope.$on('IdleWarn', function(e, countdown) {
+      });
+      $scope.$on('IdleTimeout', function() {
+        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              navigator.notification.alert(
+                   'Your session timed out.', // message
+                   null,
+                   $rootScope.alertMsgName,
+                   'Ok' // buttonName
+               );
+              $rootScope.ClearRootScope();
+            }
+        }
+      });
+
+      $scope.$on('IdleEnd', function() {
+          // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+            console.log("aaa3");
+      });
+
+      $scope.$on('Keepalive', function() {
+          // do something to keep the user's session alive
+            console.log("aaa4");
+      });
 
         $scope.getOnlyNumbers = function(text){
             var newStr = text.replace(/[^0-9.]/g, "");
@@ -622,21 +654,18 @@ if(phonevalue!=''){
                     $rootScope.deppatientId = updatepatientdetail[0].patientId;
                     $scope.updateDependentRelation();
                 },
-                  error: function(data, status) {
+                  error: function(data) {
                       $('select option').filter(function() {
                           return this.value.indexOf('?') >= 0;
                       }).remove();
-                    if(status === 400) {
-                      $scope.doChkAddressForReg($scope.homeaddress);
-                    } else if(status === 0 ){
-                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    if(data.status === 400) {
+                      $scope.ErrorMessage = data.statusText;
                       $rootScope.Validation($scope.ErrorMessage);
                     }else {
                       $rootScope.serverErrorMessageValidation();
                     }
 
                 }
-
             };
             LoginService.postNewDependentuser(params);
 
