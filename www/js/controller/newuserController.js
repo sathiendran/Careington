@@ -522,7 +522,7 @@ angular.module('starter.controllers')
     })
     .filter('tel', function() {
         return function(tel) {
-            console.log(tel);
+          //  console.log(tel);
             if (!tel) {
                 return '';
             }

@@ -1080,12 +1080,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //console.log($rootScope.hospitalDetailsList);
             },
             error: function(data) {
-              if(data =='null' ){
-              $scope.ErrorMessage = "Internet connection not available, Try again later!";
-              $rootScope.Validation($scope.ErrorMessage);
-            }else{
                 $rootScope.serverErrorMessageValidation();
-            }
                 $('#verifyEmail').hide();
                 $('#loginEmail').show();
             }
@@ -1944,12 +1939,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
-              if(data =='null' ){
-              $scope.ErrorMessage = "Internet connection not available, Try again later!";
-              $rootScope.Validation($scope.ErrorMessage);
-            }else{
                 $rootScope.serverErrorMessageValidation();
-            }
                 $rootScope.patientInfomation = '';
                 $rootScope.patientAccount = '';
                 $rootScope.patientAddresses = '';
@@ -2103,7 +2093,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
-
                 $rootScope.serverErrorMessageValidation();
             }
         };
@@ -3531,12 +3520,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //	$state.go('tab.patientConcerns');
             },
             error: function(data) {
-              if(data =='null' ){
-                $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                $rootScope.Validation($scope.ErrorMessage);
-              }else{
-                  $rootScope.serverErrorMessageValidation();
-              }
+                $rootScope.serverErrorMessageValidation();
             }
         };
         $rootScope.MedicationAllegiesItem = "";
@@ -4313,6 +4297,7 @@ LoginService.getScheduledConsulatation(params);
                     });
 
                     $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
+
                     $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
 
                     console.log($rootScope.individualScheduledList);
@@ -4497,9 +4482,7 @@ LoginService.getScheduledConsulatation(params);
             accessToken: $rootScope.accessToken,
             statusId: 72,
             success: function(data) {
-                if(data.data !== '') {
-                  $rootScope.Passedconsultations = data.data;
-                }
+                $rootScope.Passedconsultations = data.data;
 
             },
             error: function(data) {

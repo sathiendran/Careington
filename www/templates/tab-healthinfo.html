@@ -273,12 +273,16 @@
 
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
-              <div class="healthViewDetails">
-                <div class="editheight healthheight-{{deviceName}}" style="float: left;">
+              <div class="healthViewDetails" ng-click="heighteditmodal()">
+                <div>
+                  <input class="usertext" id="heightuser"  type="text" value="{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}" placeholder="Required"  required="required"   readonly="true">
+                  <span id="hunit" ng-show="hghtunit"> </span>
+
+                </div>
+                <!--<div class="editheight healthheight-{{deviceName}}" style="float: left;">
 
 
-                  <!-- <input type="number" placeholder="Req" name="healthInfoHeight" id="healthInfoHeight" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 0)}}" class="textdata" ng-blur="heightunit1()" style="width: 51px; margin-right: 10px;">
-                   <input type="number" placeholder="Opt" name="healthInfoHeight2" id="healthInfoHeight2" value="{{reformatHeight(currentPatientDetails[0].anatomy.height, 1)}}" class="textdata"  ng-blur="heightunit2()" style="width: 51px; margin-right: 10px;">-->
+
                    <input type="number" placeholder="Req" name="healthInfoHeight" id="healthInfoHeight"  class="textdata" ng-model="height"  ng-change="heightunit1()" ng-blur="heightunit1len()" style="width:35px;line-height:23px; margin-right: 10px;">
                 </div>
                 <div class="healthheight1-{{deviceName}}" style="float: left;">
@@ -289,6 +293,7 @@
                           <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
                       </select>
                 </div>
+              -->
               </div>
            </div>
            <div class="item item-input itemtab validated">

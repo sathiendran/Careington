@@ -186,6 +186,103 @@ angular.module('starter.controllers')
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
 
+    $scope.hghtunit=false;
+    $scope.hfeet=true;$scope.hinch=true;
+    $scope.hmeter=true;$scope.hcmeter=true;
+    $scope.heighteditmodal=function(){
+
+          //document.getElementById('hunit').innerHTML = '';
+
+      $ionicModal.fromTemplateUrl('templates/heightedittemplate.html', {
+          scope: $scope,
+          animation: 'slide-in-up',
+          focusFirstInput: false,
+          backdropClickToClose: false
+      }).then(function(modal) {
+          $scope.modal = modal;
+          $scope.modal.show();
+          /*var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+          var getheightunit = _.first(heightunit);
+           if(getheightunit==="ft/in"){
+             $scope.hfeet=true;$scope.hinch=true;
+             $scope.hmeter=true;$scope.hcmeter=true;
+
+           }else{
+             $scope.hfeet=false;$scope.hinch=false;
+             $scope.hmeter=false;$scope.hcmeter=false;
+           }*/
+          //  $("#heightvalue").val("");
+
+          $timeout(function() {
+              $('option').filter(function() {
+                  return this.value.indexOf('?') >= 0;
+              }).remove();
+          }, 100);
+      });
+
+    }
+    $scope.removemodal = function(model) {
+      $scope.modal.remove()
+      .then(function() {
+        $scope.modal = null;
+      });
+
+        $('option').filter(function() {
+            return this.value.indexOf('?') >= 0;
+        }).remove();
+
+    };
+    $scope.heighteditsave=function(){
+      $('#heightuser').val('');
+      $rootScope.height1=$('#healthInfoHeight').val();
+      $rootScope.height2=$('#healthInfoHeight2').val();
+     var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+     var heightunitid = $("#healthInfoHeightUnit").val().split("@").slice(0, 1);
+     var getheightunitid=_.first(heightunitid);
+     var getheightunit=_.first(heightunit);
+       if(getheightunit==="ft/in"){
+         if($rootScope.height1!='' && $rootScope.height2 !=''  ){
+           var heightdepval=$('#healthInfoHeight').val() + " " + "ft" + " " +  $('#healthInfoHeight2').val() + " " + "in";
+           $('#heightuser').val(heightdepval);
+         } else if($rootScope.height1!='' && $rootScope.height2==''){
+            var heightdepval=$('#healthInfoHeight').val()+ " " +  "ft" + " " + "0"  + " " + "in";
+            $('#heightuser').val(heightdepval);
+          }
+         else{
+           var heightdepval=$('#healthInfoHeight').val() + " " + "ft" +" "+"0"+" " +'in';
+           $('#heightuser').val(heightdepval);
+         }
+    }else{
+         if($rootScope.height1!='' && $rootScope.height2!=''){
+           var heightdepval=$('#healthInfoHeight').val() +" "+ "m" + " " +$('#healthInfoHeight2').val() + " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+     else if($rootScope.height!='' && $rootScope.height==''){
+       var heightdepval=$('#healthInfoHeight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+     else {
+       var heightdepval=$('#healthInfoHeight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+    }
+     document.getElementById("hunit").innerHTML =getheightunitid;
+
+     if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
+
+     }else{
+       $scope.modal.remove()
+       .then(function() {
+         $scope.modal = null;
+       });
+     }
+
+      $('option').filter(function() {
+          return this.value.indexOf('?') >= 0;
+      }).remove();
+      //  $('#heightform')[0].reset();
+    }
+
     $scope.heightunit1 = function() {
         var max = 10;
         var heightval = $('#healthInfoHeight').val();
@@ -222,7 +319,7 @@ angular.module('starter.controllers')
     $scope.heightunit2len=function(){
       var max = 99;
       var heightunit2len=$('#healthInfoHeight2').val().length;
-
+      var height2val = $("#healthInfoHeight2").val();
       if(heightunit2len>2){
           $("#healthInfoHeight2").val(max);
       }
@@ -255,7 +352,30 @@ angular.module('starter.controllers')
         }
     }
 
-    $scope.heightunitchange = function() {
+      $scope.heightunitchange = function() {
+        var maxheight=11;
+        //$scope.depunit=heightunit;
+       var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+       var getheightunit = _.first(heightunit);
+        if(getheightunit==="ft/in"){
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+          var height2val = $('#healthInfoHeight2').val();
+            if(height2val!=""){
+                if ( height2val > maxheight)
+               {
+                    $("#healthInfoHeight2").val(maxheight);
+               }
+            }
+        }else{
+          $scope.hfeet=false;$scope.hinch=false;
+          $scope.hmeter=false;$scope.hcmeter=false;
+        }
+    }
+
+
+
+  /*  $scope.heightunitchange = function() {
         var maxheight = 11;
         var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
         var getheightunit = _.first(heightunit);
@@ -267,7 +387,7 @@ angular.module('starter.controllers')
                 }
             }
         }
-    }
+    }*/
     $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
     $scope.edittext = function() {
 
@@ -362,13 +482,19 @@ angular.module('starter.controllers')
             } else {
                 $scope.healthInfoRelationship = "NA";
             }
+
+            if($rootScope.height2==""){
+              $scope.heightinch="0";
+            }else{
+              $scope.heightinch=$rootScope.height2;
+            }
             $scope.healthInfoGender = $("#healthInfoGender").val();
-            $scope.healthInfoHeight = $('#healthInfoHeight').val();
-            $scope.healthInfoHeight2 = $('#healthInfoHeight2').val();
+            $scope.healthInfoHeight =  $rootScope.height1;
+            $scope.healthInfoHeight2 = $scope.heightinch;
             $scope.HeightUnit = $('#healthInfoHeightUnit').val();
-            $scope.HeightUnit1 = $scope.HeightUnit.split("@");
-            $scope.healthInfoHeightUnit = $scope.HeightUnit1[0];
-            $scope.healthInfoHeightUnitText = $scope.HeightUnit1[1];
+          //  $scope.HeightUnit1 = $scope.HeightUnit.split("@");
+            $scope.healthInfoHeightUnit = $('#hunit').text();
+          //  $scope.healthInfoHeightUnitText = $scope.HeightUnit1[1];
             $scope.healthInfoWeight = $('#healthInfoWeight').val();
             $scope.WeightUnit = $('#healthInfoWeightUnit').val();
             $scope.WeightUnit1 = $scope.WeightUnit.split("@");

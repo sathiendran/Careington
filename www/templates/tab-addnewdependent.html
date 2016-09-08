@@ -84,7 +84,7 @@
 			</div>
 			<div class="col col-50 depGreyLabel">
 
-				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" ng-blur="ngBlur()">
+				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required" required  name="dob" ng-blur="ngBlur()">
 			</div>
 		</div>
 
@@ -145,19 +145,10 @@
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
         </div>
 				<div class="col col-50 depGreyLabel">
-	        <div class="healthinfoHeight-{{deviceName}}">
-	          <input id="height" class="usertext textalign" placeholder="Req" type="number" value="" ng-model="height" name="height"  ng-change="depheight1()" ng-blur="height1len()">
-	        </div>
-	        <div class="healthinfoHeight2-{{deviceName}}">
+					<input class="usertext" id="heightdep"  type="text" value="" placeholder="Required"  required="required"  ng-click="heightmodal()" readonly="true" style="background-color: #e9e9e9;">
 
-	            <input id="height2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="height2" name="height2" ng-change="depheight2()" ng-blur="height2len()">
-  				</div>
-	        <div class="healthinfoChoose-{{deviceName}}">
-	           <select class=" optionselect textdata healthchoose" name="heightunit" id="heightunit" ng-model="heightunit"  ng-change="unitchange()"  >
-							 <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b>{{getHeightunit.text}}</b></option>
-						 </select>
-	        </div>
-				</div>
+	 		   <span id="hunit" ng-show="hghtunit"> </span>
+	 	   </div>
    </div>
    <div class="item item-input itemtab validated row">
         <div class="col col-50">
