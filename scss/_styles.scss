@@ -3686,8 +3686,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		position: relative;
 		height: 50px;
     text-align: center;
-    margin-left: -4px;
-    margin-right: 16px;
+    margin-left: 4px;
+    margin-right: 4px;
 	//	margin-left: 50px;
 	}
 
@@ -5074,7 +5074,11 @@ p{
         margin-top: -31px;
          color: #A80532;
      }
-  .consultcontentsearch{margin-top:26px;}
+  .consultcontentsearch{margin-top:26px;
+    .listfirst {
+      padding-bottom: 120px;
+  }
+}
   #accountMngeProfile-Android {
     //padding: 47px 10px !important;
     padding: 16px 10px !important;
@@ -8373,7 +8377,7 @@ input.ion-google-place[readonly] {
 .consultcontentsearch-IOS {
   margin-top: 218px;
   .listfirst {
-      margin-bottom: 120px;
+      padding-bottom: 120px;
   }
 }
 .consultcontentsearch-Android {
@@ -9039,10 +9043,12 @@ input.ion-google-place[readonly] {
 }
 .heightft-Android {
   max-with:50px;margin-left:120px;margin-top:-25px;
+  span { font-size: 18px; padding-left: 3px; }
 }
 .heightft-IOS {
   max-with:50px;margin-left:120px;margin-top:-21px;position: relative;
     top: -6px;
+    span { font-size: 18px; padding-left: 3px; }
 }
 /*.heighinch-Android {
   max-with:50px;margin-left:120px;margin-top:-21px;
@@ -9068,4 +9074,25 @@ input.ion-google-place[readonly] {
     position: relative;
     top: 28px;
     left: -1px;
+}
+.healthPopup-IOS {
+  max-width:120px;
+  .input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+  {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    line-height: 20px;
+  }
+}
+.healthPopup-Android {
+  max-width:120px;
+  .input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+  {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    line-height: 20px;
+  }
+  
 }
