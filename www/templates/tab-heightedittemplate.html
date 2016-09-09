@@ -2,7 +2,7 @@
    <ion-view>
       <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="ErrorMessage ErrorMessageDiv"  ></div>
-         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removeeditmodal()" >Cancel</button>
          <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Height</h1>
          <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="heighteditsave()" >Save</button>
       </header>
@@ -10,7 +10,7 @@
          <ion-list>
            <ion-item class="search_home  concernListSearch">
               <h2 class="subname subName-{{deviceName}}"></h2>
-            <div class="item item-input itemtab validated row">
+            <div class="item item-input itemtab validated row" style="border-top:none;">
               <div class="col col-50">
                 <div class="healthPopup-{{deviceName}}" >
                    <input type="number" placeholder="Required" name="healthInfoHeight" id="healthInfoHeight"  class="textdata" ng-model="height"  ng-keyup="heightunit1()" ng-blur="heightunit1len()"></span>
@@ -40,11 +40,13 @@
 
                   <div class="healthinfoChoose-{{deviceName}} heightChoose-{{deviceName}}">
 
-                    <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 100% !important; position: relative; top: 6px;">
+                    <select  class="textdata optionselect healthchoose"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 100% !important; position: relative; top: 6px;">
                           <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
                       </select>
         	        </div>
                 </div>
+
+
 </ion-item>
          </ion-list>
       </ion-content>

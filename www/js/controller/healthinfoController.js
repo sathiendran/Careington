@@ -190,6 +190,7 @@ angular.module('starter.controllers')
     $scope.hfeet=true;$scope.hinch=true;
     $scope.hmeter=true;$scope.hcmeter=true;
     $scope.heighteditmodal=function(){
+      $('#healthInfoHeightUnit').val("");
 
           //document.getElementById('hunit').innerHTML = '';
 
@@ -205,12 +206,17 @@ angular.module('starter.controllers')
           var reminspace=hghtinval.split(" ");
           var units=reminspace[1];
           if(units=="ft"){
+
+
+            //  $('#healthInfoHeightUnit').val("");
            $scope.hfeet=true;$scope.hinch=true;
              $scope.hmeter=true;$scope.hcmeter=true;
-
+          //  $('#healthInfoHeightUnit').val("");
+document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
            }else{
              $scope.hfeet=false;$scope.hinch=false;
              $scope.hmeter=false;$scope.hcmeter=false;
+             document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
            }
 
           $timeout(function() {
@@ -221,7 +227,7 @@ angular.module('starter.controllers')
       });
 
     }
-    $scope.removemodal = function(model) {
+    $scope.removeeditmodal = function(model) {
       $scope.modal.remove()
       .then(function() {
         $scope.modal = null;

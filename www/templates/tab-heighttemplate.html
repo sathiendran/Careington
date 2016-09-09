@@ -10,22 +10,9 @@
          <ion-list>
            <ion-item class="search_home  concernListSearch">
               <h2 class="subname subName-{{deviceName}}"></h2>
-        <!--    <div class="item item-input itemtab validated row">
-              <div class="healthinfoHeight-{{deviceName}}">
-              <span>  <input id="deptheight" class="usertext textalign" placeholder="Req" type="number" value="" ng-model="height1temp" name="height"  ng-change="depheight1()" ng-blur="height1len()"></span>
-                <span ng-show="hfeet">ft</span>
-                <span ng-hide="hmeter">m</span>
-              </div>
-              <div class="healthinfoHeight2-{{deviceName}}">
 
-                <span>  <input id="deptheight2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="height2temp" name="height2" ng-change="depheight2()" ng-blur="height2len()"></span>
-                  <span  ng-show="hinch">in</span>
-                  <span  ng-hide="hcmeter">cm</span>
-              </div>
 
-            </div>-->
-
-            <div class="item item-input itemtab validated row">
+            <div class="item item-input itemtab validated row" style="border-top:none;">
                 <div class="col col-50">
                   <div class="healthPopup-{{deviceName}}">
                   <input id="deptheight" class="usertext textalign" placeholder="Required" type="number" value="" ng-model="height1temp" name="height"  ng-keyup="depheight1()" ng-blur="height1len()">
@@ -60,6 +47,7 @@
         						 </select>
         	        </div>
                 </div>
+
 </ion-item>
          </ion-list>
       </ion-content>
