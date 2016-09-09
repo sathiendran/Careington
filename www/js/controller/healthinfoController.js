@@ -393,7 +393,7 @@ angular.module('starter.controllers')
 
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
-        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
+        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';
             $rootScope.timezoneDisplay = 'flex';
         } else {
@@ -439,7 +439,7 @@ angular.module('starter.controllers')
         var nowday = today.getDate();
         $rootScope.doddate = $('#healthInfoDOB').val();
         $rootScope.restage = getAge( $rootScope.doddate);
-        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
+        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';
             $rootScope.timezoneDisplay = 'flex';
         } else {
