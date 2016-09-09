@@ -12,7 +12,7 @@
               <h2 class="subname subName-{{deviceName}}"></h2>
             <div class="item item-input itemtab validated row">
               <div class="col col-50">
-                <div style="max-width:120px;">
+                <div class="healthPopup-{{deviceName}}" >
                    <input type="number" placeholder="Required" name="healthInfoHeight" id="healthInfoHeight"  class="textdata" ng-model="height"  ng-keyup="heightunit1()" ng-blur="heightunit1len()"></span>
                  </div>
 
@@ -23,7 +23,7 @@
               </div>
               </div>
               <div class="col col-50">
-                <div style="max-width:120px;">
+                <div class="healthPopup-{{deviceName}}">
                   <input type="number" placeholder="Optional" name="healthInfoHeight2" id="healthInfoHeight2" ng-model="height2"  class="textdata"  ng-keyup="heightunit2()" ng-blur="heightunit2len()"></span>
                 </div>
 
