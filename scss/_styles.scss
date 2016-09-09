@@ -3568,14 +3568,15 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 	.dropdownContainer {
 		position: relative;
 		height: 50px;
-		margin-left: 50px;
+    margin-left: -4px;
+    margin-right: 16px;
 	}
 
 	.viewport {
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 83%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3586,7 +3587,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		font-size: 19px;
 		padding: 6px;
 		left: 18px;
-		top: 10px;
+		top: 8px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 
@@ -3605,7 +3607,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		font-size: 16px;
 		padding: 6px;
 		left: 25px;
-		top: 10px;
+		top: 8px;
 		/*font-weight: bold;*/
 		text-align: left;
 	}
@@ -3614,7 +3616,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 85%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3626,6 +3628,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		padding: 6px;
 		left: 18px;
 		top: 10px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 
@@ -3683,6 +3686,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		position: relative;
 		height: 50px;
     text-align: center;
+    margin-left: -4px;
+    margin-right: 16px;
 	//	margin-left: 50px;
 	}
 
@@ -3690,7 +3695,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 83%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3701,7 +3706,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		font-size: 19px;
 		padding: 6px;
 		left: 18px;
-		top: 11px;
+		top: 8px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 	.viewport1 {
@@ -3719,7 +3725,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		font-size: 19px;
 		padding: 6px;
 		left: 45px;
-		top: 11px;
+		top: 8px;
 		/*font-weight: bold;*/
 		text-align: left;
 	}
@@ -3728,7 +3734,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 85%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3740,6 +3746,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		padding: 6px;
 		left: 18px;
 		top: 11px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 
@@ -4734,6 +4741,16 @@ p{
               padding: 12px 10px !important;
           }
 
+      }
+      .apponitmentfday-Android {
+        margin-left: -14px;
+        margin-right: -14px;
+        font-size: 24px !important;
+      }
+      .apponitmentfday-IOS {
+        margin-left: -14px;
+        margin-right: -14px;
+        font-size: 24px !important;
       }
       .consultConMargin {
         margin: 202px 0 0 0;
@@ -8890,7 +8907,7 @@ input.ion-google-place[readonly] {
   padding-top: 5%;
 }
 .NoPlanText {
-  margin-left: 37px !important;
+  margin-left: 17px !important;
   padding-top: 30px;
   font-size: 16px;
   color: #888585;

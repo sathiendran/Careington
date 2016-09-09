@@ -543,24 +543,45 @@ angular.module('starter.controllers')
             $scope.healthmobilelength = $("#healthInfoMobilePhone").val().length;
             //$scope.healthInfoAddress = $('#healthInfoAddress').val();
             $scope.healthInfoAddress = $scope.healthInfoModel.address;
-            $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
-            $scope.healthInfoLocation = $('#healthInfoLocation').val();
+            if($rootScope.OrganizationLocation === 'on') {
+              $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
+              $scope.healthInfoLocation = $('#healthInfoLocation').val();
+            }else {
+                $scope.healthInfoOrganization = null;
+                $scope.healthInfoLocation = null;
+            }
             $scope.healthInfoHairColor = $('#healthInfoHairColor').val();
-            $scope.splitHairColor = $scope.healthInfoHairColor.split("@");
-            $scope.getHairColorId = $scope.splitHairColor[0];
-            $scope.getHairColorText = $scope.splitHairColor[1];
+            if (!angular.isUndefined($scope.healthInfoHairColor) && $scope.healthInfoHairColor !== '') {
+              $scope.splitHairColor = $scope.healthInfoHairColor.split("@");
+              $scope.getHairColorId = $scope.splitHairColor[0];
+              $scope.getHairColorText = $scope.splitHairColor[1];
+            } else {
+              $scope.getHairColorId = null;
+            }
             $scope.healthInfoEyeColor = $('#healthInfoEyeColor').val();
-            $scope.splitEyeColor = $scope.healthInfoEyeColor.split("@");
-            $scope.getEyeColorId = $scope.splitEyeColor[0];
-            $scope.getEyeColorText = $scope.splitEyeColor[1];
+            if (!angular.isUndefined($scope.healthInfoEyeColor) && $scope.healthInfoEyeColor !== '') {
+              $scope.splitEyeColor = $scope.healthInfoEyeColor.split("@");
+              $scope.getEyeColorId = $scope.splitEyeColor[0];
+              $scope.getEyeColorText = $scope.splitEyeColor[1];
+            } else {
+              $scope.getEyeColorId = null;
+            }
             $scope.healthInfoEthnicity = $('#healthInfoEthnicity').val();
-            $scope.splitEthnicity = $scope.healthInfoEthnicity.split("@");
-            $scope.getEthnicityId = $scope.splitEthnicity[0];
-            $scope.getEthnicityText = $scope.splitEthnicity[1];
+            if (!angular.isUndefined($scope.healthInfoEthnicity) && $scope.healthInfoEthnicity !== '') {
+              $scope.splitEthnicity = $scope.healthInfoEthnicity.split("@");
+              $scope.getEthnicityId = $scope.splitEthnicity[0];
+              $scope.getEthnicityText = $scope.splitEthnicity[1];
+            }else {
+              $scope.getEthnicityId = null;
+            }
             $scope.healthInfoBloodType = $('#healthInfoBloodType').val();
-            $scope.splitBloodType = $scope.healthInfoBloodType.split("@");
-            $scope.getBloodTypeId = $scope.splitBloodType[0];
-            $scope.getBloodTypeText = $scope.splitBloodType[1];
+            if (!angular.isUndefined($scope.healthInfoBloodType) && $scope.healthInfoBloodType !== '') {
+              $scope.splitBloodType = $scope.healthInfoBloodType.split("@");
+              $scope.getBloodTypeId = $scope.splitBloodType[0];
+              $scope.getBloodTypeText = $scope.splitBloodType[1];
+            }else {
+              $scope.getBloodTypeId = null;
+            }
             var today = new Date();
             var nowyear = today.getFullYear();
             var nowmonth = today.getMonth() + 1;
@@ -644,16 +665,16 @@ angular.module('starter.controllers')
                     } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                         $scope.ErrorMessage = "Please select Weight Unit";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                         $scope.ErrorMessage = "Please select Ethnicity";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                    } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                         $scope.ErrorMessage = "Please select Hair Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                         $scope.ErrorMessage = "Please select Eye Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                    } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -722,16 +743,16 @@ angular.module('starter.controllers')
                     } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                         $scope.ErrorMessage = "Please select Weight Unit";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                         $scope.ErrorMessage = "Please select Ethnicity";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                    } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                         $scope.ErrorMessage = "Please select Hair Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                         $scope.ErrorMessage = "Please select Eye Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                    } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -802,16 +823,16 @@ angular.module('starter.controllers')
                 } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                     $scope.ErrorMessage = "Please select Weight Unit";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                     $scope.ErrorMessage = "Please select Ethnicity";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                     $scope.ErrorMessage = "Please select Hair Color";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                     $scope.ErrorMessage = "Please select Eye Color";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                     $scope.ErrorMessage = "Please select Blood Type";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
