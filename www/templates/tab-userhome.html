@@ -10,13 +10,12 @@
 		</div>
 
 
-		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} userhomePlusIcon">
 			<div class="Server_Error ErrorMessageDiv" ></div>
 	 <div id="Error_Message"></div
 			<span> Patient list </span>
-			<span > <a class="headerval" style="position: relative;right: 8px;" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
-
 	</h1>
+		<span class="UserhomeSpanPlusIcon-{{deviceName}}" > <a class="headerval" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
 
 	<!--	<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -38px;">Patient List</h1>
 	<span>
