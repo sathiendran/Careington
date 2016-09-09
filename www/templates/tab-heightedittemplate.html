@@ -40,11 +40,13 @@
 
                   <div class="healthinfoChoose-{{deviceName}} heightChoose-{{deviceName}}">
 
-                    <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 100% !important; position: relative; top: 6px;">
+                    <select  class="textdata optionselect healthchoose"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 100% !important; position: relative; top: 6px;">
                           <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
                       </select>
         	        </div>
                 </div>
+
+              
 </ion-item>
          </ion-list>
       </ion-content>

@@ -206,15 +206,17 @@ angular.module('starter.controllers')
           var reminspace=hghtinval.split(" ");
           var units=reminspace[1];
           if(units=="ft"){
-              $('#healthInfoHeightUnit').val("");
+
+
+            //  $('#healthInfoHeightUnit').val("");
            $scope.hfeet=true;$scope.hinch=true;
              $scope.hmeter=true;$scope.hcmeter=true;
-            $('#healthInfoHeightUnit').val("4715@ft/in");
-
+          //  $('#healthInfoHeightUnit').val("");
+document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
            }else{
              $scope.hfeet=false;$scope.hinch=false;
              $scope.hmeter=false;$scope.hcmeter=false;
-             $('#healthInfoHeightUnit').val("4716@m/cm");
+             document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
            }
 
           $timeout(function() {
