@@ -2264,7 +2264,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
     border-bottom-right-radius: 1px;
 	.SearchImage {
 		width:10%;
-		margin-right: 10px;
+		margin-right: 17px;
 		.searchIcon {
 			float: right;
 			width: 20px;
@@ -9035,4 +9035,36 @@ input.ion-google-place[readonly] {
 }
 .healthWeight1-Android {
   width: 40% !important; float: left;margin-top:4px;
+}
+.heightft-Android {
+  max-with:50px;margin-left:120px;margin-top:-25px;
+}
+.heightft-IOS {
+  max-with:50px;margin-left:120px;margin-top:-21px;position: relative;
+    top: -6px;
+}
+/*.heighinch-Android {
+  max-with:50px;margin-left:120px;margin-top:-21px;
+}*/
+/*.heighinch-IOS {
+  max-with:50px;margin-left:120px;margin-top:-21px;position: relative;top: -6px;
+}*/
+.heightChoose-IOS {
+  position: relative;
+  top: 5px;
+}
+.userhomePlusIcon {
+  width: 91% !important;
+}
+.UserhomeSpanPlusIcon-Android {
+  font-size: 20px;
+    position: relative;
+    top: 18px;
+    left: -1px;
+}
+.UserhomeSpanPlusIcon-IOS {
+  font-size: 20px;
+    position: relative;
+    top: 18px;
+    left: -1px;
 }

@@ -68,7 +68,7 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 providerSearchKey: providerSearchKey,
                 success: function(data) {
-                  //cordova.plugins.Keyboard.close();
+                  cordova.plugins.Keyboard.close();
                     $rootScope.searchProviderList = [];
                     if (data.data != '') {
                         $('#startSearchProvider').hide();

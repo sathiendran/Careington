@@ -15,7 +15,9 @@
                 <div style="max-width:120px;">
                    <input type="number" placeholder="Required" name="healthInfoHeight" id="healthInfoHeight"  class="textdata" ng-model="height"  ng-change="heightunit1()" ng-blur="heightunit1len()"></span>
                  </div>
-               <div style="max-with:50px;margin-left:120px;margin-top:-25px;">
+
+               <div class="heightft-{{deviceName}}" >
+
                 <span ng-show="hfeet">ft</span>
                 <span ng-hide="hmeter">m</span>
               </div>
@@ -24,15 +26,20 @@
                 <div style="max-width:120px;">
                   <input type="number" placeholder="Optional" name="healthInfoHeight2" id="healthInfoHeight2" ng-model="height2"  class="textdata"  ng-change="heightunit2()" ng-blur="heightunit2len()"></span>
                 </div>
-                <div style="max-with:50px;margin-left:120px;margin-top:-25px;">
+
+                <div class="heightft-{{deviceName}}">
+
                   <span  ng-show="hinch">in</span>
                   <span  ng-hide="hcmeter">cm</span>
                 </div>
               </div>
             </div>
                 <div class="item item-input itemtab validated row">
+
                     <span class="input-label labelcolor"><b class="formlabel labelfont">Unit</b></span>
-                  <div class="healthinfoChoose-{{deviceName}}">
+
+                  <div class="healthinfoChoose-{{deviceName}} heightChoose-{{deviceName}}">
+
                     <select  class="textdata optionselect"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 83%; position: relative; top: 6px;">
                           <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
                       </select>
