@@ -40,7 +40,7 @@ angular.module('starter.controllers')
             var heightValSplit = heightVal.split("|");
             var heightUnitSplit = heightUnit.split("/");
             if (heightValSplit[1] == 0) {
-                newHeight = heightValSplit[0] + " " + heightUnitSplit[0];
+                newHeight = heightValSplit[0] + " " + heightUnitSplit[0] + " " + heightValSplit[1] + " " + heightUnitSplit[1];
             } else {
                 newHeight = heightValSplit[0] + " " + heightUnitSplit[0] + " " + heightValSplit[1] + " " + heightUnitSplit[1];
             }
