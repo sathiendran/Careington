@@ -221,7 +221,7 @@ angular.module('starter.controllers')
       });
 
     }
-    $scope.removemodal = function(model) {
+    $scope.removeeditmodal = function(model) {
       $scope.modal.remove()
       .then(function() {
         $scope.modal = null;
