@@ -275,7 +275,7 @@
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
               <div class="healthViewDetails" ng-click="heighteditmodal()">
                 <div>
-                  <input class="usertext" id="heightuser"  type="text" value="{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}" placeholder="Required"  required="required"   readonly="true">
+                  <input class="textdata " id="heightuser"  type="text" value="{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}" placeholder="Required"  required="required"   readonly="true">
                   <span id="hunit" ng-show="hghtunit"> </span>
 
                 </div>
