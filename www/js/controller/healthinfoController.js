@@ -190,6 +190,7 @@ angular.module('starter.controllers')
     $scope.hfeet=true;$scope.hinch=true;
     $scope.hmeter=true;$scope.hcmeter=true;
     $scope.heighteditmodal=function(){
+      $('#healthInfoHeightUnit').val("");
 
           //document.getElementById('hunit').innerHTML = '';
 
@@ -205,12 +206,15 @@ angular.module('starter.controllers')
           var reminspace=hghtinval.split(" ");
           var units=reminspace[1];
           if(units=="ft"){
+              $('#healthInfoHeightUnit').val("");
            $scope.hfeet=true;$scope.hinch=true;
              $scope.hmeter=true;$scope.hcmeter=true;
+            $('#healthInfoHeightUnit').val("4715@ft/in");
 
            }else{
              $scope.hfeet=false;$scope.hinch=false;
              $scope.hmeter=false;$scope.hcmeter=false;
+             $('#healthInfoHeightUnit').val("4716@m/cm");
            }
 
           $timeout(function() {
