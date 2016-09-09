@@ -193,7 +193,7 @@ angular.module('starter.controllers')
 
           //document.getElementById('hunit').innerHTML = '';
 
-      $ionicModal.fromTemplateUrl('templates/heightedittemplate.html', {
+      $ionicModal.fromTemplateUrl('templates/tab-heightedittemplate.html', {
           scope: $scope,
           animation: 'slide-in-up',
           focusFirstInput: false,
@@ -212,7 +212,6 @@ angular.module('starter.controllers')
              $scope.hfeet=false;$scope.hinch=false;
              $scope.hmeter=false;$scope.hcmeter=false;
            }
-          //  $("#heightvalue").val("");
 
           $timeout(function() {
               $('option').filter(function() {
