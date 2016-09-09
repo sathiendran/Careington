@@ -443,8 +443,8 @@ if(phonevalue!=''){
             $scope.getEyeColorId = _.first($scope.eyeColor);
             $scope.ethnicity = $("#ethnicity").val().split("@").slice(0, 1);
             $scope.getEthnicityId = _.first($scope.ethnicity);*/
-            $scope.heightunit = $("#heightunit").val().split("@").slice(0, 1);
-            $scope.getHeightunit = _.first($scope.heightunit);
+          //  $scope.heightunit = $("#heightunit").val().split("@").slice(0, 1);
+          //  $scope.getHeightunit = _.first($scope.heightunit);
           //  $scope.heightunit = $('#hunit').text();
             $scope.getHeightunit = $('#hunit').text();
 
