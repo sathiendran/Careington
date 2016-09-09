@@ -69,9 +69,12 @@ angular.module('starter.controllers')
                 }*/
 
                 if ($rootScope.existingConsultationReport.height != '' && typeof $rootScope.existingConsultationReport.height != 'undefined')
-
                 {
+                  if ($rootScope.existingConsultationReport.heightUnit != '' && typeof $rootScope.existingConsultationReport.heightUnit != 'undefined') {
                     $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
+                  } else {
+                    $rootScope.reportHeight = $rootScope.existingConsultationReport.height;
+                  }
                 } else {
                     $rootScope.reportHeight = 'NA';
                 }
