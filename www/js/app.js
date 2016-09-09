@@ -188,7 +188,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         cordova.plugins.backgroundMode.enable();
 
         setTimeout(function() {
-            if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "") {
+            if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                 var EXTRA = {};
                 var extQuery = window.localStorage.getItem("external_load").split('?')
                 var extQueryOnly = extQuery[1];
@@ -267,7 +267,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         $ionicPlatform.on('resume', function() {
             setTimeout(function() {
                   Idle.watch();
-                if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "") {
+                if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                     var EXTRA = {};
                     var extQuery = window.localStorage.getItem("external_load").split('?')
                     var extQueryOnly = extQuery[1];

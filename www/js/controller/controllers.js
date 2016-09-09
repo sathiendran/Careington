@@ -1465,7 +1465,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.tokenStatus = 'alert-success';
                         $scope.doGetPatientProfiles();
                         $scope.doGetRelatedPatientProfiles('tab.userhome');
-                        $scope.doGetConutriesList();
                         Idle.watch();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
@@ -4639,6 +4638,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.SelectPatientAge = $rootScope.PatientAge;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
         $rootScope.patientId = P_Id;
+        $scope.doGetConutriesList();
         $rootScope.doGetCreditDetails();
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();

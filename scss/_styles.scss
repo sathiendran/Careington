@@ -9094,5 +9094,21 @@ input.ion-google-place[readonly] {
     left: 5px;
     line-height: 20px;
   }
-  
+
+}
+.depenErrorMsg-IOS {
+  #notifications-top-center {
+    height: 65px !important;
+    .ErrorContent {
+      position: relative;
+      top: 10px;
+    }
+    #notifications-top-center-close {
+      span {
+        position: relative;
+        top: 15px;
+        left: -5px;
+      }
+    }
+  }
 }
