@@ -3686,8 +3686,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		position: relative;
 		height: 50px;
     text-align: center;
-    margin-left: -4px;
-    margin-right: 16px;
+    margin-left: 4px;
+    margin-right: 4px;
 	//	margin-left: 50px;
 	}
 
@@ -9043,10 +9043,12 @@ input.ion-google-place[readonly] {
 }
 .heightft-Android {
   max-with:50px;margin-left:120px;margin-top:-25px;
+  span { font-size: 18px; padding-left: 3px; }
 }
 .heightft-IOS {
   max-with:50px;margin-left:120px;margin-top:-21px;position: relative;
     top: -6px;
+    span { font-size: 18px; padding-left: 3px; }
 }
 /*.heighinch-Android {
   max-with:50px;margin-left:120px;margin-top:-21px;
@@ -9092,4 +9094,5 @@ input.ion-google-place[readonly] {
     left: 5px;
     line-height: 20px;
   }
+  
 }
