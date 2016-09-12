@@ -469,15 +469,24 @@ if(phonevalue!=''){
               $scope.orgid = org.options[org.selectedIndex].value;
 
               var loc = document.getElementById("location");
-              var dependentloc = loc.options[loc.selectedIndex].text;
-              if(dependentloc="Choose Location"){
+              if(loc==null){
+                  var dependentloc = "Choose Location";
+                  $scope.location = "";
+                  $scope.locationid = "";
+              }else{
+                  var dependentloc = loc.options[loc.selectedIndex].text;
+                  $scope.location = dependentloc;
+                  $scope.locationid = loc.options[loc.selectedIndex].value;
+              }
+
+          /*    if(dependentloc="Choose Location"){
                 $scope.location = "";
                 $scope.locationid = "";
               }else{
                 $scope.location = dependentloc;
                 $scope.locationid = loc.options[loc.selectedIndex].value;
 
-              }
+              }*/
 
             } else {
               if($scope.organization!=""){
@@ -612,17 +621,17 @@ if(phonevalue!=''){
        }else if($scope.mobilelength < 14){
            $scope.ErrorMessage = "Please enter valid Mobile Number";
            $rootScope.Validation($scope.ErrorMessage);
-       }else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '')) {
+       }else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '' || $scope.getBloodtypeid===null)) {
            $scope.ErrorMessage = "Please select Blood Type";
            $rootScope.Validation($scope.ErrorMessage);
        }
-       else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '')) {
+       else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '' || $scope.getHairColorId===null)) {
                 $scope.ErrorMessage = "Please select Hair Color";
                 $rootScope.Validation($scope.ErrorMessage);
-      } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '')) {
+      } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '' || $scope.getEyeColorId===null)) {
                 $scope.ErrorMessage = "Please select Eye Color";
                 $rootScope.Validation($scope.ErrorMessage);
-      } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '')) {
+      } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '' || $scope.getEthnicityId===null)) {
                 $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
       }
@@ -676,16 +685,16 @@ if(phonevalue!=''){
     }else if($scope.mobilelength < 14){
         $scope.ErrorMessage = "Please enter valid Mobile Number";
         $rootScope.Validation($scope.ErrorMessage);
-    }else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '')) {
+    }else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '' || $scope.getBloodtypeid === null)) {
          $scope.ErrorMessage = "Please select Blood Type";
          $rootScope.Validation($scope.ErrorMessage);
-     }else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '')) {
+     }else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '' || $scope.getHairColorId === null)) {
                 $scope.ErrorMessage = "Please select Hair Color";
                 $rootScope.Validation($scope.ErrorMessage);
-    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '')) {
+    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '' || $scope.getEyeColorId === null)) {
                 $scope.ErrorMessage = "Please select Eye Color";
                 $rootScope.Validation($scope.ErrorMessage);
-    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '')) {
+    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '' || $scope.getEthnicityId === null)) {
                 $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
     }
@@ -852,7 +861,7 @@ if(phonevalue!=''){
                         organizationId: newVal
                     });
                 } else {
-                    $rootScope.listOfLocForCurntOrg = '';
+                    $rootScope.listOfLocForCurntOrg =$('#location').val("Choose Location");
                 }
             }
         });

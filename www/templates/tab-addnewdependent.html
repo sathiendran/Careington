@@ -237,13 +237,13 @@
      <input type="hidden" id="organ" value="{{addNewDependent.healthInfoOrganization.id}}" />
      </div>
   </div>
- <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
+ <div class="item item-input validated" ng-disabled="!listOfLocForCurntOrg" ng-if="OrganizationLocation === 'on'">
     <div class="col col-50">
        <span class="input-label labelcolor">
        <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Location</b></span>
     </div>
     <div class="col col-50 depGreyLabel">
-			<select class="textdata optionselect"  name="healthInfoLocation" id="location" ng-model="secondSelect">
+			<select class="textdata optionselect"  name="healthInfoLocation" id="healthInfoLocation" >
 							<option>Choose Location</option>
 						 <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
 				</select>
