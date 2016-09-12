@@ -200,24 +200,26 @@ angular.module('starter.controllers')
           focusFirstInput: false,
           backdropClickToClose: false
       }).then(function(modal) {
+        var hghtinval=$('#heightuser').val();
+        var reminspace=hghtinval.split(" ");
+
+        var units=reminspace[1];
+      //   document.getElementById("edhunit").innerHTML =  units;
           $scope.modal = modal;
-          $scope.modal.show();
-          var hghtinval=$('#heightuser').val();
-          var reminspace=hghtinval.split(" ");
-          var units=reminspace[1];
+          $scope.modal.show().then(function() {
+          //  var newq=$('#edhunit').text();
           if(units=="ft"){
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
+            $scope.hfeet=true;$scope.hinch=true;
+            $scope.hmeter=true;$scope.hcmeter=true;
+          }else{
+          
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+            $scope.hfeet=false;$scope.hinch=false;
+            $scope.hmeter=false;$scope.hcmeter=false;
+          }
 
-
-            //  $('#healthInfoHeightUnit').val("");
-           $scope.hfeet=true;$scope.hinch=true;
-             $scope.hmeter=true;$scope.hcmeter=true;
-          //  $('#healthInfoHeightUnit').val("");
-document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
-           }else{
-             $scope.hfeet=false;$scope.hinch=false;
-             $scope.hmeter=false;$scope.hcmeter=false;
-             document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
-           }
+          });
 
           $timeout(function() {
               $('option').filter(function() {
@@ -238,6 +240,25 @@ document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
         }).remove();
 
     };
+    $rootScope.ValidationFunction1 = function($a) {
+        function refresh_close() {
+            $('.close').click(function() {
+                $(this).parent().fadeOut(200);
+            });
+        }
+        refresh_close();
+
+        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+
+        $("#notifications-top-center").remove();
+        //$( ".ppp" ).prepend( top );
+        $(".ErrorMessage").append(top);
+        //$(".notifications-top-center").addClass('animated ' + 'bounce');
+        refresh_close();
+
+    }
+
     $scope.heighteditsave=function(){
       $('#heightuser').val('');
       $rootScope.height1=$('#healthInfoHeight').val();
@@ -275,7 +296,8 @@ document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
      document.getElementById("hunit").innerHTML =getheightunitid;
 
      if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
-
+       $scope.ErrorMessage = "Please enter height";
+       $rootScope.ValidationFunction1($scope.ErrorMessage);
      }else{
        $scope.modal.remove()
        .then(function() {
@@ -379,21 +401,6 @@ document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
         }
     }
 
-
-
-  /*  $scope.heightunitchange = function() {
-        var maxheight = 11;
-        var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
-        var getheightunit = _.first(heightunit);
-        if (getheightunit = "ft/in") {
-            var height2val = $('#healthInfoHeight2').val();
-            if (height2val != "") {
-                if (height2val > maxheight) {
-                    $("#healthInfoHeight2").val(maxheight);
-                }
-            }
-        }
-    }*/
     $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
     $scope.edittext = function() {
 
@@ -1833,24 +1840,7 @@ document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
         });
     };
 
-    $rootScope.ValidationFunction1 = function($a) {
-        function refresh_close() {
-            $('.close').click(function() {
-                $(this).parent().fadeOut(200);
-            });
-        }
-        refresh_close();
 
-        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
-
-
-        $("#notifications-top-center").remove();
-        //$( ".ppp" ).prepend( top );
-        $(".ErrorMessage").append(top);
-        //$(".notifications-top-center").addClass('animated ' + 'bounce');
-        refresh_close();
-
-    }
 
     $scope.closeSurgeryPopup = function(model) {
         $scope.surgery.name;

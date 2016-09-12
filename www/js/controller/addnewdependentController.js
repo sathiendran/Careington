@@ -73,6 +73,24 @@ angular.module('starter.controllers')
               }, 300);
           }
       }
+      $rootScope.ValidationFunction1 = function($a) {
+          function refresh_close() {
+              $('.close').click(function() {
+                  $(this).parent().fadeOut(200);
+              });
+          }
+          refresh_close();
+
+          var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+
+          $("#notifications-top-center").remove();
+          //$( ".ppp" ).prepend( top );
+          $(".ErrorMessage").append(top);
+          //$(".notifications-top-center").addClass('animated ' + 'bounce');
+          refresh_close();
+
+      }
 
 $scope.hghtunit=false;
       $scope.$on('IdleStart', function() {
@@ -169,9 +187,9 @@ $scope.hghtunit=false;
 $scope.hfeet=true;$scope.hinch=true;
 $scope.hmeter=true;$scope.hcmeter=true;
 $scope.heightmodal=function(){
-    $('#heightdep').val('');
-    $("#deptheight").val('');
-    $('#depheight2').val('');
+  //  $('#heightdep').val('');
+//    $("#deptheight").val('');
+  //  $('#depheight2').val('');
       document.getElementById('hunit').innerHTML = '';
 
   $ionicModal.fromTemplateUrl('templates/tab-heighttemplate.html', {
@@ -180,10 +198,33 @@ $scope.heightmodal=function(){
       focusFirstInput: false,
       backdropClickToClose: false
   }).then(function(modal) {
+    var hghtinval=$('#heightdep').val();
+    var reminspace=hghtinval.split(" ");
+    var fet=reminspace[0];
+    var finc=reminspace[2];
+    var units=reminspace[1];
       $scope.modal = modal;
-      $scope.modal.show();
-      $scope.hfeet=true;$scope.hinch=true;
-      $scope.hmeter=true;$scope.hcmeter=true;
+      $scope.modal.show().then(function(){
+        if(units=="ft"){
+          document.getElementById('heightunitval').selectedIndex = 0;
+          $('#deptheight').val(fet);
+          $('#deptheight2').val(finc);
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+        }else if(units=="m"){
+          document.getElementById('heightunitval').selectedIndex = 1;
+          $('#deptheight').val(fet);
+          $('#deptheight2').val(finc);
+          $scope.hfeet=false;$scope.hinch=false;
+          $scope.hmeter=false;$scope.hcmeter=false;
+        }else{
+          $('#deptheight').val("");
+          $('#deptheight2').val("");
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+        }
+      });
+
       //  $("#heightvalue").val("");
 
       $timeout(function() {
@@ -362,7 +403,8 @@ $scope.heightsave=function(){
  document.getElementById("hunit").innerHTML =getheightunitid;
 
  if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
-
+   $scope.ErrorMessage = "Please enter height";
+   $rootScope.ValidationFunction1($scope.ErrorMessage);
  }else{
    $scope.modal.remove()
    .then(function() {
