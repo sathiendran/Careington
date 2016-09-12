@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-    .controller('addnewdependentController',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$ionicPopup,$log,$window,$ionicBackdrop,Idle) {
+    .controller('addnewdependentController',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$filter,$ionicPopup,$log,$window,$ionicBackdrop,Idle) {
 
       $timeout(function() {
             $('option').filter(function() {
@@ -463,12 +463,12 @@ if(phonevalue!=''){
               var org = document.getElementById("organization");
               var dependentorgan = org.options[org.selectedIndex].text;
               $scope.organization = dependentorgan;
-              $scope.orgid = $("#organ").val();
+              $scope.orgid = org.options[org.selectedIndex].value;
 
               var loc = document.getElementById("location");
               var dependentloc = loc.options[loc.selectedIndex].text;
               $scope.location = dependentloc;
-              $scope.locationid = $("#locate").val();
+              $scope.locationid = loc.options[loc.selectedIndex].value;
             } else {
               $scope.organization = null;
               $scope.location = null;
@@ -617,7 +617,7 @@ if(phonevalue!=''){
            if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
                $scope.height2 = "0";
            }
-          $scope.doPostNewDependentuser();
+     $scope.doPostNewDependentuser();
       }
    }else{
      if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
@@ -677,7 +677,7 @@ if(phonevalue!=''){
                 $rootScope.Validation($scope.ErrorMessage);
     }
      else {
-     $scope.doPostNewDependentuser();
+    $scope.doPostNewDependentuser();
     }
    }
 
@@ -828,7 +828,21 @@ if(phonevalue!=''){
           history.back();
           $scope.$apply();
         }
-
+     $scope.$watch('addNewDependent.healthInfoOrganization', function(newVal) {
+            if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
+                $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
+                    organizationId: $rootScope.currentPatientDetails[0].organizationId
+                });
+            } else {
+                if (newVal) {
+                    $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
+                        organizationId: newVal
+                    });
+                } else {
+                    $rootScope.listOfLocForCurntOrg = '';
+                }
+            }
+        });
         //Function to open ActionSheet when clicking Camera Button
         //================================================================================================================
         var options;
@@ -912,7 +926,8 @@ if(phonevalue!=''){
         function onCameraCaptureFailure(err) {
         }
 
-    }).filter('secondDropdown', function() {
+    });
+    /*.filter('secondDropdown', function() {
         return function(secondSelect, firstSelect) {
             var filtered = [];
             if (firstSelect === null) {
@@ -933,4 +948,4 @@ if(phonevalue!=''){
 
             return filtered;
         };
-    });
+    });*/

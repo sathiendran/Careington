@@ -99,8 +99,51 @@ angular.module('starter.controllers')
               console.log("aaa4");
         });
 
+        $rootScope.doGetLocations = function() {
+            $rootScope.listOfOrganization = '';
+            $rootScope.listOfLocation = '';
+            var params = {
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+                    $rootScope.listOfOrganization = [];
+                    $rootScope.listOfLocation = [];
+                    if (data.data[0] !== '') {
+                        angular.forEach(data.data, function(index, item) {
+                            $rootScope.listOfOrganization.push({
+                                'addresses': index.addresses,
+                                'createdByUserId': index.createdByUserId,
+                                'createdDate': index.createdDate,
+                                'hospitalId': index.hospitalId,
+                                'id': index.id,
+                                'locations': angular.fromJson(index.locations),
+                                'modifiedByUserId': index.modifiedByUserId,
+                                'modifiedDate': index.modifiedDate,
+                                'name': index.name,
+                                'organizationTypeId': index.organizationTypeId
+                            });
+                            angular.forEach(index.locations, function(index, item) {
+                                $rootScope.listOfLocation.push({
+                                    'createdByUserId': index.createdByUserId,
+                                    'createdDate': index.createdDate,
+                                    'id': index.id,
+                                    'modifiedByUserId': index.modifiedByUserId,
+                                    'modifiedDate': index.modifiedDate,
+                                    'name': index.name,
+                                    'organizationId': index.organizationId
+                                });
+                            })
+                        });
+                    }
 
-        $rootScope.doGetOrgLoclist = function() {
+                },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
+            LoginService.getListOfLocationOrganization(params);
+        }
+
+      /*  $rootScope.doGetOrgLoclist = function() {
 
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
@@ -133,10 +176,10 @@ angular.module('starter.controllers')
             };
             LoginService.getListOfLocationOrganization(params);
 
-        }
+        }*/
 
         $rootScope.adddependent = function() {
-            $scope.doGetOrgLoclist();
+            $scope.doGetLocations();
             $rootScope.newDependentImagePath = '';
             $('select').prop('selectedIndex', 0);
             $state.go('tab.addnewdependent');
@@ -144,7 +187,7 @@ angular.module('starter.controllers')
 
         $rootScope.addcouser = function() {
             $rootScope.newCoUserImagePath = '';
-            $scope.doGetOrgLoclist();
+            $scope.doGetLocations();
             $('select').prop('selectedIndex', 0);
             $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addUser');
