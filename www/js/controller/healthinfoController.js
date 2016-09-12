@@ -213,7 +213,7 @@ angular.module('starter.controllers')
             $scope.hfeet=true;$scope.hinch=true;
             $scope.hmeter=true;$scope.hcmeter=true;
           }else{
-          
+
             document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
             $scope.hfeet=false;$scope.hinch=false;
             $scope.hmeter=false;$scope.hcmeter=false;
@@ -426,7 +426,7 @@ angular.module('starter.controllers')
         $('#aaa').show();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-        $scope.healthInfoModel.userDOB = new Date($rootScope.userDOB);
+        $scope.userdob = new Date($rootScope.userDOB);
         $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
@@ -445,12 +445,14 @@ angular.module('starter.controllers')
     }
 
     //$scope.healthInfo = {};
-    $scope.ngBlur = function() {
+    $scope.setDob = function() {
         var today = new Date();
         var nowyear = today.getFullYear();
         var nowmonth = today.getMonth() + 1;
         var nowday = today.getDate();
-        $rootScope.doddate = $('#healthInfoDOB').val();
+
+        var asd=$('#healthInfoDOB').val();
+        $rootScope.doddate =new Date(asd);
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';

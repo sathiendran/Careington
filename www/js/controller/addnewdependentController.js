@@ -240,9 +240,7 @@ $scope.removemodal = function(model) {
   .then(function() {
     $scope.modal = null;
   });
-     var input = $('input');
-     input.val('');
-     input.trigger('input');
+
     $('option').filter(function() {
         return this.value.indexOf('?') >= 0;
     }).remove();
@@ -462,18 +460,33 @@ if(phonevalue!=''){
             if($rootScope.OrganizationLocation === 'on') {
               var org = document.getElementById("organization");
               var dependentorgan = org.options[org.selectedIndex].text;
-              $scope.organization = dependentorgan;
+              if(dependentorgan="Choose Organization"){
+                  $scope.organization = "";
+              }else{
+                  $scope.organization = dependentorgan;
+              }
+
               $scope.orgid = org.options[org.selectedIndex].value;
 
               var loc = document.getElementById("location");
               var dependentloc = loc.options[loc.selectedIndex].text;
-              $scope.location = dependentloc;
-              $scope.locationid = loc.options[loc.selectedIndex].value;
+              if(dependentloc="Choose Location"){
+                $scope.location = "";
+                $scope.locationid = "";
+              }else{
+                $scope.location = dependentloc;
+                $scope.locationid = loc.options[loc.selectedIndex].value;
+
+              }
+
             } else {
-              $scope.organization = null;
-              $scope.location = null;
-              $scope.orgid = null;
-              $scope.locationid = null;
+              if($scope.organization!=""){
+                $scope.organization = null;
+                $scope.location = null;
+                $scope.orgid = null;
+                $scope.locationid = null;
+              }
+
             }
             $scope.dependentCountry = $("#dependentCountry").val();
             $scope.dependentTimezone = $("#dependentTimezone").val();

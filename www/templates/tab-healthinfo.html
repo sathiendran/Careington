@@ -197,10 +197,10 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B </b><i class="ion-asterisk"></i></span>
               <span class="DOBClass-{{deviceName}}">
-                <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}"  class="textdata" placeholder="Required" ng-keyup="ngBlur()">
+                <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB"  value=""  class="textdata" ng-model="userdob" placeholder="Required" ng-blur="setDob()">
               </span>
            </div>
-
+<!--ng-model="healthInfoModel.userDOB" -->
            <div class="item item-input itemtab validated" ng-if="primaryPatientId != currentPatientDetails[0].account.patientId">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel labelfont">Relationship</b><i class="ion-asterisk"></i></span>
               <div class="healthViewDetails">
