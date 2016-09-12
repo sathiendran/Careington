@@ -4912,7 +4912,18 @@ LoginService.getScheduledConsulatation(params);
 
 
     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData, fromPreviousPage) {
+        $rootScope.AppointScheduleTime = '';
         $rootScope.scheduledListDatas = scheduledListData;
+        var currentTime = $rootScope.scheduledListDatas.scheduledTime;
+        var getMinsExtraTime = $scope.addMinutes(currentTime, 2);
+        var getEnterTime = new Date();
+        var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
+        if(getMissedAppointmentExpiryTime > 0) {
+          $rootScope.AppointScheduleTime = getMissedAppointmentExpiryTime;
+        } else {
+          $rootScope.AppointScheduleTime = '';
+        }
+
         //$scope.doGetUserHospitalInformationForUserHome();
         $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
         $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];

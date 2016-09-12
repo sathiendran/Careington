@@ -100,7 +100,7 @@
 				<input type="text" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
 					</div>
 
-					<div ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
+					<label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
 						<span class="input-label cardfont" style="padding: 5px 10px 3px 0px;">Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
 					<!--<input placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date'; this.setAttribute('onfocus','');this.blur();this.focus();"  id="date" max="{{PreviousDate}}" required style="font-size:18px;">  -->
@@ -108,15 +108,15 @@
 					<input ng-if="deviceName != 'IOS'" class="userDateofbirth" placeholder="Required"  ng-model="AddHealth.dateBirth" type="date" onfocus="this.type='date';" id="date" max="{{PreviousDate}}" required >-->
 					 <div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
             		<input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date"  required>
-					</div>
+					</label>
 
-					<div ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
+					<label ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
 						<span class="input-label cardfont" style="padding: 5px 10px 3px 0px;"  >Date of Birth
 							<div style="font-size: 10px;">for the policy holder</div></span>
 							<!--<input class="userDateofbirth_android" placeholder="Required" ng-model="AddHealth.dateBirth" type="text" onfocus="this.type='date';"  id="date" max="{{PreviousDate}}" required >-->
 							<div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
 							<input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date"  required>
-					</div>
+					</label>
 				</div>
 
 				<div class="planDetails"  style="opacity:{{planverify}};">

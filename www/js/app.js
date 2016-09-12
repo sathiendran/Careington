@@ -187,7 +187,24 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         });
         cordova.plugins.backgroundMode.enable();
 
+        cordova.plugins.backgroundMode.onactivate = function () {
+          setTimeout(function () {
+            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+                  navigator.notification.alert(
+                       'Your session timed out.', // message
+                       null,
+                       $rootScope.alertMsgName,
+                       'Ok' // buttonName
+                   );
+                  $rootScope.ClearRootScope();
+                }
+            }
+          }, 600000);
+      }
+
         setTimeout(function() {
+            Idle.watch();
             if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                 var EXTRA = {};
                 var extQuery = window.localStorage.getItem("external_load").split('?')
@@ -367,8 +384,8 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
    // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
-   IdleProvider.idle(1200); // in seconds
-    IdleProvider.timeout(1200); // in seconds
+   IdleProvider.idle(600); // in seconds
+    IdleProvider.timeout(600); // in seconds
     KeepaliveProvider.interval(60); // in seconds
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
