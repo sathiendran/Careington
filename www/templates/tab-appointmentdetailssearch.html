@@ -145,8 +145,8 @@
 </ion-view>
 
 
-
-<ion-tabs class=" tabs-icon-top tabs-dark">
+  <div class="hide-on-keyboard-open">
+   <ion-tabs class=" tabs-icon-top tabs-dark">
     <a class="tab-item" ng-href="#/tab/relatedusers" >
     <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
     <span class="tabcolor">Users</span>
@@ -168,6 +168,7 @@
      <span class="tabcolor">More</span>
 	 </a>-->
 </ion-tabs>
+</div>
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-controller="appoimentDetailsCtrl"></div>

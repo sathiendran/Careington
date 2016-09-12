@@ -84,7 +84,7 @@
 			</div>
 			<div class="col col-50 depGreyLabel">
 
-				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required" required  name="dob" ng-blur="ngBlur()">
+				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required" required  name="dob" ng-Blur="ngBlur()">
 			</div>
 		</div>
 
@@ -145,7 +145,7 @@
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
         </div>
 				<div class="col col-50 depGreyLabel">
-					<input class="usertext " id="heightdep"  type="text" value="" placeholder="Required"  required="required"  ng-click="heightmodal()" readonly="true" style="background-color: #e9e9e9;">
+					<input class="textdata " id="heightdep"  type="text" value="" placeholder="Required"  required="required"  ng-click="heightmodal()" readonly="true" style="background-color: #e9e9e9;">
 
 	 		   <span id="hunit" ng-show="hghtunit"> </span>
 	 	   </div>
@@ -156,8 +156,8 @@
         </div>
 				<div class="col col-50 depGreyLabel">
 	        <div class="dependHeigh-{{deviceName}}">
+	          <input style="margin-left: 5px;" id="weight" class="usertext textdata" type="number" value="" placeholder="Required"  name="weight" ng-model="weightunit" ng-change="weightunitchange()" ng-blur="weight1len()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
 
-	          <input style="margin-left: 5px;" id="weight" class="usertext textalign" type="number" value="" placeholder="Required"  name="weight" ng-model="weightunit" ng-change="weightunitchange()" ng-blur="weight1len()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
 	        </div>
 	        <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
 	           <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" required>
@@ -229,12 +229,12 @@
         <span class="input-label labelcolor">
         <i class="iconsize" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel">Organization</b></span>
      </div>
-    <div class="col col-50 depGreyLabel">
-       <select class="optionselect textdata" id="organization" ng-model="firstSelect" ng-options="option.id as option.name for option in listOfOrganization">
-       <option value=""><b>Choose</b></option>
-     </select>
-     <input type="hidden" id="organ" value="{{firstSelect}}" />
-
+		 <div class="col col-50 depGreyLabel">
+ 			<select class="textdata optionselect"  name="healthInfoOrganization" id="organization" ng-model="addNewDependent.healthInfoOrganization" >
+ 				 <option value="">Choose Organization</option>
+ 					  <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ng-selected="getOrganization.name == currentPatientDetails[0].organization"><b>{{getOrganization.name}}</b></option>
+ 			 </select>
+     <input type="hidden" id="organ" value="{{addNewDependent.healthInfoOrganization.id}}" />
      </div>
   </div>
  <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
@@ -243,9 +243,10 @@
        <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Location</b></span>
     </div>
     <div class="col col-50 depGreyLabel">
-       <select class="optionselect textdata"  id="location" ng-model="secondSelect" ng-options="option.name for option in locationdetails | secondDropdown: firstSelect">
-      <option value=""><b>Choose</b></option>
-    </select>
+			<select class="textdata optionselect"  name="healthInfoLocation" id="location" ng-model="secondSelect">
+							<option>Choose Location</option>
+						 <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
+				</select>
     <input type="hidden" id="locate" value="{{secondSelect.id}}" />
     </div>
  </div>

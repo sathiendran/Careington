@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-    .controller('addnewdependentController',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$ionicPopup,$log,$window,$ionicBackdrop,Idle) {
+    .controller('addnewdependentController',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$filter,$ionicPopup,$log,$window,$ionicBackdrop,Idle) {
 
       $timeout(function() {
             $('option').filter(function() {
@@ -72,6 +72,24 @@ angular.module('starter.controllers')
                   $rootScope.checkAndChangeMenuIcon();
               }, 300);
           }
+      }
+      $rootScope.ValidationFunction1 = function($a) {
+          function refresh_close() {
+              $('.close').click(function() {
+                  $(this).parent().fadeOut(200);
+              });
+          }
+          refresh_close();
+
+          var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+
+          $("#notifications-top-center").remove();
+          //$( ".ppp" ).prepend( top );
+          $(".ErrorMessage").append(top);
+          //$(".notifications-top-center").addClass('animated ' + 'bounce');
+          refresh_close();
+
       }
 
 $scope.hghtunit=false;
@@ -169,9 +187,9 @@ $scope.hghtunit=false;
 $scope.hfeet=true;$scope.hinch=true;
 $scope.hmeter=true;$scope.hcmeter=true;
 $scope.heightmodal=function(){
-    $('#heightdep').val('');
-    $("#deptheight").val('');
-    $('#depheight2').val('');
+  //  $('#heightdep').val('');
+//    $("#deptheight").val('');
+  //  $('#depheight2').val('');
       document.getElementById('hunit').innerHTML = '';
 
   $ionicModal.fromTemplateUrl('templates/tab-heighttemplate.html', {
@@ -180,10 +198,33 @@ $scope.heightmodal=function(){
       focusFirstInput: false,
       backdropClickToClose: false
   }).then(function(modal) {
+    var hghtinval=$('#heightdep').val();
+    var reminspace=hghtinval.split(" ");
+    var fet=reminspace[0];
+    var finc=reminspace[2];
+    var units=reminspace[1];
       $scope.modal = modal;
-      $scope.modal.show();
-      $scope.hfeet=true;$scope.hinch=true;
-      $scope.hmeter=true;$scope.hcmeter=true;
+      $scope.modal.show().then(function(){
+        if(units=="ft"){
+          document.getElementById('heightunitval').selectedIndex = 0;
+          $('#deptheight').val(fet);
+          $('#deptheight2').val(finc);
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+        }else if(units=="m"){
+          document.getElementById('heightunitval').selectedIndex = 1;
+          $('#deptheight').val(fet);
+          $('#deptheight2').val(finc);
+          $scope.hfeet=false;$scope.hinch=false;
+          $scope.hmeter=false;$scope.hcmeter=false;
+        }else{
+          $('#deptheight').val("");
+          $('#deptheight2').val("");
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+        }
+      });
+
       //  $("#heightvalue").val("");
 
       $timeout(function() {
@@ -199,9 +240,7 @@ $scope.removemodal = function(model) {
   .then(function() {
     $scope.modal = null;
   });
-     var input = $('input');
-     input.val('');
-     input.trigger('input');
+
     $('option').filter(function() {
         return this.value.indexOf('?') >= 0;
     }).remove();
@@ -362,7 +401,8 @@ $scope.heightsave=function(){
  document.getElementById("hunit").innerHTML =getheightunitid;
 
  if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
-
+   $scope.ErrorMessage = "Please enter height";
+   $rootScope.ValidationFunction1($scope.ErrorMessage);
  }else{
    $scope.modal.remove()
    .then(function() {
@@ -420,18 +460,33 @@ if(phonevalue!=''){
             if($rootScope.OrganizationLocation === 'on') {
               var org = document.getElementById("organization");
               var dependentorgan = org.options[org.selectedIndex].text;
-              $scope.organization = dependentorgan;
-              $scope.orgid = $("#organ").val();
+              if(dependentorgan="Choose Organization"){
+                  $scope.organization = "";
+              }else{
+                  $scope.organization = dependentorgan;
+              }
+
+              $scope.orgid = org.options[org.selectedIndex].value;
 
               var loc = document.getElementById("location");
               var dependentloc = loc.options[loc.selectedIndex].text;
-              $scope.location = dependentloc;
-              $scope.locationid = $("#locate").val();
+              if(dependentloc="Choose Location"){
+                $scope.location = "";
+                $scope.locationid = "";
+              }else{
+                $scope.location = dependentloc;
+                $scope.locationid = loc.options[loc.selectedIndex].value;
+
+              }
+
             } else {
-              $scope.organization = null;
-              $scope.location = null;
-              $scope.orgid = null;
-              $scope.locationid = null;
+              if($scope.organization!=""){
+                $scope.organization = null;
+                $scope.location = null;
+                $scope.orgid = null;
+                $scope.locationid = null;
+              }
+
             }
             $scope.dependentCountry = $("#dependentCountry").val();
             $scope.dependentTimezone = $("#dependentTimezone").val();
@@ -575,7 +630,7 @@ if(phonevalue!=''){
            if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
                $scope.height2 = "0";
            }
-          $scope.doPostNewDependentuser();
+     $scope.doPostNewDependentuser();
       }
    }else{
      if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
@@ -635,7 +690,7 @@ if(phonevalue!=''){
                 $rootScope.Validation($scope.ErrorMessage);
     }
      else {
-     $scope.doPostNewDependentuser();
+    $scope.doPostNewDependentuser();
     }
    }
 
@@ -786,7 +841,21 @@ if(phonevalue!=''){
           history.back();
           $scope.$apply();
         }
-
+     $scope.$watch('addNewDependent.healthInfoOrganization', function(newVal) {
+            if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
+                $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
+                    organizationId: $rootScope.currentPatientDetails[0].organizationId
+                });
+            } else {
+                if (newVal) {
+                    $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
+                        organizationId: newVal
+                    });
+                } else {
+                    $rootScope.listOfLocForCurntOrg = '';
+                }
+            }
+        });
         //Function to open ActionSheet when clicking Camera Button
         //================================================================================================================
         var options;
@@ -870,7 +939,8 @@ if(phonevalue!=''){
         function onCameraCaptureFailure(err) {
         }
 
-    }).filter('secondDropdown', function() {
+    });
+    /*.filter('secondDropdown', function() {
         return function(secondSelect, firstSelect) {
             var filtered = [];
             if (firstSelect === null) {
@@ -891,4 +961,4 @@ if(phonevalue!=''){
 
             return filtered;
         };
-    });
+    });*/
