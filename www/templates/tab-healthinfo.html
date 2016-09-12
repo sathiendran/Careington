@@ -197,7 +197,7 @@
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">D.O.B </b><i class="ion-asterisk"></i></span>
               <span class="DOBClass-{{deviceName}}">
-                <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}"  class="textdata" placeholder="Required" ng-blur="ngBlur()">
+                <input type="date" min="{{minimum}}" max="{{maxDate1}}" name="healthInfoDOB" id="healthInfoDOB" ng-model="healthInfoModel.userDOB"  value="{{userDOB}}"  class="textdata" placeholder="Required" ng-keyup="ngBlur()">
               </span>
            </div>
 
