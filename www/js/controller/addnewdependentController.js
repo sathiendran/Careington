@@ -460,13 +460,25 @@ if(phonevalue!=''){
             $scope.homeaddress = $scope.addNewDependent.homeadd;
             if($rootScope.OrganizationLocation === 'on') {
               var org = document.getElementById("organization");
-              var dependentorgan = org.options[org.selectedIndex].text;
-              $scope.organization = dependentorgan;
-              $scope.orgid = org.options[org.selectedIndex].value;
               var loc = document.getElementById("location");
-              var dependentloc = loc.options[loc.selectedIndex].text;
-              $scope.location = dependentloc;
-              $scope.locationid = loc.options[loc.selectedIndex].value;
+              if(org!="Choose Organization"){
+                $scope.organization = null;
+                $scope.orgid = null;
+              }else{
+                var dependentorgan = org.options[org.selectedIndex].text;
+                $scope.organization = dependentorgan;
+                $scope.orgid = org.options[org.selectedIndex].value;
+
+              }
+              if(loc != "Choose Location"){
+                $scope.location = null;
+                  $scope.locationid = null;
+              }else{
+                var dependentloc = loc.options[loc.selectedIndex].text;
+                $scope.location = dependentloc;
+                $scope.locationid = loc.options[loc.selectedIndex].value;
+
+              }
             }else {
               $scope.organization = null;
               $scope.location = null;
