@@ -199,7 +199,7 @@
         <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel">Home Phone</b></span>
     </div>
      <div class="col col-50 depGreyLabel">
-        <input  class="usertext" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input ng-blur="phoneBlur()">
+        <input  class="textdata" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input ng-blur="phoneBlur()">
         <span class="error" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>
      </div>
 </div>
@@ -210,7 +210,7 @@
 
    </div>
     <div class="col col-50 depGreyLabel">
-       <input class="usertext" id="mobile" type="tel" value=""  placeholder="Required"   ng-model="dependmobile"   name="mobile" phone-input >
+       <input class="textdata" id="mobile" type="tel" value=""  placeholder="Required"   ng-model="dependmobile"   name="mobile" phone-input >
 
     </div>
 </div>
