@@ -3888,15 +3888,15 @@ font-family: $fontFamily_regular;
 }
 .noResult {
 	text-align: center; border: none;
-    color: #616462; font-weight: bold; font-size: 19px;margin-top:-50px;
+    color: #616462; font-weight: bold; font-size: 19px;margin-top:-35px;
     //top: 90px;
   //  padding-top: 107px;
 }
 .noapptResult {
 	text-align: center; border: none;
     color: #616462; font-weight: bold; font-size: 19px;
-    //top: 90px;
-    padding-top: 35px;
+    top: 90px;
+    margin-top: 5px;
 }
 
 .dobRequired {
