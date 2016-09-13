@@ -3895,10 +3895,15 @@ font-family: $fontFamily_regular;
 .noapptResult {
 	text-align: center; border: none;
     color: #616462; font-weight: bold; font-size: 19px;
-    top: 90px;
-    margin-top: 5px;
+    top: 75px;
+  //  margin-top: 5px;
 }
-
+.noapptviewResult {
+	text-align: center; border: none;
+    color: #616462; font-weight: bold; font-size: 19px;
+    top: 95px;
+  //  margin-top: 5px;
+}
 .dobRequired {
 
 		color: #CBCBCB;
@@ -5765,7 +5770,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:19px;font-family:Glober Semibold;line-height:23px;color: rgba(5, 4, 9, 0.54) !important;
+      font-size:19px;font-family:Glober Regular;line-height:23px;color: rgba(5, 4, 9, 0.54) !important;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -8373,6 +8378,7 @@ input.ion-google-place[readonly] {
   .dependwetUnit-IOS {
     width: 81%;
     margin-left: 10px;
+    padding-top: 8px !important;
   }
 .consultcontentsearch-IOS {
   margin-top: 218px;
@@ -8436,7 +8442,7 @@ input.ion-google-place[readonly] {
   margin-left: -5px;width: 68%; float: left;//padding-right: 10px;
 }
 .dependwetUnit-Android {
-  width:80%;margin-left: 8px;
+  width:80%;margin-left: 8px;padding-top: 10px !important;
 }
 
 .colReport-Android {
