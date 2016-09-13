@@ -45,6 +45,11 @@ angular.module('starter.controllers')
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
         $rootScope.onDemandMode = '';
+        $rootScope.OrganizationLocation = '';
+        $rootScope.PPIsBloodTypeRequired = '';
+        $rootScope.PPIsHairColorRequired = '';
+        $rootScope.PPIsEthnicityRequired = '';
+        $rootScope.PPIsEyeColorRequired = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -60,6 +65,21 @@ angular.module('starter.controllers')
                         }
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
                 }

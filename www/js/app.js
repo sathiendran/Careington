@@ -102,9 +102,51 @@ var handleOpenURL = function(url) {
 
 angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window) {
+.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
     $ionicPlatform.ready(function() {
+      // Idle.watch();
 
+      var timeoutID;
+    function setup() {
+        this.addEventListener("mousemove", resetTimer, false);
+        this.addEventListener("mousedown", resetTimer, false);
+        this.addEventListener("keypress", resetTimer, false);
+        this.addEventListener("DOMMouseScroll", resetTimer, false);
+        this.addEventListener("mousewheel", resetTimer, false);
+        this.addEventListener("touchmove", resetTimer, false);
+        this.addEventListener("MSPointerMove", resetTimer, false);
+        startTimer();
+    }
+    setup();
+
+    function startTimer() {
+        timeoutID = window.setTimeout(goInactive, 120000);
+    }
+
+    function resetTimer(e) {
+        window.clearTimeout(timeoutID);
+        goActive();
+    }
+
+    function goInactive() {
+        alert('Inactive');
+        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              navigator.notification.alert(
+                   'Your session timed out.', // message
+                   null,
+                   $rootScope.alertMsgName,
+                   'Ok' // buttonName
+               );
+              $rootScope.ClearRootScope();
+            }
+        }
+    }
+
+    function goActive() {
+        console.log('Active');
+        startTimer();
+    }
 
         // Check for network connection
         /* if(window.Connection) {
@@ -187,8 +229,25 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         });
         cordova.plugins.backgroundMode.enable();
 
+        cordova.plugins.backgroundMode.onactivate = function () {
+          setTimeout(function () {
+            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+                  navigator.notification.alert(
+                       'Your session timed out.', // message
+                       null,
+                       $rootScope.alertMsgName,
+                       'Ok' // buttonName
+                   );
+                  $rootScope.ClearRootScope();
+                }
+            }
+          }, 600000);
+      }
+
         setTimeout(function() {
-            if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "") {
+          //  Idle.watch();
+            if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                 var EXTRA = {};
                 var extQuery = window.localStorage.getItem("external_load").split('?')
                 var extQueryOnly = extQuery[1];
@@ -245,7 +304,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                         $rootScope.ClearRootScope();
                   }
             }*/
-            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
                   var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
                   var getCurrentTimeforLogout =  new Date();
                 //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
@@ -262,11 +321,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                      }
                   }
               }
-            }
+            }*/
         }, 2000);
         $ionicPlatform.on('resume', function() {
             setTimeout(function() {
-                if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "") {
+                //  Idle.watch();
+                if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                     var EXTRA = {};
                     var extQuery = window.localStorage.getItem("external_load").split('?')
                     var extQueryOnly = extQuery[1];
@@ -315,7 +375,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                        $state.go('tab.singleTheme');
                                    }*/
                 }
-                if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+              /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
                       var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
                       var getCurrentTimeforLogout =  new Date();
                     //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
@@ -332,7 +392,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                              }
                         }
                     }
-                }
+                }*/
 
             }, 2000);
         });
@@ -359,13 +419,16 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
 
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider, IdleProvider, KeepaliveProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
    // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
+   IdleProvider.idle(600); // in seconds
+    IdleProvider.timeout(600); // in seconds
+    KeepaliveProvider.interval(60); // in seconds
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider

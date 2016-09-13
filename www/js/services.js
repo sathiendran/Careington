@@ -180,7 +180,7 @@ angular.module('starter.services', [])
   this.chkAddressForReg = function(params) {
 		var AddressForReg = {
 			headers: util.getHeaders(params.accessToken),
-      url: apiCommonURL + '/api/v2.1/patients/registrations/availability?addressText='+params.AddressText+'&hospitalId='+params.HospitalId,
+      url: apiCommonURL + '/api/v2.1/patients/registrations/availability?HospitalId='+params.HospitalId+'&AddressText='+params.AddressText,
        method: 'GET'
 		};
 
@@ -1272,9 +1272,9 @@ this.getPatientMedicalProfile = function(params){
 					params.success(data);
 				}
 			}).
-			error(function (data, status, headers, config) {
+			catch(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data, status);
+					params.error(data);
 				}
 		})
  }

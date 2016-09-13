@@ -65,7 +65,7 @@
 							</select>
 						</div>-->
 
-						<div  class="dropdownContainer" style="opacity:{{planverify}};">
+						<div  class="dropdownContainer" style="opacity:{{planverify}}; margin-left: 50px;">
 							<div class="viewport1">Plan Provider</div>
 							<select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none; width: 75%;" required>
 								<option value=""><b>Plan Provider</b></option>
@@ -86,19 +86,19 @@
 
 
 				<div class="list addhealthplan" style="opacity:{{planverify}};">
-					<label class="item item-input" >
+					<div class="item item-input" >
 						<span class="input-label cardfont">First Name</span>
                     <input  type="text" placeholder="Required" ng-model="AddHealth.firstName" name="firstName" id="firstName" required>
-					</label>
-					<label class="item item-input" >
+					</div>
+					<div class="item item-input" >
 						<span class="input-label cardfont">Last Name</span>
 				<input type="text" placeholder="Required" ng-model="AddHealth.lastName" name="lastName" id="lastName" required >
-					</label>
+					</div>
 
-                    <label class="item item-input">
+                    <div class="item item-input">
 						<span class="input-label cardfont">Policy Number</span>
 				<input type="text" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
-					</label>
+					</div>
 
 					<label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
 						<span class="input-label cardfont" style="padding: 5px 10px 3px 0px;">Date of Birth

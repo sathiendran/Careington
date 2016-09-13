@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('userAccountCtrl', function($scope,$ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter,$timeout, SurgeryStocksListService) {
+    .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter,$timeout, SurgeryStocksListService, $ionicLoading) {
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
@@ -108,7 +108,7 @@ angular.module('starter.controllers')
            }*/
 
            $scope.doRefreshAccount= function() {
-          $rootScope.doGetIndividualScheduledConsulatation();
+             $rootScope.doGetIndividualScheduledConsulatation();
 
                $timeout(function() {
                    //$scope.getScheduledDetails($rootScope.patientId);

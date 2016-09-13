@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.snap.connectedcare.Dokita247Production" version="5.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Dokita247</name>
+<widget id="com.snap.connectedcare" version="7.1.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Virtual Care</name>
   <description>&#xD;
         An Ionic Framework and Cordova project.&#xD;
     </description>
@@ -15,7 +15,9 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="orientation" value="portrait" />
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="7000"/>
+  <preference name="android-minSdkVersion" value="14" />
+  <preference name="android-targetSdkVersion" value ="22" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

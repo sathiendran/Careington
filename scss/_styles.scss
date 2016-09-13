@@ -1043,6 +1043,10 @@ html, body { background: transparent !important; }
 }
 .consultConPaymentMargin {
   margin: 139px 0 0 0;
+  .AddCard {
+    margin-top: 7px;
+  }
+
 }
 .consultCharge_content {
 	//margin: 182px 0 0 0; // 133px;
@@ -1316,9 +1320,9 @@ html, body { background: transparent !important; }
 				.addHealthPlan_text {
 					font-size: 20px;
 					font-weight: bold;
-					left: 18px;
+					left: 7px;
 					position: relative;
-					top: -8px;
+					top: -11px;
 					color: #666666;
 				}
 		}
@@ -2260,7 +2264,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
     border-bottom-right-radius: 1px;
 	.SearchImage {
 		width:10%;
-		margin-right: 10px;
+		margin-right: 17px;
 		.searchIcon {
 			float: right;
 			width: 20px;
@@ -3564,14 +3568,15 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 	.dropdownContainer {
 		position: relative;
 		height: 50px;
-		margin-left: 50px;
+    margin-left: -4px;
+    margin-right: 16px;
 	}
 
 	.viewport {
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 83%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3582,7 +3587,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		font-size: 19px;
 		padding: 6px;
 		left: 18px;
-		top: 10px;
+		top: 8px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 
@@ -3601,7 +3607,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		font-size: 16px;
 		padding: 6px;
 		left: 25px;
-		top: 10px;
+		top: 8px;
 		/*font-weight: bold;*/
 		text-align: left;
 	}
@@ -3610,7 +3616,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 85%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3622,6 +3628,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		padding: 6px;
 		left: 18px;
 		top: 10px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 
@@ -3635,7 +3642,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 .noPlanContainer-IOS {
 	.dropdownContainer {
 		 .healthPlanDropDown {
-				width: 102%;
+				width: 100%;
 				z-index: 2;
 				position: relative;
 				-webkit-appearance: none;
@@ -3645,7 +3652,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 				  text-overflow: "";
 
 				  border-radius: 7px;
-				  margin-left: 8px;
+				  //margin-left: 8px;
 				  padding: 6px;
 				 /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
 				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
@@ -3673,20 +3680,22 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 	.healthPlanDropDown {
 		color: transparent;
 		background: none;
-
 	}
 
 	.dropdownContainer {
 		position: relative;
 		height: 50px;
-		margin-left: 50px;
+    text-align: center;
+    margin-left: 4px;
+    margin-right: 4px;
+	//	margin-left: 50px;
 	}
 
 	.viewport {
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 83%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3697,7 +3706,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		font-size: 19px;
 		padding: 6px;
 		left: 18px;
-		top: 11px;
+		top: 8px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 	.viewport1 {
@@ -3714,8 +3724,8 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		text-overflow: ellipsis;
 		font-size: 19px;
 		padding: 6px;
-		left: 25px;
-		top: 11px;
+		left: 45px;
+		top: 8px;
 		/*font-weight: bold;*/
 		text-align: left;
 	}
@@ -3724,7 +3734,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		 pointer-events: none;
 		  color: #60605D;
 		position: absolute;
-		width: 75%;
+		width: 85%;
 		height: 100%;
 		z-index: 15;
 		overflow: hidden;
@@ -3736,6 +3746,7 @@ font-size: 20px; text-align: center; width: 100%; top:-1px;// margin-left: -32px
 		padding: 6px;
 		left: 18px;
 		top: 11px;
+    text-align: left;
 		/*font-weight: bold;*/
 	}
 
@@ -3879,7 +3890,7 @@ font-family: $fontFamily_regular;
 	text-align: center; border: none;
     color: #616462; font-weight: bold; font-size: 19px;
     //top: 90px;
-    padding-top: 107px;
+  //  padding-top: 107px;
 }
 .noapptResult {
 	text-align: center; border: none;
@@ -4731,6 +4742,22 @@ p{
           }
 
       }
+      .apponitmentfday-Android {
+        margin-left: -14px;
+        margin-right: -14px;
+        font-size: 24px !important;
+      }
+      .apponitmentfday-IOS {
+        margin-left: -14px;
+        margin-right: -14px;
+        font-size: 24px !important;
+      }
+      .consultConMargin {
+        margin: 202px 0 0 0;
+      }
+      .consultCharge_content {
+        padding-top: 0px;
+      }
       .accountAppointHeight {
         height: 70px !important;
       }
@@ -5047,7 +5074,11 @@ p{
         margin-top: -31px;
          color: #A80532;
      }
-  .consultcontentsearch{margin-top:26px;}
+  .consultcontentsearch{margin-top:26px;
+    .listfirst {
+      padding-bottom: 120px;
+  }
+}
   #accountMngeProfile-Android {
     //padding: 47px 10px !important;
     padding: 16px 10px !important;
@@ -5785,6 +5816,7 @@ color: white;
      background-color:#e9e9e9 !important;
 	 width: 90%;
    }
+
 }
 .itemtab{
    .genderclass{margin-left:45px;}
@@ -5818,7 +5850,7 @@ color: white;
 #divSearchInput{
   border-bottom: 1px solid #C4C5C3;
 }
-.editheight{margin-left:0px;}
+.editheight{margin-left:0px; float: left;}
     .addhealthplan{
       padding-top: 24px !important;
     }
@@ -5878,6 +5910,7 @@ color: #999999 !important;
     .healthinfoHeight-Android {
       width: 56%;
       margin-left: -6px !important;
+        float: left;
       input {
         width: 111%;
         margin-left: -2px;
@@ -5886,6 +5919,7 @@ color: #999999 !important;
     .healthinfoHeight2-Android {
       width: 63%;
       margin-left: -38px !important;
+      float: left;
     }
 
     .ContentUserHome {
@@ -7503,6 +7537,7 @@ border-bottom: 2px solid #cbcbcb;
 				margin-top: -150px;
 			}
 		}
+
 	 }
 
 
@@ -7747,9 +7782,13 @@ Pagination Styles
 }
 .DOBClass-IOS {
 	width: 55%;
+  background-color: #e9e9e9;
+  padding: 9px;
 }
 .DOBClass-Android {
   width: 55%;
+  background-color: #e9e9e9;
+  padding: 9px;
 }
 .healthTextArea-IOS {
 	margin-left: 0px;
@@ -7765,6 +7804,9 @@ Pagination Styles
   white-space: normal;
   font-size: 18px;
   color:#666666;
+  .optionselect {
+    width: 94%;
+  }
 }
 .subHeadIcons {
   position:relative; top: 5px;
@@ -8190,7 +8232,21 @@ input.ion-google-place[readonly] {
     left: 2px;
   }
   .item-input {
-    padding: 6px 0 5px 0px !important;
+    //padding: 6px 0 5px 0px !important;
+    padding: 0px !important;
+  }
+  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    height: 44px;
+  }
+  .depGreyLabel {
+    background-color: #e9e9e9; //#e9e9e9
+  }
+  .optionselect {
+      padding: 2px;
+      height: 44px;
+  }
+  .item {
+    border-color: #979797;
   }
   .dobDependent-Android {
     font-size: 18px;
@@ -8294,11 +8350,24 @@ input.ion-google-place[readonly] {
   }
 }
   .dependHeigh-IOS {
-    margin-left: -50px;
+  //  margin-left: -50px;
     width: 47%;
     padding-right: 6px;
+    float: left;
+    input {
+      margin-left: 2px !important;
+      width: 108px !important;
+    }
     .usertext{
       width: 104%;
+    }
+  }
+  .dependHeighUnit-IOS {
+    position: relative;
+    top: 2px;
+    margin-left: 92px;
+    select {
+      margin-left: 17px;
     }
   }
   .dependwetUnit-IOS {
@@ -8306,9 +8375,9 @@ input.ion-google-place[readonly] {
     margin-left: 10px;
   }
 .consultcontentsearch-IOS {
-  margin-top: 85px;
+  margin-top: 218px;
   .listfirst {
-      margin-bottom: 120px;
+      padding-bottom: 120px;
   }
 }
 .consultcontentsearch-Android {
@@ -8346,7 +8415,7 @@ input.ion-google-place[readonly] {
 .healthinfoHeight-Android {
   width: 35%;
   margin-left: -8px;
-
+  float: left;
   input {
     width: 111%;
     margin-left: -2px;
@@ -8359,11 +8428,12 @@ input.ion-google-place[readonly] {
   }
 }
 .healthinfoHeight2-Android {
-  width: 33%;
+  width: 38%;
   margin-left: -10px;
+  float: left;
 }
 .dependHeigh-Android {
-  margin-left: -5px;width: 70%;padding-right: 10px;
+  margin-left: -5px;width: 68%; float: left;//padding-right: 10px;
 }
 .dependwetUnit-Android {
   width:80%;margin-left: 8px;
@@ -8392,7 +8462,7 @@ input.ion-google-place[readonly] {
     border-top: 1px solid #C4C5C3;
 }
 .dependentAddAuthorize {
-  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;
+  font-size: 18px;color: #7c7c7c;font-family:Glober Semibold;   padding: 16px 16px 16px 8px;
 }
 .searchAccount {
   p{
@@ -8661,25 +8731,31 @@ input.ion-google-place[readonly] {
 }
 
 .healthinfoHeight-IOS {
-  width: 14%;
-  margin-left: -9px;
+  width: 35px; //14%;
+  //margin-left: -9px;
+    float: left;
   .usertext {
     margin-left: 0px;
     width: 68px;
   }
 }
 .healthinfoHeight2-IOS{
-  width: 15%;
+  width: 35px; //15%;
   margin-left: 11px;
+    float: left;
   .usertext {
     margin-left: 0px;
     width: 68px;
   }
 }
 .healthinfoChoose-IOS {
+  height: 50px;
+  margin-top: -4px;
   select {
     width: 80% !important;
     margin-left: 8px;
+    position: relative;
+    top: 7px;
   }
 }
 .healthchoose{margin-right:53px;}
@@ -8836,7 +8912,7 @@ input.ion-google-place[readonly] {
   padding-top: 5%;
 }
 .NoPlanText {
-  margin-left: 37px !important;
+  margin-left: 17px !important;
   padding-top: 30px;
   font-size: 16px;
   color: #888585;
@@ -8875,9 +8951,9 @@ input.ion-google-place[readonly] {
 .addHealthPlan_text{
   font-size: 20px;
    font-weight: bold;
-   left: 18px;
+   left: 7px;
    position: relative;
-   top: -8px;
+   top: -11px;
    color: #666666;
 }
 .CreditClinician {
@@ -8913,4 +8989,136 @@ input.ion-google-place[readonly] {
     font-family: $fontFamily_bold;
   }
 }
-.uhome{background-color:#23B4D6;}
+
+.uhome{background-color:#23B4D6 !important;}
+
+
+
+.listprofileEdit {
+  .itemtab {
+    padding: 0px !important;
+    .healthViewDetails {
+      background-color: #e9e9e9;
+        padding: 9px;
+      textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+        height: 41px;
+      }
+    }
+    .healthViewDetailsAuthenticat {
+        padding: 14px;
+    }
+  }
+  .labelcolor {
+    width: 49%;
+  }
+
+}
+.ioncontentalign {
+  .item {
+    border-color: #979797;
+  }
+}
+.healthheight-IOS {
+  width: 45px;
+}
+.healthheight1-IOS {
+  width: 45px;
+}
+.healthheight2-IOS {
+//  width: 45px;
+  position: relative;
+    top: 3px;
+}
+.healthWeight-IOS {
+
+}
+.healthWeight1-IOS {
+  float: left;
+  position: relative;
+  top: 7px;
+  width: 50px;
+}
+.healthWeight1-Android {
+  width: 40% !important; float: left;margin-top:4px;
+}
+.heightft-Android {
+  max-with:50px;margin-left:120px;margin-top:-25px;
+  span { font-size: 18px; padding-left: 3px; }
+}
+.heightft-IOS {
+  max-with:50px;margin-left:120px;margin-top:-21px;position: relative;
+    top: -6px;
+    span { font-size: 18px; padding-left: 3px; }
+}
+/*.heighinch-Android {
+  max-with:50px;margin-left:120px;margin-top:-21px;
+}*/
+/*.heighinch-IOS {
+  max-with:50px;margin-left:120px;margin-top:-21px;position: relative;top: -6px;
+}*/
+.heightChoose-IOS {
+  position: relative;
+  top: 5px;
+}
+.userhomePlusIcon {
+  width: 91% !important;
+}
+.UserhomeSpanPlusIcon-Android {
+  font-size: 20px;
+    position: relative;
+    top: 18px;
+    left: -1px;
+}
+.UserhomeSpanPlusIcon-IOS {
+  font-size: 20px;
+    position: relative;
+    top: 28px;
+    left: -1px;
+}
+.healthPopup-IOS {
+  max-width:120px;
+  .input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+  {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    line-height: 20px;
+  }
+}
+.healthPopup-Android {
+  max-width:120px;
+  .input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+  {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    line-height: 20px;
+  }
+
+}
+.depenErrorMsg-IOS {
+  #notifications-top-center {
+    height: 65px !important;
+    .ErrorContent {
+      position: relative;
+      top: 10px;
+    }
+    #notifications-top-center-close {
+      span {
+        position: relative;
+        top: 15px;
+        left: -5px;
+      }
+    }
+  }
+}
+.enterAppoinment2 {
+  display: none;
+  height: 105px !important;
+  #centercolor {
+    margin: 0 10px;
+    font-weight: 500;
+      margin-top: 29px !important;
+        font-size: 143% !important;
+  }
+}

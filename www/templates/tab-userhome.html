@@ -1,5 +1,4 @@
 
-<div class="Server_Error ErrorMessageDiv" ></div>
 
 <ion-side-menus>
 	<ion-side-menu-content>
@@ -11,13 +10,12 @@
 		</div>
 
 
-		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+		<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} userhomePlusIcon">
 			<div class="Server_Error ErrorMessageDiv" ></div>
 	 <div id="Error_Message"></div
 			<span> Patient list </span>
-			<span > <a class="headerval" style="position: relative;right: 8px;" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
-
 	</h1>
+		<span class="UserhomeSpanPlusIcon-{{deviceName}}" > <a class="headerval" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
 
 	<!--	<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -38px;">Patient List</h1>
 	<span>
@@ -83,7 +81,7 @@
 		</ion-item>-->
 		<div style="display: none;"><timer end-time="time"  ></timer></div>
 
-		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData)" ng-if="$first">
+		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, userHome)" ng-if="$first">
 			<a class="HrefListView"  >
 			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 			   <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2>
@@ -140,7 +138,7 @@
 </ion-side-menus>-->
 
 <div ng-include src="'templates/primaryPatientSideMenu.html'"></div>
-<div ng-controller="sidemenuController"></div>
+
 </ion-side-menus>
 
 

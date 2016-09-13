@@ -10,7 +10,7 @@
         <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
  	</div>
   <div class="Server_Error ErrorMessageDiv" ></div>
-<div id="Error_Message"></div>
+<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
    <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> New User </span> <span >
            <a  ng-click="cancelcouser()" class="headerval"  >Cancel</a></span></h1>
 
@@ -50,7 +50,7 @@
             <span class="input-label labelcolor">
             <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Name</b><i class="ion-asterisk"></i></span>
         </div>
-        <div class="col col-50">
+        <div class="col col-50 depGreyLabel">
            <input class="usertext" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" required  >
 
         </div>
@@ -70,7 +70,7 @@
           <span class="input-label labelcolor">
           <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="ion-asterisk"></i></span>
         </div>
-        <div class="col col-50">
+        <div class="col col-50 depGreyLabel">
             <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email" required>
             <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
         </div>

@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer) {
+.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer, Idle) {
       $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -67,6 +67,38 @@ angular.module('starter.controllers')
             }, 300);
         }
     };
+
+
+
+    $scope.$on('IdleStart', function() {
+            console.log("aaa");
+    });
+    $scope.$on('IdleWarn', function(e, countdown) {
+    });
+    $scope.$on('IdleTimeout', function() {
+      if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+          if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+            navigator.notification.alert(
+                 'Your session timed out.', // message
+                 null,
+                 $rootScope.alertMsgName,
+                 'Ok' // buttonName
+             );
+            $rootScope.ClearRootScope();
+          }
+      }
+    });
+
+    $scope.$on('IdleEnd', function() {
+        // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+          console.log("aaa3");
+    });
+
+    $scope.$on('Keepalive', function() {
+        // do something to keep the user's session alive
+          console.log("aaa4");
+    });
+
     $scope.newUSer = {};
     $scope.addmore = false;
 
@@ -301,7 +333,13 @@ angular.module('starter.controllers')
 
 
             },
-            error: function(data) {
+            error: function(data,status) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 var Emailerror=data.message
                 if(Emailerror="Email ID Already Registered"){
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.email;
@@ -309,6 +347,8 @@ angular.module('starter.controllers')
                 }else{
                     $rootScope.serverErrorMessageValidation();
                 }
+              }
+
 
             }
         };
@@ -482,7 +522,7 @@ angular.module('starter.controllers')
     })
     .filter('tel', function() {
         return function(tel) {
-            console.log(tel);
+          //  console.log(tel);
             if (!tel) {
                 return '';
             }

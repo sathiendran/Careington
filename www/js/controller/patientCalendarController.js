@@ -229,7 +229,12 @@ angular.module('starter.controllers')
                 //$state.go(nextPage);
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation()
+              if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
             }
         };
 
@@ -238,7 +243,18 @@ angular.module('starter.controllers')
 
     $scope.GoToappoimentDetails = function(scheduledListData) {
         //$state.go('tab.appoimentDetails');
+        $rootScope.AppointScheduleTime = '';
         $rootScope.scheduledListDatas = scheduledListData;
+        var currentTime = $rootScope.scheduledListDatas.scheduledTime;
+        var getMinsExtraTime = $scope.addMinutes(currentTime, 2);
+        var getEnterTime = new Date();
+        var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
+        if(getMissedAppointmentExpiryTime > 0) {
+          $rootScope.AppointScheduleTime = getMissedAppointmentExpiryTime;
+        } else {
+          $rootScope.AppointScheduleTime = '';
+        }
+
         $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
         $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
         if ($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern == 'undefined') {

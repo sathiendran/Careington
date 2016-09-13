@@ -136,7 +136,7 @@
                <hr class="dotedhr">
             </div>
 
-              <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">No Passed Consultations Found!</ion-item>
+              <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
 
          </div>
 
@@ -219,7 +219,7 @@
                  <hr class="dotedhr">
             </div>
 
-            <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">No Missed Consultations Found!</ion-item>
+            <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
          </div>
          <div ng-if="missedlist.length" class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
@@ -300,13 +300,14 @@
                <hr class="dotedhr">
             </div>
 
-              <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">No Dropped Consultations Found!</ion-item>
+              <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
          </div>
          <div ng-if="Droppedconsultations.length" class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
       <!--- Dropped Consult End--->
 
 </ion-view>
+  <div class="hide-on-keyboard-open">
 <ion-tabs class=" tabs-icon-top tabs-dark">
    <a class="tab-item" ng-href="#/tab/relatedusers" >
    <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
@@ -324,11 +325,11 @@
    <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
     <span class="tabcolor">Appointments</span>
    </a>
-   <a class="tab-item" ng-href="#/tab/profileoption">
+  <!-- <a class="tab-item" ng-href="#/tab/profileoption">
    <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
    <span class="tabcolor">More</span>
-   </a>
+ </a>-->
 </ion-tabs>
-
+</div>
 </ion-side-menu-content>
 <div ng-include src="'templates/SideMenu.html'"></div>

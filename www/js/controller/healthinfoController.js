@@ -40,7 +40,7 @@ angular.module('starter.controllers')
             var heightValSplit = heightVal.split("|");
             var heightUnitSplit = heightUnit.split("/");
             if (heightValSplit[1] == 0) {
-                newHeight = heightValSplit[0] + " " + heightUnitSplit[0];
+                newHeight = heightValSplit[0] + " " + heightUnitSplit[0] + " " + heightValSplit[1] + " " + heightUnitSplit[1];
             } else {
                 newHeight = heightValSplit[0] + " " + heightUnitSplit[0] + " " + heightValSplit[1] + " " + heightUnitSplit[1];
             }
@@ -186,6 +186,131 @@ angular.module('starter.controllers')
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
 
+    $scope.hghtunit=false;
+    $scope.hfeet=true;$scope.hinch=true;
+    $scope.hmeter=true;$scope.hcmeter=true;
+    $scope.heighteditmodal=function(){
+      $('#healthInfoHeightUnit').val("");
+
+          //document.getElementById('hunit').innerHTML = '';
+
+      $ionicModal.fromTemplateUrl('templates/tab-heightedittemplate.html', {
+          scope: $scope,
+          animation: 'slide-in-up',
+          focusFirstInput: false,
+          backdropClickToClose: false
+      }).then(function(modal) {
+        var hghtinval=$('#heightuser').val();
+        var reminspace=hghtinval.split(" ");
+
+        var units=reminspace[1];
+      //   document.getElementById("edhunit").innerHTML =  units;
+          $scope.modal = modal;
+          $scope.modal.show().then(function() {
+          //  var newq=$('#edhunit').text();
+          if(units=="ft"){
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
+            $scope.hfeet=true;$scope.hinch=true;
+            $scope.hmeter=true;$scope.hcmeter=true;
+          }else{
+
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+            $scope.hfeet=false;$scope.hinch=false;
+            $scope.hmeter=false;$scope.hcmeter=false;
+          }
+
+          });
+
+          $timeout(function() {
+              $('option').filter(function() {
+                  return this.value.indexOf('?') >= 0;
+              }).remove();
+          }, 100);
+      });
+
+    }
+    $scope.removeeditmodal = function(model) {
+      $scope.modal.remove()
+      .then(function() {
+        $scope.modal = null;
+      });
+
+        $('option').filter(function() {
+            return this.value.indexOf('?') >= 0;
+        }).remove();
+
+    };
+    $rootScope.ValidationFunction1 = function($a) {
+        function refresh_close() {
+            $('.close').click(function() {
+                $(this).parent().fadeOut(200);
+            });
+        }
+        refresh_close();
+
+        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+
+        $("#notifications-top-center").remove();
+        //$( ".ppp" ).prepend( top );
+        $(".ErrorMessage").append(top);
+        //$(".notifications-top-center").addClass('animated ' + 'bounce');
+        refresh_close();
+
+    }
+
+    $scope.heighteditsave=function(){
+      $('#heightuser').val('');
+      $rootScope.height1=$('#healthInfoHeight').val();
+      $rootScope.height2=$('#healthInfoHeight2').val();
+     var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+     var heightunitid = $("#healthInfoHeightUnit").val().split("@").slice(0, 1);
+     var getheightunitid=_.first(heightunitid);
+     var getheightunit=_.first(heightunit);
+       if(getheightunit==="ft/in"){
+         if($rootScope.height1!='' && $rootScope.height2 !=''  ){
+           var heightdepval=$('#healthInfoHeight').val() + " " + "ft" + " " +  $('#healthInfoHeight2').val() + " " + "in";
+           $('#heightuser').val(heightdepval);
+         } else if($rootScope.height1!='' && $rootScope.height2==''){
+            var heightdepval=$('#healthInfoHeight').val()+ " " +  "ft" + " " + "0"  + " " + "in";
+            $('#heightuser').val(heightdepval);
+          }
+         else{
+           var heightdepval=$('#healthInfoHeight').val() + " " + "ft" +" "+"0"+" " +'in';
+           $('#heightuser').val(heightdepval);
+         }
+    }else{
+         if($rootScope.height1!='' && $rootScope.height2!=''){
+           var heightdepval=$('#healthInfoHeight').val() +" "+ "m" + " " +$('#healthInfoHeight2').val() + " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+     else if($rootScope.height!='' && $rootScope.height==''){
+       var heightdepval=$('#healthInfoHeight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+     else {
+       var heightdepval=$('#healthInfoHeight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+    }
+     document.getElementById("hunit").innerHTML =getheightunitid;
+
+     if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
+       $scope.ErrorMessage = "Please enter height";
+       $rootScope.ValidationFunction1($scope.ErrorMessage);
+     }else{
+       $scope.modal.remove()
+       .then(function() {
+         $scope.modal = null;
+       });
+     }
+
+      $('option').filter(function() {
+          return this.value.indexOf('?') >= 0;
+      }).remove();
+      //  $('#heightform')[0].reset();
+    }
+
     $scope.heightunit1 = function() {
         var max = 10;
         var heightval = $('#healthInfoHeight').val();
@@ -222,7 +347,7 @@ angular.module('starter.controllers')
     $scope.heightunit2len=function(){
       var max = 99;
       var heightunit2len=$('#healthInfoHeight2').val().length;
-
+      var height2val = $("#healthInfoHeight2").val();
       if(heightunit2len>2){
           $("#healthInfoHeight2").val(max);
       }
@@ -255,25 +380,33 @@ angular.module('starter.controllers')
         }
     }
 
-    $scope.heightunitchange = function() {
-        var maxheight = 11;
-        var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
-        var getheightunit = _.first(heightunit);
-        if (getheightunit = "ft/in") {
-            var height2val = $('#healthInfoHeight2').val();
-            if (height2val != "") {
-                if (height2val > maxheight) {
+      $scope.heightunitchange = function() {
+        var maxheight=11;
+        //$scope.depunit=heightunit;
+       var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+       var getheightunit = _.first(heightunit);
+        if(getheightunit==="ft/in"){
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+          var height2val = $('#healthInfoHeight2').val();
+            if(height2val!=""){
+                if ( height2val > maxheight)
+               {
                     $("#healthInfoHeight2").val(maxheight);
-                }
+               }
             }
+        }else{
+          $scope.hfeet=false;$scope.hinch=false;
+          $scope.hmeter=false;$scope.hcmeter=false;
         }
     }
+
     $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
     $scope.edittext = function() {
 
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
-        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
+        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';
             $rootScope.timezoneDisplay = 'flex';
         } else {
@@ -293,7 +426,7 @@ angular.module('starter.controllers')
         $('#aaa').show();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-        $scope.healthInfoModel.userDOB = new Date($rootScope.userDOB);
+        $scope.userdob = new Date($rootScope.userDOB);
         $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
@@ -311,23 +444,23 @@ angular.module('starter.controllers')
         edittextarea.addClass('editdata');
     }
 
-    //$scope.healthInfo = {};
-    $scope.ngBlur = function() {
-        var today = new Date();
-        var nowyear = today.getFullYear();
-        var nowmonth = today.getMonth() + 1;
-        var nowday = today.getDate();
-        $rootScope.doddate = $('#healthInfoDOB').val();
-        $rootScope.restage = getAge( $rootScope.doddate);
-        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
-            $rootScope.emailDisplay = 'flex';
-            $rootScope.timezoneDisplay = 'flex';
-        } else {
-            $rootScope.emailDisplay = 'none';
-            $rootScope.timezoneDisplay = 'none';
 
-        }
-    }
+$scope.editDob=function(){
+  var chngedob=$('#healthInfoDOB').val();
+  var patdob =new Date(chngedob);
+  $rootScope.restage =getAge(patdob);
+  if ($rootScope.restage  >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
+      $rootScope.emailDisplay = 'flex';
+      $rootScope.timezoneDisplay = 'flex';
+  } else {
+      $rootScope.emailDisplay = 'none';
+      $rootScope.timezoneDisplay = 'none';
+
+  }
+
+}
+    //$scope.healthInfo = {};
+
 
     $scope.healthphoneblur = function() {
         $scope.homephonelength = $('#healthInfoHomePhone').val().length;
@@ -362,13 +495,54 @@ angular.module('starter.controllers')
             } else {
                 $scope.healthInfoRelationship = "NA";
             }
+
+            if($rootScope.height2==""){
+              $rootScope.height2="0";
+              $scope.healthInfoHeight2 = $rootScope.height2;
+            }else{
+                  $scope.healthInfoHeight2 = $rootScope.height2;
+            }
+
+            if($rootScope.height1==undefined){
+              var hghtval=$('#heightuser').val();
+              var remspace=hghtval.split(" ");
+              $rootScope.height1=remspace[0];
+              $scope.healthInfoHeight =  $rootScope.height1;
+            }else{
+              $scope.healthInfoHeight =  $rootScope.height1;
+            }
+
+            if($rootScope.height2==undefined){
+              var hghtinval=$('#heightuser').val();
+              var reminspace=hghtval.split(" ");
+              $rootScope.height2=reminspace[2];
+              $scope.healthInfoHeight2 =  $rootScope.height2;
+            }else{
+                $scope.healthInfoHeight2 =  $rootScope.height2;
+            }
+
+            if($scope.healthInfoHeightUnit=="" ||$scope.healthInfoHeightUnit==undefined ){
+              var hghtinval=$('#heightuser').val();
+              var reminspace=hghtinval.split(" ");
+              var units=reminspace[1];
+              if(units=="ft"){
+                $scope.healthInfoHeightUnit="4715"
+              }else{
+                  $scope.healthInfoHeightUnit="4716"
+              }
+
+            }else{
+                $scope.healthInfoHeightUnit = $('#hunit').text();
+            }
+
             $scope.healthInfoGender = $("#healthInfoGender").val();
-            $scope.healthInfoHeight = $('#healthInfoHeight').val();
-            $scope.healthInfoHeight2 = $('#healthInfoHeight2').val();
+
+
+          //  $scope.healthInfoHeight2 = $scope.heightinch;
             $scope.HeightUnit = $('#healthInfoHeightUnit').val();
-            $scope.HeightUnit1 = $scope.HeightUnit.split("@");
-            $scope.healthInfoHeightUnit = $scope.HeightUnit1[0];
-            $scope.healthInfoHeightUnitText = $scope.HeightUnit1[1];
+          //  $scope.HeightUnit1 = $scope.HeightUnit.split("@");
+
+          //  $scope.healthInfoHeightUnitText = $scope.HeightUnit1[1];
             $scope.healthInfoWeight = $('#healthInfoWeight').val();
             $scope.WeightUnit = $('#healthInfoWeightUnit').val();
             $scope.WeightUnit1 = $scope.WeightUnit.split("@");
@@ -381,24 +555,45 @@ angular.module('starter.controllers')
             $scope.healthmobilelength = $("#healthInfoMobilePhone").val().length;
             //$scope.healthInfoAddress = $('#healthInfoAddress').val();
             $scope.healthInfoAddress = $scope.healthInfoModel.address;
-            $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
-            $scope.healthInfoLocation = $('#healthInfoLocation').val();
+            if($rootScope.OrganizationLocation === 'on') {
+              $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
+              $scope.healthInfoLocation = $('#healthInfoLocation').val();
+            }else {
+                $scope.healthInfoOrganization = null;
+                $scope.healthInfoLocation = null;
+            }
             $scope.healthInfoHairColor = $('#healthInfoHairColor').val();
-            $scope.splitHairColor = $scope.healthInfoHairColor.split("@");
-            $scope.getHairColorId = $scope.splitHairColor[0];
-            $scope.getHairColorText = $scope.splitHairColor[1];
+            if (!angular.isUndefined($scope.healthInfoHairColor) && $scope.healthInfoHairColor !== '') {
+              $scope.splitHairColor = $scope.healthInfoHairColor.split("@");
+              $scope.getHairColorId = $scope.splitHairColor[0];
+              $scope.getHairColorText = $scope.splitHairColor[1];
+            } else {
+              $scope.getHairColorId = null;
+            }
             $scope.healthInfoEyeColor = $('#healthInfoEyeColor').val();
-            $scope.splitEyeColor = $scope.healthInfoEyeColor.split("@");
-            $scope.getEyeColorId = $scope.splitEyeColor[0];
-            $scope.getEyeColorText = $scope.splitEyeColor[1];
+            if (!angular.isUndefined($scope.healthInfoEyeColor) && $scope.healthInfoEyeColor !== '') {
+              $scope.splitEyeColor = $scope.healthInfoEyeColor.split("@");
+              $scope.getEyeColorId = $scope.splitEyeColor[0];
+              $scope.getEyeColorText = $scope.splitEyeColor[1];
+            } else {
+              $scope.getEyeColorId = null;
+            }
             $scope.healthInfoEthnicity = $('#healthInfoEthnicity').val();
-            $scope.splitEthnicity = $scope.healthInfoEthnicity.split("@");
-            $scope.getEthnicityId = $scope.splitEthnicity[0];
-            $scope.getEthnicityText = $scope.splitEthnicity[1];
+            if (!angular.isUndefined($scope.healthInfoEthnicity) && $scope.healthInfoEthnicity !== '') {
+              $scope.splitEthnicity = $scope.healthInfoEthnicity.split("@");
+              $scope.getEthnicityId = $scope.splitEthnicity[0];
+              $scope.getEthnicityText = $scope.splitEthnicity[1];
+            }else {
+              $scope.getEthnicityId = null;
+            }
             $scope.healthInfoBloodType = $('#healthInfoBloodType').val();
-            $scope.splitBloodType = $scope.healthInfoBloodType.split("@");
-            $scope.getBloodTypeId = $scope.splitBloodType[0];
-            $scope.getBloodTypeText = $scope.splitBloodType[1];
+            if (!angular.isUndefined($scope.healthInfoBloodType) && $scope.healthInfoBloodType !== '') {
+              $scope.splitBloodType = $scope.healthInfoBloodType.split("@");
+              $scope.getBloodTypeId = $scope.splitBloodType[0];
+              $scope.getBloodTypeText = $scope.splitBloodType[1];
+            }else {
+              $scope.getBloodTypeId = null;
+            }
             var today = new Date();
             var nowyear = today.getFullYear();
             var nowmonth = today.getMonth() + 1;
@@ -422,7 +617,7 @@ angular.module('starter.controllers')
             };
 
             if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
-                if (($rootScope.restage >= 12 && age_month >= 0)) {
+                if (($rootScope.restage >= 12)) {
 
                     if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
                         $scope.ErrorMessage = "Please enterenter First Name";
@@ -482,16 +677,16 @@ angular.module('starter.controllers')
                     } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                         $scope.ErrorMessage = "Please select Weight Unit";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                         $scope.ErrorMessage = "Please select Ethnicity";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                    } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                         $scope.ErrorMessage = "Please select Hair Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                         $scope.ErrorMessage = "Please select Eye Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                    } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -560,16 +755,16 @@ angular.module('starter.controllers')
                     } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                         $scope.ErrorMessage = "Please select Weight Unit";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                         $scope.ErrorMessage = "Please select Ethnicity";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                    } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                         $scope.ErrorMessage = "Please select Hair Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                         $scope.ErrorMessage = "Please select Eye Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                    } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -640,16 +835,16 @@ angular.module('starter.controllers')
                 } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                     $scope.ErrorMessage = "Please select Weight Unit";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                     $scope.ErrorMessage = "Please select Ethnicity";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                     $scope.ErrorMessage = "Please select Hair Color";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                     $scope.ErrorMessage = "Please select Eye Color";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                     $scope.ErrorMessage = "Please select Blood Type";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
@@ -779,7 +974,10 @@ angular.module('starter.controllers')
                 if (status === 400) {
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
                     $rootScope.Validation($scope.ErrorMessage);
-                } else {
+                } else if(status === 0 ){
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+                }else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -990,7 +1188,13 @@ angular.module('starter.controllers')
                 $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }else{
+                  $rootScope.serverErrorMessageValidation();
+              }
+
             }
         };
         LoginService.getCodesSet(params);
@@ -1575,7 +1779,12 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
             }
         };
         LoginService.getListOfCoUsers(params);
@@ -1591,7 +1800,12 @@ angular.module('starter.controllers')
                 $scope.doGetListOfCoUsers();
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                 $rootScope.Validation($scope.ErrorMessage);
+               }else{
+                   $rootScope.serverErrorMessageValidation();
+               }
             }
         };
         LoginService.deleteAccountCoUser(params);
@@ -1626,24 +1840,7 @@ angular.module('starter.controllers')
         });
     };
 
-    $rootScope.ValidationFunction1 = function($a) {
-        function refresh_close() {
-            $('.close').click(function() {
-                $(this).parent().fadeOut(200);
-            });
-        }
-        refresh_close();
 
-        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
-
-
-        $("#notifications-top-center").remove();
-        //$( ".ppp" ).prepend( top );
-        $(".ErrorMessage").append(top);
-        //$(".notifications-top-center").addClass('animated ' + 'bounce');
-        refresh_close();
-
-    }
 
     $scope.closeSurgeryPopup = function(model) {
         $scope.surgery.name;

@@ -3,7 +3,7 @@
 <ion-side-menus>
 	<ion-side-menu-content>
 
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight"  style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
 	<div class="buttons" >
 		<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
@@ -12,7 +12,7 @@
 	</div>
 
    <div class="Server_Error ErrorMessageDiv" ></div>
-<div id="Error_Message"></div>
+<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
         <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}" > New User </span> <span >
             <a  ng-click="canceldependent()" class="headerval"  >Cancel</a></span></h1>
 
@@ -48,9 +48,9 @@
 
 
 
-<ion-view title="">
+<ion-view title="" >
 	 <form name="myForm" id="dependentuserform" ng-submit="postDependentDetails()">
- <ion-content class="userdeptcontent">
+ <ion-content class="userdeptcontent depenBackgroundColor">
 	<h4 class="userhead"><b>User Details</b></h4>
 
   <div class="list deptlist" >
@@ -60,7 +60,7 @@
        <span class="input-label labelcolor">
        <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">First Name</b><i class="ion-asterisk"></i></span>
      </div>
-      <div class="col colcolcol-50">
+      <div class="col col-50 depGreyLabel">
         <input class="usertext" type="text" placeholder="Required" ng-model="firstname" name="firstname" id="firstname"  required >
   		</div>
     </div>
@@ -69,7 +69,7 @@
          <span class="input-label labelcolor">
          <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Last Name</b><i class="ion-asterisk"></i></span>
      </div>
-     <div class="col col-50">
+     <div class="col col-50 depGreyLabel">
          <input class="usertext" type="text"  placeholder="Required" ng-model="lastname" name="lastname" id="lastname" required >
 
       </div>
@@ -82,9 +82,9 @@
 					<span class="input-label labelcolor">
 					<i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">Date of Birth</b><i class="ion-asterisk"></i></span>
 			</div>
-			<div class="col col-50">
+			<div class="col col-50 depGreyLabel">
 
-				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}" ng-model="dob"  placeholder="Required" required  name="dob" ng-blur="ngBlur()">
+				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required" required  name="dob" ng-Blur="ngBlur()">
 			</div>
 		</div>
 
@@ -94,7 +94,7 @@
        <span class="input-label labelcolor">
        <i class="iconsize" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel">Relationship</b><i class="ion-asterisk"></i></span>
       </div>
-      <div class="col col-50">
+      <div class="col col-50 depGreyLabel">
 				<select class="optionselect textdata" name="healthInforelation" id="dependentrelation" >
 			               <option value=""><b>Choose</b></option>
 			               <option ng-repeat="getRelation in listOfRelationship[0].codes" value="{{getRelation.codeId + '@' + getRelation.text}}"><b>{{getRelation.text}}</b></option>
@@ -107,7 +107,7 @@
 		  <span class="input-label labelcolor">
 		  <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="ion-asterisk"></i></span>
 	   </div>
-	   <div class="col col-50">
+	   <div class="col col-50 depGreyLabel">
 		   <input class="usertext" id="email"  type="email" value="" placeholder="Required" ng-model="email" required="required"  name="email" >
 
 		   <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
@@ -132,7 +132,7 @@
 				<i class="iconsize" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel">Gender</b><i class="ion-asterisk"></i></span>
 			 </div>
 
-			 <div class="col col-50">
+			 <div class="col col-50 depGreyLabel">
 				 <select class="optionselect textdata" name="userInfoGender" id="depgender"  >
 					 <option value=""><b>Choose</b></option>
 					 <option value="M">Male</option> >
@@ -144,38 +144,29 @@
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
         </div>
-        <div class="healthinfoHeight-{{deviceName}}">
-          <input id="height" class="usertext textalign" placeholder="Req" type="number" value="" ng-model="height" name="height"  ng-change="depheight1()" ng-blur="height1len()">
-        </div>
-        <div class="healthinfoHeight2-{{deviceName}}">
+				<div class="col col-50 depGreyLabel">
+					<input class="textdata " id="heightdep"  type="text" value="" placeholder="Required"  required="required"  ng-click="heightmodal()" readonly="true" style="background-color: #e9e9e9;">
 
-            <input id="height2" class="usertext textalign" placeholder="Opt" type="number" value="" ng-model="height2" name="height2" ng-change="depheight2()" ng-blur="height2len()">
-
-
-        </div>
-        <div class="healthinfoChoose-{{deviceName}}">
-           <select class=" optionselect textdata healthchoose" name="heightunit" id="heightunit" ng-model="heightunit"  ng-change="unitchange()"  >
-						 <option ng-repeat="getHeightunit in listOfHeightunit[0].codes" value="{{getHeightunit.codeId + '@' + getHeightunit.text}}" ><b>{{getHeightunit.text}}</b></option>
-					 </select>
-
-        </div>
+	 		   <span id="hunit" ng-show="hghtunit"> </span>
+	 	   </div>
    </div>
    <div class="item item-input itemtab validated row">
         <div class="col col-50">
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b><i class="ion-asterisk"></i></span>
         </div>
+				<div class="col col-50 depGreyLabel">
+	        <div class="dependHeigh-{{deviceName}}">
+	          <input style="margin-left: 5px;" id="weight" class=" textdata" type="number" value="" placeholder="Required"  name="weight" ng-model="weightunit" ng-change="weightunitchange()" ng-blur="weight1len()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
 
-        <div class="dependHeigh-{{deviceName}}">
+	        </div>
+	        <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
+	           <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" required>
+	               <!--<option value=""><b>Choose</b></option>-->
+	               <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
+	           </select>
 
-          <input id="weight" class="usertext textalign" type="number" value="" placeholder="Required"  name="weight" ng-model="weightunit" ng-change="weightunitchange()" ng-blur="weight1len()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
-        </div>
-        <div style="width: 50%;">
-           <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" required>
-               <!--<option value=""><b>Choose</b></option>-->
-               <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
-           </select>
-
-        </div>
+	        </div>
+				</div>
    </div>
 
 <div class="item item-input validated">
@@ -183,7 +174,7 @@
    	<span class="input-label labelcolor">
    	<i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Country</b><i class="ion-asterisk"></i></span>
       </div>
-      <div class="col col-50">
+      <div class="col col-50 depGreyLabel">
 		<select class="optionselect textdata" name="healthInfoCountry" id="dependentCountry" >
 			<option value=""><b>Choose</b></option>
 			<option ng-repeat="country in serviceCountries" value="{{country.code}}" ><b>{{country.name}}</b></option>
@@ -195,7 +186,7 @@
       <span class="input-label labelcolor">
       <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel">Timezone</b><i class="ion-asterisk"></i></span>
         </div>
-        <div class="col col-50">
+        <div class="col col-50 depGreyLabel">
       <select class="optionselect textdata" name="healthInfoTimezone" id="dependentTimezone" >
         <option value=""><b>Choose</b></option>
           <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
@@ -207,7 +198,7 @@
         <span class="input-label labelcolor">
         <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel">Home Phone</b></span>
     </div>
-     <div class="col col-50">
+     <div class="col col-50 depGreyLabel">
         <input  class="usertext" id="homephone" type="tel" value=""  placeholder="Optional" ng-model="phone"   name="phone" phone-input ng-blur="phoneBlur()">
         <span class="error" id="erphone" ng-show="myForm.phone.$error.pattern">Not a valid number!</span>
      </div>
@@ -218,7 +209,7 @@
        <i class="iconsize" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel">Mobile</b><i class="ion-asterisk"></i></span>
 
    </div>
-    <div class="col col-50">
+    <div class="col col-50 depGreyLabel">
        <input class="usertext" id="mobile" type="tel" value=""  placeholder="Required"   ng-model="dependmobile"   name="mobile" phone-input >
 
     </div>
@@ -228,42 +219,43 @@
      <span class="input-label labelcolor" >
      <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Home Address</b><i class="ion-asterisk"></i></span>
    </div>
-    <div class="col col-50">
+    <div class="col col-50 depGreyLabel">
 			  <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Semibold;" />
      <!--<textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>-->
     </div>
 </div>
- <div class="item item-input validated">
+ <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
      <div class="col col-50">
         <span class="input-label labelcolor">
         <i class="iconsize" ng-bind-html="drawSVGCIcon('group')"></i><b class="formlabel">Organization</b></span>
      </div>
-    <div class="col col-50">
-       <select class="optionselect textdata" id="organization" ng-model="firstSelect" ng-options="option.id as option.name for option in listOfOrganization">
-       <option value=""><b>Choose</b></option>
-     </select>
-     <input type="hidden" id="organ" value="{{firstSelect}}" />
-
+		 <div class="col col-50 depGreyLabel">
+ 			<select class="textdata optionselect"  name="healthInfoOrganization" id="organization" ng-model="addNewDependent.healthInfoOrganization" >
+ 				 <option value="">Choose Organization</option>
+ 					  <option ng-repeat="getOrganization in listOfOrganization" value="{{getOrganization.id}}" ng-selected="getOrganization.name == currentPatientDetails[0].organization"><b>{{getOrganization.name}}</b></option>
+ 			 </select>
+     <input type="hidden" id="organ" value="{{addNewDependent.healthInfoOrganization.id}}" />
      </div>
   </div>
- <div class="item item-input validated" >
+ <div class="item item-input validated" ng-disabled="!listOfLocForCurntOrg" ng-if="OrganizationLocation === 'on'">
     <div class="col col-50">
        <span class="input-label labelcolor">
        <i class="iconsize" ng-bind-html="drawSVGCIcon('location-pin')"></i><b class="formlabel">Location</b></span>
     </div>
-    <div class="col col-50">
-       <select class="optionselect textdata"  id="location" ng-model="secondSelect" ng-options="option.name for option in locationdetails | secondDropdown: firstSelect">
-      <option value=""><b>Choose</b></option>
-    </select>
+    <div class="col col-50 depGreyLabel">
+			<select class="textdata optionselect"  name="healthInfoLocation" id="healthInfoLocation" >
+							<option>Choose Location</option>
+						 <option ng-repeat="getLocation in listOfLocForCurntOrg" value="{{getLocation.id}}" ng-selected="getLocation.name == currentPatientDetails[0].location"><b>{{getLocation.name}}</b></option>
+				</select>
     <input type="hidden" id="locate" value="{{secondSelect.id}}" />
     </div>
  </div>
  <div class="item item-input validated">
     <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel">Blood Type</b><i class="ion-asterisk"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel">Blood Type</b><i ng-if="PPIsBloodTypeRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
-     <div class="col col-50">
+     <div class="col col-50 depGreyLabel">
         <select class="optionselect textdata" name="bloodtype" id="bloodtype" ng-model="bloodtype" required>
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getBloodType in listOfBloodtype[0].codes" value="{{getBloodType.codeId + '@' + getBloodType.text}}" ><b>{{getBloodType.text}}</b></option>
@@ -276,9 +268,9 @@
  <div class="item item-input validated">
     <div class="col col-50">
        <span class="input-label labelcolor">
-       <i class="iconsize" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel">Hair Color</b><i class="ion-asterisk"></i></span>
+       <i class="iconsize" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel">Hair Color</b><i ng-if="PPIsHairColorRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
-     <div class="col col-50">
+     <div class="col col-50 depGreyLabel">
         <select class="optionselect textdata" name="hairColor" id="hairColor" ng-model="hairColor" required>
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}"><b>{{getHairColor.text}}</b></option>
@@ -289,9 +281,9 @@
  <div class="item item-input validated">
      <div class="col col-50">
         <span class="input-label labelcolor">
-        <i class="iconsize" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel">Eye Color</b><i class="ion-asterisk"></i></span>
+        <i class="iconsize" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel">Eye Color</b><i ng-if="PPIsEyeColorRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
-     <div class="col col-50">
+     <div class="col col-50 depGreyLabel">
           <select class="optionselect textdata" name="eyeColor" id="eyeColor" ng-model="eyeColor" required>
               <option value=""><b>Choose</b></option>
               <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}"><b>{{getEyeColor.text}}</b></option>
@@ -302,9 +294,9 @@
  <div class="item item-input validated">
      <div class="col col-50">
         <span class="input-label labelcolor">
-         <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Ethnicity</b><i class="ion-asterisk"></i></span>
+         <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Ethnicity</b><i ng-if="PPIsEthnicityRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
-      <div class="col col-50">
+      <div class="col col-50 depGreyLabel">
           <select class="optionselect textdata" name="ethnicity" id="ethnicity" ng-model="ethnicity" required>
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}"><b>{{getEthnicity.text}}</b></option>
@@ -316,7 +308,7 @@
 	         <span class="input-label labelcolor">
 	          <i _style="display: none;" class="iconsize" ng-bind-html="drawSVGCIcon('lock-open')"></i><b class="formlabel" >Authorization</b><i class="ion-asterisk"></i></span>
 	      </div>
-	       <div class="col col-50 dependentAddAuthorize" >
+	       <div class="col col-50 dependentAddAuthorize depGreyLabel" >
 	           Authorized
 	       </div>
 	     </div>
