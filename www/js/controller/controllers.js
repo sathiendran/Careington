@@ -1383,7 +1383,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.doGetTokenSSO = function() {
         var loginEmail = $rootScope.UserEmail;
         if (cobrandApp === "Hello420" && loginEmail.toLowerCase() != "itunesmobiletester@gmail.com") {
-              Idle.watch();
+            //  Idle.watch();
             $scope.checkForSSOUserExistsInHello420();
         } else {
             $scope.doGetToken();
@@ -1465,7 +1465,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.tokenStatus = 'alert-success';
                         $scope.doGetPatientProfiles();
                         $scope.doGetRelatedPatientProfiles('tab.userhome');
-                        Idle.watch();
+                    //    Idle.watch();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
                 },
