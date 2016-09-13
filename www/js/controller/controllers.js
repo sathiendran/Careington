@@ -727,6 +727,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
     $rootScope.ClearRootScope = function() {
+        $window.localStorage.setItem('tokenExpireTime', '');
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         for (var prop in $rootScope) {
@@ -734,7 +735,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 delete $rootScope[prop];
             }
         }
-        $window.localStorage.setItem('tokenExpireTime', '');
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
@@ -4777,6 +4777,29 @@ LoginService.getScheduledConsulatation(params);
           }
     }
 
+    $rootScope.doPostDepitDetails = function() {
+        if ($rootScope.accessToken === 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            patientId: $rootScope.patientId,
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $state.go('tab.receipt');
+              $rootScope.enablePaymentSuccess = "none";
+              $rootScope.enableInsuranceVerificationSuccess = "none";
+              $rootScope.enableCreditVerification = "block";
+              $scope.ReceiptTimeout();
+            },
+            error: function(data) {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.postDepitDetails(params);
+    }
+
 
     $scope.doGetHospitalInformation = function() {
         if ($rootScope.accessToken === 'No Token') {
@@ -4943,10 +4966,12 @@ LoginService.getScheduledConsulatation(params);
         } else {
           $rootScope.patientId = $rootScope.patientId;
         }
+        $scope.doGetConutriesList();
         $rootScope.doGetCreditDetails();
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetonDemandAvailability();
+        $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetListOfCoUsers();
       //  $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
         if(fromPreviousPage != "AppointmentPage") {

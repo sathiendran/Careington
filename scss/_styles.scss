@@ -3888,7 +3888,7 @@ font-family: $fontFamily_regular;
 }
 .noResult {
 	text-align: center; border: none;
-    color: #616462; font-weight: bold; font-size: 19px;
+    color: #616462; font-weight: bold; font-size: 19px;margin-top:-50px;
     //top: 90px;
   //  padding-top: 107px;
 }
@@ -9120,5 +9120,6 @@ input.ion-google-place[readonly] {
     font-weight: 500;
       margin-top: 29px !important;
         font-size: 143% !important;
+          text-align: center;
   }
 }

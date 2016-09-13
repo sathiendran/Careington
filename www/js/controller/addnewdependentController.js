@@ -438,6 +438,7 @@ if(phonevalue!=''){
             //$scope.healthInfoAuthorize = $("input[name='healthInfoAuthorize']:checked").val();
           //  $scope.gender = $("input[name='depgender']:checked").val();
             var splitheight=$('#heightdep').val();
+            $scope.splitheights=$('#heightdep').val();;
             var inch=splitheight.slice(6,8)
 
             if($rootScope.height2==""){
@@ -459,6 +460,33 @@ if(phonevalue!=''){
             $scope.homeaddress = $scope.addNewDependent.homeadd;
             if($rootScope.OrganizationLocation === 'on') {
               var org = document.getElementById("organization");
+              var loc = document.getElementById("location");
+              if(org!="Choose Organization"){
+                $scope.organization = null;
+                $scope.orgid = null;
+              }else{
+                var dependentorgan = org.options[org.selectedIndex].text;
+                $scope.organization = dependentorgan;
+                $scope.orgid = org.options[org.selectedIndex].value;
+
+              }
+              if(loc != "Choose Location"){
+                $scope.location = null;
+                  $scope.locationid = null;
+              }else{
+                var dependentloc = loc.options[loc.selectedIndex].text;
+                $scope.location = dependentloc;
+                $scope.locationid = loc.options[loc.selectedIndex].value;
+
+              }
+            }else {
+              $scope.organization = null;
+              $scope.location = null;
+              $scope.orgid = null;
+              $scope.locationid = null;
+            }
+          /*  if($rootScope.OrganizationLocation === 'on') {
+              var org = document.getElementById("organization");
               var dependentorgan = org.options[org.selectedIndex].text;
               if(dependentorgan="Choose Organization"){
                   $scope.organization = "";
@@ -479,14 +507,7 @@ if(phonevalue!=''){
                   $scope.locationid = loc.options[loc.selectedIndex].value;
               }
 
-          /*    if(dependentloc="Choose Location"){
-                $scope.location = "";
-                $scope.locationid = "";
-              }else{
-                $scope.location = dependentloc;
-                $scope.locationid = loc.options[loc.selectedIndex].value;
 
-              }*/
 
             } else {
               if($scope.organization!=""){
@@ -496,7 +517,7 @@ if(phonevalue!=''){
                 $scope.locationid = null;
               }
 
-            }
+            }*/
             $scope.dependentCountry = $("#dependentCountry").val();
             $scope.dependentTimezone = $("#dependentTimezone").val();
             $scope.relation = $("#dependentrelation").val().split("@").slice(0, 1);
@@ -593,7 +614,7 @@ if(phonevalue!=''){
        else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
            $scope.ErrorMessage = "Please select Gender";
            $rootScope.Validation($scope.ErrorMessage);
-       } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+       } else if (typeof $scope.splitheights === 'undefined' || $scope.splitheights === '') {
            $scope.ErrorMessage = "Please enter Height";
            $rootScope.Validation($scope.ErrorMessage);
        // }else if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
@@ -861,7 +882,7 @@ if(phonevalue!=''){
                         organizationId: newVal
                     });
                 } else {
-                    $rootScope.listOfLocForCurntOrg =$('#location').val("Choose Location");
+                    $rootScope.listOfLocForCurntOrg ="";
                 }
             }
         });
@@ -949,25 +970,3 @@ if(phonevalue!=''){
         }
 
     });
-    /*.filter('secondDropdown', function() {
-        return function(secondSelect, firstSelect) {
-            var filtered = [];
-            if (firstSelect === null) {
-                return filtered;
-            }
-            if (secondSelect != undefined) {
-                angular.forEach(secondSelect[0], function(s2) {
-                    if (s2.organizationId == firstSelect) {
-                        filtered.push(s2);
-                    //   $scope.loctdetail=true;
-                      }
-                      else{
-                      //$scope.loctdetail=false;
-                      }
-                });
-            }
-
-
-            return filtered;
-        };
-    });*/

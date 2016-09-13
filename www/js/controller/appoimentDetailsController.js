@@ -755,16 +755,23 @@ angular.module('starter.controllers')
 
     }
 
-    if($rootScope.AppointScheduleTime != '') {
+  /*  if($rootScope.AppointScheduleTime != '') {
       setTimeout(function () {
         $rootScope.timeNew = 'none';
         $rootScope.timeNew1 = 'none';
         $('.AvailableIn').hide();
         $('.enterAppoinment').hide();
-        $('.enterAppoinment2').show();   
+        $('.enterAppoinment2').show();
         $(".enterAppoinment2").css("display","block");
       }, $rootScope.AppointScheduleTime);
-    }
+    } else {
+      $rootScope.timeNew = 'none';
+      $rootScope.timeNew1 = 'none';
+      $('.AvailableIn').hide();
+      $('.enterAppoinment').hide();
+      $('.enterAppoinment2').show();
+      $(".enterAppoinment2").css("display","block");
+    }*/
 
     //$scope.doGeAppointmentExistingConsulatation();
 
