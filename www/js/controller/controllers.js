@@ -1843,6 +1843,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.doGetPatientProfiles = function() {
+      $rootScope.primaryPatientDetails = '';
+      $rootScope.patientInfomation = '';
+      $rootScope.patientAccount = '';
+      $rootScope.patientAddresses = '';
+      $rootScope.patientAnatomy = '';
+      $rootScope.patientPharmacyDetails = '';
+      $rootScope.patientPhysicianDetails = '';
         if ($rootScope.accessToken === 'No Token') {
             alert('No token.  Get token first then attempt operation.');
             return;
@@ -1882,7 +1889,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
                 //$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-                if (data.data[0].account.profileImagePath !== '' && typeof data.data[0].account.profileImagePath !== 'undefined') {
+                if ($rootScope.patientAccount.profileImagePath !== '' && typeof $rootScope.patientAccount.profileImagePath !== 'undefined') {
                     $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 } else {
                     $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
@@ -2016,6 +2023,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
     $scope.doGetRelatedPatientProfiles = function(ReDirectPage) {
+      $rootScope.RelatedPatientProfiles = '';
         if ($scope.accessToken === 'No Token') {
             alert('No token.  Get token first then attempt operation.');
             return;

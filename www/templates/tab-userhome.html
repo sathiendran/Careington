@@ -60,7 +60,7 @@
 		<ion-item class="UserHomeHeader" ng-hide="data.searchQuery" style="border-top: none; top: -2px; height: 79px;">
 			 <div class="HrefListView">
 				<div class="UserhmePatientDetails">
-					<img ng-src="{{PatientImage}}" class="UserHmelistImgView">
+					<img ng-src="{{PatientImage}}" src="{{PatientImage}}" class="UserHmelistImgView">
 					<div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding firstname"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 					<!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
 					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="primaryPatGender != ''">{{primaryPatGender}} . </span>{{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
@@ -97,7 +97,7 @@
 			<!-- <a class="HrefListView">   -->
 			 <div class="HrefListViewDependent">
 				<div class="UserhmePatientDetails">
-					<img ng-src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
+					<img ng-src="{{dependentDetails.profileImagePath}}" src="{{dependentDetails.profileImagePath}}" class="UserHmelistImgView">
 					<div class= "ListTextTitle ellipsis userHomeFullName" ><b>{{dependentDetails.patientFirstName}} </b> <span class="SubTitleSpan">{{dependentDetails.patientLastName}}</span></div>
 					<p class="ListHomeUser_pTitle DateFormateStyle"><span ng-if="dependentDetails.gender != ''">{{dependentDetails.gender}} .</span> {{dependentDetails.birthdate | ageFilter}} <span ng-if="dependentDetails.depRelationShip != ''">. {{dependentDetails.depRelationShip}} </span><!--<span ng-if="primaryPatientId != dependentDetails.patientId">| Guardian : {{dependentDetails.guardianName}}</span>--></p>
 					<!--<list class="ion-chevron-right ListLinkHref UserHomeIcon"></list>-->

@@ -419,6 +419,12 @@ angular.module('starter.controllers')
             $rootScope.timezoneDisplay = 'none';
 
         }
+        $timeout(function() {
+              $('option').filter(function() {
+                  return this.value.indexOf('?') >= 0;
+              }).remove();
+          }, 100);
+
 
         //  $scope.readattr = false;
         $scope.doneshow = false;
