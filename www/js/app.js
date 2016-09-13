@@ -104,7 +104,49 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
     $ionicPlatform.ready(function() {
-       Idle.watch();
+      // Idle.watch();
+
+      var timeoutID;
+    function setup() {
+        this.addEventListener("mousemove", resetTimer, false);
+        this.addEventListener("mousedown", resetTimer, false);
+        this.addEventListener("keypress", resetTimer, false);
+        this.addEventListener("DOMMouseScroll", resetTimer, false);
+        this.addEventListener("mousewheel", resetTimer, false);
+        this.addEventListener("touchmove", resetTimer, false);
+        this.addEventListener("MSPointerMove", resetTimer, false);
+        startTimer();
+    }
+    setup();
+
+    function startTimer() {
+        timeoutID = window.setTimeout(goInactive, 120000);
+    }
+
+    function resetTimer(e) {
+        window.clearTimeout(timeoutID);
+        goActive();
+    }
+
+    function goInactive() {
+        alert('Inactive');
+        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              navigator.notification.alert(
+                   'Your session timed out.', // message
+                   null,
+                   $rootScope.alertMsgName,
+                   'Ok' // buttonName
+               );
+              $rootScope.ClearRootScope();
+            }
+        }
+    }
+
+    function goActive() {
+        console.log('Active');
+        startTimer();
+    }
 
         // Check for network connection
         /* if(window.Connection) {
@@ -204,7 +246,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
       }
 
         setTimeout(function() {
-            Idle.watch();
+          //  Idle.watch();
             if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                 var EXTRA = {};
                 var extQuery = window.localStorage.getItem("external_load").split('?')
@@ -283,7 +325,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }, 2000);
         $ionicPlatform.on('resume', function() {
             setTimeout(function() {
-                  Idle.watch();
+                //  Idle.watch();
                 if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                     var EXTRA = {};
                     var extQuery = window.localStorage.getItem("external_load").split('?')
