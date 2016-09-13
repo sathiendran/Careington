@@ -120,7 +120,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     setup();
 
     function startTimer() {
-        timeoutID = window.setTimeout(goInactive, 120000);
+        timeoutID = window.setTimeout(goInactive, 1800000);
     }
 
     function resetTimer(e) {
