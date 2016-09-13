@@ -11,6 +11,11 @@ angular.module('starter.controllers')
         }
         return newStr;
     }
+    $timeout(function() {
+          $('option').filter(function() {
+              return this.value.indexOf('?') >= 0;
+          }).remove();
+      }, 100);
 
     $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber) {
         var phoneNumberWithoutCountryCode = "";
@@ -608,6 +613,11 @@ $scope.editDob=function(){
             if (age_month < 0 || (age_month == 0 && age_day < 0)) {
                 age = parseInt(age) - 1;
             }
+            $timeout(function() {
+                  $('option').filter(function() {
+                      return this.value.indexOf('?') >= 0;
+                  }).remove();
+              }, 100);
 
 
             $scope.ValidateEmail = function(email) {

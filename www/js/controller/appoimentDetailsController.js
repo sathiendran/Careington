@@ -755,7 +755,7 @@ angular.module('starter.controllers')
 
     }
 
-  /*  if($rootScope.AppointScheduleTime != '') {
+    if($rootScope.AppointScheduleTime != '') {
       setTimeout(function () {
         $rootScope.timeNew = 'none';
         $rootScope.timeNew1 = 'none';
@@ -771,7 +771,7 @@ angular.module('starter.controllers')
       $('.enterAppoinment').hide();
       $('.enterAppoinment2').show();
       $(".enterAppoinment2").css("display","block");
-    }*/
+    }
 
     //$scope.doGeAppointmentExistingConsulatation();
 
