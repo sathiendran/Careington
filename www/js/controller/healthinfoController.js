@@ -444,6 +444,21 @@ angular.module('starter.controllers')
         edittextarea.addClass('editdata');
     }
 
+
+$scope.editDob=function(){
+  var chngedob=$('#healthInfoDOB').val();
+  var patdob =new Date(chngedob);
+  var rstage=getAge(patdob);
+  if (rstage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
+      $rootScope.emailDisplay = 'flex';
+      $rootScope.timezoneDisplay = 'flex';
+  } else {
+      $rootScope.emailDisplay = 'none';
+      $rootScope.timezoneDisplay = 'none';
+
+  }
+
+}
     //$scope.healthInfo = {};
     $scope.setDob = function() {
         var today = new Date();
