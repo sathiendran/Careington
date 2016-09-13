@@ -537,7 +537,14 @@ $scope.editDob=function(){
               }
 
             }else{
-                $scope.healthInfoHeightUnit = $('#hunit').text();
+              var hghtinval=$('#heightuser').val();
+              var reminspace=hghtinval.split(" ");
+              var units=reminspace[1];
+              if(units=="ft"){
+                $scope.healthInfoHeightUnit="4715"
+              }else{
+                  $scope.healthInfoHeightUnit="4716"
+              }
             }
 
             $scope.healthInfoGender = $("#healthInfoGender").val();
