@@ -448,8 +448,8 @@ angular.module('starter.controllers')
 $scope.editDob=function(){
   var chngedob=$('#healthInfoDOB').val();
   var patdob =new Date(chngedob);
-  var rstage=getAge(patdob);
-  if (rstage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
+  $rootScope.restage =getAge(patdob);
+  if ($rootScope.restage  >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
       $rootScope.emailDisplay = 'flex';
       $rootScope.timezoneDisplay = 'flex';
   } else {
@@ -460,24 +460,7 @@ $scope.editDob=function(){
 
 }
     //$scope.healthInfo = {};
-    $scope.setDob = function() {
-        var today = new Date();
-        var nowyear = today.getFullYear();
-        var nowmonth = today.getMonth() + 1;
-        var nowday = today.getDate();
 
-        var asd=$('#healthInfoDOB').val();
-        $rootScope.doddate =new Date(asd);
-        $rootScope.restage = getAge( $rootScope.doddate);
-        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
-            $rootScope.emailDisplay = 'flex';
-            $rootScope.timezoneDisplay = 'flex';
-        } else {
-            $rootScope.emailDisplay = 'none';
-            $rootScope.timezoneDisplay = 'none';
-
-        }
-    }
 
     $scope.healthphoneblur = function() {
         $scope.homephonelength = $('#healthInfoHomePhone').val().length;
