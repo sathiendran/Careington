@@ -55,6 +55,7 @@ angular.module('starter.controllers')
                 //$('#publisher .OT_video-container').css('background-color', 'transparent');
                 $rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0];
+                $rootScope.existconsultationparticipants=data.data[0].participants;
                 /*if($rootScope.existingConsultationReport.organization !=='' && typeof $rootScope.existingConsultationReport.organization !== 'undefined')
                 {
                 	$rootScope.userReportOrganization = angular.element('<div>').html($rootScope.existingConsultationReport.organization).text();
@@ -305,6 +306,19 @@ angular.module('starter.controllers')
                         'month': index.month,
                         'year': index.year,
                     });
+                });
+                $rootScope.AttendeeList = [];
+                angular.forEach($rootScope.existconsultationparticipants, function(index, item) {
+                  var atname=index.person.name.given;
+                  if(atname!=''){
+                    $rootScope.AttendeeList.push({
+                        'Number': item + 1,
+                        'attedeename': index.person.name.given,
+                        'consultstart':index.period.start,
+                        'consultend':index.period.end,
+
+                    });
+                  }
                 });
 
                 $rootScope.reportMedicalCodeDetails = [];
