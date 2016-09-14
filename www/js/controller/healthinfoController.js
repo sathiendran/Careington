@@ -458,6 +458,7 @@ angular.module('starter.controllers')
         edittextarea.addClass('editdata');
         setTimeout(function(){
               $('#healthInfoTimezone').val($scope.healthInfoModel.healthInfoTimezone);
+              $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
         }, 10);
     }
 
