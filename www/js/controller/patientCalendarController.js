@@ -70,10 +70,12 @@ angular.module('starter.controllers')
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
         }
-        if($rootScope.statename="tab.appointmentpatientdetails"){
-          $('.sidehomeappt').addClass("uhome");
-
+        if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
+         if($rootScope.statename="tab.appointmentpatientdetails"){
+           $('.sidehomeappt').addClass("uhome");
+         }
         }
+        
         if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
             checkAndChangeMenuIcon = $interval(function() {
                 $rootScope.checkAndChangeMenuIcon();
