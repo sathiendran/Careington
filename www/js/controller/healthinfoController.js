@@ -950,7 +950,7 @@ $scope.editDob=function(){
                 $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
                 $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
                 $rootScope.currentPatientDetails = $rootScope.currentPatientDetails[0];
-
+                $rootScope.currentPatientDetails[0] = $rootScope.currentPatientDetails;
                 if (angular.isUndefined($rootScope.currentPatientDetails.guardianName)) {
                     $rootScope.currentPatientDetails.guardianName = $rootScope.primaryPatientName + " " + $rootScope.primaryPatientLastName;
                 }
