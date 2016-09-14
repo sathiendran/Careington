@@ -275,7 +275,7 @@
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
               <div class="healthViewDetails" ng-click="heighteditmodal()">
                 <div>
-                  <input class="textdata" id="heightuser"  type="text" value="{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}" placeholder="Required"  required="required"   readonly="true">
+                  <input class="textdata" id="heightuser"  type="text" value="{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}" placeholder="Required"  required="required"   readonly="true" style="background-color: #e9e9e9;">
                   <span id="hunit" ng-show="hghtunit"> </span>
 
                 </div>
@@ -303,7 +303,7 @@
                    <input type="number" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata" ng-change="weightunitchange()"  ng-blur="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
                 </div>
                 <div class="healthWeight1-{{deviceName}}">
-                   <select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 70%;">
+                   <select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 70%;padding-top:10px !important;">
                        <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightUnit"><b>{{getUserweightunit.text}}</b></option>
                    </select>
                 </div>
