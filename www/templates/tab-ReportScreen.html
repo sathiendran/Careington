@@ -83,11 +83,11 @@
 			</div>
 		</div>
 
-		<div class="reportPatientConcerns" style="clear:both;padding-top:10px !important;">
-		  <div class="concernTitle"><b>Attendee Details</b></div>
+		<div ng-if="AttendeeList.length != 0" class="reportPatientConcerns" style="clear:both;padding-top:10px !important;">
+		  <div class="concernTitle" style="font-size: 18px;"><b>Attendee Details</b></div>
 		  <div class="concernUnderline" >	</div>
 
-		  <div class="reportConcerns" style="padding-top:10px !important; font-size:18px !important;">
+		  <div class="reportConcerns" style="padding-top:10px !important; font-size:15px !important;">
 		  <table  style="width:100%;" >
 		    <tr ng-repeat="getAttendeelist in AttendeeList">
 		      <td class="statisticAge"><b>{{getAttendeelist.attedeename}}</b></td>
