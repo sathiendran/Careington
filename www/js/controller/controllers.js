@@ -2037,11 +2037,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.RelatedPatientProfiles = [];
 
                 angular.forEach(data.data, function(index, item) {
+                  var imgDate = new Date();
                     if (!index.profileImagePath) {
                         var ptInitial = getInitialForName(index.patientName);
                         index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
                         index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
+                    } else {
+                      index.profileImagePath = index.profileImagePath + '?' + imgDate.getTime()
                     }
+
 
                     if (typeof index.gender !== 'undefined') {
                         if (index.gender === 'F') {
