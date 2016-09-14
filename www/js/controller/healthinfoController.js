@@ -161,12 +161,12 @@ angular.module('starter.controllers')
     $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
     $scope.addmore = false;
     $scope.healthhide = true;
-    $scope.headerval = false;
+
     $scope.editshow = true;
     $scope.doneshow = true;
     $scope.readattr = false;
     $scope.doneedit = false;
-    $scope.editshow = true;
+
     $scope.editimg = false;
     $scope.viewimg = true;
     //  $scope.healthinfoshow=true;

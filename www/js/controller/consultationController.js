@@ -360,6 +360,7 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $rootScope.attachmentLength = '';
                     $rootScope.existingConsultationReport = data.data[0].details[0];
+                    $rootScope.existconsultationparticipants=data.data[0].participants;
                     if ($rootScope.existingConsultationReport.height != '' && typeof $rootScope.existingConsultationReport.height != 'undefined') {
                       if ($rootScope.existingConsultationReport.heightUnit != '' && typeof $rootScope.existingConsultationReport.heightUnit != 'undefined') {
                         $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
@@ -592,6 +593,21 @@ angular.module('starter.controllers')
                             'month': index.month,
                             'year': index.year,
                         });
+                    });
+
+                    $rootScope.AttendeeList = [];
+                    angular.forEach($rootScope.existconsultationparticipants, function(index, item) {
+                      var atname=index.person.name.given;
+                      if(atname!=''){
+                        $rootScope.AttendeeList.push({
+                            'Number': item + 1,
+                            'attedeename': index.person.name.given,
+                            'consultstart':index.period.start,
+                            'consultend':index.period.end,
+
+                        });
+                      }
+
                     });
 
                     $rootScope.reportMedicalCodeDetails = [];
