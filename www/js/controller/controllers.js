@@ -4173,9 +4173,7 @@ LoginService.getScheduledConsulatation(params);
                     $rootScope.userDOBDateFormat = date;
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
-                    if(nextPage != ' ' && nextPage != '') {
-                      $state.go(nextPage);
-                    }
+                    $state.go(nextPage);
                 }
             },
             error: function(data) {

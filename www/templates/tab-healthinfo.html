@@ -216,17 +216,17 @@
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b><i class="ion-asterisk"></i></span>
-              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoCountry" ng-app ng-init="healthInfoCountry='2'">
+              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoModel.healthInfoCountry" >
                  <option value="">Choose</option>
-                 <option ng-selected="{{currentPatientDetails[0].countryCode}} == {{country.code}}" ng-repeat="country in serviceCountries" value="{{country.code}}" ><b>{{country.name}}</b></option>
+                 <option ng-selected="currentPatientDetails[0].countryCode == country.code"  ng-repeat="country in serviceCountries"  value="{{country.code}}" ><b>{{country.name}}</b></option>
                </select></span>
            </div>
 
            <div class="item item-input itemtab validated" style="display: {{timezoneDisplay}};">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('clock')"></i></i><b class="formlabel labelfont">Timezone</b><i class="ion-asterisk"></i></span>
-              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoTimezone" ng-init="healthInfoTimezone='3'">
-                 <option value="">Choose</option>
-                 <option ng-selected="{{currentPatientDetails[0].account.timeZoneId}} == {{timeZone.id}}" ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
+              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoModel.healthInfoTimezone" >
+                 <option>Choose</option>
+                 <option  ng-selected="currentPatientDetails[0].account.timeZoneId == timeZone.id"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
                </select></span>
            </div>
 
