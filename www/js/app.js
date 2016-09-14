@@ -120,8 +120,8 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     setup();
 
     function startTimer() {
-      //  timeoutID = window.setTimeout(goInactive, 1800000);
-      timeoutID = window.setTimeout(goInactive, 120000);
+        timeoutID = window.setTimeout(goInactive, 1800000);
+    //  timeoutID = window.setTimeout(goInactive, 120000);
     }
 
     function resetTimer(e) {
@@ -130,7 +130,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
-        alert('Inactive');
+      //  alert('Inactive');
         if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
               navigator.notification.alert(

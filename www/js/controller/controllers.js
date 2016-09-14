@@ -4946,7 +4946,7 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.AppointScheduleTime = '';
         $rootScope.scheduledListDatas = scheduledListData;
         var currentTime = $rootScope.scheduledListDatas.scheduledTime;
-        var getMinsExtraTime = $scope.addMinutes(currentTime, 2);
+        var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
         var getEnterTime = new Date();
         var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
         if(getMissedAppointmentExpiryTime > 0) {
