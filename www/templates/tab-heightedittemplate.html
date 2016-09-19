@@ -13,7 +13,7 @@
             <div class="item item-input itemtab validated row" style="border-top:none;">
               <div class="col col-50">
                 <div class="healthPopup-{{deviceName}}" >
-                   <input type="number" placeholder="Required" name="healthInfoHeight" id="healthInfoHeight"  class="textdata" ng-model="height"  ng-keyup="heightunit1()" ng-blur="heightunit1len()"></span>
+                   <input type="number" placeholder="Required" name="healthInfoHeight" id="healthInfoHeight"  class="textdata" ng-model="height"   ng-keyup="depheight1()" ng-blur="heightunit1len()"></span>
                  </div>
 
                <div class="heightft-{{deviceName}}" >
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="heightft-{{deviceName}}">
-                  
+
                   <span  ng-show="hinch">in</span>
                   <span  ng-hide="hcmeter">cm</span>
                 </div>

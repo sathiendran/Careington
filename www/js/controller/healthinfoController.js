@@ -208,18 +208,23 @@ angular.module('starter.controllers')
       }).then(function(modal) {
         var hghtinval=$('#heightuser').val();
         var reminspace=hghtinval.split(" ");
-
+        var fet=reminspace[0];
+        var finc=reminspace[2];
         var units=reminspace[1];
+
       //   document.getElementById("edhunit").innerHTML =  units;
           $scope.modal = modal;
           $scope.modal.show().then(function() {
           //  var newq=$('#edhunit').text();
           if(units=="ft"){
+            $('#healthInfoHeight').val(fet);
+            $('#healthInfoHeight2').val(finc);
             document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
             $scope.hfeet=true;$scope.hinch=true;
             $scope.hmeter=true;$scope.hcmeter=true;
           }else{
-
+            $('#healthInfoHeight').val(fet);
+            $('#healthInfoHeight2').val(finc);
             document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
             $scope.hfeet=false;$scope.hinch=false;
             $scope.hmeter=false;$scope.hcmeter=false;
@@ -317,14 +322,25 @@ angular.module('starter.controllers')
       //  $('#heightform')[0].reset();
     }
 
-    $scope.heightunit1 = function() {
-        var max = 10;
-        var heightval = $('#healthInfoHeight').val();
-        if (heightval > max) {
-            $("#healthInfoHeight").val(max);
-        }
+    $scope.depheight1=function(){
+        var max= 10;
+        var heights=$("#healthInfoHeight").val();
+        if (heights==""){
+          $("#healthInfoHeight").val("");
+        }else if (heights > max)
+         {
 
+             $("#healthInfoHeight").val(max);
+         }
+         var heightlen=$("#healthInfoHeight").val().length;
+
+         if(heightlen>2){
+
+           $("#healthInfoHeight").val(max);
+
+         }
     }
+
 
     $scope.heightunit1len=function(){
        var max = 10;
@@ -336,7 +352,10 @@ angular.module('starter.controllers')
     $scope.heightunit2 = function() {
         var max = 99;
         var height2val = $("#healthInfoHeight2").val();
-        if (height2val > max) {
+
+        if (height2val==""){
+          $("#healthInfoHeight2").val("");
+        }else if (height2val > max) {
             $("#healthInfoHeight2").val(max);
         }
 
