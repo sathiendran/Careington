@@ -195,7 +195,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -288,7 +295,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -528,7 +542,14 @@ angular.module('starter.controllers')
                 }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -646,7 +667,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -682,7 +710,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -747,7 +782,14 @@ angular.module('starter.controllers')
                 $state.go('tab.appoimentDetails');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
