@@ -101,6 +101,9 @@ $scope.hghtunit=false;
       $scope.$on('IdleTimeout', function() {
         if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              var elem = document.getElementById("googleContainerId");
+              elem.remove();
+              $ionicBackdrop.release();
               navigator.notification.alert(
                    'Your session timed out.', // message
                    null,
@@ -115,6 +118,9 @@ $scope.hghtunit=false;
       $scope.$on('IdleEnd', function() {
           // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
             console.log("aaa3");
+            $(".ion-google-place-container").css({
+                "display": "none"
+            });
       });
 
       $scope.$on('Keepalive', function() {
