@@ -76,7 +76,7 @@
 							<div class="card" style="box-shadow:none !important;background:none !important;">
 							<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
-									<h2 class="title alignchronic ChronicCondition" >
+									<h2 class="title alignchronic ChronicCondition accSecAppoint" >
 										<!--<span class="profileSpan "><i class="ion-calendar profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}"></i></span>-->
 										<span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
 										<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId == patientId">
@@ -130,7 +130,7 @@
 						<div class="card" style="box-shadow:none !important;background:none !important;">
 						<div class="item-text-wrap itemtextwap" style="text-align: center;">
 
-								<h2 class="title alignchronic ChronicCondition" >
+								<h2 class="title alignchronic ChronicCondition accSecAppoint" >
 									<!--<span class="profileSpan "><i class="ion-calendar profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}"></i></span>-->
 									<span class="profileSpan"><i class="profileicon iconalign-{{deviceName}} profilecalendar usrAppointIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('calendar')"></i></span>
 									<span class="content contentAppoint-{{deviceName}}" ng-if="primaryPatientId == patientId">
@@ -155,7 +155,7 @@
 	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)">
 		<!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
 		<!--<h1 class="title" id="centercolor" >See A Clinician Now</h1>-->
-		<div ng-if="getIndividualPatientCreditCount != 0" class="title CreditClinician" id="centercolor" >
+		<div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician" id="centercolor" >
 			<div class="creditSeeaCLinician" >
 	  		See A Clinician Now
 			</div>
@@ -166,7 +166,7 @@
 				</span>
 			</div>
 		</div>
-		<div ng-if="getIndividualPatientCreditCount == 0">
+		<div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
 			<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 		</div>
 	</ion-footer-bar>
@@ -191,7 +191,7 @@
  <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns(currentPatientDetails)" >
 
 	<!--<h1 class="title userappfootcontent" >See A Clinician Now</h1>-->
-	<div ng-if="getIndividualPatientCreditCount != 0" class="title CreditClinician userappfootcontent"  >
+	<div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician userappfootcontent"  >
 		<div class="creditSeeaCLinician" >
 			See A Clinician Now
 		</div>
@@ -202,7 +202,7 @@
 			</span>
 		</div>
 	</div>
-	<div ng-if="getIndividualPatientCreditCount == 0">
+	<div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
 		<h1 class="title userappfootcontent" >See A Clinician Now</h1>
 	</div>
  </ion-footer-bar>

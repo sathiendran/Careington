@@ -4732,6 +4732,10 @@ p{
              padding: 19px 10px;
            }
       }
+      #WhoNeeds {
+          font-size: 20px;
+          width: 85%;
+      }
       .fday {
         font-size: 25px !important;
             margin-top: 4px !important;
@@ -5162,7 +5166,18 @@ p{
       width:44%;
         }
         .usercontent-IOS {
-          margin-top: 46%;
+          margin-top: 35%;
+          padding-top: 193px;
+          #accountMngeProfile-IOS {
+            padding: 48px 20px;
+          }
+        }
+        .usercontentpat-IOS {
+          margin-top: 17%;
+          padding-top: 30%;
+          #accountMngeProfile-IOS {
+              padding: 56px 10px;
+          }
         }
         .tabs-top > .tabs, .tabs.tabs-top {
         top: inherit !important;
@@ -5208,6 +5223,20 @@ p{
          .tabs-top > .tabs, .tabs.tabs-top {
          top: inherit !important;
          }
+         .usercontent-IOS {
+           margin-top: 35%;
+           padding-top: 193px;
+            #accountMngeProfile-IOS {
+              padding: 48px 20px;
+            }
+        }
+        .usercontentpat-IOS {
+          margin-top: 17%;
+          padding-top: 30%;
+          #accountMngeProfile-IOS {
+              padding: 56px 10px;
+          }
+        }
        .usercontent {
         // margin-top: 177px !important
         }
@@ -7611,6 +7640,9 @@ border-bottom: 2px solid #cbcbcb;
 			margin-right:27%;
 			margin-left: 27%;
 		}
+    .pwdPatImage {
+      width: 45% !important;
+    }
 
 		.epassbg {
 			margin: 0px;
@@ -9147,6 +9179,7 @@ input.ion-google-place[readonly] {
           text-align: center;
   }
 }
+
 .regback{
   background-color: #b2b2b2;
     border-color: #b2b2b2;
@@ -9162,4 +9195,7 @@ input.ion-google-place[readonly] {
     font-size: 23px;
     font-weight: normal;
     text-decoration: none;
+}
+.accSecAppoint {
+  margin-left: -10px !important;
 }
