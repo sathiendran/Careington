@@ -1080,9 +1080,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //console.log($rootScope.hospitalDetailsList);
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
-                $('#verifyEmail').hide();
-                $('#loginEmail').show();
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }
+              $('#verifyEmail').hide();
+              $('#loginEmail').show();
+
             }
         };
 
@@ -1185,7 +1191,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }
+
+
             }
         };
         LoginService.getHospitalInfo(params);
@@ -1622,8 +1635,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if (status == '404') {
                             $scope.ErrorMessage = "Email Address not Found";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else {
-                            $rootScope.serverErrorMessageValidation();
+                        }else if(data==null){
+
+                             $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                             $rootScope.Validation($scope.ErrorMessage);
+
+                        }else{
+                          $rootScope.serverErrorMessageValidation();
                         }
                     }
                 };
@@ -1697,7 +1715,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -1945,7 +1970,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }
+            //    $rootScope.serverErrorMessageValidation();
                 $rootScope.patientInfomation = '';
                 $rootScope.patientAccount = '';
                 $rootScope.patientAddresses = '';
@@ -2014,7 +2045,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -2104,7 +2142,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -2208,7 +2253,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -2250,7 +2302,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $state.go('tab.appoimentDetails');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -2438,7 +2497,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -2628,7 +2694,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $state.go('tab.planDetails');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getHealthPlanProvidersList(params);
@@ -2704,7 +2777,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -3229,7 +3309,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -3251,7 +3338,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $state.go('tab.userhome');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.postClearHealthPlan(params);
@@ -3531,7 +3625,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //	$state.go('tab.patientConcerns');
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }
             }
         };
         $rootScope.MedicationAllegiesItem = "";
@@ -3743,7 +3842,14 @@ LoginService.getScheduledConsulatation(params);
                 //$state.go(nextPage);
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation()
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -3864,7 +3970,14 @@ LoginService.getScheduledConsulatation(params);
                 }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -4004,7 +4117,14 @@ LoginService.getScheduledConsulatation(params);
                     $scope.ReceiptTimeout();
                 },
                 error: function(data) {
+                  if(data==null){
+
+                       $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                       $rootScope.Validation($scope.ErrorMessage);
+
+                  }else{
                     $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
 
@@ -4021,7 +4141,14 @@ LoginService.getScheduledConsulatation(params);
                 $rootScope.doGetAccountDependentDetails();
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.deleteAccountUser(params);
@@ -4411,7 +4538,14 @@ LoginService.getScheduledConsulatation(params);
                 }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -4431,7 +4565,14 @@ LoginService.getScheduledConsulatation(params);
                 //	$state.go('tab.patientDetail');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -4476,7 +4617,14 @@ LoginService.getScheduledConsulatation(params);
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getListOfLocationOrganization(params);
@@ -4493,11 +4641,24 @@ LoginService.getScheduledConsulatation(params);
             accessToken: $rootScope.accessToken,
             statusId: 72,
             success: function(data) {
-                $rootScope.Passedconsultations = data.data;
+              if(data ==null ){
+                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                 $rootScope.Validation($scope.ErrorMessage);
+               }else{
+                   $rootScope.Passedconsultations = data.data;
+               }
+
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getListOfPassedConsultations(params);
@@ -4568,7 +4729,14 @@ LoginService.getScheduledConsulatation(params);
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getListOfCoUsers(params);
@@ -4607,7 +4775,14 @@ LoginService.getScheduledConsulatation(params);
               }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.GetCreditDetails(params);
@@ -4806,7 +4981,14 @@ LoginService.getScheduledConsulatation(params);
               $scope.ReceiptTimeout();
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.postDepitDetails(params);
@@ -4902,7 +5084,14 @@ LoginService.getScheduledConsulatation(params);
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getHospitalInfo(params);
@@ -5048,7 +5237,14 @@ LoginService.getScheduledConsulatation(params);
                 window.open(fileUrl, '_system', 'location=yes');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 

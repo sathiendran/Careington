@@ -266,12 +266,11 @@ $scope.removemodal = function(model) {
  // $scope.height = 0;
   // var heights='';
  $scope.depheight1=function(){
-var max= 10;
-
-
-        var heights=$("#deptheight").val();
-
-       if (heights > max)
+    var max= 10;
+    var heights=$("#deptheight").val();
+     if (heights==""){
+        $("#deptheight").val("");
+     } else if (heights > max)
       {
 
           $("#deptheight").val(max);
@@ -294,7 +293,10 @@ $scope.height1len=function(){
 $scope.depheight2=function(){
        var max = 99;
        var height2val=$('#deptheight2').val();
-       if ( height2val > max)
+
+       if (height2val==""){
+          $("#deptheight2").val("");
+       } else if ( height2val > max)
       {
           $("#deptheight2").val(max);
       }
@@ -802,7 +804,13 @@ if(phonevalue!=''){
                     if(data.status === 400) {
                       $scope.ErrorMessage = data.statusText;
                       $rootScope.Validation($scope.ErrorMessage);
-                    }else {
+                    }else if(data==null){
+
+                           $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                           $rootScope.Validation($scope.ErrorMessage);
+
+                      }
+                      else {
                       $rootScope.serverErrorMessageValidation();
                     }
 
