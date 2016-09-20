@@ -5162,7 +5162,18 @@ p{
       width:44%;
         }
         .usercontent-IOS {
-          margin-top: 46%;
+          margin-top: 35%;
+          padding-top: 193px;
+          #accountMngeProfile-IOS {
+            padding: 48px 20px;
+          }
+        }
+        .usercontentpat-IOS {
+          margin-top: 17%;
+          padding-top: 30%;
+          #accountMngeProfile-IOS {
+              padding: 56px 10px;
+          }
         }
         .tabs-top > .tabs, .tabs.tabs-top {
         top: inherit !important;
@@ -5208,6 +5219,20 @@ p{
          .tabs-top > .tabs, .tabs.tabs-top {
          top: inherit !important;
          }
+         .usercontent-IOS {
+           margin-top: 35%;
+           padding-top: 193px;
+            #accountMngeProfile-IOS {
+              padding: 48px 20px;
+            }
+        }
+        .usercontentpat-IOS {
+          margin-top: 17%;
+          padding-top: 30%;
+          #accountMngeProfile-IOS {
+              padding: 56px 10px;
+          }
+        }
        .usercontent {
         // margin-top: 177px !important
         }
@@ -9146,4 +9171,7 @@ input.ion-google-place[readonly] {
         font-size: 143% !important;
           text-align: center;
   }
+}
+.accSecAppoint {
+  margin-left: -10px !important;
 }
