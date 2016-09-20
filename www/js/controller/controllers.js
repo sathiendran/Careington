@@ -4641,7 +4641,13 @@ LoginService.getScheduledConsulatation(params);
             accessToken: $rootScope.accessToken,
             statusId: 72,
             success: function(data) {
-                $rootScope.Passedconsultations = data.data;
+              if(data ==null ){
+                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                 $rootScope.Validation($scope.ErrorMessage);
+               }else{
+                   $rootScope.Passedconsultations = data.data;
+               }
+
 
             },
             error: function(data) {
