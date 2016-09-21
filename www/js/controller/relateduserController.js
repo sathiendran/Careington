@@ -17,6 +17,8 @@ angular.module('starter.controllers')
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
                 navigator.app.exitApp();
+            } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+                navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
                 var gSearchLength = $('.ion-google-place-container').length;
                 if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
@@ -184,8 +186,22 @@ angular.module('starter.controllers')
                     //myPopup.close();
                     $rootScope.doGetAccountDependentDetails();
                 },
-                error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                error: function(data, status) {
+                    if(status == 401) {
+                      $scope.ErrorMessage = "You are not authorized to change authorization status of this dependent";
+                      $scope.$root.$broadcast("callValidation", {
+                          errorMsg: $scope.ErrorMessage
+                      });
+                    }else {
+                      if(data==null){
+
+                           $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                           $rootScope.Validation($scope.ErrorMessage);
+
+                      }else{
+                        $rootScope.serverErrorMessageValidation();
+                      }
+                    }
                 }
             };
             LoginService.updateDependentsAuthorize(params);
@@ -373,7 +389,12 @@ $rootScope.authorised=relateDependentAuthorize;
 
                 },
                 error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
                 }
             };
             LoginService.getListOfCoUsers(params);
@@ -464,7 +485,12 @@ $rootScope.authorised=relateDependentAuthorize;
                     });
                 },
                 error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
                 }
             };
             LoginService.getAccountDependentDetails(params);
@@ -511,14 +537,21 @@ $rootScope.authorised=relateDependentAuthorize;
             $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addUser');
   }
+  var currentLocation = window.location;
+  var loc=currentLocation.href;
+  var newloc=loc.split("#");
+  var locat=newloc[1];
+  var sploc=locat.split("/");
+  var cutlocations=sploc[1] +"."+sploc[2];
         $scope.gpToAppointments = function(getDependentDetails) {
-          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
+          $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
           //  $state.go('tab.appointmentpatientdetails');
         }
         $scope.goToConsultations = function(getDependentDetails) {
-          $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
+          $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
           //  $state.go('tab.consultations');
         }
+
         $scope.seeaPatientConcerns = function(getDependentDetails) {
 
             $rootScope.PatientPrimaryConcernItem;
@@ -549,7 +582,9 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.MedicationCountValid = "";
 
           if($rootScope.onDemandAvailability > 0) {
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.PatientAge, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+           $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+
+              //  $rootScope.GoToConcerns(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
           //  console.log(getDependentDetails);
           //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
           } else {
@@ -568,8 +603,18 @@ $rootScope.authorised=relateDependentAuthorize;
                 $rootScope.isCheckedFeMale = true;
             }*/
           //  $rootScope.doGetSelectedPatientProfiles(currentPatientDetails.patientId,'tab.healthinfo', '')
-            $rootScope.GoToPatientDetails(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
+            $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
             $rootScope.passededconsultants();
+           $rootScope.restage = getAge(getDependentDetails.PatientAge);
+            if ($rootScope.restage >= 12) {
+                $rootScope.viewemailDisplay = 'flex';
+                $rootScope.viewtimezoneDisplay='flex';
+            } else {
+                $rootScope.viewemailDisplay = 'none';
+                $rootScope.viewtimezoneDisplay='none';
+
+            }
+
             $state.go('tab.healthinfo');
 
         }

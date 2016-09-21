@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer) {
+.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer, Idle) {
       $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -17,6 +17,8 @@ angular.module('starter.controllers')
         } else if ($rootScope.currState.$current.name === "tab.login") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+            navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
@@ -65,6 +67,38 @@ angular.module('starter.controllers')
             }, 300);
         }
     };
+
+
+
+    $scope.$on('IdleStart', function() {
+            console.log("aaa");
+    });
+    $scope.$on('IdleWarn', function(e, countdown) {
+    });
+    $scope.$on('IdleTimeout', function() {
+      if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+          if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+            navigator.notification.alert(
+                 'Your session timed out.', // message
+                 null,
+                 $rootScope.alertMsgName,
+                 'Ok' // buttonName
+             );
+            $rootScope.ClearRootScope();
+          }
+      }
+    });
+
+    $scope.$on('IdleEnd', function() {
+        // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+          console.log("aaa3");
+    });
+
+    $scope.$on('Keepalive', function() {
+        // do something to keep the user's session alive
+          console.log("aaa4");
+    });
+
     $scope.newUSer = {};
     $scope.addmore = false;
 
@@ -114,7 +148,7 @@ angular.module('starter.controllers')
       }
     $scope.postNewuserDetails = function() {
         $scope.firstName = $("#userfirstname").val();
-        $scope.lastName = $("#userlastname").val();
+      //  $scope.lastName = $("#userlastname").val();
         $scope.email = $("#useremail").val();
         $scope.ValidateEmail = function(email) {
             //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -178,11 +212,11 @@ angular.module('starter.controllers')
          var dt1 = Date.parse(now),
          dt2 = Date.parse(selectDate);*/
         if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
-            $scope.ErrorMessage = "Please enter First Name";
+            $scope.ErrorMessage = "Please enter Name";
             $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
+      /*  } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
             $scope.ErrorMessage = "Please enter Last Name";
-            $rootScope.Validation($scope.ErrorMessage);
+            $rootScope.Validation($scope.ErrorMessage);*/
         } else if (typeof $scope.email === 'undefined' || $scope.email === '') {
             $scope.ErrorMessage = "Please enter Email Id";
             $rootScope.Validation($scope.ErrorMessage);
@@ -275,13 +309,13 @@ angular.module('starter.controllers')
             locationName: $scope.colocation,
             firstName: $scope.firstName,
             lastName: $scope.lastName,
+            lastName: $scope.lastName,
           //  profileImagePath: $rootScope.newCoUserImagePath,
            profileImagePath:"",*/
            var params = {
                accessToken: $scope.accessToken,
                email: $scope.email,
                firstName: $scope.firstName,
-               lastName: $scope.lastName,
             success: function(data) {
                 $('#couserform')[0].reset();
                 $('select').prop('selectedIndex', 0);
@@ -299,7 +333,13 @@ angular.module('starter.controllers')
 
 
             },
-            error: function(data) {
+            error: function(data,status) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 var Emailerror=data.message
                 if(Emailerror="Email ID Already Registered"){
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.email;
@@ -307,6 +347,8 @@ angular.module('starter.controllers')
                 }else{
                     $rootScope.serverErrorMessageValidation();
                 }
+              }
+
 
             }
         };
@@ -319,7 +361,9 @@ angular.module('starter.controllers')
     $scope.cancelcouser = function() {
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
-        $state.go('tab.relatedusers');
+        //$state.go('tab.relatedusers');
+        history.back();
+        scope.$apply();
     }
 
 
@@ -478,7 +522,7 @@ angular.module('starter.controllers')
     })
     .filter('tel', function() {
         return function(tel) {
-            console.log(tel);
+          //  console.log(tel);
             if (!tel) {
                 return '';
             }

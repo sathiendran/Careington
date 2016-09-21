@@ -21,6 +21,8 @@ angular.module('starter.controllers')
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
             navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+            navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
@@ -187,12 +189,20 @@ angular.module('starter.controllers')
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
+                $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
                 $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
                 $state.go('tab.ConsentTreat');
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -211,7 +221,6 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 //Get Hospital Information
                 $rootScope.patientId = $rootScope.appointmentsPatientId;
@@ -227,6 +236,7 @@ angular.module('starter.controllers')
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId == 71) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
                             function() {
@@ -238,6 +248,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 72) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
                             function() {
@@ -249,6 +260,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 79) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
                             function() {
@@ -260,6 +272,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 80) {
+                      $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
                             function() {
@@ -282,7 +295,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -295,6 +315,260 @@ angular.module('starter.controllers')
         //$rootScope.Validation( $scope.errorMsg);
         $scope.doGeAppointmentExistingConsulatation();
     });
+
+    $rootScope.doGetIndividualScheduledDetails = function() {
+        if ($rootScope.accessToken == 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        $rootScope.appointmentPatientId = '';
+        $rootScope.individualScheduledConsultationList = [];
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                if (data != "") {
+                    $scope.individualScheduledConsultationList = data.data[0];
+                    if ($rootScope.patientId == $rootScope.primaryPatientId) {
+                        $rootScope.P_isAuthorized = true;
+                    } else {
+                        if (data.data[0].account.isAuthorized == "T" || data.data[0].account.isAuthorized == true || data.data[0].account.isAuthorized == "Y") {
+                            $rootScope.P_isAuthorized = true;
+                            //  }else if(P_isAuthorized == "F" || P_isAuthorized == false) {
+                        } else {
+                            $rootScope.P_isAuthorized = false;
+                        }
+                    }
+
+                    var date = new Date($scope.individualScheduledConsultationList.dob);
+                    //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+                    $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+
+                    if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
+                        var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
+                        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+                        $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                        if ($scope.userAge === 0) {
+                            $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                            $rootScope.userAgeForIntake = 8;
+                        } else {
+                            $rootScope.concentToTreatPreviousPage = "tab.CurrentMedication";
+                            $rootScope.userAgeForIntake = 7;
+                        }
+                        if ($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
+                          if($rootScope.userDOB.indexOf('T') == -1) {
+                            $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
+                          }
+                        }
+                    }
+                    if ($scope.individualScheduledConsultationList.gender == 'M' || $scope.individualScheduledConsultationList.gender == 'Male') {
+                        $rootScope.userGender = "Male";
+                        $rootScope.isCheckedMale = true;
+                    } else if ($scope.individualScheduledConsultationList.gender == 'F' || $scope.individualScheduledConsultationList.gender == 'Female') {
+                        $rootScope.userGender = "Female";
+                        $rootScope.isCheckedFemale = true;
+                    } else {
+                      $rootScope.userGender = '';
+                      $rootScope.isCheckedFemale = '';
+                    }
+
+
+                    if($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
+                      if (!angular.isUndefined($scope.individualScheduledConsultationList.account.relationship)) {
+                          $rootScope.patRelationShip =  $scope.individualScheduledConsultationList.account.relationship;
+                      } else {
+                          $rootScope.patRelationShip = '';
+                      }
+                    } else {
+                        $rootScope.patRelationShip = '';
+                    }
+
+                    $rootScope.getIndividualScheduledList = [];
+                    $rootScope.individualScheduleParticipants = [];
+                    var currentDate = new Date();
+                    currentDate = $scope.addMinutes(currentDate, -30);
+                    //var getDateFormat = $filter('date')(currentDate, "yyyy-MM-ddTHH:mm:ss");
+
+
+                    angular.forEach($scope.individualScheduledConsultationList.appointments, function(index, item) {
+                        if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
+
+
+                          var apptdate=index.startTime
+                            var dataw=Date.parse(apptdate);
+                            var newda=new Date(dataw);
+                            var splitmnth=newda.getMonth()+1;
+                            var splitdate=newda.getDate();
+                            var splityear=newda.getFullYear();
+                            var Aptdate=splityear+"/"+splitmnth+"/"+splitdate;
+                            $scope.formatscheduleddate = moment(Aptdate, 'YYYY/MM/DD').format('MMM D');
+                            $rootScope.getIndividualScheduledList.push({
+                                'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
+                                'appointmentId': index.appointmentId,
+                                'appointmentStatusCode': index.appointmentStatusCode,
+                                'appointmentTypeCode': index.appointmentTypeCode,
+                                'availabilityBlockId': index.availabilityBlockId,
+                                'endTime': index.endTime,
+                                'intakeMetadata': angular.fromJson(index.intakeMetadata),
+                                'participants': angular.fromJson(index.participants),
+                                'waiveFee': index.waiveFee,
+                                'scheduledDate':$scope.formatscheduleddate
+                            });
+                            angular.forEach(index.participants, function(index, item) {
+                                $rootScope.individualScheduleParticipants.push({
+                                    'appointmentId': index.appointmentId,
+                                    'attendenceCode': index.attendenceCode,
+                                    'participantId': index.participantId,
+                                    'participantTypeCode': index.participantTypeCode,
+                                    'person': angular.fromJson(index.person),
+                                    'referenceType': index.referenceType,
+                                    'status': index.status
+                                });
+                            })
+                        }
+                    });
+
+                    $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
+
+                    $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
+                    $rootScope.doGetScheduledConsulatation();
+                    if($rootScope.getIndividualScheduleDetails.length==0){
+                      navigator.notification.alert(
+                          'Your appointment is no longer available.', // message
+                          function() {
+                              $state.go('tab.userhome');
+                              return;
+                          },
+                          $rootScope.alertMsgName, // title
+                          'Done' // buttonName
+                      );
+                    }
+
+                    var d = new Date();
+                    d.setHours(d.getHours() + 12);
+                    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    $rootScope.individualNextAppointmentDisplay = 'none';
+                    $rootScope.individualwithoutAppointmentDisplay = 'block';
+                    $rootScope.accountClinicianFooter = 'block';
+                    $rootScope.accountStyle = "";
+                    $rootScope.userAccContent = "";
+                    if ($rootScope.individualScheduledList != '') {
+                        //var getReplaceTime = ($rootScope.scheduledList[0].scheduledTime).replace("T"," ");
+                        //var currentUserHomeDate = currentUserHomeDate.replace("T"," ");
+                        $scope.getScheduledList = $rootScope.individualScheduledList[0];
+                         $rootScope.GoToappoimentDetailsFromUserHome($scope.getScheduledList,"AppointmentPage");
+                        var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
+                        var currentUserHomeDate = currentUserHomeDate;
+
+
+                        if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+                            console.log('scheduledTime <= getTwelveHours UserHome');
+                             $("#appointNotes").html($rootScope.appointNotes);
+                            //$rootScope.nextAppointmentDisplay = 'block';
+                            //  $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
+                            $rootScope.accountClinicianFooter = 'none';
+                            $rootScope.individualNextAppointmentDisplay = 'block';
+                            $rootScope.individualwithoutAppointmentDisplay = 'none';
+                            //$rootScope.accountStyle = "AppointDisplay" + $rootScope.deviceName;
+                            $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
+                            $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
+                            $rootScope.appointmentPatientId = $rootScope.patientId;
+                            var beforAppointmentTime = getReplaceTime;
+                            var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
+
+
+                            if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {
+
+                            }
+                        }
+
+                        var getReplaceTime1 = $rootScope.individualScheduledList[0].scheduledTime;
+                        var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+                        var currentUserHomeDate = currentUserHomeDate;
+                        if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+
+                            $rootScope.time = new Date(getReplaceTime).getTime();
+
+                            $timeout(function() {
+                                document.getElementsByTagName('timer')[0].stop();
+                                document.getElementsByTagName('timer')[0].start();
+                            }, 10);
+
+                            $scope.$on('timer-tick', function(event, args) {
+                                if (args.days == 0) {
+                                    $rootScope.hourDisplay = 'initial';
+                                    $rootScope.daysDisplay = 'none';
+                                    $rootScope.dayDisplay = 'none';
+                                } else if (args.days == 1) {
+                                    $rootScope.daysDisplay = 'none';
+                                    $rootScope.hourDisplay = 'none';
+                                    $rootScope.dayDisplay = 'initial';
+                                } else if (args.days > 1) {
+                                    $rootScope.daysDisplay = 'initial';
+                                    $rootScope.hourDisplay = 'none';
+                                    $rootScope.dayDisplay = 'none';
+                                }
+
+
+                                if (args.millis < 600) {
+                                    $rootScope.timeNew = 'none';
+                                    $rootScope.timeNew1 = 'block';
+                                    $rootScope.timerCOlor = '#E1FCD4';
+                                    $('.AvailableIn').hide();
+                                    $('.enterAppoinment').show();
+                                } else if (args.millis > 600) {
+                                    $rootScope.timeNew = 'block';
+                                    $rootScope.timeNew1 = 'none';
+                                    $rootScope.timerCOlor = '#FDD8C5';
+                                    $('.AvailableIn').show();
+                                    $('.enterAppoinment').hide();
+                                }
+                            });
+                            $rootScope.time = new Date(getReplaceTime).getTime();
+
+                            var d = new Date();
+
+                            var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+
+                            if (getReplaceTime < currentUserHomeDate) {
+                                $rootScope.timerCOlor = '#E1FCD4';
+                                $('.AvailableIn').hide();
+                                $('.enterAppoinment').show();
+                            }
+                        } else if ((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+                            $rootScope.timerCOlor = 'transparent';
+                        }
+                    }
+                }
+            },
+            error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+
+        LoginService.getIndividualScheduledConsulatation(params);
+    }
+
+
+
+
+
+ $scope.doRefreshAccountdetails= function() {
+    $rootScope.doGetIndividualScheduledDetails();
+        $timeout(function() {
+          $scope.$broadcast('scroll.refreshComplete');
+        }, 1000);
+        $scope.$apply();
+    };
+
+
 
     $scope.doGeAppointmentExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -313,11 +587,12 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-
+                //$rootScope.doGetIndividualScheduledConsulatation();
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId == 71) {
+                          $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
                             function() {
@@ -329,6 +604,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 72) {
+                        $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
                             function() {
@@ -340,6 +616,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 79) {
+                        $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
                             function() {
@@ -351,6 +628,7 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else if ($rootScope.consultationStatusId == 80) {
+                        $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
                             function() {
@@ -385,11 +663,18 @@ angular.module('starter.controllers')
                 	$rootScope.preConsultantNotes = '';
                 }*/
                 $scope.doGetExistingPatientName();
-                $scope.doGetDoctorDetails();
+                $rootScope.doGetDoctorDetails();
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -404,23 +689,42 @@ angular.module('starter.controllers')
             success: function(data) {
                 $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
-                if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
+                /*if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
                   var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
                   $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }else {
                   $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
+                }*/
+
+                if (typeof data.data[0].profileImagePath != 'undefined' && data.data[0].profileImagePath != '') {
+                    var hosImage = data.data[0].profileImagePath;
+                    if (hosImage.indexOf("http") >= 0) {
+                        $rootScope.appointmentsPatientImage = hosImage;
+                    } else {
+                        $rootScope.appointmentsPatientImage = apiCommonURL + hosImage;
+                    }
+                } else {
+                    var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
+                    $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
                 }
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
         LoginService.getPrimaryPatientLastName(params);
     }
 
-    $scope.doGetDoctorDetails = function() {
+    $rootScope.doGetDoctorDetails = function() {
         $rootScope.doctorGender = '';
         if ($scope.accessToken == 'No Token') {
             alert('No token.  Get token first then attempt operation.');
@@ -438,6 +742,14 @@ angular.module('starter.controllers')
                   } else if (index.gender === 'F') {
                       var docGender = "Female";
                   }
+                  if (data.data[0].profileImagePath !== '' && typeof data.data[0].profileImagePath!== 'undefined') {
+                             $rootScope.DoctorImage = data.data[0].profileImagePath;
+                         } else {
+                             $rootScope.DoctorImage = apiCommonURL + '/images/default-user.jpg';
+                             var ptInitial = getInitialForName(data.data[0].firstName + ' ' + data.data[0].lastName);
+                             $rootScope.DoctorImage = generateTextImage(ptInitial, $rootScope.brandColor);
+                         }
+
                     $rootScope.scheduledDoctorDetails.push({
                         /*'businessAddress': index.businessAddress,
                         'firstName': index.firstName,
@@ -457,7 +769,7 @@ angular.module('starter.controllers')
                         'firstName': index.firstName,
                         'fullName': index.fullName,
                         'gender': docGender,
-                        'profileImagePath': index.profileImagePath
+                        'profileImagePath': $rootScope.DoctorImage
                     });
                 });
                 //document.getElementsByTagName('timer')[0].stop();
@@ -470,7 +782,14 @@ angular.module('starter.controllers')
                 $state.go('tab.appoimentDetails');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -478,6 +797,23 @@ angular.module('starter.controllers')
 
     }
 
+    if($rootScope.AppointScheduleTime != '') {
+      setTimeout(function () {
+        $rootScope.timeNew = 'none';
+        $rootScope.timeNew1 = 'none';
+        $('.AvailableIn').hide();
+        $('.enterAppoinment').hide();
+        $('.enterAppoinment2').show();
+        $(".enterAppoinment2").css("display","block");
+      }, $rootScope.AppointScheduleTime);
+    } else {
+      $rootScope.timeNew = 'none';
+      $rootScope.timeNew1 = 'none';
+      $('.AvailableIn').hide();
+      $('.enterAppoinment').hide();
+      $('.enterAppoinment2').show();
+      $(".enterAppoinment2").css("display","block");
+    }
 
     //$scope.doGeAppointmentExistingConsulatation();
 

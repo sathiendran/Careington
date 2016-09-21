@@ -11,6 +11,11 @@ angular.module('starter.controllers')
         }
         return newStr;
     }
+    $timeout(function() {
+          $('option').filter(function() {
+              return this.value.indexOf('?') >= 0;
+          }).remove();
+      }, 100);
 
     $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber) {
         var phoneNumberWithoutCountryCode = "";
@@ -40,7 +45,7 @@ angular.module('starter.controllers')
             var heightValSplit = heightVal.split("|");
             var heightUnitSplit = heightUnit.split("/");
             if (heightValSplit[1] == 0) {
-                newHeight = heightValSplit[0] + " " + heightUnitSplit[0];
+                newHeight = heightValSplit[0] + " " + heightUnitSplit[0] + " " + heightValSplit[1] + " " + heightUnitSplit[1];
             } else {
                 newHeight = heightValSplit[0] + " " + heightUnitSplit[0] + " " + heightValSplit[1] + " " + heightUnitSplit[1];
             }
@@ -61,15 +66,17 @@ angular.module('starter.controllers')
     };
 
     $rootScope.getTimeZoneName = function(timezoneCode) {
-        var timezoneInfo = $filter('filter')($rootScope.timeZones, {
-            id: timezoneCode
-        });
-        if (timezoneInfo[0])
-            return timezoneInfo[0].name;
-        else if (timezoneInfo)
-            return timezoneInfo.name;
-        else
-            return "";
+      if(timezoneCode !== 0) {
+          var timezoneInfo = $filter('filter')($rootScope.timeZones, {
+              id: timezoneCode
+          });
+          if (timezoneInfo[0])
+              return timezoneInfo[0].name;
+          else if (timezoneInfo)
+              return timezoneInfo.name;
+          else
+              return "";
+      }
     };
 
 
@@ -95,6 +102,8 @@ angular.module('starter.controllers')
         } else if ($rootScope.currState.$current.name === "tab.login") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+            navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
@@ -132,10 +141,16 @@ angular.module('starter.controllers')
         //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
         //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
     $scope.toggleLeft = function() {
+        $rootScope.statename=$rootScope.currState.$current.name;
         $ionicSideMenuDelegate.toggleLeft();
         $rootScope.checkAndChangeMenuIcon();
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
+        }
+        if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
+         if($rootScope.statename="tab.healthinfo"){
+           $('.sideuserhealth').addClass("uhome");
+         }
         }
         if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
             checkAndChangeMenuIcon = $interval(function() {
@@ -147,12 +162,12 @@ angular.module('starter.controllers')
     $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
     $scope.addmore = false;
     $scope.healthhide = true;
-    $scope.headerval = false;
+
     $scope.editshow = true;
     $scope.doneshow = true;
     $scope.readattr = false;
     $scope.doneedit = false;
-    $scope.editshow = true;
+
     $scope.editimg = false;
     $scope.viewimg = true;
     //  $scope.healthinfoshow=true;
@@ -177,147 +192,325 @@ angular.module('starter.controllers')
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
 
-    $scope.heightunit1=function(){
-         var max = 10;
+    $scope.hghtunit=false;
+    $scope.hfeet=true;$scope.hinch=true;
+    $scope.hmeter=true;$scope.hcmeter=true;
+    $scope.heighteditmodal=function(){
+      $('#healthInfoHeightUnit').val("");
 
-var heightval=$('#healthInfoHeight').val();
-if ( heightval > max)
-{
-   $("#healthInfoHeight").val(max);
-}
+          //document.getElementById('hunit').innerHTML = '';
 
-    }
-    $scope.heightunit2=function(){
-           var max = 99;
-           var height2val= $("#healthInfoHeight2").val();
-           if ( height2val > max)
-          {
-              $("#healthInfoHeight2").val(max);
+      $ionicModal.fromTemplateUrl('templates/tab-heightedittemplate.html', {
+          scope: $scope,
+          animation: 'slide-in-up',
+          focusFirstInput: false,
+          backdropClickToClose: false
+      }).then(function(modal) {
+        var hghtinval=$('#heightuser').val();
+        var reminspace=hghtinval.split(" ");
+        var fet=reminspace[0];
+        var finc=reminspace[2];
+        var units=reminspace[1];
+
+      //   document.getElementById("edhunit").innerHTML =  units;
+          $scope.modal = modal;
+          $scope.modal.show().then(function() {
+          //  var newq=$('#edhunit').text();
+          if(units=="ft"){
+            $('#healthInfoHeight').val(fet);
+            $('#healthInfoHeight2').val(finc);
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
+            $scope.hfeet=true;$scope.hinch=true;
+            $scope.hmeter=true;$scope.hcmeter=true;
+          }else{
+            $('#healthInfoHeight').val(fet);
+            $('#healthInfoHeight2').val(finc);
+            document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+            $scope.hfeet=false;$scope.hinch=false;
+            $scope.hmeter=false;$scope.hcmeter=false;
           }
 
-          var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
-          var getheightunit=_.first(heightunit);
-          if(getheightunit=="ft/in"){
-              var maxheight=11;
-              if ( height2val > maxheight)
-             {
-                 $("#healthInfoHeight2").val(maxheight);
-             }
-          }
+          });
+
+          $timeout(function() {
+              $('option').filter(function() {
+                  return this.value.indexOf('?') >= 0;
+              }).remove();
+          }, 100);
+      });
 
     }
-    $scope.weightunit=function(){
-           var maxweight = 999;
-           var weightval=$('#healthInfoWeight').val();
-           if ( weightval > maxweight)
-          {
-              $("#healthInfoWeight").val(maxweight);
-          }
+    $scope.removeeditmodal = function(model) {
+      $scope.modal.remove()
+      .then(function() {
+        $scope.modal = null;
+      });
+
+        $('option').filter(function() {
+            return this.value.indexOf('?') >= 0;
+        }).remove();
+
+    };
+    $rootScope.ValidationFunction1 = function($a) {
+        function refresh_close() {
+            $('.close').click(function() {
+                $(this).parent().fadeOut(200);
+            });
+        }
+        refresh_close();
+
+        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+
+        $("#notifications-top-center").remove();
+        //$( ".ppp" ).prepend( top );
+        $(".ErrorMessage").append(top);
+        //$(".notifications-top-center").addClass('animated ' + 'bounce');
+        refresh_close();
+
     }
 
-    $scope.heightunitchange=function(){
-        var maxheight=11;
+    $scope.heighteditsave=function(){
+      $('#heightuser').val('');
+      $rootScope.height1=$('#healthInfoHeight').val();
+      $rootScope.height2=$('#healthInfoHeight2').val();
+     var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+     var heightunitid = $("#healthInfoHeightUnit").val().split("@").slice(0, 1);
+     var getheightunitid=_.first(heightunitid);
+     var getheightunit=_.first(heightunit);
+       if(getheightunit==="ft/in"){
+         if($rootScope.height1!='' && $rootScope.height2 !=''  ){
+           var heightdepval=$('#healthInfoHeight').val() + " " + "ft" + " " +  $('#healthInfoHeight2').val() + " " + "in";
+           $('#heightuser').val(heightdepval);
+         } else if($rootScope.height1!='' && $rootScope.height2==''){
+            var heightdepval=$('#healthInfoHeight').val()+ " " +  "ft" + " " + "0"  + " " + "in";
+            $('#heightuser').val(heightdepval);
+          }
+         else{
+           var heightdepval=$('#healthInfoHeight').val() + " " + "ft" +" "+"0"+" " +'in';
+           $('#heightuser').val(heightdepval);
+         }
+    }else{
+         if($rootScope.height1!='' && $rootScope.height2!=''){
+           var heightdepval=$('#healthInfoHeight').val() +" "+ "m" + " " +$('#healthInfoHeight2').val() + " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+     else if($rootScope.height!='' && $rootScope.height==''){
+       var heightdepval=$('#healthInfoHeight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+     else {
+       var heightdepval=$('#healthInfoHeight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+       $('#heightuser').val(heightdepval);
+     }
+    }
+     document.getElementById("hunit").innerHTML =getheightunitid;
+
+     if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
+       $scope.ErrorMessage = "Please enter height";
+       $rootScope.ValidationFunction1($scope.ErrorMessage);
+     }else{
+       $scope.modal.remove()
+       .then(function() {
+         $scope.modal = null;
+       });
+     }
+
+      $('option').filter(function() {
+          return this.value.indexOf('?') >= 0;
+      }).remove();
+      //  $('#heightform')[0].reset();
+    }
+
+    $scope.depheight1=function(){
+        var max= 10;
+        var heights=$("#healthInfoHeight").val();
+        if (heights==""){
+          $("#healthInfoHeight").val("");
+        }else if (heights > max)
+         {
+
+             $("#healthInfoHeight").val(max);
+         }
+         var heightlen=$("#healthInfoHeight").val().length;
+
+         if(heightlen>2){
+
+           $("#healthInfoHeight").val(max);
+
+         }
+    }
+
+
+    $scope.heightunit1len=function(){
+       var max = 10;
+       var heightunitlen=$('#healthInfoHeight').val().length;
+       if(heightunitlen>2){
+           $("#healthInfoHeight").val(max);
+       }
+    }
+    $scope.heightunit2 = function() {
+        var max = 99;
+        var height2val = $("#healthInfoHeight2").val();
+
+        if (height2val==""){
+          $("#healthInfoHeight2").val("");
+        }else if (height2val > max) {
+            $("#healthInfoHeight2").val(max);
+        }
+
         var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
-        var getheightunit=_.first(heightunit);
-        if(getheightunit="ft/in"){
-            var height2val=$('#healthInfoHeight2').val();
+        var getheightunit = _.first(heightunit);
+        if (getheightunit == "ft/in") {
+            var maxheight = 11;
+            if (height2val > maxheight) {
+                $("#healthInfoHeight2").val(maxheight);
+            }
+        }
+
+    }
+    $scope.heightunit2len=function(){
+      var max = 99;
+      var heightunit2len=$('#healthInfoHeight2').val().length;
+      var height2val = $("#healthInfoHeight2").val();
+      if(heightunit2len>2){
+          $("#healthInfoHeight2").val(max);
+      }
+      var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+      var getheightunit=_.first(heightunit);
+      if(getheightunit=="ft/in"){
+          var maxheight=11;
+          if ( height2val > maxheight)
+         {
+             $("#healthInfoHeight2").val(maxheight);
+         }
+      }
+    }
+    $scope.weightunitchange=function(){
+      var maxweight = 999;
+      var weightval = $('#healthInfoWeight').val();
+      if (weightval > maxweight) {
+          $("#healthInfoWeight").val(maxweight);
+      }
+    }
+    $scope.weightunit = function() {
+        var maxweight = 999;
+        var weightval = $('#healthInfoWeight').val();
+        if (weightval > maxweight) {
+            $("#healthInfoWeight").val(maxweight);
+        }
+        var weightvallen=$('#healthInfoWeight').val().length;
+        if(weightvallen>3){
+            $("#healthInfoWeight").val(maxweight);
+        }
+    }
+
+      $scope.heightunitchange = function() {
+        var maxheight=11;
+        //$scope.depunit=heightunit;
+       var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
+       var getheightunit = _.first(heightunit);
+        if(getheightunit==="ft/in"){
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+          var height2val = $('#healthInfoHeight2').val();
             if(height2val!=""){
                 if ( height2val > maxheight)
                {
-                   $("#healthInfoHeight2").val(maxheight);
+                    $("#healthInfoHeight2").val(maxheight);
                }
             }
+        }else{
+          $scope.hfeet=false;$scope.hinch=false;
+          $scope.hmeter=false;$scope.hcmeter=false;
         }
     }
 
+    $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
     $scope.edittext = function() {
 
-        var doddate = new Date($rootScope.currentPatientDetails[0].dob);
-        var today = new Date();
-        var nowyear = today.getFullYear();
-        var nowmonth = today.getMonth() + 1;
-        var nowday = today.getDate();
-        var dateofb = new Date(doddate)
-        var birthyear = dateofb.getFullYear();
-        var birthmonth = dateofb.getMonth();
-        var birthday = dateofb.getDate();
-        var age = nowyear - birthyear;
-        var age_month = nowmonth - birthmonth;
-        var age_day = nowday - birthday;
-        if (age_month < 0 || (age_month == 0 && age_day < 0)) {
-            age = parseInt(age) - 1;
-        }
-        if (age >= 12) {
+        $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
+        $rootScope.restage = getAge( $rootScope.doddate);
+        if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';
-            $rootScope.timezoneDisplay='flex';
+            $rootScope.timezoneDisplay = 'flex';
         } else {
             $rootScope.emailDisplay = 'none';
-            $rootScope.timezoneDisplay='none';
+            $rootScope.timezoneDisplay = 'none';
 
         }
+        $timeout(function() {
+              $('option').filter(function() {
+                  return this.value.indexOf('?') >= 0;
+              }).remove();
+          }, 100);
 
-        $scope.readattr = false;
+
+        //  $scope.readattr = false;
         $scope.doneshow = false;
         $scope.editshow = false;
         $rootScope.flag = false;
-        $scope.viewimg = false;
+        //$scope.viewimg = false;
         $scope.doneedit = true;
         $scope.editimg = true;
         $('#ss').hide();
         $('#aaa').show();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+        $scope.userdob = new Date($rootScope.userDOB);
         $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
+        $scope.healthInfoModel.healthInfoCountry = $rootScope.currentPatientDetails[0].countryCode;
+        $scope.healthInfoModel.healthInfoTimezone = $rootScope.currentPatientDetails[0].account.timeZoneId;
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
+        $scope.formatheight = $rootScope.currentPatientDetails[0].anatomy.height;
+        $scope.formatheightval = $scope.formatheight.split("|");
+        $scope.height = parseInt($scope.formatheightval[0]);
+        $scope.height2 = parseInt($scope.formatheightval[1]);
+        $scope.weightvalue=$rootScope.currentPatientDetails[0].anatomy.weight;
+        $scope.weight=parseInt($scope.weightvalue);
 
         editsvalues.removeClass('textdata');
         edittextarea.removeClass('textdata');
         editsvalues.addClass('editdata');
         edittextarea.addClass('editdata');
-        $scope.healthInfoModel.userDOB = new Date($rootScope.userDOB);
+        setTimeout(function(){
+              $('#healthInfoTimezone').val($scope.healthInfoModel.healthInfoTimezone);
+              $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
+        }, 10);
     }
 
-    //$scope.healthInfo = {};
-    $scope.ngBlur = function() {
-        var today = new Date();
-        var nowyear = today.getFullYear();
-        var nowmonth = today.getMonth() + 1;
-        var nowday = today.getDate();
-        $rootScope.doddate = $('#healthInfoDOB').val();
-        var dateofb = new Date($rootScope.doddate );
-        var birthyear = dateofb.getFullYear();
-        var birthmonth = dateofb.getMonth();
-        var birthday = dateofb.getDate();
-        var age = nowyear - birthyear;
-        var age_month = nowmonth - birthmonth;
-        var age_day = nowday - birthday;
-        if (age_month < 0 || (age_month == 0 && age_day < 0)) {
-            age = parseInt(age) - 1;
-        }
-        if (age >= 12) {
-            $rootScope.emailDisplay = 'flex';
-            $rootScope.timezoneDisplay='flex';
-        } else {
-            $rootScope.emailDisplay = 'none';
-            $rootScope.timezoneDisplay='none';
 
-        }
-    }
+$scope.editDob=function(){
+  var chngedob=$('#healthInfoDOB').val();
+  var patdob =new Date(chngedob);
+  $rootScope.restage =getAge(patdob);
+  if ($rootScope.restage  >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
+      $rootScope.emailDisplay = 'flex';
+      $rootScope.timezoneDisplay = 'flex';
+  } else {
+      $rootScope.emailDisplay = 'none';
+      $rootScope.timezoneDisplay = 'none';
 
-$scope.healthphoneblur=function(){
-    $scope.homephonelength= $('#healthInfoHomePhone').val().length;
-    var homephoneval= $('#healthInfoHomePhone').val();
-    if(homephoneval!=''){
-        if($scope.homephonelength < 14){
-            $scope.ErrorMessage = "Please enter valid Home Phone Number";
-            $rootScope.Validation($scope.ErrorMessage);
-        }
-    
-    }
+  }
 
 }
+    //$scope.healthInfo = {};
+
+
+    $scope.healthphoneblur = function() {
+        $scope.homephonelength = $('#healthInfoHomePhone').val().length;
+        var homephoneval = $('#healthInfoHomePhone').val();
+        if (homephoneval != '') {
+            if ($scope.homephonelength < 14) {
+                $scope.ErrorMessage = "Please enter valid Home Phone Number";
+                $rootScope.Validation($scope.ErrorMessage);
+            }
+
+        }
+
+    }
 
     $scope.putUpdatePatientDetails = function() {
             $scope.editimg = true;
@@ -339,13 +532,61 @@ $scope.healthphoneblur=function(){
             } else {
                 $scope.healthInfoRelationship = "NA";
             }
+
+            if($rootScope.height2==""){
+              $rootScope.height2="0";
+              $scope.healthInfoHeight2 = $rootScope.height2;
+            }else{
+                  $scope.healthInfoHeight2 = $rootScope.height2;
+            }
+
+            if($rootScope.height1==undefined){
+              var hghtval=$('#heightuser').val();
+              var remspace=hghtval.split(" ");
+              $rootScope.height1=remspace[0];
+              $scope.healthInfoHeight =  $rootScope.height1;
+            }else{
+              $scope.healthInfoHeight =  $rootScope.height1;
+            }
+
+            if($rootScope.height2==undefined){
+              var hghtinval=$('#heightuser').val();
+              var reminspace=hghtval.split(" ");
+              $rootScope.height2=reminspace[2];
+              $scope.healthInfoHeight2 =  $rootScope.height2;
+            }else{
+                $scope.healthInfoHeight2 =  $rootScope.height2;
+            }
+
+            if($scope.healthInfoHeightUnit=="" ||$scope.healthInfoHeightUnit==undefined ){
+              var hghtinval=$('#heightuser').val();
+              var reminspace=hghtinval.split(" ");
+              var units=reminspace[1];
+              if(units=="ft"){
+                $scope.healthInfoHeightUnit="4715"
+              }else{
+                  $scope.healthInfoHeightUnit="4716"
+              }
+
+            }else{
+              var hghtinval=$('#heightuser').val();
+              var reminspace=hghtinval.split(" ");
+              var units=reminspace[1];
+              if(units=="ft"){
+                $scope.healthInfoHeightUnit="4715"
+              }else{
+                  $scope.healthInfoHeightUnit="4716"
+              }
+            }
+
             $scope.healthInfoGender = $("#healthInfoGender").val();
-            $scope.healthInfoHeight = $('#healthInfoHeight').val();
-            $scope.healthInfoHeight2 = $('#healthInfoHeight2').val();
+
+
+          //  $scope.healthInfoHeight2 = $scope.heightinch;
             $scope.HeightUnit = $('#healthInfoHeightUnit').val();
-            $scope.HeightUnit1 = $scope.HeightUnit.split("@");
-            $scope.healthInfoHeightUnit = $scope.HeightUnit1[0];
-            $scope.healthInfoHeightUnitText = $scope.HeightUnit1[1];
+          //  $scope.HeightUnit1 = $scope.HeightUnit.split("@");
+
+          //  $scope.healthInfoHeightUnitText = $scope.HeightUnit1[1];
             $scope.healthInfoWeight = $('#healthInfoWeight').val();
             $scope.WeightUnit = $('#healthInfoWeightUnit').val();
             $scope.WeightUnit1 = $scope.WeightUnit.split("@");
@@ -355,27 +596,48 @@ $scope.healthphoneblur=function(){
             $scope.healthInfoTimezone = $('#healthInfoTimezone').val();
             $scope.healthInfoHomePhone = $('#healthInfoHomePhone').val();
             $scope.healthInfoMobilePhone = $('#healthInfoMobilePhone').val();
-            $scope.healthmobilelength=$("#healthInfoMobilePhone").val().length;
+            $scope.healthmobilelength = $("#healthInfoMobilePhone").val().length;
             //$scope.healthInfoAddress = $('#healthInfoAddress').val();
             $scope.healthInfoAddress = $scope.healthInfoModel.address;
-            $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
-            $scope.healthInfoLocation = $('#healthInfoLocation').val();
+            if($rootScope.OrganizationLocation === 'on') {
+              $scope.healthInfoOrganization = $('#healthInfoOrganization').val();
+              $scope.healthInfoLocation = $('#healthInfoLocation').val();
+            }else {
+                $scope.healthInfoOrganization = null;
+                $scope.healthInfoLocation = null;
+            }
             $scope.healthInfoHairColor = $('#healthInfoHairColor').val();
-            $scope.splitHairColor = $scope.healthInfoHairColor.split("@");
-            $scope.getHairColorId = $scope.splitHairColor[0];
-            $scope.getHairColorText = $scope.splitHairColor[1];
+            if (!angular.isUndefined($scope.healthInfoHairColor) && $scope.healthInfoHairColor !== '') {
+              $scope.splitHairColor = $scope.healthInfoHairColor.split("@");
+              $scope.getHairColorId = $scope.splitHairColor[0];
+              $scope.getHairColorText = $scope.splitHairColor[1];
+            } else {
+              $scope.getHairColorId = null;
+            }
             $scope.healthInfoEyeColor = $('#healthInfoEyeColor').val();
-            $scope.splitEyeColor = $scope.healthInfoEyeColor.split("@");
-            $scope.getEyeColorId = $scope.splitEyeColor[0];
-            $scope.getEyeColorText = $scope.splitEyeColor[1];
+            if (!angular.isUndefined($scope.healthInfoEyeColor) && $scope.healthInfoEyeColor !== '') {
+              $scope.splitEyeColor = $scope.healthInfoEyeColor.split("@");
+              $scope.getEyeColorId = $scope.splitEyeColor[0];
+              $scope.getEyeColorText = $scope.splitEyeColor[1];
+            } else {
+              $scope.getEyeColorId = null;
+            }
             $scope.healthInfoEthnicity = $('#healthInfoEthnicity').val();
-            $scope.splitEthnicity = $scope.healthInfoEthnicity.split("@");
-            $scope.getEthnicityId = $scope.splitEthnicity[0];
-            $scope.getEthnicityText = $scope.splitEthnicity[1];
+            if (!angular.isUndefined($scope.healthInfoEthnicity) && $scope.healthInfoEthnicity !== '') {
+              $scope.splitEthnicity = $scope.healthInfoEthnicity.split("@");
+              $scope.getEthnicityId = $scope.splitEthnicity[0];
+              $scope.getEthnicityText = $scope.splitEthnicity[1];
+            }else {
+              $scope.getEthnicityId = null;
+            }
             $scope.healthInfoBloodType = $('#healthInfoBloodType').val();
-            $scope.splitBloodType = $scope.healthInfoBloodType.split("@");
-            $scope.getBloodTypeId = $scope.splitBloodType[0];
-            $scope.getBloodTypeText = $scope.splitBloodType[1];
+            if (!angular.isUndefined($scope.healthInfoBloodType) && $scope.healthInfoBloodType !== '') {
+              $scope.splitBloodType = $scope.healthInfoBloodType.split("@");
+              $scope.getBloodTypeId = $scope.splitBloodType[0];
+              $scope.getBloodTypeText = $scope.splitBloodType[1];
+            }else {
+              $scope.getBloodTypeId = null;
+            }
             var today = new Date();
             var nowyear = today.getFullYear();
             var nowmonth = today.getMonth() + 1;
@@ -390,6 +652,11 @@ $scope.healthphoneblur=function(){
             if (age_month < 0 || (age_month == 0 && age_day < 0)) {
                 age = parseInt(age) - 1;
             }
+            $timeout(function() {
+                  $('option').filter(function() {
+                      return this.value.indexOf('?') >= 0;
+                  }).remove();
+              }, 100);
 
 
             $scope.ValidateEmail = function(email) {
@@ -399,7 +666,7 @@ $scope.healthphoneblur=function(){
             };
 
             if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
-                if ((age >= 12 && age_month >= 0)) {
+                if (($rootScope.restage >= 12)) {
 
                     if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
                         $scope.ErrorMessage = "Please enterenter First Name";
@@ -416,10 +683,10 @@ $scope.healthphoneblur=function(){
                     } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                         $scope.ErrorMessage = "Please enter Email Id";
                         $rootScope.Validation($scope.ErrorMessage);
-                    }  else if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
+                    } else if (!$scope.ValidateEmail($("#healthInfoEmail").val())) {
                         $scope.ErrorMessage = "Please enter a valid Email Address";
                         $rootScope.Validation($scope.ErrorMessage);
-                    }else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                    } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
                         $scope.ErrorMessage = "Please choose Relationship";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
@@ -434,10 +701,10 @@ $scope.healthphoneblur=function(){
                     } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
                         $scope.ErrorMessage = "Please enter Mobile Phone";
                         $rootScope.Validation($scope.ErrorMessage);
-                    }else if($scope.healthmobilelength < 14){
+                    } else if ($scope.healthmobilelength < 14) {
                         $scope.ErrorMessage = "Please enter valid Mobile Number";
                         $rootScope.Validation($scope.ErrorMessage);
-                    }else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
+                    } else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
                         $scope.ErrorMessage = "Please enter Address";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
@@ -459,16 +726,16 @@ $scope.healthphoneblur=function(){
                     } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                         $scope.ErrorMessage = "Please select Weight Unit";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                         $scope.ErrorMessage = "Please select Ethnicity";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                    } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                         $scope.ErrorMessage = "Please select Hair Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                         $scope.ErrorMessage = "Please select Eye Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                    } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -502,19 +769,20 @@ $scope.healthphoneblur=function(){
                     } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                         $scope.ErrorMessage = "Please select Country";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } /*else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
-                        $scope.ErrorMessage = "Please select Time Zone";
-                        $rootScope.Validation($scope.ErrorMessage);}*/
-                        // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
-                        //     $scope.ErrorMessage = "Please Enter Your Home Phone";
-                        //     $rootScope.Validation($scope.ErrorMessage);
-                     else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
+                    }
+                    /*else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                                           $scope.ErrorMessage = "Please select Time Zone";
+                                           $rootScope.Validation($scope.ErrorMessage);}*/
+                    // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
+                    //     $scope.ErrorMessage = "Please Enter Your Home Phone";
+                    //     $rootScope.Validation($scope.ErrorMessage);
+                    else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
                         $scope.ErrorMessage = "Please enter Mobile Phone";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if($scope.healthmobilelength < 14){
+                    } else if ($scope.healthmobilelength < 14) {
                         $scope.ErrorMessage = "Please enter valid Mobile Number";
                         $rootScope.Validation($scope.ErrorMessage);
-                    }else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
+                    } else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
                         $scope.ErrorMessage = "Please enter Address";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
@@ -536,16 +804,16 @@ $scope.healthphoneblur=function(){
                     } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                         $scope.ErrorMessage = "Please select Weight Unit";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                         $scope.ErrorMessage = "Please select Ethnicity";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                    } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                         $scope.ErrorMessage = "Please select Hair Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                         $scope.ErrorMessage = "Please select Eye Color";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                    } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -573,10 +841,10 @@ $scope.healthphoneblur=function(){
                 } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                     $scope.ErrorMessage = "Please enter Email Id";
                     $rootScope.Validation($scope.ErrorMessage);
-                }  else if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
+                } else if (!$scope.ValidateEmail($("#healthInfoEmail").val())) {
                     $scope.ErrorMessage = "Please enter a valid Email Address";
                     $rootScope.Validation($scope.ErrorMessage);
-                }else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
                     $scope.ErrorMessage = "Please choose Relationship";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
@@ -591,10 +859,10 @@ $scope.healthphoneblur=function(){
                 } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
                     $scope.ErrorMessage = "Please enter Mobile Phone";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if($scope.healthmobilelength < 14){
+                } else if ($scope.healthmobilelength < 14) {
                     $scope.ErrorMessage = "Please enter valid Mobile Number";
                     $rootScope.Validation($scope.ErrorMessage);
-                }else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
+                } else if (typeof $scope.healthInfoAddress === 'undefined' || $scope.healthInfoAddress === '') {
                     $scope.ErrorMessage = "Please enter Address";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoGender === 'undefined' || $scope.healthInfoGender === '') {
@@ -616,16 +884,16 @@ $scope.healthphoneblur=function(){
                 } else if (typeof $scope.healthInfoWeightUnit === 'undefined' || $scope.healthInfoWeightUnit === '') {
                     $scope.ErrorMessage = "Please select Weight Unit";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '') {
+                } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.healthInfoEthnicity === 'undefined' || $scope.healthInfoEthnicity === '')) {
                     $scope.ErrorMessage = "Please select Ethnicity";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '') {
+                } else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.healthInfoHairColor === 'undefined' || $scope.healthInfoHairColor === '')) {
                     $scope.ErrorMessage = "Please select Hair Color";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '') {
+                } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.healthInfoEyeColor === 'undefined' || $scope.healthInfoEyeColor === '')) {
                     $scope.ErrorMessage = "Please select Eye Color";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '') {
+                } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                     $scope.ErrorMessage = "Please select Blood Type";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
@@ -643,7 +911,7 @@ $scope.healthphoneblur=function(){
             accessToken: $rootScope.accessToken,
             emailAddress: $scope.healthInfoEmail,
             patientProfileData: {
-                patientId: $rootScope.patientId, //$rootScope.currentPatientDetails[0].account.patientId,
+                patientId: $rootScope.currentPatientDetails[0].account.patientId, //$rootScope.currentPatientDetails[0].account.patientId,
                 patientName: $scope.healthInfoFirstName,
                 lastName: $scope.healthInfoLastName,
                 dob: $scope.healthInfoDOB,
@@ -715,30 +983,26 @@ $scope.healthphoneblur=function(){
                 console.log(data);
                 //  $rootScope.doGetPatientProfiles();
                 //    $rootScope.getManageProfile(currentPatientDetails);
-                $rootScope.GoToPatientDetails($rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+
+                var currentLocation = window.location;
+                var loc=currentLocation.href;
+                var newloc=loc.split("#");
+                var locat=newloc[1];
+                var sploc=locat.split("/");
+                var cutlocations=sploc[1] +"."+sploc[2];
+
+                $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
                 // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                 var editdate = $rootScope.currentPatientDetails.dob;
-                var doddate = new Date($rootScope.healthInfoDOB);
-                var today = new Date();
-                var nowyear = today.getFullYear();
-                var nowmonth = today.getMonth() + 1;
-                var nowday = today.getDate();
-                var dateofb = new Date(doddate)
-                var birthyear = dateofb.getFullYear();
-                var birthmonth = dateofb.getMonth();
-                var birthday = dateofb.getDate();
-                var age = nowyear - birthyear;
-                var age_month = nowmonth - birthmonth;
-                var age_day = nowday - birthday;
-                if (age_month < 0 || (age_month == 0 && age_day < 0)) {
-                    age = parseInt(age) - 1;
-                }
-                if (age >= 12) {
+                $rootScope.doddate = new Date($rootScope.healthInfoDOB);
+                $rootScope.restage = getAge( $rootScope.doddate);
+
+                if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
                     $rootScope.viewemailDisplay = 'flex';
-                    $rootScope.viewtimezoneDisplay='flex';
+                    $rootScope.viewtimezoneDisplay = 'flex';
                 } else {
                     $rootScope.viewemailDisplay = 'none';
-                    $rootScope.viewtimezoneDisplay='none';
+                    $rootScope.viewtimezoneDisplay = 'none';
 
                 }
 
@@ -759,7 +1023,10 @@ $scope.healthphoneblur=function(){
                 if (status === 400) {
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
                     $rootScope.Validation($scope.ErrorMessage);
-                } else {
+                } else if(status === 0 ){
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
+                }else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -866,11 +1133,11 @@ $scope.healthphoneblur=function(){
                 console.log(data);
             },
             error: function(data, status) {
-                if(status === 401) {
-                  $scope.ErrorMessage = "Relation did not update";
-                  $rootScope.Validation($scope.ErrorMessage);
+                if (status === 401) {
+                    $scope.ErrorMessage = "Relation did not update";
+                    $rootScope.Validation($scope.ErrorMessage);
                 } else {
-                  $rootScope.serverErrorMessageValidation();
+                    $rootScope.serverErrorMessageValidation();
                 }
             }
         };
@@ -970,7 +1237,13 @@ $scope.healthphoneblur=function(){
                 $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }else{
+                  $rootScope.serverErrorMessageValidation();
+              }
+
             }
         };
         LoginService.getCodesSet(params);
@@ -1555,7 +1828,12 @@ $scope.healthphoneblur=function(){
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
             }
         };
         LoginService.getListOfCoUsers(params);
@@ -1571,7 +1849,12 @@ $scope.healthphoneblur=function(){
                 $scope.doGetListOfCoUsers();
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                 $rootScope.Validation($scope.ErrorMessage);
+               }else{
+                   $rootScope.serverErrorMessageValidation();
+               }
             }
         };
         LoginService.deleteAccountCoUser(params);
@@ -1606,24 +1889,7 @@ $scope.healthphoneblur=function(){
         });
     };
 
-    $rootScope.ValidationFunction1 = function($a) {
-        function refresh_close() {
-            $('.close').click(function() {
-                $(this).parent().fadeOut(200);
-            });
-        }
-        refresh_close();
 
-        var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
-
-
-        $("#notifications-top-center").remove();
-        //$( ".ppp" ).prepend( top );
-        $(".ErrorMessage").append(top);
-        //$(".notifications-top-center").addClass('animated ' + 'bounce');
-        refresh_close();
-
-    }
 
     $scope.closeSurgeryPopup = function(model) {
         $scope.surgery.name;
@@ -1913,4 +2179,31 @@ $scope.healthphoneblur=function(){
 
 
 
-});
+}).directive('validNumber', function() {
+      return {
+        require: '?ngModel',
+        link: function(scope, element, attrs, ngModelCtrl) {
+          if(!ngModelCtrl) {
+            return;
+          }
+
+          ngModelCtrl.$parsers.push(function(val) {
+            if (angular.isUndefined(val)) {
+                var val = '';
+            }
+
+            var clean = val.replace(/[^-0-9]/g, '');
+            var negativeCheck = clean.split('-');
+			      var decimalCheck = clean.split('.');
+
+            if (val !== clean) {
+              ngModelCtrl.$setViewValue(clean);
+              ngModelCtrl.$render();
+            }
+            return clean;
+          });
+
+
+        }
+      };
+    });

@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('addnewuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate,
         $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log,
-        $ionicPopup, ageFilter, $window, $timeout) {
+        $ionicPopup, ageFilter, $window, $timeout, Idle) {
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -18,6 +18,8 @@ angular.module('starter.controllers')
             } else if ($rootScope.currState.$current.name === "tab.login") {
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+                navigator.app.exitApp();
+            } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
                 var gSearchLength = $('.ion-google-place-container').length;
@@ -68,7 +70,88 @@ angular.module('starter.controllers')
         }
 
 
-        $rootScope.doGetOrgLoclist = function() {
+        $scope.$on('IdleStart', function() {
+                console.log("aaa");
+        });
+        $scope.$on('IdleWarn', function(e, countdown) {
+        });
+        $scope.$on('IdleTimeout', function() {
+          if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+              if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+                navigator.notification.alert(
+                     'Your session timed out.', // message
+                     null,
+                     $rootScope.alertMsgName,
+                     'Ok' // buttonName
+                 );
+                $rootScope.ClearRootScope();
+              }
+          }
+        });
+
+        $scope.$on('IdleEnd', function() {
+            // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+              console.log("aaa3");
+        });
+
+        $scope.$on('Keepalive', function() {
+            // do something to keep the user's session alive
+              console.log("aaa4");
+        });
+
+        $rootScope.doGetLocations = function() {
+            $rootScope.listOfOrganization = '';
+            $rootScope.listOfLocation = '';
+            var params = {
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+                    $rootScope.listOfOrganization = [];
+                    $rootScope.listOfLocation = [];
+                    if (data.data[0] !== '') {
+                        angular.forEach(data.data, function(index, item) {
+                            $rootScope.listOfOrganization.push({
+                                'addresses': index.addresses,
+                                'createdByUserId': index.createdByUserId,
+                                'createdDate': index.createdDate,
+                                'hospitalId': index.hospitalId,
+                                'id': index.id,
+                                'locations': angular.fromJson(index.locations),
+                                'modifiedByUserId': index.modifiedByUserId,
+                                'modifiedDate': index.modifiedDate,
+                                'name': index.name,
+                                'organizationTypeId': index.organizationTypeId
+                            });
+                            angular.forEach(index.locations, function(index, item) {
+                                $rootScope.listOfLocation.push({
+                                    'createdByUserId': index.createdByUserId,
+                                    'createdDate': index.createdDate,
+                                    'id': index.id,
+                                    'modifiedByUserId': index.modifiedByUserId,
+                                    'modifiedDate': index.modifiedDate,
+                                    'name': index.name,
+                                    'organizationId': index.organizationId
+                                });
+                            })
+                        });
+                    }
+
+                },
+                error: function(data) {
+                  if(data==null){
+
+                       $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                       $rootScope.Validation($scope.ErrorMessage);
+
+                  }else{
+                    $rootScope.serverErrorMessageValidation();
+                  }
+
+                }
+            };
+            LoginService.getListOfLocationOrganization(params);
+        }
+
+      /*  $rootScope.doGetOrgLoclist = function() {
 
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
@@ -91,15 +174,20 @@ angular.module('starter.controllers')
                     $rootScope.locationdetails = _.pluck(listOfLocation, 'locations');
                 },
                 error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  if(data =='null' ){
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                  }else{
+                      $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
             LoginService.getListOfLocationOrganization(params);
 
-        }
+        }*/
 
         $rootScope.adddependent = function() {
-            $scope.doGetOrgLoclist();
+            $scope.doGetLocations();
             $rootScope.newDependentImagePath = '';
             $('select').prop('selectedIndex', 0);
             $state.go('tab.addnewdependent');
@@ -107,7 +195,7 @@ angular.module('starter.controllers')
 
         $rootScope.addcouser = function() {
             $rootScope.newCoUserImagePath = '';
-            $scope.doGetOrgLoclist();
+            $scope.doGetLocations();
             $('select').prop('selectedIndex', 0);
             $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addUser');

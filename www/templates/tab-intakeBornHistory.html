@@ -14,7 +14,7 @@
 			<div ng-click="loadCurrentMedication();" >
 
                 <div class="PrimaryContent">
-                    <h1 class="title ChronicCondition">Birth History</h1>
+                    <h1 class="title ChronicCondition concernsSubTit">Birth History</h1>
 										<p class="patientConternFontStyle">If patient is under the age of 1, please answer the following:</p>
 
 				</div>
@@ -84,9 +84,7 @@
 
 	</ion-list>
 </ion-content>
-</ion-side-menu-content>
- <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+
 </ion-view>
 
 
@@ -95,7 +93,7 @@
 
 
 <ion-footer-bar  class="footer">
-		<div class="ConcernsFooter">
+		<span class="ConcernsFooter">
 			<div class="FooterLeft">
 				<a class="button_new icon ion-chevron-left" href="#/tab/CurrentMedication" ><span> Back</span></a>
 			</div>
@@ -111,6 +109,9 @@
 				</a>
 			</div>
 
-		<div>
+		</span>
 	</ion-footer-bar>
 </form>
+</ion-side-menu-content>
+ <!--Side Menu File Include --->
+<div ng-include src="'templates/SideMenu.html'"></div>

@@ -12,7 +12,7 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple //Single //Demo
+var deploymentEnv = 'Multiple'; //Production //MultipleMultiple //Single //Demo
 var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
@@ -100,11 +100,54 @@ var handleOpenURL = function(url) {
     }, 0);
 }
 
-angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window) {
+.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
     $ionicPlatform.ready(function() {
+      // Idle.watch();
 
+      var timeoutID;
+    function setup() {
+        this.addEventListener("mousemove", resetTimer, false);
+        this.addEventListener("mousedown", resetTimer, false);
+        this.addEventListener("keypress", resetTimer, false);
+        this.addEventListener("DOMMouseScroll", resetTimer, false);
+        this.addEventListener("mousewheel", resetTimer, false);
+        this.addEventListener("touchmove", resetTimer, false);
+        this.addEventListener("MSPointerMove", resetTimer, false);
+        startTimer();
+    }
+    setup();
+
+    function startTimer() {
+        timeoutID = window.setTimeout(goInactive, 1800000);
+    //  timeoutID = window.setTimeout(goInactive, 120000);
+    }
+
+    function resetTimer(e) {
+        window.clearTimeout(timeoutID);
+        goActive();
+    }
+
+    function goInactive() {
+      //  alert('Inactive');
+        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
+              navigator.notification.alert(
+                   'Your session timed out.', // message
+                   null,
+                   $rootScope.alertMsgName,
+                   'Ok' // buttonName
+               );
+              $rootScope.ClearRootScope();
+            }
+        }
+    }
+
+    function goActive() {
+        console.log('Active');
+        startTimer();
+    }
 
         // Check for network connection
         /* if(window.Connection) {
@@ -187,8 +230,25 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
         });
         cordova.plugins.backgroundMode.enable();
 
+        cordova.plugins.backgroundMode.onactivate = function () {
+          setTimeout(function () {
+            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
+                  navigator.notification.alert(
+                       'Your session timed out.', // message
+                       null,
+                       $rootScope.alertMsgName,
+                       'Ok' // buttonName
+                   );
+                  $rootScope.ClearRootScope();
+                }
+            }
+          }, 600000);
+      }
+
         setTimeout(function() {
-            if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "") {
+          //  Idle.watch();
+            if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                 var EXTRA = {};
                 var extQuery = window.localStorage.getItem("external_load").split('?')
                 var extQueryOnly = extQuery[1];
@@ -237,10 +297,37 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                                 $state.go('tab.singleTheme');
                             }*/
             }
+          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                  $scope.getTokenExpireTime = new Date(window.localStorage.getItem("tokenExpireTime"));
+                  var getCurrentTimeforLogout =  new Date();
+                //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
+                  if(getTokenExpireTime <= getCurrentTimeforLogout) {
+                        $rootScope.ClearRootScope();
+                  }
+            }*/
+          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                  var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
+                  var getCurrentTimeforLogout =  new Date();
+                //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
+                if(window.localStorage.getItem("external_load") == null || window.localStorage.getItem("external_load") == "") {
+                	if ($rootScope.currState.$current.name != "tab.chooseEnvironment" && $rootScope.currState.$current.name != "tab.login" && $rootScope.currState.$current.name != "tab.loginSingle" && $rootScope.currState.$current.name != "tab.singleTheme" && $rootScope.currState.$current.name != "tab.waitingRoom") {
+                      if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
+                        navigator.notification.alert(
+                            'Your session timeout.', // message
+                            null,
+                            $rootScope.alertMsgName,
+                            'Ok' // buttonName
+                        );
+                        $rootScope.ClearRootScope();
+                     }
+                  }
+              }
+            }*/
         }, 2000);
         $ionicPlatform.on('resume', function() {
             setTimeout(function() {
-                if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "") {
+                //  Idle.watch();
+                if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                     var EXTRA = {};
                     var extQuery = window.localStorage.getItem("external_load").split('?')
                     var extQueryOnly = extQuery[1];
@@ -289,6 +376,25 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
                                        $state.go('tab.singleTheme');
                                    }*/
                 }
+              /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                      var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
+                      var getCurrentTimeforLogout =  new Date();
+                    //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
+                      if(window.localStorage.getItem("external_load") == null || window.localStorage.getItem("external_load") == "") {
+                        if ($rootScope.currState.$current.name != "tab.chooseEnvironment" && $rootScope.currState.$current.name != "tab.login" && $rootScope.currState.$current.name != "tab.loginSingle" && $rootScope.currState.$current.name != "tab.singleTheme"  && $rootScope.currState.$current.name != "tab.waitingRoom") {
+                            if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
+                                navigator.notification.alert(
+                                    'Your session timeout.', // message
+                                    null,
+                                    $rootScope.alertMsgName,
+                                    'Ok' // buttonName
+                                );
+                                $rootScope.ClearRootScope();
+                             }
+                        }
+                    }
+                }*/
+
             }, 2000);
         });
 /*
@@ -314,13 +420,16 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
 
 
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider, IdleProvider, KeepaliveProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
     // Learn more here: https://github.com/angular-ui/ui-router
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
    // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
+   IdleProvider.idle(600); // in seconds
+    IdleProvider.timeout(600); // in seconds
+    KeepaliveProvider.interval(60); // in seconds
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $stateProvider
@@ -904,6 +1013,15 @@ angular.module('starter', ['ionic', 'ngTouch', 'starter.controllers', 'starter.s
             }
         }
     })
+    .state('primaryPatientSideMenu', {
+        url: '/',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/primaryPatientSideMenu.html',
+                controller: 'sidemenuController'
+            }
+        }
+    })
   /*  .state('tab.check', {
         url: '/check',
         views: {
@@ -966,5 +1084,29 @@ function formatHeightVal(height){
     else
         hv = hv + "0";
     return hv;
+}
+
+function getAge(birth) {
+
+    var today = new Date();
+    var nowyear = today.getFullYear();
+    var nowmonth = today.getMonth();
+    var nowday = today.getDate();
+    var birthage=new Date(birth);
+    var birthyear = birthage.getFullYear();
+    var birthmonth = birthage.getMonth();
+    var birthday = birthage.getDate();
+
+    var age = nowyear - birthyear;
+    var age_month = nowmonth - birthmonth;
+    var age_day = nowday - birthday;
+
+    if(age_month < 0 || (age_month == 0 && age_day <0)) {
+            age = parseInt(age) -1;
+        }
+    return age;
+
+
+
 }
 //snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=

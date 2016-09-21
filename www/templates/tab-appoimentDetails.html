@@ -28,7 +28,7 @@
   </div>
 
  <div class="item item-image-icon" >
-    <a class="lefthome" ng-href="#/tab/userAccount">
+    <a class="lefthome"  ng-click="GoToPatientDetails(location,appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentsPatientId,'','tab.userAccount')" _ng-href="#/tab/userAccount">
       <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
       <p class="homecontent">Account Home</p>
     </a>
@@ -48,6 +48,9 @@
 
 <ion-view title="Appointment Details">
  <ion-content class="scroll-content ionic-scroll  has-header aptpaticoncontent" style="{{appointCOntent}}">
+  <!-- <div><ion-refresher on-refresh="doRefresh()">
+  </ion-refresher></div>-->
+<ion-refresher on-refresh="doRefreshAccountdetails()"></ion-refresher>
 
     <div class="list aptlist Appointmentdetails-{{devicename}}" >
 
@@ -130,6 +133,9 @@
 				<h1 class="title enterAppoint-{{deviceName}}" id="centercolor" >Enter Appointment</h1>
 			</a>
   <!-- <h1 class="title" id="centercolor" >Enter Appointment</h1>-->
+</ion-footer-bar>
+<ion-footer-bar class="bar bar-footer  footer-color footheight enterAppoinment2"  >
+    				<h1 class="enterAppoint-{{deviceName}}" id="centercolor" >30 minutes has elapsed since the scheduled start time. Please re-schedule your consultation.</h1>
 </ion-footer-bar>
 </ion-view>
 </ion-side-menu-content>

@@ -17,6 +17,8 @@ angular.module('starter.controllers')
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
                 navigator.app.exitApp();
+            } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
+                navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
                 var gSearchLength = $('.ion-google-place-container').length;
                 if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
@@ -37,7 +39,7 @@ angular.module('starter.controllers')
             }
         }, 100);
 
-        
+
         $rootScope.postRegisterStep1 = function() {
             step1PostRegDetailsService.ClearPostRgDetails();
             if (typeof $rootScope.regStep1.FName == 'undefined' || $rootScope.regStep1.FName == '') {
@@ -81,7 +83,12 @@ angular.module('starter.controllers')
                     }
               },
               error: function(data) {
-                  $rootScope.serverErrorMessageValidation();
+                if(data =='null' ){
+               $scope.ErrorMessage = "Internet connection not available, Try again later!";
+               $rootScope.Validation($scope.ErrorMessage);
+             }else{
+                 $rootScope.serverErrorMessageValidation();
+             }
               }
           };
 

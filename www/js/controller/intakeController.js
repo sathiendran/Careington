@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
+.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth, Idle) {
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name == "tab.userhome") ||
             ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -20,6 +20,8 @@ angular.module('starter.controllers')
         } else if ($rootScope.currState.$current.name === "tab.login") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+            navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
@@ -51,6 +53,10 @@ angular.module('starter.controllers')
 
 
     $scope.ClearRootScope = function() {
+      $(".ion-google-place-container").css({
+          "display": "none"
+      });
+      $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         if (deploymentEnvLogout === "Multiple") {
@@ -61,6 +67,36 @@ angular.module('starter.controllers')
             $state.go('tab.login');
         }
     }
+
+
+    $scope.$on('IdleStart', function() {
+            console.log("aaa");
+    });
+    $scope.$on('IdleWarn', function(e, countdown) {
+    });
+    $scope.$on('IdleTimeout', function() {
+      if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+          if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+            navigator.notification.alert(
+                 'Your session timed out.', // message
+                 null,
+                 $rootScope.alertMsgName,
+                 'Ok' // buttonName
+             );
+            $rootScope.ClearRootScope();
+          }
+      }
+    });
+
+    $scope.$on('IdleEnd', function() {
+        // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+          console.log("aaa3");
+    });
+
+    $scope.$on('Keepalive', function() {
+        // do something to keep the user's session alive
+          console.log("aaa4");
+    });
 
 
     $rootScope.checkPreLoadDataAndSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
@@ -80,6 +116,8 @@ angular.module('starter.controllers')
             }
         }
     };
+var locationdet=$rootScope.locationdet;
+$scope.locat=false;
 
     $scope.doGetExistingConsulatation = function() {
         if ($scope.accessToken === 'No Token') {
@@ -197,7 +235,9 @@ angular.module('starter.controllers')
         LoginService.getExistingConsulatation(params);
     }
 
-
+    $scope.goBackFromConcern = function() {
+    $state.go(locationdet);
+    }
     $scope.model = null;
     var today = new Date();
     var dd = today.getDate();
@@ -243,14 +283,26 @@ angular.module('starter.controllers')
 
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
+  $scope.clearSelectionAndRebindSelectionList($rootScope.PatientPrimaryConcernItem, $scope.primaryConcernList);
+  /*if (typeof $rootScope.PrimaryCount == 'undefined') {
+      $rootScope.checkedPrimary = 0;
+  } else {
+      $rootScope.checkedPrimary = $rootScope.PrimaryCount;
+  }*/
 
-        if ($rootScope.getSecondaryConcernAPIList == "") {
+        if ($rootScope.getSecondaryConcernAPIList != "") {
             if (typeof $scope.PatientPrimaryConcernItem != 'undefined') {
                 if ($rootScope.IsValue != '') {
-                    $rootScoperootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
+                    $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
                         text: $rootScope.PrimaryConcernText
                     });
                     $rootScope.getCheckedPrimaryConcern[0].checked = true;
+                }
+                if ($rootScope.IsValue == '') {
+                    $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
+                        text: $rootScope.PrimaryConcernText
+                    });
+                    $rootScope.getCheckedPrimaryConcern[0].checked = false;
                 }
             }
 
@@ -261,7 +313,13 @@ angular.module('starter.controllers')
                 $scope.getCheckedSecondaryConcern[0].checked = false;
             }
         }
+        if (typeof $rootScope.PrimaryCount == "") {
 
+              $rootScope.checkedPrimary = "";
+        } else {
+            //  $rootScope.getCheckedPrimaryConcern[0].checked = false;
+            $rootScope.checkedPrimary = $rootScope.PrimaryCount;
+        }
         $ionicModal.fromTemplateUrl('templates/tab-ConcernsList.html', {
             scope: $scope,
             animation: 'slide-in-up',
@@ -293,12 +351,14 @@ angular.module('starter.controllers')
                 } else {
                     $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                     $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
+                      $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
                     $scope.modal.hide();
                     //	$scope.data.searchQuery = '';
                 }
             } else {
                 $rootScope.PatientPrimaryConcern = $scope.PatientPrimaryConcernItem;
                 $rootScope.IsValue = $scope.PatientPrimaryConcernItem.length;
+                  $rootScope.PrimaryCount = $scope.PatientPrimaryConcernItem.length;
                 $scope.modal.hide();
                 //	$scope.data.searchQuery = '';
             }
@@ -433,7 +493,12 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
-                $rootScope.serverErrorMessageValidation();
+              if(data =='null' ){
+             $scope.ErrorMessage = "Internet connection not available, Try again later!";
+             $rootScope.Validation($scope.ErrorMessage);
+           }else{
+               $rootScope.serverErrorMessageValidation();
+           }
             }
         };
 
@@ -491,6 +556,22 @@ angular.module('starter.controllers')
       }
 
     };
+
+    $scope.data = {};
+
+    $scope.$watch('data.searchProvider', function(searchKey) {
+        $rootScope.providerSearchKey = searchKey;
+        if (typeof $rootScope.providerSearchKey == 'undefined') {
+            $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+        }
+        if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            $rootScope.iconDisplay = 'none';
+        } else {
+            $rootScope.iconDisplay = 'Block';
+        }
+    });
+
+
     /*Primary concern End here*/
 
     /*Secondary concern Start here*/
@@ -500,7 +581,7 @@ angular.module('starter.controllers')
 
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
-        if ($rootScope.getSecondaryConcernAPIList == "") {
+        if ($rootScope.getSecondaryConcernAPIList != "") {
             //$scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
             if ($scope.PatientPrimaryConcernItem != '') {
                 $scope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
@@ -509,13 +590,30 @@ angular.module('starter.controllers')
                 $scope.getCheckedPrimaryConcern[0].checked = false;
             }
 
-            if (typeof $scope.PatientSecondaryConcernItem !== 'undefined') {
+            if (typeof $scope.PatientSecondaryConcernItem != 'undefined') {
                 if ($rootScope.secondaryConcernLength !== '') {
                     $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
                         text: $rootScope.SecondaryConcernText
                     });
                     $scope.getCheckedSecondaryConcern[0].checked = true;
                 }
+
+                if ($rootScope.secondaryConcernLength == '') {
+                    $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
+                        text: $rootScope.SecondaryConcernText
+                    });
+                    $scope.getCheckedSecondaryConcern[0].checked = false;
+                }
+            }
+            if (typeof $scope.PatientSecondaryConcernItem == 'undefined') {
+                if ($rootScope.secondaryConcernLength !== '') {
+                    $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
+                        text: $rootScope.SecondaryConcernText
+                    });
+                    $scope.getCheckedSecondaryConcern[0].checked = false;
+                }
+
+
             }
         }
 
@@ -685,7 +783,14 @@ angular.module('starter.controllers')
                 //$state.go('tab.ChronicCondition');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -1487,56 +1592,105 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
             accessToken: $rootScope.accessToken,
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
-                $scope.ConsultationSave = "success";
-                if ($rootScope.paymentMode === 'on' && $rootScope.consultationAmount !== 0) {
-                    $rootScope.doGetPatientPaymentProfiles();
-                }
-                $rootScope.enableInsuranceVerificationSuccess = "none";
-                $rootScope.healthPlanPage = "none";
-                if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
-                    $rootScope.enablePaymentSuccess = "none";
-                    $state.go('tab.receipt');
-                    $scope.ReceiptTimeout();
-                } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
-                    $rootScope.verifyInsuranceSection = "none";
-                    $rootScope.openAddHealthPlanSection();
-                    $state.go('tab.consultCharge');
-                } else {
-                    if ($rootScope.consultationAmount > 0) {
-                        if ($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') {
-                            $rootScope.consultChargeSection = "none";
-                            $rootScope.healthPlanSection = "block";
-                            $rootScope.healthPlanPage = "none";
-                            $rootScope.consultChargeNoPlanPage = "block";
-                        }
-                        $state.go('tab.consultCharge');
-                        if (typeof $rootScope.userDefaultPaymentProfile == "undefined") {
-                            $('#addNewCard').val('Choose Your Card');
-                            $('#addNewCard_addCard').val('Choose Your Card');
-                            $('#addNewCard_submitPay').val('Choose Your Card');
-                            $rootScope.userDefaultPaymentProfileText = 'undefined';
-                        } else {
-                            $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
-                            $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
-                            $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
-                            $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
-                            $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
-                        }
-                    } else {
-                        $rootScope.enablePaymentSuccess = "none";
-                        $state.go('tab.receipt');
-                        $scope.ReceiptTimeout();
-                    }
-                }
+              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0) {
+                $rootScope.doPostDepitDetails();
+              } else {
+                  $scope.ConsultationSave = "success";
+                  if ($rootScope.paymentMode === 'on' && $rootScope.consultationAmount !== 0) {
+                      $rootScope.doGetPatientPaymentProfiles();
+                  }
+                  $rootScope.enableInsuranceVerificationSuccess = "none";
+                  $rootScope.enableCreditVerification = "none";
+                  // $rootScope.healthPlanPage = "none";
+
+                  if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
+                      $rootScope.openAddHealthPlanSection();
+                  }
+
+                  if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
+                      $rootScope.enablePaymentSuccess = "none";
+                      $rootScope.enableCreditVerification = "none";
+                      $state.go('tab.receipt');
+                      $scope.ReceiptTimeout();
+                  } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
+                    //  $rootScope.verifyInsuranceSection = "none";
+                      $rootScope.openAddHealthPlanSection();
+                      $state.go('tab.consultCharge');
+                  } else {
+                      if ($rootScope.consultationAmount > 0) {
+                          if ($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') {
+                            //  $rootScope.consultChargeSection = "none";
+                            //  $rootScope.healthPlanSection = "block";
+                              $rootScope.healthPlanPage = "none";
+                              $rootScope.consultChargeNoPlanPage = "block";
+                          }
+                          $state.go('tab.consultCharge');
+                          if (typeof $rootScope.userDefaultPaymentProfile == "undefined") {
+                              $('#addNewCard').val('Choose Your Card');
+                              $('#addNewCard_addCard').val('Choose Your Card');
+                              $('#addNewCard_submitPay').val('Choose Your Card');
+                              $rootScope.userDefaultPaymentProfileText = 'undefined';
+                          } else {
+                              $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+                              $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+                              $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+                              $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                              $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                          }
+                      } else {
+                          $rootScope.enablePaymentSuccess = "none";
+                          $rootScope.enableCreditVerification = "none";
+                          $state.go('tab.receipt');
+                          $scope.ReceiptTimeout();
+                      }
+                  }
+              }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
                 //$rootScope.doGetPatientPaymentProfiles();
                 // $state.go('tab.consultCharge');
             }
         };
 
         LoginService.putConsultationSave(params);
+    }
+
+    $rootScope.doPostDepitDetails = function() {
+        if ($rootScope.accessToken === 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            patientId: $rootScope.patientId,
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $state.go('tab.receipt');
+              $rootScope.enablePaymentSuccess = "none";
+              $rootScope.enableInsuranceVerificationSuccess = "none";
+              $rootScope.enableCreditVerification = "block";
+              $scope.ReceiptTimeout();
+            },
+            error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.postDepitDetails(params);
     }
 
 

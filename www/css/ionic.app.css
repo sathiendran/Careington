@@ -9040,6 +9040,24 @@ a.button {
   font-family: 'Glober xBold';
   src: url("Glober xBold.otf"); }
 
+[class^="icon-"], [class*=" icon-"] {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor; }
+
+/* ==========================================
+Single-colored icons can be modified like so:
+.icon-name {
+    font-size: 32px;
+    color: red;
+}
+========================================== */
+.icon-search-users {
+  width: 1.1513671875em; }
+
 div {
   -webkit-tap-highlight-color: transparent; }
 
@@ -9082,8 +9100,7 @@ html, body {
     -o-transform: skew(8deg) rotate(3deg);
     transform: skew(8deg) rotate(3deg); }
   .login_sub_header div, .password_sub_headerIOS div, .password_sub_headerAndroid div {
-    position: relative;
-    top: 62px; }
+    position: relative; }
 
 .login_sub_header:before, .password_sub_headerIOS:before, .password_sub_headerAndroid:before, .login_sub_header:after, .password_sub_headerIOS:after, .password_sub_headerAndroid:after {
   content: "";
@@ -9156,12 +9173,12 @@ html, body {
     position: absolute;
     left: 0px;
     top: 0px;
-    background: -webkit-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-    background: -moz-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-    background: -o-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-    background: -ms-linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-    background: linear-gradient(top, #9BCA82 0%, #9BCA82 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9BCA82', endColorstr='#9BCA82',GradientType=0 ); }
+    background: -webkit-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+    background: -moz-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+    background: -o-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+    background: -ms-linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+    background: linear-gradient(top, #A2D28A 0%, #A2D28A 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#A2D28A', endColorstr='#A2D28A',GradientType=0 ); }
   .squaredCheckbox label:after {
     padding: 0;
     margin: 0;
@@ -9189,15 +9206,19 @@ html, body {
     opacity: 1; }
 
 .remember {
-  padding-top: 20px;
-  color: #7A7A7A;
-  font-size: 14px;
-  font-family: "Glober SemiBold"; }
+  padding-top: 2px;
+  color: #999999;
+  font-size: 13px;
+  font-family: "Glober Regular"; }
 
 .continue {
   text-align: center;
   padding-top: 40px;
   margin-bottom: 50px; }
+
+.relationalign {
+  margin-left: 51px !important;
+  color: #666666; }
 
 .item-input .ellipsis {
   text-overflow: ellipsis;
@@ -9206,9 +9227,9 @@ html, body {
   line-height: normal; }
 
 .button.button-positive.button-outline {
-  background-color: #9BCA82;
-  border-color: #9BCA82;
-  background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);
+  background-color: #A2D28A;
+  border-color: #A2D28A;
+  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
   font-weight: normal;
   border-radius: 5px;
   font-size: 19px;
@@ -9219,16 +9240,16 @@ html, body {
   width: 111px;
   line-height: 35px;
   padding-top: 5px;
-  /* background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);*/
-  background: linear-gradient(#9BCA82, #9BCA82);
+  /* background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);*/
+  background: linear-gradient(#A2D28A, #A2D28A);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   /*-webkit-box-shadow:  1px 2px 13px rgba(0,0,0,0.3); */ }
 
 .button.button-outline.button-positive.activated {
-  background-color: #9BCA82;
-  border-color: #9BCA82; }
+  background-color: #A2D28A;
+  border-color: #A2D28A; }
 
 .footer {
   color: #fff;
@@ -9252,7 +9273,7 @@ html, body {
       color: #fff;
       position: relative;
       top: -5px;
-      padding: 10px; }
+      margin-left: 11px !important; }
   .footer .powerdBySnapMD {
     font-family: "Glober Light";
     font-weight: bold;
@@ -9268,7 +9289,7 @@ html, body {
 
 .bar-footer {
   background-position: 0px 40px;
-  height: 47px;
+  height: 48px;
   background-image: none; }
 
 .terms_footer_a {
@@ -9331,7 +9352,7 @@ html, body {
 		}*/ }
 
 .password_sub_headerIOS {
-  margin-top: 99px;
+  margin-top: -99px;
   color: #A80532; }
   .password_sub_headerIOS .password_header_contentIOS {
     /*position: relative;
@@ -9348,7 +9369,6 @@ html, body {
       font-family: "Glober Regular"; }
 
 .password_sub_headerAndroid {
-  margin-top: 108px;
   color: #A80532; }
   .password_sub_headerAndroid .password_header_contentAndroid {
     /*position: relative;
@@ -9356,12 +9376,12 @@ html, body {
     margin-top: 108px; }
     .password_sub_headerAndroid .password_header_contentAndroid .subHospital {
       position: relative;
-      top: -8px; }
+      top: -4px; }
     .password_sub_headerAndroid .password_header_contentAndroid span {
       color: #C4C4C4;
       font-size: 15px;
       position: relative;
-      top: -18px;
+      top: -5px;
       font-family: "Glober Regular"; }
 
 /*.password_content {
@@ -9444,6 +9464,9 @@ html, body {
   padding-top: 12px;
   line-height: 24px; }
 
+.reset-Android {
+  padding-top: 54px !important; }
+
 .colmore {
   margin-left: 0px; }
 
@@ -9457,7 +9480,6 @@ html, body {
   padding-top: 8px; }
   .forgot_password_text a {
     text-decoration: none;
-    color: #4FC0DA;
     font-size: 14px; }
 
 .button_new {
@@ -9496,13 +9518,13 @@ html, body {
   left: -12px; }
 
 .title_patientIOS {
-  font-family: "Glober SemiBold";
-  font-weight: bold;
+  font-family: "Glober Bold";
+  font-weight: normal;
   font-size: 25px;
   /*@include font($fontFamily_xBold, bold,30px);*/
-  color: #fff;
+  color: #FFFFFF;
   text-align: center;
-  left: 15px;
+  left: 7px;
   right: 0px;
   height: 45px;
   /*line-height: 61px;*/
@@ -9514,11 +9536,11 @@ html, body {
   margin-top: 23px; }
 
 .title_patientAndroid {
-  font-family: "Glober SemiBold";
-  font-weight: bold;
+  font-family: "Glober Bold";
+  font-weight: normal;
   font-size: 25px;
   /*@include font($fontFamily_xBold, bold,30px);*/
-  color: #fff;
+  color: #FFFFFF;
   text-align: center;
   left: 0px;
   right: 0px;
@@ -9582,23 +9604,27 @@ html, body {
   font-family: "Glober Regular"; }
 
 .button.button-balanced {
-  background-color: #A9C985;
-  border-color: #A9C985;
-  background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%);
+  background-color: #A2D28A;
+  border-color: #A2D28A;
+  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
   font-weight: normal;
   border-radius: 5px;
-  font-size: 23px;
+  font-size: 22px;
   min-height: 35px;
   text-decoration: none;
   font-family: "Glober Bold";
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  background-image: linear-gradient(0deg, #A9C985, #A9C985 50%, transparent 50%); }
+  background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+  line-height: 35px; }
+  .button.button-balanced span {
+    position: relative;
+    top: 2px; }
 
 .button.button-balanced.activated {
-  background-color: #A9C985;
-  border-color: #A9C985; }
+  background-color: #A2D28A;
+  border-color: #A2D28A; }
 
 .calendarBack {
   padding-top: 7px;
@@ -9616,12 +9642,6 @@ html, body {
 
 .AppointBack {
   top: 0px; }
-
-.alpha_sidebar {
-  position: absolute;
-  top: 90px;
-  right: 10px;
-  z-index: 10; }
 
 .alpha_sidebar li {
   color: #49afcd;
@@ -9652,9 +9672,10 @@ html, body {
       font-size: 21px;
       margin-left: 7px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientName {
-        font-weight: bold; }
+        font-weight: bold;
+        font-family: Glober Bold !important; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_name .patientLastName {
-        font-weight: bold; }
+        font-family: Glober Regular !important; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content-Android .subHeader_content_age {
       font-size: 12px;
       font-weight: bold;
@@ -9664,9 +9685,11 @@ html, body {
       font-size: 22px;
       margin-left: 7px; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name .patientName {
-        font-weight: bold; }
+        font-weight: bold;
+        font-family: Glober Bold !important; }
       .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_name .patientLastName {
-        font-weight: normal; }
+        font-weight: normal;
+        font-family: Glober Regular !important; }
     .calendar_subHeader_height .calendar_subHeader .subHeader_content-IOS .subHeader_content_age {
       font-size: 12px;
       font-weight: bold;
@@ -9861,7 +9884,6 @@ html, body {
 .enterAppoinment {
   background-color: #A2D28A !important;
   border: none !important;
-  box-shadow: 0 0px 8px 3px #333 !important;
   -moz-box-shadow: 0 0px 8px 3px #333 !important;
   -webkit-box-shadow: 0 0px 8px 3px #333 !important;
   background-size: 100% 0 !important; }
@@ -9879,7 +9901,7 @@ html, body {
   background-size: 100% 0 !important; }
   .AvailableIn .availableImage {
     font-size: 22px;
-    margin-top: 2px; }
+    margin-top: 17px; }
     .AvailableIn .availableImage .AvailableText {
       float: left;
       text-align: right;
@@ -9919,8 +9941,15 @@ html, body {
   font-size: 17px; }
 
 .optionselect {
+  width: 100%;
+  color: #7c7c7c;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   border: none;
-  width: 90%; }
+  background-color: white;
+  margin-top: -3px;
+  font-size: 20px;
+  padding: 5px; }
 
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
@@ -9931,15 +9960,23 @@ html, body {
   line-height: 3;
   color: #666666; }
   .consultCharge_subHeader span {
-    color: #616462;
+    color: #666666;
     font-size: 26px;
     top: -8px;
     position: relative;
     left: 10px;
-    font-family: "Glober Bold"; }
+    font-family: "Glober SemiBold";
+    font-weight: normal; }
+
+.consultConMargin {
+  margin: 182px 0 0 0; }
+
+.consultConPaymentMargin {
+  margin: 139px 0 0 0; }
+  .consultConPaymentMargin .AddCard {
+    margin-top: 7px; }
 
 .consultCharge_content {
-  margin: 140px 0 0 0;
   padding-bottom: 30px;
   padding-top: 36px; }
   .consultCharge_content .consultChargeNoPlanText {
@@ -9964,7 +10001,6 @@ html, body {
     .consultCharge_content .AddCardNoPlan .healthPlan_text {
       margin-left: -160px; }
     .consultCharge_content .AddCardNoPlan .AddCard {
-      margin-left: 8px;
       margin-top: 7px; }
       .consultCharge_content .AddCardNoPlan .AddCard img {
         width: 30px;
@@ -9983,7 +10019,8 @@ html, body {
       margin-left: 0px; }
   .consultCharge_content .NoPlanBottomText {
     text-align: justify;
-    padding-bottom: 50px; }
+    padding-bottom: 50px;
+    margin: 0 -15px; }
 
 .button.button-royal {
   background-color: #B3B3B3;
@@ -9991,34 +10028,61 @@ html, body {
   background-image: linear-gradient(0deg, #B3B3B3, #B3B3B3 50%, transparent 50%);
   font-weight: normal;
   border-radius: 5px;
-  font-size: 23px;
+  font-size: 22px;
   min-height: 35px;
   text-decoration: none;
   font-family: "Glober Bold";
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  line-height: 35px; }
+  .button.button-royal span {
+    position: relative;
+    top: 2px; }
 
 .button.button-royal.activated {
   background-color: #B3B3B3;
   border-color: #B3B3B3; }
 
 .consultation_head {
-  font-size: 27px;
-  text-align: center;
-  padding-top: 15px;
+  font-size: 164%;
+  padding-top: 26px;
   color: #2A2A2A; }
   .consultation_head .consultation_number {
-    font-weight: bold;
-    padding-top: 18px;
-    font-size: 30px;
-    font-family: "Glober Bold";
-    color: #666666; }
+    margin-right: 17px;
+    font-family: "Glober SemiBold";
+    color: #666666;
+    text-align: right; }
     .consultation_head .consultation_number span {
-      text-decoration: line-through;
-      color: red; }
+      text-decoration: line-through; }
+  .consultation_head .consultation_numberCopay {
+    margin-right: 17px;
+    font-family: "Glober SemiBold";
+    color: #666666;
+    text-align: right; }
+    .consultation_head .consultation_numberCopay span {
+      color: red;
+      font-size: 22px; }
+  .consultation_head .consultTittleCharge {
+    color: #666666;
+    font-family: "Glober SemiBold";
+    margin-left: 10px;
+    float: left; }
   .consultation_head .consultTittle {
-    color: #000000; }
+    color: #666666;
+    font-family: "Glober SemiBold";
+    margin-left: 10px;
+    float: left;
+    width: 63%;
+    text-align: right; }
+  .consultation_head .consultTittleCopay {
+    color: #666666;
+    font-family: "Glober SemiBold";
+    margin-left: 10px;
+    float: left;
+    width: 63%;
+    text-align: right;
+    font-size: 19px; }
   .consultation_head .Plancovers {
     font-size: 12px;
     color: #C2C2C2; }
@@ -10062,10 +10126,11 @@ html, body {
     width: 33%;
     margin-top: -6px; }
     .ConsultChargeFooter .ConsultChargeCancel a {
-      color: #b8b8b8;
+      color: #FFFFFF;
       font-weight: bold;
       padding: 10px;
-      font-size: 17px; }
+      font-size: 17px;
+      font-family: Glober Bold; }
 
 .consultChargeNoPlanContent {
   margin: 140px 0 0 0;
@@ -10111,7 +10176,8 @@ html, body {
       margin-left: 0px; }
   .consultChargeNoPlanContent .NoPlanBottomText {
     text-align: justify;
-    padding-bottom: 50px; }
+    padding-bottom: 50px;
+    margin: 0 -15px; }
 
 .cardSubmitPayment {
   background-color: #DADADA !important;
@@ -10127,20 +10193,20 @@ html, body {
   text-align: center;
   color: #5C5C5C; }
   .healthPlan_header .healthPlan_text {
-    font-size: 15px;
-    color: #888585;
+    font-size: 14px;
+    color: #666666;
     margin-left: -100px;
+    font-family: "Glober Regular";
     /*font-weight: bold;*/ }
-  .healthPlan_header .addHealthPlan_header {
-    margin-left: -35px;
-    margin-right: 17px; }
-    .healthPlan_header .addHealthPlan_header .addHealthPlan_text {
-      font-size: 20px;
-      font-weight: bold;
-      left: 18px;
-      position: relative;
-      top: -8px;
-      color: black; }
+  .healthPlan_header .payCardText {
+    padding-bottom: 5px; }
+  .healthPlan_header .addHealthPlan_header .addHealthPlan_text {
+    font-size: 20px;
+    font-weight: bold;
+    left: 7px;
+    position: relative;
+    top: -11px;
+    color: #666666; }
 
 .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
   font-size: 70px;
@@ -10150,7 +10216,10 @@ html, body {
 .PlanHeader {
   height: 58px; }
   .PlanHeader .PlanCancel {
-    font-weight: bold;
+    font-weight: normal;
+    font-family: Glober Regular;
+    color: #FFFFFF;
+    font-size: 19px;
     cursor: pointer;
     width: 68px; }
     .PlanHeader .PlanCancel span {
@@ -10170,23 +10239,60 @@ html, body {
       position: absolute;
       left: 15px; }
 
+.item-input .cardfont {
+  color: #444444 !important;
+  font-size: 19px !important;
+  font-family: Glober Bold !important; }
+
+.item-input .cards ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #CBCBCB !important;
+  font-size: 18px !important;
+  font-family: Glober Regular !important; }
+
+.item-input .cards :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #CBCBCB !important;
+  font-size: 18px !important;
+  font-family: Glober Regular !important; }
+
+.item-input .cards ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #CBCBCB !important;
+  font-size: 18px !important;
+  font-family: Glober Regular !important; }
+
+.item-input .cards :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #CBCBCB !important;
+  font-size: 18px !important;
+  font-family: Glober Regular !important; }
+
+.carddetails {
+  color: #666666;
+  font-family: Glober Regular; }
+
 .planDetails_content {
   padding-top: 32px;
   margin-top: 12px; }
   .planDetails_content .healthPlan_text {
-    font-size: 37px;
+    font-size: 34px;
     text-align: center;
-    color: #5C5C5C;
-    font-weight: normal; }
+    color: #666666;
+    font-weight: normal;
+    font-family: Glober Regular; }
   .planDetails_content .planInformation {
-    color: #5C5C5C;
+    color: #666666;
     font-size: 18px;
-    font-weight: normal; }
+    font-weight: normal;
+    font-family: Glober Regular; }
   .planDetails_content .provider {
-    margin-left: 27px;
+    margin-left: 45px;
     padding-top: 20px;
     font-size: 15px;
-    text-align: left; }
+    text-align: left;
+    font-family: Glober Regular;
+    color: #666666; }
   .planDetails_content .ProviderList {
     margin-left: 50px; }
     .planDetails_content .ProviderList option {
@@ -10194,37 +10300,43 @@ html, body {
   .planDetails_content .verifyPlanHeading {
     padding-top: 35px; }
   .planDetails_content input[type="text"], .planDetails_content input[type="number"], .planDetails_content input[type="password"] {
-    font-size: 20px;
+    font-size: 19px;
     line-height: 30px;
     padding-top: 9px; }
   .planDetails_content .planDetails {
     padding: 0 5px 0 15px;
-    text-align: left;
-    font-size: 13px;
-    font-weight: bold; }
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: Glober Regular;
+    margin-top: -5px;
+    color: #666666; }
   .planDetails_content .privacy {
     color: #39BAD9;
-    font-size: 13px;
+    font-size: 14px;
     padding: 0 5px 50px 15px;
-    margin-top: -10px;
-    font-weight: bold; }
+    margin-top: -5px;
+    font-family: Glober Regular;
+    text-align: center; }
   .planDetails_content .list {
     padding-top: 12px; }
   .planDetails_content .item.item-input {
     padding: 10px 16px 10px 16px; }
   .planDetails_content .input-label {
     font-weight: bold;
-    font-size: 23px !important;
+    font-size: 23px;
     width: 50%;
-    padding: 10px 10px 7px 0px; }
+    padding: 10px 10px 7px 0px;
+    color: #666666; }
   .planDetails_content .cardDetailsHeading {
-    padding-top: 35px; }
+    padding-top: 30px; }
   .planDetails_content .CardInformation {
-    padding-top: 27px;
+    padding-top: 18px;
     padding-bottom: 20px;
-    color: #5C5C5C;
+    color: #666666;
     text-align: center;
-    font-size: 20px; }
+    font-size: 18px;
+    font-family: Glober Regular; }
   .planDetails_content .verifyCardDisplay {
     padding-top: 30px;
     padding-bottom: 20px; }
@@ -10287,15 +10399,33 @@ select {
       .ReceiptContent .PaymentSuccess .PaymentConfirmation .ConfirmationReceipt {
         font-size: 12px;
         color: black; }
+  .ReceiptContent .CreditSuccess {
+    font-size: 35px;
+    text-align: center;
+    padding-top: 20px;
+    color: #60605D; }
+    .ReceiptContent .CreditSuccess .PaymentConfirmation {
+      font-size: 30px;
+      padding-top: 20px;
+      color: #666666;
+      font-family: "Glober SemiBold"; }
+      .ReceiptContent .CreditSuccess .PaymentConfirmation .ConfirmationReceipt {
+        font-size: 20px;
+        color: #EF4B27;
+        padding-top: 15px;
+        font-family: "Glober Regular"; }
+        .ReceiptContent .CreditSuccess .PaymentConfirmation .ConfirmationReceipt span {
+          font-family: "Glober Heavy"; }
   .ReceiptContent .EnterWaitingRoom {
-    padding: 50px 8% 25px 8%; }
+    padding: 60px 8% 25px 8%; }
     .ReceiptContent .EnterWaitingRoom span {
       position: relative;
       top: 3px; }
   .ReceiptContent .ReceiptRedirect {
     font-size: 12px;
-    color: black;
-    text-align: center; }
+    color: #666666;
+    text-align: center;
+    font-family: "Glober Regular"; }
 
 #SidemenuHomeAndroid {
   margin-top: 10px;
@@ -10307,7 +10437,9 @@ select {
     top: 0px;
     position: relative;
     font-size: 23px;
-    padding-left: 15px; }
+    padding-left: 15px;
+    color: rgba(248, 248, 248, 0.57);
+    font-weight: normal !important; }
 
 #SidemenuHomeIOS {
   margin-top: 18px;
@@ -10319,7 +10451,8 @@ select {
     top: 0px;
     position: relative;
     font-size: 23px;
-    padding-left: 15px; }
+    padding-left: 15px;
+    color: rgba(248, 248, 248, 0.57); }
 
 .sidemenuContent {
   position: absolute;
@@ -10342,9 +10475,10 @@ select {
     .SidemenuLogOut .LogOutText span {
       position: relative;
       font-size: 23px;
-      padding-left: 15px; }
+      padding-left: 15px;
+      font-weight: normal !important; }
   .SidemenuLogOut .item {
-    border-color: #a8a9a7; }
+    border-color: #979797; }
   .SidemenuLogOut .ion-power:before {
     font-size: 27px; }
 
@@ -10356,15 +10490,25 @@ select {
 .SidemenuLogOut1 {
   width: 100%;
   color: #7E807E; }
+  .SidemenuLogOut1 .ListTextTitle {
+    color: #fff; }
+    .SidemenuLogOut1 .ListTextTitle span {
+      color: #fff; }
+  .SidemenuLogOut1 .ListHomeUser_pTitle {
+    color: #999999; }
   .SidemenuLogOut1 .LogOutText {
     color: #7E807E;
     margin-left: -4px;
     font-family: Glober regular !important;
-    background-color: #464644; }
+    background-color: #464644;
+    margin-top: 18px;
+    bottom: 13px; }
     .SidemenuLogOut1 .LogOutText span {
       position: relative;
       font-size: 23px;
-      padding-left: 15px; }
+      padding-left: 15px;
+      color: rgba(248, 248, 248, 0.57);
+      font-weight: normal !important; }
   .SidemenuLogOut1 .item {
     border-color: #464644; }
   .SidemenuLogOut1 .ion-power:before {
@@ -10395,7 +10539,7 @@ select {
   .ReportContent .providerAddress {
     text-align: right; }
     .ReportContent .providerAddress .reportOrganization {
-      padding-top: 10px; }
+      padding-top: 2px; }
   .ReportContent .ConnectedCareDetails .ConnectedCareTitle {
     width: 100%;
     float: left;
@@ -10534,6 +10678,9 @@ select {
       text-align: justify;
       font-size: 14px;
       padding-top: 10px; }
+    .ReportContent .reportObjective li {
+      text-align: justify;
+      font-size: 14px; }
   .ReportContent .reportDOne {
     padding-bottom: 10px;
     padding-top: 20px; }
@@ -10548,7 +10695,8 @@ select {
       color: #888;
       float: right;
       margin-right: 10px;
-      margin-top: 14px; }
+      margin-top: 14px;
+      font-family: "Glober Regular"; }
     .ConcernsContent .PrimaryList .PrimaryContent {
       margin-top: 30px; }
       .ConcernsContent .PrimaryList .PrimaryContent h1 {
@@ -10572,7 +10720,7 @@ select {
         margin-top: -55px;
         cursor: pointer; }
   .ConcernsContent .PrimaryConcernList p {
-    width: 90%;
+    width: 84%;
     padding-top: 6px;
     font-family: "Glober Regular";
     font-size: 19px; }
@@ -10616,7 +10764,8 @@ select {
             font-family: "Glober Regular"; }
         .ConcernsContent .surgeryList a .surgeryDetails .surgeryDate {
           padding-top: 5px;
-          font-size: 15px; }
+          font-size: 15px;
+          color: #666666; }
       .ConcernsContent .surgeryList a .surgerydelete {
         text-align: right;
         margin-right: -1px;
@@ -10626,7 +10775,7 @@ select {
   text-align: center;
   font-family: Glober Bold;
   font-size: 20px;
-  margin-top: 51px; }
+  margin-top: 90px; }
 
 .platform-ios .ConcernsFooter {
   opacity: 2;
@@ -10664,7 +10813,12 @@ select {
       font-weight: bold;
       padding: 10px;
       font-size: 17px;
-      color: #b8b8b8; }
+      color: #FFFFFF;
+      font-family: "Glober Bold"; }
+    .ConcernsFooter .FooterCenter .newProCancel {
+      font-family: "Glober Regular";
+      color: #999999;
+      font-weight: normal; }
   .ConcernsFooter .FooterRight {
     text-align: right;
     float: left;
@@ -10689,8 +10843,9 @@ select {
 .concernListHeader {
   height: 55px; }
   .concernListHeader .concernListTitle {
-    top: 6px !important;
+    top: 8px !important;
     font-size: 16px !important;
+    color: #FFFFFF !important;
     font-family: "Glober SemiBold"; }
   .concernListHeader .concernListDone {
     top: 6px !important;
@@ -10823,7 +10978,8 @@ select {
         font-family: "Glober Regular"; }
   .concernListContent .concernListDetails {
     font-size: 19px;
-    font-family: "Glober Regular"; }
+    font-family: "Glober Regular";
+    color: #666666; }
 
 .SurgeryHeader {
   height: 50px; }
@@ -10856,26 +11012,35 @@ select {
 
 .dotrow {
   background-color: white;
-  height: 54px; }
+  height: 54px;
+  padding: 0px; }
 
 .dotcol {
-  background-color: #9bca82;
+  background-color: #A2D28A;
   height: 50px;
-  margin-left: -4px;
-  min-width: 90px; }
+  margin-left: -4px; }
 
 .dotcont {
   color: white;
   font-size: 10px;
-  margin-top: -8px !important; }
+  margin-top: -10px !important; }
 
 .doticon {
-  font-size: 22px; }
+  font-size: 22px;
+  color: #888888; }
+  .doticon .icon-magnifying-glass {
+    font-size: 18px !important;
+    margin-right: 22px !important; }
+
+.item-input-wrapper .icon-magnifying-glass {
+  font-size: 22px;
+  margin-right: 22px !important; }
 
 .dotfont {
   font-size: 10px;
   font-family: Glober Regular;
-  color: #5c5c5c; }
+  color: #666666;
+  margin-top: -7px; }
 
 .colmore {
   margin-left: 5px;
@@ -10892,47 +11057,47 @@ select {
   margin-left: 0px !important; }
 
 .moretab {
-  max-width: 20% !important;
-  background-color: #9bca82; }
+  width: 25%;
+  background-color: #A2D28A;
+  text-align: center; }
   .moretab .moralign {
     margin-top: -15px; }
     .moretab .moralign .moreicon {
       font-size: 22px;
-      margin-left: 23px;
-      color: #888; }
+      margin-left: 35px;
+      color: #888888; }
     .moretab .moralign .morecont {
-      margin-left: 19px;
       font-size: 11px;
-      margin-top: -9px;
-      color: #888; }
+      margin-top: -12px;
+      color: #666666; }
 
 .tabmoreicon {
-  margin-top: -9px;
+  margin-top: -4px;
   font-size: 20px !important;
-  color: white;
-  margin-left: 22px; }
+  color: white; }
 
 .statuscol {
-  background-color: #e3e3e3;
-  max-width: 130px; }
+  background-color: #ECECEC;
+  width: 37%; }
   .statuscol .status {
     margin-left: 10px;
     font-size: 11px;
     margin-top: -4px; }
   .statuscol .statuscont {
-    margin-left: -38px;
+    margin-left: -31px;
     font-size: 12px;
     font-family: Glober SemiBold; }
 
 .relationcol {
-  background-color: #ededed; }
+  background-color: #F4F4F4;
+  width: 40%; }
   .relationcol .relation {
     margin-left: 10px;
     font-size: 10px;
-    color: #888; }
+    color: #999999; }
   .relationcol .relationcont {
     margin-top: -15px;
-    color: #888;
+    color: #666666;
     font-size: 12px;
     margin-left: 9px;
     font-family: Glober SemiBold; }
@@ -10969,14 +11134,15 @@ select {
   margin-top: -8px;
   margin-left: 16px;
   padding-bottom: 0px;
-  color: #5E5F5D;
-  font-family: "Glober Bold"; }
+  font-family: "Glober SemiBold";
+  color: #888888;
+  padding-right: 12%; }
 
 .consentLine {
   border-bottom: 1px solid #A9ABA7; }
 
 .ConsentContent {
-  margin-top: 204px !important; }
+  margin-top: 177px !important; }
   .ConsentContent .ConsentMessageFirst {
     border-bottom: 1px solid #ddd;
     margin: 12px 10px 10px 10px; }
@@ -10996,8 +11162,10 @@ select {
       padding: 0.5em 0 0.5em 0;
       color: #595959; }
   .ConsentContent .ConsentMessageAgree {
-    margin: 10px  10px 10px 10px; }
-    .ConsentContent .ConsentMessageAgree p {
+    margin: 17px  15% 10px 15%; }
+  .ConsentContent .ConsentMessageAgreeText {
+    margin: 17px  10px 10px 17px; }
+    .ConsentContent .ConsentMessageAgreeText p {
       text-overflow: clip;
       white-space: normal;
       text-align: justify;
@@ -11005,22 +11173,22 @@ select {
       color: #919191;
       font-weight: bold;
       font-size: 13px; }
-    .ConsentContent .ConsentMessageAgree .ConsentCancel {
+    .ConsentContent .ConsentMessageAgreeText .ConsentCancel {
       background-color: #fff;
-      border: none; }
-      .ConsentContent .ConsentMessageAgree .ConsentCancel b {
-        font-size: 16px;
-        color: #B2B2B2; }
+      border: none;
+      font-size: 16px;
+      color: #999999; }
 
 .UserHomeIcon {
-  color: #888;
+  color: #999999;
   margin-top: -34px; }
 
 .UserNeeds {
-  border-bottom: 1px solid #9D9E9C; }
+  border-bottom: 1px solid #9D9E9C;
+  border-bottom-right-radius: 1px; }
   .UserNeeds .SearchImage {
     width: 10%;
-    margin-right: 10px; }
+    margin-right: 17px; }
     .UserNeeds .SearchImage .searchIcon {
       float: right;
       width: 20px; }
@@ -11167,13 +11335,22 @@ a {
       font-size: 28px;
       margin-top: -8px; }
 
+.authorcont .ion-chevron-right:before {
+  font-size: 13px !important;
+  margin-left: 2px;
+  color: #888;
+  top: 0px; }
+
+.unauthorrelationship .ion-chevron-right:before {
+  font-size: 14px; }
+
 .ContentList {
   margin: 138px 0 0 0; }
 
 .bar .buttons > .button {
   min-height: 31px;
   line-height: 45px;
-  color: #fff;
+  color: #FFFFFF;
   position: relative;
   top: -4px; }
 
@@ -11188,11 +11365,11 @@ a {
 
 .lnamefont {
   font-family: Glober Regular;
-  font-size: 28px; }
+  font-size: 138%; }
 
 .fnamefont {
   font-family: Glober Bold;
-  font-size: 28px; }
+  font-size: 138%; }
 
 .headerheight {
   height: 128px !important; }
@@ -11201,14 +11378,14 @@ a {
   top: 64px;
   height: 88px;
   border-color: #5D5959 !important; }
+  .subheaderheight .item {
+    margin: -5px; }
 
 .usersubheaderheight {
   top: 65px;
   height: 109px;
-  border-color: #5D5959 !important; }
-
-.appiconcontent {
-  margin-top: 212px; }
+  border-color: #444444 !important;
+  background-color: #444444 !important; }
 
 .avatpad {
   padding: 14px !important; }
@@ -11254,36 +11431,37 @@ a {
   font-family: Glober Regular; }
 
 .patage {
-  margin-top: 4px;
+  margin-top: -7px;
   font-size: 14px !important;
-  color: #8c8c8c !important; }
+  color: #999999 !important; }
 
 .appfname {
-  height: 16px;
+  height: 24px;
   font-size: 20px !important;
-  font-family: Glober SemiBold;
-  color: #4e4e4e !important;
+  font-family: Glober Bold;
+  color: #666666 !important;
   margin-top: -13px !important; }
 
 .appfloat {
   float: right;
-  font-size: 18px !important; }
+  font-size: 18px !important;
+  margin-top: -16px !important; }
 
 .healthhead {
   margin-top: 26px;
   text-align: center;
-  color: #6c6c6c;
-  font-size: 25px;
-  font-family: Glober SemiBold; }
+  color: #666666;
+  font-size: 165%;
+  font-family: Glober Bold; }
 
 .appmarg {
   float: right;
   margin-top: 0px;
-  font-size: 18px !important; }
+  font-size: 14px !important; }
 
 .pathead {
   font-family: Glober SemiBold;
-  color: #979797 !important;
+  color: #888888 !important;
   margin-top: -10px !important;
   margin-bottom: 11px !important; }
 
@@ -11327,11 +11505,10 @@ a {
   /*display: block;*/
   height: 63%;
   top: 80px;
-  margin-top: -6px;
-  background-image: none; }
+  margin-top: -6px; }
 
 .TitleHomeUser_Sub {
-  font-family: "Glober SemiBold";
+  font-family: "Glober Bold";
   font-weight: bold;
   font-size: 23px;
   position: relative;
@@ -11339,14 +11516,14 @@ a {
   margin-left: 7px;
   top: 3px;
   width: 90%;
-  color: #616462; }
+  color: #666666; }
 
 .ContentHomeUser {
   margin: 81px 0 0 0;
   font-family: "Glober Regular"; }
 
 .ContentUserHome {
-  margin: 77px 0 0 0;
+  margin: 70px 0 0 0;
   font-family: "Glober Regular";
   border-top: 1px solid #C4C5C3; }
 
@@ -11361,7 +11538,8 @@ a {
 .UserHmelistImgView {
   width: 55px;
   height: 55px;
-  border-radius: 50%; }
+  border-radius: 50%;
+  border: 2px solid #FFFFFF; }
 
 .HrefListView {
   font-family: "Glober Thin";
@@ -11369,7 +11547,7 @@ a {
   font-size: 21px;
   color: #000;
   font-size: 21px;
-  margin: 9px 12px 6px 12px; }
+  margin: 2px 12px 6px 12px; }
   .HrefListView .ion-chevron-right:before {
     content: "\f125";
     font-size: 19px;
@@ -11381,7 +11559,7 @@ a {
   font-size: 21px;
   color: #000;
   font-size: 21px;
-  margin: 6px 12px 6px 12px; }
+  margin: 0px 12px 6px 12px; }
 
 .ListText {
   position: relative;
@@ -11394,7 +11572,7 @@ a {
   top: -54px;
   margin-left: 66px;
   font-family: "Glober Bold";
-  color: #616462; }
+  color: #666666; }
 
 .listTitle {
   position: relative;
@@ -11422,7 +11600,7 @@ a {
   /*font-family: $fontFamily_thin; */ }
 
 .ListHomeUser_pTitle {
-  color: #706A67;
+  color: #999999 !important;
   font-size: 14px;
   margin-bottom: -1px;
   margin-left: 66px;
@@ -11434,13 +11612,17 @@ a {
   font-family: "Glober Regular";
   font-weight: normal;
   font-size: 100%;
-  color: #706A67; }
+  color: #666666; }
 
 .docName {
   width: 63%;
   position: relative;
   top: -23px;
   left: 102px; }
+
+.popupfont {
+  font-family: "Glober Regular";
+  color: #999999 !important; }
 
 .ion-search::before {
   margin-left: 10px; }
@@ -11508,7 +11690,7 @@ a {
   font-weight: bold;
   font-size: 30px;
   color: #535353;
-  margin-left: 40px !important; }
+  text-align: center; }
 
 .PragraphContent {
   font-family: "Glober Regular";
@@ -11539,8 +11721,8 @@ a {
   top: 84px; }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
-  background: #A9C985;
-  border-color: #A9C985; }
+  background: #A2D28A;
+  border-color: #A2D28A; }
 
 .popup-title {
   float: left;
@@ -11564,7 +11746,7 @@ a {
   border-radius: 28px;
   border-style: none;
   border-width: 1px;
-  content: " ";
+  content: "";
   display: table;
   height: 100%;
   transition: background-color 20ms ease-in-out 0s;
@@ -11635,7 +11817,8 @@ a {
   font-family: "Glober Thin"; }
 
 .PatintHeaderFontStyleSub {
-  font-family: "Glober Thin"; }
+  font-family: "Glober Regular";
+  font-weight: normal !important; }
 
 .ItalicSemiBoldStyle {
   font-family: "Glober Light"; }
@@ -11710,7 +11893,13 @@ form.ng-submitted input.ng-valid + i.icon.error {
   color: red; }
 
 #healthInfoDOB {
-  line-height: 20px; }
+  line-height: 22px; }
+
+#healthInfoEmail {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: normal; }
 
 .ellipsis {
   text-overflow: ellipsis;
@@ -11745,9 +11934,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .popup-head {
   padding: 8px 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #888;
   text-align: left;
-  width: 100%; }
+  margin-top: 14px; }
 
 .popup-body {
   padding: 10px; }
@@ -11766,7 +11955,6 @@ form.ng-submitted input.ng-valid + i.icon.error {
   border: 1px solid #fff;
   border-top: 0;
   border-right: 0;
-  content: ' ';
   opacity: 0; }
 
 .platform-android .checkbox-platform input:before, .platform-android .checkbox-platform .checkbox-icon:before, .checkbox-square input:before, .checkbox-square .checkbox-icon:before {
@@ -11804,7 +11992,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .userhead {
   text-align: center;
-  color: rgba(109, 109, 109, 0.91);
+  color: #666666;
   font-size: 23px;
   font-family: Glober Bold;
   margin-top: 10px !important;
@@ -11841,11 +12029,18 @@ form.ng-submitted input.ng-valid + i.icon.error {
   color: black;
   font-size: 30px;
   cursor: pointer; }
+  .addBtn .icon-circle-with-plus {
+    font-size: 34px !important; }
+
+.AddCard .icon-circle-with-plus {
+  font-size: 30px !important; }
 
 .delBtn {
   color: red;
   font-size: 30px;
   cursor: pointer; }
+  .delBtn .icon-circle-with-cross {
+    font-size: 34px !important; }
 
 .disabled {
   color: #AAAAAA;
@@ -11919,104 +12114,137 @@ form.ng-submitted input.ng-valid + i.icon.error {
 
 .userSearch-Android {
   position: relative;
-  top: 110px; }
+  top: 113px; }
 
 .userSearch-IOS {
   position: relative;
-  top: 110px; }
+  top: 113px; }
 
 .UserHme {
   padding: 0 0%; }
   .UserHme .UserHmeSub-Android {
-    padding: 15px 10px 9px 10px; }
+    padding: 20px 10px 9px 10px; }
+    .UserHme .UserHmeSub-Android .userhmeSeach {
+      position: fixed;
+      text-align: center;
+      width: 100%;
+      margin-top: 2px;
+      padding-right: 89px;
+      font-size: 16px;
+      color: #8e8e93;
+      padding-top: 1px !important; }
+    .UserHme .UserHmeSub-Android .icon-magnifying-glass {
+      margin-right: 47px !important;
+      font-size: 16px;
+      position: relative;
+      right: 7px;
+      top: -1px; }
     .UserHme .UserHmeSub-Android .item-input {
-      margin-top: 5px;
-      background: #E6E6E2;
+      margin-top: 1px;
+      background: #e3e4e6;
       margin-left: 5px;
       margin-right: 5px;
       border-radius: 9px;
-      border: 1px solid #CDCACA; }
+      border-radius: 6px;
+      height: 33px; }
       .UserHme .UserHmeSub-Android .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         padding-top: 5px !important;
         font-family: "Glober Regular"; }
       .UserHme .UserHmeSub-Android .item-input ::-moz-placeholder {
         /* Mozilla Firefox 4 to 18 */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         padding-top: 5px !important;
         opacity: 1;
         font-family: "Glober Regular"; }
       .UserHme .UserHmeSub-Android .item-input input:-moz-placeholder {
         /* Mozilla Firefox 19+ */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         padding-top: 5px !important;
         opacity: 1;
         font-family: "Glober Regular"; }
       .UserHme .UserHmeSub-Android .item-input :-ms-input-placeholder {
         /* Internet Explorer 10+ */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         padding-top: 5px !important;
         font-family: "Glober Regular"; }
       .UserHme .UserHmeSub-Android .item-input input {
-        font-size: 19px;
+        font-size: 14px;
         color: #616462;
-        height: 26px;
+        height: 28px;
         margin-top: 0px;
-        font-family: "Glober Regular"; }
+        font-family: "Glober Regular";
+        text-align: center; }
   .UserHme .UserHmeSub-IOS {
     padding: 15px 10px 9px 10px; }
+    .UserHme .UserHmeSub-IOS .userhmeSeach {
+      position: fixed;
+      text-align: center;
+      width: 100%;
+      margin-top: 2px;
+      padding-right: 83px;
+      font-size: 16px;
+      color: #8e8e93;
+      padding-top: 1px !important; }
+    .UserHme .UserHmeSub-IOS .icon-magnifying-glass {
+      margin-right: 47px !important;
+      font-size: 16px;
+      position: relative;
+      right: 7px;
+      top: -1px; }
     .UserHme .UserHmeSub-IOS .item-input {
-      margin-top: 5px;
-      background: #E6E6E2;
+      margin-top: 1px;
+      background: #e3e4e6;
       margin-left: 5px;
       margin-right: 5px;
       border-radius: 9px;
-      border: 1px solid #CDCACA; }
+      padding: 0px; }
       .UserHme .UserHmeSub-IOS .item-input ::-webkit-input-placeholder {
         /* WebKit browsers */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         padding-top: 5px !important;
         font-family: "Glober Regular";
         position: relative;
         top: 0px; }
       .UserHme .UserHmeSub-IOS .item-input ::-moz-placeholder {
         /* Mozilla Firefox 4 to 18 */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         font-family: "Glober Regular";
         position: relative;
         top: 0px;
         padding-top: 5px !important; }
       .UserHme .UserHmeSub-IOS .item-input input:-moz-placeholder {
         /* Mozilla Firefox 19+ */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         font-family: "Glober Regular";
         position: relative;
         top: 0px;
         padding-top: 5px !important; }
       .UserHme .UserHmeSub-IOS .item-input :-ms-input-placeholder {
         /* Internet Explorer 10+ */
-        color: #484848 !important;
-        font-size: 19px !important;
+        color: #999999 !important;
+        font-size: 14px !important;
         font-family: "Glober Regular";
         position: relative;
         top: 0px;
         padding-top: 5px !important; }
       .UserHme .UserHmeSub-IOS .item-input input {
-        font-size: 19px;
+        font-size: 14px;
         color: #616462;
-        height: 21px;
+        height: 28px;
         margin-top: 0px;
         font-family: "Glober Regular";
         position: relative;
-        top: 2px; }
+        top: 2px;
+        text-align: center; }
 
 .UserHomePatient {
   cursor: pointer; }
@@ -12030,7 +12258,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails div, .UserHomePatient .UserHomeHeader .UserhmePatientDetails p {
         width: 67%; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails .UserHomeIcon {
-        color: #888;
+        color: #999999;
         margin-top: -34px; }
       .UserHomePatient .UserHomeHeader .UserhmePatientDetails .ion-chevron-right:before {
         content: "\f125";
@@ -12068,12 +12296,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
       font-size: 14px;
       margin-right: 30px;
       color: #888;
-      margin-top: -31px; }
+      margin-top: -33px; }
 
 .DependentList {
   padding: 11px;
   top: -2px;
-  height: 91px; }
+  height: 79px; }
   .DependentList a {
     cursor: pointer; }
     .DependentList a p {
@@ -12109,16 +12337,16 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .subHeaderTop {
   top: 70px;
   padding-top: 19px;
-  height: 87%; }
+  height: 56px; }
 
 #BackButtonIcon {
-  color: #000;
+  color: #444444;
   font-size: 12px !important;
   margin-top: 15px;
   display: block !important; }
 
 #SearchBackButtonIcon {
-  color: #000;
+  color: #444444;
   font-size: 12px !important;
   margin-top: 15px;
   display: block !important; }
@@ -12160,6 +12388,9 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 25px;
   margin-top: -2px; }
 
+.popupnotification {
+  position: relative !important; }
+
 .notificationError {
   height: auto !important;
   line-height: normal !important;
@@ -12170,7 +12401,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .ErrorContent {
   text-align: center;
   width: 93% !important;
-  margin-top: 22px;
+  margin-top: 12px !important;
   margin-bottom: -30px; }
 
 .NoticationClose {
@@ -12230,13 +12461,12 @@ form.ng-submitted input.ng-valid + i.icon.error {
   top: 3px; }
 
 .noPlanContainer-Android .dropdownContainer .healthPlanDropDown {
-  width: 100%;
   z-index: 2;
   position: relative;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
-  width: 93%;
+  background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
+  width: 102%;
   text-indent: 0.01px;
   text-overflow: "";
   border-radius: 7px;
@@ -12246,9 +12476,27 @@ form.ng-submitted input.ng-valid + i.icon.error {
 				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
 				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
   border: 1px solid #CDCACA !important;
-  height: 48px;
+  height: 42px;
   font-size: 18px;
   border: none; }
+
+.noPlanContainer-Android .dropdownContainer ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 14px !important; }
+
+.noPlanContainer-Android .dropdownContainer :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 14px !important;
+  opacity: 1; }
+
+.noPlanContainer-Android .dropdownContainer ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 14px !important;
+  opacity: 1; }
+
+.noPlanContainer-Android .dropdownContainer :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 14px !important; }
 
 .noPlanContainer-Android .healthPlanDropDown {
   color: transparent;
@@ -12257,13 +12505,14 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .noPlanContainer-Android .dropdownContainer {
   position: relative;
   height: 50px;
-  margin-left: 50px; }
+  margin-left: -4px;
+  margin-right: 16px; }
 
 .noPlanContainer-Android .viewport {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 75%;
+  width: 83%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12274,14 +12523,15 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 19px;
   padding: 6px;
   left: 18px;
-  top: 10px;
+  top: 8px;
+  text-align: left;
   /*font-weight: bold;*/ }
 
 .noPlanContainer-Android .viewport1 {
   pointer-events: none;
-  color: #60605D;
+  color: #666666;
   position: absolute;
-  width: 75%;
+  width: 60%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12289,10 +12539,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -ms-text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  font-size: 19px;
+  font-size: 16px;
   padding: 6px;
   left: 25px;
-  top: 10px;
+  top: 8px;
   /*font-weight: bold;*/
   text-align: left; }
 
@@ -12300,7 +12550,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 75%;
+  width: 85%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12312,10 +12562,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
   padding: 6px;
   left: 18px;
   top: 10px;
+  text-align: left;
   /*font-weight: bold;*/ }
 
 .noPlanContainer-Android .healthPlanDropDown option {
-  color: #60605D; }
+  color: #666666; }
 
 .noPlanContainer-IOS .dropdownContainer .healthPlanDropDown {
   width: 100%;
@@ -12324,19 +12575,35 @@ form.ng-submitted input.ng-valid + i.icon.error {
   -webkit-appearance: none;
   -moz-appearance: none;
   background: #E6E6E2 url(../img/select-arrow.png) no-repeat 95% center;
-  width: 93%;
   text-indent: 0.01px;
   text-overflow: "";
   border-radius: 7px;
-  margin-left: 8px;
   padding: 6px;
   /* box-shadow: inset 0 0 1px rgba(000,000,000, 0.5);
 				-moz-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);
 				-webkit-box-shadow:  inset 0 0 1px rgba(000,000,000, 0.5);*/
   border: 1px solid #CDCACA !important;
-  height: 48px;
+  height: 42px;
   font-size: 18px;
   border: none; }
+
+.noPlanContainer-IOS .dropdownContainer ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 14px !important; }
+
+.noPlanContainer-IOS .dropdownContainer :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 14px !important;
+  opacity: 1; }
+
+.noPlanContainer-IOS .dropdownContainer ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 14px !important;
+  opacity: 1; }
+
+.noPlanContainer-IOS .dropdownContainer :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 14px !important; }
 
 .noPlanContainer-IOS .healthPlanDropDown {
   color: transparent;
@@ -12345,13 +12612,15 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .noPlanContainer-IOS .dropdownContainer {
   position: relative;
   height: 50px;
-  margin-left: 50px; }
+  text-align: center;
+  margin-left: 4px;
+  margin-right: 4px; }
 
 .noPlanContainer-IOS .viewport {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 75%;
+  width: 83%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12362,14 +12631,15 @@ form.ng-submitted input.ng-valid + i.icon.error {
   font-size: 19px;
   padding: 6px;
   left: 18px;
-  top: 11px;
+  top: 8px;
+  text-align: left;
   /*font-weight: bold;*/ }
 
 .noPlanContainer-IOS .viewport1 {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 75%;
+  width: 60%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12379,8 +12649,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
   text-overflow: ellipsis;
   font-size: 19px;
   padding: 6px;
-  left: 25px;
-  top: 11px;
+  left: 45px;
+  top: 8px;
   /*font-weight: bold;*/
   text-align: left; }
 
@@ -12388,7 +12658,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   pointer-events: none;
   color: #60605D;
   position: absolute;
-  width: 75%;
+  width: 85%;
   height: 100%;
   z-index: 15;
   overflow: hidden;
@@ -12400,6 +12670,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
   padding: 6px;
   left: 18px;
   top: 11px;
+  text-align: left;
   /*font-weight: bold;*/ }
 
 .noPlanContainer-IOS .healthPlanDropDown option {
@@ -12455,10 +12726,12 @@ input, button, select, textarea {
   border-color: #C4C5C3; }
 
 .patientConternFontStyle {
-  font-family: "Glober Bold"; }
+  font-family: "Glober SemiBold";
+  color: #888888 !important;
+  font-size: 15px !important; }
 
 .patientConternFontStyle-ios {
-  font-family: "Glober Bold";
+  font-family: "Glober SemiBold";
   font-size: 15px; }
 
 .patientConternFontStyleSubTitle {
@@ -12538,16 +12811,21 @@ input, button, select, textarea {
   border: none;
   color: #616462;
   font-weight: bold;
+  font-size: 19px; }
+
+.noapptResult {
+  text-align: center;
+  border: none;
+  color: #616462;
+  font-weight: bold;
   font-size: 19px;
-  top: 90px; }
+  padding-top: 35px; }
 
 .dobRequired {
-  color: #AAA;
-  position: absolute;
+  color: #CBCBCB;
   width: 75%;
   height: 100%;
   z-index: 15;
-  overflow: hidden;
   top: 24px;
   font-size: 20px; }
 
@@ -12555,7 +12833,7 @@ input, button, select, textarea {
   text-align: center; }
 
 .itemtab {
-  padding: 12px !important; }
+  padding: 9px !important; }
 
 .paticoncontent {
   margin-top: 197px; }
@@ -12590,7 +12868,7 @@ input, button, select, textarea {
   top: -90px; }
 
 .singleTermsContent-Android {
-  padding: 50px 7px 7px 7px;
+  padding: 101px 7px 7px 7px;
   font-size: 19px;
   color: #4D4D4D;
   text-align: justify;
@@ -12604,6 +12882,25 @@ input, button, select, textarea {
   text-align: justify;
   position: relative;
   top: -115px; }
+
+.singleTermsconContent-Android {
+  padding: 50px 7px 7px 7px;
+  font-size: 19px;
+  color: #4D4D4D;
+  text-align: justify;
+  position: relative;
+  top: -31px; }
+
+.singleTermsconContent-IOS {
+  padding: 35px 7px 7px 7px;
+  font-size: 19px;
+  color: #4D4D4D;
+  text-align: justify;
+  position: relative;
+  top: 31px; }
+
+.sublogo {
+  margin-top: 205px; }
 
 .SubHeadIOS {
   margin-top: 82px !important;
@@ -12641,10 +12938,16 @@ input, button, select, textarea {
   font-size: 14px; }
 
 .usercontent-IOS {
-  margin-top: 210px; }
+  margin-top: 46%; }
+
+.usercontentpat-IOS {
+  margin-top: 34%; }
 
 .usercontent-Android {
-  margin-top: 210px; }
+  margin-top: 120px; }
+
+.usercontentpat-Android {
+  margin-top: 74px; }
 
 .healthcontentsearch-Android {
   margin-top: 108px; }
@@ -12659,15 +12962,15 @@ input, button, select, textarea {
 .contwidth {
   margin-top: 258px !important; }
 
-.profileSpan {
-  margin-left: -18px; }
-  .profileSpan .profileicon {
-    margin-left: -18px;
-    font-size: 36px; }
+.profileSpan .profileicon {
+  margin-left: -18px;
+  font-size: 30px;
+  position: relative;
+  left: -52px; }
 
 .content {
   margin-left: 38px;
-  font-size: 22px; }
+  font-size: 138%; }
   .content a {
     color: rgba(5, 4, 9, 0.54) !important;
     border: none !important; }
@@ -12681,20 +12984,22 @@ input, button, select, textarea {
 
 .homecontent {
   padding-top: 25px;
-  font-size: 12px !important; }
+  font-size: 75% !important;
+  color: #444444 !important; }
 
 .patientcontent {
   padding-top: 19px;
   margin-left: -21px;
   font-size: 12px !important;
-  margin-top: 7px; }
+  margin-top: 7px;
+  color: #444444 !important; }
 
 .headertitle {
   font-size: 20px;
   text-align: center;
   width: 100%;
   top: 5px;
-  color: white; }
+  color: #FFFFFF; }
 
 .headertitle-Android {
   font-size: 20px;
@@ -12741,43 +13046,44 @@ input, button, select, textarea {
   margin-right: 10px; }
 
 .footer-color {
-  background-color: #a3d488; }
+  background-color: #A2D28A; }
 
 #footleft {
   width: 42px; }
 
 .usersubheader {
   top: 64px;
-  height: 100px; }
+  height: 100px;
+  background-color: #444444 !important; }
 
 #centercolor {
   color: white;
-  margin-top: 15px !important;
-  font-size: 22px;
+  margin-top: 23px !important;
+  font-size: 145%;
   font-family: Glober Bold; }
 
 .userionitem {
-  padding: 10px !important; }
+  padding: 10px; }
 
 .userlist {
-  padding-top: 77px !important; }
+  padding-top: 105px; }
 
 .lefthome {
   padding-left: 30px; }
 
 .rightpatient {
   float: right;
-  margin-top: -91px; }
+  margin-top: -89px; }
 
 .formlabel {
   margin-left: 10px;
-  color: rgba(5, 4, 9, 0.54) !important;
+  color: #666666 !important;
   font-family: Glober Bold;
   font-weight: normal !important;
-  font-size: 20px; }
+  font-size: 18px; }
 
 .newusercontent {
-  margin-top: 120px; }
+  margin-top: 166px; }
 
 .circle {
   position: relative;
@@ -12794,7 +13100,7 @@ input, button, select, textarea {
 .avatlefticon {
   float: left;
   margin-left: -18px;
-  color: #9bca82;
+  color: #A2D28A;
   font-size: 16 px !important; }
 
 .circle:after {
@@ -12830,9 +13136,9 @@ input, button, select, textarea {
   vertical-align: middle; }
 
 .appalignrighticon {
-  margin-left: 42px;
   color: #fff;
-  font-size: 15px; }
+  font-size: 95%;
+  font-family: Glober Regular; }
 
 .aslignspan {
   margin-left: 3px; }
@@ -12840,7 +13146,6 @@ input, button, select, textarea {
 #viewicon {
   float: right;
   color: white;
-  margin-top: 3px;
   font-size: 12px !important;
   text-align: right; }
 
@@ -12870,14 +13175,14 @@ input, button, select, textarea {
   width: 2%; }
 
 .btcolor {
-  background-color: #11c1f3 !important;
-  color: #fff !important;
-  border-color: #11c1f3 !important; }
+  background-color: #23B4D6 !important;
+  color: #FFFFFF !important;
+  border-color: #23B4D6 !important; }
 
 .btnextcolor {
-  background-color: #fff !important;
-  color: #11c1f3 !important;
-  border-color: #11c1f3 !important; }
+  background-color: #FFFFFF !important;
+  color: #23B4D6 !important;
+  border-color: #23B4D6 !important; }
 
 hr {
   height: 1px;
@@ -12904,7 +13209,7 @@ hr {
   margin-left: 12px;
   font-size: 18px;
   font-family: Glober bold;
-  color: #585858; }
+  color: #666666; }
 
 .icondown {
   float: right;
@@ -12914,10 +13219,11 @@ hr {
   color: #414141; }
 
 .alvalue {
-  color: #888;
+  color: #666666;
   font-size: 18px;
   margin-left: 28px;
-  line-height: 1.5; }
+  line-height: 1.5;
+  font-family: Glober Regular; }
 
 .chronic {
   margin-top: 12px;
@@ -12941,7 +13247,10 @@ hr {
   color: #888 !important; }
 
 .contright {
-  float: right; }
+  float: right;
+  color: #666666;
+  font-family: Glober Regular;
+  white-space: nowrap; }
   .contright .ion-chevron-right:before {
     font-size: 12px !important; }
 
@@ -12958,29 +13267,37 @@ hr {
   margin-top: -8px; }
 
 .tab-item.active {
-  color: #11c1f3 !important; }
+  color: #23B5D6 !important; }
+
+.tab-item.active {
+  color: #23B5D6 !important; }
+  .tab-item.active .icon {
+    color: #23B5D6 !important; }
+
+.tab-item .icon {
+  color: #999999; }
 
 .newuserdetails {
   border-top: none;
-  padding: 10px !important; }
+  padding: 0px !important; }
 
 .newuserp {
-  text-align: center;
-  margin-bottom: 10px !important; }
+  text-align: center; }
+  .newuserp [class^="icon-user-add"], .newuserp [class*=" icon-user-add"] {
+    font-size: 40px; }
 
 .newusertopcontent {
   text-align: center; }
 
-.newusertoph2 {
-  margin-bottom: 10px !important; }
-
 .usertopfont {
   font-size: 30px !important;
-  font-family: Glober Bold; }
+  font-family: Glober Bold;
+  color: #888888 !important; }
 
 .topp {
-  color: #ababab;
-  font-size: 14px; }
+  color: #999999 !important;
+  font-size: 14px;
+  line-height: 25px; }
 
 .donebutton {
   margin-bottom: 50px;
@@ -12998,14 +13315,22 @@ hr {
 .tabcontent {
   color: #11c1f3; }
 
+.popupalign {
+  margin-left: -20px; }
+
+.popupname {
+  font-size: 21px;
+  font-family: Glober Bold;
+  color: #666666; }
+
 .fname {
   font-size: 21px;
-  font-family: Glober SemiBold;
-  color: #717171; }
+  font-family: Glober Bold;
+  color: #666666; }
 
 .sname {
   font-size: 21px !important;
-  color: #888;
+  color: #666666;
   font-family: Glober Regular; }
 
 .fontsymbol {
@@ -13017,7 +13342,7 @@ hr {
 .fonttime {
   font-size: 14px;
   color: #686868;
-  font-family: Glober Regular; }
+  font-family: Glober SemiBold; }
 
 .apptdetails {
   background-color: #ffc900;
@@ -13043,7 +13368,8 @@ hr {
     margin-top: 10px; }
 
 .list .col-75 {
-  margin-top: -9px; }
+  margin-top: -9px;
+  margin-left: -9px; }
 
 .list .archiveCoUser {
   height: 81px; }
@@ -13067,17 +13393,18 @@ hr {
   margin-top: 13px; }
 
 .list .unlink {
-  margin-left: 4px !important;
-  margin-top: -5px !important;
+  margin-left: 6px !important;
+  margin-top: -6px !important;
   margin-bottom: -5px;
   color: white;
-  background-color: red !important; }
+  background-color: #D0021B !important; }
 
 .list .icons {
-  margin-left: 12px; }
+  margin-left: 12px;
+  font-size: 25px; }
 
 .list .tabicon {
-  margin-left: 22px;
+  margin-left: 6px;
   margin-top: -14px;
   color: white;
   font-size: 26px; }
@@ -13104,18 +13431,19 @@ hr {
   border: none; }
 
 .list .fdate {
-  margin-top: 18px !important; }
+  margin-top: 8px !important; }
 
 .list .ftime {
   margin: 0 0 11px 0;
   font-size: 60px;
   font-family: Glober Bold;
-  margin-left: 24px; }
+  text-transform: lowercase; }
 
 .list .fday {
-  font-size: 31px;
+  font-size: 25px;
   margin-top: 10px;
-  font-family: Glober Regular; }
+  font-family: Glober Regular;
+  color: #666666; }
 
 .list .apptitem {
   background-color: #ffc900;
@@ -13140,12 +13468,11 @@ hr {
 .list .avataricon {
   float: right;
   font-size: 26px;
-  margin-left: 23px;
-  color: #888; }
+  margin-left: 23px; }
 
 .list .relatediconfont {
   margin-top: -4px;
-  color: #888 !important;
+  color: #999999 !important;
   margin-left: 10px !important; }
 
 .list .tabvalue {
@@ -13159,13 +13486,10 @@ hr {
     float: left; }
     .list .tabvalue p .avatarlefticon {
       margin-left: -12px;
-      color: #9bca82; }
+      color: #A2D28A; }
     .list .tabvalue p .avaticon {
-      margin-left: -14px;
-      color: rgba(250, 130, 69, 0.32) !important; }
-
-.list .list:last-child {
-  padding-bottom: 150px !important; }
+      margin-left: -15px;
+      color: #FDD8C5 !important; }
 
 .list .consimg {
   max-width: 30px !important;
@@ -13177,12 +13501,12 @@ hr {
   margin-left: -36px; }
 
 .list .avatrelationclass {
-  margin-top: 4px;
-  margin-left: -27px; }
+  margin-top: 5px;
+  margin-left: -38px; }
 
 .list .righticon {
   margin-right: -12px;
-  color: #9bca82;
+  color: #A2D28A;
   margin-bottom: 15px; }
 
 .list .contentvalue {
@@ -13195,11 +13519,14 @@ hr {
   .list .contentvalue .contentalignment {
     margin-left: 8px !important; }
 
+.list .popupaligned {
+  margin-left: -12px; }
+
 .list .listtype {
   padding-top: 29px !important; }
 
 .list .thumpsicon {
-  color: #11c1f3;
+  color: #23B4D6;
   margin-left: 22px;
   font-size: 24px; }
 
@@ -13212,7 +13539,7 @@ hr {
   margin-left: 17px; }
 
 .list .authorizedval {
-  background-color: rgba(250, 130, 69, 0.32);
+  background-color: #FDD8C5;
   height: 40px; }
   .list .authorizedval .authorizedicon {
     margin-top: -26px;
@@ -13221,29 +13548,43 @@ hr {
     font-size: 22px; }
   .list .authorizedval .authorizedcont {
     font-size: 12px !important;
-    color: #838383;
-    margin-top: -2px; }
+    color: #999999;
+    margin-top: -6px; }
   .list .authorizedval .authorizedupdate {
     margin-bottom: 4px;
     float: right;
-    color: #222222;
-    font-size: 11px !important; }
+    color: #666666;
+    font-size: 11px !important;
+    position: relative;
+    top: -25px; }
+    .list .authorizedval .authorizedupdate [class^="icon-chevron-right"], .list .authorizedval .authorizedupdate [class*=" icon-chevron-right"] {
+      font-size: 19px;
+      position: relative;
+      top: 6px; }
+    .list .authorizedval .authorizedupdate .ion-chevron-right {
+      position: relative;
+      top: 1px;
+      color: #444444; }
 
 .list .authorupdate {
-  background-color: rgba(250, 130, 69, 0.32) !important; }
+  background-color: #FDD8C5 !important; }
 
 .list .authorizedview {
   height: 60px;
   margin-left: -5px;
-  margin-top: -11px; }
+  margin-top: 0px;
+  width: 103%;
+  padding: 0px; }
   .list .authorizedview .authortab {
-    margin-top: -8px !important;
-    margin-left: 26px;
+    margin-top: -17px !important;
+    margin-left: 0px;
     font-size: 20px !important; }
+    .list .authorizedview .authortab .ion-chevron-down {
+      position: relative;
+      top: 3px; }
   .list .authorizedview .authorcont {
-    margin-top: -8px;
+    margin-top: 0px;
     margin-left: 14px;
-    color: #222222;
     font-size: 11px !important; }
 
 .list .statustab {
@@ -13251,32 +13592,33 @@ hr {
   .list .statustab .unstatus {
     margin-left: 5px;
     font-size: 10px;
-    margin-top: -4px; }
-  .list .statustab .unstatuscont {
-    margin-top: 10px;
-    margin-left: -25px;
-    font-size: 12px;
-    font-family: Glober SemiBold; }
-  .list .statustab .thumbsdownicon {
-    float: right;
-    margin-left: 25px;
-    font-size: 22px;
-    margin-top: -5px; }
+    margin-top: -4px;
+    color: #999999 !important; }
+
+.list .thumbsdownicon {
+  float: right;
+  margin-left: 12px;
+  font-size: 22px;
+  margin-top: 0px; }
 
 .list .relationtab {
   background-color: #ededed; }
   .list .relationtab .relationstatus {
-    margin-left: 10px;
-    font-size: 10px; }
+    margin-left: 18px;
+    font-size: 10px;
+    color: #999999 !important; }
   .list .relationtab .unauthorrelationship {
     margin-top: -15px;
-    color: #6d6d6d;
+    color: #666666;
     font-size: 12px;
     margin-left: 9px;
     font-family: Glober SemiBold; }
 
 .list .fontcolor {
-  color: #888 !important; }
+  color: #999999 !important; }
+
+.list .tabcolor {
+  color: #929292; }
 
 .list .relatedfont {
   margin-top: -9px;
@@ -13304,6 +13646,57 @@ hr {
   margin-top: 125px !important; }
 
 @media (max-width: 320px) and (min-width: 315px) {
+  .usercontent-IOS {
+    margin-top: 32% !important; }
+    .usercontent-IOS #accountMngeProfile-IOS {
+      padding: 19px 10px; }
+  .fday {
+    font-size: 25px !important;
+    margin-top: 4px !important; }
+  .ftime {
+    font-size: 55px !important; }
+  .fdate {
+    margin-top: 0px !important; }
+  #AppointNoneIOS {
+    padding: 34px 10px !important; }
+  .usercontentpat-IOS {
+    margin-top: 29%; }
+    .usercontentpat-IOS #accountMngeProfile-IOS {
+      padding: 12px 10px !important; }
+  .apponitmentfday-Android {
+    margin-left: -14px;
+    margin-right: -14px;
+    font-size: 24px !important; }
+  .apponitmentfday-IOS {
+    margin-left: -14px;
+    margin-right: -14px;
+    font-size: 24px !important; }
+  .consultConMargin {
+    margin: 202px 0 0 0; }
+  .consultCharge_content {
+    padding-top: 0px; }
+  .accountAppointHeight {
+    height: 70px !important; }
+  .birthContent .healthViewDetails {
+    margin-left: -7px; }
+  .passedImage-IOS {
+    width: 12% !important; }
+  .passedDate-IOS {
+    width: 25% !important; }
+  .passedTime-IOS {
+    width: 20% !important;
+    margin-left: 5px !important; }
+  .passedDoc-IOS {
+    width: 19% !important;
+    margin-left: 5px !important; }
+  .passedDetails-IOS {
+    width: 20% !important;
+    margin-left: 5px !important;
+    color: #666666;
+    font-family: Glober Regular; }
+  .profileSpan {
+    margin-left: 33px;
+    color: #666666; }
   .addphoto {
     width: 34%; }
   .popup-container .popup {
@@ -13322,11 +13715,13 @@ hr {
   .ionappointment {
     height: 65px !important; }
   #viewicon {
-    height: 24px; }
+    height: 24px;
+    margin-top: -28px !important;
+    left: 5px; }
   #centercolor {
     font-size: 21px; }
   .appointment {
-    font-size: 22px !important;
+    font-size: 120% !important;
     color: white; }
   .valtex {
     margin-left: 18px;
@@ -13342,7 +13737,9 @@ hr {
 
 .pfontsize {
   font-size: 16px !important;
-  white-space: normal !important; }
+  color: #666666 !important;
+  white-space: normal !important;
+  font-family: Glober Regular; }
 
 .headerrighticon {
   border: 1px solid #888;
@@ -13351,7 +13748,7 @@ hr {
   padding-right: 6px;
   padding-top: 5px;
   padding-bottom: 0px;
-  font-size: 21px;
+  font-size: 130%;
   color: #888; }
 
 .headerlefticons {
@@ -13361,14 +13758,19 @@ hr {
   padding-right: 8px;
   padding-top: 6px;
   padding-bottom: 1px;
-  font-size: 21px;
+  font-size: 109%;
   color: #888; }
 
 @media (max-width: 481px) and (min-width: 322px) {
   .dependusers:last-child {
     padding-bottom: 200px; }
-  .password_home_top {
-    margin-top: -110px !important; }
+  .addcouser {
+    padding: 35px 10px  !important; }
+  .adddepuser {
+    padding: 35px 10px  !important; }
+  .accountAppointview-Android {
+    position: relative;
+    text-align: right !important; }
   .tabs-top > .tabs, .tabs.tabs-top {
     top: inherit !important; }
   .useracctheader {
@@ -13378,13 +13780,6 @@ hr {
   .shadowcard {
     box-shadow: 0 1px 3px transparent !important;
     margin: 21px 10px !important; }
-  .newusercontent {
-    margin-top: 110px; }
-  .alpha_sidebar {
-    position: absolute;
-    top: 3px;
-    right: 90px;
-    z-index: 10; }
   .sidemenu {
     bottom: 60px !important; }
   .searchcontent {
@@ -13399,11 +13794,11 @@ hr {
   .tabs-striped .tabs {
     border-bottom: none; }
   .avatarclass {
-    margin-left: -26px; }
+    margin-left: -34px; }
   .fstrow {
     margin-top: 4px; }
   .statuscont {
-    margin-left: -27px !important; }
+    margin-left: -31px !important; }
   .consultcontent {
     margin-top: 102px; }
   .paticoncontent {
@@ -13413,7 +13808,7 @@ hr {
   .relatedfont {
     margin-top: -9px; }
   .appfloat {
-    margin-top: 0px !important; }
+    margin-top: -16px !important; }
   .appfloat .ion-chevron-right:before {
     font-size: 14px !important; }
   .archeight {
@@ -13431,7 +13826,7 @@ hr {
     height: 80px !important;
     background-image: none; }
   .footerrsheight #centercolor {
-    color: white;
+    color: #FFFFFF;
     margin-top: 20px !important;
     font-size: 21px;
     font-family: Glober Bold; }
@@ -13457,7 +13852,7 @@ hr {
     background-image: none; }
   .aptsname {
     font-size: 14px !important;
-    color: #888;
+    color: #666666;
     font-family: Glober SemiBold; }
   .appth3 {
     margin: 20px 0px 0px 0px !important; }
@@ -13465,8 +13860,6 @@ hr {
     float: right; }
   .chronic {
     margin-top: 24px; }
-  .alignchronic {
-    margin-left: 40px !important; }
   .useracctheader {
     margin-left: 12px; }
   /*   .has-header{
@@ -13491,9 +13884,9 @@ hr {
     height: 75px !important; }
   .appointment {
     color: white;
-    font-size: 22px; }
+    font-size: 118% !important; }
   .userdeptcontent {
-    margin-top: 120px !important; }
+    margin-top: 160px !important; }
   .userdetcontent {
     margin-top: 58px !important; }
   .ioncontentalign {
@@ -13512,7 +13905,7 @@ hr {
       background-color: #EFEFED;
     }*/
   .userdeptcontent {
-    margin-top: 120px !important; }
+    margin-top: 160px !important; }
   .userdetcontent {
     margin-top: 58px !important; }
   .ioncontentalign {
@@ -13533,12 +13926,18 @@ hr {
   .header_imageAndroid {
     margin-top: 20px; }
   .password_sub_headerAndroid {
-    margin-top: 54px;
+    margin-top: -31px;
     color: #A80532; }
   .consultcontentsearch {
-    margin-top: 26px; } }
+    margin-top: 26px; }
+    .consultcontentsearch .listfirst {
+      padding-bottom: 120px; }
+  #accountMngeProfile-Android {
+    padding: 16px 10px !important; } }
 
 @media (max-width: 640px) and (min-width: 482px) {
+  .tabs-top > .tabs, .tabs.tabs-top {
+    top: inherit !important; }
   .addphoto {
     width: 42%; }
   .popup-container .popup {
@@ -13574,9 +13973,9 @@ hr {
   .addphoto {
     width: 44%; }
   .usercontent-IOS {
-    margin-top: 300px; }
-  .alignchronic {
-    margin-left: 235px !important; }
+    margin-top: 46%; }
+  .tabs-top > .tabs, .tabs.tabs-top {
+    top: inherit !important; }
   .topimage {
     position: absolute;
     top: 9px;
@@ -13589,7 +13988,7 @@ hr {
   .userdetcontent {
     margin-top: 138px !important; }
   .userdeptcontent {
-    margin-top: 155px !important; }
+    margin-top: 160px !important; }
   .ioncontentalign {
     margin-top: 200px; }
   .ioncontentsalign {
@@ -13603,6 +14002,8 @@ hr {
     font-size: 15px; } }
 
 @media (min-width: 770px) and (max-width: 1024px) {
+  .tabs-top > .tabs, .tabs.tabs-top {
+    top: inherit !important; }
   .usercard {
     margin: 90px 10px !important; }
   .userlist {
@@ -13627,7 +14028,9 @@ hr {
 
 @media (max-width: 1366px) and (min-width: 769px) {
   .itemhead {
-    text-align: center; } }
+    text-align: center; }
+  .tabs-top > .tabs, .tabs.tabs-top {
+    top: inherit !important; } }
 
 /*
     @media (max-width:1366px) and (min-width:769px)    {
@@ -13686,7 +14089,14 @@ hr {
   margin-left: 3px; }
 
 .csheader {
+  color: #666666;
+  font-family: Glober SemiBold;
   margin-left: 4px; }
+
+.cpheader {
+  color: #666666;
+  font-family: Glober SemiBold;
+  margin-left: -4px; }
 
 .popup-container .popup {
   border-radius: 7px;
@@ -13721,14 +14131,19 @@ hr {
 
 .listprofile {
   padding-bottom: 50px; }
+  .listprofile .icondown {
+    font-size: 11px; }
+  .listprofile .icon-pencil {
+    font-size: 16px !important; }
 
 .popup-head {
-  padding: 14px 12px;
+  padding: 8px 10px;
   border-bottom: 1px solid #888;
-  text-align: left; }
+  text-align: left;
+  margin-top: 14px; }
 
 .popup-body {
-  padding: 38px !important;
+  padding: 30px !important;
   overflow: hidden; }
 
 .popup-buttons {
@@ -13740,11 +14155,12 @@ hr {
   padding: 0;
   font-weight: normal;
   font-size: 14px;
-  margin-left: 75px !important; }
+  margin-left: 54px !important;
+  font-family: Glober Semibold; }
 
 .button.button-positive {
-  background-color: #9bca82 !important;
-  border-color: #9bca82; }
+  background-color: #A2D28A !important;
+  border-color: #A2D28A; }
 
 /* tab start
 
@@ -13757,8 +14173,8 @@ top: inherit !important;
 }  tab end
 */
 .button.button-default {
-  background-color: #888 !important;
-  border-color: #888;
+  background-color: #999999 !important;
+  border-color: none;
   color: white; }
 
 .popup-buttons .button {
@@ -13795,8 +14211,8 @@ top: inherit !important;
     background-color: rgba(204, 204, 204, 0.46);
     color: #585858; }
   .seccontent .parafont {
-    color: #555555;
-    font-family: Glober SemiBold; }
+    color: #666666;
+    font-family: Glober Bold; }
 
 .seccontentone {
   margin-top: -28px;
@@ -13813,7 +14229,7 @@ top: inherit !important;
 
 .appointment {
   color: white;
-  font-size: 22px;
+  font-size: 122%;
   font-family: Glober xBold; }
 
 .item-image-icon {
@@ -13824,7 +14240,8 @@ top: inherit !important;
   background: -webkit-linear-gradient(top, #444444, #444444 59%, white 30%, white);
   border-bottom: none;
   margin-left: -7px;
-  margin-right: -8px; }
+  margin-right: -8px;
+  border: none; }
 
 .hidecard {
   box-shadow: 0 1px 3px transparent; }
@@ -13852,17 +14269,19 @@ top: inherit !important;
 
 .userappfootcontent {
   font-family: Glober Bold;
-  margin-top: 5px;
+  margin-top: 5px !important;
   color: #fff;
-  font-size: 22px !important; }
+  font-size: 138% !important; }
 
 .button-bar > .button:first-child {
   border-radius: 6px 0px 0px 6px !important; }
 
 .fontcolorfamily {
-  color: rgba(5, 4, 9, 0.54) !important;
+  color: #666666 !important;
   font-family: Glober SemiBold;
-  font-size: 19px; }
+  font-size: 19px;
+  position: relative;
+  top: 4px; }
 
 .button-bar > .button:last-child {
   border-right-width: 1px;
@@ -13886,7 +14305,7 @@ top: inherit !important;
   line-height: 1.6;
   font-size: 16px;
   font-family: Glober Regular;
-  color: #616462; }
+  color: #666666; }
 
 .fonttype {
   font-family: Glober SemiBold;
@@ -13895,23 +14314,22 @@ top: inherit !important;
 .alterfooter {
   font-size: 20px;
   font-family: Glober Bold;
-  width: 170px;
+  width: 100%;
   text-align: center;
-  margin-left: 80px;
-  color: #868686;
+  color: #666666;
   word-wrap: break-word;
   margin-top: 15px;
   line-height: 1.2; }
 
 .headerval {
-  color: white;
+  color: #FFFFFF;
   font-family: Glober Regular;
   float: right;
   margin-right: 8px;
   font-weight: normal;
   padding: 7px;
   position: relative;
-  top: -7px; }
+  top: -8px; }
 
 .headerleftval {
   color: white;
@@ -13922,7 +14340,8 @@ top: inherit !important;
 
 .colfamily {
   font-family: Glober Semibold;
-  color: #616161; }
+  color: #666666;
+  width: 90px; }
 
 .rheader {
   color: #616161;
@@ -13942,16 +14361,24 @@ top: inherit !important;
   border-image: none;
   background-image: none; }
 
+.asubheader {
+  margin-top: 40px;
+  border-bottom: none;
+  border-image: none;
+  background-image: none; }
+
 .searchsubheader {
   margin-top: 23px;
-  height: 110px;
-  border-bottom: 1.5px solid #b5b5b5;
-  border-image: none; }
+  height: 62px;
+  border-bottom: none;
+  border-image: none;
+  background-image: none; }
 
 .sheader {
-  color: #616161;
+  color: #666666;
   font-size: 12px !important;
-  margin-top: 20px !important; }
+  margin-top: 20px !important;
+  font-family: Glober SemiBold; }
 
 .cdetcolor {
   color: #868686; }
@@ -13971,7 +14398,7 @@ top: inherit !important;
 
 .rowalign {
   padding: 0px;
-  background-color: #f3f2ea;
+  background-color: none !important;
   height: 50px; }
 
 .right-icon {
@@ -13979,10 +14406,8 @@ top: inherit !important;
   margin-left: 15px; }
 
 .csearch-Android {
-  background-color: #e8e8e8;
   height: 27px;
-  border-radius: 5px;
-  margin-top: 80px; }
+  border-radius: 5px; }
   .csearch-Android .hsearch {
     text-align: center;
     line-height: 2;
@@ -13990,13 +14415,54 @@ top: inherit !important;
     font-family: Glober Regular;
     color: #aaa; }
 
-.ionicitem {
-  padding: 8px !important; }
+.casearch-Android {
+  height: 27px;
+  border-radius: 5px;
+  margin-top: 260px; }
+  .casearch-Android .hsearch {
+    text-align: center;
+    line-height: 2;
+    font-size: 16px;
+    font-family: Glober Regular;
+    color: #aaa; }
+
+.casearch-IOS {
+  height: 50px;
+  border-radius: 5px;
+  margin-top: 260px; }
+  .casearch-IOS .hsearch {
+    text-align: center;
+    line-height: 2;
+    font-size: 16px;
+    font-family: Glober Regular;
+    color: #aaa; }
+
+.consultsearch .rowalign {
+  background-color: none !important; }
+
+.consultsearch p {
+  margin: 0px !important; }
 
 .topfont {
   max-width: 60px;
-  margin-left: -10px;
-  font-size: 11px; }
+  margin-left: -30px;
+  font-size: 11px;
+  color: #666666;
+  font-family: Glober SemiBold; }
+
+.timetopfont {
+  max-width: 60px;
+  margin-left: -25px;
+  font-size: 11px;
+  color: #666666;
+  font-family: Glober SemiBold; }
+
+.providertopfont {
+  max-width: 60px;
+  margin-left: -16px;
+  font-size: 11px;
+  color: #666666;
+  font-family: Glober SemiBold; }
 
 .avatitem {
   border: none;
@@ -14009,7 +14475,9 @@ top: inherit !important;
   margin-left: 3px; }
 
 .ion-chevron-right:before {
-  font-size: 17px !important; }
+  font-size: 10px !important;
+  position: relative;
+  top: -1px; }
 
 .cardshadow {
   box-shadow: 0 1px 3px transparent !important; }
@@ -14031,7 +14499,8 @@ top: inherit !important;
 .coltime {
   max-width: 71px;
   margin-left: 10px;
-  margin-top: -4px; }
+  margin-top: -4px;
+  text-transform: lowercase; }
 
 .coldetails {
   margin-top: -4px; }
@@ -14049,10 +14518,14 @@ top: inherit !important;
   background-color: #e9e9e9; }
 
 .profilecontent {
-  margin-top: 160px; }
+  margin-top: 177px; }
 
 .relatedusercontent {
-  margin-top: 200px; }
+  margin-top: 215px;
+  margin-bottom: 50px; }
+
+.relatedsearchusercontent {
+  margin-top: 65px; }
 
 .usercard {
   margin: 38px 10px !important; }
@@ -14064,9 +14537,10 @@ top: inherit !important;
   margin-left: 60px; }
 
 .item-input .usertext {
-  font-size: 17px;
+  font-size: 19px;
   font-family: Glober Semibold;
-  line-height: 22px; }
+  line-height: 23px;
+  color: rgba(5, 4, 9, 0.54) !important; }
 
 .item-input .userdob {
   margin-left: 40px;
@@ -14095,9 +14569,10 @@ top: inherit !important;
 
 .item-input .homeadd {
   margin-top: 10px;
-  font-size: 17px;
+  font-size: 19px;
   font-family: Glober Semibold;
-  line-height: 16px; }
+  line-height: 16px;
+  color: rgba(5, 4, 9, 0.54) !important; }
 
 .item-input .valuealign {
   margin-left: 45px; }
@@ -14107,9 +14582,10 @@ top: inherit !important;
   width: 145px; }
 
 .item-input .textdata {
-  font-size: 17px;
+  font-size: 18px;
   color: #7c7c7c;
-  background-color: #e9e9e9; }
+  background-color: #e9e9e9;
+  padding-left: 5px; }
 
 .item-input .valhome {
   margin-left: 43px; }
@@ -14124,7 +14600,7 @@ top: inherit !important;
   margin-left: 8px; }
 
 .item-input .editdata {
-  font-size: 20px;
+  font-size: 18px;
   color: #7c7c7c;
   background-color: #e9e9e9 !important;
   width: 90%; }
@@ -14145,14 +14621,99 @@ top: inherit !important;
     height: 70px !important; } }
 
 @media only screen and (min-width: 595px) and (max-width: 610px) {
+  #divSearchInput {
+    border-bottom: 1px solid #C4C5C3; }
+  .editheight {
+    margin-left: 0px;
+    float: left; }
+  .addhealthplan {
+    padding-top: 24px !important; }
+  .consultcontent .topfont {
+    margin-left: -50px; }
+  .timetopfont {
+    margin-left: -33px; }
+  .providertopfont {
+    margin-left: -32px; }
+  .list .tabvalue p .avaticon {
+    margin-left: -60px;
+    color: #FDD8C5 !important; }
+  .authorizedIcon-Android {
+    position: relative;
+    top: 6px !important;
+    right: 0px; }
+  .contentalign .statuscont {
+    margin-top: 14px; }
+  .authorizeIcon-Android {
+    position: relative;
+    top: 11px !important;
+    right: 16px; }
+  .unAuthorizeStatusMain-Android .tabvalue {
+    margin-top: 1px !important; }
+  .appiconcontent {
+    margin-top: 226px; }
+  .statuscol {
+    background-color: #ECECEC;
+    width: 37%; }
+    .statuscol .status {
+      margin-left: 10px;
+      font-size: 11px;
+      margin-top: -0px; }
+    .statuscol .statuscont {
+      margin-left: -31px;
+      font-size: 12px;
+      font-family: Glober SemiBold; }
+  .list .unlink {
+    margin-left: 6px !important;
+    margin-top: -5px !important;
+    margin-bottom: -8px;
+    color: white;
+    background-color: #D0021B !important; }
+  .list .avatrelationclass {
+    margin-top: 11px;
+    margin-left: -15px; }
+  .tabvalueAuthorize-Android {
+    position: relative;
+    top: 8px;
+    color: #999999 !important; }
+  .healthchoose {
+    width: 131%;
+    margin-right: 143px !important; }
+  .healthinfoHeight-Android {
+    width: 56%;
+    margin-left: -6px !important;
+    float: left; }
+    .healthinfoHeight-Android input {
+      width: 111%;
+      margin-left: -2px; }
+  .healthinfoHeight2-Android {
+    width: 63%;
+    margin-left: -38px !important;
+    float: left; }
+  .ContentUserHome {
+    margin: 70px 0 0 0;
+    font-family: "Glober Regular";
+    border-top: 0px solid #C4C5C3; }
+  .list .relatedfont {
+    margin-top: -6px;
+    color: #888 !important;
+    margin-left: 10px !important; }
+  .item-avatar {
+    padding-bottom: 18px;
+    border-bottom-right-radius: 2px; }
+  .list {
+    padding-top: 0px !important; }
   .listprofile {
     padding-bottom: 5 px; }
   .apticons {
     margin-left: -90px !important; }
   .fname {
     font-size: 24px; }
-  .HeaderListAndroid {
-    margin-left: 32px !important; }
+  .list .unlink {
+    margin-left: 6px !important;
+    margin-top: -5px !important;
+    margin-bottom: -8px;
+    color: white;
+    background-color: #D0021B !important; }
   .chronic {
     margin-top: 19px; }
   .userappcontent {
@@ -14163,18 +14724,21 @@ top: inherit !important;
   .profileperson {
     margin-left: -90px !important; }
   .profilecalendar {
-    margin-left: -45px !important; }
+    margin-left: -70px !important; }
   .archeight {
     height: 84px; }
   .unauthor {
-    margin-left: -25px; }
+    margin-top: 17px;
+    font-size: 12px;
+    font-family: Glober Regular;
+    color: #666666 !important; }
   .searchcontent {
     margin-top: 112px; }
   .unstatuscont {
     margin-left: -43px; }
   .thumbsdownicon {
-    margin-left: 40px !important;
-    margin-top: -24px !important; }
+    margin-left: 16px !important;
+    margin-top: -18px !important; }
   .usercard {
     margin: 70px 10px !important; }
   .userlist {
@@ -14194,8 +14758,6 @@ top: inherit !important;
     margin-left: 30px !important; }
   .colmore {
     margin-left: 0px !important; }
-  .relatedusercontent {
-    margin-top: 200px; }
   .list.listtype {
     padding-top: 110px !important; }
   .newcard {
@@ -14221,36 +14783,37 @@ top: inherit !important;
     .datecontent .fdate {
       margin-top: 9px !important; }
       .datecontent .fdate .ftime {
-        margin-left: 0px !important; }
+        margin-left: 0px !important;
+        text-transform: lowercase; }
   .tabs-top > .tabs, .tabs.tabs-top {
     top: inherit !important; }
   .tabs-striped .tabs {
     border-bottom: none; }
-  .appth3 {
-    margin: 36px 0px 0px 0px !important; }
   .userappheight {
     margin-top: 15px !important;
     height: 57px !important; }
   .appalignrighticon {
     margin-left: 210px;
     color: #fff;
-    font-size: 15px; }
+    font-size: 95%;
+    font-family: Glober Regular; }
+  .accountAppointview-Android {
+    position: relative;
+    bottom: 4px !important;
+    text-align: right !important; }
   .appfloat {
     float: right;
-    margin-top: -12px;
-    font-size: 18px !important; }
+    font-size: 18px !important;
+    margin-top: -16px !important; }
   .userdeptcontent {
-    margin-top: 155px !important; }
+    margin-top: 160px !important; }
   .newusercontent {
-    margin-top: 170px; }
-  .appiconcontent {
-    margin-top: 212px; }
+    margin-top: 168px; }
   .alignchronic {
     font-size: 22px !important;
     font-family: "Glober Bold";
     color: #535353;
-    text-align: center;
-    margin-left: 0px; }
+    text-align: center; }
   .headerprovider {
     margin-left: 57px !important; }
   .coldetails {
@@ -14263,7 +14826,7 @@ top: inherit !important;
   .patcol10 {
     max-width: 25px; }
   .appfloat {
-    margin-top: 0px !important; }
+    margin-top: -16px !important; }
     .appfloat .ion-chevron-right:before {
       font-size: 14px !important; }
   .appmarg .ion-chevron-right:before {
@@ -14306,6 +14869,7 @@ top: inherit !important;
 
 .alpha_sidebar {
   position: absolute;
+  top: 100px;
   right: 10px;
   z-index: 10; }
 
@@ -14334,7 +14898,14 @@ top: inherit !important;
   text-align: center;
   font-family: Glober SemiBold;
   margin-top: 5px;
-  font-size: 22px; }
+  font-size: 19px !important;
+  color: #666666 !important; }
+
+.surname {
+  font-family: Glober Bold;
+  color: #666666;
+  margin-bottom: 0px !important;
+  font-size: 18px !important; }
 
 .currmedication {
   margin-top: -85px; }
@@ -14349,7 +14920,7 @@ top: inherit !important;
 /*Prakash CSS for Registration START */
 /* enteremail */
 .bg {
-  background-color: #f54f2b;
+  background-color: #EF4B27;
   border: none !important;
   padding-top: 75px;
   height: auto; }
@@ -14357,7 +14928,7 @@ top: inherit !important;
     color: #FFFFFF;
     width: 100%;
     text-align: center;
-    font-family: "Glober Bold";
+    font-family: "Glober xBold";
     font-weight: bold;
     font-size: 37px;
     font-weight: bold;
@@ -14526,7 +15097,7 @@ top: inherit !important;
     padding-bottom: 12px; }
 
 .provider a {
-  border-bottom: 2px solid #C4C5C3; }
+  border-bottom: 1px solid #C4C5C3; }
   .provider a .ion-chevron-right:before {
     color: #999999;
     font-size: 15.5px !important;
@@ -14558,7 +15129,7 @@ top: inherit !important;
     z-index: -1;
     opacity: 0.3;
     width: 400px;
-    height: 100px; }
+    height: 96px; }
   .epassbg h2 {
     margin-top: -150px;
     opacity: 0.9; }
@@ -15012,6 +15583,9 @@ top: inherit !important;
     font-size: 10.5px;
     color: #FFFFFF; }
 
+.step2-Android {
+  margin-top: -12px; }
+
 .register h2 {
   font-family: "Glober xBold";
   font-weight: bold;
@@ -15038,9 +15612,9 @@ top: inherit !important;
     text-align: center;
     margin: 10px 0px 28px 0px; }
     .register .card .btn1 .button {
-      background-color: #9BCA82;
-      border-color: #9BCA82;
-      background-image: linear-gradient(0deg, #9BCA82, #9BCA82 50%, transparent 50%);
+      background-color: #A2D28A;
+      border-color: #A2D28A;
+      background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
       font-weight: normal;
       border-radius: 0px;
       font-size: 22px;
@@ -15065,15 +15639,14 @@ top: inherit !important;
     .register .card .place input {
       height: 37px;
       background-color: #e6e6e6;
-      /*color: #8e8e93;*/
-      color: #000;
+      color: #8e8e93;
       width: 100%;
       padding-top: 1%;
       -webkit-appearance: none;
       -moz-appearance: none;
       font-family: "Glober Regular";
       font-weight: bold;
-      font-size: 13px; }
+      font-size: 14px; }
     .register .card .place input::-webkit-input-placeholder {
       color: #adaeaf; }
   .register .card .place1 {
@@ -15084,19 +15657,20 @@ top: inherit !important;
       height: 37px;
       background-color: #e6e6e6;
       /*color: #000000;*/
-      color: #000;
+      color: #8e8e93 !important;
       width: 100%;
       padding-top: 1%;
       font-family: "Glober Regular";
       font-weight: bold;
-      font-size: 13px;
+      font-size: 14px;
       -webkit-appearance: none;
       -moz-appearance: none; }
     .register .card .place1 input::-webkit-input-placeholder {
       color: #adaeaf; }
 
 .register .acinfo1-Android {
-  text-align: center; }
+  text-align: center;
+  margin-top: -10px; }
   .register .acinfo1-Android h4 {
     font-family: "Glober Bold";
     font-weight: bold;
@@ -15115,14 +15689,14 @@ top: inherit !important;
   .register .acinfo1-IOS h4 {
     font-family: "Glober SemiBold";
     font-weight: bold;
-    font-size: 12.5px;
+    font-size: 14px;
     color: #FFFFFF;
     margin: 0;
     padding-top: 12px; }
     .register .acinfo1-IOS h4 span {
       font-family: "Glober Regular";
       font-weight: bold;
-      font-size: 10.5px;
+      font-size: 12px;
       color: #FFFFFF; }
 
 .register .birth {
@@ -15153,13 +15727,16 @@ top: inherit !important;
   color: #888888;
   text-align: center; }
 
+.epassbgreg2 {
+  margin: -4px !important; }
+
 .regcontent h2 {
-  font-family: "Glober SemiBold";
+  font-family: "Glober Bold";
   font-weight: bold;
-  font-size: 30px;
+  font-size: 34px;
   color: #999999;
   text-align: center;
-  padding-top: 25px !important; }
+  padding-top: 15px !important; }
 
 .regcontent h3 {
   font-family: "Glober Regular";
@@ -15178,25 +15755,25 @@ top: inherit !important;
   line-height: 20px; }
 
 .regcontent p {
-  font-family: "Glober SemiBold";
+  font-family: "Glober Regular";
   font-weight: normal;
-  font-size: 14px;
+  font-size: 15px;
   color: #999999;
   text-align: center;
   line-height: 8px; }
 
 .regcontent .lineheight {
   line-height: 18px;
-  margin: -7px 0px 8px 0px;
+  margin: -11px 0px 8px 0px;
   color: #888888; }
 
 .regibtn {
   text-align: center;
   margin: 10px 0px 28px 0px; }
   .regibtn .button {
-    background-color: #f4f4f4;
-    border-color: #f4f4f4;
-    background-image: linear-gradient(0deg, #f4f4f4, #f4f4f4 50%, transparent 50%);
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    background-image: linear-gradient(0deg, #FFFFFF, #FFFFFF 50%, transparent 50%);
     font-weight: normal;
     border-radius: 0px;
     font-size: 0px;
@@ -15212,7 +15789,8 @@ top: inherit !important;
     color: #666666;
     padding: 3px 30px 0px 30px;
     margin: 0 !important;
-    height: 43px; }
+    height: 43px;
+    background-image: none; }
 
 .pad {
   padding-top: 20px;
@@ -15351,6 +15929,24 @@ top: inherit !important;
   margin-top: -26px;
   margin-bottom: 36px; }
 
+#searchtext::-webkit-input-placeholder {
+  text-align: left; }
+
+.searchboxpopup {
+  margin-top: 0px;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid #cbcbcb; }
+
+.searchpopup {
+  align-items: center;
+  border: none;
+  border-bottom: 2px solid  #cbcbcb; }
+
+.item-radio input:checked ~ .radio-icon {
+  visibility: visible;
+  color: #A2D28A !important; }
+
 .searchbox {
   height: auto;
   margin-top: 70px;
@@ -15375,10 +15971,11 @@ top: inherit !important;
       font-size: 18px;
       padding-right: 26px; }
     .searchbox .item-input-wrapper input {
-      line-height: 25px; }
+      line-height: 25px;
+      padding-top: 4px; }
   .searchbox .item-input-inset {
-    margin-bottom: -10px;
-    margin-top: 10px; }
+    margin-bottom: -5px;
+    margin-top: 6px; }
     .searchbox .item-input-inset input {
       background-color: #e3e4e6;
       text-align: center;
@@ -15387,15 +15984,15 @@ top: inherit !important;
       font-weight: normal;
       font-size: 14px;
       /*color: #8e8e93;*/
-      color: #000;
-      height: 20px;
+      color: #666666;
+      height: 25px;
       line-height: 28px; }
     .searchbox .item-input-inset i {
       position: fixed;
       text-align: center;
       width: 100%;
-      margin-top: 4px;
-      padding-right: 100px;
+      margin-top: 2px;
+      padding-right: 83px;
       font-size: 16px;
       color: #8e8e93;
       padding-top: 1px !important; }
@@ -15405,12 +16002,15 @@ top: inherit !important;
 .content-height {
   /*position: relative;
 	 top:140px;*/
-  margin-top: 240px;
+  margin-top: 253px;
   top: 0px; }
   .content-height .list .item:first-child {
     border-top: none; }
   .content-height #providerListDiv {
     top: 0px; }
+  .content-height .icon-arrow-with-circle-up {
+    font-size: 37px;
+    color: #90908f; }
   .content-height #startSearchProvider {
     text-align: center;
     margin: -75px 5% 0 5%; }
@@ -15447,13 +16047,13 @@ top: inherit !important;
   border-radius: 50%;
   margin-top: 3px; }
   .searchProvFirstLetterDiv p {
-    font-family: "Glober Bold";
+    font-family: "Glober xBold";
     font-weight: Bold;
-    font-size: 18px;
+    font-size: 23px;
     z-index: 999;
     width: 100%;
     height: 100%;
-    padding-top: 27%;
+    padding-top: 36%;
     text-align: center;
     color: #fff; }
 
@@ -15483,7 +16083,7 @@ top: inherit !important;
       z-index: -1;
       opacity: 0.3;
       width: 290px;
-      height: 100px; }
+      height: 96px; }
     .epassbg h2 {
       margin-top: -150px; } }
 
@@ -15497,7 +16097,7 @@ top: inherit !important;
       z-index: -1;
       opacity: 0.3;
       width: 252px;
-      height: 100px; }
+      height: 96px; }
     .epassbg h2 {
       margin-top: -150px;
       font-size: 20px; } }
@@ -15515,7 +16115,7 @@ top: inherit !important;
       z-index: -1;
       opacity: 0.3;
       width: 252px;
-      height: 100px; }
+      height: 96px; }
     .epassbg h2 {
       margin-top: -150px;
       font-size: 20px; } }
@@ -15548,7 +16148,7 @@ top: inherit !important;
       z-index: -1;
       opacity: 0.3;
       width: 253;
-      height: 100px; }
+      height: 96px; }
     .epassbg h2 {
       margin-top: -150px; } }
 
@@ -15743,10 +16343,14 @@ Pagination Styles
   height: auto; }
 
 .DOBClass-IOS {
-  width: 55%; }
+  width: 55%;
+  background-color: #e9e9e9;
+  padding: 9px; }
 
 .DOBClass-Android {
-  width: 55%; }
+  width: 55%;
+  background-color: #e9e9e9;
+  padding: 9px; }
 
 .healthTextArea-IOS {
   margin-left: 0px; }
@@ -15760,7 +16364,10 @@ Pagination Styles
 .healthViewDetails {
   width: 55%;
   white-space: normal;
-  font-size: 20px; }
+  font-size: 18px;
+  color: #666666; }
+  .healthViewDetails .optionselect {
+    width: 94%; }
 
 .subHeadIcons {
   position: relative;
@@ -15768,6 +16375,12 @@ Pagination Styles
 
 .ioncontentalign textarea, .ioncontentalign input[type="text"], .ioncontentalign input[type="password"], .ioncontentalign input[type="datetime"], .ioncontentalign input[type="datetime-local"], .ioncontentalign input[type="date"], .ioncontentalign input[type="month"], .ioncontentalign input[type="time"], .ioncontentalign input[type="week"], .ioncontentalign input[type="number"], .ioncontentalign input[type="email"], .ioncontentalign input[type="url"], .ioncontentalign input[type="search"], .ioncontentalign input[type="tel"], .ioncontentalign input[type="color"] {
   padding: 5px 0 0 5px; }
+
+.ioncontentalign .ion-asterisk {
+  font-size: 8px;
+  position: relative;
+  top: -10px;
+  color: red; }
 
 .HealthTitle-IOS {
   left: -28px;
@@ -15806,9 +16419,1136 @@ Pagination Styles
   top: -22px !important; }
 
 .userContent-IOS {
-  margin-top: 160px !important; }
+  margin-top: 46% !important; }
 
 .accountAppointview-IOS {
   position: relative;
-  margin-top: -26px;
-  text-align: right; }
+  margin-top: -9px !important;
+  text-align: right !important; }
+
+.accountAppointview-Android {
+  position: relative;
+  margin-top: -5px;
+  text-align: right !important; }
+
+.newUserTitle-IOS {
+  left: 10px;
+  position: relative; }
+
+#patientAuthorize {
+  font-size: 18px; }
+
+.newUserTitle-Android {
+  margin-left: 34px; }
+
+.coUserAddress-IOS {
+  line-height: 25px !important;
+  font-size: 20px !important; }
+
+.coUserAddress-Android {
+  line-height: 25px !important;
+  font-size: 20px !important; }
+
+.addUser-IOS {
+  color: #666666 !important;
+  margin-left: 0px !important; }
+
+.addUser-Android {
+  color: #666666 !important;
+  margin-left: 0px !important; }
+
+.coUserImage-IOS {
+  max-width: 50px !important;
+  max-height: 50px !important;
+  margin-left: -4px;
+  margin-top: -5px; }
+
+.password-IOS {
+  margin-top: -162px !important; }
+
+.tabs-dark > .tabs, .tabs.tabs-dark {
+  background-image: none; }
+
+.content-IOS {
+  margin-left: -18px;
+  font-size: 122%;
+  color: #666666; }
+
+.content-Android {
+  margin-left: -18px;
+  font-size: 122%;
+  color: #666666; }
+
+.iconalign-Android {
+  left: -14px !important; }
+
+.usrAppointIcon-IOS {
+  left: -7px !important; }
+
+.contentAppoint-IOS {
+  margin-left: 17px;
+  font-size: 122%;
+  color: #666666; }
+
+.contentAppoint-Android {
+  margin-left: 17px;
+  font-size: 122%;
+  color: #666666; }
+
+.svg {
+  fill: darkgray;
+  height: 20px;
+  width: 20px; }
+
+[class^="icon-menu"] {
+  font-size: 30px !important; }
+
+[class^="icon-"], [class*=" icon-"] {
+  font-size: 21px; }
+
+.ioncontentalign .iconfontSVG {
+  position: relative;
+  top: 3px; }
+
+.ioncontentalign [class^="icon-"], .ioncontentalign [class*=" icon-"] {
+  font-size: 18px; }
+
+.accNextAppoint-IOS {
+  position: relative;
+  top: 6px; }
+
+.accNextAppoint-Android {
+  position: relative;
+  top: 5px; }
+  .accNextAppoint-Android .icon-chevron-with-circle-right {
+    font-size: 18px !important; }
+
+.ion-chevron-down {
+  position: relative;
+  top: -2px; }
+
+.authorizeIcon-IOS {
+  position: relative;
+  top: -18px; }
+
+.authorizeRightIcon-Android {
+  position: relative;
+  top: -18px; }
+
+.unAuthorizeUpdate-IOS {
+  position: relative;
+  top: -4px;
+  color: #666666; }
+
+.unAuthorizeUpdate-Android {
+  position: relative;
+  top: -4px;
+  color: #666666; }
+
+.unAuthorizeSatus-IOS {
+  position: relative;
+  left: 3px; }
+
+.unAuthorizeSatus-Android {
+  position: relative;
+  left: 3px; }
+
+.authorizedIconSize-IOS [class^="icon-"], .authorizedIconSize-IOS [class*=" icon-"] {
+  font-size: 20px;
+  position: relative;
+  top: 3px; }
+
+.authorizedIconSize-IOS .icon-chevron-right {
+  color: #444444 !important; }
+
+.authorizedIconSize-IOS .icon-thumbs-down {
+  color: #999999 !important; }
+
+.authorizedIconSize-Android [class^="icon-"], .authorizedIconSize-Android [class*=" icon-"] {
+  font-size: 20px;
+  position: relative;
+  top: 3px; }
+
+.authorizedIconSize-Android .avatlefticon .icon-chevron-right {
+  color: #A2D28A !important; }
+
+.authorizedIconSize-Android .icon-chevron-right {
+  color: #444444 !important; }
+
+.authorizedIconSize-Android .icon-thumbs-down {
+  color: #999999 !important; }
+
+.unAuthorizeUpdateMain-IOS {
+  width: 36%;
+  padding: 5px;
+  text-align: center; }
+
+.unAuthorizeUpdateMain-Android {
+  width: 36%;
+  padding: 5px;
+  text-align: center; }
+
+.unAuthorizeStatusMain-IOS {
+  width: 49%;
+  text-align: center; }
+  .unAuthorizeStatusMain-IOS .tabvalue {
+    margin-top: 10px !important; }
+  .unAuthorizeStatusMain-IOS .status {
+    margin-top: -7px; }
+
+.unAuthorizeStatusMain-Android {
+  width: 49%;
+  padding: 5px;
+  text-align: center; }
+  .unAuthorizeStatusMain-Android .tabvalue {
+    margin-top: 2px !important; }
+
+.unAuthorizeRelativeMain-IOS {
+  width: 47%;
+  padding: 5px; }
+
+.unAuthorizeRelativeMain-Android {
+  width: 47%;
+  padding: 5px; }
+
+.chevronRelationship-IOS {
+  float: right;
+  font-size: 26px;
+  margin-left: 0px !important;
+  color: #444444;
+  position: relative;
+  top: 15px; }
+
+.chevronRelationship-Android {
+  float: right;
+  font-size: 26px;
+  margin-left: 0px !important;
+  color: #444444;
+  position: relative;
+  top: 15px; }
+
+.unAuthorizeRelat-IOS {
+  position: relative;
+  left: -15px; }
+
+.unAuthorizeRelat-Android {
+  position: relative;
+  left: -15px; }
+
+.unAuthorizeRelation-IOS {
+  position: relative;
+  left: -5px; }
+
+.unAuthorizeRelation-Android {
+  position: relative;
+  left: -5px; }
+
+.unAuthorizeUserRelation-IOS {
+  width: 80%;
+  float: left;
+  margin-top: 5px; }
+
+.unAuthorizeUserRelation-Android {
+  width: 80%;
+  float: left;
+  margin-top: 5px; }
+
+.authorizePatient-IOS .dotcolDoc-IOS {
+  width: 23%;
+  text-align: center; }
+  .authorizePatient-IOS .dotcolDoc-IOS .seeDocIcon-IOS {
+    position: relative;
+    left: -10px; }
+  .authorizePatient-IOS .dotcolDoc-IOS .tabiconDoc-IOS {
+    position: relative;
+    top: -7px; }
+
+.authorizePatient-IOS .rowalignProfile-IOS {
+  width: 21%;
+  text-align: center; }
+
+.authorizePatient-IOS .colpadAppoint-IOS {
+  width: 23% !important;
+  text-align: center; }
+
+.authorizePatient-IOS .colpadConsult-IOS {
+  width: 23% !important;
+  text-align: center; }
+
+.authorizePatient-IOS .colmoreMore-IOS {
+  width: 13% !important;
+  text-align: center;
+  margin-left: 0px; }
+
+.authorizePatient-Android .dotcolDoc-Android {
+  width: 23%;
+  text-align: center; }
+  .authorizePatient-Android .dotcolDoc-Android .seeDocIcon-Android {
+    position: relative;
+    left: -10px; }
+  .authorizePatient-Android .dotcolDoc-Android .tabiconDoc-Android {
+    position: relative;
+    top: -7px; }
+
+.authorizePatient-Android .rowalignProfile-Android {
+  width: 21%;
+  text-align: center; }
+
+.authorizePatient-Android .colpadAppoint-Android {
+  width: 23% !important;
+  text-align: center; }
+
+.authorizePatient-Android .colpadConsult-Android {
+  width: 23% !important;
+  text-align: center; }
+
+.authorizePatient-Android .colmoreMore-Android {
+  width: 13% !important;
+  text-align: center;
+  margin-left: 0px; }
+
+.moreicon-Android {
+  margin-left: 0px !important;
+  position: relative;
+  top: -5px; }
+
+.moreicon-IOS {
+  margin-left: 0px !important;
+  position: relative;
+  top: -5px; }
+
+.tabvalueAuthorize-IOS {
+  position: relative;
+  top: 11px;
+  color: #999999 !important; }
+
+.tabvalueAuthorize-Android {
+  position: relative;
+  top: 11px;
+  color: #999999 !important; }
+
+.TabAuthorize-IOS {
+  position: relative;
+  top: 10px; }
+
+.TabAuthorize-Android {
+  position: relative;
+  top: 10px; }
+
+.authorizeRightIcon-IOS {
+  position: relative;
+  top: -12px; }
+
+.authorizeRightIcon-Android {
+  position: relative;
+  top: -12px; }
+
+.authorizeIcon-IOS {
+  position: relative;
+  top: 3px; }
+
+.authorizeIcon-Android {
+  position: relative;
+  top: 7px; }
+
+.authorizedIcon-IOS {
+  position: relative;
+  top: 3px; }
+
+.authorizedIcon-Android {
+  position: relative;
+  top: 7px; }
+
+input.ion-google-place[readonly] {
+  font-size: 18px;
+  color: #7c7c7c; }
+
+.userdeptcontent {
+  margin-top: 160px !important; }
+  .userdeptcontent [class^="icon-"], .userdeptcontent [class*=" icon-"] {
+    font-size: 19px; }
+  .userdeptcontent .ion-asterisk {
+    font-size: 8px;
+    position: relative;
+    top: -5px;
+    color: red;
+    left: 2px; }
+  .userdeptcontent .item-input {
+    padding: 0px !important; }
+  .userdeptcontent textarea, .userdeptcontent input[type="text"], .userdeptcontent input[type="password"], .userdeptcontent input[type="datetime"], .userdeptcontent input[type="datetime-local"], .userdeptcontent input[type="date"], .userdeptcontent input[type="month"], .userdeptcontent input[type="time"], .userdeptcontent input[type="week"], .userdeptcontent input[type="number"], .userdeptcontent input[type="email"], .userdeptcontent input[type="url"], .userdeptcontent input[type="search"], .userdeptcontent input[type="tel"], .userdeptcontent input[type="color"] {
+    height: 44px; }
+  .userdeptcontent .depGreyLabel {
+    background-color: #e9e9e9; }
+  .userdeptcontent .optionselect {
+    padding: 2px;
+    height: 44px; }
+  .userdeptcontent .item {
+    border-color: #979797; }
+  .userdeptcontent .dobDependent-Android {
+    font-size: 18px;
+    line-height: 23px;
+    font-family: Glober Semibold;
+    color: rgba(5, 4, 9, 0.54) !important;
+    width: 159%; }
+
+.dobDependent-IOS {
+  font-size: 18px !important;
+  line-height: 23px !important;
+  font-family: Glober Semibold !important;
+  color: rgba(5, 4, 9, 0.54) !important;
+  width: 159% !important; }
+
+.adduseWeight-IOS {
+  font-size: 18px;
+  margin-left: 5px; }
+
+.aptsname {
+  font-size: 14px !important;
+  color: #666666;
+  font-family: Glober SemiBold; }
+
+.appiconcontent {
+  margin-top: 212px; }
+  .appiconcontent .fname {
+    font-size: 21px;
+    font-family: Glober SemiBold !important;
+    color: #666666;
+    font-size: 200% !important; }
+
+.enterAppoint-IOS {
+  font-size: 151% !important;
+  position: relative !important;
+  top: -10px !important; }
+
+.enterAppoint-Android {
+  font-size: 151% !important;
+  position: relative !important;
+  top: -10px !important; }
+
+.passedImage-IOS {
+  width: 13%;
+  margin-top: -15px;
+  padding: 7px 0px; }
+  .passedImage-IOS .consimg {
+    left: 3px !important; }
+
+.passedImage-Android {
+  width: 13%;
+  margin-top: -15px;
+  padding: 7px 0px; }
+  .passedImage-Android .consimg {
+    left: 3px !important; }
+
+.passedDate-IOS {
+  width: 25%; }
+
+.passedDate-Android {
+  width: 25%; }
+
+.passedTime-IOS {
+  width: 19%; }
+
+.passedTime-Android {
+  width: 19%; }
+
+.passedDoc-IOS {
+  width: 28%;
+  margin-left: 10px; }
+
+.passedDoc-Android {
+  width: 28%;
+  margin-left: 10px; }
+
+.passedDetails-IOS {
+  width: 17%;
+  margin-left: 10px;
+  color: #666666;
+  font-family: Glober Regular; }
+
+.passedDetails-Android {
+  width: 17%;
+  margin-left: 10px;
+  color: #616161;
+  font-family: Glober Regular; }
+
+.consultcontent .topfont {
+  margin-left: -35px; }
+
+.consultcontent .rheader .col {
+  margin-left: 3px; }
+
+.dependHeigh-IOS {
+  width: 47%;
+  padding-right: 6px;
+  float: left; }
+  .dependHeigh-IOS input {
+    margin-left: 2px !important;
+    width: 108px !important; }
+  .dependHeigh-IOS .usertext {
+    width: 104%; }
+
+.dependHeighUnit-IOS {
+  position: relative;
+  top: 2px;
+  margin-left: 92px; }
+  .dependHeighUnit-IOS select {
+    margin-left: 17px; }
+
+.dependwetUnit-IOS {
+  width: 81%;
+  margin-left: 10px; }
+
+.consultcontentsearch-IOS {
+  margin-top: 218px; }
+  .consultcontentsearch-IOS .listfirst {
+    padding-bottom: 120px; }
+
+.consultcontentsearch-Android {
+  margin-top: 218px; }
+  .consultcontentsearch-Android .listfirst {
+    margin-bottom: 120px; }
+
+.appointcontentsearch-Android .fname {
+  font-size: 21px;
+  font-family: Glober SemiBold !important;
+  color: #666666;
+  font-size: 200% !important; }
+
+.appointcontentsearch-IOS .fname {
+  font-family: Glober SemiBold !important;
+  color: #666666;
+  font-size: 200% !important; }
+
+.allsearch-Android {
+  margin-top: 34px; }
+
+.colReport-IOS {
+  margin-left: -1px; }
+
+.healthinfoHeight-Android {
+  width: 35%;
+  margin-left: -8px;
+  float: left; }
+  .healthinfoHeight-Android input {
+    width: 111%;
+    margin-left: -2px; }
+
+.healthinfoChoose-Android select {
+  width: 183% !important;
+  margin-left: 0px; }
+
+.healthinfoHeight2-Android {
+  width: 38%;
+  margin-left: -10px;
+  float: left; }
+
+.dependHeigh-Android {
+  margin-left: -5px;
+  width: 68%;
+  float: left; }
+
+.dependwetUnit-Android {
+  width: 80%;
+  margin-left: 8px; }
+
+.colReport-Android {
+  margin-left: -1px;
+  margin-top: -1px !important; }
+
+.Appointmentdetails-Android {
+  margin-top: 170px; }
+
+.apponitmentfday-Android {
+  font-size: 25px !important;
+  margin-top: 10px;
+  font-family: Glober Regular; }
+
+.apponitmentftime-Android {
+  margin: 0 0 11px 0;
+  font-size: 51px;
+  font-family: Glober Bold;
+  margin-left: 24px;
+  text-transform: lowercase; }
+
+.dependentAuthorize {
+  text-align: center;
+  padding: 34px 36px;
+  font-size: 17px;
+  color: #7c7c7c;
+  line-height: 27px;
+  font-family: "Glober Regular";
+  border-top: 1px solid #C4C5C3; }
+
+.dependentAddAuthorize {
+  font-size: 18px;
+  color: #7c7c7c;
+  font-family: Glober Semibold;
+  padding: 16px 16px 16px 8px; }
+
+.searchAccount p {
+  margin-top: 9px; }
+
+.searchAccount h3 {
+  margin-top: 3px; }
+
+.searchAccount .icon-magnifying-glass {
+  font-size: 16px;
+  position: relative;
+  bottom: 2px;
+  right: 4px; }
+
+.searchAccount .logProvider {
+  position: relative;
+  top: 3px; }
+
+.reg2-Android {
+  margin-top: -12px; }
+
+.profileSpan .icon-user {
+  font-size: 19px;
+  color: #666666; }
+
+.profileSpan .icon-calendar {
+  font-size: 19px;
+  color: #666666; }
+
+.AppointNoneIOS {
+  padding-top: 105px; }
+
+.AppointDisplayIOS {
+  padding-top: 53px; }
+
+#accountMngeProfile-IOS {
+  padding: 27px 10px; }
+
+.userAccContentIOS {
+  margin-top: 33%; }
+
+.tabs-dark [class^="icon-"], .tabs-dark [class*=" icon-"] {
+  position: relative;
+  top: 8px; }
+
+.concernListSearch .icon-magnifying-glass {
+  font-size: 15px;
+  position: relative;
+  bottom: 2px; }
+
+#accountMngeProfile-Android {
+  padding: 27px 10px; }
+
+.loginEmail .icon-mail {
+  font-size: 50px;
+  color: #CBCBCB; }
+
+.loginEmail .enterEmailText {
+  line-height: 26px;
+  font-size: 18px; }
+
+.loginEmail .loginPlace input {
+  color: #999999 !important;
+  font-weight: normal !important;
+  position: relative !important;
+  /* top: 0px; */
+  padding-top: 5px !important; }
+
+.loginEmail ::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #CBCBCB !important; }
+
+.loginEmail :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #CBCBCB !important; }
+
+.loginEmail ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #CBCBCB !important; }
+
+.loginEmail :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #CBCBCB !important; }
+
+.checkbox {
+  position: relative;
+  display: inline-block;
+  height: 22px;
+  vertical-align: middle;
+  cursor: pointer; }
+  .checkbox input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    z-index: 1;
+    cursor: pointer; }
+  .checkbox span {
+    cursor: pointer;
+    text-align: center; }
+  .checkbox .checkbox__control {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 4px;
+    border: 1px solid #979797;
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+    width: 22px; }
+  .checkbox input:checked + span::before {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease; }
+  .checkbox .checkbox__control::before {
+    opacity: 0;
+    position: absolute;
+    left: 1px;
+    top: 1px !important;
+    speak: none;
+    width: 18px;
+    height: 18px;
+    line-height: 20px;
+    content: "";
+    background: url(../img/icon-check.png);
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease; }
+  .checkbox span:last-child {
+    width: 200px;
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+    top: -4px;
+    left: 18px;
+    text-align: left; }
+
+#loginPwd {
+  margin-top: 33px; }
+  #loginPwd .pwdPatImage {
+    text-align: center;
+    position: fixed;
+    width: 100%; }
+    #loginPwd .pwdPatImage img {
+      width: 75px;
+      height: 75px;
+      position: relative;
+      top: -37px;
+      border-radius: 50%; }
+  #loginPwd ::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #CBCBCB !important; }
+  #loginPwd :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #CBCBCB !important; }
+  #loginPwd ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #CBCBCB !important; }
+  #loginPwd :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #CBCBCB !important; }
+  #loginPwd .pwdForgot {
+    font-family: "Glober Regular"; }
+  #loginPwd .regcontent {
+    margin-top: 32px; }
+    #loginPwd .regcontent h2 {
+      font-size: 23px; }
+  #loginPwd .pwdTextbox {
+    padding-top: 20px; }
+
+.birthContent .labelcolor {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 8px; }
+
+.birthContent .ion-asterisk {
+  font-size: 9px;
+  color: red; }
+
+.birthContent .formlabel {
+  font-size: 19px;
+  font-family: "Glober Regular";
+  margin-left: 0px; }
+
+.birthContent .textdata {
+  font-size: 19px;
+  font-family: "Glober Regular";
+  width: 77px; }
+
+.birthContent .PrimaryContent p {
+  width: 90% !important;
+  font-family: "Glober SemiBold" !important;
+  font-size: 15px !important; }
+
+.birthContent .bornBirth .disable-pointer-events {
+  margin-left: 8px;
+  font-size: 19px;
+  font-family: "Glober Regular";
+  color: #666666 !important; }
+
+.birthContent .bornBirth .ion-checkmark-circled:before {
+  font-size: 30px; }
+
+.birthContent .bornBirth .item-radio {
+  border: none; }
+
+.reset-IOS {
+  padding-top: 125px !important; }
+
+.healthinfoHeight-IOS {
+  width: 35px;
+  float: left; }
+  .healthinfoHeight-IOS .usertext {
+    margin-left: 0px;
+    width: 68px; }
+
+.healthinfoHeight2-IOS {
+  width: 35px;
+  margin-left: 11px;
+  float: left; }
+  .healthinfoHeight2-IOS .usertext {
+    margin-left: 0px;
+    width: 68px; }
+
+.healthinfoChoose-IOS {
+  height: 50px;
+  margin-top: -4px; }
+  .healthinfoChoose-IOS select {
+    width: 80% !important;
+    margin-left: 8px;
+    position: relative;
+    top: 7px; }
+
+.healthchoose {
+  margin-right: 53px; }
+
+.newLogEmai {
+  font-family: "Glober SemiBold" !important; }
+
+.newLogVerify {
+  font-family: "Glober Bold" !important;
+  color: #888888 !important;
+  font-size: 24px !important;
+  padding-top: 12px; }
+
+.newVerifyEmailId {
+  font-family: "Glober Regular";
+  color: #888888;
+  font-size: 15px;
+  text-align: center;
+  padding: 30px 0px 35px 0px; }
+
+.logCircle {
+  padding-bottom: 45px; }
+  .logCircle .ion-ios-circle-outline {
+    font-size: 47px;
+    color: #979797; }
+
+.newLogBut {
+  padding: 20px 0px 20px; }
+
+.newProviderSub {
+  padding: 28px; }
+
+.newProContent {
+  margin-top: 221px; }
+
+.newProImage img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; }
+
+.addContent {
+  padding-top: 15px; }
+  .addContent .h3 {
+    font-weight: normal; }
+
+.regibtn a {
+  color: #666666;
+  font-family: "Glober Bold"; }
+
+.enterEmailTextStart {
+  line-height: 2px !important;
+  padding-bottom: 15px;
+  font-size: 18px !important; }
+
+.newResetContent {
+  margin-top: 150px; }
+  .newResetContent p {
+    font-size: 26px;
+    line-height: 27px;
+    font-family: "Glober SemiBold"; }
+  .newResetContent .resetDone {
+    margin-top: 57px; }
+    .newResetContent .resetDone a {
+      padding-bottom: 24px;
+      border: none; }
+    .newResetContent .resetDone button {
+      border-color: #979797;
+      color: #999999;
+      font-family: "Glober Bold"; }
+  .newResetContent .resetPro {
+    margin-top: 120px; }
+
+.singEmail .newSingLogText {
+  font-size: 25px !important;
+  font-family: "Glober SemiBold" !important; }
+
+.singEmail .icon-lock {
+  color: #CBCBCB; }
+
+.forgot_password_textSingle {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 22px; }
+  .forgot_password_textSingle a {
+    font-family: "Glober SemiBold";
+    color: #fff;
+    font-size: 17px; }
+
+.intakeNewEdit-IOS {
+  top: -5px; }
+
+.intakeNewEdit-Android {
+  top: -5px; }
+
+.concernsSubTit {
+  font-family: "Glober SemiBold";
+  color: #666666;
+  font-weight: normal; }
+
+.addcouser {
+  padding: 44px 10px; }
+
+.adddepuser {
+  padding: 44px 10px; }
+
+@media screen and (device-width: 360px) and (device-height: 640px) {
+  #accountMngeProfile-Android {
+    padding: 27px 10px !important; }
+  .addcouser {
+    padding: 48px 10px !important; }
+  .adddepuser {
+    padding: 48px 10px !important; } }
+
+@media screen and (device-width: 384px) and (device-height: 598px) {
+  #accountMngeProfile-Android {
+    padding: 22px 10px; }
+  .addcouser {
+    padding: 40px 10px; }
+  .adddepuser {
+    padding: 40px 10px; } }
+
+.consultInsuranceTitle {
+  border-bottom: 1px solid #C5C5C5; }
+
+.cardSkipPayment {
+  background-color: #fff !important;
+  border: 1px solid #979797 !important;
+  background-image: linear-gradient(0deg, #fff, #fff 50%, transparent 50%) !important;
+  color: #888888 !important;
+  box-shadow: none !important; }
+
+.contentPayHome {
+  padding-top: 15%; }
+
+.contentPayHomeAddCard {
+  padding-top: 5%; }
+
+.NoPlanText {
+  margin-left: 17px !important;
+  padding-top: 30px;
+  font-size: 16px;
+  color: #888585;
+  text-align: left; }
+
+.NoPlanBottomText {
+  text-align: justify;
+  padding-bottom: 50px;
+  margin: 0 -15px; }
+
+.accountAppointHeight {
+  height: 84px; }
+
+.SkipToPaymentHealth {
+  margin-top: 14px;
+  padding-bottom: 7px; }
+
+.SkipToPaymentApplyPlan {
+  margin-top: 35px; }
+
+.planProviderText {
+  margin-left: 65px !important; }
+
+.planSelectedBox {
+  text-align: left !important;
+  margin-left: 0px !important; }
+
+.relatedUserError .ErrorContent {
+  margin-top: 11px !important;
+  font-weight: normal; }
+
+.addHealthPlan_text {
+  font-size: 20px;
+  font-weight: bold;
+  left: 7px;
+  position: relative;
+  top: -11px;
+  color: #666666; }
+
+.CreditClinician {
+  margin-left: -5px; }
+  .CreditClinician .creditSeeaCLinician {
+    float: left;
+    width: 63%;
+    text-align: left;
+    position: relative;
+    left: 15px; }
+  .CreditClinician .creditCount {
+    border: 2px solid #FFF;
+    padding: 9px 10px 5px 4px;
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 3em;
+    border-bottom-left-radius: 3em;
+    border-top-left-radius: 3em;
+    font-family: "Glober Bold";
+    font-size: 13px; }
+  .CreditClinician .creditCountNo {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 6px 8px 1px 7px;
+    color: #666666;
+    font-size: 13px;
+    font-family: "Glober Bold"; }
+  .CreditClinician .creditCountNoTwoDigit {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 6px 6px 1px 5px;
+    color: #666666;
+    font-size: 13px;
+    font-family: "Glober Bold"; }
+
+.uhome {
+  background-color: #23B4D6 !important; }
+
+.listprofileEdit .itemtab {
+  padding: 0px !important; }
+  .listprofileEdit .itemtab .healthViewDetails {
+    background-color: #e9e9e9;
+    padding: 9px; }
+    .listprofileEdit .itemtab .healthViewDetails textarea, .listprofileEdit .itemtab .healthViewDetails input[type="text"], .listprofileEdit .itemtab .healthViewDetails input[type="password"], .listprofileEdit .itemtab .healthViewDetails input[type="datetime"], .listprofileEdit .itemtab .healthViewDetails input[type="datetime-local"], .listprofileEdit .itemtab .healthViewDetails input[type="date"], .listprofileEdit .itemtab .healthViewDetails input[type="month"], .listprofileEdit .itemtab .healthViewDetails input[type="time"], .listprofileEdit .itemtab .healthViewDetails input[type="week"], .listprofileEdit .itemtab .healthViewDetails input[type="number"], .listprofileEdit .itemtab .healthViewDetails input[type="email"], .listprofileEdit .itemtab .healthViewDetails input[type="url"], .listprofileEdit .itemtab .healthViewDetails input[type="search"], .listprofileEdit .itemtab .healthViewDetails input[type="tel"], .listprofileEdit .itemtab .healthViewDetails input[type="color"] {
+      height: 41px; }
+  .listprofileEdit .itemtab .healthViewDetailsAuthenticat {
+    padding: 14px; }
+
+.listprofileEdit .labelcolor {
+  width: 49%; }
+
+.ioncontentalign .item {
+  border-color: #979797; }
+
+.healthheight-IOS {
+  width: 45px; }
+
+.healthheight1-IOS {
+  width: 45px; }
+
+.healthheight2-IOS {
+  position: relative;
+  top: 3px; }
+
+.healthWeight1-IOS {
+  float: left;
+  position: relative;
+  top: 7px;
+  width: 50px; }
+
+.healthWeight1-Android {
+  width: 40% !important;
+  float: left;
+  margin-top: 4px; }
+
+.heightft-Android {
+  max-with: 50px;
+  margin-left: 120px;
+  margin-top: -25px; }
+  .heightft-Android span {
+    font-size: 18px;
+    padding-left: 3px; }
+
+.heightft-IOS {
+  max-with: 50px;
+  margin-left: 120px;
+  margin-top: -21px;
+  position: relative;
+  top: -6px; }
+  .heightft-IOS span {
+    font-size: 18px;
+    padding-left: 3px; }
+
+/*.heighinch-Android {
+  max-with:50px;margin-left:120px;margin-top:-21px;
+}*/
+/*.heighinch-IOS {
+  max-with:50px;margin-left:120px;margin-top:-21px;position: relative;top: -6px;
+}*/
+.heightChoose-IOS {
+  position: relative;
+  top: 5px; }
+
+.userhomePlusIcon {
+  width: 91% !important; }
+
+.UserhomeSpanPlusIcon-Android {
+  font-size: 20px;
+  position: relative;
+  top: 18px;
+  left: -1px; }
+
+.UserhomeSpanPlusIcon-IOS {
+  font-size: 20px;
+  position: relative;
+  top: 28px;
+  left: -1px; }
+
+.healthPopup-IOS {
+  max-width: 120px; }
+  .healthPopup-IOS .input::-webkit-input-placeholder, .healthPopup-IOS textarea::-webkit-input-placeholder {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    line-height: 20px; }
+
+.healthPopup-Android {
+  max-width: 120px; }
+  .healthPopup-Android .input::-webkit-input-placeholder, .healthPopup-Android textarea::-webkit-input-placeholder {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    line-height: 20px; }
+
+.depenErrorMsg-IOS #notifications-top-center {
+  height: 65px !important; }
+  .depenErrorMsg-IOS #notifications-top-center .ErrorContent {
+    position: relative;
+    top: 10px; }
+  .depenErrorMsg-IOS #notifications-top-center #notifications-top-center-close span {
+    position: relative;
+    top: 15px;
+    left: -5px; }
+
+.enterAppoinment2 {
+  display: none;
+  height: 105px !important; }
+  .enterAppoinment2 #centercolor {
+    margin: 0 10px;
+    font-weight: 500;
+    margin-top: 29px !important;
+    font-size: 143% !important; }

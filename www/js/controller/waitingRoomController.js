@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 .controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList) {
     window.plugins.insomnia.keepAwake();
-    $rootScope.currState = $state;    
+    $rootScope.currState = $state;
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -19,6 +19,8 @@ angular.module('starter.controllers')
         } else if ($rootScope.currState.$current.name === "tab.login") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+            navigator.app.exitApp();
+        } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
@@ -44,6 +46,7 @@ angular.module('starter.controllers')
     $scope.ClearRootScope = function() {
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
+      
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
@@ -158,7 +161,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getVideoConferenceKeys(params);

@@ -1,14 +1,15 @@
 <ion-side-menu side="left" style="background-color: #464644;">
 	<div class="sideMenu">
-			<a ng-href="#/tab/userhome" class="sidemenuContent1" >
-		<ion-list>
-			<ion-item class="icon tabfont"  id="{{sidemenuHome}}">
-				<i ng-bind-html="drawSVGCIcon('users')"></i>
-				<span>  Patient List</span>
-			</ion-item>
-		</ion-list>
-	</a>
-	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="sidemenuContent1" >
+
+	<a ng-href="#/tab/userhome" id="userclass" class="sidemenuContent1 "  >
+<ion-list class="" id="">
+	<ion-item class="icon tabfont sideuserhome"  id="{{sidemenuHome}}  ">
+		<i ng-bind-html="drawSVGCIcon('users')"></i>
+		<span>  Patient List</span>
+	</ion-item>
+</ion-list>
+</a>
+	<a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="sidemenuContent1" >
 <ion-list>
 	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
 			<i ng-bind-html="drawSVGCIcon('clipboard')"></i>
@@ -25,7 +26,7 @@
 </ion-list>
 </a>-->
 
-	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')" class="sidemenuContent1" >
+	<a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')" class="sidemenuContent1" >
 <ion-list>
 	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
 		<i ng-bind-html="drawSVGCIcon('calendar')"></i>
@@ -34,7 +35,7 @@
 </ion-list>
 </a>
 
-	<a ng-click="GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')" class="sidemenuContent1" >
+	<a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')" class="sidemenuContent1" >
 <ion-list>
 	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
 		<i ng-bind-html="drawSVGCIcon('health_card')"></i>
@@ -83,7 +84,7 @@
 	 <img ng-src="{{PatientImage}}" class="UserHmelistImgView">
 	 <div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 	 <!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-	 <p class="ListHomeUser_pTitle DateFormateStyle" style="color:#FFFFFF !important;">{{gender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
+	 <p class="ListHomeUser_pTitle DateFormateStyle" style="color:#FFFFFF !important;">{{primaryPatGender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 </div>
 </div>
 <div style="border-bottom: 1px solid black; padding-top: 5px;"></div>

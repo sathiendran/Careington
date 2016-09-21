@@ -180,7 +180,7 @@ angular.module('starter.services', [])
   this.chkAddressForReg = function(params) {
 		var AddressForReg = {
 			headers: util.getHeaders(params.accessToken),
-      url: apiCommonURL + '/api/v2.1/patients/registrations/availability?addressText='+params.AddressText+'&hospitalId='+params.HospitalId,
+      url: apiCommonURL + '/api/v2.1/patients/registrations/availability?HospitalId='+params.HospitalId+'&AddressText='+params.AddressText,
        method: 'GET'
 		};
 
@@ -1066,6 +1066,48 @@ this.getPatientMedicalProfile = function(params){
           });
     }
 
+    this.GetCreditDetails = function(params){
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2.1/patients/'+ params.patientId +'/payments/credits',
+          method: 'GET',
+      };
+      $http(requestInfo).
+          success(function (data, status, headers, config) {
+              if (typeof params.success != 'undefined') {
+                  params.success(data);
+              }
+          }).
+          error(function (data, status, headers, config) {
+              if (typeof params.error != 'undefined') {
+                  params.success(data);
+              }
+          });
+    }
+
+    this.postDepitDetails = function(params) {
+     var postDepitDetails = {
+       headers: util.getHeaders(params.accessToken),
+               url: apiCommonURL +'/api/v2.1/patients/'+params.patientId +'/payments/debits',
+         method: 'POST',
+         data: {
+                  consultationId: params.consultationId
+               }
+     };
+
+     $http(postDepitDetails).
+       success(function (data, status, headers, config) {
+         if (typeof params.success != 'undefined') {
+           params.success(data);
+         }
+       }).
+       error(function (data, status, headers, config) {
+         if (typeof params.error != 'undefined') {
+           params.error(data, status);
+         }
+     })
+  }
+
     this.getAccountDependentDetails = function(params){
       var requestInfo = {
           headers: util.getHeaders(params.accessToken),
@@ -1170,7 +1212,7 @@ this.getPatientMedicalProfile = function(params){
 	this.getAttachmentURL = function (params) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/filesharing/file/customer/' + params.attachmentFileId,
+            url: apiCommonURL + '/api/v2/filesharing/file/customer/'+params.attachmentFileId +'?patientId=0',
 
             method: 'GET'
         };
@@ -1230,7 +1272,7 @@ this.getPatientMedicalProfile = function(params){
 					params.success(data);
 				}
 			}).
-			error(function (data, status, headers, config) {
+			catch(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
 					params.error(data);
 				}
@@ -1245,7 +1287,8 @@ this.getPatientMedicalProfile = function(params){
        url: apiCommonURL +'/api/v2/familygroups/couser',
 			  method: 'POST',
 			  data: {
-          Name : params.firstName + " " + params.lastName,
+        //  Name : params.firstName + " " + params.lastName,
+        Name : params.firstName,
        Email: params.email,
 			/*	familyGroupId: params.familyGroupId,
 				relationshipId: params.relationshipId,

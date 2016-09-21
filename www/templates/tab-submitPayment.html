@@ -1,3 +1,4 @@
+<div class="Error_Message ErrorMessageDiv" ></div>
 <div class="Server_Error ErrorMessageDiv" ></div>
 <ion-view title="Submit Payment">
 <ion-side-menus>
@@ -14,7 +15,8 @@
 				<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 	</div>
 
-	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Intake Form</h1>
+	<!--<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Intake Form</h1>-->
+	<h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"  style="{{PatientTitle}}" >Patient</h1>
 
 
 	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
@@ -28,8 +30,8 @@
 					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
 					<span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
 				</div>
-                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis">Age {{PatientAge | ageFilter}} <span ng-if="primaryPatientId != patientId"> | Guardian: {{PatientGuardian}} </span></div>
-			</div>
+				<div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+      </div>
 		</div>
 
 	</div>
@@ -43,19 +45,38 @@
 
 
 
-	<ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
+	<ion-content class="consultCharge_contentPayment consultConPaymentMargin" _style="{{ContentConsultCharge}}" >
 	<form>
-		<div class="password_home">
+	<div style="padding-right: 10%;">
+		<div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+			<div class="consultTittle">Consultation Charge</div>
+			<div class="consultation_number"> <span>${{consultationAmount}}*</span></div>
+		</div>
 
-			<div class="consultation_head RegularFontStyle consultChargeNoPlanText"  >
+		<div ng-if="cardPage != 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+			<div class="consultTittleCopay">Your Copay</div>
+			<div class="consultation_numberCopay"> <span>${{copayAmount}}*</span></div>
+		</div>
+		<div ng-if="cardPage == 'consultCharge'" class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+				<div class="consultTittleCharge">Consultation Charge</div>
+				<div class="consultation_number"> ${{consultationAmount}}*</div>
+			</div>
+
+</div>
+
+
+		<div class="password_home contentPayHomeAddCard">
+
+		<!--	<div class="consultation_head RegularFontStyle consultChargeNoPlanText"  >
 				<div class="consultTittle">Consultation Charge</div>
 				<div ng-if="cardPage == 'consultCharge'" class="consultation_number"> ${{consultationAmount}}*</div>
 				<div ng-if="cardPage != 'consultCharge'" class="consultation_number"> <span>${{consultationAmount}}</span> ${{copayAmount}}*</div>
 				<div ng-if="cardPage != 'consultCharge'" class="Plancovers" ng-if="PlanCoversAmount != ''">Plan Covers ${{PlanCoversAmount}}**</div>
-			</div>
+			</div>-->
 
 			<div class="healthPlan_header" style="display: {{enableSubmitpaymentAddCard}}" >
-				<div class="healthPlan_text NoPlanText" >Pay Using</div>
+				<!--<div class="healthPlan_text NoPlanText" >Pay Using</div>-->
+				<div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
 					<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
 						<!--<div class="demo" >
 							<select id="addNewCard" name="addNewCard" ng-model="cardPaymentId.addNewCard" style="border: none;">
@@ -84,9 +105,9 @@
 			</div>
 
 
-			<div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}">
+			<div class="SkipToPayment" style="display: {{enableSubmitpaymentAddCard}}; padding-top: 23%;">
 				<!--<a ng-href="#/tab/receipt">-->
-				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced">
+				<button type="submit" ng-click='doPostCoPayDetails()'  class="button button-block button-balanced" style="padding: 3px;">
 				  <span>Submit Payment</span>
 				</button>
 
@@ -106,12 +127,8 @@
 			</div>
 
 		</div>
-
-	</ion-content>
 	</form>
-</ion-side-menu-content>
- <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
+</ion-content>
 
 	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div>-->
 
@@ -135,4 +152,9 @@
 		</ion-footer-bar>
 	</div>
 
-</ion-view>
+
+	</ion-side-menu-content>
+
+	<!--Side Menu File Include --->
+	<div ng-include src="'templates/SideMenu.html'"></div>
+	</ion-view>>

@@ -7,7 +7,7 @@
             </div>
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
               <div class="Server_Error ErrorMessageDiv" ></div>
-           <div id="Error_Message"></div
+           <div id="Error_Message" class="relatedUserError"></div
               <span> Related Users </span>
               <span > <a ng-show="cousericon" class="headerval" style="position: relative;right: 8px;" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
                 <span > <a ng-show="dependenticon" class="headerval" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
@@ -58,13 +58,13 @@
               <div class="list couses animated slideInLeft " id="couserlist">
                   <div ng-repeat="getCoUserDetails in listOfCoUserDetails">
                       <div>
-                          <a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')" ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = true">
+                          <a class="item item-avatar" ng-click="GoToPatientDetails(location,getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')" ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = true">
                               <img ng-if="getCoUserDetails.imagePath!=''" class="imgsize" src="{{getCoUserDetails.imagePath}}">
                               <!--  <img ng-if="getCoUserDetails.imagePath==''" class="imgsize" src="{{couserImage}}">-->
                               <h2 class="relatedhead"> <span class="fname sfont">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
                   <i class="icon ion-chevron-right avataricon" ></i>
                </h2>
-                              <p class="relatedfont">{{getCoUserDetails.gender}} <span ng-if="getCoUserDetails.dob != ''">. {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
+                              <p class="relatedfont">{{getCoUserDetails.gender}} .<span ng-if="getCoUserDetails.dob != ''"> {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
                           </a>
                       </div>
 
@@ -92,7 +92,7 @@
                               <a class="item item-avatar"  style="border-right: none;border-left: none;width:105%;">
                                   <img class="coUserImage-{{deviceName}}" src="{{getCoUserDetails.imagePath}}">
                                   <h2><span class="fname">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span> </h2>
-                                  <p>{{getCoUserDetails.gender}} <span ng-if="getCoUserDetails.dob != ''">. {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
+                                  <p>{{getCoUserDetails.gender}} .<span ng-if="getCoUserDetails.dob != ''"> {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
                               </a>
                           </div>
                           <div class="col col-25 unlink" ng-click="coUserUnlink(getCoUserDetails)">
@@ -107,7 +107,7 @@
 
                   </div>
 
-                  <div ng-if="listOfCoUserDetails.length == 0" class="noResult" style="top: 0px;">
+                  <div ng-if="listOfCoUserDetails.length == 0" class="noapptuserResult" style="top: 0px;">
                       <a style="display: block; text-align: center;">No Co-Users Found!</a>
                   </div>
               </div>
@@ -124,7 +124,7 @@
                                 <img class="imgsize" src="{{getDependentDetails.profileImagePath}}">
                                 <span ng-click="showtab(getDependentDetails.tabPatientId)">
 							                  <h2  class="relatedhead"><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-                                <p class="relatediconfont">{{getDependentDetails.gender}} <span ng-if="getDependentDetails.birthdate != ''"> . {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
+                                <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
                                 </span>
                             </a>
                             <!--	<div class="row archeight"  ng-show='showdnewetails{{getDependentDetails.patientId}}' ng-swipe-left="showdnewetails{{getDependentDetails.patientId}} = false" >
@@ -211,7 +211,7 @@
                             <a class="item item-avatar fadediv" id="authorizeddiv" ng-click="authorizeduser(getDependentDetails.tabPatientId)">
                                 <img class="imgsize" src="{{getDependentDetails.profileImagePath}}">
                                 <h2><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-                                <p class="relatediconfont">{{getDependentDetails.gender}} <span ng-if="getDependentDetails.birthdate != ''"> . {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
+                                <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
                             </a>
                             <a class="item authorizedval" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="viewunauthorized" ng-click="addauthorized(getDependentDetails.tabPatientId)">
                                 <p class="authorizedicon"><i class="ion-chevron-down"></i></p>
@@ -264,7 +264,7 @@
                         </div>
 
                     </div>
-  <ion-item ng-if="!listOfAccountDependents.length" class="noResult" style="white-space: normal;" >No Dependent Added!</ion-item>
+  <ion-item ng-if="!listOfAccountDependents.length" class="noapptuserResult" style="white-space: normal;" >No Dependent Added!</ion-item>
                 </div>
             </ion-content>
             <ion-content class="relatedsearchusercontent " ng-show="">
@@ -297,7 +297,8 @@
 
 
 </ion-list>
-
+<div ng-controller="LoginCtrl">
+</div>
            </ion-content>
 
 
@@ -323,10 +324,10 @@
                  <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
                  <span class="tabcolor"> Appointments</span>
                  </a>
-                 <a class="tab-item" ng-href="#/tab/profileoption">
+                <!-- <a class="tab-item" ng-href="#/tab/profileoption">
                  <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
                  <span class="tabcolor">More</span>
-                 </a>
+               </a>-->
               </ion-tabs>
 
             </div>

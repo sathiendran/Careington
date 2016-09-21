@@ -1,5 +1,7 @@
 angular.module('starter.controllers')
-    .controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate, $log,$window) {
+
+    .controller('addnewdependentController',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$filter,$ionicPopup,$log,$window,$ionicBackdrop,Idle) {
+
       $timeout(function() {
             $('option').filter(function() {
                 return this.value.indexOf('?') >= 0;
@@ -21,6 +23,8 @@ angular.module('starter.controllers')
           } else if ($rootScope.currState.$current.name === "tab.login") {
               navigator.app.exitApp();
           } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
+              navigator.app.exitApp();
+          } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
               navigator.app.exitApp();
           } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
               var gSearchLength = $('.ion-google-place-container').length;
@@ -69,6 +73,60 @@ angular.module('starter.controllers')
               }, 300);
           }
       }
+      $rootScope.ValidationFunction1 = function($a) {
+          function refresh_close() {
+              $('.close').click(function() {
+                  $(this).parent().fadeOut(200);
+              });
+          }
+          refresh_close();
+
+          var top = '<div class="notifications-top-center notificationError"><div class="ErrorContent"> <i class="ion-alert-circled" style="font-size: 22px;"></i> ' + $a + '! </div><div id="notifications-top-center-close" class="close NoticationClose"><span class="ion-ios-close-outline" ></span></div></div>';
+
+
+          $("#notifications-top-center").remove();
+          //$( ".ppp" ).prepend( top );
+          $(".ErrorMessage").append(top);
+          //$(".notifications-top-center").addClass('animated ' + 'bounce');
+          refresh_close();
+
+      }
+
+$scope.hghtunit=false;
+      $scope.$on('IdleStart', function() {
+              console.log("aaa");
+      });
+      $scope.$on('IdleWarn', function(e, countdown) {
+      });
+      $scope.$on('IdleTimeout', function() {
+        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              var elem = document.getElementById("googleContainerId");
+              elem.remove();
+              $ionicBackdrop.release();
+              navigator.notification.alert(
+                   'Your session timed out.', // message
+                   null,
+                   $rootScope.alertMsgName,
+                   'Ok' // buttonName
+               );
+              $rootScope.ClearRootScope();
+            }
+        }
+      });
+
+      $scope.$on('IdleEnd', function() {
+          // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+            console.log("aaa3");
+            $(".ion-google-place-container").css({
+                "display": "none"
+            });
+      });
+
+      $scope.$on('Keepalive', function() {
+          // do something to keep the user's session alive
+            console.log("aaa4");
+      });
 
         $scope.getOnlyNumbers = function(text){
             var newStr = text.replace(/[^0-9.]/g, "");
@@ -132,21 +190,77 @@ angular.module('starter.controllers')
             var nowyear = today.getFullYear();
             var nowmonth = today.getMonth()+1;
             var nowday = today.getDate();
+$scope.hfeet=true;$scope.hinch=true;
+$scope.hmeter=true;$scope.hcmeter=true;
+$scope.heightmodal=function(){
+  //  $('#heightdep').val('');
+//    $("#deptheight").val('');
+  //  $('#depheight2').val('');
+      document.getElementById('hunit').innerHTML = '';
 
+  $ionicModal.fromTemplateUrl('templates/tab-heighttemplate.html', {
+      scope: $scope,
+      animation: 'slide-in-up',
+      focusFirstInput: false,
+      backdropClickToClose: false
+  }).then(function(modal) {
+    var hghtinval=$('#heightdep').val();
+    var reminspace=hghtinval.split(" ");
+    var fet=reminspace[0];
+    var finc=reminspace[2];
+    var units=reminspace[1];
+      $scope.modal = modal;
+      $scope.modal.show().then(function(){
+        if(units=="ft"){
+          document.getElementById('heightunitval').selectedIndex = 0;
+          $('#deptheight').val(fet);
+          $('#deptheight2').val(finc);
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+        }else if(units=="m"){
+          document.getElementById('heightunitval').selectedIndex = 1;
+          $('#deptheight').val(fet);
+          $('#deptheight2').val(finc);
+          $scope.hfeet=false;$scope.hinch=false;
+          $scope.hmeter=false;$scope.hcmeter=false;
+        }else{
+          $('#deptheight').val("");
+          $('#deptheight2').val("");
+          $scope.hfeet=true;$scope.hinch=true;
+          $scope.hmeter=true;$scope.hcmeter=true;
+        }
+      });
+
+      //  $("#heightvalue").val("");
+
+      $timeout(function() {
+          $('option').filter(function() {
+              return this.value.indexOf('?') >= 0;
+          }).remove();
+      }, 100);
+  });
+
+}
+$scope.removemodal = function(model) {
+  $scope.modal.remove()
+  .then(function() {
+    $scope.modal = null;
+  });
+
+    $('option').filter(function() {
+        return this.value.indexOf('?') >= 0;
+    }).remove();
+    // $ionicBackdrop.retain();
+    $('#heightdep').val('');
+    $("#deptheight").val('');
+    $('#depheight2').val('');
+};
 
    $scope.ngBlur = function () {
-       var doddate=$('#dob').val();
-       var dateofb=new Date( doddate)
-       var birthyear =dateofb.getFullYear();
-       var birthmonth = dateofb.getMonth();
-       var birthday = dateofb.getDate();
-       var age = nowyear - birthyear;
-       var age_month = nowmonth - birthmonth;
-       var age_day = nowday - birthday;
-       if(age_month < 0 || (age_month == 0 && age_day <0)) {
-       age = parseInt(age) -1;
-      }
-      if(age >=12){
+     $rootScope.doddate=$('#dob').val();
+       $rootScope.restage = getAge(  $rootScope.doddate);
+      if($rootScope.restage>=12 ){
+
         $rootScope.emailDisplay = 'flex';
         $rootScope.timezoneDisplay='flex';
       }else{
@@ -156,33 +270,94 @@ angular.module('starter.controllers')
       }
    }
  // $scope.height = 0;
-$scope.depheight1=function(){
-       var max = 10;
-       var heightval=$('#height').val();
-       if ( heightval > max)
+  // var heights='';
+ $scope.depheight1=function(){
+    var max= 10;
+    var heights=$("#deptheight").val();
+     if (heights==""){
+        $("#deptheight").val("");
+     } else if (heights > max)
       {
-          $("#height").val(max);
+
+          $("#deptheight").val(max);
       }
+      var heightlen=$("#deptheight").val().length;
+
+      if(heightlen>2){
+
+        $("#deptheight").val(max);
+
+      }
+}
+$scope.height1len=function(){
+   var max = 10;
+   var heightvallen=$('#deptheight').val().length;
+   if(heightvallen>2){
+       $("#deptheight").val(max);
+   }
 }
 $scope.depheight2=function(){
        var max = 99;
-       var height2val=$('#height2').val();
-       if ( height2val > max)
+       var height2val=$('#deptheight2').val();
+
+       if (height2val==""){
+          $("#deptheight2").val("");
+       } else if ( height2val > max)
       {
-          $("#height2").val(max);
+          $("#deptheight2").val(max);
       }
 
-      var heightunit = $("#heightunit").val().split("@").slice(1, 2);
+      var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
       var getheightunit=_.first(heightunit);
       if(getheightunit=="ft/in"){
           var maxheight=11;
           if ( height2val > maxheight)
          {
-             $("#height2").val(maxheight);
+             $("#deptheight2").val(maxheight);
          }
       }
 }
-$scope.weightunit=function(){
+$scope.height2len=function(){
+  var max = 99;
+  var height2vallen=$('#deptheight2').val().length;
+
+  if(height2vallen>2){
+      $("#deptheight2").val(max);
+  }
+  var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
+  var getheightunit=_.first(heightunit);
+  if(getheightunit=="ft/in"){
+      var maxheight=11;
+      if ( height2vallen > maxheight)
+     {
+         $("#deptheight2").val(maxheight);
+     }
+  }
+}
+
+$scope.unitchange=function(){
+    var maxheight=11;
+    //$scope.depunit=heightunit;
+   var heightunits = $("#heightunitval").val().split("@").slice(1, 2);
+   //var heightunit = $("#heightunit").val();
+    var getheightunit=_.first(heightunits);
+    if(getheightunit==="ft/in"){
+      $scope.hfeet=true;$scope.hinch=true;
+      $scope.hmeter=true;$scope.hcmeter=true;
+        var height2val=$('#deptheight').val();
+        if(height2val!=""){
+            if ( height2val > maxheight)
+           {
+               $("#deptheight2").val(maxheight);
+           }
+        }
+    }else{
+      $scope.hfeet=false;$scope.hinch=false;
+      $scope.hmeter=false;$scope.hcmeter=false;
+    }
+}
+
+$scope.weightunitchange=function(){
        var maxweight = 999;
        var weightval=$('#weight').val();
        if ( weightval > maxweight)
@@ -190,22 +365,64 @@ $scope.weightunit=function(){
           $("#weight").val(maxweight);
       }
 }
-
-$scope.unitchange=function(){
-    var maxheight=11;
-    var heightunit = $("#heightunit").val().split("@").slice(1, 2);
-    var getheightunit=_.first(heightunit);
-    if(getheightunit="ft/in"){
-        var height2val=$('#height2').val();
-        if(height2val!=""){
-            if ( height2val > maxheight)
-           {
-               $("#height2").val(maxheight);
-           }
-        }
-    }
+$scope.weight1len=function(){
+    var maxweight = 999;
+   var weightvallen=$('#weight').val().length;
+   if(weightvallen>3){
+       $("#weight").val(maxweight);
+   }
 }
 
+$scope.heightsave=function(){
+  $rootScope.height1=$('#deptheight').val();
+  $rootScope.height2=$('#deptheight2').val();
+ var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
+ var heightunitid = $("#heightunitval").val().split("@").slice(0, 1);
+ var getheightunitid=_.first(heightunitid);
+ var getheightunit=_.first(heightunit);
+   if(getheightunit==="ft/in"){
+     if($rootScope.height1!='' && $rootScope.height2 !=''  ){
+       var heightdepval=$('#deptheight').val() + " " + "ft" + " " +  $('#deptheight2').val() + " " + "in";
+       $('#heightdep').val(heightdepval);
+     } else if($rootScope.height1!='' && $rootScope.height2==''){
+        var heightdepval=$('#deptheight').val()+ " " +  "ft" + " " + "0"  + " " + "in";
+        $('#heightdep').val(heightdepval);
+      }
+     else{
+       var heightdepval=$('#deptheight').val() + " " + "ft" +" "+"0"+" " +'in';
+       $('#heightdep').val(heightdepval);
+     }
+}else{
+     if($rootScope.height1!='' && $rootScope.height2!=''){
+       var heightdepval=$('#deptheight').val() +" "+ "m" + " " +$('#deptheight2').val() + " " + "cm";
+   $('#heightdep').val(heightdepval);
+ }
+ else if($rootScope.height!='' && $rootScope.height==''){
+   var heightdepval=$('#deptheight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+   $('#heightdep').val(heightdepval);
+ }
+ else {
+   var heightdepval=$('#deptheight').val() +" "+ "m"+ " " +"0"+ " " + "cm";
+   $('#heightdep').val(heightdepval);
+ }
+}
+ document.getElementById("hunit").innerHTML =getheightunitid;
+
+ if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
+   $scope.ErrorMessage = "Please enter height";
+   $rootScope.ValidationFunction1($scope.ErrorMessage);
+ }else{
+   $scope.modal.remove()
+   .then(function() {
+     $scope.modal = null;
+   });
+ }
+
+  $('option').filter(function() {
+      return this.value.indexOf('?') >= 0;
+  }).remove();
+  //  $('#heightform')[0].reset();
+}
 
 $scope.phoneBlur=function(){
 $scope.phonelength=$("#homephone").val().length;
@@ -228,9 +445,20 @@ if(phonevalue!=''){
             $scope.relation = $("#relation").val();
             //$scope.healthInfoAuthorize = $("input[name='healthInfoAuthorize']:checked").val();
           //  $scope.gender = $("input[name='depgender']:checked").val();
+            var splitheight=$('#heightdep').val();
+            $scope.splitheights=$('#heightdep').val();;
+            var inch=splitheight.slice(6,8)
+
+            if($rootScope.height2==""){
+              $scope.heightinch="0";
+            }else{
+              $scope.heightinch=$rootScope.height2;
+            }
+          //  $scope.heightft=splitheight.slice(0,2)
+            $scope.heightft=$rootScope.height1;
             $scope.gender = $("#depgender").val();
-            $scope.height = $("#height").val();
-            $scope.height2 = $("#height2").val();
+            $scope.height =$scope.heightft;
+            $scope.height2 =$scope.heightinch;
             $scope.weight = $("#weight").val();
             $scope.homephone = $("#homephone").val();
             $scope.phonelength=$("#homephone").val().length;
@@ -238,41 +466,122 @@ if(phonevalue!=''){
             $scope.mobilelength=$("#mobile").val().length;
             //$scope.homeaddress = $("#homeadd").val();
             $scope.homeaddress = $scope.addNewDependent.homeadd;
-            var org = document.getElementById("organization");
-            var dependentorgan = org.options[org.selectedIndex].text;
-            $scope.organization = dependentorgan;
-            $scope.orgid = $("#organ").val();
+            if($rootScope.OrganizationLocation === 'on') {
+              var org = document.getElementById("organization");
+              var loc = document.getElementById("location");
+              if(org!="Choose Organization"){
+                $scope.organization = null;
+                $scope.orgid = null;
+              }else{
+                var dependentorgan = org.options[org.selectedIndex].text;
+                $scope.organization = dependentorgan;
+                $scope.orgid = org.options[org.selectedIndex].value;
 
-            var loc = document.getElementById("location");
-            var dependentloc = loc.options[loc.selectedIndex].text;
-            $scope.location = dependentloc;
-            $scope.locationid = $("#locate").val();
+              }
+              if(loc != "Choose Location"){
+                $scope.location = null;
+                  $scope.locationid = null;
+              }else{
+                var dependentloc = loc.options[loc.selectedIndex].text;
+                $scope.location = dependentloc;
+                $scope.locationid = loc.options[loc.selectedIndex].value;
+
+              }
+            }else {
+              $scope.organization = null;
+              $scope.location = null;
+              $scope.orgid = null;
+              $scope.locationid = null;
+            }
+          /*  if($rootScope.OrganizationLocation === 'on') {
+              var org = document.getElementById("organization");
+              var dependentorgan = org.options[org.selectedIndex].text;
+              if(dependentorgan="Choose Organization"){
+                  $scope.organization = "";
+              }else{
+                  $scope.organization = dependentorgan;
+              }
+
+              $scope.orgid = org.options[org.selectedIndex].value;
+
+              var loc = document.getElementById("location");
+              if(loc==null){
+                  var dependentloc = "Choose Location";
+                  $scope.location = "";
+                  $scope.locationid = "";
+              }else{
+                  var dependentloc = loc.options[loc.selectedIndex].text;
+                  $scope.location = dependentloc;
+                  $scope.locationid = loc.options[loc.selectedIndex].value;
+              }
+
+
+
+            } else {
+              if($scope.organization!=""){
+                $scope.organization = null;
+                $scope.location = null;
+                $scope.orgid = null;
+                $scope.locationid = null;
+              }
+
+            }*/
             $scope.dependentCountry = $("#dependentCountry").val();
             $scope.dependentTimezone = $("#dependentTimezone").val();
             $scope.relation = $("#dependentrelation").val().split("@").slice(0, 1);
             $rootScope.getRelationId = _.first($scope.relation);
-            $scope.hairColor = $("#hairColor").val().split("@").slice(0, 1);
+          /*  $scope.hairColor = $("#hairColor").val().split("@").slice(0, 1);
             $scope.getHairColorId = _.first($scope.hairColor);
             $scope.eyeColor = $("#eyeColor").val().split("@").slice(0, 1);
             $scope.getEyeColorId = _.first($scope.eyeColor);
             $scope.ethnicity = $("#ethnicity").val().split("@").slice(0, 1);
-            $scope.getEthnicityId = _.first($scope.ethnicity);
-            $scope.heightunit = $("#heightunit").val().split("@").slice(0, 1);
-            $scope.getHeightunit = _.first($scope.heightunit);
+            $scope.getEthnicityId = _.first($scope.ethnicity);*/
+          //  $scope.heightunit = $("#heightunit").val().split("@").slice(0, 1);
+          //  $scope.getHeightunit = _.first($scope.heightunit);
+          //  $scope.heightunit = $('#hunit').text();
+            $scope.getHeightunit = $('#hunit').text();
+
             $scope.weightunit = $("#weightunit").val().split("@").slice(0, 1);
             $scope.getWeightunit = _.first($scope.weightunit);
-            $scope.bloodtype = $("#bloodtype").val().split("@").slice(0, 1);
-            $scope.getBloodtypeid = _.first($scope.bloodtype);
-            var dateofb=new Date( $scope.dob)
-            var birthyear =dateofb.getFullYear();
-            var birthmonth = dateofb.getMonth();
-            var birthday = dateofb.getDate();
-            var age = nowyear - birthyear;
-            var age_month = nowmonth - birthmonth;
-            var age_day = nowday - birthday;
-            if(age_month < 0 || (age_month == 0 && age_day <0)) {
-            age = parseInt(age) -1;
-           }
+          /*  $scope.bloodtype = $("#bloodtype").val().split("@").slice(0, 1);
+            $scope.getBloodtypeid = _.first($scope.bloodtype);*/
+            $scope.hairColor = $('#hairColor').val();
+            if (!angular.isUndefined($scope.hairColor) && $scope.hairColor !== '') {
+              $scope.splitHairColor = $scope.hairColor.split("@");
+              $scope.getHairColorId = $scope.splitHairColor[0];
+              $scope.getHairColorText = $scope.splitHairColor[1];
+            } else {
+              $scope.getHairColorId = null;
+            }
+            $scope.eyeColor = $('#eyeColor').val();
+            if (!angular.isUndefined($scope.eyeColor) && $scope.eyeColor !== '') {
+              $scope.splitEyeColor = $scope.eyeColor.split("@");
+              $scope.getEyeColorId = $scope.splitEyeColor[0];
+              $scope.getEyeColorText = $scope.splitEyeColor[1];
+            } else {
+              $scope.getEyeColorId = null;
+            }
+            $scope.ethnicity = $('#ethnicity').val();
+            if (!angular.isUndefined($scope.ethnicity) && $scope.ethnicity !== '') {
+              $scope.splitEthnicity = $scope.ethnicity.split("@");
+              $scope.getEthnicityId = $scope.splitEthnicity[0];
+              $scope.getEthnicityText = $scope.splitEthnicity[1];
+            }else {
+              $scope.getEthnicityId = null;
+            }
+            $scope.bloodtype = $('#bloodtype').val();
+            if (!angular.isUndefined($scope.bloodtype) && $scope.bloodtype !== '') {
+              $scope.splitBloodType = $scope.bloodtype.split("@");
+              $scope.getBloodtypeid = $scope.splitBloodType[0];
+              $scope.getBloodTypeText = $scope.splitBloodType[1];
+            }else {
+              $scope.getBloodtypeid = null;
+            }
+
+            $rootScope.doddate=$('#dob').val();
+              $rootScope.restage = getAge($scope.dob);
+
+
            $scope.ValidateEmail = function(email) {
                //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
                var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -284,7 +593,8 @@ if(phonevalue!=''){
            var dt1 = Date.parse(now),
            dt2 = Date.parse(selectedDate);
 
-    if ((age >=12  && age_month >= 0)) {
+  //  if ((age >=12  && age_month >= 0)) {
+      if($rootScope.restage>=12 ){
       if ($scope.email === 'undefined' || $scope.email === '') {
           $scope.ErrorMessage = "Please enter Email Id";
           $rootScope.Validation($scope.ErrorMessage);
@@ -312,7 +622,7 @@ if(phonevalue!=''){
        else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
            $scope.ErrorMessage = "Please select Gender";
            $rootScope.Validation($scope.ErrorMessage);
-       } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+       } else if (typeof $scope.splitheights === 'undefined' || $scope.splitheights === '') {
            $scope.ErrorMessage = "Please enter Height";
            $rootScope.Validation($scope.ErrorMessage);
        // }else if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
@@ -340,17 +650,17 @@ if(phonevalue!=''){
        }else if($scope.mobilelength < 14){
            $scope.ErrorMessage = "Please enter valid Mobile Number";
            $rootScope.Validation($scope.ErrorMessage);
-       }else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
+       }else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '' || $scope.getBloodtypeid===null)) {
            $scope.ErrorMessage = "Please select Blood Type";
            $rootScope.Validation($scope.ErrorMessage);
        }
-       else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
+       else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '' || $scope.getHairColorId===null)) {
                 $scope.ErrorMessage = "Please select Hair Color";
                 $rootScope.Validation($scope.ErrorMessage);
-      } else if (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '') {
+      } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '' || $scope.getEyeColorId===null)) {
                 $scope.ErrorMessage = "Please select Eye Color";
                 $rootScope.Validation($scope.ErrorMessage);
-      } else if (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '') {
+      } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '' || $scope.getEthnicityId===null)) {
                 $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
       }
@@ -358,7 +668,7 @@ if(phonevalue!=''){
            if (typeof $scope.height2 === 'undefined' || $scope.height2 === '') {
                $scope.height2 = "0";
            }
-            $scope.doPostNewDependentuser();
+     $scope.doPostNewDependentuser();
       }
    }else{
      if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
@@ -404,21 +714,21 @@ if(phonevalue!=''){
     }else if($scope.mobilelength < 14){
         $scope.ErrorMessage = "Please enter valid Mobile Number";
         $rootScope.Validation($scope.ErrorMessage);
-    }else if (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '') {
+    }else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.getBloodtypeid === 'undefined' || $scope.getBloodtypeid === '' || $scope.getBloodtypeid === null)) {
          $scope.ErrorMessage = "Please select Blood Type";
          $rootScope.Validation($scope.ErrorMessage);
-     }else if (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '') {
+     }else if ($rootScope.PPIsHairColorRequired === 'on' && (typeof $scope.getHairColorId === 'undefined' || $scope.getHairColorId === '' || $scope.getHairColorId === null)) {
                 $scope.ErrorMessage = "Please select Hair Color";
                 $rootScope.Validation($scope.ErrorMessage);
-    } else if (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '') {
+    } else if ($rootScope.PPIsEyeColorRequired === 'on' && (typeof $scope.getEyeColorId === 'undefined' || $scope.getEyeColorId === '' || $scope.getEyeColorId === null)) {
                 $scope.ErrorMessage = "Please select Eye Color";
                 $rootScope.Validation($scope.ErrorMessage);
-    } else if (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '') {
+    } else if ($rootScope.PPIsEthnicityRequired === 'on' && (typeof $scope.getEthnicityId === 'undefined' || $scope.getEthnicityId === '' || $scope.getEthnicityId === null)) {
                 $scope.ErrorMessage = "Please select Ethnicity";
                 $rootScope.Validation($scope.ErrorMessage);
     }
      else {
-     $scope.doPostNewDependentuser();
+    $scope.doPostNewDependentuser();
     }
    }
 
@@ -492,20 +802,54 @@ if(phonevalue!=''){
                     var updatepatientdetail = data.data;
                     $rootScope.deppatientId = updatepatientdetail[0].patientId;
                     $scope.updateDependentRelation();
-
-
-
-                    /*  $('#dependentuserform')[0].reset();
-                      $('select').prop('selectedIndex', 0);
-                      $state.go('tab.relatedusers');
-                      console.log(data);*/
                 },
-                error: function(data) {
-                    $rootScope.serverErrorMessageValidation();
+                  error: function(data) {
+                      $('select option').filter(function() {
+                          return this.value.indexOf('?') >= 0;
+                      }).remove();
+                    if(data.status === 400) {
+                      $scope.ErrorMessage = data.statusText;
+                      $rootScope.Validation($scope.ErrorMessage);
+                    }else if(data==null){
+
+                           $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                           $rootScope.Validation($scope.ErrorMessage);
+
+                      }
+                      else {
+                      $rootScope.serverErrorMessageValidation();
+                    }
+
                 }
             };
             LoginService.postNewDependentuser(params);
 
+        }
+
+        $scope.doChkAddressForReg = function(homeaddress) {
+          if ($scope.accessToken === 'No Token') {
+              alert('No token.  Get token first then attempt operation.');
+              return;
+          }
+          var params = {
+              AddressText: homeaddress,
+              HospitalId: $rootScope.hospitalId,
+              accessToken: $rootScope.accessToken,
+              success: function(data) {
+                    if(data.data[0].isAvailable === true) {
+                      $scope.ErrorMessage = "Email ID Already Registered";
+                      $rootScope.Validation($scope.ErrorMessage);
+                    } else {
+                      $scope.ErrorMessage = "Patient Registration is not allowed for this address";
+                      $rootScope.Validation($scope.ErrorMessage);
+                    }
+              },
+              error: function(data) {
+                  $rootScope.serverErrorMessageValidation();
+              }
+          };
+
+          LoginService.chkAddressForReg(params);
         }
 
 
@@ -525,7 +869,7 @@ if(phonevalue!=''){
                     }
 
                 },
-                error: function(data) {
+                error: function(data, status) {
                     $rootScope.serverErrorMessageValidation();
                 }
             };
@@ -537,9 +881,25 @@ if(phonevalue!=''){
             $('select').prop('selectedIndex', 0);
             $rootScope.couserslists = false;
             $rootScope.dependentuserslist = false;
-            $state.go('tab.relatedusers');
+          //  $state.go('tab.relatedusers');
+          history.back();
+          $scope.$apply();
         }
-
+     $scope.$watch('addNewDependent.healthInfoOrganization', function(newVal) {
+            if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
+                $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
+                    organizationId: $rootScope.currentPatientDetails[0].organizationId
+                });
+            } else {
+                if (newVal) {
+                    $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
+                        organizationId: newVal
+                    });
+                } else {
+                    $rootScope.listOfLocForCurntOrg ="";
+                }
+            }
+        });
         //Function to open ActionSheet when clicking Camera Button
         //================================================================================================================
         var options;
@@ -623,25 +983,4 @@ if(phonevalue!=''){
         function onCameraCaptureFailure(err) {
         }
 
-    }).filter('secondDropdown', function() {
-        return function(secondSelect, firstSelect) {
-            var filtered = [];
-            if (firstSelect === null) {
-                return filtered;
-            }
-            if (secondSelect != undefined) {
-                angular.forEach(secondSelect[0], function(s2) {
-                    if (s2.organizationId == firstSelect) {
-                        filtered.push(s2);
-                    //   $scope.loctdetail=true;
-                      }
-                      else{
-                      //$scope.loctdetail=false;
-                      }
-                });
-            }
-
-
-            return filtered;
-        };
     });

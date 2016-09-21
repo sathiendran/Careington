@@ -8,9 +8,10 @@
 			</ion-item>
 		</ion-list>
 	</a>
-	<a ng-href="#/tab/healthinfo" class="sidemenuContent1" >
+
+		<a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont sideuserhealth" id="{{sidemenuHome}}">
 			<i ng-bind-html="drawSVGCIcon('clipboard')"></i>
 		<span>  My Health</span>
 	</ion-item>
@@ -25,18 +26,18 @@
 </ion-list>
 </a>-->
 
-	<a ng-href="#/tab/appointmentpatientdetails" class="sidemenuContent1" >
+<a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont sidehomeappt" id="{{sidemenuHome}}">
 		<i ng-bind-html="drawSVGCIcon('calendar')"></i>
 		<span>My Appointments</span>
 	</ion-item>
 </ion-list>
 </a>
 
-	<a ng-href="#/tab/consultations" class="sidemenuContent1" >
+<a ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')" class="sidemenuContent1" >
 <ion-list>
-	<ion-item class="icon tabfont" id="{{sidemenuHome}}">
+	<ion-item class="icon tabfont sidehomeconsult" id="{{sidemenuHome}}">
 		<i ng-bind-html="drawSVGCIcon('health_card')"></i>
 		<span>  My Consultations</span>
 	</ion-item>
@@ -84,7 +85,7 @@
 <img ng-src="{{PatientImage}}" class="UserHmelistImgView">
 <div class= "ListTextTitle ellipsis userHomeFullName" > <b class="ng-binding"> {{primaryPatientName}} </b><span class="SubTitleSpan ellipsis"> {{primaryPatientLastName}}</span></div>
 <!--<p class="ListText listTitle" style="font-size: 24px;overflow: auto;"><b>Login Details Welcome</b> <span class="SubTitleSpan">Sathiendran <span></p> -->
-<p class="ListHomeUser_pTitle DateFormateStyle" style="color:#FFFFFF !important;">{{gender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
+<p class="ListHomeUser_pTitle DateFormateStyle" style="color:#FFFFFF !important;">{{primaryPatGender}} . {{dob | ageFilter}} <!--<span ng-if="primaryPatientGuardianName"> | Guardain : {{primaryPatientGuardianName}}</span>--></p>
 </div>
 </div>
 <div style="border-bottom: 1px solid black; padding-top: 5px;"></div>

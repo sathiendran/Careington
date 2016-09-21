@@ -12,12 +12,14 @@
 
 
 <div class="bar bar-subheader bar-dark subheaderheight" >
-                  <div class="row">
-                     <h1 class="headertitle"><div class="ellipsis subHeader_content_name" >
+        <div class="row">
+         <h1 class="headertitle">
+					 <div class="ellipsis subHeader_content_name" >
 					  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
-				      <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
-				     </div></h1>
-                </div>
+				     <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
+				     </div>
+					</h1>
+        </div>
 
          <div class="item item-image-icon itemiconcolor">
 
@@ -32,7 +34,7 @@
                <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
                <p class="patientcontent" >Change Patient</p>
            </a>
-   </div>
+   	 </div>
 
    <div class="row">
 
@@ -60,8 +62,6 @@
 
 <ion-view title="Appointment Details">
  <ion-content class="appiconcontent" ng-hide="addmore" >
-	 <div><ion-refresher on-refresh="doRefresh()"  >
-		</ion-refresher></div>
 
 		 <div >
 					 <div class="list listfirst" >
@@ -82,16 +82,14 @@
 					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
 					 </h4>
 				 </a>
-				<ion-item ng-if="!getIndividualScheduleDetails.length" class="noResult" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
+				<ion-item ng-if="!getIndividualScheduleDetails.length" class="noapptviewResult" style="white-space: normal;" >There are no appointments found!</ion-item>
 
  </div>
 	 </div>
 <div style="display: none;"><timer end-time="time"  ></timer></div>
 </ion-content>
 <ion-content class="appiconcontent" ng-hide="healthhide">
-	<div><ion-refresher on-refresh="doRefresh()"  >
-	   </ion-refresher></div>
-	 <div >
+
         <div class="list listall">
 
 
@@ -112,7 +110,7 @@
 					 <h4 class="appalign"><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span>
            </h4>
          </a>
-				<ion-item  class="noResult" ng-if="!scheduledList.length" style="white-space: normal;" >There is no Scheduled Consultations!</ion-item>
+				<ion-item  class="noapptviewResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no appointments found!</ion-item>
 
    </div>
    </div>
@@ -146,9 +144,9 @@
 	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
 	 <span class="tabcolor">Appointments</span>
 	 </a>
-	 <a class="tab-item" ng-href="#/tab/profileoption">
+	 <!--<a class="tab-item" ng-href="#/tab/profileoption">
 	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
-	 <span class="tabcolor">More</span>
+	 <span class="tabcolor">More</span>-->
 	 </a>
 </ion-tabs>
 </ion-side-menu-content>
