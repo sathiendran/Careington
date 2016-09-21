@@ -92,6 +92,55 @@
 				<div ng-if="displayCOnsultationDuration == 'display'">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>
 			</div>
 		</div>
+<!--
+    <div class="reportPatientStatistics" >
+      <table  class="PatientStatistic" >
+        <tr>
+          <td colspan="6" class="statisticsTitle"  ><b>Attendee Details</b>
+            <div></div>
+          </td>
+        </tr>
+        <tr ng-repeat="getAttendeelist in AttendeeList">
+          <td class="statisticAge"><b>{{getAttendeelist.attedeename}}</b></td>
+          <td>&nbsp </td>
+          <td>&nbsp </td>
+          <td>&nbsp </td>
+          <td><b>{{getAttendeelist.consultstart | date: "hh:mm"}}{{getAttendeelist.consultstart | date: "a"}}</b></td>
+
+          <td>&nbsp </td>
+          <td><b>{{getAttendeelist.consultend | date: "hh:mm"}}{{getAttendeelist.consultend | date: "a"}}</b></td>
+        </tr>
+
+
+
+      </table>
+
+    </div>
+
+-->
+<div ng-if="AttendeeList.length != 0" class="reportPatientConcerns" style="clear:both;padding-top:10px !important;">
+  <div class="concernTitle" style="font-size: 18px;"><b>Attendee Details</b></div>
+  <div class="concernUnderline" >	</div>
+
+  <div class="reportConcerns" style="padding-top:10px !important; font-size:15px !important;">
+  <table  style="width:100%;" >
+    <tr ng-repeat="getAttendeelist in AttendeeList">
+      <td class="statisticAge"><b>{{getAttendeelist.attedeename}}</b></td>
+      <td>&nbsp </td>
+      <td>&nbsp </td>
+      <td>&nbsp </td>
+      <td><b>{{getAttendeelist.consultstart | date: "hh:mm"}}{{getAttendeelist.consultstart | date: "a"}}</b></td>
+
+      <td>&nbsp </td>
+      <td><b>{{getAttendeelist.consultend | date: "hh:mm"}}{{getAttendeelist.consultend | date: "a"}}</b></td>
+    </tr>
+
+
+
+  </table>
+  </div>
+
+</div>
 		<div class="reportPatientStatistics" >
 			<table  class="PatientStatistic" >
 				<tr>

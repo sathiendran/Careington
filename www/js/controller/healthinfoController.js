@@ -11,6 +11,11 @@ angular.module('starter.controllers')
         }
         return newStr;
     }
+    $timeout(function() {
+          $('option').filter(function() {
+              return this.value.indexOf('?') >= 0;
+          }).remove();
+      }, 100);
 
     $rootScope.getPhoneNumberWithoutCountryCode = function(phoneNumber) {
         var phoneNumberWithoutCountryCode = "";
@@ -142,9 +147,10 @@ angular.module('starter.controllers')
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
         }
-        if($rootScope.statename="tab.healthinfo"){
-          $('.sideuserhealth').addClass("uhome");
-
+        if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
+         if($rootScope.statename="tab.healthinfo"){
+           $('.sideuserhealth').addClass("uhome");
+         }
         }
         if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
             checkAndChangeMenuIcon = $interval(function() {
@@ -156,12 +162,12 @@ angular.module('starter.controllers')
     $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
     $scope.addmore = false;
     $scope.healthhide = true;
-    $scope.headerval = false;
+
     $scope.editshow = true;
     $scope.doneshow = true;
     $scope.readattr = false;
     $scope.doneedit = false;
-    $scope.editshow = true;
+
     $scope.editimg = false;
     $scope.viewimg = true;
     //  $scope.healthinfoshow=true;
@@ -202,18 +208,23 @@ angular.module('starter.controllers')
       }).then(function(modal) {
         var hghtinval=$('#heightuser').val();
         var reminspace=hghtinval.split(" ");
-
+        var fet=reminspace[0];
+        var finc=reminspace[2];
         var units=reminspace[1];
+
       //   document.getElementById("edhunit").innerHTML =  units;
           $scope.modal = modal;
           $scope.modal.show().then(function() {
           //  var newq=$('#edhunit').text();
           if(units=="ft"){
+            $('#healthInfoHeight').val(fet);
+            $('#healthInfoHeight2').val(finc);
             document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
             $scope.hfeet=true;$scope.hinch=true;
             $scope.hmeter=true;$scope.hcmeter=true;
           }else{
-
+            $('#healthInfoHeight').val(fet);
+            $('#healthInfoHeight2').val(finc);
             document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
             $scope.hfeet=false;$scope.hinch=false;
             $scope.hmeter=false;$scope.hcmeter=false;
@@ -311,14 +322,25 @@ angular.module('starter.controllers')
       //  $('#heightform')[0].reset();
     }
 
-    $scope.heightunit1 = function() {
-        var max = 10;
-        var heightval = $('#healthInfoHeight').val();
-        if (heightval > max) {
-            $("#healthInfoHeight").val(max);
-        }
+    $scope.depheight1=function(){
+        var max= 10;
+        var heights=$("#healthInfoHeight").val();
+        if (heights==""){
+          $("#healthInfoHeight").val("");
+        }else if (heights > max)
+         {
 
+             $("#healthInfoHeight").val(max);
+         }
+         var heightlen=$("#healthInfoHeight").val().length;
+
+         if(heightlen>2){
+
+           $("#healthInfoHeight").val(max);
+
+         }
     }
+
 
     $scope.heightunit1len=function(){
        var max = 10;
@@ -330,7 +352,10 @@ angular.module('starter.controllers')
     $scope.heightunit2 = function() {
         var max = 99;
         var height2val = $("#healthInfoHeight2").val();
-        if (height2val > max) {
+
+        if (height2val==""){
+          $("#healthInfoHeight2").val("");
+        }else if (height2val > max) {
             $("#healthInfoHeight2").val(max);
         }
 
@@ -414,6 +439,12 @@ angular.module('starter.controllers')
             $rootScope.timezoneDisplay = 'none';
 
         }
+        $timeout(function() {
+              $('option').filter(function() {
+                  return this.value.indexOf('?') >= 0;
+              }).remove();
+          }, 100);
+
 
         //  $scope.readattr = false;
         $scope.doneshow = false;
@@ -429,6 +460,8 @@ angular.module('starter.controllers')
         $scope.userdob = new Date($rootScope.userDOB);
         $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
+        $scope.healthInfoModel.healthInfoCountry = $rootScope.currentPatientDetails[0].countryCode;
+        $scope.healthInfoModel.healthInfoTimezone = $rootScope.currentPatientDetails[0].account.timeZoneId;
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
         $scope.formatheight = $rootScope.currentPatientDetails[0].anatomy.height;
@@ -442,6 +475,10 @@ angular.module('starter.controllers')
         edittextarea.removeClass('textdata');
         editsvalues.addClass('editdata');
         edittextarea.addClass('editdata');
+        setTimeout(function(){
+              $('#healthInfoTimezone').val($scope.healthInfoModel.healthInfoTimezone);
+              $('#healthInfoCountry').val($scope.healthInfoModel.healthInfoCountry);
+        }, 10);
     }
 
 
@@ -532,7 +569,14 @@ $scope.editDob=function(){
               }
 
             }else{
-                $scope.healthInfoHeightUnit = $('#hunit').text();
+              var hghtinval=$('#heightuser').val();
+              var reminspace=hghtinval.split(" ");
+              var units=reminspace[1];
+              if(units=="ft"){
+                $scope.healthInfoHeightUnit="4715"
+              }else{
+                  $scope.healthInfoHeightUnit="4716"
+              }
             }
 
             $scope.healthInfoGender = $("#healthInfoGender").val();
@@ -608,6 +652,11 @@ $scope.editDob=function(){
             if (age_month < 0 || (age_month == 0 && age_day < 0)) {
                 age = parseInt(age) - 1;
             }
+            $timeout(function() {
+                  $('option').filter(function() {
+                      return this.value.indexOf('?') >= 0;
+                  }).remove();
+              }, 100);
 
 
             $scope.ValidateEmail = function(email) {
@@ -2130,4 +2179,31 @@ $scope.editDob=function(){
 
 
 
-});
+}).directive('validNumber', function() {
+      return {
+        require: '?ngModel',
+        link: function(scope, element, attrs, ngModelCtrl) {
+          if(!ngModelCtrl) {
+            return;
+          }
+
+          ngModelCtrl.$parsers.push(function(val) {
+            if (angular.isUndefined(val)) {
+                var val = '';
+            }
+
+            var clean = val.replace(/[^-0-9]/g, '');
+            var negativeCheck = clean.split('-');
+			      var decimalCheck = clean.split('.');
+
+            if (val !== clean) {
+              ngModelCtrl.$setViewValue(clean);
+              ngModelCtrl.$render();
+            }
+            return clean;
+          });
+
+
+        }
+      };
+    });

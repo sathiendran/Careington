@@ -15,7 +15,8 @@
             <div class="item item-input itemtab validated row" style="border-top:none;">
                 <div class="col col-50">
                   <div class="healthPopup-{{deviceName}}">
-                  <input id="deptheight" class="usertext textalign" placeholder="Required" type="number" value="" ng-model="height1temp" name="height"  ng-keyup="depheight1()" ng-blur="height1len()">
+                  <input id="deptheight" class="usertext textalign" placeholder="Required" type="number" value="" ng-model="height1temp" name="height"  ng-keyup="depheight1()" ng-blur="height1len()" valid-number>
+
                 </div>
 
 
@@ -27,7 +28,7 @@
                 </div>
         				<div class="col col-50 ">
                 <div class="healthPopup-{{deviceName}}">
-                  <input id="deptheight2" class="usertext textalign" placeholder="Optional" type="number" value="" ng-model="height2temp" name="height2" ng-keyup="depheight2()" ng-blur="height2len()">
+                  <input id="deptheight2" class="usertext textalign" placeholder="Optional" type="number" value="" ng-model="height2temp" name="height2" ng-keyup="depheight2()" ng-blur="height2len()" valid-number>
                 </div>
                 <div class="heightft-{{deviceName}}">
 

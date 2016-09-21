@@ -1699,7 +1699,7 @@ color:#444444 !important;font-size:19px !important;font-family:Glober Bold !impo
 			background-color: #E5E5E5;width: 100%; font-size: 18px;
 			input[type="text"] {
 				background-color:#CCCCCC;
-				width: 75px;
+				width: 85px;
 				font-size: 14px;
 				height: 30px;
 				font-weight: bold;
@@ -3888,17 +3888,28 @@ font-family: $fontFamily_regular;
 }
 .noResult {
 	text-align: center; border: none;
-    color: #616462; font-weight: bold; font-size: 19px;
+    color: #616462; font-weight: bold; font-size: 19px;margin-top:-35px;
     //top: 90px;
   //  padding-top: 107px;
 }
 .noapptResult {
 	text-align: center; border: none;
     color: #616462; font-weight: bold; font-size: 19px;
-    //top: 90px;
-    padding-top: 35px;
+    top: 75px;
+  //  margin-top: 5px;
 }
-
+.noapptviewResult {
+	text-align: center; border: none;
+    color: #616462; font-weight: bold; font-size: 19px;
+    top: 95px;
+  //  margin-top: 5px;
+}
+.noapptuserResult {
+	text-align: center; border: none;
+    color: #616462; font-weight: bold; font-size: 19px;
+    margin-top: 95px;
+  //  margin-top: 5px;
+}
 .dobRequired {
 
 		color: #CBCBCB;
@@ -4721,6 +4732,10 @@ p{
              padding: 19px 10px;
            }
       }
+      #WhoNeeds {
+          font-size: 20px;
+          width: 85%;
+      }
       .fday {
         font-size: 25px !important;
             margin-top: 4px !important;
@@ -4741,6 +4756,16 @@ p{
               padding: 12px 10px !important;
           }
 
+      }
+      .listprofileEdit{
+        .formlabel {
+          font-size: 17px;
+        }
+      }
+      .deptlist{
+        .formlabel {
+          font-size: 17px;
+        }
       }
       .apponitmentfday-Android {
         margin-left: -14px;
@@ -5141,7 +5166,18 @@ p{
       width:44%;
         }
         .usercontent-IOS {
-          margin-top: 46%;
+          margin-top: 35%;
+          padding-top: 193px;
+          #accountMngeProfile-IOS {
+            padding: 48px 20px;
+          }
+        }
+        .usercontentpat-IOS {
+          margin-top: 17%;
+          padding-top: 30%;
+          #accountMngeProfile-IOS {
+              padding: 56px 10px;
+          }
         }
         .tabs-top > .tabs, .tabs.tabs-top {
         top: inherit !important;
@@ -5187,6 +5223,20 @@ p{
          .tabs-top > .tabs, .tabs.tabs-top {
          top: inherit !important;
          }
+         .usercontent-IOS {
+           margin-top: 35%;
+           padding-top: 193px;
+            #accountMngeProfile-IOS {
+              padding: 48px 20px;
+            }
+        }
+        .usercontentpat-IOS {
+          margin-top: 17%;
+          padding-top: 30%;
+          #accountMngeProfile-IOS {
+              padding: 56px 10px;
+          }
+        }
        .usercontent {
         // margin-top: 177px !important
         }
@@ -5765,7 +5815,7 @@ color: white;
 
     .usertext {
        // margin-left:45px;
-      font-size:19px;font-family:Glober Semibold;line-height:23px;color: rgba(5, 4, 9, 0.54) !important;
+      font-size:19px;font-family:Glober Regular;line-height:23px;color: rgba(5, 4, 9, 0.54) !important;
     }
     .userdob {
        margin-left:40px;font-size:17px;font-family:Glober Semibold;line-height:22px;
@@ -5799,6 +5849,7 @@ color: white;
     color: #7c7c7c;
     background-color: #e9e9e9;
     padding-left: 5px;
+    line-height: 23px;
   }
   .valhome{
     margin-left:43px;
@@ -7589,6 +7640,9 @@ border-bottom: 2px solid #cbcbcb;
 			margin-right:27%;
 			margin-left: 27%;
 		}
+    .pwdPatImage {
+      width: 45% !important;
+    }
 
 		.epassbg {
 			margin: 0px;
@@ -8373,6 +8427,7 @@ input.ion-google-place[readonly] {
   .dependwetUnit-IOS {
     width: 81%;
     margin-left: 10px;
+    padding-top: 8px !important;
   }
 .consultcontentsearch-IOS {
   margin-top: 218px;
@@ -8433,10 +8488,10 @@ input.ion-google-place[readonly] {
   float: left;
 }
 .dependHeigh-Android {
-  margin-left: -5px;width: 68%; float: left;//padding-right: 10px;
+  width: 68%; float: left;//margin-left: -5px;padding-right: 10px;
 }
 .dependwetUnit-Android {
-  width:80%;margin-left: 8px;
+  width:80%;margin-left: 8px;padding-top: 10px !important;
 }
 
 .colReport-Android {
@@ -8702,6 +8757,7 @@ input.ion-google-place[readonly] {
     font-size: 19px;
     font-family: $fontFamily_regular;
       width: 77px;
+      line-height: 23px;
   }
   .PrimaryContent {
     p {
@@ -9120,5 +9176,26 @@ input.ion-google-place[readonly] {
     font-weight: 500;
       margin-top: 29px !important;
         font-size: 143% !important;
+          text-align: center;
   }
+}
+
+.regback{
+  background-color: #b2b2b2;
+    border-color: #b2b2b2;
+    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%);
+    box-shadow: 2px 0px 0px 0px #a99b9b;
+    border-radius: 10px;
+    padding: 0px 20px 0px 20px;
+    margin: 2px !important;
+    color: #FFFFFF !important;
+    font-family: "Glober Bold";
+    min-height: 31px;
+    height: 43px;
+    font-size: 23px;
+    font-weight: normal;
+    text-decoration: none;
+}
+.accSecAppoint {
+  margin-left: -10px !important;
 }

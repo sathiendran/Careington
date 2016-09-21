@@ -136,11 +136,11 @@
                <hr class="dotedhr">
             </div>
 
-              <ion-item ng-if="!Passedconsultations.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
+              <ion-item ng-if="!Passedconsultations.length" class="noapptResult " style="white-space: normal;">There are no consultations found!</ion-item>
 
          </div>
 
-         <div  ng-if="Passedconsultations.length"  class="searchdata noResult" style="white-space: normal;" ng-show="(Passedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
+         <div  ng-if="Passedconsultations.length"  class="searchdata noapptResult " style="white-space: normal;" ng-show="(Passedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
       <ion-content ng-show="missedsearchshow" class="scroll-content ionic-scroll  has-header consultcontentsearch-{{deviceName}}" overflow-scroll="false">
          <div class="csearch-{{deviceName}}">
@@ -219,9 +219,9 @@
                  <hr class="dotedhr">
             </div>
 
-            <ion-item ng-if="!missedlist.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
+            <ion-item ng-if="!missedlist.length" class="noapptResult " style="white-space: normal;">There are no consultations found!</ion-item>
          </div>
-         <div ng-if="missedlist.length" class="searchdata noResult" style="white-space: normal;" ng-show="(missedlist | filter:data.searchProvider).length==0">No Search Results Found!</div>
+         <div ng-if="missedlist.length" class="searchdata noapptResult " style="white-space: normal;" ng-show="(missedlist | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
 
 
@@ -300,9 +300,9 @@
                <hr class="dotedhr">
             </div>
 
-              <ion-item ng-if="!Droppedconsultations.length" class="noResult" style="white-space: normal;">There are no consultations found!</ion-item>
+              <ion-item ng-if="!Droppedconsultations.length" class="noapptResult " style="white-space: normal;">There are no consultations found!</ion-item>
          </div>
-         <div ng-if="Droppedconsultations.length" class="searchdata noResult" style="white-space: normal;" ng-show="(Droppedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
+         <div ng-if="Droppedconsultations.length" class="searchdata noapptResult " style="white-space: normal;" ng-show="(Droppedconsultations | filter:data.searchProvider).length==0">No Search Results Found!</div>
       </ion-content>
       <!--- Dropped Consult End--->
 

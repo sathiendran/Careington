@@ -53,6 +53,10 @@ angular.module('starter.controllers')
 
 
     $scope.ClearRootScope = function() {
+      $(".ion-google-place-container").css({
+          "display": "none"
+      });
+      $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         if (deploymentEnvLogout === "Multiple") {
@@ -779,7 +783,14 @@ $scope.locat=false;
                 //$state.go('tab.ChronicCondition');
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -1636,7 +1647,14 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
               }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
                 //$rootScope.doGetPatientPaymentProfiles();
                 // $state.go('tab.consultCharge');
             }
@@ -1662,7 +1680,14 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
               $scope.ReceiptTimeout();
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.postDepitDetails(params);

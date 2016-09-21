@@ -46,6 +46,7 @@ angular.module('starter.controllers')
     $scope.ClearRootScope = function() {
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
+      
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
@@ -160,7 +161,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getVideoConferenceKeys(params);

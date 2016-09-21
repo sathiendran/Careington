@@ -55,6 +55,7 @@ angular.module('starter.controllers')
                 //$('#publisher .OT_video-container').css('background-color', 'transparent');
                 $rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0];
+                $rootScope.existconsultationparticipants=data.data[0].participants;
                 /*if($rootScope.existingConsultationReport.organization !=='' && typeof $rootScope.existingConsultationReport.organization !== 'undefined')
                 {
                 	$rootScope.userReportOrganization = angular.element('<div>').html($rootScope.existingConsultationReport.organization).text();
@@ -306,6 +307,19 @@ angular.module('starter.controllers')
                         'year': index.year,
                     });
                 });
+                $rootScope.AttendeeList = [];
+                angular.forEach($rootScope.existconsultationparticipants, function(index, item) {
+                  var atname=index.person.name.given;
+                  if(atname!=''){
+                    $rootScope.AttendeeList.push({
+                        'Number': item + 1,
+                        'attedeename': index.person.name.given,
+                        'consultstart':index.period.start,
+                        'consultend':index.period.end,
+
+                    });
+                  }
+                });
 
                 $rootScope.reportMedicalCodeDetails = [];
 
@@ -335,7 +349,14 @@ angular.module('starter.controllers')
                 $scope.doGetAttachmentList();
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -371,7 +392,14 @@ angular.module('starter.controllers')
 
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
 
@@ -405,7 +433,14 @@ angular.module('starter.controllers')
               }
             },
             error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getChatTranscript(params);
@@ -459,6 +494,10 @@ angular.module('starter.controllers')
     $scope.doGetExistingConsulatation();
 
     $scope.ClearRootScope = function() {
+      $(".ion-google-place-container").css({
+          "display": "none"
+      });
+      $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         if (deploymentEnvLogout == "Multiple") {

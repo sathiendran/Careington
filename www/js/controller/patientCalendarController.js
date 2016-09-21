@@ -70,10 +70,12 @@ angular.module('starter.controllers')
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
         }
-        if($rootScope.statename="tab.appointmentpatientdetails"){
-          $('.sidehomeappt').addClass("uhome");
-
+        if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
+         if($rootScope.statename="tab.appointmentpatientdetails"){
+           $('.sidehomeappt').addClass("uhome");
+         }
         }
+
         if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
             checkAndChangeMenuIcon = $interval(function() {
                 $rootScope.checkAndChangeMenuIcon();
@@ -246,7 +248,7 @@ angular.module('starter.controllers')
         $rootScope.AppointScheduleTime = '';
         $rootScope.scheduledListDatas = scheduledListData;
         var currentTime = $rootScope.scheduledListDatas.scheduledTime;
-        var getMinsExtraTime = $scope.addMinutes(currentTime, 2);
+        var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
         var getEnterTime = new Date();
         var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
         if(getMissedAppointmentExpiryTime > 0) {

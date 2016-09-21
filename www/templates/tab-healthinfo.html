@@ -17,7 +17,7 @@
 
       </h1>
       <div class="Server_Error ErrorMessageDiv" ></div>
-      <div id="Error_Message"></div>
+      <div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
       <div class="bar bar-subheader bar-dark subheaderheight" >
          <div class="row">
             <h1 class="headertitle">
@@ -216,17 +216,17 @@
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b><i class="ion-asterisk"></i></span>
-              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoCountry" >
+              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoCountry" id="healthInfoCountry" ng-model="healthInfoModel.healthInfoCountry" >
                  <option value="">Choose</option>
-                 <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == currentPatientDetails[0].countryCode"><b>{{country.name}}</b></option>
+                 <option ng-selected="currentPatientDetails[0].countryCode == country.code"  ng-repeat="country in serviceCountries"  value="{{country.code}}" ><b>{{country.name}}</b></option>
                </select></span>
            </div>
 
            <div class="item item-input itemtab validated" style="display: {{timezoneDisplay}};">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('clock')"></i></i><b class="formlabel labelfont">Timezone</b><i class="ion-asterisk"></i></span>
-              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoTimezone" >
-                 <option value="">Choose</option>
-                 <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ng-selected="timeZone.id == currentPatientDetails[0].account.timeZoneId"><b>{{timeZone.name}}</b></option>
+              <span class="healthViewDetails"><select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoModel.healthInfoTimezone" >
+                 <option>Choose</option>
+                 <option  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.name"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
                </select></span>
            </div>
 
@@ -275,7 +275,7 @@
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
               <div class="healthViewDetails" ng-click="heighteditmodal()">
                 <div>
-                  <input class="textdata" id="heightuser"  type="text" value="{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}" placeholder="Required"  required="required"   readonly="true">
+                  <input class="textdata" id="heightuser"  type="text" value="{{reformatHeightForDisplay(currentPatientDetails[0].anatomy.height, currentPatientDetails[0].anatomy.heightUnit)}}" placeholder="Required"  required="required"   readonly="true" style="background-color: #e9e9e9;">
                   <span id="hunit" ng-show="hghtunit"> </span>
 
                 </div>
@@ -303,7 +303,7 @@
                    <input type="number" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata" ng-change="weightunitchange()"  ng-blur="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
                 </div>
                 <div class="healthWeight1-{{deviceName}}">
-                   <select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 70%;">
+                   <select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 70%;padding-top:10px !important;">
                        <option ng-repeat="getUserweightunit in listOfWeightunit[0].codes" value="{{getUserweightunit.codeId + '@' + getUserweightunit.text}}" ng-selected="getUserweightunit.text == currentPatientDetails[0].anatomy.weightUnit"><b>{{getUserweightunit.text}}</b></option>
                    </select>
                 </div>

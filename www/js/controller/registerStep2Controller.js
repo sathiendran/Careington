@@ -118,7 +118,9 @@ angular.module('starter.controllers')
         $rootScope.callRegisterFunction = function(){
           $rootScope.postRegistersStep2();
         }
-
+        $scope.backregister=function(){
+          $state.go('tab.registerStep1');
+        }
 
 
         $rootScope.doPostUserRegisterDetails = function() {
