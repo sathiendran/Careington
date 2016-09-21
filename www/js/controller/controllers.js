@@ -484,7 +484,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.CardDetailsNextButton = "left: 0px;margin-top: 13px;";
         $rootScope.IntakeFormInnerStyleTitle = "top: 3px;position: relative;";
         //$rootScope.loginLineHeight = "top: 2px; position: relative;";
-        $rootScope.passwordLineHeight = "top: 2px; position: relative;";
+      //  $rootScope.passwordLineHeight = "top: 2px; position: relative;";
         $rootScope.ContentOverlop = "margin: 147px 0 0 0;";
         $rootScope.ContentConsultCharge = "margin: 141px 0 0 0; padding-top: 43px;";
         //$rootScope.currentMedicationContent = "margin-top: 125px !important;";
@@ -1470,6 +1470,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $scope.getCurrentTimeForSessionLogout = new Date();
                 		$rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
                     $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
+                    $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
 
                     if (typeof data.data[0].access_token == 'undefined') {
                         $scope.ErrorMessage = "Incorrect Password. Please try again";
@@ -4789,6 +4790,81 @@ LoginService.getScheduledConsulatation(params);
 
     }
 
+    function chkCameraAndMicroPhoneSettings() {
+      $window.localStorage.setItem('FlagForCheckingFirstLogin', '');
+      cordova.plugins.diagnostic.requestCameraAuthorization(function(status){
+        if(status === cordova.plugins.diagnostic.permissionStatus.DENIED)
+        {
+          $scope.settingsMessage = "Do you want to allow camera?";
+          onCameraRollAuthorizationDenied();
+        } else {
+          cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status){
+             if(status === cordova.plugins.diagnostic.permissionStatus.DENIED)
+             {
+               $scope.settingsMessage = "Do you want to allow MicroPhone?";
+                onMicroPhoneAuthorizationDenied();
+             }
+          }, function(error){
+              console.error(error);
+          })
+        }
+      }, function(error){
+          alert(error);
+      })
+    }
+
+    function onCameraRollAuthorizationDenied(){
+      navigator.notification.confirm(
+          $scope.settingsMessage,
+          function(i){
+            /*  if(i==1){
+                  cordova.plugins.diagnostic.switchToSettings();
+              }*/
+              if(i==1){
+                cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status){
+                  if(status === cordova.plugins.diagnostic.permissionStatus.DENIED)
+                   {
+                     $scope.settingsMessage = "Do you want to allow MicroPhone?";
+                      onMicroPhoneAuthorizationDenied();
+                   } else {
+                     cordova.plugins.diagnostic.switchToSettings();
+                   }
+                }, function(error){
+                    console.error(error);
+                })
+              }
+              if(i==2){
+                cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status){
+                   if(status === cordova.plugins.diagnostic.permissionStatus.DENIED)
+                   {
+                     $scope.settingsMessage = "Do you want to allow MicroPhone?";
+                      onMicroPhoneAuthorizationDenied();
+                   }
+                }, function(error){
+                    console.error(error);
+                })
+              }
+          },
+          'Confirmation:',
+          ["Yes","No"]
+      );
+  }
+
+  function onMicroPhoneAuthorizationDenied(){
+    navigator.notification.confirm(
+        $scope.settingsMessage,
+        function(i){
+           if(i==1){
+                cordova.plugins.diagnostic.switchToSettings();
+            }
+        },
+        'Confirmation:',
+        ["Yes","No"]
+    );
+}
+
+
+
 
     $rootScope.GoToPatientDetails = function(Pat_locat,P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
         if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
@@ -4816,6 +4892,10 @@ LoginService.getScheduledConsulatation(params);
             var ptImage = getInitialForName(P_Fname + " " + P_Lname);
             P_img = generateTextImage(ptImage, $rootScope.brandColor);
         }
+        if(window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
+          chkCameraAndMicroPhoneSettings();
+        }
+
         $rootScope.locationdet=Pat_locat;
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
@@ -5219,6 +5299,7 @@ LoginService.getScheduledConsulatation(params);
     $rootScope.EnableBackButton = function() {
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('tab.userhome');
+        $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
         $state.go('tab.userhome');
     }
 

@@ -798,6 +798,7 @@ angular.module('starter.controllers')
                 $scope.getCurrentTimeForSessionLogout = new Date();
                 $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
                 $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
+                $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
                 $scope.doGetCodesSet();
                 $scope.doGetSingleUserHospitalInformation();
                 $scope.doGetPatientProfiles();
@@ -847,6 +848,7 @@ angular.module('starter.controllers')
         $scope.getCurrentTimeForSessionLogout = new Date();
         $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
         $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
+        $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
         $scope.doGetSingleUserHospitalInformation();
         $scope.doGetPatientProfiles();
         //$scope.doGetExistingConsulatation();
@@ -859,6 +861,7 @@ angular.module('starter.controllers')
         $scope.getCurrentTimeForSessionLogout = new Date();
         $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
         $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
+        $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
         //$rootScope.accessToken = "RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ";
         //localStorage.setItem("external_load", null);
         $scope.doGetSingleUserHospitalInformation();
