@@ -9254,9 +9254,9 @@ input.ion-google-place[readonly] {
 }
 
 .regback{
-  background-color: #b2b2b2;
-    border-color: #b2b2b2;
-    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%);
+  background-color: #b2b2b2 !important;
+    border-color: #b2b2b2 !important;
+    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%) !important;
     box-shadow: 2px 0px 0px 0px #a99b9b;
     border-radius: 10px;
     padding: 0px 20px 0px 20px;
@@ -9275,4 +9275,8 @@ input.ion-google-place[readonly] {
 .addusercenter{
   margin-top: 5px !important;
 
+}
+.emailion{
+  top: -28px;
+  margin-left: 74px;
 }
