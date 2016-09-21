@@ -1061,6 +1061,7 @@ function generateTextImage(text, bgcolor){
 function getInitialForName(name){
     var initial = "";
     if(name){
+		name = name.toUpperCase();
         name = name.replace('  ', ' ');
         name = name.trim()
         var names = name.split(' ');
