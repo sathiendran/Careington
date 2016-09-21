@@ -445,7 +445,16 @@ angular.module('starter.controllers')
               }).remove();
           }, 100);
 
-
+      if($rootScope.primaryPatientId !=  $rootScope.currentPatientDetails[0].account.patientId){
+        $(".emailion").css({
+            "display": "none"
+        });
+         document.getElementById("healthInfoEmail").placeholder = "Optional";
+      }else{
+        $(".emailion").css({
+            "display": "block"
+        });
+      }
         //  $scope.readattr = false;
         $scope.doneshow = false;
         $scope.editshow = false;
@@ -510,6 +519,20 @@ $scope.editDob=function(){
 
         }
 
+    }
+    $scope.ValidateEmail = function(email) {
+        //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return expr.test(email);
+    };
+    $scope.emailBlur=function(){
+      var emailvalue=$('#healthInfoEmail').val();
+      if(emailvalue!=''){
+        if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
+            $scope.ErrorMessage = "Please enter a valid Email Address";
+            $rootScope.Validation($scope.ErrorMessage);
+        }
+      }
     }
 
     $scope.putUpdatePatientDetails = function() {
@@ -659,11 +682,6 @@ $scope.editDob=function(){
               }, 100);
 
 
-            $scope.ValidateEmail = function(email) {
-                //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-                var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return expr.test(email);
-            };
 
             if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
                 if (($rootScope.restage >= 12)) {
@@ -680,13 +698,14 @@ $scope.editDob=function(){
                     } else if (dt2 > dt1) {
                         $scope.ErrorMessage = "DOB can not be in Future";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
+                    } /*else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                         $scope.ErrorMessage = "Please enter Email Id";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if (!$scope.ValidateEmail($("#healthInfoEmail").val())) {
                         $scope.ErrorMessage = "Please enter a valid Email Address";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
+                    } */
+                    else if (typeof $scope.healthInfoRelationship === 'undefined' || $scope.healthInfoRelationship === '') {
                         $scope.ErrorMessage = "Please choose Relationship";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {

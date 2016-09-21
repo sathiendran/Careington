@@ -98,7 +98,8 @@
            </label>
            <label class="item item-input itemtab validated" style="display: {{viewemailDisplay}};">
            <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
-           <div class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
+           <div ng-if="currentPatientDetails[0].account.email" class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
+           <div ng-if="!currentPatientDetails[0].account.email" class="healthViewDetails">NA</div>
            </label>
            <label class="item item-input itemtab validated">
                <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
@@ -211,8 +212,10 @@
               </div>
            </div>
            <div class="item item-input itemtab validated" style="display: {{emailDisplay}};">
-              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i class="ion-asterisk"></i></span>
-              <span class="healthViewDetails" ><input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required"></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i  class="emailion ion-asterisk"></i></span>
+              <span class="healthViewDetails" >
+                <input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required" ng-blur="emailBlur()">
+              </span>
            </div>
            <div class="item item-input itemtab validated">
               <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b><i class="ion-asterisk"></i></span>

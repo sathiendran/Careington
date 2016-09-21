@@ -494,6 +494,10 @@ angular.module('starter.controllers')
     $scope.doGetExistingConsulatation();
 
     $scope.ClearRootScope = function() {
+      $(".ion-google-place-container").css({
+          "display": "none"
+      });
+      $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         if (deploymentEnvLogout == "Multiple") {

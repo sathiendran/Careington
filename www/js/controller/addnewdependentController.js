@@ -101,6 +101,9 @@ $scope.hghtunit=false;
       $scope.$on('IdleTimeout', function() {
         if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              var elem = document.getElementById("googleContainerId");
+              elem.remove();
+              $ionicBackdrop.release();
               navigator.notification.alert(
                    'Your session timed out.', // message
                    null,
@@ -115,6 +118,9 @@ $scope.hghtunit=false;
       $scope.$on('IdleEnd', function() {
           // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
             console.log("aaa3");
+            $(".ion-google-place-container").css({
+                "display": "none"
+            });
       });
 
       $scope.$on('Keepalive', function() {
@@ -428,7 +434,20 @@ if(phonevalue!=''){
     }
 
 }
-
+}
+$scope.ValidateEmail = function(email) {
+    //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return expr.test(email);
+};
+$scope.emailBlur=function(){
+  var emailvalue=$('#email').val();
+  if(emailvalue!=''){
+    if(!$scope.ValidateEmail($("#email").val())) {
+        $scope.ErrorMessage = "Please enter a valid Email Address";
+        $rootScope.Validation($scope.ErrorMessage);
+    }
+  }
 }
 
         $scope.postDependentDetails = function() {
@@ -576,11 +595,7 @@ if(phonevalue!=''){
               $rootScope.restage = getAge($scope.dob);
 
 
-           $scope.ValidateEmail = function(email) {
-               //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-               var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-               return expr.test(email);
-           };
+
 
            var selectedDate = document.getElementById('dob').value;
            var now = new Date();
@@ -589,17 +604,14 @@ if(phonevalue!=''){
 
   //  if ((age >=12  && age_month >= 0)) {
       if($rootScope.restage>=12 ){
-      if ($scope.email === 'undefined' || $scope.email === '') {
+    /*  if ($scope.email === 'undefined' || $scope.email === '') {
           $scope.ErrorMessage = "Please enter Email Id";
           $rootScope.Validation($scope.ErrorMessage);
-       } else if(!$scope.ValidateEmail($("#email").val())) {
-           $scope.ErrorMessage = "Please enter a valid Email Address";
-           $rootScope.Validation($scope.ErrorMessage);
-       }
-       else if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
+       } */
+       if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
            $scope.ErrorMessage = "Please enterenter First Name";
            $rootScope.Validation($scope.ErrorMessage);
-       } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
+        }else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
            $scope.ErrorMessage = "Please enter Last Name";
            $rootScope.Validation($scope.ErrorMessage);
        } else if (typeof $scope.dob === 'undefined' || $scope.dob === '') {

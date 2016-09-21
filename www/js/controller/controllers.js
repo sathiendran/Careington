@@ -728,6 +728,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.ClearRootScope = function() {
         $window.localStorage.setItem('tokenExpireTime', '');
+        $(".ion-google-place-container").css({
+            "display": "none"
+        });
+        $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         for (var prop in $rootScope) {

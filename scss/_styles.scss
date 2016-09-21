@@ -5897,6 +5897,7 @@ color: white;
 
 
 
+
 @media only screen and (min-width: 595px) and (max-width: 610px){
 #divSearchInput{
   border-bottom: 1px solid #C4C5C3;
@@ -6007,9 +6008,18 @@ color: #999999 !important;
     font-size:26px;
     margin-left:-52px !important;
 }
-.profileperson { margin-left:-90px !important; }
-.profilecalendar{margin-left: -70px !important; }
-
+.profileperson {
+ //margin-left:-90px !important;
+ }
+.profilecalendar{
+//margin-left: -70px !important;
+}
+#centercolor {
+color: white;
+margin-top: 37px !important;
+font-size: 160%;
+font-family: Glober Bold;
+}
 .archeight {
 height: 84px;
 }
@@ -6026,7 +6036,10 @@ margin-top: -18px !important;
 margin: 70px 10px !important;
 }
 .userlist {
-padding-top: 177px !important;
+padding-top: 264px !important;
+}
+#accountMngeProfile-Android {
+padding: 60px 16px !important;
 }
 .item-input{
     .inputheight{margin-left:110px;}
@@ -6134,10 +6147,65 @@ margin-left: 13px !important;
          background-image:none;
           }
 
+.profileSpan {
+.profileicon {
+margin-left: -18px;
+font-size: 30px;
+position: relative;
+left: -70px;
+}
+}
+.contentAppoint-Android {
+margin-left: 38px !important;
+font-size: 122%;
+color: #666666;
+}
+.accountAppointHeight {
+height: 96px !important;
+}
+.footerstyle {
+height: 110px !important;
+margin-top: 15px !important;
+}
+.newuserdetails {
+border-top: none;
+padding: 20px !important;
+}
+
+.usertopfont {
+font-size: 40px !important;
+font-family: Glober Bold;
+color: #888888 !important;
+}
+
+.topp {
+color: #999999 !important;
+font-size: 17px !important;
+line-height: 28px;
+}
+.addcouser {
+padding: 94px 10px !important;
+}
+.adddepuser {
+padding: 94px 10px !important;
+}
+.addusercenter{
+  margin-top: 22px !important;
+  font-size:165% !important;
+}
+.addheight {
+height: 88px !important;
+background-image: none;
+}
+.newuserp [class^="icon-user-add"], .newuserp [class*=" icon-user-add"] {
+font-size: 55px;
+}
+
+
+
 
 
 }
-
 .circlenew{
     width: 80px;
     height: 80px;
@@ -7825,10 +7893,15 @@ Pagination Styles
 .accountHeader-IOS {
 	position: relative;
 	top: -13px;
+}.accountHeader-Android {
+  margin-right:50px;
 }
 .accountCancel-IOS {
 	position: relative;
 	top: -13px;
+}
+.accountCancel-Android {
+  top: -29px;
 }
 .userTit-IOS {
 	margin-top: 25px;
@@ -9181,9 +9254,9 @@ input.ion-google-place[readonly] {
 }
 
 .regback{
-  background-color: #b2b2b2;
-    border-color: #b2b2b2;
-    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%);
+  background-color: #b2b2b2 !important;
+    border-color: #b2b2b2 !important;
+    background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%) !important;
     box-shadow: 2px 0px 0px 0px #a99b9b;
     border-radius: 10px;
     padding: 0px 20px 0px 20px;
@@ -9198,4 +9271,12 @@ input.ion-google-place[readonly] {
 }
 .accSecAppoint {
   margin-left: -10px !important;
+}
+.addusercenter{
+  margin-top: 5px !important;
+
+}
+.emailion{
+  top: -28px;
+  margin-left: 74px;
 }

@@ -105,10 +105,10 @@
 	<div class="item item-input validated" style="display: {{emailDisplay}};">
 	   <div class="col col-50">
 		  <span class="input-label labelcolor">
-		  <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="ion-asterisk"></i></span>
+		  <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b></span>
 	   </div>
 	   <div class="col col-50 depGreyLabel">
-		   <input class="usertext" id="email"  type="email" value="" placeholder="Required" ng-model="email" required="required"  name="email" >
+		   <input class="usertext" id="email"  type="email" value="" placeholder="Required" ng-model="email" required="required"  name="email" ng-blur="emailBlur()">
 
 		   <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
 	   </div>
