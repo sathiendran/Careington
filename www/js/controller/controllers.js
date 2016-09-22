@@ -957,7 +957,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $('#loginEmail').hide();
                     $('#verifyEmail').show();
                     $scope.doGetFacilitiesList();
-                //  }
+                  }
             }
         }
 
