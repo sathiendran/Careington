@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
 
-.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle) {
     var isCallEndedByPhysician = false;
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -496,6 +496,13 @@ angular.module('starter.controllers')
     $scope.ClearRootScope = function() {
       $(".ion-google-place-container").css({
           "display": "none"
+      });
+      $(".modal-backdrop").css({
+          "display": "none"
+      });
+      $scope.modal.remove()
+      .then(function() {
+        $scope.modal = null;
       });
       $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);

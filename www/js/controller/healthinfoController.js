@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService) {
+.controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService,$window,$ionicBackdrop,Idle) {
     $rootScope.patientAuthorize = true;
     $rootScope.patientUnAuthorize = false;
     $rootScope.patientAuthorizeValue = 'Y';
@@ -231,7 +231,12 @@ angular.module('starter.controllers')
           }
 
           });
-
+          $timeout(function() {
+            $scope.modal.remove()
+            .then(function() {
+              $scope.modal = null;
+            });
+          },1000000);
           $timeout(function() {
               $('option').filter(function() {
                   return this.value.indexOf('?') >= 0;
@@ -250,7 +255,48 @@ angular.module('starter.controllers')
             return this.value.indexOf('?') >= 0;
         }).remove();
 
-    };
+    };  $scope.$on('IdleStart', function() {
+              console.log("aaa");
+      });
+      $scope.$on('IdleWarn', function(e, countdown) {
+      });
+      $scope.$on('IdleTimeout', function() {
+        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
+              var elem = document.getElementById("googleContainerId");
+              elem.remove();
+              $ionicBackdrop.release();
+              $scope.modal.remove();
+              navigator.notification.alert(
+                   'Your session timed out.', // message
+                   null,
+                   $rootScope.alertMsgName,
+                   'Ok' // buttonName
+               );
+              $rootScope.ClearRootScope();
+            }
+        }
+      });
+
+      $scope.$on('IdleEnd', function() {
+          // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
+            console.log("aaa3");
+            $(".ion-google-place-container").css({
+                "display": "none"
+            });
+      });
+
+      $scope.$on('Keepalive', function() {
+          // do something to keep the user's session alive
+            console.log("aaa4");
+      });
+
+
+
+
+
+
+
     $rootScope.ValidationFunction1 = function($a) {
         function refresh_close() {
             $('.close').click(function() {
@@ -1306,7 +1352,7 @@ $scope.editDob=function(){
             tmp[letter].push(users[i]);
         }
         $rootScope.sorted_users = tmp;
-
+        $scope.selectedObject = {};
         $rootScope.gotoList = function(id) {
 
             $location.hash(id);
@@ -1448,6 +1494,8 @@ $scope.editDob=function(){
                         $rootScope.gotoList = function(id) {
                             // var myEl = angular.element(document.querySelector('#cursearch'));
                             //  myEl.addClass('currmedication');
+
+                              $scope.activeClass = id;
                             $location.hash(id);
                             $ionicScrollDelegate.anchorScroll();
                         }
