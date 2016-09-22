@@ -115,6 +115,8 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         this.addEventListener("mousewheel", resetTimer, false);
         this.addEventListener("touchmove", resetTimer, false);
         this.addEventListener("MSPointerMove", resetTimer, false);
+        this.addEventListener("touchstart", resetTimer, false);
+        this.addEventListener("touchend", resetTimer, false);
         startTimer();
     }
     setup();
@@ -432,6 +434,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     KeepaliveProvider.interval(60); // in seconds
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content|file):/);
     $stateProvider
 
     // setup an abstract state for the tabs directive

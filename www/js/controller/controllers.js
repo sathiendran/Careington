@@ -774,6 +774,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.Validation($scope.errorMsg);
     });
 
+    $scope.$on("callPatientDetails", function(event, args) {
+      $scope.doGetPatientProfiles();
+      $scope.doGetRelatedPatientProfiles('tab.userhome');
+      $rootScope.hasRequiredFields = true;
+      $(".icon-menu").css("display", "block");
+      $("#HealthFooter").css("display", "block");
+    });
+
     $rootScope.Validation = function($errorMsg) {
 
         function refresh_close() {
@@ -949,7 +957,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $('#loginEmail').hide();
                     $('#verifyEmail').show();
                     $scope.doGetFacilitiesList();
-                  }
+                //  }
             }
         }
 
@@ -977,7 +985,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             } else {
                 chkCameraAndMicroPhoneSettings();
-                if($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
+                  if($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
                     if (deploymentEnvLogout == 'Single') {
                         if (deploymentEnvForProduction == 'Production') {
                             if (appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
@@ -1487,8 +1495,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
                         $scope.tokenStatus = 'alert-success';
-                        $scope.doGetPatientProfiles();
-                        $scope.doGetRelatedPatientProfiles('tab.userhome');
+                        $scope.chkPatientFilledAllRequirements();
                     //    Idle.watch();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
@@ -2071,6 +2078,109 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getPrimaryPatientLastName(params);
+    }
+
+    $scope.chkPatientFilledAllRequirements = function() {
+        if ($scope.accessToken === 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
+              $rootScope.currentPatientDetails = data.data;
+              if($rootScope.hasRequiredFields === true) {
+                $scope.doGetPatientProfiles();
+                $scope.doGetRelatedPatientProfiles('tab.userhome');
+              } else {
+                  $state.go('tab.healthinfo');
+                  $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
+                $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId);
+              }
+
+            },
+            error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+
+        LoginService.getPatientFilledAllRequirements(params);
+    }
+
+    $rootScope.doGetRequiredPatientProfiles = function(patientId) {
+        if ($rootScope.accessToken === 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            accessToken: $rootScope.accessToken,
+            patientId: patientId,
+            success: function(data) {
+                    $scope.selectedPatientDetails = [];
+                    //angular.fromJson(index.billingAddress)
+                    angular.forEach(data.data, function(index, item) {
+                        $scope.selectedPatientDetails.push({
+                            'account': angular.fromJson(index.account),
+                            'address': index.address,
+                            'addresses': angular.fromJson(index.addresses),
+                            'anatomy': angular.fromJson(index.anatomy),
+                            'countryCode': index.countryCode,
+                            'createDate': index.createDate,
+                            'fieldChangesTrackingDetails': angular.fromJson(index.fieldChangesTrackingDetails),
+                            'dob': index.dob,
+                            'gender': index.gender,
+                            'homePhone': index.homePhone,
+                            'lastName': index.lastName,
+                            'location': index.location,
+                            'locationId': index.locationId,
+                            'medicalHistory': angular.fromJson(index.medicalHistory),
+                            'mobilePhone': index.mobilePhone,
+                            'organization': index.organization,
+                            'organizationId': index.organizationId,
+                            'patientName': index.patientName,
+                            'personId': index.personId,
+                            'pharmacyDetails': index.pharmacyDetails,
+                            'physicianDetails': index.physicianDetails,
+                            'schoolContact': index.schoolContact,
+                            'schoolName': index.schoolName
+                        });
+                    });
+                    $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+                    if (typeof $rootScope.currentPatientDetails[0].account.profileImage != 'undefined' && $rootScope.currentPatientDetails[0].account.profileImage != '') {
+                        var hosImage = $rootScope.currentPatientDetails[0].account.profileImage;
+                        if (hosImage.indexOf("http") >= 0) {
+                             $rootScope.PatientImageSelectUser = hosImage;
+                        } else {
+                             $rootScope.PatientImageSelectUser = apiCommonURL + hosImage;
+                        }
+                    } else {
+                         $rootScope.PatientImageSelectUser = get2CharInString.getProv2Char($rootScope.currentPatientDetails[0].patientName+ ' ' +$rootScope.currentPatientDetails[0].lastName);
+                    }
+                    $scope.doGetConutriesList();
+                    $rootScope.doGetLocations();
+                    $rootScope.getHealtPageForFillingRequiredDetails();
+
+            },
+            error: function(data) {
+              if(data==null){
+
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{  $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+
+        LoginService.getSelectedPatientProfiles(params);
     }
 
 
