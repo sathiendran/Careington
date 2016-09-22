@@ -324,9 +324,9 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 //$scope.RelatedPatientProfiles = data.data;
-                $rootScope.primaryPatientLastName = [];
+                $rootScope.primaryPatientLastNameArray = [];
                 angular.forEach(data.data, function(index, item) {
-                    $rootScope.primaryPatientLastName.push({
+                    $rootScope.primaryPatientLastNameArray.push({
                         'id': index.$id,
                         'patientName': index.patientName,
                         'lastName': index.lastName,
@@ -341,7 +341,11 @@ angular.module('starter.controllers')
                         'location': index.location,
                     });
                 });
-                $rootScope.primaryPatientLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientLastName[0].lastName);
+                if(!angular.isUndefined($rootScope.primaryPatientLastNameArray[0].lastName)) {
+                  $rootScope.primaryPatientLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientLastNameArray[0].lastName);
+                } else {
+                    $rootScope.primaryPatientLastName = '';
+                }
 
                 $rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' ' + $rootScope.primaryPatientLastName;
 

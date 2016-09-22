@@ -44,9 +44,15 @@ angular.module('starter.controllers')
     $scope.$storage = $window.localStorage;
 
     $scope.ClearRootScope = function() {
-        $rootScope = $rootScope.$new(true);
-        $scope = $scope.$new(true);
-      
+      $window.localStorage.setItem('tokenExpireTime', '');
+      $rootScope = $rootScope.$new(true);
+      $scope = $scope.$new(true);
+      for (var prop in $rootScope) {
+          if (prop.substring(0,1) !== '$') {
+              delete $rootScope[prop];
+          }
+      }
+
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
