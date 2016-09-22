@@ -29,24 +29,24 @@
          </div>
          <div class="item item-image-icon itemiconcolor">
 
-           <a class="lefthome" ng-href="#/tab/userAccount">
+           <a class="lefthome" ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userAccount')" >
              <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
              <p class="homecontent">Account Home</p>
            </a>
 
 
          <a ng-if="updatedPatientImagePath == ''" class="item-avatar itemhead" ng-hide="flag">
-              <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"  ng-click="showCameraActions();"></p>
+              <p><img ng-src="{{PatientImageSelectUser}}" src="{{PatientImageSelectUser}}" class="topimage"  ng-click="showCameraActions();"></p>
            </a>
            <a ng-if="updatedPatientImagePath != ''" class="item-avatar itemhead" ng-hide="flag">
-                <p><img ng-src="{{updatedPatientImagePath}}" class="topimage"  ng-click="showCameraActions();"></p>
+                <p><img ng-src="{{updatedPatientImagePath}}" src="{{updatedPatientImagePath}}" class="topimage"  ng-click="showCameraActions();"></p>
              </a>
 
            <a class="item-avatar itemhead" ng-show="flag">
               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
            </a>
 
-           <a class="rightpatient" ng-href="#/tab/userhome">
+           <a class="rightpatient" ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userhome')">
                <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
                <p class="patientcontent" >Change Patient</p>
            </a>
@@ -59,7 +59,7 @@
             </div>
             <div class="button-bar">
                <label class="button button-small btcolor btn-first" ng-click="profile()" id="profid"> Profile</label>
-               <label class="button button-small btn-first btnextcolor" ng-click="health()" id="healid">Health History</label>
+               <label class="button button-small btn-first btnextcolor" ng-click="getMedicalDetailsinHealthInfo()" id="healid">Health History</label>
             </div>
             <div class="buttons backbtn">
                <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">
@@ -212,7 +212,7 @@
               </div>
            </div>
            <div class="item item-input itemtab validated" style="display: {{emailDisplay}};">
-              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i  class="emailion ion-asterisk"></i></span>
+              <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i  class="ion-asterisk"></i></span>
               <span class="healthViewDetails" >
                 <input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required" ng-blur="emailBlur()">
               </span>
@@ -444,7 +444,7 @@
 </ion-view>
 
   <!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>--->
-  <div class="hide-on-keyboard-open">
+  <div class="hide-on-keyboard-open" id="HealthFooter">
      <ion-tabs class=" tabs-icon-top tabs-dark">
         <a class="tab-item" ng-href="#/tab/relatedusers" >
         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> <span class="tabcolor">Users</span>

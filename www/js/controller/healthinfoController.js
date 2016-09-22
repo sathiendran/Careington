@@ -472,7 +472,12 @@ angular.module('starter.controllers')
         }
     }
 
-    $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+    if(!angular.isUndefined($rootScope.currentPatientDetails[0].account)){
+        $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+    } else {
+          $rootScope.patientId = $rootScope.currentPatientDetails[0].profileId;
+    }
+
     $scope.edittext = function() {
 
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
@@ -1031,58 +1036,62 @@ $scope.editDob=function(){
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
-                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
-                if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
-                    $scope.uploadPhotoForExistingPatient();
+                if($rootScope.hasRequiredFields === false) {
+                  $scope.$root.$broadcast("callPatientDetails");                
+                }else {
+                  $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+                  if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
+                      $scope.uploadPhotoForExistingPatient();
+                  }
+                  if ($rootScope.primaryPatientId !== data.patientID) {
+                      $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
+                  }
+                  $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
+                  $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
+                  $rootScope.currentPatientDetails = $rootScope.currentPatientDetails[0];
+
+                  if (angular.isUndefined($rootScope.currentPatientDetails.guardianName)) {
+                      $rootScope.currentPatientDetails.guardianName = $rootScope.primaryPatientName + " " + $rootScope.primaryPatientLastName;
+                  }
+                  console.log(data);
+                  //  $rootScope.doGetPatientProfiles();
+                  //    $rootScope.getManageProfile(currentPatientDetails);
+
+                  var currentLocation = window.location;
+                  var loc=currentLocation.href;
+                  var newloc=loc.split("#");
+                  var locat=newloc[1];
+                  var sploc=locat.split("/");
+                  var cutlocations=sploc[1] +"."+sploc[2];
+
+                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+                  // $rootScope.doGetSelectedPatientProfiles(data.patientID);
+                  var editdate = $rootScope.currentPatientDetails.dob;
+                  $rootScope.doddate = new Date($rootScope.healthInfoDOB);
+                  $rootScope.restage = getAge( $rootScope.doddate);
+
+                  if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
+                      $rootScope.viewemailDisplay = 'flex';
+                      $rootScope.viewtimezoneDisplay = 'flex';
+                  } else {
+                      $rootScope.viewemailDisplay = 'none';
+                      $rootScope.viewtimezoneDisplay = 'none';
+
+                  }
+
+                  $scope.readattr = true;
+                  $scope.editshow = true;
+                  $scope.doneshow = true;
+                  $rootScope.flag = true;
+                  $scope.doneedit = false;
+                  //console.log($scope.healthInfo);
+                  var editvalues = angular.element(document.getElementsByTagName('input'));
+                  var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+                  editvalues.removeClass('editdata');
+                  editvalues.addClass('textdata');
+                  edittextarea.removeClass('editdata');
+                  edittextarea.addClass('textdata');
                 }
-                if ($rootScope.primaryPatientId !== data.patientID) {
-                    $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
-                }
-                $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
-                $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
-                $rootScope.currentPatientDetails = $rootScope.currentPatientDetails[0];
-
-                if (angular.isUndefined($rootScope.currentPatientDetails.guardianName)) {
-                    $rootScope.currentPatientDetails.guardianName = $rootScope.primaryPatientName + " " + $rootScope.primaryPatientLastName;
-                }
-                console.log(data);
-                //  $rootScope.doGetPatientProfiles();
-                //    $rootScope.getManageProfile(currentPatientDetails);
-
-                var currentLocation = window.location;
-                var loc=currentLocation.href;
-                var newloc=loc.split("#");
-                var locat=newloc[1];
-                var sploc=locat.split("/");
-                var cutlocations=sploc[1] +"."+sploc[2];
-
-                $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
-                // $rootScope.doGetSelectedPatientProfiles(data.patientID);
-                var editdate = $rootScope.currentPatientDetails.dob;
-                $rootScope.doddate = new Date($rootScope.healthInfoDOB);
-                $rootScope.restage = getAge( $rootScope.doddate);
-
-                if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.patientId)) {
-                    $rootScope.viewemailDisplay = 'flex';
-                    $rootScope.viewtimezoneDisplay = 'flex';
-                } else {
-                    $rootScope.viewemailDisplay = 'none';
-                    $rootScope.viewtimezoneDisplay = 'none';
-
-                }
-
-                $scope.readattr = true;
-                $scope.editshow = true;
-                $scope.doneshow = true;
-                $rootScope.flag = true;
-                $scope.doneedit = false;
-                //console.log($scope.healthInfo);
-                var editvalues = angular.element(document.getElementsByTagName('input'));
-                var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-                editvalues.removeClass('editdata');
-                editvalues.addClass('textdata');
-                edittextarea.removeClass('editdata');
-                edittextarea.addClass('textdata');
             },
             error: function(data, status) {
                 if (status === 400) {
@@ -1245,6 +1254,52 @@ $scope.editDob=function(){
         edittextarea.removeClass('editdata');
         edittextarea.addClass('textdata');
 
+    }
+
+    $rootScope.getHealtPageForFillingRequiredDetails = function() {
+        $rootScope.editOption = "None";
+        $scope.cancelshow = false;
+        $scope.doneshow = false;
+        $scope.flag = false;
+        $(".icon-menu").css("display", "none");
+        $("#HealthFooter").css("display", "none");
+        $rootScope.updatedPatientImagePath = '';
+            var date = new Date($rootScope.currentPatientDetails[0].dob);
+            $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+            $scope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+            $('#healthInfoDOB').val($scope.userDOB);
+
+            if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
+                var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime();
+                var ageDate = new Date(ageDifMs);
+                $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
+                if ($scope.userAge >= 12) {
+                    $rootScope.emailDisplay = 'flex';
+                    $rootScope.timezoneDisplay = 'flex';
+                } else {
+                    $rootScope.emailDisplay = 'none';
+                    $rootScope.timezoneDisplay = 'none';
+
+                }
+            }
+    }
+
+    $scope.chkPreviousPageForRequiredDetaisUsers = function(nextPage) {
+        if($rootScope.hasRequiredFields === true) {
+          $state.go(nextPage);
+        }else {
+          $scope.ErrorMessage = "Please fill all required details ";
+          $rootScope.Validation($scope.ErrorMessage);
+        }
+
+    }
+    $scope.getMedicalDetailsinHealthInfo = function() {
+      if($rootScope.hasRequiredFields === true) {
+        $scope.health();
+      }else {
+        $scope.ErrorMessage = "Please fill all required details ";
+        $rootScope.Validation($scope.ErrorMessage);
+      }
     }
 
     $scope.health = function() {
@@ -2168,7 +2223,8 @@ $scope.editDob=function(){
                 quality: 75,
                 //targetWidth: 500,
                 //targetHeight: 500,
-                allowEdit: true,
+                allowEdit: 1,
+                correctOrientation: true,
                 saveToPhotoAlbum: saveToPhotoAlbumFlag,
                 sourceType: cameraSourceType,
                 mediaType: cameraMediaType,

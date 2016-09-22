@@ -494,19 +494,20 @@ angular.module('starter.controllers')
     $scope.doGetExistingConsulatation();
 
     $scope.ClearRootScope = function() {
-      $(".ion-google-place-container").css({
-          "display": "none"
-      });
-      $(".modal-backdrop").css({
-          "display": "none"
-      });
-      $scope.modal.remove()
-      .then(function() {
-        $scope.modal = null;
-      });
-      $ionicBackdrop.release();
+
+        $window.localStorage.setItem('tokenExpireTime', '');
+
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
+        for (var prop in $rootScope) {
+            if (prop.substring(0,1) !== '$') {
+                delete $rootScope[prop];
+            }
+        }
+        $(".ion-google-place-container").css({
+            "display": "none"
+        });
+        $ionicBackdrop.release();
         if (deploymentEnvLogout == "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout == "Single") {
