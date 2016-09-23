@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
 
-.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
+.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle) {
     var isCallEndedByPhysician = false;
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -494,7 +494,9 @@ angular.module('starter.controllers')
     $scope.doGetExistingConsulatation();
 
     $scope.ClearRootScope = function() {
+
         $window.localStorage.setItem('tokenExpireTime', '');
+
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
         for (var prop in $rootScope) {

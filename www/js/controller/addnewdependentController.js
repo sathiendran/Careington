@@ -103,6 +103,7 @@ $scope.hghtunit=false;
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
               var elem = document.getElementById("googleContainerId");
               elem.remove();
+
               $ionicBackdrop.release();
               navigator.notification.alert(
                    'Your session timed out.', // message
@@ -110,6 +111,7 @@ $scope.hghtunit=false;
                    $rootScope.alertMsgName,
                    'Ok' // buttonName
                );
+
               $rootScope.ClearRootScope();
             }
         }
@@ -121,6 +123,10 @@ $scope.hghtunit=false;
             $(".ion-google-place-container").css({
                 "display": "none"
             });
+
+
+
+            $ionicBackdrop.release();
       });
 
       $scope.$on('Keepalive', function() {
@@ -230,10 +236,16 @@ $scope.heightmodal=function(){
           $scope.hmeter=true;$scope.hcmeter=true;
         }
       });
-
+$timeout(function() {
+  $scope.modal.remove()
+  .then(function() {
+    $scope.modal = null;
+  });
+},1000000);
       //  $("#heightvalue").val("");
 
       $timeout(function() {
+        //  $scope.modal.remove()
           $('option').filter(function() {
               return this.value.indexOf('?') >= 0;
           }).remove();
@@ -241,7 +253,7 @@ $scope.heightmodal=function(){
   });
 
 }
-$scope.removemodal = function(model) {
+$scope.removemodal = function() {
   $scope.modal.remove()
   .then(function() {
     $scope.modal = null;
@@ -255,6 +267,8 @@ $scope.removemodal = function(model) {
     $("#deptheight").val('');
     $('#depheight2').val('');
 };
+
+
 
    $scope.ngBlur = function () {
      $rootScope.doddate=$('#dob').val();

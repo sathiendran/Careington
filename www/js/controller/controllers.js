@@ -731,6 +731,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $(".ion-google-place-container").css({
             "display": "none"
         });
+      
         $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);

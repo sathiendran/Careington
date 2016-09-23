@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList) {
+.controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList,$ionicBackdrop) {
     window.plugins.insomnia.keepAwake();
     $rootScope.currState = $state;
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
@@ -44,6 +44,11 @@ angular.module('starter.controllers')
     $scope.$storage = $window.localStorage;
 
     $scope.ClearRootScope = function() {
+
+      $(".ion-google-place-container").css({
+          "display": "none"
+      });
+      $ionicBackdrop.release();
       $window.localStorage.setItem('tokenExpireTime', '');
       $rootScope = $rootScope.$new(true);
       $scope = $scope.$new(true);
@@ -52,6 +57,7 @@ angular.module('starter.controllers')
               delete $rootScope[prop];
           }
       }
+
 
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');

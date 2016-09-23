@@ -64,6 +64,7 @@ angular.module('starter.controllers')
       $(".ion-google-place-container").css({
           "display": "none"
       });
+      
       $ionicBackdrop.release();
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
