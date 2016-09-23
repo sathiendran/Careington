@@ -1,6 +1,20 @@
 angular.module('starter.controllers')
 
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover) {
+    if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+        $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
+        $rootScope.accessToken = window.localStorage.getItem('accessToken');
+        $rootScope.videoSessionId = window.localStorage.getItem('videoSessionId');
+        $rootScope.videoApiKey = window.localStorage.getItem('videoApiKey');
+        $rootScope.videoToken = window.localStorage.getItem('videoToken');
+    }else{
+        window.localStorage.setItem('ConferenceCallConsultationId', $rootScope.consultationId);
+        window.localStorage.setItem('accessToken', $rootScope.accessToken);
+        window.localStorage.setItem('isVideoCallProgress', "No");
+        window.localStorage.setItem('videoSessionId', $rootScope.videoSessionId);
+        window.localStorage.setItem('videoApiKey', $rootScope.videoApiKey);
+        window.localStorage.setItem('videoToken', $rootScope.videoToken);
+    }
     var isCallEndedByPhysician = false;
     $rootScope.participantsCount = +1;
     $scope.doGetExistingConsulatation = function() {
@@ -592,6 +606,7 @@ angular.module('starter.controllers')
         });
 
         session.on('streamCreated', function(event) {
+            window.localStorage.setItem('isVideoCallProgress', "Yes");
             //alert('stream created from type: ' + event.stream.videoType);
             $('#pleaseWaitVideo').remove();
             $('#subscriber').css('background-color', 'black !important');
@@ -944,6 +959,7 @@ angular.module('starter.controllers')
                       if (index == 1) {
                           $state.go('tab.videoConference');
                       } else if (index == 2) {
+                          window.localStorage.setItem('isVideoCallProgress', "No");
                           callEnded = true;
                         navigator.notification.alert(
                             'Consultation ended successfully!', // message
@@ -956,6 +972,7 @@ angular.module('starter.controllers')
                   'Confirmation:', ['No', 'Yes']
               );
             }else{
+              window.localStorage.setItem('isVideoCallProgress', "No");
               callEnded = true;
               navigator.notification.alert(
                   'Consultation ended successfully!', // message

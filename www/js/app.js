@@ -208,7 +208,16 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }, 100);
 
         function onOffline() {
-
+            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                $('#thumbVideos').remove();
+                $('#videoControls').remove();
+                session.unpublish(publisher)
+                session.disconnect();
+                $('#publisher').hide();
+                $('#subscriber').hide();
+                OT.updateViews();
+                $state.go('tab.chooseEnvironment');
+            }
             navigator.notification.alert(
                 'Please make sure that you have network connection.', // message
                 null,
@@ -216,13 +225,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 'Ok' // buttonName
             );
             return false;
-            if ($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
-                $state.go('tab.connectionLost');
-            }
         }
 
         function onOnline() {
-            if ($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
+            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoConference');
             }
         }
@@ -246,6 +252,21 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
           }, 600000);
+          var i = 0;
+          setInterval(function(){
+            $.ajax({
+              type: 'GET',
+              headers: util.getHeaders(),
+              url: 'https://snap-qa.com/api/v2/timezones',
+              dataType: 'json',
+              success: function(data){
+                console.log('Success at ' + i);
+              },
+              failure: function(error){
+                console.log('Failed at ' + 1);
+              }
+            });
+          }, 10000);
       }
 
         setTimeout(function() {

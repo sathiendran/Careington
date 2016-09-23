@@ -326,7 +326,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
-
+    var i = 0;
+    setInterval(function(){
+      i = +i + 1;
+      
+    }, 10000);
     $rootScope.drawSVGCIcon = function(iconName) {
       return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
@@ -734,7 +738,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $(".ion-google-place-container").css({
             "display": "none"
         });
-      
+
         $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
