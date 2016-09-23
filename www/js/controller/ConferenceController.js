@@ -879,13 +879,8 @@ angular.module('starter.controllers')
             //OT.updateViews();
         };
         $rootScope.conferenceVideoLabel = '';
-        $ionicPopover.fromTemplateUrl('videoCameraControl.html', {
-          scope: $scope
-        }).then(function(popover) {
-          $scope.videoCameraControlPopover = popover;
-        });
 
-         $scope.openVideoCameraPopover = function($event) {
+        $scope.openVideoCameraPopover = function($event) {
             if($rootScope.publishVideo){
               $scope.videoCameraControlPopover.show($event);
               $('.popover-arrow').hide();
@@ -895,25 +890,6 @@ angular.module('starter.controllers')
               $scope.toggleSelfCamera();
             }
          };
-
-         $scope.closeVideoCameraPopover = function() {
-            $scope.videoCameraControlPopover.hide();
-         };
-
-         //Cleanup the popover when we're done with it!
-         $scope.$on('$destroy', function() {
-            $scope.videoCameraControlPopover.remove();
-         });
-
-         // Execute action on hide popover
-         $scope.$on('popover.hidden', function() {
-            // Execute action
-         });
-
-         // Execute action on remove popover
-         $scope.$on('popover.removed', function() {
-            // Execute action
-         });
 
          $scope.toggleSelfCamera = function() {
             if ($scope.publishVideo) {
