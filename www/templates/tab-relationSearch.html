@@ -13,7 +13,7 @@
                <h2 class="subname subName-{{deviceName}}">Relationship</h2>
 
 
-               <div class=" searchbox" style="margin-top: 0px!important;">
+               <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none;">
                <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
                  <label class="item-input-wrapper">
                   <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
@@ -37,7 +37,7 @@
                </div>
 
             </ion-item>
-            <ion-item  ng-show="(listOfRelationship[0].codes | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
+            <ion-item  ng-show="(listOfRelationship[0].codes | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;margin-top:90px !important;">Sorry No Result Found!</ion-item>
          </ion-list>
 
       </ion-content>

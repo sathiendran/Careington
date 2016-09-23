@@ -241,7 +241,7 @@ $timeout(function() {
   .then(function() {
     $scope.modal = null;
   });
-},1000000);
+},600000);
       //  $("#heightvalue").val("");
 
       $timeout(function() {

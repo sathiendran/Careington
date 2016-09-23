@@ -236,7 +236,7 @@ angular.module('starter.controllers')
             .then(function() {
               $scope.modal = null;
             });
-          },1000000);
+          },600000);
           $timeout(function() {
               $('option').filter(function() {
                   return this.value.indexOf('?') >= 0;
@@ -1037,7 +1037,7 @@ $scope.editDob=function(){
             },
             success: function(data) {
                 if($rootScope.hasRequiredFields === false) {
-                  $scope.$root.$broadcast("callPatientDetails");                
+                  $scope.$root.$broadcast("callPatientDetails");
                 }else {
                   $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
                   if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
@@ -1244,11 +1244,22 @@ $scope.editDob=function(){
         var myEl = angular.element(document.querySelector('#healid'));
         myEl.removeClass('btcolor').css('color', '#11c1f3');
         myEl.addClass('btnextcolor');
-        $scope.editshow = true;
+        var editflag=  $rootScope.flag;
+        if(editflag==false){
+          $scope.editshow = false;
+          $scope.doneshow = false;
+        }else{
+            $scope.editshow = true;
+            $scope.doneshow = true;
+        }
+
         $scope.addmore = false;
         $scope.healthhide = true;
-        $scope.doneshow = true;
+
         $scope.cancelshow = false;
+        var editvalues = angular.element(document.getElementsByTagName('input'));
+        var edittextarea = angular.element(document.getElementsByTagName('textarea'));
+
         editvalues.removeClass('textdata');
         editvalues.addClass('editdata');
         edittextarea.removeClass('editdata');
@@ -1340,6 +1351,7 @@ $scope.editDob=function(){
         $scope.doneshow = true;
         $scope.cancelshow = true;
 
+
     }
 
 
@@ -1392,7 +1404,10 @@ $scope.editDob=function(){
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
+            $timeout(function() {
+              $scope.modal.hide();
 
+            },600000);
         });
         $scope.alphabet = iterateAlphabet();
         var users = $rootScope.currentMedicationsearchList;
@@ -1409,7 +1424,7 @@ $scope.editDob=function(){
         $rootScope.sorted_users = tmp;
         $scope.selectedObject = {};
         $rootScope.gotoList = function(id) {
-
+              $scope.activeClass = id;
             $location.hash(id);
             $ionicScrollDelegate.anchorScroll();
 
@@ -1586,6 +1601,9 @@ $scope.editDob=function(){
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
+            $timeout(function() {
+              $scope.modal.hide();
+            },600000);
         });
         var usersallergie = $rootScope.medicationAllergiesearchList;
         var usersallergielength = usersallergie.length;
@@ -1770,6 +1788,9 @@ $scope.editDob=function(){
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
+            $timeout(function() {
+              $scope.modal.hide();
+            },600000);
         });
         var userschronic = $rootScope.chronicConditionsearchList;
         var userschroniclength = userschronic.length;
@@ -2003,6 +2024,9 @@ $scope.editDob=function(){
             $scope.surgery.dateStringMonth = '';
             $scope.surgery.dateStringYear = '';
             $scope.modal.show();
+            $timeout(function() {
+              $scope.modal.hide();
+            },600000);
             $timeout(function() {
                 $('option').filter(function() {
                     return this.value.indexOf('?') >= 0;
