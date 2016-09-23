@@ -9280,3 +9280,48 @@ input.ion-google-place[readonly] {
   top: -28px;
   margin-left: 74px;
 }
+
+#loginPwd {
+  margin-top: 39px;
+  .regcontent {
+    h2 {
+      font-size: 42px;
+    }
+    p {
+      line-height: 35px;
+      font-family: $fontFamily_semibold;
+          font-size: 17px;
+    }
+  }
+.place {
+    height: 49px;
+    .input {
+      font-size: 17px;
+    }
+}
+.btn1 {
+  margin: 47px 0px 46px 5px !important;
+}
+.icon-lock {
+  font-size: 26px;
+}
+.acinfo1-IOS {
+  h4 {
+     span {
+       font-size: 16px;
+     }
+ }
+}
+ .acinfo1-Android {
+   h4 {
+      span {
+        font-size: 14.5px;
+      }
+  }
+}
+.button {
+ height: 49px !important;
+  font-size: 25px !important;
+}
+
+}

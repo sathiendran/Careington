@@ -926,7 +926,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ErrorMessage = "Please enter a valid email address";
                 $rootScope.Validation($scope.ErrorMessage);
             } else {
+              if(ionic.Platform.is('browser') !== true) {
                 chkCameraAndMicroPhoneSettings();
+              }else{
+                $window.localStorage.setItem('FlagForCheckingAuthorization','Authorized');
+              }
                 if($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
                     if($("input[class=isRemChecked]").is(':checked') == true) {
                   //  if ($("#squaredCheckbox").prop('checked') == true) {
@@ -984,7 +988,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.Validation($scope.ErrorMessage);
 
             } else {
+              if(ionic.Platform.is('browser') !== true) {
                 chkCameraAndMicroPhoneSettings();
+              }else{
+                $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+              }
                   if($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
                     if (deploymentEnvLogout == 'Single') {
                         if (deploymentEnvForProduction == 'Production') {
@@ -4991,8 +4999,13 @@ LoginService.getScheduledConsulatation(params);
             var ptImage = getInitialForName(P_Fname + " " + P_Lname);
             P_img = generateTextImage(ptImage, $rootScope.brandColor);
         }
-        if(window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
-          chkCameraAndMicroPhoneSettings();
+
+        if(ionic.Platform.is('browser') !== true) {
+          if(window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
+            chkCameraAndMicroPhoneSettings();
+          }
+        }else{
+          $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
         }
 
         if($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
