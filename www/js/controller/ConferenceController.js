@@ -1,8 +1,8 @@
 angular.module('starter.controllers')
 
-
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle) {
     var isCallEndedByPhysician = false;
+    $rootScope.participantsCount = +1;
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
         $rootScope.appointmentsPatientFirstName = '';
@@ -559,17 +559,18 @@ angular.module('starter.controllers')
         };
         initConferenceRoomHub();
 
-        $rootScope.clinicianVideoHeight = $window.innerHeight - 38 - 100;
+        $rootScope.clinicianVideoHeight = $window.innerHeight - 60 - 100;
+        $rootScope.clinicianVideoControlPanelTop = $window.innerHeight - 61;
         $rootScope.clinicianVideoWidth = $window.innerWidth;
 
         $rootScope.clinicianVideoHeightScreen = ($window.innerWidth / 16) * 9;
 
-        $rootScope.patientVideoTop = $window.innerHeight - 150 - 100;
+        $rootScope.patientVideoTop = $window.innerHeight - 173 - 100;
         $rootScope.controlsStyle = false;
 
         $rootScope.cameraPosition = "front";
         $rootScope.publishAudio = true;
-
+        $rootScope.publishVideo = true;
 
         $rootScope.muteIconClass = 'ion-ios-mic callIcons';
         $rootScope.cameraIconClass = 'ion-ios-reverse-camera callIcons';
@@ -640,16 +641,17 @@ angular.module('starter.controllers')
 
             lastSubscriber = event.stream.streamId;
 
-            session.subscribe(event.stream, streamIdVal, {
+            var subscriber = session.subscribe(event.stream, streamIdVal, {
                 insertMode: 'append',
                 subscribeToAudio: true,
                 subscribeToVideo: true
             });
-
             $scope.createVideoThumbnail(event);
 
             OT.updateViews();
         });
+
+        //PatientImageSelectUser
 
         $scope.createVideoThumbnail = function(event) {
             var streamIdVal = event.stream.streamId;
@@ -675,8 +677,11 @@ angular.module('starter.controllers')
             if (participantName.indexOf('Screen Share') >= 0) {
                 imgThumbPath = 'img/share-icon.jpg';
             }
+            if (participantName.indexOf('Screen Share') < 0) {
+                $rootScope.participantsCount = $rootScope.participantsCount + 1;
+            }
             participantName = participantName.replace('Screen Share By :', '');
-            thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 90px;text-align: center !important;'><img style='width: 50px; height: 50px; border-radius: 50%;' src='" + imgThumbPath + "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
+            thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 100px; text-align: center !important;'><img style='width: 50px !important; height: 50px !important; border-radius: 50%;' src='" + imgThumbPath + "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
         };
 
 
@@ -700,6 +705,9 @@ angular.module('starter.controllers')
         };
 
         switchToStream = function(selectedSteamId) {
+            if(connectedStreams.length <= 1){
+              return;
+            }
             for (var i = 0; i < connectedStreams.length; i++) {
                 var connectedStreamId = connectedStreams[i];
                 if (connectedStreamId != "" && connectedStreamId != selectedSteamId) {
@@ -724,6 +732,9 @@ angular.module('starter.controllers')
             if (typeof tbStreamVal != "undefined") {
                 var index = connectedStreams.indexOf(tbStreamVal);
                 connectedStreams.splice(index, 1);
+            }
+            if (event.stream.name.indexOf('Screen Share') >= 0) {
+                $rootScope.participantsCount = $rootScope.participantsCount - 1;
             }
             $scope.removeVideoThumbnail(tbStreamVal);
 
@@ -779,12 +790,61 @@ angular.module('starter.controllers')
                 }, 100);
                 session.publish(publisher);
                 OT.updateViews();
-
+                thumbSwiper.appendSlide("<div id='thumbPlayer-patient' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-patient' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 100px; text-align: center !important;'><img style='width: 50px !important; height: 50px !important; border-radius: 50%;' src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/><p class='ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div></div>");
+                $('#videoCallSessionTimer').runner({
+                  autostart: true,
+                  milliseconds: false,
+                  startAt: 5000
+                });
             } else {
                 alert('There was an error connecting to the session: ' + error.message);
             }
 
         });
+
+        $rootScope.openVideoCameraPanel = function(){
+          $('.vdioControlPanel').removeClass('animated');
+          $('.vdioControlPanel').removeClass('slideInDown');
+          $('.vdioControlPanel').removeClass('slideOutUp');
+          $('.vdioControlPanel').removeClass('slideOutDown');
+          $('.vdioControlPanel').removeClass('slideInUp');
+
+          $('.vdioCameraControlPanel').removeClass('animated');
+          $('.vdioCameraControlPanel').removeClass('slideInDown');
+          $('.vdioCameraControlPanel').removeClass('slideOutUp');
+          $('.vdioCameraControlPanel').removeClass('slideOutDown');
+          $('.vdioCameraControlPanel').removeClass('slideInUp');
+
+          $('.vdioControlPanel').addClass('animated slideOutUp');
+          $('.vdioCameraControlPanel').addClass('animated slideInUp');
+          $('.vdioControlPanel').hide();
+          $('.vdioCameraControlPanel').show();
+        };
+
+        $rootScope.closeVideoCameraPanel = function(){
+          $('.vdioControlPanel').removeClass('animated');
+          $('.vdioControlPanel').removeClass('slideInDown');
+          $('.vdioControlPanel').removeClass('slideOutUp');
+
+          $('.vdioCameraControlPanel').removeClass('animated');
+          $('.vdioCameraControlPanel').removeClass('slideInDown');
+          $('.vdioCameraControlPanel').removeClass('slideOutUp');
+
+          $('.vdioCameraControlPanel').addClass('animated slideOutUp');
+          $('.vdioControlPanel').addClass('animated slideInUp');
+          $('.vdioCameraControlPanel').hide();
+          $('.vdioControlPanel').show();
+        };
+
+        $rootScope.toggleVideoCameraPanel = function(){
+          if($rootScope.publishVideo){
+            $rootScope.openVideoCameraPanel();
+          }
+          else{
+            $scope.startPublishingVideo();
+          }
+        };
+
         $scope.toggleCamera = function() {
             if ($scope.cameraPosition == "front") {
                 $rootScope.newCamPosition = "back";
@@ -798,26 +858,101 @@ angular.module('starter.controllers')
           //  OT.updateViews();
         };
 
+        $scope.insertPatientThumbnailOverVideo = function(){
+          $('#publisher').html("<img style='width: 100px !important; height: 100px !important; border-radius: 50%;' src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/>");
+        };
+
         $scope.toggleMute = function() {
             if ($scope.publishAudio) {
                 $rootScope.newPublishAudio = false;
                 $rootScope.muteIconClass = 'ion-ios-mic-off callIcons activeCallIcon';
+                $('#vdioMic .vdioIcon i').html(createSVGIcon('microphone_mute'));
+                $('#vdioMic .vdioIcon i svg').css('color', $rootScope.brandColor);
             } else {
                 $rootScope.newPublishAudio = true;
                 $rootScope.muteIconClass = 'ion-ios-mic callIcons';
+                $('#vdioMic .vdioIcon i').html(createSVGIcon('mic'));
+                $('#vdioMic .vdioIcon i svg').css('color', 'white');
             }
             $rootScope.publishAudio = $rootScope.newPublishAudio;
             publisher.publishAudio($rootScope.newPublishAudio);
             //OT.updateViews();
+        };
+        $rootScope.conferenceVideoLabel = '';
+        $ionicPopover.fromTemplateUrl('videoCameraControl.html', {
+          scope: $scope
+        }).then(function(popover) {
+          $scope.videoCameraControlPopover = popover;
+        });
 
+         $scope.openVideoCameraPopover = function($event) {
+            if($rootScope.publishVideo){
+              $scope.videoCameraControlPopover.show($event);
+              $('.popover-arrow').hide();
+              $('#vdioCamera .vdioIcon i svg').css('color', $rootScope.brandColor);
+            }
+            else{
+              $scope.toggleSelfCamera();
+            }
+         };
+
+         $scope.closeVideoCameraPopover = function() {
+            $scope.videoCameraControlPopover.hide();
+         };
+
+         //Cleanup the popover when we're done with it!
+         $scope.$on('$destroy', function() {
+            $scope.videoCameraControlPopover.remove();
+         });
+
+         // Execute action on hide popover
+         $scope.$on('popover.hidden', function() {
+            // Execute action
+         });
+
+         // Execute action on remove popover
+         $scope.$on('popover.removed', function() {
+            // Execute action
+         });
+
+         $scope.toggleSelfCamera = function() {
+            if ($scope.publishVideo) {
+                $rootScope.newPublishVideo = false;
+                $('#vdioCamera .vdioIcon i').html(createSVGIcon('video_camera_mute'));
+                $('#vdioCamera .vdioIcon i svg').css('color', $rootScope.brandColor);
+            } else {
+                $rootScope.newPublishVideo = true;
+                $('#vdioCamera .vdioIcon i').html(createSVGIcon('video_camera'));
+                $('#vdioCamera .vdioIcon i svg').css('color', 'white');
+            }
+            $rootScope.publishVideo = $rootScope.newPublishVideo;
+            publisher.publishVideo($rootScope.newPublishVideo);
+            $rootScope.closeVideoCameraPanel();
         };
 
         $scope.toggleSpeaker = function() {
 
         };
 
-        $scope.turnOffCamera = function() {
+        $scope.stopPublishingVideo = function() {
+          $rootScope.publishVideo = false;
+          $rootScope.newPublishVideo = false;
+          publisher.publishVideo(false);
+          $('div#publisher').hide();
+          OT.updateViews();
+          $('#vdioCamera .vdioIcon i').html(createSVGIcon('video_camera_mute'));
+          $('#vdioCamera .vdioIcon i svg').css('color', $rootScope.brandColor);
+          $rootScope.closeVideoCameraPanel();
+        };
 
+        $scope.startPublishingVideo = function() {
+          $rootScope.publishVideo = true;
+          $rootScope.newPublishVideo = true;
+          publisher.publishVideo(true);
+          $('div#publisher').show();
+          OT.updateViews();
+          $('#vdioCamera .vdioIcon i').html(createSVGIcon('video_camera'));
+          $('#vdioCamera .vdioIcon i svg').css('color', 'white');
         };
     }
 
@@ -859,6 +994,7 @@ angular.module('starter.controllers')
 
 
     function consultationEndedAlertDismissed() {
+        $('#videoCallSessionTimer').runner('stop');
         conHub.invoke("endConsultation").then(function() {});
         //$('#publisher').css('display', 'none');
         //$('#subscriber').css('display', 'none');
