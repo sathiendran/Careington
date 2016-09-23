@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('relateduserController', function($scope, $ionicPlatform,$ionicModal, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter) {
+    .controller('relateduserController', function($scope, $ionicPlatform,$ionicModal, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter,$timeout) {
           $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -664,6 +664,12 @@ $rootScope.authorised=relateDependentAuthorize;
                       $scope.modal = modal;
                       $scope.modal.show();
 
+                      $timeout(function() {
+                        $scope.modal.remove()
+                        .then(function() {
+                          $scope.modal = null;
+                        });
+                      },600000);
                   });
 
         }
