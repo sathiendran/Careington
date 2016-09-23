@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle) {
+.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover) {
     var isCallEndedByPhysician = false;
     $rootScope.participantsCount = +1;
     $scope.doGetExistingConsulatation = function() {
