@@ -734,7 +734,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $(".ion-google-place-container").css({
             "display": "none"
         });
-      
+
         $ionicBackdrop.release();
         $rootScope = $rootScope.$new(true);
         $scope = $scope.$new(true);
@@ -3539,9 +3539,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ccCvvLength = 4;
             } else {
                 $scope.ccCvvLength = 3;
-                if ($scope.getCardDetails.Cvv.length > 0) {
+              /*  if ($scope.getCardDetails.Cvv.length > 0) {
                     $scope.getCardDetails.Cvv = String($scope.getCardDetails.Cvv).substr(0, 3);
-                }
+                }*/
             }
         }
     });
