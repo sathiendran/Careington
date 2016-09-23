@@ -75,7 +75,7 @@
   font-family: 'Glober xBold';
   src: url("Glober xBold.otf");
 }
-
+html, body, video, .OT_video-container { background: transparent !important; }
 [class^="icon-"], [class*=" icon-"] {
     display: inline-block;
     width: 1em;
@@ -9280,6 +9280,7 @@ input.ion-google-place[readonly] {
 .accSecAppoint {
   margin-left: -10px !important;
 }
+
 .addusercenter{
   margin-top: 5px !important;
 
@@ -9289,6 +9290,103 @@ input.ion-google-place[readonly] {
   margin-left: 74px;
 }
 
+.vdioControlPanel{
+    width: 100% !important;
+    display: block;
+    _float: left;
+    height: 61px !important;
+    background-color: black;
+    margin: auto;
+    max-width: 375px;
+}
+.vdioCameraControlPanel{
+    width: 100% !important;
+    display: block;
+    _float: left;
+    height: 61px !important;
+    background-color: black;
+    margin: auto;
+    max-width: 300px;
+}
+.clsVideoControls {
+    width: 20% !important;
+    color: white;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+    height: 60px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 75px;
+}
+
+.clsVideoCameraControls {
+    width: 30% !important;
+    color: white;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+    height: 60px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 150px;
+}
+
+.vdioIcon {
+    height: 40px !important;
+    padding-top: 5px;
+}
+
+.vdioIconText {
+  padding-left: 20% !important;
+  padding-right: 20% !important;
+  padding-top: 20% !important;
+  font-size: 13px !important;
+  font-family: 'Glober Regular';
+}
+
+.vdioText {
+    font-size: 11px !important;
+    font-family: 'Glober Regular';
+    margin-top: -10px;
+    height: 10px !important;
+}
+
+.vdioBadge {
+  background-color: #00B3D4 !important;
+  color: #fff !important;
+  border: 1px solid #fff;
+  border-radius: 50% !important;
+  height: 20px;
+  width: 20px;
+  float: right;
+  text-align: center;
+  margin-left: -15px;
+  margin-top: -5px;
+  font-size: small;
+  font-family: 'Globber Regular';
+}
+
+.vdioCallIcon {
+  font-size: 25px !important;
+  color: white !important;
+}
+
+.vdioEndButton {
+  border: 1px solid #F04C27;
+  border-radius: 50% !important;
+  height: 40px !important;
+  width: 40px !important;
+  margin-left: 8px;
+  background-color: #F04C27 !important;
+}
+
+.vdioEndCallIcon {
+  font-size: 30px !important;
+  margin-top: 5px;
+}
 #loginPwd {
   margin-top: 39px;
   .regcontent {
