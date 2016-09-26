@@ -1109,8 +1109,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 //console.log($rootScope.hospitalDetailsList);
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -1220,8 +1220,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -1665,7 +1665,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if (status == '404') {
                             $scope.ErrorMessage = "Email Address not Found";
                             $rootScope.Validation($scope.ErrorMessage);
-                        }else if(data==null){
+                        }else if(status===0 ){
 
                              $scope.ErrorMessage = "Internet connection not available, Try again later!";
                              $rootScope.Validation($scope.ErrorMessage);
@@ -1744,8 +1744,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $state.go(registerRedirectPage);
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -1999,8 +1999,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.doGetScheduledConsulatation();
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2077,8 +2077,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' ' + $rootScope.primaryPatientLastName;
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2112,8 +2112,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
               }
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2182,7 +2182,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             },
             error: function(data,status) {
-              if(data==null){
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2281,8 +2281,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2392,8 +2392,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.doGetDoctorDetails();
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2441,8 +2441,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.doctorImage = data.data[0].profileImagePath;
                 $state.go('tab.appoimentDetails');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2636,8 +2636,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2833,8 +2833,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 });
                 $state.go('tab.planDetails');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -2916,8 +2916,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $state.go('tab.planDetails');
                 }
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -3448,8 +3448,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 }
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -3477,8 +3477,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 $state.go('tab.userhome');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -3764,8 +3764,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 //	$state.go('tab.patientConcerns');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -3981,8 +3981,8 @@ LoginService.getScheduledConsulatation(params);
                 $scope.$root.$broadcast("callAppointmentConsultation");
                 //$state.go(nextPage);
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -4109,8 +4109,8 @@ LoginService.getScheduledConsulatation(params);
                     }
                 }
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -4256,8 +4256,8 @@ LoginService.getScheduledConsulatation(params);
                     $state.go('tab.receipt');
                     $scope.ReceiptTimeout();
                 },
-                error: function(data) {
-                  if(data==null){
+                error: function(data,status) {
+                  if(status===0 ){
 
                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
                        $rootScope.Validation($scope.ErrorMessage);
@@ -4280,8 +4280,8 @@ LoginService.getScheduledConsulatation(params);
                 $scope.deleteCoUser = JSON.stringify(data, null, 2);
                 $rootScope.doGetAccountDependentDetails();
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -4447,13 +4447,19 @@ LoginService.getScheduledConsulatation(params);
                     $state.go(nextPage);
                 }
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status === 0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
 
-              }else{  $rootScope.serverErrorMessageValidation();
+              }else if(status ===401 ){
+                $scope.ErrorMessage = "You are not authorized to view this account!";
+                $rootScope.Validation($scope.ErrorMessage);
+
+              }
+
+              else{  $rootScope.serverErrorMessageValidation();
               }
   }
         };
@@ -4678,7 +4684,7 @@ LoginService.getScheduledConsulatation(params);
                 }
             },
             error: function(data,status) {
-              if(data==null){
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -4709,13 +4715,19 @@ LoginService.getScheduledConsulatation(params);
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
                 //	$state.go('tab.patientDetail');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
 
-              }else{
+              }else if(status ===401 ){
+                $scope.ErrorMessage = "You are not authorized to view this account!";
+                $rootScope.Validation($scope.ErrorMessage);
+
+              }
+
+              else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -4761,8 +4773,8 @@ LoginService.getScheduledConsulatation(params);
                 }
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -4799,8 +4811,8 @@ LoginService.getScheduledConsulatation(params);
 
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -4879,7 +4891,7 @@ LoginService.getScheduledConsulatation(params);
 
             },
             error: function(data,status) {
-              if(data==null){
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -4928,8 +4940,8 @@ LoginService.getScheduledConsulatation(params);
                 $rootScope.getIndividualPatientCreditCount = 0;
               }
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -5200,8 +5212,8 @@ LoginService.getScheduledConsulatation(params);
               $rootScope.enableCreditVerification = "block";
               $scope.ReceiptTimeout();
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -5303,8 +5315,8 @@ LoginService.getScheduledConsulatation(params);
 
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -5457,8 +5469,8 @@ LoginService.getScheduledConsulatation(params);
                     fileUrl = apiCommonURL + fileUrl;
                 window.open(fileUrl, '_system', 'location=yes');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);

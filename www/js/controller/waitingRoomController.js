@@ -172,8 +172,8 @@ angular.module('starter.controllers')
                 }
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);

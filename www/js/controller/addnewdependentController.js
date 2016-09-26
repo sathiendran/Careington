@@ -823,14 +823,14 @@ $scope.emailBlur=function(){
                     $rootScope.deppatientId = updatepatientdetail[0].patientId;
                     $scope.updateDependentRelation();
                 },
-                  error: function(data) {
+                  error: function(data,status) {
                       $('select option').filter(function() {
                           return this.value.indexOf('?') >= 0;
                       }).remove();
                     if(data.status === 400) {
                       $scope.ErrorMessage = data.statusText;
                       $rootScope.Validation($scope.ErrorMessage);
-                    }else if(data==null){
+                    }else if(status===0 ){
 
                            $scope.ErrorMessage = "Internet connection not available, Try again later!";
                            $rootScope.Validation($scope.ErrorMessage);
