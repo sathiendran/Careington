@@ -325,10 +325,26 @@ if (deploymentEnv === "Sandbox") {
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
 
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
 
     $rootScope.drawSVGCIcon = function(iconName) {
       return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
+    };
+
+    $rootScope.drawImage = function(imagePath, firstName, lastName) {
+      if(!angular.isUndefined(imagePath) && imagePath !== '') {
+      //  $('.ListTextTitle').css('top','-54px');
+      //  $('.ListHomeUser_pTitle').css('margin-top','-59px');
+        return "<img ng-src=" +imagePath +" src="+imagePath+" class='UserHmelistImgView'>";
+      }else {
+    //    $('.ListTextTitle').css('top','-50px');
+      //  $('.ListHomeUser_pTitle').css('margin-top','-55px');
+        if(!angular.isUndefined(lastName) && lastName !== '') {
+            return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0) + lastName.charAt(0)  +"</sapn></div>");
+        } else{
+            return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0)+"</sapn></div>");
+        }
+      }
     };
 
     $rootScope.drawSVGCIconForVideo = function(iconName, color) {
@@ -1944,13 +1960,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
                 //$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-                if ($rootScope.patientAccount.profileImagePath !== '' && typeof $rootScope.patientAccount.profileImagePath !== 'undefined') {
+              //  if ($rootScope.patientAccount.profileImagePath !== '' && typeof $rootScope.patientAccount.profileImagePath !== 'undefined') {
                     $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-                } else {
+              /*  } else {
                     $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
                     var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
                     $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
-                }
+                }*/
                 $rootScope.address = data.data[0].address;
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
@@ -2215,14 +2231,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.RelatedPatientProfiles = [];
 
                 angular.forEach(data.data, function(index, item) {
-                  var imgDate = new Date();
+                /*  var imgDate = new Date();
                     if (!index.profileImagePath) {
                         var ptInitial = getInitialForName(index.patientName);
                         index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
                         index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
                     } else {
                       index.profileImagePath = index.profileImagePath + '?' + imgDate.getTime()
-                    }
+                    }*/
 
 
                     if (typeof index.gender !== 'undefined') {
@@ -5053,7 +5069,7 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
             $rootScope.patientId = P_Id;
             $scope.doGetConutriesList();
-          //  $rootScope.doGetCreditDetails();
+           $rootScope.doGetCreditDetails();
             $rootScope.passededconsultants();
             $rootScope.doGetLocations();
             $rootScope.doGetIndividualScheduledConsulatation();
@@ -5400,7 +5416,7 @@ LoginService.getScheduledConsulatation(params);
           $rootScope.patientId = $rootScope.patientId;
         }
         $scope.doGetConutriesList();
-      //  $rootScope.doGetCreditDetails();
+        $rootScope.doGetCreditDetails();
         $rootScope.passededconsultants();
         $rootScope.doGetLocations();
         $rootScope.doGetonDemandAvailability();

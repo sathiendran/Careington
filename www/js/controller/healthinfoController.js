@@ -54,19 +54,21 @@ angular.module('starter.controllers')
     };
 
     $rootScope.getCountryName = function(countryCode) {
-        var countryInfo = $filter('filter')($rootScope.serviceCountries, {
-            code: countryCode
-        });
-        if (countryInfo[0])
-            return countryInfo[0].name;
-        else if (countryInfo)
-            return countryInfo.name;
-        else
-            return "";
+        if(!angular.isUndefined(countryCode)) {
+            var countryInfo = $filter('filter')($rootScope.serviceCountries, {
+                code: countryCode
+            });
+            if (countryInfo[0])
+                return countryInfo[0].name;
+            else if (countryInfo)
+                return countryInfo.name;
+            else
+                return "";
+          }
     };
 
     $rootScope.getTimeZoneName = function(timezoneCode) {
-      if(timezoneCode !== 0) {
+      if(!angular.isUndefined(timezoneCode) && timezoneCode !== 0) {
           var timezoneInfo = $filter('filter')($rootScope.timeZones, {
               id: timezoneCode
           });

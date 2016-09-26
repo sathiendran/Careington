@@ -9434,3 +9434,17 @@ input.ion-google-place[readonly] {
 .yellow{
      color:yellow;
 }
+.patProfileImage {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  //border: 2px solid red;
+  text-align: center;
+  font-family: Glober XBold;
+  font-size: 26px;
+  span {
+    position: relative;
+    top: 20px; 
+    color: #fff;
+  }
+}
