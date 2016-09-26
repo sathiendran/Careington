@@ -9414,7 +9414,7 @@ input.ion-google-place[readonly] {
     }
   }
 .place {
-  //  height: 49px;
+   height: 50px;
     .input {
       font-size: 17px;
     }
@@ -9452,4 +9452,7 @@ font-family: Glober Bold;
 }
 .yellow{
      color:yellow;
+}
+#loginEmail{
+  .place{height:50px;}
 }
