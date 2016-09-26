@@ -703,14 +703,17 @@ angular.module('starter.controllers')
             var imgThumbPath = $rootScope.APICommonURL + '/images/Patient-Male.gif';
             imgThumbPath = 'img/default-user.jpg';
             var videoSource = '';
-            if (participantName.indexOf('Screen Share') >= 0) {
-                imgThumbPath = 'img/share-icon.jpg';
-            }
             if (participantName.indexOf('Screen Share') < 0) {
                 $rootScope.participantsCount = $rootScope.participantsCount + 1;
             }
-            participantName = participantName.replace('Screen Share By :', '');
-            thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 100px; text-align: center !important;'><img style='width: 50px !important; height: 50px !important; border-radius: 50%;' src='" + imgThumbPath + "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
+            if (participantName.indexOf('Screen Share') >= 0) {
+                participantName = participantName.replace('Screen Share By :', '');
+                thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'><i class='ion-share'></i></span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
+            }else{
+                participantName = participantName.replace('Screen Share By :', '');
+                var participantNameInitial = getInitialForName(participantName);
+                thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
+            }
         };
 
 
@@ -819,7 +822,14 @@ angular.module('starter.controllers')
                 }, 100);
                 session.publish(publisher);
                 OT.updateViews();
-                thumbSwiper.appendSlide("<div id='thumbPlayer-patient' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-patient' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 100px; text-align: center !important;'><img style='width: 50px !important; height: 50px !important; border-radius: 50%;' src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/><p class='ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div></div>");
+                if($rootScope.PatientImageSelectUser && $rootScope.PatientImageSelectUser != ''){
+                    thumbSwiper.appendSlide("<div class='videoThumbnail'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                }
+                else{
+                    var ptFullName = $rootScope.PatientFirstName + " " + $rootScope.PatientLastName;
+                    var patientInitialStr = getInitialForName(ptFullName);
+                    thumbSwiper.appendSlide("<div class='videoThumbnail'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                }
                 $('#videoCallSessionTimer').runner({
                   autostart: true,
                   milliseconds: false,

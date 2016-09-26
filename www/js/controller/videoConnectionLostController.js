@@ -10,6 +10,7 @@ angular.module('starter.controllers')
       $rootScope.PatientImageSelectUser = window.localStorage.getItem('PatientImageSelectUser');
       $rootScope.PatientFirstName = window.localStorage.getItem('PatientFirstName');
       $rootScope.PatientLastName = window.localStorage.getItem('PatientLastName');
+      $rootScope.videoLostMessage = 'Internet connection lost. Please reconnect.';
 
       $rootScope.checkForReEntryConsultation = function() {
           $rootScope.consultionInformation = '';
@@ -42,7 +43,7 @@ angular.module('starter.controllers')
                           setTimeout(function(){
                               $ionicLoading.hide();
                               $state.go('tab.videoConference');
-                          }, 3000);
+                          }, 5000);
                       }else{
                         navigator.notification.alert(
                             'Consultation ended successfully!', // message
@@ -60,7 +61,6 @@ angular.module('starter.controllers')
               template: '<img src="img/puff.svg" alt="Loading" />'
           });
           setTimeout(function(){
-              $ionicLoading.hide();
               LoginService.getExistingConsulatation(params);
           }, 3000);
 
@@ -70,5 +70,17 @@ angular.module('starter.controllers')
           window.localStorage.setItem('isVideoCallProgress', "No");
           $scope.doGetExistingConsulatationReport();
       };
+
+      if($stateParams.retry == 1){
+          $rootScope.videoLostMessage = 'Video connection lost.';
+          $rootScope.videoLostMessageSub = 'Please make sure that you are connected to internet.';
+      }else{
+          $ionicLoading.show({
+              template: '<img src="img/puff.svg" alt="Loading" />'
+          });
+          $rootScope.videoLostMessage = 'Please wait while we are re-connecting you with physician!';
+          $rootScope.videoLostMessageSub = 'This might take few seconds.';
+          $rootScope.checkForReEntryConsultation();
+      }
 
     })

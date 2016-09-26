@@ -216,7 +216,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('#publisher').hide();
                 $('#subscriber').hide();
                 OT.updateViews();
-                $state.go('tab.videoLost');
+                $state.go('tab.videoLost', { retry : 1 });
             }else{
               navigator.notification.alert(
                   'Please make sure that you have network connection.', // message
@@ -230,7 +230,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
         function onOnline() {
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
-                //$state.go('tab.videoConference');
+                $state.go('tab.videoLost', { retry : 2 });
             }
         }
 
@@ -1048,7 +1048,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }
     })
     .state('tab.videoLost', {
-        url: '/videoLost',
+        url: '/videoLost/:retry',
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-videoLost.html',
@@ -1095,13 +1095,15 @@ function generateTextImage(text, bgcolor){
 function getInitialForName(name){
     var initial = "";
     if(name){
-		name = name.toUpperCase();
+		    name = name.toUpperCase();
         name = name.replace('  ', ' ');
         name = name.trim()
         var names = name.split(' ');
         initial = initial + names[0].substring(0, 1);
         if(names[1])
             initial = initial + names[1].substring(0, 1);
+        else
+            initial = name.substring(0, 2);
     }
     return initial;
 }
