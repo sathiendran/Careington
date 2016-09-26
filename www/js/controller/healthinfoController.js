@@ -1210,6 +1210,9 @@ $scope.editDob=function(){
                 if (status === 401) {
                     $scope.ErrorMessage = "Relation did not update";
                     $rootScope.Validation($scope.ErrorMessage);
+                }else if(status===0 ){
+                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                  $rootScope.Validation($scope.ErrorMessage);
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -1333,8 +1336,11 @@ $scope.editDob=function(){
                 // var patientmedical=$scope.PatientMedicalProfileList;
                 //var medicationvalues=patientmedical[0].medications;
             },
-            error: function(data) {
-
+            error: function(data,status) {
+              if(status===0 ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }
             }
         };
         LoginService.getPatientMedicalProfile(params);
@@ -1368,8 +1374,8 @@ $scope.editDob=function(){
                 $rootScope.medicationAllergiesearchList = angular.fromJson(data.data[2].codes);
                 $rootScope.chronicConditionsearchList = angular.fromJson(data.data[0].codes);
             },
-            error: function(data) {
-              if(data =='null' ){
+            error: function(data,status) {
+              if(status===0 ){
                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
                 $rootScope.Validation($scope.ErrorMessage);
               }else{
@@ -1970,8 +1976,8 @@ $scope.editDob=function(){
                 });
 
             },
-            error: function(data) {
-              if(data =='null' ){
+            error: function(data,status) {
+              if(status===0  ){
                $scope.ErrorMessage = "Internet connection not available, Try again later!";
                $rootScope.Validation($scope.ErrorMessage);
              }else{
@@ -1991,8 +1997,8 @@ $scope.editDob=function(){
                 //  $scope.deleteCoUser = JSON.stringify(data, null, 2);
                 $scope.doGetListOfCoUsers();
             },
-            error: function(data) {
-              if(data =='null' ){
+            error: function(data,status) {
+              if(status===0 ){
                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
                  $rootScope.Validation($scope.ErrorMessage);
                }else{

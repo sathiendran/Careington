@@ -148,7 +148,7 @@ angular.module('starter.controllers')
                 $rootScope.isCheckedFemale = true;
             }
             $rootScope.passededconsultants();
-
+            $rootScope.connection;
             $state.go('tab.healthinfo');
             //  $rootScope.doGetListOfCodeSet();
         }

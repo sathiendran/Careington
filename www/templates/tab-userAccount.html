@@ -29,14 +29,14 @@
 
 			<div class="item item-image-icon" >
 				<a class="lefthome">
-					<span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
+					<span class="subHeadIcons"><i ng-bind-html="drawSVGCIcon('home')"class="headerlefticons"></i></span>
 					<p class="homecontent">Account Home</p>
 				</a>
 				<a class="item-avatar itemhead">
 					<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
 				</a>
 				<a class="rightpatient" ng-href="#/tab/userhome">
-					<span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
+					<span class="subHeadIcons"><i ng-bind-html="drawSVGCIcon('group')" class="headerrighticon"></i></span>
 					<p class="patientcontent" >Change Patient</p>
 				</a>
 			</div>

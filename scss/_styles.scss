@@ -4883,8 +4883,8 @@ p{
       border:1px solid #888;
       border-radius:65%;
       padding-left:5px;
-      padding-right:6px;
-      padding-top:5px;
+      padding-right:5px;
+      padding-top:7px;
       padding-bottom: 0px;
       font-size:130%;
       color: #888;
@@ -4893,10 +4893,14 @@ p{
   .headerlefticons{
       border:1px solid #888;
       border-radius: 65%;
-      padding-left: 7px;
-      padding-right: 8px;
-      padding-top: 6px;
-      padding-bottom: 1px;
+      //padding-left: 7px;
+      //padding-right: 8px;
+      //padding-top: 6px;
+      //padding-bottom: 1px;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 10px;
+      padding-bottom: 0px;
       font-size: 109%;
       color: #888;
   }
@@ -6017,6 +6021,12 @@ color: #999999 !important;
 #centercolor {
 color: white;
 margin-top: 37px !important;
+font-size: 160%;
+font-family: Glober Bold;
+}
+#addusercancel {
+color: white;
+margin-top: 27px !important;
 font-size: 160%;
 font-family: Glober Bold;
 }
@@ -9319,7 +9329,7 @@ input.ion-google-place[readonly] {
     padding-left: 10px;
     padding-right: 10px;
     max-width: 75px;
-} 
+}
 
 .clsVideoCameraControls {
     width: 30% !important;
@@ -9430,7 +9440,12 @@ input.ion-google-place[readonly] {
   font-size: 25px !important;
 }
 }
-
+#addusercancel {
+color: white;
+margin-top: 23px !important;
+font-size: 145%;
+font-family: Glober Bold;
+}
 .yellow{
      color:yellow;
 }

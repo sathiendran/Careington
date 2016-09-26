@@ -208,7 +208,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }, 100);
 
         function onOffline() {
-
+          
             navigator.notification.alert(
                 'Please make sure that you have network connection.', // message
                 null,
