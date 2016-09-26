@@ -1599,7 +1599,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
             accessToken: $rootScope.accessToken,
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
-              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0) {
+              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
                 $rootScope.doPostDepitDetails();
               } else {
                   $scope.ConsultationSave = "success";

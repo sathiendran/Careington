@@ -1960,13 +1960,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
                 //$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-              //  if ($rootScope.patientAccount.profileImagePath !== '' && typeof $rootScope.patientAccount.profileImagePath !== 'undefined') {
+                if ($rootScope.patientAccount.profileImagePath !== '' && typeof $rootScope.patientAccount.profileImagePath !== 'undefined') {
                     $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-              /*  } else {
+                } else {
                     $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
                     var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
                     $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
-                }*/
+                }
                 $rootScope.address = data.data[0].address;
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
@@ -2231,14 +2231,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.RelatedPatientProfiles = [];
 
                 angular.forEach(data.data, function(index, item) {
-                /*  var imgDate = new Date();
+                  var imgDate = new Date();
                     if (!index.profileImagePath) {
                         var ptInitial = getInitialForName(index.patientName);
                         index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
                         index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
                     } else {
                       index.profileImagePath = index.profileImagePath + '?' + imgDate.getTime()
-                    }*/
+                    }
 
 
                     if (typeof index.gender !== 'undefined') {
@@ -5204,7 +5204,7 @@ LoginService.getScheduledConsulatation(params);
 
               $rootScope.doPutConsultationSave();
           } else if ($rootScope.appointmentsPage === true) {
-            if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0) {
+            if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
               $rootScope.doPostDepitDetails();
             } else {
               $scope.doGetHospitalInformation();
