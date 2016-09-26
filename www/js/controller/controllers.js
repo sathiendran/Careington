@@ -2181,13 +2181,17 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.getHealtPageForFillingRequiredDetails();
 
             },
-            error: function(data) {
+            error: function(data,status) {
               if(data==null){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
 
-              }else{  $rootScope.serverErrorMessageValidation();
+              }  else if(status===401){
+                  $scope.ErrorMessage = "You are not authorized to view this account!";
+                  $rootScope.Validation($scope.ErrorMessage);
+
+                }else{  $rootScope.serverErrorMessageValidation();
               }
             }
         };
@@ -4673,13 +4677,18 @@ LoginService.getScheduledConsulatation(params);
                     }
                 }
             },
-            error: function(data) {
+            error: function(data,status) {
               if(data==null){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
 
-              }else{
+              }else if(status ===401 ){
+                $scope.ErrorMessage = "You are not authorized to view this account!";
+                $rootScope.Validation($scope.ErrorMessage);
+
+              }
+              else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -4776,11 +4785,15 @@ LoginService.getScheduledConsulatation(params);
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
             statusId: 72,
-            success: function(data) {
+            success: function(data,status) {
               if(data ==null ){
                  $scope.ErrorMessage = "Internet connection not available, Try again later!";
                  $rootScope.Validation($scope.ErrorMessage);
-               }else{
+               }  else if(status===401){
+                   $scope.ErrorMessage = "You are not authorized to view this account!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+                 }else{
                    $rootScope.Passedconsultations = data.data;
                }
 
@@ -4792,7 +4805,8 @@ LoginService.getScheduledConsulatation(params);
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
 
-              }else{
+              }
+            else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -4864,13 +4878,17 @@ LoginService.getScheduledConsulatation(params);
                 }
 
             },
-            error: function(data) {
+            error: function(data,status) {
               if(data==null){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
 
-              }else{
+              }else if(status===401){
+                $scope.ErrorMessage = "You are not authorized to view this account!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }
+              else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -5030,6 +5048,10 @@ LoginService.getScheduledConsulatation(params);
             $rootScope.doGetonDemandAvailability();
             $rootScope.doGetListOfCoUsers();
             if (!$rootScope.P_isAuthorized) {
+                $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                $rootScope.SubmitCardValidation($scope.ErrorMessage);
+            }
+            if ($rootScope.P_isAuthorized=undefined) {
                 $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
                 $rootScope.SubmitCardValidation($scope.ErrorMessage);
             }
