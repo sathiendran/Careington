@@ -326,11 +326,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
-    var i = 0;
-    setInterval(function(){
-      i = +i + 1;
-      
-    }, 10000);
+
+    window.localStorage.setItem('isVideoCallProgress', "No");
     $rootScope.drawSVGCIcon = function(iconName) {
       return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
@@ -1515,6 +1512,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     //    Idle.watch();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
                     }
+                    window.localStorage.setItem('rootScope', angular.fromJson($rootScope));
                 },
                 error: function(data, status) {
                     var networkState = navigator.connection.type;

@@ -216,20 +216,21 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('#publisher').hide();
                 $('#subscriber').hide();
                 OT.updateViews();
-                $state.go('tab.chooseEnvironment');
+                $state.go('tab.videoLost');
+            }else{
+              navigator.notification.alert(
+                  'Please make sure that you have network connection.', // message
+                  null,
+                  'No Internet Connection', // title
+                  'Ok' // buttonName
+              );
             }
-            navigator.notification.alert(
-                'Please make sure that you have network connection.', // message
-                null,
-                'No Internet Connection', // title
-                'Ok' // buttonName
-            );
             return false;
         }
 
         function onOnline() {
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
-                $state.go('tab.videoConference');
+                //$state.go('tab.videoConference');
             }
         }
 
@@ -252,21 +253,21 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
           }, 600000);
-          var i = 0;
-          setInterval(function(){
-            $.ajax({
-              type: 'GET',
-              headers: util.getHeaders(),
-              url: 'https://snap-qa.com/api/v2/timezones',
-              dataType: 'json',
-              success: function(data){
-                console.log('Success at ' + i);
-              },
-              failure: function(error){
-                console.log('Failed at ' + 1);
-              }
-            });
-          }, 10000);
+          // var i = 0;
+          // setInterval(function(){
+          //   $.ajax({
+          //     type: 'GET',
+          //     headers: util.getHeaders(),
+          //     url: 'https://snap-qa.com/api/v2/timezones',
+          //     dataType: 'json',
+          //     success: function(data){
+          //       console.log('Success at ' + i);
+          //     },
+          //     failure: function(error){
+          //       console.log('Failed at ' + 1);
+          //     }
+          //   });
+          // }, 10000);
       }
 
         setTimeout(function() {
@@ -1043,6 +1044,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             'tab-login': {
                 templateUrl: 'templates/primaryPatientSideMenu.html',
                 controller: 'sidemenuController'
+            }
+        }
+    })
+    .state('tab.videoLost', {
+        url: '/videoLost',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-videoLost.html',
+                controller: 'videoLostCtrl'
             }
         }
     })

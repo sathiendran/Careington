@@ -7,6 +7,16 @@ angular.module('starter.controllers')
         $rootScope.videoSessionId = window.localStorage.getItem('videoSessionId');
         $rootScope.videoApiKey = window.localStorage.getItem('videoApiKey');
         $rootScope.videoToken = window.localStorage.getItem('videoToken');
+        $rootScope.PatientImageSelectUser = window.localStorage.getItem('PatientImageSelectUser');
+        $rootScope.PatientFirstName = window.localStorage.getItem('PatientFirstName');
+        $rootScope.PatientLastName = window.localStorage.getItem('PatientLastName');
+        if (session != null) {
+            session.disconnect();
+            session = null;
+        }
+        if(connection != null){
+          connection = null;
+        }
     }else{
         window.localStorage.setItem('ConferenceCallConsultationId', $rootScope.consultationId);
         window.localStorage.setItem('accessToken', $rootScope.accessToken);
@@ -14,6 +24,9 @@ angular.module('starter.controllers')
         window.localStorage.setItem('videoSessionId', $rootScope.videoSessionId);
         window.localStorage.setItem('videoApiKey', $rootScope.videoApiKey);
         window.localStorage.setItem('videoToken', $rootScope.videoToken);
+        window.localStorage.setItem('PatientImageSelectUser', $rootScope.PatientImageSelectUser);
+        window.localStorage.setItem('PatientFirstName', $rootScope.PatientFirstName);
+        window.localStorage.setItem('PatientLastName', $rootScope.PatientLastName);
     }
     var isCallEndedByPhysician = false;
     $rootScope.participantsCount = +1;
@@ -39,6 +52,7 @@ angular.module('starter.controllers')
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId === 72) {
+                        window.localStorage.setItem('isVideoCallProgress', "No");
                         $scope.doGetExistingConsulatationReport();
                     }
                 }
