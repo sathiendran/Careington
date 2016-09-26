@@ -4883,8 +4883,8 @@ p{
       border:1px solid #888;
       border-radius:65%;
       padding-left:5px;
-      padding-right:5px;
-      padding-top:7px;
+      padding-right:6px;
+      padding-top:5px;
       padding-bottom: 0px;
       font-size:130%;
       color: #888;
@@ -4893,14 +4893,10 @@ p{
   .headerlefticons{
       border:1px solid #888;
       border-radius: 65%;
-      //padding-left: 7px;
-      //padding-right: 8px;
-      //padding-top: 6px;
-      //padding-bottom: 1px;
-      padding-left: 5px;
-      padding-right: 5px;
-      padding-top: 10px;
-      padding-bottom: 0px;
+      padding-left: 7px;
+      padding-right: 8px;
+      padding-top: 6px;
+      padding-bottom: 1px;
       font-size: 109%;
       color: #888;
   }
@@ -9448,18 +9444,4 @@ font-family: Glober Bold;
 }
 .yellow{
      color:yellow;
-}
-.patProfileImage {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  //border: 2px solid red;
-  text-align: center;
-  font-family: Glober XBold;
-  font-size: 26px;
-  span {
-    position: relative;
-    top: 20px; 
-    color: #fff;
-  }
 }

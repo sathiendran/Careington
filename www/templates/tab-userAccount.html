@@ -29,14 +29,14 @@
 
 			<div class="item item-image-icon" >
 				<a class="lefthome">
-					<span class="subHeadIcons"><i ng-bind-html="drawSVGCIcon('home')"class="headerlefticons"></i></span>
+					<span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
 					<p class="homecontent">Account Home</p>
 				</a>
 				<a class="item-avatar itemhead">
 					<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
 				</a>
 				<a class="rightpatient" ng-href="#/tab/userhome">
-					<span class="subHeadIcons"><i ng-bind-html="drawSVGCIcon('group')" class="headerrighticon"></i></span>
+					<span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
 					<p class="patientcontent" >Change Patient</p>
 				</a>
 			</div>
@@ -156,9 +156,7 @@
 
 
 	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)">
-		<!--<a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
-		<!--<h1 class="title" id="centercolor" >See A Clinician Now</h1>-->
-		<div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician" id="centercolor" >
+		<!--<div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician" id="centercolor" >
 			<div class="creditSeeaCLinician" >
 	  		See A Clinician Now
 			</div>
@@ -170,6 +168,9 @@
 			</div>
 		</div>
 		<div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
+			<h1 class="title" id="centercolor" >See A Clinician Now</h1>
+		</div>-->
+		<div>
 			<h1 class="title" id="centercolor" >See A Clinician Now</h1>
 		</div>
 	</ion-footer-bar>
@@ -193,8 +194,7 @@
 
  <ion-footer-bar ng-if="appointmentPatientId == patientId && P_isAuthorized" style="display: {{individualNextAppointmentDisplay}}" class="bar bar-footer  footer-color userappheight" ng-click="goToPatientConcerns(currentPatientDetails)" >
 
-	<!--<h1 class="title userappfootcontent" >See A Clinician Now</h1>-->
-	<div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician userappfootcontent"  >
+	 <!--<div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician userappfootcontent"  >
 		<div class="creditSeeaCLinician" >
 			See A Clinician Now
 		</div>
@@ -206,6 +206,9 @@
 		</div>
 	</div>
 	<div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
+		<h1 class="title userappfootcontent" >See A Clinician Now</h1>
+	</div>-->
+	<div>
 		<h1 class="title userappfootcontent" >See A Clinician Now</h1>
 	</div>
  </ion-footer-bar>
