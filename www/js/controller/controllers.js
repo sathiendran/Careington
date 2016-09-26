@@ -325,11 +325,33 @@ if (deploymentEnv === "Sandbox") {
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
 
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
 
     $rootScope.drawSVGCIcon = function(iconName) {
+
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
-        console.log("iconName");
+
+    };
+
+    $rootScope.drawImage = function(imagePath, firstName, lastName) {
+      if(!angular.isUndefined(imagePath) && imagePath !== '') {
+      //  $('.ListTextTitle').css('top','-54px');
+      //  $('.ListHomeUser_pTitle').css('margin-top','-59px');
+        return "<img ng-src=" +imagePath +" src="+imagePath+" class='UserHmelistImgView'>";
+      }else {
+    //    $('.ListTextTitle').css('top','-50px');
+      //  $('.ListHomeUser_pTitle').css('margin-top','-55px');
+        if(!angular.isUndefined(lastName) && lastName !== '') {
+            return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0) + lastName.charAt(0)  +"</sapn></div>");
+        } else{
+            return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0)+"</sapn></div>");
+        }
+      }
+    };
+
+    $rootScope.drawSVGCIconForVideo = function(iconName, color) {
+        return "<svg class='icon-" + iconName + " svgIcon" + iconName + " svgIconForVideo'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
+>>>>>>> 764c8d9889784bff7768e0d5246187bcc87cca9a
     };
 
     $rootScope.canceloption = function() {
@@ -4797,67 +4819,81 @@ LoginService.getScheduledConsulatation(params);
 
 
     $rootScope.GoToPatientDetails = function(Pat_locat,P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
-        if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
+          if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
 
-            //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
-            if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
-                if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
-                    $rootScope.RelatedPatientProfiles.shift();
-                    //  $scope.searched = false;
-                }
+              //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
+              if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
+                  if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
+                      $rootScope.RelatedPatientProfiles.shift();
+                      //  $scope.searched = false;
+                  }
+              }
+              $rootScope.providerName = '';
+              $rootScope.PolicyNo = '';
+              $rootScope.healthPlanID = '';
+              $rootScope.NewHealth = '';
+          }
+          $rootScope.userAgeForIntake = '';
+          $rootScope.updatedPatientImagePath = '';
+          $rootScope.newDependentImagePath = '';
+          $rootScope.appointmentDisplay = '';
+          $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+          $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+
+          if (angular.isUndefined(P_img)) {
+              var ptImage = getInitialForName(P_Fname + " " + P_Lname);
+              P_img = generateTextImage(ptImage, $rootScope.brandColor);
+          }
+
+          if(ionic.Platform.is('browser') !== true) {
+            if(window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
+              chkCameraAndMicroPhoneSettings();
             }
-            $rootScope.providerName = '';
-            $rootScope.PolicyNo = '';
-            $rootScope.healthPlanID = '';
-            $rootScope.NewHealth = '';
-        }
-        $rootScope.userAgeForIntake = '';
-        $rootScope.updatedPatientImagePath = '';
-        $rootScope.newDependentImagePath = '';
-        $rootScope.appointmentDisplay = '';
-        $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+          }else{
+            $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+          }
 
-        if (angular.isUndefined(P_img)) {
-            var ptImage = getInitialForName(P_Fname + " " + P_Lname);
-            P_img = generateTextImage(ptImage, $rootScope.brandColor);
-        }
-        $rootScope.locationdet=Pat_locat;
-        $rootScope.PatientImageSelectUser = P_img;
-        $rootScope.PatientFirstName = P_Fname;
-        $rootScope.PatientLastName = P_Lname;
-        $rootScope.PatientAge = P_Age;
-        //  $rootScope.userAgeForIntake = ageFilter.getDateFilter(P_Age);
-        $rootScope.SelectPatientAge = $rootScope.PatientAge;
-        $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
-        $rootScope.patientId = P_Id;
-        $scope.doGetConutriesList();
-        $rootScope.doGetCreditDetails();
-        $rootScope.passededconsultants();
-        $rootScope.doGetLocations();
-        $rootScope.doGetIndividualScheduledConsulatation();
-        $rootScope.doGetonDemandAvailability();
-        $rootScope.doGetListOfCoUsers();
-        if (!$rootScope.P_isAuthorized) {
-            $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
-            $rootScope.SubmitCardValidation($scope.ErrorMessage);
-        }
-        if (clickEvent === "patientClick") {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
-        } else if (clickEvent === "sideMenuClick") {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
-        } else if (clickEvent === "sideMenuClickApoointments") {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
-        } else if (clickEvent === "tab.patientConcerns") {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
-        } else {
-            $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
-        }
-        //$state.go('tab.patientDetail');
-        //$scope.doGetUserHospitalInformation();
+          if($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
+              $rootScope.locationdet=Pat_locat;
+              $rootScope.PatientImageSelectUser = P_img;
+              $rootScope.PatientFirstName = P_Fname;
+              $rootScope.PatientLastName = P_Lname;
+              $rootScope.PatientAge = P_Age;
+              //  $rootScope.userAgeForIntake = ageFilter.getDateFilter(P_Age);
+              $rootScope.SelectPatientAge = $rootScope.PatientAge;
+              $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+              $rootScope.patientId = P_Id;
+              $scope.doGetConutriesList();
+             $rootScope.doGetCreditDetails();
+              $rootScope.passededconsultants();
+              $rootScope.doGetLocations();
+              $rootScope.doGetIndividualScheduledConsulatation();
+              $rootScope.doGetonDemandAvailability();
+              $rootScope.doGetListOfCoUsers();
+              if (!$rootScope.P_isAuthorized) {
+                  $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                  $rootScope.SubmitCardValidation($scope.ErrorMessage);
+              }
+              if ($rootScope.P_isAuthorized=undefined) {
+                  $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                  $rootScope.SubmitCardValidation($scope.ErrorMessage);
+              }
+              if (clickEvent === "patientClick") {
+                  $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+              } else if (clickEvent === "sideMenuClick") {
+                  $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
+              } else if (clickEvent === "sideMenuClickApoointments") {
+                  $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
+              } else if (clickEvent === "tab.patientConcerns") {
+                  $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
+              } else {
+                  $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
+              }
+              //$state.go('tab.patientDetail');
+              //$scope.doGetUserHospitalInformation();
+          }
 
-    }
-
+      }
 
     $rootScope.GoUserPatientDetails = function(Pat_locat, P_Id, clickEvent) {
         if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
@@ -4962,7 +4998,7 @@ LoginService.getScheduledConsulatation(params);
 
               $rootScope.doPutConsultationSave();
           } else if ($rootScope.appointmentsPage === true) {
-            if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0) {
+            if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
               $rootScope.doPostDepitDetails();
             } else {
               $scope.doGetHospitalInformation();
