@@ -351,7 +351,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.drawSVGCIconForVideo = function(iconName, color) {
         return "<svg class='icon-" + iconName + " svgIcon" + iconName + " svgIconForVideo'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
->>>>>>> 764c8d9889784bff7768e0d5246187bcc87cca9a
+
     };
 
     $rootScope.canceloption = function() {
