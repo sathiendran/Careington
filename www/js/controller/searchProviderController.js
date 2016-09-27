@@ -68,7 +68,9 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 providerSearchKey: providerSearchKey,
                 success: function(data) {
-                  cordova.plugins.Keyboard.close();
+                  if(ionic.Platform.is('browser') !== true) {
+                    cordova.plugins.Keyboard.close();
+                  }
                     $rootScope.searchProviderList = [];
                     if (data.data != '') {
                         $('#startSearchProvider').hide();
@@ -147,8 +149,8 @@ angular.module('starter.controllers')
 
 
                 },
-                error: function(data) {
-                  if(data==null){
+                error: function(data,status) {
+                  if(status===0 ){
 
                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
                        $rootScope.Validation($scope.ErrorMessage);

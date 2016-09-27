@@ -64,7 +64,7 @@ angular.module('starter.controllers')
       $(".ion-google-place-container").css({
           "display": "none"
       });
-      
+
       $ionicBackdrop.release();
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
@@ -789,8 +789,8 @@ $scope.locat=false;
                 $scope.doGetExistingConsulatation();
                 //$state.go('tab.ChronicCondition');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -1599,7 +1599,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
             accessToken: $rootScope.accessToken,
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
-              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0) {
+              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
                 $rootScope.doPostDepitDetails();
               } else {
                   $scope.ConsultationSave = "success";
@@ -1653,8 +1653,8 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                   }
               }
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -1686,8 +1686,8 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
               $rootScope.enableCreditVerification = "block";
               $scope.ReceiptTimeout();
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);

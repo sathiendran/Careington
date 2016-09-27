@@ -299,8 +299,8 @@ angular.module('starter.controllers')
                     }
                 }
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -350,8 +350,8 @@ angular.module('starter.controllers')
                 $rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' ' + $rootScope.primaryPatientLastName;
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -627,8 +627,8 @@ angular.module('starter.controllers')
 
                 //	$state.go('tab.patientConcerns');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -741,8 +741,8 @@ angular.module('starter.controllers')
                 $rootScope.PatientImageSelectUser = $rootScope.patientExistInfomation.profileImagePath;
                 $scope.doGetExistingPatientName();
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -777,8 +777,8 @@ angular.module('starter.controllers')
                 }
                 $state.go('tab.waitingRoom');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
