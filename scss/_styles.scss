@@ -6551,7 +6551,7 @@ font-size: 55px;
 		margin: 0px;
 		text-align: center;
 		img {
-			margin-top: 36px;
+			margin-top: 0px;
 			z-index: -1;
 			opacity: 0.3;
 			width: 400px;
@@ -7089,6 +7089,7 @@ input[type="checkbox"]:checked + label{
     margin-top:-12px;
 }
 .register{
+  margin-top:-3px;bottom:39px !important;
 				h2{
 					@include font($fontFamily_xBold, bold, 18px);
 					color:#FFFFFF;
@@ -7580,7 +7581,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: -60px;
 			text-align: center;
 			img {
-				margin-top: 36px;
+				margin-top: -11px;
 				z-index: -1;
 				opacity: 0.3;
 				width: 290px;
@@ -7599,7 +7600,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: -60px;
 			text-align: center;
 			img {
-				margin-top: 36px;
+				margin-top: 0px;
 				z-index: -1;
 				opacity: 0.3;
 				width: 252px;
@@ -7623,7 +7624,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: 0px;
 			text-align: center;
 			img {
-				margin-top: 36px;
+				margin-top: 0px;
 				z-index: -1;
 				opacity: 0.3;
 				width: 252px;
@@ -7668,7 +7669,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: 0px;
 			text-align: center;
 			img {
-				margin-top: 36px;
+				margin-top: 0px;
 				z-index: -1;
 				opacity: 0.3;
 				width: 253;
@@ -7691,7 +7692,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: 0px;
 			text-align: center;
 			img {
-				margin-top: 36px;
+				margin-top: 0px;
 				z-index: -1;
 				opacity: 0.3;
 				width: 290px;
@@ -7711,7 +7712,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: 0px;
 			text-align: center;
 			img {
-				margin-top: 36px;
+				margin-top: 0px;
 				z-index: -1;
 				opacity: 0.3;
 				width: 290px;
@@ -7738,7 +7739,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: 0px;
 			text-align: center;
 			img {
-				margin-top: 36px;
+				margin-top: 0px;
 				z-index: -1;
 				opacity: 0.3;
 				width: 290px;
@@ -7761,7 +7762,7 @@ border-bottom: 2px solid #cbcbcb;
 			margin: 0px;
 			text-align: center;
 			img {
-				margin-top: 36;
+				margin-top: 6;
 				z-index: -1;
 				opacity: 0.3;
 				width: 290px;
@@ -9354,9 +9355,28 @@ margin-top: 23px !important;
 font-size: 145%;
 font-family: Glober Bold;
 }
-.yellow{
-     color:yellow;
-}
+
 #loginEmail{
+  display:block;
   .place{height:50px;}
+}
+
+.terms-back{
+  line-height: 45px;
+  font-weight: normal;
+  .registerback{
+  top: -1px;
+  position: relative;
+  padding-left: 3px;
+  font-size: 17px;
+}
+.button_back{
+  color: #fff;
+    border-radius: 7px;
+    width: 105px;
+    text-decoration: none;
+    cursor: pointer;
+    margin:8px;
+
+}
 }
