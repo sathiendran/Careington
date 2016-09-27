@@ -620,6 +620,9 @@ angular.module('starter.controllers')
         });
 
         session.on('streamCreated', function(event) {
+            if (event.stream.name.indexOf('Screen Share') < 0) {
+                $rootScope.participantsCount = +$rootScope.participantsCount + 1;
+            }
             window.localStorage.setItem('isVideoCallProgress', "Yes");
             //alert('stream created from type: ' + event.stream.videoType);
             $('#pleaseWaitVideo').remove();
@@ -703,9 +706,6 @@ angular.module('starter.controllers')
             var imgThumbPath = $rootScope.APICommonURL + '/images/Patient-Male.gif';
             imgThumbPath = 'img/default-user.jpg';
             var videoSource = '';
-            if (participantName.indexOf('Screen Share') < 0) {
-                $rootScope.participantsCount = $rootScope.participantsCount + 1;
-            }
             if (participantName.indexOf('Screen Share') >= 0) {
                 participantName = participantName.replace('Screen Share By :', '');
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'><i class='ion-share'></i></span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
@@ -766,7 +766,7 @@ angular.module('starter.controllers')
                 connectedStreams.splice(index, 1);
             }
             if (event.stream.name.indexOf('Screen Share') >= 0) {
-                $rootScope.participantsCount = $rootScope.participantsCount - 1;
+                $rootScope.participantsCount = +$rootScope.participantsCount - 1;
             }
             $scope.removeVideoThumbnail(tbStreamVal);
 

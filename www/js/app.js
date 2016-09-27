@@ -106,8 +106,18 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
+      $('body').bind('touchstart',function() {
+          clearInterval(myTimer);
+      });
+
+      $('body').bind('touchend', function() {
+          myTimer = setInterval(function() {
+              goInactive();
+          }, 1800000);
+      });
+
       var timeoutID;
-    function setup() {
+      function setup() {
         this.addEventListener("mousemove", resetTimer, false);
         this.addEventListener("mousedown", resetTimer, false);
         this.addEventListener("keypress", resetTimer, false);
@@ -119,7 +129,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         this.addEventListener("touchend", resetTimer, false);
         startTimer();
     }
-    setup();
+    //setup();
 
     function startTimer() {
         timeoutID = window.setTimeout(goInactive, 1800000);
@@ -132,7 +142,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
-      //  alert('Inactive');
         if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
               navigator.notification.alert(

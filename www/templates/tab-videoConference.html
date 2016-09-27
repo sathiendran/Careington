@@ -20,7 +20,7 @@
         <div id="thumbVideos" style="background-color: #303132 !important; top: {{clinicianVideoHeight}}px !important; height: 100px; float: left; width: 100%; position: absolute;">
             <div class="swiper-container" style="height: 100px !important;">
                 <div class="swiper-wrapper" style="width: 100%;">
-                    
+
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="vdioCameraControlPanel" style="display: none;">
               <div id="vdioSwitch" class="clsVideoCameraControls" ng-click="toggleCamera();">
-                  <div class="vdioIcon" ng-click="toggleCamera();">
+                  <div class="vdioIcon">
                       <i class="ion-ios-reverse-camera vdioCallIcon"></i>
                   </div>
                   <div class="vdioText" style="margin-left: -4px !important;">
@@ -73,7 +73,7 @@
                   </div>
               </div>
               <div id="vdioOff" class="clsVideoCameraControls" ng-click="stopPublishingVideo();">
-                  <div class="vdioIcon" ng-click="toggleSelfCamera();">
+                  <div class="vdioIcon">
                       <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera_mute')"></i>
                   </div>
                   <div class="vdioText">
