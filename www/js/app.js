@@ -233,6 +233,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   'No Internet Connection', // title
                   'Ok' // buttonName
               );
+
             }
             return false;
         }
@@ -261,22 +262,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   $rootScope.ClearRootScope();
                 }
             }
-          }, 600000);
-          // var i = 0;
-          // setInterval(function(){
-          //   $.ajax({
-          //     type: 'GET',
-          //     headers: util.getHeaders(),
-          //     url: 'https://snap-qa.com/api/v2/timezones',
-          //     dataType: 'json',
-          //     success: function(data){
-          //       console.log('Success at ' + i);
-          //     },
-          //     failure: function(error){
-          //       console.log('Failed at ' + 1);
-          //     }
-          //   });
-          // }, 10000);
+
+
+          }, 1800000);
+
       }
 
         setTimeout(function() {
@@ -326,36 +315,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 } else if (EXTRA['env'] != "" && loginPageEnv != 'Single') {
                     $state.go('tab.login');
                 }
-                /*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-                                $state.go('tab.singleTheme');
-                            }*/
             }
-          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                  $scope.getTokenExpireTime = new Date(window.localStorage.getItem("tokenExpireTime"));
-                  var getCurrentTimeforLogout =  new Date();
-                //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                  if(getTokenExpireTime <= getCurrentTimeforLogout) {
-                        $rootScope.ClearRootScope();
-                  }
-            }*/
-          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                  var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
-                  var getCurrentTimeforLogout =  new Date();
-                //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                if(window.localStorage.getItem("external_load") == null || window.localStorage.getItem("external_load") == "") {
-                	if ($rootScope.currState.$current.name != "tab.chooseEnvironment" && $rootScope.currState.$current.name != "tab.login" && $rootScope.currState.$current.name != "tab.loginSingle" && $rootScope.currState.$current.name != "tab.singleTheme" && $rootScope.currState.$current.name != "tab.waitingRoom") {
-                      if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
-                        navigator.notification.alert(
-                            'Your session timeout.', // message
-                            null,
-                            $rootScope.alertMsgName,
-                            'Ok' // buttonName
-                        );
-                        $rootScope.ClearRootScope();
-                     }
-                  }
-              }
-            }*/
         }, 2000);
         $ionicPlatform.on('resume', function() {
             setTimeout(function() {
@@ -405,47 +365,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                     } else if (EXTRA['env'] != "" && loginPageEnv != 'Single') {
                         $state.go('tab.login');
                     }
-                    /*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-                                       $state.go('tab.singleTheme');
-                                   }*/
                 }
-              /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                      var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
-                      var getCurrentTimeforLogout =  new Date();
-                    //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                      if(window.localStorage.getItem("external_load") == null || window.localStorage.getItem("external_load") == "") {
-                        if ($rootScope.currState.$current.name != "tab.chooseEnvironment" && $rootScope.currState.$current.name != "tab.login" && $rootScope.currState.$current.name != "tab.loginSingle" && $rootScope.currState.$current.name != "tab.singleTheme"  && $rootScope.currState.$current.name != "tab.waitingRoom") {
-                            if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
-                                navigator.notification.alert(
-                                    'Your session timeout.', // message
-                                    null,
-                                    $rootScope.alertMsgName,
-                                    'Ok' // buttonName
-                                );
-                                $rootScope.ClearRootScope();
-                             }
-                        }
-                    }
-                }*/
 
             }, 2000);
         });
-/*
- $ionicPlatform.registerBackButtonAction(function (e) {
-              if ($ionicHistory.backView()) {
-                   $ionicHistory.goBack();
-               } else {
-                   navigator.app.exitApp();
-                 }
-               e.preventDefault();
-               return false;
-           }, 101);*/
-
-    //    });
-
-
-
-
     });
 
 })
@@ -460,9 +383,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
    // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
-   IdleProvider.idle(600); // in seconds
-    IdleProvider.timeout(600); // in seconds
-    KeepaliveProvider.interval(60); // in seconds
+   //IdleProvider.idle(600); // in seconds
+  //  IdleProvider.timeout(600); // in seconds
+  //  KeepaliveProvider.interval(60); // in seconds
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content|file):/);

@@ -5903,15 +5903,23 @@ color: white;
   border-bottom: 1px solid #C4C5C3;
 }
 .editheight{margin-left:0px; float: left;}
-    .addhealthplan{
+.addhealthplan{
       padding-top: 24px !important;
-    }
-    .consultcontent .topfont{margin-left:-50px;}
-    .timetopfont{margin-left: -33px;}
-    .providertopfont{margin-left: -32px;}
-    .list .tabvalue p .avaticon {
+}
+.consultcontent .topfont{margin-left:-50px;}
+.timetopfont{margin-left: -33px;}
+.providertopfont{margin-left: -32px;}
+.list .tabvalue p .avaticon {
       margin-left: -60px;
       color: #FDD8C5 !important;
+}
+.noapptResult {
+text-align: center;
+border: none;
+color: #616462;
+font-weight: bold;
+font-size: 19px;
+top: 190px;
 }
 .authorizedIcon-Android {
 position: relative;
@@ -6017,6 +6025,12 @@ color: #999999 !important;
 #centercolor {
 color: white;
 margin-top: 37px !important;
+font-size: 160%;
+font-family: Glober Bold;
+}
+#addusercancel {
+color: white;
+margin-top: 27px !important;
 font-size: 160%;
 font-family: Glober Bold;
 }
@@ -8664,6 +8678,7 @@ input.ion-google-place[readonly] {
    padding: 27px 10px ;
  }
 .loginEmail {
+    margin: 17px 10px;
   .icon-mail {
     font-size: 50px;
     color: #CBCBCB;
@@ -9303,7 +9318,7 @@ input.ion-google-place[readonly] {
     }
   }
 .place {
-    height: 49px;
+   height: 50px;
     .input {
       font-size: 17px;
     }
@@ -9333,7 +9348,15 @@ input.ion-google-place[readonly] {
   font-size: 25px !important;
 }
 }
-
+#addusercancel {
+color: white;
+margin-top: 23px !important;
+font-size: 145%;
+font-family: Glober Bold;
+}
 .yellow{
      color:yellow;
+}
+#loginEmail{
+  .place{height:50px;}
 }

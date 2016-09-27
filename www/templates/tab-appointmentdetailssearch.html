@@ -134,7 +134,7 @@
                 <ion-item  class="noapptResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no appointments found!</ion-item>
 
     </div>
-    <div  ng-if="!scheduledList.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
+    <div  ng-if="scheduledList.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
     </ion-content>
 
 
