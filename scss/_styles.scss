@@ -9380,3 +9380,81 @@ font-family: Glober Bold;
 
 }
 }
+.imgDepenandtAlt{
+  text-align: center;
+  width: 55px;
+  height: 55px;
+  /* float: left; */
+  background-color: #000000;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+  font-size: 27px;
+  font-family: 'Glober xBold';
+  padding-top: 22px;
+}
+.userAccountPanel{
+    text-align: center;
+    color: white;
+    margin-top: -20px !important;
+    a{
+      color: #8E8E8E !important;
+      div.icon{
+        /* height: 35px;
+        width: 35px;
+        border: 1px solid;
+        border-radius: 50%;
+        margin-left: 30%;
+        padding-top: 0px;
+        margin-left: 10%;
+        position: absolute; */
+        float: left;
+        width: 100%;
+
+      }
+      i{
+        font-size: 25px;
+        position: relative;
+        _top: 5px;
+        svg{
+          border: 1px solid;
+          font-size: 35px;
+          padding: 5px;
+          border-radius: 50%;
+        }
+      }
+      p{
+        margin-top: 55px !important;
+        font-family: 'Glober Regular' !important;
+        font-size: 13px;
+      }
+    }
+    .uAPHomeIcon{
+
+    }
+    .uAPlProfileImage{
+      img{
+        margin-left: 0px !important;
+        width: 70px;
+        height: 70px;
+        color: white;
+        border-radius: 50%;
+      }
+      span{
+        text-align: center;
+        width: 70px;
+        height: 70px;
+        float: left;
+        background-color: #000000;
+        color: white;
+        border-radius: 50%;
+        font-size: 35px;
+        font-family: 'Glober xBold';
+        padding-top: 30px;
+        margin-left: 10%;
+      }
+    }
+    .uAPChangePatient{
+
+    }
+}

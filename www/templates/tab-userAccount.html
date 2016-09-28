@@ -27,19 +27,32 @@
              </h1>
          </div>
 
-			<div class="item item-image-icon" >
-				<a class="lefthome">
-					<span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-					<p class="homecontent">Account Home</p>
-				</a>
-				<a class="item-avatar itemhead">
-					<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
-				</a>
-				<a class="rightpatient" ng-href="#/tab/userhome">
-					<span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-					<p class="patientcontent" >Change Patient</p>
-				</a>
-			</div>
+
+				<div class="row userAccountPanel">
+					<div class="col col-33 uAPHomeIcon">
+							<a href=''>
+								<div class="icon">
+										<i ng-bind-html="drawSVGCIcon('home');"></i>
+								</div>
+								<div>
+								<p>Account Home</p>
+							</div>
+							</a>
+					</div>
+					<div class="col col-33 uAPlProfileImage">
+							<img src="https://emerald.snap-qa.com/api/v2.1/images/bc1d088b-756d-42c1-b9b8-4895cbfc8fe5" />
+							<!-- <span>PY</span> -->
+					</div>
+				  <div class="col col-33 uAPChangePatient">
+						<a href=''>
+							<div class="icon">
+									<i ng-bind-html="drawSVGCIcon('group');"></i>
+							</div>
+							<p>Change Patient</p>
+						</a>
+					</div>
+				</div>
+
 		</div>
 	</ion-header-bar>
 
