@@ -404,13 +404,13 @@ angular.module('starter.controllers')
               $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
               //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
               //$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-              if (data.data[0].account.profileImagePath !== '' && typeof data.data[0].account.profileImagePath !== 'undefined') {
+            //  if (data.data[0].account.profileImagePath !== '' && typeof data.data[0].account.profileImagePath !== 'undefined') {
                   $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-              } else {
+            /*  } else {
                   $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
                   var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
                   $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
-              }
+              }*/
               $rootScope.address = data.data[0].address;
               $rootScope.city = data.data[0].city;
               $rootScope.createDate = data.data[0].createDate;
@@ -501,11 +501,11 @@ angular.module('starter.controllers')
               $rootScope.RelatedPatientProfiles = [];
 
               angular.forEach(data.data, function(index, item) {
-                  if (!index.profileImagePath) {
+                /*  if (!index.profileImagePath) {
                       var ptInitial = getInitialForName(index.patientName);
                       index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
                       index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
-                  }
+                  }*/
 
                   if (typeof index.gender !== 'undefined') {
                       if (index.gender === 'F') {

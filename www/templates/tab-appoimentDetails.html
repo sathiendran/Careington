@@ -32,9 +32,10 @@
       <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
       <p class="homecontent">Account Home</p>
     </a>
-    <a class="item-avatar itemhead">
+    <!--<a class="item-avatar itemhead">
       <p><img ng-src="{{appointmentsPatientImage}}" class="topimage"></p>
-    </a>
+    </a>-->
+    	<a class="item-avatar itemhead" ng-bind-html="drawImage(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName)"></div>
     <a class="rightpatient" ng-href="#/tab/userhome">
       <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
       <p class="patientcontent"  >Change Patient</p>
@@ -55,7 +56,8 @@
     <div class="list aptlist Appointmentdetails-{{devicename}}" >
 
         <a class="item item-avatar patavatar">
-             <img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">
+             <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
+             <span class="patimage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].fullName)"></span>
               <p class="pathead">With</p>
               <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
                 <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>

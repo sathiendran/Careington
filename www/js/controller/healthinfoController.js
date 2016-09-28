@@ -1,6 +1,9 @@
 angular.module('starter.controllers')
 
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService,$window,$ionicBackdrop,Idle) {
+  $rootScope.drawSVGCIcon = function(iconName) {
+    return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
+  };
     $rootScope.patientAuthorize = true;
     $rootScope.patientUnAuthorize = false;
     $rootScope.patientAuthorizeValue = 'Y';
@@ -618,18 +621,22 @@ $scope.editDob=function(){
 
             if($rootScope.height1==undefined){
               var hghtval=$('#heightuser').val();
-              var remspace=hghtval.split(" ");
-              $rootScope.height1=remspace[0];
-              $scope.healthInfoHeight =  $rootScope.height1;
+              if(hghtval != '') {
+                var remspace=hghtval.split(" ");
+                $rootScope.height1=remspace[0];
+                $scope.healthInfoHeight =  $rootScope.height1;
+              }
             }else{
               $scope.healthInfoHeight =  $rootScope.height1;
             }
 
             if($rootScope.height2==undefined){
               var hghtinval=$('#heightuser').val();
-              var reminspace=hghtval.split(" ");
-              $rootScope.height2=reminspace[2];
-              $scope.healthInfoHeight2 =  $rootScope.height2;
+              if(hghtinval != '') {
+                var reminspace=hghtval.split(" ");
+                $rootScope.height2=reminspace[2];
+                $scope.healthInfoHeight2 =  $rootScope.height2;
+              }
             }else{
                 $scope.healthInfoHeight2 =  $rootScope.height2;
             }
@@ -1285,7 +1292,7 @@ $scope.editDob=function(){
             $scope.userDOB = $filter('date')(date, "yyyy-MM-dd");
             $('#healthInfoDOB').val($scope.userDOB);
 
-            if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
+          /*  if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
                 var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime();
                 var ageDate = new Date(ageDifMs);
                 $scope.userAge = Math.abs(ageDate.getUTCFullYear() - 1970);
@@ -1297,7 +1304,7 @@ $scope.editDob=function(){
                     $rootScope.timezoneDisplay = 'none';
 
                 }
-            }
+            }*/
     }
 
     $scope.chkPreviousPageForRequiredDetaisUsers = function(nextPage) {
@@ -1940,13 +1947,13 @@ $scope.editDob=function(){
                         } else if (index.gender == 'F') {
                             var gender = "Female";
                         }
-                        if (index.imagePath) {
+                      //  if (index.imagePath) {
                             $scope.coUserImagePath = index.imagePath;
-                        } else {
+                    /*    } else {
                             var coName = index.name + " " + index.lastname; //alert(coName);
                             $scope.coUserName = getInitialForName(coName);
                             $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
-                        }
+                        }*/
 
                         $rootScope.listOfCoUserDetails.push({
                             'address': index.address,
@@ -2325,12 +2332,6 @@ $scope.editDob=function(){
             return this.value.indexOf('?') >= 0;
         }).remove();
     }, 100);
-
-    $rootScope.drawSVGCIcon = function(iconName) {
-        return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
-        exit;
-    };
-
 
 
 

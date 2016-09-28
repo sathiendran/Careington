@@ -8,8 +8,7 @@
 				<img ng-src="{{logo}}" style="position:relative;"/>
 				<h2 class="">{{Hospital123}} <br><span>{{Hospital}}</span></h2>
 			</div>
-
-
+  <form ng-submit="checkSingleHospitalLogin()">
 			<div class="card loginEmail" id="loginEmail" >
 					<div class="regcontent">
 						<h2 class="newSingLogText">Login</h2>
@@ -46,6 +45,7 @@
 
 					</div>
 			</div>
+    </form>
 				<div class="forgot_password_textSingle"> <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
 
 
@@ -71,7 +71,7 @@
         <div class="powerdBySnapMD">
         <!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes'); return false;"><b>v1.3.4<b></a>-->
 
-        <a><b>v7.1.7<b></a>
+        <a><b>v7.1.13<b></a>
 
         </div>
       </ion-footer-bar>

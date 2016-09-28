@@ -21,7 +21,8 @@
 
 				<div class="calendar_subHeader" >
 					<div class="subHeader_image" >
-						<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
+						<!--<img src="{{PatientImageSelectUser}}"  class="listImgView"  />-->
+						<span class="listImgView" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></span>
 					</div>
 					<div class="subHeader_content-{{deviceName}} ellipsis" >
 						<div class="ellipsis subHeader_content_name" >

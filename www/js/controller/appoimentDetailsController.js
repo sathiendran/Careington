@@ -689,14 +689,7 @@ angular.module('starter.controllers')
             success: function(data) {
                 $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
-                /*if(data.data[0].profileImagePath === '/images/default-user.jpg' || data.data[0].profileImagePath === '/images/Patient-Male.gif') {
-                  var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
-                  $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
-                }else {
-                  $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
-                }*/
-
-                if (typeof data.data[0].profileImagePath != 'undefined' && data.data[0].profileImagePath != '') {
+                /*if (typeof data.data[0].profileImagePath != 'undefined' && data.data[0].profileImagePath != '') {
                     var hosImage = data.data[0].profileImagePath;
                     if (hosImage.indexOf("http") >= 0) {
                         $rootScope.appointmentsPatientImage = hosImage;
@@ -706,7 +699,8 @@ angular.module('starter.controllers')
                 } else {
                     var ptInitial = getInitialForName($rootScope.appointmentsPatientFirstName + ' ' + $rootScope.appointmentsPatientLastName);
                     $rootScope.appointmentsPatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
-                }
+                }*/
+                  $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
 
             },
             error: function(data,status) {
@@ -742,13 +736,14 @@ angular.module('starter.controllers')
                   } else if (index.gender === 'F') {
                       var docGender = "Female";
                   }
-                  if (data.data[0].profileImagePath !== '' && typeof data.data[0].profileImagePath!== 'undefined') {
+                  /*if (data.data[0].profileImagePath !== '' && typeof data.data[0].profileImagePath!== 'undefined') {
                              $rootScope.DoctorImage = data.data[0].profileImagePath;
                          } else {
                              $rootScope.DoctorImage = apiCommonURL + '/images/default-user.jpg';
                              var ptInitial = getInitialForName(data.data[0].firstName + ' ' + data.data[0].lastName);
                              $rootScope.DoctorImage = generateTextImage(ptInitial, $rootScope.brandColor);
-                         }
+                         }*/
+                        $rootScope.DoctorImage = data.data[0].profileImagePath;
 
                     $rootScope.scheduledDoctorDetails.push({
                         /*'businessAddress': index.businessAddress,

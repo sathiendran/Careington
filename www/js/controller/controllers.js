@@ -333,12 +333,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
       if(!angular.isUndefined(imagePath) && imagePath !== '') {
-      //  $('.ListTextTitle').css('top','-54px');
-      //  $('.ListHomeUser_pTitle').css('margin-top','-59px');
-        return "<img ng-src=" +imagePath +" src="+imagePath+" class='UserHmelistImgView'>";
+        if (imagePath.indexOf("http") >= 0) {
+            var image = imagePath;
+        } else {
+            var image = apiCommonURL + imagePath;
+        }
+        return "<img ng-src=" +image +" src="+image+" class='UserHmelistImgView'>";
       }else {
-    //    $('.ListTextTitle').css('top','-50px');
-      //  $('.ListHomeUser_pTitle').css('margin-top','-55px');
         if(!angular.isUndefined(lastName) && lastName !== '') {
             return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0) + lastName.charAt(0)  +"</sapn></div>");
         } else{
@@ -1145,6 +1146,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.frontPage = 'tab.' + currentPage;
         $rootScope.backProviderSearchKey = '';
         if (currentPage === "loginSingle") {
+          $rootScope.regStep1 = {};
             $state.go('tab.registerStep1');
         } else {
             $state.go('tab.searchprovider');
@@ -1968,13 +1970,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
                 //$rootScope.PatientImage = ($rootScope.APICommonURL + $rootScope.patientAccount.profileImagePath).replace(new RegExp("\\../","gm"),"/");
-                if ($rootScope.patientAccount.profileImagePath !== '' && typeof $rootScope.patientAccount.profileImagePath !== 'undefined') {
+              //  if ($rootScope.patientAccount.profileImagePath !== '' && typeof $rootScope.patientAccount.profileImagePath !== 'undefined') {
                     $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-               } else {
+              /* } else {
                     $rootScope.PatientImage = apiCommonURL + '/images/default-user.jpg';
                     var ptInitial = getInitialForName($rootScope.patientInfomation.patientName + ' ' + $rootScope.patientInfomation.lastName);
                     $rootScope.PatientImage = generateTextImage(ptInitial, $rootScope.brandColor);
-                }
+                }*/
                 $rootScope.address = data.data[0].address;
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
@@ -2239,14 +2241,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.RelatedPatientProfiles = [];
 
                 angular.forEach(data.data, function(index, item) {
-                var imgDate = new Date();
+              /*  var imgDate = new Date();
                     if (!index.profileImagePath) {
                         var ptInitial = getInitialForName(index.patientName);
                         index.profileImagePath = $rootScope.APICommonURL + '/images/default-user.jpg';
                         index.profileImagePath = generateTextImage(ptInitial, $rootScope.brandColor);
                     } else {
                       index.profileImagePath = index.profileImagePath + '?' + imgDate.getTime()
-                    }
+                    }*/
 
 
                     if (typeof index.gender !== 'undefined') {
@@ -4058,21 +4060,21 @@ LoginService.getScheduledConsulatation(params);
 
                             $scope.paticipatingPatientName = $scope.paticipatingPatient.person.name.given + ' ' + $scope.paticipatingPatient.person.name.family;
                             $scope.paticipatingPatientInitial = getInitialForName($scope.paticipatingPatientName);
-                            if ($scope.paticipatingPatient.person.photoUrl) {
+                          //  if ($scope.paticipatingPatient.person.photoUrl) {
                                 $scope.paticipatingPatientPhoto = $scope.paticipatingPatient.person.photoUrl;
-                            } else {
+                          /*  } else {
                                 $scope.paticipatingPatientPhoto = generateTextImage($scope.paticipatingPatientInitial, $rootScope.brandColor);
-                            }
+                            }*/
                             $scope.paticipatingPhysician = $filter('filter')(angular.fromJson(index.participants), {
                                 "participantTypeCode": "2"
                             })[0];
                             $scope.paticipatingPhysicianName = $scope.paticipatingPhysician.person.name.given + ' ' + $scope.paticipatingPhysician.person.name.family;
                             $scope.paticipatingPhysicianInitial = getInitialForName($scope.paticipatingPhysicianName);
-                            if ($scope.paticipatingPhysician.person.photoUrl) {
+                          //  if ($scope.paticipatingPhysician.person.photoUrl) {
                                 $scope.paticipatingPhysicianPhoto = $scope.paticipatingPhysician.person.photoUrl;
-                            } else {
+                          /*  } else {
                                 $scope.paticipatingPhysicianPhoto = generateTextImage($scope.paticipatingPhysicianInitial, $rootScope.brandColor);
-                            }
+                            }*/
                             $rootScope.getScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
                                 'appointmentId': index.appointmentId,
@@ -4878,13 +4880,13 @@ LoginService.getScheduledConsulatation(params);
                           } else if (index.gender == 'F') {
                               var gender = "Female";
                           }
-                          if (index.imagePath) {
+                        //  if (index.imagePath) {
                               $scope.coUserImagePath = index.imagePath;
-                          } else {
+                        /*  } else {
                               var coName = index.name + " " + index.lastname; //alert(coName);
                               $scope.coUserName = getInitialForName(coName);
                               $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
-                          }
+                          }*/
 
                           $rootScope.listOfCoUserDetails.push({
                               'address': index.address,
@@ -5056,10 +5058,10 @@ LoginService.getScheduledConsulatation(params);
         $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
         $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
 
-        if (angular.isUndefined(P_img)) {
+      /*  if (angular.isUndefined(P_img)) {
             var ptImage = getInitialForName(P_Fname + " " + P_Lname);
             P_img = generateTextImage(ptImage, $rootScope.brandColor);
-        }
+        }*/
 
         if(ionic.Platform.is('browser') !== true) {
           if(window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {

@@ -28,7 +28,8 @@
                <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
-               <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
+               <!--<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>-->
+							 <p ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></p>
            </a>
            <a class="rightpatient" ng-href="#/tab/userhome">
                <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
@@ -66,7 +67,8 @@
 		 <div >
 					 <div class="list listfirst" >
 				 <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
-						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+						<!--<img class="apptimage" ng-src="{{PatientImageSelectUser}}">-->
+						<p class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></p>
 						<h2 class="aptsname">Next Appointment</h2>
 						<p class="appmarg">
 								<span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -75,7 +77,8 @@
 				</a>
 
 				 <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
-						<img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+						<!--<img class="apptimage" ng-src="{{PatientImageSelectUser}}">-->
+						<p class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></p>
 						<p class="appmarg" style="margin-top: 14px;">
 								<span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
 						</p>

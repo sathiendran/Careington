@@ -33,7 +33,8 @@
                <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
-               <p><img src="{{PatientImageSelectUser}}" class="topimage" style=""></p>
+               <!--<p><img src="{{PatientImageSelectUser}}" class="topimage" style=""></p>-->
+							 	<p ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></p>
            </a>
             <a class="rightpatient" ng-href="#/tab/userhome">
                <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>

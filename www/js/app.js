@@ -87,7 +87,19 @@ if (deploymentEnv == 'Single') {
         Hospital = "Hello420";
         HospitalTag = 'Medical marijuana cards, quickly';
         ssoURL = "http://52.34.151.119/hello420/login/";
-    }
+    } else if (cobrandApp == 'ambientcare') {
+      singleStagingHospitalId = 161;
+      singleHospitalId = 212;
+      singleQAHospitalId = 164;
+      singleSandboxHospitalId = '';
+      brandColor = '#193def';
+      logo = 'img/ambientcare.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/1456c0dc-9322-4502-98c4-d26e501f0dc0';
+      Hospital = "Ambient Virtual Care";
+      HospitalTag = 'Virtual Consultation Platform';
+      ssoURL = "";
+  }
+
 
 
 }
@@ -208,7 +220,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }, 100);
 
         function onOffline() {
-          
+
             navigator.notification.alert(
                 'Please make sure that you have network connection.', // message
                 null,
@@ -295,7 +307,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 } else if (EXTRA['env'] != "" && loginPageEnv != 'Single') {
                     $state.go('tab.login');
                 }
-            }          
+            }
         }, 2000);
         $ionicPlatform.on('resume', function() {
             setTimeout(function() {

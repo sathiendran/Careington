@@ -23,7 +23,8 @@
            </a>
 
            <a class="item-avatar itemhead" ng-show="flag">
-              <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
+              <!--<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>-->
+                <p ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></a>
            </a>
 
            <a class="rightpatient" ng-href="#/tab/userhome">
@@ -91,9 +92,10 @@
 
               <div class="row">
                   <div class="passedImage-{{deviceName}}">
-                      <a class="item item-avatar avatitem">
+                      <!--<a class="item item-avatar avatitem">
                           <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                      </a>
+                      </a>-->
+                      <a class="item item-avatar avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
                   </div>
                   <div class="passedDate-{{deviceName}}">
                       <p class="colfamily"> {{passedData.consultationDate}}</p>
@@ -191,9 +193,10 @@
                </div>-->
                <div class="row">
                    <div class="passedImage-{{deviceName}}">
-                       <a class="item item-avatar avatitem">
+                       <!--<a class="item item-avatar avatitem">
                            <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                       </a>
+                       </a>-->
+                       <a class="item item-avatar avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
                    </div>
                    <div class="passedDate-{{deviceName}}">
                        <p class="colfamily">{{misseddata.enddate}}</p>
@@ -275,9 +278,10 @@
                </div>-->
                <div class="row">
                    <div class="passedImage-{{deviceName}}">
-                       <a class="item item-avatar avatitem">
+                       <!--<a class="item item-avatar avatitem">
                            <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                       </a>
+                       </a>-->
+                       <a class="item item-avatar avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
                    </div>
                    <div class="passedDate-{{deviceName}}">
                        <p class="colfamily">{{droppedData.consultationDate}}</p>

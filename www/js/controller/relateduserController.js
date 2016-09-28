@@ -350,13 +350,13 @@ $rootScope.authorised=relateDependentAuthorize;
                           } else if (index.gender == 'F') {
                               var gender = "Female";
                           }
-                          if(index.imagePath){
+                        //  if(index.imagePath){
                               $scope.coUserImagePath = index.imagePath;
-                          }else{
+                        /*  }else{
                               var coName = index.name + " " + index.lastname; //alert(coName);
                               $scope.coUserName = getInitialForName(coName);
                               $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
-                          }
+                          }*/
 
                           $rootScope.listOfCoUserDetails.push({
                               'address': index.address,
@@ -445,12 +445,12 @@ $rootScope.authorised=relateDependentAuthorize;
                         } else if (index.gender == 'F') {
                             var gender = "Female";
                         }
-                        if(index.profileImagePath){
+                      //  if(index.profileImagePath){
                             $scope.iDependentPatientPhoto = index.profileImagePath;
-                        }else{
+                      /*  }else{
                             $scope.iDependentPatientInitial = getInitialForName(index.patientName);
                             $scope.iDependentPatientPhoto = generateTextImage($scope.iDependentPatientInitial, $rootScope.brandColor);
-                        }
+                        }*/
                         $rootScope.spdate=index.birthdate;
                         $rootScope.patage=new Date($rootScope.spdate);
                         $rootScope.listOfAccountDependents.push({

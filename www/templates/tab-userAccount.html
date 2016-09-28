@@ -32,9 +32,10 @@
 					<span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
 					<p class="homecontent">Account Home</p>
 				</a>
-				<a class="item-avatar itemhead">
+				<!--<a class="item-avatar itemhead">
 					<p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
-				</a>
+				</a>-->
+					<div class="item-avatar itemhead" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
 				<a class="rightpatient" ng-href="#/tab/userhome">
 					<span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
 					<p class="patientcontent" >Change Patient</p>
