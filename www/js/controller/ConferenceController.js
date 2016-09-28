@@ -1,6 +1,33 @@
 angular.module('starter.controllers')
 
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover) {
+    if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+        $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
+        $rootScope.accessToken = window.localStorage.getItem('accessToken');
+        $rootScope.videoSessionId = window.localStorage.getItem('videoSessionId');
+        $rootScope.videoApiKey = window.localStorage.getItem('videoApiKey');
+        $rootScope.videoToken = window.localStorage.getItem('videoToken');
+        $rootScope.PatientImageSelectUser = window.localStorage.getItem('PatientImageSelectUser');
+        $rootScope.PatientFirstName = window.localStorage.getItem('PatientFirstName');
+        $rootScope.PatientLastName = window.localStorage.getItem('PatientLastName');
+        if (session != null) {
+            session.disconnect();
+            session = null;
+        }
+        if(connection != null){
+          connection = null;
+        }
+    }else{
+        window.localStorage.setItem('ConferenceCallConsultationId', $rootScope.consultationId);
+        window.localStorage.setItem('accessToken', $rootScope.accessToken);
+        window.localStorage.setItem('isVideoCallProgress', "No");
+        window.localStorage.setItem('videoSessionId', $rootScope.videoSessionId);
+        window.localStorage.setItem('videoApiKey', $rootScope.videoApiKey);
+        window.localStorage.setItem('videoToken', $rootScope.videoToken);
+        window.localStorage.setItem('PatientImageSelectUser', $rootScope.PatientImageSelectUser);
+        window.localStorage.setItem('PatientFirstName', $rootScope.PatientFirstName);
+        window.localStorage.setItem('PatientLastName', $rootScope.PatientLastName);
+    }
     var isCallEndedByPhysician = false;
     $rootScope.participantsCount = +1;
     $scope.doGetExistingConsulatation = function() {
@@ -25,6 +52,7 @@ angular.module('starter.controllers')
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId === 72) {
+                        window.localStorage.setItem('isVideoCallProgress', "No");
                         $scope.doGetExistingConsulatationReport();
                     }
                 }
@@ -592,6 +620,10 @@ angular.module('starter.controllers')
         });
 
         session.on('streamCreated', function(event) {
+            if (event.stream.name.indexOf('Screen Share') < 0) {
+                $rootScope.participantsCount = +$rootScope.participantsCount + 1;
+            }
+            window.localStorage.setItem('isVideoCallProgress', "Yes");
             //alert('stream created from type: ' + event.stream.videoType);
             $('#pleaseWaitVideo').remove();
             $('#subscriber').css('background-color', 'black !important');
@@ -675,13 +707,13 @@ angular.module('starter.controllers')
             imgThumbPath = 'img/default-user.jpg';
             var videoSource = '';
             if (participantName.indexOf('Screen Share') >= 0) {
-                imgThumbPath = 'img/share-icon.jpg';
+                participantName = participantName.replace('Screen Share By :', '');
+                thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'><i class='ion-share'></i></span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
+            }else{
+                participantName = participantName.replace('Screen Share By :', '');
+                var participantNameInitial = getInitialForName(participantName);
+                thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }
-            if (participantName.indexOf('Screen Share') < 0) {
-                $rootScope.participantsCount = $rootScope.participantsCount + 1;
-            }
-            participantName = participantName.replace('Screen Share By :', '');
-            thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 100px; text-align: center !important;'><img style='width: 50px !important; height: 50px !important; border-radius: 50%;' src='" + imgThumbPath + "' class='listImgView'/><p class='ellipsis'>" + participantName + "</p></div></div>");
         };
 
 
@@ -734,7 +766,7 @@ angular.module('starter.controllers')
                 connectedStreams.splice(index, 1);
             }
             if (event.stream.name.indexOf('Screen Share') >= 0) {
-                $rootScope.participantsCount = $rootScope.participantsCount - 1;
+                $rootScope.participantsCount = +$rootScope.participantsCount - 1;
             }
             $scope.removeVideoThumbnail(tbStreamVal);
 
@@ -790,7 +822,14 @@ angular.module('starter.controllers')
                 }, 100);
                 session.publish(publisher);
                 OT.updateViews();
-                thumbSwiper.appendSlide("<div id='thumbPlayer-patient' style='color: white !important; width: 100px; float: left; height: 90px; text-align: center; margin-left: 10px; margin-top:10px;'><div id='thumb-patient' class='swiper-slide claVideoThumb' style='width: 100px; float: left; height: 100px; text-align: center !important;'><img style='width: 50px !important; height: 50px !important; border-radius: 50%;' src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/><p class='ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div></div>");
+                if($rootScope.PatientImageSelectUser && $rootScope.PatientImageSelectUser != ''){
+                    thumbSwiper.appendSlide("<div class='videoThumbnail'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                }
+                else{
+                    var ptFullName = $rootScope.PatientFirstName + " " + $rootScope.PatientLastName;
+                    var patientInitialStr = getInitialForName(ptFullName);
+                    thumbSwiper.appendSlide("<div class='videoThumbnail'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                }
                 $('#videoCallSessionTimer').runner({
                   autostart: true,
                   milliseconds: false,
@@ -879,13 +918,8 @@ angular.module('starter.controllers')
             //OT.updateViews();
         };
         $rootScope.conferenceVideoLabel = '';
-        $ionicPopover.fromTemplateUrl('videoCameraControl.html', {
-          scope: $scope
-        }).then(function(popover) {
-          $scope.videoCameraControlPopover = popover;
-        });
 
-         $scope.openVideoCameraPopover = function($event) {
+        $scope.openVideoCameraPopover = function($event) {
             if($rootScope.publishVideo){
               $scope.videoCameraControlPopover.show($event);
               $('.popover-arrow').hide();
@@ -895,25 +929,6 @@ angular.module('starter.controllers')
               $scope.toggleSelfCamera();
             }
          };
-
-         $scope.closeVideoCameraPopover = function() {
-            $scope.videoCameraControlPopover.hide();
-         };
-
-         //Cleanup the popover when we're done with it!
-         $scope.$on('$destroy', function() {
-            $scope.videoCameraControlPopover.remove();
-         });
-
-         // Execute action on hide popover
-         $scope.$on('popover.hidden', function() {
-            // Execute action
-         });
-
-         // Execute action on remove popover
-         $scope.$on('popover.removed', function() {
-            // Execute action
-         });
 
          $scope.toggleSelfCamera = function() {
             if ($scope.publishVideo) {
@@ -968,6 +983,7 @@ angular.module('starter.controllers')
                       if (index == 1) {
                           $state.go('tab.videoConference');
                       } else if (index == 2) {
+                          window.localStorage.setItem('isVideoCallProgress', "No");
                           callEnded = true;
                         navigator.notification.alert(
                             'Consultation ended successfully!', // message
@@ -980,6 +996,7 @@ angular.module('starter.controllers')
                   'Confirmation:', ['No', 'Yes']
               );
             }else{
+              window.localStorage.setItem('isVideoCallProgress', "No");
               callEnded = true;
               navigator.notification.alert(
                   'Consultation ended successfully!', // message

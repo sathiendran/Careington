@@ -118,8 +118,18 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
-    var timeoutID;
-    function setup() {
+      $('body').bind('touchstart',function() {
+          clearInterval(myTimer);
+      });
+
+      $('body').bind('touchend', function() {
+          myTimer = setInterval(function() {
+              goInactive();
+          }, 1800000);
+      });
+
+      var timeoutID;
+      function setup() {
         this.addEventListener("mousemove", resetTimer, false);
         this.addEventListener("mousedown", resetTimer, false);
         this.addEventListener("keypress", resetTimer, false);
@@ -131,7 +141,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         this.addEventListener("touchend", resetTimer, false);
         startTimer();
     }
-    setup();
+    //setup();
 
     function startTimer() {
         timeoutID = window.setTimeout(goInactive, 1800000);
@@ -144,7 +154,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
-      //  alert('Inactive');
         if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
               navigator.notification.alert(
@@ -220,22 +229,29 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }, 100);
 
         function onOffline() {
-
-            navigator.notification.alert(
-                'Please make sure that you have network connection.', // message
-                null,
-                'No Internet Connection', // title
-                'Ok' // buttonName
-            );
-            return false;
-            if ($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
-                $state.go('tab.connectionLost');
+            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                $('#thumbVideos').remove();
+                $('#videoControls').remove();
+                session.unpublish(publisher)
+                session.disconnect();
+                $('#publisher').hide();
+                $('#subscriber').hide();
+                OT.updateViews();
+                $state.go('tab.videoLost', { retry : 1 });
+            }else{
+              navigator.notification.alert(
+                  'Please make sure that you have network connection.', // message
+                  null,
+                  'No Internet Connection', // title
+                  'Ok' // buttonName
+              );
             }
+            return false;
         }
 
         function onOnline() {
-            if ($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
-                $state.go('tab.videoConference');
+            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                $state.go('tab.videoLost', { retry : 2 });
             }
         }
 
@@ -257,7 +273,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   $rootScope.ClearRootScope();
                 }
             }
+
+
           }, 1800000);
+
       }
 
         setTimeout(function() {
@@ -971,6 +990,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
+    .state('tab.videoLost', {
+        url: '/videoLost/:retry',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-videoLost.html',
+                controller: 'videoLostCtrl'
+            }
+        }
+    })
   /*  .state('tab.check', {
         url: '/check',
         views: {
@@ -1010,13 +1038,15 @@ function generateTextImage(text, bgcolor){
 function getInitialForName(name){
     var initial = "";
     if(name){
-		name = name.toUpperCase();
+		    name = name.toUpperCase();
         name = name.replace('  ', ' ');
         name = name.trim()
         var names = name.split(' ');
         initial = initial + names[0].substring(0, 1);
         if(names[1])
             initial = initial + names[1].substring(0, 1);
+        else
+            initial = name.substring(0, 2);
     }
     return initial;
 }
