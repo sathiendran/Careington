@@ -678,7 +678,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $(".ion-google-place-container").css({
                     "display": "none"
                 });
-
             } else {
                 $(".ion-google-place-container").css({
                     "display": "none"
@@ -1511,11 +1510,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.pass = {};
     $scope.doGetToken = function() {
-        $scope.doGetCodesSet();
         if ($('#password').val() === '') {
             $scope.ErrorMessage = "Please enter your password";
             $rootScope.Validation($scope.ErrorMessage);
         } else {
+          $('#loginPwd').hide();
+          $('#loginPwdVerify').show();
             console.log($scope.password);
             var params = {
                 email: $rootScope.UserEmail,
@@ -1532,10 +1532,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     //  $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
 
                     if (typeof data.data[0].access_token == 'undefined') {
+                        $('#loginPwdVerify').hide();
+                        $('#loginPwd').show();
                         $scope.ErrorMessage = "Incorrect Password. Please try again";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
                         $scope.tokenStatus = 'alert-success';
+                        $scope.doGetCodesSet();
                         $scope.chkPatientFilledAllRequirements();
                         //    Idle.watch();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
@@ -1543,6 +1546,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     window.localStorage.setItem('rootScope', angular.fromJson($rootScope));
                 },
                 error: function(data, status) {
+                  $('#loginPwdVerify').hide();
+                  $('#loginPwd').show();
                     var networkState = navigator.connection.type;
                     if (networkState != 'none') {
                         if (status == '401' || status == '403') {
@@ -2138,6 +2143,8 @@ $rootScope.hospitalId = singleHospitalId;
 
             },
             error: function(data, status) {
+                $('#loginPwdVerify').hide();
+                $('#loginPwd').show();
                 if (status === 0) {
 
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
@@ -2295,6 +2302,8 @@ $rootScope.hospitalId = singleHospitalId;
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
                 $scope.doGetCodesSet();
                 if (ReDirectPage == 'tab.userhome') {
+                  $('#loginPwdVerify').hide();
+                  $('#loginPwd').show();
                     if (deploymentEnv === "Single") {
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
                     } else {

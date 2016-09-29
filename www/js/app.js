@@ -156,6 +156,21 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     function goInactive() {
         if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
+              if ($rootScope.currState.$current.name === "tab.cardDetails" || $rootScope.currState.$current.name === "tab.healthinfo" ) {
+                  var gSearchLength = $('.ion-google-place-container').length;
+                  if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
+                      $ionicBackdrop.release();
+                      $(".ion-google-place-container").css({
+                          "display": "none"
+                      });
+
+                  } else {
+                      $(".ion-google-place-container").css({
+                          "display": "none"
+                      });
+                      navigator.app.backHistory();
+                  }
+              }
               navigator.notification.alert(
                    'Your session timed out.', // message
                    null,

@@ -160,5 +160,9 @@ angular.module('starter.controllers')
             LoginService.postRegisterDetails(params);
         }
 
+        $scope.GoBackToStep1 = function() {
+          $state.go('tab.registerStep1'); 
+        }
+
 
     })

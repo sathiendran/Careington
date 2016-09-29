@@ -1,16 +1,15 @@
 
 <ion-view>
     <div id="Error_Message" ></div>
-	<ion-content class="register" style="background-color: {{brandColor}};" scroll="true" >
+	<ion-content class="register regStep2Con" style="background-color: {{brandColor}};" scroll="true" >
     <div class="terms-back">
-      <a class="button_back icon ion-chevron-left" ng-href="#/tab/registerStep1" target="_self">
+      <div class="button_back icon ion-chevron-left"  ng-click="GoBackToStep1();">
         <span class="registerback">Back</span>
-      </a>
-
+      </div>
      </div>
 		<div class="epassbg epassbgreg2">
 			<img ng-src="{{logo}}" style="position:relative;" />
-			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>
+			<h2 style="margin-top: -126px; padding-top: 37px;">{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>
 		</div>
 
 
