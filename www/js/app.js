@@ -1050,6 +1050,22 @@ function getInitialForName(name){
     }
     return initial;
 }
+function getInitialFromName(firstName, LastName){
+    var initial = "";
+    var name = firstName + ' ' + LastName;
+    if(name){
+		    name = name.toUpperCase();
+        name = name.replace('  ', ' ');
+        name = name.trim()
+        var names = name.split(' ');
+        initial = initial + names[0].substring(0, 1);
+        if(names[1])
+            initial = initial + names[1].substring(0, 1);
+        else
+            initial = name.substring(0, 2);
+    }
+    return initial;
+}
 
 function getOnlyPhoneNumber(phoneNumber){
     return phoneNumber.substring(phoneNumber.length-10, phoneNumber.length);
