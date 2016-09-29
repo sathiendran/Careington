@@ -9540,6 +9540,40 @@ input.ion-google-place[readonly] {
         padding-top: 20px;
     }
 }
+#loginPwdVerify {
+    margin-top: 39px;
+    .verifyPwdText {
+      text-align: center;
+      color: #999999;
+      font-family: 'Glober Semibold';
+      padding: 38px 0px;
+    }
+    .pwdPatImage {
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        img {
+            width: 75px;
+            height: 75px;
+            position: relative;
+            top: -37px;
+            border-radius: 50%;
+        }
+    }
+    .regcontent {
+        margin-top: 32px;
+        h2 {
+            font-size: 42px;
+        }
+    }
+    .pwdTextbox {
+        padding-top: 20px;
+    }
+    .btn1 {
+      text-align: center;
+      margin: 10px 0px 43px 0px;
+    }
+}
 .birthContent {
     .labelcolor {
         width: 100% !important;
@@ -10232,4 +10266,7 @@ input.ion-google-place[readonly] {
     .coUserLinkName {
         margin-top: 11px;
     }
+}
+.regStep2Con {
+  padding-top: 23px !important;
 }
