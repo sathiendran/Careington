@@ -762,6 +762,7 @@ angular.module('starter.controllers')
 
                         'dob': index.dob,
                         'firstName': index.firstName,
+                        'lastName': index.lastName,
                         'fullName': index.fullName,
                         'gender': docGender,
                         'profileImagePath': $rootScope.DoctorImage

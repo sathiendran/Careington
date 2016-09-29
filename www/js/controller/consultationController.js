@@ -68,7 +68,7 @@ angular.module('starter.controllers')
                $('.sidehomeconsult').addClass("uhome");
              }
             }
-          
+
             if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
                 checkAndChangeMenuIcon = $interval(function() {
                     $rootScope.checkAndChangeMenuIcon();
@@ -807,6 +807,7 @@ angular.module('starter.controllers')
                         $rootScope.missedAppointDocDetails.push({
                             'dob': index.dob,
                             'firstName': index.firstName,
+                            'lastName': index.lastName,
                             'fullName': index.fullName,
                             'gender': docGender,
                             'profileImagePath': index.profileImagePath

@@ -20,10 +20,10 @@
 			<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
 
 				<div class="calendar_subHeader" >
-					<div class="subHeader_image" >
-						<!--<img src="{{PatientImageSelectUser}}"  class="listImgView"  />-->
-						<span class="listImgView" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></span>
-					</div>
+					<!--<div class="subHeader_image" >
+						<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
+					</div>-->
+					<div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
 					<div class="subHeader_content-{{deviceName}} ellipsis" >
 						<div class="ellipsis subHeader_content_name" >
 							<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>

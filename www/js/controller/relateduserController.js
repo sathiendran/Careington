@@ -66,6 +66,26 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
+        $rootScope.drawImage = function(imagePath, firstName, lastName) {
+          if(!angular.isUndefined(imagePath) && imagePath !== '') {
+            if (imagePath.indexOf("http") >= 0) {
+                var image = imagePath;
+                return "<img ng-src=" +image +" src="+image+" class='UserHmelistImgView'>";
+            } else {
+              if(!angular.isUndefined(lastName) && lastName !== '') {
+                  return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase()  +"</sapn></div>");
+              } else{
+                  return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase()+"</sapn></div>");
+              }
+            }
+          }else {
+            if(!angular.isUndefined(lastName) && lastName !== '') {
+                return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase()  +"</sapn></div>");
+            } else{
+                return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase()+"</sapn></div>");
+            }
+          }
+        };
 
   $rootScope.couserslists = true;
   $rootScope.dependentuserslist = true;
@@ -221,15 +241,16 @@ $rootScope.authorised=relateDependentAuthorize;
             } else {
                 $scope.relationship = '';
             }
+            var getDrawImage = $rootScope.drawImage(dependentDetails.profileImagePath,dependentDetails.patientFirstName,dependentDetails.patientLastName);
             if($rootScope.authorised == "F")
             {
               var myPopup = $ionicPopup.show({
 
                 //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
-                 title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                // title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
+                  //subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
-
+                  title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</div> ",
                   templateUrl: 'templates/popupTemplate.html',
                   scope: $scope,
                   buttons: [{
@@ -261,10 +282,10 @@ $rootScope.authorised=relateDependentAuthorize;
             var myPopup = $ionicPopup.show({
 
                 //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
-                 title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                 //title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
+                //  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
                   //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
-
+                  title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</div> ",
                   templateUrl: 'templates/unauthorizedpopup.html',
                   scope: $scope,
                   buttons: [{
@@ -768,9 +789,10 @@ $rootScope.authorised=relateDependentAuthorize;
             } else {
                 $scope.relationship = '';
             }
+            var getDrawImage = $rootScope.drawImage(coUserDetails.imagePath,coUserDetails.name,coUserDetails.lastname);
             var confirmPopup = $ionicPopup.confirm({
-                title: "<a class='item-avatar'>  <img src='" + coUserDetails.imagePath + "'><span><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
-                subTitle: "<p class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></div> <div class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</div> ",
+                //subTitle: "<div class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</div>",
                 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
                 templateUrl: 'templates/coUserTemplate.html',
                 buttons: [{

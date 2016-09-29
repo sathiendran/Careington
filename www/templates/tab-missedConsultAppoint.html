@@ -26,7 +26,7 @@
    </h1>
   </div>
 
- <div class="item item-image-icon" >
+ <!--<div class="item item-image-icon" >
     <a class="lefthome" ng-href="#/tab/userAccount">
       <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
       <p class="homecontent">Account Home</p>
@@ -38,6 +38,27 @@
       <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
       <p class="patientcontent"  >Change Patient</p>
     </a>
+  </div>-->
+  <div class="row userAccountPanel">
+    <div class="col col-33 uAPHomeIcon">
+        <a ng-href='#/tab/userAccount'>
+          <div class="icon">
+              <i ng-bind-html="drawSVGCIcon('home');"></i>
+          </div>
+          <div>
+          <p>Account Home</p>
+        </div>
+        </a>
+    </div>
+    <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(missedAppointDetails.patphoto,missedAppointDetails.missedPatFirstName,missedAppointDetails.missedPatLastName)"></div>
+    <div class="col col-33 uAPChangePatient">
+      <a ng-href='#/tab/userhome'>
+        <div class="icon">
+            <i ng-bind-html="drawSVGCIcon('group');"></i>
+        </div>
+        <p>Change Patient</p>
+      </a>
+    </div>
   </div>
 
 </div>
@@ -51,13 +72,15 @@
     <div class="list aptlist">
 
         <a class="item item-avatar patavatar">
-             <img ng-src="{{missedAppointDocDetails[0].profileImagePath}}" class="patimage">
-              <p class="pathead">With</p>
-              <h2 class="appfname"><span >{{missedAppointDocDetails[0].fullName}}</h2>
+             <!--<img ng-src="{{missedAppointDocDetails[0].profileImagePath}}" class="patimage">-->
+             <div class="docAppointImage" ng-bind-html="drawImage(missedAppointDocDetails[0].profileImagePath,missedAppointDocDetails[0].firstName,missedAppointDocDetails[0].lastName)"></div>
+             <div>
+                <p class="pathead">With</p>
+                <h2 class="appfname"><span >{{missedAppointDocDetails[0].fullName}}</h2>
                 <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
-              </p>
-              <p class="patage">{{missedAppointDocDetails[0].gender}} <span> .</span> {{missedAppointDocDetails[0].dob | ageFilter}}</p>
-           </a>
+                <p class="patage">{{missedAppointDocDetails[0].gender}} <span> .</span> {{missedAppointDocDetails[0].dob | ageFilter}}</p>
+            </div>
+        </a>
 
         <ion-item class="ionitem contalign" style="text-align:center;" >
            <div class="item item-text-wrap">
