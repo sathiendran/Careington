@@ -2911,7 +2911,7 @@ a {
     margin-top: -16px !important;
 }
 .healthhead {
-    margin-top: 26px;
+    margin-top: 4px;
     text-align: center;
     color: #666666;
     font-size: 165%;
@@ -8579,15 +8579,15 @@ Pagination Styles
     opacity: 1 !important;
 }
 .accountHeader-IOS {
-    position: relative;
-    top: -13px;
+    margin-right: 48px;
 }
 .accountHeader-Android {
     margin-right: 30px;
 }
 .accountCancel-IOS {
     position: relative;
-    top: -13px;
+    top: -27px;
+    font-size: 18px;
 }
 .accountCancel-Android {
     top: -29px;
