@@ -129,10 +129,16 @@ angular.module('starter.controllers')
             $scope.$digest();
         });
         conHub.on("onCustomerDefaultWaitingInformation", function() {
+             window.localStorage.setItem("isCustomerInWaitingRoom", "Yes");
+             window.localStorage.setItem('accessToken', $rootScope.accessToken);
+             window.localStorage.setItem("waitingRoomConsultationId", +$rootScope.consultationId);
             $scope.waitingMsg = "Please Wait....";
             $scope.$digest();
         });
         conHub.on("onConsultationStarted", function() {
+             window.localStorage.setItem("isCustomerInWaitingRoom", "No");
+             if(alive_waiting_room_pool)
+                 clearInterval(alive_waiting_room_pool);
             $scope.waitingMsg = "Please wait...";
             /*
 			   cordova.plugins.notification.local.schedule([
@@ -168,6 +174,9 @@ angular.module('starter.controllers')
                 $rootScope.videoApiKey = data.apiKey;
                 $rootScope.videoToken = data.token;
                 if ($rootScope.videoSessionId !== "" && $rootScope.videoToken !== "") {
+                     if(alive_waiting_room_pool)
+                         clearInterval(alive_waiting_room_pool);
+                     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
                     $state.go('tab.videoConference');
                 }
 

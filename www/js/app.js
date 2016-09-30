@@ -20,8 +20,6 @@ var loginPageEnv = 'Single';
 var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
 var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 
-
-
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
     deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
@@ -119,14 +117,18 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
       // Idle.watch();
 
       $('body').bind('touchstart',function() {
-          clearInterval(myTimer);
-      });
-
-      $('body').bind('touchend', function() {
+          if(typeof myTimer != "undefined")
+               clearInterval(myTimer);
           myTimer = setInterval(function() {
               goInactive();
           }, 1800000);
       });
+
+     //  $('body').bind('touchend', function() {
+     //      myTimer = setInterval(function() {
+     //          goInactive();
+     //      }, 1800000);
+     //  });
 
       var timeoutID;
       function setup() {
@@ -288,10 +290,32 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   $rootScope.ClearRootScope();
                 }
             }
-
-
           }, 1800000);
 
+          var i = 0;
+          var alive_waiting_room_pool;
+          alive_waiting_room_pool = setInterval(function(){
+               if(window.localStorage.getItem("isCustomerInWaitingRoom") == "Yes"){
+                    i++;
+                    vConsultationWatingId = window.localStorage.getItem("waitingRoomConsultationId");
+                    vAccessToken = window.localStorage.getItem("accessToken");
+                    var alive_timestamp_url = apiCommonURL + '/api/v2/patients/activeconsultations/' + vConsultationWatingId + '/alive-timestamp';
+                    var reqHeaders = util.getHeaders();
+                    reqHeaders['Authorization'] = "Bearer " + vAccessToken;
+                    $.ajax({
+                        type: 'PUT',
+                        headers: reqHeaders,
+                        url: alive_timestamp_url,
+                        //dataType: 'json',
+                        success: function(data){
+                          console.log('Success at ' + i);
+                        },
+                        failure: function(error){
+                          console.log('Failed at ' + 1);
+                        }
+                    });
+               }
+          }, 30000);
       }
 
         setTimeout(function() {

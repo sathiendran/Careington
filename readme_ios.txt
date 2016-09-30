@@ -8,28 +8,28 @@ Plugins to be installed
 	7. ionic plugin add https://github.com/apache/cordova-plugin-inappbrowser
 	8. ionic plugin add org.apache.cordova.dialogs
 	9. ionic plugin add org.apache.cordova.device
-	
+
 
 Notes to remember
 	1. Remember to change the signalR reference in index.html on very release to different env.
 	2. Remember to update the build number in login.html in every build.
 	3. Remember to test the app full flow before releasing it to store to make sure everything is working.
-	
+
 Opentok Android:
 
 www/js/opentok.js - 720 - //element.parentNode.removeChild(element);
 					604 -  delete streamElements[streamId];
-					
+
 C:\Users\RINSOFT\workspace\snapmdV2\platforms\android\src\com\tokbox\cordova
 
-opentokandroidplugin.java - 
-	
+opentokandroidplugin.java -
+
 	33, import com.opentok.android.Stream.StreamVideoType;
 	36, import android.util.DisplayMetrics;
 		import com.opentok.android.BaseVideoRenderer;
 	117,  //widthRatio = (float) mProperty.getDouble(ratioIndex);
           //heightRatio = (float) mProperty.getDouble(ratioIndex + 1);
-		
+
 		DisplayMetrics metrics = new DisplayMetrics();
 		cordova.getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -39,9 +39,9 @@ opentokandroidplugin.java -
 	277, mSubscriber.setStyle(BaseVideoRenderer.STYLE_VIDEO_SCALE, BaseVideoRenderer.STYLE_VIDEO_FILL);
 
 
-Change URL Scheme for co-brand app	
-	
-	
+Change URL Scheme for co-brand app
+
+
 Android Release
 com.snap.connectedcare.production
 
@@ -55,18 +55,18 @@ C:\Program Files\Java\jdk1.8.0_25\bin>
 	2.	jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore "D:\workspace\snapmdV3\platforms\android\ant-build\VirtualCare.keystore" "D:\workspace\snapmdV3\platforms\android\ant-build\CordovaApp-release-unsigned.apk" VirtualCare
 
 F:\adt-bundle-windows-x86-20140702\adt-bundle-windows-x86-20140702\sdk\build-too
-ls\21.0.0>		
+ls\21.0.0>
 
 	3.	zipalign -v 4 "D:\workspace\snapmdV3\platforms\android\ant-build\CordovaApp-release-unsigned.apk" "D:\workspace\snapmdV3\platforms\android\ant-build\VirtualCare.apk"
 
-	
+
 IOS:
 
  ionic plugin rm cordova-plugin-customurlscheme
     device org.apache.cordova.device
     ionic plugin rm de.appplant.cordova.plugin.local-notification
     ionic plugin add de.appplant.cordova.plugin.local-notification
-		
+
 opentok:
 
 opentokplugin.m
@@ -75,9 +75,9 @@ opentokplugin.m
     [streamData setObject: stream.streamId forKey: @"streamId" ];
      [streamData setObject: [NSNumber numberWithInt: stream.videoType] forKey: @"videoType" ];
      [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.height] forKey: @"videoHeight" ];
-     [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.width] forKey: @"videowidth" ];	
-     
-     
+     [streamData setObject: [NSNumber numberWithInt: stream.videoDimensions.width] forKey: @"videowidth" ];
+
+
       NSString* jsString = [NSString stringWithFormat:@
                                "window.setTimeout(function() { \n"
                                "handleOpenURL(\"%@\"); \n"
@@ -108,13 +108,17 @@ Change Line No 138 & 139
 'X-Api-Key': '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38',
 
 Line No 239
-hide apiCommonURL = 'https://connectedcare.md';	
-enable apiCommonURL = 'https://snap-stage.com';  
+hide apiCommonURL = 'https://connectedcare.md';
+enable apiCommonURL = 'https://snap-stage.com';
 
 Change Icon & Splash Screen from Resource folder
 Root Folder - > Resource - > Iocn & Splash Screen
 
 ---------------------************************----------------------------
 
+New Steps to release to Fabric.
 
+cd platforms/IOS
+pod init
 
+Follow https://fabric.io/kits/ios/crashlytics/install

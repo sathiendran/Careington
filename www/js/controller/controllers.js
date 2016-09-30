@@ -322,6 +322,7 @@ if (deploymentEnv === "Sandbox") {
 }
 
 
+
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
 
 
@@ -366,7 +367,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
 
-    $rootScope.envList = ["Snap.QA", "Sandbox", "Staging"];
+    $rootScope.envList = ["Snap.QA", "Sandbox", "Staging", "Snap-test"];
 
     $scope.ChangeEnv = function(env) {
         $window.localStorage.setItem('tokenExpireTime', '');
@@ -386,6 +387,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.APICommonURL = 'https://snap-stage.com';
             apiCommonURL = ' https://snap-stage.com';
             api_keys_env = "Staging";
+        }else if (env === "Snap-test") {
+            $rootScope.APICommonURL = 'https://snap-test.com';
+            apiCommonURL = ' https://snap-test.com';
+            api_keys_env = "Snap.QA";
         }
         $state.go('tab.login');
     };
