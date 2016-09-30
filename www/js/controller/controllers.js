@@ -2220,7 +2220,7 @@ $rootScope.hospitalId = singleHospitalId;
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account!";
+                    $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else {
@@ -4496,7 +4496,7 @@ $state.go('tab.consultCharge');
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account!";
+                    $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else {
@@ -4569,6 +4569,9 @@ $state.go('tab.consultCharge');
                     if ($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
                         if (!angular.isUndefined($scope.individualScheduledConsultationList.account.relationship)) {
                             $rootScope.patRelationShip = $scope.individualScheduledConsultationList.account.relationship;
+                            if($rootScope.patRelationShip === 'Choose') {
+                              $rootScope.patRelationShip = '';
+                            }
                         } else {
                             $rootScope.patRelationShip = '';
                         }
@@ -4731,7 +4734,7 @@ $state.go('tab.consultCharge');
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account!";
+                    $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else {
@@ -4762,7 +4765,7 @@ $state.go('tab.consultCharge');
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account!";
+                    $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else {
@@ -4840,10 +4843,13 @@ $state.go('tab.consultCharge');
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account!";
+                    $rootScope.patientId = $rootScope.coUserAuthorization;
+                    $rootScope.getCoUserAunthent = 'notAuthorized';
+                    $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else {
+                    $rootScope.getCoUserAunthent = 'Authorized';
                     $rootScope.Passedconsultations = data.data;
                 }
 
@@ -4934,7 +4940,7 @@ $state.go('tab.consultCharge');
                     $rootScope.Validation($scope.ErrorMessage);
 
                 } else if (status === 401) {
-                    $scope.ErrorMessage = "You are not authorized to view this account!";
+                    $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
                     $rootScope.serverErrorMessageValidation();
@@ -5035,6 +5041,76 @@ $state.go('tab.consultCharge');
             $rootScope.alertMsgName,
             'Ok'
         );
+    }
+
+    $rootScope.GoToPatientDetailsFromRelatedUsers = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
+        $rootScope.coUserAuthorization =  $rootScope.patientId;
+        $rootScope.patientId = P_Id;
+        $rootScope.getCoUserAunthent = '';
+        $rootScope.passededconsultants();
+          if($rootScope.getCoUserAunthent === 'Authorized') {
+            if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
+              if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
+                    if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
+                        $rootScope.RelatedPatientProfiles.shift();
+                    }
+                }
+                $rootScope.providerName = '';
+                $rootScope.PolicyNo = '';
+                $rootScope.healthPlanID = '';
+                $rootScope.NewHealth = '';
+            }
+            $rootScope.userAgeForIntake = '';
+            $rootScope.updatedPatientImagePath = '';
+            $rootScope.newDependentImagePath = '';
+            $rootScope.appointmentDisplay = '';
+            $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+            $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+            if (ionic.Platform.is('browser') !== true) {
+                if (window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
+                    chkCameraAndMicroPhoneSettings();
+                }
+            } else {
+                $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+            }
+
+            if ($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
+                $rootScope.locationdet = Pat_locat;
+                $rootScope.PatientImageSelectUser = P_img;
+                $rootScope.PatientFirstName = P_Fname;
+                $rootScope.PatientLastName = P_Lname;
+                $rootScope.PatientAge = P_Age;
+                $rootScope.SelectPatientAge = $rootScope.PatientAge;
+                $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+                $rootScope.patientId = P_Id;
+                $scope.doGetConutriesList();
+                $rootScope.doGetCreditDetails();
+                $rootScope.doGetLocations();
+                $rootScope.doGetIndividualScheduledConsulatation();
+                $rootScope.doGetonDemandAvailability();
+                $rootScope.doGetListOfCoUsers();
+                if (!$rootScope.P_isAuthorized) {
+                    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                    $rootScope.SubmitCardValidation($scope.ErrorMessage);
+                }
+                if ($rootScope.P_isAuthorized = undefined) {
+                    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                    $rootScope.SubmitCardValidation($scope.ErrorMessage);
+                }
+                if (clickEvent === "patientClick") {
+                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+                } else if (clickEvent === "sideMenuClick") {
+                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
+                } else if (clickEvent === "sideMenuClickApoointments") {
+                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
+                } else if (clickEvent === "tab.patientConcerns") {
+                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
+                } else {
+                    $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
+                }
+            }
+        }
+
     }
 
 

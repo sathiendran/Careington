@@ -77,7 +77,7 @@
               <div class="list couses animated slideInLeft " id="couserlist">
                   <div ng-repeat="getCoUserDetails in listOfCoUserDetails">
                       <div>
-                          <a class="item" ng-click="GoToPatientDetails(location,getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')" ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = true">
+                          <a class="item" ng-click="GoToPatientDetailsFromRelatedUsers(location,getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')" ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = true">
                               <!--<img ng-if="getCoUserDetails.imagePath!=''" class="imgsize" src="{{getCoUserDetails.imagePath}}">-->
                               <div class="docAppointImage" ng-bind-html="drawImage(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname)"></div>
                               <!--  <img ng-if="getCoUserDetails.imagePath==''" class="imgsize" src="{{couserImage}}">-->

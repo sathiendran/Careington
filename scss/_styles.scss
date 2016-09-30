@@ -3778,7 +3778,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             margin-left: 0px;
             margin-top: 0px !important;
             div, p {
-                width: 67%;
+              //  width: 67%;
             }
             .UserHomeIcon {
                 color: #999999;
@@ -4664,6 +4664,9 @@ textarea {
     top: 64px;
     height: 100px;
     background-color: #444444 !important;
+    .userAccountPanel  {
+      margin-top: -8px !important;
+    }
 }
 #centercolor {
     color: white;
@@ -5983,6 +5986,7 @@ hr {
         height: 100%;
         border-radius: 50%;
         font-size: 15px;
+        border: 2px solid #fff;
         span {
             top: 8px;
         }
@@ -5990,6 +5994,7 @@ hr {
     .UserHmelistImgView {
       width: 32px;
       height: 32px;
+      border: 2px solid #fff;
     }
 }
 .consultsearchcontent {
@@ -6034,12 +6039,14 @@ hr {
             height: 44px;
             font-size: 20px;
             margin-top: 7px;
+            border: 2px solid #fff;
         }
         .patProfileImage {
             width: 42px;
             height: 42px;
             font-size: 20px;
             margin-top: 4px;
+            border: 2px solid #fff;
             span {
                 top: 13px;
             }
@@ -6061,12 +6068,14 @@ hr {
             height: 44px;
             font-size: 20px;
             margin-top: 7px;
+            border: 2px solid #fff;
         }
         .patProfileImage {
             width: 42px;
             height: 42px;
             font-size: 20px;
             margin-top: 7px;
+            border: 2px solid #fff;
             span {
                 top: 13px;
             }
@@ -6445,6 +6454,7 @@ top: inherit !important;
         border-radius: 50%;
         font-size: 15px;
         padding: 5px;
+        border: 2px solid #fff;
         span {
             top: 3px;
         }
@@ -6452,6 +6462,7 @@ top: inherit !important;
     .UserHmelistImgView {
       width: 32px;
       height: 32px;
+      border: 2px solid #fff;
     }
 }
 .ionicitem {
@@ -10090,10 +10101,7 @@ input.ion-google-place[readonly] {
             }
         }
     }
-    .button {
-        height: 49px !important;
-        font-size: 25px !important;
-    }
+
 }
 #addusercancel {
     color: white;
@@ -10118,6 +10126,7 @@ input.ion-google-place[readonly] {
     text-align: center;
     font-family: Glober XBold;
     font-size: 26px;
+    border: 2px solid #fff;
     span {
         position: relative;
         top: 20px;
@@ -10199,12 +10208,17 @@ input.ion-google-place[readonly] {
             font-size: 13px;
         }
     }
-    .uAPHomeIcon {} .patProfileImage {
+    .uAPHomeIcon {}
+    .patProfileImage {
         width: 70px;
         height: 70px;
         font-size: 35px;
         margin-left: auto;
         margin-right: auto;
+        border: 2px solid #fff;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
     }
     .uAPlProfileImage {
         img {
@@ -10213,6 +10227,10 @@ input.ion-google-place[readonly] {
             height: 70px;
             color: white;
             border-radius: 50%;
+            border: 2px solid #fff;
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.50);
         }
         /*span{
         text-align: center;
@@ -10269,4 +10287,7 @@ input.ion-google-place[readonly] {
 }
 .regStep2Con {
   padding-top: 23px !important;
+}
+.patAccoSubHeadHeight {
+  height: 100px;
 }
