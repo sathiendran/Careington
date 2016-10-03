@@ -805,7 +805,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('tab.userhome');
         $rootScope.hasRequiredFields = true;
-        $(".icon-menu").css("display", "block");
         $("#HealthFooter").css("display", "block");
     });
 

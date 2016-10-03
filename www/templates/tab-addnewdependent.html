@@ -108,7 +108,7 @@
 		  <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b></span>
 	   </div>
 	   <div class="col col-50 depGreyLabel">
-		   <input class="usertext" id="email"  type="email" value="" placeholder="Required" ng-model="email" required="required"  name="email" ng-blur="emailBlur()">
+		   <input class="usertext" id="email"  type="email" value="" placeholder="Optional" ng-model="email" required="required"  name="email" ng-blur="emailBlur()">
 
 		   <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
 	   </div>
@@ -331,7 +331,7 @@
 
 
 <div class="hide-on-keyboard-open">
-<ion-footer-bar class="bar bar-footer  footer-color footerrsheight" ng-show="permfooter" ng-click="buttonClicked = true" >
+<ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter" ng-click="buttonClicked = true" >
     <button class="submitbutton" type="submit" ng-click="postDependentDetails()" >
     <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
   <h1 class="title" id="centercolor" >Add Dependent</h1>

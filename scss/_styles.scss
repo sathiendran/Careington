@@ -4655,7 +4655,8 @@ textarea {
     margin-right: 10px;
 }
 .footer-color {
-    background-color: #A2D28A;
+    background-color: #A2D28A !important;
+    border-color: #A2D28A !important;
 }
 #footleft {
     width: 42px;
@@ -6580,6 +6581,7 @@ top: inherit !important;
         font-family: Glober Regular;
         line-height: 23px;
         color: rgba(5, 4, 9, 0.54) !important;
+        font-weight: normal;
     }
     .userdob {
         margin-left: 40px;
@@ -7967,7 +7969,11 @@ top: inherit !important;
     }
 }
 .epassbgreg2 {
-    margin: -4px !important;
+    margin: -38px !important;
+    h2 {
+      margin-top: -90px;
+      padding-top: 0px;
+    }
 }
 //.regstep2{margin-top:-14px;}
 .regcontent {
@@ -10143,6 +10149,7 @@ input.ion-google-place[readonly] {
 .terms-back {
     line-height: 45px;
     font-weight: normal;
+    margin-left: 11px;
     .registerback {
         top: -1px;
         position: relative;
@@ -10287,6 +10294,9 @@ input.ion-google-place[readonly] {
 }
 .regStep2Con {
   padding-top: 23px !important;
+  .card {
+    margin-top: 53px;
+  }
 }
 .patAccoSubHeadHeight {
   height: 100px;

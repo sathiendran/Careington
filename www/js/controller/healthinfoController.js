@@ -1367,7 +1367,6 @@ $scope.editDob=function(){
         $scope.cancelshow = false;
         $scope.doneshow = false;
         $scope.flag = false;
-        $(".icon-menu").css("display", "none");
         $("#HealthFooter").css("display", "none");
         $rootScope.updatedPatientImagePath = '';
             var date = new Date($rootScope.currentPatientDetails[0].dob);
@@ -1388,6 +1387,11 @@ $scope.editDob=function(){
 
                 }
             }*/
+    }
+
+    $scope.validationForChkingRequiredFields = function() {
+      $scope.ErrorMessage = "Please fill all required details ";
+      $rootScope.Validation($scope.ErrorMessage);
     }
 
     $scope.chkPreviousPageForRequiredDetaisUsers = function(nextPage) {
