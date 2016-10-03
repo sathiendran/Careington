@@ -2,7 +2,6 @@
 <ion-side-menu-content>
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 		<div class="buttons">
-			<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>-->
 			<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 		</div>
 		<h1 class="healthTitle-{{deviceName}} chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
@@ -22,29 +21,6 @@
 					</div>
 				</h1>
 			</div>
-			<!-- <div class="item item-image-icon itemiconcolor">
-				<a class="lefthome" ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userAccount')" >
-				  <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-				  <p class="homecontent">Account Home</p>
-				</a>
-
-
-				<a ng-if="updatedPatientImagePath == ''" class="item-avatar itemhead" ng-hide="flag">
-				   <p><img ng-src="{{PatientImageSelectUser}}" src="{{PatientImageSelectUser}}" class="topimage"  ng-click="showCameraActions();"></p>
-				</a>
-				<a ng-if="updatedPatientImagePath != ''" class="item-avatar itemhead" ng-hide="flag">
-				     <p><img ng-src="{{updatedPatientImagePath}}" src="{{updatedPatientImagePath}}" class="topimage"  ng-click="showCameraActions();"></p>
-				  </a>
-
-				<a class="item-avatar itemhead" ng-show="flag">
-				   <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
-				</a>
-
-				<a class="rightpatient" ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userhome')">
-				    <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
-				    <p class="patientcontent" >Change Patient</p>
-				</a>
-				</div>-->
 			<div class="row userAccountPanel">
 				<div class="col col-33 uAPHomeIcon">
 					<a  ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userAccount')" >
@@ -87,7 +63,7 @@
 	</ion-header-bar>
 	<form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
 		<ion-view title="Health Info Details" >
-			<ion-content class="ioncontentalign" ng-hide="addmore">
+			<ion-content class="ioncontentalign healthHeight" ng-hide="addmore">
 				<div >
 					<h4 class="healthhead">Demographics</h4>
 					<div class="list listprofile" ng-show="flag">
@@ -384,7 +360,7 @@
 					</div>
 				</div>
 			</ion-content>
-			<ion-content class="ioncontentalign"  ng-hide="healthhide"  >
+			<ion-content class="ioncontentalign healthHeight"  ng-hide="healthhide"  >
 				<div class="listprofile" style="margin-top: -22px;">
 					<h4 style="color:#666666;margin-top:32px; font-size: 25px;"> <span class="aligntext">Basic Health </span><i class="ion-chevron-down icondown"></i></h4>
 					<hr class="bhealth">

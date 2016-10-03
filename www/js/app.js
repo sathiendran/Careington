@@ -116,6 +116,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
+      if (window.device.platform === 'iOS') {
+           cordova.plugins.iosrtc.registerGlobals();
+           window.OT = cordova.require('cordova-plugin-opentokjs.OpenTokClient');
+           alert('cordova-plugin-opentokjs.OpenTokClient');
+      }
+
       $('body').bind('touchstart',function() {
           if(typeof myTimer != "undefined")
                clearInterval(myTimer);

@@ -2213,6 +2213,11 @@ $rootScope.hospitalId = singleHospitalId;
                 } else {
                     $rootScope.PatientImageSelectUser = get2CharInString.getProv2Char($rootScope.currentPatientDetails[0].patientName + ' ' + $rootScope.currentPatientDetails[0].lastName);
                 }
+                $rootScope.PatientImage = $rootScope.PatientImageSelectUser;
+                $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
+                $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
+                $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
+                //$rootScope.primaryPatGender = $rootScope.currentPatientDetails[0].dob;
                 $scope.doGetConutriesList();
                 $rootScope.doGetLocations();
                 $rootScope.getHealtPageForFillingRequiredDetails();
