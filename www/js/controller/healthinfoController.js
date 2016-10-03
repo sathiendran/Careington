@@ -1390,6 +1390,7 @@ $scope.editDob=function(){
     }
 
     $scope.validationForChkingRequiredFields = function() {
+       $ionicSideMenuDelegate.toggleLeft();
       $scope.ErrorMessage = "Please fill all required details ";
       $rootScope.Validation($scope.ErrorMessage);
     }

@@ -1,5 +1,5 @@
 <ion-side-menu side="left" style="background-color: #464644;">
-   <div class="sideMenu" ng-if="hasRequiredFields == 'true'">
+   <div class="sideMenu" ng-if="hasRequiredFields == false">
       <a ng-click="validationForChkingRequiredFields()" class="sidemenuContent1" >
          <ion-list>
             <ion-item class="icon tabfont"  id="{{sidemenuHome}}">
@@ -40,7 +40,7 @@
          </ion-list>
       </a>
    </div>
-	 <div class="sideMenu" ng-if="hasRequiredFields != 'true'">
+	 <div class="sideMenu" ng-if="hasRequiredFields != false">
       <a ng-href="#/tab/userhome" class="sidemenuContent1" >
          <ion-list>
             <ion-item class="icon tabfont"  id="{{sidemenuHome}}">
