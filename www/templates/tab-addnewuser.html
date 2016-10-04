@@ -16,7 +16,7 @@
 	 <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> Related Users </span> <span style="float:right;">
             <a class="headerval" ng-href="#/tab/userhome">Cancel</a></span></h1>
 
-	<div class="bar bar-subheader bar-dark usersubheader" >
+	<div class="bar bar-subheader bar-dark subheaderheight" >
                   <div class="row">
                       <h1 class="headertitle">
                           <div class="ellipsis subHeader_content_name" >
@@ -42,24 +42,24 @@
    </div>-->
 	 <div class="row userAccountPanel">
 		 <div class="col col-33 uAPHomeIcon">
-				 <a ng-href='#/tab/userAccount'>
-					 <div class="icon">
-							 <i ng-bind-html="drawSVGCIcon('home');"></i>
-					 </div>
-					 <div>
-					 <p>Account Home</p>
-				 </div>
-				 </a>
-		 </div>
+ 	     <a ng-href='#/tab/userAccount'>
+ 	        <div class="icon homeicon">
+ 	           <i ng-bind-html="drawSVGCIcon('home');"></i>
+ 	        </div>
+ 	        <div>
+ 	           <p class="hometext">Account Home</p>
+ 	        </div>
+ 	     </a>
+ 	  </div>
 		 <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-		 <div class="col col-33 uAPChangePatient">
-			 <a ng-href='#/tab/userhome'>
-				 <div class="icon">
-						 <i ng-bind-html="drawSVGCIcon('group');"></i>
-				 </div>
-				 <p>Change Patient</p>
-			 </a>
-		 </div>
+		 <div class="col col-33 uAPChangePatient ">
+ 	    <a ng-href='#/tab/userhome'>
+ 	      <div class="icon groupicon">
+ 	          <i ng-bind-html="drawSVGCIcon('group');"></i>
+ 	      </div>
+ 	      <p class="grouptext">Change Patient</p>
+ 	    </a>
+ 	  </div>
 	 </div>
   </div>
 

@@ -36,23 +36,23 @@
            </a>
    	 </div>-->
 		 <div class="row userAccountPanel">
-			 <div class="col col-33 uAPHomeIcon">
+			 <div class="col col-33 uAPHomeIcon ">
 					 <a ng-href='#/tab/userAccount'>
-						 <div class="icon">
+						 <div class="icon homeicon">
 								 <i ng-bind-html="drawSVGCIcon('home');"></i>
 						 </div>
 						 <div>
-						 <p>Account Home</p>
+						 <p class="hometext">Account Home</p>
 					 </div>
 					 </a>
 			 </div>
 			 <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-			 <div class="col col-33 uAPChangePatient">
+			 <div class="col col-33 uAPChangePatient ">
 				 <a ng-href='#/tab/userhome'>
-					 <div class="icon">
+					 <div class="icon groupicon">
 							 <i ng-bind-html="drawSVGCIcon('group');"></i>
 					 </div>
-					 <p>Change Patient</p>
+					 <p class="grouptext">Change Patient</p>
 				 </a>
 			 </div>
 		 </div>
