@@ -115,6 +115,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
     $ionicPlatform.ready(function() {
       // Idle.watch();
+
       var timeoutValue = 0;
       $('body').bind('touchstart',function() {
           window.localStorage.setItem('Active', timeoutValue);
@@ -124,7 +125,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
           myTimer = setInterval(function() {
               timeoutValue++;
               window.localStorage.setItem('Timeout', timeoutValue);
-              if(timeoutValue === 10)
+              if(timeoutValue === 30)
                 goInactive();
           }, 60000);
       });

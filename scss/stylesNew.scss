@@ -1929,9 +1929,10 @@ img {
     opacity: 0.3;
     width: 400px;
     height: 96px;
+    display: none;
 }
 h2 {
-    margin-top: -150px;
+    margin-top: -10px;
     opacity: 0.9;
 }
 }
@@ -2827,9 +2828,10 @@ $break-maxsize: 360px;
         opacity: 0.3;
         width: 290px;
         height: 96px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
     }
 }
 }
@@ -2846,9 +2848,10 @@ $break-maxsize: 320px;
         opacity: 0.3;
         width: 252px;
         height: 96px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
         font-size: 20px;
     }
 }
@@ -2870,9 +2873,10 @@ $break-maxsize: 1824px;
         opacity: 0.3;
         width: 252px;
         height: 96px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
         font-size: 20px;
     }
 }
@@ -2894,9 +2898,10 @@ $break-maxsize: 1224px;
         opacity: 0.3;
         width: 513px;
         height: 118px;
+
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
         font-size: 20px;
     }
 }
@@ -2914,9 +2919,10 @@ $break-maxsize: 320px;
         opacity: 0.3;
         width: 253px;
         height: 96px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
     }
 }
 .passedDate-Android {
@@ -2939,9 +2945,10 @@ $break-maxsize: 375px;
         opacity: 0.3;
         width: 290px;
         height: 100px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
     }
 }
 }
@@ -2958,9 +2965,10 @@ $break-maxsize: 414px;
         opacity: 0.3;
         width: 290px;
         height: 100px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
     }
 }
 }
@@ -2984,9 +2992,10 @@ $break-maxsize: 768px;
         opacity: 0.3;
         width: 290px;
         height: 100px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
     }
 }
 }
@@ -3005,9 +3014,10 @@ $break-maxsize: 1024px;
         opacity: 0.3;
         width: 290px;
         height: 100px;
+        display: none;
     }
     h2 {
-        margin-top: -150px;
+        margin-top: -10px;
     }
 }
 }
@@ -4022,7 +4032,7 @@ span:last-child {
 }
 }
 #loginPwd {
-margin-top: 33px;
+margin-top: 70px;
 .pwdPatImage {
     text-align: center;
     position: fixed;
@@ -4065,7 +4075,7 @@ margin-top: 33px;
 }
 }
 #loginPwdVerify {
-margin-top: 39px;
+margin-top: 70px;
 .verifyPwdText {
   text-align: center;
   color: #999999;
@@ -4563,7 +4573,7 @@ margin-top: 5px !important;
 }
 .emailion {}
 #loginPwd {
-margin-top: 39px;
+margin-top: 70px;
 .regcontent {
     h2 {
         font-size: 42px;
@@ -4641,6 +4651,7 @@ width: 55px !important;
 line-height: 45px;
 font-weight: normal;
 margin-left: 11px;
+margin-bottom: 20px;
 .registerback {
     top: -1px;
     position: relative;
