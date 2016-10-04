@@ -115,13 +115,18 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
     $ionicPlatform.ready(function() {
       // Idle.watch();
-
+      var timeoutValue = 0;
       $('body').bind('touchstart',function() {
+          window.localStorage.setItem('Active', timeoutValue);
+          timeoutValue = 0;
           if(typeof myTimer != "undefined")
                clearInterval(myTimer);
           myTimer = setInterval(function() {
-              goInactive();
-          }, 1800000);
+              timeoutValue++;
+              window.localStorage.setItem('Timeout', timeoutValue);
+              if(timeoutValue === 10)
+                goInactive();
+          }, 60000);
       });
 
      //  $('body').bind('touchend', function() {
@@ -156,6 +161,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
+        window.localStorage.setItem('Inactive', timeoutValue);
         if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
             if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
               if ($rootScope.currState.$current.name === "tab.cardDetails" || $rootScope.currState.$current.name === "tab.healthinfo" ) {
@@ -173,6 +179,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                       navigator.app.backHistory();
                   }
               }
+              window.localStorage.setItem('Inactive Success', timeoutValue);
+              timeoutValue = 0;
+              if(typeof myTimer != "undefined")
+                   clearInterval(myTimer);
               navigator.notification.alert(
                    'Your session timed out.', // message
                    null,
