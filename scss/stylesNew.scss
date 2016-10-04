@@ -144,7 +144,7 @@ margin-top: 125px !important;
 }
 }
 .ioncontentalign {
-margin-top: 200px;
+margin-top: 205px;
 }
 .ioncontentsalign {
 margin-top: 200px;
@@ -355,7 +355,7 @@ color: #888;
     margin-top: 58px !important;
 }
 .ioncontentalign {
-    margin-top: 200px;
+    margin-top: 205px;
 }
 .ioncontentsalign {
     margin-top: 165px;
@@ -374,7 +374,7 @@ color: #888;
     margin-top: 58px !important;
 }
 .ioncontentalign {
-      margin-top: 200px;
+      margin-top: 205px;
 }
 .ioncontentsalign {
     margin-top: 165px;
@@ -438,7 +438,7 @@ color: #888;
     margin-top: 138px !important;
 }
 .ioncontentalign {
-    margin-top: 200px;
+    margin-top: 205px;
 }
 .ioncontentsalign {
     margin-top: 185px;
@@ -496,7 +496,7 @@ color: #888;
     margin-top: 165px !important;
 }
 .ioncontentalign {
-    margin-top: 200px;
+    margin-top: 205px;
 }
 .ioncontentsalign {
     margin-top: 185px;
@@ -547,7 +547,7 @@ color: #888;
     margin-top: 138px !important;
 }
 .ioncontentalign {
-    margin-top: 200px;
+    margin-top: 205px;
 }
 .ioncontentsalign {
     margin-top: 185px;
@@ -598,10 +598,10 @@ margin-top: 210px;
     position: relative;
     top: -2px;
     left: 2px;
-    max-width: 32px;
-    max-height: 32px;
-    width: 100%;
-    height: 100%;
+    max-width: 36px;
+    max-height: 36px;
+  //  width: 100%;
+  //  height: 100%;
     border-radius: 50%;
     font-size: 15px;
     border: 2px solid #fff;
@@ -610,8 +610,8 @@ margin-top: 210px;
     }
 }
 .UserHmelistImgView {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border: 2px solid #fff;
 }
 }
@@ -1040,9 +1040,10 @@ p {
     position: relative;
     top: -2px;
     left: 2px;
-    max-width: 32px;
-    width: 100%;
-    height: 100%;
+    max-width: 36px;
+    max-height:36px;
+  //  width: 100%;
+  //  height: 100%;
     border-radius: 50%;
     font-size: 15px;
     padding: 5px;
@@ -1052,8 +1053,8 @@ p {
     }
 }
 .UserHmelistImgView {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border: 2px solid #fff;
 }
 }
@@ -1142,7 +1143,7 @@ margin-bottom: 50px;
 [class^=""], [class*=" "] {
 }
 .item {
-    padding: 11px !important;
+    padding: 8px !important;
 }
 }
 .relatedsearchusercontent {
@@ -1307,7 +1308,7 @@ bottom: 60px;
     .status {
         margin-left: 10px;
         font-size: 11px;
-        margin-top: -0px;
+        margin-top: -10px;
     }
     .statuscont {
         margin-left: -31px;
@@ -3449,7 +3450,7 @@ font-size: 26px;
 margin-left: 0px !important;
 color: #444444;
 position: relative;
-top: 15px;
+top: 8px;  //15
 }
 .chevronRelationship-Android {
 float: right;
@@ -3457,7 +3458,7 @@ font-size: 26px;
 margin-left: 0px !important;
 color: #444444;
 position: relative;
-top: 15px;
+top: 8px; //15
 }
 .unAuthorizeRelat-IOS {
 position: relative;
@@ -3478,12 +3479,12 @@ left: -5px;
 .unAuthorizeUserRelation-IOS {
 width: 80%;
 float: left;
-margin-top: 5px;
+margin-top: 8px; //5
 }
 .unAuthorizeUserRelation-Android {
 width: 80%;
 float: left;
-margin-top: 5px;
+margin-top: -3px; //5
 }
 .authorizePatient-IOS {
 .dotcolDoc-IOS {
@@ -3597,7 +3598,7 @@ top: 3px;
 }
 .authorizedIcon-Android {
 position: relative;
-top: 7px;
+top: 3px; //7
 }
 input.ion-google-place[readonly] {
 font-size: 18px;
@@ -4708,8 +4709,8 @@ a {
 
 
 .patProfileImage {
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     font-size: 35px;
     margin-left: auto;
     margin-right: auto;

@@ -351,14 +351,12 @@
 								<p id="patientAuthorize" ng-show="patientUnAuthorize" ng-click="doDependentToAuthorized(currentPatientDetails[0])">Unauthorized</p>
 							</div>
 						</div>
-						<div class="continue" style="padding-bottom: 5%;" ng-show="doneedit">
-							<!--<a style="width:40%;"></a> ng-if="primaryPatientId != currentPatientDetails[0].account.patientId && editOption !== 'None'"
-								<a class="button footer-color donebutton" ng-show="doneedit" ng-click="putUpdatePatientDetails()"><span class="donetext">Done</span></a>
-								-->
+						<!--<div class="continue" style="padding-bottom: 5%;" ng-show="doneedit">
+
 							<button  ng-click="putUpdatePatientDetails()" type="submit" class="button button-outline button-positive" style="padding: 3px;">
 							<span >Done</span>
 							</button>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</ion-content>
@@ -414,8 +412,22 @@
 			</ion-content>
 	</form>
 	</ion-view>
+
+
+
+
 	<!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>--->
-	<div class="hide-on-keyboard-open" id="HealthFooter">
+	<div class="hide-on-keyboard-open" id="HealthFooter" >
+
+
+		<ion-footer-bar class=" bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" ng-hide="healthfootsave">
+			<button class="submitbutton" type="submit" ng-click="putUpdatePatientDetails()" >
+				 <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
+				<h1 class="title" id="centercolor">Save</h1>
+			</button>
+		</ion-footer-bar>
+
+		<div ng-show="healthfoottab">
 		<ion-tabs class=" tabs-icon-top tabs-dark">
 			<a class="tab-item" ng-href="#/tab/relatedusers" >
 			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i> <span class="tabcolor">Users</span>
@@ -433,6 +445,7 @@
 				<i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i> <span class="tabcolor">More</span>
 				</a>-->
 		</ion-tabs>
+	</div>
 	</div>
 </ion-side-menu-content>
 <div ng-include src="'templates/SideMenuHealthInfo.html'"></div>

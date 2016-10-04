@@ -167,7 +167,8 @@ angular.module('starter.controllers')
     $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
     $scope.addmore = false;
     $scope.healthhide = true;
-
+    $scope.healthfoottab=true;
+    $scope.healthfootsave=true;
     $scope.editshow = true;
     $scope.doneshow = true;
     $scope.readattr = false;
@@ -484,7 +485,8 @@ angular.module('starter.controllers')
     }
 
     $scope.edittext = function() {
-
+        $scope.healthfoottab=false;
+        $scope.healthfootsave=false;
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ==  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -1176,6 +1178,8 @@ $scope.editDob=function(){
                   $scope.doneshow = true;
                   $rootScope.flag = true;
                   $scope.doneedit = false;
+                  $scope.healthfoottab=true;
+                  $scope.healthfootsave=true;
                   //console.log($scope.healthInfo);
                   var editvalues = angular.element(document.getElementsByTagName('input'));
                   var edittextarea = angular.element(document.getElementsByTagName('textarea'));
@@ -1343,9 +1347,13 @@ $scope.editDob=function(){
         if(editflag==false){
           $scope.editshow = false;
           $scope.doneshow = false;
+          $scope.healthfoottab=false;
+          $scope.healthfootsave=false;
         }else{
             $scope.editshow = true;
             $scope.doneshow = true;
+            $scope.healthfoottab=true;
+            $scope.healthfootsave=true;
         }
 
         $scope.addmore = false;
@@ -1405,6 +1413,8 @@ $scope.editDob=function(){
 
     }
     $scope.getMedicalDetailsinHealthInfo = function() {
+          $scope.healthfoottab=true;
+          $scope.healthfootsave=true;
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
       }else {
