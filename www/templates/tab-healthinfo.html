@@ -23,25 +23,25 @@
 			</div>
 			<div class="row userAccountPanel">
 				<div class="col col-33 uAPHomeIcon">
-					<a  ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userAccount')" >
-						<div class="icon">
-							<i ng-bind-html="drawSVGCIcon('home');"></i>
-						</div>
-						<div>
-							<p>Account Home</p>
-						</div>
-					</a>
+					 <a ng-href='#/tab/userAccount'>
+							<div class="icon homeicon">
+								 <i ng-bind-html="drawSVGCIcon('home');"></i>
+							</div>
+							<div>
+								 <p class="hometext">Account Home</p>
+							</div>
+					 </a>
 				</div>
 				<div ng-if="updatedPatientImagePath == ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
 				<div ng-if="updatedPatientImagePath != ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(updatedPatientImagePath,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
 				<div ng-show="flag" class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
 				<div class="col col-33 uAPChangePatient">
-					<a ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userhome')">
-						<div class="icon">
-							<i ng-bind-html="drawSVGCIcon('group');"></i>
-						</div>
-						<p>Change Patient</p>
-					</a>
+					 <a ng-href='#/tab/userhome'>
+							<div class="icon groupicon">
+								 <i ng-bind-html="drawSVGCIcon('group');"></i>
+							</div>
+							<p class="grouptext">Change Patient</p>
+					 </a>
 				</div>
 			</div>
 			<div class="row">

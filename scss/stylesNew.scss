@@ -143,7 +143,7 @@ margin-top: 125px !important;
     font-size: 15px;
 }
 }
-.ioncontentalign {  
+.ioncontentalign {
 margin-top: 200px;
 }
 .ioncontentsalign {
@@ -349,7 +349,7 @@ color: #888;
     font-size: 118% !important;
 }
 .userdeptcontent {
-    margin-top: 160px !important;
+    margin-top: 165px !important;
 }
 .userdetcontent {
     margin-top: 58px !important;
@@ -368,7 +368,7 @@ color: #888;
     border-top: 1px solid #C4C5C3;
 }
 .userdeptcontent {
-    margin-top: 160px !important;
+    margin-top: 165px !important;
 }
 .userdetcontent {
     margin-top: 58px !important;
@@ -493,7 +493,7 @@ color: #888;
     margin-top: 138px !important;
 }
 .userdeptcontent {
-    margin-top: 160px !important;
+    margin-top: 165px !important;
 }
 .ioncontentalign {
     margin-top: 200px;
@@ -1404,7 +1404,7 @@ bottom: 60px;
 }
 #addusercancel {
     color: white;
-    margin-top: 27px !important;
+    margin-top: 10px !important;
     font-size: 160%;
     font-family: Glober Bold;
 }
@@ -1523,7 +1523,7 @@ bottom: 60px;
     margin-top: -16px !important;
 }
 .userdeptcontent {
-    margin-top: 160px !important;
+    margin-top: 165px !important;
 }
 .newusercontent {
     margin-top: 168px;
@@ -1628,8 +1628,8 @@ bottom: 60px;
 }
 }
 .circlenew {
-width: 80px;
-height: 80px;
+width: 90px;
+height: 90px;
 border-radius: 50%;
 background: #4679BD;
 margin-left: auto;
@@ -1647,12 +1647,12 @@ color: #948E8E;
 .circlecam {
 font-size: 2.3em;
 position: absolute;
-margin-top: 10px;
-margin-left: 28px;
+margin-top: 15px;
+margin-left: 30px;
 }
 .circletext {
-font-size: 11px;
-margin-top: 37px;
+font-size: 13px;
+margin-top: 43px;
 position: absolute;
 font-family: Glober Regular;
 color: #888;
@@ -2391,7 +2391,7 @@ margin-top: -12px;
 .register {
 margin-top: -3px;
 bottom: 39px !important;
-padding-top: 46px;
+padding-top: 40px;
 h2 {
     @include font($fontFamily_xBold, bold, 18px);
     color: #FFFFFF;
@@ -3594,7 +3594,7 @@ font-size: 18px;
 color: #7c7c7c;
 }
 .userdeptcontent {
-margin-top: 160px !important;
+margin-top: 165px !important;
 [class^="icon-"], [class*=" icon-"] {
     font-size: 19px;
 }
@@ -3924,7 +3924,7 @@ padding: 27px 10px;
 }
 .enterEmailText {
     line-height: 26px;
-    font-size: 18px;
+    font-size: 19px;
 }
 .loginPlace {
     input {
@@ -4602,7 +4602,7 @@ margin-top: 39px;
 }
 #addusercancel {
 color: white;
-margin-top: 23px !important;
+margin-top: 10px !important;
 font-size: 145%;
 font-family: Glober Bold;
 }
@@ -4613,7 +4613,7 @@ display: block;
 }
 }
 .regLogin {
-padding-top: 17px;
+//padding-top: 17px;
 }
 .patProfileImage {
 width: 52px;
@@ -4694,7 +4694,8 @@ a {
         font-size: 13px;
     }
 }
-.uAPHomeIcon {}
+
+
 .patProfileImage {
     width: 70px;
     height: 70px;
@@ -4709,8 +4710,8 @@ a {
 .uAPlProfileImage {
     img {
         margin-left: 0px !important;
-        width: 70px;
-        height: 70px;
+        width: 90px;
+        height: 90px;
         color: white;
         border-radius: 50%;
         border: 2px solid #fff;
@@ -4723,7 +4724,24 @@ a {
         top: 30px;
     }
 }
-.uAPChangePatient {}
+.uAPHomeIcon {
+  margin-top:10px;
+  .homeicon{
+    margin-left:-12px;
+  }
+  .hometext{
+    margin-left:-24px;
+  }
+}
+.uAPChangePatient{
+  margin-top:10px;
+  .groupicon{
+    margin-left:12px;
+  }
+  .grouptext{
+    margin-left:14px;
+  }
+}
 }
 .docAppointImage {
 float: left;

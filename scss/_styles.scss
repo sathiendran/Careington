@@ -640,13 +640,14 @@ body {
             margin-left: -15px;
             margin-top: -20px;
             position: relative;
-            top: 11px;
+            top: 9px;
             img {  }
         }
         .subHeader_content-Android {
             .subHeader_content_name {
                 font-size: 21px;
                 margin-left: 7px;
+                margin-top: 3px;
                 .patientName {
                     font-weight: bold;
                     font-family: Glober Bold !important;
@@ -658,7 +659,7 @@ body {
             .subHeader_content_age {
                 font-size: 12px;
                 font-weight: bold;
-                margin-left: 7px;
+                margin-left: 10px;
                 margin-top: 1px;
             }
         }
@@ -666,6 +667,7 @@ body {
             .subHeader_content_name {
                 font-size: 22px;
                 margin-left: 7px;
+                margin-top: 3px;
                 .patientName {
                     font-weight: bold;
                     font-family: Glober Bold !important;
@@ -1884,7 +1886,7 @@ select {
 }
 //Patient ConcernsContent
 .ConcernsContent {
-    margin-top: 110px !important;
+    margin-top: 122px !important;
     .PrimaryList {
         top: 3px;
         padding: 1px;
@@ -2406,7 +2408,7 @@ select {
     color: #888;
     float: right;
     margin-right: 15px;
-    margin-top: -3px;
+    margin-top:0px;
     font-size: 16px;
 }
 .consentTitle {
@@ -2675,7 +2677,7 @@ a {
 }
 .subheaderheight {
     top: 64px;
-    height: 88px;
+    height: 98px;
     border-color: #5D5959 !important;
     .item {
         margin: -5px;
@@ -2831,8 +2833,8 @@ a {
     border: 2px solid white;
 }
 .UserHmelistImgView {
-    width: 55px;
-    height: 55px;
+    width: 53px;
+    height: 53px;
     border-radius: 50%;
     border: 2px solid #FFFFFF;
 }
@@ -4349,9 +4351,7 @@ textarea {
     color: white;
     margin-left: 540px;
 }
-.homeicon {
-    margin-left: 24px;
-}
+
 .homecontent {
     padding-top: 25px;
     font-size: 75% !important;
