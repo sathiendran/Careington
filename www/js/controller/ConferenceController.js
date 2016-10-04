@@ -29,7 +29,7 @@ angular.module('starter.controllers')
         window.localStorage.setItem('PatientLastName', $rootScope.PatientLastName);
     }
     var isCallEndedByPhysician = false;
-    $rootScope.participantsCount = +1;
+    var participantsCount = +1;
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
         $rootScope.appointmentsPatientFirstName = '';
@@ -612,6 +612,7 @@ angular.module('starter.controllers')
 
         var customerFullName = $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName;
         var connectedStreams = new Array();
+        var connectedVideoStreams = new Array();
         var lastSubscriber = "";
 
         var thumbSwiper = new Swiper('.swiper-container', {
@@ -621,7 +622,7 @@ angular.module('starter.controllers')
 
         session.on('streamCreated', function(event) {
             if (event.stream.name.indexOf('Screen Share') < 0) {
-                $rootScope.participantsCount = +$rootScope.participantsCount + 1;
+                participantsCount = +participantsCount + 1;
             }
             window.localStorage.setItem('isVideoCallProgress', "Yes");
             //alert('stream created from type: ' + event.stream.videoType);
@@ -641,6 +642,7 @@ angular.module('starter.controllers')
                 }
             }
             connectedStreams.push(event.stream.streamId);
+
             var streamIdVal = event.stream.streamId;
 
             var vdioContainer = document.createElement("div");
@@ -714,6 +716,7 @@ angular.module('starter.controllers')
                 var participantNameInitial = getInitialForName(participantName);
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }
+            $('.vdioBadge').html(participantsCount);
         };
 
 
@@ -726,6 +729,7 @@ angular.module('starter.controllers')
             $(swiperParent).remove();
             $("div.swiper-slide:empty").remove();
             OT.updateViews();
+            $('.vdioBadge').html(participantsCount);
         };
 
         $scope.arrangeVideoThumbnails = function() {
@@ -766,7 +770,7 @@ angular.module('starter.controllers')
                 connectedStreams.splice(index, 1);
             }
             if (event.stream.name.indexOf('Screen Share') >= 0) {
-                $rootScope.participantsCount = +$rootScope.participantsCount - 1;
+                participantsCount = +participantsCount - 1;
             }
             $scope.removeVideoThumbnail(tbStreamVal);
 
@@ -796,6 +800,7 @@ angular.module('starter.controllers')
             $("#subscriber").css('top', '0px');
             $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
             event.preventDefault();
+            $('.vdioBadge').html(participantsCount);
         });
 
         // Handler for sessionDisconnected event
