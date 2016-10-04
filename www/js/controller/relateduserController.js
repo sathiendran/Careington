@@ -67,25 +67,21 @@ angular.module('starter.controllers')
             }
         };
         $rootScope.drawImage = function(imagePath, firstName, lastName) {
-          if(!angular.isUndefined(imagePath) && imagePath !== '') {
-            if (imagePath.indexOf("http") >= 0) {
-                var image = imagePath;
-                return "<img ng-src=" +image +" src="+image+" class='UserHmelistImgView'>";
-            } else {
-              if(!angular.isUndefined(lastName) && lastName !== '') {
-                  return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase()  +"</sapn></div>");
-              } else{
-                  return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase()+"</sapn></div>");
-              }
-            }
-          }else {
-            if(!angular.isUndefined(lastName) && lastName !== '') {
-                return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase() + lastName.charAt(0).toUpperCase()  +"</sapn></div>");
-            } else{
-                return $sce.trustAsHtml("<div class='patProfileImage' style='background-color:"+$rootScope.brandColor+"; border-color:"+$rootScope.brandColor+";'><span>"+firstName.charAt(0).toUpperCase()+"</sapn></div>");
-            }
-          }
-        };
+           $('.patProfileImage').css({
+               'background-color': $rootScope.brandColor
+           });
+           var Name = getInitialFromName(firstName, lastName);
+           if (!angular.isUndefined(imagePath) && imagePath !== '') {
+               if (imagePath.indexOf("api") >= 0) {
+                   var image = imagePath;
+                   return "<img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'>";
+               } else {
+                   return $sce.trustAsHtml("<div class='patProfileImage'><span>" + Name + "</sapn></div>");
+               }
+           } else {
+                 return $sce.trustAsHtml("<div class='patProfileImage'><span>" + Name + "</sapn></div>");
+           }
+       };
 
   $rootScope.couserslists = true;
   $rootScope.dependentuserslist = true;

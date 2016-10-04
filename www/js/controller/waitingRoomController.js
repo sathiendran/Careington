@@ -137,7 +137,7 @@ angular.module('starter.controllers')
         });
         conHub.on("onConsultationStarted", function() {
              window.localStorage.setItem("isCustomerInWaitingRoom", "No");
-             if(alive_waiting_room_pool)
+             if(typeof alive_waiting_room_pool !== 'undefined')
                  clearInterval(alive_waiting_room_pool);
             $scope.waitingMsg = "Please wait...";
             /*
@@ -174,7 +174,7 @@ angular.module('starter.controllers')
                 $rootScope.videoApiKey = data.apiKey;
                 $rootScope.videoToken = data.token;
                 if ($rootScope.videoSessionId !== "" && $rootScope.videoToken !== "") {
-                     if(alive_waiting_room_pool)
+                     if(typeof alive_waiting_room_pool !== 'undefined')
                          clearInterval(alive_waiting_room_pool);
                      window.localStorage.setItem("isCustomerInWaitingRoom", "No");
                     $state.go('tab.videoConference');
