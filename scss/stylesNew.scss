@@ -2490,7 +2490,7 @@ h2 {
         color: #FFFFFF;
         margin: 0;
         padding-top: 6px;
-        letter-spacing: -2px;
+        letter-spacing: 0px;
         span {
             @include font($fontFamily_regular, bold, 12px);
             color: #FFFFFF;
@@ -2537,7 +2537,7 @@ h2 {
     color: #999999;
     text-align: center;
     padding-top: 4px !important;
-    letter-spacing: -2px;
+    letter-spacing: 0px;
 }
 h3 {
     @include font($fontFamily_regular, bold, 27px);
