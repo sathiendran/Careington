@@ -12,13 +12,13 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Single'; //Production //MultipleMultiple //Single //Demo
-var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
-var xApiKey = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38'; // For Photo Upload
-var xDeveloperId = 'cc552a3733af44a88ccb0c88ecec2d78'; // For Photo Upload
+var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
+var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';

@@ -2683,8 +2683,11 @@ a {
         margin: -5px;
     }
     .button-bar{
-      padding:0 8px 0 8px;
+      padding:7px 8px 0 8px;
     }
+}
+.healthTab {
+         padding: 0 7%;
 }
 .usersubheaderheight {
     top: 65px;
@@ -3742,7 +3745,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     position: relative;
     width: 7% !important;
     float: right !important;
-    margin-top: -10px !important;
+    margin-top: -4px !important;
 }
 .noticationIcon {
     left: 0px;
