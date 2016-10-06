@@ -120,9 +120,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
       $('body').bind('touchstart',function() {
           window.localStorage.setItem('Active', timeoutValue);
           timeoutValue = 0;
-          if(typeof myTimer != "undefined")
-               clearInterval(myTimer);
-          myTimer = setInterval(function() {
+          if(typeof appIdleInterval != "undefined")
+               clearInterval(appIdleInterval);
+            appIdleInterval = undefined;
+          appIdleInterval = setInterval(function() {
               timeoutValue++;
               window.localStorage.setItem('InActiveSince', timeoutValue);
               if(timeoutValue === 30)
@@ -184,8 +185,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   }
                   window.localStorage.setItem('Inactive Success', timeoutValue);
                   timeoutValue = 0;
-                  if(typeof myTimer != "undefined")
-                       clearInterval(myTimer);
+                  if(typeof appIdleInterval != "undefined")
+                       clearInterval(appIdleInterval);
+                      appIdleInterval = undefined;
                   $rootScope.ClearRootScope();
                   navigator.notification.alert(
                        'Your session timed out.', // message
@@ -383,6 +385,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }, 2000);
         $ionicPlatform.on('resume', function() {
+            if(typeof alive_waiting_room_pool == "undefined")
+                clearInterval(alive_waiting_room_pool);
+            alive_waiting_room_pool = undefined;
             setTimeout(function() {
                 //  Idle.watch();
                 if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
