@@ -124,7 +124,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                clearInterval(myTimer);
           myTimer = setInterval(function() {
               timeoutValue++;
-              window.localStorage.setItem('Timeout', timeoutValue);
+              window.localStorage.setItem('InActiveSince', timeoutValue);
               if(timeoutValue === 30)
                 goInactive();
           }, 60000);
@@ -162,35 +162,39 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
-        window.localStorage.setItem('Inactive', timeoutValue);
-        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
-              if ($rootScope.currState.$current.name === "tab.cardDetails" || $rootScope.currState.$current.name === "tab.healthinfo" ) {
-                  var gSearchLength = $('.ion-google-place-container').length;
-                  if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
-                      $ionicBackdrop.release();
-                      $(".ion-google-place-container").css({
-                          "display": "none"
-                      });
+        var inactiveDuration = window.localStorage.getItem('InActiveSince');
+        inactiveDuration = Number(inactiveDuration);
+        if(inactiveDuration === 30){
+            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
+                  if ($rootScope.currState.$current.name === "tab.cardDetails" || $rootScope.currState.$current.name === "tab.healthinfo" ) {
+                      var gSearchLength = $('.ion-google-place-container').length;
+                      if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
+                          $ionicBackdrop.release();
+                          $(".ion-google-place-container").css({
+                              "display": "none"
+                          });
 
-                  } else {
-                      $(".ion-google-place-container").css({
-                          "display": "none"
-                      });
-                      navigator.app.backHistory();
+                      } else {
+                          $(".ion-google-place-container").css({
+                              "display": "none"
+                          });
+                          navigator.app.backHistory();
+                      }
                   }
-              }
-              window.localStorage.setItem('Inactive Success', timeoutValue);
-              timeoutValue = 0;
-              if(typeof myTimer != "undefined")
-                   clearInterval(myTimer);
-              navigator.notification.alert(
-                   'Your session timed out.', // message
-                   null,
-                   $rootScope.alertMsgName,
-                   'Ok' // buttonName
-               );
-              $rootScope.ClearRootScope();
+                  window.localStorage.setItem('Inactive Success', timeoutValue);
+                  timeoutValue = 0;
+                  if(typeof myTimer != "undefined")
+                       clearInterval(myTimer);
+                  $rootScope.ClearRootScope();
+                  navigator.notification.alert(
+                       'Your session timed out.', // message
+                       null,
+                       $rootScope.alertMsgName,
+                       'Ok' // buttonName
+                   );
+
+                }
             }
         }
     }
