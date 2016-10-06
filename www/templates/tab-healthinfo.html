@@ -12,18 +12,16 @@
 		</h1>
 		<div class="Server_Error ErrorMessageDiv" ></div>
 		<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
-		<div class="bar bar-subheader subheaderheight"  style="height: 197px;padding: 0px;">
-			<div class="row" style="background-color: #444444;
-    padding-top: 15px;
-    padding-bottom: 52px;">
+		<div class="bar bar-subheader subheaderheight healthSubHeight">
+			<div class="row healthSubRow">
 				<h1 class="headertitle">
-					<div class="ellipsis subHeader_content_name" >
+					<div class="ellipsis healthSubNameHeader" >
 						<span class="PatintHeaderFontStyle patientName ellipsis fnamefont" >{{currentPatientDetails[0].patientName}}</span>
 						<span class="patientLastName ellipsis lnamefont">{{currentPatientDetails[0].lastName}}</span>
 					</div>
 				</h1>
 			</div>
-			<div class="row userAccountPanel">
+			<div class="row userAccountPanel" style="margin-top: -49px !important;">
 				<div class="col col-33">
 					 <a ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userAccount')">
 							<div class="icon homeicon">
@@ -34,9 +32,9 @@
 							</div>
 					 </a>
 				</div>
-				<div ng-if="updatedPatientImagePath == ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-				<div ng-if="updatedPatientImagePath != ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(updatedPatientImagePath,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-				<div ng-show="flag" class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
+				<div ng-if="updatedPatientImagePath == ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
+				<div ng-if="updatedPatientImagePath != ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ng-bind-html="drawImage(updatedPatientImagePath,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
+				<div ng-show="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
 				<div class="col col-33">
 					 <a ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userhome')">
 							<div class="icon groupicon">

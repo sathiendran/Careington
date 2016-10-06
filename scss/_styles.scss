@@ -237,7 +237,7 @@ body {
 .remember {
     padding-top: 2px;
     color: #999999;
-    font-size: 13px; //13px;
+    font-size: 12px; //13px;
     font-family: $fontFamily_regular;
 }
 .continue {
@@ -2675,19 +2675,37 @@ a {
 .headerheight {
     height: 128px !important;
 }
+.healthSubHeight {
+     height: 197px !important;padding: 0px;     background-image: none;
+     .healthSubRow {
+          background-color: #444444;
+          height: 109px;
+          .healthSubNameHeader {
+                   padding-top: 6px;
+          }
+     }
+}
+
 .subheaderheight {
     top: 64px;
-    height: 98px;
+    height: 107px;
     border-color: #5D5959 !important;
     .item {
         margin: -5px;
     }
     .button-bar{
-      padding:7px 8px 0 8px;
+      padding:0px 3%;
+    }
+
+    .userAccountPanel {
+          margin-top: -9px !important;
+          .uAPlProfileImage {
+               margin-top: -2px;
+          }
     }
 }
 .healthTab {
-         padding: 0 7%;
+         padding: 0 3%;
 }
 .usersubheaderheight {
     top: 65px;
@@ -2760,7 +2778,7 @@ a {
     margin-top: 4px;
     text-align: center;
     color: #666666;
-    font-size: 165%;
+    font-size: 172%; 
     font-family: Glober Bold;
 }
 .appmarg {
@@ -2904,7 +2922,7 @@ a {
     margin-bottom: -1px;
     margin-left: 66px;
     margin-top: 2px;
-    padding-top: 5px;
+    padding-top: 2px;
 }
 .SubTitleSpan {
     @include font($fontFamily_regular, normal, 100%);
@@ -3434,7 +3452,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             padding-right: 89px;
             font-size: 16px;
             color: #8e8e93;
-            padding-top: 1px !important;
+            padding-top: 7px !important;
         }
         .icon-magnifying-glass {
             margin-right: 53px !important;
@@ -3497,10 +3515,10 @@ form.ng-submitted input.ng-valid + i.icon.error {
             text-align: center;
             width: 100%;
             margin-top: 2px;
-            padding-right: 83px;
+            padding-right: 65px;
             font-size: 16px;
             color: #8e8e93;
-            padding-top: 1px !important;
+            padding-top: 7px !important;
         }
         .icon-magnifying-glass {
             margin-right: 47px !important;
@@ -3522,16 +3540,16 @@ form.ng-submitted input.ng-valid + i.icon.error {
                 font-size: 14px !important;
                 padding-top: 5px !important;
                 font-family: $fontFamily_regular;
-                position: relative;
-                top: 0px;
+               // position: relative;
+               // top: 0px;
             }
             ::-moz-placeholder {
                 /* Mozilla Firefox 4 to 18 */
                 color: #999999 !important;
                 font-size: 14px !important;
                 font-family: $fontFamily_regular;
-                position: relative;
-                top: 0px;
+               // position: relative;
+               // top: 0px;
                 padding-top: 5px !important;
             }
             input:-moz-placeholder {
@@ -3539,8 +3557,8 @@ form.ng-submitted input.ng-valid + i.icon.error {
                 color: #999999 !important;
                 font-size: 14px !important;
                 font-family: $fontFamily_regular;
-                position: relative;
-                top: 0px;
+               // position: relative;
+               // top: 0px;
                 padding-top: 5px !important;
             }
             :-ms-input-placeholder {
@@ -3548,18 +3566,18 @@ form.ng-submitted input.ng-valid + i.icon.error {
                 color: #999999 !important;
                 font-size: 14px !important;
                 font-family: $fontFamily_regular;
-                position: relative;
-                top: 0px;
+               // position: relative;
+               // top: 0px;
                 padding-top: 5px !important;
             }
             input {
                 font-size: 14px;
                 color: #616462;
-                height: 28px;
+                height: 23px;
                 margin-top: 0px;
                 font-family: $fontFamily_regular;
-                position: relative;
-                top: 2px;
+               // position: relative;
+                //top: 2px;
                 text-align: center;
             }
         }
@@ -4376,6 +4394,7 @@ textarea {
     width: 100%;
     top: 5px;
     color: #FFFFFF;
+    position: relative;
 }
 .headertitle-Android {
     font-size: 20px;
@@ -4433,7 +4452,7 @@ textarea {
     height: 100px;
     background-color: #444444 !important;
     .userAccountPanel  {
-      margin-top: -8px !important;
+      margin-top: -9px !important;
     }
 }
 #centercolor {
