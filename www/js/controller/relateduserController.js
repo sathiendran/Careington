@@ -71,6 +71,9 @@ angular.module('starter.controllers')
                'background-color': $rootScope.brandColor
            });
            var Name = getInitialFromName(firstName, lastName);
+           if(Name === 'WW') {
+                Name = 'W';
+           }
            if (!angular.isUndefined(imagePath) && imagePath !== '') {
                if (imagePath.indexOf("api") >= 0) {
                    var image = imagePath;

@@ -95,7 +95,7 @@
 						<label class="item item-input itemtab validated" style="display: {{viewemailDisplay}};">
 							<span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b></span>
 							<div ng-if="currentPatientDetails[0].account.email" class="healthViewDetails ellipsis">{{currentPatientDetails[0].account.email}}</div>
-							<div ng-if="!userDOB" class="healthViewDetails">NA</div>
+							<div ng-if="!currentPatientDetails[0].account.email" class="healthViewDetails">NA</div>
 						</label>
 						<label class="item item-input itemtab validated">
 							<span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel labelfont">Country</b></span>
