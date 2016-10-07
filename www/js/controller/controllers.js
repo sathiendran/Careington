@@ -339,6 +339,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             'background-color': $rootScope.brandColor
         });
         var Name = getInitialFromName(firstName, lastName);
+        if(Name === 'WW') {
+             Name = 'W';
+        }
         if (!angular.isUndefined(imagePath) && imagePath !== '') {
             if (imagePath.indexOf("api") >= 0) {
                 var image = imagePath;
@@ -479,7 +482,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
-        $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
+       // $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
         $rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 7px;position: relative; height: 49px;";
@@ -4890,6 +4893,111 @@ $state.go('tab.consultCharge');
         LoginService.getListOfPassedConsultations(params);
 
     }
+    $rootScope.passededconsultantsForCoUser = function() {
+
+        if ($rootScope.accessToken == 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            statusId: 72,
+            success: function(data, status) {
+                if (data == null) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if (status === 401) {
+                    $rootScope.patientId = $rootScope.coUserAuthorization;
+                    $rootScope.getCoUserAunthent = 'notAuthorized';
+                    $scope.ErrorMessage = "You are not authorized to view this account";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.getCoUserAunthent = 'Authorized';
+                    $rootScope.Passedconsultations = data.data;
+                    if($rootScope.getCoUserAunthent === 'Authorized') {
+                      if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
+                        if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
+                              if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
+                                  $rootScope.RelatedPatientProfiles.shift();
+                              }
+                          }
+                          $rootScope.providerName = '';
+                          $rootScope.PolicyNo = '';
+                          $rootScope.healthPlanID = '';
+                          $rootScope.NewHealth = '';
+                      }
+                      $rootScope.userAgeForIntake = '';
+                      $rootScope.updatedPatientImagePath = '';
+                      $rootScope.newDependentImagePath = '';
+                      $rootScope.appointmentDisplay = '';
+                      $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+                      $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+                      if (ionic.Platform.is('browser') !== true) {
+                          if (window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
+                              $rootScope.isNotificationDisplayed = false;
+                              //$window.localStorage.setItem('FlagForCheckingAuthorization', '');
+                              chkCameraAndMicroPhoneSettings();
+                          }
+                      } else {
+                          $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+                      }
+
+                      if ($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
+                          $rootScope.locationdet = Pat_locat;
+                          $rootScope.PatientImageSelectUser = P_img;
+                          $rootScope.PatientFirstName = P_Fname;
+                          $rootScope.PatientLastName = P_Lname;
+                          $rootScope.PatientAge = P_Age;
+                          $rootScope.SelectPatientAge = $rootScope.PatientAge;
+                          $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+                          $rootScope.patientId = P_Id;
+                          $scope.doGetConutriesList();
+                          $rootScope.doGetCreditDetails();
+                          $rootScope.doGetLocations();
+                          $rootScope.doGetIndividualScheduledConsulatation();
+                          $rootScope.doGetonDemandAvailability();
+                          $rootScope.doGetListOfCoUsers();
+                          if (!$rootScope.P_isAuthorized) {
+                              $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                              $rootScope.SubmitCardValidation($scope.ErrorMessage);
+                          }
+                          if ($rootScope.P_isAuthorized = undefined) {
+                              $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                              $rootScope.SubmitCardValidation($scope.ErrorMessage);
+                          }
+                          if (clickEvent === "patientClick") {
+                              $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+                          } else if (clickEvent === "sideMenuClick") {
+                              $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
+                          } else if (clickEvent === "sideMenuClickApoointments") {
+                              $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
+                          } else if (clickEvent === "tab.patientConcerns") {
+                              $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
+                          } else {
+                              $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
+                          }
+                      }
+                  }
+                }
+
+
+            },
+            error: function(data, status) {
+                if (status === 0) {
+
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getListOfPassedConsultations(params);
+
+    }
 
     $rootScope.doGetListOfCoUsers = function() {
         var params = {
@@ -5137,72 +5245,7 @@ $state.go('tab.consultCharge');
         $rootScope.coUserAuthorization =  $rootScope.patientId;
         $rootScope.patientId = P_Id;
         $rootScope.getCoUserAunthent = '';
-        $rootScope.passededconsultants();
-          if($rootScope.getCoUserAunthent === 'Authorized') {
-            if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
-              if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
-                    if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
-                        $rootScope.RelatedPatientProfiles.shift();
-                    }
-                }
-                $rootScope.providerName = '';
-                $rootScope.PolicyNo = '';
-                $rootScope.healthPlanID = '';
-                $rootScope.NewHealth = '';
-            }
-            $rootScope.userAgeForIntake = '';
-            $rootScope.updatedPatientImagePath = '';
-            $rootScope.newDependentImagePath = '';
-            $rootScope.appointmentDisplay = '';
-            $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-            $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
-            if (ionic.Platform.is('browser') !== true) {
-                if (window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
-                    $rootScope.isNotificationDisplayed = false;
-                    //$window.localStorage.setItem('FlagForCheckingAuthorization', '');
-                    chkCameraAndMicroPhoneSettings();
-                }
-            } else {
-                $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
-            }
-
-            if ($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
-                $rootScope.locationdet = Pat_locat;
-                $rootScope.PatientImageSelectUser = P_img;
-                $rootScope.PatientFirstName = P_Fname;
-                $rootScope.PatientLastName = P_Lname;
-                $rootScope.PatientAge = P_Age;
-                $rootScope.SelectPatientAge = $rootScope.PatientAge;
-                $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
-                $rootScope.patientId = P_Id;
-                $scope.doGetConutriesList();
-                $rootScope.doGetCreditDetails();
-                $rootScope.doGetLocations();
-                $rootScope.doGetIndividualScheduledConsulatation();
-                $rootScope.doGetonDemandAvailability();
-                $rootScope.doGetListOfCoUsers();
-                if (!$rootScope.P_isAuthorized) {
-                    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
-                    $rootScope.SubmitCardValidation($scope.ErrorMessage);
-                }
-                if ($rootScope.P_isAuthorized = undefined) {
-                    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
-                    $rootScope.SubmitCardValidation($scope.ErrorMessage);
-                }
-                if (clickEvent === "patientClick") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
-                } else if (clickEvent === "sideMenuClick") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
-                } else if (clickEvent === "sideMenuClickApoointments") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
-                } else if (clickEvent === "tab.patientConcerns") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
-                } else {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
-                }
-            }
-        }
-
+        $rootScope.passededconsultantsForCoUser();
     }
 
 

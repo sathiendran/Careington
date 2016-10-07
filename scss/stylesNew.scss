@@ -144,7 +144,7 @@ margin-top: 125px !important;
 }
 }
 .ioncontentalign {
-margin-top: 205px;
+     margin-top: 220px;
 }
 .ioncontentsalign {
 margin-top: 200px;
@@ -233,7 +233,7 @@ color: #888;
     margin-left: -31px !important;
 }
 .consultcontent {
-    margin-top: 102px;
+    //margin-top: 102px;
 }
 .paticoncontent {
     margin-top: 194px;
@@ -354,9 +354,7 @@ color: #888;
 .userdetcontent {
     margin-top: 58px !important;
 }
-.ioncontentalign {
-    margin-top: 205px;
-}
+
 .ioncontentsalign {
     margin-top: 165px;
 }
@@ -373,9 +371,7 @@ color: #888;
 .userdetcontent {
     margin-top: 58px !important;
 }
-.ioncontentalign {
-      margin-top: 205px;
-}
+
 .ioncontentsalign {
     margin-top: 165px;
 }
@@ -437,9 +433,7 @@ color: #888;
 .userdetcontent {
     margin-top: 138px !important;
 }
-.ioncontentalign {
-    margin-top: 205px;
-}
+
 .ioncontentsalign {
     margin-top: 185px;
 }
@@ -495,9 +489,7 @@ color: #888;
 .userdeptcontent {
     margin-top: 165px !important;
 }
-.ioncontentalign {
-    margin-top: 205px;
-}
+
 .ioncontentsalign {
     margin-top: 185px;
 }
@@ -546,9 +538,7 @@ color: #888;
 .userdetcontent {
     margin-top: 138px !important;
 }
-.ioncontentalign {
-    margin-top: 205px;
-}
+
 .ioncontentsalign {
     margin-top: 185px;
 }
@@ -589,7 +579,7 @@ background-image: none;
 margin-left: -32px !important;
 }
 .consultcontent {
-margin-top: 210px;
+margin-top: 218px;
 .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
     top: 0px;
     left: 10px;
@@ -852,7 +842,7 @@ color: #fff;
 font-size: 138% !important;
 }
 .button-bar > .button:first-child {
-border-radius: 6px 0px 0px 6px !important;
+     border-radius: 4px 0px 0px 4px !important;
 }
 .fontcolorfamily {
 color: #666666 !important;
@@ -862,8 +852,8 @@ position: relative;
 top: 4px;
 }
 .button-bar > .button:last-child {
-border-right-width: 1px;
-border-radius: 0px 6px 6px 0px !important;
+     border-right-width: 1px;
+     border-radius: 0px 4px 4px 0px !important;
 }
 .dependusers {
 display: none;
@@ -1123,23 +1113,23 @@ text-transform: lowercase;
 margin-top: -4px; //-6
 }
 .dotedsearchhr {
-margin-top: -18px;
-height: 0px !important;
-border-top: 1px dashed #c0bebe;
-background-color: #e9e9e9;
+     margin-top: -18px;
+     height: 0px !important;
+     border-top: 1px dashed #c0bebe;
+     background-color: #e9e9e9;
 }
 .dotedhr {
-margin-top: -9px;
-height: 0px !important;
-border-top: 1px dashed #c0bebe;
-background-color: #e9e9e9;
+     margin-top: -9px;
+     height: 0px !important;
+     border-top: 1px dashed #c0bebe;
+     background-color: #e9e9e9;
 }
 .profilecontent {
-margin-top: 177px;
+     margin-top: 177px;
 }
 .relatedusercontent {
-margin-top: 215px;
-margin-bottom: 50px;
+     margin-top: 217px;
+     margin-bottom: 50px;
 [class^=""], [class*=" "] {
 }
 .item {
@@ -1716,7 +1706,7 @@ border: none;
 .bg {
 background-color: #EF4B27;
 border: none !important;
-padding-top: 75px;
+padding-top: 74px;
 height: auto;
 h2 {
     color: #FFFFFF;
@@ -1906,7 +1896,7 @@ a {
         background-color: #000;
     }
     h2 {
-        @include font($fontFamily_regular, regular, 28px);
+        @include font($fontFamily_semibold, regular, 28px);
         color: #888888;
         padding-top: 9px;
     }
@@ -1932,7 +1922,7 @@ img {
     display: none;
 }
 h2 {
-    margin-top: -10px;
+    margin-top: -40px;
     opacity: 0.9;
 }
 }
@@ -2393,13 +2383,13 @@ margin-top: -12px;
 .register {
 margin-top: -3px;
 bottom: 39px !important;
-padding-top: 40px;
+padding-top: 38px;
 h2 {
     @include font($fontFamily_xBold, bold, 18px);
     color: #FFFFFF;
     text-align: center;
     line-height: 30px;
-    padding-top: 60px;
+    padding-top: 65px;
     span {
         @include font($fontFamily_xBold, bold, 34px);
         color: #FFFFFF;
@@ -2415,7 +2405,7 @@ h2 {
     box-shadow: 2px 3px 5px 0px rgba(14, 14, 14, 0.57);
     .btn1 {
         text-align: center;
-        margin: 10px 0px 28px 0px;
+        margin: 20px 0px 28px 0px;
         .button {
             @include buttons(#A2D28A, normal, 0px, 22px, 0px);
             font-family: $fontFamily_bold;
@@ -2433,7 +2423,7 @@ h2 {
         margin: 10px 0px 18px 0px;
     }
     .place {
-        margin: 0px 20px 0px 20px;
+        margin: 5px 20px 0px 20px;
         border: 1px solid #cccccc;
         background-color: #e6e6e6;
         input {
@@ -2486,12 +2476,13 @@ h2 {
 .acinfo1-IOS {
     text-align: center;
     h4 {
-        @include font($fontFamily_semibold, bold, 14px);
+        @include font($fontFamily_semibold, bold, 13px);
         color: #FFFFFF;
         margin: 0;
-        padding-top: 12px;
+        padding-top: 6px;
+        letter-spacing: 0px;
         span {
-            @include font($fontFamily_regular, bold, 12px);
+            @include font($fontFamily_regular, bold, 11px);
             color: #FFFFFF;
         }
     }
@@ -2530,11 +2521,14 @@ h2 {
 }
 }
 .regcontent {
+      margin-top: 32px;
 h2 {
-    @include font($fontFamily_bold, bold, 34px);
+    @include font($fontFamily_bold, bold, 31px);
     color: #999999;
     text-align: center;
-      padding-top: 15px !important;
+    padding-top: 0px !important;
+    letter-spacing: 0px;
+    margin-top: -6px;
 }
 h3 {
     @include font($fontFamily_regular, bold, 27px);
@@ -2549,10 +2543,11 @@ h5 {
     line-height: 20px;
 }
 p {
-    @include font($fontFamily_regular, normal, 15px);
+    @include font($fontFamily_regular, normal, 13px);
     color: #999999;
     text-align: center;
     line-height: 8px;
+    letter-spacing: 0px;
 }
 .lineheight {
     line-height: 18px;
@@ -2612,6 +2607,7 @@ p {
     color: #999999;
     text-align: center;
     line-height: 8px;
+    letter-spacing: 0px;
 }
 }
 .regcontentwo {
@@ -2626,6 +2622,7 @@ p {
     @include font($fontFamily_regular, normal, 14px);
     color: #888888;
     line-height: 8px;
+    letter-spacing: 0px;
 }
 .circle {
     @include pad(0px, 0px, 76px, 0px);
@@ -2647,6 +2644,7 @@ p {
     @include font($fontFamily_semibold, bold, 13.5px);
     color: #999999;
     line-height: 8px;
+    letter-spacing: 0px;
 }
 .pad {
     @include pad(20px, 0px, 10px, 0px);
@@ -2695,7 +2693,7 @@ text-align: center;
 border: none;
 border-bottom: 2px solid #cbcbcb;
 h3 {
-    @include font($fontFamily_bold, normal, 24px);
+    @include font($fontFamily_bold, normal, 25px);
     color: #999999;
     margin-bottom: 0px;
 }
@@ -2735,7 +2733,7 @@ p {
         padding-right: 83px;
         font-size: 16px;
         color: #8e8e93;
-        padding-top: 1px !important;
+        padding-top: 3px !important;
     }
     input::-webkit-input-placeholder {
         color: #adaeaf;
@@ -2752,6 +2750,10 @@ top: 0px;
 }
 #providerListDiv {
     top: 0px;
+    .item {
+         padding-top: 15px;
+         padding-bottom: 15px;
+    }
 }
 .icon-arrow-with-circle-up {
     font-size: 37px;
@@ -2783,14 +2785,13 @@ top: 0px;
 }
 }
 .searchProvFirstLetterDiv {
-position: absolute;
-left: 16px;
-max-width: 40px;
-max-height: 40px;
-width: 100%;
-height: 100%;
-border-radius: 50%;
-margin-top: 3px;
+     position: absolute;
+     left: 16px;
+     max-width: 40px;
+     max-height: 40px;
+     width: 100%;
+     height: 100%;
+     border-radius: 50%;
 p {
     @include font($fontFamily_xBold, Bold, 23px);
     z-index: 999;
@@ -2831,7 +2832,7 @@ $break-maxsize: 360px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
     }
 }
 }
@@ -2851,7 +2852,7 @@ $break-maxsize: 320px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
         font-size: 20px;
     }
 }
@@ -2876,7 +2877,7 @@ $break-maxsize: 1824px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
         font-size: 20px;
     }
 }
@@ -2901,7 +2902,7 @@ $break-maxsize: 1224px;
 
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
         font-size: 20px;
     }
 }
@@ -2922,7 +2923,7 @@ $break-maxsize: 320px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
     }
 }
 .passedDate-Android {
@@ -2948,7 +2949,7 @@ $break-maxsize: 375px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
     }
 }
 }
@@ -2968,7 +2969,7 @@ $break-maxsize: 414px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
     }
 }
 }
@@ -2995,7 +2996,7 @@ $break-maxsize: 768px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
     }
 }
 }
@@ -3017,7 +3018,7 @@ $break-maxsize: 1024px;
         display: none;
     }
     h2 {
-        margin-top: -10px;
+        margin-top: -40px;
     }
 }
 }
@@ -3302,7 +3303,7 @@ color: #666666;
 left: -14px !important;
 }
 .usrAppointIcon-IOS {
-left: -7px !important;
+     left: -10px !important;
 }
 .contentAppoint-IOS {
 margin-left: 17px;
@@ -3352,8 +3353,8 @@ position: relative;
 top: -2px;
 }
 .authorizeIcon-IOS {
-position: relative;
-top: -18px;
+     position: relative;
+     top: -18px;
 }
 .authorizeRightIcon-Android {
 position: relative;
@@ -3425,7 +3426,7 @@ text-align: center;
     margin-top: 10px !important;
 }
 .status {
-    margin-top: -7px;
+    margin-top: -12px;
 }
 }
 .unAuthorizeStatusMain-Android {
@@ -3477,9 +3478,9 @@ position: relative;
 left: -5px;
 }
 .unAuthorizeUserRelation-IOS {
-width: 80%;
-float: left;
-margin-top: 8px; //5
+     width: 80%;
+     float: left;
+
 }
 .unAuthorizeUserRelation-Android {
 width: 80%;
@@ -3585,8 +3586,9 @@ position: relative;
 top: -12px;
 }
 .authorizeIcon-IOS {
-position: relative;
-top: 3px;
+     position: relative;
+     top: 3px;
+     color: #666666;
 }
 .authorizeIcon-Android {
 position: relative;
@@ -3879,7 +3881,7 @@ h3 {
 .icon-magnifying-glass {
     font-size: 16px;
     position: relative;
-    bottom: 2px;
+    bottom: -1px;
     right: 4px;
 }
 .logProvider {
@@ -4188,10 +4190,10 @@ margin-right: 53px;
 font-family: $fontFamily_semibold !important;
 }
 .newLogVerify {
-font-family: $fontFamily_bold !important;
-color: #888888 !important;
-font-size: 24px !important;
-padding-top: 12px;
+     font-family: $fontFamily_bold !important;
+     color: #888888 !important;
+     font-size: 25px !important;
+     padding-top: 30px;
 }
 .newVerifyEmailId {
 font-family: $fontFamily_regular;
@@ -4211,17 +4213,27 @@ padding-bottom: 45px;
 padding: 20px 0px 20px;
 }
 .newProviderSub {
-padding: 28px;
+padding: 33px;
 }
 .newProContent {
-margin-top: 221px;
+     margin-top: 228px;
+
 }
 .newProImage {
-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+     img {
+         width: 100%;
+         height: 100%;
+         border-radius: 50%;
+         border: 2px solid #C4C5C3;
+     }
 }
+.newProImageLogin {
+     img {
+         width: 100%;
+         height: 100%;
+         border-radius: 50%;
+         border: 2px solid #C4C5C3;
+     }
 }
 .addContent {
 padding-top: 15px;
@@ -4237,7 +4249,7 @@ a {
 }
 .enterEmailTextStart {
 line-height: 2px !important;
-padding-bottom: 15px;
+padding-bottom: 17px;
 font-size: 18px !important;
 }
 .newResetContent {
@@ -4246,9 +4258,10 @@ p {
     font-size: 26px;
     line-height: 27px;
     font-family: $fontFamily_semibold;
+    padding: 0 10%;
 }
 .resetDone {
-    margin-top: 57px;
+    margin-top: 80px;
     a {
         padding-bottom: 24px;
         border: none;
@@ -4264,13 +4277,25 @@ p {
 }
 }
 .singEmail {
-.newSingLogText {
-    font-size: 25px !important;
-    font-family: $fontFamily_semibold !important;
-}
-.icon-lock {
-    color: #CBCBCB;
-}
+     .newSingLogText {
+         font-size: 18px !important;
+         margin-top: -10px;
+         font-family: $fontFamily_semibold !important;
+     }
+     .icon-lock {
+         color: #CBCBCB;
+     }
+     .logSinglePwd {
+          padding-top: 20px;
+     }
+     .btn1 {
+          margin: 15px 0px 20px 0px;
+     }
+     .forgot_password_textSingle {
+          a {
+               font-size: 14px;
+          }
+     }     
 }
 .forgot_password_textSingle {
 text-align: center;
@@ -4582,6 +4607,7 @@ margin-top: 70px;
         line-height: 35px;
         font-family: $fontFamily_semibold;
         font-size: 17px;
+        letter-spacing: 0px;
     }
 }
 .place {
@@ -4591,7 +4617,7 @@ margin-top: 70px;
     }
 }
 .btn1 {
-    margin: 47px 0px 46px 5px !important;
+    margin: 47px 0px 46px 5px;
 }
 .icon-lock {
     font-size: 26px;
@@ -4620,12 +4646,10 @@ font-family: Glober Bold;
 #loginEmail {
 display: block;
 .place {
-    height: 43px;
+    height: 39px;
 }
 }
-.regLogin {
-//padding-top: 17px;
-}
+
 .patProfileImage {
 width: 52px;
 height: 52px;
@@ -4668,21 +4692,22 @@ margin-bottom: 20px;
 }
 }
 .imgDepenandtAlt {
-text-align: center;
-width: 55px;
-height: 55px;
-background-color: #000000;
-color: white;
-border-radius: 50%;
-position: absolute;
-font-size: 27px;
-font-family: 'Glober xBold';
-padding-top: 22px;
+     text-align: center;
+     width: 55px;
+     height: 55px;
+     background-color: #000000;
+     color: white;
+     border-radius: 50%;
+     position: absolute;
+     font-size: 27px;
+     font-family: 'Glober xBold';
+     padding-top: 22px;
 }
 .userAccountPanel {
-text-align: center;
-color: white;
-margin-top: -20px !important;
+     text-align: center;
+     color: white;
+     margin-top: -53px !important;
+    border: none;
 a {
     color: #8E8E8E !important;
     div.icon {
@@ -4695,23 +4720,22 @@ a {
         _top: 5px;
         svg {
             border: 1px solid;
-            font-size: 35px;
+            font-size: 32px;
             padding: 5px;
             border-radius: 50%;
         }
     }
     p {
-        margin-top: 55px !important;
+        margin-top: 48px !important;
         font-family: 'Glober Regular' !important;
         font-size: 13px;
     }
 }
 
-
 .patProfileImage {
-    width: 90px;
-    height: 90px;
-    font-size: 35px;
+    width: 87px;
+    height: 87px;
+    font-size: 50px;
     margin-left: auto;
     margin-right: auto;
     border: 2px solid #fff;
@@ -4722,8 +4746,8 @@ a {
 .uAPlProfileImage {
     img {
         margin-left: 0px !important;
-        width: 90px;
-        height: 90px;
+        width: 87px;
+        height: 87px;
         color: white;
         border-radius: 50%;
         border: 2px solid #fff;
@@ -4733,27 +4757,31 @@ a {
     }
   span {
         position: relative;
-        top: 30px;
+        top: 40px;
     }
 }
 .uAPHomeIcon {
   margin-top:10px;
+ }
   .homeicon{
     margin-left:-12px;
   }
   .hometext{
     margin-left:-24px;
   }
-}
+
+
 .uAPChangePatient{
-  margin-top:10px;
+       margin-top:10px;
+       margin-left:12px;
+ }
   .groupicon{
-    margin-left:12px;
+   // margin-left:12px;
   }
   .grouptext{
-    margin-left:14px;
+    //margin-left:14px;
   }
-}
+
 }
 .docAppointImage {
 float: left;
@@ -4788,11 +4816,74 @@ margin-right: 10px;
 }
 }
 .regStep2Con {
-padding-top: 23px !important;
+     padding-top: 30px !important;
 .card {
-margin-top: 53px;
+     margin-top: 53px;
 }
 }
 .patAccoSubHeadHeight {
-height: 100px;
+     height: 100px;
+}
+.newPwd {
+     .pwdMainContent {
+          .regcontent  {
+               margin-top: 28px !important;
+               h2 {
+                    font-size: 32px !important;
+                    margin-top: 25px;
+               }
+               p{
+                    font-size: 13px !important;
+                    line-height: 0px !important;
+                    padding: 12px 0px 17px 0px;
+                    letter-spacing: 0px;
+               }
+          }
+          .btn1 {
+                 margin: 29px 0px 40px 5px !important;
+          }
+     }
+     .acinfo1-IOS{
+          h4 {
+               line-height: 0px;
+               padding-top: 16px !important;
+          }
+     }
+}
+.regLogin {
+     margin-top: -10px;
+     .newLogPageCont {
+          margin-top: 7px !important;
+          .enterEmailText {
+               line-height: 0px !important;
+               font-size: 18px !important;
+               padding-bottom: 13px;
+               padding-top: 5px;
+          }
+     }
+     .btn1 {
+          margin: 17px 0px 24px 0px !important;
+     }
+     .acinfo1-IOS {
+          h4 {
+               padding-top: 25px !important;
+               letter-spacing: 0px;
+               line-height: 0px;
+               padding-bottom: 10px;
+          }
+     }
+     .newLogProviderSecDiv {
+          h4 {
+               padding-top: 6px !important;
+               letter-spacing: 0px;
+          }
+     }
+     .regcontent {
+           h2 {
+                margin-top: 9px;
+           }
+     }
+}
+.ioncontentalign {
+     margin-top: 220px;
 }

@@ -12,8 +12,8 @@
 
 			<div id="providerListDiv" class="list has-subheader provider" >
 				<a class="item item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)">
-				  <div ng-if="hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImage" style="border: 2px solid #C4C5C3;"><img ng-src="{{hospitalDetails.logo}}"  ></div>
-					<div ng-if="!hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImage" style="border: 2px solid #C4C5C3;"><p>{{hospitalDetails.logo}}</p></div>
+				  <div ng-if="hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImageLogin"><img ng-src="{{hospitalDetails.logo}}"  ></div>
+					<div ng-if="!hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImageLogin" ><p>{{hospitalDetails.logo}}</p></div>
 					<h2>{{hospitalDetails.name}}</h2>
 					<i class="icon ion-chevron-right"></i>
 				</a>
