@@ -641,13 +641,15 @@ body {
             margin-top: -13px;
             position: relative;
             top: 9px;
-            img {  }
+            .patProfileImage {
+              margin-top: -2px;
+            }
         }
         .subHeader_content-Android {
             .subHeader_content_name {
                 font-size: 21px;
                 margin-left: 7px;
-                margin-top: 3px;
+                margin-top: 8px;
                 .patientName {
                     font-weight: bold;
                     font-family: Glober Bold !important;
@@ -661,13 +663,14 @@ body {
                 font-weight: bold;
                 margin-left: 10px;
                 margin-top: 1px;
+                margin-bottom: 3px;
             }
         }
         .subHeader_content-IOS {
             .subHeader_content_name {
                 font-size: 22px;
                 margin-left: 7px;
-                margin-top: 3px;
+                margin-top: 8px;
                 .patientName {
                     font-weight: bold;
                     font-family: Glober Bold !important;
@@ -1886,7 +1889,7 @@ select {
 }
 //Patient ConcernsContent
 .ConcernsContent {
-    margin-top: 122px !important;
+    margin-top: 110px !important;
     .PrimaryList {
         top: 3px;
         padding: 1px;
@@ -2857,8 +2860,8 @@ a {
     border: 2px solid white;
 }
 .UserHmelistImgView {
-    width: 43px;
-    height: 43px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     border: 2px solid #FFFFFF;
 }

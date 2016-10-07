@@ -295,7 +295,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         cordova.plugins.backgroundMode.enable();
 
         cordova.plugins.backgroundMode.onactivate = function () {
-          setTimeout(function () {
+        /*  setTimeout(function () {
             if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
                 if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
                   navigator.notification.alert(
@@ -307,7 +307,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   $rootScope.ClearRootScope();
                 }
             }
-          }, 1800000);
+          }, 1800000);*/
 
           var i = 0;
           var alive_waiting_room_pool;
