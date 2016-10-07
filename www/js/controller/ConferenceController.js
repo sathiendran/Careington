@@ -725,6 +725,8 @@ angular.module('starter.controllers')
             }else{
                 participantName = participantName.replace('Screen Share By :', '');
                 var participantNameInitial = getInitialForName(participantName);
+                if(participantNameInitial == 'WW')
+                    participantNameInitial = 'W';
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }
             if($('.clsPtVideoThumImage').length > 1){
@@ -850,6 +852,8 @@ angular.module('starter.controllers')
                 }
                 else{
                     var patientInitialStr = getInitialForName(conferencePtFullName);
+                    if(patientInitialStr == 'WW')
+                        patientInitialStr = 'W';
                     thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
                 }
                 $('#videoCallSessionTimer').runner({
