@@ -128,7 +128,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
               window.localStorage.setItem('InActiveSince', timeoutValue);
               if(timeoutValue === 30)
                 goInactive();
-          }, 3000);
+          }, 60000);
       });
 
      //  $('body').bind('touchend', function() {
@@ -1112,7 +1112,7 @@ function getInitialForName(name){
 function getInitialFromName(firstName, LastName){
     var initial = "";
     var name = firstName + ' ' + LastName;
-    if(name){
+    if(!angular.isUndefined(firstName) && firstName !== ''){
 		    name = name.toUpperCase();
         name = name.replace('  ', ' ');
         name = name.trim()
