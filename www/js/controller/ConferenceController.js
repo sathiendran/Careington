@@ -1040,7 +1040,7 @@ angular.module('starter.controllers')
 
 
     function consultationEndedAlertDismissed() {
-        resetSessionLogoutTimer();
+        //resetSessionLogoutTimer();
         $('#videoCallSessionTimer').runner('stop');
         conHub.invoke("endConsultation").then(function() {});
         //$('#publisher').css('display', 'none');
