@@ -1,6 +1,10 @@
 angular.module('starter.controllers')
 
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover) {
+    if(typeof appIdleInterval != "undefined")
+        clearInterval(appIdleInterval);
+    appIdleInterval = undefined;
+    appIdleInterval = 0;
     if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
         $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
         $rootScope.accessToken = window.localStorage.getItem('accessToken');
@@ -1030,6 +1034,7 @@ angular.module('starter.controllers')
 
 
     function consultationEndedAlertDismissed() {
+        resetSessionLogoutTimer();
         $('#videoCallSessionTimer').runner('stop');
         conHub.invoke("endConsultation").then(function() {});
         //$('#publisher').css('display', 'none');
