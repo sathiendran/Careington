@@ -842,13 +842,15 @@ angular.module('starter.controllers')
                 }, 100);
                 session.publish(publisher);
                 OT.updateViews();
-                if($rootScope.PatientImageSelectUser && $rootScope.PatientImageSelectUser != ''){
-                    thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                var conferencePtImage = window.localStorage.getItem('videoCallPtImage');
+                var conferencePtFullName = window.localStorage.getItem('videoCallPtFullName');
+                $('.clsPtVideoThumImage').remove();
+                if(conferencePtImage && conferencePtImage != null && conferencePtImage != ''){
+                    thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + conferencePtImage + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
                 }
                 else{
-                    var ptFullName = $rootScope.PatientFirstName + " " + $rootScope.PatientLastName;
-                    var patientInitialStr = getInitialForName(ptFullName);
-                    thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                    var patientInitialStr = getInitialForName(conferencePtFullName);
+                    thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
                 }
                 $('#videoCallSessionTimer').runner({
                   autostart: true,
