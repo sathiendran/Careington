@@ -128,7 +128,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
               window.localStorage.setItem('InActiveSince', timeoutValue);
               if(timeoutValue === 30)
                 goInactive();
-          }, 60000);
+          }, 3000);
       });
 
      //  $('body').bind('touchend', function() {
