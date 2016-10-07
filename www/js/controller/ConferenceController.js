@@ -683,6 +683,7 @@ angular.module('starter.controllers')
             $scope.createVideoThumbnail(event);
 
             OT.updateViews();
+            $('.vdioBadge').html(participantsCount);
         });
 
         //PatientImageSelectUser
@@ -716,7 +717,6 @@ angular.module('starter.controllers')
                 var participantNameInitial = getInitialForName(participantName);
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }
-            $('.vdioBadge').html(participantsCount);
         };
 
 
@@ -729,7 +729,6 @@ angular.module('starter.controllers')
             $(swiperParent).remove();
             $("div.swiper-slide:empty").remove();
             OT.updateViews();
-            $('.vdioBadge').html(participantsCount);
         };
 
         $scope.arrangeVideoThumbnails = function() {
@@ -769,9 +768,10 @@ angular.module('starter.controllers')
                 var index = connectedStreams.indexOf(tbStreamVal);
                 connectedStreams.splice(index, 1);
             }
-            if (event.stream.name.indexOf('Screen Share') >= 0) {
+            if (event.stream.name.indexOf('Screen Share') < 0) {
                 participantsCount = +participantsCount - 1;
             }
+            $('.vdioBadge').html(participantsCount);
             $scope.removeVideoThumbnail(tbStreamVal);
 
             for (var i = 0; i < connectedStreams.length; i++) {
@@ -800,7 +800,6 @@ angular.module('starter.controllers')
             $("#subscriber").css('top', '0px');
             $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
             event.preventDefault();
-            $('.vdioBadge').html(participantsCount);
         });
 
         // Handler for sessionDisconnected event
