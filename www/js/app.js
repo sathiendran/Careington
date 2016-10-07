@@ -112,25 +112,38 @@ var handleOpenURL = function(url) {
 
 angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
+.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle, $ionicBackdrop, $interval) {
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
       var timeoutValue = 0;
-      $('body').bind('touchstart',function() {
+
+      function resetSessionLogoutTimer(){
           window.localStorage.setItem('Active', timeoutValue);
           timeoutValue = 0;
-          if(typeof appIdleInterval != "undefined")
-               clearInterval(appIdleInterval);
-            appIdleInterval = undefined;
-          appIdleInterval = setInterval(function() {
-              timeoutValue++;
-              window.localStorage.setItem('InActiveSince', timeoutValue);
-              if(timeoutValue === 30)
-                goInactive();
+          clearSessionLogoutTimer();
+          appIdleInterval = $interval(function() {
+              if(window.localStorage.getItem("isCustomerInWaitingRoom") != 'Yes' && window.localStorage.getItem('isVideoCallProgress') != 'Yes'){
+                  timeoutValue++;
+                  window.localStorage.setItem('InActiveSince', timeoutValue);
+                  if(timeoutValue === 30)
+                    goInactive();
+              }
           }, 60000);
-      });
+      }
 
+
+      function clearSessionLogoutTimer(){
+        if(typeof appIdleInterval != "undefined"){
+           $interval.cancel(appIdleInterval);
+            appIdleInterval = undefined;
+            appIdleInterval = 0;
+        }
+      }
+
+      $('body').bind('touchstart',function() {
+          resetSessionLogoutTimer();
+      });
      //  $('body').bind('touchend', function() {
      //      myTimer = setInterval(function() {
      //          goInactive();
@@ -164,30 +177,19 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
     function goInactive() {
         var inactiveDuration = window.localStorage.getItem('InActiveSince');
+        var isCustomerInWaitingRoomVal = window.localStorage.getItem("isCustomerInWaitingRoom");
+        var isVideoCallProgressVal = window.localStorage.getItem('isVideoCallProgress')
         inactiveDuration = Number(inactiveDuration);
         if(inactiveDuration === 30){
             if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
-                  if ($rootScope.currState.$current.name === "tab.cardDetails" || $rootScope.currState.$current.name === "tab.healthinfo" ) {
-                      var gSearchLength = $('.ion-google-place-container').length;
-                      if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
-                          $ionicBackdrop.release();
-                          $(".ion-google-place-container").css({
-                              "display": "none"
-                          });
-
-                      } else {
-                          $(".ion-google-place-container").css({
-                              "display": "none"
-                          });
-                          navigator.app.backHistory();
-                      }
-                  }
+                if(isCustomerInWaitingRoomVal != 'Yes' && isVideoCallProgressVal != 'Yes') {
+                  $(".ion-google-place-container").css({
+                      "display": "none"
+                  });
+                  $ionicBackdrop.release();
                   window.localStorage.setItem('Inactive Success', timeoutValue);
                   timeoutValue = 0;
-                  if(typeof appIdleInterval != "undefined")
-                       clearInterval(appIdleInterval);
-                      appIdleInterval = undefined;
+                  clearSessionLogoutTimer();
                   $rootScope.ClearRootScope();
                   navigator.notification.alert(
                        'Your session timed out.', // message
@@ -385,7 +387,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }, 2000);
         $ionicPlatform.on('resume', function() {
-            if(typeof alive_waiting_room_pool == "undefined")
+            if(typeof alive_waiting_room_pool != "undefined")
                 clearInterval(alive_waiting_room_pool);
             alive_waiting_room_pool = undefined;
             setTimeout(function() {

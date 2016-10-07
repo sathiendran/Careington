@@ -129,6 +129,10 @@ angular.module('starter.controllers')
             $scope.$digest();
         });
         conHub.on("onCustomerDefaultWaitingInformation", function() {
+            if(typeof appIdleInterval != "undefined")
+                clearInterval(appIdleInterval);
+            appIdleInterval = undefined;
+            appIdleInterval = 0;
              window.localStorage.setItem("isCustomerInWaitingRoom", "Yes");
              window.localStorage.setItem('accessToken', $rootScope.accessToken);
              window.localStorage.setItem("waitingRoomConsultationId", +$rootScope.consultationId);
