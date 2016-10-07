@@ -804,7 +804,7 @@ $scope.locat=false;
         LoginService.postOnDemandConsultation(params);
     };
 
-    $rootScope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
+    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
         angular.forEach(mainListItem, function(item, key2) {
             item.checked = false;
         });
