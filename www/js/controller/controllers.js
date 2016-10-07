@@ -4898,7 +4898,7 @@ $state.go('tab.consultCharge');
         LoginService.getListOfPassedConsultations(params);
 
     }
-    $rootScope.passededconsultantsForCoUser = function() {
+    $rootScope.passededconsultantsForCoUser = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
 
         if ($rootScope.accessToken == 'No Token') {
             alert('No token.  Get token first then attempt operation.');
@@ -4946,7 +4946,7 @@ $state.go('tab.consultCharge');
                       $rootScope.PatientAge = P_Age;
                       $rootScope.SelectPatientAge = $rootScope.PatientAge;
                       $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
-                      $rootScope.patientId = P_Id;
+                    //  $rootScope.patientId = P_Id;
                       $scope.doGetConutriesList();
                       $rootScope.doGetCreditDetails();
                       $rootScope.doGetLocations();
@@ -5183,7 +5183,7 @@ $state.go('tab.consultCharge');
         $rootScope.coUserAuthorization =  $rootScope.patientId;
         $rootScope.patientId = P_Id;
         $rootScope.getCoUserAunthent = '';
-        $rootScope.passededconsultantsForCoUser();
+        $rootScope.passededconsultantsForCoUser(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent);
     }
 
 
