@@ -847,7 +847,7 @@ angular.module('starter.controllers')
                 var conferencePtImage = window.localStorage.getItem('videoCallPtImage');
                 var conferencePtFullName = window.localStorage.getItem('videoCallPtFullName');
                 $('.clsPtVideoThumImage').remove();
-                if(conferencePtImage && conferencePtImage != null && conferencePtImage != ''){
+                if(conferencePtImage && conferencePtImage != null && conferencePtImage != '' && conferencePtImage != "undefined" && conferencePtImage != undefined){
                     thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + conferencePtImage + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
                 }
                 else{
