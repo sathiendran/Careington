@@ -635,10 +635,10 @@ body {
     top: 65px !important;
     height: auto !important;
     .calendar_subHeader {
-        margin: 7px 7px 7px 10px;
+        margin: 3px 7px;
         .subHeader_image {
-            margin-left: -15px;
-            margin-top: -20px;
+           margin-left: -5px;
+            margin-top: -13px;
             position: relative;
             top: 9px;
             img {  }
@@ -680,7 +680,7 @@ body {
             .subHeader_content_age {
                 font-size: 12px;
                 font-weight: bold;
-                margin-left: 7px;
+                margin-left: 10px;
                 margin-top: -2px;
             }
         }
@@ -2649,7 +2649,7 @@ a {
     margin: 138px 0 0 0;
 }
 .bar .buttons > .button {
-    min-height: 31px;
+    min-height: 29px;
     line-height: 45px;
     color: #FFFFFF;
     position: relative;
@@ -2679,7 +2679,7 @@ a {
      height: 197px !important;padding: 0px;     background-image: none;
      .healthSubRow {
           background-color: #444444;
-          height: 109px;
+          height: 111px;
           .healthSubNameHeader {
                    padding-top: 6px;
           }
@@ -2688,17 +2688,17 @@ a {
 
 .subheaderheight {
     top: 64px;
-    height: 107px;
+    height: 111px;
     border-color: #5D5959 !important;
     .item {
         margin: -5px;
     }
     .button-bar{
-      padding:0px 3%;
+      padding:2px 3%;
     }
 
     .userAccountPanel {
-          margin-top: -9px !important;
+          margin-top: -7px !important;
           .uAPlProfileImage {
                margin-top: -2px;
           }
@@ -2717,7 +2717,7 @@ a {
     padding: 14px !important;
 }
 .relatedhead {
-    margin-top: 7px !important;
+    margin-top: 9px !important;
 }
 .itemiconcolor {
     background-color: #444444;
@@ -2778,7 +2778,7 @@ a {
     margin-top: 4px;
     text-align: center;
     color: #666666;
-    font-size: 172%; 
+    font-size: 172%;
     font-family: Glober Bold;
 }
 .appmarg {
@@ -2857,8 +2857,8 @@ a {
     border: 2px solid white;
 }
 .UserHmelistImgView {
-    width: 53px;
-    height: 53px;
+    width: 43px;
+    height: 43px;
     border-radius: 50%;
     border: 2px solid #FFFFFF;
 }
@@ -2921,7 +2921,7 @@ a {
     font-size: 14px;
     margin-bottom: -1px;
     margin-left: 66px;
-    margin-top: 2px;
+    margin-top: 1px;
     padding-top: 2px;
 }
 .SubTitleSpan {
@@ -3518,7 +3518,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             padding-right: 65px;
             font-size: 16px;
             color: #8e8e93;
-            padding-top: 7px !important;
+            padding-top: 5px !important;
         }
         .icon-magnifying-glass {
             margin-right: 47px !important;
@@ -3532,7 +3532,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             background: #e3e4e6;
             margin-left: 5px;
             margin-right: 5px;
-            border-radius: 9px;
+            border-radius: 6px;
             padding: 0px;
             ::-webkit-input-placeholder {
                 /* WebKit browsers */
@@ -3574,7 +3574,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
                 font-size: 14px;
                 color: #616462;
                 height: 23px;
-                margin-top: 0px;
+                margin-top: -1px;
                 font-family: $fontFamily_regular;
                // position: relative;
                 //top: 2px;
@@ -4360,7 +4360,7 @@ textarea {
         margin-left: -18px;
         font-size: 30px;
         position: relative;
-        left: -52px;
+        left: -55px;
     }
 }
 .content {
@@ -4887,7 +4887,7 @@ hr {
         margin-left: 23px;
     }
     .relatediconfont {
-        margin-top: -2px;
+        margin-top: -4px;
         color: #999999 !important;
         padding-left: 11px;
     }
@@ -5037,7 +5037,7 @@ hr {
         float: right;
         margin-left: 12px;
         font-size: 22px;
-        margin-top: 0px; //margin-top:-8px;margin-left:16px;
+        margin-top: -7px; //margin-top:-8px;margin-left:16px;
     }
     .relationtab {
         background-color: #ededed;
@@ -5049,7 +5049,7 @@ hr {
         .unauthorrelationship {
             margin-top: -13px;
             color: #666666;
-            font-size: 16px; //12
+            font-size: 12px; //12
             margin-left: 9px;
             font-family: Glober SemiBold;
         }

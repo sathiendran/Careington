@@ -339,6 +339,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             'background-color': $rootScope.brandColor
         });
         var Name = getInitialFromName(firstName, lastName);
+        if(Name === 'WW') {
+             Name = 'W';
+        }
         if (!angular.isUndefined(imagePath) && imagePath !== '') {
             if (imagePath.indexOf("api") >= 0) {
                 var image = imagePath;
@@ -479,7 +482,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
-        $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
+       // $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
         $rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 7px;position: relative; height: 49px;";

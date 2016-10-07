@@ -144,7 +144,7 @@ margin-top: 125px !important;
 }
 }
 .ioncontentalign {
-margin-top: 215px;
+     margin-top: 220px;
 }
 .ioncontentsalign {
 margin-top: 200px;
@@ -489,9 +489,7 @@ color: #888;
 .userdeptcontent {
     margin-top: 165px !important;
 }
-.ioncontentalign {
-    margin-top: 230px;
-}
+
 .ioncontentsalign {
     margin-top: 185px;
 }
@@ -844,7 +842,7 @@ color: #fff;
 font-size: 138% !important;
 }
 .button-bar > .button:first-child {
-border-radius: 6px 0px 0px 6px !important;
+     border-radius: 4px 0px 0px 4px !important;
 }
 .fontcolorfamily {
 color: #666666 !important;
@@ -854,8 +852,8 @@ position: relative;
 top: 4px;
 }
 .button-bar > .button:last-child {
-border-right-width: 1px;
-border-radius: 0px 6px 6px 0px !important;
+     border-right-width: 1px;
+     border-radius: 0px 4px 4px 0px !important;
 }
 .dependusers {
 display: none;
@@ -1115,23 +1113,23 @@ text-transform: lowercase;
 margin-top: -4px; //-6
 }
 .dotedsearchhr {
-margin-top: -18px;
-height: 0px !important;
-border-top: 1px dashed #c0bebe;
-background-color: #e9e9e9;
+     margin-top: -18px;
+     height: 0px !important;
+     border-top: 1px dashed #c0bebe;
+     background-color: #e9e9e9;
 }
 .dotedhr {
-margin-top: -9px;
-height: 0px !important;
-border-top: 1px dashed #c0bebe;
-background-color: #e9e9e9;
+     margin-top: -9px;
+     height: 0px !important;
+     border-top: 1px dashed #c0bebe;
+     background-color: #e9e9e9;
 }
 .profilecontent {
-margin-top: 177px;
+     margin-top: 177px;
 }
 .relatedusercontent {
-margin-top: 232px;
-margin-bottom: 50px;
+     margin-top: 217px;
+     margin-bottom: 50px;
 [class^=""], [class*=" "] {
 }
 .item {
@@ -1708,7 +1706,7 @@ border: none;
 .bg {
 background-color: #EF4B27;
 border: none !important;
-padding-top: 67px;
+padding-top: 74px;
 height: auto;
 h2 {
     color: #FFFFFF;
@@ -2385,7 +2383,7 @@ margin-top: -12px;
 .register {
 margin-top: -3px;
 bottom: 39px !important;
-padding-top: 35px;
+padding-top: 38px;
 h2 {
     @include font($fontFamily_xBold, bold, 18px);
     color: #FFFFFF;
@@ -3305,7 +3303,7 @@ color: #666666;
 left: -14px !important;
 }
 .usrAppointIcon-IOS {
-left: -7px !important;
+     left: -10px !important;
 }
 .contentAppoint-IOS {
 margin-left: 17px;
@@ -3355,8 +3353,8 @@ position: relative;
 top: -2px;
 }
 .authorizeIcon-IOS {
-position: relative;
-top: -18px;
+     position: relative;
+     top: -18px;
 }
 .authorizeRightIcon-Android {
 position: relative;
@@ -3428,7 +3426,7 @@ text-align: center;
     margin-top: 10px !important;
 }
 .status {
-    margin-top: -7px;
+    margin-top: -12px;
 }
 }
 .unAuthorizeStatusMain-Android {
@@ -3480,9 +3478,9 @@ position: relative;
 left: -5px;
 }
 .unAuthorizeUserRelation-IOS {
-width: 80%;
-float: left;
-margin-top: 8px; //5
+     width: 80%;
+     float: left;
+
 }
 .unAuthorizeUserRelation-Android {
 width: 80%;
@@ -3588,8 +3586,9 @@ position: relative;
 top: -12px;
 }
 .authorizeIcon-IOS {
-position: relative;
-top: 3px;
+     position: relative;
+     top: 3px;
+     color: #666666;
 }
 .authorizeIcon-Android {
 position: relative;
@@ -4214,10 +4213,10 @@ padding-bottom: 45px;
 padding: 20px 0px 20px;
 }
 .newProviderSub {
-padding: 30px;
+padding: 33px;
 }
 .newProContent {
-     margin-top: 216px;
+     margin-top: 228px;
 
 }
 .newProImage {
@@ -4278,13 +4277,25 @@ p {
 }
 }
 .singEmail {
-.newSingLogText {
-    font-size: 25px !important;
-    font-family: $fontFamily_semibold !important;
-}
-.icon-lock {
-    color: #CBCBCB;
-}
+     .newSingLogText {
+         font-size: 18px !important;
+         margin-top: -10px;
+         font-family: $fontFamily_semibold !important;
+     }
+     .icon-lock {
+         color: #CBCBCB;
+     }
+     .logSinglePwd {
+          padding-top: 20px;
+     }
+     .btn1 {
+          margin: 15px 0px 20px 0px;
+     }
+     .forgot_password_textSingle {
+          a {
+               font-size: 14px;
+          }
+     }     
 }
 .forgot_password_textSingle {
 text-align: center;
@@ -4819,12 +4830,12 @@ margin-right: 10px;
                margin-top: 28px !important;
                h2 {
                     font-size: 32px !important;
-                    margin-top: 2px;
+                    margin-top: 25px;
                }
                p{
-                    font-size: 12.5px !important;
+                    font-size: 13px !important;
                     line-height: 0px !important;
-                    padding: 5px 0px 17px 0px;
+                    padding: 12px 0px 17px 0px;
                     letter-spacing: 0px;
                }
           }
@@ -4873,6 +4884,6 @@ margin-right: 10px;
            }
      }
 }
-h2, h4, button {
-     letter-spacing: -1px;
+.ioncontentalign {
+     margin-top: 220px;
 }
