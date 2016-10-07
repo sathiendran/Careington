@@ -508,6 +508,7 @@ angular.module('starter.controllers')
             $(".emailion").css({
                 "display": "initial"
             });
+            document.getElementById("healthInfoEmail").placeholder = "Required";
         } else {
             $(".emailion").css({
                 "display": "none"
