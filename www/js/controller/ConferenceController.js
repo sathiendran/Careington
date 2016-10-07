@@ -621,6 +621,9 @@ angular.module('starter.controllers')
         });
 
         session.on('streamCreated', function(event) {
+            if($('.clsPtVideoThumImage').length > 1){
+                $('.clsPtVideoThumImage').eq(0).remove();
+            }
             if (event.stream.name.indexOf('Screen Share') < 0) {
                 participantsCount = +participantsCount + 1;
             }
@@ -684,6 +687,9 @@ angular.module('starter.controllers')
 
             OT.updateViews();
             $('.vdioBadge').html(participantsCount);
+            if($('.clsPtVideoThumImage').length > 1){
+                $('.clsPtVideoThumImage').eq(0).remove();
+            }
         });
 
         //PatientImageSelectUser
@@ -717,6 +723,9 @@ angular.module('starter.controllers')
                 var participantNameInitial = getInitialForName(participantName);
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }
+            if($('.clsPtVideoThumImage').length > 1){
+                $('.clsPtVideoThumImage').eq(0).remove();
+            }
         };
 
 
@@ -729,6 +738,9 @@ angular.module('starter.controllers')
             $(swiperParent).remove();
             $("div.swiper-slide:empty").remove();
             OT.updateViews();
+            if($('.clsPtVideoThumImage').length > 1){
+                $('.clsPtVideoThumImage').eq(0).remove();
+            }
         };
 
         $scope.arrangeVideoThumbnails = function() {
@@ -827,18 +839,21 @@ angular.module('starter.controllers')
                 session.publish(publisher);
                 OT.updateViews();
                 if($rootScope.PatientImageSelectUser && $rootScope.PatientImageSelectUser != ''){
-                    thumbSwiper.appendSlide("<div class='videoThumbnail'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                    thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + $rootScope.PatientImageSelectUser + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
                 }
                 else{
                     var ptFullName = $rootScope.PatientFirstName + " " + $rootScope.PatientLastName;
                     var patientInitialStr = getInitialForName(ptFullName);
-                    thumbSwiper.appendSlide("<div class='videoThumbnail'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
+                    thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + $rootScope.PatientFirstName + " " + $rootScope.PatientLastName + "</p></div>");
                 }
                 $('#videoCallSessionTimer').runner({
                   autostart: true,
                   milliseconds: false,
                   startAt: 5000
                 });
+                if($('.clsPtVideoThumImage').length > 1){
+                    $('.clsPtVideoThumImage').eq(0).remove();
+                }
             } else {
                 alert('There was an error connecting to the session: ' + error.message);
             }
