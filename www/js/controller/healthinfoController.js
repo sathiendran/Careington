@@ -1219,7 +1219,7 @@ $scope.editDob=function(){
             $scope.relationship = '';
         }
         var myPopup = $ionicPopup.show({
-            title: "<a class='item-avatar popupaligned'>  <img src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
+            title: "<a class='item-avatar popupaligned'>  <img class='popupimage' src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
             subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
             templateUrl: 'templates/healthUnauthorizedPopup.html',
             scope: $scope,
@@ -1262,7 +1262,7 @@ $scope.editDob=function(){
             $scope.relationship = '';
         }
         var myPopup = $ionicPopup.show({
-            title: "<a class='item-avatar popupaligned'>  <img src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
+            title: "<a class='item-avatar popupaligned'>  <img class='popupimage' src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
             subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
             templateUrl: 'templates/unauthorizedpopup.html',
             scope: $scope,

@@ -248,6 +248,7 @@ body {
 .relationalign {
     margin-left: 51px !important;
     color: #666666;
+    font-family: $fontFamily_bold;
 }
 .item-input {
     .ellipsis {
@@ -2104,8 +2105,9 @@ select {
         font-family: $fontFamily_semibold;
     }
 }
+.srchlist{margin-top:10px;}
 .concernListContent {
-    margin-top: 52px;
+    margin-top: 60px;
     .concernListSearch {
         padding: 11px 0px;
         top: 0px;
@@ -2250,7 +2252,7 @@ select {
     }
     .concernListDetails {
         font-size: 19px;
-        font-family: $fontFamily_regular;
+        font-family: $fontFamily_bold;
         color: #666666;
     }
 }
@@ -4705,7 +4707,7 @@ hr {
 .topp {
     color: #999999 !important;
     font-size: 14px;
-    line-height: 25px;
+    line-height: 18px;
 }
 .donebutton {
     margin-bottom: 50px;
@@ -4783,7 +4785,7 @@ hr {
         margin-left: -9px;
     }
     .archiveCoUser {
-        height: 81px;
+        height: 75px;
         .relatediconfont {
             padding-left: 0px;
             margin-top: -2px;
@@ -4954,6 +4956,11 @@ hr {
     .popupaligned {
         margin-left: -12px;
     }
+    .popupimage{
+      top:14px !important;
+      max-width: 55px !important;
+      max-height: 55px !important;
+    }
     .listtype {
         padding-top: 29px !important;
     }
@@ -5077,7 +5084,7 @@ hr {
     }
     @media only screen and (max-device-width: 480px) {
         .col-25 {
-            max-width: 46% !important;
+            min-width: 46% !important;
         }
         .firstval {
             margin-left: 6px !important;
