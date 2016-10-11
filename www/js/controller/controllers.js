@@ -1164,6 +1164,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.backProviderSearchKey = '';
         if (currentPage === "loginSingle") {
             $rootScope.regStep1 = {};
+            $rootScope.selectedSearchProviderList = [];
+            $rootScope.selectedSearchProviderList.push({
+                  'hospitalName':  $rootScope.Hospital,
+                });
+            $rootScope.selectedSearchProviderList = $rootScope.selectedSearchProviderList[0];
             $state.go('tab.registerStep1');
         } else {
             $state.go('tab.searchprovider');
