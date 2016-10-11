@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth, Idle) {
+.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth, Idle) {
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name == "tab.userhome") ||
             ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -804,7 +804,7 @@ $scope.locat=false;
         LoginService.postOnDemandConsultation(params);
     };
 
-    $rootScope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
+    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
         angular.forEach(mainListItem, function(item, key2) {
             item.checked = false;
         });

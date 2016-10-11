@@ -12,7 +12,7 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //MultipleMultiple //Single //Demo
+var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
 var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
@@ -22,7 +22,7 @@ var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -32,7 +32,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'DYW';
+    var cobrandApp = 'ambientcare';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -112,24 +112,38 @@ var handleOpenURL = function(url) {
 
 angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
+.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle, $ionicBackdrop, $interval) {
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
       var timeoutValue = 0;
-      $('body').bind('touchstart',function() {
+
+      function resetSessionLogoutTimer(){
           window.localStorage.setItem('Active', timeoutValue);
           timeoutValue = 0;
-          if(typeof myTimer != "undefined")
-               clearInterval(myTimer);
-          myTimer = setInterval(function() {
-              timeoutValue++;
-              window.localStorage.setItem('Timeout', timeoutValue);
-              if(timeoutValue === 30)
-                goInactive();
+          clearSessionLogoutTimer();
+          appIdleInterval = $interval(function() {
+              if(window.localStorage.getItem("isCustomerInWaitingRoom") != 'Yes' && window.localStorage.getItem('isVideoCallProgress') != 'Yes'){
+                  timeoutValue++;
+                  window.localStorage.setItem('InActiveSince', timeoutValue);
+                  if(timeoutValue === 30)
+                    goInactive();
+              }
           }, 60000);
-      });
+      }
 
+
+      function clearSessionLogoutTimer(){
+        if(typeof appIdleInterval != "undefined"){
+           $interval.cancel(appIdleInterval);
+            appIdleInterval = undefined;
+            appIdleInterval = 0;
+        }
+      }
+
+      $('body').bind('touchstart',function() {
+          resetSessionLogoutTimer();
+      });
      //  $('body').bind('touchend', function() {
      //      myTimer = setInterval(function() {
      //          goInactive();
@@ -162,35 +176,29 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
-        window.localStorage.setItem('Inactive', timeoutValue);
-        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
-              if ($rootScope.currState.$current.name === "tab.cardDetails" || $rootScope.currState.$current.name === "tab.healthinfo" ) {
-                  var gSearchLength = $('.ion-google-place-container').length;
-                  if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
-                      $ionicBackdrop.release();
-                      $(".ion-google-place-container").css({
-                          "display": "none"
-                      });
+        var inactiveDuration = window.localStorage.getItem('InActiveSince');
+        var isCustomerInWaitingRoomVal = window.localStorage.getItem("isCustomerInWaitingRoom");
+        var isVideoCallProgressVal = window.localStorage.getItem('isVideoCallProgress')
+        inactiveDuration = Number(inactiveDuration);
+        if(inactiveDuration === 30){
+            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                if(isCustomerInWaitingRoomVal != 'Yes' && isVideoCallProgressVal != 'Yes') {
+                  $(".ion-google-place-container").css({
+                      "display": "none"
+                  });
+                  $ionicBackdrop.release();
+                  window.localStorage.setItem('Inactive Success', timeoutValue);
+                  timeoutValue = 0;
+                  clearSessionLogoutTimer();
+                  $rootScope.ClearRootScope();
+                  navigator.notification.alert(
+                       'Your session timed out.', // message
+                       null,
+                       $rootScope.alertMsgName,
+                       'Ok' // buttonName
+                   );
 
-                  } else {
-                      $(".ion-google-place-container").css({
-                          "display": "none"
-                      });
-                      navigator.app.backHistory();
-                  }
-              }
-              window.localStorage.setItem('Inactive Success', timeoutValue);
-              timeoutValue = 0;
-              if(typeof myTimer != "undefined")
-                   clearInterval(myTimer);
-              navigator.notification.alert(
-                   'Your session timed out.', // message
-                   null,
-                   $rootScope.alertMsgName,
-                   'Ok' // buttonName
-               );
-              $rootScope.ClearRootScope();
+                }
             }
         }
     }
@@ -289,7 +297,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         cordova.plugins.backgroundMode.enable();
 
         cordova.plugins.backgroundMode.onactivate = function () {
-          setTimeout(function () {
+        /*  setTimeout(function () {
             if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
                 if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
                   navigator.notification.alert(
@@ -301,7 +309,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   $rootScope.ClearRootScope();
                 }
             }
-          }, 1800000);
+          }, 1800000);*/
 
           var i = 0;
           var alive_waiting_room_pool;
@@ -379,6 +387,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }, 2000);
         $ionicPlatform.on('resume', function() {
+            if(typeof alive_waiting_room_pool != "undefined")
+                clearInterval(alive_waiting_room_pool);
+            alive_waiting_room_pool = undefined;
             setTimeout(function() {
                 //  Idle.watch();
                 if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
@@ -1103,7 +1114,7 @@ function getInitialForName(name){
 function getInitialFromName(firstName, LastName){
     var initial = "";
     var name = firstName + ' ' + LastName;
-    if(name){
+    if(!angular.isUndefined(firstName) && firstName !== ''){
 		    name = name.toUpperCase();
         name = name.replace('  ', ' ');
         name = name.trim()

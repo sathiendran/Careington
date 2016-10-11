@@ -339,6 +339,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             'background-color': $rootScope.brandColor
         });
         var Name = getInitialFromName(firstName, lastName);
+        if(Name === 'WW') {
+             Name = 'W';
+        }
         if (!angular.isUndefined(imagePath) && imagePath !== '') {
             if (imagePath.indexOf("api") >= 0) {
                 var image = imagePath;
@@ -479,7 +482,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.patient_subHeaderTopMove = "margin-top: 1px !important;";
         $rootScope.intakeTittle = "intakeTittleIOS";
         $rootScope.MenuInnerStyle = "top: 0px;";
-        $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
+       // $rootScope.IntakeFormInnerStyle = "margin-top: 7px;";
         $rootScope.IntakeFormInnerStyleMedication = "margin-top: 0px;";
         $rootScope.PatientCalentarInnerStyle = "margin-top: 1px;";
         $rootScope.PatientCalentarSchedule = "top: 7px;position: relative; height: 49px;";
@@ -953,47 +956,49 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.Validation($scope.ErrorMessage);
             } else {
                  $rootScope.isNotificationDisplayed = false;
-                // $window.localStorage.setItem('FlagForCheckingAuthorization', '');
+                $window.localStorage.setItem('FlagForCheckingAuthorization', '');
                 if (ionic.Platform.is('browser') !== true) {
-                    chkCameraAndMicroPhoneSettings();
+                    $scope.nameForChckingCurrentFuncForMic = 'GeneralLoginFun';
+                    chkCameraAndMicroPhoneSettings($scope.nameForChckingCurrentFuncForMic);
                 } else {
                     $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
-                }
-                if ($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
-                    if ($("input[class=isRemChecked]").is(':checked') == true) {
-                        //  if ($("#squaredCheckbox").prop('checked') == true) {
-                        $window.localStorage.setItem('username', $("#UserEmail").val());
-                        $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
-                        $rootScope.chkedchkbox = true;
-
-                    } else {
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
-
-                        $window.localStorage.oldEmail = '';
-                        $window.localStorage.setItem('username', "");
-                        $rootScope.chkedchkbox = false;
-                    }
-                    if (deploymentEnv == "Production") {
-                        if (appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-                            apiCommonURL = 'https://snap-stage.com';
-                            api_keys_env = 'Staging';
-                            $rootScope.APICommonURL = 'https://snap-stage.com';
-                        } else {
-                            apiCommonURL = 'https://connectedcare.md';
-                            api_keys_env = 'Production';
-                            $rootScope.APICommonURL = 'https://connectedcare.md';
-                        }
-                    }
-                    $('#loginEmail').hide();
-                    $('#verifyEmail').show();
-                    $scope.doGetFacilitiesList();
+                    $scope.GetLoginFunctionDetails();
                 }
             }
         }
 
     };
+
+      $scope.GetLoginFunctionDetails = function() {
+          if ($("input[class=isRemChecked]").is(':checked') == true) {
+              $window.localStorage.setItem('username', $("#UserEmail").val());
+              $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
+
+              $rootScope.UserEmail = $scope.userLogin.UserEmail;
+              $rootScope.chkedchkbox = true;
+
+          } else {
+              $rootScope.UserEmail = $scope.userLogin.UserEmail;
+
+              $window.localStorage.oldEmail = '';
+              $window.localStorage.setItem('username', "");
+              $rootScope.chkedchkbox = false;
+          }
+          if (deploymentEnv == "Production") {
+              if (appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+                  apiCommonURL = 'https://snap-stage.com';
+                  api_keys_env = 'Staging';
+                  $rootScope.APICommonURL = 'https://snap-stage.com';
+              } else {
+                  apiCommonURL = 'https://connectedcare.md';
+                  api_keys_env = 'Production';
+                  $rootScope.APICommonURL = 'https://connectedcare.md';
+              }
+          }
+          $('#loginEmail').hide();
+          $('#verifyEmail').show();
+          $scope.doGetFacilitiesList();
+      }
 
 
     $scope.checkSingleHospitalLogin = function(item, event) {
@@ -1017,58 +1022,61 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
             } else {
                  $rootScope.isNotificationDisplayed = false;
-                 //$window.localStorage.setItem('FlagForCheckingAuthorization', '');
+                 $window.localStorage.setItem('FlagForCheckingAuthorization', '');
                 if (ionic.Platform.is('browser') !== true) {
-                    chkCameraAndMicroPhoneSettings();
+                    $scope.nameForChckingCurrentFuncForMic = 'SingleFuncLogin';
+                    chkCameraAndMicroPhoneSettings($scope.nameForChckingCurrentFuncForMic);
                 } else {
                     $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
-                }
-                if ($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
-                    if (deploymentEnvLogout == 'Single') {
-                        if (deploymentEnvForProduction == 'Production') {
-                            if (appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-                                //deploymentEnv = "Staging";
-                                $rootScope.hospitalId = singleStagingHospitalId;
-                                apiCommonURL = 'https://snap-stage.com';
-                                api_keys_env = 'Staging';
-                                $rootScope.APICommonURL = 'https://snap-stage.com';
-                            } else {
-                                //deploymentEnv = "Production";
-                                $rootScope.hospitalId = singleHospitalId;
-                                apiCommonURL = 'https://connectedcare.md';
-                                api_keys_env = 'Production';
-                                $rootScope.APICommonURL = 'https://connectedcare.md';
-                            }
-                        } else if (deploymentEnvForProduction == 'Staging') {
-                            $rootScope.hospitalId = singleStagingHospitalId;
-                            api_keys_env = "Staging";
-                        } else if (deploymentEnvForProduction == 'QA') {
-                            $rootScope.hospitalId = singleQAHospitalId;
-                            api_keys_env = "QA";
-                        } else if (deploymentEnvForProduction == 'Sandbox') {
-                            $rootScope.hospitalId = singleSandboxHospitalId;
-                            api_keys_env = "Sandbox";
-                        }
-                    }
-                    if ($("input[class=isRemChecked]").is(':checked') == true) {
-                        //  if ($("#squaredCheckbox").prop('checked') == true) {
-                        $window.localStorage.setItem('username', $("#UserEmail").val());
-                        $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
-                        $rootScope.chkedchkbox = true;
-
-                    } else {
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
-                        $window.localStorage.oldEmail = '';
-                        $window.localStorage.setItem('username', "");
-                        $rootScope.chkedchkbox = false;
-                    }
-                    //$scope.doGetToken();
-                    $scope.doGetTokenSSO();
+                    $scope.GetSingleLoginDetailsFOrCheckingMic();
                 }
             }
         }
     };
+
+    $scope.GetSingleLoginDetailsFOrCheckingMic = function() {
+          if (deploymentEnvLogout == 'Single') {
+              if (deploymentEnvForProduction == 'Production') {
+                  if (appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
+                      //deploymentEnv = "Staging";
+                      $rootScope.hospitalId = singleStagingHospitalId;
+                      apiCommonURL = 'https://snap-stage.com';
+                      api_keys_env = 'Staging';
+                      $rootScope.APICommonURL = 'https://snap-stage.com';
+                  } else {
+                      //deploymentEnv = "Production";
+                      $rootScope.hospitalId = singleHospitalId;
+                      apiCommonURL = 'https://connectedcare.md';
+                      api_keys_env = 'Production';
+                      $rootScope.APICommonURL = 'https://connectedcare.md';
+                  }
+              } else if (deploymentEnvForProduction == 'Staging') {
+                  $rootScope.hospitalId = singleStagingHospitalId;
+                  api_keys_env = "Staging";
+              } else if (deploymentEnvForProduction == 'QA') {
+                  $rootScope.hospitalId = singleQAHospitalId;
+                  api_keys_env = "QA";
+              } else if (deploymentEnvForProduction == 'Sandbox') {
+                  $rootScope.hospitalId = singleSandboxHospitalId;
+                  api_keys_env = "Sandbox";
+              }
+          }
+          if ($("input[class=isRemChecked]").is(':checked') == true) {
+              $window.localStorage.setItem('username', $("#UserEmail").val());
+              $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
+              $rootScope.UserEmail = $scope.userLogin.UserEmail;
+              $rootScope.chkedchkbox = true;
+
+          } else {
+              $rootScope.UserEmail = $scope.userLogin.UserEmail;
+              $window.localStorage.oldEmail = '';
+              $window.localStorage.setItem('username', "");
+              $rootScope.chkedchkbox = false;
+          }
+          //$scope.doGetToken();
+          $scope.doGetTokenSSO();
+    }
+
 
     $scope.doGetFacilitiesList = function() {
         if ($scope.accessToken === 'No Token') {
@@ -4890,6 +4898,99 @@ $state.go('tab.consultCharge');
         LoginService.getListOfPassedConsultations(params);
 
     }
+    $rootScope.passededconsultantsForCoUser = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
+
+        if ($rootScope.accessToken == 'No Token') {
+            alert('No token.  Get token first then attempt operation.');
+            return;
+        }
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            statusId: 72,
+            success: function(data, status) {
+                if (data == null) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else if (status === 401) {
+                    $rootScope.patientId = $rootScope.coUserAuthorization;
+                    $rootScope.getCoUserAunthent = 'notAuthorized';
+                    $scope.ErrorMessage = "You are not authorized to view this account";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.getCoUserAunthent = 'Authorized';
+                    $rootScope.Passedconsultations = data.data;
+                    if($rootScope.getCoUserAunthent === 'Authorized') {
+                      if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
+                        if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
+                              if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
+                                  $rootScope.RelatedPatientProfiles.shift();
+                              }
+                          }
+                          $rootScope.providerName = '';
+                          $rootScope.PolicyNo = '';
+                          $rootScope.healthPlanID = '';
+                          $rootScope.NewHealth = '';
+                      }
+                      $rootScope.userAgeForIntake = '';
+                      $rootScope.updatedPatientImagePath = '';
+                      $rootScope.newDependentImagePath = '';
+                      $rootScope.appointmentDisplay = '';
+                      $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+                      $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+                      $rootScope.locationdet = Pat_locat;
+                      $rootScope.PatientImageSelectUser = P_img;
+                      $rootScope.PatientFirstName = P_Fname;
+                      $rootScope.PatientLastName = P_Lname;
+                      $rootScope.PatientAge = P_Age;
+                      $rootScope.SelectPatientAge = $rootScope.PatientAge;
+                      $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+                    //  $rootScope.patientId = P_Id;
+                      $scope.doGetConutriesList();
+                      $rootScope.doGetCreditDetails();
+                      $rootScope.doGetLocations();
+                      $rootScope.doGetIndividualScheduledConsulatation();
+                      $rootScope.doGetonDemandAvailability();
+                      $rootScope.doGetListOfCoUsers();
+                      if (!$rootScope.P_isAuthorized) {
+                          $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                          $rootScope.SubmitCardValidation($scope.ErrorMessage);
+                      }
+                      if ($rootScope.P_isAuthorized = undefined) {
+                          $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
+                          $rootScope.SubmitCardValidation($scope.ErrorMessage);
+                      }
+                      if (clickEvent === "patientClick") {
+                          $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+                      } else if (clickEvent === "sideMenuClick") {
+                          $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
+                      } else if (clickEvent === "sideMenuClickApoointments") {
+                          $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
+                      } else if (clickEvent === "tab.patientConcerns") {
+                          $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
+                      } else {
+                          $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
+                      }
+                  }
+                }
+
+
+            },
+            error: function(data, status) {
+                if (status === 0) {
+
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getListOfPassedConsultations(params);
+
+    }
 
     $rootScope.doGetListOfCoUsers = function() {
         var params = {
@@ -5015,10 +5116,10 @@ $state.go('tab.consultCharge');
             }
         };
         LoginService.GetCreditDetails(params);
+      }
 
-    }
 
-    function chkCameraAndMicroPhoneSettings() {
+    function chkCameraAndMicroPhoneSettings(getCurrentFuncName) {
         $window.localStorage.setItem('FlagForCheckingFirstLogin', '');
         cordova.plugins.diagnostic.requestCameraAuthorization(function(status) {
             if(status === ''){
@@ -5045,6 +5146,11 @@ $state.go('tab.consultCharge');
                         onMicroPhoneAuthorizationDenied();
                    } else { //authorized
                         $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+                        if(getCurrentFuncName === 'GeneralLoginFun') {
+                          $scope.GetLoginFunctionDetails();
+                        } else if(getCurrentFuncName === 'SingleFuncLogin') {
+                            $scope.GetSingleLoginDetailsFOrCheckingMic();
+                        }
                     }
                 }, function(error) {
                     console.log(error);
@@ -5054,66 +5160,6 @@ $state.go('tab.consultCharge');
             console.log(error);
         })
    }
-  /* function chkCameraAndMicroPhoneSettings() {
-       $window.localStorage.setItem('FlagForCheckingFirstLogin', '');
-       cordova.plugins.diagnostic.getCameraAuthorizationStatus(function(status) {
-            switch(status){
-                case "denied":
-                $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
-                $scope.titeName = 'Would Like to Access the Camera and MicroPhone';
-                onMicroPhoneAuthorizationDenied();
-                    break;
-                case "not_determined":
-                $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
-                $scope.titeName = 'Would Like to Access the Camera and MicroPhone';
-                onMicroPhoneAuthorizationDenied();
-                    break;
-                default:
-                    doGetOnlyMicroPhone();
-            }
-       });
-   }
-   function doGetMicroPhoneAuthorization() {
-        cordova.plugins.diagnostic.getMicrophoneAuthorizationStatus(function(status) {
-             switch(status){
-                 case "denied":
-                      $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
-                      $scope.titeName = 'Would Like to Access the Camera and MicroPhone';
-                      onMicroPhoneAuthorizationDenied();
-                     break;
-                 case "not_determined":
-                      $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
-                      $scope.titeName = 'Would Like to Access the Camera and MicroPhone';
-                      onMicroPhoneAuthorizationDenied();
-                     break;
-                 default:
-                      $scope.settingsMessage = "This app requires camera access to function properly.";
-                      $scope.titeName = 'Would Like to Access the Camera';
-                      onMicroPhoneAuthorizationDenied();
-             }
-        });
-   }
-   function doGetOnlyMicroPhone() {
-        cordova.plugins.diagnostic.getMicrophoneAuthorizationStatus(function(status) {
-             switch(status){
-                 case "denied":
-                      $scope.settingsMessage = "This app requires microphone access to function properly.";
-                      $scope.titeName = 'Would Like to Access the MicroPhone';
-                      onMicroPhoneAuthorizationDenied();
-                     break;
-                 case "not_determined":
-                      $scope.settingsMessage = "This app requires microphone access to function properly.";
-                      $scope.titeName = 'Would Like to Access the MicroPhone';
-                      onMicroPhoneAuthorizationDenied();
-                     break;
-                 default:
-                     $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
-                     params.successFn();
-             }
-        });
-   }*/
-
-
 
     function onMicroPhoneAuthorizationDenied() {
         if(!$rootScope.isNotificationDisplayed) {
@@ -5137,72 +5183,7 @@ $state.go('tab.consultCharge');
         $rootScope.coUserAuthorization =  $rootScope.patientId;
         $rootScope.patientId = P_Id;
         $rootScope.getCoUserAunthent = '';
-        $rootScope.passededconsultants();
-          if($rootScope.getCoUserAunthent === 'Authorized') {
-            if ($rootScope.patientSearchKey != '' || typeof $rootScope.patientSearchKey != "undefined") {
-              if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
-                    if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
-                        $rootScope.RelatedPatientProfiles.shift();
-                    }
-                }
-                $rootScope.providerName = '';
-                $rootScope.PolicyNo = '';
-                $rootScope.healthPlanID = '';
-                $rootScope.NewHealth = '';
-            }
-            $rootScope.userAgeForIntake = '';
-            $rootScope.updatedPatientImagePath = '';
-            $rootScope.newDependentImagePath = '';
-            $rootScope.appointmentDisplay = '';
-            $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-            $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
-            if (ionic.Platform.is('browser') !== true) {
-                if (window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
-                    $rootScope.isNotificationDisplayed = false;
-                    //$window.localStorage.setItem('FlagForCheckingAuthorization', '');
-                    chkCameraAndMicroPhoneSettings();
-                }
-            } else {
-                $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
-            }
-
-            if ($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
-                $rootScope.locationdet = Pat_locat;
-                $rootScope.PatientImageSelectUser = P_img;
-                $rootScope.PatientFirstName = P_Fname;
-                $rootScope.PatientLastName = P_Lname;
-                $rootScope.PatientAge = P_Age;
-                $rootScope.SelectPatientAge = $rootScope.PatientAge;
-                $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
-                $rootScope.patientId = P_Id;
-                $scope.doGetConutriesList();
-                $rootScope.doGetCreditDetails();
-                $rootScope.doGetLocations();
-                $rootScope.doGetIndividualScheduledConsulatation();
-                $rootScope.doGetonDemandAvailability();
-                $rootScope.doGetListOfCoUsers();
-                if (!$rootScope.P_isAuthorized) {
-                    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
-                    $rootScope.SubmitCardValidation($scope.ErrorMessage);
-                }
-                if ($rootScope.P_isAuthorized = undefined) {
-                    $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
-                    $rootScope.SubmitCardValidation($scope.ErrorMessage);
-                }
-                if (clickEvent === "patientClick") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
-                } else if (clickEvent === "sideMenuClick") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
-                } else if (clickEvent === "sideMenuClickApoointments") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
-                } else if (clickEvent === "tab.patientConcerns") {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
-                } else {
-                    $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
-                }
-            }
-        }
-
+        $rootScope.passededconsultantsForCoUser(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent);
     }
 
 
@@ -5229,21 +5210,6 @@ $state.go('tab.consultCharge');
         $rootScope.appointmentDisplay = '';
         $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
         $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
-
-        /*  if (angular.isUndefined(P_img)) {
-  var ptImage = getInitialForName(P_Fname + " " + P_Lname);
-  P_img = generateTextImage(ptImage, $rootScope.brandColor);
-}*/
-
-        if (ionic.Platform.is('browser') !== true) {
-            if (window.localStorage.getItem("FlagForCheckingFirstLogin") === 'Token') {
-                chkCameraAndMicroPhoneSettings();
-            }
-        } else {
-            $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
-        }
-
-        if ($window.localStorage.getItem('FlagForCheckingAuthorization') === 'Authorized') {
             $rootScope.locationdet = Pat_locat;
             $rootScope.PatientImageSelectUser = P_img;
             $rootScope.PatientFirstName = P_Fname;
@@ -5279,10 +5245,6 @@ $state.go('tab.consultCharge');
             } else {
                 $rootScope.doGetSelectedPatientProfiles(P_Id, clickEvent, '');
             }
-            //$state.go('tab.patientDetail');
-            //$scope.doGetUserHospitalInformation();
-        }
-
     }
 
 

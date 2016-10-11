@@ -61,7 +61,7 @@
 	-moz-box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-	
+
 }
 #notifications-bottom-right-tab-close{
 	height: 20px;
@@ -313,5 +313,5 @@
 .notificationError { height:auto !important;line-height: normal !important;font-size: 18px;left: 0px;
   top: 0px; }
 .ErrorContent { text-align: center;width: 93% !important;margin-top: 22px;  margin-bottom: -30px; }
-.NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px !important ; }
+.NoticationClose { position: relative;width: 7% !important;  float: right !important;margin-top: -10px; }
 .noticationIcon { left: 0px;position: relative;top: 19px  !important; }
