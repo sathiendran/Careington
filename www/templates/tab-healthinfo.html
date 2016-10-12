@@ -409,6 +409,17 @@
 				<div ng-controller="LoginCtrl">
 				</div>
 			</ion-content>
+
+			<div class="hide-on-keyboard-open" >
+
+
+				<ion-footer-bar class="footer bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" ng-hide="healthfootsave">
+					<button class="submitbutton" type="submit" ng-click="putUpdatePatientDetails()" >
+						 <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
+						<h1 class="title" id="centercolor">Save</h1>
+					</button>
+				</ion-footer-bar>
+		</div>
 	</form>
 	</ion-view>
 
@@ -417,14 +428,6 @@
 
 	<!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>--->
 	<div class="hide-on-keyboard-open" >
-
-
-		<ion-footer-bar class="footer bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" ng-hide="healthfootsave">
-			<button class="submitbutton" type="submit" ng-click="putUpdatePatientDetails()" >
-				 <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
-				<h1 class="title" id="centercolor">Save</h1>
-			</button>
-		</ion-footer-bar>
 
 		<div id="HealthFooter"  ng-show="healthfoottab">
 		<ion-tabs class=" tabs-icon-top tabs-dark">
