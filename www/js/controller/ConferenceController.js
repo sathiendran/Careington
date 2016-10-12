@@ -525,7 +525,7 @@ angular.module('starter.controllers')
     }
     $scope.doGetExistingConsulatation();
 
-    $scope.ClearRootScope = function() {
+    $rootScope.ClearRootScope = function() {
 
         $window.localStorage.setItem('tokenExpireTime', '');
 
