@@ -5129,13 +5129,13 @@ $state.go('tab.consultCharge');
         cordova.plugins.diagnostic.requestCameraAuthorization(function(status) {
             if(status === ''){
                  $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
-                 $scope.titeName = 'Would Like to Access the Camera and MicroPhone';
+                 $scope.titeName = 'Would Like to Access the Camera and Microphone';
                  onMicroPhoneAuthorizationDenied();
             }else if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                 cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
                     if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
                         $scope.settingsMessage = "This app requires camera and microphone access to function properly.";
-                        $scope.titeName = 'Would Like to Access the Camera and MicroPhone';
+                        $scope.titeName = 'Would Like to Access the Camera and Microphone';
                         onMicroPhoneAuthorizationDenied();
                     } else {
                         $scope.settingsMessage = "This app requires camera access to function properly.";
