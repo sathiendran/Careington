@@ -538,6 +538,7 @@ angular.module('starter.controllers')
         $scope.healthInfoModel.healthInfoTimezone = $rootScope.currentPatientDetails[0].account.timeZoneId;
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
+        $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
         $scope.formatheight = $rootScope.currentPatientDetails[0].anatomy.height;
         $scope.formatheightval = $scope.formatheight.split("|");
         $scope.height = parseInt($scope.formatheightval[0]);
