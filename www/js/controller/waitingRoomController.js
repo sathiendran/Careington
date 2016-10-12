@@ -45,7 +45,7 @@ angular.module('starter.controllers')
     }, 100);
     $scope.$storage = $window.localStorage;
 
-    $scope.ClearRootScope = function() {
+    $rootScope.ClearRootScope = function() {
 
       $(".ion-google-place-container").css({
           "display": "none"
