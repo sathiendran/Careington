@@ -51,7 +51,7 @@
             <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Name</b><i class="ion-asterisk"></i></span>
         </div>
         <div class="col col-50 depGreyLabel">
-           <input class="usertext" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required" required  >
+           <input class="usertext" id="userfirstname" type="text" ng-model="firstname" name="firstname" placeholder="Required">
 
         </div>
      </div>
@@ -71,7 +71,7 @@
           <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b><i class="ion-asterisk"></i></span>
         </div>
         <div class="col col-50 depGreyLabel">
-            <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email" required>
+            <input class="usertext" id="useremail"  type="email" value="" placeholder="Required" ng-model="email"  name="email">
             <span class="error"  ng-show="myForm.email.$error.email"> Not a valid email! </span>
         </div>
      </div>
@@ -287,18 +287,21 @@
   </ion-content>
   <div ng-controller="LoginCtrl">
      </div>
+
+
+     <div class="hide-on-keyboard-open">
+        <ion-footer-bar class=" bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" >
+          <button class="submitbutton" type="submit" ng-click="postNewuserDetails()" >
+             <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
+            <h1 class="title" id="centercolor">Send Invitation</h1>
+          </button>
+        </ion-footer-bar>
+       </div>
  </form>
 
  </ion-view>
 
- <div class="hide-on-keyboard-open">
-    <ion-footer-bar class=" bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" >
-      <button class="submitbutton" type="submit" ng-click="postNewuserDetails()" >
-         <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
-        <h1 class="title" id="centercolor">Send Invitation</h1>
-      </button>
-    </ion-footer-bar>
-   </div>
+
  </ion-side-menu-content>
   <!--Side Menu File Include --->
  <div ng-include src="'templates/SideMenu.html'"></div>

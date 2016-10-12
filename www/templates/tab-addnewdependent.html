@@ -49,7 +49,7 @@
 
 
 <ion-view title="" >
-	 <form name="myForm" id="dependentuserform" ng-submit="postDependentDetails()">
+	 <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
  <ion-content class="userdeptcontent depenBackgroundColor">
 	<h4 class="userhead"><b>User Details</b></h4>
 
@@ -61,7 +61,7 @@
        <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">First Name</b><i class="ion-asterisk"></i></span>
      </div>
       <div class="col col-50 depGreyLabel">
-        <input class="usertext" type="text" placeholder="Required" ng-model="firstname" name="firstname" id="firstname"  required >
+        <input class="usertext" id="firstname" type="text" ng-model="firstname" name="firstname" placeholder="Required">
   		</div>
     </div>
   <div class="item item-input validated">
@@ -70,7 +70,7 @@
          <i class="iconsize" ng-bind-html="drawSVGCIcon('user')"></i><b class="formlabel">Last Name</b><i class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50 depGreyLabel">
-         <input class="usertext" type="text"  placeholder="Required" ng-model="lastname" name="lastname" id="lastname" required >
+        <input class="usertext" id="lastname" type="text" ng-model="lastname" name="lastname" placeholder="Required">
 
       </div>
    </div>
@@ -108,7 +108,7 @@
 		  <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b></span>
 	   </div>
 	   <div class="col col-50 depGreyLabel">
-		   <input class="usertext" id="email"  type="email" value="" placeholder="Optional" ng-model="email" required="required"  name="email" ng-blur="emailBlur()">
+		   <input class="usertext" id="email"  type="email" value="" placeholder="Optional" ng-model="email"  name="email" ng-blur="emailBlur()">
 
 		   <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
 	   </div>
@@ -145,7 +145,7 @@
            <span class="input-label labelcolor"> <i class="iconfont" ng-bind-html="drawSVGCIcon('height')"></i><b class="formlabel labelfont">Height</b><i class="ion-asterisk"></i></span>
         </div>
 				<div class="col col-50 depGreyLabel">
-					<input class="textdata " id="heightdep"  type="text" value="" placeholder="Required"  required="required"  ng-click="heightmodal()" readonly="true" style="background-color: #e9e9e9;">
+					<input class="textdata " id="heightdep"  type="text" value="" placeholder="Required"    ng-click="heightmodal()" readonly="true" style="background-color: #e9e9e9;">
 
 	 		   <span id="hunit" ng-show="hghtunit"> </span>
 	 	   </div>
@@ -317,6 +317,21 @@
 
  </div>
  </ion-content>
+
+ <ion-footer-bar class="bar bar-footer footerrsheight" style="background-color:#CBCBCB;" ng-hide="tempfooter">
+   <p class="alterfooter">Please Complete</br>
+   All Required Fields</p>
+ </ion-footer-bar>
+
+
+ <div class="hide-on-keyboard-open">
+ <ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter" ng-click="buttonClicked = true" >
+     <button class="submitbutton" type="submit" ng-click="postDependentDetails()" >
+     <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
+   <h1 class="title" id="centercolor" >Add Dependent</h1>
+ </button>
+ </ion-footer-bar>
+ </div>
 </form>
 
 </ion-view>
@@ -324,20 +339,7 @@
 
 
 
-<ion-footer-bar class="bar bar-footer footerrsheight" style="background-color:#CBCBCB;" ng-hide="tempfooter">
-  <p class="alterfooter">Please Complete</br>
-  All Required Fields</p>
-</ion-footer-bar>
 
-
-<div class="hide-on-keyboard-open">
-<ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter" ng-click="buttonClicked = true" >
-    <button class="submitbutton" type="submit" ng-click="postDependentDetails()" >
-    <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
-  <h1 class="title" id="centercolor" >Add Dependent</h1>
-</button>
-</ion-footer-bar>
-</div>
 </ion-side-menu-content>
  <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
