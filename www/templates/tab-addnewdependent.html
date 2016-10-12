@@ -1,5 +1,3 @@
-
-
 <ion-side-menus>
 	<ion-side-menu-content>
 
@@ -12,7 +10,7 @@
 	</div>
 
    <div class="Server_Error ErrorMessageDiv" ></div>
-<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
+   <div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
         <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}" > New User </span> <span >
             <a  ng-click="canceldependent()" class="headerval"  >Cancel</a></span></h1>
 
@@ -47,9 +45,9 @@
 </ion-header-bar>
 
 
-
+ <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
 <ion-view title="" >
-	 <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
+
  <ion-content class="userdeptcontent depenBackgroundColor">
 	<h4 class="userhead"><b>User Details</b></h4>
 
@@ -84,7 +82,7 @@
 			</div>
 			<div class="col col-50 depGreyLabel">
 
-				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required" required  name="dob" ng-model="depdob" ng-blur="ngBlur()">
+				 <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required"   name="dob" ng-model="depdob" ng-blur="ngBlur()">
 			</div>
 		</div>
 
@@ -160,7 +158,7 @@
 	          <input id="weight" class="usertext textdata" type="number" value="" placeholder="Required"  name="weight" ng-model="weightunit" ng-change="weightunitchange()" ng-blur="weight1len()"  ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
 	        </div>
 	        <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
-	           <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" required>
+	           <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" >
 	               <!--<option value=""><b>Choose</b></option>-->
 	               <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
 	           </select>
@@ -255,7 +253,7 @@
        <i class="iconsize" ng-bind-html="drawSVGCIcon('drop')"></i><b class="formlabel">Blood Type</b><i ng-if="PPIsBloodTypeRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50 depGreyLabel">
-        <select class="optionselect textdata" name="bloodtype" id="bloodtype" ng-model="bloodtype" required>
+        <select class="optionselect textdata" name="bloodtype" id="bloodtype" ng-model="bloodtype">
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getBloodType in listOfBloodtype[0].codes" value="{{getBloodType.codeId + '@' + getBloodType.text}}" ><b>{{getBloodType.text}}</b></option>
          </select>
@@ -270,7 +268,7 @@
        <i class="iconsize" ng-bind-html="drawSVGCIcon('hair')"></i><b class="formlabel">Hair Color</b><i ng-if="PPIsHairColorRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50 depGreyLabel">
-        <select class="optionselect textdata" name="hairColor" id="hairColor" ng-model="hairColor" required>
+        <select class="optionselect textdata" name="hairColor" id="hairColor" ng-model="hairColor" >
             <option value=""><b>Choose</b></option>
             <option ng-repeat="getHairColor in listOfHairColor[0].codes" value="{{getHairColor.codeId + '@' + getHairColor.text}}"><b>{{getHairColor.text}}</b></option>
          </select>
@@ -283,7 +281,7 @@
         <i class="iconsize" ng-bind-html="drawSVGCIcon('eye')"></i><b class="formlabel">Eye Color</b><i ng-if="PPIsEyeColorRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
      <div class="col col-50 depGreyLabel">
-          <select class="optionselect textdata" name="eyeColor" id="eyeColor" ng-model="eyeColor" required>
+          <select class="optionselect textdata" name="eyeColor" id="eyeColor" ng-model="eyeColor" >
               <option value=""><b>Choose</b></option>
               <option ng-repeat="getEyeColor in listOfEyeColor[0].codes" value="{{getEyeColor.codeId + '@' + getEyeColor.text}}"><b>{{getEyeColor.text}}</b></option>
           </select>
@@ -296,7 +294,7 @@
          <i class="iconsize" ng-bind-html="drawSVGCIcon('globe')"></i><b class="formlabel">Ethnicity</b><i ng-if="PPIsEthnicityRequired === 'on'" class="ion-asterisk"></i></span>
      </div>
       <div class="col col-50 depGreyLabel">
-          <select class="optionselect textdata" name="ethnicity" id="ethnicity" ng-model="ethnicity" required>
+          <select class="optionselect textdata" name="ethnicity" id="ethnicity" ng-model="ethnicity" >
                <option value=""><b>Choose</b></option>
                <option ng-repeat="getEthnicity in listOfEthnicity[0].codes" value="{{getEthnicity.codeId + '@' + getEthnicity.text}}"><b>{{getEthnicity.text}}</b></option>
            </select>
@@ -332,9 +330,10 @@
  </button>
  </ion-footer-bar>
  </div>
+ </ion-view>
 </form>
 
-</ion-view>
+
 
 
 
