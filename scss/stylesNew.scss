@@ -869,9 +869,9 @@ display: block;
 font-size: 26px !important;
 }
 .popupcontent {
-margin-left: 15px;
+text-align: center;
 line-height: 1.6;
-font-size: 16px;
+font-size: 17px;
 font-family: Glober Regular;
 color: #666666;
 }
@@ -1588,7 +1588,8 @@ bottom: 60px;
 .topp {
     color: #999999 !important;
     font-size: 17px !important;
-    line-height: 28px;
+    line-height: 27px;
+    padding:0px;
 }
 .addcouser {
     padding: 94px 10px !important;
@@ -3921,6 +3922,9 @@ margin-top: 33%;
 }
 }
 .concernListSearch {
+  .searchbox{
+    border-bottom: none !important;
+  }
 .icon-magnifying-glass {
     font-size: 15px;
     position: relative;
@@ -4325,14 +4329,23 @@ padding: 44px 10px;
 padding: 44px 10px;
 }
 @media screen and (device-width: 360px) and (device-height: 640px) {
+  .topp {
+      color: #999999 !important;
+      font-size: 14px;
+      //line-height: 25px;
+      padding:8px;
+  }
+  .newusercontent {
+      margin-top: 170px;
+  }
 #accountMngeProfile-Android {
     padding: 27px 10px !important;
 }
 .addcouser {
-    padding: 48px 10px !important;
+    padding: 44px 10px !important;
 }
 .adddepuser {
-    padding: 48px 10px !important;
+    padding: 44px 10px !important;
 }
 }
 @media screen and (device-width: 384px) and (device-height: 598px) {
@@ -4726,7 +4739,7 @@ a {
         }
     }
     p {
-        margin-top: 48px !important;
+        margin-top: 52px !important;
         font-family: 'Glober Regular' !important;
         font-size: 13px;
     }
@@ -4823,6 +4836,10 @@ margin-right: 10px;
 }
 .patAccoSubHeadHeight {
      height: 100px;
+}
+.inputsearchtext{
+  font-family: $fontFamily_regular !important;
+  color:#999999;
 }
 .newPwd {
      .pwdMainContent {

@@ -16,14 +16,14 @@
                <div class=" searchbox" style="margin-top: 0px!important;border-bottom:none;">
                <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
                  <label class="item-input-wrapper">
-                  <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon"></i>
-                  <input type="search"  placeholder="Search" ng-model="data.searchProvider">
+                  <i style="display: {{iconDisplay}}" class="icon ion-ios-search placeholder-icon inputsearchtext"></i>
+                  <input type="search"  placeholder="Search" ng-model="data.searchProvider" class="inputsearchtext">
 
                  </label>
                </div>
         </div>
 
-               <div class="" >
+              <div class="srchlist">
                  <ion-radio ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchProvider"
                             ng-value="relationShipDetails.text"
                             ng-click="OnSelectRelation(relationShipDetails.codeId)"

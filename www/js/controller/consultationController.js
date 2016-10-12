@@ -75,6 +75,7 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
+    
         $scope.pastshow = true;
         $scope.missedshow = false;
         $scope.droppedshow = false;

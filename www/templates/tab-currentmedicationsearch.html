@@ -12,14 +12,13 @@
                <h2 class="subname subName-{{deviceName}}">Current Medication</h2>
 
                <div class=" searchbox" style="margin-top: 0px!important;">
-               <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
-                 <label class="item-input-wrapper">
-                  <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')"></i>
-                  <input type="search"  placeholder="Search" ng-model="data.searchProvider">
-
+                 <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                  <label class="item-input-wrapper">
+                   <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')" class="inputsearchtext"></i>
+                   <input type="search" class="inputsearchtext" placeholder="Search" ng-model="data.searchProvider">
                  </label>
                </div>
-        </div>
+             </div>
               <!--
                <div class="search_home UserHmeSub concernListSearchHome">
                   <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
@@ -27,13 +26,15 @@
 
                   </label>
                </div>-->
-               <div  id="index_{{letter}}"  ng-repeat="(letter, currentMedicationsearchList) in sorted_users">
+               <div class="srchlist">
+               <div  id="index_{{letter}}"  ng-repeat="(letter, currentMedicationsearchList) in sorted_users" >
                   <ion-checkbox ng-repeat="currentmedication in filteredItems = (currentMedicationsearchList | filter:data.searchProvider)"
                      ng-model="currentmedication.checked"
                      ng-checked="currentmedication.checked" ng-change="OnSelectMedication(currentmedication)"  ng-disabled="checkedMedication==limit && !currentmedication.checked" checkbox-group>
                      <span class="ng-binding concernListDetails">   {{ currentmedication.text }} </span>
                   </ion-checkbox>
                </div>
+             </div>
               <!-- <p class="searchdata noResult" style="white-space: normal;"  ng-show="(currentMedicationsearchList | filter:data.searchText).length==0"> <b>Sorry No Result Found !<b></p>-->
             </ion-item>
               <ion-item  ng-show="(currentMedicationsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
