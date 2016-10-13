@@ -5174,7 +5174,7 @@ $state.go('tab.consultCharge');
             } else {
                 cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
                     if (status === cordova.plugins.diagnostic.permissionStatus.DENIED) {
-                        $scope.titeName = 'Would Like to Access the MicroPhone';
+                        $scope.titeName = 'Would Like to Access the Microphone';
                         $scope.settingsMessage = "This app requires microphone access to function properly.";
                         onMicroPhoneAuthorizationDenied();
                    } else { //authorized
