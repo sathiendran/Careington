@@ -2692,11 +2692,12 @@ a {
     top: 64px;
     height: 111px;
     border-color: #5D5959 !important;
+      border-bottom: none;
     .item {
         margin: -5px;
     }
     .button-bar{
-      padding:2px 3%;
+      padding:2px 6%;
     }
 
     .userAccountPanel {
