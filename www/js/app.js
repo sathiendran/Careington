@@ -19,7 +19,9 @@ var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only fo
 var loginPageEnv = 'Single';
 var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
 var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
-
+var timeoutValue = 0;
+var videoCallSessionDuration = 8000;
+var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
     deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
@@ -116,8 +118,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
-      var timeoutValue = 0;
-
       function resetSessionLogoutTimer(){
           window.localStorage.setItem('Active', timeoutValue);
           timeoutValue = 0;
@@ -128,6 +128,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   window.localStorage.setItem('InActiveSince', timeoutValue);
                   if(timeoutValue === 30)
                     goInactive();
+              }else{
+                   timeoutValue = 0;
+                   window.localStorage.setItem('InActiveSince', timeoutValue);
               }
           }, 60000);
       }
@@ -138,6 +141,8 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
            $interval.cancel(appIdleInterval);
             appIdleInterval = undefined;
             appIdleInterval = 0;
+            timeoutValue = 0;
+            window.localStorage.setItem('InActiveSince', timeoutValue);
         }
       }
 

@@ -1,12 +1,43 @@
 angular.module('starter.controllers')
 
-.controller('ConferenceCtrl', function($sope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover, $interval) {
+.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover, $interval) {
+     function resetSessionLogoutTimer(){
+         window.localStorage.setItem('Active', timeoutValue);
+         timeoutValue = 0;
+         clearSessionLogoutTimer();
+         appIdleInterval = $interval(function() {
+            if(window.localStorage.getItem("isCustomerInWaitingRoom") != 'Yes' && window.localStorage.getItem('isVideoCallProgress') != 'Yes'){
+                 timeoutValue++;
+                 window.localStorage.setItem('InActiveSince', timeoutValue);
+                 if(timeoutValue === 30)
+                   goInactive();
+            }else{
+                  timeoutValue = 0;
+                  window.localStorage.setItem('InActiveSince', timeoutValue);
+            }
+         }, 60000);
+    };
+
+
+     function clearSessionLogoutTimer(){
+       if(typeof appIdleInterval != "undefined"){
+          $interval.cancel(appIdleInterval);
+           appIdleInterval = undefined;
+           appIdleInterval = 0;
+           timeoutValue = 0;
+           window.localStorage.setItem('InActiveSince', timeoutValue);
+       }
+     };
+     clearSessionLogoutTimer();
      if(typeof appIdleInterval != "undefined"){
           $interval.cancel(appIdleInterval);
           appIdleInterval = undefined;
           appIdleInterval = 0;
+          timeoutValue = 0;
+          window.localStorage.setItem('InActiveSince', timeoutValue);
      }
     if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+        $('#videoCallSessionTimer').runner('stop');
         $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
         $rootScope.accessToken = window.localStorage.getItem('accessToken');
         $rootScope.videoSessionId = window.localStorage.getItem('videoSessionId');
@@ -22,7 +53,16 @@ angular.module('starter.controllers')
         if(connection != null){
           connection = null;
         }
+        var currentTime = new Date();
+        if(typeof videoCallStartTime === "undefined"){
+             videoCallStartTime = currentTime;
+        }
+        var vStartTime = videoCallStartTime.getTime();
+        var vCurrTime = currentTime.getTime();
+        var cal_difference_ms = vCurrTime - vStartTime;
+        videoCallSessionDuration = cal_difference_ms + 6000;
     }else{
+         videoCallStartTime = new Date();
         window.localStorage.setItem('ConferenceCallConsultationId', $rootScope.consultationId);
         window.localStorage.setItem('accessToken', $rootScope.accessToken);
         window.localStorage.setItem('isVideoCallProgress', "No");
@@ -32,6 +72,7 @@ angular.module('starter.controllers')
         window.localStorage.setItem('PatientImageSelectUser', $rootScope.PatientImageSelectUser);
         window.localStorage.setItem('PatientFirstName', $rootScope.PatientFirstName);
         window.localStorage.setItem('PatientLastName', $rootScope.PatientLastName);
+        videoCallSessionDuration = 8000;
     }
     var isCallEndedByPhysician = false;
     var participantsCount = +1;
@@ -587,6 +628,7 @@ angular.module('starter.controllers')
             });
             conHub.on("onConsultationEnded", function() {
                 isCallEndedByPhysician = true;
+                $('#videoCallSessionTimer').runner('stop');
                 $scope.disconnectConference();
             });
         };
@@ -690,11 +732,22 @@ angular.module('starter.controllers')
             });
             $scope.createVideoThumbnail(event);
 
-            OT.updateViews();
+
             $('.vdioBadge').html(participantsCount);
             if($('.clsPtVideoThumImage').length > 1){
                 $('.clsPtVideoThumImage').eq(0).remove();
             }
+            var subChilds = $('#subscriber').children().length;
+            OT.updateViews();
+            setTimeout(function () {
+                 if(subChilds > 1){
+                      for(var j = 1; j < subChilds.length; j++){
+                           $('#subscriber').children().eq(j).hide();
+                           $('#subscriber').children().eq(j).appendTo("#hiddenVideos");
+                      }
+                      OT.updateViews();
+                 }
+            }, 1000);
         });
 
         //PatientImageSelectUser
@@ -857,10 +910,11 @@ angular.module('starter.controllers')
                         patientInitialStr = 'W';
                     thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
                 }
+
                 $('#videoCallSessionTimer').runner({
                   autostart: true,
                   milliseconds: false,
-                  startAt: 5000
+                  startAt: videoCallSessionDuration
                 });
                 if($('.clsPtVideoThumImage').length > 1){
                     $('.clsPtVideoThumImage').eq(0).remove();
@@ -1013,6 +1067,14 @@ angular.module('starter.controllers')
                       if (index == 1) {
                           $state.go('tab.videoConference');
                       } else if (index == 2) {
+                           conHub.invoke("endConsultation").then(function() {});
+                           $('#thumbVideos').remove();
+                           $('#videoControls').remove();
+                           session.unpublish(publisher)
+                           session.disconnect();
+                           $('#publisher').hide();
+                           $('#subscriber').hide();
+                           $('#divVdioControlPanel').hide();
                           window.localStorage.setItem('isVideoCallProgress', "No");
                           callEnded = true;
                         navigator.notification.alert(
@@ -1028,6 +1090,15 @@ angular.module('starter.controllers')
             }else{
               window.localStorage.setItem('isVideoCallProgress', "No");
               callEnded = true;
+              conHub.invoke("endConsultation").then(function() {});
+             $('#thumbVideos').remove();
+             $('#videoControls').remove();
+             session.unpublish(publisher)
+             session.disconnect();
+             $('#publisher').hide();
+             $('#subscriber').hide();
+             $('#divVdioControlPanel').hide();
+
               navigator.notification.alert(
                   'Consultation ended successfully!', // message
                   consultationEndedAlertDismissed, // callback
@@ -1043,18 +1114,20 @@ angular.module('starter.controllers')
     function consultationEndedAlertDismissed() {
         //resetSessionLogoutTimer();
         $('#videoCallSessionTimer').runner('stop');
-        conHub.invoke("endConsultation").then(function() {});
-        //$('#publisher').css('display', 'none');
-        //$('#subscriber').css('display', 'none');
-
-        //$scope.doGetPatientsSoapNotes();
-        $('#thumbVideos').remove();
-        $('#videoControls').remove();
-        session.unpublish(publisher)
-        session.disconnect();
-        $('#publisher').hide();
-        $('#subscriber').hide();
-
+        if(typeof appIdleInterval != "undefined"){
+             $interval.cancel(appIdleInterval);
+             appIdleInterval = undefined;
+             appIdleInterval = 0;
+             timeoutValue = 0;
+             window.localStorage.setItem('InActiveSince', timeoutValue);
+        }
+        if(typeof videoCallSessionDurationTimer != "undefined"){
+           $interval.cancel(videoCallSessionDurationTimer);
+            videoCallSessionDurationTimer = undefined;
+            videoCallSessionDurationTimer = 0;
+            videoCallSessionDuration = 0;
+        }
+        resetSessionLogoutTimer();
         if (deploymentEnv == 'Single' && cobrandApp == 'Hello420') {
             var consulationEndRedirectURL = $rootScope.patientConsultEndUrl;
             if (consulationEndRedirectURL != "") {

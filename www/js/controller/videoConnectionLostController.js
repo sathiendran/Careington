@@ -1,7 +1,13 @@
 angular.module('starter.controllers')
 
     .controller('videoLostCtrl',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$filter,$ionicPopup,$log,$window,$ionicBackdrop) {
-
+         if(typeof appIdleInterval != "undefined"){
+              $interval.cancel(appIdleInterval);
+              appIdleInterval = undefined;
+              appIdleInterval = 0;
+              timeoutValue = 0;
+              window.localStorage.setItem('InActiveSince', timeoutValue);
+         }
       $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
       $rootScope.accessToken = window.localStorage.getItem('accessToken');
       $rootScope.videoSessionId = window.localStorage.getItem('videoSessionId');
