@@ -1,5 +1,6 @@
 <ion-side-menus>
 <ion-side-menu-content>
+	<form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 		<div class="buttons">
 			<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
@@ -70,7 +71,7 @@
 		</div>
 		</div>
 	</ion-header-bar>
-	<form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
+
 		<ion-view title="Health Info Details" >
 			<ion-content class="ioncontentalign healthHeight" ng-hide="addmore">
 				<div >
@@ -428,10 +429,10 @@
 					</button>
 				</ion-footer-bar>
 		</div>
-	</form>
+
 	</ion-view>
 
-
+	</form>
 
 
 	<!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>--->
