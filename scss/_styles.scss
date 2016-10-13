@@ -1890,7 +1890,7 @@ select {
 }
 //Patient ConcernsContent
 .ConcernsContent {
-    margin-top: 110px !important;
+    margin-top: 118px !important;
     .PrimaryList {
         top: 3px;
         padding: 1px;
@@ -2252,7 +2252,7 @@ select {
     }
     .concernListDetails {
         font-size: 19px;
-        font-family: $fontFamily_bold;
+        font-family: $fontFamily_regular;
         color: #666666;
     }
 }
@@ -2410,7 +2410,7 @@ select {
     color: #888;
     float: right;
     margin-right: 15px;
-    margin-top:0px;
+    margin-top:5px;
     font-size: 16px;
 }
 .consentTitle {

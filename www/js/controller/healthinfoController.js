@@ -1219,9 +1219,11 @@ $scope.editDob=function(){
         } else {
             $scope.relationship = '';
         }
+        var getDrawImage = $rootScope.drawImage($rootScope.PatientImageSelectUser,currentPatientDetails.patientName,currentPatientDetails.lastName);
         var myPopup = $ionicPopup.show({
-            title: "<a class='item-avatar popupaligned'>  <img class='popupimage' src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
-            subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
+            //title: "<div class='coUserLinkImage'>" + getDrawImage + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
+            //subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
+             title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</div>",
             templateUrl: 'templates/healthUnauthorizedPopup.html',
             scope: $scope,
             buttons: [{
@@ -1262,9 +1264,10 @@ $scope.editDob=function(){
         } else {
             $scope.relationship = '';
         }
+        var getDrawImage = $rootScope.drawImage($rootScope.PatientImageSelectUser,currentPatientDetails.patientName,currentPatientDetails.lastName);
         var myPopup = $ionicPopup.show({
-            title: "<a class='item-avatar popupaligned'>  <img class='popupimage' src='" + $rootScope.PatientImageSelectUser + "'><span><span class='popupname popupalign'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname ellipsis'>" + currentPatientDetails.lastName + "</span> </span></a> ",
-            subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
+            title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + currentPatientDetails.patientName + "</b></span> <span class='sname'>" + currentPatientDetails.lastName + "</span></div> <div class='fontcolor'>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</div>",
+            //subTitle: "<p class='popupfont '>" + $rootScope.userGender + $scope.dob + $scope.relationship + "</p>",
             templateUrl: 'templates/unauthorizedpopup.html',
             scope: $scope,
             buttons: [{
