@@ -95,9 +95,11 @@
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
        <span class="tabcolor">Consultations</span>
        </a>
-       <a class="tab-item" ng-click="getManageProfile(currentPatientDetails)" _ng-href="#/tab/healthinfo">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
-       <span class="tabcolor"> My Health </sapn>
+       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+       </a>
+       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
        </a>
        <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
