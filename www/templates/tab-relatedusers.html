@@ -22,7 +22,7 @@
                       </div>
                     </h1>
                 </div>
-              
+
                 <div class="row userAccountPanel">
                   <div class="col col-33 uAPHomeIcon">
                      <a ng-href='#/tab/userAccount'>
@@ -235,7 +235,7 @@
                                       <p class="conticon relationstatus unAuthorizeRelat-{{deviceName}}"><a>Relationship</a></p>
                                       <p class="ellipsis unauthorrelationship unAuthorizeRelation-{{deviceName}}">
                                           <span ng-if="!getDependentDetails.relationship">N/A</span>
-                                          <span ng-if="getDependentDetails.relationship">{{getDependentDetails.relationship}}</span>
+                                          <span ng-if="getDependentDetails.relationship" class="">{{getDependentDetails.relationship}}</span>
                                       </p>
                                     </span>
                                     <span style="float: left;"><i class="avataricon chevronRelationship-{{deviceName}}" ng-bind-html="drawSVGCIcon('chevron-right')"></i></span>
