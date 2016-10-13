@@ -2561,7 +2561,7 @@ text-align: center;
 margin: 10px 0px 28px 0px;
 .button {
     @include buttons(#FFFFFF, normal, 0px, 0px, 0px);
-    @include font($fontFamily_xBold, bold, 22px);
+    @include font($fontFamily_bold, bold, 22px);  
     border-radius: 10px;
     text-align: center;
     border: 1px solid #666666;
