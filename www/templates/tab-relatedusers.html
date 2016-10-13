@@ -10,7 +10,7 @@
            <div id="Error_Message" class="relatedUserError"></div
               <span> Related Users </span>
               <span > <a ng-show="cousericon" class="headerval" style="position: relative;right: 8px;" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
-                <span > <a ng-show="dependenticon" class="headerval" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
+                <span > <a ng-hide="cousericon" class="headerval" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
 
           </h1>
             <div class="bar bar-subheader bar-dark subheaderheight" >
@@ -22,22 +22,14 @@
                       </div>
                     </h1>
                 </div>
-                <!--<div class="item item-image-icon itemiconcolor">
-                    <a class="lefthome" ng-href="#/tab/userAccount">
-                    <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-                        <p class="homecontent">Account Home</p>
-                    </a>
-                    	<div class="item-avatar itemhead" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-                    <a class="rightpatient" ng-href="#/tab/userhome">
-                        <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-                        <p class="patientcontent">Change Patient</p>
-                    </a>
-                </div>-->
+              
                 <div class="row userAccountPanel">
                   <div class="col col-33 uAPHomeIcon">
                      <a ng-href='#/tab/userAccount'>
                         <div class="icon homeicon">
-                           <i ng-bind-html="drawSVGCIcon('home');"></i>
+                          <div class="buttons">
+                             	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                           </div>
                         </div>
                         <div>
                            <p class="hometext">Account Home</p>
@@ -48,7 +40,9 @@
                   <div class="col col-33 uAPChangePatient ">
         						<a ng-href='#/tab/userhome'>
         							<div class="icon groupicon">
-        									<i ng-bind-html="drawSVGCIcon('group');"></i>
+                        <div class="buttons">
+                        	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                        </div>
         							</div>
         							<p class="grouptext">Change Patient</p>
         						</a>
@@ -71,69 +65,33 @@
             </div>
 
         </ion-header-bar>
-        <ion-view title="Related User Details">
+  <ion-view title="Related User Details">
 
-            <ion-content class="relatedusercontent" ng-show="couserslists">
-              <div class="list couses animated slideInLeft " id="couserlist">
-                  <div ng-repeat="getCoUserDetails in listOfCoUserDetails">
-                      <div>
-                          <a class="item" ng-click="GoToPatientDetailsFromRelatedUsers(location,getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')" ng-show="!showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = true">
-                              <!--<img ng-if="getCoUserDetails.imagePath!=''" class="imgsize" src="{{getCoUserDetails.imagePath}}">-->
-                              <div class="docAppointImage" ng-bind-html="drawImage(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname)"></div>
-                              <!--  <img ng-if="getCoUserDetails.imagePath==''" class="imgsize" src="{{couserImage}}">-->
-                              <h2 class="relatedhead"> <span class="fname sfont">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
-                  <i class="icon ion-chevron-right avataricon" ></i>
-               </h2>
-                              <p class="relatediconfontforCoUser">{{getCoUserDetails.gender}} .<span ng-if="getCoUserDetails.dob != ''"> {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
-                          </a>
-                      </div>
+    <ion-content class="relatedusercontent" ng-show="couserslists">
+      <ion-list class="cousers"  id="couserlist">
 
-                      <!--	<div class="row archiveCoUser"  ng-show="showActions{{getCoUserDetails.userId}}" ng-swipe-left="showActions{{getCoUserDetails.userId}} = false">
-               <div class="col col-25 archieve" ng-click="coUserArchieve(getCoUserDetails)">
-                  <div>
-                     <div class="aligncenicon" >
-                        <i class="icon ion-ios-box iconbox" style=""></i>
-                        <div class="icontext">  Archieve</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col col-75">
-                  <a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'patientClick')"  style="border-right: none;width:105%;">
-                     <img src="{{getCoUserDetails.imagePath}}">
-                     <h2><span class="fname">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span> </h2>
-                      <p>{{getCoUserDetails.gender}} <span ng-if = "getCoUserDetails.dob != ''">. {{getCoUserDetails.dob}}</span> <span ng-if = "getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
-                  </a>
-               </div>
-            </div> -->
+        <ion-item ng-repeat="getCoUserDetails in listOfCoUserDetails" click-for-options  item="item">
 
-                      <div class="row archiveCoUser" ng-show="showActions{{getCoUserDetails.userId}}" ng-swipe-right="showActions{{getCoUserDetails.userId}} = false">
-                          <div class="col col-75">
-                              <!--<a class="item item-avatar" ng-click="GoToPatientDetails(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'patientClick')" style="border-right: none;width:105%;">-->
-                              <a class="item"  style="border-right: none;border-left: none;width:105%;">
-                                  <!--<img class="coUserImage-{{deviceName}}" src="{{getCoUserDetails.imagePath}}">-->
-                                  <div class="docAppointImage" ng-bind-html="drawImage(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname)"></div>
-                                  <h2 class="relatedhead"><span class="fname">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span> </h2>
-                                  <p class="relatediconfont">{{getCoUserDetails.gender}} .<span ng-if="getCoUserDetails.dob != ''"> {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
-                              </a>
-                          </div>
-                          <div class="col col-25 unlink" ng-click="coUserUnlink(getCoUserDetails)">
-                              <div>
-                                  <div class="aligncenicon">
-                                      <i class="icon icons " ng-bind-html="drawSVGCIcon('link')"></i>
-                                      <div style="font-size: 12px;margin-top:-7px;margin-left:4px;"> Unlink</div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+              <a ng-click="GoToPatientDetailsFromRelatedUsers(location,getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname,getCoUserDetails.birthdate,getCoUserDetails.guardianName,getCoUserDetails.patientId, getCoUserDetails.isAuthorized,'sideMenuClick')">
+                <div class="docAppointImage" ng-bind-html="drawImage(getCoUserDetails.imagePath,getCoUserDetails.name,getCoUserDetails.lastname)"></div>
+                <h2 class="relatedhead">
+          					  <span class="fname sfont">{{getCoUserDetails.name}}</span> <span class="sname">{{getCoUserDetails.lastname}}</span>
+                      <i class="icon ion-chevron-right avataricon" ></i>
+                </h2>
+                <p class="relatediconfontforCoUser">{{getCoUserDetails.gender}} .<span ng-if="getCoUserDetails.dob != ''"> {{getCoUserDetails.dob}}</span> <span ng-if="getCoUserDetails.relationship != ''">. {{getCoUserDetails.relationship}}</span> </p>
+              </a>
+          <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)">
+        </ion-delete-button>
+        <ion-option-button class="unlink" >
+          <div class="aligncenicon">
+             <i class="icon unlinkicons " ng-bind-html="drawSVGCIcon('link')"></i>
+              <div style="font-size: 12px;margin-top:-7px;margin-right:12px;"> Unlink</div>
+        </div>
+        </ion-option-button>
+     </ion-item>
 
-                  </div>
-
-                  <div ng-if="listOfCoUserDetails.length == 0" class="noapptuserResult" style="top: 0px;">
-                      <a style="display: block; text-align: center;">No Co-Users Found!</a>
-                  </div>
-              </div>
-
-            </ion-content>
+      </ion-list >
+    </ion-content>
 
   <ion-content class="relatedusercontent" ng-hide="dependentuserslist">
   <div class="list dependusers animated slideInRight" id="dependuserlist">
@@ -304,14 +262,7 @@
                    </div>
 
                    <div>
-                     <!-- <ion-checkbox ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText"
-                        ng-model="relationShipDetailsrelationShipDetails.checked"
-                        ng-checked="relationShipDetails.checked" ng-change="OnSelectRelation(relationShipDetails.codeId)"  ng-disabled="relationShipChecked==limit && !relationShipDetails.checked" checkbox-group>
-                        <span >   {{ relationShipDetails.text }} </span>
-                     </ion-checkbox>
-                        <div ng-click="setNewRelation(relationShipDetails.codeId);" class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText">
-                             {{relationShipDetails.text}}
-                         </div>-->
+
                      </div>
 
 
@@ -349,10 +300,6 @@
                  <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
                  <span class="tabcolor"> Appointments</span>
                  </a>
-                <!-- <a class="tab-item" ng-href="#/tab/profileoption">
-                 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
-                 <span class="tabcolor">More</span>
-               </a>-->
               </ion-tabs>
 
             </div>

@@ -75,7 +75,7 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
-    
+
         $scope.pastshow = true;
         $scope.missedshow = false;
         $scope.droppedshow = false;
@@ -102,8 +102,6 @@ angular.module('starter.controllers')
         }
 
         $rootScope.missedconsult = function() {
-
-
             var now = new Date();
             var duedate = new Date(now);
             var stdate = duedate.setDate(now.getDate() - 365);
@@ -207,8 +205,6 @@ angular.module('starter.controllers')
                                 }else {
                                     var secConcern = 'NA';
                                 }
-
-
                                 if (drdata.length > 0) {
                                     var drlist = drdata[0].person.name;
                                     var nlist = _.pick(drlist, 'given', 'family');

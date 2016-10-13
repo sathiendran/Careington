@@ -2402,9 +2402,6 @@ select {
 }
 #couserlist {
     margin-top: -2px !important;
-    a {
-        padding-left: 5% !important;
-    }
 }
 #dependuserlist {
     margin-top: -2px !important;
@@ -2695,11 +2692,12 @@ a {
     top: 64px;
     height: 111px;
     border-color: #5D5959 !important;
+      border-bottom: none;
     .item {
         margin: -5px;
     }
     .button-bar{
-      padding:2px 3%;
+      padding:2px 6%;
     }
 
     .userAccountPanel {
@@ -4815,15 +4813,17 @@ hr {
         margin-top: 13px;
     }
     .unlink {
-        margin-left: 6px !important;
-        margin-top: -6px !important;
-        margin-bottom: -5px;
-        color: white;
+       color: white;
         background-color: #D0021B !important;
+        line-height: 22px !important;
     }
     .icons {
         margin-left: 12px;
         font-size: 25px;
+    }
+    .unlinkicons{
+      margin-left: -17px;
+      font-size: 25px;
     }
     .tabicon {
         margin-left: 6px;
@@ -5093,4 +5093,9 @@ hr {
             margin-left: 6px !important;
         }
     }
+}
+.cousers {
+  .item-complex .item-content{
+    padding:0px !important;
+  }
 }
