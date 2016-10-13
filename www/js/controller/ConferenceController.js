@@ -1,10 +1,11 @@
 angular.module('starter.controllers')
 
-.controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover) {
-    if(typeof appIdleInterval != "undefined")
-        clearInterval(appIdleInterval);
-    appIdleInterval = undefined;
-    appIdleInterval = 0;
+.controller('ConferenceCtrl', function($sope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover, $interval) {
+     if(typeof appIdleInterval != "undefined"){
+          $interval.cancel(appIdleInterval);
+          appIdleInterval = undefined;
+          appIdleInterval = 0;
+     }
     if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
         $rootScope.consultationId = window.localStorage.getItem('ConferenceCallConsultationId');
         $rootScope.accessToken = window.localStorage.getItem('accessToken');
