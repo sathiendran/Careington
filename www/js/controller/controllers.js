@@ -328,6 +328,34 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
 
+     function resetSessionLogoutTimer(){
+         window.localStorage.setItem('Active', timeoutValue);
+         timeoutValue = 0;
+         clearSessionLogoutTimer();
+         appIdleInterval = $interval(function() {
+            if(window.localStorage.getItem("isCustomerInWaitingRoom") != 'Yes' && window.localStorage.getItem('isVideoCallProgress') != 'Yes'){
+                 timeoutValue++;
+                 window.localStorage.setItem('InActiveSince', timeoutValue);
+                 if(timeoutValue === 30)
+                   goInactive();
+            }else{
+                  timeoutValue = 0;
+                  window.localStorage.setItem('InActiveSince', timeoutValue);
+            }
+         }, 60000);
+    };
+
+
+     function clearSessionLogoutTimer(){
+       if(typeof appIdleInterval != "undefined"){
+          $interval.cancel(appIdleInterval);
+           appIdleInterval = undefined;
+           appIdleInterval = 0;
+           timeoutValue = 0;
+           window.localStorage.setItem('InActiveSince', timeoutValue);
+       }
+ };
+     resetSessionLogoutTimer();
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
     $rootScope.drawSVGCIcon = function(iconName) {
