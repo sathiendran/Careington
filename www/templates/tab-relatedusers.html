@@ -10,7 +10,7 @@
            <div id="Error_Message" class="relatedUserError"></div
               <span> Related Users </span>
               <span > <a ng-show="cousericon" class="headerval" style="position: relative;right: 8px;" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
-                <span > <a ng-show="dependenticon" class="headerval" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
+                <span > <a ng-hide="cousericon" class="headerval" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
 
           </h1>
             <div class="bar bar-subheader bar-dark subheaderheight" >
@@ -37,7 +37,9 @@
                   <div class="col col-33 uAPHomeIcon">
                      <a ng-href='#/tab/userAccount'>
                         <div class="icon homeicon">
-                           <i ng-bind-html="drawSVGCIcon('home');"></i>
+                          <div class="buttons">
+                             	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                           </div>
                         </div>
                         <div>
                            <p class="hometext">Account Home</p>
@@ -48,7 +50,9 @@
                   <div class="col col-33 uAPChangePatient ">
         						<a ng-href='#/tab/userhome'>
         							<div class="icon groupicon">
-        									<i ng-bind-html="drawSVGCIcon('group');"></i>
+                        <div class="buttons">
+                        	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                        </div>
         							</div>
         							<p class="grouptext">Change Patient</p>
         						</a>
