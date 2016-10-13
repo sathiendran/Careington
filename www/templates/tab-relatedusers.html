@@ -22,17 +22,7 @@
                       </div>
                     </h1>
                 </div>
-                <!--<div class="item item-image-icon itemiconcolor">
-                    <a class="lefthome" ng-href="#/tab/userAccount">
-                    <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-                        <p class="homecontent">Account Home</p>
-                    </a>
-                    	<div class="item-avatar itemhead" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-                    <a class="rightpatient" ng-href="#/tab/userhome">
-                        <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-                        <p class="patientcontent">Change Patient</p>
-                    </a>
-                </div>-->
+              
                 <div class="row userAccountPanel">
                   <div class="col col-33 uAPHomeIcon">
                      <a ng-href='#/tab/userAccount'>
@@ -90,9 +80,9 @@
         </ion-delete-button>
         <ion-option-button class="unlink" >
           <div class="aligncenicon">
-                                       <i class="icon unlinkicons " ng-bind-html="drawSVGCIcon('link')"></i>
-                                       <div style="font-size: 12px;margin-top:-7px;margin-right:12px;"> Unlink</div>
-                                   </div>
+             <i class="icon unlinkicons " ng-bind-html="drawSVGCIcon('link')"></i>
+              <div style="font-size: 12px;margin-top:-7px;margin-right:12px;"> Unlink</div>
+        </div>
         </ion-option-button>
      </ion-item>
 
@@ -268,14 +258,7 @@
                    </div>
 
                    <div>
-                     <!-- <ion-checkbox ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText"
-                        ng-model="relationShipDetailsrelationShipDetails.checked"
-                        ng-checked="relationShipDetails.checked" ng-change="OnSelectRelation(relationShipDetails.codeId)"  ng-disabled="relationShipChecked==limit && !relationShipDetails.checked" checkbox-group>
-                        <span >   {{ relationShipDetails.text }} </span>
-                     </ion-checkbox>
-                        <div ng-click="setNewRelation(relationShipDetails.codeId);" class="item item-divider" ng-repeat="relationShipDetails in listOfRelationship[0].codes | filter:data.searchText">
-                             {{relationShipDetails.text}}
-                         </div>-->
+
                      </div>
 
 
@@ -313,10 +296,6 @@
                  <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
                  <span class="tabcolor"> Appointments</span>
                  </a>
-                <!-- <a class="tab-item" ng-href="#/tab/profileoption">
-                 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
-                 <span class="tabcolor">More</span>
-               </a>-->
               </ion-tabs>
 
             </div>
