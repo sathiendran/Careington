@@ -1714,7 +1714,7 @@ h2 {
     color: #FFFFFF;
     width: 100%;
     text-align: center;
-    @include font($fontFamily_xBold, bold, 37px);
+    @include font($fontFamily_xBold, bold, 34px);
     font-weight: bold;
     margin-top: 10px;
 }
@@ -4265,7 +4265,7 @@ font-size: 18px !important;
 margin-top: 150px;
 p {
     font-size: 26px;
-    line-height: 27px;
+    line-height: 22px;
     font-family: $fontFamily_semibold;
     padding: 0 10%;
 }
