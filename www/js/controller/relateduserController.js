@@ -624,6 +624,8 @@ $rootScope.authorised=relateDependentAuthorize;
             }*/
           //  $rootScope.doGetSelectedPatientProfiles(currentPatientDetails.patientId,'tab.healthinfo', '')
             $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
+            var primarypatid=$rootScope.primaryPatientId;
+            var patid=getDependentDetails.patientId
             $rootScope.passededconsultants();
            $rootScope.restage = getAge(getDependentDetails.PatientAge);
             if ($rootScope.restage >= 12) {
@@ -634,7 +636,13 @@ $rootScope.authorised=relateDependentAuthorize;
                 $rootScope.viewtimezoneDisplay='none';
 
             }
-
+            if (primarypatid == patid) {
+              $rootScope.viewmyhealthDisplay = 'block';
+              $rootScope.viewhealthDisplay = 'none';
+            }else{
+              $rootScope.viewmyhealthDisplay = 'none';
+              $rootScope.viewhealthDisplay = 'block';
+            }
             $state.go('tab.healthinfo');
 
         }

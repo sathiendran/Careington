@@ -138,6 +138,15 @@ angular.module('starter.controllers')
 
             }
 
+            if ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId) {
+                    $rootScope.viewmyhealthDisplay = 'block';
+                    $rootScope.viewhealthDisplay = 'none';
+                } else {
+                  $rootScope.viewmyhealthDisplay = 'none';
+                  $rootScope.viewhealthDisplay = 'block';
+
+                }
+
             //$rootScope.userDOB = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
             //   $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
             if ($rootScope.currentPatientDetails[0].gender == 'M') {
@@ -205,6 +214,14 @@ var primaryvalue=$rootScope.PatientPrimaryConcernItem;
         $rootScope.doGetCurrentUserAppointment = function() {
 
             $rootScope.passededconsultants();
+            if ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId) {
+                    $rootScope.viewmyhealthDisplay = 'block';
+                    $rootScope.viewhealthDisplay = 'none';
+                } else {
+                  $rootScope.viewmyhealthDisplay = 'none';
+                  $rootScope.viewhealthDisplay = 'block';
+
+                }
             $state.go('tab.appointmentpatientdetails');
         }
 
