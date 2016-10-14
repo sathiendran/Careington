@@ -1132,6 +1132,9 @@ $scope.editDob=function(){
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
+                if(ionic.Platform.is('browser') !== true) {
+                   cordova.plugins.Keyboard.close();
+                }
                 if($rootScope.hasRequiredFields === false) {
                   $scope.$root.$broadcast("callPatientDetails");
                 }else {

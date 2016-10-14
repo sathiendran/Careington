@@ -1,5 +1,8 @@
 <ion-side-menus>
 <ion-side-menu-content>
+	<form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
+		<input type="submit"  >
+
 	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 		<div class="buttons">
 			<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
@@ -40,7 +43,7 @@
 				<div ng-if="updatedPatientImagePath == ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
 				<div ng-if="updatedPatientImagePath != ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" >"<img ng-src="{{updatedPatientImagePath}}" src="{{updatedPatientImagePath}}" class='UserHmelistImgView'></div>
 				<div ng-show="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-				<div class="col col-33">
+				<div class="col col-33 healthUserIcon" >
 					 <a ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userhome')">
 							<div class="icon groupicon">
 								 <!--<i ng-bind-html="drawSVGCIcon('group');"></i>-->
@@ -70,7 +73,7 @@
 		</div>
 		</div>
 	</ion-header-bar>
-	<form ng-submit="putUpdatePatientDetails()" name="HealthInfo Details">
+
 		<ion-view title="Health Info Details" >
 			<ion-content class="ioncontentalign healthHeight" ng-hide="addmore">
 				<div >
@@ -428,10 +431,10 @@
 					</button>
 				</ion-footer-bar>
 		</div>
-	</form>
+
 	</ion-view>
 
-
+	</form>
 
 
 	<!--Side Menu File Include <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('menu')"></i>--->
