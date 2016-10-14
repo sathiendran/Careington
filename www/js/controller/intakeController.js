@@ -290,6 +290,7 @@ $scope.locat=false;
 
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
+      $scope.data.searchProvider='';
   $scope.clearSelectionAndRebindSelectionList($rootScope.PatientPrimaryConcernItem, $scope.primaryConcernList);
   /*if (typeof $rootScope.PrimaryCount == 'undefined') {
       $rootScope.checkedPrimary = 0;
@@ -588,6 +589,7 @@ $scope.locat=false;
 
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
+        $scope.data.searchProvider='';
         if ($rootScope.getSecondaryConcernAPIList != "") {
             //$scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
             if ($scope.PatientPrimaryConcernItem != '') {
@@ -856,6 +858,7 @@ $scope.locat=false;
 
     // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
+        $scope.data.searchProvider='';
         $scope.clearSelectionAndRebindSelectionList($rootScope.PatientChronicConditionsSelected, $rootScope.chronicConditionList);
         if (typeof $rootScope.ChronicCount == 'undefined') {
             $rootScope.checkedChronic = 0;
@@ -1036,7 +1039,7 @@ $scope.locat=false;
         // Open Medication Allegies List popup
 
     $scope.loadMedicationAllegies = function() {
-
+          $scope.data.searchProvider='';
         $scope.clearSelectionAndRebindSelectionList($rootScope.MedicationAllegiesItem, $rootScope.MedicationAllegiesList);
 
         if (typeof $rootScope.AllegiesCount == 'undefined') {
@@ -1196,6 +1199,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 
     // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
+      $scope.data.searchProvider='';
   $scope.clearSelectionAndRebindSelectionList($rootScope.CurrentMedicationItem, $rootScope.CurrentMedicationList);
 
         if (typeof $rootScope.MedicationCount == 'undefined') {
@@ -1437,6 +1441,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     }
 
     $scope.RemoveSurgeryPopup = function(model) {
+        $scope.data.searchProvider='';
         $scope.modal.hide();
     };
     $scope.removePriorSurgeries = function(index, item) {
