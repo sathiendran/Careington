@@ -4997,8 +4997,26 @@ $state.go('tab.consultCharge');
                       if (clickEvent === "patientClick") {
                           $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
                       } else if (clickEvent === "sideMenuClick") {
+                        var patid=$rootScope.patientId;
+                        var primarypatid=$rootScope.primaryPatientId;
+                        if (primarypatid == patid) {
+                          $rootScope.viewmyhealthDisplay = 'block';
+                          $rootScope.viewhealthDisplay = 'none';
+                        }else{
+                          $rootScope.viewmyhealthDisplay = 'none';
+                          $rootScope.viewhealthDisplay = 'block';
+                        }
                           $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
                       } else if (clickEvent === "sideMenuClickApoointments") {
+                        var patid=$rootScope.patientId;
+                        var primarypatid=$rootScope.primaryPatientId;
+                        if (primarypatid == patid) {
+                          $rootScope.viewmyhealthDisplay = 'block';
+                          $rootScope.viewhealthDisplay = 'none';
+                        }else{
+                          $rootScope.viewmyhealthDisplay = 'none';
+                          $rootScope.viewhealthDisplay = 'block';
+                        }
                           $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
                       } else if (clickEvent === "tab.patientConcerns") {
                           $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
@@ -5270,8 +5288,26 @@ $state.go('tab.consultCharge');
             if (clickEvent === "patientClick") {
                 $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
             } else if (clickEvent === "sideMenuClick") {
+              var patid=$rootScope.patientId;
+              var primarypatid=$rootScope.primaryPatientId;
+              if (primarypatid == patid) {
+                $rootScope.viewmyhealthDisplay = 'block';
+                $rootScope.viewhealthDisplay = 'none';
+              }else{
+                $rootScope.viewmyhealthDisplay = 'none';
+                $rootScope.viewhealthDisplay = 'block';
+              }
                 $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
             } else if (clickEvent === "sideMenuClickApoointments") {
+              var patid=$rootScope.patientId;
+              var primarypatid=$rootScope.primaryPatientId;
+              if (primarypatid == patid) {
+                $rootScope.viewmyhealthDisplay = 'block';
+                $rootScope.viewhealthDisplay = 'none';
+              }else{
+                $rootScope.viewmyhealthDisplay = 'none';
+                $rootScope.viewhealthDisplay = 'block';
+              }
                 $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
             } else if (clickEvent === "tab.patientConcerns") {
                 $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
@@ -5312,8 +5348,26 @@ $state.go('tab.consultCharge');
         if (clickEvent === "patientClick") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
         } else if (clickEvent === "sideMenuClick") {
+          var patid=$rootScope.patientId;
+          var primarypatid=$rootScope.primaryPatientId;
+          if (primarypatid == patid) {
+            $rootScope.viewmyhealthDisplay = 'block';
+            $rootScope.viewhealthDisplay = 'none';
+          }else{
+            $rootScope.viewmyhealthDisplay = 'none';
+            $rootScope.viewhealthDisplay = 'block';
+          }
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.healthinfo', '');
         } else if (clickEvent === "sideMenuClickApoointments") {
+          var patid=$rootScope.patientId;
+          var primarypatid=$rootScope.primaryPatientId;
+          if (primarypatid == patid) {
+            $rootScope.viewmyhealthDisplay = 'block';
+            $rootScope.viewhealthDisplay = 'none';
+          }else{
+            $rootScope.viewmyhealthDisplay = 'none';
+            $rootScope.viewhealthDisplay = 'block';
+          }
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.appointmentpatientdetails', '');
         } else if (clickEvent === "tab.patientConcerns") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.patientConcerns', '');
