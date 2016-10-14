@@ -5,8 +5,8 @@
 			<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 		</div>
 		<h1 class="healthTitle-{{deviceName}} chronic {{title_patient}} {{HeaderList}} {{intakeTittle}}">
-			<div class="HealthTitle-{{deviceName}}" ng-if="primaryPatientId == patientId"> My Health </div>
-				<div class="HealthTitle-{{deviceName}}" ng-if="primaryPatientId != patientId"> Health Info</div>
+			<div class="HealthTitle-{{deviceName}}" style="display: {{viewmyhealthDisplay}};"> My Health </div>
+				<div class="HealthTitle-{{deviceName}}" style="display: {{viewhealthDisplay}};"> Health Info</div>
 			<span ng-if="editOption !== 'None'" class="headerval healthLeft-{{deviceName}}" ng-click="edittext()" ng-show="editshow">Edit</span>
 			<span class="searchCancel-{{deviceName}}"  ng-show="cancelshow" ><a ng-href="#/tab/userAccount" class="headerval" >Cancel</a></span>
 			<span class="headerval healthLeft-{{deviceName}}"  ng-click="putUpdatePatientDetails()"  ng-hide="doneshow" >Done</span>
@@ -445,10 +445,10 @@
 			<a class="tab-item" ng-href="#/tab/consultations">
 			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i> <span class="tabcolor">Consultations</span>
 			</a>
-			<a class="tab-item active" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+			<a class="tab-item active" ng-href="#/tab/healthinfo"  style="display: {{viewmyhealthDisplay}};">
 			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
 			</a>
-			<a class="tab-item active" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+			<a class="tab-item active" ng-href="#/tab/healthinfo"  style="display: {{viewhealthDisplay}};">
 			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
 			</a>
 			<a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
