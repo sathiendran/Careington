@@ -7,37 +7,25 @@ angular.module('starter.controllers')
     });
     $rootScope.customerSso = '';
 
-  //  $rootScope.hospitalId = singleHospitalId;
-  if (deploymentEnvLogout == 'Single') {
-      if (deploymentEnvForProduction == 'Production') {
-          /*if (appStoreTestUserEmail != '' && $("#UserEmail").val() == appStoreTestUserEmail) {
-              $rootScope.hospitalId = singleStagingHospitalId;
-              apiCommonURL = 'https://snap-stage.com';
-              api_keys_env = 'Staging';
-              $rootScope.APICommonURL = 'https://snap-stage.com';
-          } else {   */
-              $rootScope.hospitalId = singleHospitalId;
-              apiCommonURL = 'https://connectedcare.md';
-              api_keys_env = 'Production';
-              $rootScope.APICommonURL = 'https://connectedcare.md';
-        //  }
-      } else if (deploymentEnvForProduction == 'Staging') {
-          $rootScope.hospitalId = singleStagingHospitalId;
-          api_keys_env = "Staging";
-      } else if (deploymentEnvForProduction == 'QA') {
-          $rootScope.hospitalId = singleQAHospitalId;
-          api_keys_env = "QA";
-      } else if (deploymentEnvForProduction == 'Sandbox') {
-          $rootScope.hospitalId = singleSandboxHospitalId;
-          api_keys_env = "Sandbox";
-      }
-    }
+    if (deploymentEnvLogout == 'Single') {
+        if (deploymentEnvForProduction == 'Production') {
 
-  /*  if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production') {
-        apiCommonURL = 'https://connectedcare.md';
-        api_keys_env = '';
-        $rootScope.APICommonURL = 'https://connectedcare.md';
-    }*/
+            $rootScope.hospitalId = singleHospitalId;
+            apiCommonURL = 'https://connectedcare.md';
+            api_keys_env = 'Production';
+            $rootScope.APICommonURL = 'https://connectedcare.md';
+
+        } else if (deploymentEnvForProduction == 'Staging') {
+            $rootScope.hospitalId = singleStagingHospitalId;
+            api_keys_env = "Staging";
+        } else if (deploymentEnvForProduction == 'QA') {
+            $rootScope.hospitalId = singleQAHospitalId;
+            api_keys_env = "QA";
+        } else if (deploymentEnvForProduction == 'Sandbox') {
+            $rootScope.hospitalId = singleSandboxHospitalId;
+            api_keys_env = "Sandbox";
+        }
+    }
 
     $rootScope.patientConsultEndUrl = "";
 
@@ -84,7 +72,6 @@ angular.module('starter.controllers')
                     }
                 }
                 $rootScope.brandColor = data.data[0].brandColor;
-                //$rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
                 if (deploymentEnvLogout == 'Multiple') {
@@ -99,7 +86,6 @@ angular.module('starter.controllers')
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
-
                 brandColor = $rootScope.brandColor;
                 logo = $rootScope.logo;
                 HospitalTag = $rootScope.HospitalTag;
@@ -108,17 +94,14 @@ angular.module('starter.controllers')
                     if (data.data[0].customerSso === "Mandatory") {
                         $rootScope.customerSso = "Mandatory";
                         ssoURL = data.data[0].patientLogin;
-                        //"Mandatory"
-                        //patientConsultEndUrl
-                    }
 
+                    }
                 }
                 $ionicLoading.hide();
                 $state.go('tab.loginSingle');
             },
             error: function(data) {
                 $ionicLoading.hide();
-                //$rootScope.serverErrorMessageValidation();
 
             }
         };

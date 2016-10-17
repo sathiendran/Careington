@@ -42,10 +42,8 @@ angular.module('starter.controllers')
         $scope.getPatientProfile = function() {
             $state.go('tab.healthinfo');
         }
-
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
-
         $rootScope.checkAndChangeMenuIcon = function() {
                 if (!$ionicSideMenuDelegate.isOpen(true)) {
                     if ($('#BackButtonIcon').hasClass("ion-close")) {
@@ -76,25 +74,18 @@ angular.module('starter.controllers')
 
         $scope.addmore = false;
         $scope.healthhide = true;
-
         $scope.user = function() {
-
             var myEl = angular.element(document.querySelector('#users'));
             myEl.addClass('btcolor');
             myEl.removeClass('btnextcolor');
             var myEl = angular.element(document.querySelector('#allusers'));
             myEl.removeClass('btcolor').css('color', '#11c1f3');
             myEl.addClass('btnextcolor');
-
             $scope.addmore = false;
             $scope.healthhide = true;
-
-
         }
 
-
         $scope.alluser = function() {
-
             var myEl = angular.element(document.querySelector('#allusers'));
             myEl.removeClass('btnextcolor');
             myEl.addClass('btcolor');
@@ -104,8 +95,6 @@ angular.module('starter.controllers')
             $scope.addmore = true;
             $scope.healthhide = false;
 
-
         }
-
 
     });

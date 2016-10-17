@@ -175,7 +175,7 @@
 	<ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)">
 		<div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician" id="centercolor" >
 			<div class="creditSeeaCLinician" >
-	  		See A Clinician Now
+	  		See A Provider Now
 			</div>
 			<div>
 				<span class="creditCount">
@@ -185,7 +185,7 @@
 			</div>
 		</div>
 		<div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
-			<h1 class="title" id="centercolor" >See A Clinician Now</h1>
+			<h1 class="title" id="centercolor" >See A Provider Now</h1>
 		</div>
 	<!--	<div>
 			<h1 class="title" id="centercolor" >See A Clinician Now</h1>
@@ -213,7 +213,7 @@
 
 	 <div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician userappfootcontent"  >
 		<div class="creditSeeaCLinician" >
-			See A Clinician Now
+			See A Provider Now
 		</div>
 		<div>
 			<span class="creditCount">
@@ -223,7 +223,7 @@
 		</div>
 	</div>
 	<div ng-if="getIndividualPatientCreditCount == 0 ||  paymentMode != 'on'">
-		<h1 class="title userappfootcontent" >See A Clinician Now</h1>
+		<h1 class="title userappfootcontent" >See A Provider Now</h1>
 	</div>
 	<!--<div>
 		<h1 class="title userappfootcontent" >See A Clinician Now</h1>

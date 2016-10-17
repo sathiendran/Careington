@@ -101,7 +101,7 @@ angular.module('starter.controllers')
      };
     */
 
-    $scope.waitingMsg = "The Clinician will be with you Shortly.";
+    $scope.waitingMsg = "The Provider will be with you Shortly.";
     var initWaitingRoomHub = function() {
         var connection = $.hubConnection();
         var conHub = connection.createHubProxy('consultationHub');
@@ -117,7 +117,7 @@ angular.module('starter.controllers')
             "isMobile": true
         };
         conHub.on("onConsultationReview", function() {
-            $scope.waitingMsg = "The clinician is now reviewing the intake form.";
+            $scope.waitingMsg = "The Provider is now reviewing the intake form.";
             /*
             cordova.plugins.notification.local.schedule([
             	{
@@ -165,7 +165,7 @@ angular.module('starter.controllers')
         connection.start({
             withCredentials: false
         }).then(function() {
-            $scope.waitingMsg = "The Clinician will be with you Shortly.";
+            $scope.waitingMsg = "The Provider will be with you Shortly.";
             $scope.$digest();
         });
     };
