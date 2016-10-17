@@ -745,10 +745,7 @@ $scope.locat=false;
     } else if ($rootScope.mobilePhone === '') {
         $scope.OnDemandConsultationSaveData["phone"] = $rootScope.homePhone;
     }
-
-
-
-    $scope.doPostOnDemandConsultation = function() {
+  $scope.doPostOnDemandConsultation = function() {
 
         if (typeof $rootScope.PrimaryConcernText !== 'undefined') {
             $scope.primaryFilter = $filter('filter')($scope.OnDemandConsultationSaveData.concerns, {
@@ -831,31 +828,6 @@ $scope.locat=false;
         $rootScope.ChronicValid = ChronicValid;
         $state.go('tab.ChronicCondition');
     }
-
-    // Get list of Chronic Condition lists
-    // $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
-
-    // Get list of Chronic Condition Pre populated
-    /*if($rootScope.currState.$current.name=="tab.ChronicCondition") {
-         if(typeof $rootScope.ChronicValid == 'undefined' ||  $rootScope.ChronicValid == 0) {
-              angular.forEach($rootScope.inTakeFormChronicConditions, function(index, item) {
-                $scope.chronicConditionList.push({
-                     $id: index.$id,
-                     codeId: index.id,
-                     displayOrder: 0,
-                     text: index.value,
-                     checked: true,
-                 });
-
-             });
-     $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
-     $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
-             if($rootScope.PatientChronicCondition) {
-                 $rootScope.ChronicCountValidCount = $rootScope.PatientChronicCondition.length;
-             }
-         }
-     }*/
-
     // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
         $scope.data.searchProvider='';

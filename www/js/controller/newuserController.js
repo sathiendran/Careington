@@ -162,7 +162,6 @@ angular.module('starter.controllers')
           var b="0"+da;
         }else{
             var b=da;
-
         }
         var c = a.getFullYear();
         var d = a.getDate();
@@ -186,8 +185,6 @@ angular.module('starter.controllers')
         var couserloc = loc.options[loc.selectedIndex].text;
         $scope.colocation = couserloc;
         $scope.colocationid = $("#userlocate").val();
-
-
         $scope.sptheightunit = $('#userheightunit').val().split("@");
         $scope.heightunitid = _.first($scope.sptheightunit);
         $scope.heightunit = _.last($scope.sptheightunit);
@@ -206,7 +203,6 @@ angular.module('starter.controllers')
         $scope.getEthnicityId = _.first($scope.ethnicity);
         //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
         // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
-
         var selectDate = document.getElementById('userdob').value;
          var now = new Date();
          var dt1 = Date.parse(now),
@@ -248,7 +244,6 @@ angular.module('starter.controllers')
         } else if (typeof $scope.heightunitid === 'undefined' || $scope.heightunitid === '') {
             $scope.ErrorMessage = "Please Select Your Height Unit";
             $rootScope.Validation($scope.ErrorMessage);
-
         } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
             $scope.ErrorMessage = "Please Enter Your Weight";
             $rootScope.Validation($scope.ErrorMessage);

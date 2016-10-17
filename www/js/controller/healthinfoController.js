@@ -361,7 +361,10 @@ angular.module('starter.controllers')
      if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
        $scope.ErrorMessage = "Please enter height";
        $rootScope.ValidationFunction1($scope.ErrorMessage);
-     }else{
+     }else if(  $rootScope.height2==0 && $rootScope.height1 ==0){
+       $scope.ErrorMessage = "Please enter valid height";
+       $rootScope.ValidationFunction1($scope.ErrorMessage);
+     } else{
        $scope.modal.remove()
        .then(function() {
          $scope.modal = null;
@@ -1402,7 +1405,6 @@ $scope.editDob=function(){
                 } else {
                     $rootScope.emailDisplay = 'none';
                     $rootScope.timezoneDisplay = 'none';
-
                 }
             }*/
     }
@@ -1415,7 +1417,9 @@ $scope.editDob=function(){
 
     $scope.chkPreviousPageForRequiredDetaisUsers = function(nextPage) {
         if($rootScope.hasRequiredFields === true) {
-          $state.go(nextPage);
+          $scope.doGetPatientProfiles();
+          $scope.doGetRelatedPatientProfiles('tab.userhome');
+        //  $state.go(nextPage);
         }else {
           $scope.ErrorMessage = "Please fill all required details ";
           $rootScope.Validation($scope.ErrorMessage);
@@ -1547,12 +1551,10 @@ $scope.editDob=function(){
         $rootScope.sorted_users = tmp;
         $scope.selectedObject = {};
         $rootScope.gotoList = function(id) {
-              $scope.activeClass = id;
-            $location.hash(id);
-            $ionicScrollDelegate.anchorScroll();
+        $location.hash(id);
+        $ionicScrollDelegate.anchorScroll();
 
         }
-
         $scope.cancelshow = false;
         $scope.doneshow = true;
         $scope.editshow = false;
@@ -1685,10 +1687,12 @@ $scope.editDob=function(){
                         $rootScope.sorted_users = tmp;
 
                         $rootScope.gotoList = function(id) {
+                          var myclass=id;
                             // var myEl = angular.element(document.querySelector('#cursearch'));
                             //  myEl.addClass('currmedication');
-
-                              $scope.activeClass = id;
+                          //  $(this).siblings().removeClass("alpha_sidebar li");
+                          //  $(this).addClass("alpha");
+                          myclass.addClass("alpha");
                             $location.hash(id);
                             $ionicScrollDelegate.anchorScroll();
                         }
@@ -1859,7 +1863,6 @@ $scope.editDob=function(){
                                 checked: true
                             };
                             $rootScope.medicationAllergiesearchList.splice(1, 0, newAllergiwItem);
-
                             var usersallergie = $rootScope.medicationAllergiesearchList;
                             var usersallergielength = usersallergie.length;
                             var log = [];
@@ -1872,12 +1875,10 @@ $scope.editDob=function(){
                                 tmpallergie[letter].push(usersallergie[i]);
                             }
                             $scope.sorted_usersallergie = tmpallergie;
-
                             $scope.gotoallergyList = function(codeid) {
                                 $location.hash(codeid);
                                 $ionicScrollDelegate.anchorScroll();
                             }
-
                             if ($rootScope.checkedAllergies >= 4) {
                               item.checked === true
                                 $scope.allergiedone();
@@ -2406,7 +2407,6 @@ $scope.editDob=function(){
                 'X-Developer-Id': xDeveloperId
             },
         };
-
 */
 
     }

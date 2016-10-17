@@ -84,7 +84,7 @@ angular.module('starter.controllers')
           $ionicLoading.show({
               template: '<img src="img/puff.svg" alt="Loading" />'
           });
-          $rootScope.videoLostMessage = 'Please wait while we are re-connecting you with physician!';
+          $rootScope.videoLostMessage = 'Please wait while we are re-connecting you with provider!';
           $rootScope.videoLostMessageSub = 'This might take few seconds.';
           $rootScope.checkForReEntryConsultation();
       }

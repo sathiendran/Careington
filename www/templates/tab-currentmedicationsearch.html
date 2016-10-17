@@ -39,8 +39,8 @@
             </ion-item>
               <ion-item  ng-show="(currentMedicationsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
          </ion-list>
-         <ul class="alpha_sidebar" ng-show="(currentMedicationsearchList | filter:data.searchProvider).length!=0">
-            <li ng-click="gotoList('index_{{letter}}')" ng-repeat="letter in alphabet" class="alpha">
+         <ul class="alpha_sidebar" ng-show="(currentMedicationsearchList | filter:data.searchProvider).length!=0" id="nav">
+            <li ng-click="gotoList('index_{{letter}}')" ng-repeat="letter in alphabet" id="lettertest" class="">
                {{letter}}
             </li>
          </ul>

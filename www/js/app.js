@@ -101,7 +101,6 @@ if (deploymentEnv == 'Single') {
   }
 
 
-
 }
 
 var handleOpenURL = function(url) {
@@ -135,7 +134,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
           }, 60000);
       }
 
-
       function clearSessionLogoutTimer(){
         if(typeof appIdleInterval != "undefined"){
            $interval.cancel(appIdleInterval);
@@ -149,11 +147,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
       $('body').bind('touchstart',function() {
           resetSessionLogoutTimer();
       });
-     //  $('body').bind('touchend', function() {
-     //      myTimer = setInterval(function() {
-     //          goInactive();
-     //      }, 1800000);
-     //  });
 
       var timeoutID;
       function setup() {
@@ -168,11 +161,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         this.addEventListener("touchend", resetTimer, false);
         startTimer();
     }
-    //setup();
 
     function startTimer() {
         timeoutID = window.setTimeout(goInactive, 1800000);
-    //  timeoutID = window.setTimeout(goInactive, 120000);
     }
 
     function resetTimer(e) {
@@ -207,30 +198,11 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     }
-
     function goActive() {
         console.log('Active');
         startTimer();
     }
 
-        // Check for network connection
-        /* if(window.Connection) {
-      if(navigator.connection.type == Connection.NONE) {
-		navigator.notification.confirm(
-			'Sorry, Please Check Your Network Connection.',
-			 function(index){
-				if(index == 1){
-
-				}else if(index == 2){
-					// navigator.app.exitApp();
-				}
-			 },
-			'Network Problem:',
-			['Cancel','Ok']
-		);
-
-      }
-	 }*/
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -450,9 +422,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
 })
 
-
-
-
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider, IdleProvider, KeepaliveProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
@@ -476,7 +445,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     })
 
     // Each tab has its own nav history stack:
-
     .state('tab.login', {
         url: '/login',
         views: {
@@ -486,7 +454,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.loginSingle', {
         url: '/loginSingle',
         views: {
@@ -496,7 +463,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.provider', {
         url: '/provider',
         views: {
@@ -506,7 +472,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.terms', {
         url: '/terms',
         views: {
@@ -516,7 +481,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.password', {
         url: '/password',
         views: {
@@ -526,7 +490,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.resetPassword', {
         url: '/resetPassword',
         views: {
@@ -536,7 +499,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.userhome', {
         url: '/userhome',
         views: {
@@ -546,10 +508,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
-
-
     .state('tab.patientDetail', {
         url: '/patientDetail',
         views: {
@@ -559,7 +517,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.patientCalendar', {
         url: '/patientCalendar',
         views: {
@@ -569,7 +526,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.appoimentDetails', {
         url: '/appoimentDetails',
         views: {
@@ -579,9 +535,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
-
     .state('tab.patientConcerns', {
         url: '/patientConcerns',
         views: {
@@ -591,7 +544,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.ChronicCondition', {
         url: '/ChronicCondition',
         views: {
@@ -601,7 +553,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.priorSurgeries', {
         url: '/priorSurgeries',
         views: {
@@ -611,7 +562,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.CurrentMedication', {
         url: '/CurrentMedication',
         views: {
@@ -621,7 +571,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.intakeBornHistory', {
         url: '/intakeBornHistory',
         views: {
@@ -631,7 +580,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.MedicationAllegies', {
             url: '/MedicationAllegies',
             views: {
@@ -650,7 +598,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.consultCharge', {
         url: '/consultCharge',
         views: {
@@ -660,7 +607,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addHealthPlan', {
         url: '/addHealthPlan',
         views: {
@@ -670,7 +616,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.planDetails', {
         url: '/planDetails',
         views: {
@@ -680,9 +625,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
-
     .state('tab.applyPlan', {
         url: '/applyPlan',
         views: {
@@ -692,7 +634,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addCard', {
         url: '/addCard',
         views: {
@@ -702,7 +643,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.consultChargeNoPlan', {
             url: '/consultChargeNoPlan',
             views: {
@@ -721,8 +661,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
-
     .state('tab.submitPayment', {
         url: '/submitPayment',
         views: {
@@ -732,7 +670,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.receipt', {
         url: '/receipt',
         views: {
@@ -742,7 +679,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.waitingRoom', {
         url: '/waitingRoom',
         views: {
@@ -752,7 +688,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.videoConference', {
         url: '/videoConference',
         views: {
@@ -762,7 +697,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.connectionLost', {
         url: '/connectionLost',
         views: {
@@ -772,7 +706,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.ReportScreen', {
             url: '/ReportScreen',
             views: {
@@ -800,7 +733,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.singleTerms', {
             url: '/singleTerms',
             views: {
@@ -819,7 +751,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.searchprovider', {
         url: '/searchprovider',
         views: {
@@ -829,7 +760,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.registerStep1', {
         url: '/registerStep1',
         views: {
@@ -839,7 +769,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.registerAddress', {
         url: '/registerAddress',
         views: {
@@ -849,7 +778,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.userAccount', {
         url: '/userAccount',
         views: {
@@ -859,7 +787,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.healthinfo', {
         url: '/healthinfo',
         views: {
@@ -869,7 +796,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.userAppointment', {
             url: '/userAppointment',
             views: {
@@ -879,16 +805,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-    /*
-     .state('tab.relateduseroptions', {
-            url: '/relateduseroptions',
-            views: {
-                'tab-login': {
-                    templateUrl: 'templates/tab-relateduseroptions.html',
-                    controller: ''
-                }
-            }
-        })*/
         .state('tab.addUser', {
             url: '/addUser',
             views: {
@@ -898,7 +814,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.registerStep2', {
             url: '/registerStep2',
             views: {
@@ -926,8 +841,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
-
     .state('tab.relatedusers', {
         url: '/relatedusers',
         views: {
@@ -937,17 +850,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-/*    .state('tab.removerelatedUsers', {
-        url: '/removerelatedUsers',
-        views: {
-            'tab-login': {
-                templateUrl: 'templates/tab-removerelatedUsers.html',
-                controller: 'removeuserController'
-            }
-        }
-    })*/
-
     .state('tab.appointmentpatientdetails', {
         url: '/appointmentpatientdetails',
         views: {
@@ -957,7 +859,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.profileoption', {
         url: '/profileoption',
         views: {
@@ -967,7 +868,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.consultations', {
         url: '/consultations',
         views: {
@@ -977,7 +877,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.reports', {
         url: '/reports',
         views: {
@@ -987,7 +886,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.missedConsultAppoint', {
         url: '/missedConsultAppoint',
         views: {
@@ -997,7 +895,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addnewuser', {
         url: '/addnewuser',
         views: {
@@ -1007,7 +904,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addnewdependent', {
         url: '/addnewdependent',
         views: {
@@ -1017,8 +913,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
     .state('tab.consultationSearch', {
         url: '/consultationSearch',
         views: {
@@ -1065,17 +959,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-  /*  .state('tab.check', {
-        url: '/check',
-        views: {
-            'tab-login': {
-                templateUrl: 'templates/tab-check.html',
-                controller: 'checkController'
-            }
-        }
-    })
-*/
-
 
     // if none of the above states are matched, use this as the fallback tab-chooseEnvironment
 
@@ -1148,7 +1031,6 @@ function formatHeightVal(height){
 }
 
 function getAge(birth) {
-
     var today = new Date();
     var nowyear = today.getFullYear();
     var nowmonth = today.getMonth();
@@ -1157,18 +1039,13 @@ function getAge(birth) {
     var birthyear = birthage.getFullYear();
     var birthmonth = birthage.getMonth();
     var birthday = birthage.getDate();
-
     var age = nowyear - birthyear;
     var age_month = nowmonth - birthmonth;
     var age_day = nowday - birthday;
-
     if(age_month < 0 || (age_month == 0 && age_day <0)) {
             age = parseInt(age) -1;
         }
     return age;
-
-
-
 }
 var createSVGIcon = function(iconName) {
     return "<svg class='icon-" + iconName + " svgIcon" + iconName + " svgIconForVideo'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";

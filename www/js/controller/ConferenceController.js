@@ -611,7 +611,7 @@ angular.module('starter.controllers')
                 "isMobile": true
             };
             conHub.on("onConsultationReview", function() {
-                $rootScope.waitingMsg = "The clinician is now reviewing the intake form.";
+                $rootScope.waitingMsg = "The provider is now reviewing the intake form.";
             });
             conHub.on("onCustomerDefaultWaitingInformation", function() {
                 $rootScope.waitingMsg = "Please Wait....";
@@ -624,7 +624,7 @@ angular.module('starter.controllers')
                 withCredentials: false
             }).then(function() {
                 conHub.invoke("joinCustomer").then(function() {});
-                $rootScope.waitingMsg = "The Clinician will be with you Shortly.";
+                $rootScope.waitingMsg = "The Provider will be with you Shortly.";
             });
             conHub.on("onConsultationEnded", function() {
                 isCallEndedByPhysician = true;
