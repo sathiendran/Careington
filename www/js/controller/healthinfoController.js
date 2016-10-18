@@ -237,12 +237,7 @@ angular.module('starter.controllers')
           }
 
           });
-          $timeout(function() {
-            $scope.modal.remove()
-            .then(function() {
-              $scope.modal = null;
-            });
-          },600000);
+
           $timeout(function() {
               $('option').filter(function() {
                   return this.value.indexOf('?') >= 0;
@@ -251,7 +246,7 @@ angular.module('starter.controllers')
       });
 
     }
-    $scope.removeeditmodal = function(model) {
+    $rootScope.removemodal = function() {
       $scope.modal.remove()
       .then(function() {
         $scope.modal = null;
@@ -261,47 +256,7 @@ angular.module('starter.controllers')
             return this.value.indexOf('?') >= 0;
         }).remove();
 
-    };  $scope.$on('IdleStart', function() {
-              console.log("aaa");
-      });
-      $scope.$on('IdleWarn', function(e, countdown) {
-      });
-      $scope.$on('IdleTimeout', function() {
-        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
-              var elem = document.getElementById("googleContainerId");
-              elem.remove();
-              $ionicBackdrop.release();
-              $scope.modal.remove();
-              navigator.notification.alert(
-                   'Your session timed out.', // message
-                   null,
-                   $rootScope.alertMsgName,
-                   'Ok' // buttonName
-               );
-              $rootScope.ClearRootScope();
-            }
-        }
-      });
-
-      $scope.$on('IdleEnd', function() {
-          // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
-            console.log("aaa3");
-            $(".ion-google-place-container").css({
-                "display": "none"
-            });
-      });
-
-      $scope.$on('Keepalive', function() {
-          // do something to keep the user's session alive
-            console.log("aaa4");
-      });
-
-
-
-
-
-
+    };
 
     $rootScope.ValidationFunction1 = function($a) {
         function refresh_close() {
@@ -1531,10 +1486,6 @@ $scope.editDob=function(){
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-            $timeout(function() {
-              $scope.modal.hide();
-
-            },600000);
         });
         $scope.alphabet = iterateAlphabet();
         var users = $rootScope.currentMedicationsearchList;
@@ -1728,9 +1679,7 @@ $scope.editDob=function(){
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-            $timeout(function() {
-              $scope.modal.hide();
-            },600000);
+
         });
         var usersallergie = $rootScope.medicationAllergiesearchList;
         var usersallergielength = usersallergie.length;
@@ -1912,9 +1861,7 @@ $scope.editDob=function(){
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-            $timeout(function() {
-              $scope.modal.hide();
-            },600000);
+
         });
         var userschronic = $rootScope.chronicConditionsearchList;
         var userschroniclength = userschronic.length;
@@ -1940,9 +1887,6 @@ $scope.editDob=function(){
 
     $scope.chronicdone = function() {
         $scope.modal.hide();
-
-
-
         $rootScope.ChronicupdateList = [];
         $rootScope.ChronicsearchItem = $filter('filter')($rootScope.chronicConditionsearchList, {
             checked: true
@@ -2148,9 +2092,7 @@ $scope.editDob=function(){
             $scope.surgery.dateStringMonth = '';
             $scope.surgery.dateStringYear = '';
             $scope.modal.show();
-            $timeout(function() {
-              $scope.modal.hide();
-            },600000);
+
             $timeout(function() {
                 $('option').filter(function() {
                     return this.value.indexOf('?') >= 0;
