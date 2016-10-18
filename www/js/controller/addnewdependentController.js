@@ -246,31 +246,38 @@ angular.module('starter.controllers')
         }
 
     $scope.depheight1 = function() {
-        var max = 10;
+        var max = 10; var maxi="10"
         var heights = $("#deptheight").val();
-        if (heights == "") {
+        if (heights == "" )  {
             $("#deptheight").val("");
         } else if (heights > max) {
 
             $("#deptheight").val(max);
         }
-        var heightlen = $("#deptheight").val().length;
-        if (heightlen > 2) {
+        var depheightlength=parseInt(heights);
+        var heightlen = depheightlength.length;
+        if (heightlen > 2 ) {
           $("#deptheight").val(max);
-
+        }else{
+            $("#deptheight").val(depheightlength);
         }
+
     }
     $scope.height1len = function() {
-        var max = 10;
-        var heightvallen = $('#deptheight').val().length;
+        var max = 10;   var heights = $("#deptheight").val();
+        var depheightvallength=parseInt(heights);
+        var heightvallen = depheightvallength.length;
         if (heightvallen > 2) {
             $("#deptheight").val(max);
+        }else{
+            $("#deptheight").val(depheightvallength);
         }
     }
     $scope.depheight2 = function() {
         var max = 99;
         var height2val = $('#deptheight2').val();
-
+        var depheight2length=parseInt(height2val);
+      //  var height2len = depheight2length.length;
         if (height2val == "") {
             $("#deptheight2").val("");
         } else if (height2val > max) {
@@ -283,6 +290,8 @@ angular.module('starter.controllers')
             var maxheight = 11;
             if (height2val > maxheight) {
                 $("#deptheight2").val(maxheight);
+            }else if(height2val < maxheight){
+                $("#deptheight2").val(depheight2length);
             }
         }
     }
