@@ -70,40 +70,9 @@ angular.module('starter.controllers')
 
 
 
-    $scope.$on('IdleStart', function() {
-            console.log("aaa");
-    });
-    $scope.$on('IdleWarn', function(e, countdown) {
-    });
-    $scope.$on('IdleTimeout', function() {
-      if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-          if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
-            navigator.notification.alert(
-                 'Your session timed out.', // message
-                 null,
-                 $rootScope.alertMsgName,
-                 'Ok' // buttonName
-             );
-            $rootScope.ClearRootScope();
-          }
-      }
-    });
-
-    $scope.$on('IdleEnd', function() {
-        // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
-          console.log("aaa3");
-    });
-
-    $scope.$on('Keepalive', function() {
-        // do something to keep the user's session alive
-          console.log("aaa4");
-    });
-
     $scope.newUSer = {};
     $scope.addmore = false;
-
     $scope.newUSer.address = $rootScope.primaryPatientDetails[0].address;
-
     $scope.moredetails = function() {
         $scope.showme = true;
         $scope.addmore = true;
@@ -121,21 +90,6 @@ angular.module('starter.controllers')
         );
     });
 
-
-    /* var minDate = new Date();
-     var maxDate=minDate.getDay();
-     var maxMonth=minDate.getMonth()+1;
-     var maxYear=minDate.getFullYear();
-     if(maxDate<10){
-         var maxD="0"+maxDate;
-     }
-     if(maxMonth<10){
-         var maxM="0"+maxMonth;
-     }
-     var maxDay=maxYear+"-"+maxM+"-"+maxD;
-     var mDate="2016-05-04";
-       $scope.maxDay = maxDay;
-       $scope.minimum ="1950-01-01";*/
 
     $('input').blur(function() {
         var value = $.trim($(this).val());
@@ -358,7 +312,7 @@ angular.module('starter.controllers')
         $('select').prop('selectedIndex', 0);
         //$state.go('tab.relatedusers');
         history.back();
-        scope.$apply();
+        $scope.$apply();
     }
 
 
