@@ -2071,7 +2071,7 @@ $scope.editDob=function(){
         LoginService.deleteAccountCoUser(params);
     }
 
-    $scope.removemodal = function(model) {
+    $scope.removemodal = function() {
         $scope.modal.hide();
         $scope.cancelshow = true;
     };
