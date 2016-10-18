@@ -87,81 +87,7 @@ angular.module('starter.controllers')
         refresh_close();
     }
     $scope.hghtunit = false;
-    $scope.$on('IdleStart', function() {
-        console.log("aaa");
-    });
-    $scope.$on('IdleWarn', function(e, countdown) {});
-    $scope.$on('IdleTimeout', function() {
-        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-            if ($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
-                var elem = document.getElementById("googleContainerId");
-                elem.remove();
 
-                $ionicBackdrop.release();
-                navigator.notification.alert(
-                    'Your session timed out.', // message
-                    null,
-                    $rootScope.alertMsgName,
-                    'Ok' // buttonName
-                );
-
-                $rootScope.ClearRootScope();
-            }
-        }
-    });
-
-    $scope.$on('IdleEnd', function() {
-        // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
-        console.log("aaa3");
-        $(".ion-google-place-container").css({
-            "display": "none"
-        });
-        $ionicBackdrop.release();
-    });
-    $scope.$on('Keepalive', function() {
-        // do something to keep the user's session alive
-        console.log("aaa4");
-    });
-    $scope.getOnlyNumbers = function(text) {
-        var newStr = text.replace(/[^0-9.]/g, "");
-        return newStr;
-    }
-    $scope.addNewDependent = {};
-    $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
-    var newUploadedPhoto;
-
-    $('input').blur(function() {
-        $(this).val(
-            $.trim($(this).val())
-        );
-    });
-    var countUp = function() {
-        $scope.tempfooter = true;
-        $scope.permfooter = true;
-    }
-    $timeout(countUp, 5000);
-    var minDate = new Date();
-    var maxDate = minDate.getDate();
-    var maxMonth = minDate.getMonth() + 1;
-    var maxYear = minDate.getFullYear();
-    if (maxDate < 10) {
-        var maxD = "0" + maxDate;
-    }
-    if (maxMonth < 10) {
-        var maxM = "0" + maxMonth;
-    }
-    var maxDay = maxYear + "-" + maxM + "-" + maxD;
-    var mDate = maxDay;
-    $scope.maxDate1 = mDate;
-    $scope.minimum = "1950-01-01";
-    var today = new Date();
-    var nowyear = today.getFullYear();
-    var nowmonth = today.getMonth() + 1;
-    var nowday = today.getDate();
-    $scope.hfeet = true;
-    $scope.hinch = true;
-    $scope.hmeter = true;
-    $scope.hcmeter = true;
     $scope.heightmodal = function() {
         document.getElementById('hunit').innerHTML = '';
         $ionicModal.fromTemplateUrl('templates/tab-heighttemplate.html', {
@@ -202,12 +128,12 @@ angular.module('starter.controllers')
                     $scope.hcmeter = true;
                 }
             });
-            $timeout(function() {
+        /*    $timeout(function() {
                 $scope.modal.remove()
                     .then(function() {
                         $scope.modal = null;
                     });
-            }, 600000);
+            }, 600000);*/
               $timeout(function() {
                 //  $scope.modal.remove()
                 $('option').filter(function() {
@@ -217,7 +143,7 @@ angular.module('starter.controllers')
         });
 
     }
-    $scope.removemodal = function() {
+    $rootScope.removemodal = function() {
         $scope.modal.remove()
             .then(function() {
                 $scope.modal = null;
@@ -230,6 +156,47 @@ angular.module('starter.controllers')
         $("#deptheight").val('');
         $('#depheight2').val('');
     };
+
+    $scope.getOnlyNumbers = function(text) {
+        var newStr = text.replace(/[^0-9.]/g, "");
+        return newStr;
+    }
+    $scope.addNewDependent = {};
+    $scope.addNewDependent.homeadd = $rootScope.primaryPatientDetails[0].address;
+    var newUploadedPhoto;
+
+    $('input').blur(function() {
+        $(this).val(
+            $.trim($(this).val())
+        );
+    });
+    var countUp = function() {
+        $scope.tempfooter = true;
+        $scope.permfooter = true;
+    }
+    $timeout(countUp, 5000);
+    var minDate = new Date();
+    var maxDate = minDate.getDate();
+    var maxMonth = minDate.getMonth() + 1;
+    var maxYear = minDate.getFullYear();
+    if (maxDate < 10) {
+        var maxD = "0" + maxDate;
+    }
+    if (maxMonth < 10) {
+        var maxM = "0" + maxMonth;
+    }
+    var maxDay = maxYear + "-" + maxM + "-" + maxD;
+    var mDate = maxDay;
+    $scope.maxDate1 = mDate;
+    $scope.minimum = "1950-01-01";
+    var today = new Date();
+    var nowyear = today.getFullYear();
+    var nowmonth = today.getMonth() + 1;
+    var nowday = today.getDate();
+    $scope.hfeet = true;
+    $scope.hinch = true;
+    $scope.hmeter = true;
+    $scope.hcmeter = true;
 
       $scope.ngBlur = function() {
             $rootScope.doddate = $('#dob').val();
