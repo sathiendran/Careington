@@ -668,9 +668,11 @@ angular.module('starter.controllers')
         });
 
         session.on('streamCreated', function(event) {
+          setTimeout(function(){
             if($('.clsPtVideoThumImage').length > 1){
                 $('.clsPtVideoThumImage').eq(0).remove();
             }
+          }, 100);
             if (event.stream.name.indexOf('Screen Share') < 0) {
                 participantsCount = +participantsCount + 1;
             }
@@ -734,9 +736,11 @@ angular.module('starter.controllers')
 
 
             $('.vdioBadge').html(participantsCount);
-            if($('.clsPtVideoThumImage').length > 1){
-                $('.clsPtVideoThumImage').eq(0).remove();
-            }
+            setTimeout(function(){
+              if($('.clsPtVideoThumImage').length > 1){
+                  $('.clsPtVideoThumImage').eq(0).remove();
+              }
+            }, 100);
             var subChilds = $('#subscriber').children().length;
             OT.updateViews();
             setTimeout(function () {
@@ -746,6 +750,9 @@ angular.module('starter.controllers')
                            $('#subscriber').children().eq(j).appendTo("#hiddenVideos");
                       }
                       OT.updateViews();
+                      if($('.clsPtVideoThumImage').length > 1){
+                          $('.clsPtVideoThumImage').eq(0).remove();
+                      }
                  }
             }, 1000);
         });
@@ -783,11 +790,12 @@ angular.module('starter.controllers')
                     participantNameInitial = 'W';
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }
-            if($('.clsPtVideoThumImage').length > 1){
-                $('.clsPtVideoThumImage').eq(0).remove();
-            }
+            setTimeout(function(){
+              if($('.clsPtVideoThumImage').length > 1){
+                  $('.clsPtVideoThumImage').eq(0).remove();
+              }
+            }, 1000);
         };
-
 
         $scope.removeVideoThumbnail = function(streamIdVal) {
             $('#thumbPlayer-' + streamIdVal).hide();
