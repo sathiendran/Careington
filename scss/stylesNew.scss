@@ -4604,12 +4604,15 @@ max-width: 120px;
 .enterAppoinment2 {
 display: none;
 height: 105px !important;
+background-color: #E6E6E6 !important; // #8E8E8E !important;
+border-color: #E6E6E6 !important; //#8E8E8E !important;
 #centercolor {
     margin: 0 10px;
     font-weight: 500;
     margin-top: 29px !important;
     font-size: 143% !important;
     text-align: center;
+      color: #666666;
 }
 }
 .regback {
