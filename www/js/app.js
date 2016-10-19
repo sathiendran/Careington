@@ -186,14 +186,24 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   window.localStorage.setItem('Inactive Success', timeoutValue);
                   timeoutValue = 0;
                   clearSessionLogoutTimer();
-                  $rootScope.ClearRootScope();
-                  $rootScope.removemodal();
-                  navigator.notification.alert(
-                       'Your session timed out.', // message
-                       null,
-                       $rootScope.alertMsgName,
-                       'Ok' // buttonName
-                   );
+                  if ($rootScope.currState.$current.name == "tab.healthinfo" || $rootScope.currState.$current.name == "tab.addnewdependent") {
+                        $rootScope.ClearRootScope();
+                        $rootScope.removemodal();
+                        navigator.notification.alert(
+                             'Your session timed out.', // message
+                             null,
+                             $rootScope.alertMsgName,
+                             'Ok' // buttonName
+                         );}
+                        else{
+                            $rootScope.ClearRootScope();
+                            navigator.notification.alert(
+                                 'Your session timed out.', // message
+                                 null,
+                                 $rootScope.alertMsgName,
+                                 'Ok' // buttonName
+                             );
+                        }
 
                 }
             }
