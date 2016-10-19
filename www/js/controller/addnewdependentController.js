@@ -739,6 +739,7 @@ angular.module('starter.controllers')
     }
     $scope.canceldependent = function() {
         $('#dependentuserform')[0].reset();
+          $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $('select').prop('selectedIndex', 0);
         $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $rootScope.couserslists = false;
