@@ -734,6 +734,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
     $rootScope.ClearRootScope = function() {
+      $rootScope.removemodal();
+    //  $rootScope.removeeditmodal();
         $window.localStorage.setItem('tokenExpireTime', '');
         $(".ion-google-place-container").css({
             "display": "none"
@@ -782,6 +784,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.doGetPatientProfiles();
         $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $rootScope.hasRequiredFields = true;
+        $rootScope.viewmyhealthDisplay = 'none';
+        $rootScope.viewhealthDisplay = 'block';
         $("#HealthFooter").css("display", "block");
     });
 

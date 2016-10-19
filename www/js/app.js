@@ -125,7 +125,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
               if(window.localStorage.getItem("isCustomerInWaitingRoom") != 'Yes' && window.localStorage.getItem('isVideoCallProgress') != 'Yes'){
                   timeoutValue++;
                   window.localStorage.setItem('InActiveSince', timeoutValue);
-                  if(timeoutValue === 30)
+                  if(timeoutValue ===30)
                     goInactive();
               }else{
                    timeoutValue = 0;
