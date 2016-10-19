@@ -410,9 +410,15 @@ angular.module('starter.controllers')
         if (weightval > maxweight) {
             $("#healthInfoWeight").val(maxweight);
         }
+
+        var healweightparse=parseInt(weightval);
         var weightvallen=$('#healthInfoWeight').val().length;
         if(weightvallen>3){
             $("#healthInfoWeight").val(maxweight);
+        }else if(healweightparse==0){
+          $('#healthInfoWeight').val('')
+          $scope.ErrorMessage = "Please enter valid Weight";
+          $rootScope.Validation($scope.ErrorMessage);
         }
     }
 

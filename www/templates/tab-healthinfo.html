@@ -307,7 +307,7 @@
 							<span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('weight')"></i><b class="formlabel labelfont">Weight</b><i class="ion-asterisk"></i></span>
 							<div class="healthViewDetails">
 								<div class="healthWeight-{{deviceName}}" style="float: left;">
-									<input type="number" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata" ng-change="weightunitchange()"  ng-blur="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
+									<input type="number" ng-model="weight" name="healthInfoWeight" id="healthInfoWeight"  class="textdata" ng-change="weightunitchange()"  ng-keyup="weightunit()" style="width: 90px;line-height:23px; margin-right: 10px;" placeholder="Required">
 								</div>
 								<div class="healthWeight1-{{deviceName}}">
 									<select class="textdata optionselect" name="healthInfoWeightUnit" id="healthInfoWeightUnit" style="width: 70%;padding-top:10px !important;">
