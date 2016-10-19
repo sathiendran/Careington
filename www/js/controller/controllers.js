@@ -784,6 +784,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.doGetPatientProfiles();
         $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $rootScope.hasRequiredFields = true;
+        $rootScope.viewmyhealthDisplay = 'none';
+        $rootScope.viewhealthDisplay = 'block';
         $("#HealthFooter").css("display", "block");
     });
 

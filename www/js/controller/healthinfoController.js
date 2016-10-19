@@ -1343,6 +1343,8 @@ $scope.editDob=function(){
         $scope.cancelshow = false;
         $scope.doneshow = false;
         $scope.flag = false;
+        $rootScope.viewmyhealthDisplay = 'block';
+        $rootScope.viewhealthDisplay = 'none';
         $("#HealthFooter").css("display", "none");
         $rootScope.updatedPatientImagePath = '';
             var date = new Date($rootScope.currentPatientDetails[0].dob);
