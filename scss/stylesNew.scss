@@ -899,6 +899,19 @@ padding: 7px;
 position: relative;
 top: -8px;
 }
+.headervalForRelatedUser {
+  color: #FFFFFF;
+  font-family: Glober Regular;
+  float: right;
+  font-weight: normal;
+  padding: 7px;
+  position: relative;
+  top: -8px;
+  cursor: pointer;
+  i {
+    padding: 5px;
+  }
+}
 .headerleftval {
 color: white;
 font-family: Glober Regular;
@@ -2405,6 +2418,12 @@ margin-top: -12px;
   margin-top: -3px;
   padding-bottom : 39px !important;
   padding-top: 38px;
+  .newLogProviderSecDiv-Android {
+       h4 {
+            padding-top: 10px !important;
+            letter-spacing: 0px;
+       }
+  }
 h2 {
     @include font($fontFamily_xBold, bold, 18px);
     color: #FFFFFF;
@@ -4305,6 +4324,12 @@ p {
     margin-top: 120px;
 }
 }
+.singLogRegClass-IOS {
+  padding-top: 3px;
+}
+.singLogRegClass-Android {
+  padding-top: 11px !important;
+}
 .singEmail {
      .newSingLogText {
          font-size: 18px !important;
@@ -4938,9 +4963,15 @@ margin-right: 10px;
                padding-bottom: 10px;
           }
      }
-     .newLogProviderSecDiv {
+     .newLogProviderSecDiv-IOS {
           h4 {
                padding-top: 6px !important;
+               letter-spacing: 0px;
+          }
+     }
+     .newLogProviderSecDiv-Android {
+          h4 {
+               padding-top: 10px !important;
                letter-spacing: 0px;
           }
      }
