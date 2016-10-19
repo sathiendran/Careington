@@ -776,11 +776,12 @@ angular.module('starter.controllers')
     $scope.canceldependent = function() {
         $('#dependentuserform')[0].reset();
         $('select').prop('selectedIndex', 0);
+        $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
         $rootScope.couserslists = false;
         $rootScope.dependentuserslist = false;
         //  $state.go('tab.relatedusers');
         history.back();
-        $scope.$apply();
+      //  $scope.$apply();
     }
     $scope.$watch('addNewDependent.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
