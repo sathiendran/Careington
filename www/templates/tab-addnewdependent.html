@@ -1,6 +1,6 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <form name="depForm" id="dependentuserform">
+
 
       <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight"  style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="buttons" >
@@ -35,6 +35,7 @@
             </div>
          </div>
       </ion-header-bar>
+       <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
       <ion-view title="" >
          <ion-content class="userdeptcontent depenBackgroundColor">
             <h4 class="userhead"><b>User Details</b></h4>

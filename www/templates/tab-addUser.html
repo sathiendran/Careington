@@ -1,6 +1,5 @@
 <ion-side-menus>
 <ion-side-menu-content>
-   <form name="myForm" id="couserform" >
 
       <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="buttons" >
@@ -36,6 +35,7 @@
             </div>
          </div>
       </ion-header-bar>
+      <form name="myForm" id="couserform" ng-submit="postNewuserDetails()" >
       <ion-view title="">
          <ion-content class="userdeptcontent">
             <h4 class="userhead"><b>User Details</b></h4>
