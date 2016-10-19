@@ -734,7 +734,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
     $rootScope.ClearRootScope = function() {
-    
+
     //  $rootScope.removeeditmodal();
         $window.localStorage.setItem('tokenExpireTime', '');
         $(".ion-google-place-container").css({
