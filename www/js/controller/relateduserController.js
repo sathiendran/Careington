@@ -488,13 +488,14 @@ angular.module('starter.controllers')
             $rootScope.doGetOrgLoclist();
             $rootScope.newDependentImagePath = '';
             $('select').prop('selectedIndex', 0);
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addnewdependent');
         }
         $rootScope.addcouser = function() {
             $rootScope.newCoUserImagePath = '';
             $rootScope.doGetOrgLoclist();
             $('select').prop('selectedIndex', 0);
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+           $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addUser');
         }
         var currentLocation = window.location;
@@ -598,7 +599,7 @@ angular.module('starter.controllers')
             $rootScope.relationUpdateRelationId = selPatient.relationship;
             $scope.clearSelectionAndRebindSelectionList($rootScope.relationUpdateRelationId, $rootScope.listOfRelationship[0].codes);
             $scope.usertab = true;
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+          //  $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $ionicModal.fromTemplateUrl('templates/tab-relationSearch.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
