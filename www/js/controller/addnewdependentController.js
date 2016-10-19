@@ -212,73 +212,63 @@ angular.module('starter.controllers')
             }
         }
 
-    $scope.depheight1 = function() {
-        var max = 10; var maxi="10"
-        var heights = $("#deptheight").val();
-        if (heights == "" )  {
-            $("#deptheight").val("");
-        } else if (heights > max) {
+        $scope.depheight1 = function() {
+              var max = 10;
+              var heights = $("#deptheight").val();
+              if (heights == "") {
+                  $("#deptheight").val("");
+              } else if (heights > max) {
 
-            $("#deptheight").val(max);
-        }
-        var depheightlength=parseInt(heights);
-        var heightlen = depheightlength.length;
-        if (heightlen > 2 ) {
-          $("#deptheight").val(max);
-        }else{
-            $("#deptheight").val(depheightlength);
-        }
+                  $("#deptheight").val(max);
+              }
+              var heightlen = $("#deptheight").val().length;
+              if (heightlen > 2) {
+                $("#deptheight").val(max);
 
-    }
-    $scope.height1len = function() {
-        var max = 10;   var heights = $("#deptheight").val();
-        var depheightvallength=parseInt(heights);
-        var heightvallen = depheightvallength.length;
-        if (heightvallen > 2) {
-            $("#deptheight").val(max);
-        }else{
-            $("#deptheight").val(depheightvallength);
-        }
-    }
-    $scope.depheight2 = function() {
-        var max = 99;
-        var height2val = $('#deptheight2').val();
-        var depheight2length=parseInt(height2val);
-      //  var height2len = depheight2length.length;
-        if (height2val == "") {
-            $("#deptheight2").val("");
-        } else if (height2val > max) {
-            $("#deptheight2").val(max);
-        }
+              }
+          }
+          $scope.height1len = function() {
+              var max = 10;
+              var heightvallen = $('#deptheight').val().length;
+              if (heightvallen > 2) {
+                  $("#deptheight").val(max);
+              }
+          }
+          $scope.depheight2 = function() {
+              var max = 99;
+              var height2val = $('#deptheight2').val();
 
-        var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
-        var getheightunit = _.first(heightunit);
-        if (getheightunit == "ft/in") {
-            var maxheight = 11;
-            if (height2val > maxheight) {
-                $("#deptheight2").val(maxheight);
-            }else if(height2val < maxheight){
-                $("#deptheight2").val(depheight2length);
-            }
-        }
-    }
-    $scope.height2len = function() {
-        var max = 99;
-        var height2vallen = $('#deptheight2').val().length;
+              if (height2val == "") {
+                  $("#deptheight2").val("");
+              } else if (height2val > max) {
+                  $("#deptheight2").val(max);
+              }
 
-        if (height2vallen > 2) {
-            $("#deptheight2").val(max);
-        }
-        var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
-        var getheightunit = _.first(heightunit);
-        if (getheightunit == "ft/in") {
-            var maxheight = 11;
-            if (height2vallen > maxheight) {
-                $("#deptheight2").val(maxheight);
-            }
-        }
-    }
+              var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
+              var getheightunit = _.first(heightunit);
+              if (getheightunit == "ft/in") {
+                  var maxheight = 11;
+                  if (height2val > maxheight) {
+                      $("#deptheight2").val(maxheight);
+                  }
+              }
+          }
+          $scope.height2len = function() {
+              var max = 99;
+              var height2vallen = $('#deptheight2').val().length;
 
+              if (height2vallen > 2) {
+                  $("#deptheight2").val(max);
+              }
+              var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
+              var getheightunit = _.first(heightunit);
+              if (getheightunit == "ft/in") {
+                  var maxheight = 11;
+                  if (height2vallen > maxheight) {
+                      $("#deptheight2").val(maxheight);
+                  }
+              }
+          }
     $scope.unitchange = function() {
         var maxheight = 11;
         var heightunits = $("#heightunitval").val().split("@").slice(1, 2);
@@ -389,8 +379,11 @@ angular.module('starter.controllers')
             }
         }
     }
+    $scope.isDisabled = false;
 
     $scope.postDependentDetails = function() {
+
+
         $scope.firstName = $("#firstname").val();
         $scope.lastName = $("#lastname").val();
         $scope.email = $("#email").val();
@@ -611,6 +604,7 @@ angular.module('starter.controllers')
         }
       }
     $scope.doPostNewDependentuser = function() {
+        $scope.isDisabled = true;
         var params = {
             accessToken: $scope.accessToken,
             EmailAddress: $scope.email,
@@ -671,11 +665,14 @@ angular.module('starter.controllers')
             },
 
             success: function(data) {
+
               var updatepatientdetail = data.data;
                 $rootScope.deppatientId = updatepatientdetail[0].patientId;
                 $scope.updateDependentRelation();
+                  $scope.isDisabled = false;
             },
             error: function(data, status) {
+                $scope.isDisabled = false;
                 $('select option').filter(function() {
                     return this.value.indexOf('?') >= 0;
                 }).remove();

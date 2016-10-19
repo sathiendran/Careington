@@ -308,6 +308,7 @@ angular.module('starter.controllers')
 
 
     $scope.cancelcouser = function() {
+      $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
         //$state.go('tab.relatedusers');

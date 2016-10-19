@@ -283,8 +283,8 @@
             </p>
          </ion-footer-bar>
          <div class="hide-on-keyboard-open">
-            <ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter" ng-click="buttonClicked = true" >
-               <button class="submitbutton" type="submit" ng-click="postDependentDetails()" >
+            <ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter"  >
+               <button class="submitbutton" type="submit" ng-click="postDependentDetails()" ng-disabled="isDisabled">
                   <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
                   <h1 class="title" id="centercolor" >Add Dependent</h1>
                </button>
