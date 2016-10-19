@@ -312,6 +312,7 @@ angular.module('starter.controllers')
         $('select').prop('selectedIndex', 0);
         //$state.go('tab.relatedusers');
         history.back();
+        if (!$scope.$$phase)
         $scope.$apply();
     }
 

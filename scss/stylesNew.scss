@@ -899,6 +899,19 @@ padding: 7px;
 position: relative;
 top: -8px;
 }
+.headervalForRelatedUser {
+  color: #FFFFFF;
+  font-family: Glober Regular;
+  float: right;
+  font-weight: normal;
+  padding: 7px;
+  position: relative;
+  top: -8px;
+  cursor: pointer;
+  i {
+    padding: 5px;
+  }
+}
 .headerleftval {
 color: white;
 font-family: Glober Regular;
