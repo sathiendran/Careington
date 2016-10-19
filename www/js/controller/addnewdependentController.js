@@ -302,8 +302,14 @@ angular.module('starter.controllers')
     $scope.weight1len = function() {
         var maxweight = 999;
         var weightvallen = $('#weight').val().length;
+        var wghtparse=$('#weight').val();
+        var weightparse=parseInt(wghtparse);
         if (weightvallen > 3) {
             $("#weight").val(maxweight);
+        }else if(weightparse==0){
+          $('#weight').val('')
+          $scope.ErrorMessage = "Please enter valid Weight";
+          $rootScope.Validation($scope.ErrorMessage);
         }
     }
 
