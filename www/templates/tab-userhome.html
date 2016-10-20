@@ -15,7 +15,8 @@
 	 		<div id="Error_Message"></div
 			<span> Patient list </span>
 	</h1>
-		<span class="UserhomeSpanPlusIcon-{{deviceName}}" > <a class="headerval" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a></span>
+		<a class="add-user-icon add-user-icon-{{deviceName}}" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a>
+		<!-- <span class="UserhomeSpanPlusIcon-{{deviceName}}" > </span> -->
 
 	<!--	<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -38px;">Patient List</h1>
 	<span>

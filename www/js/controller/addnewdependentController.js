@@ -127,7 +127,7 @@ angular.module('starter.controllers')
                     $scope.hmeter = true;
                     $scope.hcmeter = true;
                 }
-                
+
             });
         /*    $timeout(function() {
                 $scope.modal.remove()
