@@ -3932,6 +3932,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if ($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
                             if ($rootScope.userDOB.indexOf('T') == -1) {
                                 $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
+                                $rootScope.SelectPatientAge = $rootScope.PatientAge;
                             }
                         }
                     }
