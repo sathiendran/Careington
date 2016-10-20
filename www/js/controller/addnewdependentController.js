@@ -127,7 +127,7 @@ angular.module('starter.controllers')
                     $scope.hmeter = true;
                     $scope.hcmeter = true;
                 }
-                
+
             });
         /*    $timeout(function() {
                 $scope.modal.remove()
@@ -745,15 +745,13 @@ angular.module('starter.controllers')
         LoginService.updateDependentsAuthorize(params);
     }
     $scope.canceldependent = function() {
-        $('#dependentuserform')[0].reset();
-          $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
-        $('select').prop('selectedIndex', 0);
-        $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
-        $rootScope.couserslists = false;
-        $rootScope.dependentuserslist = false;
-        //  $state.go('tab.relatedusers');
-        history.back();
-      //  $scope.$apply();
+      $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
+         $('#dependentuserform')[0].reset();
+         $('select').prop('selectedIndex', 0);
+         history.back();
+         if (!$scope.$$phase)
+         $scope.$apply();
+      
     }
     $scope.$watch('addNewDependent.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
