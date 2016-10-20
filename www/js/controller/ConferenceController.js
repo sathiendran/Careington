@@ -782,7 +782,8 @@ angular.module('starter.controllers')
             var videoSource = '';
             if (participantName.indexOf('Screen Share') >= 0) {
                 participantName = participantName.replace('Screen Share By :', '');
-                thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'><i ng-bind-html='drawSVGCIcon('share_screen')'></i></span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
+                var share_icon_name = 'share_screen';
+                thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'><i><svg class='icon-share_screen'><use xlink:href='symbol-defs.svg#icon-share_screen'></use></svg></i></span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }else{
                 participantName = participantName.replace('Screen Share By :', '');
                 var participantNameInitial = getInitialForName(participantName);
