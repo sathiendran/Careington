@@ -213,10 +213,7 @@ angular.module('starter.controllers')
           backdropClickToClose: false
       }).then(function(modal) {
         var hghtinval=$('#heightuser').val();
-        var reminspace=hghtinval.split(" ");
-        var fet=reminspace[0];
-        var finc=reminspace[2];
-        var units=reminspace[1];
+
 
       //   document.getElementById("edhunit").innerHTML =  units;
           $scope.modal = modal;
@@ -230,6 +227,10 @@ angular.module('starter.controllers')
             $scope.hfeet=true;$scope.hinch=true;
             $scope.hmeter=true;$scope.hcmeter=true;
           }else{
+            var reminspace=hghtinval.split(" ");
+            var fet=reminspace[0];
+            var finc=reminspace[2];
+            var units=reminspace[1];
             if(units=="ft"){
               $('#healthInfoHeight').val(fet);
               $('#healthInfoHeight2').val(finc);
@@ -256,7 +257,7 @@ angular.module('starter.controllers')
       });
 
     }
-    $rootScope.removemodal = function() {
+    $rootScope.editremovemodal = function() {
       $scope.modal.remove()
       .then(function() {
         $scope.modal = null;
@@ -755,7 +756,7 @@ $scope.editDob=function(){
                       } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                           $scope.ErrorMessage = "Please select Country";
                           $rootScope.Validation($scope.ErrorMessage);
-                      } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                      } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                           $scope.ErrorMessage = "Please select Time Zone";
                           $rootScope.Validation($scope.ErrorMessage);
                           // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
@@ -833,7 +834,7 @@ $scope.editDob=function(){
                         } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                             $scope.ErrorMessage = "Please select Country";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                        } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                             $scope.ErrorMessage = "Please select Time Zone";
                             $rootScope.Validation($scope.ErrorMessage);
                             // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
@@ -991,7 +992,7 @@ $scope.editDob=function(){
                 } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                     $scope.ErrorMessage = "Please select Country";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                     $scope.ErrorMessage = "Please select Time Zone";
                     $rootScope.Validation($scope.ErrorMessage);
                     // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
