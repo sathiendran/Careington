@@ -1342,7 +1342,7 @@ $scope.editDob=function(){
 
         $scope.addmore = false;
         $scope.healthhide = true;
-
+          $scope.doneshow = false;
         $scope.cancelshow = false;
         var editvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
@@ -2095,6 +2095,7 @@ $scope.editDob=function(){
     $scope.removemodal = function() {
         $scope.modal.hide();
         $scope.cancelshow = true;
+      $scope.doneshow = true;
     };
 
     $scope.surgery = {};
