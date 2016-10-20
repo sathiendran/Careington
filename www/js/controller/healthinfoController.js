@@ -755,7 +755,7 @@ $scope.editDob=function(){
                       } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                           $scope.ErrorMessage = "Please select Country";
                           $rootScope.Validation($scope.ErrorMessage);
-                      } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                      } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                           $scope.ErrorMessage = "Please select Time Zone";
                           $rootScope.Validation($scope.ErrorMessage);
                           // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
@@ -833,7 +833,7 @@ $scope.editDob=function(){
                         } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                             $scope.ErrorMessage = "Please select Country";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                        } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                             $scope.ErrorMessage = "Please select Time Zone";
                             $rootScope.Validation($scope.ErrorMessage);
                             // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
@@ -991,7 +991,7 @@ $scope.editDob=function(){
                 } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                     $scope.ErrorMessage = "Please select Country";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                     $scope.ErrorMessage = "Please select Time Zone";
                     $rootScope.Validation($scope.ErrorMessage);
                     // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
