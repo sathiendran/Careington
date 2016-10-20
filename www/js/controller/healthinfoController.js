@@ -222,19 +222,29 @@ angular.module('starter.controllers')
           $scope.modal = modal;
           $scope.modal.show().then(function() {
           //  var newq=$('#edhunit').text();
-          if(units=="ft"){
-            $('#healthInfoHeight').val(fet);
-            $('#healthInfoHeight2').val(finc);
+
+          if(hghtinval==""){
+            $('#healthInfoHeight').val("");
+            $('#healthInfoHeight2').val("");
             document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
             $scope.hfeet=true;$scope.hinch=true;
             $scope.hmeter=true;$scope.hcmeter=true;
           }else{
-            $('#healthInfoHeight').val(fet);
-            $('#healthInfoHeight2').val(finc);
-            document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
-            $scope.hfeet=false;$scope.hinch=false;
-            $scope.hmeter=false;$scope.hcmeter=false;
+            if(units=="ft"){
+              $('#healthInfoHeight').val(fet);
+              $('#healthInfoHeight2').val(finc);
+              document.getElementById('healthInfoHeightUnit').selectedIndex = 0;
+              $scope.hfeet=true;$scope.hinch=true;
+              $scope.hmeter=true;$scope.hcmeter=true;
+            }else {
+              $('#healthInfoHeight').val(fet);
+              $('#healthInfoHeight2').val(finc);
+              document.getElementById('healthInfoHeightUnit').selectedIndex = 1;
+              $scope.hfeet=false;$scope.hinch=false;
+              $scope.hmeter=false;$scope.hcmeter=false;
+            }
           }
+
 
           });
 
@@ -594,7 +604,7 @@ $scope.editDob=function(){
                   $scope.healthInfoHeight2 = $rootScope.height2;
             }
 
-            if($rootScope.height1==undefined){
+            if($rootScope.height1==undefined || $rootScope.height1 == ''){
               var hghtval=$('#heightuser').val();
               if(hghtval != '') {
                 var remspace=hghtval.split(" ");
@@ -605,7 +615,7 @@ $scope.editDob=function(){
               $scope.healthInfoHeight =  $rootScope.height1;
             }
 
-            if($rootScope.height2==undefined){
+            if($rootScope.height2==undefined || $rootScope.height1 == ''){
               var hghtinval=$('#heightuser').val();
               if(hghtinval != '') {
                 var reminspace=hghtval.split(" ");
@@ -1353,6 +1363,8 @@ $scope.editDob=function(){
         $rootScope.viewmyhealthDisplay = 'block';
         $rootScope.viewhealthDisplay = 'none';
         $("#HealthFooter").css("display", "none");
+        $rootScope.height1='';
+        $rootScope.height2='';
         $rootScope.updatedPatientImagePath = '';
             var date = new Date($rootScope.currentPatientDetails[0].dob);
             $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
