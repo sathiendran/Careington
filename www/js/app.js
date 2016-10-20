@@ -186,7 +186,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   window.localStorage.setItem('Inactive Success', timeoutValue);
                   timeoutValue = 0;
                   clearSessionLogoutTimer();
-                  if ($rootScope.currState.$current.name == "tab.healthinfo" || $rootScope.currState.$current.name == "tab.addnewdependent") {
+                  if ($rootScope.currState.$current.name == "tab.addnewdependent") {
                         $rootScope.ClearRootScope();
                         $rootScope.removemodal();
                         navigator.notification.alert(
@@ -194,7 +194,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                              null,
                              $rootScope.alertMsgName,
                              'Ok' // buttonName
-                         );}
+                         );}else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
+                                 $rootScope.ClearRootScope();
+                                 $rootScope.editremovemodal();
+                                 navigator.notification.alert(
+                                      'Your session timed out.', // message
+                                      null,
+                                      $rootScope.alertMsgName,
+                                      'Ok' // buttonName
+                                  );}
                         else{
                             $rootScope.ClearRootScope();
                             navigator.notification.alert(
