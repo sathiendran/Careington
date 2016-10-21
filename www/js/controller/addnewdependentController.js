@@ -411,7 +411,7 @@ angular.module('starter.controllers')
         $scope.dob = $("#dob").val();
         $scope.relation = $("#relation").val();
         var splitheight = $('#heightdep').val();
-        $scope.splitheights = $('#heightdep').val();;
+        $scope.splitheights = $('#heightdep').val();
         var inch = splitheight.slice(6, 8)
 
         if ($rootScope.height2 == "") {
@@ -585,7 +585,7 @@ angular.module('starter.controllers')
             } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
                 $scope.ErrorMessage = "Please select Gender";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.height === 'undefined' || $scope.height === '') {
+            } else if (typeof $scope.splitheights === 'undefined' || $scope.splitheights === '') {
                 $scope.ErrorMessage = "Please enter Height";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.getHeightunit === 'undefined' || $scope.getHeightunit === '') {
