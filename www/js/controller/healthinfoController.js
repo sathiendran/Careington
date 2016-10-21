@@ -1504,6 +1504,17 @@ $scope.editDob=function(){
         $rootScope.sorted_users = tmp;
         $scope.selectedObject = {};
         $rootScope.gotoList = function(id) {
+
+          $(".alpha_sidebar li").removeClass('alphanewcolor');
+          var splitid=id.split("_");
+          var currentval=splitid[1];
+          var alphaletter=$scope.alphabet;
+          angular.forEach(alphaletter,function(item,index){
+            if(currentval==item && index){
+              $(".alpha_sidebar li").eq(index).addClass('alphanewcolor');
+
+            }
+          });
         $location.hash(id);
         $ionicScrollDelegate.anchorScroll();
 
