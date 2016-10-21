@@ -2303,7 +2303,9 @@ $scope.editDob=function(){
                 navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
             }, function(progress) {
                 // PROGRESS HANDLING GOES HERE
-                $rootScope.$broadcast('loading:show');
+                $ionicLoading.show({
+                    template: '<img src="img/puff.svg" alt="Loading" />'
+                });
             });
         }
 
