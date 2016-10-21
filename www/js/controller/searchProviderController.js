@@ -125,15 +125,15 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = data.data[0].hospitalImage;
-                    $rootScope.Hopital = data.data[0].brandName;
+                    $rootScope.Hospital = data.data[0].brandName;
                     if (deploymentEnvLogout == 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase = 'Virtual Care';
                     } else {
-                        $rootScope.alertMsgName = $rootScope.Hopital;
-                        $rootScope.reportHospitalUpperCase = $rootScope.Hopital.toUpperCase();
+                        $rootScope.alertMsgName = $rootScope.Hospital;
+                        $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     }
-                    $rootScope.HopitalTag = data.data[0].brandTitle;
+                    $rootScope.HospitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = data.data[0].contactNumber;
                     $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                     $rootScope.clientName = data.data[0].hospitalName;
