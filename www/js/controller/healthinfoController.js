@@ -362,10 +362,13 @@ angular.module('starter.controllers')
     $scope.heightunit2 = function() {
         var max = 99;
         var height2val = $("#healthInfoHeight2").val();
-
+        var height2vallen = $('#healthInfoHeight2').val().length;
         if (height2val==""){
           $("#healthInfoHeight2").val("");
         }else if (height2val > max) {
+            $("#healthInfoHeight2").val(max);
+        }
+        if (height2vallen > 2) {
             $("#healthInfoHeight2").val(max);
         }
 
