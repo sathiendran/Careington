@@ -157,6 +157,8 @@ angular.module('starter.controllers')
 
     }
     $rootScope.removemodal = function() {
+      $('#deptheight').val("");
+      $('#deptheight2').val("");
         $scope.modal.remove()
             .then(function() {
                 $scope.modal = null;
