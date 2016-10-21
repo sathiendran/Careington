@@ -237,10 +237,13 @@ angular.module('starter.controllers')
     $scope.depheight2 = function() {
         var max = 99;
         var height2val = $('#deptheight2').val();
-
+        var height2vallen = $('#deptheight2').val().length;
         if (height2val == "") {
             $("#deptheight2").val("");
         } else if (height2val > max) {
+            $("#deptheight2").val(max);
+        }
+        if (height2vallen > 2) {
             $("#deptheight2").val(max);
         }
 
