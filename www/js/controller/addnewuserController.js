@@ -118,6 +118,9 @@ angular.module('starter.controllers')
             };
             LoginService.getListOfLocationOrganization(params);
         }
+        $rootScope.goToUserPageFromAddUser = function() {
+             $state.go('tab.userhome');
+        }
         $rootScope.adddependent = function() {
             $scope.doGetLocations();
             $rootScope.newDependentImagePath = '';
