@@ -97,12 +97,20 @@ angular.module('starter.controllers')
             backdropClickToClose: false
         }).then(function(modal) {
             var hghtinval = $('#heightdep').val();
-            var reminspace = hghtinval.split(" ");
-            var fet = reminspace[0];
-            var finc = reminspace[2];
-            var units = reminspace[1];
             $scope.modal = modal;
             $scope.modal.show().then(function() {
+              if(hghtinval==""){
+                $('#deptheight').val("");
+                $('#deptheight2').val("");
+                document.getElementById('heightunitval').selectedIndex = 0;
+                $scope.hfeet=true;$scope.hinch=true;
+                $scope.hmeter=true;$scope.hcmeter=true;
+              }
+              else{
+                var reminspace = hghtinval.split(" ");
+                var fet = reminspace[0];
+                var finc = reminspace[2];
+                var units = reminspace[1];
                 if (units == "ft") {
                     document.getElementById('heightunitval').selectedIndex = 0;
                     $('#deptheight').val(fet);
@@ -111,22 +119,26 @@ angular.module('starter.controllers')
                     $scope.hinch = true;
                     $scope.hmeter = true;
                     $scope.hcmeter = true;
-                } else if (units == "m") {
-                    document.getElementById('heightunitval').selectedIndex = 1;
-                    $('#deptheight').val(fet);
-                    $('#deptheight2').val(finc);
-                    $scope.hfeet = false;
-                    $scope.hinch = false;
-                    $scope.hmeter = false;
-                    $scope.hcmeter = false;
-                } else {
-                    $('#deptheight').val("");
-                    $('#deptheight2').val("");
-                    $scope.hfeet = true;
-                    $scope.hinch = true;
-                    $scope.hmeter = true;
-                    $scope.hcmeter = true;
-                }
+                }   else if (units == "m") {
+                      document.getElementById('heightunitval').selectedIndex = 1;
+                      $('#deptheight').val(fet);
+                      $('#deptheight2').val(finc);
+                      $scope.hfeet = false;
+                      $scope.hinch = false;
+                      $scope.hmeter = false;
+                      $scope.hcmeter = false;
+                  }
+                  else {
+                        $('#deptheight').val("");
+                        $('#deptheight2').val("");
+                        $scope.hfeet = true;
+                        $scope.hinch = true;
+                        $scope.hmeter = true;
+                        $scope.hcmeter = true;
+                    }
+
+              }
+
 
             });
         /*    $timeout(function() {
@@ -672,11 +684,12 @@ angular.module('starter.controllers')
             },
 
             success: function(data) {
-
+              $('#dependentuserform')[0].reset();
               var updatepatientdetail = data.data;
                 $rootScope.deppatientId = updatepatientdetail[0].patientId;
                 $scope.updateDependentRelation();
                   $scope.isDisabled = false;
+
             },
             error: function(data, status) {
                 $scope.isDisabled = false;
@@ -751,7 +764,7 @@ angular.module('starter.controllers')
          history.back();
          if (!$scope.$$phase)
          $scope.$apply();
-      
+
     }
     $scope.$watch('addNewDependent.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
