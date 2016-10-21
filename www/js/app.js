@@ -17,14 +17,14 @@ var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProdu
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
-var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
-var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
+//var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
+//var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 var timeoutValue = 0;
 var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
