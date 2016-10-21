@@ -408,11 +408,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             api_keys_env = "Sandbox";
         } else if (env === "Staging") {
             $rootScope.APICommonURL = 'https://snap-stage.com';
-            apiCommonURL = ' https://snap-stage.com';
+            apiCommonURL = 'https://snap-stage.com';
             api_keys_env = "Staging";
         } else if (env === "Snap-test") {
             $rootScope.APICommonURL = 'https://snap-test.com';
-            apiCommonURL = ' https://snap-test.com';
+            apiCommonURL = 'https://snap-test.com';
             api_keys_env = "Snap.QA";
         }
         $state.go('tab.login');
@@ -489,10 +489,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.HeadercardDetailsBack = "margin-top: 13px;";
         $rootScope.AddHealthPlanCancel = "margin-top: 6px";
-        $rootScope.ReportScreen = " top: 1px; position: relative;";
+        $rootScope.ReportScreen = "top: 1px; position: relative;";
         $rootScope.PlanDetails = "margin-top: 22px;";
         $rootScope.SubDetailsPlanDetails = "margin-top: -16px;";
-        $rootScope.PatientTitle = "  margin-top: 26px; margin-left:-40px;";
+        $rootScope.PatientTitle = "margin-top: 26px; margin-left:-40px;";
         $rootScope.MenuIconBottomRecipt = "top: -4px;";
         $rootScope.PatientConcerns = "margin-top: 90px;";
         $rootScope.GoogleSearchStyle = "top: 24px;";
@@ -516,13 +516,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
             $rootScope.PrimaryConcernPopupDone = "margin-top: 14px; padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
-            $rootScope.PriorSurgeryPopupDone = "  margin-top: 21px;";
-            $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PriorSurgeryPopupDone = "margin-top: 21px;";
+            $rootScope.PriorSurgeryPopupCancel =  "margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.ChronicConditionPopupTitle = "margin-top: 13px;";
             $rootScope.ChronicConditionPopupDone = "margin-top: 13px;";
             $rootScope.NextIntakeForm = "margin-left: -21px;";
             $rootScope.LoginContant = "padding-top: 43px !important; margin: 99px 0 0 0;"; //margin: 30px 0 0 0 remove
-            $rootScope.LoginContantDiv = " height: 50px;"; //95px
+            $rootScope.LoginContantDiv = "height: 50px;"; //95px
             //$rootScope.PasswordOverlop = "margin: 235px 0 0 0;";
             $rootScope.PasswordOverlop = "margin: 105px 0 0 0 !important;";
             $rootScope.PriorSurgeryPopupTextBox = "margin-top: 15px;";
@@ -548,7 +548,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupDone = "margin-top: 8px; padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 0px;";
             $rootScope.PriorSurgeryPopupDone = "margin-top: 6px;";
-            $rootScope.PriorSurgeryPopupCancel = " margin-top: 2px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PriorSurgeryPopupCancel = "margin-top: 2px; padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.ChronicConditionPopupTitle = "margin-top: 6px;";
             $rootScope.ChronicConditionPopupDone = "margin-top: 10px;";
             /*$rootScope.FootNextButtonRight = "margin-left: -61px !important;"; */
@@ -584,7 +584,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PriorSurgeryPopupCancel = "margin-top: -4px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
         //$rootScope.PasswordOverlop = "margin: 105px 0 0 0; padding-top: 30px;";
         //$rootScope.PasswordOverlop = "margin: 118px 0 0 0;";
-        $rootScope.PatientTitle = "  margin-left:-45px;"
+        $rootScope.PatientTitle = "margin-left:-45px;"
         $rootScope.PasswordOverlop = "margin: 57px 0 0 0;";
         $rootScope.resetContent = "margin: 202px 0 0 0;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_android";
