@@ -818,7 +818,9 @@ angular.module('starter.controllers')
             navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
             $state.go('tab.relatedusers');
         }, function(progress) {
-
+             $ionicLoading.show({
+                 template: '<img src="img/puff.svg" alt="Loading" />'
+             });
         });
     };
 
@@ -855,6 +857,7 @@ angular.module('starter.controllers')
     function onCameraCaptureSuccess(imageData) {
         $rootScope.newDependentImagePath = imageData;
         newUploadedPhoto = imageData;
+        $state.go('tab.addnewdependent');
     }
     function onCameraCaptureFailure(err) {}
 });
