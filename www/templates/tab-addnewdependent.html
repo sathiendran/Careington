@@ -64,7 +64,7 @@
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('hash')"></i><b class="formlabel">Date of Birth</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required"   name="dob" ng-model="depdob" ng-blur="ngBlur()">
+                     <input class="usertext dobDependent-{{deviceName}}"  id="dob" type="date" min="{{minimum}}" max="{{maxDate1}}"   placeholder="Required"   name="dob" ng-blur="ngBlur()">
                   </div>
                </div>
                <div class="item item-input validated">
@@ -128,7 +128,7 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <div class="dependHeigh-{{deviceName}}">
-                        <input id="weight" class="usertext textdata" type="number" value="" placeholder="Required"  name="weight" ng-model="weightunit" ng-change="weightunitchange()" ng-keyup="weight1len()" ng-pattern="/^\d{0,9}(\.\d{1,9})?$/">
+                        <input id="weight" class="usertext textdata" type="number" value="" placeholder="Required"  name="weight" ng-keyup="weight1len()" >
                      </div>
                      <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
                         <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" >
