@@ -213,10 +213,7 @@ angular.module('starter.controllers')
           backdropClickToClose: false
       }).then(function(modal) {
         var hghtinval=$('#heightuser').val();
-        var reminspace=hghtinval.split(" ");
-        var fet=reminspace[0];
-        var finc=reminspace[2];
-        var units=reminspace[1];
+
 
       //   document.getElementById("edhunit").innerHTML =  units;
           $scope.modal = modal;
@@ -230,6 +227,10 @@ angular.module('starter.controllers')
             $scope.hfeet=true;$scope.hinch=true;
             $scope.hmeter=true;$scope.hcmeter=true;
           }else{
+            var reminspace=hghtinval.split(" ");
+            var fet=reminspace[0];
+            var finc=reminspace[2];
+            var units=reminspace[1];
             if(units=="ft"){
               $('#healthInfoHeight').val(fet);
               $('#healthInfoHeight2').val(finc);
@@ -256,7 +257,7 @@ angular.module('starter.controllers')
       });
 
     }
-    $rootScope.removemodal = function() {
+    $rootScope.editremovemodal = function() {
       $scope.modal.remove()
       .then(function() {
         $scope.modal = null;
@@ -755,7 +756,7 @@ $scope.editDob=function(){
                       } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                           $scope.ErrorMessage = "Please select Country";
                           $rootScope.Validation($scope.ErrorMessage);
-                      } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                      } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                           $scope.ErrorMessage = "Please select Time Zone";
                           $rootScope.Validation($scope.ErrorMessage);
                           // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
@@ -833,7 +834,7 @@ $scope.editDob=function(){
                         } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                             $scope.ErrorMessage = "Please select Country";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                        } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                             $scope.ErrorMessage = "Please select Time Zone";
                             $rootScope.Validation($scope.ErrorMessage);
                             // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
@@ -991,7 +992,7 @@ $scope.editDob=function(){
                 } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                     $scope.ErrorMessage = "Please select Country";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '') {
+                } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
                     $scope.ErrorMessage = "Please select Time Zone";
                     $rootScope.Validation($scope.ErrorMessage);
                     // }   else if (typeof $scope.healthInfoHomePhone === 'undefined' || $scope.healthInfoHomePhone === '') {
@@ -1110,13 +1111,13 @@ $scope.editDob=function(){
                 if(ionic.Platform.is('browser') !== true) {
                    cordova.plugins.Keyboard.close();
                 }
+                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+                if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
+                    $scope.uploadPhotoForExistingPatient();
+                }
                 if($rootScope.hasRequiredFields === false) {
                   $scope.$root.$broadcast("callPatientDetails");
                 }else {
-                  $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
-                  if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
-                      $scope.uploadPhotoForExistingPatient();
-                  }
                   if ($rootScope.primaryPatientId !== data.patientID) {
                       $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
                   }
@@ -1393,9 +1394,7 @@ $scope.editDob=function(){
 
     $scope.chkPreviousPageForRequiredDetaisUsers = function(nextPage) {
         if($rootScope.hasRequiredFields === true) {
-          $scope.doGetPatientProfiles();
-          $scope.doGetRelatedPatientProfiles('tab.userhome');
-        //  $state.go(nextPage);
+          $state.go(nextPage);
         }else {
           $scope.ErrorMessage = "Please fill all required details ";
           $rootScope.Validation($scope.ErrorMessage);
@@ -2302,7 +2301,9 @@ $scope.editDob=function(){
                 navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
             }, function(progress) {
                 // PROGRESS HANDLING GOES HERE
-                $rootScope.$broadcast('loading:show');
+                $ionicLoading.show({
+                    template: '<img src="img/puff.svg" alt="Loading" />'
+                });
             });
         }
 

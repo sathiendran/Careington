@@ -899,6 +899,23 @@ padding: 7px;
 position: relative;
 top: -8px;
 }
+.add-user-icon{
+    color: #FFFFFF;
+    font-family: Glober Regular;
+    float: left;
+    font-weight: normal;
+    font-size: 20px;
+    padding: 10px;
+    height: 40px;
+    position: absolute;
+    right: 10px;
+}
+.add-user-icon-IOS{
+    top: 22px;
+}
+.add-user-icon-Android{
+    top: 10px;
+}
 .headervalForRelatedUser {
   color: #FFFFFF;
   font-family: Glober Regular;
@@ -923,7 +940,7 @@ font-weight: normal;
 font-family: Glober Semibold;
 color: #666666;
 width: 90px;
-margin:3px;
+//margin:3px;
 }
 .rheader {
 color: #616161;
@@ -3768,7 +3785,7 @@ margin:3px;
 .passedDoc-Android {
 width: 22%;
 margin-left: 10px;
-margin:3px;
+//margin:3px;
 }
 .passedDetails-IOS {
 width: 17%;
@@ -3783,7 +3800,7 @@ margin-left: 10px;
 color: #616161;
 font-family: Glober Regular;
 text-align: right;
-margin:3px;
+//margin:3px;
 }
 .consultcontent {
 .topfont {
@@ -4578,7 +4595,7 @@ position: relative;
 top: 5px;
 }
 .userhomePlusIcon {
-width: 91% !important;
+width: 77% !important;
 }
 .UserhomeSpanPlusIcon-Android {
 font-size: 20px;

@@ -7,12 +7,12 @@
             </div>
             <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">
               <div class="Server_Error ErrorMessageDiv" ></div>
-           <div id="Error_Message" class="relatedUserError"></div
+           <div id="Error_Message" class="relatedUserError"></div>
               <span> Related Users </span>
-              <span > <a ng-show="cousericon" class="headervalForRelatedUser" style="position: relative;right: 8px;" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
-                <span > <a ng-hide="cousericon" class="headervalForRelatedUser" style="position: relative;right: 8px;"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
-
           </h1>
+          <a ng-show="cousericon" class="add-user-icon add-user-icon-{{deviceName}}" ng-click="addcouser()" ><i class="icon ion-plus"></i></a></span>
+          <a ng-hide="cousericon" class="add-user-icon add-user-icon-{{deviceName}}"  ng-click="adddependent()"><i class="icon ion-plus"></i></a></span>
+
             <div class="bar bar-subheader bar-dark subheaderheight" >
                 <div class="row">
                     <h1 class="headertitle">
@@ -129,7 +129,7 @@
                                 <div class="dotcol dotcolDoc-{{deviceName}}" ng-click="seeaPatientConcerns(getDependentDetails)">
                                     <div class="tabicon" style="margin-top: -12px;"> <i class="ion-chevron-down"></i></div>
                                     <div class="tabiconDoc-{{deviceName}}"><i class="icon contacticon seeDocIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('users')"></i>
-                                    <p class="dotcont" style="">See a Doc Now</p></div>
+                                    <p class="dotcont" style="">Get Care Now</p></div>
                                 </div>
                                 <div class="colpad colpadAppoint-{{deviceName}}" ng-click="patientprofile(getDependentDetails)">
                                     <div class="tabvalue">
