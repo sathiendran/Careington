@@ -1111,13 +1111,13 @@ $scope.editDob=function(){
                 if(ionic.Platform.is('browser') !== true) {
                    cordova.plugins.Keyboard.close();
                 }
+                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+                if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
+                    $scope.uploadPhotoForExistingPatient();
+                }
                 if($rootScope.hasRequiredFields === false) {
                   $scope.$root.$broadcast("callPatientDetails");
                 }else {
-                  $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
-                  if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
-                      $scope.uploadPhotoForExistingPatient();
-                  }
                   if ($rootScope.primaryPatientId !== data.patientID) {
                       $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
                   }
@@ -1394,9 +1394,7 @@ $scope.editDob=function(){
 
     $scope.chkPreviousPageForRequiredDetaisUsers = function(nextPage) {
         if($rootScope.hasRequiredFields === true) {
-          $scope.doGetPatientProfiles();
-          $scope.doGetRelatedPatientProfiles('tab.userhome');
-        //  $state.go(nextPage);
+          $state.go(nextPage);
         }else {
           $scope.ErrorMessage = "Please fill all required details ";
           $rootScope.Validation($scope.ErrorMessage);
