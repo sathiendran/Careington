@@ -396,7 +396,7 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.hospitalAddress != '' && typeof $rootScope.existingConsultationReport.hospitalAddress != 'undefined') {
                         $rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
                     } else {
-                        $rootScope.reportHospitalAddress = 'None Reported';
+                      //  $rootScope.reportHospitalAddress = 'None Reported';
                     }
 
                     if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
