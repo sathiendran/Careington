@@ -40,29 +40,29 @@
     </a>
   </div>-->
   <div class="row userAccountPanel">
-    <div class="col col-33 uAPHomeIcon">
+     <div class="col col-33 uAPHomeIcon">
         <a ng-href='#/tab/userAccount'>
-          <div class="icon">
-            <div class="buttons">
-               	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
-             </div>
-          </div>
-          <div>
-          <p>Account Home</p>
-        </div>
+           <div class="icon homeicon">
+             <div class="buttons">
+                 <span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+              </div>
+           </div>
+           <div>
+              <p class="hometext">Account Home</p>
+           </div>
         </a>
-    </div>
-    <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(missedAppointDetails.patphoto,missedAppointDetails.missedPatFirstName,missedAppointDetails.missedPatLastName)"></div>
-    <div class="col col-33 uAPChangePatient">
-      <a ng-href='#/tab/userhome'>
-        <div class="icon">
-          <div class="buttons">
-           	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
-          </div>
-        </div>
-        <p>Change Patient</p>
-      </a>
-    </div>
+     </div>
+     <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+     <div class="col col-33 uAPChangePatient">
+        <a ng-href='#/tab/userhome'>
+           <div class="icon groupicon">
+             <div class="buttons">
+               <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+            </div>
+           </div>
+           <p class="grouptext">Change Patient</p>
+        </a>
+     </div>
   </div>
 
 </div>
