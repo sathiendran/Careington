@@ -2507,7 +2507,7 @@ h2 {
             color: #8e8e93 !important;
             width: 100%;
             padding-top: 1%;
-            @include font($fontFamily_regular, bold, 14px);
+            @include font($fontFamily_regular, normal, 14px);
             -webkit-appearance: none;
             -moz-appearance: none;
         }
@@ -2867,7 +2867,7 @@ height: 100%;
 z-index: 15;
 overflow: hidden;
 top: 24px;
-@include font($fontFamily_regular, bold, 13px);
+@include font($fontFamily_regular, normal, 13px);
 }
 .bar-subheader-provider {
 display: block;
@@ -3709,7 +3709,7 @@ input[type="color"] {
 .dobDependent-Android {
     font-size: 18px;
     line-height: 23px;
-    font-family: Glober Semibold;
+    font-family: Glober Regular;
     color: rgba(5, 4, 9, 0.54) !important;
     width: 159%;
 }
@@ -3717,7 +3717,7 @@ input[type="color"] {
 .dobDependent-IOS {
 font-size: 18px !important;
 line-height: 23px !important;
-font-family: Glober Semibold !important;
+font-family: Glober Regular !important;
 color: rgba(5, 4, 9, 0.54) !important;
 width: 159% !important;
 }
