@@ -2448,7 +2448,7 @@ h2 {
     line-height: 30px;
     padding-top: 65px;
     span {
-        @include font($fontFamily_xBold, bold, 34px);
+        @include font($fontFamily_xBold, bold, 32px);
         color: #FFFFFF;
         text-align: center;
         margin: 0 !important;
@@ -4509,7 +4509,7 @@ margin-left: -5px;
 .creditCountNo {
     background-color: #fff;
     border-radius: 50%;
-    padding: 6px 8px 0px 7px;
+    padding: 5px 8px 0px 7px;
     color: #666666;
     font-size: 13px;
     font-family: $fontFamily_bold;
