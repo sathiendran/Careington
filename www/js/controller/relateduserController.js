@@ -66,6 +66,15 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
+
+        $scope.chkdependtentDetails = function(nextPage) {
+
+              $scope.doGetPatientProfiles();
+              $scope.doGetRelatedPatientProfiles('tab.userhome');
+            //  $state.go(nextPage);
+
+
+        }
         $rootScope.drawImage = function(imagePath, firstName, lastName) {
             $('.patProfileImage').css({
                 'background-color': $rootScope.brandColor
