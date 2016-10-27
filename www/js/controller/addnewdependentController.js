@@ -691,7 +691,7 @@ angular.module('starter.controllers')
                 $rootScope.deppatientId = updatepatientdetail[0].patientId;
                 var depPatientSuccessPtId = updatepatientdetail[0].patientId;
                 var depPatientSecurityToken = updatepatientdetail[0].securityToken;
-                if ($rootScope.restage >= 12 && $scope.email != "") {
+                if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.email != "") {
                     var ptName = $scope.firstName + " " + $scope.lastName;
                     $scope.sendCoUserInvite($rootScope.hospitalId, depPatientSuccessPtId, ptName, $scope.email, depPatientSecurityToken);
                 }
