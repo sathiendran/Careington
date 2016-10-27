@@ -6,8 +6,7 @@
 	<div ng-include src="'templates/password_header.html'"></div>
 
    <ion-content class="password_content BacgroundColorContent" style="{{PasswordOverlop}};" >
-
-    <div ng-if="IOSDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; top: -119px;">
+    <div ng-if="IOSDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative;">
 		<div class="{{password_header_content}} passwordSubHeader SubHeadIOS">
 			<div class="subHospital" style="color: {{brandColor}};"></div>
 			<span>
@@ -15,6 +14,7 @@
 			</span>
 		</div>
 	</div>
+
 
 	 <div ng-if="AndroidDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; margin-top: -31px;">
 		<div class="{{password_header_content}} passwordSubHeader" style="margin-top: 54px;background-color:#FFF;">
