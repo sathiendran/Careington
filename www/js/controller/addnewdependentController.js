@@ -777,7 +777,8 @@ angular.module('starter.controllers')
                 Email: email,
                 Token: securityToken.substring(2),
                 success: function(data) {
-                    console.log(data);
+                  $scope.ErrorMessage = "A verification email has been sent to the user";
+                  $rootScope.Validation($scope.ErrorMessage);
                 },
                 error: function(data, status) {
                   $scope.ErrorMessage = "Unable to sent email invitation";
