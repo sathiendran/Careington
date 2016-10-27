@@ -1110,7 +1110,7 @@ $scope.editDob=function(){
             success: function(data) {
               var depPatientSuccessPtId = data.patientID;
               var depPatientSecurityToken = data.securityToken;
-                if ($rootScope.restage >= 12 && $scope.healthInfoEmail != "") {
+                if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.healthInfoEmail != "") {
                     var ptName = $scope.healthInfoFirstName + " " + $scope.healthInfoLastName;
                     $scope.sendCoUserInvite($rootScope.hospitalId, depPatientSuccessPtId, ptName, $scope.healthInfoEmail, depPatientSecurityToken);
                 }
