@@ -295,6 +295,7 @@ if (deploymentEnv === "Sandbox") {
     apiCommonURL = 'https://sandbox.connectedcare.md';
 } else if (deploymentEnv === "Production") {
     apiCommonURL = 'https://connectedcare.md';
+    api_keys_env = "Production";
 } else if (deploymentEnv === "QA") {
     apiCommonURL = 'https://snap-qa.com';
 } else if (deploymentEnv == "Single") {

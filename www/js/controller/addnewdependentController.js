@@ -689,8 +689,14 @@ angular.module('starter.controllers')
               $('#dependentuserform')[0].reset();
               var updatepatientdetail = data.data;
                 $rootScope.deppatientId = updatepatientdetail[0].patientId;
+                var depPatientSuccessPtId = updatepatientdetail[0].patientId;
+                var depPatientSecurityToken = updatepatientdetail[0].securityToken;
+                if ($rootScope.restage >= 12 && $scope.email != "") {
+                    var ptName = $scope.firstName + " " + $scope.lastName;
+                    $scope.sendCoUserInvite($rootScope.hospitalId, depPatientSuccessPtId, ptName, $scope.email, depPatientSecurityToken);
+                }
                 $scope.updateDependentRelation();
-                  $scope.isDisabled = false;
+                $scope.isDisabled = false;
 
             },
             error: function(data, status) {
@@ -759,6 +765,29 @@ angular.module('starter.controllers')
         };
         LoginService.updateDependentsAuthorize(params);
     }
+
+    $scope.sendCoUserInvite = function(hospitalId, userId, name, email, securityToken){
+
+        if (securityToken.length > 3 && securityToken.substring(0, 2) == "##") {
+            var params = {
+                accessToken: $rootScope.accessToken,
+                HospitalId: hospitalId,
+                UserId: userId,
+                Name: name,
+                Email: email,
+                Token: securityToken.substring(2),
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(data, status) {
+                  $scope.ErrorMessage = "Unable to sent email invitation";
+                  $rootScope.Validation($scope.ErrorMessage);
+                }
+            };
+            LoginService.sendCoUserEmailInvitation(params);
+        }
+    }
+
     $scope.canceldependent = function() {
       $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
          $('#dependentuserform')[0].reset();
