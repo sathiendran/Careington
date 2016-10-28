@@ -595,8 +595,7 @@ angular.module('starter.controllers')
 
     if (!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId != 72) {
 
-        var connection = null;
-        connection = $.hubConnection();
+        var connection = $.hubConnection();
         //debugger;
         var conHub = connection.createHubProxy('consultationHub');
 
@@ -1123,8 +1122,6 @@ angular.module('starter.controllers')
 
     function consultationEndedAlertDismissed() {
         //resetSessionLogoutTimer();
-        if(connection != null)
-          connection.stop();
         $('#videoCallSessionTimer').runner('stop');
         if(typeof appIdleInterval != "undefined"){
              $interval.cancel(appIdleInterval);
