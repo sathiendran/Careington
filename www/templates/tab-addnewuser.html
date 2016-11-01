@@ -13,10 +13,10 @@
 				ng-click="toggleLeft()"></button>-->
 				<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
 	</div>
-	 <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span> Related Users </span> <span style="float:right;">
-            <a class="headerval" ng-href="#/tab/userhome">Cancel</a></span></h1>
+	 <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> Related Users </span> <span style="float:right;">
+            <a class="headerval" style="cursor: pointer;" ng-click="goToUserPageFromAddUser();">Cancel</a></span></h1>
 
-	<div class="bar bar-subheader bar-dark usersubheader" >
+	<div class="bar bar-subheader bar-dark subheaderheight" >
                   <div class="row">
                       <h1 class="headertitle">
                           <div class="ellipsis subHeader_content_name" >
@@ -26,20 +26,45 @@
                      </h1>
                   </div>
 
-    <div class="item item-image-icon " style="background-color:#444444;">
+    <!--<div class="item item-image-icon " style="background-color:#444444;">
 
           <a class="lefthome" ng-href="#/tab/userAccount">
                <span class="subHeadIcons"><i class="icon ion-home headerlefticons" ></i></span>
                <p class="homecontent">Account Home</p>
           </a>
            <a class="item-avatar itemhead">
-               <p><img src="{{PatientImageSelectUser}}" class="topimage" style=""></p>
+							 	<p ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></p>
            </a>
             <a class="rightpatient" ng-href="#/tab/userhome">
                <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
                <p class="patientcontent" >Change Patient</p>
            </a>
-   </div>
+   </div>-->
+	 <div class="row userAccountPanel">
+		 <div class="col col-33 uAPHomeIcon">
+ 	     <a ng-href='#/tab/userAccount'>
+ 	        <div class="icon homeicon">
+						<div class="buttons">
+							 	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+						 </div>
+ 	        </div>
+ 	        <div>
+ 	           <p class="hometext">Account Home</p>
+ 	        </div>
+ 	     </a>
+ 	  </div>
+		 <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
+		 <div class="col col-33 uAPChangePatient ">
+ 	    <a ng-href='#/tab/userhome'>
+ 	      <div class="icon groupicon">
+					<div class="buttons">
+					 	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+					</div>
+ 	      </div>
+ 	      <p class="grouptext">Change Patient</p>
+ 	    </a>
+ 	  </div>
+	 </div>
   </div>
 
 
@@ -52,8 +77,8 @@
 	<ion-content class="newusercontent">
 
         <ion-list>
-           <ion-item class="iionitem item newuserdetails" style="">
-
+           <!--<ion-item class="iionitem item newuserdetails" style="">-->
+						  <ion-item class="ionicitem newuserdetails" style="">
                   <p class="newuserp"><i class="fontcolor icon" ng-bind-html="drawSVGCIcon('user-add')" style="font-size:50px;"></i></p>
                   <div class="newusertopcontent">
                      <h2 class="newusertoph2"><p class="usertopfont">Add A New User</p>
@@ -127,7 +152,7 @@
 
 <div class="bar bar-footer addheight" style="background-color:#444444;">
    <!--  <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
-   <h1 class="title" id="centercolor" style="margin-top: 5px !important;" ><a ng-href="#/tab/userhome" style="padding: 10px;">Cancel</a></h1>
+   <h1 class="title" id="addusercancel"  style="" ><a ng-href="#/tab/userhome" style="padding: 10px;">Cancel</a></h1>
 </div>
 
 </ion-side-menu-content>

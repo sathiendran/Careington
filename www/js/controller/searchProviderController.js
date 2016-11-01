@@ -1,9 +1,8 @@
 angular.module('starter.controllers')
     .controller('searchProviderController', function($scope, ageFilter, get2CharInString, $timeout, step1PostRegDetailsService, $ionicPlatform, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService) {
-      $rootScope.drawSVGCIcon = function(iconName){
-          return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName +"'></use></svg>";
-      };
-
+        $rootScope.drawSVGCIcon = function(iconName) {
+            return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
+        };
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name == "tab.userhome") ||
                 ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -30,14 +29,12 @@ angular.module('starter.controllers')
                     $(".ion-google-place-container").css({
                         "display": "none"
                     });
-
                 } else {
                     $(".ion-google-place-container").css({
                         "display": "none"
                     });
                     navigator.app.backHistory();
                 }
-
             } else {
                 navigator.app.backHistory();
             }
@@ -68,32 +65,33 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 providerSearchKey: providerSearchKey,
                 success: function(data) {
-                  cordova.plugins.Keyboard.close();
+                    if (ionic.Platform.is('browser') !== true) {
+                        cordova.plugins.Keyboard.close();
+                    }
                     $rootScope.searchProviderList = [];
                     if (data.data != '') {
                         $('#startSearchProvider').hide();
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();
                         angular.forEach(data.data, function(index, item) {
-                          if (typeof index.hospitalImage != 'undefined' && index.hospitalImage != '') {
-                              var hosImage = index.hospitalImage;
-                              $scope.chkImageorNot = "image";
-                              if (hosImage.indexOf("http") >= 0) {
-                                  $scope.proImage = hosImage;
-                              } else {
-                                  $scope.proImage = apiCommonURL + hosImage;
-                              }
-                          } else {
-                              $scope.chkImageorNot = "";
-                              $scope.proImage = get2CharInString.getProv2Char(index.hospitalName);
-                          }
+                            if (typeof index.hospitalImage != 'undefined' && index.hospitalImage != '') {
+                                var hosImage = index.hospitalImage;
+                                $scope.chkImageorNot = "image";
+                                if (hosImage.indexOf("http") >= 0) {
+                                    $scope.proImage = hosImage;
+                                } else {
+                                    $scope.proImage = apiCommonURL + hosImage;
+                                }
+                            } else {
+                                $scope.chkImageorNot = "";
+                                $scope.proImage = get2CharInString.getProv2Char(index.hospitalName);
+                            }
                             $rootScope.searchProviderList.push({
                                 'customerSso': index.customerSso,
                                 'hospitalId': index.hospitalId,
                                 'hospitalName': index.hospitalName,
-                              //  'firstCharactOfHosName': get2CharInString.getProv2Char(index.hospitalName),
                                 'firstCharactOfHosName': $scope.proImage,
-                                'chkImageorNot' : $scope.chkImageorNot,
+                                'chkImageorNot': $scope.chkImageorNot,
                                 'brandColor': index.brandColor,
                                 'brandName': index.brandName,
                                 'brandTitle': index.brandTitle,
@@ -111,17 +109,14 @@ angular.module('starter.controllers')
                     $scope.$root.$broadcast("callServerErrorMessageValidation");
                 }
             };
-
             LoginService.getSearchProviderList(params);
         }
-
 
         $scope.goToRegisterStep1 = function(providerList) {
             $rootScope.selectedSearchProviderList = providerList;
             $rootScope.hospitalId = providerList.hospitalId;
             $rootScope.regStep1 = {};
             $scope.doGetSingleUserHospitalInformation();
-
         }
 
         $scope.doGetSingleUserHospitalInformation = function() {
@@ -130,38 +125,30 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = data.data[0].hospitalImage;
-                    $rootScope.Hopital = data.data[0].brandName;
+                    $rootScope.Hospital = data.data[0].brandName;
                     if (deploymentEnvLogout == 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
                         $rootScope.reportHospitalUpperCase = 'Virtual Care';
                     } else {
-                        $rootScope.alertMsgName = $rootScope.Hopital;
-                        $rootScope.reportHospitalUpperCase = $rootScope.Hopital.toUpperCase();
+                        $rootScope.alertMsgName = $rootScope.Hospital;
+                        $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     }
-                    $rootScope.HopitalTag = data.data[0].brandTitle;
+                    $rootScope.HospitalTag = data.data[0].brandTitle;
                     $rootScope.contactNumber = data.data[0].contactNumber;
                     $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                     $rootScope.clientName = data.data[0].hospitalName;
-
                     $state.go('tab.registerStep1');
-
-
                 },
-                error: function(data) {
-                  if(data==null){
+                error: function(data, status) {
+                    if (status === 0) {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
 
-                       $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                       $rootScope.Validation($scope.ErrorMessage);
-
-                  }else{
-                    $rootScope.serverErrorMessageValidation();
-                  }
+                    } else {
+                        $rootScope.serverErrorMessageValidation();
+                    }
                 }
             };
             LoginService.getHospitalInfo(params);
         }
-
-
-
-
     })

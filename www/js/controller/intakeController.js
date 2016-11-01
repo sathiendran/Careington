@@ -3,7 +3,7 @@ angular.module('starter.controllers')
 
 
 // Controller to be used by all intake forms
-.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth, Idle) {
+.controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth, Idle) {
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name == "tab.userhome") ||
             ($rootScope.currState.$current.name == "tab.addCard") ||
@@ -52,13 +52,20 @@ angular.module('starter.controllers')
     $rootScope.checkedPrimary = 0;
 
 
-    $scope.ClearRootScope = function() {
+    $rootScope.ClearRootScope = function() {
+      $window.localStorage.setItem('tokenExpireTime', '');
+      $rootScope = $rootScope.$new(true);
+      $scope = $scope.$new(true);
+      for (var prop in $rootScope) {
+          if (prop.substring(0,1) !== '$') {
+              delete $rootScope[prop];
+          }
+      }
       $(".ion-google-place-container").css({
           "display": "none"
       });
+
       $ionicBackdrop.release();
-        $rootScope = $rootScope.$new(true);
-        $scope = $scope.$new(true);
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
@@ -283,6 +290,7 @@ $scope.locat=false;
 
     // Open primary concerns popup
     $scope.loadPrimaryConcerns = function() {
+      $scope.data.searchProvider='';
   $scope.clearSelectionAndRebindSelectionList($rootScope.PatientPrimaryConcernItem, $scope.primaryConcernList);
   /*if (typeof $rootScope.PrimaryCount == 'undefined') {
       $rootScope.checkedPrimary = 0;
@@ -581,6 +589,7 @@ $scope.locat=false;
 
     // Open Secondary concerns popup
     $scope.loadSecondaryConcerns = function() {
+        $scope.data.searchProvider='';
         if ($rootScope.getSecondaryConcernAPIList != "") {
             //$scope.PatientPrimaryConcernItem = $filter('filter')($scope.primaryConcernList, {checked:true});
             if ($scope.PatientPrimaryConcernItem != '') {
@@ -736,10 +745,7 @@ $scope.locat=false;
     } else if ($rootScope.mobilePhone === '') {
         $scope.OnDemandConsultationSaveData["phone"] = $rootScope.homePhone;
     }
-
-
-
-    $scope.doPostOnDemandConsultation = function() {
+  $scope.doPostOnDemandConsultation = function() {
 
         if (typeof $rootScope.PrimaryConcernText !== 'undefined') {
             $scope.primaryFilter = $filter('filter')($scope.OnDemandConsultationSaveData.concerns, {
@@ -782,8 +788,8 @@ $scope.locat=false;
                 $scope.doGetExistingConsulatation();
                 //$state.go('tab.ChronicCondition');
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -797,7 +803,7 @@ $scope.locat=false;
         LoginService.postOnDemandConsultation(params);
     };
 
-    $rootScope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
+    $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
         angular.forEach(mainListItem, function(item, key2) {
             item.checked = false;
         });
@@ -822,33 +828,9 @@ $scope.locat=false;
         $rootScope.ChronicValid = ChronicValid;
         $state.go('tab.ChronicCondition');
     }
-
-    // Get list of Chronic Condition lists
-    // $scope.chronicConditionList = $rootScope.chronicConditionsCodesList;
-
-    // Get list of Chronic Condition Pre populated
-    /*if($rootScope.currState.$current.name=="tab.ChronicCondition") {
-         if(typeof $rootScope.ChronicValid == 'undefined' ||  $rootScope.ChronicValid == 0) {
-              angular.forEach($rootScope.inTakeFormChronicConditions, function(index, item) {
-                $scope.chronicConditionList.push({
-                     $id: index.$id,
-                     codeId: index.id,
-                     displayOrder: 0,
-                     text: index.value,
-                     checked: true,
-                 });
-
-             });
-     $scope.PatientChronicConditionItem = $filter('filter')($scope.chronicConditionList, {checked:true});
-     $rootScope.PatientChronicCondition = $scope.PatientChronicConditionItem;
-             if($rootScope.PatientChronicCondition) {
-                 $rootScope.ChronicCountValidCount = $rootScope.PatientChronicCondition.length;
-             }
-         }
-     }*/
-
     // Open Chronic Condition popup
     $scope.loadChronicCondition = function() {
+        $scope.data.searchProvider='';
         $scope.clearSelectionAndRebindSelectionList($rootScope.PatientChronicConditionsSelected, $rootScope.chronicConditionList);
         if (typeof $rootScope.ChronicCount == 'undefined') {
             $rootScope.checkedChronic = 0;
@@ -1029,7 +1011,7 @@ $scope.locat=false;
         // Open Medication Allegies List popup
 
     $scope.loadMedicationAllegies = function() {
-
+          $scope.data.searchProvider='';
         $scope.clearSelectionAndRebindSelectionList($rootScope.MedicationAllegiesItem, $rootScope.MedicationAllegiesList);
 
         if (typeof $rootScope.AllegiesCount == 'undefined') {
@@ -1189,6 +1171,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
 
     // Open Current Medication popup
     $scope.loadCurrentMedication = function() {
+      $scope.data.searchProvider='';
   $scope.clearSelectionAndRebindSelectionList($rootScope.CurrentMedicationItem, $rootScope.CurrentMedicationList);
 
         if (typeof $rootScope.MedicationCount == 'undefined') {
@@ -1430,6 +1413,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
     }
 
     $scope.RemoveSurgeryPopup = function(model) {
+        $scope.data.searchProvider='';
         $scope.modal.hide();
     };
     $scope.removePriorSurgeries = function(index, item) {
@@ -1592,7 +1576,7 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
             accessToken: $rootScope.accessToken,
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
-              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0) {
+              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
                 $rootScope.doPostDepitDetails();
               } else {
                   $scope.ConsultationSave = "success";
@@ -1646,8 +1630,8 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
                   }
               }
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -1679,8 +1663,8 @@ if(typeof $rootScope.MedicationCountValid == 'undefined' ||  $rootScope.Medicati
               $rootScope.enableCreditVerification = "block";
               $scope.ReceiptTimeout();
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);

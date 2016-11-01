@@ -21,19 +21,41 @@
             </h1>
           </div>
 
-       <div class="item item-image-icon itemiconcolor">
+      <!-- <div class="item item-image-icon itemiconcolor">
             <a class="lefthome" ng-href="#/tab/userAccount">
                <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
                <p class="homecontent">Account Home</p>
           </a>
-
-           <a class="item-avatar itemhead">
-               <p><img src="{{PatientImageSelectUser}}" class="topimage"></p>
-           </a>
+           	<div class="item-avatar itemhead" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
            <a class="rightpatient" ng-href="#/tab/userhome">
                <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
                <p class="patientcontent" >Change Patient</p>
            </a>
+      </div>-->
+      <div class="row userAccountPanel">
+        <div class="col col-33 uAPHomeIcon">
+            <a ng-href='#/tab/userAccount'>
+              <div class="icon">
+                <div class="buttons">
+                   	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                 </div>
+              </div>
+              <div>
+              <p>Account Home</p>
+            </div>
+            </a>
+        </div>
+        <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
+        <div class="col col-33 uAPChangePatient">
+          <a ng-href='#/tab/userhome'>
+            <div class="icon">
+              <div class="buttons">
+               	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+              </div>
+            </div>
+            <p>Change Patient</p>
+          </a>
+        </div>
       </div>
     </div>
 </ion-header-bar>
@@ -73,9 +95,11 @@
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
        <span class="tabcolor">Consultations</span>
        </a>
-       <a class="tab-item" ng-click="getManageProfile(currentPatientDetails)" _ng-href="#/tab/healthinfo">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
-       <span class="tabcolor"> My Health </sapn>
+       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+       </a>
+       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
        </a>
        <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
        <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>

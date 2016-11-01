@@ -114,14 +114,12 @@ angular.module('starter.controllers')
             }
 
         }
-
         $rootScope.callRegisterFunction = function(){
           $rootScope.postRegistersStep2();
         }
         $scope.backregister=function(){
           $state.go('tab.registerStep1');
         }
-
 
         $rootScope.doPostUserRegisterDetails = function() {
             $scope.userFirstandLastName = {
@@ -156,9 +154,10 @@ angular.module('starter.controllers')
                     }
                 }
             };
-
             LoginService.postRegisterDetails(params);
         }
-
+        $scope.GoBackToStep1 = function() {
+          $state.go('tab.registerStep1');
+        }
 
     })

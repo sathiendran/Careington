@@ -19,9 +19,10 @@
 
 		<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{PatientCalentarInnerStyle}}" >
 			<div class="calendar_subHeader">
-				<div class="subHeader_image">
+				<!--<div class="subHeader_image">
 					<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
-				</div>
+				</div>-->
+				<div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
 				<div class="subHeader_content-{{deviceName}} ellipsis" >
 				<div class="subHeader_content_name ellipsis" >
 					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
@@ -66,7 +67,8 @@
 										<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
 										 <select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
 											<option value="Choose Your Health Plan"><b>Choose Your Health Plan</b></option>
-											<option  ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId == providerName + '@' + PolicyNo + '@' + healthPlanID"><b><span>{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumberLong}}</span></b></option>
+											<option class="planlist" ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId == providerName + '@' + PolicyNo + '@' + healthPlanID"><b>
+												<span >{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumberLong}}</span></b></option>
 											<option><b>Add a new health plan</b></option>
 									   </select>
 									</div>

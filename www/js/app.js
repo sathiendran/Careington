@@ -12,16 +12,16 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //MultipleMultiple //Single //Demo
+var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
 var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
-var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
-var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
-
-
-
+//var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
+//var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
+var timeoutValue = 0;
+var videoCallSessionDuration = 8000;
+var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
     deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'DYW';
+    var cobrandApp = 'ambientcare';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -87,7 +87,18 @@ if (deploymentEnv == 'Single') {
         Hospital = "Hello420";
         HospitalTag = 'Medical marijuana cards, quickly';
         ssoURL = "http://52.34.151.119/hello420/login/";
-    }
+    } else if (cobrandApp == 'ambientcare') {
+      singleStagingHospitalId = 161;
+      singleHospitalId = 212;
+      singleQAHospitalId = 164;
+      singleSandboxHospitalId = '';
+      brandColor = '#193def';
+      logo = 'img/ambientcare.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/1456c0dc-9322-4502-98c4-d26e501f0dc0';
+      Hospital = "Ambient Virtual Care";
+      HospitalTag = 'Virtual Consultation Platform';
+      ssoURL = "";
+  }
 
 
 }
@@ -102,12 +113,43 @@ var handleOpenURL = function(url) {
 
 angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle) {
+.run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle, $ionicBackdrop, $interval) {
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
+      function resetSessionLogoutTimer(){
+          window.localStorage.setItem('Active', timeoutValue);
+          timeoutValue = 0;
+          clearSessionLogoutTimer();
+          appIdleInterval = $interval(function() {
+              if(window.localStorage.getItem("isCustomerInWaitingRoom") != 'Yes' && window.localStorage.getItem('isVideoCallProgress') != 'Yes'){
+                  timeoutValue++;
+                  window.localStorage.setItem('InActiveSince', timeoutValue);
+                  if(timeoutValue === 30)
+                    goInactive();
+              }else{
+                   timeoutValue = 0;
+                   window.localStorage.setItem('InActiveSince', timeoutValue);
+              }
+          }, 60000);
+      }
+
+      function clearSessionLogoutTimer(){
+        if(typeof appIdleInterval != "undefined"){
+           $interval.cancel(appIdleInterval);
+            appIdleInterval = undefined;
+            appIdleInterval = 0;
+            timeoutValue = 0;
+            window.localStorage.setItem('InActiveSince', timeoutValue);
+        }
+      }
+
+      $('body').bind('touchstart',function() {
+          resetSessionLogoutTimer();
+      });
+
       var timeoutID;
-    function setup() {
+      function setup() {
         this.addEventListener("mousemove", resetTimer, false);
         this.addEventListener("mousedown", resetTimer, false);
         this.addEventListener("keypress", resetTimer, false);
@@ -115,13 +157,13 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         this.addEventListener("mousewheel", resetTimer, false);
         this.addEventListener("touchmove", resetTimer, false);
         this.addEventListener("MSPointerMove", resetTimer, false);
+        this.addEventListener("touchstart", resetTimer, false);
+        this.addEventListener("touchend", resetTimer, false);
         startTimer();
     }
-    setup();
 
     function startTimer() {
         timeoutID = window.setTimeout(goInactive, 1800000);
-    //  timeoutID = window.setTimeout(goInactive, 120000);
     }
 
     function resetTimer(e) {
@@ -130,43 +172,56 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
-      //  alert('Inactive');
-        if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-            if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
-              navigator.notification.alert(
-                   'Your session timed out.', // message
-                   null,
-                   $rootScope.alertMsgName,
-                   'Ok' // buttonName
-               );
-              $rootScope.ClearRootScope();
+        var inactiveDuration = window.localStorage.getItem('InActiveSince');
+        var isCustomerInWaitingRoomVal = window.localStorage.getItem("isCustomerInWaitingRoom");
+        var isVideoCallProgressVal = window.localStorage.getItem('isVideoCallProgress')
+        inactiveDuration = Number(inactiveDuration);
+        if(inactiveDuration === 30){
+            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                if(isCustomerInWaitingRoomVal != 'Yes' && isVideoCallProgressVal != 'Yes') {
+                  $(".ion-google-place-container").css({
+                      "display": "none"
+                  });
+                  $ionicBackdrop.release();
+                  window.localStorage.setItem('Inactive Success', timeoutValue);
+                  timeoutValue = 0;
+                  clearSessionLogoutTimer();
+                  if ($rootScope.currState.$current.name == "tab.addnewdependent") {
+                        $rootScope.ClearRootScope();
+                        $rootScope.removemodal();
+                        navigator.notification.alert(
+                             'Your session timed out.', // message
+                             null,
+                             $rootScope.alertMsgName,
+                             'Ok' // buttonName
+                         );}else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
+                                 $rootScope.ClearRootScope();
+                                 $rootScope.editremovemodal();
+                                 navigator.notification.alert(
+                                      'Your session timed out.', // message
+                                      null,
+                                      $rootScope.alertMsgName,
+                                      'Ok' // buttonName
+                                  );}
+                        else{
+                            $rootScope.ClearRootScope();
+                            navigator.notification.alert(
+                                 'Your session timed out.', // message
+                                 null,
+                                 $rootScope.alertMsgName,
+                                 'Ok' // buttonName
+                             );
+                        }
+
+                }
             }
         }
     }
-
     function goActive() {
         console.log('Active');
         startTimer();
     }
 
-        // Check for network connection
-        /* if(window.Connection) {
-      if(navigator.connection.type == Connection.NONE) {
-		navigator.notification.confirm(
-			'Sorry, Please Check Your Network Connection.',
-			 function(index){
-				if(index == 1){
-
-				}else if(index == 2){
-					// navigator.app.exitApp();
-				}
-			 },
-			'Network Problem:',
-			['Cancel','Ok']
-		);
-
-      }
-	 }*/
 
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -206,22 +261,29 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }, 100);
 
         function onOffline() {
-
-            navigator.notification.alert(
-                'Please make sure that you have network connection.', // message
-                null,
-                'No Internet Connection', // title
-                'Ok' // buttonName
-            );
-            return false;
-            if ($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
-                $state.go('tab.connectionLost');
+            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                $('#thumbVideos').remove();
+                $('#videoControls').remove();
+                session.unpublish(publisher)
+                session.disconnect();
+                $('#publisher').hide();
+                $('#subscriber').hide();
+                OT.updateViews();
+                $state.go('tab.videoLost', { retry : 1 });
+            }else{
+              navigator.notification.alert(
+                  'Please make sure that you have network connection.', // message
+                  null,
+                  'No Internet Connection', // title
+                  'Ok' // buttonName
+              );
             }
+            return false;
         }
 
         function onOnline() {
-            if ($window.localStorage.get('ChkVideoConferencePage') == "videoConference") {
-                $state.go('tab.videoConference');
+            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                $state.go('tab.videoLost', { retry : 2 });
             }
         }
 
@@ -231,7 +293,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         cordova.plugins.backgroundMode.enable();
 
         cordova.plugins.backgroundMode.onactivate = function () {
-          setTimeout(function () {
+        /*  setTimeout(function () {
             if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
                 if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
                   navigator.notification.alert(
@@ -243,7 +305,32 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   $rootScope.ClearRootScope();
                 }
             }
-          }, 600000);
+          }, 1800000);*/
+
+          var i = 0;
+          var alive_waiting_room_pool;
+          alive_waiting_room_pool = setInterval(function(){
+               if(window.localStorage.getItem("isCustomerInWaitingRoom") == "Yes"){
+                    i++;
+                    vConsultationWatingId = window.localStorage.getItem("waitingRoomConsultationId");
+                    vAccessToken = window.localStorage.getItem("accessToken");
+                    var alive_timestamp_url = apiCommonURL + '/api/v2/patients/activeconsultations/' + vConsultationWatingId + '/alive-timestamp';
+                    var reqHeaders = util.getHeaders();
+                    reqHeaders['Authorization'] = "Bearer " + vAccessToken;
+                    $.ajax({
+                        type: 'PUT',
+                        headers: reqHeaders,
+                        url: alive_timestamp_url,
+                        //dataType: 'json',
+                        success: function(data){
+                          console.log('Success at ' + i);
+                        },
+                        failure: function(error){
+                          console.log('Failed at ' + 1);
+                        }
+                    });
+               }
+          }, 30000);
       }
 
         setTimeout(function() {
@@ -293,38 +380,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 } else if (EXTRA['env'] != "" && loginPageEnv != 'Single') {
                     $state.go('tab.login');
                 }
-                /*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-                                $state.go('tab.singleTheme');
-                            }*/
             }
-          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                  $scope.getTokenExpireTime = new Date(window.localStorage.getItem("tokenExpireTime"));
-                  var getCurrentTimeforLogout =  new Date();
-                //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                  if(getTokenExpireTime <= getCurrentTimeforLogout) {
-                        $rootScope.ClearRootScope();
-                  }
-            }*/
-          /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                  var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
-                  var getCurrentTimeforLogout =  new Date();
-                //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                if(window.localStorage.getItem("external_load") == null || window.localStorage.getItem("external_load") == "") {
-                	if ($rootScope.currState.$current.name != "tab.chooseEnvironment" && $rootScope.currState.$current.name != "tab.login" && $rootScope.currState.$current.name != "tab.loginSingle" && $rootScope.currState.$current.name != "tab.singleTheme" && $rootScope.currState.$current.name != "tab.waitingRoom") {
-                      if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
-                        navigator.notification.alert(
-                            'Your session timeout.', // message
-                            null,
-                            $rootScope.alertMsgName,
-                            'Ok' // buttonName
-                        );
-                        $rootScope.ClearRootScope();
-                     }
-                  }
-              }
-            }*/
         }, 2000);
         $ionicPlatform.on('resume', function() {
+            if(typeof alive_waiting_room_pool != "undefined")
+                clearInterval(alive_waiting_room_pool);
+            alive_waiting_room_pool = undefined;
             setTimeout(function() {
                 //  Idle.watch();
                 if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
@@ -372,53 +433,13 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                     } else if (EXTRA['env'] != "" && loginPageEnv != 'Single') {
                         $state.go('tab.login');
                     }
-                    /*else if(EXTRA['env'] != "" && loginPageEnv == 'Single'){
-                                       $state.go('tab.singleTheme');
-                                   }*/
                 }
-              /*  if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                      var getTokenExpireTime = window.localStorage.getItem("tokenExpireTime");
-                      var getCurrentTimeforLogout =  new Date();
-                    //  var getTokenExpireTime = new Date("2016-08-12T10:40:00.0000369+00:00");
-                      if(window.localStorage.getItem("external_load") == null || window.localStorage.getItem("external_load") == "") {
-                        if ($rootScope.currState.$current.name != "tab.chooseEnvironment" && $rootScope.currState.$current.name != "tab.login" && $rootScope.currState.$current.name != "tab.loginSingle" && $rootScope.currState.$current.name != "tab.singleTheme"  && $rootScope.currState.$current.name != "tab.waitingRoom") {
-                            if(new Date(getTokenExpireTime).getTime() <= new Date(getCurrentTimeforLogout).getTime()) {
-                                navigator.notification.alert(
-                                    'Your session timeout.', // message
-                                    null,
-                                    $rootScope.alertMsgName,
-                                    'Ok' // buttonName
-                                );
-                                $rootScope.ClearRootScope();
-                             }
-                        }
-                    }
-                }*/
 
             }, 2000);
         });
-/*
- $ionicPlatform.registerBackButtonAction(function (e) {
-              if ($ionicHistory.backView()) {
-                   $ionicHistory.goBack();
-               } else {
-                   navigator.app.exitApp();
-                 }
-               e.preventDefault();
-               return false;
-           }, 101);*/
-
-    //    });
-
-
-
-
     });
 
 })
-
-
-
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider, IdleProvider, KeepaliveProvider) {
 
@@ -427,11 +448,12 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
    // $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content):/);
-   IdleProvider.idle(600); // in seconds
-    IdleProvider.timeout(600); // in seconds
-    KeepaliveProvider.interval(60); // in seconds
+   //IdleProvider.idle(600); // in seconds
+  //  IdleProvider.timeout(600); // in seconds
+  //  KeepaliveProvider.interval(60); // in seconds
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.views.swipeBackEnabled(false);
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|content|file):/);
     $stateProvider
 
     // setup an abstract state for the tabs directive
@@ -442,7 +464,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     })
 
     // Each tab has its own nav history stack:
-
     .state('tab.login', {
         url: '/login',
         views: {
@@ -452,7 +473,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.loginSingle', {
         url: '/loginSingle',
         views: {
@@ -462,7 +482,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.provider', {
         url: '/provider',
         views: {
@@ -472,7 +491,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.terms', {
         url: '/terms',
         views: {
@@ -482,7 +500,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.password', {
         url: '/password',
         views: {
@@ -492,7 +509,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.resetPassword', {
         url: '/resetPassword',
         views: {
@@ -502,7 +518,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.userhome', {
         url: '/userhome',
         views: {
@@ -512,10 +527,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
-
-
     .state('tab.patientDetail', {
         url: '/patientDetail',
         views: {
@@ -525,7 +536,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.patientCalendar', {
         url: '/patientCalendar',
         views: {
@@ -535,7 +545,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.appoimentDetails', {
         url: '/appoimentDetails',
         views: {
@@ -545,9 +554,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
-
     .state('tab.patientConcerns', {
         url: '/patientConcerns',
         views: {
@@ -557,7 +563,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.ChronicCondition', {
         url: '/ChronicCondition',
         views: {
@@ -567,7 +572,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.priorSurgeries', {
         url: '/priorSurgeries',
         views: {
@@ -577,7 +581,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.CurrentMedication', {
         url: '/CurrentMedication',
         views: {
@@ -587,7 +590,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.intakeBornHistory', {
         url: '/intakeBornHistory',
         views: {
@@ -597,7 +599,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.MedicationAllegies', {
             url: '/MedicationAllegies',
             views: {
@@ -616,7 +617,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.consultCharge', {
         url: '/consultCharge',
         views: {
@@ -626,7 +626,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addHealthPlan', {
         url: '/addHealthPlan',
         views: {
@@ -636,7 +635,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.planDetails', {
         url: '/planDetails',
         views: {
@@ -646,9 +644,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
-
     .state('tab.applyPlan', {
         url: '/applyPlan',
         views: {
@@ -658,7 +653,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addCard', {
         url: '/addCard',
         views: {
@@ -668,7 +662,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.consultChargeNoPlan', {
             url: '/consultChargeNoPlan',
             views: {
@@ -687,8 +680,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
-
     .state('tab.submitPayment', {
         url: '/submitPayment',
         views: {
@@ -698,7 +689,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.receipt', {
         url: '/receipt',
         views: {
@@ -708,7 +698,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.waitingRoom', {
         url: '/waitingRoom',
         views: {
@@ -718,7 +707,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.videoConference', {
         url: '/videoConference',
         views: {
@@ -728,7 +716,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.connectionLost', {
         url: '/connectionLost',
         views: {
@@ -738,7 +725,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.ReportScreen', {
             url: '/ReportScreen',
             views: {
@@ -766,7 +752,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.singleTerms', {
             url: '/singleTerms',
             views: {
@@ -785,7 +770,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.searchprovider', {
         url: '/searchprovider',
         views: {
@@ -795,7 +779,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.registerStep1', {
         url: '/registerStep1',
         views: {
@@ -805,7 +788,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.registerAddress', {
         url: '/registerAddress',
         views: {
@@ -815,7 +797,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.userAccount', {
         url: '/userAccount',
         views: {
@@ -825,7 +806,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.healthinfo', {
         url: '/healthinfo',
         views: {
@@ -835,7 +815,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.userAppointment', {
             url: '/userAppointment',
             views: {
@@ -845,16 +824,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-    /*
-     .state('tab.relateduseroptions', {
-            url: '/relateduseroptions',
-            views: {
-                'tab-login': {
-                    templateUrl: 'templates/tab-relateduseroptions.html',
-                    controller: ''
-                }
-            }
-        })*/
         .state('tab.addUser', {
             url: '/addUser',
             views: {
@@ -864,7 +833,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
     .state('tab.registerStep2', {
             url: '/registerStep2',
             views: {
@@ -892,8 +860,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
-
-
     .state('tab.relatedusers', {
         url: '/relatedusers',
         views: {
@@ -903,17 +869,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-/*    .state('tab.removerelatedUsers', {
-        url: '/removerelatedUsers',
-        views: {
-            'tab-login': {
-                templateUrl: 'templates/tab-removerelatedUsers.html',
-                controller: 'removeuserController'
-            }
-        }
-    })*/
-
     .state('tab.appointmentpatientdetails', {
         url: '/appointmentpatientdetails',
         views: {
@@ -923,7 +878,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.profileoption', {
         url: '/profileoption',
         views: {
@@ -933,7 +887,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.consultations', {
         url: '/consultations',
         views: {
@@ -943,7 +896,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.reports', {
         url: '/reports',
         views: {
@@ -953,7 +905,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.missedConsultAppoint', {
         url: '/missedConsultAppoint',
         views: {
@@ -963,7 +914,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addnewuser', {
         url: '/addnewuser',
         views: {
@@ -973,7 +923,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
     .state('tab.addnewdependent', {
         url: '/addnewdependent',
         views: {
@@ -983,8 +932,6 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-
-
     .state('tab.consultationSearch', {
         url: '/consultationSearch',
         views: {
@@ -1022,17 +969,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
-  /*  .state('tab.check', {
-        url: '/check',
+    .state('tab.videoLost', {
+        url: '/videoLost/:retry',
         views: {
             'tab-login': {
-                templateUrl: 'templates/tab-check.html',
-                controller: 'checkController'
+                templateUrl: 'templates/tab-videoLost.html',
+                controller: 'videoLostCtrl'
             }
         }
     })
-*/
-
 
     // if none of the above states are matched, use this as the fallback tab-chooseEnvironment
 
@@ -1061,13 +1006,31 @@ function generateTextImage(text, bgcolor){
 function getInitialForName(name){
     var initial = "";
     if(name){
-		name = name.toUpperCase();
+		    name = name.toUpperCase();
         name = name.replace('  ', ' ');
         name = name.trim()
         var names = name.split(' ');
         initial = initial + names[0].substring(0, 1);
         if(names[1])
             initial = initial + names[1].substring(0, 1);
+        else
+            initial = name.substring(0, 2);
+    }
+    return initial;
+}
+function getInitialFromName(firstName, LastName){
+    var initial = "";
+    var name = firstName + ' ' + LastName;
+    if(!angular.isUndefined(firstName) && firstName !== ''){
+		    name = name.toUpperCase();
+        name = name.replace('  ', ' ');
+        name = name.trim()
+        var names = name.split(' ');
+        initial = initial + names[0].substring(0, 1);
+        if(names[1])
+            initial = initial + names[1].substring(0, 1);
+        else
+            initial = name.substring(0, 2);
     }
     return initial;
 }
@@ -1087,7 +1050,6 @@ function formatHeightVal(height){
 }
 
 function getAge(birth) {
-
     var today = new Date();
     var nowyear = today.getFullYear();
     var nowmonth = today.getMonth();
@@ -1096,17 +1058,15 @@ function getAge(birth) {
     var birthyear = birthage.getFullYear();
     var birthmonth = birthage.getMonth();
     var birthday = birthage.getDate();
-
     var age = nowyear - birthyear;
     var age_month = nowmonth - birthmonth;
     var age_day = nowday - birthday;
-
     if(age_month < 0 || (age_month == 0 && age_day <0)) {
             age = parseInt(age) -1;
         }
     return age;
-
-
-
 }
+var createSVGIcon = function(iconName) {
+    return "<svg class='icon-" + iconName + " svgIcon" + iconName + " svgIconForVideo'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
+};
 //snapmdconnectedcare://?token=RXC5PBj-uQbrKcsoQv3i6EY-uxfWrQ-X5RzSX13WPYqmaqdwbLBs2WdsbCZFCf_5jrykzkpuEKKdf32bpU4YJCvi2XQdYymvrjZQHiAb52G-tIYwTQZ9IFwXCjf-PRst7A9Iu70zoQgPrJR0CJMxtngVf6bbGP86AF2kiomBPuIsR00NISp2Kd0I13-LYRqgfngvUXJzVf703bq2Jv1ixBl_DRUlWkmdyMacfV0J5itYR4mXpnjfdPpeRMywajNJX6fAVTP0l5KStKZ3-ufXIKk6l5iRi6DtNfxIyT2zvd_Wp8x2nOQezJSvwtrepb34quIr5jSB_s3_cv9XE6Sg3Rtl9qbeKQB2gfU20WlJMnOVAoyjYq36neTRb0tdq6WeWo1uqzmuuYlepxl2Tw5BaQ&hospitalId=126&consultationId=

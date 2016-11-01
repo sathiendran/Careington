@@ -1,234 +1,214 @@
 <ion-side-menus>
-    <ion-side-menu-content>
-
-        <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-
-            <div class="buttons">
-                <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"></button>-->
-                <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
-            </div>
-
-            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="position: relative; left: -12px;" ><a class="headerval" ng-click="consultsearch()" ><i class="icon ion-search" style="font-size: 20px;"  ></i></a></span></h1>
-
-
-            <div class="bar bar-subheader bar-dark subheaderheight">
-                <div class="row">
-                    <h1 class="headertitle">
-			<div class="ellipsis subHeader_content_name" >
-				<span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
-				<span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
-			</div>
-		</h1>
-                </div>
-
-                <div class="item item-image-icon">
-                    <a class="lefthome" ng-href="#/tab/userAccount">
-                        <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-                        <p class="homecontent">Account Home</p>
-                    </a>
-                    <a class="item-avatar itemhead">
-                        <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
-                    </a>
-                    <a class="rightpatient" ng-href="#/tab/userhome">
-                        <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-                        <p class="patientcontent">Change Patient</p>
-                    </a>
-                </div>
-
-
-                <div class="row">
-                    <div class="buttons backbtn">
-                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
-                    </div>
-                    <div class=" button-bar">
-                        <label class="button button-small btcolor btn-first " id="passed" ng-click="passedconsult()"> <span class="tabheading">Past</span></label>
-                        <label class="button button-small btn-first btnextcolor" id="missed" ng-click="missedconsult()"><span class="tabheading">Missed</span></label>
-                        <label class="button button-small btn-first btnextcolor" id="dropped" ng-click="droppedconsult()"><span class="tabheading">Dropped</span></label>
-
-                    </div>
-
-                    <div class="buttons backbtn">
-                        <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
-                    </div>
-                </div>
-            </div>
-
-        </ion-header-bar>
-
-
-
-        <ion-view title="">
-            <ion-content class="consultcontent" ng-show="pastshow">
-                <div>
-                    <div class="row rheader">
-                        <div class="col col-15"><span></span></div>
-                        <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15"><span class="timetopfont">Time</span></div>
-                        <div class="col col-30"><span class="providertopfont">Provider</span></div>
-                        <div class="col col-15 "><span class="topfont"></span></div>
-                    </div>
-                    <hr style="margin-top:-12px;">
-                    <div class="list listfirst">
-                        <div ng-repeat="passedData in Passedconsultations">
-                            <div class="row">
-                                <div class="passedImage-{{deviceName}}">
-                                    <a class="item item-avatar avatitem">
-                                        <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                                    </a>
-                                </div>
-                                <div class="passedDate-{{deviceName}}">
-                                    <p class="colfamily"> {{passedData.consultationDate}}</p>
-                                </div>
-                                <div class="passedTime-{{deviceName}}">
-                                    <p class="colfamily">{{passedData.consultationTimeInfo  | date: "hh:mm a"}}</p>
-                                </div>
-                                <div class="ellipsis passedDoc-{{deviceName}}">
-                                    <p class="ellipsis">
-                                        <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
-                                        <a class="colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName}}</a>
-                                    </p>
-                                </div>
-
-                                <div class="passedDetails-{{deviceName}}">
-                                    <span ng-click="showReportView({{passedData}}, 'tab.reports');">Report
-                                    <span><i class="icon ion-chevron-right "></i></span></span>
-                                </div>
-                            </div>
-
-                            <hr class="dotedhr">
-                        </div>
-                        <ion-item ng-if="!Passedconsultations.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
-
-                    </div>
-
-                </div>
-         </ion-content>
-
-             <!---- Past Consult End ----->
-            <ion-content class="consultcontent" ng-show="missedshow">
-                <div>
-                    <div class="row rheader">
-                        <div class="col col-15"><span></span></div>
-                        <div class="col col-20"><span class="topfont">Date</span></div>
-                        <div class="col col-15"><span class="timetopfont">Time</span></div>
-                        <div class="col col-30"><span class="providertopfont">Provider</span></div>
-                        <div class="col col-15 "><span class="topfont"></span></div>
-                    </div>
-                    <hr style="margin-top:-12px;">
-                    <div class="list listfirst">
-                        <div ng-repeat="misseddata in missedlist">
-
-                            <div class="row">
-                                <div class="passedImage-{{deviceName}}">
-                                    <a class="item item-avatar avatitem">
-                                        <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                                    </a>
-                                </div>
-                                <div class="passedDate-{{deviceName}}">
-                                    <p class="colfamily">{{misseddata.enddate | date: "MMM dd, yyyy"}}</p>
-                                </div>
-                                <div class="passedTime-{{deviceName}}">
-                                    <p class="colfamily">{{misseddata.startTime  | date: "hh:mm a"}}</p>
-                                </div>
-                                <div class="ellipsis passedDoc-{{deviceName}}">
-                                    <p class="ellipsis">
-                                        <a class="colfamily" ng-if="!misseddata.docname">N/A
-
-                                        </a>
-                                        <a class="colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}
-
-                                          </a>
-                                    </p>
-                                </div>
-                                <div class="passedDetails-{{deviceName}}">
-                                    <span ng-click="showMissedDetailsView({{misseddata}},'tab.missedConsultAppoint');">Details
-                                        <span><i class="icon ion-chevron-right "></i></span></span>
-                                </div>
-                            </div>
-                            <hr class="dotedhr">
-                        </div>
-                        <ion-item ng-if="!missedlist.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
-                    </div>
-
-                </div>
-              </ion-content>
-
-                  <!---- Missed Consult End ----->
-            <ion-content class="consultcontent" ng-show="droppedshow">
-              <div>
-                  <div class="row rheader">
-                      <div class="col col-15"><span></span></div>
-                      <div class="col col-20"><span class="topfont">Date</span></div>
-                      <div class="col col-15"><span class="timetopfont">Time</span></div>
-                      <div class="col col-30"><span class="providertopfont">Provider</span></div>
-                      <div class="col col-15 "><span class="topfont"></span></div>
-                  </div>
-                    <hr style="margin-top:-12px;">
-                    <div class="list listfirst">
-                        <div ng-repeat="droppedData in Droppedconsultations">
-                            <div class="row">
-                                <div class="passedImage-{{deviceName}}">
-                                    <a class="item item-avatar avatitem">
-                                        <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                                    </a>
-                                </div>
-                                <div class="passedDate-{{deviceName}}">
-                                    <p class="colfamily">{{droppedData.consultationDate}}</p>
-                                </div>
-                                <div class="passedTime-{{deviceName}}">
-                                    <p class="colfamily">{{droppedData.consultationTimeInfo | date: "h:mm a"}}</p>
-                                </div>
-                                <div class="ellipsis passedDoc-{{deviceName}}">
-                                    <p class="ellipsis">
-                                        <a class="colfamily" ng-if="!droppedData.assignedDoctorName">N/A</a>
-                                        <a class="colfamily" ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</a>
-                                    </p>
-                                </div>
-                                <div class="passedDetails-{{deviceName}}">
-                                    <span ng-click="showReportView({{droppedData}},'tab.reports');">Report
-                                          <span><i class="icon ion-chevron-right "></i></span></span>
-                                </div>
-                            </div>
-                            <hr class="dotedhr">
-                        </div>
-
-                        <ion-item ng-if="!Droppedconsultations.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
-
-                    </div>
-
-                </div>
-
-            </ion-content>
-            <div ng-controller="healthinfoController">
+<ion-side-menu-content>
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <div class="buttons">
+        <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+      </div>
+      <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="position: relative; left: -12px;" ><a class="headerval" ng-click="consultsearch()" ><i class="icon ion-search" style="font-size: 20px;"  ></i></a></span></h1>
+      <div class="bar bar-subheader bar-dark subheaderheight">
+         <div class="row">
+            <h1 class="headertitle">
+               <div class="ellipsis subHeader_content_name" >
+                  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{PatientFirstName}}</span>
+                  <span class="patientLastName ellipsis lnamefont" >{{PatientLastName}}</span>
                </div>
-            <!--- Dropped Consult End--->
-
-
-    </ion-view>
-
-
-    <ion-tabs class=" tabs-icon-top tabs-dark">
-       <a class="tab-item" ng-href="#/tab/relatedusers" >
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
-       <span class="tabcolor"> Users </span>
-       </a>
-       <a class="tab-item active" ng-href="#/tab/consultations">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
-        <span class="tabcolor">Consultations </span>
-       </a>
-       <a class="tab-item" ng-href="#/tab/healthinfo">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
-       <span class="tabcolor">My Health</span>
-       </a>
-       <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
-       <span class="tabcolor">Appointments</span>
-       </a>
-       <!--<a class="tab-item" ng-href="#/tab/profileoption">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
-       <span class="tabcolor">More</span>
-     </a>-->
-    </ion-tabs>
-
-  </ion-side-menu-content>
-  <div ng-include src="'templates/SideMenu.html'"></div>
+            </h1>
+         </div>
+         <div class="row userAccountPanel">
+            <div class="col col-33 uAPHomeIcon">
+               <a ng-href='#/tab/userAccount'>
+                  <div class="icon homeicon">
+                    <div class="buttons">
+                       	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                     </div>
+                  </div>
+                  <div>
+                     <p class="hometext">Account Home</p>
+                  </div>
+               </a>
+            </div>
+            <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+            <div class="col col-33 uAPChangePatient">
+               <a ng-href='#/tab/userhome'>
+                  <div class="icon groupicon">
+                    <div class="buttons">
+                    	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                   </div>
+                  </div>
+                  <p class="grouptext">Change Patient</p>
+               </a>
+            </div>
+         </div>
+         <div class="row">
+            <div class="buttons backbtn">
+               <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	</button>
+            </div>
+            <div class=" button-bar">
+               <label class="button button-small btcolor btn-first " id="passed" ng-click="passedconsult()"> <span class="tabheading">Past</span></label>
+               <label class="button button-small btn-first btnextcolor" id="missed" ng-click="missedconsult()"><span class="tabheading">Missed</span></label>
+               <label class="button button-small btn-first btnextcolor" id="dropped" ng-click="droppedconsult()"><span class="tabheading">Dropped</span></label>
+            </div>
+            <div class="buttons backbtn">
+               <button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" style="display: none;">	 </button>
+            </div>
+         </div>
+      </div>
+   </ion-header-bar>
+   <ion-view title="">
+      <ion-content class="consultcontent" ng-show="pastshow">
+         <div>
+            <div class="row rheader">
+               <div class="col col-15"><span></span></div>
+               <div class="col col-20"><span class="topfont">Date</span></div>
+               <div class="col col-15"><span class="timetopfont">Time</span></div>
+               <div class="col col-30"><span class="providertopfont">Provider</span></div>
+               <div class="col col-15 "><span class="topfont"></span></div>
+            </div>
+            <hr style="margin-top:-12px;">
+            <div class="list listfirst">
+               <div ng-repeat="passedData in Passedconsultations">
+                  <div class="row">
+                     <div class="passedImage-{{deviceName}}">
+                        <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
+                     </div>
+                     <div class="passedDate-{{deviceName}}">
+                        <p class="colfamily"> {{passedData.consultationDate}}</p>
+                     </div>
+                     <div class="passedTime-{{deviceName}}">
+                        <p class="colfamily">{{passedData.consultationTimeInfo  | date: "hh:mm a"}}</p>
+                     </div>
+                     <div class="ellipsis passedDoc-{{deviceName}}">
+                        <p class="ellipsis">
+                           <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
+                           <a class="colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName}}</a>
+                        </p>
+                     </div>
+                     <div class="passedDetails-{{deviceName}}">
+                        <span ng-click="showReportView({{passedData}}, 'tab.reports');">Report
+                        <span><i class="icon ion-chevron-right "></i></span></span>
+                     </div>
+                  </div>
+                  <hr class="dotedhr">
+               </div>
+               <ion-item ng-if="!Passedconsultations.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
+            </div>
+         </div>
+      </ion-content>
+      <!---- Past Consult End ----->
+      <ion-content class="consultcontent" ng-show="missedshow">
+         <div>
+            <div class="row rheader">
+               <div class="col col-15"><span></span></div>
+               <div class="col col-20"><span class="topfont">Date</span></div>
+               <div class="col col-15"><span class="timetopfont">Time</span></div>
+               <div class="col col-30"><span class="providertopfont">Provider</span></div>
+               <div class="col col-15 "><span class="topfont"></span></div>
+            </div>
+            <hr style="margin-top:-12px;">
+            <div class="list listfirst">
+               <div ng-repeat="misseddata in missedlist">
+                  <div class="row">
+                     <div class="passedImage-{{deviceName}}">
+                        <!--<a class="item item-avatar avatitem">
+                           <img class="consimg" ng-src="{{PatientImageSelectUser}}">
+                           </a>-->
+                        <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
+                     </div>
+                     <div class="passedDate-{{deviceName}}">
+                        <p class="colfamily">{{misseddata.enddate | date: "MMM dd, yyyy"}}</p>
+                     </div>
+                     <div class="passedTime-{{deviceName}}">
+                        <p class="colfamily">{{misseddata.startTime  | date: "hh:mm a"}}</p>
+                     </div>
+                     <div class="ellipsis passedDoc-{{deviceName}}">
+                        <p class="ellipsis">
+                           <a class="colfamily" ng-if="!misseddata.docname">N/A
+                           </a>
+                           <a class="colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}
+                           </a>
+                        </p>
+                     </div>
+                     <div class="passedDetails-{{deviceName}}">
+                        <span ng-click="showMissedDetailsView({{misseddata}},'tab.missedConsultAppoint');">Details
+                        <span><i class="icon ion-chevron-right "></i></span></span>
+                     </div>
+                  </div>
+                  <hr class="dotedhr">
+               </div>
+               <ion-item ng-if="!missedlist.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
+            </div>
+         </div>
+      </ion-content>
+      <!---- Missed Consult End ----->
+      <ion-content class="consultcontent" ng-show="droppedshow">
+         <div>
+            <div class="row rheader">
+               <div class="col col-15"><span></span></div>
+               <div class="col col-20"><span class="topfont">Date</span></div>
+               <div class="col col-15"><span class="timetopfont">Time</span></div>
+               <div class="col col-30"><span class="providertopfont">Provider</span></div>
+               <div class="col col-15 "><span class="topfont"></span></div>
+            </div>
+            <hr style="margin-top:-12px;">
+            <div class="list listfirst">
+               <div ng-repeat="droppedData in Droppedconsultations">
+                  <div class="row">
+                     <div class="passedImage-{{deviceName}}">
+                        <!--  <a class="item item-avatar avatitem">
+                           <img class="consimg" ng-src="{{PatientImageSelectUser}}">
+                           </a>-->
+                        <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
+                     </div>
+                     <div class="passedDate-{{deviceName}}">
+                        <p class="colfamily">{{droppedData.consultationDate}}</p>
+                     </div>
+                     <div class="passedTime-{{deviceName}}">
+                        <p class="colfamily">{{droppedData.consultationTimeInfo | date: "h:mm a"}}</p>
+                     </div>
+                     <div class="ellipsis passedDoc-{{deviceName}}">
+                        <p class="ellipsis">
+                           <a class="colfamily" ng-if="!droppedData.assignedDoctorName">N/A</a>
+                           <a class="colfamily" ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</a>
+                        </p>
+                     </div>
+                     <div class="passedDetails-{{deviceName}}">
+                        <span ng-click="showReportView({{droppedData}},'tab.reports');">Report
+                        <span><i class="icon ion-chevron-right "></i></span></span>
+                     </div>
+                  </div>
+                  <hr class="dotedhr">
+               </div>
+               <ion-item ng-if="!Droppedconsultations.length" class="noapptviewResult" style="white-space: normal;">There are no consultations found!</ion-item>
+            </div>
+         </div>
+      </ion-content>
+      <div ng-controller="healthinfoController">
+      </div>
+      <!--- Dropped Consult End--->
+   </ion-view>
+   <ion-tabs class=" tabs-icon-top tabs-dark">
+      <a class="tab-item" ng-href="#/tab/relatedusers" >
+      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
+      <span class="tabcolor"> Users </span>
+      </a>
+      <a class="tab-item active" ng-href="#/tab/consultations">
+      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
+      <span class="tabcolor">Consultations </span>
+      </a>
+      <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+			</a>
+			<a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
+			</a>
+      <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
+      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
+      <span class="tabcolor">Appointments</span>
+      </a>
+      <!--<a class="tab-item" ng-href="#/tab/profileoption">
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
+         <span class="tabcolor">More</span>
+         </a>-->
+   </ion-tabs>
+</ion-side-menu-content>
+<div ng-include src="'templates/SideMenu.html'"></div>

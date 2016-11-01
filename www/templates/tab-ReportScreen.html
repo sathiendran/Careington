@@ -19,9 +19,10 @@
 
 	<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
 		<div class="calendar_subHeader" >
-			<div class="subHeader_image" >
+			<!--<div class="subHeader_image" >
 				<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
-			</div>
+			</div>-->
+			<div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
 			<div class="subHeader_content-{{deviceName}} ellipsis" >
 				<div class="ellipsis subHeader_content_name" >
 					<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
@@ -76,7 +77,7 @@
 			<div class="reportEncounter"  >
 				<div><b>Encounter Date:</b></div>
 				<div>{{consultationDate | date:'MMM dd, yyyy h:mm a'}}</div>
-				<div><b>Clinician:</b> </div>
+				<div><b>Provider:</b> </div>
 				<div>{{reportDoctorFirstName}} {{reportDoctorLastName}} {{reportMedicalSpeciality}} </div>
 				<div ng-if="displayCOnsultationDuration == 'display'"><b>Consultation Duration:</b> </div>
 				<div ng-if="displayCOnsultationDuration == 'display'">{{consultDurationMinutes}}:{{consultDurationSeconds}}</div>

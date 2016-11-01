@@ -17,19 +17,44 @@
        </div>
     </h1>
   </div>
-  <div class="item item-image-icon itemiconcolor">
+<!--  <div class="item item-image-icon itemiconcolor">
 
   <a class="lefthome" ng-href="#/tab/userAccount">
         <span class="subHeadIcons"><i class="icon ion-home headerlefticons" style=""></i></span>
         <p class="homecontent">Account Home</p>
    </a>
     <a class="item-avatar itemhead">
-        <p><img ng-src="{{PatientImageSelectUser}}" class="topimage"></p>
+        	<p ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></p>
     </a>
     <a class="rightpatient" ng-href="#/tab/userhome">
         <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon" style=""></i></span>
         <p class="patientcontent" >Change Patient</p>
     </a>
+</div>-->
+<div class="row userAccountPanel">
+  <div class="col col-33 uAPHomeIcon">
+     <a ng-href='#/tab/userAccount'>
+        <div class="icon homeicon">
+          <div class="buttons">
+             	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+           </div>
+        </div>
+        <div>
+           <p class="hometext">Account Home</p>
+        </div>
+     </a>
+  </div>
+  <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+  <div class="col col-33 uAPChangePatient ">
+    <a ng-href='#/tab/userhome'>
+      <div class="icon groupicon">
+        <div class="buttons">
+         	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+        </div>
+      </div>
+      <p class="grouptext">Change Patient</p>
+    </a>
+  </div>
 </div>
       <div class="row">
          <div class="buttons backbtn">
@@ -67,7 +92,8 @@
         </div>
        <div class="list listfirst allsearch-{{deviceName}}">
            <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in filteredItems=(getIndividualScheduleDetails  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
-                  <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+                  <!--<img class="apptimage" ng-src="{{PatientImageSelectUser}}">-->
+                	<div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                   <h2 class="aptsname">Next Appointment</h2>
                   <p class="appmarg">
                           <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -79,7 +105,8 @@
                       <span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
            </a>
            <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(getIndividualScheduleDetails  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
-                  <img class="apptimage" ng-src="{{PatientImageSelectUser}}">
+                  <!--<img class="apptimage" ng-src="{{PatientImageSelectUser}}">-->
+                  <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                   <p class="appmarg" style="margin-top: 14px;">
                           <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
                   </p>
@@ -113,7 +140,8 @@
         <div class="list listall allsearch-{{deviceName}}">
 
         <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in filteredItems=(scheduledList  | filter: data.searchProvider)"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
-            <img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
+            <!--<img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">-->
+            	<div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
             <h2 class="aptsname">Next Appointment</h2>
              <p class="appmarg">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -122,7 +150,7 @@
           </a>
 
         <a class="item item-avatar appitem" ng-repeat="scheduledListData in filteredItems=(scheduledList  | filter: data.searchProvider)" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
-            <img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">
+          	<div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
                         <p class="appmarg" style="margin-top: 14px;">
                 <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
               </p>
@@ -134,7 +162,7 @@
                 <ion-item  class="noapptResult" ng-if="!scheduledList.length" style="white-space: normal;" >There are no appointments found!</ion-item>
 
     </div>
-    <div  ng-if="!scheduledList.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
+    <div  ng-if="scheduledList.length"  class="searchdata noapptResult" style="white-space: normal;" ng-show="(scheduledList | filter:data.searchProvider).length==0">No Search Results Found!</div>
     </ion-content>
 
 
@@ -157,10 +185,12 @@
 	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
      <span class="tabcolor">Consultations</span>
 	 </a>
-	 <a class="tab-item" ng-href="#/tab/healthinfo">
-	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i>
-     <span class="tabcolor">My Health</span>
-	 </a>
+   <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+   </a>
+   <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+   <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
+   </a>
 	 <a class="tab-item active" ng-href="#/tab/appointmentpatientdetails">
 	 <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
      <span class="tabcolor">Appointments</span>

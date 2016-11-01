@@ -124,7 +124,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -145,7 +145,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -173,7 +173,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -213,7 +213,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -229,12 +229,12 @@ angular.module('starter.services', [])
 		$http(PatientDetailsList).
 			success(function (data, status, headers, config) {
 				if (typeof params.success != 'undefined') {
-					params.success(data);
+					params.success(data,status);
 				}
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -254,10 +254,30 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
+
+  this.getPatientFilledAllRequirements = function(params) {
+    var PatientDetailsList = {
+      headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2/patients/userprofile',
+            method: 'GET'
+    };
+
+    $http(PatientDetailsList).
+      success(function (data, status, headers, config) {
+        if (typeof params.success != 'undefined') {
+          params.success(data);
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (typeof params.error != 'undefined') {
+          params.error(data,status);
+        }
+    });
+  }
 
 
 	this.getRelatedPatientProfiles = function(params) {
@@ -275,7 +295,7 @@ angular.module('starter.services', [])
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -301,7 +321,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -326,7 +346,7 @@ angular.module('starter.services', [])
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -347,7 +367,7 @@ angular.module('starter.services', [])
 				}).
 				error(function (data, status, headers, config) {
 					if (typeof params.error != 'undefined') {
-						params.error(data);
+						params.error(data,status);
 					}
 			});
 		}
@@ -452,7 +472,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -474,7 +494,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -501,7 +521,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -521,7 +541,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -543,7 +563,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -566,7 +586,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -590,7 +610,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -613,7 +633,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -638,7 +658,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                      params.error(data);
+                      params.error(data,status);
                     }
                 });
     }
@@ -675,7 +695,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -701,7 +721,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -721,7 +741,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 
@@ -752,7 +772,7 @@ this.getPatientMedicalProfile = function(params){
 						}
 					} else {
 						if (typeof params.error != 'undefined') {
-						   params.error(data);
+						   params.error(data,status);
 						}
 					}
                 });
@@ -781,7 +801,7 @@ this.getPatientMedicalProfile = function(params){
 						}
 					} else {
 						if (typeof params.error != 'undefined') {
-						   params.error(data);
+						   params.error(data,status);
 						}
 					}
                 });
@@ -803,7 +823,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -827,7 +847,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -858,7 +878,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                        params.error(data);
+                        params.error(data,status);
                     }
                 });
     }
@@ -881,7 +901,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function(data, status, headers, config) {
                         if(typeof params.error != 'undefined') {
-                               params.error(data);
+                               params.error(data,status);
                         }
                 });
     }
@@ -918,7 +938,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -943,7 +963,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -968,7 +988,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -993,7 +1013,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -1018,7 +1038,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		});
 	}
@@ -1039,7 +1059,7 @@ this.getPatientMedicalProfile = function(params){
             }).
             error(function(data, status, headers, config) {
                     if(typeof params.error != 'undefined') {
-                           params.error(data);
+                           params.error(data,status);
                     }
             });
     }
@@ -1204,7 +1224,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -1225,7 +1245,7 @@ this.getPatientMedicalProfile = function(params){
                 }).
                 error(function (data, status, headers, config) {
                     if (typeof params.error != 'undefined') {
-                       params.error(data);
+                       params.error(data,status);
                     }
                 });
     }
@@ -1245,7 +1265,7 @@ this.getPatientMedicalProfile = function(params){
                   }).
                   error(function (data, status, headers, config) {
                       if (typeof params.error != 'undefined') {
-                         params.error(data);
+                         params.error(data,status);
                       }
                   });
       }
@@ -1274,7 +1294,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			catch(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		})
  }
@@ -1324,7 +1344,7 @@ this.getPatientMedicalProfile = function(params){
 			}).
 			error(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
-					params.error(data);
+					params.error(data,status);
 				}
 		})
  }
@@ -1361,7 +1381,7 @@ this.getPatientMedicalProfile = function(params){
           }).
           error(function (data, status, headers, config) {
               if (typeof params.error != 'undefined') {
-                  params.success(data);
+                  params.success(data,status);
               }
           });
     }

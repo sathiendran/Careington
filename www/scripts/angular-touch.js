@@ -727,4 +727,3 @@ makeSwipeDirective('ngSwipeRight', 1, 'swiperight');
 
 
 })(window, window.angular);
-Status 

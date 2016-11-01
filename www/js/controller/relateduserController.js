@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
-    .controller('relateduserController', function($scope, $ionicPlatform,$ionicModal, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter) {
-          $ionicPlatform.registerBackButtonAction(function(event, $state) {
+    .controller('relateduserController', function($scope, $ionicPlatform, $ionicModal, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, $timeout) {
+        $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||
@@ -66,12 +66,30 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
+        $rootScope.drawImage = function(imagePath, firstName, lastName) {
+            $('.patProfileImage').css({
+                'background-color': $rootScope.brandColor
+            });
+            var Name = getInitialFromName(firstName, lastName);
+            if (Name === 'WW') {
+                Name = 'W';
+            }
+            if (!angular.isUndefined(imagePath) && imagePath !== '') {
+                if (imagePath.indexOf("api") >= 0) {
+                    var image = imagePath;
+                    return "<img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'>";
+                } else {
+                    return $sce.trustAsHtml("<div class='patProfileImage'><span>" + Name + "</sapn></div>");
+                }
+            } else {
+                return $sce.trustAsHtml("<div class='patProfileImage'><span>" + Name + "</sapn></div>");
+            }
+        };
 
-  $rootScope.couserslists = true;
-  $rootScope.dependentuserslist = true;
-    $scope.cousericon = true;
+        $rootScope.couserslists = true;
+        $rootScope.dependentuserslist = true;
+        $scope.cousericon = true;
         $scope.dependenticon = false;
-
         $scope.showarchieve = false;
         $scope.allval = true;
         $scope.userdata = false;
@@ -84,12 +102,8 @@ angular.module('starter.controllers')
         $scope.moredetails = function() {
             $scope.showdetails = false;
             $scope.showarchieve = true;
-          //  $scope.usersearchinfocontent = false;
-          //  $scope.userinfoshow = false;
             $scope.userdone = false;
             $scope.useradd = false;
-            //$scope.userinfosubheader = false;
-          //  $scope.usersearchsubheader = false;
             $scope.usertab = false;
         };
 
@@ -104,8 +118,6 @@ angular.module('starter.controllers')
 
         $scope.archieve = function(P_Id) {
             $scope.newarchieve = true;
-            //  $scope.showdnewetails = false;
-            //  $rootScope.selectedRelatedDependentDetails = [];
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.relatedusers', '');
 
         };
@@ -124,7 +136,6 @@ angular.module('starter.controllers')
                 }
                 $scope.tabview = $scope.tabview === false ? true : false;
             }
-
         };
 
         $scope.moreclickval = function(tabview) {
@@ -146,15 +157,10 @@ angular.module('starter.controllers')
             } else {
                 $scope.tabWithPatientId = tabWithPatientId;
                 $window.localStorage.setItem('patientIDWithTab', $scope.tabWithPatientId);
-                //var myEl = angular.element( document.querySelector( '#authorizeddiv' ));
-                // myEl.removeClass('fadediv');
-                //  $scope.viewunauthorized = $scope.viewunauthorized === false ? true: false;
-
                 $scope.viewunauthorized = true;
                 $scope.authorizedview = false;
             }
         }
-
 
         $scope.addauthorized = function(tabWithPatientId) {
             $scope.tabWithPatientId = tabWithPatientId;
@@ -164,17 +170,17 @@ angular.module('starter.controllers')
         }
         $scope.data = {};
 
-              $scope.$watch('data.searchProvider', function(searchKey) {
-                  $rootScope.providerSearchKey = searchKey;
-                  if (typeof $rootScope.providerSearchKey == 'undefined') {
-                      $scope.data.searchProvider = $rootScope.backProviderSearchKey;
-                  }
-                  if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
-                      $rootScope.iconDisplay = 'none';
-                  } else {
-                      $rootScope.iconDisplay = 'Block';
-                  }
-            });
+        $scope.$watch('data.searchProvider', function(searchKey) {
+            $rootScope.providerSearchKey = searchKey;
+            if (typeof $rootScope.providerSearchKey == 'undefined') {
+                $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+            }
+            if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+                $rootScope.iconDisplay = 'none';
+            } else {
+                $rootScope.iconDisplay = 'Block';
+            }
+        });
         $rootScope.doUpdateDependentsAuthorize = function(relateDependentId, relateDependentRelationCode, relateDependentAuthorize) {
             var params = {
                 accessToken: $rootScope.accessToken,
@@ -187,30 +193,28 @@ angular.module('starter.controllers')
                     $rootScope.doGetAccountDependentDetails();
                 },
                 error: function(data, status) {
-                    if(status == 401) {
-                      $scope.ErrorMessage = "You are not authorized to change authorization status of this dependent";
-                      $scope.$root.$broadcast("callValidation", {
-                          errorMsg: $scope.ErrorMessage
-                      });
-                    }else {
-                      if(data==null){
+                    if (status == 401) {
+                        $scope.ErrorMessage = "You are not authorized to change authorization status of this dependent";
+                        $scope.$root.$broadcast("callValidation", {
+                            errorMsg: $scope.ErrorMessage
+                        });
+                    } else {
+                        if (data == null || status === 0) {
 
-                           $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                           $rootScope.Validation($scope.ErrorMessage);
+                            $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                            $rootScope.Validation($scope.ErrorMessage);
 
-                      }else{
-                        $rootScope.serverErrorMessageValidation();
-                      }
+                        } else {
+                            $rootScope.serverErrorMessageValidation();
+                        }
                     }
                 }
             };
             LoginService.updateDependentsAuthorize(params);
         }
 
-
-
         $scope.showPopup = function(dependentDetails, relateDependentAuthorize) {
-$rootScope.authorised=relateDependentAuthorize;
+            $rootScope.authorised = relateDependentAuthorize;
             if (!angular.isUndefined(dependentDetails.birthdate) && dependentDetails.birthdate !== '') {
                 $scope.dob = " . " + dependentDetails.birthdate;
             } else {
@@ -221,75 +225,47 @@ $rootScope.authorised=relateDependentAuthorize;
             } else {
                 $scope.relationship = '';
             }
-            if($rootScope.authorised == "F")
-            {
-              var myPopup = $ionicPopup.show({
+            var getDrawImage = $rootScope.drawImage(dependentDetails.profileImagePath, dependentDetails.patientFirstName, dependentDetails.patientLastName);
+            if ($rootScope.authorised == "F") {
+                var myPopup = $ionicPopup.show({
 
-                //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
-                 title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
-                  //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
+                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</div> ",
+                    templateUrl: 'templates/popupTemplate.html',
+                    scope: $scope,
+                    buttons: [{
+                        text: '<b class="fonttype">Cancel</b>',
+                        onTap: function(e) {
+                            return false;
+                        }
+                    }, {
+                        text: '<b class="fonttype">Confirm</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            return true;
+                        }
 
-                  templateUrl: 'templates/popupTemplate.html',
-                  scope: $scope,
-                  buttons: [{
-                      text: '<b class="fonttype">Cancel</b>',
-                      onTap: function(e) {
-                          return false;
-                      }
-                  }, {
-                      text: '<b class="fonttype">Confirm</b>',
-                      type: 'button-positive',
-                      onTap: function(e) {
-                              return true;
-                          }
-                          /*onTap: function(e) {
-                            if (!$scope.Confirm) {
-                                 $scope.authorizedview=false;
-                                  myPopup.close();
-                              //don't allow the user to close unless he enters wifi password
-                              e.preventDefault();
-                            } else {
+                    }, ]
+                });
+            } else {
+                var myPopup = $ionicPopup.show({
 
-                            }
-                          }*/
-                  }, ]
-              });
-            }
+                    title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</div> ",
+                    templateUrl: 'templates/unauthorizedpopup.html',
+                    scope: $scope,
+                    buttons: [{
+                        text: '<b class="fonttype">Cancel</b>',
+                        onTap: function(e) {
+                            return false;
+                        }
+                    }, {
+                        text: '<b class="fonttype">Confirm</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            return true;
+                        }
 
-            else{
-            var myPopup = $ionicPopup.show({
-
-                //  title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span> <span class='sname'>" + relateDependentAuthorize + "</span> </span></a> ",
-                 title: "<a class='item-avatar popupaligned'>  <img src='" + dependentDetails.profileImagePath + "'><span><span class='popupname popupalign'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname ellipsis'>" + dependentDetails.patientLastName + "</span> </span></a> ",
-                  subTitle: "<p class=' popupfont '>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</p>",
-                  //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
-
-                  templateUrl: 'templates/unauthorizedpopup.html',
-                  scope: $scope,
-                  buttons: [{
-                      text: '<b class="fonttype">Cancel</b>',
-                      onTap: function(e) {
-                          return false;
-                      }
-                  }, {
-                      text: '<b class="fonttype">Confirm</b>',
-                      type: 'button-positive',
-                      onTap: function(e) {
-                              return true;
-                          }
-                          /*onTap: function(e) {
-                            if (!$scope.Confirm) {
-                                 $scope.authorizedview=false;
-                                  myPopup.close();
-                              //don't allow the user to close unless he enters wifi password
-                              e.preventDefault();
-                            } else {
-
-                            }
-                          }*/
-                  }, ]
-              });
+                    }, ]
+                });
 
             }
 
@@ -302,18 +278,18 @@ $rootScope.authorised=relateDependentAuthorize;
 
             });
 
-            $scope.closepopup=function(){
-                 myPopup.close();
+            $scope.closepopup = function() {
+                myPopup.close();
 
             }
         };
 
         $scope.userslist = function() {
-          $scope.couserslists = true;
-          $scope.dependentuserslist = true;
-          $scope.cousericon = true;
-          $scope.dependenticon = false;
-          //  $rootScope.doGetListOfCoUsers();
+            $scope.couserslists = true;
+            $scope.dependentuserslist = true;
+            $scope.cousericon = true;
+            $scope.dependenticon = false;
+            //  $rootScope.doGetListOfCoUsers();
             var myEl = angular.element(document.querySelector('#users'));
             myEl.addClass('btcolor');
             myEl.removeClass('btnextcolor');
@@ -335,78 +311,71 @@ $rootScope.authorised=relateDependentAuthorize;
                     //$scope.listOfCoUser = JSON.stringify(data, null, 2);
                     $rootScope.listOfCoUserDetails = [];
                     angular.forEach(data.data, function(index, item) {
-                      if(index.patientId !== $rootScope.primaryPatientId) {
-                          var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
-                              codeId: index.relationCodeId
-                          })
-                          if (getCoUserRelationShip.length !== 0) {
-                              var relationShip = getCoUserRelationShip[0].text;
-                          } else {
-                              var relationShip = '';
-                          }
-                          var dob = ageFilter.getDateFilter(index.dob);
-                          if (index.gender == 'M') {
-                              var gender = "Male";
-                          } else if (index.gender == 'F') {
-                              var gender = "Female";
-                          }
-                          if(index.imagePath){
-                              $scope.coUserImagePath = index.imagePath;
-                          }else{
-                              var coName = index.name + " " + index.lastname; //alert(coName);
-                              $scope.coUserName = getInitialForName(coName);
-                              $scope.coUserImagePath = generateTextImage($scope.coUserName, $rootScope.brandColor);
-                          }
+                        if (index.patientId !== $rootScope.primaryPatientId) {
+                            var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                                codeId: index.relationCodeId
+                            })
+                            if (getCoUserRelationShip.length !== 0) {
+                                var relationShip = getCoUserRelationShip[0].text;
+                            } else {
+                                var relationShip = '';
+                            }
+                            var dob = ageFilter.getDateFilter(index.dob);
+                            if (index.gender == 'M') {
+                                var gender = "Male";
+                            } else if (index.gender == 'F') {
+                                var gender = "Female";
+                            }
+                            //  if(index.imagePath){
+                            $scope.coUserImagePath = index.imagePath;
 
-                          $rootScope.listOfCoUserDetails.push({
-                              'address': index.address,
-                              'bloodType': index.bloodType,
-                              'description': index.description,
-                              'dob': dob,
-                              'emailId': index.emailId,
-                              'ethnicity': index.ethnicity,
-                              'eyeColor': index.eyeColor,
-                              'gender': gender,
-                              'hairColor': index.hairColor,
-                              'height': index.height,
-                              'heightUnit': index.heightUnit,
-                              'homePhone': index.homePhone,
-                              'imagePath': $scope.coUserImagePath,
-                              'lastname': index.lastname,
-                              'mobilePhone': index.mobilePhone,
-                              'name': index.name,
-                              'patientId': index.patientId,
-                              'personId': index.personId,
-                              'relationship': relationShip,
-                              'relationCodeId': index.relationCodeId,
-                              'roleId': index.roleId,
-                              'userId': index.userId,
-                              'weight': index.weight,
-                              'weightUnit': index.weightUnit
-                          });
-                      }
+                            $rootScope.listOfCoUserDetails.push({
+                                'address': index.address,
+                                'bloodType': index.bloodType,
+                                'description': index.description,
+                                'dob': dob,
+                                'emailId': index.emailId,
+                                'ethnicity': index.ethnicity,
+                                'eyeColor': index.eyeColor,
+                                'gender': gender,
+                                'hairColor': index.hairColor,
+                                'height': index.height,
+                                'heightUnit': index.heightUnit,
+                                'homePhone': index.homePhone,
+                                'imagePath': $scope.coUserImagePath,
+                                'lastname': index.lastname,
+                                'mobilePhone': index.mobilePhone,
+                                'name': index.name,
+                                'patientId': index.patientId,
+                                'personId': index.personId,
+                                'relationship': relationShip,
+                                'relationCodeId': index.relationCodeId,
+                                'roleId': index.roleId,
+                                'userId': index.userId,
+                                'weight': index.weight,
+                                'weightUnit': index.weightUnit
+                            });
+                        }
                     });
-
                 },
                 error: function(data) {
-                  if(data =='null' ){
-               $scope.ErrorMessage = "Internet connection not available, Try again later!";
-               $rootScope.Validation($scope.ErrorMessage);
-             }else{
-                 $rootScope.serverErrorMessageValidation();
-             }
+                    if (data == 'null') {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else {
+                        $rootScope.serverErrorMessageValidation();
+                    }
                 }
             };
             LoginService.getListOfCoUsers(params);
 
         };
 
-
         $scope.dependentslist = function() {
-          $scope.couserslists = false;
-          $scope.dependentuserslist = false;
-          $scope.cousericon = false;
-          $scope.dependenticon = true;
+            $scope.couserslists = false;
+            $scope.dependentuserslist = false;
+            $scope.cousericon = false;
+            $scope.dependenticon = true;
             $scope.tabWithPatientId = '';
             $window.localStorage.setItem('patientIDWithTab', '');
             var myEl = angular.element(document.querySelector('#dependents'));
@@ -432,7 +401,7 @@ $rootScope.authorised=relateDependentAuthorize;
                 success: function(data) {
                     $rootScope.listOfAccountDependents = [];
                     angular.forEach(data.data, function(index, item) {
-                var getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                        var getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                             codeId: index.relationCode
                         })
                         if (getRelationShip.length !== 0) {
@@ -445,26 +414,19 @@ $rootScope.authorised=relateDependentAuthorize;
                         } else if (index.gender == 'F') {
                             var gender = "Female";
                         }
-                        if(index.profileImagePath){
-                            $scope.iDependentPatientPhoto = index.profileImagePath;
-                        }else{
-                            $scope.iDependentPatientInitial = getInitialForName(index.patientName);
-                            $scope.iDependentPatientPhoto = generateTextImage($scope.iDependentPatientInitial, $rootScope.brandColor);
-                        }
-                        $rootScope.spdate=index.birthdate;
-                        $rootScope.patage=new Date($rootScope.spdate);
+
+                        $scope.iDependentPatientPhoto = index.profileImagePath;
+                        $rootScope.spdate = index.birthdate;
+                        $rootScope.patage = new Date($rootScope.spdate);
                         $rootScope.listOfAccountDependents.push({
                             'addresses': index.addresses,
                             'profileImagePath': $scope.iDependentPatientPhoto,
                             'birthdate': ageFilter.getDateFilter(index.birthdate),
-                            'PatientAge':$rootScope.patage,
+                            'PatientAge': $rootScope.patage,
                             'bloodType': index.bloodType,
                             'ethnicity': index.ethnicity,
                             'eyeColor': index.eyeColor,
                             'gender': gender,
-                            //'guardianFirstName': index.guardianFirstName,
-                            //'guardianLastName': index.guardianLastName,
-                          //  'guardianName': index.guardianName,
                             'hairColor': index.hairColor,
                             'height': index.height,
                             'heightUnit': index.heightUnit,
@@ -485,18 +447,17 @@ $rootScope.authorised=relateDependentAuthorize;
                     });
                 },
                 error: function(data) {
-                  if(data =='null' ){
-               $scope.ErrorMessage = "Internet connection not available, Try again later!";
-               $rootScope.Validation($scope.ErrorMessage);
-             }else{
-                 $rootScope.serverErrorMessageValidation();
-             }
+                    if (data == 'null') {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
+                    } else {
+                        $rootScope.serverErrorMessageValidation();
+                    }
                 }
             };
             LoginService.getAccountDependentDetails(params);
         }
         $rootScope.doGetOrgLoclist = function() {
-
             if ($rootScope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -522,38 +483,35 @@ $rootScope.authorised=relateDependentAuthorize;
                 }
             };
             LoginService.getListOfLocationOrganization(params);
-
         }
         $rootScope.adddependent = function() {
             $rootScope.doGetOrgLoclist();
             $rootScope.newDependentImagePath = '';
             $('select').prop('selectedIndex', 0);
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addnewdependent');
         }
         $rootScope.addcouser = function() {
             $rootScope.newCoUserImagePath = '';
             $rootScope.doGetOrgLoclist();
             $('select').prop('selectedIndex', 0);
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+           $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $state.go('tab.addUser');
-  }
-  var currentLocation = window.location;
-  var loc=currentLocation.href;
-  var newloc=loc.split("#");
-  var locat=newloc[1];
-  var sploc=locat.split("/");
-  var cutlocations=sploc[1] +"."+sploc[2];
-        $scope.gpToAppointments = function(getDependentDetails) {
-          $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
-          //  $state.go('tab.appointmentpatientdetails');
         }
+        var currentLocation = window.location;
+        var loc = currentLocation.href;
+        var newloc = loc.split("#");
+        var locat = newloc[1];
+        var sploc = locat.split("/");
+        var cutlocations = sploc[1] + "." + sploc[2];
+        $scope.gpToAppointments = function(getDependentDetails) {
+            $rootScope.GoToPatientDetails(cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.appointmentpatientdetails');
+          }
         $scope.goToConsultations = function(getDependentDetails) {
-          $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
-          //  $state.go('tab.consultations');
+            $rootScope.GoToPatientDetails(cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
         }
 
         $scope.seeaPatientConcerns = function(getDependentDetails) {
-
             $rootScope.PatientPrimaryConcernItem;
             $rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
             $rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
@@ -561,7 +519,6 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.primaryConcernList = "";
             $rootScope.secondaryConcernList = "";
             $scope.PatientPrimaryConcernItem = "";
-
             $rootScope.PatientSecondaryConcern = "";
             $rootScope.PatientChronicCondition = "";
             $rootScope.patinentCurrentMedication = "";
@@ -580,43 +537,35 @@ $rootScope.authorised=relateDependentAuthorize;
             $rootScope.PriorSurgeryValidCount = "";
             $rootScope.AllegiesCountValid = "";
             $rootScope.MedicationCountValid = "";
-
-          if($rootScope.onDemandAvailability > 0) {
-           $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
-
-              //  $rootScope.GoToConcerns(getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
-          //  console.log(getDependentDetails);
-          //  $rootScope.doGetSelectedPatientProfiles(patientId,'tab.patientConcerns','seeADoc');
-          } else {
-            $scope.ErrorMessage = "Physician or On demand unavailable. Please try again later!";
-            $rootScope.Validation($scope.ErrorMessage);
-          }
+            if ($rootScope.onDemandAvailability > 0) {
+                $rootScope.GoToPatientDetails(cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+            } else {
+                $scope.ErrorMessage = "Provider or On demand unavailable. Please try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+            }
         }
         $rootScope.patientprofile = function(getDependentDetails) {
-          /*  $rootScope.currentPatientDetails[0] = currentPatientDetails;
 
-            if ($rootScope.currentPatientDetails[0].gender == 'M' || $rootScope.currentPatientDetails[0].gender == 'Male') {
-                $rootScope.userGender = "Male";
-                $rootScope.isCheckedMale = true;
-            } else if ($rootScope.currentPatientDetails[0].gender == 'F' || $rootScope.currentPatientDetails[0].gender == 'FeMale') {
-                $rootScope.userGender = "FeMale";
-                $rootScope.isCheckedFeMale = true;
-            }*/
-          //  $rootScope.doGetSelectedPatientProfiles(currentPatientDetails.patientId,'tab.healthinfo', '')
-            $rootScope.GoToPatientDetails(cutlocations,getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
+            $rootScope.GoToPatientDetails(cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
+            var primarypatid = $rootScope.primaryPatientId;
+            var patid = getDependentDetails.patientId
             $rootScope.passededconsultants();
-           $rootScope.restage = getAge(getDependentDetails.PatientAge);
+            $rootScope.restage = getAge(getDependentDetails.PatientAge);
             if ($rootScope.restage >= 12) {
                 $rootScope.viewemailDisplay = 'flex';
-                $rootScope.viewtimezoneDisplay='flex';
+                $rootScope.viewtimezoneDisplay = 'flex';
             } else {
                 $rootScope.viewemailDisplay = 'none';
-                $rootScope.viewtimezoneDisplay='none';
-
+                $rootScope.viewtimezoneDisplay = 'none';
             }
-
+            if (primarypatid == patid) {
+                $rootScope.viewmyhealthDisplay = 'block';
+                $rootScope.viewhealthDisplay = 'none';
+            } else {
+                $rootScope.viewmyhealthDisplay = 'none';
+                $rootScope.viewhealthDisplay = 'block';
+            }
             $state.go('tab.healthinfo');
-
         }
 
         /* Relationship Search */
@@ -643,69 +592,52 @@ $rootScope.authorised=relateDependentAuthorize;
             }
         }
 
-
         $scope.selectrelation = function(selPatient) {
-            $scope.data.searchProvider='';
+            $scope.data.searchProvider = '';
             $rootScope.relationUpdatePatientId = selPatient.patientId;
             $rootScope.relationUpdateAuthStatus = selPatient.isAuthorized;
             $rootScope.relationUpdateRelationId = selPatient.relationship;
             $scope.clearSelectionAndRebindSelectionList($rootScope.relationUpdateRelationId, $rootScope.listOfRelationship[0].codes);
-    //        $scope.useradd = true;
-      //      $scope.userdone = true;
-          //  $scope.userinfoshow = true;
             $scope.usertab = true;
-            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
-                  $ionicModal.fromTemplateUrl('templates/tab-relationSearch.html', {
-                      scope: $scope,
-                      animation: 'slide-in-up',
-                      focusFirstInput: false,
-                      backdropClickToClose: false
-                  }).then(function(modal) {
-                      $scope.modal = modal;
-                      $scope.modal.show();
-
-                  });
-
+          //  $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+            $ionicModal.fromTemplateUrl('templates/tab-relationSearch.html', {
+                scope: $scope,
+                animation: 'slide-in-up',
+                focusFirstInput: false,
+                backdropClickToClose: false
+            }).then(function(modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+                $timeout(function() {
+                    $scope.modal.remove()
+                        .then(function() {
+                            $scope.modal = null;
+                        });
+                }, 600000);
+            });
         }
-
         $scope.usersearchdone = function() {
             $scope.modal.hide();
-          //  $scope.useradd = false;
-          //  $scope.userdone = false;
-          //  $scope.userinfosubheader = false;
-          //  $scope.usersearchsubheader = false;
-            //$scope.userinfoshow = false;
-        //    $scope.usersearchinfocontent = false;
-          //  $scope.usertab = false;
         }
         $scope.removemodal = function() {
             $scope.usersearchdone();
-};
+        };
         $scope.OnSelectRelation = function(newRelatioCodeId) {
-            if (newRelatioCodeId.checked === true ) {
+            if (newRelatioCodeId.checked === true) {
                 $rootScope.relationShipChecked++;
                 console.log($rootScope.newRelatioCodeId);
             } else {
                 $rootScope.relationShipChecked--;
-                   newRelatioCodeId.checked === false;
+                newRelatioCodeId.checked === false;
             }
-            if($rootScope.relationUpdateAuthStatus){
+            if ($rootScope.relationUpdateAuthStatus) {
                 relationUpdateAuthStatusVal = 'Y';
-            }else{
-                relationUpdateAuthStatusVal = 'N';
-            }
-          $rootScope.doUpdateDependentsAuthorize($rootScope.relationUpdatePatientId, newRelatioCodeId, relationUpdateAuthStatusVal);
-          $scope.usersearchdone();
-}
-        /*$rootScope.setNewRelation = function(newRelatioCodeId){
-            if($rootScope.relationUpdateAuthStatus){
-                relationUpdateAuthStatusVal = 'Y';
-            }else{
+            } else {
                 relationUpdateAuthStatusVal = 'N';
             }
             $rootScope.doUpdateDependentsAuthorize($rootScope.relationUpdatePatientId, newRelatioCodeId, relationUpdateAuthStatusVal);
             $scope.usersearchdone();
-        }*/
+        }
 
         $rootScope.coUserArchieve = function(coUserDetails) {
             if (!angular.isUndefined(coUserDetails.dob) && coUserDetails.dob !== '') {
@@ -745,8 +677,8 @@ $rootScope.authorised=relateDependentAuthorize;
                     $scope.allval = false;
                 }
             });
-            $scope.closepopup=function(){
-                 myPopup.close();
+            $scope.closepopup = function() {
+                myPopup.close();
 
             }
         }
@@ -762,9 +694,10 @@ $rootScope.authorised=relateDependentAuthorize;
             } else {
                 $scope.relationship = '';
             }
+            var getDrawImage = $rootScope.drawImage(coUserDetails.imagePath, coUserDetails.name, coUserDetails.lastname);
             var confirmPopup = $ionicPopup.confirm({
-                title: "<a class='item-avatar'>  <img src='" + coUserDetails.imagePath + "'><span><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></span></a> ",
-                subTitle: "<p class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</p>",
+                title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + coUserDetails.name + "</b></span> <span class='sname'>" + coUserDetails.lastname + "</span></div> <div class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</div> ",
+                //subTitle: "<div class='fontcolor'>" + coUserDetails.gender + $scope.dob + $scope.relationship + "</div>",
                 //   template:'<div class="modal-header"><h3 class="modal-title">Confirm</h3></div><div class="modal-body">{{data.text}}</div><div class="modal-footer"><button class="btn btn-primary" ng-click="ok()">OK</button><button class="btn btn-warning" ng-click="cancel()">Cancel</button></div>',
                 templateUrl: 'templates/coUserTemplate.html',
                 buttons: [{
@@ -790,19 +723,18 @@ $rootScope.authorised=relateDependentAuthorize;
             });
         }
 
-        $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem){
+        $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
             angular.forEach(mainListItem, function(item, key2) {
-                   item.checked = false;
-               });
-            if(!angular.isUndefined(selectedListItem)){
-              angular.forEach(mainListItem, function(value, key){
-                     if(value.text ==selectedListItem){
-                         value.checked = true;
-                         $scope.checkedrelation = value.text;
-                     }
-
-    })
-           }
+                item.checked = false;
+            });
+            if (!angular.isUndefined(selectedListItem)) {
+                angular.forEach(mainListItem, function(value, key) {
+                    if (value.text == selectedListItem) {
+                        value.checked = true;
+                        $scope.checkedrelation = value.text;
+                    }
+                })
+            }
         };
 
     });

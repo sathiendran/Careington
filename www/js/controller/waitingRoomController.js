@@ -1,8 +1,10 @@
 angular.module('starter.controllers')
 
-.controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList) {
+.controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList,$ionicBackdrop) {
     window.plugins.insomnia.keepAwake();
     $rootScope.currState = $state;
+    window.localStorage.setItem('videoCallPtImage', $rootScope.PatientImageSelectUser);
+    window.localStorage.setItem('videoCallPtFullName', $rootScope.PatientFirstName + " " + $rootScope.PatientLastName);
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -43,10 +45,22 @@ angular.module('starter.controllers')
     }, 100);
     $scope.$storage = $window.localStorage;
 
-    $scope.ClearRootScope = function() {
-        $rootScope = $rootScope.$new(true);
-        $scope = $scope.$new(true);
-      
+    $rootScope.ClearRootScope = function() {
+
+      $(".ion-google-place-container").css({
+          "display": "none"
+      });
+      $ionicBackdrop.release();
+      $window.localStorage.setItem('tokenExpireTime', '');
+      $rootScope = $rootScope.$new(true);
+      $scope = $scope.$new(true);
+      for (var prop in $rootScope) {
+          if (prop.substring(0,1) !== '$') {
+              delete $rootScope[prop];
+          }
+      }
+
+
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
@@ -87,7 +101,7 @@ angular.module('starter.controllers')
      };
     */
 
-    $scope.waitingMsg = "The Clinician will be with you Shortly.";
+    $scope.waitingMsg = "The Provider will be with you Shortly.";
     var initWaitingRoomHub = function() {
         var connection = $.hubConnection();
         var conHub = connection.createHubProxy('consultationHub');
@@ -103,7 +117,7 @@ angular.module('starter.controllers')
             "isMobile": true
         };
         conHub.on("onConsultationReview", function() {
-            $scope.waitingMsg = "The clinician is now reviewing the intake form.";
+            $scope.waitingMsg = "The Provider is now reviewing the intake form.";
             /*
             cordova.plugins.notification.local.schedule([
             	{
@@ -117,10 +131,20 @@ angular.module('starter.controllers')
             $scope.$digest();
         });
         conHub.on("onCustomerDefaultWaitingInformation", function() {
+            if(typeof appIdleInterval != "undefined")
+                clearInterval(appIdleInterval);
+            appIdleInterval = undefined;
+            appIdleInterval = 0;
+             window.localStorage.setItem("isCustomerInWaitingRoom", "Yes");
+             window.localStorage.setItem('accessToken', $rootScope.accessToken);
+             window.localStorage.setItem("waitingRoomConsultationId", +$rootScope.consultationId);
             $scope.waitingMsg = "Please Wait....";
             $scope.$digest();
         });
         conHub.on("onConsultationStarted", function() {
+             window.localStorage.setItem("isCustomerInWaitingRoom", "No");
+             if(typeof alive_waiting_room_pool !== 'undefined')
+                 clearInterval(alive_waiting_room_pool);
             $scope.waitingMsg = "Please wait...";
             /*
 			   cordova.plugins.notification.local.schedule([
@@ -141,7 +165,7 @@ angular.module('starter.controllers')
         connection.start({
             withCredentials: false
         }).then(function() {
-            $scope.waitingMsg = "The Clinician will be with you Shortly.";
+            $scope.waitingMsg = "The Provider will be with you Shortly.";
             $scope.$digest();
         });
     };
@@ -156,12 +180,15 @@ angular.module('starter.controllers')
                 $rootScope.videoApiKey = data.apiKey;
                 $rootScope.videoToken = data.token;
                 if ($rootScope.videoSessionId !== "" && $rootScope.videoToken !== "") {
+                     if(typeof alive_waiting_room_pool !== 'undefined')
+                         clearInterval(alive_waiting_room_pool);
+                     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
                     $state.go('tab.videoConference');
                 }
 
             },
-            error: function(data) {
-              if(data==null){
+            error: function(data,status) {
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);

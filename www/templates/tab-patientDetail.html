@@ -16,9 +16,10 @@
 
 <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patientsubHeaderInnerStyle}}">
 	<div class="calendar_subHeader subheaderTitle"  >
-				<div class="subHeader_image" >
+				<!--<div class="subHeader_image" >
 					<img src="{{PatientImageSelectUser}}" class="listImgView" />
-				</div>
+				</div>-->
+        <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
 				<div class="subHeader_content-{{deviceName}} ellipsis" >
 
 				<!--	<div style="font-size: 18px;"><span style="font-weight: bold;"  class="PatintHeaderFontStyle">{{patientInfomation.patientName}}</span> <span style="font-weight: normal;" class="PatintHeaderFontStyleInner">{{patientInfomation.lastName}}</span></div>
@@ -64,12 +65,12 @@
 		<div ng-if="onDemandMode == 'on' && onDemandAvailability > 0" class="PatientNextAvailable" style="border: 1px #EFEFED solid;margin-bottom: -14px;margin-top: 16px; background-color:#EFEFED; padding:30px;border-radius: 7px;">
 				 <h4 style="text-align: center;margin-top: -14px;color:#616462;font-size:19px;" class="PatientDetailsYor"><b>Walk-in Visit</b></h4>
 				<button type="submit" ng-click="doGetCodesSet(PatientImageSelectUser,PatientFirstName,PatientLastName,PatientAge,PatientGuardian,patientId)" class="button button-block button-balanced" style="padding: 3px;top: -3px;" >
-				  <span>See Next Clinician</span>
+				  <span>See Next Provider</span>
 				</button>
 				<!--</a>-->
 			<div class="scheduled_appointments_text" style="margin-bottom: -27px;margin-top: 10px;">
 				Don't have an appointment? <br/>
-				See the next available clinician.
+				See the next available provider.
 			</div>
 		</div>
 	</ion-content>

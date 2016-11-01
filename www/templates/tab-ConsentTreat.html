@@ -20,9 +20,10 @@
 			<div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
 
 				<div class="calendar_subHeader" >
-					<div class="subHeader_image" >
+					<!--<div class="subHeader_image" >
 						<img src="{{PatientImageSelectUser}}"  class="listImgView"  />
-					</div>
+					</div>-->
+					<div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
 					<div class="subHeader_content-{{deviceName}} ellipsis" >
 						<div class="ellipsis subHeader_content_name" >
 							<span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
@@ -55,7 +56,7 @@
 
 <div class="ConsentMessageFirst" >
 <p  class="PragraphContent"> <b>
- I, {{PatientFirstName}} {{PatientLastName}} or guardian,give/s permission to <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> to perform the medical service that the physician and other non-physician providers and assistants may deem to be necessary. In addition, I, or guardian authorize/s <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> to release any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.
+ I, {{PatientFirstName}} {{PatientLastName}} or guardian,give/s permission to <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> to perform the medical service that the provider and other non-providers and assistants may deem to be necessary. In addition, I, or guardian authorize/s <b style="font-family: Glober xBold; {{ConstantTreat}}" class="ConstanttreetFont">{{clientName}}</b> to release any information obtained during the course of my examination and/or treatment to my health care insurer or other payer.
 </b></p>
 </div>
 

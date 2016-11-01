@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('consultationController', function($scope,$sanitize,$ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue, $ionicModal) {
+    .controller('consultationController', function($scope, $sanitize, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue, $ionicModal) {
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
@@ -57,24 +57,25 @@ angular.module('starter.controllers')
             //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
             //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
         $scope.toggleLeft = function() {
-          $rootScope.statename=$rootScope.currState.$current.name;
+            $rootScope.statename = $rootScope.currState.$current.name;
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
             if (checkAndChangeMenuIcon) {
                 $interval.cancel(checkAndChangeMenuIcon);
             }
             if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
-             if($rootScope.statename="tab.consultations"){
-               $('.sidehomeconsult').addClass("uhome");
-             }
+                if ($rootScope.statename = "tab.consultations") {
+                    $('.sidehomeconsult').addClass("uhome");
+                }
             }
-          
+
             if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle") {
                 checkAndChangeMenuIcon = $interval(function() {
                     $rootScope.checkAndChangeMenuIcon();
                 }, 300);
             }
         };
+
         $scope.pastshow = true;
         $scope.missedshow = false;
         $scope.droppedshow = false;
@@ -101,8 +102,6 @@ angular.module('starter.controllers')
         }
 
         $rootScope.missedconsult = function() {
-
-
             var now = new Date();
             var duedate = new Date(now);
             var stdate = duedate.setDate(now.getDate() - 365);
@@ -195,7 +194,6 @@ angular.module('starter.controllers')
                                 var photo = _.pick(patimg, 'photoUrl');
                                 var patphoto1 = _.values(photo);
                                 var patphoto = patphoto1.join();
-                                //item.intakeMetadata.concerns[0].customCode.description
                                 var intakeMetadata = item.intakeMetadata.concerns;
                                 var patientSecondConcern = _.where(intakeMetadata, {
                                     isPrimary: false
@@ -203,17 +201,13 @@ angular.module('starter.controllers')
 
                                 if (patientSecondConcern.length > 0) {
                                     var secConcern = patientSecondConcern[0].customCode.description;
-                                }else {
+                                } else {
                                     var secConcern = 'NA';
                                 }
-
-
                                 if (drdata.length > 0) {
                                     var drlist = drdata[0].person.name;
                                     var nlist = _.pick(drlist, 'given', 'family');
                                     var docname = _.values(nlist);
-                                    //var docname = drname.join();
-
                                     var missedDocName = docname[0] + " " + docname[1];
 
                                 } else {
@@ -224,15 +218,13 @@ angular.module('starter.controllers')
                                     var patList = patientdata[0].person.name;
                                     var patListGiven = _.pick(patList, 'given', 'family');
                                     var patName = _.values(patListGiven);
-                                  //  var patName = patListGivenArr.join();
-
                                     var missedPatName = patName[0] + " " + patName[1];
 
                                 } else {
                                     var missedPatName = "";
                                 }
-                                if(item.intakeMetadata.additionalNotes !== '') {
-                                  var additionalNotes = item.intakeMetadata.additionalNotes;
+                                if (item.intakeMetadata.additionalNotes !== '') {
+                                    var additionalNotes = item.intakeMetadata.additionalNotes;
                                 } else {
                                     var additionalNotes = 'NA';
                                 }
@@ -248,7 +240,7 @@ angular.module('starter.controllers')
                                     'consultationId': consultationId,
                                     'startTime': item.startTime,
                                     'additionalNotes': additionalNotes,
-                                    'clinicianId':item.clinicianId,
+                                    'clinicianId': item.clinicianId,
                                     'appointmentId': item.appointmentId,
                                     'priConcern': item.intakeMetadata.concerns[0].customCode.description,
                                     'secConcern': secConcern
@@ -292,9 +284,7 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $rootScope.Droppedconsultations = [];
                     angular.forEach(data.data, function(index, item) {
-                    /*  var startTimeISOString = index.consultationTimeInfo;
-                      var startTime = new Date(startTimeISOString);
-                      var consultDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));*/
+
                         $rootScope.Droppedconsultations.push({
                             'appointmentId': index.appointmentId,
                             'assignedDoctorFirstName': index.assignedDoctorFirstName,
@@ -317,7 +307,6 @@ angular.module('starter.controllers')
                             'waitingConsultation': index.waitingConsultation
                         });
                     });
-
 
                 },
                 error: function(data) {
@@ -347,10 +336,10 @@ angular.module('starter.controllers')
 
 
 
-        $rootScope.doGetExistingConsulatationReport = function(consultation,nextPage) {
-          $rootScope.consultationDate = '';
-          $rootScope.addNotes  = '';
-          $rootScope.existingConsultationReport='';
+        $rootScope.doGetExistingConsulatationReport = function(consultation, nextPage) {
+            $rootScope.consultationDate = '';
+            $rootScope.addNotes = '';
+            $rootScope.existingConsultationReport = '';
             if ($scope.accessToken == 'No Token') {
                 alert('No token.  Get token first then attempt operation.');
                 return;
@@ -362,13 +351,13 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $rootScope.attachmentLength = '';
                     $rootScope.existingConsultationReport = data.data[0].details[0];
-                    $rootScope.existconsultationparticipants=data.data[0].participants;
+                    $rootScope.existconsultationparticipants = data.data[0].participants;
                     if ($rootScope.existingConsultationReport.height != '' && typeof $rootScope.existingConsultationReport.height != 'undefined') {
-                      if ($rootScope.existingConsultationReport.heightUnit != '' && typeof $rootScope.existingConsultationReport.heightUnit != 'undefined') {
-                        $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
-                      } else {
-                        $rootScope.reportHeight = $rootScope.existingConsultationReport.height;
-                      }
+                        if ($rootScope.existingConsultationReport.heightUnit != '' && typeof $rootScope.existingConsultationReport.heightUnit != 'undefined') {
+                            $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
+                        } else {
+                            $rootScope.reportHeight = $rootScope.existingConsultationReport.height;
+                        }
                     } else {
                         $rootScope.reportHeight = 'NA';
                     }
@@ -393,7 +382,7 @@ angular.module('starter.controllers')
                     }
 
                     if (!angular.isUndefined($rootScope.existingConsultationReport.organization)) {
-                        $rootScope.organization =$rootScope.existingConsultationReport.organization;
+                        $rootScope.organization = $rootScope.existingConsultationReport.organization;
                     } else {
                         $rootScope.organization = 'N/A';
                     }
@@ -424,14 +413,14 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.doctorLastName != '' && typeof $rootScope.existingConsultationReport.doctorLastName != 'undefined') {
                         $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
                     } else {
-                      //  $rootScope.reportDoctorLastName = 'NA';
+                        //  $rootScope.reportDoctorLastName = 'NA';
                     }
 
                     if ($rootScope.existingConsultationReport.gender != '' && typeof $rootScope.existingConsultationReport.gender != 'undefined') {
-                        if($rootScope.existingConsultationReport.gender === 'M') {
-                          $rootScope.doctorGender = "Male";
+                        if ($rootScope.existingConsultationReport.gender === 'M') {
+                            $rootScope.doctorGender = "Male";
                         } else {
-                          $rootScope.doctorGender = "Female";
+                            $rootScope.doctorGender = "Female";
                         }
                     } else {
                         $rootScope.doctorGender = 'None Reported';
@@ -599,16 +588,16 @@ angular.module('starter.controllers')
 
                     $rootScope.AttendeeList = [];
                     angular.forEach($rootScope.existconsultationparticipants, function(index, item) {
-                      var atname=index.person.name.given;
-                      if(atname!=''){
-                        $rootScope.AttendeeList.push({
-                            'Number': item + 1,
-                            'attedeename': index.person.name.given,
-                            'consultstart':index.period.start,
-                            'consultend':index.period.end,
+                        var atname = index.person.name.given;
+                        if (atname != '') {
+                            $rootScope.AttendeeList.push({
+                                'Number': item + 1,
+                                'attedeename': index.person.name.given,
+                                'consultstart': index.period.start,
+                                'consultend': index.period.end,
 
-                        });
-                      }
+                            });
+                        }
 
                     });
 
@@ -637,15 +626,7 @@ angular.module('starter.controllers')
                     $scope.getSoapNotes(consultation);
                     $scope.doGetAttachmentList(consultation.consultationId);
                     $scope.doGetChatTranscript(consultation.consultationId);
-                  /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
-                        scope: $scope,
-                        animation: 'slide-in-up',
-                        focusFirstInput: false,
-                        backdropClickToClose: false
-                    }).then(function(modal) {
-                        $scope.modal = modal;
-                        $scope.modal.show();
-                    });*/
+
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();
@@ -677,20 +658,8 @@ angular.module('starter.controllers')
 
                     });
 
-
-
                     $rootScope.attachmentLength = $rootScope.getAttachmentList.length;
 
-                  /*  $ionicModal.fromTemplateUrl('templates/tab-reports.html', {
-                        scope: $scope,
-                        animation: 'slide-in-up',
-                        focusFirstInput: false,
-                        backdropClickToClose: false
-                    }).then(function(modal) {
-                        $rootScope.reportModal = modal;
-                        $rootScope.reportModal.show();
-
-                    });*/
                 },
                 error: function(data) {
                     $rootScope.serverErrorMessageValidation();
@@ -698,36 +667,36 @@ angular.module('starter.controllers')
             };
             LoginService.getAttachmentList(params);
         }
-         $scope.doGetChatTranscript = function(consultationId) {
-           if ($rootScope.accessToken == 'No Token') {
-               alert('No token.  Get token first then attempt operation.');
-               return;
-           }
-           var params = {
-               consultationId: consultationId,
-               accessToken: $rootScope.accessToken,
-               success: function(data) {
+        $scope.doGetChatTranscript = function(consultationId) {
+            if ($rootScope.accessToken == 'No Token') {
+                alert('No token.  Get token first then attempt operation.');
+                return;
+            }
+            var params = {
+                consultationId: consultationId,
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
 
-                 $rootScope.chatTranscript = [];
-                 if(data.count !== 0) {
-                   angular.forEach(data.data, function(index, item) {
-                     $scope.charval=$('<textarea />').html(index).text();
-                $rootScope.chatTranscript.push({
-                         'ChatMessage': $scope.charval
-                       });
-                   });
-                 }
-  },
-               error: function(data) {
-                   $rootScope.serverErrorMessageValidation();
-               }
-           };
+                    $rootScope.chatTranscript = [];
+                    if (data.count !== 0) {
+                        angular.forEach(data.data, function(index, item) {
+                            $scope.charval = $('<textarea />').html(index).text();
+                            $rootScope.chatTranscript.push({
+                                'ChatMessage': $scope.charval
+                            });
+                        });
+                    }
+                },
+                error: function(data) {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            };
 
-           LoginService.getChatTranscript(params);
+            LoginService.getChatTranscript(params);
 
-         }
+        }
 
-      $scope.getSoapNotes = function(consultation) {
+        $scope.getSoapNotes = function(consultation) {
             $("#reportSubjective").html($rootScope.existingConsultationReport.subjective);
             $("#reportObjective").html($rootScope.existingConsultationReport.objective);
             $("#reportAssessment").html($rootScope.existingConsultationReport.assessment);
@@ -763,9 +732,9 @@ angular.module('starter.controllers')
                 angular.element(this).attr('onclick', onClickLink);
             });
         }
-        $rootScope.showReportView = function(consultation,nextPage) {
-          //  $scope.reportConsultationId = consultation.consultationId;
-            $rootScope.doGetExistingConsulatationReport(consultation,nextPage);
+        $rootScope.showReportView = function(consultation, nextPage) {
+            //  $scope.reportConsultationId = consultation.consultationId;
+            $rootScope.doGetExistingConsulatationReport(consultation, nextPage);
         }
 
         $scope.closeReportView = function() {
@@ -775,12 +744,12 @@ angular.module('starter.controllers')
         }
 
 
-        $rootScope.showMissedDetailsView = function(consultation,nextPage) {
+        $rootScope.showMissedDetailsView = function(consultation, nextPage) {
             $state.go('tab.missedConsultAppoint');
             $rootScope.consultationDate = consultation.startTime;
             $rootScope.missedAppointDetails = consultation;
-            if(!angular.isUndefined(consultation.clinicianId)) {
-              $rootScope.doGetDoctorDetails(consultation);
+            if (!angular.isUndefined(consultation.clinicianId)) {
+                $rootScope.doGetDoctorDetails(consultation);
             }
         }
 
@@ -796,17 +765,18 @@ angular.module('starter.controllers')
                 doctorId: consultation.clinicianId,
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
-                  $rootScope.missedAppointDocDetails = [];
+                    $rootScope.missedAppointDocDetails = [];
                     angular.forEach(data.data, function(index, item) {
-                    //  var docDob = $filter('date')(index.dob, "yyyy-MM-dd");
-                      if (index.gender === 'M') {
-                          var docGender = "Male";
-                      } else if (index.gender === 'F') {
-                          var docGender = "Female";
-                      }
+                        //  var docDob = $filter('date')(index.dob, "yyyy-MM-dd");
+                        if (index.gender === 'M') {
+                            var docGender = "Male";
+                        } else if (index.gender === 'F') {
+                            var docGender = "Female";
+                        }
                         $rootScope.missedAppointDocDetails.push({
                             'dob': index.dob,
                             'firstName': index.firstName,
+                            'lastName': index.lastName,
                             'fullName': index.fullName,
                             'gender': docGender,
                             'profileImagePath': index.profileImagePath
@@ -833,28 +803,26 @@ angular.module('starter.controllers')
 
         }
 
-
-
         <!-- Consultation search -->
         $scope.passedsearchshow = true;
         $scope.missedsearchshow = false;
         $scope.droppedsearcshow = false;
         $scope.data = {};
 
-              $scope.$watch('data.searchProvider', function(searchKey) {
-                  $rootScope.providerSearchKey = searchKey;
-                  if (typeof $rootScope.providerSearchKey == 'undefined') {
-                      $scope.data.searchProvider = $rootScope.backProviderSearchKey;
-                  }
-                  if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
-                      $rootScope.iconDisplay = 'none';
-                  } else {
-                      $rootScope.iconDisplay = 'Block';
-                  }
-            });
+        $scope.$watch('data.searchProvider', function(searchKey) {
+            $rootScope.providerSearchKey = searchKey;
+            if (typeof $rootScope.providerSearchKey == 'undefined') {
+                $scope.data.searchProvider = $rootScope.backProviderSearchKey;
+            }
+            if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+                $rootScope.iconDisplay = 'none';
+            } else {
+                $rootScope.iconDisplay = 'Block';
+            }
+        });
 
         $rootScope.passedsearchconsult = function() {
-            $scope.data.searchProvider='';
+            $scope.data.searchProvider = '';
             $scope.passededconsultants();
             var myEl = angular.element(document.querySelector('#passedsearch'));
             myEl.removeClass('btnextcolor');
@@ -870,7 +838,7 @@ angular.module('starter.controllers')
             $scope.droppedsearchshow = false;
         }
         $scope.missedsearchconsult = function() {
-            $scope.data.searchProvider='';
+            $scope.data.searchProvider = '';
             $scope.missedconsult();
             var myEl = angular.element(document.querySelector('#missedsearch'));
             myEl.addClass('btcolor');
@@ -886,7 +854,7 @@ angular.module('starter.controllers')
             $scope.droppedsearchshow = false;
         }
         $scope.droppedsearchconsult = function() {
-            $scope.data.searchProvider='';
+            $scope.data.searchProvider = '';
             $scope.droppedconsult();
             var myEl = angular.element(document.querySelector('#droppedsearch'));
             myEl.addClass('btcolor');

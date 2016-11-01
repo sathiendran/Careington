@@ -1,10 +1,15 @@
 
 <ion-view>
     <div id="Error_Message" ></div>
-	<ion-content class="register" style="background-color: {{brandColor}};margin-top:-12px;" scroll="true" >
+	<ion-content class="register regStep2Con" style="background-color: {{brandColor}};" scroll="true" >
+    <div class="terms-back">
+      <div class="button_back icon ion-chevron-left"  ng-click="GoBackToStep1();">
+        <span class="registerback">Back</span>
+      </div>
+     </div>
 		<div class="epassbg epassbgreg2">
-			<img ng-src="{{logo}}" style="position:relative;" />
-			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>
+			<div><img ng-src="{{logo}}" style="position:relative;" /></div>
+			<h2 style="padding-top: 0px;">{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
 		</div>
 
 
@@ -38,14 +43,14 @@
                       <input style="padding-top: 12px;" type="date" ng-model="regStep2.dob"  id="dob">
                     </label>
                 </div>
-                <div  style="text-align:center;">
-                <span class="">
+                <div  style="text-align:center;padding-bottom: 18px;">
+              <!--  <span class="btn1">
                   <button type="button" class="button regback" ng-click="backregister()">
                         Back
                   </button>
-                </span>
-					<span class="btn1" style="margin: 0px 0px 24px 0px !important;">
-            <button type="button" class="button" ng-click="postRegistersStep2()">
+                </span>-->
+					<span class="btn1" style="margin: 0px 0px 24px 6px !important;">
+            <button type="button" class="button" ng-click="postRegistersStep2()" style="top:5px;">
 									Register
 						</span>
 </div>
@@ -73,7 +78,7 @@
     </ion-footer-bar>
 
 
-	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important;">
 		<div class="ConcernsFooter">
 			<div class="FooterLeft" style="width: 100%;">
 				<a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</a>

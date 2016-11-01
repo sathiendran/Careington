@@ -70,40 +70,9 @@ angular.module('starter.controllers')
 
 
 
-    $scope.$on('IdleStart', function() {
-            console.log("aaa");
-    });
-    $scope.$on('IdleWarn', function(e, countdown) {
-    });
-    $scope.$on('IdleTimeout', function() {
-      if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-          if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "videoConference") {
-            navigator.notification.alert(
-                 'Your session timed out.', // message
-                 null,
-                 $rootScope.alertMsgName,
-                 'Ok' // buttonName
-             );
-            $rootScope.ClearRootScope();
-          }
-      }
-    });
-
-    $scope.$on('IdleEnd', function() {
-        // the user has come back from AFK and is doing stuff. if you are warning them, you can use this to hide the dialog
-          console.log("aaa3");
-    });
-
-    $scope.$on('Keepalive', function() {
-        // do something to keep the user's session alive
-          console.log("aaa4");
-    });
-
     $scope.newUSer = {};
     $scope.addmore = false;
-
     $scope.newUSer.address = $rootScope.primaryPatientDetails[0].address;
-
     $scope.moredetails = function() {
         $scope.showme = true;
         $scope.addmore = true;
@@ -121,21 +90,6 @@ angular.module('starter.controllers')
         );
     });
 
-
-    /* var minDate = new Date();
-     var maxDate=minDate.getDay();
-     var maxMonth=minDate.getMonth()+1;
-     var maxYear=minDate.getFullYear();
-     if(maxDate<10){
-         var maxD="0"+maxDate;
-     }
-     if(maxMonth<10){
-         var maxM="0"+maxMonth;
-     }
-     var maxDay=maxYear+"-"+maxM+"-"+maxD;
-     var mDate="2016-05-04";
-       $scope.maxDay = maxDay;
-       $scope.minimum ="1950-01-01";*/
 
     $('input').blur(function() {
         var value = $.trim($(this).val());
@@ -162,7 +116,6 @@ angular.module('starter.controllers')
           var b="0"+da;
         }else{
             var b=da;
-
         }
         var c = a.getFullYear();
         var d = a.getDate();
@@ -186,8 +139,6 @@ angular.module('starter.controllers')
         var couserloc = loc.options[loc.selectedIndex].text;
         $scope.colocation = couserloc;
         $scope.colocationid = $("#userlocate").val();
-
-
         $scope.sptheightunit = $('#userheightunit').val().split("@");
         $scope.heightunitid = _.first($scope.sptheightunit);
         $scope.heightunit = _.last($scope.sptheightunit);
@@ -206,7 +157,6 @@ angular.module('starter.controllers')
         $scope.getEthnicityId = _.first($scope.ethnicity);
         //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
         // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
-
         var selectDate = document.getElementById('userdob').value;
          var now = new Date();
          var dt1 = Date.parse(now),
@@ -248,7 +198,6 @@ angular.module('starter.controllers')
         } else if (typeof $scope.heightunitid === 'undefined' || $scope.heightunitid === '') {
             $scope.ErrorMessage = "Please Select Your Height Unit";
             $rootScope.Validation($scope.ErrorMessage);
-
         } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
             $scope.ErrorMessage = "Please Enter Your Weight";
             $rootScope.Validation($scope.ErrorMessage);
@@ -334,7 +283,7 @@ angular.module('starter.controllers')
 
             },
             error: function(data,status) {
-              if(data==null){
+              if(status===0 ){
 
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
@@ -359,11 +308,13 @@ angular.module('starter.controllers')
 
 
     $scope.cancelcouser = function() {
+      $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
         //$state.go('tab.relatedusers');
         history.back();
-        scope.$apply();
+        if (!$scope.$$phase)
+        $scope.$apply();
     }
 
 

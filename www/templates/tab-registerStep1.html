@@ -4,7 +4,7 @@
 	<ion-content class="register" style="background-color: {{brandColor}}">
 		<div class="epassbg">
 			<img ng-src="{{logo}}" style="position:relative;"/>
-			<h2>{{selectedSearchProviderList.hospitalName}} <br><span>Registration</span></h2>
+			<h2>{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
 		</div>
 
 		<form ng-submit="postRegisterStep1()">
@@ -46,8 +46,8 @@
 		<div class="acinfo1-{{deviceName}}">
 			<h4>Already have an account? <a ng-click="backtoPreviousPage();"><span>Login</span></a></h4>
 		</div>
-		<div ng-if="deploymentEnv !== 'Single'" class="acinfo1-{{deviceName}}">
-			<h4 style="padding-top: 20px;">Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
+		<div ng-if="deploymentEnv !== 'Single'" class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}">
+			<h4>Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
 		</div>
 		<div ng-controller="LoginCtrl">
 		</div>

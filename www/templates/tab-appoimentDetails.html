@@ -27,18 +27,30 @@
    </h1>
   </div>
 
- <div class="item item-image-icon" >
-    <a class="lefthome"  ng-click="GoToPatientDetails(location,appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName,appointmentsPatientDOB,appointmentsPatientGurdianName,appointmentsPatientId,'','tab.userAccount')" _ng-href="#/tab/userAccount">
-      <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-      <p class="homecontent">Account Home</p>
-    </a>
-    <a class="item-avatar itemhead">
-      <p><img ng-src="{{appointmentsPatientImage}}" class="topimage"></p>
-    </a>
-    <a class="rightpatient" ng-href="#/tab/userhome">
-      <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-      <p class="patientcontent"  >Change Patient</p>
-    </a>
+  <div class="row userAccountPanel">
+    <div class="col col-33 uAPHomeIcon">
+       <a ng-href='#/tab/userAccount'>
+          <div class="icon homeicon">
+            <div class="buttons">
+               	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+             </div>
+          </div>
+          <div>
+             <p class="hometext">Account Home</p>
+          </div>
+       </a>
+    </div>
+    <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(appointmentsPatientImage,appointmentsPatientFirstName,appointmentsPatientLastName)"></div>
+    <div class="col col-33 uAPChangePatient ">
+      <a ng-href='#/tab/userhome'>
+        <div class="icon groupicon">
+          <div class="buttons">
+           	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+          </div>
+        </div>
+        <p class="grouptext">Change Patient</p>
+      </a>
+    </div>
   </div>
 
 </div>
@@ -55,12 +67,14 @@
     <div class="list aptlist Appointmentdetails-{{devicename}}" >
 
         <a class="item item-avatar patavatar">
-             <img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">
-              <p class="pathead">With</p>
-              <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
-                <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
-              </p>
-              <p class="patage">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
+             <!--<img ng-src="{{scheduledDoctorDetails[0].profileImagePath}}" class="patimage">-->
+             <div class="docAppointImage" ng-bind-html="drawImage(scheduledDoctorDetails[0].profileImagePath,scheduledDoctorDetails[0].firstName,scheduledDoctorDetails[0].lastName)"></div>
+              <div>
+                  <p class="pathead">With</p>
+                  <h2 class="appfname"><span >{{scheduledDoctorDetails[0].fullName}}</h2>
+                  <span class="appfloat"><i class="icon ion-chevron-right " style="display: none;"></i></span>
+                  <p class="patage">{{scheduledDoctorDetails[0].gender}} <span> .</span> {{scheduledDoctorDetails[0].dob | ageFilter}}</p>
+              </div>
            </a>
 
         <ion-item class="ionitem contalign" style="text-align:center;" >
@@ -135,7 +149,7 @@
   <!-- <h1 class="title" id="centercolor" >Enter Appointment</h1>-->
 </ion-footer-bar>
 <ion-footer-bar class="bar bar-footer  footer-color footheight enterAppoinment2"  >
-    				<h1 class="enterAppoint-{{deviceName}}" id="centercolor" >30 minutes has elapsed since the scheduled start time. Please re-schedule your consultation.</h1>
+    				<h1 class="enterAppoint-{{deviceName}}" id="centercolor" >This Appointment has Expired. Please Re-schedule.</h1>
 </ion-footer-bar>
 </ion-view>
 </ion-side-menu-content>
