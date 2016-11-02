@@ -3467,6 +3467,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             font-size: 16px;
             position: relative;
             top: 0px;
+            margin-bottom: 7px;
         }
         .item-input {
             margin-top: 1px;
@@ -3510,7 +3511,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
                 font-size: 14px;
                 color: #616462;
                 height: 28px;
-                margin-top: 0px;
+                margin-top: 3px;
                 font-family: $fontFamily_regular;
                 text-align: center;
             }
@@ -3603,7 +3604,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             div, p {
 
             }
-            .UserHomeIcon {
+            .User{
                 color: #999999;
                 margin-top: -34px;
             }
