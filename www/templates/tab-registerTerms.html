@@ -1,29 +1,17 @@
 
 
+	<ion-header-bar class="bg" style="background-color: {{brandColor}}; border-color: {{brandColor}}">
+		<div id="Error_Message" ></div>
+		<div class="Server_Error" ></div>
+		<h2>{{Hospital}}</h2>
+	</ion-header-bar>
+
 <ion-view title="Terms&Conditions">
 
 
-	<div ng-include src="'templates/password_header.html'"></div>
 
-   <ion-content class="password_content BacgroundColorContent" style="{{PasswordOverlop}};" >
+   <ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="position:absolute;font-size: 19px; color: #4D4D4D; text-align: justify;"  >
 
-    <div ng-if="IOSDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative;">
-		<div class="{{password_header_content}} passwordSubHeader SubHeadIOS">
-			<div class="subHospital" style="color: {{brandColor}};">{{Hopital}}</div>
-			<span>
-				{{HopitalTag}}
-			</span>
-		</div>
-	</div>
-
-	 <div ng-if="AndroidDevice == true" class="{{password_sub_header}}" style="height:auto; position: relative; top: -26px;">
-		<div class="{{password_header_content}} passwordSubHeader sublogo" style="background-color:#FFF;">
-			<div class="subHospital" style="color: {{brandColor}};">{{Hopital}}</div>
-			<span>
-				{{HopitalTag}}
-			</span>
-		</div>
-	</div>
      <!-- <div class="singleTermsTitle-{{deviceName}}">
 		  <h2 class="TitleLess">Terms & Conditions</h2>
 		</div>
