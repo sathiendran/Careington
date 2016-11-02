@@ -2448,7 +2448,7 @@ h2 {
     line-height: 30px;
     padding-top: 65px;
     span {
-        @include font($fontFamily_xBold, bold, 32px);
+        @include font($fontFamily_xBold, bold, 34px);
         color: #FFFFFF;
         text-align: center;
         margin: 0 !important;
@@ -2860,18 +2860,18 @@ p {
 }
 }
 .regDOBRequired {
-color: #adaeaf;
-position: absolute;
-width: 75%;
-height: 100%;
-z-index: 15;
-overflow: hidden;
-top: 24px;
-@include font($fontFamily_regular, normal, 13px);
+    color: #adaeaf;
+    position: absolute;
+    width: 75%;
+    height: 100%;
+    z-index: 15;
+    overflow: hidden;
+    top: 24px;
+    @include font($fontFamily_regular, normal, 13px);
 }
 .bar-subheader-provider {
-display: block;
-padding-top: 13px;
+    display: block;
+    padding-top: 13px;
 }
 /* Samsung Galaxy S5 ----------- */
 
@@ -3715,11 +3715,11 @@ input[type="color"] {
 }
 }
 .dobDependent-IOS {
-font-size: 18px !important;
-line-height: 23px !important;
-font-family: Glober Regular !important;
-color: rgba(5, 4, 9, 0.54) !important;
-width: 159% !important;
+    font-size: 18px !important;
+    line-height: 23px !important;
+    font-family: Glober Regular !important;
+    color: rgba(5, 4, 9, 0.54) !important;
+    width: 159% !important;
 }
 .adduseWeight-IOS {
 font-size: 18px;
