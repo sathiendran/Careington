@@ -2741,6 +2741,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.healthPlanPage = "none";
         $rootScope.consultChargeNoPlanPage = "block";
         //$state.go('tab.consultChargeNoPlan');
+        $('option').filter(function() {
+            return this.value.indexOf('?') >= 0;
+        }).remove();
     }
 
     $scope.backAddHealthPlan = function() {

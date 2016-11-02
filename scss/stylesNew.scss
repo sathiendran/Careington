@@ -2430,11 +2430,12 @@ span {
 }
 .step2-Android {
 margin-top: -12px;
-}
+}.regstep1{bottom:49px !important;}
 .register {
   margin-top: -3px;
   padding-bottom : 39px !important;
   padding-top: 38px;
+
   .newLogProviderSecDiv-Android {
        h4 {
             padding-top: 10px !important;
@@ -3989,7 +3990,7 @@ margin-top: 33%;
 .icon-magnifying-glass {
     font-size: 15px;
     position: relative;
-    bottom: 2px;
+    bottom: 1px;
 }
 }
 #accountMngeProfile-Android {
@@ -4852,7 +4853,7 @@ a {
     span {
       border: 1px solid;
        border-radius: 50%;
-       padding: 2px 6px 3px 6px;
+       padding: 2px 7px 2px 7px;
     }
     .icon-home {
       font-size: 20px;
@@ -4875,7 +4876,7 @@ a {
    span {
      border: 1px solid;
       border-radius: 50%;
-      padding: 2px 6px 3px 6px;
+      padding: 2px 7px 2px 7px;
    }
    .icon-group {
      font-size: 20px;
@@ -4921,6 +4922,7 @@ margin-right: 10px;
 }
 .regStep2Con {
      padding-top: 30px !important;
+     bottom:40px !important;
 .card {
      margin-top: 53px;
 }
