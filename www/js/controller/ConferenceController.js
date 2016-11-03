@@ -19,7 +19,7 @@ angular.module('starter.controllers')
     };
 
 
-     function clearSessionLogoutTimer(){
+    function clearSessionLogoutTimer(){
        if(typeof appIdleInterval != "undefined"){
           $interval.cancel(appIdleInterval);
            appIdleInterval = undefined;
@@ -617,6 +617,7 @@ angular.module('starter.controllers')
                 $rootScope.waitingMsg = "Please Wait....";
             });
             conHub.on("onConsultationStarted", function() {
+                window.localStorage.setItem('isVideoCallProgress', "Yes");
                 $rootScope.waitingMsg = "Please wait...";
             });
             connection.logging = true;
@@ -625,6 +626,7 @@ angular.module('starter.controllers')
             }).then(function() {
                 conHub.invoke("joinCustomer").then(function() {});
                 $rootScope.waitingMsg = "The Provider will be with you Shortly.";
+                window.localStorage.setItem('isVideoCallProgress', "Yes");
             });
             conHub.on("onConsultationEnded", function() {
                 isCallEndedByPhysician = true;
