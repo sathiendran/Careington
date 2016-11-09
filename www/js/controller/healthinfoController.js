@@ -183,6 +183,8 @@ angular.module('starter.controllers')
     //  $scope.healthsearchinfo=true;
     //   $scope.healthtab=true;
     $rootScope.flag = true;
+    $rootScope.flagmodal=true;
+
     var minDate = new Date();
     var maxDate = minDate.getDate();
     var maxMonth = minDate.getMonth() + 1;
@@ -219,7 +221,7 @@ angular.module('starter.controllers')
           $scope.modal = modal;
           $scope.modal.show().then(function() {
           //  var newq=$('#edhunit').text();
-
+              $rootScope.flagmodal=false;
           if(hghtinval==""){
             $('#healthInfoHeight').val("");
             $('#healthInfoHeight2').val("");
@@ -258,6 +260,7 @@ angular.module('starter.controllers')
 
     }
     $rootScope.editremovemodal = function() {
+        $rootScope.flagmodal=true;
       $scope.modal.remove()
       .then(function() {
         $scope.modal = null;
@@ -331,6 +334,7 @@ angular.module('starter.controllers')
        $scope.ErrorMessage = "Please enter valid height";
        $rootScope.ValidationFunction1($scope.ErrorMessage);
      } else{
+         $rootScope.flagmodal=true;
        $scope.modal.remove()
        .then(function() {
          $scope.modal = null;
@@ -1179,7 +1183,7 @@ $scope.editDob=function(){
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);
                 }else {
-                    $rootScope.serverErrorMessageValidation();
+                   $rootScope.serverErrorMessageValidation();
                 }
             }
         };

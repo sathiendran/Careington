@@ -912,8 +912,13 @@ angular.module('starter.controllers')
                 var conferencePtImage = window.localStorage.getItem('videoCallPtImage');
                 var conferencePtFullName = window.localStorage.getItem('videoCallPtFullName');
                 $('.clsPtVideoThumImage').remove();
-                if(conferencePtImage && conferencePtImage != null && conferencePtImage != '' && conferencePtImage != "undefined" && conferencePtImage != undefined){
+                if(conferencePtImage && conferencePtImage != null && conferencePtImage != '' && conferencePtImage != "undefined" && conferencePtImage != undefined && conferencePtImage!="/images/default-user.jpg" && conferencePtImage!="/images/Patient-Female.gif" && conferencePtImage!="/images/Patient-Male.gif"){
                     thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + conferencePtImage + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
+                }else if(conferencePtImage=='/images/default-user.jpg' || conferencePtImage=='/images/Patient-Female.gif' || conferencePtImage=='/images/Patient-Male.gif'){
+                  var patientInitialStr = getInitialForName(conferencePtFullName);
+                  if(patientInitialStr == 'WW')
+                      patientInitialStr = 'W';
+                  thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
                 }
                 else{
                     var patientInitialStr = getInitialForName(conferencePtFullName);

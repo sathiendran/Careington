@@ -187,22 +187,46 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                   timeoutValue = 0;
                   clearSessionLogoutTimer();
                   if ($rootScope.currState.$current.name == "tab.addnewdependent") {
-                        $rootScope.ClearRootScope();
-                        $rootScope.removemodal();
-                        navigator.notification.alert(
-                             'Your session timed out.', // message
-                             null,
-                             $rootScope.alertMsgName,
-                             'Ok' // buttonName
-                         );}else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
-                                 $rootScope.ClearRootScope();
-                                 $rootScope.editremovemodal();
-                                 navigator.notification.alert(
-                                      'Your session timed out.', // message
-                                      null,
-                                      $rootScope.alertMsgName,
-                                      'Ok' // buttonName
-                                  );}
+                        if( $rootScope.flagdeptmodal==true){
+                          $rootScope.ClearRootScope();
+                        //  $rootScope.removemodal();
+                          navigator.notification.alert(
+                               'Your session timed out.', // message
+                               null,
+                               $rootScope.alertMsgName,
+                               'Ok' // buttonName
+                           );
+                        }else{
+                          $rootScope.ClearRootScope();
+                          $rootScope.removemodal();
+                          navigator.notification.alert(
+                               'Your session timed out.', // message
+                               null,
+                               $rootScope.alertMsgName,
+                               'Ok' // buttonName
+                           );
+                        }
+                      }else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
+                           if( $rootScope.flagmodal==true){
+                             $rootScope.ClearRootScope();
+                             $rootScope.editremovemodal();
+                             navigator.notification.alert(
+                                  'Your session timed out.', // message
+                                  null,
+                                  $rootScope.alertMsgName,
+                                  'Ok' // buttonName
+                              );
+                           }else{
+                             $rootScope.ClearRootScope();
+                             $rootScope.editremovemodal();
+                             navigator.notification.alert(
+                                  'Your session timed out.', // message
+                                  null,
+                                  $rootScope.alertMsgName,
+                                  'Ok' // buttonName
+                              );
+                           }
+                              }
                         else{
                             $rootScope.ClearRootScope();
                             navigator.notification.alert(
