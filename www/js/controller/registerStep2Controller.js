@@ -52,7 +52,7 @@ angular.module('starter.controllers')
       var now = new Date();
       var dt1 = Date.parse(now),
       dt2 = Date.parse(selectedDob);
-
+      $rootScope.restrictage = getAge(selectedDob);
 
             $scope.reg2email=$('#RegEmail').val();
             $scope.ValidateEmail = function(email) {
@@ -108,9 +108,14 @@ angular.module('starter.controllers')
             }else if (dt2 >dt1) {
                $scope.ErrorMessage = "DOB can not be in Future";
                $rootScope.Validation($scope.ErrorMessage);
-           } else {
-                $scope.doPostUserRegisterDetails();
-                return false;
+           } else if($rootScope.restrictage <= 11){
+             $scope.ErrorMessage = "You should be atleast 12 years old to register";
+             $rootScope.Validation($scope.ErrorMessage);
+           }
+
+           else {
+               $scope.doPostUserRegisterDetails();
+               return false;
             }
 
         }

@@ -87,7 +87,7 @@ angular.module('starter.controllers')
         refresh_close();
     }
     $scope.hghtunit = false;
-
+      $rootScope.flagdeptmodal=true;
     $scope.heightmodal = function() {
         document.getElementById('hunit').innerHTML = '';
         $ionicModal.fromTemplateUrl('templates/tab-heighttemplate.html', {
@@ -99,6 +99,7 @@ angular.module('starter.controllers')
             var hghtinval = $('#heightdep').val();
             $scope.modal = modal;
             $scope.modal.show().then(function() {
+                $rootScope.flagdeptmodal=false;
               if(hghtinval==""){
                 $('#deptheight').val("");
                 $('#deptheight2').val("");
@@ -157,6 +158,7 @@ angular.module('starter.controllers')
 
     }
     $rootScope.removemodal = function() {
+        $rootScope.flagdeptmodal=true;
       $('#deptheight').val("");
       $('#deptheight2').val("");
         $scope.modal.remove()
@@ -366,6 +368,7 @@ angular.module('starter.controllers')
           $scope.ErrorMessage = "Please enter valid height";
           $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else {
+            $rootScope.flagdeptmodal=true;
             $scope.modal.remove()
                 .then(function() {
                     $scope.modal = null;

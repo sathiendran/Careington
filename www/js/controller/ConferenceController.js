@@ -19,7 +19,7 @@ angular.module('starter.controllers')
     };
 
 
-     function clearSessionLogoutTimer(){
+    function clearSessionLogoutTimer(){
        if(typeof appIdleInterval != "undefined"){
           $interval.cancel(appIdleInterval);
            appIdleInterval = undefined;
@@ -177,7 +177,7 @@ angular.module('starter.controllers')
                 if ($rootScope.existingConsultationReport.hospitalAddress != '' && typeof $rootScope.existingConsultationReport.hospitalAddress != 'undefined') {
                     $rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
                 } else {
-                    $rootScope.reportHospitalAddress = 'None Reported';
+                  //  $rootScope.reportHospitalAddress = 'None Reported';
                 }
 
                 if (!angular.isUndefined($rootScope.existingConsultationReport.location)) {
@@ -617,6 +617,7 @@ angular.module('starter.controllers')
                 $rootScope.waitingMsg = "Please Wait....";
             });
             conHub.on("onConsultationStarted", function() {
+                window.localStorage.setItem('isVideoCallProgress', "Yes");
                 $rootScope.waitingMsg = "Please wait...";
             });
             connection.logging = true;
@@ -625,6 +626,7 @@ angular.module('starter.controllers')
             }).then(function() {
                 conHub.invoke("joinCustomer").then(function() {});
                 $rootScope.waitingMsg = "The Provider will be with you Shortly.";
+                window.localStorage.setItem('isVideoCallProgress', "Yes");
             });
             conHub.on("onConsultationEnded", function() {
                 isCallEndedByPhysician = true;
@@ -910,8 +912,13 @@ angular.module('starter.controllers')
                 var conferencePtImage = window.localStorage.getItem('videoCallPtImage');
                 var conferencePtFullName = window.localStorage.getItem('videoCallPtFullName');
                 $('.clsPtVideoThumImage').remove();
-                if(conferencePtImage && conferencePtImage != null && conferencePtImage != '' && conferencePtImage != "undefined" && conferencePtImage != undefined){
+                if(conferencePtImage && conferencePtImage != null && conferencePtImage != '' && conferencePtImage != "undefined" && conferencePtImage != undefined && conferencePtImage!="/images/default-user.jpg" && conferencePtImage!="/images/Patient-Female.gif" && conferencePtImage!="/images/Patient-Male.gif"){
                     thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><img src='" + conferencePtImage + "' class='listImgView'/></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
+                }else if(conferencePtImage=='/images/default-user.jpg' || conferencePtImage=='/images/Patient-Female.gif' || conferencePtImage=='/images/Patient-Male.gif'){
+                  var patientInitialStr = getInitialForName(conferencePtFullName);
+                  if(patientInitialStr == 'WW')
+                      patientInitialStr = 'W';
+                  thumbSwiper.appendSlide("<div class='videoThumbnail clsPtVideoThumImage'><div id='thumb-patient' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + patientInitialStr + "</span></div><p class='participantsName ellipsis'>" + conferencePtFullName + "</p></div>");
                 }
                 else{
                     var patientInitialStr = getInitialForName(conferencePtFullName);
