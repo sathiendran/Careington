@@ -108,7 +108,7 @@ angular.module('starter.controllers')
             }else if (dt2 >dt1) {
                $scope.ErrorMessage = "DOB can not be in Future";
                $rootScope.Validation($scope.ErrorMessage);
-           } else if($rootScope.restrictage <= 12){
+           } else if($rootScope.restrictage <= 11){
              $scope.ErrorMessage = "You should be atleast 12 years old to register";
              $rootScope.Validation($scope.ErrorMessage);
            }
