@@ -1145,7 +1145,7 @@ $scope.editDob=function(){
                   var sploc=locat.split("/");
                   var cutlocations=sploc[1] +"."+sploc[2];
 
-                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+                  //$rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
                   // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                   var editdate = $rootScope.currentPatientDetails.dob;
                   $rootScope.doddate = new Date($rootScope.healthInfoDOB);
