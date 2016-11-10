@@ -465,6 +465,7 @@ angular.module('starter.controllers')
     }
 
     $scope.edittext = function() {
+        $rootScope.flagmodal=true;
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
