@@ -209,7 +209,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                       }else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
                            if( $rootScope.flagmodal==true){
                              $rootScope.ClearRootScope();
-                             $rootScope.editremovemodal();
+                            // $rootScope.editremovemodal();
                              navigator.notification.alert(
                                   'Your session timed out.', // message
                                   null,

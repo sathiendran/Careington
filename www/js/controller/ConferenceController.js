@@ -99,6 +99,21 @@ angular.module('starter.controllers')
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
                     if ($rootScope.consultationStatusId === 72) {
                         window.localStorage.setItem('isVideoCallProgress', "No");
+                        //  var callEnded = true;
+                          $('#thumbVideos').remove();
+                          $('#videoControls').remove();
+                        //  session.unpublish(publisher)
+                          session.disconnect();
+                          $('#publisher').hide();
+                          $('#subscriber').hide();
+                          $('#divVdioControlPanel').hide();
+
+                         navigator.notification.alert(
+                             'Consultation already completed!', // message
+                             consultationEndedAlertDismissed, // callback
+                             $rootScope.alertMsgName, // title
+                             'Done' // buttonName
+                         );
                         $scope.doGetExistingConsulatationReport();
                     }
                 }
@@ -301,7 +316,6 @@ angular.module('starter.controllers')
                 }
 
               /*  var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
-
                 if (typeof usDOB != 'undefined' && usDOB != '') {
                     $rootScope.userReportDOB = usDOB.search("y");
                 } else {
