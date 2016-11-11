@@ -46,7 +46,7 @@
 		<div class="acinfo1-{{deviceName}}">
 			<h4>Already have an account? <a ng-click="backtoPreviousPage();"><span>Login</span></a></h4>
 		</div>
-		<div ng-if="deploymentEnv !== 'Single'" class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}">
+		<div ng-if="deploymentEnv !== 'Single'" class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" style="padding-bottom: 30px;">
 			<h4>Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
 		</div>
 		<div ng-controller="LoginCtrl">
@@ -56,12 +56,13 @@
 	<!--<ion-footer-bar class="bar bar-footer emailpassfooter" style="background-color: {{brandColor}}">
 		<a ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');"><button class="button button-clear"><span>Terms & Conditions</span></button></a>
 	</ion-footer-bar>-->
-	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
-		<div class="ConcernsFooter">
-			<div class="FooterLeft" style="width: 100%;">
-				<a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</a>
-			</div>
-		<div>
-	</ion-footer-bar>
-
+	<div class="hide-on-keyboard-open">
+  	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+  		<div class="ConcernsFooter">
+  			<div class="FooterLeft" style="width: 100%;">
+  				<a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</a>
+  			</div>
+  		<div>
+  	</ion-footer-bar>
+  </div>
 </ion-view>
