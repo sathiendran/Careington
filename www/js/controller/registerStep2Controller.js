@@ -67,8 +67,6 @@ angular.module('starter.controllers')
                     errorMsg: $scope.ErrorMessage
                 });
             }  else if(!$scope.ValidateEmail($("#RegEmail").val())){
-
-
                     $scope.ErrorMessage = "Please enter a valid Email Address";
                     $scope.$root.$broadcast("callValidation", {
                         errorMsg: $scope.ErrorMessage
@@ -141,7 +139,8 @@ angular.module('starter.controllers')
                 providerId: $rootScope.hospitalId,
                 success: function(data) {
                     $rootScope.isRegistrationCompleted = true;
-                    console.log(data);
+                    $rootScope.registedEmail = $scope.reg2email;
+                    $rootScope.registedPwd = $scope.regStep2.password;
                     $state.go('tab.registerSuccess');
                 },
                 error: function(data) {

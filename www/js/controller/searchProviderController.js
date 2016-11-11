@@ -128,7 +128,7 @@ angular.module('starter.controllers')
                     $rootScope.Hospital = data.data[0].brandName;
                     if (deploymentEnvLogout == 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
-                        $rootScope.reportHospitalUpperCase = 'Virtual Care';
+                        $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase(); //'Virtual Care';
                     } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
