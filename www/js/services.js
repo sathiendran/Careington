@@ -1253,7 +1253,7 @@ this.getPatientMedicalProfile = function(params){
     this.getChatTranscript = function (params) {
           var requestInfo = {
               headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL + '/api/reports/consultationreportdetails/chatnote/' + params.consultationId,
+              url: apiCommonURL + '/api/v2/reports/consultation/chat/' + params.consultationId,
               method: 'GET'
           };
 
