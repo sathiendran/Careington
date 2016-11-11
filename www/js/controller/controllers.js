@@ -415,7 +415,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     } else {
         $rootScope.alertMsgName = 'Virtual Care';
-        $rootScope.reportHospitalUpperCase = 'Virtual Care';
+    //    $rootScope.reportHospitalUpperCase = 'Virtual Care';
     }
 
 
@@ -1043,6 +1043,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             'operatingHours': index.operatingHours,
                             'providerId': index.providerId,
                             'brandColor': index.brandColor,
+                            'brandName': index.brandName,
                             'contactNumber': index.contactNumber,
                             'appointmentsContactNumber': index.appointmentsContactNumber,
                         });
@@ -1100,6 +1101,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.backtoPreviousPage = function() {
         $state.go($rootScope.frontPage);
+    }
+
+    $rootScope.getTokenDetailsForRegisterdUsers = function() {
+      $rootScope.UserEmail = $rootScope.registedEmail;
+      $scope.pass.password = $rootScope.registedPwd;
+      $rootScope.hospitalId = $rootScope.hospitalId;
+      $scope.doGetToken();
     }
 
     $rootScope.cancelProviderSearch = function() {
@@ -1171,7 +1179,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 } else {
                     $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase = 'Virtual Care';
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase(); //'Virtual Care';
                 }
                 $rootScope.HospitalTag = data.data[0].brandTitle;
                 $rootScope.contactNumber = data.data[0].contactNumber;
@@ -1276,7 +1284,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 } else {
                     $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase = 'Virtual Care';
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase(); //'Virtual Care';
                 }
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
