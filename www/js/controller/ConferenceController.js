@@ -514,10 +514,11 @@ angular.module('starter.controllers')
 
               $rootScope.chatTranscript = [];
               if(data.count !== 0) {
-                angular.forEach(data.data, function(index, item) {
-                  $scope.charval=$('<textarea />').html(index).text();
+                var chatdetails=data.data[0];
+                  angular.forEach(chatdetails, function(index, item) {
+                //  $scope.charval=$('<textarea />').html(index).text();
              $rootScope.chatTranscript.push({
-                      'ChatMessage': $scope.charval
+                      'ChatMessage': index.chatMessage,
                     });
                 });
               }
@@ -649,6 +650,15 @@ angular.module('starter.controllers')
                 $('#videoCallSessionTimer').runner('stop');
                 $scope.disconnectConference();
             });
+        /*    conHub.on("participantDisconnected", function () {
+              navigator.notification.alert(
+                  'Guest Disconnected', // message
+                  consultationEndedAlertDismissed, // callback
+                  $rootScope.alertMsgName, // title
+                  'Done' // buttonName
+              );
+
+            });*/
         };
         initConferenceRoomHub();
 

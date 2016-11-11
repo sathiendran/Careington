@@ -64,13 +64,13 @@
 			</div>
 
 		</div>
-		<div class="attachmentSpace">&nbsp </div>
+		<div class="attachmentSpace"> </div>
 
 		<div class="reportPatientDetails">
 			<div  class="reportPatient">
 				<div><b>Patient :</b></div>
 				<div>{{reportPatientName}} {{reportLastName}} </div>
-				<div ng-if="existingConsultationReport.guardianName != ''"><b>Guardian :</b>{{reportGuardian}}</div>
+				<div ng-if="existingConsultationReport.guardianName != 'undefined' "><b>Guardian :</b>{{reportGuardian}}</div>
 
 				<div ng-if="existingConsultationReport.patientAddress != ''">{{reportPatientAddress}}</div>
 				<div>Home: {{reportHomePhone}} </div>
