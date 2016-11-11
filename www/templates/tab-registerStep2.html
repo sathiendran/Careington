@@ -61,7 +61,7 @@
 		<!-- </form> -->
 
 
-		<div class="acinfo1-{{deviceName}}">
+		<div class="acinfo1-{{deviceName}}" style="padding-bottom: 30px;">
 			<h4>Already have an account? <span ng-click="backtoPreviousPage();">Login</span></h4>
 		</div>
 
@@ -69,21 +69,22 @@
 		</div>
 
 	</ion-content>
-    <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
-        <div class="ConcernsFooter">
-            <div class="FooterLeft" style="width: 100%;">
-                <a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');">Terms & Conditions</a>
-            </div>
-        <div>
-    </ion-footer-bar>
+  	<div class="hide-on-keyboard-open">
+      <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+          <div class="ConcernsFooter">
+              <div class="FooterLeft" style="width: 100%;">
+                  <a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');">Terms & Conditions</a>
+              </div>
+          <div>
+      </ion-footer-bar>
+  </div>
 
-
-	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important;">
+	<!--<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important;">
 		<div class="ConcernsFooter">
 			<div class="FooterLeft" style="width: 100%;">
 				<a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</a>
 			</div>
 		<div>
-	</ion-footer-bar>
+	</ion-footer-bar>-->
 
 </ion-view>
