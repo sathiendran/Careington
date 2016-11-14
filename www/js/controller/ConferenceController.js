@@ -650,7 +650,7 @@ angular.module('starter.controllers')
                 $('#videoCallSessionTimer').runner('stop');
                 $scope.disconnectConference();
             });
-        /*    conHub.on("participantDisconnected", function () {
+      /*      conHub.on("participantDisconnected", function () {
               navigator.notification.alert(
                   'Guest Disconnected', // message
                   consultationEndedAlertDismissed, // callback
