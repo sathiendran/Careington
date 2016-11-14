@@ -49,7 +49,7 @@
 				<div class="forgot_password_textSingle"> <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
 
 
-		<div class="acinfo1-{{deviceName}}">
+		<div class="acinfo1-{{deviceName}}" ng-if="customerSso != 'Mandatory'">
 			<h4>Need an account?</h4>
 		</div>
 		<div class="acinfo1-{{deviceName}}">
@@ -71,7 +71,7 @@
         <div class="powerdBySnapMD">
         <!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes'); return false;"><b>v1.3.4<b></a>-->
 
-        <a><b>v7.2.1<b></a>
+        <a><b>v7.3.0<b></a>
 
         </div>
       </ion-footer-bar>

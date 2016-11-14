@@ -834,7 +834,7 @@ this.getPatientMedicalProfile = function(params){
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2/hospitals?patient=' + params.emailAddress,
+            url: apiCommonURL + '/api/v2/hospitals?patient=' + encodeURIComponent(params.emailAddress),
 
             method: 'GET'
         };
@@ -1207,6 +1207,32 @@ this.getPatientMedicalProfile = function(params){
 				}
 		});
 	}
+
+  this.sendCoUserEmailInvitation = function(params) {
+    var emailInvitationDetails = {
+        headers: util.getHeaders(params.accessToken),
+        url: apiCommonURL + '/api/v2/emails/cousers/invitations',
+        method: 'POST',
+        data: {
+            HospitalId: params.HospitalId,
+            UserId: params.UserId,
+            Name: params.Name,
+            Email: params.Email,
+            Token: params.Token
+        }
+    };
+    $http(emailInvitationDetails).
+      success(function (data, status, headers, config) {
+        if (typeof params.success != 'undefined') {
+          params.success(data);
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (typeof params.error != 'undefined') {
+          params.error(data,status);
+        }
+    });
+  }
 
 
 	this.getAttachmentList = function (params) {
