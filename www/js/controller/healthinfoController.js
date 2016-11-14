@@ -361,9 +361,7 @@ angular.module('starter.controllers')
          var heightlen=$("#healthInfoHeight").val().length;
 
          if(heightlen>2){
-
            $("#healthInfoHeight").val(max);
-
          }
     }
 
@@ -1113,6 +1111,12 @@ $scope.editDob=function(){
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
+              var depPatientSuccessPtId = data.patientID;
+              var depPatientSecurityToken = data.securityToken;
+                if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.healthInfoEmail != "") {
+                    var ptName = $scope.healthInfoFirstName + " " + $scope.healthInfoLastName;
+                    $scope.sendCoUserInvite($rootScope.hospitalId, depPatientSuccessPtId, ptName, $scope.healthInfoEmail, depPatientSecurityToken);
+                }
                 if(ionic.Platform.is('browser') !== true) {
                    cordova.plugins.Keyboard.close();
                 }
@@ -1190,6 +1194,28 @@ $scope.editDob=function(){
         };
 
         LoginService.putProfileUpdation(params);
+    }
+
+    $scope.sendCoUserInvite = function(hospitalId, userId, name, email, securityToken){
+
+        if (securityToken.length > 3 && securityToken.substring(0, 2) == "##") {
+            var params = {
+                accessToken: $rootScope.accessToken,
+                HospitalId: hospitalId,
+                UserId: userId,
+                Name: name,
+                Email: email,
+                Token: securityToken.substring(2),
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(data, status) {
+                  $scope.ErrorMessage = "Unable to sent email invitation";
+                  $rootScope.Validation($scope.ErrorMessage);
+                }
+            };
+            LoginService.sendCoUserEmailInvitation(params);
+        }
     }
 
     $scope.doDependentToUnauthorized = function(currentPatientDetails) {
