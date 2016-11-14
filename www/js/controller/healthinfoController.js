@@ -357,9 +357,7 @@ angular.module('starter.controllers')
          var heightlen=$("#healthInfoHeight").val().length;
 
          if(heightlen>2){
-
            $("#healthInfoHeight").val(max);
-
          }
     }
 

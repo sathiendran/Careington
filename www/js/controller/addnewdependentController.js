@@ -502,8 +502,6 @@ angular.module('starter.controllers')
         var now = new Date();
         var dt1 = Date.parse(now),
             dt2 = Date.parse(selectedDate);
-
-        //  if ((age >=12  && age_month >= 0)) {
         if ($rootScope.restage >= 12) {
             if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
                 $scope.ErrorMessage = "Please enterenter First Name";
