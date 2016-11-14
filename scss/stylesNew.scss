@@ -3269,10 +3269,18 @@ left: -28px;
 position: relative;
 }
 .healthLeft-IOS {
-top: -29px !important;
+  top: -29px !important;
+  background: transparent !important;
+  border: none !important;
+  font-size: 20px;
+  cursor: pointer;
 }
 .healthLeft-Android {
-top: -29px !important;
+  top: -29px !important;
+  background: transparent !important;
+  border: none !important;
+  font-size: 20px;
+  cursor: pointer;
 }
 .searchListHead-IOS {
 position: relative;
