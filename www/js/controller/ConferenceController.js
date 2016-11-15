@@ -650,6 +650,16 @@ angular.module('starter.controllers')
                 $('#videoCallSessionTimer').runner('stop');
                 $scope.disconnectConference();
             });
+            conHub.disconnected(function() {
+               setTimeout(function() {
+                   $.connection.hub.start();
+               }, 5000);
+            });
+            conHub.on("disconnected", function() {
+               setTimeout(function() {
+                   $.connection.hub.start();
+               }, 5000);
+            });
         /*    conHub.on("participantDisconnected", function () {
               navigator.notification.alert(
                   'Guest Disconnected', // message
@@ -1109,7 +1119,7 @@ angular.module('starter.controllers')
                       if (index == 1) {
                           $state.go('tab.videoConference');
                       } else if (index == 2) {
-                           conHub.invoke("endConsultation").then(function() {});
+                           conHub.invoke("notifyClientDisconnect").then(function() {});
                            $('#thumbVideos').remove();
                            $('#videoControls').remove();
                            session.unpublish(publisher)
@@ -1132,7 +1142,8 @@ angular.module('starter.controllers')
             }else{
               window.localStorage.setItem('isVideoCallProgress', "No");
               callEnded = true;
-              conHub.invoke("endConsultation").then(function() {});
+              //conHub.invoke("endConsultation").then(function() {});
+              conHub.invoke("notifyClientDisconnect").then(function() {});
              $('#thumbVideos').remove();
              $('#videoControls').remove();
              session.unpublish(publisher)

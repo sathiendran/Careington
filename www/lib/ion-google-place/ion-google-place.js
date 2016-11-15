@@ -218,7 +218,7 @@ angular.module('ion-google-place', [])
                           }
 
                       }
-                      if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
+                    /*  if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
                       //  alert("City or State or Country or Zipcode is empty. Please Select Valid address!");
                         navigator.notification.alert(
                             'Address is invalid! Please select an address with Zip Code!', // message
@@ -229,13 +229,13 @@ angular.module('ion-google-place', [])
                             $rootScope.alertMsgName, // title
                             'Done' // buttonName
                         );
-                      } else {
+                      } else {*/
                            scope.healthInfoModel.address = location.formatted_address;
                            ngModel.$setViewValue(scope.healthInfoModel.address);
                            ngModel.$render();
                            el.element.css('display', 'none');
                            $ionicBackdrop.release();
-                         }
+                        // }
                        };
 
                        scope.selectLocationForCoUser = function(location){
@@ -256,7 +256,7 @@ angular.module('ion-google-place', [])
                                      }
 
                                  }
-                                 if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
+                              /*   if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
                                  //  alert("City or State or Country or Zipcode is empty. Please Select Valid address!");
                                    navigator.notification.alert(
                                        'Address is invalid! Please select an address with Zip Code!', // message
@@ -267,13 +267,13 @@ angular.module('ion-google-place', [])
                                        $rootScope.alertMsgName, // title
                                        'Done' // buttonName
                                    );
-                                 } else {
+                                 } else {*/
                                       scope.newUSer.address = location.formatted_address;
                                       ngModel.$setViewValue(scope.newUSer.address);
                                       ngModel.$render();
                                       el.element.css('display', 'none');
                                       $ionicBackdrop.release();
-                                    }
+                                    //}
                                   };
 
                                   scope.selectLocationForUserDependent = function(location){
@@ -294,7 +294,7 @@ angular.module('ion-google-place', [])
                                                 }
 
                                             }
-                                            if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
+                                          /*  if(typeof postCode == "undefined" || typeof state == "undefined" || typeof country =="undefined" || typeof city =="undefined") {
                                             //  alert("City or State or Country or Zipcode is empty. Please Select Valid address!");
                                               navigator.notification.alert(
                                                   'Address is invalid! Please select an address with Zip Code!', // message
@@ -305,13 +305,13 @@ angular.module('ion-google-place', [])
                                                   $rootScope.alertMsgName, // title
                                                   'Done' // buttonName
                                               );
-                                            } else {
+                                            } else {*/
                                                  scope.addNewDependent.homeadd = location.formatted_address;
                                                  ngModel.$setViewValue(scope.addNewDependent.homeadd);
                                                  ngModel.$render();
                                                  el.element.css('display', 'none');
                                                  $ionicBackdrop.release();
-                                               }
+                                               //}
                                              };
 
                         scope.$watch('gPlaceSearchQuery', function(query){

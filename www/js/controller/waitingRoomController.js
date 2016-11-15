@@ -139,6 +139,7 @@ angular.module('starter.controllers')
              window.localStorage.setItem('accessToken', $rootScope.accessToken);
              window.localStorage.setItem("waitingRoomConsultationId", +$rootScope.consultationId);
             $scope.waitingMsg = "Please Wait....";
+            $scope.postPollforCredit();
             $scope.$digest();
         });
         conHub.on("onConsultationStarted", function() {
@@ -157,7 +158,7 @@ angular.module('starter.controllers')
 				]);
 				//navigator.notification.beep(2);
 				*/
-            $scope.$digest();;
+            $scope.$digest();
             $.connection.hub.stop();
             getConferenceKeys();
         });
@@ -200,5 +201,36 @@ angular.module('starter.controllers')
         };
         LoginService.getVideoConferenceKeys(params);
     };
+
+
+  //  var i = 0;
+    var alive_waiting_room_pool;
+    alive_waiting_room_pool = setInterval(function(){
+         if(window.localStorage.getItem("isCustomerInWaitingRoom") == "Yes"){
+          //    i++;
+             $scope.postPollforCredit();
+         }
+       }, 30000);
+
+       $scope.postPollforCredit = function() {
+           vConsultationWatingId = window.localStorage.getItem("waitingRoomConsultationId");
+           vAccessToken = window.localStorage.getItem("accessToken");
+           var alive_timestamp_url = apiCommonURL + '/api/v2/patients/activeconsultations/' + vConsultationWatingId + '/alive-timestamp';
+           var reqHeaders = util.getHeaders();
+           reqHeaders['Authorization'] = "Bearer " + vAccessToken;
+           $.ajax({
+               type: 'PUT',
+               headers: reqHeaders,
+               url: alive_timestamp_url,
+               //dataType: 'json',
+               success: function(data){
+                 console.log('Success at ' + i);
+               },
+               failure: function(error){
+                 console.log('Failed at ' + 1);
+               }
+             });
+       }
+
 
 })
