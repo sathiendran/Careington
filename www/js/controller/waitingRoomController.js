@@ -224,10 +224,10 @@ angular.module('starter.controllers')
                url: alive_timestamp_url,
                //dataType: 'json',
                success: function(data){
-                 console.log('Success at ' + i);
+                 console.log('Success at ');
                },
                failure: function(error){
-                 console.log('Failed at ' + 1);
+                 console.log('Failed at ');
                }
              });
        }

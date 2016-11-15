@@ -654,11 +654,11 @@ angular.module('starter.controllers')
                 $scope.disconnectConference();
             });
 
-            conHub.disconnected(function() {
+          /*  conHub.disconnected(function() {
                setTimeout(function() {
                    $.connection.hub.start();
                }, 5000);
-            });
+            });*/
             conHub.on("disconnected", function() {
                setTimeout(function() {
                    $.connection.hub.start();
@@ -880,49 +880,55 @@ angular.module('starter.controllers')
             OT.updateViews();
         };
         session.on('streamDestroyed', function(event) {
-            var tbStreamVal = event.stream.streamId;
-            $scope.removeVideoThumbnail(tbStreamVal);
-            $('#subscriber #video-' + connectedStreamId).hide();
-            $('#subscriber #' + connectedStreamId).hide();
-            $('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
-            $('#' + tbStreamVal).remove();
-            $('#video-' + tbStreamVal).remove();
-            if (typeof tbStreamVal != "undefined") {
-                var index = connectedStreams.indexOf(tbStreamVal);
-                connectedStreams.splice(index, 1);
-            }
-            if (event.stream.name.indexOf('Screen Share') < 0) {
-                participantsCount = +participantsCount - 1;
-            }
-            $('.vdioBadge').html(participantsCount);
-            $scope.removeVideoThumbnail(tbStreamVal);
+          if (!angular.isUndefined(event.stream.streamId)) {
+              var tbStreamVal = event.stream.streamId;
+              $scope.removeVideoThumbnail(tbStreamVal);
+              $('#subscriber #video-' + connectedStreamId).hide();
+              $('#subscriber #' + connectedStreamId).hide();
+              $('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
+              $('#' + tbStreamVal).remove();
+              $('#video-' + tbStreamVal).remove();
+              if (typeof tbStreamVal != "undefined") {
+                  var index = connectedStreams.indexOf(tbStreamVal);
+                  connectedStreams.splice(index, 1);
+              }
+              if (event.stream.name.indexOf('Screen Share') < 0) {
+                  participantsCount = +participantsCount - 1;
+              }
+              $('.vdioBadge').html(participantsCount);
+              $scope.removeVideoThumbnail(tbStreamVal);
 
-            for (var i = 0; i < connectedStreams.length; i++) {
-                var tbStreamVal = session.streams[connectedStreams[i]];
-                var connectedStreamId = connectedStreams[i];
-                if (connectedStreamId != "") {
-                    $('#subscriber #video-' + connectedStreamId).hide();
-                    $('#subscriber #' + connectedStreamId).hide();
-                    $('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
-                }
-                if (typeof tbStreamVal == "undefined") {
-                    var index = connectedStreams.indexOf(connectedStreamId);
-                    connectedStreams.splice(index, 1);
-                }
-            }
-            if (connectedStreams.length > 0) {
-                var doctorsStreamId = connectedStreams[0];
-                $('#hiddenVideos #video-' + doctorsStreamId).appendTo("#subscriber");
-                $('#video-' + doctorsStreamId).show();
-                $('#' + doctorsStreamId).show();
-            }
+              for (var i = 0; i < connectedStreams.length; i++) {
+                  var tbStreamVal = session.streams[connectedStreams[i]];
+                  var connectedStreamId = connectedStreams[i];
+                  if (connectedStreamId != "") {
+                      $('#subscriber #video-' + connectedStreamId).hide();
+                      $('#subscriber #' + connectedStreamId).hide();
+                      $('#subscriber #video-' + connectedStreamId).appendTo("#hiddenVideos");
+                  }
+                  if (typeof tbStreamVal == "undefined") {
+                      var index = connectedStreams.indexOf(connectedStreamId);
+                      connectedStreams.splice(index, 1);
+                  }
+              }
+              if (connectedStreams.length > 0) {
+                  var doctorsStreamId = connectedStreams[0];
+                  $('#hiddenVideos #video-' + doctorsStreamId).appendTo("#subscriber");
+                  $('#video-' + doctorsStreamId).show();
+                  $('#' + doctorsStreamId).show();
+              }
 
-            //session.unsubscribe(event.stream);
-            OT.updateViews();
-            $scope.arrangeVideoThumbnails();
-            $("#subscriber").css('top', '0px');
-            $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
-            event.preventDefault();
+              //session.unsubscribe(event.stream);
+              OT.updateViews();
+              $scope.arrangeVideoThumbnails();
+              $("#subscriber").css('top', '0px');
+              $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
+              event.preventDefault();
+            } else {
+              isCallEndedByPhysician = true;
+              $('#videoCallSessionTimer').runner('stop');
+              $scope.disconnectConference();
+            }
         });
 
         // Handler for sessionDisconnected event
