@@ -1181,9 +1181,12 @@ $scope.editDob=function(){
                 }
             },
             error: function(data, status) {
+
                 if (status === 400) {
-                    $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
-                    $rootScope.Validation($scope.ErrorMessage);
+                  //  $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
+                  //  $rootScope.Validation($scope.ErrorMessage);
+                  $scope.ErrorMessage = data.statusText;
+                  $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 0 ){
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);
