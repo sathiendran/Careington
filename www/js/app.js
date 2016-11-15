@@ -316,21 +316,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         });
         cordova.plugins.backgroundMode.enable();
 
-        cordova.plugins.backgroundMode.onactivate = function () {
-        /*  setTimeout(function () {
-            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                if($rootScope.currState.$current.name != "tab.waitingRoom" && $rootScope.currState.$current.name != "tab.videoConference") {
-                  navigator.notification.alert(
-                       'Your session timed out.', // message
-                       null,
-                       $rootScope.alertMsgName,
-                       'Ok' // buttonName
-                   );
-                  $rootScope.ClearRootScope();
-                }
-            }
-          }, 1800000);*/
-
+      /*  cordova.plugins.backgroundMode.onactivate = function () {      
           var i = 0;
           var alive_waiting_room_pool;
           alive_waiting_room_pool = setInterval(function(){
@@ -355,7 +341,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                     });
                }
           }, 30000);
-      }
+      }*/
 
         setTimeout(function() {
           //  Idle.watch();
