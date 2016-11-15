@@ -592,10 +592,12 @@ angular.module('starter.controllers')
                     $rootScope.AttendeeList = [];
                     angular.forEach($rootScope.existconsultationparticipants, function(index, item) {
                         var atname = index.person.name.given;
+                        var atsecondname= index.person.name.family;
                         if (atname != '') {
                             $rootScope.AttendeeList.push({
                                 'Number': item + 1,
                                 'attedeename': index.person.name.given,
+                                'secondname':  index.person.name.family,
                                 'consultstart': index.period.start,
                                 'consultend': index.period.end,
 
