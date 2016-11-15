@@ -105,8 +105,14 @@ angular.module('starter.controllers')
                         $('#emptyProvider').show();
                     }
                 },
-                error: function(data) {
+                error: function(data,status) {
+                  if (status === 0) {
+                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                      $rootScope.Validation($scope.ErrorMessage);
+
+                  } else {
                     $scope.$root.$broadcast("callServerErrorMessageValidation");
+                  }
                 }
             };
             LoginService.getSearchProviderList(params);
