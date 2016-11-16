@@ -1200,6 +1200,76 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getHospitalInfo(params);
     }
 
+    $scope.doGetSingleHospitalRegistrationInformation = function() {
+        $rootScope.paymentMode = '';
+        $rootScope.insuranceMode = '';
+        $rootScope.onDemandMode = '';
+        $rootScope.OrganizationLocation = '';
+        $rootScope.PPIsBloodTypeRequired = '';
+        $rootScope.PPIsHairColorRequired = '';
+        $rootScope.PPIsEthnicityRequired = '';
+        $rootScope.PPIsEyeColorRequired = '';
+        var params = {
+            hospitalId: $rootScope.hospitalId,
+            success: function(data) {
+                $rootScope.getDetails = data.data[0].enabledModules;
+                if ($rootScope.getDetails != '') {
+                    for (var i = 0; i < $rootScope.getDetails.length; i++) {
+                        if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+                            $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+                            $rootScope.paymentMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+                            $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
+                        }
+                    }
+                }
+              //  $rootScope.brandColor = data.data[0].brandColor;
+                //$rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+            //    $rootScope.logo = data.data[0].hospitalImage;
+            //    $rootScope.Hospital = data.data[0].brandName;
+            /*    if (deploymentEnvLogout == 'Single') {
+                    $rootScope.alertMsgName = $rootScope.Hospital;
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+                } else {
+                    $rootScope.alertMsgName = 'Virtual Care';
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase(); //'Virtual Care';
+                }
+                $rootScope.HospitalTag = data.data[0].brandTitle;
+                $rootScope.contactNumber = data.data[0].contactNumber;
+                $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+                $rootScope.clientName = data.data[0].hospitalName;
+                $state.go('tab.password');
+  */
+            },
+            error: function(data, status) {
+                if (status === 0) {
+
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                }
+            }
+        };
+        LoginService.getHospitalInfo(params);
+    }
 
 
     $('.hospitalDynamicLink').click(function() {
@@ -1404,6 +1474,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else {
                         $scope.tokenStatus = 'alert-success';
                         $scope.doGetCodesSet();
+
                         $scope.chkPatientFilledAllRequirements();
                         //    Idle.watch();
                         //$rootScope.CountryLists = CountryList.getCountryDetails();
@@ -1944,6 +2015,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.doGetPatientProfiles();
                     $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
+                      $scope.doGetSingleHospitalRegistrationInformation();
                     $state.go('tab.healthinfo');
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
                     $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId);

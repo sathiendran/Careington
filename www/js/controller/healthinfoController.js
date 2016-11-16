@@ -183,8 +183,6 @@ angular.module('starter.controllers')
     //  $scope.healthsearchinfo=true;
     //   $scope.healthtab=true;
     $rootScope.flag = true;
-    $rootScope.flagmodal=true;
-
     var minDate = new Date();
     var maxDate = minDate.getDate();
     var maxMonth = minDate.getMonth() + 1;
@@ -221,7 +219,7 @@ angular.module('starter.controllers')
           $scope.modal = modal;
           $scope.modal.show().then(function() {
           //  var newq=$('#edhunit').text();
-              $rootScope.flagmodal=false;
+
           if(hghtinval==""){
             $('#healthInfoHeight').val("");
             $('#healthInfoHeight2').val("");
@@ -260,7 +258,6 @@ angular.module('starter.controllers')
 
     }
     $rootScope.editremovemodal = function() {
-        $rootScope.flagmodal=true;
       $scope.modal.remove()
       .then(function() {
         $scope.modal = null;
@@ -334,7 +331,6 @@ angular.module('starter.controllers')
        $scope.ErrorMessage = "Please enter valid height";
        $rootScope.ValidationFunction1($scope.ErrorMessage);
      } else{
-         $rootScope.flagmodal=true;
        $scope.modal.remove()
        .then(function() {
          $scope.modal = null;
@@ -463,7 +459,6 @@ angular.module('starter.controllers')
     }
 
     $scope.edittext = function() {
-        $rootScope.flagmodal=true;
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
@@ -1149,7 +1144,7 @@ $scope.editDob=function(){
                   var sploc=locat.split("/");
                   var cutlocations=sploc[1] +"."+sploc[2];
 
-                  //$rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
                   // $rootScope.doGetSelectedPatientProfiles(data.patientID);
                   var editdate = $rootScope.currentPatientDetails.dob;
                   $rootScope.doddate = new Date($rootScope.healthInfoDOB);
@@ -1181,17 +1176,14 @@ $scope.editDob=function(){
                 }
             },
             error: function(data, status) {
-
                 if (status === 400) {
-                  //  $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
-                  //  $rootScope.Validation($scope.ErrorMessage);
-                  $scope.ErrorMessage = data.statusText;
-                  $rootScope.Validation($scope.ErrorMessage);
+                    $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
+                    $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 0 ){
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);
                 }else {
-                   $rootScope.serverErrorMessageValidation();
+                    $rootScope.serverErrorMessageValidation();
                 }
             }
         };
