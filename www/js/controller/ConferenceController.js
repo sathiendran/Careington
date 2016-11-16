@@ -176,9 +176,11 @@ angular.module('starter.controllers')
                 }
                 $rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
                 $rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
-                if ($rootScope.existingConsultationReport.guardianName != '' && typeof $rootScope.existingConsultationReport.guardianName != 'undefined') {
-                    $rootScope.reportGuardian = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.guardianName);
-                }
+                if ($rootScope.primaryPatientId != $rootScope.existingConsultationReport.patientId){
+                  if ($rootScope.existingConsultationReport.guardianName != '' && typeof $rootScope.existingConsultationReport.guardianName != 'undefined') {
+                      $rootScope.reportGuardian = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.guardianName);
+                  }
+                 }
                 if ($rootScope.existingConsultationReport.patientAddress != '' && typeof $rootScope.existingConsultationReport.patientAddress != 'undefined') {
                     $rootScope.reportPatientAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientAddress);
                 } else {

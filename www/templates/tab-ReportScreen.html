@@ -70,8 +70,8 @@
 			<div  class="reportPatient">
 				<div><b>Patient:</b></div>
 				<div>{{reportPatientName}} {{reportLastName}} </div>
-				<div ng-if="existingConsultationReport.guardianName != 'undefined' "><b>Guardian:</b></div>
-	<div ng-if="existingConsultationReport.guardianName != 'undefined' ">{{reportGuardian}}</div>
+				<div ng-if="existingConsultationReport.guardianName != undefined"><b>Guardian:</b></div>
+      	<div ng-if="existingConsultationReport.guardianName != undefined">{{reportGuardian}}</div>
 				<div ng-if="existingConsultationReport.patientAddress != ''">{{reportPatientAddress}}</div>
 				<div>Home: {{reportHomePhone}} </div>
 				<div>Cell: {{existingConsultationReport.mobilePhone}} </div>
