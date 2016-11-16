@@ -285,7 +285,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             document.addEventListener("online", onOnline, false);
         }, 100);
 
-
+      
         function onOffline() {
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $('#thumbVideos').remove();
@@ -298,7 +298,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $state.go('tab.videoLost', { retry : 1 });
             }else{
 
-           navigator.notification.alert(
+        navigator.notification.alert(
                   'Please make sure that you have network connection.', // message
                   null,
                   'No Internet Connection', // title
