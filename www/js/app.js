@@ -114,6 +114,7 @@ var handleOpenURL = function(url) {
 angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle, $ionicBackdrop, $interval) {
+
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
@@ -284,6 +285,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             document.addEventListener("online", onOnline, false);
         }, 100);
 
+
         function onOffline() {
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $('#thumbVideos').remove();
@@ -295,12 +297,14 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 OT.updateViews();
                 $state.go('tab.videoLost', { retry : 1 });
             }else{
-              navigator.notification.alert(
+
+           navigator.notification.alert(
                   'Please make sure that you have network connection.', // message
                   null,
                   'No Internet Connection', // title
                   'Ok' // buttonName
               );
+
             }
             return false;
         }
@@ -316,7 +320,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         });
         cordova.plugins.backgroundMode.enable();
 
-      /*  cordova.plugins.backgroundMode.onactivate = function () {      
+      /*  cordova.plugins.backgroundMode.onactivate = function () {
           var i = 0;
           var alive_waiting_room_pool;
           alive_waiting_room_pool = setInterval(function(){
