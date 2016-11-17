@@ -285,7 +285,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             document.addEventListener("online", onOnline, false);
         }, 100);
 
-      
+       var myPopup;
         function onOffline() {
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $('#thumbVideos').remove();
@@ -298,18 +298,40 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $state.go('tab.videoLost', { retry : 1 });
             }else{
 
-        navigator.notification.alert(
+
+                $('.popup').addClass("ietpopup");
+                $('.popup-title').addClass("iettitle");
+                $('.popup-buttons').addClass("ietpopup-buttons");
+    // An elaborate, custom popup
+    myPopup = $ionicPopup.show({
+      template: '<b>Please make sure that you have network connection.</b>',
+      title: 'No Internet Connection',
+      cssClass: 'my-custom-popup',
+      buttons: [
+             { text: '<b class="ietfonttype">ok</b>',
+               type:'button',
+            }
+
+           ]
+
+    });
+    myPopup.then(function(res) {
+      console.log('Tapped!', res);
+    });
+            /*  navigator.notification.alert(
                   'Please make sure that you have network connection.', // message
                   null,
                   'No Internet Connection', // title
                   'Ok' // buttonName
-              );
+              );*/
 
             }
             return false;
         }
 
         function onOnline() {
+          console.log('Closing in controller!');
+          myPopup.close();
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
             }
