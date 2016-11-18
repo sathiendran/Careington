@@ -2626,7 +2626,7 @@ a {
     }
 }
 .ContentList_terms-Android {
-    margin: 160px 0 0 0;
+  //  margin: 160px 0 0 0;
     background-color: #EFEFED;
     .item {
         padding: 42px 18px 27px 35px;
@@ -4279,7 +4279,7 @@ textarea {
     top: -153px;
 }
 .singleTermsContent-IOS {
-    padding: 160px 7px 7px 7px; 
+    padding: 160px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify;
@@ -4287,12 +4287,13 @@ textarea {
     top: -115px;
 }
 .singleTermsconContent-Android {
-    padding: 50px 7px 7px 7px;
+//    padding: 50px 7px 7px 7px;
+padding: 159px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify;
     position: relative;
-    top: -31px;
+//    top: -31px;
 }
 .singleTermsconContent-IOS {
     padding: 35px 7px 7px 7px;
