@@ -12,8 +12,8 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Single'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -99,15 +99,15 @@ if (deploymentEnv == 'Single') {
       HospitalTag = 'Virtual Consultation Platform';
       ssoURL = "";
   } else if (cobrandApp == '1800md') {
-      singleStagingHospitalId = 146;
+      singleStagingHospitalId = 164;
       singleHospitalId = 229;
       singleQAHospitalId = 164;
       singleSandboxHospitalId = 146;
-      brandColor = '#193def';
+      brandColor = '#005b9f';
       logo = 'img/1800md.png';
-      logo = 'https://snap-stage.com/api/v2.1/images/239f0387-2524-4266-bf90-6fab7efe7bb9';
-      Hospital = "Wellspring Medical Clinic";
-      HospitalTag = 'Virtual Consultation Platform';
+      logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
+      Hospital = "1.800MD";
+      HospitalTag = 'Convenient Care Anywhere';
       ssoURL = "";
   }
 
