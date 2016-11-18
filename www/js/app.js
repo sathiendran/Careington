@@ -12,8 +12,8 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Single'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -24,7 +24,7 @@ var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'ambientcare';
+    var cobrandApp = '1800md';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -98,8 +98,18 @@ if (deploymentEnv == 'Single') {
       Hospital = "Ambient Virtual Care";
       HospitalTag = 'Virtual Consultation Platform';
       ssoURL = "";
+  } else if (cobrandApp == '1800md') {
+      singleStagingHospitalId = 146;
+      singleHospitalId = 229;
+      singleQAHospitalId = 164;
+      singleSandboxHospitalId = 146;
+      brandColor = '#193def';
+      logo = 'img/1800md.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/239f0387-2524-4266-bf90-6fab7efe7bb9';
+      Hospital = "Wellspring Medical Clinic";
+      HospitalTag = 'Virtual Consultation Platform';
+      ssoURL = "";
   }
-
 
 }
 
