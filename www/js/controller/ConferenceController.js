@@ -647,26 +647,50 @@ angular.module('starter.controllers')
                 withCredentials: false
             }).then(function() {
                 conHub.invoke("joinCustomer").then(function() {});
+                $.connection.hub.start();
                 $rootScope.waitingMsg = "The Provider will be with you Shortly.";
                 window.localStorage.setItem('isVideoCallProgress', "Yes");
             });
-            conHub.on("onConsultationEnded", function() {
+
+
+         conHub.on("onConsultationEnded", function() {
                 isCallEndedByPhysician = true;
                 $('#videoCallSessionTimer').runner('stop');
                 $scope.disconnectConference();
             });
 
-          /*  conHub.disconnected(function() {
+            conHub.on("participantConnected", function () {
+              console.log('participantConnected1');
+              alert('participantConnected1');
+            });
+
+            conHub.on("participantDisconnected", function () {
+              console.log('participantDisconnected1');
+              alert('participantDisconnected1');
+
+            });
+
+            conHub.on("providerUnavailable", function () {
+              console.log('providerUnavailable1');
+              alert('providerUnavailable1');
+            });
+
+            conHub.on("providerAvailable", function () {
+              console.log('providerAvailable1');
+              alert('providerAvailable1');
+            });
+
+            /*   conHub.disconnected(function() {
                setTimeout(function() {
                    $.connection.hub.start();
                }, 5000);
-            });*/
+            });
             conHub.on("disconnected", function() {
                setTimeout(function() {
                    $.connection.hub.start();
                }, 5000);
             });
-        /*    conHub.on("participantDisconnected", function () {
+         conHub.on("participantDisconnected", function () {
               navigator.notification.alert(
                   'Guest Disconnected', // message
                   consultationEndedAlertDismissed, // callback
@@ -882,7 +906,7 @@ angular.module('starter.controllers')
             OT.updateViews();
         };
         session.on('streamDestroyed', function(event) {
-          if (!angular.isUndefined(event.stream.streamId)) {
+          if (!angular.isUndefined(event.stream)) {
               var tbStreamVal = event.stream.streamId;
               $scope.removeVideoThumbnail(tbStreamVal);
               $('#subscriber #video-' + connectedStreamId).hide();
@@ -937,6 +961,27 @@ angular.module('starter.controllers')
         session.on('sessionDisconnected', function(event) {
             console.log('You were disconnected from the session.', event.reason);
         });
+      /*  $consultationHub.on("participantConnected", function () {
+          console.log('participantConnected');
+          alert('participantConnected');
+        });
+
+        $consultationHub.on("participantDisconnected", function () {
+          console.log('participantDisconnected');
+          alert('participantDisconnected');
+
+        });
+
+        $consultationHub.on("providerUnavailable", function () {
+          console.log('providerUnavailable');
+          alert('providerUnavailable');
+        });
+
+        $consultationHub.on("providerAvailable", function () {
+          console.log('providerAvailable');
+          alert('providerAvailable');
+        });*/
+
 
         session.on("signal", function(event) {
 
@@ -1132,6 +1177,7 @@ angular.module('starter.controllers')
                           $state.go('tab.videoConference');
                       } else if (index == 2) {
                            conHub.invoke("notifyClientDisconnect").then(function() {});
+                           $.connection.hub.stop();
                            $('#thumbVideos').remove();
                            $('#videoControls').remove();
                            session.unpublish(publisher)
@@ -1156,6 +1202,7 @@ angular.module('starter.controllers')
               callEnded = true;
               //conHub.invoke("endConsultation").then(function() {});
               conHub.invoke("notifyClientDisconnect").then(function() {});
+              $.connection.hub.stop();
              $('#thumbVideos').remove();
              $('#videoControls').remove();
              session.unpublish(publisher)
