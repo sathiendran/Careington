@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading, $ionicScrollDelegate, $ionicModal, $filter, $ionicPopup, $log, $window, $ionicBackdrop, Idle) {
+.controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading, $ionicScrollDelegate, $ionicModal, $filter, $ionicPopup, $log, $window, $ionicBackdrop) {
 
     $timeout(function() {
         $('option').filter(function() {
@@ -59,9 +59,8 @@ angular.module('starter.controllers')
                 }
             }
         }
-        //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-        //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
-    $scope.toggleLeft = function() {
+
+      $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
         $rootScope.checkAndChangeMenuIcon();
         if (checkAndChangeMenuIcon) {
@@ -104,15 +103,17 @@ angular.module('starter.controllers')
                 $('#deptheight').val("");
                 $('#deptheight2').val("");
                 document.getElementById('heightunitval').selectedIndex = 0;
-                $scope.hfeet=true;$scope.hinch=true;
-                $scope.hmeter=true;$scope.hcmeter=true;
+                $scope.hfeet=true;
+                $scope.hinch=true;
+                $scope.hmeter=true;
+                $scope.hcmeter=true;
               }
               else{
                 var reminspace = hghtinval.split(" ");
                 var fet = reminspace[0];
                 var finc = reminspace[2];
                 var units = reminspace[1];
-                if (units == "ft") {
+                if (units === "ft") {
                     document.getElementById('heightunitval').selectedIndex = 0;
                     $('#deptheight').val(fet);
                     $('#deptheight2').val(finc);
@@ -120,7 +121,7 @@ angular.module('starter.controllers')
                     $scope.hinch = true;
                     $scope.hmeter = true;
                     $scope.hcmeter = true;
-                }   else if (units == "m") {
+                }   else if (units === "m") {
                       document.getElementById('heightunitval').selectedIndex = 1;
                       $('#deptheight').val(fet);
                       $('#deptheight2').val(finc);
@@ -142,12 +143,7 @@ angular.module('starter.controllers')
 
 
             });
-        /*    $timeout(function() {
-                $scope.modal.remove()
-                    .then(function() {
-                        $scope.modal = null;
-                    });
-            }, 600000);*/
+
               $timeout(function() {
                 //  $scope.modal.remove()
                 $('option').filter(function() {
@@ -207,9 +203,6 @@ angular.module('starter.controllers')
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
     var today = new Date();
-    var nowyear = today.getFullYear();
-    var nowmonth = today.getMonth() + 1;
-    var nowday = today.getDate();
     $scope.hfeet = true;
     $scope.hinch = true;
     $scope.hmeter = true;
@@ -232,7 +225,7 @@ angular.module('starter.controllers')
         $scope.depheight1 = function() {
               var max = 10;
               var heights = $("#deptheight").val();
-              if (heights == "") {
+              if (heights === "") {
                   $("#deptheight").val("");
               } else if (heights > max) {
 
@@ -255,7 +248,7 @@ angular.module('starter.controllers')
               var max = 99;
               var height2val = $('#deptheight2').val();
 
-              if (height2val == "") {
+              if (height2val === "") {
                   $("#deptheight2").val("");
               } else if (height2val > max) {
                   $("#deptheight2").val(max);
@@ -263,7 +256,7 @@ angular.module('starter.controllers')
 
               var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
               var getheightunit = _.first(heightunit);
-              if (getheightunit == "ft/in") {
+              if (getheightunit === "ft/in") {
                   var maxheight = 11;
                   if (height2val > maxheight) {
                       $("#deptheight2").val(maxheight);
@@ -279,7 +272,7 @@ angular.module('starter.controllers')
               }
               var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
               var getheightunit = _.first(heightunit);
-              if (getheightunit == "ft/in") {
+              if (getheightunit === "ft/in") {
                   var maxheight = 11;
                   if (height2vallen > maxheight) {
                       $("#deptheight2").val(maxheight);
@@ -296,7 +289,7 @@ angular.module('starter.controllers')
             $scope.hmeter = true;
             $scope.hcmeter = true;
             var height2val = $('#deptheight').val();
-            if (height2val != "") {
+            if (height2val !== "") {
                 if (height2val > maxheight) {
                     $("#deptheight2").val(maxheight);
                 }
@@ -323,7 +316,7 @@ angular.module('starter.controllers')
         var weightparse=parseInt(wghtparse);
         if (weightvallen > 3) {
             $("#weight").val(maxweight);
-        }else if(weightparse==0){
+        }else if(weightparse===0){
           $('#weight').val('')
           $scope.ErrorMessage = "Please enter valid Weight";
           $rootScope.Validation($scope.ErrorMessage);
@@ -331,6 +324,7 @@ angular.module('starter.controllers')
     }
 
     $scope.heightsave = function() {
+      var heightdepval;
         $rootScope.height1 = $('#deptheight').val();
         $rootScope.height2 = $('#deptheight2').val();
         var heightunit = $("#heightunitval").val().split("@").slice(1, 2);
@@ -338,25 +332,25 @@ angular.module('starter.controllers')
         var getheightunitid = _.first(heightunitid);
         var getheightunit = _.first(heightunit);
         if (getheightunit === "ft/in") {
-            if ($rootScope.height1 != '' && $rootScope.height2 != '') {
-                var heightdepval = $('#deptheight').val() + " " + "ft" + " " + $('#deptheight2').val() + " " + "in";
+            if ($rootScope.height1 !== '' && $rootScope.height2 !== '') {
+                 heightdepval = $('#deptheight').val() + " " + "ft" + " " + $('#deptheight2').val() + " " + "in";
                 $('#heightdep').val(heightdepval);
-            } else if ($rootScope.height1 != '' && $rootScope.height2 == '') {
-                var heightdepval = $('#deptheight').val() + " " + "ft" + " " + "0" + " " + "in";
+            } else if ($rootScope.height1 !== '' && $rootScope.height2 == '') {
+                 heightdepval = $('#deptheight').val() + " " + "ft" + " " + "0" + " " + "in";
                 $('#heightdep').val(heightdepval);
             } else {
-                var heightdepval = $('#deptheight').val() + " " + "ft" + " " + "0" + " " + 'in';
+                 heightdepval = $('#deptheight').val() + " " + "ft" + " " + "0" + " " + 'in';
                 $('#heightdep').val(heightdepval);
             }
         } else {
-            if ($rootScope.height1 != '' && $rootScope.height2 != '') {
-                var heightdepval = $('#deptheight').val() + " " + "m" + " " + $('#deptheight2').val() + " " + "cm";
+            if ($rootScope.height1 !== '' && $rootScope.height2 !== '') {
+                 heightdepval = $('#deptheight').val() + " " + "m" + " " + $('#deptheight2').val() + " " + "cm";
                 $('#heightdep').val(heightdepval);
-            } else if ($rootScope.height != '' && $rootScope.height == '') {
-                var heightdepval = $('#deptheight').val() + " " + "m" + " " + "0" + " " + "cm";
+            } else if ($rootScope.height !== '' && $rootScope.height === '') {
+                 heightdepval = $('#deptheight').val() + " " + "m" + " " + "0" + " " + "cm";
                 $('#heightdep').val(heightdepval);
             } else {
-                var heightdepval = $('#deptheight').val() + " " + "m" + " " + "0" + " " + "cm";
+                 heightdepval = $('#deptheight').val() + " " + "m" + " " + "0" + " " + "cm";
                 $('#heightdep').val(heightdepval);
             }
         }
@@ -364,7 +358,7 @@ angular.module('starter.controllers')
         if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
             $scope.ErrorMessage = "Please enter height";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
-        }else if($rootScope.height2==0 && $rootScope.height1 ==0){
+        }else if($rootScope.height2===0 && $rootScope.height1 ===0){
           $scope.ErrorMessage = "Please enter valid height";
           $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else {
@@ -382,7 +376,7 @@ angular.module('starter.controllers')
     $scope.phoneBlur = function() {
         $scope.phonelength = $("#homephone").val().length;
         var phonevalue = $("#homephone").val();
-        if (phonevalue != '') {
+        if (phonevalue !== '') {
             if ($scope.phonelength < 14) {
                 $scope.ErrorMessage = "Please enter valid Home Phone Number";
                 $rootScope.Validation($scope.ErrorMessage);
@@ -390,13 +384,12 @@ angular.module('starter.controllers')
         }
     }
     $scope.ValidateEmail = function(email) {
-        //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return expr.test(email);
     };
     $scope.emailBlur = function() {
         var emailvalue = $('#email').val();
-        if (emailvalue != '') {
+        if (emailvalue !== '') {
             if (!$scope.ValidateEmail($("#email").val())) {
                 $scope.ErrorMessage = "Please enter a valid Email Address";
                 $rootScope.Validation($scope.ErrorMessage);
@@ -417,7 +410,7 @@ angular.module('starter.controllers')
         $scope.splitheights = $('#heightdep').val();
         var inch = splitheight.slice(6, 8)
 
-        if ($rootScope.height2 == "") {
+        if ($rootScope.height2 === "") {
             $scope.heightinch = "0";
         } else {
             $scope.heightinch = $rootScope.height2;
@@ -431,12 +424,11 @@ angular.module('starter.controllers')
         $scope.phonelength = $("#homephone").val().length;
         $scope.mobile = $("#mobile").val();
         $scope.mobilelength = $("#mobile").val().length;
-        //$scope.homeaddress = $("#homeadd").val();
         $scope.homeaddress = $scope.addNewDependent.homeadd;
         if ($rootScope.OrganizationLocation === 'on') {
             var org = document.getElementById("organization");
             var loc = document.getElementById("location");
-            if (org != "Choose Organization") {
+            if (org !== "Choose Organization") {
                 $scope.organization = null;
                 $scope.orgid = null;
             } else {
@@ -534,7 +526,7 @@ angular.module('starter.controllers')
             } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
                 $scope.ErrorMessage = "Please select Weight";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.getWeightunit == 'undefined' || $scope.getWeightunit === '') {
+            } else if (typeof $scope.getWeightunit === 'undefined' || $scope.getWeightunit === '') {
                 $scope.ErrorMessage = "Please select Weight Unit";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
@@ -595,7 +587,7 @@ angular.module('starter.controllers')
             } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
                 $scope.ErrorMessage = "Please enter Weight";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.getWeightunit == 'undefined' || $scope.getWeightunit === '') {
+            } else if (typeof $scope.getWeightunit === 'undefined' || $scope.getWeightunit === '') {
                 $scope.ErrorMessage = "Please select Weight Unit";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
@@ -692,7 +684,7 @@ angular.module('starter.controllers')
                 $rootScope.deppatientId = updatepatientdetail[0].patientId;
                 var depPatientSuccessPtId = updatepatientdetail[0].patientId;
                 var depPatientSecurityToken = updatepatientdetail[0].securityToken;
-                if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.email != "") {
+                if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.email !== "") {
                     var ptName = $scope.firstName + " " + $scope.lastName;
                     $scope.sendCoUserInvite($rootScope.hospitalId, depPatientSuccessPtId, ptName, $scope.email, depPatientSecurityToken);
                 }
@@ -722,10 +714,6 @@ angular.module('starter.controllers')
       }
 
       $scope.doChkAddressForReg = function(homeaddress) {
-        if ($scope.accessToken === 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
         var params = {
             AddressText: homeaddress,
             HospitalId: $rootScope.hospitalId,
@@ -751,7 +739,7 @@ angular.module('starter.controllers')
             patientId: $rootScope.deppatientId,
             RelationCodeId: $rootScope.getRelationId,
             IsAuthorized: "Y", //healthInfoAuthorize,
-            success: function(data) {
+            success: function() {
                 $('#dependentuserform')[0].reset();
                 $('select').prop('selectedIndex', 0);
                 if ($rootScope.newDependentImagePath !== '' && typeof $rootScope.newDependentImagePath !== 'undefined') {
@@ -760,7 +748,7 @@ angular.module('starter.controllers')
                     $state.go('tab.relatedusers');
                 }
             },
-            error: function(data, status) {
+            error: function() {
                 $rootScope.serverErrorMessageValidation();
             }
         };
@@ -777,11 +765,11 @@ angular.module('starter.controllers')
                 Name: name,
                 Email: email,
                 Token: securityToken.substring(2),
-                success: function(data) {
+                success: function() {
                   $scope.ErrorMessage = "A verification email has been sent to the user";
                   $rootScope.Validation($scope.ErrorMessage);
                 },
-                error: function(data, status) {
+                error: function() {
                   $scope.ErrorMessage = "Unable to sent email invitation";
                   $rootScope.Validation($scope.ErrorMessage);
                 }
@@ -855,7 +843,6 @@ angular.module('starter.controllers')
         });
     };
 
-    //  var fileUploadUrl = "http://emerald.snap.local/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
     function cameraActionCallback(buttonIndex) {
         if (buttonIndex == 3) {
             return false;

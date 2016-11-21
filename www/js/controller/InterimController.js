@@ -1,51 +1,46 @@
 angular.module('starter.controllers')
-
-//InterimController - To manipulate URL Schemes
 .controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
     $rootScope.deploymentEnv = deploymentEnv;
-    if (deploymentEnv != 'Multiple') {
+    if (deploymentEnv !== 'Multiple') {
         $rootScope.APICommonURL = apiCommonURL;
     }
     $window.localStorage.setItem('ChkVideoConferencePage', "");
     $ionicPlatform.registerBackButtonAction(function(event, $state) {
-        if (($rootScope.currState.$current.name == "tab.userhome") ||
-            ($rootScope.currState.$current.name == "tab.addCard") ||
-            ($rootScope.currState.$current.name == "tab.submitPayment") ||
-            ($rootScope.currState.$current.name == "tab.waitingRoom") ||
-            ($rootScope.currState.$current.name == "tab.receipt") ||
-            ($rootScope.currState.$current.name == "tab.videoConference") ||
-            ($rootScope.currState.$current.name == "tab.connectionLost") ||
-            ($rootScope.currState.$current.name == "tab.ReportScreen")
+        if (($rootScope.currState.$current.name === "tab.userhome") ||
+            ($rootScope.currState.$current.name === "tab.addCard") ||
+            ($rootScope.currState.$current.name === "tab.submitPayment") ||
+            ($rootScope.currState.$current.name === "tab.waitingRoom") ||
+            ($rootScope.currState.$current.name === "tab.receipt") ||
+            ($rootScope.currState.$current.name === "tab.videoConference") ||
+            ($rootScope.currState.$current.name === "tab.connectionLost") ||
+            ($rootScope.currState.$current.name === "tab.ReportScreen")
         ) {
             // H/W BACK button is disabled for these states (these views)
             // Do not go to the previous state (or view) for these states.
             // Do nothing here to disable H/W back button.
-        } else if ($rootScope.currState.$current.name == "tab.login") {
+        } else if ($rootScope.currState.$current.name === "tab.login") {
             navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
+        } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
             navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
+        } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
                 $ionicBackdrop.release();
                 $(".ion-google-place-container").css({
                     "display": "none"
                 });
-
             } else {
                 $(".ion-google-place-container").css({
                     "display": "none"
                 });
                 navigator.app.backHistory();
             }
-
         } else {
             navigator.app.backHistory();
         }
     }, 100);
-
     $scope.ssoMessage = 'Authenticating..... Please wait!';
     $scope.addMinutes = function(inDate, inMinutes) {
         var newdate = new Date();
@@ -65,31 +60,30 @@ angular.module('starter.controllers')
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
-                if ($rootScope.getDetails != '') {
+                if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
-                        if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+                        if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
                         }
-                        //if ($rootScope.getDetails[i] == 'PaymentPageBeforeWaitingRoom') {
-                        if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+                        if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+                        if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                        if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
                             $rootScope.PPIsBloodTypeRequired = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
                             $rootScope.PPIsHairColorRequired = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
                             $rootScope.PPIsEthnicityRequired = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
                             $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
@@ -97,7 +91,7 @@ angular.module('starter.controllers')
                 $rootScope.brandColor = data.data[0].brandColor;
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
-                if (deploymentEnvLogout == 'Multiple') {
+                if (deploymentEnvLogout === 'Multiple') {
                     $rootScope.alertMsgName = 'Virtual Care';
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase(); //'Virtual Care';
                 } else {
@@ -117,16 +111,12 @@ angular.module('starter.controllers')
     }
 
     $scope.doGetScheduledConsulatation = function() {
-        if ($rootScope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
         $rootScope.scheduledConsultationList = [];
         var params = {
             patientId: $rootScope.primaryPatientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                if (data != "") {
+                if (data !== "") {
                     $scope.scheduledConsultationList = data.data;
                     $rootScope.getScheduledList = [];
                     $rootScope.scheduleParticipants = [];
@@ -160,15 +150,12 @@ angular.module('starter.controllers')
                         }
                     });
                     $rootScope.scheduledList = $filter('filter')($filter('orderBy')($rootScope.getScheduledList, "scheduledTime"), "a");
-                    console.log($rootScope.scheduledList);
                     $rootScope.nextAppointmentDisplay = 'none';
                     $rootScope.accountClinicianFooter = 'block';
-
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
                     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
-
-                    if ($rootScope.scheduledList != '') {
+                    if ($rootScope.scheduledList !== '') {
                         var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;
 
@@ -204,15 +191,10 @@ angular.module('starter.controllers')
     }
 
     $scope.doGetPrimaryPatientLastName = function() {
-        if ($scope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
+      var params = {
             patientId: $rootScope.primaryPatientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                //$scope.RelatedPatientProfiles = data.data;
                 $rootScope.primaryPatientLastNameArray = [];
                 angular.forEach(data.data, function(index, item) {
                     $rootScope.primaryPatientLastNameArray.push({
@@ -235,35 +217,24 @@ angular.module('starter.controllers')
                 } else {
                     $rootScope.primaryPatientLastName = '';
                 }
-
                 $rootScope.primaryPatientFullName = $rootScope.primaryPatientName + ' ' + $rootScope.primaryPatientLastName;
-
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
         };
-
         LoginService.getPrimaryPatientLastName(params);
     };
     $scope.doGetPatientProfiles = function() {
-        if ($rootScope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
+      var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-
-                $rootScope.primaryPatientDetails = [];
-                //angular.fromJson(index.billingAddress)
+              $rootScope.primaryPatientDetails = [];
                 angular.forEach(data.data, function(index, item) {
                     $rootScope.primaryPatientDetails.push({
                         'account': angular.fromJson(index.account),
@@ -284,7 +255,6 @@ angular.module('starter.controllers')
                         'schoolName': index.schoolName
                     });
                 });
-
                 $rootScope.patientInfomation = data.data[0];
                 $rootScope.patientAccount = data.data[0].account;
                 $rootScope.patientAddresses = data.data[0].addresses;
@@ -304,7 +274,6 @@ angular.module('starter.controllers')
                     } else {
                         $rootScope.primaryPatGender = "Male";
                     }
-                    //$rootScope.gender = data.data[0].gender;
                 } else {
                     $rootScope.gender = "NA";
                 }
@@ -324,7 +293,6 @@ angular.module('starter.controllers')
                     }
                 }
                 $rootScope.primaryPatientName = angular.element('<div>').html(data.data[0].patientName).text();
-
                 $rootScope.userCountry = data.data[0].country;
                 if (typeof $rootScope.userCountry === 'undefined') {
                     $rootScope.userCountry = '';
@@ -332,11 +300,9 @@ angular.module('starter.controllers')
                 $rootScope.primaryPatientGuardianName = '';
                 $rootScope.state = data.data[0].state;
                 $rootScope.zipCode = data.data[0].zipCode;
-
                 $rootScope.primaryPatientId = $rootScope.patientAccount.patientId;
                 $scope.doGetPrimaryPatientLastName();
                 $rootScope.doGetScheduledConsulatation();
-
             },
             error: function(data) {
                 $scope.ssoMessage = 'Authentication Failed! Please try again later!';
@@ -346,7 +312,6 @@ angular.module('starter.controllers')
                 $rootScope.patientAnatomy = '';
                 $rootScope.patientPharmacyDetails = ''
                 $rootScope.patientPhysicianDetails = '';
-                //alert("$T/ESTONE../$TESTONE../../".replace( new RegExp("\\../","gm")," "))
                 $rootScope.PatientImage = '';
                 $rootScope.address = '';
                 $rootScope.city = '';
@@ -370,17 +335,11 @@ angular.module('starter.controllers')
         LoginService.getPatientProfiles(params);
     };
     $scope.doGetRelatedPatientProfiles = function(redirectPage) {
-        if ($scope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
+      var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-
                 $rootScope.RelatedPatientProfiles = [];
-
                 angular.forEach(data.data, function(index, item) {
                     if (typeof index.gender !== 'undefined') {
                         if (index.gender === 'F') {
@@ -391,7 +350,6 @@ angular.module('starter.controllers')
                     } else {
                         $scope.patGender = "NA";
                     }
-
                     var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                         codeId: index.relationCode
                     })
@@ -400,12 +358,10 @@ angular.module('starter.controllers')
                     } else {
                         var depRelationShip = '';
                     }
-
                     $rootScope.RelatedPatientProfiles.push({
                         'id': index.$id,
                         'patientId': index.patientId,
                         'patientName': index.patientName,
-                        //'profileImagePath': ($rootScope.APICommonURL + index.profileImagePath).replace(new RegExp("\\../","gm"),"/"),
                         'profileImagePath': index.profileImagePath,
                         'relationCode': index.relationCode,
                         'depRelationShip': depRelationShip,
@@ -416,18 +372,13 @@ angular.module('starter.controllers')
                         'gender': $scope.patGender,
                         'patientFirstName': angular.element('<div>').html(index.patientFirstName).text(),
                         'patientLastName': angular.element('<div>').html(index.patientLastName).text(),
-                        //  'guardianFirstName': angular.element('<div>').html(index.guardianFirstName).text(),
-                        //  'guardianLastName': angular.element('<div>').html(index.guardianLastName).text(),
-                        //  'guardianName': angular.element('<div>').html(index.guardianName).text(),
                         'personId': index.personId,
-
                     });
                 });
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
-                if (redirectPage == 'userhome') {
+                if (redirectPage === 'userhome') {
                     $state.go('tab.userhome');
                 } else {
-                    //$state.go('tab.waitingRoom');
                     $scope.doGetExistingConsulatation();
                 }
             },
@@ -435,21 +386,14 @@ angular.module('starter.controllers')
                 $rootScope.serverErrorMessageValidation();
             }
         };
-
         LoginService.getRelatedPatientProfiles(params);
     };
-
     $scope.doGetCodesSet = function() {
-        if ($rootScope.accessToken === 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
+      var params = {
             hospitalId: $rootScope.hospitalId,
             accessToken: $rootScope.accessToken,
             fields: 'medicalconditions,medications,medicationallergies,consultprimaryconcerns,consultsecondaryconcerns,eyecolor,haircolor,ethnicity,bloodtype,relationship,heightunit,weightunit',
             success: function(data) {
-                //console.log(data.data[3].codes);
                 $rootScope.hospitalCodesList = angular.fromJson(data.data[3].codes);
                 $rootScope.primaryConcernList = $rootScope.hospitalCodesList;
                 $rootScope.primaryConcernDataList = angular.fromJson(data.data[3].codes);
@@ -474,7 +418,6 @@ angular.module('starter.controllers')
                         'name': index.name
                     });
                 });
-
                 $rootScope.listOfEyeColor = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
                     name: "Eye Color"
                 });
@@ -496,8 +439,6 @@ angular.module('starter.controllers')
                 $rootScope.listOfBloodtype = $filter('filter')($rootScope.eyeHairEthnicityRelationCodeSets, {
                     name: "Blood Type"
                 });
-
-                //	$state.go('tab.patientConcerns');
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -533,7 +474,6 @@ angular.module('starter.controllers')
         SurgeryStocksListService.ClearSurgery();
         LoginService.getCodesSet(params);
     }
-
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
         $rootScope.appointmentsPatientFirstName = '';
@@ -541,10 +481,6 @@ angular.module('starter.controllers')
         $rootScope.appointmentsPatientDOB = '';
         $rootScope.appointmentsPatientGurdianName = '';
         $rootScope.appointmentsPatientImage = '';
-        if ($scope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
         var params = {
             consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
@@ -553,7 +489,7 @@ angular.module('starter.controllers')
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
-                    if ($rootScope.consultationStatusId == 71) {
+                    if ($rootScope.consultationStatusId === 71) {
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
                             function() {
@@ -564,7 +500,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 72) {
+                    } else if ($rootScope.consultationStatusId === 72) {
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
                             function() {
@@ -575,7 +511,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 79) {
+                    } else if ($rootScope.consultationStatusId === 79) {
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
                             function() {
@@ -586,7 +522,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 80) {
+                    } else if ($rootScope.consultationStatusId === 80) {
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
                             function() {
@@ -619,7 +555,6 @@ angular.module('starter.controllers')
         };
         LoginService.getExistingConsulatation(params);
     }
-
     $scope.doGetExistingPatientName = function() {
         var params = {
             patientId: $rootScope.appointmentsPatientId,
@@ -627,7 +562,7 @@ angular.module('starter.controllers')
             success: function(data) {
                 $rootScope.PatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.PatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
-                if (typeof data.data[0].profileImagePath != 'undefined' && data.data[0].profileImagePath != '') {
+                if (typeof data.data[0].profileImagePath !== 'undefined' && data.data[0].profileImagePath !== '') {
                     var hosImage = data.data[0].profileImagePath;
                     if (hosImage.indexOf("http") >= 0) {
                         $rootScope.PatientImageSelectUser = hosImage;
@@ -668,9 +603,9 @@ angular.module('starter.controllers')
                 $scope.doGetPatientProfiles();
                 $scope.doGetRelatedPatientProfiles('userhome');
             },
-            error: function(data, status) {
+            error: function() {
                 var networkState = navigator.connection.type;
-                if (networkState != 'none') {
+                if (networkState !== 'none') {
                     $scope.ErrorMessage = "Incorrect Password. Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                 } else {
@@ -680,8 +615,8 @@ angular.module('starter.controllers')
         };
         LoginService.getTokenFromJWT(params);
     }
-    if ($stateParams.token == "jwt" && $stateParams.hospitalId == "0" && $stateParams.consultationId == "0") {
-        if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "") {
+    if ($stateParams.token === "jwt" && $stateParams.hospitalId === "0" && $stateParams.consultationId === "0") {
+        if (window.localStorage.getItem("external_load") !== null && window.localStorage.getItem("external_load") !== "") {
             var ssoCallbackJWT = window.localStorage.getItem("external_load");
             if (ssoCallbackJWT.indexOf('jwt') > -1) {
                 var EXTRA = {};
@@ -699,7 +634,7 @@ angular.module('starter.controllers')
                 $scope.doGetTokenFromJWT();
             }
         }
-    } else if ($stateParams.token != "" && $stateParams.token != "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId != "") {
+    } else if ($stateParams.token !== "" && $stateParams.token !== "jwt" && $stateParams.hospitalId !== "" && $stateParams.consultationId !== "") {
         $rootScope.accessToken = $stateParams.token;
         $rootScope.hospitalId = $stateParams.hospitalId;
         $scope.doGetCodesSet();
@@ -711,7 +646,7 @@ angular.module('starter.controllers')
         $scope.doGetSingleUserHospitalInformation();
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('waitingRoom');
-    } else if ($stateParams.token != "" && $stateParams.token != "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId == "") {
+    } else if ($stateParams.token !== "" && $stateParams.token !== "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId === "") {
         $rootScope.accessToken = $stateParams.token;
         $rootScope.hospitalId = $stateParams.hospitalId;
         $scope.doGetCodesSet();
@@ -723,9 +658,9 @@ angular.module('starter.controllers')
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('userhome');
     } else {
-        if (deploymentEnvLogout == "Multiple") {
+        if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
-        } else if (deploymentEnvLogout == "Single") {
+        } else if (deploymentEnvLogout === "Single") {
             $state.go('tab.loginSingle');
         } else {
             $state.go('tab.login');
