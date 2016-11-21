@@ -147,7 +147,7 @@ angular.module('starter.controllers')
             $rootScope.patinentCurrentMedication = "";
             $rootScope.patinentMedicationAllergies = "";
             $rootScope.patientSurgeriess = "";
-            $rootScope.MedicationCount == 'undefined';
+            $rootScope.MedicationCount === 'undefined';
             $rootScope.checkedChronic = 0;
             $rootScope.ChronicCount = "";
             $rootScope.AllegiesCount = "";

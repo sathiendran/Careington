@@ -154,7 +154,7 @@ angular.module('starter.controllers')
 
     var alive_waiting_room_pool;
     alive_waiting_room_pool = setInterval(function(){
-         if(window.localStorage.getItem("isCustomerInWaitingRoom") == "Yes"){
+         if(window.localStorage.getItem("isCustomerInWaitingRoom") === "Yes"){
              $scope.postPollforCredit();
          }
        }, 30000);
@@ -170,10 +170,10 @@ angular.module('starter.controllers')
                headers: reqHeaders,
                url: alive_timestamp_url,
                success: function(){
-                 console.log('Success at ');
+
                },
                failure: function(){
-                 console.log('Failed at ');
+
                }
              });
        }

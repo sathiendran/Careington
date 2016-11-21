@@ -137,18 +137,6 @@ angular.module('starter.controllers')
                 $rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0];
                 $rootScope.existconsultationparticipants=data.data[0].participants;
-                /*if($rootScope.existingConsultationReport.organization !=='' && typeof $rootScope.existingConsultationReport.organization !== 'undefined')
-                {
-                	$rootScope.userReportOrganization = angular.element('<div>').html($rootScope.existingConsultationReport.organization).text();
-                } else {
-                	$rootScope.userReportOrganization = '';
-                }
-                if($rootScope.existingConsultationReport.location !=='' && typeof $rootScope.existingConsultationReport.location !== 'undefined')
-                {
-                	$rootScope.reportLocation = angular.element('<div>').html($rootScope.existingConsultationReport.location).text();
-                } else {
-                	$rootScope.reportLocation = '';
-                }*/
 
                 if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined')
                 {
@@ -311,12 +299,6 @@ angular.module('starter.controllers')
                     $rootScope.vaccinationsCurrent = 'Yes';
                 }
 
-              /*  var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
-                if (typeof usDOB != 'undefined' && usDOB != '') {
-                    $rootScope.userReportDOB = usDOB.search("y");
-                } else {
-                    $rootScope.userReportDOB = 'None Reported';
-                }*/
                 if($rootScope.existingConsultationReport.dob !== "" && !angular.isUndefined($rootScope.existingConsultationReport.dob)) {
                   var ageDifMs = Date.now() - new Date($rootScope.existingConsultationReport.dob).getTime(); // parse string to date
                   var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -947,7 +929,7 @@ angular.module('starter.controllers')
         session.on('sessionDisconnected', function(event) {
             console.log('You were disconnected from the session.', event.reason);
         });
-    
+
 
         session.on("signal", function(event) {
 

@@ -3269,7 +3269,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.patinentCurrentMedication = "";
         $rootScope.patinentMedicationAllergies = "";
         $rootScope.patientSurgeriess = "";
-        $rootScope.MedicationCount == 'undefined';
+        $rootScope.MedicationCount === 'undefined';
         $rootScope.checkedChronic = 0;
         $rootScope.ChronicCount = "";
         $rootScope.AllegiesCount = "";
@@ -4560,7 +4560,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
                 if ($rootScope.getDetails !== '') {
-                    if ($rootScope.paymentMode === 'on' && $rootScope.consultationAmount != 0 && typeof $rootScope.consultationAmount != 'undefined') {
+                    if ($rootScope.paymentMode === 'on' && $rootScope.consultationAmount !== 0 && typeof $rootScope.consultationAmount !== 'undefined') {
 
                         $rootScope.doGetPatientPaymentProfiles();
                     }
@@ -4637,7 +4637,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
         $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
-        if ($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern == 'undefined') {
+        if ($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern === 'undefined') {
             $rootScope.appointSecondConcern = 'None Reported';
         } else {
             $rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
