@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('patientdetailsController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter) {
+    .controller('patientdetailsController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state) {
         $ionicPlatform.registerBackButtonAction(function(event, $state) {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -57,8 +57,7 @@ angular.module('starter.controllers')
                     }
                 }
             }
-            //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-            //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();

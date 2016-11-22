@@ -72,35 +72,6 @@ angular.module('starter.controllers')
 
 
     $scope.isPhysicianStartedConsultaion = false;
-
-    /*
-    consultationStatusCheck = $interval(function(){
-         if(!$scope.isPhysicianStartedConsultaion){
-              $scope.checkIfPhysicianStartedConference();
-         }
-    }, 5000);
-
-    $scope.checkIfPhysicianStartedConference = function(){
-        var params = {
-            accessToken: $rootScope.accessToken,
-            consultationId: $rootScope.consultationId,
-            success: function (data) {
-                console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
-                 if(data.data[0].consultationInfo.consultationStatus === REVIEW_CONSULTATION_STATUS_CODE){
-                      $interval.cancel(consultationStatusCheck);
-                      $scope.isPhysicianStartedConsultaion = true;
-                      $scope.getConferenceKeys();
-                      return;
-                 }
-            },
-            error: function (data) {
-				$rootScope.serverErrorMessageValidation();
-            }
-        };
-        LoginService.getExistingConsulatation(params);
-     };
-    */
-
     $scope.waitingMsg = "The Provider will be with you Shortly.";
     var initWaitingRoomHub = function() {
         var connection = $.hubConnection();
@@ -109,7 +80,7 @@ angular.module('starter.controllers')
         var consultationWatingId = +$rootScope.consultationId;
         var sound = $rootScope.AndroidDevice ? 'file://sound.mp3' : 'file://beep.caf';
 
-        // var conHub = $.connection.consultationHub;
+
         connection.qs = {
             "Bearer": $rootScope.accessToken,
             "consultationId": consultationWatingId,
@@ -118,20 +89,10 @@ angular.module('starter.controllers')
         };
         conHub.on("onConsultationReview", function() {
             $scope.waitingMsg = "The Provider is now reviewing the intake form.";
-            /*
-            cordova.plugins.notification.local.schedule([
-            	{
-            		id: 1,
-            		text: "The clinician is now reviewing the intake form.",
-            		sound: sound,
-            	}
-            ]);
-            //navigator.notification.beep(1);
-            */
             $scope.$digest();
         });
         conHub.on("onCustomerDefaultWaitingInformation", function() {
-            if(typeof appIdleInterval != "undefined")
+            if(typeof appIdleInterval !== "undefined")
                 clearInterval(appIdleInterval);
             appIdleInterval = undefined;
             appIdleInterval = 0;
@@ -147,17 +108,6 @@ angular.module('starter.controllers')
              if(typeof alive_waiting_room_pool !== 'undefined')
                  clearInterval(alive_waiting_room_pool);
             $scope.waitingMsg = "Please wait...";
-            /*
-			   cordova.plugins.notification.local.schedule([
-					{
-						id: 1,
-						text: "The clinician started consultation.",
-						sound: sound,
-						data: { updated:true }
-					}
-				]);
-				//navigator.notification.beep(2);
-				*/
             $scope.$digest();
             $.connection.hub.stop();
             getConferenceKeys();
@@ -202,12 +152,9 @@ angular.module('starter.controllers')
         LoginService.getVideoConferenceKeys(params);
     };
 
-
-  //  var i = 0;
     var alive_waiting_room_pool;
     alive_waiting_room_pool = setInterval(function(){
-         if(window.localStorage.getItem("isCustomerInWaitingRoom") == "Yes"){
-          //    i++;
+         if(window.localStorage.getItem("isCustomerInWaitingRoom") === "Yes"){
              $scope.postPollforCredit();
          }
        }, 30000);
@@ -222,12 +169,11 @@ angular.module('starter.controllers')
                type: 'PUT',
                headers: reqHeaders,
                url: alive_timestamp_url,
-               //dataType: 'json',
-               success: function(data){
-                 console.log('Success at ');
+               success: function(){
+
                },
-               failure: function(error){
-                 console.log('Failed at ');
+               failure: function(){
+
                }
              });
        }

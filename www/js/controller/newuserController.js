@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer, Idle) {
+.controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer) {
       $ionicPlatform.registerBackButtonAction(function(event, $state) {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -37,7 +37,6 @@ angular.module('starter.controllers')
             navigator.app.backHistory();
         }
     }, 100);
-
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
     $rootScope.checkAndChangeMenuIcon = function() {
@@ -53,9 +52,7 @@ angular.module('starter.controllers')
                 }
             }
         }
-        //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-        //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
-    $scope.toggleLeft = function() {
+      $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
         $rootScope.checkAndChangeMenuIcon();
         if (checkAndChangeMenuIcon) {
@@ -67,9 +64,6 @@ angular.module('starter.controllers')
             }, 300);
         }
     };
-
-
-
     $scope.newUSer = {};
     $scope.addmore = false;
     $scope.newUSer.address = $rootScope.primaryPatientDetails[0].address;
@@ -89,183 +83,46 @@ angular.module('starter.controllers')
             $.trim($(this).val())
         );
     });
-
-
     $('input').blur(function() {
         var value = $.trim($(this).val());
         $(this).val(value);
     });
-
       $scope.getOnlyNumbers = function(text){
           var newStr = text.replace(/[^0-9.]/g, "");
           return newStr;
       }
     $scope.postNewuserDetails = function() {
         $scope.firstName = $("#userfirstname").val();
-      //  $scope.lastName = $("#userlastname").val();
         $scope.email = $("#useremail").val();
         $scope.ValidateEmail = function(email) {
-            //var expr = /^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return expr.test(email);
         };
-      /*  $scope.dob1 = $("#userdob").val();
-        var a =  new Date($("#userdob").val());
-        var da = a.getMonth() + 1;
-        if(da <= 10){
-          var b="0"+da;
-        }else{
-            var b=da;
-        }
-        var c = a.getFullYear();
-        var d = a.getDate();
-        $scope.dob = b+ "/" + d + "/" + c;
-      //  $scope.gender = $("input[name='userInfoGender']:checked").val();
-        $scope.gender = $("#gender").val();
-        $scope.heights = $("#userheight").val();
-        $scope.heights2 = $("#userheight2").val();
-        $scope.weight = $("#userWeight").val();
-        $scope.homephone = $("#userphone").val();
-        $scope.mobile = $("#usermobile").val();
-        $scope.userCountry = $('#userCountry').val();
-        $scope.userTimeZone = $('#userTimeZone').val();
-        //$scope.homeaddress = $("#address").val();
-        $scope.homeaddress = $scope.newUSer.address;
-        var org = document.getElementById("userorganization");
-        var couserorgan = org.options[org.selectedIndex].text;
-        $scope.coorganization = couserorgan;
-        $scope.coorgid = $("#userorgan").val();
-        var loc = document.getElementById("userlocation");
-        var couserloc = loc.options[loc.selectedIndex].text;
-        $scope.colocation = couserloc;
-        $scope.colocationid = $("#userlocate").val();
-        $scope.sptheightunit = $('#userheightunit').val().split("@");
-        $scope.heightunitid = _.first($scope.sptheightunit);
-        $scope.heightunit = _.last($scope.sptheightunit);
-        $scope.sptweightunit = $('#userweightunit').val().split("@");
-        $scope.weightunitid = _.first($scope.sptweightunit);
-        $scope.weightunit = _.last($scope.sptweightunit);
-        $scope.relation = $("#userrelation").val().split("@").slice(0, 1);
-        $scope.getRelationId = _.first($scope.relation);
-        $scope.bloodtype = $("#userbloodtype").val().split("@").slice(0, 1);
-        $scope.getBloodtypeId = _.first($scope.bloodtype);
-        $scope.hairColor = $("#userhaircolor").val().split("@").slice(0, 1);
-        $scope.getHairColorId = _.first($scope.hairColor);
-        $scope.eyeColor = $("#usereyecolor").val().split("@").slice(0, 1);
-        $scope.getEyeColorId = _.first($scope.eyeColor);
-        $scope.ethnicity = $("#userethnicity").val().split("@").slice(0, 1);
-        $scope.getEthnicityId = _.first($scope.ethnicity);
-        //   $scope.eyeColor= $("#eyeColor").val().split("@").slice(0,1);
-        // $scope.ethnicity= $("#ethnicity").val().split("@").slice(0,1);;
-        var selectDate = document.getElementById('userdob').value;
-         var now = new Date();
-         var dt1 = Date.parse(now),
-         dt2 = Date.parse(selectDate);*/
+
         if (typeof $scope.firstName === 'undefined' || $scope.firstName === '') {
             $scope.ErrorMessage = "Please enter Name";
             $rootScope.Validation($scope.ErrorMessage);
-      /*  } else if (typeof $scope.lastName === 'undefined' || $scope.lastName === '') {
-            $scope.ErrorMessage = "Please enter Last Name";
-            $rootScope.Validation($scope.ErrorMessage);*/
-        } else if (typeof $scope.email === 'undefined' || $scope.email === '') {
+      } else if (typeof $scope.email === 'undefined' || $scope.email === '') {
             $scope.ErrorMessage = "Please enter Email Id";
             $rootScope.Validation($scope.ErrorMessage);
-        /*} else if (typeof $scope.dob1 === 'undefined' || $scope.dob1 === '') {
-            $scope.ErrorMessage = "Please Enter Your DOB";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (dt2 >dt1) {
-           $scope.ErrorMessage = "DOB can not be in Future!";
-           $rootScope.Validation($scope.ErrorMessage);
-         }  else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
-            $scope.ErrorMessage = "Please Select Your Relation";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.userCountry === 'undefined' || $scope.userCountry === '') {
-            $scope.ErrorMessage = "Please Select Country";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.userTimeZone === 'undefined' || $scope.userTimeZone === '') {
-            $scope.ErrorMessage = "Please Select Timezone";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
-            $scope.ErrorMessage = "Please Select Your Gender";
-            $rootScope.Validation($scope.ErrorMessage);
-        }
-        else if (typeof $scope.heights === 'undefined' || $scope.heights === '') {
-            $scope.ErrorMessage = "Please Enter Your Height";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.heights2 === 'undefined' || $scope.heights2 === '') {
-            $scope.ErrorMessage = "Please Enter Your Height";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.heightunitid === 'undefined' || $scope.heightunitid === '') {
-            $scope.ErrorMessage = "Please Select Your Height Unit";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.weight === 'undefined' || $scope.weight === '') {
-            $scope.ErrorMessage = "Please Enter Your Weight";
-            $rootScope.Validation($scope.ErrorMessage);
-        }
-        else if (typeof $scope.weightunitid == 'undefined' || $scope.weightunitid === '') {
-            $scope.ErrorMessage = "Please Select Your Weight Unit";
-            $rootScope.Validation($scope.ErrorMessage);
-        }
-         else if (typeof $scope.homephone === 'undefined' || $scope.homephone === '') {
-            $scope.ErrorMessage = "Please Enter Your Home Phone";
-            $rootScope.Validation($scope.ErrorMessage);
-        } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
-            $scope.ErrorMessage = "Please Enter Your mobile";
-            $rootScope.Validation($scope.ErrorMessage);
-        }else if (typeof $scope.homeaddress === 'undefined' || $scope.homeaddress === '') {
-            $scope.ErrorMessage = "Please Enter Your homeaddress";
-            $rootScope.Validation($scope.ErrorMessage);*/
+
         } else if(!$scope.ValidateEmail($("#useremail").val())) {
             $scope.ErrorMessage = "Please enter a valid email address";
             $rootScope.Validation($scope.ErrorMessage);
         }
-
          else {
-            // alert("fail");
           $scope.doPostAddCousers();
         }
-
     }
 
 
     $scope.doPostAddCousers = function() {
-      /*  var params = {
-            accessToken: $scope.accessToken,
-            email: $scope.email,
-            familyGroupId: "",
-            //relationshipId: $scope.getRelationId,
-            relationshipId: "",
-            heightUnitId: $scope.heightunitid,
-            weightUnitId: $scope.weightunitid,
-            //photo: $rootScope.newCoUserImagePath,
-            photo: "",
-            bloodType: $scope.getBloodtypeId,
-            eyeColor: $scope.getEyeColorId,
-            ethnicity: $scope.getEthnicityId,
-            hairColor: $scope.getHairColorId,
-            //height: formatHeightVal($scope.heights),
-            height: $scope.heights + "|" + $scope.heights2,
-            weight: $scope.weight,
-            heightUnit: $scope.heightunit,
-            weightUnit: $scope.weightunit,
-            address: $scope.homeaddress,
-            //homePhone: $scope.userCountry + $scope.getOnlyNumbers($scope.homephone),
-            homePhone: $scope.getOnlyNumbers($scope.homephone),
-            mobilePhone: $scope.userCountry + $scope.getOnlyNumbers($scope.mobile),
-            dob: $scope.dob,
-            gender: $scope.gender,
-            organizationName: $scope.coorganization,
-            locationName: $scope.colocation,
-            firstName: $scope.firstName,
-            lastName: $scope.lastName,
-            lastName: $scope.lastName,
-          //  profileImagePath: $rootScope.newCoUserImagePath,
-           profileImagePath:"",*/
+
            var params = {
                accessToken: $scope.accessToken,
                email: $scope.email,
                firstName: $scope.firstName,
-            success: function(data) {
+            success: function() {
                 $('#couserform')[0].reset();
                 $('select').prop('selectedIndex', 0);
                 navigator.notification.alert(
@@ -278,46 +135,34 @@ angular.module('starter.controllers')
                     'OK' // buttonName
                 );
                 return false;
-
-
-
             },
             error: function(data,status) {
               if(status===0 ){
-
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
 
               }else{
                 var Emailerror=data.message
-                if(Emailerror="Email ID Already Registered"){
+                if(Emailerror==="Email ID Already Registered"){
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.email;
                     $rootScope.Validation($scope.ErrorMessage);
                 }else{
                     $rootScope.serverErrorMessageValidation();
                 }
               }
-
-
             }
         };
-        // LoginService.postCousers(params);
         LoginService.postAddCousers(params);
     }
-
-
 
     $scope.cancelcouser = function() {
       $ionicScrollDelegate.$getByHandle('isScroll').scrollTo();
         $('#couserform')[0].reset();
         $('select').prop('selectedIndex', 0);
-        //$state.go('tab.relatedusers');
         history.back();
         if (!$scope.$$phase)
         $scope.$apply();
     }
-
-
     //Function to open ActionSheet when clicking Camera Button
     //================================================================================================================
 
@@ -325,8 +170,7 @@ angular.module('starter.controllers')
       navigator.notification.alert(
           'Photo can be uploaded only after activating co-user account.', // message
           function() {
-            //  $state.go('tab.userhome');
-              return;
+            return;
           },
           $rootScope.alertMsgName, // title
           'Ok' // buttonName
@@ -345,8 +189,7 @@ angular.module('starter.controllers')
 
     var fileMimeType = "image/jpeg";
     var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
-    //var fileUploadUrl = "http://emerald.snap.local/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
-    function cameraActionCallback(buttonIndex) {
+      function cameraActionCallback(buttonIndex) {
         if (buttonIndex == 3) {
             return false;
         } else {
@@ -367,8 +210,6 @@ angular.module('starter.controllers')
             navigator.camera.getPicture(onCameraCaptureSuccess, onCameraCaptureFailure, {
                 destinationType: navigator.camera.DestinationType.FILE_URI,
                 quality: 75,
-                //targetWidth: 500,
-                //targetHeight: 500,
                 allowEdit: true,
                 saveToPhotoAlbum: saveToPhotoAlbumFlag,
                 sourceType: cameraSourceType,
@@ -376,23 +217,15 @@ angular.module('starter.controllers')
             });
         }
     }
-
     // Function to call when the user choose image or video to upload
     function onCameraCaptureSuccess(imageData) {
-
         //File for Upload
         var targetPath = imageData;
 
-        //	$rootScope.imagePath = imageData;
-
-        // File name only
         var filename = targetPath.split("/").pop();
 
         var options = {
-            //fileKey: "file",
-            //fileName: filename,
-            //chunkedMode: false,
-            //mimeType: fileMimeType,
+
             headers: {
                 'Authorization': 'Bearer' + $rootScope.accessToken,
                 'X-Api-Key': xApiKey,
@@ -401,38 +234,24 @@ angular.module('starter.controllers')
         };
 
         $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function(result) {
-            // Upload Success on server
-            //console.log(result);
+
             var getImageURLFromResponse = angular.fromJson(result.response);
             $rootScope.newCoUserImagePath = getImageURLFromResponse.data[0].uri;
-            //$rootScope.$broadcast('loading:hide');
-            //  navigator.notification.alert('Uploaded successfully!',null,$rootScope.alertMsgName,'OK');
-            //  getImageList();
+
         }, function(err) {
-            // Upload Failure on server
-            //navigator.notification.alert('Upload Failed! Please try again!',null,'Inflight','OK');
-            //$rootScope.$broadcast('loading:hide');
+
             navigator.notification.alert('Error in upload!', null, $rootScope.alertMsgName, 'OK');
         }, function(progress) {
             // PROGRESS HANDLING GOES HERE
             $rootScope.$broadcast('loading:show');
         });
-
-
-
     }
 
     // Function to call when the user cancels the operation
     function onCameraCaptureFailure(err) {
-        //alert('Failure');
     }
     // End Photo Functionality
-
-
-
-
 })
-
 
 .directive('phoneInput', function($filter, $browser) {
         return {
@@ -442,7 +261,6 @@ angular.module('starter.controllers')
                     var value = $element.val().replace(/[^0-9]/g, '');
                     $element.val($filter('tel')(value, false));
                 };
-
                 // This runs when we update the text field
                 ngModelCtrl.$parsers.push(function(viewValue) {
                     return viewValue.replace(/[^0-9]/g, '').slice(0, 10);
@@ -468,24 +286,18 @@ angular.module('starter.controllers')
                     $browser.defer(listener);
                 });
             }
-
         };
     })
     .filter('tel', function() {
         return function(tel) {
-          //  console.log(tel);
             if (!tel) {
                 return '';
             }
-
             var value = tel.toString().trim().replace(/^\+/, '');
-
             if (value.match(/[^0-9]/)) {
                 return tel;
             }
-
             var country, city, number;
-
             switch (value.length) {
                 case 1:
                 case 2:
@@ -517,14 +329,13 @@ angular.module('starter.controllers')
             if (userorg === null) {
                 return filtered;
             }
-            if (userloc != undefined) {
+            if (userloc !== undefined) {
                 angular.forEach(userloc[0], function(users2) {
-                    if (s2.organizationId == userorg) {
+                    if (s2.organizationId === userorg) {
                         userfiltered.push(users2);
                     }
                 });
             }
-
             return userfiltered;
         };
     });
