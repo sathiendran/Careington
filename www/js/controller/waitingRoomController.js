@@ -5,7 +5,7 @@ angular.module('starter.controllers')
     $rootScope.currState = $state;
     window.localStorage.setItem('videoCallPtImage', $rootScope.PatientImageSelectUser);
     window.localStorage.setItem('videoCallPtFullName', $rootScope.PatientFirstName + " " + $rootScope.PatientLastName);
-    $ionicPlatform.registerBackButtonAction(function(event, $state) {
+    $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
             ($rootScope.currState.$current.name === "tab.submitPayment") ||

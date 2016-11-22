@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
     .controller('patientdetailsController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state) {
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+        $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||

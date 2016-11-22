@@ -4,7 +4,7 @@ angular.module('starter.controllers')
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
 
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+        $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||

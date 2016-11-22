@@ -7,7 +7,7 @@ angular.module('starter.controllers')
             return this.value.indexOf('?') >= 0;
         }).remove();
     }, 100);
-    $ionicPlatform.registerBackButtonAction(function(event, $state) {
+    $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
             ($rootScope.currState.$current.name === "tab.submitPayment") ||

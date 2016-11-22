@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 .controller('IntakeFormsCtrl', function($scope, $ionicPlatform, $window, $ionicBackdrop,  htmlEscapeValue, $interval, $ionicSideMenuDelegate, replaceCardNumber, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService, $timeout, CustomCalendar, CustomCalendarMonth) {
-    $ionicPlatform.registerBackButtonAction(function(event, $state) {
+    $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
             ($rootScope.currState.$current.name === "tab.submitPayment") ||

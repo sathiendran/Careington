@@ -2,7 +2,7 @@ angular.module('starter.controllers')
     .controller('consultationController', function($scope, $sanitize, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue) {
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+        $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||
