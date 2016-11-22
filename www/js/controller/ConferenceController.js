@@ -616,23 +616,34 @@ angular.module('starter.controllers')
                 $scope.disconnectConference();
             });
 
-            conHub.on("participantConnected", function () {
-
+          /*  conHub.on("onProviderUnavailable", function () {
+              console.log('onProviderUnavailable1');
+              alert('onProviderUnavailable1');
+            });
+            conHub.on("onProviderAvailable", function () {
+              console.log('providerAvailable1');
+              alert('providerAvailable1');
             });
 
-            conHub.on("participantDisconnected", function () {
-
-
+            conHub.on("onParticipantDisconnected", function () {
+              console.log('onParticipantDisconnected1');
+              alert('onParticipantDisconnected1');
             });
 
-            conHub.on("providerUnavailable", function () {
-
+            conHub.on("onParticipantConnected", function () {
+              console.log('participantConnected1');
+              alert('participantConnected1');
             });
 
-            conHub.on("providerAvailable", function () {
 
-            });
-
+            conHub.on("onProviderDisconnected", function () {
+              console.log('OnClientDisconnected102');
+              alert('OnClientDisconnected102');
+               $.connection.hub.start();
+               isCallEndedByPhysician = true;
+               $('#videoCallSessionTimer').runner('stop');
+               $scope.disconnectConference();
+            });*/
         };
         initConferenceRoomHub();
 
