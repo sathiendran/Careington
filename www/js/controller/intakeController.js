@@ -265,7 +265,7 @@ $scope.locat=false;
     };
     // Onchange of primary concerns
     $scope.OnSelectPatientPrimaryConcern = function(position, primaryConcernList, items) {
-        angular.forEach(primaryConcernList, function(item, index) {
+        angular.forEach(primaryConcernList, function(item) {
             if (item.text === items.text)
                 item.checked = true;
             else item.checked = false;
@@ -287,7 +287,7 @@ $scope.locat=false;
             buttons: [{
                 text: 'Cancel',
                 onTap: function(e) {
-                    angular.forEach($scope.primaryConcernList, function(item, index) {
+                    angular.forEach($scope.primaryConcernList, function(item) {
                         item.checked = false;
                     });
                 }
@@ -497,7 +497,7 @@ $scope.locat=false;
     };
     // Onchange of Secondary concerns
     $scope.OnSelectPatientSecondaryConcern = function(position, secondaryConcernList, items) {
-        angular.forEach(secondaryConcernList, function(item, index) {
+        angular.forEach(secondaryConcernList, function(item) {
             if (item.text == items.text)
                 item.checked = true;
             else item.checked = false;
@@ -520,7 +520,7 @@ $scope.locat=false;
             buttons: [{
                 text: 'Cancel',
                 onTap: function(e) {
-                    angular.forEach($scope.secondaryConcernList, function(item, index) {
+                    angular.forEach($scope.secondaryConcernList, function(item) {
                         item.checked = false;
                     });
                 }
@@ -531,7 +531,7 @@ $scope.locat=false;
                     if (!$scope.data.SecondaryConcernOther) {
                         e.preventDefault();
                     } else {
-                        angular.forEach($scope.secondaryConcernList, function(item, index) {
+                        angular.forEach($scope.secondaryConcernList, function(item) {
                             item.checked = false;
                         });
                         var newSecodaryConcernItem = {
@@ -579,7 +579,7 @@ $scope.locat=false;
             $scope.sceondFilter = $filter('filter')($scope.OnDemandConsultationSaveData.concerns, {
                 description: $rootScope.SecondaryConcernText
             });
-            if ($scope.sceondFilter.length == 0) {
+            if ($scope.sceondFilter.length === 0) {
                 $scope.OnDemandConsultationSaveData.concerns.push({
                     isPrimary: false,
                     description: $rootScope.SecondaryConcernText
@@ -660,8 +660,6 @@ $scope.locat=false;
         if ($scope.PatientChronicConditionItem !== '') {
             $rootScope.PatientChronicCondition = $rootScope.PatientChronicConditionItem;
             $rootScope.ChronicCount = $rootScope.PatientChronicCondition.length;
-            console.log($rootScope.ChronicCount);
-            console.log($rootScope.PatientChronicCondition);
             $scope.modal.hide();
         }
     };
@@ -688,7 +686,7 @@ $scope.locat=false;
             buttons: [{
                 text: 'Cancel',
                 onTap: function(e) {
-                    angular.forEach($scope.chronicConditionList, function(item, index) {
+                    angular.forEach($scope.chronicConditionList, function(item) {
                         if (item.checked) {
                             if (item.text === "Other")
                              item.checked = false;
@@ -703,7 +701,7 @@ $scope.locat=false;
                     if (!$scope.data.ChronicCondtionOther) {
                         e.preventDefault();
                     } else {
-                        angular.forEach($scope.chronicConditionList, function(item, index) {
+                        angular.forEach($scope.chronicConditionList, function(item) {
                             if (item.checked) {
                                 if (item.text == "Other") {
                                     item.checked = false;
@@ -785,7 +783,7 @@ $scope.locat=false;
             buttons: [{
                 text: 'Cancel',
                 onTap: function(e) {
-                    angular.forEach($scope.MedicationAllegiesList, function(item, index) {
+                    angular.forEach($scope.MedicationAllegiesList, function(item) {
                         if (item.checked) {
                             if (item.text === "Other")
                             item.checked = false;
@@ -800,7 +798,7 @@ $scope.locat=false;
                     if (!$scope.data.MedicationAllergiesOther) {
                         e.preventDefault();
                     } else {
-                        angular.forEach($scope.MedicationAllegiesList, function(item, index) {
+                        angular.forEach($scope.MedicationAllegiesList, function(item) {
                             if (item.checked) {
                                 if (item.text === "Other") {
                                     item.checked = false;
@@ -887,7 +885,7 @@ $scope.locat=false;
             buttons: [{
                 text: 'Cancel',
                 onTap: function(e) {
-                    angular.forEach($scope.CurrentMedicationList, function(item, index) {
+                    angular.forEach($scope.CurrentMedicationList, function(item) {
                         if (item.checked) {
                             if (item.text === "Other - (List below)") item.checked = false;
                         }
@@ -901,7 +899,7 @@ $scope.locat=false;
                     if (!$scope.data.CurrentMedicationOther) {
                         e.preventDefault();
                     } else {
-                        angular.forEach($scope.CurrentMedicationList, function(item, index) {
+                        angular.forEach($scope.CurrentMedicationList, function(item) {
                             if (item.checked) {
                                 if (item.text === "Other - (List below)") {
                                     item.checked = false;
@@ -1115,7 +1113,7 @@ $scope.locat=false;
             accessToken: $rootScope.accessToken,
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
-              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
+              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on') {
                 $rootScope.doPostDepitDetails();
               } else {
                   $scope.ConsultationSave = "success";

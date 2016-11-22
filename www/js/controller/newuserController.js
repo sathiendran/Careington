@@ -122,7 +122,7 @@ angular.module('starter.controllers')
                accessToken: $scope.accessToken,
                email: $scope.email,
                firstName: $scope.firstName,
-            success: function(data) {
+            success: function() {
                 $('#couserform')[0].reset();
                 $('select').prop('selectedIndex', 0);
                 navigator.notification.alert(
@@ -143,7 +143,7 @@ angular.module('starter.controllers')
 
               }else{
                 var Emailerror=data.message
-                if(Emailerror=="Email ID Already Registered"){
+                if(Emailerror==="Email ID Already Registered"){
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.email;
                     $rootScope.Validation($scope.ErrorMessage);
                 }else{
@@ -170,8 +170,7 @@ angular.module('starter.controllers')
       navigator.notification.alert(
           'Photo can be uploaded only after activating co-user account.', // message
           function() {
-            //  $state.go('tab.userhome');
-              return;
+            return;
           },
           $rootScope.alertMsgName, // title
           'Ok' // buttonName
@@ -190,8 +189,7 @@ angular.module('starter.controllers')
 
     var fileMimeType = "image/jpeg";
     var fileUploadUrl = apiCommonURL + "/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
-    //var fileUploadUrl = "http://emerald.snap.local/api/v2.1/patients/profile-images?patientId=" + $rootScope.patientId;
-    function cameraActionCallback(buttonIndex) {
+      function cameraActionCallback(buttonIndex) {
         if (buttonIndex == 3) {
             return false;
         } else {

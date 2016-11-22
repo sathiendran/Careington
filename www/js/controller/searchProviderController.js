@@ -73,7 +73,7 @@ angular.module('starter.controllers')
                         $('#startSearchProvider').hide();
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();
-                        angular.forEach(data.data, function(index, item) {
+                        angular.forEach(data.data, function(index) {
                             if (typeof index.hospitalImage !== 'undefined' && index.hospitalImage !== '') {
                                 var hosImage = index.hospitalImage;
                                 $scope.chkImageorNot = "image";

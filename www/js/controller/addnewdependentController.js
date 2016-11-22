@@ -99,7 +99,7 @@ angular.module('starter.controllers')
             $scope.modal = modal;
             $scope.modal.show().then(function() {
                 $rootScope.flagdeptmodal=false;
-              if(hghtinval==""){
+              if(hghtinval===""){
                 $('#deptheight').val("");
                 $('#deptheight2').val("");
                 document.getElementById('heightunitval').selectedIndex = 0;
@@ -202,7 +202,6 @@ angular.module('starter.controllers')
     var mDate = maxDay;
     $scope.maxDate1 = mDate;
     $scope.minimum = "1950-01-01";
-    var today = new Date();
     $scope.hfeet = true;
     $scope.hinch = true;
     $scope.hmeter = true;
@@ -335,7 +334,7 @@ angular.module('starter.controllers')
             if ($rootScope.height1 !== '' && $rootScope.height2 !== '') {
                  heightdepval = $('#deptheight').val() + " " + "ft" + " " + $('#deptheight2').val() + " " + "in";
                 $('#heightdep').val(heightdepval);
-            } else if ($rootScope.height1 !== '' && $rootScope.height2 == '') {
+            } else if ($rootScope.height1 !== '' && $rootScope.height2 === '') {
                  heightdepval = $('#deptheight').val() + " " + "ft" + " " + "0" + " " + "in";
                 $('#heightdep').val(heightdepval);
             } else {
@@ -408,7 +407,7 @@ angular.module('starter.controllers')
         $scope.relation = $("#relation").val();
         var splitheight = $('#heightdep').val();
         $scope.splitheights = $('#heightdep').val();
-        var inch = splitheight.slice(6, 8)
+      //  var inch = splitheight.slice(6, 8)
 
         if ($rootScope.height2 === "") {
             $scope.heightinch = "0";
@@ -436,7 +435,7 @@ angular.module('starter.controllers')
                 $scope.organization = dependentorgan;
                 $scope.orgid = org.options[org.selectedIndex].value;
             }
-            if (loc != "Choose Location") {
+            if (loc !== "Choose Location") {
                 $scope.location = null;
                 $scope.locationid = null;
             } else {
@@ -727,7 +726,7 @@ angular.module('starter.controllers')
                     $rootScope.Validation($scope.ErrorMessage);
                 }
             },
-            error: function(data) {
+            error: function() {
                 $rootScope.serverErrorMessageValidation();
             }
         };
@@ -757,7 +756,7 @@ angular.module('starter.controllers')
 
     $scope.sendCoUserInvite = function(hospitalId, userId, name, email, securityToken){
 
-        if (securityToken.length > 3 && securityToken.substring(0, 2) == "##") {
+        if (securityToken.length > 3 && securityToken.substring(0, 2) === "##") {
             var params = {
                 accessToken: $rootScope.accessToken,
                 HospitalId: hospitalId,
@@ -832,11 +831,11 @@ angular.module('starter.controllers')
             $rootScope.newDependentImagePath = getImageURLFromResponse.data[0].uri;
             $ionicLoading.hide();
             $state.go('tab.relatedusers');
-        }, function(err) {
+        }, function() {
             $ionicLoading.hide();
             navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
             $state.go('tab.relatedusers');
-        }, function(progress) {
+        }, function() {
              $ionicLoading.show({
                  template: '<img src="img/puff.svg" alt="Loading" />'
              });
@@ -844,7 +843,7 @@ angular.module('starter.controllers')
     };
 
     function cameraActionCallback(buttonIndex) {
-        if (buttonIndex == 3) {
+        if (buttonIndex === 3) {
             return false;
         } else {
             var saveToPhotoAlbumFlag = false;
@@ -877,5 +876,5 @@ angular.module('starter.controllers')
         newUploadedPhoto = imageData;
         $state.go('tab.addnewdependent');
     }
-    function onCameraCaptureFailure(err) {}
+    function onCameraCaptureFailure() {}
 });

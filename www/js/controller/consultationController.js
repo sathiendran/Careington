@@ -62,7 +62,7 @@ angular.module('starter.controllers')
                 $interval.cancel(checkAndChangeMenuIcon);
             }
             if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
-                if ($rootScope.statename = "tab.consultations") {
+                if ($rootScope.statename == "tab.consultations") {
                     $('.sidehomeconsult').addClass("uhome");
                 }
             }
@@ -110,21 +110,18 @@ angular.module('starter.controllers')
             if (mnth < 10) {
                 var smonth = "0" + mnth;
             } else {
-                var smonth = mnth;
+                 smonth = mnth;
             }
             if (day < 10) {
                 var sdate = "0" + day;
             } else {
-                var sdate = day;
+                 sdate = day;
             }
             $scope.startDate = year + "-" + smonth + "-" + sdate + "T" + "00" + ":" + "00" + ":" + "00.000";
-            var eddate = duedate.setDate(now.getDate());
-
 
             var eday = now.getDate();
             var emnth = now.getMonth() + 1;
             var eyear = now.getFullYear();
-
             var time = now.getHours();
             var mints = now.getMinutes();
             var sec = now.getMilliseconds();
@@ -151,7 +148,7 @@ angular.module('starter.controllers')
                     $scope.Missedconsultations = data.data;
                     $rootScope.missedlist = [];
 
-                    angular.forEach($scope.Missedconsultations, function(item, index) {
+                    angular.forEach($scope.Missedconsultations, function(item) {
                         var nowDateTime = new Date();
                         var nowDateTimeEightHours = new Date(nowDateTime);
                         nowDateTimeEightHours.setMinutes(nowDateTime.getMinutes() + 15);
@@ -216,12 +213,12 @@ angular.module('starter.controllers')
                                     var missedPatName = patName[0] + " " + patName[1];
 
                                 } else {
-                                    var missedPatName = "";
+                                     missedPatName = "";
                                 }
                                 if (item.intakeMetadata.additionalNotes !== '') {
                                     var additionalNotes = item.intakeMetadata.additionalNotes;
                                 } else {
-                                    var additionalNotes = 'NA';
+                                     additionalNotes = 'NA';
                                 }
 
 
@@ -405,7 +402,6 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.doctorLastName !== '' && typeof $rootScope.existingConsultationReport.doctorLastName !== 'undefined') {
                         $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
                     } else {
-                        //  $rootScope.reportDoctorLastName = 'NA';
                     }
 
                     if ($rootScope.existingConsultationReport.gender !== '' && typeof $rootScope.existingConsultationReport.gender !== 'undefined') {
@@ -440,7 +436,7 @@ angular.module('starter.controllers')
                             $rootScope.consultDurationMinutes = consultationMinutes;
                         }
 
-                        if (consultationSeconds == 0) {
+                        if (consultationSeconds === 0) {
                             $rootScope.consultDurationSeconds = '00';
                         } else if (consultationSeconds < 10) {
                             $rootScope.consultDurationSeconds = '0' + consultationSeconds;
@@ -581,7 +577,6 @@ angular.module('starter.controllers')
                     $rootScope.AttendeeList = [];
                     angular.forEach($rootScope.existconsultationparticipants, function(index, item) {
                         var atname = index.person.name.given;
-                        var atsecondname= index.person.name.family;
                         if (atname !== '') {
                             $rootScope.AttendeeList.push({
                                 'Number': item + 1,
@@ -622,7 +617,7 @@ angular.module('starter.controllers')
                     $scope.doGetChatTranscript(consultation.consultationId);
 
                 },
-                error: function(data) {
+                error: function() {
                     $rootScope.serverErrorMessageValidation();
                 }
             };
@@ -639,7 +634,7 @@ angular.module('starter.controllers')
                     $scope.getSoapNotes();
                     $rootScope.getAttachmentList = []
 
-                    angular.forEach(data.data[0].snapFile.files, function(index, item) {
+                    angular.forEach(data.data[0].snapFile.files, function(index) {
                         var attachImage = index.name.split(".");
                         $rootScope.getAttachmentList.push({
                             'id': index.id,
@@ -668,14 +663,14 @@ angular.module('starter.controllers')
                     $rootScope.chatTranscript = [];
                     if (data.count !== 0) {
                       var chatdetails=data.data[0];
-                        angular.forEach(chatdetails, function(index, item) {
+                        angular.forEach(chatdetails, function(index) {
                             $rootScope.chatTranscript.push({
                               'ChatMessage': index.chatMessage,
                             });
                         });
                     }
                 },
-                error: function(data) {
+                error: function() {
                     $rootScope.serverErrorMessageValidation();
                 }
             };
@@ -746,11 +741,11 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $rootScope.missedAppointDocDetails = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         if (index.gender === 'M') {
                             var docGender = "Male";
                         } else if (index.gender === 'F') {
-                            var docGender = "Female";
+                             docGender = "Female";
                         }
                         $rootScope.missedAppointDocDetails.push({
                             'dob': index.dob,

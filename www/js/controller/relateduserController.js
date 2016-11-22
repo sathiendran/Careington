@@ -185,7 +185,7 @@ angular.module('starter.controllers')
                 patientId: relateDependentId,
                 RelationCodeId: relateDependentRelationCode,
                 IsAuthorized: relateDependentAuthorize,
-                success: function(data) {
+                success: function() {
                     $scope.authorizedview = false;
                     $rootScope.doGetAccountDependentDetails();
                 },
@@ -455,7 +455,7 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $rootScope.orgloclist = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         $rootScope.orgloclist.push({
                             'locations': angular.fromJson(index.locations),
                             'name': index.name,
@@ -466,7 +466,7 @@ angular.module('starter.controllers')
                     var listOfLocation = $rootScope.orgloclist;
                     $rootScope.locationdetails = _.pluck(listOfLocation, 'locations');
                 },
-                error: function(data) {
+                error: function() {
                     $rootScope.serverErrorMessageValidation();
                 }
             };

@@ -1,6 +1,7 @@
 var indexOf = [].indexOf || function(item) {
         for (var i = 0, l = this.length; i < l; i++) {
-            if (i in this && this[i] === item) return i;
+            if (i in this && this[i] === item)
+            return i;
         }
         return -1;
     }
@@ -297,7 +298,7 @@ if (deploymentEnv === "Sandbox") {
     api_keys_env = "Production";
 } else if (deploymentEnv === "QA") {
     apiCommonURL = 'https://snap-qa.com';
-} else if (deploymentEnv == "Single") {
+} else if (deploymentEnv === "Single") {
     if (deploymentEnvForProduction === 'Production') {
         apiCommonURL = 'https://connectedcare.md';
         api_keys_env = "Production";
@@ -366,10 +367,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         if (env === "Snap.QA") {
             $rootScope.APICommonURL = 'https://snap-qa.com';
             apiCommonURL = 'https://snap-qa.com';
-            //$rootScope.APICommonURL ='http://emerald.snap.local';
-            //apiCommonURL ='http://emerald.snap.local';
-            //$rootScope.APICommonURL ='https://snapmd-api.azurewebsites.net';
-            //apiCommonURL ='https://snapmd-api.azurewebsites.net';
             api_keys_env = "Snap.QA";
         } else if (env === "Sandbox") {
             $rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
@@ -667,7 +664,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
         }
-        if ($rootScope.statename == "tab.userhome") {
+        if ($rootScope.statename === "tab.userhome") {
             $('.sideuserhome').addClass("uhome");
 
         }
@@ -723,7 +720,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.ccinfo = {
         type: undefined
     }
-    $scope.save = function(data) {
+    $scope.save = function() {
         if ($scope.paymentForm.$valid) {
         }
     }
@@ -997,7 +994,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $('#loginEmail').show();
                 } else {
                     $rootScope.hospitalDetailsList = [];
-                    angular.forEach($rootScope.PostPaymentDetails, function(index, item) {
+                    angular.forEach($rootScope.PostPaymentDetails, function(index) {
                         if (typeof index.logo !== 'undefined' && index.logo !== '') {
                             $scope.chkImageorNot = "image";
                             var hosImage = index.logo;
@@ -1082,7 +1079,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.getTokenDetailsForRegisterdUsers = function() {
       $rootScope.UserEmail = $rootScope.registedEmail;
       $scope.pass.password = $rootScope.registedPwd;
-    //  $rootScope.hospitalId = $rootScope.hospitalId;
       $scope.doGetToken();
     }
 
@@ -1155,7 +1151,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 } else {
                     $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase(); //'Virtual Care';
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 }
                 $rootScope.HospitalTag = data.data[0].brandTitle;
                 $rootScope.contactNumber = data.data[0].contactNumber;
@@ -1489,12 +1485,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.doPostSendPasswordResetEmail = function() {
 
-        if (deploymentEnv == "Single") {
+        if (deploymentEnv === "Single") {
             $scope.userEmailId = $('#UserEmail').val();
         } else {
             $scope.userEmailId = $rootScope.UserEmail;
         }
-        if ($scope.userEmailId == '') {
+        if ($scope.userEmailId === '') {
 
             $scope.ErrorMessage = "Please enter an email!";
             $rootScope.Validation($scope.ErrorMessage);
@@ -1513,7 +1509,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     if (deploymentEnvLogout === 'Single') {
                         if (deploymentEnvForProduction === 'Production') {
                             if (appStoreTestUserEmail !== '' && $("#UserEmail").val() === appStoreTestUserEmail) {
-                                //deploymentEnv = "Staging";
                                 $rootScope.hospitalId = singleStagingHospitalId;
                                 apiCommonURL = 'https://snap-stage.com';
                                 api_keys_env = 'Staging';
@@ -1601,13 +1596,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     api_keys_env = 'Production';
                     $rootScope.APICommonURL = 'https://connectedcare.md';
                 }
-            } else if (deploymentEnvForProduction == 'Staging') {
+            } else if (deploymentEnvForProduction === 'Staging') {
                 $rootScope.hospitalId = singleStagingHospitalId;
                 api_keys_env = "Staging";
-            } else if (deploymentEnvForProduction == 'QA') {
+            } else if (deploymentEnvForProduction === 'QA') {
                 $rootScope.hospitalId = singleQAHospitalId;
                 api_keys_env = "QA";
-            } else if (deploymentEnvForProduction == 'Sandbox') {
+            } else if (deploymentEnvForProduction === 'Sandbox') {
                 $rootScope.hospitalId = singleSandboxHospitalId;
                 api_keys_env = "Sandbox";
             }
@@ -1765,7 +1760,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
 
                 $rootScope.primaryPatientDetails = [];
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     $rootScope.primaryPatientDetails.push({
                         'account': angular.fromJson(index.account),
                         'address': index.address,
@@ -2075,7 +2070,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 });
                 $rootScope.searchPatientList = $rootScope.RelatedPatientProfiles;
                 $scope.doGetCodesSet();
-                if (ReDirectPage == 'tab.userhome') {
+                if (ReDirectPage === 'tab.userhome') {
                     $('#loginPwdVerify').hide();
                     $('#loginPwd').show();
                     if (deploymentEnv === "Single") {
@@ -2878,10 +2873,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 consultationId: $rootScope.consultationId,
                 healthPlanId: $rootScope.healthPlanID,
                 success: function(data) {
-                    console.log(data);
-                    $scope.doGetSkipHealthPlan();
+                  $scope.doGetSkipHealthPlan();
                 },
-                error: function(data) {
+                error: function() {
                     $scope.doGetSkipHealthPlan();
                 }
             };
@@ -3181,7 +3175,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.verifyCardDisplay = "none";
                     $rootScope.planverify = "inherit";
                 },
-                error: function(data) {
+                error: function() {
                     $rootScope.cardDisplay = "inherit;";
                     $rootScope.verifyCardDisplay = "none";
                     $rootScope.planverify = "inherit";
@@ -3391,7 +3385,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     d.setHours(d.getHours() + 12);
                     var currentUserHomeDate = CustomCalendar.getLocalTime(d);
 
-                    if ($rootScope.scheduledList !== '') {
+                    if ($rootScope.scheduledList !='') {
                         var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;
 
@@ -3409,7 +3403,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     }
                 }
             },
-            error: function(data, status) {
+            error: function(status) {
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
@@ -3678,7 +3672,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 } else {
                     $scope.selectedPatientDetails = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         $scope.selectedPatientDetails.push({
                             'account': angular.fromJson(index.account),
                             'address': index.address,
@@ -3740,7 +3734,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 if (data !== "") {
                     $scope.individualScheduledConsultationList = data.data[0];
-                    if ($rootScope.patientId == $rootScope.primaryPatientId) {
+                    if ($rootScope.patientId === $rootScope.primaryPatientId) {
                         $rootScope.P_isAuthorized = true;
                     } else {
                         if (data.data[0].account.isAuthorized === "T" || data.data[0].account.isAuthorized === true || data.data[0].account.isAuthorized === "Y") {
@@ -3849,7 +3843,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.accountClinicianFooter = 'block';
                     $rootScope.accountStyle = "";
                     $rootScope.userAccContent = "";
-                    if ($rootScope.individualScheduledList !== '') {
+                    if ($rootScope.individualScheduledList != '') {
                         var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;
 
@@ -4109,7 +4103,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
                             $rootScope.SubmitCardValidation($scope.ErrorMessage);
                         }
-                        if ($rootScope.P_isAuthorized = undefined) {
+                        if ($rootScope.P_isAuthorized == undefined) {
                             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
                             $rootScope.SubmitCardValidation($scope.ErrorMessage);
                         }
@@ -4242,7 +4236,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 if (data.data !== '') {
                     $rootScope.listOfCreditDetails = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         $rootScope.listOfCreditDetails.push({
                             'appointmentTypeCode': index.appointmentTypeCode,
                             'creditAmount': index.creditAmount,
@@ -4309,12 +4303,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $scope.GetSingleLoginDetailsFOrCheckingMic();
                         }
                     }
-                }, function(error) {
-                    console.log(error);
+                }, function() {
+
                 })
             }
-        }, function(error) {
-            console.log(error);
+        }, function() {
+
         })
     }
 
@@ -4382,7 +4376,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
         }
-        if ($rootScope.P_isAuthorized = undefined) {
+        if ($rootScope.P_isAuthorized == undefined) {
             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
         }

@@ -103,7 +103,7 @@ angular.module('starter.controllers')
                 $rootScope.viewtimezoneDisplay = 'none';
             }
 
-            if ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId) {
+            if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
                 $rootScope.viewmyhealthDisplay = 'block';
                 $rootScope.viewhealthDisplay = 'none';
             } else {

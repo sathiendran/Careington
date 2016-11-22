@@ -139,7 +139,7 @@ angular.module('starter.controllers')
             $interval.cancel(checkAndChangeMenuIcon);
         }
         if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
-         if($rootScope.statename=="tab.healthinfo"){
+         if($rootScope.statename==="tab.healthinfo"){
            $('.sideuserhealth').addClass("uhome");
          }
         }
@@ -512,7 +512,7 @@ $scope.editDob=function(){
     };
     $scope.emailBlur=function(){
       var emailvalue=$('#healthInfoEmail').val();
-      if(emailvalue!=''){
+      if(emailvalue!==''){
         if(!$scope.ValidateEmail($("#healthInfoEmail").val())) {
             $scope.ErrorMessage = "Please enter a valid Email Address";
             $rootScope.Validation($scope.ErrorMessage);
@@ -557,7 +557,7 @@ $scope.editDob=function(){
             }
             if($rootScope.height2===undefined || $rootScope.height1 === ''){
               var hghtinval=$('#heightuser').val();
-              if(hghtinval != '') {
+              if(hghtinval !== '') {
                 var reminspace=hghtval.split(" ");
                 $rootScope.height2=reminspace[2];
                 $scope.healthInfoHeight2 =  $rootScope.height2;
@@ -657,7 +657,7 @@ $scope.editDob=function(){
               }, 100);
 if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
                 if (($rootScope.restage >= 12)) {
-                    if($rootScope.currentPatientDetails[0].account.email != '') {
+                    if($rootScope.currentPatientDetails[0].account.email !== '') {
                       if (typeof $scope.healthInfoFirstName === 'undefined' || $scope.healthInfoFirstName === '') {
                           $scope.ErrorMessage = "Please enterenter First Name";
                           $rootScope.Validation($scope.ErrorMessage);
@@ -1067,7 +1067,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     }
 
     $scope.sendCoUserInvite = function(hospitalId, userId, name, email, securityToken){
-        if (securityToken.length > 3 && securityToken.substring(0, 2) == "##") {
+        if (securityToken.length > 3 && securityToken.substring(0, 2) === "##") {
             var params = {
                 accessToken: $rootScope.accessToken,
                 HospitalId: hospitalId,
@@ -1075,9 +1075,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 Name: name,
                 Email: email,
                 Token: securityToken.substring(2),
-                success: function(data) {
+                success: function() {
                 },
-                error: function(data, status) {
+                error: function() {
                   $scope.ErrorMessage = "Unable to sent email invitation";
                   $rootScope.Validation($scope.ErrorMessage);
                 }
@@ -1176,8 +1176,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             patientId: patientID,
             RelationCodeId: relationshipID,
             IsAuthorized: authorizeID,
-            success: function(data) {
-                console.log(data);
+            success: function() {
+
             },
             error: function(data, status) {
                 if (status === 401) {
@@ -1418,10 +1418,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             Medications: $rootScope.CurrentmedicationupdateList,
             InfantData: $scope.InfantData,
             PatientId: $rootScope.patientId,
-            success: function(data) {
+            success: function() {
                 $scope.health();
             },
-            error: function(data) {
+            error: function() {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
             }
         };
@@ -1430,7 +1430,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $scope.OnSelectMedication = function(currentmedication) {
         if (currentmedication.checked === true) {
             $rootScope.checkedMedication++;
-            console.log($rootScope.checkedMedication);
+
         } else {
             $rootScope.checkedMedication--;
             currentmedication.checked === false;
@@ -1458,7 +1458,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             buttons: [{
                 text: 'Cancel',
                 onTap: function(e) {
-                    angular.forEach($rootScope.currentMedicationsearchList, function(item, index) {
+                    angular.forEach($rootScope.currentMedicationsearchList, function(item) {
                         if (item.checked) {
                             if (item.text === "Other - (List below)") item.checked = false;
                         }
@@ -1472,7 +1472,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     if (!$scope.data.CurrentMedicationOther) {
                         e.preventDefault();
                     } else {
-                        angular.forEach($rootScope.currentMedicationsearchList, function(item, index) {
+                        angular.forEach($rootScope.currentMedicationsearchList, function(item) {
                             if (item.checked) {
                                 if (item.text === "Other - (List below)") {
                                     item.checked = false;
@@ -1584,10 +1584,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             Medications: $rootScope.patientmedications,
             InfantData: $scope.InfantData,
             PatientId: $rootScope.patientId,
-            success: function(data) {
+            success: function() {
                 $scope.health();
             },
-            error: function(data) {
+            error: function() {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
             }
         };
@@ -1601,7 +1601,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         }
         if ((allergie.text === "Other") && $rootScope.checkedAllergies <= 4) {
         } else {
-            if ($rootScope.checkedAllergies == 4) {
+            if ($rootScope.checkedAllergies === 4) {
                 $rootScope.checkedAllergies--;
                 $scope.allergiedone();
             }
@@ -1681,10 +1681,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             Medications: $rootScope.patientmedications,
             InfantData: $scope.InfantData,
             PatientId: $rootScope.patientId,
-            success: function(data) {
+            success: function() {
                 $scope.health();
             },
-            error: function(data) {
+            error: function() {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
             }
         };
@@ -1726,7 +1726,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             authorizedOnly: true,
             success: function(data) {
                 $rootScope.listOfCoUserDetails = [];
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     if (index.patientId !== $rootScope.primaryPatientId) {
                         var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                             codeId: index.relationCodeId
@@ -1848,7 +1848,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 var isSurgeryDateIsFuture = false;
             }
         }
-        if ($scope.surgery.name == '' || $scope.surgery.name == undefined) {
+        if ($scope.surgery.name === '' || $scope.surgery.name === undefined) {
             $scope.ErrorMessage = "Please provide a name/description for this surgery";
             $rootScope.ValidationFunction1($scope.ErrorMessage);
         } else if (($scope.surgery.dateStringMonth === '' || $scope.surgery.dateStringMonth === undefined || $scope.surgery.dateStringYear === '' || $scope.surgery.dateStringYear === undefined)) {
@@ -1884,7 +1884,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             Medications: $rootScope.patientmedications,
             InfantData: $scope.InfantData,
             PatientId: $rootScope.patientId,
-            success: function(data) {
+            success: function() {
 
                 $scope.health();
                 $timeout(function() {
@@ -1896,7 +1896,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     $scope.modal.hide();
                 }
             },
-            error: function(data) {
+            error: function() {
                 $scope.putPatientMedicalProfile = 'Error getting Patient Medical Profile';
             }
         };

@@ -65,7 +65,7 @@ angular.module('starter.controllers')
                 $interval.cancel(checkAndChangeMenuIcon);
             }
             if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
-                if ($rootScope.statename == "tab.appointmentpatientdetails") {
+                if ($rootScope.statename === "tab.appointmentpatientdetails") {
                     $('.sidehomeappt').addClass("uhome");
                 }
             }

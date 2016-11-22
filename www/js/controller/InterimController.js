@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
+.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
     $rootScope.deploymentEnv = deploymentEnv;
     if (deploymentEnv !== 'Multiple') {
         $rootScope.APICommonURL = apiCommonURL;
@@ -103,7 +103,7 @@ angular.module('starter.controllers')
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
             },
-            error: function(data) {
+            error: function() {
                 $rootScope.serverErrorMessageValidation();
             }
         };
@@ -123,7 +123,7 @@ angular.module('starter.controllers')
                     var currentDate = new Date();
                     currentDate = $scope.addMinutes(currentDate, -30);
 
-                    angular.forEach($scope.scheduledConsultationList, function(index, item) {
+                    angular.forEach($scope.scheduledConsultationList, function(index) {
                         if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
                             $rootScope.getScheduledList.push({
                                 'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
@@ -136,7 +136,7 @@ angular.module('starter.controllers')
                                 'participants': angular.fromJson(index.participants),
                                 'waiveFee': index.waiveFee
                             });
-                            angular.forEach(index.participants, function(index, item) {
+                            angular.forEach(index.participants, function(index) {
                                 $rootScope.scheduleParticipants.push({
                                     'appointmentId': index.appointmentId,
                                     'attendenceCode': index.attendenceCode,
@@ -160,7 +160,6 @@ angular.module('starter.controllers')
                         var currentUserHomeDate = currentUserHomeDate;
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-                            console.log('scheduledTime <= getTwelveHours UserHome');
                             $rootScope.nextAppointmentDisplay = 'block';
                             $rootScope.accountClinicianFooter = 'none';
                             $rootScope.userHomeRecentAppointmentColor = '#FEEFE8';
@@ -196,7 +195,7 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $rootScope.primaryPatientLastNameArray = [];
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     $rootScope.primaryPatientLastNameArray.push({
                         'id': index.$id,
                         'patientName': index.patientName,
@@ -235,7 +234,7 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
               $rootScope.primaryPatientDetails = [];
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     $rootScope.primaryPatientDetails.push({
                         'account': angular.fromJson(index.account),
                         'address': index.address,
@@ -304,7 +303,7 @@ angular.module('starter.controllers')
                 $scope.doGetPrimaryPatientLastName();
                 $rootScope.doGetScheduledConsulatation();
             },
-            error: function(data) {
+            error: function() {
                 $scope.ssoMessage = 'Authentication Failed! Please try again later!';
                 $rootScope.patientInfomation = '';
                 $rootScope.patientAccount = '';
@@ -340,7 +339,7 @@ angular.module('starter.controllers')
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $rootScope.RelatedPatientProfiles = [];
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     if (typeof index.gender !== 'undefined') {
                         if (index.gender === 'F') {
                             $scope.patGender = "Female";
@@ -382,7 +381,7 @@ angular.module('starter.controllers')
                     $scope.doGetExistingConsulatation();
                 }
             },
-            error: function(data) {
+            error: function() {
                 $rootScope.serverErrorMessageValidation();
             }
         };
@@ -411,7 +410,7 @@ angular.module('starter.controllers')
                 $rootScope.MedicationAllegiesList = $rootScope.medicationAllergiesCodesList;
                 $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
                 $rootScope.eyeHairEthnicityRelationCodeSets = [];
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     $rootScope.eyeHairEthnicityRelationCodeSets.push({
                         'codes': angular.fromJson(index.codes),
                         'hospitalId': index.hospitalId,
@@ -646,7 +645,7 @@ angular.module('starter.controllers')
         $scope.doGetSingleUserHospitalInformation();
         $scope.doGetPatientProfiles();
         $scope.doGetRelatedPatientProfiles('waitingRoom');
-    } else if ($stateParams.token !== "" && $stateParams.token !== "jwt" && $stateParams.hospitalId != "" && $stateParams.consultationId === "") {
+    } else if ($stateParams.token !== "" && $stateParams.token !== "jwt" && $stateParams.hospitalId !== "" && $stateParams.consultationId === "") {
         $rootScope.accessToken = $stateParams.token;
         $rootScope.hospitalId = $stateParams.hospitalId;
         $scope.doGetCodesSet();
