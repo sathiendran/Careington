@@ -80,7 +80,7 @@ angular.module('starter.controllers')
     $rootScope.couserdetails = false;
     $rootScope.dupcouser = false;
     $rootScope.showNewSurgeryAdd = false;
-    $ionicPlatform.registerBackButtonAction(function(event, $state) {
+    $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
             ($rootScope.currState.$current.name === "tab.submitPayment") ||
