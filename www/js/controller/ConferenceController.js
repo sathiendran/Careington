@@ -659,46 +659,35 @@ angular.module('starter.controllers')
                 $scope.disconnectConference();
             });
 
-            conHub.on("participantConnected", function () {
-              console.log('participantConnected1');
-              alert('participantConnected1');
+          /*  conHub.on("onProviderUnavailable", function () {
+              console.log('onProviderUnavailable1');
+              alert('onProviderUnavailable1');
             });
-
-            conHub.on("participantDisconnected", function () {
-              console.log('participantDisconnected1');
-              alert('participantDisconnected1');
-
-            });
-
-            conHub.on("providerUnavailable", function () {
-              console.log('providerUnavailable1');
-              alert('providerUnavailable1');
-            });
-
-            conHub.on("providerAvailable", function () {
+            conHub.on("onProviderAvailable", function () {
               console.log('providerAvailable1');
               alert('providerAvailable1');
             });
 
-            /*   conHub.disconnected(function() {
-               setTimeout(function() {
-                   $.connection.hub.start();
-               }, 5000);
+            conHub.on("onParticipantDisconnected", function () {
+              console.log('onParticipantDisconnected1');
+              alert('onParticipantDisconnected1');
             });
-            conHub.on("disconnected", function() {
-               setTimeout(function() {
-                   $.connection.hub.start();
-               }, 5000);
-            });
-         conHub.on("participantDisconnected", function () {
-              navigator.notification.alert(
-                  'Guest Disconnected', // message
-                  consultationEndedAlertDismissed, // callback
-                  $rootScope.alertMsgName, // title
-                  'Done' // buttonName
-              );
 
+            conHub.on("onParticipantConnected", function () {
+              console.log('participantConnected1');
+              alert('participantConnected1');
+            });
+
+
+            conHub.on("onProviderDisconnected", function () {
+              console.log('OnClientDisconnected102');
+              alert('OnClientDisconnected102');
+               $.connection.hub.start();
+               isCallEndedByPhysician = true;
+               $('#videoCallSessionTimer').runner('stop');
+               $scope.disconnectConference();
             });*/
+
         };
         initConferenceRoomHub();
 
@@ -945,7 +934,7 @@ angular.module('starter.controllers')
               }
 
               //session.unsubscribe(event.stream);
-              OT.updateViews();
+            //  OT.updateViews();
               $scope.arrangeVideoThumbnails();
               $("#subscriber").css('top', '0px');
               $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);

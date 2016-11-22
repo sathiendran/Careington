@@ -24,7 +24,7 @@ var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -101,7 +101,7 @@ if (deploymentEnv == 'Single') {
   } else if (cobrandApp == '1800md') {
       singleStagingHospitalId = 164;
       singleHospitalId = 229;
-      singleQAHospitalId = 164;
+      singleQAHospitalId = 165;
       singleSandboxHospitalId = 146;
       brandColor = '#005b9f';
       logo = 'img/1800md.png';
