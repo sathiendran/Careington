@@ -934,7 +934,7 @@ angular.module('starter.controllers')
               }
 
               //session.unsubscribe(event.stream);
-            //  OT.updateViews();
+              OT.updateViews();
               $scope.arrangeVideoThumbnails();
               $("#subscriber").css('top', '0px');
               $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
