@@ -1,29 +1,28 @@
 angular.module('starter.controllers')
 
 
-.controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
-    //$state.go('tab.appoimentDetails');
+.controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
 
-    $ionicPlatform.registerBackButtonAction(function(event, $state) {
-        if (($rootScope.currState.$current.name == "tab.userhome") ||
-            ($rootScope.currState.$current.name == "tab.addCard") ||
-            ($rootScope.currState.$current.name == "tab.submitPayment") ||
-            ($rootScope.currState.$current.name == "tab.waitingRoom") ||
-            ($rootScope.currState.$current.name == "tab.receipt") ||
-            ($rootScope.currState.$current.name == "tab.videoConference") ||
-            ($rootScope.currState.$current.name == "tab.connectionLost") ||
-            ($rootScope.currState.$current.name == "tab.ReportScreen")
+    $ionicPlatform.registerBackButtonAction(function() {
+        if (($rootScope.currState.$current.name === "tab.userhome") ||
+            ($rootScope.currState.$current.name === "tab.addCard") ||
+            ($rootScope.currState.$current.name === "tab.submitPayment") ||
+            ($rootScope.currState.$current.name === "tab.waitingRoom") ||
+            ($rootScope.currState.$current.name === "tab.receipt") ||
+            ($rootScope.currState.$current.name === "tab.videoConference") ||
+            ($rootScope.currState.$current.name === "tab.connectionLost") ||
+            ($rootScope.currState.$current.name === "tab.ReportScreen")
         ) {
             // H/W BACK button is disabled for these states (these views)
             // Do not go to the previous state (or view) for these states.
             // Do nothing here to disable H/W back button.
-        } else if ($rootScope.currState.$current.name == "tab.login") {
+        } else if ($rootScope.currState.$current.name === "tab.login") {
             navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
+        } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
             navigator.app.exitApp();
-        } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
+        } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
             if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
                 $ionicBackdrop.release();
@@ -43,7 +42,6 @@ angular.module('starter.controllers')
         }
     }, 100);
 
-    //  document.getElementsByTagName('timer')[0].stop();
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
 
@@ -60,9 +58,7 @@ angular.module('starter.controllers')
                 }
             }
         }
-        //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-        //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
-    $scope.toggleLeft = function() {
+      $scope.toggleLeft = function() {
         $ionicSideMenuDelegate.toggleLeft();
         $rootScope.checkAndChangeMenuIcon();
         if (checkAndChangeMenuIcon) {
@@ -89,12 +85,11 @@ angular.module('starter.controllers')
         $rootScope.appointPatientGuardian = P_Guardian;
         $rootScope.appointmentsPage = true;
         $scope.doCheckExistingConsulatationStatus();
-        //$scope.doGetWaitingRoom();
     }
     $scope.doGetWaitingRoom = function() {
         $state.go('tab.waitingRoom');
     }
-    if ($rootScope.appointmentDisplay == "test") {
+    if ($rootScope.appointmentDisplay === "test") {
         $timeout(function() {
             document.getElementsByTagName('timer')[0].stop();
             document.getElementsByTagName('timer')[0].start();
@@ -109,7 +104,7 @@ angular.module('starter.controllers')
 
         $scope.$on('timer-tick', function(event, args) {
             //$timeout(function(){
-            if (args.days == 0) {
+            if (args.days === 0) {
                 $rootScope.hourDisplay = 'initial';
                 $rootScope.daysDisplay = 'none';
                 $rootScope.dayDisplay = 'none';
@@ -123,13 +118,11 @@ angular.module('starter.controllers')
                 $rootScope.dayDisplay = 'none';
             }
 
-            //console.log(args.millis);
-            if (args.millis < 600) {
+              if (args.millis < 600) {
                 $rootScope.timeNew = 'none';
                 $rootScope.timeNew1 = 'block';
                 $('.AvailableIn').hide();
                 $('.enterAppoinment').show();
-                //$rootScope.timerCOlor = '#E1FCD4';
             } else if (args.millis > 600) {
                 $('.AvailableIn').show();
                 $('.enterAppoinment').hide();
@@ -167,11 +160,7 @@ angular.module('starter.controllers')
     };
 
     $scope.doGetConcentToTreat = function() {
-        if ($scope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-        var params = {
+          var params = {
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -194,10 +183,6 @@ angular.module('starter.controllers')
     }
 
     $scope.doCheckExistingConsulatationStatus = function() {
-        if ($scope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
         var params = {
             consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
@@ -213,7 +198,7 @@ angular.module('starter.controllers')
                 $rootScope.copayAmount = $rootScope.consultationAmount;
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
-                    if ($rootScope.consultationStatusId == 71) {
+                    if ($rootScope.consultationStatusId === 71) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
@@ -225,7 +210,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 72) {
+                    } else if ($rootScope.consultationStatusId === 72) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
@@ -237,7 +222,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 79) {
+                    } else if ($rootScope.consultationStatusId === 79) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
@@ -249,7 +234,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 80) {
+                    } else if ($rootScope.consultationStatusId === 80) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
@@ -286,22 +271,18 @@ angular.module('starter.controllers')
     });
 
     $rootScope.doGetIndividualScheduledDetails = function() {
-        if ($rootScope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
         $rootScope.appointmentPatientId = '';
         $rootScope.individualScheduledConsultationList = [];
         var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                if (data != "") {
+                if (data !== "") {
                     $scope.individualScheduledConsultationList = data.data[0];
-                    if ($rootScope.patientId == $rootScope.primaryPatientId) {
+                    if ($rootScope.patientId === $rootScope.primaryPatientId) {
                         $rootScope.P_isAuthorized = true;
                     } else {
-                        if (data.data[0].account.isAuthorized == "T" || data.data[0].account.isAuthorized == true || data.data[0].account.isAuthorized == "Y") {
+                        if (data.data[0].account.isAuthorized === "T" || data.data[0].account.isAuthorized === true || data.data[0].account.isAuthorized === "Y") {
                             $rootScope.P_isAuthorized = true;
                         } else {
                             $rootScope.P_isAuthorized = false;
@@ -323,15 +304,15 @@ angular.module('starter.controllers')
                             $rootScope.userAgeForIntake = 7;
                         }
                         if ($scope.individualScheduledConsultationList.account.patientId !== $rootScope.primaryPatientId) {
-                            if ($rootScope.userDOB.indexOf('T') == -1) {
+                            if ($rootScope.userDOB.indexOf('T') === -1) {
                                 $rootScope.PatientAge = $rootScope.userDOB + "T00:00:00Z";
                             }
                         }
                     }
-                    if ($scope.individualScheduledConsultationList.gender == 'M' || $scope.individualScheduledConsultationList.gender == 'Male') {
+                    if ($scope.individualScheduledConsultationList.gender === 'M' || $scope.individualScheduledConsultationList.gender === 'Male') {
                         $rootScope.userGender = "Male";
                         $rootScope.isCheckedMale = true;
-                    } else if ($scope.individualScheduledConsultationList.gender == 'F' || $scope.individualScheduledConsultationList.gender == 'Female') {
+                    } else if ($scope.individualScheduledConsultationList.gender === 'F' || $scope.individualScheduledConsultationList.gender === 'Female') {
                         $rootScope.userGender = "Female";
                         $rootScope.isCheckedFemale = true;
                     } else {
@@ -391,7 +372,7 @@ angular.module('starter.controllers')
                     $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
                     $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
                     $rootScope.doGetScheduledConsulatation();
-                    if ($rootScope.getIndividualScheduleDetails.length == 0) {
+                    if ($rootScope.getIndividualScheduleDetails.length === 0) {
                         navigator.notification.alert(
                             'Your appointment is no longer available.', // message
                             function() {
@@ -411,7 +392,7 @@ angular.module('starter.controllers')
                     $rootScope.accountClinicianFooter = 'block';
                     $rootScope.accountStyle = "";
                     $rootScope.userAccContent = "";
-                    if ($rootScope.individualScheduledList != '') {
+                    if ($rootScope.individualScheduledList !== '') {
                         $scope.getScheduledList = $rootScope.individualScheduledList[0];
                         $rootScope.GoToappoimentDetailsFromUserHome($scope.getScheduledList, "AppointmentPage");
                         var getReplaceTime = $rootScope.individualScheduledList[0].scheduledTime;
@@ -419,7 +400,6 @@ angular.module('starter.controllers')
 
 
                         if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
-                            console.log('scheduledTime <= getTwelveHours UserHome');
                             $("#appointNotes").html($rootScope.appointNotes);
                             $rootScope.accountClinicianFooter = 'none';
                             $rootScope.individualNextAppointmentDisplay = 'block';
@@ -444,11 +424,11 @@ angular.module('starter.controllers')
                             }, 10);
 
                             $scope.$on('timer-tick', function(event, args) {
-                                if (args.days == 0) {
+                                if (args.days === 0) {
                                     $rootScope.hourDisplay = 'initial';
                                     $rootScope.daysDisplay = 'none';
                                     $rootScope.dayDisplay = 'none';
-                                } else if (args.days == 1) {
+                                } else if (args.days === 1) {
                                     $rootScope.daysDisplay = 'none';
                                     $rootScope.hourDisplay = 'none';
                                     $rootScope.dayDisplay = 'initial';
@@ -513,21 +493,15 @@ angular.module('starter.controllers')
         $rootScope.appointmentsPatientDOB = '';
         $rootScope.appointmentsPatientGurdianName = '';
         $rootScope.appointmentsPatientImage = '';
-        if ($scope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
-
         var params = {
             consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $scope.existingConsultation = data;
-                //$rootScope.doGetIndividualScheduledConsulatation();
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 $rootScope.consultationStatusId = $rootScope.consultionInformation.consultationStatus;
                 if (!angular.isUndefined($rootScope.consultationStatusId)) {
-                    if ($rootScope.consultationStatusId == 71) {
+                    if ($rootScope.consultationStatusId === 71) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already started on other device.', // message
@@ -539,7 +513,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 72) {
+                    } else if ($rootScope.consultationStatusId === 72) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is already ended.', // message
@@ -551,7 +525,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 79) {
+                    } else if ($rootScope.consultationStatusId === 79) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is cancelled.', // message
@@ -563,7 +537,7 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
-                    } else if ($rootScope.consultationStatusId == 80) {
+                    } else if ($rootScope.consultationStatusId === 80) {
                         $rootScope.doGetScheduledConsulatation();
                         navigator.notification.alert(
                             'Your consultation is in progress on other device.', // message
@@ -627,21 +601,16 @@ angular.module('starter.controllers')
 
     $rootScope.doGetDoctorDetails = function() {
         $rootScope.doctorGender = '';
-        if ($scope.accessToken == 'No Token') {
-            alert('No token.  Get token first then attempt operation.');
-            return;
-        }
         $rootScope.scheduledDoctorDetails = [];
         var params = {
             doctorId: $rootScope.assignedDoctorId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                //$rootScope.doctorImage = $rootScope.APICommonURL + data.data[0].profileImagePath;
                 angular.forEach(data.data, function(index, item) {
                     if (index.gender === 'M') {
                         var docGender = "Male";
                     } else if (index.gender === 'F') {
-                        var docGender = "Female";
+                         docGender = "Female";
                     }
                     $rootScope.DoctorImage = data.data[0].profileImagePath;
                     $rootScope.scheduledDoctorDetails.push({
@@ -669,7 +638,7 @@ angular.module('starter.controllers')
         LoginService.getDoctorDetails(params);
     }
 
-    if ($rootScope.AppointScheduleTime != '') {
+    if ($rootScope.AppointScheduleTime !== '') {
         setTimeout(function() {
             $rootScope.timeNew = 'none';
             $rootScope.timeNew1 = 'none';

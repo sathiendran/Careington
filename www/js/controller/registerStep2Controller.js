@@ -5,26 +5,26 @@ angular.module('starter.controllers')
       };
 
         $rootScope.isRegistrationCompleted = false;
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
-            if (($rootScope.currState.$current.name == "tab.userhome") ||
-                ($rootScope.currState.$current.name == "tab.addCard") ||
-                ($rootScope.currState.$current.name == "tab.submitPayment") ||
-                ($rootScope.currState.$current.name == "tab.waitingRoom") ||
-                ($rootScope.currState.$current.name == "tab.receipt") ||
-                ($rootScope.currState.$current.name == "tab.videoConference") ||
-                ($rootScope.currState.$current.name == "tab.connectionLost") ||
-                ($rootScope.currState.$current.name == "tab.ReportScreen")
+        $ionicPlatform.registerBackButtonAction(function() {
+            if (($rootScope.currState.$current.name === "tab.userhome") ||
+                ($rootScope.currState.$current.name === "tab.addCard") ||
+                ($rootScope.currState.$current.name === "tab.submitPayment") ||
+                ($rootScope.currState.$current.name === "tab.waitingRoom") ||
+                ($rootScope.currState.$current.name === "tab.receipt") ||
+                ($rootScope.currState.$current.name === "tab.videoConference") ||
+                ($rootScope.currState.$current.name === "tab.connectionLost") ||
+                ($rootScope.currState.$current.name === "tab.ReportScreen")
             ) {
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
-            } else if ($rootScope.currState.$current.name == "tab.login") {
+            } else if ($rootScope.currState.$current.name === "tab.login") {
                 navigator.app.exitApp();
-            } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
+            } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
                 navigator.app.exitApp();
-            } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
+            } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
                 var gSearchLength = $('.ion-google-place-container').length;
                 if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
                     $ionicBackdrop.release();
@@ -61,7 +61,7 @@ angular.module('starter.controllers')
             };
             var pwdRegularExpress = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])^.{8,20}$/;
 
-            if (typeof $scope.reg2email == 'undefined' ||$scope.reg2email == '') {
+            if (typeof $scope.reg2email === 'undefined' ||$scope.reg2email === '') {
                 $scope.ErrorMessage = "Please enter your Email Address";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
@@ -73,7 +73,7 @@ angular.module('starter.controllers')
                     });
                 }
 
-                else if (typeof $scope.regStep2.password == 'undefined' || $scope.regStep2.password == '') {
+                else if (typeof $scope.regStep2.password === 'undefined' || $scope.regStep2.password === '') {
                 $scope.ErrorMessage = "Please enter your Password";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
@@ -88,17 +88,17 @@ angular.module('starter.controllers')
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
-            } else if (typeof $scope.regStep2.confirmPwd == 'undefined' || $scope.regStep2.confirmPwd == '') {
+            } else if (typeof $scope.regStep2.confirmPwd === 'undefined' || $scope.regStep2.confirmPwd === '') {
                 $scope.ErrorMessage = "Please enter your Confirm Password";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
-            } else if ($scope.regStep2.password != $scope.regStep2.confirmPwd) {
+            } else if ($scope.regStep2.password !== $scope.regStep2.confirmPwd) {
                 $scope.ErrorMessage = "Password mismatch";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
                 });
-            } else if (typeof $scope.regStep2.dob == 'undefined' || $scope.regStep2.dob == '' || $scope.regStep2.dob == null) {
+            } else if (typeof $scope.regStep2.dob === 'undefined' || $scope.regStep2.dob === '' || $scope.regStep2.dob === null) {
                 $scope.ErrorMessage = "Please select your Birthdate";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
@@ -137,7 +137,7 @@ angular.module('starter.controllers')
                 name: $scope.userFirstandLastName,
                 password: $scope.regStep2.password,
                 providerId: $rootScope.hospitalId,
-                success: function(data) {
+                success: function() {
                     $rootScope.isRegistrationCompleted = true;
                     $rootScope.registedEmail = $scope.reg2email;
                     $rootScope.registedPwd = $scope.regStep2.password;

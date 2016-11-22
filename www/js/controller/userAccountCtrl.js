@@ -1,10 +1,10 @@
 angular.module('starter.controllers')
-    .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, $timeout, SurgeryStocksListService, $ionicLoading) {
+    .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, $timeout) {
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
 
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+        $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||
@@ -63,8 +63,7 @@ angular.module('starter.controllers')
                     }
                 }
             }
-            //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-            //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
@@ -96,7 +95,7 @@ angular.module('starter.controllers')
             $rootScope.currentPatientDetails = currentPatientDetails;
             $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
             $rootScope.restage = getAge($rootScope.doddate);
-            if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId)) {
+            if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId)) {
                 $rootScope.viewemailDisplay = 'flex';
                 $rootScope.viewtimezoneDisplay = 'flex';
             } else {
@@ -104,17 +103,17 @@ angular.module('starter.controllers')
                 $rootScope.viewtimezoneDisplay = 'none';
             }
 
-            if ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId) {
+            if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
                 $rootScope.viewmyhealthDisplay = 'block';
                 $rootScope.viewhealthDisplay = 'none';
             } else {
                 $rootScope.viewmyhealthDisplay = 'none';
                 $rootScope.viewhealthDisplay = 'block';
             }
-            if ($rootScope.currentPatientDetails[0].gender == 'M') {
+            if ($rootScope.currentPatientDetails[0].gender === 'M') {
                 $rootScope.userGender = "Male";
                 $rootScope.isCheckedMale = true;
-            } else if ($rootScope.currentPatientDetails[0].gender == 'F') {
+            } else if ($rootScope.currentPatientDetails[0].gender === 'F') {
                 $rootScope.userGender = "Female";
                 $rootScope.isCheckedFemale = true;
             }
@@ -148,7 +147,7 @@ angular.module('starter.controllers')
             $rootScope.patinentCurrentMedication = "";
             $rootScope.patinentMedicationAllergies = "";
             $rootScope.patientSurgeriess = "";
-            $rootScope.MedicationCount == 'undefined';
+            $rootScope.MedicationCount === 'undefined';
             $rootScope.checkedChronic = 0;
             $rootScope.ChronicCount = "";
             $rootScope.AllegiesCount = "";
@@ -166,7 +165,7 @@ angular.module('starter.controllers')
 
         $rootScope.doGetCurrentUserAppointment = function() {
             $rootScope.passededconsultants();
-            if ($rootScope.primaryPatientId == $rootScope.currentPatientDetails[0].account.patientId) {
+            if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
                 $rootScope.viewmyhealthDisplay = 'block';
                 $rootScope.viewhealthDisplay = 'none';
             } else {

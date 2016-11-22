@@ -1,8 +1,8 @@
 angular.module('starter.controllers')
     .controller('addnewuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate,
         $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log,
-        $ionicPopup, ageFilter, $window, $timeout, Idle) {
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+        $ionicPopup, ageFilter, $window, $timeout) {
+        $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||
@@ -54,8 +54,7 @@ angular.module('starter.controllers')
                     }
                 }
             }
-            //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-            //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
@@ -78,7 +77,7 @@ angular.module('starter.controllers')
                     $rootScope.listOfOrganization = [];
                     $rootScope.listOfLocation = [];
                     if (data.data[0] !== '') {
-                        angular.forEach(data.data, function(index, item) {
+                        angular.forEach(data.data, function(index) {
                             $rootScope.listOfOrganization.push({
                                 'addresses': index.addresses,
                                 'createdByUserId': index.createdByUserId,
@@ -91,7 +90,7 @@ angular.module('starter.controllers')
                                 'name': index.name,
                                 'organizationTypeId': index.organizationTypeId
                             });
-                            angular.forEach(index.locations, function(index, item) {
+                            angular.forEach(index.locations, function(index) {
                                 $rootScope.listOfLocation.push({
                                     'createdByUserId': index.createdByUserId,
                                     'createdDate': index.createdDate,

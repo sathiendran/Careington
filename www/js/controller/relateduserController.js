@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
     .controller('relateduserController', function($scope, $ionicPlatform, $ionicModal, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, $timeout) {
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
+        $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
                 ($rootScope.currState.$current.name === "tab.submitPayment") ||
@@ -52,9 +52,7 @@ angular.module('starter.controllers')
                     }
                 }
             }
-            //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-            //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
-        $scope.toggleLeft = function() {
+          $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
             if (checkAndChangeMenuIcon) {
@@ -172,10 +170,10 @@ angular.module('starter.controllers')
 
         $scope.$watch('data.searchProvider', function(searchKey) {
             $rootScope.providerSearchKey = searchKey;
-            if (typeof $rootScope.providerSearchKey == 'undefined') {
+            if (typeof $rootScope.providerSearchKey === 'undefined') {
                 $scope.data.searchProvider = $rootScope.backProviderSearchKey;
             }
-            if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            if ($rootScope.providerSearchKey !== '' && typeof $rootScope.providerSearchKey !== 'undefined') {
                 $rootScope.iconDisplay = 'none';
             } else {
                 $rootScope.iconDisplay = 'Block';
@@ -187,19 +185,18 @@ angular.module('starter.controllers')
                 patientId: relateDependentId,
                 RelationCodeId: relateDependentRelationCode,
                 IsAuthorized: relateDependentAuthorize,
-                success: function(data) {
+                success: function() {
                     $scope.authorizedview = false;
-                    //myPopup.close();
                     $rootScope.doGetAccountDependentDetails();
                 },
                 error: function(data, status) {
-                    if (status == 401) {
+                    if (status === 401) {
                         $scope.ErrorMessage = "You are not authorized to change authorization status of this dependent";
                         $scope.$root.$broadcast("callValidation", {
                             errorMsg: $scope.ErrorMessage
                         });
                     } else {
-                        if (data == null || status === 0) {
+                        if (data === null || status === 0) {
 
                             $scope.ErrorMessage = "Internet connection not available, Try again later!";
                             $rootScope.Validation($scope.ErrorMessage);
@@ -226,7 +223,7 @@ angular.module('starter.controllers')
                 $scope.relationship = '';
             }
             var getDrawImage = $rootScope.drawImage(dependentDetails.profileImagePath, dependentDetails.patientFirstName, dependentDetails.patientLastName);
-            if ($rootScope.authorised == "F") {
+            if ($rootScope.authorised === "F") {
                 var myPopup = $ionicPopup.show({
 
                     title: "<div class='coUserLinkImage'>" + getDrawImage + "</div><div class='coUserLinkName'><span class='fname'><b>" + dependentDetails.patientFirstName + "</b></span> <span class='sname'>" + dependentDetails.patientLastName + "</span></div> <div class='fontcolor'>" + dependentDetails.gender + $scope.dob + $scope.relationship + "</div> ",
@@ -289,7 +286,6 @@ angular.module('starter.controllers')
             $scope.dependentuserslist = true;
             $scope.cousericon = true;
             $scope.dependenticon = false;
-            //  $rootScope.doGetListOfCoUsers();
             var myEl = angular.element(document.querySelector('#users'));
             myEl.addClass('btcolor');
             myEl.removeClass('btnextcolor');
@@ -308,7 +304,6 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 authorizedOnly: true,
                 success: function(data) {
-                    //$scope.listOfCoUser = JSON.stringify(data, null, 2);
                     $rootScope.listOfCoUserDetails = [];
                     angular.forEach(data.data, function(index, item) {
                         if (index.patientId !== $rootScope.primaryPatientId) {
@@ -326,9 +321,7 @@ angular.module('starter.controllers')
                             } else if (index.gender == 'F') {
                                 var gender = "Female";
                             }
-                            //  if(index.imagePath){
                             $scope.coUserImagePath = index.imagePath;
-
                             $rootScope.listOfCoUserDetails.push({
                                 'address': index.address,
                                 'bloodType': index.bloodType,
@@ -359,7 +352,7 @@ angular.module('starter.controllers')
                     });
                 },
                 error: function(data) {
-                    if (data == 'null') {
+                    if (data === 'null') {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -400,7 +393,7 @@ angular.module('starter.controllers')
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $rootScope.listOfAccountDependents = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         var getRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                             codeId: index.relationCode
                         })
@@ -409,9 +402,9 @@ angular.module('starter.controllers')
                         } else {
                             var relationShip = '';
                         }
-                        if (index.gender == 'M') {
+                        if (index.gender === 'M') {
                             var gender = "Male";
-                        } else if (index.gender == 'F') {
+                        } else if (index.gender === 'F') {
                             var gender = "Female";
                         }
 
@@ -447,7 +440,7 @@ angular.module('starter.controllers')
                     });
                 },
                 error: function(data) {
-                    if (data == 'null') {
+                    if (data === 'null') {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -458,16 +451,11 @@ angular.module('starter.controllers')
             LoginService.getAccountDependentDetails(params);
         }
         $rootScope.doGetOrgLoclist = function() {
-            if ($rootScope.accessToken == 'No Token') {
-                alert('No token.  Get token first then attempt operation.');
-                return;
-            }
-
-            var params = {
+          var params = {
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     $rootScope.orgloclist = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         $rootScope.orgloclist.push({
                             'locations': angular.fromJson(index.locations),
                             'name': index.name,
@@ -478,7 +466,7 @@ angular.module('starter.controllers')
                     var listOfLocation = $rootScope.orgloclist;
                     $rootScope.locationdetails = _.pluck(listOfLocation, 'locations');
                 },
-                error: function(data) {
+                error: function() {
                     $rootScope.serverErrorMessageValidation();
                 }
             };
@@ -558,7 +546,7 @@ angular.module('starter.controllers')
                 $rootScope.viewemailDisplay = 'none';
                 $rootScope.viewtimezoneDisplay = 'none';
             }
-            if (primarypatid == patid) {
+            if (primarypatid === patid) {
                 $rootScope.viewmyhealthDisplay = 'block';
                 $rootScope.viewhealthDisplay = 'none';
             } else {
@@ -570,8 +558,6 @@ angular.module('starter.controllers')
 
         /* Relationship Search */
         $scope.alphabet = iterateAlphabet();
-        var tmp = {};
-
         function iterateAlphabet() {
             var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             var numbers = new Array();
@@ -599,7 +585,6 @@ angular.module('starter.controllers')
             $rootScope.relationUpdateRelationId = selPatient.relationship;
             $scope.clearSelectionAndRebindSelectionList($rootScope.relationUpdateRelationId, $rootScope.listOfRelationship[0].codes);
             $scope.usertab = true;
-          //  $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
             $ionicModal.fromTemplateUrl('templates/tab-relationSearch.html', {
                 scope: $scope,
                 animation: 'slide-in-up',
@@ -625,7 +610,6 @@ angular.module('starter.controllers')
         $scope.OnSelectRelation = function(newRelatioCodeId) {
             if (newRelatioCodeId.checked === true) {
                 $rootScope.relationShipChecked++;
-                console.log($rootScope.newRelatioCodeId);
             } else {
                 $rootScope.relationShipChecked--;
                 newRelatioCodeId.checked === false;
@@ -724,12 +708,12 @@ angular.module('starter.controllers')
         }
 
         $scope.clearSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
-            angular.forEach(mainListItem, function(item, key2) {
+            angular.forEach(mainListItem, function(item) {
                 item.checked = false;
             });
             if (!angular.isUndefined(selectedListItem)) {
-                angular.forEach(mainListItem, function(value, key) {
-                    if (value.text == selectedListItem) {
+                angular.forEach(mainListItem, function(value) {
+                    if (value.text === selectedListItem) {
                         value.checked = true;
                         $scope.checkedrelation = value.text;
                     }
