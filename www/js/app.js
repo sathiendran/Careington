@@ -24,7 +24,7 @@ var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'QA'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'ambientcare';
+    var cobrandApp = '1800md';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -98,8 +98,18 @@ if (deploymentEnv == 'Single') {
       Hospital = "Ambient Virtual Care";
       HospitalTag = 'Virtual Consultation Platform';
       ssoURL = "";
+  } else if (cobrandApp == '1800md') {
+      singleStagingHospitalId = 164;
+      singleHospitalId = 229;
+      singleQAHospitalId = 164;
+      singleSandboxHospitalId = 146;
+      brandColor = '#005b9f';
+      logo = 'img/1800md.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
+      Hospital = "1.800MD";
+      HospitalTag = 'Convenient Care Anywhere';
+      ssoURL = "";
   }
-
 
 }
 
