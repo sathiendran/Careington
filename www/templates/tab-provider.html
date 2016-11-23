@@ -1,37 +1,34 @@
 <ion-view>
-	<ion-header-bar class="bg">
-		<div id="Error_Message" ></div>
-		<div class="Server_Error" ></div>
-		<h2>Virtual Care</h2>
-		<div class="bar bar-subheader-provider searchbox searchAccount newProviderSub">
-			<h3 class="logProvider">Select your provider</h3>
-		</div>
-	</ion-header-bar>
-
-	<ion-content class="content-height newProContent">
-
-			<div id="providerListDiv" class="list has-subheader provider" >
-				<a class="item item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)">
-				  <div ng-if="hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImageLogin"><img ng-src="{{hospitalDetails.logo}}"  ></div>
-					<div ng-if="!hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImageLogin" ><p>{{hospitalDetails.logo}}</p></div>
-					<h2>{{hospitalDetails.brandName}}</h2>
-					<i class="icon ion-chevron-right"></i>
-				</a>
-			</div>
-
-	</ion-content>
-	<!-- Start Footer -->
-	<ion-footer-bar align-title="left" class="footer">
-		<div class="ConcernsFooter">
-				<div class="FooterLeft">
-				<!--<a class="button_new icon ion-chevron-left" href="#/tab/login"> Back </a>-->
-				<a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span>Back</span></a>
-				</div>
-				<div class="FooterCenter">
-					<a class="button_new icon" ng-href="#/tab/login" style="font-size: 18px;">Cancel</a>
-				</div>
-		</div>
-	</ion-footer-bar>
-	<!-- End Footer -->
-
+   <ion-header-bar class="bg">
+      <div id="Error_Message" ></div>
+      <div class="Server_Error" ></div>
+      <h2>Virtual Care</h2>
+      <div class="bar bar-subheader-provider searchbox searchAccount newProviderSub">
+         <h3 class="logProvider">Select your provider</h3>
+      </div>
+   </ion-header-bar>
+   <ion-content class="content-height newProContent">
+      <div id="providerListDiv" class="list has-subheader provider" >
+         <a class="item item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails)">
+            <div ng-if="hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImageLogin"><img ng-src="{{hospitalDetails.logo}}"  ></div>
+            <div ng-if="!hospitalDetails.chkImageorNot" class="searchProvFirstLetterDiv newProImageLogin" >
+               <p>{{hospitalDetails.logo}}</p>
+            </div>
+            <h2>{{hospitalDetails.brandName}}</h2>
+            <i class="icon ion-chevron-right"></i>
+         </a>
+      </div>
+   </ion-content>
+   <!-- Start Footer -->
+   <ion-footer-bar align-title="left" class="footer">
+      <div class="ConcernsFooter">
+         <div class="FooterLeft">
+            <a class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/login"><span>Back</span></a>
+         </div>
+         <div class="FooterCenter">
+            <a class="button_new icon" ng-href="#/tab/login" style="font-size: 18px;">Cancel</a>
+         </div>
+      </div>
+   </ion-footer-bar>
+   <!-- End Footer -->
 </ion-view>

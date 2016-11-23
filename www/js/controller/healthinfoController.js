@@ -569,7 +569,7 @@ $scope.editDob=function(){
               var hghtinval=$('#heightuser').val();
               var reminspace=hghtinval.split(" ");
               var units=reminspace[1];
-              if(units=="ft"){
+              if(units==="ft"){
                 $scope.healthInfoHeightUnit="4715"
               }else{
                   $scope.healthInfoHeightUnit="4716"
@@ -578,7 +578,7 @@ $scope.editDob=function(){
               var hghtinval=$('#heightuser').val();
               var reminspace=hghtinval.split(" ");
               var units=reminspace[1];
-              if(units=="ft"){
+              if(units==="ft"){
                 $scope.healthInfoHeightUnit="4715"
               }else{
                   $scope.healthInfoHeightUnit="4716"
@@ -1448,7 +1448,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
         }
     }
-    $scope.openOtherCurrentMedicationView = function(model) {
+    $scope.openOtherCurrentMedicationView = function() {
         $scope.data = {}
         $ionicPopup.show({
             template: '<textarea name="comment" id="comment-textarea" ng-model="data.CurrentMedicationOther" class="textAreaPop">',
@@ -1787,7 +1787,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         var params = {
             accessToken: $rootScope.accessToken,
             PatientId: patientId,
-            success: function(data) {
+            success: function() {
                 $scope.doGetListOfCoUsers();
             },
             error: function(data,status) {
@@ -1827,7 +1827,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }, 100);
         });
     };
-    $scope.closeSurgeryPopup = function(model) {
+    $scope.closeSurgeryPopup = function() {
         $scope.surgery.name;
         $scope.surgery.dateString;
         $scope.surgery.dateStringMonthVal = $scope.surgery.dateStringMonth;

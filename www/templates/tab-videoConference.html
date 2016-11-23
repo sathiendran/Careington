@@ -1,97 +1,94 @@
 
 <ion-view title="">
-    <ion-content scroll="false">
-        <div id="publisher" style="top: {{patientVideoTop}}px; display: block; z-index: 600000 !important;" ng-click="alert('welcome');"></div>
-
-        <div id="subscriber" style="background-color: black !important; height: {{clinicianVideoHeight}}px; width: {{clinicianVideoWidth}}px; display: block;">
-            <div id="pleaseWaitVideo" style="padding-top: 25px; color: white !important; font-size: 20px; text-align: center; margin: 10px; font-weight: bold;">
-                    <br/>
-                    <br/>
-                    Please wait while we are connecting you with provider!
+   <ion-content scroll="false">
+      <div id="publisher" style="top: {{patientVideoTop}}px; display: block; z-index: 600000 !important;" ng-click="alert('welcome');"></div>
+      <div id="subscriber" style="background-color: black !important; height: {{clinicianVideoHeight}}px; width: {{clinicianVideoWidth}}px; display: block;">
+         <div id="pleaseWaitVideo" style="padding-top: 25px; color: white !important; font-size: 20px; text-align: center; margin: 10px; font-weight: bold;">
+            <br/>
+            <br/>
+            Please wait while we are connecting you with provider!
+         </div>
+      </div>
+      <div id="subscriberScreen" style="height: {{clinicianVideoHeightScreen}}px; width: {{clinicianVideoWidth}}px; display: none;">
+         <div style="padding-top: 25px; color: #000; font-size: 20px; text-align: center; margin: 10px; font-weight: bold;">
+            <br/>
+            <br/>
+            Please wait while we are connecting you with provider!
+         </div>
+      </div>
+      <div id="thumbVideos" style="background-color: #303132 !important; top: {{clinicianVideoHeight}}px !important; height: 100px; float: left; width: 100%; position: absolute;">
+         <div class="swiper-container" style="height: 100px !important;">
+            <div class="swiper-wrapper" style="width: 100%;">
             </div>
-        </div>
-        <div id="subscriberScreen" style="height: {{clinicianVideoHeightScreen}}px; width: {{clinicianVideoWidth}}px; display: none;">
-            <div style="padding-top: 25px; color: #000; font-size: 20px; text-align: center; margin: 10px; font-weight: bold;">
-                <br/>
-                <br/>
-                Please wait while we are connecting you with provider!
+         </div>
+      </div>
+      <div id="divVdioControlPanel" style="margin-top: {{clinicianVideoControlPanelTop}}px !important; background-color: black; !important;">
+         <div class="vdioControlPanel">
+            <div id="vdioParticipants" class="clsVideoControls">
+               <div class="vdioIcon">
+                  <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('users')"></i>
+                  <span class="vdioBadge">1</span>
+               </div>
+               <div class="vdioText">
+                  People
+               </div>
             </div>
-        </div>
-        <div id="thumbVideos" style="background-color: #303132 !important; top: {{clinicianVideoHeight}}px !important; height: 100px; float: left; width: 100%; position: absolute;">
-            <div class="swiper-container" style="height: 100px !important;">
-                <div class="swiper-wrapper" style="width: 100%;">
-
-                </div>
+            <div id="vdioCamera" class="clsVideoControls" ng-click="toggleVideoCameraPanel();">
+               <div class="vdioIcon">
+                  <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera')"></i>
+               </div>
+               <div class="vdioText">
+                  Camera
+               </div>
             </div>
-        </div>
-        <div id="divVdioControlPanel" style="margin-top: {{clinicianVideoControlPanelTop}}px !important; background-color: black; !important;">
-            <div class="vdioControlPanel">
-                <div id="vdioParticipants" class="clsVideoControls">
-                    <div class="vdioIcon">
-                        <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('users')"></i>
-                        <span class="vdioBadge">1</span>
-                    </div>
-                    <div class="vdioText">
-                        People
-                    </div>
-                </div>
-                <div id="vdioCamera" class="clsVideoControls" ng-click="toggleVideoCameraPanel();">
-                    <div class="vdioIcon">
-                        <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera')"></i>
-                    </div>
-                    <div class="vdioText">
-                        Camera
-                    </div>
-                </div>
-                <div id="vdioEndCall" class="clsVideoControls" ng-click="disconnectConference();">
-                    <div class="vdioEndButton"><i class="ion-ios-telephone-outline vdioEndCallIcon" style="display: inline-block; -webkit-transform: rotate(135deg);"></i></div>
-                </div>
-                <div id="vdioMic" class="clsVideoControls" ng-click="toggleMute();">
-                    <div class="vdioIcon">
-                        <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('mic')"></i>
-                    </div>
-                    <div class="vdioText">
-                        Audio
-                    </div>
-                </div>
-                <div id="vdioDuration" class="clsVideoControls">
-                    <div id="videoCallSessionTimer" class="vdioIcon">
-                         &nbsp;
-                    </div>
-                    <div class="vdioText">
-                        Session
-                    </div>
-                </div>
+            <div id="vdioEndCall" class="clsVideoControls" ng-click="disconnectConference();">
+               <div class="vdioEndButton"><i class="ion-ios-telephone-outline vdioEndCallIcon" style="display: inline-block; -webkit-transform: rotate(135deg);"></i></div>
             </div>
-            <div class="vdioCameraControlPanel" style="display: none;">
-              <div id="vdioSwitch" class="clsVideoCameraControls" ng-click="toggleCamera();">
-                  <div class="vdioIcon">
-                      <i class="ion-ios-reverse-camera vdioCallIcon"></i>
-                  </div>
-                  <div class="vdioText" style="margin-left: -4px !important;">
-                      Switch Camera
-                  </div>
-              </div>
-              <div id="vdioOff" class="clsVideoCameraControls" ng-click="stopPublishingVideo();">
-                  <div class="vdioIcon">
-                      <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera_mute')"></i>
-                  </div>
-                  <div class="vdioText">
-                      Video Off
-                  </div>
-              </div>
-              <div id="vdioCameraClose" class="clsVideoCameraControls" ng-click="closeVideoCameraPanel();">
-                  <div class="vdioIcon">
-                      <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('cross')"></i>
-                  </div>
-                  <div class="vdioText">
-                      Close
-                  </div>
-              </div>
+            <div id="vdioMic" class="clsVideoControls" ng-click="toggleMute();">
+               <div class="vdioIcon">
+                  <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('mic')"></i>
+               </div>
+               <div class="vdioText">
+                  Audio
+               </div>
             </div>
-        </div>
-        <div id="hiddenVideos" style="display: none;">
-
-        </div>
-    </ion-content>
+            <div id="vdioDuration" class="clsVideoControls">
+               <div id="videoCallSessionTimer" class="vdioIcon">
+                  &nbsp;
+               </div>
+               <div class="vdioText">
+                  Session
+               </div>
+            </div>
+         </div>
+         <div class="vdioCameraControlPanel" style="display: none;">
+            <div id="vdioSwitch" class="clsVideoCameraControls" ng-click="toggleCamera();">
+               <div class="vdioIcon">
+                  <i class="ion-ios-reverse-camera vdioCallIcon"></i>
+               </div>
+               <div class="vdioText" style="margin-left: -4px !important;">
+                  Switch Camera
+               </div>
+            </div>
+            <div id="vdioOff" class="clsVideoCameraControls" ng-click="stopPublishingVideo();">
+               <div class="vdioIcon">
+                  <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera_mute')"></i>
+               </div>
+               <div class="vdioText">
+                  Video Off
+               </div>
+            </div>
+            <div id="vdioCameraClose" class="clsVideoCameraControls" ng-click="closeVideoCameraPanel();">
+               <div class="vdioIcon">
+                  <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('cross')"></i>
+               </div>
+               <div class="vdioText">
+                  Close
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="hiddenVideos" style="display: none;">
+      </div>
+   </ion-content>
 </ion-view>

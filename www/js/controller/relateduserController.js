@@ -305,7 +305,7 @@ angular.module('starter.controllers')
                 authorizedOnly: true,
                 success: function(data) {
                     $rootScope.listOfCoUserDetails = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         if (index.patientId !== $rootScope.primaryPatientId) {
                             var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                                 codeId: index.relationCodeId

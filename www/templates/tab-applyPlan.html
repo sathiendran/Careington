@@ -1,88 +1,52 @@
 <ion-view title="Apply Plan">
-    <div id="Error_Message" class="ErrorMessageDiv" ></div>
-	<div class="Server_Error ErrorMessageDiv" ></div>
-<ion-side-menus>
-	<ion-side-menu-content> 
-		<div ng-include src="'templates/intakeHeader.html'"></div> 
-	
-	<div class="consultCharge_subHeader PatintHeaderFontStyle" style="{{PaymentStyle}}"  >
-		<span>Payment</span>
-	</div>
-	
-	<ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
-		<div class="password_home">
-		
-			<div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
-				<div class="consultTittle">Consultation Charge</div>
-				<div class="consultation_number"> ${{consultationAmount}}*</div>
-			</div>
-			
-			<div class="healthPlan_header" >				
-				<div class="healthPlan_text NoPlanText" >Select Health Plan</div>
-				<div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >					
-					<!--<div class="demo" >	
-						<select id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
-							<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumber + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumber | truncate:18}}</span></b></option>
-							</select>	
-					</div>-->
-					<div  class="dropdownContainer">
-						<div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
-						<div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
-						<select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
-							<option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + PolicyNo + '@' + healthPlanID == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumberLong}}</span></b></option>
-							<option value=""><b>Add a new health plan</b></option>
-						</select>
-					</div>
-				</div>
-			</div>			
-			
-			
-			<div class="SkipToPayment">
-				<!--<a ng-href="#/tab/addCard">-->
-					<button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
-						<span>Apply Plan</span>
-					</button>
-				<!--</a>-->
-			</div>
-		</div>
-	</ion-content>
-</ion-side-menu-content>	
- <!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
-
-	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div>
-	
-	<div class="hide-on-keyboard-open">
-		<ion-footer-bar align-title="left" class="footer">
-			<div style="width:100%;">
-				<div class="" style="float:left; width:33%">
-                    <a class="button_new icon ion-chevron-left" href="#/tab/planDetails" style="cursor: pointer;"><span style="  top: -2px;position: relative;">Back</span></a>
-			</div>
-						
-			<div class="" style="text-align:center;float:left;width:33%;  margin-top: 7px;">
-				<a class="button_new icon" href="#/tab/userhome" style=" color:#b8b8b8;cursor: pointer;">Cancel</a>
-			</div>
-						
-			</div>
-			
-		</ion-footer-bar> 
-	</div>-->
-	
-	
-	<div class="hide-on-keyboard-open">
-		<ion-footer-bar align-title="left" class="footer">			
-			<div class="ConsultChargeFooter">
-				<div class="ConsultChargeBack" >
-                   <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span> Back</span></a>
-				   <!-- <site-header back="Back"></site-header>-->
-				</div>
-						
-				<div class="ConsultChargeCancel" >
-					<a class="button_new icon" href="#/tab/userhome" >Cancel</a>
-				</div>
-						
-			</div>
-		</ion-footer-bar> 
-	</div>
-	
-</ion-view>	
+   <div id="Error_Message" class="ErrorMessageDiv" ></div>
+   <div class="Server_Error ErrorMessageDiv" ></div>
+   <ion-side-menus>
+   <ion-side-menu-content>
+      <div ng-include src="'templates/intakeHeader.html'"></div>
+      <div class="consultCharge_subHeader PatintHeaderFontStyle" style="{{PaymentStyle}}"  >
+         <span>Payment</span>
+      </div>
+      <ion-content class="consultChargeNoPlanContent" style="{{ContentConsultCharge}}" >
+         <div class="password_home">
+            <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
+               <div class="consultTittle">Consultation Charge</div>
+               <div class="consultation_number"> ${{consultationAmount}}*</div>
+            </div>
+            <div class="healthPlan_header" >
+               <div class="healthPlan_text NoPlanText" >Select Health Plan</div>
+               <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
+                  <div  class="dropdownContainer">
+                     <div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
+                     <div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
+                     <select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
+                        <option  ng-repeat="GetHealthPlan in patientHealthPlanList" value="{{GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId}}" ng-selected="providerName + '@' + PolicyNo + '@' + healthPlanID == GetHealthPlan.insuranceCompany + '@' + GetHealthPlan.policyNumberLong + '@' + GetHealthPlan.healthPlanId"><b><span>{{GetHealthPlan.insuranceCompany + ' ' + GetHealthPlan.policyNumberLong}}</span></b></option>
+                        <option value=""><b>Add a new health plan</b></option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <div class="SkipToPayment">
+               <button type="submit" ng-click="doPostApplyHealthPlan()" class="button button-block button-balanced" style="padding: 3px;">
+               <span>Apply Plan</span>
+               </button>
+            </div>
+         </div>
+      </ion-content>
+   </ion-side-menu-content>
+   <!--Side Menu File Include --->
+   <div ng-include src="'templates/SideMenu.html'"></div>
+   <div class="hide-on-keyboard-open">
+      <ion-footer-bar align-title="left" class="footer">
+         <div class="ConsultChargeFooter">
+            <div class="ConsultChargeBack" >
+               <a class="button_new icon ion-chevron-left" href="#/tab/consultCharge" ><span> Back</span></a>
+               <!-- <site-header back="Back"></site-header>-->
+            </div>
+            <div class="ConsultChargeCancel" >
+               <a class="button_new icon" href="#/tab/userhome" >Cancel</a>
+            </div>
+         </div>
+      </ion-footer-bar>
+   </div>
+</ion-view>

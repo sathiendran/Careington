@@ -15,29 +15,29 @@
             </h1>
          </div>
          <div class="row userAccountPanel">
-             <div class="col col-33 uAPHomeIcon ">
-					 <a ng-href='#/tab/userAccount'>
-						 <div class="icon homeicon">
-               <div class="buttons">
-                 	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
-               </div>
-						 </div>
-						 <div>
-						 <p class="hometext">Account Home</p>
-					 </div>
-					 </a>
-			 </div>
+            <div class="col col-33 uAPHomeIcon ">
+               <a ng-href='#/tab/userAccount'>
+                  <div class="icon homeicon">
+                     <div class="buttons">
+                        <span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                     </div>
+                  </div>
+                  <div>
+                     <p class="hometext">Account Home</p>
+                  </div>
+               </a>
+            </div>
             <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-           <div class="col col-33 uAPChangePatient ">
-				 <a ng-href='#/tab/userhome'>
-					 <div class="icon groupicon">
-             <div class="buttons">
-              	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
-             </div>
-					 </div>
-					 <p class="grouptext">Change Patient</p>
-				 </a>
-			 </div>
+            <div class="col col-33 uAPChangePatient ">
+               <a ng-href='#/tab/userhome'>
+                  <div class="icon groupicon">
+                     <div class="buttons">
+                        <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                     </div>
+                  </div>
+                  <p class="grouptext">Change Patient</p>
+               </a>
+            </div>
          </div>
          <div class="row">
             <div class="buttons backbtn">
@@ -64,7 +64,6 @@
          <div >
             <div class="list listfirst" >
                <a class="item item-avatar avatheight" style=" background-color: {{timerCOlor}};"  ng-repeat="scheduledListData in getIndividualScheduleDetails"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first">
-                  <!--<img class="apptimage" ng-src="{{PatientImageSelectUser}}">-->
                   <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                   <h2 class="aptsname">Next Appointment</h2>
                   <p class="appmarg">
@@ -73,7 +72,6 @@
                   <h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
                </a>
                <a class="item item-avatar appitem" ng-repeat="scheduledListData in getIndividualScheduleDetails" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
-                  <!--<img class="apptimage" ng-src="{{PatientImageSelectUser}}">-->
                   <div class="apptimage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
                   <p class="appmarg" style="margin-top: 15px;">
                      <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -95,7 +93,6 @@
       </div>
       <div class="list listall">
          <a class="item item-avatar avatheight" style="background-color: {{timerCOlor}};" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetails(scheduledListData)" ng-show="$first" >
-            <!--<img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">-->
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
             <h2 class="aptsname">Next Appointment</h2>
             <p class="appmarg">
@@ -104,7 +101,6 @@
             <h4><span class="fname">{{scheduledListData.scheduledTime | date: "MMM dd"}}</span> <span class="fontsymbol"> @ </span><span class="fname">{{scheduledListData.scheduledTime | date: "hh:mm"}}</span><span class="fonttime">{{scheduledListData.scheduledTime | date: "a"}}</span> </h4>
          </a>
          <a class="item item-avatar appitem" ng-repeat="scheduledListData in scheduledList" ng-click="GoToappoimentDetails(scheduledListData)" ng-hide="$first">
-            <!--<img class="apptimage" src="{{scheduledListData.patientImage}}" alt="{{scheduledListData.patientInitial}}">-->
             <div class="apptimage" ng-bind-html="drawImage(scheduledListData.patientImage,scheduledListData.patFirstName,scheduledListData.patLastName)"></div>
             <p class="appmarg" style="margin-top: 15px;">
                <span class="fontcolor regularfamily"> View Details </span><span><i class="icon ion-chevron-right fontcolor" style="font-size:3px;margin-left:8px;"></i></span>
@@ -138,9 +134,6 @@
       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
       <span class="tabcolor">Appointments</span>
       </a>
-      <!--<a class="tab-item" ng-href="#/tab/profileoption">
-         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
-         <span class="tabcolor">More</span>-->
       </a>
    </ion-tabs>
 </ion-side-menu-content>
