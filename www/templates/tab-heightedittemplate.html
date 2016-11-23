@@ -1,53 +1,44 @@
 <div class="modal">
    <ion-view>
       <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-      <div class="ErrorMessage ErrorMessageDiv"  ></div>
+         <div class="ErrorMessage ErrorMessageDiv"  ></div>
          <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="editremovemodal()" >Cancel</button>
          <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Height</h1>
          <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="heighteditsave()" >Save</button>
       </header>
       <ion-content has-header="true" class="concernListContent">
          <ion-list>
-           <ion-item class="search_home  concernListSearch">
-              <h2 class="subname subName-{{deviceName}}"></h2>
-            <div class="item item-input itemtab validated row" style="border-top:none;">
-              <div class="col col-50">
-                <div class="healthPopup-{{deviceName}}" >
-                   <input type="number"  placeholder="Required" name="txtAccountNumber" id="healthInfoHeight"  class="textdata"  ng-keyup="depheight1()" ng-blur="heightunit1len()" valid-number></span>
-                 </div>
-
-               <div class="heightft-{{deviceName}}" >
-
-                <span ng-show="hfeet">ft</span>
-                <span ng-hide="hmeter">m</span>
-              </div>
-              </div>
-              <div class="col col-50">
-                <div class="healthPopup-{{deviceName}}">
-                  <input type="number" placeholder="Optional" name="healthInfoHeight2" id="healthInfoHeight2"  class="textdata"  ng-keyup="heightunit2()" ng-blur="heightunit2len()" valid-number></span>
-                </div>
-
-                <div class="heightft-{{deviceName}}">
-
-                  <span  ng-show="hinch">in</span>
-                  <span  ng-hide="hcmeter">cm</span>
-                </div>
-              </div>
-            </div>
-                <div class="item item-input itemtab validated row">
-
-                    <span class="input-label labelcolor"><b class="formlabel labelfont">Unit</b></span>
-
+            <ion-item class="search_home  concernListSearch">
+               <h2 class="subname subName-{{deviceName}}"></h2>
+               <div class="item item-input itemtab validated row" style="border-top:none;">
+                  <div class="col col-50">
+                     <div class="healthPopup-{{deviceName}}" >
+                        <input type="number"  placeholder="Required" name="txtAccountNumber" id="healthInfoHeight"  class="textdata"  ng-keyup="depheight1()" ng-blur="heightunit1len()" valid-number></span>
+                     </div>
+                     <div class="heightft-{{deviceName}}" >
+                        <span ng-show="hfeet">ft</span>
+                        <span ng-hide="hmeter">m</span>
+                     </div>
+                  </div>
+                  <div class="col col-50">
+                     <div class="healthPopup-{{deviceName}}">
+                        <input type="number" placeholder="Optional" name="healthInfoHeight2" id="healthInfoHeight2"  class="textdata"  ng-keyup="heightunit2()" ng-blur="heightunit2len()" valid-number></span>
+                     </div>
+                     <div class="heightft-{{deviceName}}">
+                        <span  ng-show="hinch">in</span>
+                        <span  ng-hide="hcmeter">cm</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="item item-input itemtab validated row">
+                  <span class="input-label labelcolor"><b class="formlabel labelfont">Unit</b></span>
                   <div class="healthinfoChoose-{{deviceName}} heightChoose-{{deviceName}}">
-
-                    <select  class="textdata optionselect healthchoose"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 100% !important; position: relative; top: 6px;">
-                          <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
-                      </select>
-        	        </div>
-                </div>
-
-
-</ion-item>
+                     <select  class="textdata optionselect healthchoose"  name="healthInfoHeightUnit" id="healthInfoHeightUnit" ng-model="healthheightunit" ng-change="heightunitchange()"  style="width: 100% !important; position: relative; top: 6px;">
+                        <option ng-repeat="getUserheightunit in listOfHeightunit[0].codes" value="{{getUserheightunit.codeId + '@' + getUserheightunit.text}}" ng-selected="getUserheightunit.text == currentPatientDetails[0].anatomy.heightUnit"><b>{{getUserheightunit.text}}</b></option>
+                     </select>
+                  </div>
+               </div>
+            </ion-item>
          </ion-list>
       </ion-content>
    </ion-view>

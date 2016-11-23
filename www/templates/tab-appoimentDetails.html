@@ -5,12 +5,9 @@
 <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 
  <div class="buttons" >
-  <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-   ng-click="toggleLeft()"></button>-->
    <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
  </div>
  <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}">Appointment Details <span >
-        <!--<a class="headerval" ng-href="#tab/appointmentpatientdetails"  >Done</a>-->
         <site-header-ios ng-if="IOSDevice == true" back="Done"></site-header-ios>
 			<site-header1 ng-if="AndroidDevice == true" back="Done"></site-header1>
        </span>

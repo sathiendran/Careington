@@ -321,7 +321,7 @@ if (deploymentEnv === "Sandbox") {
 angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', 'timer', 'ion-google-place', 'ngIOS9UIWebViewPatch', 'ngCordova', 'ngIdle'])
 
 
-.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup, Idle) {
+.controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
     $rootScope.drawSVGCIcon = function(iconName) {
@@ -398,7 +398,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     /******** Prabin: Code to implement static brand color, logo and tagline. *******/
     if (deploymentEnvLogout === 'Single') {
-        if ($rootScope.currState.$current.name == "tab.loginSingle") {
+        if ($rootScope.currState.$current.name === "tab.loginSingle") {
 
             $rootScope.brandColor = brandColor;
             $rootScope.logo = logo;
@@ -842,7 +842,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.userLogin = {};
     $scope.userLogin.UserEmail = $window.localStorage.oldEmail;
-    $scope.LoginFunction = function(item, event) {
+    $scope.LoginFunction = function() {
         if ($('#UserEmail').val() === '') {
             $scope.ErrorMessage = "Please enter your email";
             $rootScope.Validation($scope.ErrorMessage);
@@ -902,7 +902,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
 
-    $scope.checkSingleHospitalLogin = function(item, event) {
+    $scope.checkSingleHospitalLogin = function() {
 
         if ($('#UserEmail').val() === '') {
             $scope.ErrorMessage = "Please enter an email";
@@ -917,7 +917,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             if (!$scope.ValidateEmail($("#UserEmail").val())) {
                 $scope.ErrorMessage = "Please enter a valid email address";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if ($('#password').val() == '') {
+            } else if ($('#password').val() === '') {
                 $scope.ErrorMessage = "Please enter your password";
                 $rootScope.Validation($scope.ErrorMessage);
 
@@ -945,7 +945,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     api_keys_env = 'Staging';
                     $rootScope.APICommonURL = 'https://snap-stage.com';
                 } else {
-                    //deploymentEnv = "Production";
                     $rootScope.hospitalId = singleHospitalId;
                     apiCommonURL = 'https://connectedcare.md';
                     api_keys_env = 'Production';
@@ -987,7 +986,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
 
                 $rootScope.PostPaymentDetails = data.data;
-                if ($rootScope.PostPaymentDetails == 0) {
+                if ($rootScope.PostPaymentDetails === 0) {
                     $scope.ErrorMessage = "No account associated with this email.  Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                     $('#verifyEmail').hide();
@@ -1146,7 +1145,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
-                if (deploymentEnvLogout == 'Single') {
+                if (deploymentEnvLogout === 'Single') {
                     $rootScope.alertMsgName = $rootScope.Hospital;
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 } else {
@@ -1185,7 +1184,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
-                if ($rootScope.getDetails != '') {
+                if ($rootScope.getDetails !=='') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
@@ -1276,7 +1275,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
+                        if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
@@ -1328,7 +1327,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         var params = {
             email: $rootScope.UserEmail,
             hospitalId: $rootScope.hospitalId,
-            success: function(data) {
+            success: function() {
 
                 $scope.ErrorMessage = "Account Activation link has been sent to the address you provided";
                 $rootScope.Validation($scope.ErrorMessage);
@@ -1349,7 +1348,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.doGetTokenSSO = function() {
         var loginEmail = $rootScope.UserEmail;
-        if (cobrandApp === "Hello420" && loginEmail.toLowerCase() != "itunesmobiletester@gmail.com") {
+        if (cobrandApp === "Hello420" && loginEmail.toLowerCase() !== "itunesmobiletester@gmail.com") {
 
             $scope.checkForSSOUserExistsInHello420();
         } else {
@@ -1364,7 +1363,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 success: function(data) {
                     $rootScope.FacilitiesList = data.data;
                     if ($rootScope.FacilitiesList.length > 0) {
-                        angular.forEach($rootScope.FacilitiesList, function(index, item) {
+                        angular.forEach($rootScope.FacilitiesList, function(index) {
                             if (index.providerId === Hello420HospitalId) {
                                 if (ssoURL !== "") {
                                     $scope.ErrorMessage = "You will be directed to the Hello420 website momentarily";
@@ -1455,7 +1454,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.$on('IdleStart', function() {
 
     });
-    $scope.$on('IdleWarn', function(e, countdown) {});
+    $scope.$on('IdleWarn', function() {});
     $scope.$on('IdleTimeout', function() {
 
         if (window.localStorage.getItem("tokenExpireTime") !== null && window.localStorage.getItem("tokenExpireTime") !== "") {
@@ -2298,9 +2297,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                if (data.data !== 0) {
+                if (data.data != 0) {
                     $rootScope.patientHealthPlanList = [];
-                    angular.forEach(data.data, function(index) {
+                    angular.forEach(data.data, function(index,item) {
                         $rootScope.patientHealthPlanList.push({
                             'id': index.$id,
                             'healthPlanId': index.healthPlanId,
@@ -2370,7 +2369,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     // Onchange of Contries
     $scope.OnSelectContryData = function(CountriesList, items) {
-        angular.forEach(CountriesList, function(item, index) {
+        angular.forEach(CountriesList, function(item) {
             if (item.Name === items.Name) {
                 item.checked = true;
                 $rootScope.SelectedCountry = {
@@ -2496,7 +2495,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 if (data !== "")
                 $rootScope.ProviderList = [];
-                angular.forEach($scope.HealthPlanProvidersList, function(index, item) {
+                angular.forEach($scope.HealthPlanProvidersList, function(index) {
                     $rootScope.ProviderList.push({
                         'id': index.id,
                         'payerId': index.payerId,
@@ -2872,7 +2871,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 policyNumber: $rootScope.PolicyNo,
                 consultationId: $rootScope.consultationId,
                 healthPlanId: $rootScope.healthPlanID,
-                success: function(data) {
+                success: function() {
                   $scope.doGetSkipHealthPlan();
                 },
                 error: function() {
@@ -2895,7 +2894,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             policyNumber: $rootScope.PolicyNo,
             consultationId: $rootScope.consultationId,
             healthPlanId: $rootScope.healthPlanID,
-            success: function(data) {
+            success: function() {
                 $rootScope.enablePaymentSuccess = "none";
                 $rootScope.enableCreditVerification = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "block";
@@ -2903,7 +2902,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.ReceiptTimeout();
 
             },
-            error: function(data) {
+            error: function() {
                 $rootScope.enablePaymentSuccess = "none";
                 $rootScope.enableCreditVerification = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "block";
@@ -2926,7 +2925,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     if (data.data[0].paymentProfiles.length !== 0) {
                         $rootScope.patientprofileID = data.data[0].profileID;
                         $rootScope.PaymentProfile = [];
-                        angular.forEach(data.data[0].paymentProfiles, function(index, item) {
+                        angular.forEach(data.data[0].paymentProfiles, function(index) {
                             $rootScope.PaymentProfile.push({
                                 'id': index.$id,
                                 'billingAddress': angular.fromJson(index.billingAddress),
@@ -3212,7 +3211,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.surgeryYearsList = CustomCalendar.getSurgeryYearsList($rootScope.PatientAge);
 
                 $rootScope.eyeHairEthnicityRelationCodeSets = [];
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     $rootScope.eyeHairEthnicityRelationCodeSets.push({
                         'codes': angular.fromJson(index.codes),
                         'hospitalId': index.hospitalId,
@@ -3454,7 +3453,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $scope.doPostNewHealthPlan();
         }
     }
-    $scope.VerifyPlanDetailsValidation = function(model) {
+    $scope.VerifyPlanDetailsValidation = function() {
         if ($('#firstName').val() === '' || $('#lastName').val() === '' || $('#policyNumber').val() === '' || $('#date').val() === '') {
             $scope.ErrorMessage = "Required fields can't be empty";
             $rootScope.Validation($scope.ErrorMessage);
@@ -3794,7 +3793,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     var currentDate = new Date();
                     currentDate = $scope.addMinutes(currentDate, -30);
 
-                    angular.forEach($scope.individualScheduledConsultationList.appointments, function(index, item) {
+                    angular.forEach($scope.individualScheduledConsultationList.appointments, function(index) {
                         if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
 
 
@@ -3818,7 +3817,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 'waiveFee': index.waiveFee,
                                 'scheduledDate': $scope.formatscheduleddate
                             });
-                            angular.forEach(index.participants, function(index, item) {
+                            angular.forEach(index.participants, function(index) {
                                 $rootScope.individualScheduleParticipants.push({
                                     'appointmentId': index.appointmentId,
                                     'attendenceCode': index.attendenceCode,
@@ -4103,7 +4102,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
                             $rootScope.SubmitCardValidation($scope.ErrorMessage);
                         }
-                        if ($rootScope.P_isAuthorized == undefined) {
+                        if ($rootScope.P_isAuthorized === undefined) {
                             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
                             $rootScope.SubmitCardValidation($scope.ErrorMessage);
                         }
@@ -4161,7 +4160,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
               if (data.data !== '') {
                     $rootScope.listOfCoUserDetails = [];
-                    angular.forEach(data.data, function(index, item) {
+                    angular.forEach(data.data, function(index) {
                         if (index.patientId !== $rootScope.primaryPatientId) {
                             var getCoUserRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                                 codeId: index.relationCodeId
@@ -4749,7 +4748,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 .filter('ageFilter', function() {
         function getAge(dateString) {
             var now = new Date();
-            var today = new Date(now.getYear(), now.getMonth(), now.getDate());
             var yearNow = now.getYear();
             var monthNow = now.getMonth();
             var dateNow = now.getDate();
@@ -4765,7 +4763,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             var ageString = "";
             var yearString = "";
             var monthString = "";
-            var dayString = "";
+
             yearAge = yearNow - yearDob;
 
             if (monthNow >= monthDob)
@@ -4915,7 +4913,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             back: '@back',
             icons: '@icons'
         },
-        link: function(scope, element, attrs) {
+        link: function(scope, element) {
             $(element[0]).on('click', function() {
                 history.back();
                 scope.$apply();
@@ -4932,7 +4930,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 back: '@back',
                 icons: '@icons'
             },
-            link: function(scope, element, attrs) {
+            link: function(scope, element) {
                 $(element[0]).on('click', function() {
                     history.back();
                     scope.$apply();
@@ -4948,7 +4946,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 back: '@back',
                 icons: '@icons'
             },
-            link: function(scope, element, attrs) {
+            link: function(scope, element) {
                 $(element[0]).on('click', function() {
                     history.back();
                     scope.$apply();
@@ -4964,7 +4962,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 back: '@back',
                 icons: '@icons'
             },
-            link: function(scope, element, attrs) {
+            link: function(scope, element) {
                 $(element[0]).on('click', function() {
                     history.back();
                     scope.$apply();

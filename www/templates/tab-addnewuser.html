@@ -1,165 +1,91 @@
-
 <div class="animated slideInRight">
-
-<ion-side-menus>
-	<ion-side-menu-content>
-
-	<ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-
-
-
-	<div class="buttons" >
-		<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>-->
-				<span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
-	</div>
-	 <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> Related Users </span> <span style="float:right;">
-            <a class="headerval" style="cursor: pointer;" ng-click="goToUserPageFromAddUser();">Cancel</a></span></h1>
-
-	<div class="bar bar-subheader bar-dark subheaderheight" >
-                  <div class="row">
-                      <h1 class="headertitle">
-                          <div class="ellipsis subHeader_content_name" >
-					       <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{currentPatientDetails[0].patientName}}</span>
-					      <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
-				        </div>
-                     </h1>
+   <ion-side-menus>
+      <ion-side-menu-content>
+         <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+            <div class="buttons" >
+               <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+            </div>
+            <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"><span class="newUserTitle-{{deviceName}}"> Related Users </span> <span style="float:right;">
+               <a class="headerval" style="cursor: pointer;" ng-click="goToUserPageFromAddUser();">Cancel</a></span>
+            </h1>
+            <div class="bar bar-subheader bar-dark subheaderheight" >
+               <div class="row">
+                  <h1 class="headertitle">
+                     <div class="ellipsis subHeader_content_name" >
+                        <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{currentPatientDetails[0].patientName}}</span>
+                        <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
+                     </div>
+                  </h1>
+               </div>
+               <div class="row userAccountPanel">
+                  <div class="col col-33 uAPHomeIcon">
+                     <a ng-href='#/tab/userAccount'>
+                        <div class="icon homeicon">
+                           <div class="buttons">
+                              <span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                           </div>
+                        </div>
+                        <div>
+                           <p class="hometext">Account Home</p>
+                        </div>
+                     </a>
                   </div>
-
-    <!--<div class="item item-image-icon " style="background-color:#444444;">
-
-          <a class="lefthome" ng-href="#/tab/userAccount">
-               <span class="subHeadIcons"><i class="icon ion-home headerlefticons" ></i></span>
-               <p class="homecontent">Account Home</p>
-          </a>
-           <a class="item-avatar itemhead">
-							 	<p ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></p>
-           </a>
-            <a class="rightpatient" ng-href="#/tab/userhome">
-               <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-               <p class="patientcontent" >Change Patient</p>
-           </a>
-   </div>-->
-	 <div class="row userAccountPanel">
-		 <div class="col col-33 uAPHomeIcon">
- 	     <a ng-href='#/tab/userAccount'>
- 	        <div class="icon homeicon">
-						<div class="buttons">
-							 	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
-						 </div>
- 	        </div>
- 	        <div>
- 	           <p class="hometext">Account Home</p>
- 	        </div>
- 	     </a>
- 	  </div>
-		 <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-		 <div class="col col-33 uAPChangePatient ">
- 	    <a ng-href='#/tab/userhome'>
- 	      <div class="icon groupicon">
-					<div class="buttons">
-					 	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
-					</div>
- 	      </div>
- 	      <p class="grouptext">Change Patient</p>
- 	    </a>
- 	  </div>
-	 </div>
-  </div>
-
-
-
-
-</ion-header-bar>
-
-<ion-view title="">
-
-	<ion-content class="newusercontent">
-
-        <ion-list>
-           <!--<ion-item class="iionitem item newuserdetails" style="">-->
-						  <ion-item class="ionicitem newuserdetails" style="">
-                  <p class="newuserp"><i class="fontcolor icon" ng-bind-html="drawSVGCIcon('user-add')" style="font-size:50px;"></i></p>
-                  <div class="newusertopcontent">
-                     <h2 class="newusertoph2"><p class="usertopfont">Add A New User</p>
-                      <p class="topp regularfamily">Select a user type to add</p>
-                     </h2>
+                  <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
+                  <div class="col col-33 uAPChangePatient ">
+                     <a ng-href='#/tab/userhome'>
+                        <div class="icon groupicon">
+                           <div class="buttons">
+                              <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                           </div>
+                        </div>
+                        <p class="grouptext">Change Patient</p>
+                     </a>
                   </div>
-
-         </ion-item>
-
-
-        <!-- <ion-item class="iionitem" ng-click="addcouser()">
-           <div class="card shadowcard">
-              <div class="item item-text-wrap">
-                    <div class="" style="text-align:center;">
-                       <h2 class="title alignedchronic ChronicCondition ">
-                         <a class="fontcolor" style="font-size:20px;"> Invite A Co-User</a>
+               </div>
+            </div>
+         </ion-header-bar>
+         <ion-view title="">
+            <ion-content class="newusercontent">
+               <ion-list>
+                  <ion-item class="ionicitem newuserdetails" style="">
+                     <p class="newuserp"><i class="fontcolor icon" ng-bind-html="drawSVGCIcon('user-add')" style="font-size:50px;"></i></p>
+                     <div class="newusertopcontent">
+                        <h2 class="newusertoph2">
+                           <p class="usertopfont">Add A New User</p>
+                           <p class="topp regularfamily">Select a user type to add</p>
                         </h2>
-				      </div>
-                 </div>
-              </div>
-         </ion-item>
-
-          <ion-item class="iionitem" ng-click="adddependent()" >
-           <div class="card shadowcard">
-              <div class="item item-text-wrap">
-                    <div class=" chronictext">
-                       <h2 class="title alignedchronic ChronicCondition ">
-                         <a class="fontcolor" style="font-size:20px;">Add A Dependent</a>
-                        </h2>
-				      </div>
-                 </div>
-              </div>
-         </ion-item>-->
-
-				 <ion-item class="ionicitem  addcouser" ng-click="addcouser()" style="">
-					 <div class="card" style="box-shadow:none !important;margin:0px !important;background:none;">
-						 <div class="item-text-wrap itemtextwap">
-
-								 <h2 class="title alignchronic ChronicCondition" >
-
-									 <span class="content addUser-{{deviceName}}">
-									Invite A Co-User
-									 </span>
-								 </h2>
-
-						 </div>
-					 </div>
-				 </ion-item>
-
-				 <ion-item class="ionicitem  adddepuser" ng-click="adddependent()" >
-					 <div class="card" style="box-shadow:none !important;margin:0px !important;background:none;">
-						 <div class="item-text-wrap itemtextwap">
-
-								 <h2 class="title alignchronic ChronicCondition" >
-
-									 <span class="content addUser-{{deviceName}}">
-								Add A Dependent
-									 </span>
-								 </h2>
-
-						 </div>
-					 </div>
-				 </ion-item>
-
-
-	</ion-list>
-
-
-  </ion-content>
-
-
-<div class="bar bar-footer addheight" style="background-color:#444444;">
-   <!--  <a class="button button-calm" ng-href="#/tab/userAppointment"><span>Next</span></a>-->
-   <h1 class="title" id="addusercancel"  style="" ><a ng-href="#/tab/userhome" style="padding: 10px;">Cancel</a></h1>
-</div>
-
-</ion-side-menu-content>
-<!--Side Menu File Include --->
-<div ng-include src="'templates/SideMenu.html'"></div>
-
-</ion-view>
-
-</ion-side-menus>
+                     </div>
+                  </ion-item>
+                  <ion-item class="ionicitem  addcouser" ng-click="addcouser()" style="">
+                     <div class="card" style="box-shadow:none !important;margin:0px !important;background:none;">
+                        <div class="item-text-wrap itemtextwap">
+                           <h2 class="title alignchronic ChronicCondition" >
+                              <span class="content addUser-{{deviceName}}">
+                              Invite A Co-User
+                              </span>
+                           </h2>
+                        </div>
+                     </div>
+                  </ion-item>
+                  <ion-item class="ionicitem  adddepuser" ng-click="adddependent()" >
+                     <div class="card" style="box-shadow:none !important;margin:0px !important;background:none;">
+                        <div class="item-text-wrap itemtextwap">
+                           <h2 class="title alignchronic ChronicCondition" >
+                              <span class="content addUser-{{deviceName}}">
+                              Add A Dependent
+                              </span>
+                           </h2>
+                        </div>
+                     </div>
+                  </ion-item>
+               </ion-list>
+            </ion-content>
+            <div class="bar bar-footer addheight" style="background-color:#444444;">
+               <h1 class="title" id="addusercancel"  style="" ><a ng-href="#/tab/userhome" style="padding: 10px;">Cancel</a></h1>
+            </div>
+      </ion-side-menu-content>
+      <!--Side Menu File Include --->
+      <div ng-include src="'templates/SideMenu.html'"></div>
+      </ion-view>
+   </ion-side-menus>
 </div>

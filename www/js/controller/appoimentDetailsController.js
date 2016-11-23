@@ -108,7 +108,7 @@ angular.module('starter.controllers')
                 $rootScope.hourDisplay = 'initial';
                 $rootScope.daysDisplay = 'none';
                 $rootScope.dayDisplay = 'none';
-            } else if (args.days == 1) {
+            } else if (args.days === 1) {
                 $rootScope.daysDisplay = 'none';
                 $rootScope.hourDisplay = 'none';
                 $rootScope.dayDisplay = 'initial';
@@ -355,7 +355,7 @@ angular.module('starter.controllers')
                                 'waiveFee': index.waiveFee,
                                 'scheduledDate': $scope.formatscheduleddate
                             });
-                            angular.forEach(index.participants, function(index, item) {
+                            angular.forEach(index.participants, function(index) {
                                 $rootScope.individualScheduleParticipants.push({
                                     'appointmentId': index.appointmentId,
                                     'attendenceCode': index.attendenceCode,
@@ -606,7 +606,7 @@ angular.module('starter.controllers')
             doctorId: $rootScope.assignedDoctorId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                angular.forEach(data.data, function(index, item) {
+                angular.forEach(data.data, function(index) {
                     if (index.gender === 'M') {
                         var docGender = "Male";
                     } else if (index.gender === 'F') {

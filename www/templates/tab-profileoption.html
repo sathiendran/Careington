@@ -1,116 +1,90 @@
-
-  <ion-side-menus>
-	 <ion-side-menu-content>
-    <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-
-     <div class="buttons" >
-		<!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-				ng-click="toggleLeft()"></button>-->
-        <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
-	 </div>
-    <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}">
-        <span style="margin-left: 34px;">Profile Options</span> <span><a class="headerval" ng-click="canceloption()" >Cancel</a></span>
-     </h1>
-   <div class="bar bar-subheader bar-dark usersubheader">
-       <div class="row">
-         <h1 class="headertitle">
-           <div class="ellipsis subHeader_content_name" >
-			 <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{currentPatientDetails[0].patientName}}</span>
-			  <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
-			 </div>
-            </h1>
-          </div>
-
-      <!-- <div class="item item-image-icon itemiconcolor">
-            <a class="lefthome" ng-href="#/tab/userAccount">
-               <span class="subHeadIcons"><i class="icon ion-home headerlefticons"></i></span>
-               <p class="homecontent">Account Home</p>
-          </a>
-           	<div class="item-avatar itemhead" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-           <a class="rightpatient" ng-href="#/tab/userhome">
-               <span class="subHeadIcons"><i class="icon ion-ios-people headerrighticon"></i></span>
-               <p class="patientcontent" >Change Patient</p>
-           </a>
-      </div>-->
-      <div class="row userAccountPanel">
-        <div class="col col-33 uAPHomeIcon">
-            <a ng-href='#/tab/userAccount'>
-              <div class="icon">
-                <div class="buttons">
-                   	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
-                 </div>
-              </div>
-              <div>
-              <p>Account Home</p>
-            </div>
-            </a>
-        </div>
-        <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-        <div class="col col-33 uAPChangePatient">
-          <a ng-href='#/tab/userhome'>
-            <div class="icon">
-              <div class="buttons">
-               	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
-              </div>
-            </div>
-            <p>Change Patient</p>
-          </a>
-        </div>
+<ion-side-menus>
+<ion-side-menu-content>
+   <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="height:128px !important;background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+      <div class="buttons" >
+         <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
-    </div>
-</ion-header-bar>
-
-
-<ion-view title="Profile Option">
-  <ion-content class="profilecontent">
-
-    <div class="list">
-      <a class="item item-icon-left item-icon-right" ng-href="#tab/relatedusers">
-          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('users')"></i> <span class="fontcolorfamily">  Users </span> <i class="icon ion-chevron-right fontcolor"></i>
-      </a>
-       <a class="item item-icon-left item-icon-right" ng-href="#tab/consultations">
-          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('health_card')"></i> <span class="fontcolorfamily">  Consultations </span> <i class="icon ion-chevron-right fontcolor"></i>
-      </a>
-      <a class="item item-icon-left item-icon-right" ng-href="#tab/healthinfo">
-          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="fontcolorfamily"> My Health </span><i class="icon ion-chevron-right fontcolor"></i>
-      </a>
-       <a class="item item-icon-left item-icon-right"  ng-href="#tab/appointmentpatientdetails">
-          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('calendar')"></i> <span class="fontcolorfamily"> Appointments </span> <i class="icon ion-chevron-right fontcolor"></i>
-      </a>
-      <!-- <a class="item item-icon-left item-icon-right" ng-href="#">
-          <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('archive')"></i> <span class="fontcolorfamily"> Files </span> <i class="icon ion-chevron-right fontcolor"></i>
-      </a>-->
-    </div>
-  </ion-content>
- <div class="Server_Error ErrorMessageDiv" ></div>
- <div id="Error_Message"></div>
- <!--Side Menu File Include --->
- <div class="hide-on-keyboard-open">
-    <ion-tabs class=" tabs-icon-top tabs-dark">
-       <a class="tab-item" ng-href="#/tab/relatedusers" >
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
-       <span class="tabcolor"> Users</span>
-       </a>
-       <a class="tab-item" ng-href="#/tab/consultations" ng-click="passededconsultants()">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
-       <span class="tabcolor">Consultations</span>
-       </a>
-       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
-       </a>
-       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
-       </a>
-       <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
-        <span class="tabcolor">Appointments</span>
-       </a>
-    <!--   <a class="tab-item active" ng-href="#/tab/profileoption">
-       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
-       <span class="tabcolor">More</span>
-     </a>-->
-    </ion-tabs>
- </div>
+      <h1 class= "{{title_patient}} {{HeaderList}} {{intakeTittle}}">
+         <span style="margin-left: 34px;">Profile Options</span> <span><a class="headerval" ng-click="canceloption()" >Cancel</a></span>
+      </h1>
+      <div class="bar bar-subheader bar-dark usersubheader">
+         <div class="row">
+            <h1 class="headertitle">
+               <div class="ellipsis subHeader_content_name" >
+                  <span class="PatintHeaderFontStyle patientName ellipsis fnamefont">{{currentPatientDetails[0].patientName}}</span>
+                  <span class="patientLastName ellipsis lnamefont" >{{currentPatientDetails[0].lastName}}</span>
+               </div>
+            </h1>
+         </div>
+         <div class="row userAccountPanel">
+            <div class="col col-33 uAPHomeIcon">
+               <a ng-href='#/tab/userAccount'>
+                  <div class="icon">
+                     <div class="buttons">
+                        <span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                     </div>
+                  </div>
+                  <div>
+                     <p>Account Home</p>
+                  </div>
+               </a>
+            </div>
+            <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
+            <div class="col col-33 uAPChangePatient">
+               <a ng-href='#/tab/userhome'>
+                  <div class="icon">
+                     <div class="buttons">
+                        <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                     </div>
+                  </div>
+                  <p>Change Patient</p>
+               </a>
+            </div>
+         </div>
+      </div>
+   </ion-header-bar>
+   <ion-view title="Profile Option">
+   <ion-content class="profilecontent">
+      <div class="list">
+         <a class="item item-icon-left item-icon-right" ng-href="#tab/relatedusers">
+         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('users')"></i> <span class="fontcolorfamily">  Users </span> <i class="icon ion-chevron-right fontcolor"></i>
+         </a>
+         <a class="item item-icon-left item-icon-right" ng-href="#tab/consultations">
+         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('health_card')"></i> <span class="fontcolorfamily">  Consultations </span> <i class="icon ion-chevron-right fontcolor"></i>
+         </a>
+         <a class="item item-icon-left item-icon-right" ng-href="#tab/healthinfo">
+         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="fontcolorfamily"> My Health </span><i class="icon ion-chevron-right fontcolor"></i>
+         </a>
+         <a class="item item-icon-left item-icon-right"  ng-href="#tab/appointmentpatientdetails">
+         <i class="icon iconsize fontcolor" ng-bind-html="drawSVGCIcon('calendar')"></i> <span class="fontcolorfamily"> Appointments </span> <i class="icon ion-chevron-right fontcolor"></i>
+         </a>
+      </div>
+   </ion-content>
+   <div class="Server_Error ErrorMessageDiv" ></div>
+   <div id="Error_Message"></div>
+   <!--Side Menu File Include --->
+   <div class="hide-on-keyboard-open">
+      <ion-tabs class=" tabs-icon-top tabs-dark">
+         <a class="tab-item" ng-href="#/tab/relatedusers" >
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('users')"></i>
+         <span class="tabcolor"> Users</span>
+         </a>
+         <a class="tab-item" ng-href="#/tab/consultations" ng-click="passededconsultants()">
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('health_card')"></i>
+         <span class="tabcolor">Consultations</span>
+         </a>
+         <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+         </a>
+         <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
+         </a>
+         <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
+         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
+         <span class="tabcolor">Appointments</span>
+         </a>
+      </ion-tabs>
+   </div>
 </ion-side-menu-content>
 <!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>

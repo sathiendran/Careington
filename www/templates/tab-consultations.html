@@ -2,7 +2,7 @@
 <ion-side-menu-content>
    <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
       <div class="buttons">
-        <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
+         <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
       <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}}"> Consultations <span style="position: relative; left: -12px;" ><a class="headerval" ng-click="consultsearch()" ><i class="icon ion-search" style="font-size: 20px;"  ></i></a></span></h1>
       <div class="bar bar-subheader bar-dark subheaderheight">
@@ -18,8 +18,8 @@
             <div class="col col-33 uAPHomeIcon">
                <a ng-href='#/tab/userAccount'>
                   <div class="icon homeicon">
-                    <div class="buttons">
-                       	<span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
+                     <div class="buttons">
+                        <span><i ng-bind-html="drawSVGCIcon('home');"></i></span>
                      </div>
                   </div>
                   <div>
@@ -31,9 +31,9 @@
             <div class="col col-33 uAPChangePatient">
                <a ng-href='#/tab/userhome'>
                   <div class="icon groupicon">
-                    <div class="buttons">
-                    	<span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
-                   </div>
+                     <div class="buttons">
+                        <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
+                     </div>
                   </div>
                   <p class="grouptext">Change Patient</p>
                </a>
@@ -109,9 +109,6 @@
                <div ng-repeat="misseddata in missedlist">
                   <div class="row">
                      <div class="passedImage-{{deviceName}}">
-                        <!--<a class="item item-avatar avatitem">
-                           <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                           </a>-->
                         <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
                      </div>
                      <div class="passedDate-{{deviceName}}">
@@ -154,9 +151,6 @@
                <div ng-repeat="droppedData in Droppedconsultations">
                   <div class="row">
                      <div class="passedImage-{{deviceName}}">
-                        <!--  <a class="item item-avatar avatitem">
-                           <img class="consimg" ng-src="{{PatientImageSelectUser}}">
-                           </a>-->
                         <a class="avatitem" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></a>
                      </div>
                      <div class="passedDate-{{deviceName}}">
@@ -196,19 +190,15 @@
       <span class="tabcolor">Consultations </span>
       </a>
       <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId == patientId">
-			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
-			</a>
-			<a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
-			<i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
-			</a>
+      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">My Health</span>
+      </a>
+      <a class="tab-item" ng-href="#/tab/healthinfo" ng-if="primaryPatientId != patientId">
+      <i class="icon tabfont" ng-bind-html="drawSVGCIcon('clipboard')"></i> <span class="tabcolor">Health Info</span>
+      </a>
       <a class="tab-item" ng-href="#/tab/appointmentpatientdetails">
       <i class="icon tabfont" ng-bind-html="drawSVGCIcon('calendar')"></i>
       <span class="tabcolor">Appointments</span>
       </a>
-      <!--<a class="tab-item" ng-href="#/tab/profileoption">
-         <i class="icon tabfont" ng-bind-html="drawSVGCIcon('dots-three-horizontal')"></i>
-         <span class="tabcolor">More</span>
-         </a>-->
    </ion-tabs>
 </ion-side-menu-content>
 <div ng-include src="'templates/SideMenu.html'"></div>

@@ -1,79 +1,63 @@
-
 <ion-view title="loginSingle">
-    <div id="Error_Message" ></div>
-    <div class="Server_Error" ></div>
-
-	<ion-content class="register singEmail" style="background-color: {{brandColor}}">
-			<div class="epassbg">
-				<img ng-src="{{logo}}" style="position:relative;"/>
-				<h2 class="" style="margin-top: -45px; margin-bottom: 15px;">{{Hospital123}} <br><span>{{Hospital}}</span></h2>
-			</div>
-  <form ng-submit="checkSingleHospitalLogin()">
-			<div class="card loginEmail" id="loginEmail" >
-					<div class="regcontent">
-						<h2 class="newSingLogText">Login</h2>
-					</div>
-					<div class="item-input-inset">
-						<label class="item-input-wrapper place loginPlace">
-						<input style="{{loginLineHeight}}" type="email" placeholder="email address" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
-						</label>
-					</div>
-          <div class="checkbox" ng-if="chkedchkbox == true">
-              <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" checked="true">
-              <span for="squaredCheckbox" class="checkbox__control"></span>
-              <span class="remember">Remember my email</span>
-          </div>
-
-          <div class="checkbox" ng-if="chkedchkbox != true">
-              <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" >
-              <span for="squaredCheckbox" class="checkbox__control"></span>
-              <span class="remember">Remember my email</span>
+   <div id="Error_Message" ></div>
+   <div class="Server_Error" ></div>
+   <ion-content class="register singEmail" style="background-color: {{brandColor}}">
+      <div class="epassbg">
+         <img ng-src="{{logo}}" style="position:relative;"/>
+         <h2 class="" style="margin-top: -45px; margin-bottom: 15px;">{{Hospital123}} <br><span>{{Hospital}}</span></h2>
+      </div>
+      <form ng-submit="checkSingleHospitalLogin()">
+         <div class="card loginEmail" id="loginEmail" >
+            <div class="regcontent">
+               <h2 class="newSingLogText">Login</h2>
             </div>
-
-						<div class="item-input-inset logSinglePwd">
-							<label class="item-input-wrapper place loginPlace singEmail">
-									 <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock')"></i>
-									<input style="{{loginLineHeight}}" type="password" placeholder="Password" ng-model="pass.password" name="password" id="password" >
-							</label>
-						</div>
-
-					<div class="btn1 newLogBut">
-						<button type="button" class="button" ng-click="checkSingleHospitalLogin()">
-								Continue
-						</button>
-
-
-					</div>
-			</div>
-    </form>
-				<div class="forgot_password_textSingle"> <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
-
-
-		<div class="acinfo1-{{deviceName}}" ng-if="customerSso != 'Mandatory'">
-			<h4>Need an account?</h4>
-		</div>
-		<div class="acinfo1-{{deviceName}}">
-			<h4 class="singLogRegClass-{{deviceName}}" ng-if="customerSso != 'Mandatory'"><span ng-click="goToSearchProvider('loginSingle');">Register Here.</span></h4>
-		</div>
-
-
-	</ion-content>
-
-    <!-- Footer Start-->
-    <div class="hide-on-keyboard-open">
+            <div class="item-input-inset">
+               <label class="item-input-wrapper place loginPlace">
+               <input style="{{loginLineHeight}}" type="email" placeholder="email address" ng-model="userLogin.UserEmail" name="UserEmail" id="UserEmail" >
+               </label>
+            </div>
+            <div class="checkbox" ng-if="chkedchkbox == true">
+               <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" checked="true">
+               <span for="squaredCheckbox" class="checkbox__control"></span>
+               <span class="remember">Remember my email</span>
+            </div>
+            <div class="checkbox" ng-if="chkedchkbox != true">
+               <input type="checkbox" name="remember" id="squaredCheckbox" class="isRemChecked" ng-click="rememberMe()" >
+               <span for="squaredCheckbox" class="checkbox__control"></span>
+               <span class="remember">Remember my email</span>
+            </div>
+            <div class="item-input-inset logSinglePwd">
+               <label class="item-input-wrapper place loginPlace singEmail">
+               <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('lock')"></i>
+               <input style="{{loginLineHeight}}" type="password" placeholder="Password" ng-model="pass.password" name="password" id="password" >
+               </label>
+            </div>
+            <div class="btn1 newLogBut">
+               <button type="button" class="button" ng-click="checkSingleHospitalLogin()">
+               Continue
+               </button>
+            </div>
+         </div>
+      </form>
+      <div class="forgot_password_textSingle"> <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
+      <div class="acinfo1-{{deviceName}}" ng-if="customerSso != 'Mandatory'">
+         <h4>Need an account?</h4>
+      </div>
+      <div class="acinfo1-{{deviceName}}">
+         <h4 class="singLogRegClass-{{deviceName}}" ng-if="customerSso != 'Mandatory'"><span ng-click="goToSearchProvider('loginSingle');">Register Here.</span></h4>
+      </div>
+   </ion-content>
+   <!-- Footer Start-->
+   <div class="hide-on-keyboard-open">
       <ion-footer-bar class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
-       <div class="terms" >
-				 <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
-					<a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
-			 </div>
-
-
-        <div class="powerdBySnapMD">
-        <!--<a href="#" onclick="window.open('http://snap.md/', '_system', 'location=yes'); return false;"><b>v1.3.4<b></a>-->
-        <a><b>v7.3.0<b></a>
-        </div>
+         <div class="terms" >
+            <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
+            <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
+         </div>
+         <div class="powerdBySnapMD">
+            <a><b>v7.3.0<b></a>
+         </div>
       </ion-footer-bar>
-    </div>
-    <!-- Footer End-->
-
+   </div>
+   <!-- Footer End-->
 </ion-view>

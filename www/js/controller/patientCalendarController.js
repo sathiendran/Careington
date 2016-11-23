@@ -96,7 +96,7 @@ angular.module('starter.controllers')
             $scope.$apply();
         };
 
-        $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId, nextPage) {
+        $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId) {
             var params = {
                 accessToken: $rootScope.accessToken,
                 AppointmentId: appointmentId,

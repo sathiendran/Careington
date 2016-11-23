@@ -407,8 +407,6 @@ angular.module('starter.controllers')
         $scope.relation = $("#relation").val();
         var splitheight = $('#heightdep').val();
         $scope.splitheights = $('#heightdep').val();
-      //  var inch = splitheight.slice(6, 8)
-
         if ($rootScope.height2 === "") {
             $scope.heightinch = "0";
         } else {

@@ -1,24 +1,14 @@
-
-<ion-view title="Waiting Room">	
-<!--<ion-side-menus>
-	<ion-side-menu-content>  -->
-		<div ng-include src="'templates/waitingRoomHeader.html'"></div> 
-
-	
-	<ion-content class="waitingRoomImage" style="{{waitingContentIos}}" >
-		<div>		
-			<div class="WaitingContent">
-				<div class="WaitingMessage" >
-					<div class="ClinicianMessage">{{waitingMsg}}</div> 
-					<div class="ThankyouMessage">Thank you for your patience.</div>
-					<div style="padding-top: 50px; font-size: 16px; line-height: 1.5; text-align: center; padding-left: 20px; padding-right: 20px;">Please do not close this app or lock your device until your consultation is completed.</div>
-				</div>
-			</div>
-		</div>
-        
-	</ion-content>
-	
-<!--</ion-side-menu-content> -->
- <!--Side Menu File Include --->
-<!-- <div ng-include src="'templates/SideMenu.html'"></div> -->
-</ion-view>	>
+<ion-view title="Waiting Room">
+   <div ng-include src="'templates/waitingRoomHeader.html'"></div>
+   <ion-content class="waitingRoomImage" style="{{waitingContentIos}}" >
+      <div>
+         <div class="WaitingContent">
+            <div class="WaitingMessage" >
+               <div class="ClinicianMessage">{{waitingMsg}}</div>
+               <div class="ThankyouMessage">Thank you for your patience.</div>
+               <div style="padding-top: 50px; font-size: 16px; line-height: 1.5; text-align: center; padding-left: 20px; padding-right: 20px;">Please do not close this app or lock your device until your consultation is completed.</div>
+            </div>
+         </div>
+      </div>
+   </ion-content>
+</ion-view>

@@ -1,69 +1,47 @@
-<ion-side-menus> >
-	<ion-side-menu-content>
-
-
-		<div ng-include src="'templates/intakeHeader.html'"></div>
-
-	<!-- <div ng-include src="'templates/healthPlan_header.html'"></div> -->
-
-<ion-view title="Chronic Condition">
-	<ion-content class="ContentHomeUser ConcernsContent" >
-		<ion-list>
-			<ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
-				<div class="Step1">Step <b style="color:#535353;">2</b> of <b style="color:#535353;">{{userAgeForIntake}}</b></div>
-				<div ng-click="loadChronicCondition();">
-					<div class="PrimaryContent">
-						<h1 class="title ChronicCondition concernsSubTit">Chronic Conditions</h1>
-						<p class="patientConternFontStyle">Select any chronic medical conditions
-							<br/>
-							<span class="patientConternFontStyleSubTitle">Select up to four</span>
-						</p>
-						<div><i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i></div>
-					</div>
-				</div>
-			</ion-item>
-
-
-
-			 <ion-item ng-repeat="item in PatientChronicCondition">
-				<div class="PrimaryConcernList">
-					<p class="intakeNote">{{item.text}}</p>
-<div  ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;">
-                        <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
-                    </div>
-				</div>
-			</ion-item>
-
-
-
-
-
-		</ion-list>
-	</ion-content>
-
-</ion-view>
-
-
-	<ion-footer-bar  class="footer">
-		<span class="ConcernsFooter">
-
-			<div class="FooterLeft">
-				<a class="button_new icon ion-chevron-left" href="#/tab/patientConcerns" style="cursor: pointer;">
-					<span> Back</span></a>
-			</div>
-
-			<div class="FooterCenter" ng-click="clearRootScopeConce()">
-				<a class="button_new icon" >Cancel</a>
-			</div>
-
-			<div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
-				<!--<span  class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};"   class="ConcernFooterNext" style="{{FootNextButton}};{{FootNextButtonRight}}">Next<span>-->
-				<!--	<span  class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span>-->
-				<a class="button_new icon ion-chevron-right" > <span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span> </a>
-    	</div>
-
-		</span>
-	</ion-footer-bar>
+<ion-side-menus>
+<ion-side-menu-content>
+   <div ng-include src="'templates/intakeHeader.html'"></div>
+   <ion-view title="Chronic Condition">
+      <ion-content class="ContentHomeUser ConcernsContent" >
+         <ion-list>
+            <ion-item class="PrimaryList" style="{{IntakeFormInnerStyle}}">
+               <div class="Step1">Step <b style="color:#535353;">2</b> of <b style="color:#535353;">{{userAgeForIntake}}</b></div>
+               <div ng-click="loadChronicCondition();">
+                  <div class="PrimaryContent">
+                     <h1 class="title ChronicCondition concernsSubTit">Chronic Conditions</h1>
+                     <p class="patientConternFontStyle">Select any chronic medical conditions
+                        <br/>
+                        <span class="patientConternFontStyleSubTitle">Select up to four</span>
+                     </p>
+                     <div><i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i></div>
+                  </div>
+               </div>
+            </ion-item>
+            <ion-item ng-repeat="item in PatientChronicCondition">
+               <div class="PrimaryConcernList">
+                  <p class="intakeNote">{{item.text}}</p>
+                  <div  ng-click="removeChronicCondition($index, item);" style=" cursor: pointer;">
+                     <i class="delBtn" ng-bind-html="drawSVGCIcon('circle-with-cross')"></i>
+                  </div>
+               </div>
+            </ion-item>
+         </ion-list>
+      </ion-content>
+   </ion-view>
+   <ion-footer-bar  class="footer">
+      <span class="ConcernsFooter">
+      <div class="FooterLeft">
+         <a class="button_new icon ion-chevron-left" href="#/tab/patientConcerns" style="cursor: pointer;">
+         <span> Back</span></a>
+      </div>
+      <div class="FooterCenter" ng-click="clearRootScopeConce()">
+         <a class="button_new icon" >Cancel</a>
+      </div>
+      <div class="FooterRight" style="{{NextIntakeForm}};"  ng-click="GoTopriorSurgery(PriorSurgeryValidCount)">
+         <a class="button_new icon ion-chevron-right" > <span class="ConcernFooterNext" style="{{ConcernFooterNextIOS}};">Next<span> </a>
+      </div>
+      </span>
+   </ion-footer-bar>
 </ion-side-menu-content>
- <!--Side Menu File Include --->
+<!--Side Menu File Include --->
 <div ng-include src="'templates/SideMenu.html'"></div>
