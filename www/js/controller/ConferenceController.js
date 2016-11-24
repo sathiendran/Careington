@@ -836,7 +836,6 @@ angular.module('starter.controllers')
             OT.updateViews();
         };
         session.on('streamDestroyed', function(event) {
-          if (!angular.isUndefined(event.stream)) {
               var tbStreamVal = event.stream.streamId;
               $scope.removeVideoThumbnail(tbStreamVal);
               $('#subscriber #video-' + connectedStreamId).hide();
@@ -879,11 +878,6 @@ angular.module('starter.controllers')
               $("#subscriber").css('top', '0px');
               $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
               event.preventDefault();
-            } else {
-              isCallEndedByPhysician = true;
-              $('#videoCallSessionTimer').runner('stop');
-              $scope.disconnectConference();
-            }
         });
 
         // Handler for sessionDisconnected event
@@ -1084,7 +1078,6 @@ angular.module('starter.controllers')
                           $state.go('tab.videoConference');
                       } else if (index == 2) {
                            conHub.invoke("notifyClientDisconnect").then(function() {});
-                           $.connection.hub.stop();
                            $('#thumbVideos').remove();
                            $('#videoControls').remove();
                            session.unpublish(publisher)
@@ -1107,8 +1100,7 @@ angular.module('starter.controllers')
             }else{
               window.localStorage.setItem('isVideoCallProgress', "No");
               callEnded = true;
-              conHub.invoke("notifyClientDisconnect").then(function() {});
-              $.connection.hub.stop();
+            //  conHub.invoke("notifyClientDisconnect").then(function() {});
              $('#thumbVideos').remove();
              $('#videoControls').remove();
              session.unpublish(publisher)
@@ -1131,6 +1123,9 @@ angular.module('starter.controllers')
 
     function consultationEndedAlertDismissed() {
         $('#videoCallSessionTimer').runner('stop');
+        $.connection.hub.stop();
+        connection.qs = {};
+        conHub = null;
         if(typeof appIdleInterval != "undefined"){
              $interval.cancel(appIdleInterval);
              appIdleInterval = undefined;

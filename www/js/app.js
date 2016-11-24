@@ -110,7 +110,7 @@ if (deploymentEnv == 'Single') {
       HospitalTag = 'Convenient Care Anywhere';
       ssoURL = "";
   } else if (cobrandApp == 'LatchOn') {
-      singleStagingHospitalId = 165;
+      singleStagingHospitalId = 166;
       singleHospitalId = 218;
       singleQAHospitalId = '';
       singleSandboxHospitalId = '';
