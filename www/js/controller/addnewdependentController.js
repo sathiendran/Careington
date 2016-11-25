@@ -529,9 +529,6 @@ angular.module('starter.controllers')
             } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
                 $scope.ErrorMessage = "Please choose Country";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
-                $scope.ErrorMessage = "Please choose Time Zone";
-                $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
                 $scope.ErrorMessage = "Please enter Mobile Number";
                 $rootScope.Validation($scope.ErrorMessage);
