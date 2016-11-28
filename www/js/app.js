@@ -294,7 +294,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             document.addEventListener("offline", onOffline, false);
             document.addEventListener("online", onOnline, false);
         }, 100);
-
+$rootScope.flagpopup=true;
        var myPopup;
         function onOffline() {
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
@@ -307,11 +307,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 OT.updateViews();
                 $state.go('tab.videoLost', { retry : 1 });
             }else{
-
-
                 $('.popup').addClass("ietpopup");
                 $('.popup-title').addClass("iettitle");
                 $('.popup-buttons').addClass("ietpopup-buttons");
+$rootScope.flagpopup=false;
     // An elaborate, custom popup
     myPopup = $ionicPopup.show({
       template: '<b>Please make sure that you have network connection.</b>',
@@ -341,9 +340,14 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
         function onOnline() {
           console.log('Closing in controller!');
-          myPopup.close();
+
+
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
+            }else{
+              if($rootScope.flagpopup==false){
+                myPopup.close();
+              }
             }
         }
 
