@@ -21,7 +21,7 @@ angular.module('starter.controllers')
             navigator.app.exitApp();
         } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
             var gSearchLength = $('.ion-google-place-container').length;
-            if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
+            if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) === 'block') {
                 $ionicBackdrop.release();
                 $(".ion-google-place-container").css({
                     "display": "none"
@@ -130,7 +130,7 @@ $scope.locat=false;
                     $rootScope.PriorSurgeryValid = $rootScope.inTakeFormPriorSurgeories.length;
                     if (typeof $rootScope.PriorSurgeryValid !== 'undefined' && $rootScope.PriorSurgeryValid !== '') {
                         SurgeryStocksListService.ClearSurgery();
-                        angular.forEach($rootScope.inTakeFormPriorSurgeories, function(Priorvalue, index) {
+                        angular.forEach($rootScope.inTakeFormPriorSurgeories, function(Priorvalue) {
                             var surgeryMonthName = Priorvalue.month;
                             var PriorSurgeryDate = new Date(Priorvalue.year, surgeryMonthName - 1, 01);
                             var dateString = PriorSurgeryDate;
@@ -277,7 +277,7 @@ $scope.locat=false;
     }
     $rootScope.PrimaryPopup = 0;
     // Open text view for other primary concern
-    $scope.openOtherPrimaryConcernView = function(model) {
+    $scope.openOtherPrimaryConcernView = function() {
         $scope.data = {}
         $ionicPopup.show({
             template: '<div class="PopupError_Message ErrorMessageDiv" ></div><textarea name="comment" id="comment-textarea" ng-model="data.PrimaryConcernOther" class="textAreaPop">',
@@ -302,7 +302,7 @@ $scope.locat=false;
                         }
                         e.preventDefault();
                     } else {
-                        angular.forEach($scope.primaryConcernList, function(item, index) {
+                        angular.forEach($scope.primaryConcernList, function(item) {
                             item.checked = false;
                         });
                         var newPrimaryConcernItem = {
@@ -510,7 +510,7 @@ $scope.locat=false;
         }
     }
     // Open text view for other Secondary concern
-    $scope.openOtherSecondaryConcernView = function(model) {
+    $scope.openOtherSecondaryConcernView = function() {
         $scope.data = {}
         $ionicPopup.show({
             template: '<textarea name="comment" id="comment-textarea" ng-model="data.SecondaryConcernOther" class="textAreaPop">',
@@ -676,7 +676,7 @@ $scope.locat=false;
         }
     }
     // Open text view for other Chronic Condition
-    $scope.openOtherChronicConditionView = function(model) {
+    $scope.openOtherChronicConditionView = function() {
         $scope.data = {}
         $ionicPopup.show({
             template: '<textarea name="comment" id="comment-textarea" ng-model="data.ChronicCondtionOther" class="textAreaPop">',
@@ -773,7 +773,7 @@ $scope.locat=false;
         }
     }
     // Open text view for other Medication Allergies
-    $scope.openOtherMedicationAllgiesView = function(model) {
+    $scope.openOtherMedicationAllgiesView = function() {
         $scope.data = {}
         $ionicPopup.show({
             template: '<textarea name="comment" id="comment-textarea" ng-model="data.MedicationAllergiesOther" class="textAreaPop">',
@@ -875,7 +875,7 @@ $scope.locat=false;
         }
     }
     // Open text view for other Current Medication
-    $scope.openOtherCurrentMedicationView = function(model) {
+    $scope.openOtherCurrentMedicationView = function() {
         $scope.data = {}
         $ionicPopup.show({
             template: '<textarea name="comment" id="comment-textarea" ng-model="data.CurrentMedicationOther" class="textAreaPop">',
@@ -972,7 +972,7 @@ $scope.locat=false;
         refresh_close();
     }
     $scope.surgery = {};
-    $scope.closeSurgeryPopup = function(model) {
+    $scope.closeSurgeryPopup = function() {
         $scope.surgery.name;
        $scope.surgery.dateString;
         var selectedSurgeryDate = new Date($scope.surgery.dateStringYear, $scope.surgery.dateStringMonth - 1, 01);
@@ -1010,7 +1010,7 @@ $scope.locat=false;
             $scope.modal.hide();
         }
     }
-    $scope.RemoveSurgeryPopup = function(model) {
+    $scope.RemoveSurgeryPopup = function() {
         $scope.data.searchProvider='';
         $scope.modal.hide();
     };
@@ -1211,7 +1211,7 @@ $scope.locat=false;
             $state.go('tab.waitingRoom');
         }, 10000);
     }
-    $scope.clearRootScopeConce = function(model) {
+    $scope.clearRootScopeConce = function() {
         navigator.notification.confirm(
             'Are you sure that you want to cancel this consultation?',
             function(index) {

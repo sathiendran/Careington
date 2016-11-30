@@ -407,8 +407,6 @@ angular.module('starter.controllers')
         $scope.relation = $("#relation").val();
         var splitheight = $('#heightdep').val();
         $scope.splitheights = $('#heightdep').val();
-      //  var inch = splitheight.slice(6, 8)
-
         if ($rootScope.height2 === "") {
             $scope.heightinch = "0";
         } else {
@@ -530,9 +528,6 @@ angular.module('starter.controllers')
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
                 $scope.ErrorMessage = "Please choose Country";
-                $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.dependentTimezone === 'undefined' || $scope.dependentTimezone === '') {
-                $scope.ErrorMessage = "Please choose Time Zone";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
                 $scope.ErrorMessage = "Please enter Mobile Number";

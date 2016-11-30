@@ -1,26 +1,18 @@
-	<ion-header-bar class="bg" style="background-color: {{brandColor}}; border-color: {{brandColor}}">
-		<div id="Error_Message" ></div>
-		<div class="Server_Error" ></div>
-		<h2>{{Hospital}}</h2>
-	</ion-header-bar>
-
+<ion-header-bar class="bg" style="background-color: {{brandColor}}; border-color: {{brandColor}}">
+   <div id="Error_Message" ></div>
+   <div class="Server_Error" ></div>
+   <h2>{{Hospital}}</h2>
+</ion-header-bar>
 <ion-view title="Terms&Conditions">
- 		<ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="position:absolute;font-size: 19px; color: #4D4D4D; text-align: justify;"  >
-
-
-	<!--<ion-content class="ContentList_terms-{{deviceName}} scroll-content ionic-scroll  has-header has-footer" style="padding: 50px 7px 7px 7px; font-size: 19px; color: #4D4D4D; text-align: justify; border-top: 1px solid #A9ABA7;" >-->
-		<div class="singleTermsconContent-{{deviceName}}" >
-
-			<div class="termscontent"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
-		</div>
-		</ion-content>
-
-			<ion-footer-bar align-title="left" class="footer">
-					  <div class="buttons footerBackButton">
-						<!--<a class="button_new icon ion-chevron-left" href="#/tab/login"> Back </a>-->
-						<a class="button_new icon ion-chevron-left terms_footer_a" ng-click="backtoPreviousPageFromTerms(registerCurrentPage);"><span>  Back</span></a>
-					  </div>
-			</ion-footer-bar>
-			<!-- End Footer -->
-
+   <ion-content class="ContentList_terms-{{deviceName}} ionic-scroll  has-header has-footer" style="position:absolute;font-size: 19px; color: #4D4D4D; text-align: justify;"  >
+      <div class="singleTermsconContent-{{deviceName}}" >
+         <div class="termscontent"  ng-bind-html="termsandCOnditionsContent | sanitize"></div>
+      </div>
+   </ion-content>
+   <ion-footer-bar align-title="left" class="footer">
+      <div class="buttons footerBackButton">
+         <a class="button_new icon ion-chevron-left terms_footer_a" ng-click="backtoPreviousPageFromTerms(registerCurrentPage);"><span>  Back</span></a>
+      </div>
+   </ion-footer-bar>
+   <!-- End Footer -->
 </ion-view>

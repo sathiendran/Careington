@@ -1,11 +1,8 @@
 <ion-side-menus>
 <ion-side-menu-content>
- <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
-
+   <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
       <ion-header-bar align-title="left" class="bar-positiveHomeUser headerheight"  style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="buttons" >
-            <!--<button class="button icon button-clear ion-navicon-round  {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}"
-               ng-click="toggleLeft()"></button>-->
             <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
          </div>
          <div class="Server_Error ErrorMessageDiv" ></div>
@@ -35,7 +32,6 @@
             </div>
          </div>
       </ion-header-bar>
-
       <ion-view title="" >
          <ion-content class="userdeptcontent depenBackgroundColor">
             <h4 class="userhead"><b>User Details</b></h4>
@@ -89,16 +85,6 @@
                      <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
                   </div>
                </div>
-               <!--<div class="item  validated">
-                  <div class="col col-50">
-                    <span class="input-label labelcolor">
-                    <i class="iconsize" ng-bind-html="drawSVGCIcon('users')"></i><b class="formlabel">Authorized</b></span>
-                   </div>
-                   <div class="col col-50">
-                  <input type="radio" name="healthInfoAuthorize"  value="Y" checked> yes<br>
-                  <input type="radio" name="healthInfoAuthorize" value="N"> No<br>
-                   </div>
-                  </div>-->
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
@@ -132,7 +118,6 @@
                      </div>
                      <div class="dependHeighUnit-{{deviceName}}" style="width: 50%;">
                         <select class="optionselect textdata dependwetUnit-{{deviceName}}" name="weightunit" id="weightunit" ng-model="weightunits" >
-                           <!--<option value=""><b>Choose</b></option>-->
                            <option ng-repeat="getWeightunit in listOfWeightunit[0].codes" value="{{getWeightunit.codeId + '@' + getWeightunit.text}}"><b>{{getWeightunit.text}}</b></option>
                         </select>
                      </div>
@@ -150,10 +135,10 @@
                      </select>
                   </div>
                </div>
-               <div class="item item-input validated" style="display: {{timezoneDisplay}};">
+               <!--<div class="item item-input validated" style="display: {{timezoneDisplay}};">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel">Timezone</b><i class="ion-asterisk"></i></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel">Timezone</b></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <select class="optionselect textdata" name="healthInfoTimezone" id="dependentTimezone" >
@@ -161,7 +146,7 @@
                         <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
                      </select>
                   </div>
-               </div>
+               </div>-->
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
@@ -188,7 +173,6 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <ion-google-place class="coUserAddress-{{deviceName}}" placeholder="Full Address" ng-model="addNewDependent.homeadd" style="fon-size:18px !important;font-family: Glober Regular;" />
-                     <!--<textarea   class="homeadd" id="homeadd" cols="30" rows="5"  placeholder="Optional"></textarea>-->
                   </div>
                </div>
                <div class="item item-input validated" ng-if="OrganizationLocation === 'on'">
@@ -287,7 +271,6 @@
          <div class="hide-on-keyboard-open">
             <ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter"  >
                <button class="submitbutton" type="submit"  ng-disabled="isDisabled">
-                  <!-- <a ng-href="#tab/relatedusers" ng-click="adddependent()">-->
                   <h1 class="title" id="centercolor" >Add Dependent</h1>
                </button>
             </ion-footer-bar>

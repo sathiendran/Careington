@@ -441,7 +441,7 @@ angular.module('starter.controllers')
                 $rootScope.getAttachmentList = [];
 
 
-                angular.forEach(data.data[0].snapFile.files, function(index, item) {
+                angular.forEach(data.data[0].snapFile.files, function(index) {
                     var attachImage = index.name.split(".");
                     $rootScope.getAttachmentList.push({
                         'id': index.id,
@@ -579,7 +579,7 @@ angular.module('starter.controllers')
 
     $window.localStorage.setItem('ChkVideoConferencePage', "videoConference");
 
-    if (!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId != 72) {
+    if (!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId !== 72) {
 
         var connection = $.hubConnection();
         //debugger;
@@ -899,6 +899,7 @@ angular.module('starter.controllers')
               $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
               event.preventDefault();
         });
+
         session.on("connectionCreated", function(event) {
           console.log("---------connectionCreated-----------");
           console.log(event);
@@ -1022,7 +1023,7 @@ angular.module('starter.controllers')
         };
 
         $scope.toggleCamera = function() {
-            if ($scope.cameraPosition == "front") {
+            if ($scope.cameraPosition === "front") {
                 $rootScope.newCamPosition = "back";
                 $rootScope.cameraIconClass = 'ion-ios-reverse-camera-outline callIcons';
             } else {
@@ -1174,16 +1175,16 @@ angular.module('starter.controllers')
              timeoutValue = 0;
              window.localStorage.setItem('InActiveSince', timeoutValue);
         }
-        if(typeof videoCallSessionDurationTimer != "undefined"){
+        if(typeof videoCallSessionDurationTimer !== "undefined"){
            $interval.cancel(videoCallSessionDurationTimer);
             videoCallSessionDurationTimer = undefined;
             videoCallSessionDurationTimer = 0;
             videoCallSessionDuration = 0;
         }
         resetSessionLogoutTimer();
-        if (deploymentEnv == 'Single' && cobrandApp == 'Hello420') {
+        if (deploymentEnv === 'Single' && cobrandApp === 'Hello420') {
             var consulationEndRedirectURL = $rootScope.patientConsultEndUrl;
-            if (consulationEndRedirectURL != "") {
+            if (consulationEndRedirectURL !== "") {
                 $state.go('tab.singleTheme');
                 setTimeout(function() {
                     window.open(consulationEndRedirectURL, '_system', '');

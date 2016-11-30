@@ -238,10 +238,10 @@ angular.module('starter.controllers')
             var getImageURLFromResponse = angular.fromJson(result.response);
             $rootScope.newCoUserImagePath = getImageURLFromResponse.data[0].uri;
 
-        }, function(err) {
+        }, function() {
 
             navigator.notification.alert('Error in upload!', null, $rootScope.alertMsgName, 'OK');
-        }, function(progress) {
+        }, function() {
             // PROGRESS HANDLING GOES HERE
             $rootScope.$broadcast('loading:show');
         });

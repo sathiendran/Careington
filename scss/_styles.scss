@@ -1100,7 +1100,7 @@ body {
 }
 .consultation_head {
     font-size: 164%;
-    padding-top: 26px;
+    padding-top: 22px;
     color: #2A2A2A;
     .consultation_number {
         margin-right: 17px;
@@ -1112,7 +1112,7 @@ body {
         }
     }
     .consultation_numberCopay {
-        margin-right: 17px;
+        //margin-right: 17px;
         font-family: $fontFamily_semibold;
         color: #666666;
         text-align: right;
@@ -2613,7 +2613,7 @@ a {
 }
 .ContentList_terms-IOS {
     margin: 166px 0 0 0;
-    background-color: #EFEFED;
+  //  background-color: #EFEFED;
     .item {
         padding: 42px 18px 27px 35px;
         color: #787878;
@@ -2626,8 +2626,11 @@ a {
     }
 }
 .ContentList_terms-Android {
-  //  margin: 160px 0 0 0;
+
     background-color: #EFEFED;
+
+    margin: 160px 0 0 0;
+
     .item {
         padding: 42px 18px 27px 35px;
         Color: #787878;
@@ -4288,7 +4291,8 @@ textarea {
 }
 .singleTermsconContent-Android {
 //    padding: 50px 7px 7px 7px;
-padding: 159px 7px 7px 7px;
+//padding: 159px 7px 7px 7px;
+padding: 150px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify;

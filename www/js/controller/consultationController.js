@@ -62,7 +62,7 @@ angular.module('starter.controllers')
                 $interval.cancel(checkAndChangeMenuIcon);
             }
             if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
-                if ($rootScope.statename == "tab.consultations") {
+                if ($rootScope.statename === "tab.consultations") {
                     $('.sidehomeconsult').addClass("uhome");
                 }
             }
@@ -592,7 +592,7 @@ angular.module('starter.controllers')
 
                     $rootScope.reportMedicalCodeDetails = [];
 
-                    if ($rootScope.existingConsultationReport.medicalCodeDetails != '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails != 'undefined') {
+                    if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') {
                         angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
                             $rootScope.reportMedicalCodeDetails.push({
                                 'Number': item + 1,
@@ -724,7 +724,7 @@ angular.module('starter.controllers')
         }
 
 
-        $rootScope.showMissedDetailsView = function(consultation, nextPage) {
+        $rootScope.showMissedDetailsView = function(consultation) {
             $state.go('tab.missedConsultAppoint');
             $rootScope.consultationDate = consultation.startTime;
             $rootScope.missedAppointDetails = consultation;
