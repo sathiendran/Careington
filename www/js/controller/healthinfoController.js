@@ -292,7 +292,7 @@ angular.module('starter.controllers')
      if ($rootScope.height1 === 'undefined' || $rootScope.height1 === '') {
        $scope.ErrorMessage = "Please enter height";
        $rootScope.ValidationFunction1($scope.ErrorMessage);
-     }else if(  $rootScope.height2===0 && $rootScope.height1 ===0){
+     }else if(  $rootScope.height2==0 && $rootScope.height1 ==0){
        $scope.ErrorMessage = "Please enter valid height";
        $rootScope.ValidationFunction1($scope.ErrorMessage);
      } else{
