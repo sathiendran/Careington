@@ -1203,6 +1203,10 @@ $scope.locat=false;
         var currentTimeReceipt = new Date();
         currentTimeReceipt.setSeconds(currentTimeReceipt.getSeconds() + 10);
         $rootScope.ReceiptTime = currentTimeReceipt.getTime();
+        $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
+
+        }); 
+
         setTimeout(function() {
             $state.go('tab.waitingRoom');
         }, 10000);

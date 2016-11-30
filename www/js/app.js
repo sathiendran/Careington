@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = '1800md';
+    var cobrandApp = 'LatchOn';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -104,6 +104,17 @@ if (deploymentEnv == 'Single') {
       singleQAHospitalId = 165;
       singleSandboxHospitalId = 146;
       brandColor = '#005b9f';
+      logo = 'img/1800md.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
+      Hospital = "1.800MD";
+      HospitalTag = 'Convenient Care Anywhere';
+      ssoURL = "";
+  } else if (cobrandApp == 'LatchOn') {
+      singleStagingHospitalId = 166;
+      singleHospitalId = 218;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#d14a43';
       logo = 'img/1800md.png';
       logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
       Hospital = "1.800MD";
@@ -340,8 +351,6 @@ $rootScope.flagpopup=false;
 
         function onOnline() {
           console.log('Closing in controller!');
-
-
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
             }else{

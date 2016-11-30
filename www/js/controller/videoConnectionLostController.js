@@ -72,7 +72,7 @@ angular.module('starter.controllers')
           $scope.doGetExistingConsulatationReport();
       };
 
-      if($stateParams.retry === 1){
+      if($stateParams.retry === '1'){
           $rootScope.videoLostMessage = 'Video connection lost.';
           $rootScope.videoLostMessageSub = 'Please make sure that you are connected to internet.';
       }else{

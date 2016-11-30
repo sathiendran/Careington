@@ -6,7 +6,7 @@
     height: 61px !important;
     background-color: black;
     margin: auto;
-    max-width: 375px;
+  //  max-width: 375px;
 }
 .vdioCameraControlPanel{
     width: 100% !important;
@@ -15,7 +15,7 @@
     height: 61px !important;
     background-color: black;
     margin: auto;
-    max-width: 300px;
+  //  max-width: 300px;
 }
 .clsVideoControls {
     width: 20% !important;
@@ -27,7 +27,7 @@
     height: 60px !important;
     padding-left: 10px;
     padding-right: 10px;
-    max-width: 75px;
+  //  max-width: 75px;
 }
 
 .clsVideoCameraControls {
@@ -40,8 +40,9 @@
     height: 60px !important;
     padding-left: 10px;
     padding-right: 10px;
-    max-width: 150px;
+  //  max-width: 150px;
 }
+
 
 .vdioIcon {
     height: 40px !important;
@@ -73,28 +74,42 @@
   float: right;
   text-align: center;
   margin-left: -15px;
-  margin-top: -5px;
+  margin-top: -8px;
   font-size: small;
   font-family: 'Globber Regular';
+  position: fixed;
 }
 
 .vdioCallIcon {
   font-size: 25px !important;
   color: white !important;
 }
+.swiper-slide {
+  max-width: 105px;
+}
 
 .vdioEndButton {
-  border: 1px solid #F04C27;
+  /*border: 1px solid #F04C27;
   border-radius: 50% !important;
   height: 40px !important;
   width: 40px !important;
   margin-left: 8px;
-  background-color: #F04C27 !important;
+  background-color: #F04C27 !important;*/
+  text-align: center;
 }
+ .ion-ios-telephone-outline:before {
+   margin-left: 0px;
+   margin-top: 5px;
+ }
 
 .vdioEndCallIcon {
   font-size: 30px !important;
   margin-top: 5px;
+  border: 1px solid #F04C27;
+  border-radius: 50% !important;
+  height: 40px !important;
+  width: 40px !important;
+  background-color: #F04C27 !important;
 }
 #videoCallReconnectWait{
   padding: 40px;

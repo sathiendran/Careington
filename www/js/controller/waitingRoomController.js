@@ -1,6 +1,12 @@
 angular.module('starter.controllers')
 
 .controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList,$ionicBackdrop) {
+    $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
+
+    });
+    $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
+
+    });
     window.plugins.insomnia.keepAwake();
     $rootScope.currState = $state;
     window.localStorage.setItem('videoCallPtImage', $rootScope.PatientImageSelectUser);
@@ -74,24 +80,24 @@ angular.module('starter.controllers')
     $scope.isPhysicianStartedConsultaion = false;
     $scope.waitingMsg = "The Provider will be with you Shortly.";
     var initWaitingRoomHub = function() {
-        var connection = $.hubConnection();
-        var conHub = connection.createHubProxy('consultationHub');
-        connection.url = $rootScope.APICommonURL + "/api/signalR/";
+        var WaitingRoomConnection = $.hubConnection();
+        var WaitingRoomConHub = WaitingRoomConnection.createHubProxy('consultationHub');        
+        WaitingRoomConnection.url = $rootScope.APICommonURL + "/api/signalR/";
         var consultationWatingId = +$rootScope.consultationId;
         var sound = $rootScope.AndroidDevice ? 'file://sound.mp3' : 'file://beep.caf';
 
 
-        connection.qs = {
+        WaitingRoomConnection.qs = {
             "Bearer": $rootScope.accessToken,
             "consultationId": consultationWatingId,
             "waitingroom": 1,
             "isMobile": true
         };
-        conHub.on("onConsultationReview", function() {
+        WaitingRoomConHub.on("onConsultationReview", function() {
             $scope.waitingMsg = "The Provider is now reviewing the intake form.";
             $scope.$digest();
         });
-        conHub.on("onCustomerDefaultWaitingInformation", function() {
+        WaitingRoomConHub.on("onCustomerDefaultWaitingInformation", function() {
             if(typeof appIdleInterval !== "undefined")
                 clearInterval(appIdleInterval);
             appIdleInterval = undefined;
@@ -103,17 +109,19 @@ angular.module('starter.controllers')
             $scope.postPollforCredit();
             $scope.$digest();
         });
-        conHub.on("onConsultationStarted", function() {
+        WaitingRoomConHub.on("onConsultationStarted", function() {
              window.localStorage.setItem("isCustomerInWaitingRoom", "No");
              if(typeof alive_waiting_room_pool !== 'undefined')
                  clearInterval(alive_waiting_room_pool);
             $scope.waitingMsg = "Please wait...";
             $scope.$digest();
             $.connection.hub.stop();
+            WaitingRoomConnection.qs = {};
+            WaitingRoomConHub = null;
             getConferenceKeys();
         });
-        connection.logging = true;
-        connection.start({
+        WaitingRoomConnection.logging = true;
+        WaitingRoomConnection.start({
             withCredentials: false
         }).then(function() {
             $scope.waitingMsg = "The Provider will be with you Shortly.";
