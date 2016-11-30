@@ -112,8 +112,15 @@ angular.module('starter.controllers')
            }
 
            else {
-               $scope.doPostUserRegisterDetails();
+             if($rootScope.customerSso == "Mandatory"){
+               $rootScope.doPostSsoUserRegisterDetails();
+                return false;
+             }else{
+                $rootScope.doPostUserRegisterDetails();
                return false;
+             }
+
+
             }
 
         }
@@ -160,6 +167,45 @@ angular.module('starter.controllers')
             };
             LoginService.postRegisterDetails(params);
         }
+
+        $rootScope.doPostSsoUserRegisterDetails = function() {
+
+            var params = {
+                address: $rootScope.step1RegDetails[0].address,
+                dob: $scope.regStep2.dob,
+                email: $scope.reg2email,
+                firstname: $rootScope.step1RegDetails[0].FName,
+                lastname:$rootScope.step1RegDetails[0].LName,
+                password: $scope.regStep2.password,
+                countryId:1,
+                gender: "M",
+                mobileNumberWithCountryCode:"+12135551212",
+                timezoneId:23,
+                success: function() {
+                    $rootScope.isRegistrationCompleted = true;
+                    $rootScope.registedEmail = $scope.reg2email;
+                    $rootScope.registedPwd = $scope.regStep2.password;
+                    $state.go('tab.registerSuccess');
+                },
+                error: function(data) {
+                    $rootScope.isRegistrationCompleted = false;
+                    if (data.message.indexOf('already registered') > 0) {
+                        navigator.notification.alert(
+                            data.message, // message
+                            function() {},
+                            $rootScope.alertMsgName, // title
+                            'Done' // buttonName
+                        );
+                        return false;
+                    } else {
+                        $scope.$root.$broadcast("callServerErrorMessageValidation");
+                    }
+                }
+            };
+            //LoginService.postRegisterssoDetails(params);
+        }
+
+
         $scope.GoBackToStep1 = function() {
           $state.go('tab.registerStep1');
         }

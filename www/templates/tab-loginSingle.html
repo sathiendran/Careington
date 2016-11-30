@@ -40,11 +40,11 @@
          </div>
       </form>
       <div class="forgot_password_textSingle"> <a ng-click="doPostSendPasswordResetEmail()" >Forgot your password?</a></div>
-      <div class="acinfo1-{{deviceName}}" ng-if="customerSso != 'Mandatory'">
+      <div class="acinfo1-{{deviceName}}" >
          <h4>Need an account?</h4>
       </div>
       <div class="acinfo1-{{deviceName}}">
-         <h4 class="singLogRegClass-{{deviceName}}" ng-if="customerSso != 'Mandatory'"><span ng-click="goToSearchProvider('loginSingle');">Register Here.</span></h4>
+         <h4 class="singLogRegClass-{{deviceName}}" ><span ng-click="goToSearchProvider('loginSingle');">Register Here.</span></h4>
       </div>
    </ion-content>
    <!-- Footer Start-->

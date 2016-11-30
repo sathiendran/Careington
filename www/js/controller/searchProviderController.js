@@ -74,6 +74,7 @@ angular.module('starter.controllers')
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();
                         angular.forEach(data.data, function(index) {
+                          if(index.customerSso != "Mandatory"){
                             if (typeof index.hospitalImage !== 'undefined' && index.hospitalImage !== '') {
                                 var hosImage = index.hospitalImage;
                                 $scope.chkImageorNot = "image";
@@ -97,6 +98,7 @@ angular.module('starter.controllers')
                                 'brandTitle': index.brandTitle,
                                 'hospitalImage': index.hospitalImage
                             });
+                          }
                         });
 
                     } else {
