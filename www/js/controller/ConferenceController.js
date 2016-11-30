@@ -1,6 +1,12 @@
 angular.module('starter.controllers')
 
 .controller('ConferenceCtrl', function($scope, ageFilter, htmlEscapeValue, $timeout, $window, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, $ionicHistory, $filter, $rootScope, $state, SurgeryStocksListService, LoginService,$log,$ionicBackdrop,Idle,$ionicPopover, $interval) {
+    $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
+
+    });
+    $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
+
+    });
      function resetSessionLogoutTimer(){
          window.localStorage.setItem('Active', timeoutValue);
          var timeoutValue = 0;
@@ -578,9 +584,9 @@ angular.module('starter.controllers')
         var connection = $.hubConnection();
         //debugger;
         var conHub = connection.createHubProxy('consultationHub');
+        var connectionCount = 0;
 
         var initConferenceRoomHub = function() {
-
             connection.url = $rootScope.APICommonURL + "/api/signalR/";
             var consultationWatingId = +$rootScope.consultationId;
 
@@ -610,22 +616,33 @@ angular.module('starter.controllers')
             });
 
 
-         conHub.on("onConsultationEnded", function() {
+            conHub.on("onConsultationEnded", function() {
                 isCallEndedByPhysician = true;
                 $('#videoCallSessionTimer').runner('stop');
                 $scope.disconnectConference();
             });
 
-          /*  conHub.on("onProviderUnavailable", function () {
+            conHub.on("OnClientConnected", function(event) {
+                  console.log('-------OnClientConnected-----------');
+                    console.log(event);
+                      console.log('-------OnClientConnected-----------');
+            });
+            conHub.on("OnClientDisconnected", function (event) {
+              console.log('OnClientDisconnected');
+              console.log(event);
+                console.log('OnClientDisconnected');
+            });
+
+          conHub.on("onProviderUnavailable", function () {
               console.log('onProviderUnavailable1');
-              alert('onProviderUnavailable1');
+            //  alert('onProviderUnavailable1');
             });
             conHub.on("onProviderAvailable", function () {
               console.log('providerAvailable1');
-              alert('providerAvailable1');
+            //  alert('providerAvailable1');
             });
 
-            conHub.on("onParticipantDisconnected", function () {
+            /*  conHub.on("onParticipantDisconnected", function () {
               console.log('onParticipantDisconnected1');
               alert('onParticipantDisconnected1');
             });
@@ -784,7 +801,10 @@ angular.module('starter.controllers')
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'><i><svg class='icon-share_screen'><use xlink:href='symbol-defs.svg#icon-share_screen'></use></svg></i></span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
             }else{
                 participantName = participantName.replace('Screen Share By :', '');
-                var participantNameInitial = getInitialForName(participantName);
+                var s = htmlEscapeValue.getHtmlEscapeValue(participantName);
+                var n = s.indexOf('https');
+                var streamProviderName = s.substring(0, n != -1 ? n : s.length);
+                var participantNameInitial = getInitialForName(streamProviderName);
                 if(participantNameInitial == 'WW')
                     participantNameInitial = 'W';
                 thumbSwiper.appendSlide("<div onclick='switchToStream(\"" + streamIdVal + "\");' id='thumbPlayer-" + streamIdVal + "' class='videoThumbnail'><div id='thumb-" + streamIdVal + "' class='swiper-slide claVideoThumb'><span style='background-color: " + $rootScope.brandColor + " !important;'>" + participantNameInitial + "</span></div><p class='participantsName ellipsis'>" + participantName + "</p></div>");
@@ -879,15 +899,34 @@ angular.module('starter.controllers')
               $("#subscriber").width($rootScope.clinicianVideoWidth).height($rootScope.clinicianVideoHeight);
               event.preventDefault();
         });
-
-        // Handler for sessionDisconnected event
-        session.on('sessionDisconnected', function(event) {
+        session.on("connectionCreated", function(event) {
+          console.log("---------connectionCreated-----------");
+          console.log(event);
+          console.log("---------connectionCreated-----------");
+           connectionCount++;
+        });
+        session.on('connectionDestroyed', function(event) {
+          console.log("---------connectionDestroyed-----------");
+          console.log(event);
+          console.log("---------connectionDestroyed-----------");
+          connectionCount--;
+          if(connectionCount === 0 && navigator.onLine === true) {
+                $scope.GetEndFunctinCall();
+          }
 
         });
 
 
-        session.on("signal", function(event) {
+        $scope.GetEndFunctinCall = function() {
+          isCallEndedByPhysician = true;
+          $('#videoCallSessionTimer').runner('stop');
+          $scope.disconnectConference();
+        }
 
+        session.on("signal", function(event) {
+          console.log("---------signal-----------");
+            console.log(event);
+            console.log("---------signal-----------");
         });
 
         // Connect to the Session
@@ -936,6 +975,8 @@ angular.module('starter.controllers')
             }
 
         });
+
+
 
         $rootScope.openVideoCameraPanel = function(){
           $('.vdioControlPanel').removeClass('animated');
