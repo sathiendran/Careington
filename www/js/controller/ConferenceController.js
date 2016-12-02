@@ -1155,6 +1155,14 @@ angular.module('starter.controllers')
                            $('#publisher').hide();
                            $('#subscriber').hide();
                            $('#divVdioControlPanel').hide();
+                           if(connection){
+                                connection.stop();
+                                connection.qs = {};
+                                connection = null;
+                           }
+                           if(conHub){
+                                conHub = null;
+                           }
                           window.localStorage.setItem('isVideoCallProgress', "No");
                           callEnded = true;
                         navigator.notification.alert(
