@@ -928,7 +928,7 @@ angular.module('starter.controllers')
               event.preventDefault();
         });
 
-        session.on("connectionCreated", function(event) {
+     /*   session.on("connectionCreated", function(event) {
           console.log("---------connectionCreated-----------");
           console.log(event);
           console.log("---------connectionCreated-----------");
@@ -950,7 +950,7 @@ angular.module('starter.controllers')
           isCallEndedByPhysician = true;
           $('#videoCallSessionTimer').runner('stop');
           $scope.disconnectConference();
-        }
+     }*/
 
         session.on("signal", function(event) {
           console.log("---------signal-----------");
