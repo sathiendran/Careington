@@ -989,6 +989,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 patientId: $rootScope.currentPatientDetails[0].account.patientId,
             },
             success: function(data) {
+              if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
+                  $scope.uploadPhotoForExistingPatient();
+              }
               var depPatientSuccessPtId = data.patientID;
               var depPatientSecurityToken = data.securityToken;
                 if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.healthInfoEmail != "") {
@@ -999,11 +1002,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                    cordova.plugins.Keyboard.close();
                 }
                 $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
-                if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
-                    $scope.uploadPhotoForExistingPatient();
-                }
                 if($rootScope.hasRequiredFields === false) {
-                  $scope.$root.$broadcast("callPatientDetails");
+                  if ($rootScope.updatedPatientImagePath === '' || typeof $rootScope.updatedPatientImagePath === 'undefined') {
+                        $scope.$root.$broadcast("callPatientDetails");
+                  }
                 }else {
                   if ($rootScope.primaryPatientId !== data.patientID) {
                       $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
@@ -1048,7 +1050,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   editvalues.addClass('textdata');
                   edittextarea.removeClass('editdata');
                   edittextarea.addClass('textdata');
-                }
+              }
             },
             error: function(data, status) {
                 if (status === 400) {
@@ -1973,8 +1975,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             $cordovaFileTransfer.upload(fileUploadUrl, targetPath, options).then(function(result) {
               var getImageURLFromResponse = angular.fromJson(result.response);
                 $rootScope.PatientImageSelectUser = getImageURLFromResponse.data[0].uri;
-                $scope.$root.$broadcast("callPatientAndDependentProfiles");
-
+                  $scope.$root.$broadcast("callPatientAndDependentProfiles");
             }, function(err) {
                   navigator.notification.alert('Unable to upload the photo. Please try again later.', null, $rootScope.alertMsgName, 'OK');
             }, function(progress) {

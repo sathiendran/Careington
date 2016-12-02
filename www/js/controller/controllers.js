@@ -1671,8 +1671,19 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     })
     $scope.$on("callPatientAndDependentProfiles", function(event, args) {
-          $rootScope.doGetPatientProfiles();
-        $rootScope.doGetRelatedPatientProfiles('tab.Health');
+          if($rootScope.hasRequiredFields === false) {
+            $rootScope.doGetPatientProfiles();
+            $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            $rootScope.hasRequiredFields = true;
+            $rootScope.viewmyhealthDisplay = 'none';
+            $rootScope.viewhealthDisplay = 'block';
+            $("#HealthFooter").css("display", "block");
+          } else {
+            $rootScope.doGetRelatedPatientProfiles('tab.Health');
+            $rootScope.doGetPatientProfiles();
+          }
+
+
     });
 
     $scope.doGetConutriesList = function() {
@@ -3483,7 +3494,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ReceiptTime = currentTimeReceipt.getTime();
         $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
-        });       
+        });
         setTimeout(function() {
             $scope.doGetWaitingRoom();
         }, 10000);
