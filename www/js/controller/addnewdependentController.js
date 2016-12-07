@@ -86,7 +86,8 @@ angular.module('starter.controllers')
         refresh_close();
     }
     $scope.hghtunit = false;
-      $rootScope.flagdeptmodal=true;
+    $rootScope.flagdeptmodal=true;
+    $rootScope.timezoneDisplay = 'none';
     $scope.heightmodal = function() {
         document.getElementById('hunit').innerHTML = '';
         $ionicModal.fromTemplateUrl('templates/tab-heighttemplate.html', {
@@ -213,7 +214,7 @@ angular.module('starter.controllers')
             if ($rootScope.restage >= 12) {
 
                 $rootScope.emailDisplay = 'flex';
-                $rootScope.timezoneDisplay = 'flex';
+            //    $rootScope.timezoneDisplay = 'flex';
             } else {
                 $rootScope.emailDisplay = 'none';
                 $rootScope.timezoneDisplay = 'none';
@@ -393,6 +394,17 @@ angular.module('starter.controllers')
                 $scope.ErrorMessage = "Please enter a valid Email Address";
                 $rootScope.Validation($scope.ErrorMessage);
             }
+            $rootScope.timezoneDisplay = 'flex';
+        }
+    }
+    $scope.depemail = function() {
+        var emailtestvalue = $('#email').val();
+        if (emailtestvalue !== '') {
+
+            $rootScope.timezoneDisplay = 'flex';
+        }
+        if(emailtestvalue == ''){
+          $rootScope.timezoneDisplay = 'none';
         }
     }
     $scope.isDisabled = false;
@@ -510,7 +522,8 @@ angular.module('starter.controllers')
             } else if (typeof $scope.getRelationId === 'undefined' || $scope.getRelationId === '') {
                 $scope.ErrorMessage = "Please select Relation";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
+            }
+             else if (typeof $scope.gender === 'undefined' || $scope.gender === '') {
                 $scope.ErrorMessage = "Please select Gender";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if (typeof $scope.splitheights === 'undefined' || $scope.splitheights === '') {
@@ -529,7 +542,10 @@ angular.module('starter.controllers')
             } else if (typeof $scope.dependentCountry === 'undefined' || $scope.dependentCountry === '') {
                 $scope.ErrorMessage = "Please choose Country";
                 $rootScope.Validation($scope.ErrorMessage);
-            } else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
+            } else if ($scope.email !=='' && $scope.dependentTimezone ==='') {
+                $scope.ErrorMessage = "Please select Timezone";
+                 $rootScope.Validation($scope.ErrorMessage);
+            }else if (typeof $scope.mobile === 'undefined' || $scope.mobile === '') {
                 $scope.ErrorMessage = "Please enter Mobile Number";
                 $rootScope.Validation($scope.ErrorMessage);
             } else if ($scope.mobilelength < 14) {

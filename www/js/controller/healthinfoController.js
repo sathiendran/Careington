@@ -150,6 +150,7 @@ angular.module('starter.controllers')
         }
     };
     $scope.healthInfoModel = {};
+    //$rootScope.timezoneDisplay = 'none';
     $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
     $scope.addmore = false;
     $scope.healthhide = true;
@@ -421,10 +422,16 @@ angular.module('starter.controllers')
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
             $rootScope.emailDisplay = 'flex';
-            $rootScope.timezoneDisplay = 'flex';
+            //$rootScope.timezoneDisplay = 'flex';
         } else {
             $rootScope.emailDisplay = 'none';
             $rootScope.timezoneDisplay = 'none';
+        }
+        var emailtestvalue=$('#healthInfoEmail').val();
+        if(emailtestvalue!==''){
+          $rootScope.timezoneDisplay = 'flex';
+        }else{
+          $rootScope.timezoneDisplay = 'none';
         }
         $timeout(function() {
               $('option').filter(function() {
@@ -517,6 +524,17 @@ $scope.editDob=function(){
             $scope.ErrorMessage = "Please enter a valid Email Address";
             $rootScope.Validation($scope.ErrorMessage);
         }
+        $rootScope.timezoneDisplay = 'flex';
+      }else{
+        $rootScope.timezoneDisplay = 'none';
+      }
+    }
+    $scope.editmail=function(){
+      var emailedtvalue=$('#healthInfoEmail').val();
+      if(emailedtvalue!==''){
+        $rootScope.timezoneDisplay = 'flex';
+      }else{
+        $rootScope.timezoneDisplay = 'none';
       }
     }
     $scope.putUpdatePatientDetails = function() {
@@ -682,10 +700,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                       } else if (typeof $scope.healthInfoCountry === 'undefined' || $scope.healthInfoCountry === '') {
                           $scope.ErrorMessage = "Please select Country";
                           $rootScope.Validation($scope.ErrorMessage);
-                      } else if (typeof $scope.healthInfoTimezone === 'undefined' || $scope.healthInfoTimezone === '' || $scope.healthInfoTimezone === 'Choose') {
-                          $scope.ErrorMessage = "Please select Time Zone";
-                          $rootScope.Validation($scope.ErrorMessage);
-                        } else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
+                      } else if ($scope.healthInfoEmail !=='' && $scope.healthInfoTimezone ==='') {
+                          $scope.ErrorMessage = "Please select Timezone";
+                           $rootScope.Validation($scope.ErrorMessage);
+
+                      }else if (typeof $scope.healthInfoMobilePhone === 'undefined' || $scope.healthInfoMobilePhone === '') {
                           $scope.ErrorMessage = "Please enter Mobile Phone";
                           $rootScope.Validation($scope.ErrorMessage);
                       } else if ($scope.healthmobilelength < 14) {
