@@ -986,7 +986,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
 
                 $rootScope.PostPaymentDetails = data.data;
-                if ($rootScope.PostPaymentDetails === 0) {
+                if ($rootScope.PostPaymentDetails.length === 0) {
                     $scope.ErrorMessage = "No account associated with this email.  Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                     $('#verifyEmail').hide();
