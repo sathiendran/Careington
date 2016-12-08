@@ -62,7 +62,7 @@ angular.module('starter.services', [])
              url: params.url + '/sso/token',
              method: 'POST',
              data: {
-
+            
                  email: params.email,
                  password: params.password
              }
