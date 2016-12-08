@@ -56,7 +56,30 @@ angular.module('starter.services', [])
                     }
                 });
     }
+    this.getcheckssoToken = function (params) {
+         var requestInfo = {
+             headers: util.getHeaders(),
+             url: params.url + '/sso/token',
+             method: 'POST',
+             data: {
 
+                 email: params.email,
+                 password: params.password
+             }
+         };
+
+         $http(requestInfo).
+                 success(function (data, status, headers, config) {
+                     if (typeof params.success != 'undefined') {
+                         params.success(data);
+                     }
+                 }).
+                 error(function (data, status, headers, config) {
+                     if (typeof params.error != 'undefined') {
+                        params.error(data, status);
+                     }
+                 });
+     }
 
     this.getTokenFromJWT = function (params) {
          var requestInfo = {

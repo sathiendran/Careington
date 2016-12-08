@@ -309,7 +309,9 @@ if (deploymentEnv === "Sandbox") {
         apiCommonURL = 'https://snap-qa.com';
         api_keys_env = "QA";
     } else if (deploymentEnvForProduction === 'Sandbox') {
-        apiCommonURL = 'https://hello420.sandbox.connectedcare.md';
+       apiCommonURL = 'https://hello420.sandbox.connectedcare.md';
+      // apiSsoURL='https://sso.sandbox.connectedcare.md';
+    //  apiCommonURL = 'https://sso.sandbox.connectedcare.md/sso/token';
         api_keys_env = "Sandbox";
     }
 } else if (deploymentEnv === "Staging") {
@@ -369,8 +371,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             apiCommonURL = 'https://snap-qa.com';
             api_keys_env = "Snap.QA";
         } else if (env === "Sandbox") {
-            $rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
-            apiCommonURL = 'https://sandbox.connectedcare.md';
+          //  $rootScope.APICommonURL = 'https://sandbox.connectedcare.md';
+          //  apiCommonURL = 'https://sandbox.connectedcare.md';
+          $rootScope.APICommonURL = 'https://sso.sandbox.connectedcare.md/sso/token';
+          apiCommonURL = 'https://sso.sandbox.connectedcare.md/sso/token';
             api_keys_env = "Sandbox";
         } else if (env === "Staging") {
             $rootScope.APICommonURL = 'https://snap-stage.com';
@@ -958,6 +962,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 api_keys_env = "QA";
             } else if (deploymentEnvForProduction === 'Sandbox') {
                 $rootScope.hospitalId = singleSandboxHospitalId;
+                // apiSsoURL='https://sso.sandbox.connectedcare.md';
                 api_keys_env = "Sandbox";
             }
         }
@@ -1351,7 +1356,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         if (cobrandApp === "Hello420" && loginEmail.toLowerCase() !== "itunesmobiletester@gmail.com") {
 
             $scope.checkForSSOUserExistsInHello420();
-        } else {
+        }else if($rootScope.customerSso === "Mandatory") {
+          $scope.doCheckssoToken();
+        }else {
             $scope.doGetToken();
         }
     }
@@ -1393,6 +1400,66 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
     $scope.pass = {};
+
+
+        $scope.doCheckssoToken = function() {
+                if ($('#password').val() === '') {
+                    $scope.ErrorMessage = "Please enter your password";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                    $('#loginPwd').hide();
+                    $('#loginPwdVerify').show();
+                    console.log($scope.password);
+                    var params = {
+                        email: $rootScope.UserEmail,
+                        password: $scope.pass.password,
+                        url:'https://sso.sandbox.connectedcare.md',
+
+                        success: function(data) {
+
+                            $rootScope.accessToken = data.data[0].access_token;
+                            $scope.getCurrentTimeForSessionLogout = new Date();
+                            $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
+                            $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
+                            if (typeof data.data[0].access_token == 'undefined') {
+                                $('#loginPwdVerify').hide();
+                                $('#loginPwd').show();
+                                $scope.ErrorMessage = "Incorrect Password. Please try again";
+                                $rootScope.Validation($scope.ErrorMessage);
+                            } else {
+                                $scope.tokenStatus = 'alert-success';
+                                $scope.doGetCodesSet();
+                                $scope.chkPatientFilledAllRequirements();
+
+                            }
+                            window.localStorage.setItem('rootScope', angular.fromJson($rootScope));
+                        },
+                        error: function(data, status) {
+                            $('#loginPwdVerify').hide();
+                            $('#loginPwd').show();
+                          if (status == '401' || status == '403') {
+                                    $scope.ErrorMessage = "We are unable to log you in. Please contact customer support regarding your account";
+                                    $rootScope.Validation($scope.ErrorMessage);
+
+                                } /*else if(status===0  ){
+                                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                                   $rootScope.Validation($scope.ErrorMessage);
+                                 }*/
+
+                                else {
+                                    $scope.ErrorMessage = "Incorrect Password. Please try again";
+                                    $rootScope.Validation($scope.ErrorMessage);
+                                }
+                          //  }
+                        }
+                    };
+                    LoginService.getcheckssoToken(params);
+                }
+            }
+
+
+
+
     $scope.doGetToken = function() {
         if ($('#password').val() === '') {
             $scope.ErrorMessage = "Please enter your password";
@@ -3483,7 +3550,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ReceiptTime = currentTimeReceipt.getTime();
         $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
-        });       
+        });
         setTimeout(function() {
             $scope.doGetWaitingRoom();
         }, 10000);
