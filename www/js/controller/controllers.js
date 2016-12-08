@@ -3483,7 +3483,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ReceiptTime = currentTimeReceipt.getTime();
         $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
-        });       
+        });
         setTimeout(function() {
             $scope.doGetWaitingRoom();
         }, 10000);
