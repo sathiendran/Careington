@@ -494,7 +494,7 @@ $scope.editDob=function(){
   $rootScope.restage =getAge(patdob);
   if ($rootScope.restage  >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
       $rootScope.emailDisplay = 'flex';
-      $rootScope.timezoneDisplay = 'flex';
+    //  $rootScope.timezoneDisplay = 'flex';
   } else {
       $rootScope.emailDisplay = 'none';
       $rootScope.timezoneDisplay = 'none';
