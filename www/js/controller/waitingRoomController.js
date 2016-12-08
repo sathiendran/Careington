@@ -4,9 +4,10 @@ angular.module('starter.controllers')
     $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
     });
+    /*
     $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
 
-    });
+    });*/
     window.plugins.insomnia.keepAwake();
     $rootScope.currState = $state;
     window.localStorage.setItem('videoCallPtImage', $rootScope.PatientImageSelectUser);
@@ -81,12 +82,12 @@ angular.module('starter.controllers')
     $scope.waitingMsg = "The Provider will be with you Shortly.";
     var initWaitingRoomHub = function() {
         var WaitingRoomConnection = $.hubConnection();
-        var WaitingRoomConHub = WaitingRoomConnection.createHubProxy('consultationHub');        
+        var WaitingRoomConHub = WaitingRoomConnection.createHubProxy('consultationHub');
         WaitingRoomConnection.url = $rootScope.APICommonURL + "/api/signalR/";
         var consultationWatingId = +$rootScope.consultationId;
         var sound = $rootScope.AndroidDevice ? 'file://sound.mp3' : 'file://beep.caf';
-
-
+//if(WaitingRoomConnection.state ===4 )
+//WaitingRoomConnection.start();
         WaitingRoomConnection.qs = {
             "Bearer": $rootScope.accessToken,
             "consultationId": consultationWatingId,
@@ -115,17 +116,25 @@ angular.module('starter.controllers')
                  clearInterval(alive_waiting_room_pool);
             $scope.waitingMsg = "Please wait...";
             $scope.$digest();
-            $.connection.hub.stop();
+           // $.connection.hub.stop();
+           WaitingRoomConnection.stop();
             WaitingRoomConnection.qs = {};
+            WaitingRoomConnection = null;
             WaitingRoomConHub = null;
             getConferenceKeys();
         });
         WaitingRoomConnection.logging = true;
+        window.whub = WaitingRoomConnection;
         WaitingRoomConnection.start({
             withCredentials: false
         }).then(function() {
             $scope.waitingMsg = "The Provider will be with you Shortly.";
             $scope.$digest();
+            WaitingRoomConnection.disconnected(function() {
+               setTimeout(function() {
+                  // WaitingRoomConnection.start();
+               }, 5000); // Restart connection after 5 seconds.
+          });
         });
     };
     initWaitingRoomHub();

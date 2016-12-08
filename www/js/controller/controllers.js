@@ -986,7 +986,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
 
                 $rootScope.PostPaymentDetails = data.data;
-                if ($rootScope.PostPaymentDetails === 0) {
+                if ($rootScope.PostPaymentDetails.length === 0) {
                     $scope.ErrorMessage = "No account associated with this email.  Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
                     $('#verifyEmail').hide();
@@ -1671,8 +1671,19 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     })
     $scope.$on("callPatientAndDependentProfiles", function(event, args) {
-          $rootScope.doGetPatientProfiles();
-        $rootScope.doGetRelatedPatientProfiles('tab.Health');
+          if($rootScope.hasRequiredFields === false) {
+            $rootScope.doGetPatientProfiles();
+            $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            $rootScope.hasRequiredFields = true;
+            $rootScope.viewmyhealthDisplay = 'none';
+            $rootScope.viewhealthDisplay = 'block';
+            $("#HealthFooter").css("display", "block");
+          } else {
+            $rootScope.doGetRelatedPatientProfiles('tab.Health');
+            $rootScope.doGetPatientProfiles();
+          }
+
+
     });
 
     $scope.doGetConutriesList = function() {

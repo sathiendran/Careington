@@ -4,9 +4,10 @@ angular.module('starter.controllers')
     $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
     });
+    /*
     $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
 
-    });
+    });*/
      function resetSessionLogoutTimer(){
          window.localStorage.setItem('Active', timeoutValue);
          var timeoutValue = 0;
@@ -581,56 +582,70 @@ angular.module('starter.controllers')
 
     if (!angular.isUndefined($rootScope.consultationStatusId) || $rootScope.consultationStatusId !== 72) {
 
-        var connection = $.hubConnection();
+        //var connection = $.hubConnection();
         //debugger;
-        var conHub = connection.createHubProxy('consultationHub');
         var connectionCount = 0;
 
-        var initConferenceRoomHub = function() {
-            connection.url = $rootScope.APICommonURL + "/api/signalR/";
+        var conHubObject = (function(connection){
+             var conHub = connection.createHubProxy('consultationHub');
+             connection.url = $rootScope.APICommonURL + "/api/signalR/";
             var consultationWatingId = +$rootScope.consultationId;
 
             connection.qs = {
-                "Bearer": $rootScope.accessToken,
-                "consultationId": consultationWatingId,
-                "isMobile": true
+               "Bearer": $rootScope.accessToken,
+               "consultationId": consultationWatingId,
+               "isMobile": true
             };
             conHub.on("onConsultationReview", function() {
-                $rootScope.waitingMsg = "The provider is now reviewing the intake form.";
+               $rootScope.waitingMsg = "The provider is now reviewing the intake form.";
             });
             conHub.on("onCustomerDefaultWaitingInformation", function() {
-                $rootScope.waitingMsg = "Please Wait....";
+               $rootScope.waitingMsg = "Please Wait....";
             });
             conHub.on("onConsultationStarted", function() {
-                window.localStorage.setItem('isVideoCallProgress', "Yes");
-                $rootScope.waitingMsg = "Please wait...";
+               window.localStorage.setItem('isVideoCallProgress', "Yes");
+               $rootScope.waitingMsg = "Please wait...";
             });
+            window.conn = connection;
             connection.logging = true;
             connection.start({
-                withCredentials: false
+               withCredentials: false
             }).then(function() {
-                conHub.invoke("joinCustomer").then(function() {});
-                $.connection.hub.start();
-                $rootScope.waitingMsg = "The Provider will be with you Shortly.";
-                window.localStorage.setItem('isVideoCallProgress', "Yes");
+               conHub.invoke("joinCustomer").then(function() {});
+               $rootScope.waitingMsg = "The Provider will be with you Shortly.";
+               window.localStorage.setItem('isVideoCallProgress', "Yes");
+               /*connection.on("disconnected",function(){
+                    setTimeout(function() {
+                        if(connection && connection.start){
+                             connection.start();
+                        }
+                    }, 5000);
+               });*/
+               connection.disconnected(function() {
+                  setTimeout(function() {
+                       if(connection && connection.start){
+                            connection.start();
+                       }
+                  }, 5000); // Restart connection after 5 seconds.
+             });
             });
 
 
             conHub.on("onConsultationEnded", function() {
-                isCallEndedByPhysician = true;
-                $('#videoCallSessionTimer').runner('stop');
-                $scope.disconnectConference();
+               isCallEndedByPhysician = true;
+               $('#videoCallSessionTimer').runner('stop');
+               $scope.disconnectConference();
             });
 
             conHub.on("OnClientConnected", function(event) {
                   console.log('-------OnClientConnected-----------');
-                    console.log(event);
+                   console.log(event);
                       console.log('-------OnClientConnected-----------');
             });
             conHub.on("OnClientDisconnected", function (event) {
               console.log('OnClientDisconnected');
               console.log(event);
-                console.log('OnClientDisconnected');
+               console.log('OnClientDisconnected');
             });
 
           conHub.on("onProviderUnavailable", function () {
@@ -641,8 +656,20 @@ angular.module('starter.controllers')
               console.log('providerAvailable1');
             //  alert('providerAvailable1');
             });
+            return { consultationHub: conHub, hubConnection:connection };
+       }($.hubConnection()));
 
-            /*  conHub.on("onParticipantDisconnected", function () {
+
+
+       var conHub = conHubObject.consultationHub;
+       var connection = conHubObject.hubConnection;
+      // debugger;
+
+        /*
+        var initConferenceRoomHub = function() {
+
+
+             conHub.on("onParticipantDisconnected", function () {
               console.log('onParticipantDisconnected1');
               alert('onParticipantDisconnected1');
             });
@@ -660,9 +687,10 @@ angular.module('starter.controllers')
                isCallEndedByPhysician = true;
                $('#videoCallSessionTimer').runner('stop');
                $scope.disconnectConference();
-            });*/
+            });
         };
-        initConferenceRoomHub();
+       // initConferenceRoomHub();
+        */
 
         $rootScope.clinicianVideoHeight = $window.innerHeight - 60 - 100;
         $rootScope.clinicianVideoControlPanelTop = $window.innerHeight - 61;
@@ -900,7 +928,7 @@ angular.module('starter.controllers')
               event.preventDefault();
         });
 
-        session.on("connectionCreated", function(event) {
+     /*   session.on("connectionCreated", function(event) {
           console.log("---------connectionCreated-----------");
           console.log(event);
           console.log("---------connectionCreated-----------");
@@ -922,7 +950,7 @@ angular.module('starter.controllers')
           isCallEndedByPhysician = true;
           $('#videoCallSessionTimer').runner('stop');
           $scope.disconnectConference();
-        }
+     }*/
 
         session.on("signal", function(event) {
           console.log("---------signal-----------");
@@ -1127,6 +1155,14 @@ angular.module('starter.controllers')
                            $('#publisher').hide();
                            $('#subscriber').hide();
                            $('#divVdioControlPanel').hide();
+                           if(connection){
+                                connection.stop();
+                                connection.qs = {};
+                                connection = null;
+                           }
+                           if(conHub){
+                                conHub = null;
+                           }
                           window.localStorage.setItem('isVideoCallProgress', "No");
                           callEnded = true;
                         navigator.notification.alert(
@@ -1150,6 +1186,15 @@ angular.module('starter.controllers')
              $('#publisher').hide();
              $('#subscriber').hide();
              $('#divVdioControlPanel').hide();
+            // debugger;
+             if(connection){
+                  connection.stop();
+                  connection.qs = {};
+                  connection = null;
+             }
+             if(conHub){
+                  conHub = null;
+             }
 
               navigator.notification.alert(
                   'Consultation ended successfully!', // message
@@ -1165,9 +1210,15 @@ angular.module('starter.controllers')
 
     function consultationEndedAlertDismissed() {
         $('#videoCallSessionTimer').runner('stop');
-        $.connection.hub.stop();
-        connection.qs = {};
-        conHub = null;
+       // debugger;
+        if(connection){
+             connection.stop();
+             connection.qs = {};
+             connection = null;
+        }
+        if(conHub){
+             conHub = null;
+        }
         if(typeof appIdleInterval != "undefined"){
              $interval.cancel(appIdleInterval);
              appIdleInterval = undefined;
