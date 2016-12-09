@@ -59,11 +59,10 @@ angular.module('starter.services', [])
     this.getcheckssoToken = function (params) {
          var requestInfo = {
              headers: util.getHeaders(),
-             url: params.url + '/sso/token',
+             url: params.apiSsoURL +'/sso/token',
              method: 'POST',
              data: {
-            
-                 email: params.email,
+               email: params.email,
                  password: params.password
              }
          };
