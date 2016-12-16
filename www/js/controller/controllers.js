@@ -1408,11 +1408,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     password: $scope.pass.password,
                     apiSsoURL:'https://sso.sandbox.connectedcare.md',
                     success: function(data) {
-                        $rootScope.accessToken = data.data[0].access_token;
+                        $rootScope.accessToken = data.access_token;
                         $scope.getCurrentTimeForSessionLogout = new Date();
                         $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
                         $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
-                          if (typeof data.data[0].access_token == 'undefined') {
+                          if (typeof data.access_token == 'undefined') {
                             $('#loginPwdVerify').hide();
                             $('#loginPwd').show();
                             $scope.ErrorMessage = "Incorrect Password. Please try again";
@@ -1432,7 +1432,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 $scope.ErrorMessage = "We are unable to log you in. Please contact customer support regarding your account";
                                 $rootScope.Validation($scope.ErrorMessage);
 
-                            } else if(status===0){
+                        }else if (status == '404' ) {
+                                  $scope.ErrorMessage = "Incorrect Username or Password. Please try again!";
+                                  $rootScope.Validation($scope.ErrorMessage);
+
+                        }else if(status===0){
                                $scope.ErrorMessage = "Internet connection not available, Try again later!";
                                $rootScope.Validation($scope.ErrorMessage);
                              }
@@ -1559,6 +1563,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.Validation($scope.ErrorMessage);
             } else {
 
+
                 if (deploymentEnv === "Single") {
                     if (deploymentEnvLogout === 'Single') {
                         if (deploymentEnvForProduction === 'Production') {
@@ -1598,29 +1603,68 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.chkedchkbox = false;
                     }
                 }
-                var params = {
+
+                if($rootScope.customerSso === "Mandatory"){
+
+                  var params = {
+                      email: $rootScope.UserEmail,
+                      apiSsoURL:'https://sso.sandbox.connectedcare.md',
+                      success: function(data) {
+                          $scope.PasswordResetEmail = data;
+                          $state.go('tab.resetPassword');
+                      },
+                      error: function(data, status) {
+                          if (status === '404') {
+                              $scope.ErrorMessage = "Email Address not Found";
+                              $rootScope.Validation($scope.ErrorMessage);
+                          } else if (status == null) {
+                              $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                              $rootScope.Validation($scope.ErrorMessage);
+                          } else {
+                              $rootScope.serverErrorMessageValidation();
+                          }
+                      }
+                  };
+                  LoginService.ssoPasswordReset(params);
+
+                }
+                else{
+                  var params = {
                     patientEmail: $rootScope.UserEmail,
                     emailType: $scope.emailType,
                     hospitalId: $rootScope.hospitalId,
                     accessToken: $rootScope.accessToken,
                     success: function(data) {
-                        $scope.PasswordResetEmail = data;
-                        $state.go('tab.resetPassword');
+                      $scope.PasswordResetEmail = data;
+                      $state.go('tab.resetPassword');
                     },
                     error: function(data, status) {
-                        if (status === '404') {
-                            $scope.ErrorMessage = "Email Address not Found";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else if (status == null) {
-                            $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                            $rootScope.Validation($scope.ErrorMessage);
-                        } else {
-                            $rootScope.serverErrorMessageValidation();
-                        }
+                      if (status === '404') {
+                        $scope.ErrorMessage = "Email Address not Found";
+                        $rootScope.Validation($scope.ErrorMessage);
+                      } else if (status == null) {
+                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                        $rootScope.Validation($scope.ErrorMessage);
+                      } else {
+                        $rootScope.serverErrorMessageValidation();
+                      }
                     }
-                };
-                LoginService.postSendPasswordResetEmail(params);
+                  };
+                  LoginService.postSendPasswordResetEmail(params);
+                }
+
+
+
+
             }
+
+
+
+
+
+
+
+
 
         }
     }
