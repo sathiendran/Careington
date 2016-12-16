@@ -1,54 +1,150 @@
 <ion-view>
    <div id="Error_Message" ></div>
-   <ion-content class="register regstep1" style="background-color: {{brandColor}}">
-      <div class="epassbg">
+   <ion-content class="register registerContent" style="background-color: {{brandColor}}">
+      <div class="epassbg registerContent__registerHeading">
          <img ng-src="{{logo}}" style="position:relative;"/>
          <h2>{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
       </div>
-      <form ng-submit="postRegisterStep1()">
-         <div class="card">
-            <div class="regcontent">
-               <h2>Let’s Get Started</h2>
-               <p>First, please tell us who you are</p>
+      <!--<div>Let's Get Started</div>-->
+      <div class="registerContent__registerCard">
+         <form name="userRegister" id="userRegister" ng-submit="postRegisterStep1()">
+            <div class="registerContent__regStarted">
+               <div class="startedLeftIcon"><i ng-bind-html="drawSVGCIcon('chevron-left');"></i></div>
+               <div class="startedTitle">Let's Get Started </div>
             </div>
-            <div class="item-input-inset">
-               <label class="item-input-wrapper place">
-               <input type="text" ng-model="regStep1.FName" placeholder="First Name">
-               </label>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('user');"></i></div>
+               <div class="user-account__fieldset">
+                  <div>
+                     <label class="user-account__label">First Name</label>
+                     <div class="user-account__input">
+                        <input ng-model="regStep1.regFName" name="regFName" id="regFName" type="text" placeholder="type here..." required >
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regFName.$error.required">Please enter your first name</span>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="item-input-inset">
-               <label class="item-input-wrapper place1">
-               <input type="text" ng-model="regStep1.LName" placeholder="Last Name">
-               </label>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon"><i ng-bind-html="drawSVGCIcon('user');"></i></div>
+               <div class="user-account__fieldset" >
+                  <div>
+                     <label class="user-account__label">Last Name</label>
+                     <div class="user-account__input">
+                        <input type="text" placeholder="type here..." ng-model="regStep1.regLName" name="regLName" id="regLName" required>
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regLName.$error.required">Please enter your last name</span>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="item-input-inset">
-               <label class="item-input-wrapper place1">
-                  <ion-google-place placeholder="Full Address" ng-model="regStep1.address" />
-               </label>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('user');"></i></div>
+               <div class="user-account__fieldset">
+                  <div>
+                     <label class="user-account__label">Gender</label>
+                     <div class="user-account__input">
+                       <select class="optionselect textdata" ng-model="regStep1.regGender" name="regGender" id="regGender"  required>
+                          <option value=""><b>Choose</b></option>
+                          <option value="Male" >Male</option>
+                          <option value="Female" >Female</option>
+                       </select>
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regGender.$error.required">Please choose your gender</span>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="btn1">
-               <button type="submit" class="button">
-               Get Started
-               </button>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('calendar');"></i></div>
+               <div class="user-account__fieldset" >
+                  <div>
+                     <label class="user-account__label">D.O.B</label>
+                     <div class="user-account__input">
+                        <input type="date" placeholder="type here..." ng-model="regStep1.regDOB" name="regDOB" id="regDOB" required >
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regDOB.$error.required">Please select your DOB</span>
+                     </div>
+                  </div>
+               </div>
             </div>
-         </div>
-      </form>
-      <div class="acinfo1-{{deviceName}}">
-         <h4>Already have an account? <a ng-click="backtoPreviousPage();"><span>Login</span></a></h4>
-      </div>
-      <div ng-if="deploymentEnv !== 'Single'" class="acinfo1-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" style="padding-bottom: 30px;">
-         <h4>Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
-      </div>
-      <div ng-controller="LoginCtrl">
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('address');"></i></div>
+               <div class="user-account__fieldset" >
+                  <div>
+                     <label class="user-account__label">Full Home Address</label>
+                     <div class="user-account__input">
+                        <input type="text" placeholder="type here..."  ng-model="regStep1.regAddress" name="regAddress" id="regAddress" required>
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regAddress.$error.required">Please Select your address</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('mail');"></i></div>
+               <div class="user-account__fieldset" >
+                  <div>
+                     <label class="user-account__label">Email Address</label>
+                     <div class="user-account__input">
+                        <input type="text" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail" required>
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regEmail.$error.required">Please enter your email id</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('mobile');"></i></div>
+               <div class="user-account__fieldset" >
+                  <div>
+                     <label class="user-account__label">Mobile</label>
+                     <div class="user-account__input">
+                        <input type="text" placeholder="type here..." ng-model="regStep1.regMobile" name="regMobile" id="regMobile" required>
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regMobile.$error.required" >Please enter a valid mobile number</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('lock');"></i></div>
+               <div class="user-account__fieldset" >
+                  <div>
+                     <label class="user-account__label">Password</label>
+                     <div class="user-account__input">
+                        <input type="text" placeholder="type here..." ng-model="regStep1.regPassword" name="regPassword" id="regPassword" required>
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regPassword.$error.required">Please enter your password</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('lock');"></i></div>
+               <div class="user-account__fieldset" >
+                  <div>
+                     <label class="user-account__label">Confirm Password</label>
+                     <div class="user-account__input">
+                        <input type="text" placeholder="type here..." ng-model="regStep1.regConfrmPassword" name="regConfrmPassword" id="regConfrmPassword" required>
+                        <span class="user-account__error-message" ng-show="submitted && userRegister.regConfrmPassword.$error.required">Please enter your confirm password</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="acinfoRegister1-{{deviceName}}">
+               <h4>Already have an account? <a ng-click="backtoPreviousPage();"><span>Login</span></a></h4>
+            </div>
+            <div ng-if="deploymentEnv !== 'Single'" class="acinfoRegister1Back-{{deviceName}} newLogProviderSecDiv-{{deviceName}}" >
+               <h4>Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
+            </div>
+            <div class="acinfoRegisterBottomAcceptText-{{deviceName}}"  >
+               <p>By clicking below I understand that I am accepting the <span style="text-decoration: underline;">Terms & Conditions</span> as well as the <span style="text-decoration: underline;">Privacy Policy</span> associated with the use of this service.</p>
+            </div>
+            <div ng-controller="LoginCtrl">
+            </div>
+            <div class="hide-on-keyboard-open">
+               <ion-footer-bar  class="footer regFooter" _style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+                  <div class="regFooter__regConcernsFooter">
+                     <button type="submit" class="button" ng-click="submitted=true">
+                     Agree & Create Account
+                     </button>
+                  </div>
+               </ion-footer-bar>
+            </div>
+         </form>
       </div>
    </ion-content>
-   <div class="hide-on-keyboard-open">
-   <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
-      <div class="ConcernsFooter">
-      <div class="FooterLeft" style="width: 100%;">
-         <a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</a>
-      </div>
-      <div>
-   </ion-footer-bar>
-   </div>
 </ion-view>
