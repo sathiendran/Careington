@@ -38,7 +38,7 @@
          </a>
          </div>
          <div ng-if="updatedPatientImagePath == ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
-         <div ng-if="updatedPatientImagePath != ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" >"<img ng-src="{{updatedPatientImagePath}}" src="{{updatedPatientImagePath}}" class='UserHmelistImgView'></div>
+         <div ng-if="updatedPatientImagePath != ''" ng-click="showCameraActions();" ng-hide="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ><img ng-src="{{updatedPatientImagePath}}" src="{{updatedPatientImagePath}}" class='UserHmelistImgView'></div>
          <div ng-show="flag" class="col col-33 uAPlProfileImage" style="margin-top: -13px;" ng-bind-html="drawImage(PatientImageSelectUser,currentPatientDetails[0].patientName,currentPatientDetails[0].lastName)"></div>
          <div class="col col-33 healthUserIcon" >
          <a ng-click="chkPreviousPageForRequiredDetaisUsers('tab.userhome')">
@@ -211,7 +211,7 @@
                   <div class="item item-input itemtab validated" style="display: {{emailDisplay}};">
                      <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i  class="emailion ion-asterisk"></i></span>
                      <span class="healthViewDetails" >
-                     <input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required" ng-blur="emailBlur()">
+                     <input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required" ng-blur="emailBlur()" ng-keyup="editmail()">
                      </span>
                   </div>
                   <div class="item item-input itemtab validated">

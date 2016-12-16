@@ -81,7 +81,7 @@
                      <i class="iconsize" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel">Email</b></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
-                     <input class="usertext" id="email"  type="email" value="" placeholder="Optional" ng-model="email"  name="email" ng-blur="emailBlur()">
+                     <input class="usertext" id="email"  type="email" value="" placeholder="Optional" ng-model="email"  name="email" ng-blur="emailBlur()" ng-keyup="depemail()">
                      <span class="error" id="eremail" ng-show="myForm.email.$error.email" > Not a valid email! </span>
                   </div>
                </div>
@@ -135,10 +135,10 @@
                      </select>
                   </div>
                </div>
-               <!--<div class="item item-input validated" style="display: {{timezoneDisplay}};">
+            <div class="item item-input validated" style="display: {{timezoneDisplay}};">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
-                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel">Timezone</b></span>
+                     <i class="iconsize" ng-bind-html="drawSVGCIcon('clock')"></i><b class="formlabel">Timezone</b><i class="ion-asterisk"></i></span>
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <select class="optionselect textdata" name="healthInfoTimezone" id="dependentTimezone" >
@@ -146,7 +146,7 @@
                         <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
                      </select>
                   </div>
-               </div>-->
+               </div>
                <div class="item item-input validated">
                   <div class="col col-50">
                      <span class="input-label labelcolor">
