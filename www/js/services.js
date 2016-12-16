@@ -100,6 +100,28 @@ angular.module('starter.services', [])
                  });
      }
 
+  this.ssoPasswordReset=function(params){
+    var ssoresetpassword={
+      headers: util.getHeaders(),
+      url: params.apiSsoURL +'/sso/forgotpassword',
+      method: 'POST',
+      data: {
+        email: params.email
+      }
+    };
+    $http(ssoresetpassword).
+    success(function(data,status,headers,config){
+      if(typeof params.success != 'undefined'){
+        params.success(data);
+      }
+    }).
+     error(function(data,status,headers,config){
+       if(typeof params.error != 'undefined'){
+         params.error(data);
+       }
+     });
+  }
+
 	this.postSendPasswordResetEmail = function(params) {
 		var confirmSendPasswordResetEmail = {
 			headers: util.getHeaders(params.accessToken),
