@@ -133,7 +133,7 @@ angular.module('starter.services', [])
 		var searchProviderList = {
 			headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/api/v2.1/providers/list/'+ params.providerSearchKey,
+		   url: apiCommonURL + '/api/v2/hospitals/providers/'+ params.providerSearchKey,
             method: 'GET'
 		};
 
