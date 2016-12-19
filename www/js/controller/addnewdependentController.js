@@ -85,6 +85,7 @@ angular.module('starter.controllers')
           $(".ErrorMessage").append(top);
         refresh_close();
     }
+
     $scope.hghtunit = false;
     $rootScope.flagdeptmodal=true;
     $rootScope.timezoneDisplay = 'none';
@@ -184,11 +185,14 @@ angular.module('starter.controllers')
             $.trim($(this).val())
         );
     });
+
+
+
     var countUp = function() {
         $scope.tempfooter = true;
         $scope.permfooter = true;
     }
-    $timeout(countUp, 5000);
+    $timeout(countUp, 3000);
     var minDate = new Date();
     var maxDate = minDate.getDate();
     var maxMonth = minDate.getMonth() + 1;

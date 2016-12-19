@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'LatchOn';
+    var cobrandApp = 'Emerald Healthcare Group';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -70,7 +70,7 @@ if (deploymentEnv == 'Single') {
         singleStagingHospitalId = 157;
         singleHospitalId = 168;
         singleQAHospitalId = 156;
-        singleSandboxHospitalId = '';
+        singleSandboxHospitalId = '126';
         brandColor = '#22508b';
         logo = 'img/dyw.jpg';
         Hospital = "DocYourWay's Global Care Management";
@@ -119,6 +119,16 @@ if (deploymentEnv == 'Single') {
       logo = 'https://snap-stage.com/api/v2.1/images/b98206b9-1238-4a69-9e5d-3b8090406e32';
       Hospital = "1.800MD";
       HospitalTag = 'Convenient Care Anywhere';
+      ssoURL = "";
+  }else if (cobrandApp == 'Emerald Healthcare Group') {
+      singleStagingHospitalId = 126;
+      singleHospitalId = 126;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '126';
+      brandColor = '#0071bb';
+      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/745eb236-2286-4635-b7c1-50dfe7fac390';
+      Hospital = 'Emerald City Healthcare';
+      HospitalTag = 'Virtual Telemedicine';
       ssoURL = "";
   }
 
