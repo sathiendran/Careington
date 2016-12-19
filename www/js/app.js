@@ -440,7 +440,7 @@ $rootScope.flagpopup=false;
                         }
                     }
                 }
-                if (EXTRA['token'] != "" && EXTRA['env'] != "") {
+                if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
                     $state.go('tab.interimpage', {
                         token: EXTRA['token'],
                         hospitalId: EXTRA['hospitalId'],
@@ -493,7 +493,7 @@ $rootScope.flagpopup=false;
                             }
                         }
                     }
-                    if (EXTRA['token'] != "" && EXTRA['env'] != "") {
+                    if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
                         $state.go('tab.interimpage', {
                             token: EXTRA['token'],
                             hospitalId: EXTRA['hospitalId'],
