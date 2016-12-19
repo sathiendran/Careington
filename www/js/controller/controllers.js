@@ -4667,6 +4667,24 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetListOfCoUsers();
+        if(fromPreviousPage === 'userHome') {
+          $rootScope.userAgeForIntake = '';
+          $rootScope.updatedPatientImagePath = '';
+          $rootScope.newDependentImagePath = '';
+          $rootScope.appointmentDisplay = '';
+          $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+          $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+          $rootScope.PatientImageSelectUser = $rootScope.scheduledListDatas.patientImage;
+          $rootScope.PatientFirstName = $rootScope.scheduledListDatas.patFirstName;
+          $rootScope.PatientLastName = $rootScope.scheduledListDatas.patLastName;
+        //  $rootScope.PatientAge = P_Age;
+          $rootScope.SelectPatientAge = $rootScope.PatientAge;
+          $rootScope.doGetSelectedPatientProfiles($rootScope.patientId, '', '');
+          if($rootScope.patientId !== $rootScope.primaryPatientId) {
+            $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
+          }
+
+        }
         if (fromPreviousPage !== "AppointmentPage") {
             $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
         }
