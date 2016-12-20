@@ -42,7 +42,9 @@ angular.module('starter.controllers')
 
         $rootScope.postRegisterStep1 = function() {
             step1PostRegDetailsService.ClearPostRgDetails();
-            if (typeof $rootScope.regStep1.FName === 'undefined' || $rootScope.regStep1.FName === '') {
+            step1PostRegDetailsService.addPostRegDetails($rootScope.regStep1);
+            $scope.doChkAddressForReg($rootScope.regStep1);
+            /*if (typeof $rootScope.regStep1.FName === 'undefined' || $rootScope.regStep1.FName === '') {
                 $scope.ErrorMessage = "Please enter your First Name";
                 $scope.$root.$broadcast("callValidation", {
                     errorMsg: $scope.ErrorMessage
@@ -60,8 +62,7 @@ angular.module('starter.controllers')
             } else {
                 step1PostRegDetailsService.addPostRegDetails($rootScope.regStep1);
                 $scope.doChkAddressForReg($rootScope.regStep1);
-
-            }
+            }*/
         }
 
         $scope.doChkAddressForReg = function(regStep1) {
