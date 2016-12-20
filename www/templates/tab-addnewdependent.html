@@ -263,13 +263,15 @@
             </div>
             <input type="submit" style="visibility: hidden;">
          </ion-content>
-         <ion-footer-bar class="bar bar-footer footerrsheight" style="background-color:#CBCBCB;" ng-hide="tempfooter">
-            <p class="alterfooter">Please Complete</br>
+            <div class="hide-on-keyboard-open">
+         <ion-footer-bar class="bar bar-footer footer footerrsheight" style="background-color:#CBCBCB !important; border-color: #CBCBCB !important; padding: 0px;" ng-hide="tempfooter">
+               <p class="alterfooter">Please Complete</br>
                All Required Fields
             </p>
+
          </ion-footer-bar>
-         <div class="hide-on-keyboard-open">
-            <ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter"  >
+
+            <ion-footer-bar class="bar bar-footer footer  footer-color footerrsheight" ng-show="permfooter">
                <button class="submitbutton" type="submit"  ng-disabled="isDisabled">
                   <h1 class="title" id="centercolor" >Add Dependent</h1>
                </button>

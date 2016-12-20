@@ -119,6 +119,7 @@ angular.module('starter.controllers')
           }
         }
         $rootScope.postRegisterStep1 = function() {
+
             $scope.fname=$('#regFName').val();
             $scope.lname=$('#regLName').val();
             $scope.gender=  $('#regGender').val();
@@ -196,6 +197,7 @@ angular.module('starter.controllers')
 
         }*/
 
+
             /*if (typeof $rootScope.regStep1.FName === 'undefined' || $rootScope.regStep1.FName === '') {
                 $scope.ErrorMessage = "Please enter your First Name";
                 $scope.$root.$broadcast("callValidation", {
@@ -214,7 +216,10 @@ angular.module('starter.controllers')
             } else {
                 step1PostRegDetailsService.addPostRegDetails($rootScope.regStep1);
                 $scope.doChkAddressForReg($rootScope.regStep1);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 77926a8d05bbe1be68906b8d24c760b7c32915b8
             }*/
         }
         $scope.doPostNewssoRegistration=function(){
