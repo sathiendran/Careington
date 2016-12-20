@@ -27,8 +27,10 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
-                request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+              //  request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
+              //  request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+                request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
+                request.defaults.headers.post['X-Api-Key'] = '713c3ae05db67c5585ae395e022acbb8e121d3c1';
                 return request;
             } else {
                 if (typeof credentials !== 'undefined') {
@@ -53,11 +55,16 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
 
                 return headers;
             } else if (api_keys_env === 'Sandbox') {
-                var headers = {
+              /*  var headers = {
                     'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
                     'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
                     'Content-Type': 'application/json; charset=utf-8'
-                };
+                }; */
+                var headers = {
+                      'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
+                      'X-Api-Key': '713c3ae05db67c5585ae395e022acbb8e121d3c1',
+                      'Content-Type': 'application/json; charset=utf-8'
+                  };
                 if (typeof accessToken !== 'undefined') {
                     headers['Authorization'] = 'Bearer ' + accessToken;
                 }
@@ -156,8 +163,10 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
-                request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+              //  request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
+              //  request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
+              request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
+              request.defaults.headers.post['X-Api-Key'] = '713c3ae05db67c5585ae395e022acbb8e121d3c1';
                 return request;
             }
         },
@@ -196,11 +205,16 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
 
                 return headers;
             } else if (api_keys_env === 'Sandbox') {
-                var headers = {
+              /*  var headers = {
                     'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
                     'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
                     'Content-Type': 'application/json; charset=utf-8'
-                };
+                };*/
+                var headers = {
+                      'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
+                      'X-Api-Key': '713c3ae05db67c5585ae395e022acbb8e121d3c1',
+                      'Content-Type': 'application/json; charset=utf-8'
+                  };
                 if (typeof accessToken !== 'undefined') {
                     headers['Authorization'] = 'Bearer ' + accessToken;
                 }
