@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'Emerald Healthcare Group';
+    var cobrandApp = 'LatchOn';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -70,7 +70,7 @@ if (deploymentEnv == 'Single') {
         singleStagingHospitalId = 157;
         singleHospitalId = 168;
         singleQAHospitalId = 156;
-        singleSandboxHospitalId = '126';
+        singleSandboxHospitalId = '';
         brandColor = '#22508b';
         logo = 'img/dyw.jpg';
         Hospital = "DocYourWay's Global Care Management";
@@ -440,7 +440,7 @@ $rootScope.flagpopup=false;
                         }
                     }
                 }
-                if (EXTRA['token'] != "" && EXTRA['env'] != "") {
+                if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
                     $state.go('tab.interimpage', {
                         token: EXTRA['token'],
                         hospitalId: EXTRA['hospitalId'],
@@ -493,7 +493,7 @@ $rootScope.flagpopup=false;
                             }
                         }
                     }
-                    if (EXTRA['token'] != "" && EXTRA['env'] != "") {
+                    if (EXTRA['token'] != "" && EXTRA['env'] != "" && EXTRA['token'] != "undefined" && EXTRA['env'] != "undefined") {
                         $state.go('tab.interimpage', {
                             token: EXTRA['token'],
                             hospitalId: EXTRA['hospitalId'],
