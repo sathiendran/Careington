@@ -1420,7 +1420,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 var params = {
                     email: $rootScope.UserEmail,
                     password: $scope.pass.password,
-                    apiSsoURL:'https://sso.sandbox.connectedcare.md',
+                    apiSsoURL:$rootScope.ssopatienttoken,
                     success: function(data) {
                         $rootScope.accessToken = data.access_token;
                         $scope.getCurrentTimeForSessionLogout = new Date();
@@ -1622,7 +1622,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                   var params = {
                       email: $rootScope.UserEmail,
-                      apiSsoURL:'https://sso.sandbox.connectedcare.md',
+                      apiSsoURL:$rootScope.ssopatientforgetpwd,
                       success: function(data) {
                           $scope.PasswordResetEmail = data;
                           $state.go('tab.resetPassword');

@@ -59,7 +59,7 @@ angular.module('starter.services', [])
     this.getcheckssoToken = function (params) {
          var requestInfo = {
              headers: util.getHeaders(),
-             url: params.apiSsoURL +'/sso/token',
+             url: params.apiSsoURL,
              method: 'POST',
              data: {
                email: params.email,
@@ -103,7 +103,7 @@ angular.module('starter.services', [])
   this.ssoPasswordReset=function(params){
     var ssoresetpassword={
       headers: util.getHeaders(),
-      url: params.apiSsoURL +'/sso/forgotpassword',
+      url: params.apiSsoURL ,
       method: 'POST',
       data: {
         email: params.email
@@ -193,6 +193,42 @@ angular.module('starter.services', [])
 				}
 		});
 	}
+
+  this.postSsoRegisterDetails = function(params) {
+    var registerDetails = {
+      headers: util.getHeaders(),
+      url: params.apiSsoURL ,
+      method: 'POST',
+      data: {
+        email: params.email,
+        password:params.password,
+        firstname:params.firstname,
+        lastname:params.lastname,
+        address:params.address,
+        dob:params.dob,
+        gender: params.gender,
+        mobileNumberWithCountryCode:params.mobile,
+
+          }
+    };
+
+    $http(registerDetails).
+      success(function (data, status, headers, config) {
+        if (typeof params.success != 'undefined') {
+          params.success(data);
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (typeof params.error != 'undefined') {
+          params.error(data,status);
+        }
+    });
+  }
+
+
+
+
+
 
 	this.postRegisterDetails = function(params) {
 		var registerDetails = {
