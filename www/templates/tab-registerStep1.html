@@ -1,13 +1,15 @@
+<form name="userRegister" id="userRegister" >
 <ion-view>
    <div id="Error_Message" ></div>
+     <div class="registerContent__registerCard">
    <ion-content class="register registerContent" >
       <div class="epassbg registerContent__registerHeading" style="background-color: {{brandColor}}">
          <img ng-src="{{logo}}" style="position:relative;"/>
          <h2>{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
       </div>
       <!--<div>Let's Get Started</div>-->
-      <div class="registerContent__registerCard">
-         <form name="userRegister" id="userRegister" >
+
+
 
             <div class="registerContent__regStarted">
                <div class="startedLeftIcon"><i ng-bind-html="drawSVGCIcon('chevron-left');"></i></div>
@@ -43,7 +45,7 @@
                   <div>
                      <label class="user-account__label">Gender</label>
                      <div class="user-account__input">
-                       <select class="optionselect textdata" ng-model="regStep1.regGender" name="regGender" id="regGender" ng-change="genderBlur()">
+                       <select class="optionselect textdata" ng-model="regStep1.regGender" name="regGender" id="regGender" ng-change="genderBlur()" style="font-size:17px !important;">
                           <option value=""><b>Choose</b></option>
                           <option value="M" >Male</option>
                           <option value="F" >Female</option>
@@ -83,9 +85,9 @@
             <div class="registerContent__mainField">
                <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('mail');"></i></div>
                <div class="user-account__fieldset" >
-                  <div>
+                  <div class="regemail">
                      <label class="user-account__label">Email Address</label>
-                     <div class="user-account__input regemail">
+                     <div class="user-account__input ">
                         <input type="email" placeholder="type here..." ng-model="regStep1.regEmail" name="regEmail" id="regEmail" ng-keyup="emailBlur()" >
                         <span class="user-account__error-message" ng-show="emailmanderror">Please enter your email id</span>
                         <span class="user-account__error-message" ng-show="emailerror">Please enter valid email id</span>
@@ -145,8 +147,11 @@
             </div>
             <div ng-controller="LoginCtrl">
             </div>
+          </div>
+       </ion-content>
             <div class="hide-on-keyboard-open">
-               <ion-footer-bar  class="footer regFooter" _style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+              
+               <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter" _style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
                   <div class="regFooter__regConcernsFooter">
                      <button type="submit" class="button" ng-click="postRegisterStep1()">
                      Agree & Create Account
@@ -154,7 +159,7 @@
                   </div>
                </ion-footer-bar>
             </div>
-         </form>
-      </div>
-   </ion-content>
+
+
 </ion-view>
+ </form>
