@@ -1583,7 +1583,7 @@ this.getPatientMedicalProfile = function(params){
                    params.success(data);
                }
            }).
-           error(function (data, status, headers, config) {
+           catch(function (data, status, headers, config) {
                if (typeof params.error != 'undefined') {
                    params.success(data);
                }

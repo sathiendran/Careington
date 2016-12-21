@@ -216,10 +216,6 @@ angular.module('starter.controllers')
             } else {
                 step1PostRegDetailsService.addPostRegDetails($rootScope.regStep1);
                 $scope.doChkAddressForReg($rootScope.regStep1);
-<<<<<<< HEAD
-
-=======
->>>>>>> 77926a8d05bbe1be68906b8d24c760b7c32915b8
             }*/
         }
         $scope.doPostNewssoRegistration=function(){
@@ -241,39 +237,44 @@ angular.module('starter.controllers')
               },
               error: function(data,status) {
                   $rootScope.isRegistrationCompleted = false;
-                  if(status==400){
+                  if(data.status == 400){
+                    $scope.ErrorMessage = data.statusText.indexOf("already exists with");
+                    if($scope.ErrorMessage >= 0) {
+                        $scope.contactmail=$scope.email;
+                        var myPopup = $ionicPopup.show({
 
-                    $scope.contactmail=$scope.email;
-                    var myPopup = $ionicPopup.show({
+                            title: "<div class='coUserLinkName'><span class='fname emailext' ><b>Account Already Exists</b></span> </div>",
+                            templateUrl: 'templates/emailpopup.html',
+                            scope: $scope,
+                            buttons: [{
+                                text: '<b class="fonttype">Edit Email</b>',
+                                onTap: function(e) {
+                                    return false;
+                                }
+                            }, {
+                                text: '<b class="fonttype">Go to Login</b>',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                    return true;
+                                }
+                            }, ]
+                        });
 
-                        title: "<div class='coUserLinkName'><span class='fname emailext' ><b>Account Already Exists</b></span> </div>",
-                        templateUrl: 'templates/emailpopup.html',
-                        scope: $scope,
-                        buttons: [{
-                            text: '<b class="fonttype">Edit Email</b>',
-                            onTap: function(e) {
-                                return false;
+                        myPopup.then(function(res) {
+                            if (res) {
+                            $state.go('tab.loginSingle');
+                            } else {
+                                $('.regemail').addClass("emailbackground");
+                                $scope.emailexisterror=true;
                             }
-                        }, {
-                            text: '<b class="fonttype">Go to Login</b>',
-                            type: 'button-positive',
-                            onTap: function(e) {
-                                return true;
-                            }
-                        }, ]
-                    });
-
-                    myPopup.then(function(res) {
-                        if (res) {
-                        $state.go('tab.loginSingle');
-                        } else {
-                            $('.regemail').addClass("emailbackground");
-                            $scope.emailexisterror=true;
+                        });
+                        $scope.closepopup = function() {
+                            myPopup.close();
                         }
-                    });
-                    $scope.closepopup = function() {
-                        myPopup.close();
-                    }
+                      } else {
+                        $scope.ErrorMessage = data.statusText;
+                        $rootScope.Validation($scope.ErrorMessage);
+                      }
                   }
               /*    if (data.message.indexOf('already registered') > 0) {
                       navigator.notification.alert(
