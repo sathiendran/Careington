@@ -203,7 +203,7 @@ angular.module('starter.controllers')
                     $scope.contactmail=$scope.email;
                     var myPopup = $ionicPopup.show({
 
-
+                        title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",
                         templateUrl: 'templates/emailpopup.html',
                         scope: $scope,
                         buttons: [{
