@@ -171,58 +171,15 @@ angular.module('starter.controllers')
            $scope.confirmpwdmanderror=true;
         }else if ($scope.regStep1.regPassword !== $scope.regStep1.regConfrmPassword) {
             $scope.cnfrmpwderror =true;
+        }else if($rootScope.customerSso=="Mandatory"){
+          $scope.doPostNewSsoRegistration();
         }else{
-           $scope.doPostNewssoRegistration();
+            $scope.doPostRegistration();
         }
-          /*  if (dt2 > dt1) {
-                $scope.dobfuture = true;
-                $scope.doberror = false;
-            }else if($rootScope.restrictage <= 11){
-              $scope.doberror = true;
-               $scope.dobfuture = false;
-            } else if (!$scope.ValidateEmail($("#regEmail").val())) {
-              $scope.emailerror =true;
-            }else if ($scope.mobilelength < 14) {
-                $scope.mobileerror = true;
-            }else if ((typeof $scope.fname != 'undefined'|| $scope.fname != '') &&
-               (typeof  $scope.lname != 'undefined' || $scope.lname != '') &&
-               (typeof $scope.gender != 'undefined' || $scope.gender!= '') &&
-               (typeof $scope.dob!= 'undefined' || $scope.dob != '') &&
-               (typeof $scope.homeaddress != 'undefined' || $scope.homeaddress != '')&&
-               (typeof $scope.email != 'undefined'|| $scope.email != '')&&
-               (typeof $scope.mobile != 'undefined'|| $scope.mobile != '')&&
-              (typeof $scope.password != 'undefined' || $scope.password != '')&&
-              (typeof $scope.confirmPwdconfirmPwd != 'undefined' || $scope.confirmPwd != '')){
-          //    $scope.doPostNewssoRegistration();
 
-        }*/
-
-
-            /*if (typeof $rootScope.regStep1.FName === 'undefined' || $rootScope.regStep1.FName === '') {
-                $scope.ErrorMessage = "Please enter your First Name";
-                $scope.$root.$broadcast("callValidation", {
-                    errorMsg: $scope.ErrorMessage
-                });
-            } else if (typeof $rootScope.regStep1.LName === 'undefined' || $rootScope.regStep1.LName === '') {
-                $scope.ErrorMessage = "Please enter your Last Name";
-                $scope.$root.$broadcast("callValidation", {
-                    errorMsg: $scope.ErrorMessage
-                });
-            } else if (typeof $rootScope.regStep1.address === 'undefined' || $rootScope.regStep1.address === '') {
-                $scope.ErrorMessage = "Please enter your Full Address";
-                $scope.$root.$broadcast("callValidation", {
-                    errorMsg: $scope.ErrorMessage
-                });
-            } else {
-                step1PostRegDetailsService.addPostRegDetails($rootScope.regStep1);
-                $scope.doChkAddressForReg($rootScope.regStep1);
-<<<<<<< HEAD
-
-=======
->>>>>>> 77926a8d05bbe1be68906b8d24c760b7c32915b8
-            }*/
         }
-        $scope.doPostNewssoRegistration=function(){
+        $scope.doPostNewSsoRegistration=function(){
+
             var params = {
               email: $scope.email,
               password:$scope.password,
@@ -246,7 +203,7 @@ angular.module('starter.controllers')
                     $scope.contactmail=$scope.email;
                     var myPopup = $ionicPopup.show({
 
-                        title: "<div class='coUserLinkName'><span class='fname emailext' ><b>Account Already Exists</b></span> </div>",
+
                         templateUrl: 'templates/emailpopup.html',
                         scope: $scope,
                         buttons: [{
@@ -275,21 +232,88 @@ angular.module('starter.controllers')
                         myPopup.close();
                     }
                   }
-              /*    if (data.message.indexOf('already registered') > 0) {
-                      navigator.notification.alert(
-                          data.message, // message
-                          function() {},
-                          $rootScope.alertMsgName, // title
-                          'Done' // buttonName
-                      );
-                      return false;
-                  }*/ else {
+               else {
                       $scope.$root.$broadcast("callServerErrorMessageValidation");
                   }
               }
             };
               LoginService.postSsoRegisterDetails(params);
-        }
+
+
+
+
+        /*  else{
+
+
+            var params = {
+                address: $scope.homeaddress,
+                dob: $scope.dob,
+                email: $scope.email,
+                name: $scope.userFirstandLastName,
+                password: $scope..password,
+                providerId: $rootScope.hospitalId,
+                success: function() {
+                    $rootScope.isRegistrationCompleted = true;
+                    $rootScope.registedEmail = $scope.email;
+                    $rootScope.registedPwd = $scope.password;
+                    $state.go('tab.registerSuccess');
+                },
+                error: function(data) {
+                    $rootScope.isRegistrationCompleted = false;
+                    if (data.message.indexOf('already registered') > 0) {
+                        navigator.notification.alert(
+                            data.message, // message
+                            function() {},
+                            $rootScope.alertMsgName, // title
+                            'Done' // buttonName
+                        );
+                        return false;
+                    } else {
+                        $scope.$root.$broadcast("callServerErrorMessageValidation");
+                    }
+                }
+            };
+            LoginService.postRegisterDetails(params);
+
+          }*/
+}
+
+    $scope.doPostRegistration=function(){
+      $scope.userFirstandLastName = {
+          "$id": "2",
+          "first": $scope.fname,
+          "last": $scope.lname
+      }
+      var params = {
+          address: $scope.homeaddress,
+          dob: $scope.dob,
+          email: $scope.email,
+          name: $scope.userFirstandLastName,
+          password: $scope.password,
+          providerId: $rootScope.hospitalId,
+          success: function() {
+              $rootScope.isRegistrationCompleted = true;
+              $rootScope.registedEmail = $scope.email;
+              $rootScope.registedPwd = $scope.password;
+              $state.go('tab.registerSuccess');
+          },
+          error: function(data) {
+              $rootScope.isRegistrationCompleted = false;
+              if (data.message.indexOf('already registered') > 0) {
+                  navigator.notification.alert(
+                      data.message, // message
+                      function() {},
+                      $rootScope.alertMsgName, // title
+                      'Done' // buttonName
+                  );
+                  return false;
+              } else {
+                  $scope.$root.$broadcast("callServerErrorMessageValidation");
+              }
+          }
+      };
+      LoginService.postRegisterDetails(params);
+    }
         $scope.doChkAddressForReg = function(regStep1) {
           var params = {
               AddressText: regStep1.address,
