@@ -1,4 +1,4 @@
-<form name="userRegister" id="userRegister" >
+<form name="userRegister" id="userRegister" ng-submit="postRegisterStep1()" >
 <ion-view>
    <div id="Error_Message" ></div>
      <div class="registerContent__registerCard" ng-if="is_iPadDeviceWidth < 768">
@@ -145,7 +145,7 @@
                <h4>Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
             </div>
             <div class="acinfoRegisterBottomAcceptText-{{deviceName}}"  >
-               <p>By clicking below I understand that I am accepting the <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;">Privacy Policy</span> associated with the use of this service.</p>
+               <p>By clicking below I understand that I am accepting the <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy</a></span> associated with the use of this service.</p>
             </div>
             <div ng-controller="LoginCtrl">
             </div>
@@ -154,7 +154,7 @@
 
                <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter" >
                   <div class="regFooter__regConcernsFooter">
-                     <button type="submit" class="button" ng-click="postRegisterStep1()">
+                     <button type="submit" class="button">
                      Agree & Create Account
                      </button>
                   </div>
@@ -312,7 +312,7 @@
 
               <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter" >
                  <div class="regFooter__regConcernsFooter">
-                    <button type="submit" class="button" ng-click="postRegisterStep1()">
+                    <button type="submit" class="button" >
                     Agree & Create Account
                     </button>
                  </div>
