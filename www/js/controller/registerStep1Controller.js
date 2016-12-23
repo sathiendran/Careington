@@ -39,17 +39,32 @@ angular.module('starter.controllers')
                 navigator.app.backHistory();
             }
         }, 100);
+
+
+
+
+$scope.registerStepBack=function(){
+  history.back();
+  $scope.$apply();
+}
+
+
         $scope.fnameBlur=function(){
           $scope.fnameerror =false;
+          $('.regstfname').removeClass("emailbackground");
         }
         $scope.lnameBlur=function(){
           $scope.lnameerror =false;
+          $('.regstlname').removeClass("emailbackground");
         }
         $scope.genderBlur=function(){
           $scope.gendererror =false;
+          $('.regstgender').removeClass("emailbackground");
+          $('.ssooption').removeClass("emailbackground");
         }
         $scope.addressBlur=function(){
           $scope.adderror=false;
+          $('.regstaddress').removeClass("emailbackground");
         }
         $scope.ValidateEmail = function(email) {
             var expr = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -64,6 +79,7 @@ angular.module('starter.controllers')
             if (emailvalue !== '') {
                 if (!$scope.ValidateEmail($("#regEmail").val())) {
                     $scope.emailerror =true;
+                        $('.regemail').addClass("emailbackground");
                 }else{
                     $scope.emailerror =false;
                 }
@@ -72,28 +88,35 @@ angular.module('starter.controllers')
         }
         $scope.mobilelength = $("#regMobile").val().length;
         $scope.moblieBlur=function(){
-
+            $('.regstmobile').removeClass("emailbackground");
+          $scope.mobilemanderror=false;
          $scope.mobilelength = $("#regMobile").val().length;
           if ($scope.mobilelength < 14) {
             $scope.mobileerror = true;
+              $('.regstmobile').addClass("emailbackground");
           }
          else{
             $scope.mobileerror = false;
          }
         }
         $scope.pwdBlur=function(){
+          $('.regstpwd').removeClass("emailbackground");
+          $scope.pwdmanderror=false;
           if (!pwdRegularExpress.test($scope.regStep1.regPassword)) {
               $scope.pwderror =true;
               $scope.pwdspaceerror =false;
+              $('.regstpwd').addClass("emailbackground");
           } else if (/\s/.test($scope.regStep1.regPassword)) {
               $scope.pwdspaceerror =true;
                 $scope.pwderror =false;
+                $('.regstpwd').addClass("emailbackground");
           }else{
             $scope.pwderror =false;
             $scope.pwdspaceerror =false;
           }
         }
         $scope.regdobs=function(){
+            $('.regstdob').removeClass("emailbackground");
           $scope.dobmanderror=false;
           var selectedDate = document.getElementById('regDOB').value;
           var now = new Date();
@@ -103,17 +126,21 @@ angular.module('starter.controllers')
               if (dt2 >dt1) {
                  $scope.dobfuture = true;
                   $scope.doberror = false;
+                  $('.regstdob').addClass("emailbackground");
              } else if($rootScope.restrictage <= 11){
                $scope.doberror = true;
                 $scope.dobfuture = false;
+                  $('.regstdob').addClass("emailbackground");
              }else{
                   $scope.doberror = false;
                    $scope.dobfuture = false;
              }
         }
         $scope.confirmpwdBlur=function(){
+          $('.regstconpwd').removeClass("emailbackground");
           if ($scope.regStep1.regPassword !== $scope.regStep1.regConfrmPassword) {
               $scope.cnfrmpwderror =true;
+              $('.regstpwd').addClass("emailbackground");
           }else{
               $scope.cnfrmpwderror =false;
           }
@@ -137,12 +164,17 @@ angular.module('starter.controllers')
 
           if (typeof $scope.fname === 'undefined' ||$scope.fname === '') {
               $scope.fnameerror = true;
+                $('.regstfname').addClass("emailbackground");
           }else if(typeof $scope.lname === 'undefined' ||$scope.lname === ''){
               $scope.lnameerror = true;
+                $('.regstlname').addClass("emailbackground");
           }else if(typeof $scope.gender === 'undefined' ||$scope.gender === ''){
             $scope.gendererror = true;
+              $('.regstgender').addClass("emailbackground");
+              $('.ssooption').addClass("emailbackground");
           }else if(typeof $scope.dob === 'undefined' ||$scope.dob === ''){
             $scope.dobmanderror = true;
+              $('.regstdob').addClass("emailbackground");
           }else if (dt2 > dt1) {
                 $scope.dobfuture = true;
                 $scope.doberror = false;
@@ -151,15 +183,19 @@ angular.module('starter.controllers')
                $scope.dobfuture = false;
           }else if(typeof $scope.homeaddress === 'undefined' ||$scope.homeaddress === ''){
             $scope.adderror=true;
+              $('.regstaddress').addClass("emailbackground");
           }else if(typeof $scope.email === 'undefined' ||$scope.email === ''){
+            $('.regemail').addClass("emailbackground");
             $scope.emailmanderror=true;
           }else if(!$scope.ValidateEmail($("#regEmail").val())){
                 $scope.emailerror=true;
           }else if(typeof $scope.mobile === 'undefined' ||$scope.mobile === ''){
+            $('.regstmobile').addClass("emailbackground");
             $scope.mobilemanderror=true;
           }else if ($scope.mobilelength < 14) {
               $scope.mobileerror=true;
           }  else if (typeof $scope.password === 'undefined' || $scope.password === '') {
+            $('.regstpwd').addClass("emailbackground");
             $scope.pwdmanderror=true;
          } else if (!pwdRegularExpress.test($scope.password)) {
             $scope.pwderror =true;
@@ -168,6 +204,7 @@ angular.module('starter.controllers')
              $scope.pwdspaceerror =true;
              $scope.pwderror =false;
          }else if (typeof $scope.confirmPwd === 'undefined' || $scope.confirmPwd === '') {
+           $('.regstconpwd').addClass("emailbackground");
            $scope.confirmpwdmanderror=true;
         }else if ($scope.regStep1.regPassword !== $scope.regStep1.regConfrmPassword) {
             $scope.cnfrmpwderror =true;
