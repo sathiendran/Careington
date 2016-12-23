@@ -42,13 +42,6 @@ angular.module('starter.controllers')
 
 
 
-
-$scope.registerStepBack=function(){
-  history.back();
-  $scope.$apply();
-}
-
-
         $scope.fnameBlur=function(){
           $scope.fnameerror =false;
           $('.regstfname').removeClass("emailbackground");
@@ -433,5 +426,17 @@ $scope.registerStepBack=function(){
             }
             $state.go('tab.searchprovider');
         }
+        $('.hospitalDynamicLink').click(function() {
+            var url = 'https://' + $rootScope.hospitalDomainName + '/public/#/UserTerms';
+            window.open(encodeURI(url), '_system', 'location=yes');
+            return false;
+        });
+
+
+       /* $scope.registerStepBack=function(){
+          history.back();
+          $scope.$apply();
+     }*/
+
 
     })
