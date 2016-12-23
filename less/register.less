@@ -9,6 +9,8 @@
 	h2 {
 		margin-top: 0px;
 		padding-top: 30px;
+		padding-bottom: 6px;
+		margin-bottom: 0px;
 		span {
 			line-height: 35px;
 		}
@@ -32,7 +34,7 @@
 
 	}
 	&__regStarted {
-		padding: 31px 13px 8px 13px;
+		padding: 25px 13px 8px 13px;
 		font-size: 20px;
 		text-align: center;
 		//border-bottom: 1px solid;
@@ -47,13 +49,15 @@
 		.startedTitle {
 			font-family: @bold_family;
 			color: #999999 !important;
-			font-size: 24px;
+			font-size: 25px;
 			margin-top: -10px;
-			padding: 0px 14px 4px;
+			padding: 2px 14px 4px;
 		}
 	}
+}
+.user-account__input {
 	select {
-		-webkit-appearance: none; 
+		-webkit-appearance: none;
 		 -moz-appearance: none;
 	}
 }
@@ -364,7 +368,7 @@
 	&__fieldset {
 		height:auto;
 	//	padding: 8px 12px;
-	padding: 16px 15px 0px 20px;
+		padding: 13px 15px 0px 20px;
 		flex-grow: 1;
 		position: relative;
 		border-right: 1px solid #979797;
@@ -442,7 +446,7 @@
 		font-size: 16px;
 		color: #999999 !important;
 		svg {
-			font-size: 19px;
+			font-size: 20px;
 		}
 	}
 
@@ -463,10 +467,12 @@
 
 	&__label {
 		display: block;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 18px;
 		font-family: @bold_family;
 		color: @grey_dark;
+		position: relative;
+		top: -5px;
 	}
 
 	&__input {
@@ -1017,7 +1023,7 @@
     text-align: center;
     font-family: @semibold_family;
     margin-top: 32px;
-	margin-bottom: 40px;
+	padding-bottom: 40px;
 	//min-height: 183px;
 	p {
 		margin-left: 10%;
@@ -1057,6 +1063,12 @@
    and (min-device-width : 768px)
    and (max-device-width : 1024px) {
    /* Styles */
+   .user-account__fieldset {
+	   background-color: #e0e0e0 !important;
+	}
+	.ssooption {
+		background-color: #e0e0e0 !important;
+	}
    .registerContent__registerCard {
 		margin-right: 13%;
 		margin-left: 13%;
@@ -1071,11 +1083,11 @@
 		  padding-bottom: 20px;
 	}
 	.acinfoRegisterBottomAcceptText-Android {
-		margin-bottom: 20px;
+		margin-bottom: 35px;
 		min-height: auto;
 	}
 	.acinfoRegisterBottomAcceptText-IOS {
-		margin-bottom: 20px;
+		padding-bottom: 35px;
 		min-height: auto;
 	}
 	.regFooter {
