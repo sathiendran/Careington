@@ -5,6 +5,7 @@ angular.module('starter.controllers')
         $rootScope.APICommonURL = apiCommonURL;
     }
     $window.localStorage.setItem('ChkVideoConferencePage', "");
+    $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -93,7 +94,7 @@ angular.module('starter.controllers')
                 $rootScope.Hospital = data.data[0].brandName;
                 if (deploymentEnvLogout === 'Multiple') {
                     $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase(); 
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 } else {
                     $rootScope.alertMsgName = $rootScope.Hospital;
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();

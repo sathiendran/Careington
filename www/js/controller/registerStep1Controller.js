@@ -86,7 +86,7 @@ $scope.registerStepBack=function(){
 
             }
         }
-        $scope.mobilelength = $("#regMobile").val().length;
+        //$scope.mobilelength = $("#regMobile").val().length;
         $scope.moblieBlur=function(){
             $('.regstmobile').removeClass("emailbackground");
           $scope.mobilemanderror=false;

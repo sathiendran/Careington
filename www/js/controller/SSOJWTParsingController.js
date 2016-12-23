@@ -5,6 +5,7 @@ angular.module('starter.controllers')
         $rootScope.APICommonURL = apiCommonURL;
     }
     $window.localStorage.setItem('ChkVideoConferencePage', "");
+    $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||

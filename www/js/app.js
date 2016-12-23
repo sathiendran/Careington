@@ -149,6 +149,11 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     $ionicPlatform.ready(function() {
       // Idle.watch();
 
+     // var is_iPad = navigator.userAgent.match(/iPad/i) != null;
+     // var is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+      //console.log(is_iPad);
+
       function resetSessionLogoutTimer(){
           window.localStorage.setItem('Active', timeoutValue);
           timeoutValue = 0;
