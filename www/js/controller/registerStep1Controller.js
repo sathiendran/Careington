@@ -235,38 +235,43 @@ $scope.registerStepBack=function(){
               },
               error: function(data,status) {
                   $rootScope.isRegistrationCompleted = false;
-                  if(status==400){
+                  if(data.status == 400){
+                    $scope.ErrorMessage = data.statusText.indexOf("already exists");
+                    if($scope.ErrorMessage >= 0) {
+                        $scope.contactmail=$scope.email;
+                        var myPopup = $ionicPopup.show({
 
-                    $scope.contactmail=$scope.email;
-                    var myPopup = $ionicPopup.show({
+                            title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",
+                            templateUrl: 'templates/emailpopup.html',
+                            scope: $scope,
+                            buttons: [{
+                                text: '<b class="fonttype">Edit Email</b>',
+                                onTap: function(e) {
+                                    return false;
+                                }
+                            }, {
+                                text: '<b class="fonttype">Go to Login</b>',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                    return true;
+                                }
+                            }, ]
+                        });
 
-                        title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",
-                        templateUrl: 'templates/emailpopup.html',
-                        scope: $scope,
-                        buttons: [{
-                            text: '<b class="fonttype">Edit Email</b>',
-                            onTap: function(e) {
-                                return false;
+                        myPopup.then(function(res) {
+                            if (res) {
+                            $state.go('tab.loginSingle');
+                            } else {
+                                $('.regemail').addClass("emailbackground");
+                                $scope.emailexisterror=true;
                             }
-                        }, {
-                            text: '<b class="fonttype">Go to Login</b>',
-                            type: 'button-positive',
-                            onTap: function(e) {
-                                return true;
-                            }
-                        }, ]
-                    });
-
-                    myPopup.then(function(res) {
-                        if (res) {
-                        $state.go('tab.loginSingle');
-                        } else {
-                            $('.regemail').addClass("emailbackground");
-                            $scope.emailexisterror=true;
+                        });
+                        $scope.closepopup = function() {
+                            myPopup.close();
                         }
-                    });
-                    $scope.closepopup = function() {
-                        myPopup.close();
+                    } else {
+                      $scope.ErrorMessage = data.statusText;
+                      $rootScope.Validation($scope.ErrorMessage);
                     }
                   }
                else {
@@ -334,9 +339,9 @@ $scope.registerStepBack=function(){
               $rootScope.registedPwd = $scope.password;
               $state.go('tab.registerSuccess');
           },
-          error: function(data) {
+          error: function(data,status) {
               $rootScope.isRegistrationCompleted = false;
-              if (data.message.indexOf('already registered') > 0) {
+            /*  if (data.message.indexOf('already registered') > 0) {
                   navigator.notification.alert(
                       data.message, // message
                       function() {},
@@ -347,6 +352,49 @@ $scope.registerStepBack=function(){
               } else {
                   $scope.$root.$broadcast("callServerErrorMessageValidation");
               }
+            */
+            if(data.status == 400){
+              $scope.ErrorMessage = data.statusText.indexOf("already exists");
+              if($scope.ErrorMessage >= 0) {
+                  $scope.contactmail=$scope.email;
+                  var myPopup = $ionicPopup.show({
+
+                      title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",
+                      templateUrl: 'templates/emailpopup.html',
+                      scope: $scope,
+                      buttons: [{
+                          text: '<b class="fonttype">Edit Email</b>',
+                          onTap: function(e) {
+                              return false;
+                          }
+                      }, {
+                          text: '<b class="fonttype">Go to Login</b>',
+                          type: 'button-positive',
+                          onTap: function(e) {
+                              return true;
+                          }
+                      }, ]
+                  });
+
+                  myPopup.then(function(res) {
+                      if (res) {
+                      $state.go('tab.login');
+                      } else {
+                          $('.regemail').addClass("emailbackground");
+                          $scope.emailexisterror=true;
+                      }
+                  });
+                  $scope.closepopup = function() {
+                      myPopup.close();
+                  }
+              } else {
+                $scope.ErrorMessage = data.statusText;
+                $rootScope.Validation($scope.ErrorMessage);
+              }
+            }
+         else {
+                $scope.$root.$broadcast("callServerErrorMessageValidation");
+            }
           }
       };
       LoginService.postRegisterDetails(params);
