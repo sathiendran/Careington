@@ -113,6 +113,7 @@ $scope.registerStepBack=function(){
           }else{
             $scope.pwderror =false;
             $scope.pwdspaceerror =false;
+            $('.regstpwd').removeClass("emailbackground");
           }
         }
         $scope.regdobs=function(){
@@ -137,10 +138,11 @@ $scope.registerStepBack=function(){
              }
         }
         $scope.confirmpwdBlur=function(){
+          $scope.cnfrmpwderror =false;
           $('.regstconpwd').removeClass("emailbackground");
           if ($scope.regStep1.regPassword !== $scope.regStep1.regConfrmPassword) {
               $scope.cnfrmpwderror =true;
-              $('.regstpwd').addClass("emailbackground");
+              $('.regstconpwd').addClass("emailbackground");
           }else{
               $scope.cnfrmpwderror =false;
           }
