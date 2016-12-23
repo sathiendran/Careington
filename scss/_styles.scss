@@ -1031,6 +1031,12 @@ body {
         margin-top: 7px;
     }
 }
+.paymentConSecton {
+    margin: 160px 0 0 0;
+}
+.addCardConScetion {
+     margin: 155px 0 0 0;
+}
 .consultCharge_content {
     padding-bottom: 30px;
     padding-top: 36px;
@@ -1128,6 +1134,7 @@ body {
         font-family: $fontFamily_semibold;
         color: #666666;
         text-align: right;
+        padding-right: 16px;
         span {
             color: red;
             font-size: 22px;
