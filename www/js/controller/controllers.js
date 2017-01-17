@@ -1368,7 +1368,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         if (cobrandApp === "Hello420" && loginEmail.toLowerCase() !== "itunesmobiletester@gmail.com") {
 
             $scope.checkForSSOUserExistsInHello420();
-        } else if($rootScope.customerSso === "Mandatory"){
+        } else if($rootScope.customerSso === "Mandatory" && $rootScope.ssopatienttoken != ""){
           $scope.doCheckssoToken();
         }else {
             $scope.doGetToken();
@@ -1619,7 +1619,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     }
                 }
 
-                if($rootScope.customerSso === "Mandatory"){
+                if($rootScope.customerSso === "Mandatory" && $rootScope.ssopatientforgetpwd != ""){
 
                   var params = {
                       email: $rootScope.UserEmail,
