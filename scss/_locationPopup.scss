@@ -1,0 +1,66 @@
+.locpopup {
+.popup{
+	width: 360px !important;
+}
+.popup-head{
+    padding: 18px 10px;
+    border-bottom: 1px solid #888;
+    text-align: left;
+    margin-top: 0px;
+    background-color: #ffc60b;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.locationtitle{
+  font-family: Glober Regular;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+}
+.popup-body{
+  padding:0px !important;
+.loc-content{
+  font-family: Glober Regular;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    color: rgba(0, 0, 0, 0.75);
+    padding:10px !important;
+}
+.loc-hr{
+  height: 0px;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+}
+.loc-detcontent {
+
+  font-size: 18px;
+  font-family: Glober Regular;
+  font-style: normal;
+  font-stretch: normal;
+  color: rgba(0, 0, 0, 0.75);
+.loc-popupcontent{
+  padding:10px !important;
+}
+.loc-popupdet {
+    font-size: 24px;
+    font-family: Glober Bold;
+    padding:8px !important;
+    span{
+    color:rgba(0, 0, 0, 0.54);
+    font-size:20px;
+    }
+}
+.locval {
+font-family: Glober Reqular;
+font-size: 18px;
+font-weight: normal;
+padding:10px !important;
+
+  }
+ }
+}

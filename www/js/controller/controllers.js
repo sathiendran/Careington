@@ -1273,7 +1273,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.goBackProvider = function() {
         $state.go('tab.provider');
     };
-
+    $scope.mobileloc=false;
     $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function() {
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
@@ -1913,6 +1913,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 $rootScope.address = data.data[0].address;
+                var addresss=$rootScope.address.split(",");
+                  $rootScope.stateaddresses=addresss[0];
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
                 $rootScope.dob = data.data[0].dob;
@@ -2201,6 +2203,33 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
                     } else {
                         $state.go('tab.userhome');
+
+
+                        var confirmPopup = $ionicPopup.show({
+
+                            title: "<div class='locationtitle'> Confirm Current Location </div> ",
+
+                            templateUrl: 'templates/currentLocation.html',
+                            cssClass: 'locpopup',
+
+                            buttons: [{
+                                text: 'No',
+                                onTap: function(e) {
+                                    return false;
+                                }
+                            }, {
+                                text: '<b>Yes</b>',
+                                type: 'button-positive',
+                                onTap: function(e) {
+                                    return true;
+                                }
+                            }, ],
+                        });
+                        confirmPopup.then(function(res) {
+                            if (res) {
+
+                            } else {    }
+                        });
 
                     }
                 } else {
@@ -3825,13 +3854,42 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             'schoolContact': index.schoolContact,
                             'schoolName': index.schoolName
                         });
+
                     });
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
+                    var cutaddresses=$rootScope.cutaddress.split(",");
+                      $rootScope.stateaddresses=cutaddresses[0];
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     $rootScope.userDOBDateFormat = date;
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     $state.go(nextPage);
+                    var confirmPopup = $ionicPopup.confirm({
+
+                        title: "<div class='locationtitle'> Confirm Current Location </div> ",
+
+                        templateUrl: 'templates/currentLocation.html',
+                        cssClass: 'locpopup',
+
+                        buttons: [{
+                            text: 'No',
+                            onTap: function(e) {
+                                return false;
+                            }
+                        }, {
+                            text: '<b>Yes</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                                return true;
+                            }
+                        }, ],
+                    });
+                    confirmPopup.then(function(res) {
+                        if (res) {
+                          $scope.mobileloc=true;
+                        } else {     alert("add"); }
+                    });
                 }
             },
             error: function(data, status) {
@@ -3870,7 +3928,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $rootScope.P_isAuthorized = false;
                         }
                     }
-
+                        $rootScope.accountClinicianFooter = 'ngLoadingSpinner';
                     var date = new Date($scope.individualScheduledConsultationList.dob);
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
 
@@ -4236,6 +4294,33 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if (clickEvent === "patientClick") {
                             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+                            var confirmPopup = $ionicPopup.confirm({
+
+                                title: "<div class='locationtitle'> Confirm Current Location </div> ",
+
+                                templateUrl: 'templates/currentLocation.html',
+                                cssClass: 'locpopup',
+
+                                buttons: [{
+                                    text: 'No',
+                                    onTap: function(e) {
+                                        return false;
+                                    }
+                                }, {
+                                    text: '<b>Yes</b>',
+                                    type: 'button-positive',
+                                    onTap: function(e) {
+                                        return true;
+                                    }
+                                }, ],
+                            });
+                            confirmPopup.then(function(res) {
+                                if (res) {
+                                  $scope.mobileloc=true;
+                                } else {
+                                  alert("add");
+                                   }
+                            });
                         } else if (clickEvent === "sideMenuClick") {
                             var patid = $rootScope.patientId;
                             var primarypatid = $rootScope.primaryPatientId;
@@ -4509,6 +4594,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         if (clickEvent === "patientClick") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+
         } else if (clickEvent === "sideMenuClick") {
             var patid = $rootScope.patientId;
             var primarypatid = $rootScope.primaryPatientId;
@@ -4561,6 +4647,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         if (clickEvent === "patientClick") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+
         } else if (clickEvent === "sideMenuClick") {
             var patid = $rootScope.patientId;
             var primarypatid = $rootScope.primaryPatientId;
