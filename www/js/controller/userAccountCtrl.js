@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, $timeout) {
+    .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, $timeout, $ionicPopup) {
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
@@ -161,6 +161,8 @@ angular.module('starter.controllers')
             $rootScope.AllegiesCountValid = "";
             $rootScope.MedicationCountValid = "";
             $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+          
+
         }
 
         $rootScope.doGetCurrentUserAppointment = function() {

@@ -1912,9 +1912,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-                $rootScope.address = data.data[0].address;
-                var addresss=$rootScope.address.split(",");
-                  $rootScope.stateaddresses=addresss[0];
+                $rootScope.patientParticularaddress = data.data[0].addressLocation;
+                $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
+                $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
+                $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
                 $rootScope.dob = data.data[0].dob;
@@ -2202,34 +2205,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     if (deploymentEnv === "Single") {
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
                     } else {
-                        $state.go('tab.userhome');
-
-
-                        var confirmPopup = $ionicPopup.show({
-
-                            title: "<div class='locationtitle'> Confirm Current Location </div> ",
-
-                            templateUrl: 'templates/currentLocation.html',
-                            cssClass: 'locpopup',
-
-                            buttons: [{
-                                text: 'No',
-                                onTap: function(e) {
-                                    return false;
-                                }
-                            }, {
-                                text: '<b>Yes</b>',
-                                type: 'button-positive',
-                                onTap: function(e) {
-                                    return true;
-                                }
-                            }, ],
-                        });
-                        confirmPopup.then(function(res) {
-                            if (res) {
-
-                            } else {    }
-                        });
+                        $scope.doGetlocationResponse ();
 
                     }
                 } else {
@@ -2250,6 +2226,64 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         LoginService.getRelatedPatientProfiles(params);
     }
+
+
+        $scope.doGetlocationResponse = function() {
+
+            var params = {
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+                  if(data.active==true){
+                    $state.go('tab.userhome');
+
+
+                    var confirmPopup = $ionicPopup.confirm({
+
+                        title: "<div class='locationtitle'> Confirm Current Location </div> ",
+
+                        templateUrl: 'templates/currentLocation.html',
+                        cssClass: 'locpopup',
+
+                        buttons: [{
+                            text: '<b>None</b>',
+                            onTap: function(e) {
+
+                              $scope.showAlert();
+                                return true;
+                            }
+                        }, {
+                            text: '<b>Yes</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                              //  return true;
+                                  //$rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                            }
+                        }, ],
+                    });
+                    confirmPopup.then(function(res) {
+                        if (res) {
+
+                        } else {
+                            $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                        }
+                    });
+                  }
+                },
+                error: function(data, status) {
+                  alert("fail");
+                }
+            };
+
+            LoginService.getLocationResponse(params);
+        }
+
+        $scope.showAlert = function() {
+          $rootScope.doGetCountryLocations();
+          $state.go("tab.currentlocation");
+          };
+          $scope.cancellocation=function(){
+            history.back();
+          }
 
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -2510,14 +2544,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     //Start Open Country List popup
     $scope.loadCountriesList = function() {
 
-        $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
+      /*  $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-        });
+        });*/
 
     };
 
@@ -2544,14 +2578,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     //End Countries
 
     $scope.loadStateList = function(CountryCode) {
-        $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
+      /*  $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-        });
+        });*/
         $rootScope.CountryCode = CountryCode;
     };
     $scope.stateList = '';
@@ -3735,6 +3769,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     }
 
+
     $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage, seeADoc) {
 
         var params = {
@@ -3865,31 +3900,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     $state.go(nextPage);
-                    var confirmPopup = $ionicPopup.confirm({
 
-                        title: "<div class='locationtitle'> Confirm Current Location </div> ",
-
-                        templateUrl: 'templates/currentLocation.html',
-                        cssClass: 'locpopup',
-
-                        buttons: [{
-                            text: 'No',
-                            onTap: function(e) {
-                                return false;
-                            }
-                        }, {
-                            text: '<b>Yes</b>',
-                            type: 'button-positive',
-                            onTap: function(e) {
-                                return true;
-                            }
-                        }, ],
-                    });
-                    confirmPopup.then(function(res) {
-                        if (res) {
-                          $scope.mobileloc=true;
-                        } else {     alert("add"); }
-                    });
                 }
             },
             error: function(data, status) {
@@ -4197,6 +4208,70 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getListOfLocationOrganization(params);
     }
 
+$scope.loction={};
+    $rootScope.doGetCountryLocations = function() {
+      $rootScope.listOfCountries = '';
+        $rootScope.listOfCountry = '';
+      //  $rootScope.listOfState= '';
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.listOfCountries = [];
+                $rootScope.listOfCountry = [];
+              //  $rootScope.listOfState = [];
+             if (data.data[0] !== '') {
+                    angular.forEach(data.data, function(index) {
+                        $rootScope.listOfCountries.push({
+                            'conditionTypeId': index.conditionTypeId,
+                            'description': index.description,
+                            'createdDate': index.createdDate,
+                            'id': index.id,
+                            'country': angular.fromJson(index.countries)
+
+                        });
+                        angular.forEach(index.countries, function(index) {
+                            $rootScope.listOfCountry.push({
+                                'country': index.country,
+                                'countryCode': index.countryCode,
+                                'region': angular.fromJson(index.regions)
+                            });
+                        });
+
+                    });
+                }
+
+            },
+            error: function(data, status) {
+                if (status === 0) {
+
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getListOfCountryLocation(params);
+    }
+
+
+$scope.$watch('loction.loccountry', function(cutLoc) {
+  $rootScope.listOfSelectstate=[];
+        if (cutLoc) {
+            $rootScope.listOfLocState = $filter('filter')($rootScope.listOfCountry, {
+                country: cutLoc
+            });
+            angular.forEach($rootScope.listOfLocState[0].region, function(index) {
+                $rootScope.listOfSelectstate.push({
+                    'region':index.region
+                });
+            });
+        } else {
+            $rootScope.listOfLocState = "";
+}
+});
+
     $rootScope.passededconsultants = function() {
 
         var params = {
@@ -4304,22 +4379,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 buttons: [{
                                     text: 'No',
                                     onTap: function(e) {
-                                        return false;
+                                        $scope.showAlert();
+                                        return true;
                                     }
                                 }, {
                                     text: '<b>Yes</b>',
                                     type: 'button-positive',
                                     onTap: function(e) {
-                                        return true;
+
                                     }
                                 }, ],
                             });
                             confirmPopup.then(function(res) {
                                 if (res) {
-                                  $scope.mobileloc=true;
+
                                 } else {
-                                  alert("add");
-                                   }
+                                    $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                                }
                             });
                         } else if (clickEvent === "sideMenuClick") {
                             var patid = $rootScope.patientId;
@@ -4365,6 +4441,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getListOfPassedConsultations(params);
 
     }
+
+
+
 
     $rootScope.doGetListOfCoUsers = function() {
         var params = {

@@ -281,7 +281,8 @@ angular.module('starter.services', [])
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
       // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		  // url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+      url: apiCommonURL + '/api/v2/patients/profile?include=all',
        method: 'GET'
 		};
 
@@ -347,6 +348,26 @@ angular.module('starter.services', [])
     };
 
     $http(PatientDetailsList).
+      success(function (data, status, headers, config) {
+        if (typeof params.success != 'undefined') {
+          params.success(data);
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (typeof params.error != 'undefined') {
+          params.error(data,status);
+        }
+    });
+  }
+
+  this.getLocationResponse= function(params) {
+    var PatientLocation = {
+      headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2.1/patients/response-rules-active',
+            method: 'GET'
+    };
+
+    $http(PatientLocation).
       success(function (data, status, headers, config) {
         if (typeof params.success != 'undefined') {
           params.success(data);
@@ -1589,6 +1610,24 @@ this.getPatientMedicalProfile = function(params){
                }
            });
   }
+  this.getListOfCountryLocation = function(params){
+       var requestInfo = {
+           headers: util.getHeaders(params.accessToken),
+           url: apiCommonURL + '/api/v2.1/admin/rules/patient-provider-license-meta-rules',
+           method: 'GET',
+       };
+       $http(requestInfo).
+           success(function (data, status, headers, config) {
+               if (typeof params.success != 'undefined') {
+                   params.success(data);
+               }
+           }).
+           error(function (data, status, headers, config) {
+               if (typeof params.error != 'undefined') {
+                   params.success(data);
+               }
+           });
+     }
 
 })
 
