@@ -2268,6 +2268,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                     });
                   }
+                  else{
+                      $state.go('tab.userhome');
+
+
+                  }
                 },
                 error: function(data, status) {
 
