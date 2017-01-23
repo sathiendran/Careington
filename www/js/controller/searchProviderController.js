@@ -74,7 +74,7 @@ angular.module('starter.controllers')
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();
                         angular.forEach(data.data, function(index) {
-                          if(index.customerSso != 'Mandatory'){
+                          if(index.customerSso != "Mandatory"){
                             if (typeof index.hospitalImage !== 'undefined' && index.hospitalImage !== '') {
                                 var hosImage = index.hospitalImage;
                                 $scope.chkImageorNot = "image";
@@ -88,7 +88,7 @@ angular.module('starter.controllers')
                                 $scope.proImage = get2CharInString.getProv2Char(index.hospitalName);
                             }
                             $rootScope.searchProviderList.push({
-                            //    'customerSso': index.customerSso,
+                                'customerSso': index.customerSso,
                                 'hospitalId': index.hospitalId,
                                 'hospitalName': index.hospitalName,
                                 'firstCharactOfHosName': $scope.proImage,
@@ -100,8 +100,6 @@ angular.module('starter.controllers')
                             });
                           }
                         });
-
-
 
                     } else {
                         $('#providerListDiv').hide();

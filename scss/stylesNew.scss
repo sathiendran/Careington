@@ -5,6 +5,13 @@ box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 .useraddcontent {
 margin-top: 125px !important;
 }
+.emailbackground{
+  background-color: #FDD8C5  !important;
+}
+.emailext{
+  text-align:center;
+  font-size:21pz !important;
+}
 @media (max-width: 320px) and (min-width: 315px) {
 .usercontent-IOS {
     margin-top: 32% !important;
@@ -2447,7 +2454,8 @@ h2 {
     color: #FFFFFF;
     text-align: center;
     line-height: 30px;
-    padding-top: 65px;
+    //padding-top: 65px;
+    padding-top: 13px;
     span {
         @include font($fontFamily_xBold, bold, 34px);
         color: #FFFFFF;
@@ -4380,8 +4388,8 @@ p {
 }
 .forgot_password_textSingle {
 text-align: center;
-padding-top: 8px;
-padding-bottom: 22px;
+//padding-top: 8px;
+padding-bottom: 20px;
 a {
     font-family: $fontFamily_semibold;
     color: #fff;
@@ -5035,4 +5043,10 @@ font-size: 19px;
   color:red !important;
   font-family: Glober Bold;
 
+}
+.logSingCOntent-IOS {
+     padding-top: 52px !important;
+}
+.paymentSubHeader {
+     margin: 4px 7px 10px !important;
 }

@@ -130,7 +130,7 @@
          </ion-list>
       </ion-content>
    </ion-view>
-   <ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)">
+   <ion-footer-bar ng-if="onDemandAvailability > 0 && P_isAuthorized" style="display: {{accountClinicianFooter}}" class="bar bar-footer  footer-color footerstyle" ng-click="goToPatientConcerns(currentPatientDetails)" >
       <div ng-if="getIndividualPatientCreditCount != 0 && paymentMode == 'on'" class="title CreditClinician" id="centercolor" >
          <div class="creditSeeaCLinician" >
             See A Provider Now
