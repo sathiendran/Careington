@@ -2205,7 +2205,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     if (deploymentEnv === "Single") {
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
                     } else {
-                        $scope.doGetlocationResponse ();
+                      if( $rootScope.cuttlocations == "tab.ReportScreen"){
+                        $state.go('tab.userhome');
+                      }else if($rootScope.cuttlocations == undefined){
+                          $scope.doGetlocationResponse ();
+                      }else{
+                          $scope.doGetlocationResponse ();
+                      }
+
 
                     }
                 } else {
@@ -2245,7 +2252,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         cssClass: 'locpopup',
 
                         buttons: [{
-                            text: '<b>None</b>',
+                            text: '<b>No</b>',
                             onTap: function(e) {
 
                               $scope.showAlert();
@@ -2267,6 +2274,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                           //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
                         }
                     });
+                  }
+                  else{
+                      $state.go('tab.userhome');
+
+
                   }
                 },
                 error: function(data, status) {
@@ -5026,6 +5038,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
     }
 
     $rootScope.EnableBackButton = function() {
+      var currentLocation = window.location;
+      var loc=currentLocation.href;
+          var newloc=loc.split("#");
+                  var locat=newloc[1];
+                  var sploc=locat.split("/");
+                  $rootScope.cuttlocations=sploc[1] +"."+sploc[2];
         $rootScope.doGetPatientProfiles();
         $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $state.go('tab.userhome');
