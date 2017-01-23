@@ -1,6 +1,6 @@
 .locpopup {
 .popup{
-	width: 360px !important;
+	//width: 360px !important;
 }
 .locicon{padding:3px;}
 .popup-head{
@@ -14,7 +14,7 @@
 }
 .locationtitle{
   font-family: Glober Regular;
-    font-size: 24px;
+    font-size: 22px;
     color: rgba(0, 0, 0, 0.54);
     font-weight: normal;
     font-style: normal;
@@ -48,7 +48,7 @@
   padding:10px !important;
 }
 .loc-popupdet {
-    font-size: 24px;
+    font-size: 20px;
     font-family: Glober Bold;
     padding:8px !important;
     span{
@@ -57,7 +57,7 @@
     }
 }
 .locval {
-font-family: Glober Reqular;
+font-family: Glober Regular;
 font-size: 18px;
 font-weight: normal;
 padding:10px !important;
@@ -228,4 +228,5 @@ padding:10px !important;
   font-size: 19px !important;
   color: #666666 !important;
   padding: 20px;
+	text-align:left !important;
 }

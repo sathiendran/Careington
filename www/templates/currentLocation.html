@@ -2,13 +2,13 @@
       <div class="" >
 
           <h2 class="loc-content" >We need to know your current loction
-            to match you with providers licenced to practice in your area
+            to match you with providers licenced to practice in your area.
           </h2>
           <hr class="loc-hr">
           <div class="loc-detcontent ">
-            <p class="loc-popupcontent">  Your Current location is in  </p>
-            <p class="loc-popupdet" ng-if="encounterstate == '' && encountercountry ==''"><span class="ion-ios-location locicon"></span> {{stateaddresses}},{{countryaddress}}</p>
-            <p class="loc-popupdet" ng-if=" encountercountry!='' && encounterstate!=''" && ><span class="ion-ios-location locicon"></span>{{encounterstate}},{{encountercountry}}</p>
+            <p class="loc-popupcontent">  Your Current location is in : </p>
+            <p class="loc-popupdet" ng-if="encounterstate == '' && encountercountry ==''"><span class="ion-ios-location locicon"></span> {{stateaddresses}} , {{countryaddress}}</p>
+            <p class="loc-popupdet" ng-if=" encountercountry!='' && encounterstate!=''" && ><span class="ion-ios-location locicon"></span>{{encounterstate}} , {{encountercountry}}</p>
             <p class="loc-popupdet" ng-if=" encountercountry!='' && encounterstate ==''" && ><span class="ion-ios-location locicon"></span>{{encountercountry}}</p>
             <p class="locval">Is this where you are now? <p>
 
