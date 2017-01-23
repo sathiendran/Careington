@@ -3,8 +3,8 @@
 
 	<ion-header-bar class="header bar bar-header" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 		<button class="header__btn header__add" ng-click="cancellocation();">cancel</button>
-	  <!--	<div class="header__title">Current Location</div> -->
-			<div class="header__title">Set your current location</div>
+			<div class="header__title">Current Location</div>
+
 		<button class="header__btn header__add" ng-click="updatelocation();" >Save</button>
 		<div class="Server_Error ErrorMessageDiv" ></div>
 		<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
@@ -14,7 +14,7 @@
 
 		<div class="new-user__main">
 
-    <!--  <h2 class="subname sublocName">Set your current location </h2>-->
+   <h2 class="subname sublocName">Set your current location </h2>
 
 
     <div class="profile-props__item" style="padding: 17px;">
@@ -29,7 +29,7 @@
 					<input type="hidden" id="organ" value="{{loction.loccountry.country}}" />
 				</select>
 			 </label>
-  
+
  			</div>
 	</div>
 	<div class="profile-props__item" style="padding: 17px;"  ng-show="currentstateview">
