@@ -9,7 +9,7 @@
       </div>
       <h1 class="{{title_patient}} calendarTitle" style="{{PatientTitle}}" >Patient</h1>
       <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{PatientCalentarInnerStyle}}" >
-         <div class="calendar_subHeader">
+         <div class="calendar_subHeader paymentSubHeader">
             <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
             <div class="subHeader_content-{{deviceName}} ellipsis" >
                <div class="subHeader_content_name ellipsis" >
@@ -20,7 +20,7 @@
             </div>
          </div>
       </div>
-      <div ng-if="healthPlanPage != 'block'" class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 119px;	background-color: #fff; {{PaymentStyle}}" >
+      <div ng-if="healthPlanPage != 'block'" class="bar consultCharge_subHeader PatintHeaderFontStyle"  style="padding: 0px; margin-top: 127px;	background-color: #fff; {{PaymentStyle}}" >
          <span>Payment</span>
       </div>
    </ion-header-bar>
@@ -95,7 +95,7 @@
             </div>
          </div>
       </ion-content>
-      <ion-content class="consultCharge_contentPayment consultConPaymentMargin"  style="display: {{consultChargeNoPlanPage}}" >
+      <ion-content class="consultCharge_contentPayment consultConPaymentMargin paymentConSecton"  style="display: {{consultChargeNoPlanPage}}" >
          <div class="consultation_head RegularFontStyle consultChargeNoPlanText" >
             <div class="consultTittleCharge">Consultation Charge</div>
             <div class="consultation_number"> ${{consultationAmount}}*</div>

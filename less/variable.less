@@ -1,0 +1,56 @@
+// 1 Font Families and Text Shadows
+
+@xxbold_family: "Glober Heavy", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@xxbold_italic_family: "Glober Heavy Italic", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@semibold_family: "Glober SemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@xbold_family: "Glober xBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@xbold_italic_family: "Glober xBold Italic", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@bold_family: "Glober Bold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@book_family: "Glober Book", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@bold_italic_family: "Glober Book Italic", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@regular_family: "Glober Regular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@regular_italic_family: "Glober Regular Italic", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@light_family: "Glober Light", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@light_italic_family: "Glober Light Italic", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+@text_shadow_lighttext: 0 1px 0 rgba(0,0,0,.7);
+@text_shadow_darktext: 0 1px 0 rgba(255,255,255,.7);
+
+// 2 Colors
+
+@body_color: #4d4d4d;
+@heading_color: #111;
+@select: #78aace;
+@select_color: #fff;
+@header_color: #6b757e;
+@grey_extra_light: #f4f4f4;
+@grey_lighter: #ececec;
+@grey_light: #cbcbcb;
+@grey_regular: #888;
+@grey_dark: #666;
+@grey_darker: #444;
+@green: #a2d28a;
+@yellow: #ffc60b;
+@orange: #EF4B27;
+@blue: #23b4d6;
+@red: #f04c27;
+@green_light: lighten(desaturate(@green, 4%), 17%);
+@yellow_light: lighten(desaturate(@yellow, 10%), 30%);
+@red_light: lighten(desaturate(@red, 10%), 30%);
+@orange_light: lighten(desaturate(@orange, 10%), 10%);
+@white: #ffffff;
+@black: #000;
+@cyan: #b9e8f2;
+@appt-ondemand: #00FF00 ;
+@appt-p-scheduled: #FF00FF;
+@appt-a-scheduled: #FAAF3B;
+@appt-unavailable: @grey_dark;
+@brand_color: @blue;
+
+@mixin font($fontFamily, $fontWeight, $fontSize) {
+    font-family: $fontFamily;
+    font-weight: $fontWeight;
+	font-size: $fontSize;
+}
+// Screens
+
+@screen_xsmall: ~"only screen and (max-width:374px)";

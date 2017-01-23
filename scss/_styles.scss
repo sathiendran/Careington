@@ -991,6 +991,18 @@ body {
     padding: 5px;
 
 }
+.ssooption{
+    width: 100%;
+    border: none;
+    background-color: #F3F3F3;
+    padding: 5px;
+    margin-left: -6px;
+    color: #666;
+    font-size:16px !important;
+}
+.ssoaddress{
+  font-size:16px !important;
+}
 //Consult Charge page
 .consultCharge_subHeader {
     border-bottom: 1px solid #C5C5C5;
@@ -1018,6 +1030,12 @@ body {
     .AddCard {
         margin-top: 7px;
     }
+}
+.paymentConSecton {
+    margin: 160px 0 0 0;
+}
+.addCardConScetion {
+     margin: 155px 0 0 0;
 }
 .consultCharge_content {
     padding-bottom: 30px;
@@ -1116,6 +1134,7 @@ body {
         font-family: $fontFamily_semibold;
         color: #666666;
         text-align: right;
+        padding-right: 16px;
         span {
             color: red;
             font-size: 22px;
@@ -4282,7 +4301,7 @@ textarea {
   //  top: -153px;
 }
 .singleTermsContent-IOS {
-    padding: 160px 7px 7px 7px;
+    padding: 326px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify;
@@ -4300,7 +4319,7 @@ padding: 200px 7px 7px 7px;
 //    top: -31px;
 }
 .singleTermsconContent-IOS {
-    padding: 35px 7px 7px 7px;
+    padding: 180px 7px 7px 7px;
     font-size: 19px;
     color: #4D4D4D;
     text-align: justify;

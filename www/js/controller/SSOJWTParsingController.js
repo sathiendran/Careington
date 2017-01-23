@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-.controller('InterimController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
+.controller('SSOJWTParsingController', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
     $rootScope.deploymentEnv = deploymentEnv;
     if (deploymentEnv !== 'Multiple') {
         $rootScope.APICommonURL = apiCommonURL;
@@ -587,17 +587,38 @@ angular.module('starter.controllers')
         LoginService.getPrimaryPatientLastName(params);
     }
 
-
-    $rootScope.jwtKey = '';
-    $scope.doGetTokenFromJWT = function() {
+    $scope.chkPatientFilledAllRequirements = function() {
         var params = {
-            jwtKey: $rootScope.jwtKey,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
+              //  $rootScope.currentPatientDetails = data.data;
+            },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getPatientFilledAllRequirements(params);
+    }
+
+
+    $rootScope.jwtToken = '';
+    $scope.doGetTokenUsingSsoJwt = function() {
+        var params = {
+            jwt: $rootScope.jwtToken,
             success: function(data) {
                 $rootScope.accessToken = data.data[0].access_token;
                 $scope.getCurrentTimeForSessionLogout = new Date();
                 $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
                 $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
                 $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
+                $scope.chkPatientFilledAllRequirements();
                 $scope.doGetCodesSet();
                 $scope.doGetSingleUserHospitalInformation();
                 $scope.doGetPatientProfiles();
@@ -613,50 +634,30 @@ angular.module('starter.controllers')
                 }
             }
         };
-        LoginService.getTokenFromJWT(params);
+        LoginService.getTokenUsingSsoJwt(params);
     }
-    if ($stateParams.token === "jwt" && $stateParams.hospitalId === "0" && $stateParams.consultationId === "0") {
+    if (!angular.isUndefined($stateParams.jwtToken) && $stateParams.jwtToken !== '') {
         if (window.localStorage.getItem("external_load") !== null && window.localStorage.getItem("external_load") !== "") {
-            var ssoCallbackJWT = window.localStorage.getItem("external_load");
-            if (ssoCallbackJWT.indexOf('jwt') > -1) {
-                var EXTRA = {};
-                var extQuery = window.localStorage.getItem("external_load").split('?')
-                var extQueryOnly = extQuery[1];
-                var query = extQueryOnly.split("&");
-                for (var i = 0, max = query.length; i < max; i++) {
-                    if (query[i] === "") // check for trailing & with no param
-                        continue;
-                    var param = query[i].split("=");
-                    EXTRA[decodeURIComponent(param[0])] = decodeURIComponent(param[1] || "");
+            $rootScope.jwtToken = $stateParams.jwtToken;
+            if (deploymentEnvLogout === 'Single') {
+                if (deploymentEnvForProduction === 'Production') {
+                    $rootScope.hospitalId = singleHospitalId;
+                    apiCommonURL = 'https://connectedcare.md';
+                    api_keys_env = 'Production';
+                    $rootScope.APICommonURL = 'https://connectedcare.md';
+                } else if (deploymentEnvForProduction === 'Staging') {
+                    $rootScope.hospitalId = singleStagingHospitalId;
+                    api_keys_env = "Staging";
+                } else if (deploymentEnvForProduction === 'QA') {
+                    $rootScope.hospitalId = singleQAHospitalId;
+                    api_keys_env = "QA";
+                } else if (deploymentEnvForProduction === 'Sandbox') {
+                    $rootScope.hospitalId = singleSandboxHospitalId;
+                    api_keys_env = "Sandbox";
                 }
-                var jwtToken = EXTRA['jwt'];
-                $rootScope.jwtKey = jwtToken;
-                $scope.doGetTokenFromJWT();
             }
+            $scope.doGetTokenUsingSsoJwt();
         }
-    } else if ($stateParams.token !== "" && $stateParams.token !== "jwt" && $stateParams.hospitalId !== "" && $stateParams.consultationId !== "") {
-        $rootScope.accessToken = $stateParams.token;
-        $rootScope.hospitalId = $stateParams.hospitalId;
-        $scope.doGetCodesSet();
-        $rootScope.consultationId = $stateParams.consultationId;
-        $scope.getCurrentTimeForSessionLogout = new Date();
-        $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
-        $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
-        $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
-        $scope.doGetSingleUserHospitalInformation();
-        $scope.doGetPatientProfiles();
-        $scope.doGetRelatedPatientProfiles('waitingRoom');
-    } else if ($stateParams.token !== "" && $stateParams.token !== "jwt" && $stateParams.hospitalId !== "" && $stateParams.consultationId === "") {
-        $rootScope.accessToken = $stateParams.token;
-        $rootScope.hospitalId = $stateParams.hospitalId;
-        $scope.doGetCodesSet();
-        $scope.getCurrentTimeForSessionLogout = new Date();
-        $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
-        $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
-        $window.localStorage.setItem('FlagForCheckingFirstLogin', 'Token');
-        $scope.doGetSingleUserHospitalInformation();
-        $scope.doGetPatientProfiles();
-        $scope.doGetRelatedPatientProfiles('userhome');
     } else {
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
@@ -666,5 +667,4 @@ angular.module('starter.controllers')
             $state.go('tab.login');
         }
     }
-    $scope.showAlert = function() {};
 })

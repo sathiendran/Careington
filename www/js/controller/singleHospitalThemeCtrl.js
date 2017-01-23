@@ -42,6 +42,9 @@ angular.module('starter.controllers')
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
+                $rootScope.ssopatienttoken=data.data[0].patientTokenApi;
+                $rootScope.ssopatientregister=data.data[0].patientRegistrationApi;
+                $rootScope.ssopatientforgetpwd=data.data[0].patientForgotPasswordApi;
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
 
