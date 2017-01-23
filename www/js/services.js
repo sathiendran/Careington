@@ -1629,6 +1629,25 @@ this.getPatientMedicalProfile = function(params){
            });
      }
 
+     this.putListOfCountryLocation = function(params){
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate ,
+            method: 'PUT',
+        };
+        $http(requestInfo).
+            success(function (data, status, headers, config) {
+                if (typeof params.success != 'undefined') {
+                    params.success(data);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                if (typeof params.error != 'undefined') {
+                    params.success(data);
+                }
+            });
+      }
+
 })
 
 

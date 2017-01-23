@@ -1,37 +1,48 @@
 
-
 <ion-view view-title="Patient list" class="patient-list">
 
 	<ion-header-bar class="header bar bar-header" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 		<button class="header__btn header__add" ng-click="cancellocation();">cancel</button>
-		<div class="header__title">Current Location</div>
-		<button class="header__btn header__add"  >Save</button>
-
+	  <!--	<div class="header__title">Current Location</div> -->
+			<div class="header__title">Set your current location</div>
+		<button class="header__btn header__add" ng-click="updatelocation();" >Save</button>
+		<div class="Server_Error ErrorMessageDiv" ></div>
+		<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
 	</ion-header-bar>
 
 	<ion-content class="new-user__content">
 
 		<div class="new-user__main">
 
-      <h2 class="subname sublocName">Set your current location </h2>
+    <!--  <h2 class="subname sublocName">Set your current location </h2>-->
 
 
     <div class="profile-props__item" style="padding: 17px;">
     	<div class="profile-props__value">
 
-					<select id="country" class="profile-props__input"  ng-model="loction.loccountry"  name="loccountry">
-            <option value=''>Select</option>
-						<option ng-repeat="getcountry in listOfCountry" value="{{getcountry.country}}" ><b>{{getcountry.country}}</b></option>
-						<input type="hidden" id="organ" value="{{loction.loccountry.country}}" />
-        	</select>
+				<label class = "item item-input item-select">
+   			<div class = "input-label">Country</div>
+
+				<select id="country" class="profile-props__input"  ng-model="loction.loccountry"  name="loccountry">
+				<option >Select your Country</option>
+					<option ng-repeat="getcountry in listOfCountry" value="{{getcountry.country}}" > <b> {{getcountry.country}}</b></option>
+					<input type="hidden" id="organ" value="{{loction.loccountry.country}}" />
+				</select>
+			 </label>
+  
  			</div>
 	</div>
-	<div class="profile-props__item" style="padding: 17px;" ng-disabled="!listOfSelectstate" >
+	<div class="profile-props__item" style="padding: 17px;"  ng-show="currentstateview">
 			<div class="profile-props__value">
-				<select class="profile-props__input"  name="currentLocation" id="">
-					 <option>Choose state</option>
-					 <option ng-repeat="getstate in listOfSelectstate" value="{{getstate.regioncode}}" ><b>{{getstate.region}}</b></option>
-				</select>
+
+				<label class = "item item-input item-select">
+   			<div class = "input-label">State</div>
+
+				<select class="profile-props__input"  name="currentLocation" id="state">
+						<option>Choose state</option>
+						<option ng-repeat="getstate in listOfSelectstate" value="{{getstate.regioncode}}" > <b> {{getstate.region}}</b></option>
+				 </select>
+			 </label>
 
 
 			</div>

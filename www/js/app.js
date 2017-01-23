@@ -629,11 +629,11 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 controller: 'LoginCtrl'
             }
         }
-    }).state('tab.currentlocation', {
-        url: '/currentlocation',
+    }).state('tab.CurrentLocationlist', {
+        url: '/CurrentLocationlist',
         views: {
             'tab-login': {
-                templateUrl: 'templates/tab-CurrentLocationList.html',
+                templateUrl: 'templates/tab-CurrentLocationlist.html',
                 controller: 'LoginCtrl'
             }
         }

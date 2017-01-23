@@ -659,7 +659,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.$storage = $window.localStorage;
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
-
+    $scope.currentstateview=true;
     $rootScope.checkAndChangeMenuIcon = function() {
             if (!$ionicSideMenuDelegate.isOpen(true)) {
                 if ($('#BackButtonIcon svg').hasClass("ion-close")) {
@@ -2264,13 +2264,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if (res) {
 
                         } else {
-                            $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                          //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
                         }
                     });
                   }
                 },
                 error: function(data, status) {
-                  alert("fail");
+
                 }
             };
 
@@ -2279,7 +2279,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         $scope.showAlert = function() {
           $rootScope.doGetCountryLocations();
-          $state.go("tab.currentlocation");
+          $state.go("tab.CurrentLocationlist");
           };
           $scope.cancellocation=function(){
             history.back();
@@ -4212,13 +4212,13 @@ $scope.loction={};
     $rootScope.doGetCountryLocations = function() {
       $rootScope.listOfCountries = '';
         $rootScope.listOfCountry = '';
-      //  $rootScope.listOfState= '';
+
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $rootScope.listOfCountries = [];
                 $rootScope.listOfCountry = [];
-              //  $rootScope.listOfState = [];
+
              if (data.data[0] !== '') {
                     angular.forEach(data.data, function(index) {
                         $rootScope.listOfCountries.push({
@@ -4262,16 +4262,59 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             $rootScope.listOfLocState = $filter('filter')($rootScope.listOfCountry, {
                 country: cutLoc
             });
+            if($rootScope.listOfLocState[0].region == undefined){
+                $scope.currentstateview = false;
+            }
             angular.forEach($rootScope.listOfLocState[0].region, function(index) {
                 $rootScope.listOfSelectstate.push({
                     'region':index.region
                 });
+                $scope.currentstateview = true;
             });
         } else {
             $rootScope.listOfLocState = "";
 }
+
 });
 
+ $scope.updatelocation=function(){
+
+      $rootScope.upcountry=$( "#country option:selected" ).text();
+      $rootScope.upstate=$( "#state option:selected" ).text();
+      $rootScope.statereg=$rootScope.listOfLocState;
+      if($rootScope.upcountry == "Select your Country" &&  $rootScope.upstate == "Choose state" && $rootScope.listOfLocState == ""){
+        $scope.ErrorMessage = "Please select country";
+        $rootScope.Validation($scope.ErrorMessage);
+      } else if($rootScope.upcountry != "" &&   $rootScope.statereg[0].region != undefined && $rootScope.upstate == "Choose state"){
+        $scope.ErrorMessage = "Please select state";
+        $rootScope.Validation($scope.ErrorMessage);
+      }  else{
+      $scope.updateCurrentLocation();
+      }
+
+ }
+
+
+ $scope.updateCurrentLocation=function(){
+   if($rootScope.upcountry !=""  &&   $rootScope.upstate!="Choose state"){
+     $scope.upcountrystate = $rootScope.upcountry +","+$rootScope.upstate;
+   }else if($rootScope.upcountry!= ""  &&   $rootScope.upstate == "Choose state"){
+       $scope.upcountrystate = $rootScope.upcountry;
+   }
+   var params = {
+     accessToken: $rootScope.accessToken,
+     countrystate: $scope.upcountrystate,
+     //state:  $scope.upstate,
+
+     success: function(data,status) {
+         history.back();
+     },
+     error: function(data,status) {
+        alert("fail");
+     }
+   };
+     LoginService.putListOfCountryLocation(params);
+ }
     $rootScope.passededconsultants = function() {
 
         var params = {
