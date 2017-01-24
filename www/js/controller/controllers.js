@@ -2297,7 +2297,8 @@ var deregisterBackButton;
           $state.go("tab.CurrentLocationlist");
           };
           $scope.cancellocation=function(){
-            history.back();
+            $scope.doGetlocationResponse();
+            //history.back();
           }
 
     $scope.doGetExistingConsulatation = function() {

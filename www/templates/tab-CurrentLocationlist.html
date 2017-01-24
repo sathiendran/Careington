@@ -1,7 +1,7 @@
 
 <ion-view view-title="Patient list" class="patient-list">
 
-	<ion-header-bar class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+	<!--<ion-header-bar class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">-->
 		<!--<ion-header-bar class="header bar bar-header" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
 			<button class="header__btn header__add" ng-click="cancellocation();">cancel</button>
 				<div class="header__title">Current Location</div>
@@ -13,14 +13,15 @@
 
 		<ion-content class="new-user__content">-->
 
-		
 
-		 <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="cancellocation()" >Cancel</button>
-          <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Current Location</h1>
-          <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="updatelocation()" >Save</button>
-					<div class="Server_Error ErrorMessageDiv" ></div>
-					<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
-	</ion-header-bar>
+		<header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+ 				<div id="Error_Message" class="ErrorMessage ErrorMessageDiv"  ></div>
+			 <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="cancellocation()" >Cancel</button>
+			 <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Current Location</h1>
+			 <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="updatelocation()" >Save</button>
+
+		</header>
+
 
 	<!--<ion-content class="new-user__content">-->
 	 <ion-content has-header="true" class="concernListContent">
@@ -49,7 +50,7 @@
 			<div class="profile-props__value">
 
 				<label class = "item item-input item-select">
-   			<div class = "input-label">State</div>
+   			<div class = "input-label">State/Region</div>
 
 				<select class="profile-props__input"  name="currentLocation" id="state">
 						<option>Choose state</option>
