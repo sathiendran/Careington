@@ -2236,7 +2236,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getRelatedPatientProfiles(params);
     }
 
-
+var deregisterBackButton;
         $scope.doGetlocationResponse = function() {
 
             var params = {
@@ -2245,13 +2245,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                   if(data.active==true){
                     $state.go('tab.userhome');
 
-
+                    deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e){}, 401);
                     var confirmPopup = $ionicPopup.confirm({
 
                         title: "<div class='locationtitle'> Confirm Current Location </div> ",
 
                         templateUrl: 'templates/currentLocation.html',
                         cssClass: 'locpopup',
+                        hardwareBackButtonClose: false,
 
                         buttons: [{
                             text: '<b>No</b>',
@@ -2271,7 +2272,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     });
                     confirmPopup.then(function(res) {
                         if (res) {
-
+                          deregisterBackButton();
                         } else {
                           //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
                         }
@@ -5089,7 +5090,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         LoginService.getAttachmentURL(params);
     }
 
-  
+
 })
 
 .directive('inputMaxLengthNumber', function() {
