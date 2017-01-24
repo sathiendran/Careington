@@ -696,6 +696,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.doRefreshUserHome = function() {
         $rootScope.doGetPatientProfiles();
+          $rootScope.cuttlocations ="tab.ReportScreen"
         $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $timeout(function() {
             $scope.$broadcast('scroll.refreshComplete');
@@ -4150,7 +4151,21 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             accessToken: $rootScope.accessToken,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
+
+              angular.forEach(data.data[0].familyMembers, function(index) {
+                  if (index.patientId == $rootScope.checkpatid) {
+
+
+                      $rootScope.providerAvailability = index.providerAvailable;
+
+                  }
+              });
+
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
+
+
+
+
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -4677,6 +4692,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         }
     }
     $rootScope.GoToPatientDetailsFromRelatedUsers = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
+
         $rootScope.coUserAuthorization = $rootScope.patientId;
         $rootScope.patientId = P_Id;
         $rootScope.getCoUserAunthent = '';
@@ -4684,8 +4700,9 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
     }
 
     $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
-        if ($rootScope.patientSearchKey !== '' || typeof $rootScope.patientSearchKey !== "undefined") {
 
+        if ($rootScope.patientSearchKey !== '' || typeof $rootScope.patientSearchKey !== "undefined") {
+              $rootScope.checkpatid=P_Id;
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
             if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
                 if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
@@ -5071,6 +5088,8 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         };
         LoginService.getAttachmentURL(params);
     }
+
+  
 })
 
 .directive('inputMaxLengthNumber', function() {
