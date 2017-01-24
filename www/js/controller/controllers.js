@@ -2055,6 +2055,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
                 $rootScope.currentPatientDetails = data.data;
                 if ($rootScope.hasRequiredFields === true) {
+                    $rootScope.cuttlocations = "";
                     $rootScope.doGetPatientProfiles();
                     $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
@@ -5040,10 +5041,10 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
     $rootScope.EnableBackButton = function() {
       var currentLocation = window.location;
       var loc=currentLocation.href;
-          var newloc=loc.split("#");
-                  var locat=newloc[1];
-                  var sploc=locat.split("/");
-                  $rootScope.cuttlocations=sploc[1] +"."+sploc[2];
+      var newloc=loc.split("#");
+      var locat=newloc[1];
+      var sploc=locat.split("/");
+      $rootScope.cuttlocations=sploc[1] +"."+sploc[2];
         $rootScope.doGetPatientProfiles();
         $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $state.go('tab.userhome');
