@@ -1,16 +1,29 @@
 
 <ion-view view-title="Patient list" class="patient-list">
 
-	<ion-header-bar class="header bar bar-header" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-		<button class="header__btn header__add" ng-click="cancellocation();">cancel</button>
-			<div class="header__title">Current Location</div>
+	<ion-header-bar class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+		<!--<ion-header-bar class="header bar bar-header" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+			<button class="header__btn header__add" ng-click="cancellocation();">cancel</button>
+				<div class="header__title">Current Location</div>
 
-		<button class="header__btn header__add" ng-click="updatelocation();" >Save</button>
+			<button class="header__btn header__add" ng-click="updatelocation();" >Save</button>
+			<div class="Server_Error ErrorMessageDiv" ></div>
+			<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
+		</ion-header-bar>
+
+		<ion-content class="new-user__content">-->
+
 		<div class="Server_Error ErrorMessageDiv" ></div>
 		<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
+
+		<button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="cancellocation()" >Cancel</button>
+          <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Current Location</h1>
+          <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="updatelocation()" >Done</button>
+
 	</ion-header-bar>
 
-	<ion-content class="new-user__content">
+	<!--<ion-content class="new-user__content">-->
+	 <ion-content has-header="true" class="concernListContent">
 
 		<div class="new-user__main">
 

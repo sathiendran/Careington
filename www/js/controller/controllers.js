@@ -492,7 +492,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
             $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
             $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
-            $rootScope.PrimaryConcernPopupDone = "margin-top: 14px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
             $rootScope.PriorSurgeryPopupDone = "margin-top: 21px;";
             $rootScope.PriorSurgeryPopupCancel =  "margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
