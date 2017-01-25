@@ -626,7 +626,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             ($rootScope.currState.$current.name === "tab.receipt") ||
             ($rootScope.currState.$current.name === "tab.videoConference") ||
             ($rootScope.currState.$current.name === "tab.connectionLost") ||
-            ($rootScope.currState.$current.name === "tab.ReportScreen")
+            ($rootScope.currState.$current.name === "tab.ReportScreen")||
+            ($rootScope.currState.$current.name === "tab.CurrentLocationlist")
         ) {
             // H/W BACK button is disabled for these states (these views)
             // Do not go to the previous state (or view) for these states.
