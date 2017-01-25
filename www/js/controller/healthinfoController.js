@@ -1075,6 +1075,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 if (status === 400) {
                     $scope.ErrorMessage = "Patient already exists with email " + $scope.healthInfoEmail;
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(data.statusText =="Patient Registration is not allowed for this address." && data.status == 400){
+                  $scope.ErrorMessage = "Patient Registration is not allowed for this address. ";
+                  $rootScope.Validation($scope.ErrorMessage);
                 } else if(status === 0 ){
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);

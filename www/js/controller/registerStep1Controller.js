@@ -349,6 +349,7 @@ angular.module('starter.controllers')
               }
             */
             if(data.status == 400){
+
               $scope.ErrorMessage = data.statusText.indexOf("already exists");
               if($scope.ErrorMessage >= 0) {
                   $scope.contactmail=$scope.email;
@@ -382,6 +383,9 @@ angular.module('starter.controllers')
                   $scope.closepopup = function() {
                       myPopup.close();
                   }
+              }else if(data.statusText == "Bad Request" && data.status == 400){
+                $scope.ErrorMessage = "Patient Registration is not allowed for this address!";
+                $rootScope.Validation($scope.ErrorMessage);
               } else {
                 $scope.ErrorMessage = data.statusText;
                 $rootScope.Validation($scope.ErrorMessage);
@@ -411,7 +415,8 @@ angular.module('starter.controllers')
                 if(data ==='null' ){
                $scope.ErrorMessage = "Internet connection not available, Try again later!";
                $rootScope.Validation($scope.ErrorMessage);
-             }else{
+             }
+             else{
                  $rootScope.serverErrorMessageValidation();
              }
               }
