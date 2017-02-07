@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
     <title></title>
@@ -8,23 +9,27 @@
 
     <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-	<link href="css/styles.min.css" rel="stylesheet">
+    <link href="css/styles.min.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
     <script type="text/javascript" src="scripts/idangerous.swiper.js"></script>
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-	<script src="js/ngStorage.js"></script>
-	<!-- ng-cordova have to be before cordova -->
-	<script src="js/ng-cordova.js"></script>
+    <script src="js/ngStorage.js"></script>
+    <!-- ng-cordova have to be before cordova -->
+    <script src="js/ng-cordova.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
-	<script type="text/javascript" src="scripts/jquery-2.0.2.min.js"></script>
-	<script type="text/javascript" src="scripts/jquery-ui-1.10.4.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&language=en"></script>
+    <script type="text/javascript" src="scripts/jquery-2.0.2.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery-ui-1.10.4.min.js"></script>
+
+    <script type="text/javascript" src="https://emerald.snap-qa.com/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script type="text/javascript" src="schedule/Scripts/signal/hubs.js"></script>
+
 
     <!-- your app's js -->
 
-     <!--<script data-require="angular-animate.js@1.2.6" data-semver="1.2.6" src="http://code.angularjs.org/1.2.6/angular-animate.js"></script>-->
+    <!--<script data-require="angular-animate.js@1.2.6" data-semver="1.2.6" src="http://code.angularjs.org/1.2.6/angular-animate.js"></script>-->
     <script src="js/app.js"></script>
 
     <script src="js/controller/controllers.js"></script>
@@ -45,90 +50,110 @@
     <script src="js/controller/consultationController.js"></script>
     <script src="js/controller/addnewuserController.js"></script>
     <script src="js/controller/addnewdependentController.js"></script>
-	
-	<script src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
-    <script src="https://emerald.snap-test.com/Scripts/min/snap.common.min.js?v=2178"></script>
-    <script src="https://emerald.snap-test.com/Scripts/min/snap.core.min.js"></script>
-    <script src="https://emerald.snap-qa.com/Scripts/min/patientHome.min.js"></script>
+
+    <script src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
+    <script src="https://emerald.snap-qa.com/Scripts/min/snap.core.min.js"></script>
+    <script src="schedule/Scripts/common/snap.common.min.js?v=2178"></script>
+
+    <script src="schedule/Scripts/models/commonModels.js"></script>
+    <script src="schedule/Scripts/schedular.common.min.js"></script>
+    <!-- Hub Main -->
+    <script src="schedule/Scripts/hubs/hubModel.js"></script>
+    <script src="schedule/Scripts/hubs/mainHub.js"></script>
+    <script src="schedule/Scripts/hubs/patientSelfSchedulingHub.js"></script>
+
+
+
+
+
+
+    <!---End of HubMain -->
+    <script src="schedule/Scripts/min/patientHome.min.js"></script>
+
     <script src="https://emerald.snap-qa.com/Scripts/slick.min.js"></script>
     <script src="https://emerald.snap-qa.com/Scripts/viewModels/patient/overlay.viewmodel.js"></script>
-    <script src="https://emerald.snap-qa.com/Scripts/min/patientSelfSchedule.min.js"></script>
+    <script src="schedule/Scripts/min/patientSelfSchedule.min.js"></script>
     <script src="https://emerald.snap-qa.com/Scripts/viewModels/patient/Schedule/providerSearch.viewmodel.js"></script>
+
+
+
+
     <script src="js/schedule.js"></script>
-  <!--  <script src="js/scheduleRouter.js"></script>-->
+    <!--  <script src="js/scheduleRouter.js"></script>-->
 
 
-   <!-- <script src="js/controller/healthsearchController.js"></script>-->
+    <!-- <script src="js/controller/healthsearchController.js"></script>-->
 
-     <script src="js/services.js"></script>
-     <script src="js/controller/searchProviderController.js"></script>
-	<script src="js/controller/registerStep1Controller.js"></script>
-  <script src="js/controller/registerStep2Controller.js"></script>
-	<script src="js/controller/videoConnectionLostController.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controller/searchProviderController.js"></script>
+    <script src="js/controller/registerStep1Controller.js"></script>
+    <script src="js/controller/registerStep2Controller.js"></script>
+    <script src="js/controller/videoConnectionLostController.js"></script>
 
     <script src="js/opentok.js"></script>
-	<script src="js/Insomnia.js"></script>
+    <script src="js/Insomnia.js"></script>
 
-	 <!--<script src="js/offline.min.js"></script>
+    <!--<script src="js/offline.min.js"></script>
  <link href="js/offline-theme-default.css" rel="stylesheet" type="text/css" />
  <link href="js/offline-language-english.css" rel="stylesheet" type="text/css" />-->
 
-	<script src="scripts/angular-touch.js"></script>
+    <script src="scripts/angular-touch.js"></script>
     <script src="scripts/spin.min.js"></script>
-	<script src="scripts/angular-spinner.min.js"></script>
-	<script src="scripts/angular-loading-spinner.js"></script>
-	 <script src="lib/ionic/js/angular/angular.min.js"></script>
+    <script src="scripts/angular-spinner.min.js"></script>
+    <script src="scripts/angular-loading-spinner.js"></script>
+    <script src="lib/ionic/js/angular/angular.min.js"></script>
     <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-touch.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-messages.min.js"></script>
 	-->
 
-	<!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <!--<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
 <link href="css/Icomoon/style.css" rel="stylesheet" type="text/css" />-->
-<link href="css/animate.css" rel="stylesheet" type="text/css" />
-<link href="css/animated-notifications.css" rel="stylesheet" type="text/css" />
+    <link href="css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="css/animated-notifications.css" rel="stylesheet" type="text/css" />
 
-<link href="lib/ion-google-place/ion-google-place.css" rel="stylesheet" type="text/css" />
-<!--<script type="text/javascript" src="scripts/jquery-2.0.2.min.js"></script>
+    <link href="lib/ion-google-place/ion-google-place.css" rel="stylesheet" type="text/css" />
+    <!--<script type="text/javascript" src="scripts/jquery-2.0.2.min.js"></script>
 <script type="text/javascript" src="scripts/jquery-ui-1.10.4.min.js"></script>-->
 
-<script type="text/javascript" src="lib/angular-timer/app/js/_timer.js"></script>
-<script type="text/javascript" src="lib/angular-timer/app/js/i18nService.js"></script>
-<script type="text/javascript" src="lib/humanize-duration/humanize-duration.js"></script>
-<script type="text/javascript" src="lib/momentjs/moment.js"></script>
-<script type="text/javascript" src="lib/momentjs/locales.js"></script>
-<script type="text/javascript" src="lib/ng-idle/angular-idle.js"></script>
-<script type="text/javascript" src="lib/ng-idle/angular-idle.min.js"></script>
-<script type="text/javascript" src="lib/ion-google-place/ion-google-place.js"></script>
-<script src="lib/jquery-2.1.3.js"></script>
-<!-- <script src="lib/jquery.signalR-2.1.2.js"></script> -->
+    <script type="text/javascript" src="lib/angular-timer/app/js/_timer.js"></script>
+    <script type="text/javascript" src="lib/angular-timer/app/js/i18nService.js"></script>
+    <script type="text/javascript" src="lib/humanize-duration/humanize-duration.js"></script>
+    <script type="text/javascript" src="lib/momentjs/moment.js"></script>
+    <script type="text/javascript" src="lib/momentjs/locales.js"></script>
+    <script type="text/javascript" src="lib/ng-idle/angular-idle.js"></script>
+    <script type="text/javascript" src="lib/ng-idle/angular-idle.min.js"></script>
+    <script type="text/javascript" src="lib/ion-google-place/ion-google-place.js"></script>
+    <script src="lib/jquery-2.1.3.js"></script>
+    <!-- <script src="lib/jquery.signalR-2.1.2.js"></script> -->
 
-<script type="text/javascript" src="lib/underscore.js"></script>
-<script type="text/javascript" src="scripts/jquery.runner.js"></script>
+    <script type="text/javascript" src="lib/underscore.js"></script>
+    <script type="text/javascript" src="scripts/jquery.runner.js"></script>
 
-<!--<script src='https://sandbox.connectedcare.md/api/signalR/hubs'></script>-->
-<!-- <script src='https://snap-qa.com/api/signalR/hubs'></script> -->
-<!--<script src='https://connectedcare.md/api/signalR/hubs'></script>-->
-<!-- <script src='https://snapmd-api.azurewebsites.net/signalR/hubs'></script> -->
+    <!--<script src='https://sandbox.connectedcare.md/api/signalR/hubs'></script>-->
+    <!-- <script src='https://snap-qa.com/api/signalR/hubs'></script> -->
+    <!--<script src='https://connectedcare.md/api/signalR/hubs'></script>-->
+    <!-- <script src='https://snapmd-api.azurewebsites.net/signalR/hubs'></script> -->
 
-<!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-touch.js"></script>-->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-<!--<script type="text/javascript" src="scripts/animated-notifications.js"></script>-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.1/angular-touch.js"></script>-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--<script type="text/javascript" src="scripts/animated-notifications.js"></script>-->
 
 
-	<!-- Start Date Picker -->
-	<!--<link href="datepicker/angular-pickadate.css" rel="stylesheet"> -->
-	 <!-- <link href="http://code.ionicframework.com/0.9.27/css/ionic.min.css" rel="stylesheet">
+    <!-- Start Date Picker -->
+    <!--<link href="datepicker/angular-pickadate.css" rel="stylesheet"> -->
+    <!-- <link href="http://code.ionicframework.com/0.9.27/css/ionic.min.css" rel="stylesheet">
     <link href="datepicker/angular-pickadate.css" rel="stylesheet">
     -->
-  <!--  <script src="http://code.ionicframework.com/0.9.27/js/ionic.bundle.min.js"></script>-->
+    <!--  <script src="http://code.ionicframework.com/0.9.27/js/ionic.bundle.min.js"></script>-->
 
-	<!-- End Date Picker -->
+    <!-- End Date Picker -->
 
 
-  </head>
-  <body ng-app="starter" animation="slide-left-right-ios7">
+</head>
 
-  <span style="top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 90000; opacity: 0.5; position: absolute;" us-spinner="{radius:8, width:4, length: 8}"></span>
+<body ng-app="starter" animation="slide-left-right-ios7">
+
+    <span style="top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 90000; opacity: 0.5; position: absolute;" us-spinner="{radius:8, width:4, length: 8}"></span>
 
     <!--
       The nav bar that will be updated as we navigate between views.
@@ -143,8 +168,9 @@
       have templates inline in this html file if you'd like).
     -->
     <ion-nav-view></ion-nav-view>
-  </body>
-  <script defer src="svgxuse.js"></script>
+</body>
+<script defer src="svgxuse.js"></script>
+
 </html>
 
 <!--
