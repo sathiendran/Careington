@@ -1,0 +1,332 @@
+<div class="notification-bar notification-bar--provider-search notification-bar--success" data-bind="css:{is-active:vm_isNotificationActive">
+    <span class="notification-bar__icon icon_confirm"></span>
+    <span class="notification-bar__title">Appointment Created!</span>
+    <span class="notification-bar__desc notification-bar__link" data-bind="click:vm_goToCalendar">Click here to go to your calendar.</span>
+    <button class="notification-bar__close" data-bind="click:vm_closeNotification"><span class="icon_cross"></span></button>
+</div>
+
+<div class="col5-sm col16-md-5 col16-lg-4 left-col provider-search-page__left-col" data-bind="css:{is-active: vm_isSearchBarActive, is-notification: vm_isNotificationActive}">
+    <div class="provider-search-panel">
+        <h2 class="left-col__title">Search &amp; Filter</h2>
+
+        <div class="provider-search-panel__date">
+            <div class="provider-search-panel__appointment-label">Appointment Date</div>
+            <div class="provider-search-panel__datepicker">
+                <input
+                    id="dateFilterPiker"
+                    data-role="datepicker"
+                    data-bind="value: dateFilter, events: { change: vm_onDateFilterChange, open: vm_onDateFilterOpen }, min: vm_currentDate"
+                    >
+            </div>
+        </div>
+
+        <div class="provider-search-panel__search">
+            <div class="search__container">
+                <div class="search">
+                    <span class="icon_magnifying-glass"></span>
+                    <input type="text" placeholder="Enter Your Search"
+                        data-bind="events: { keyup: vm_onNameFilterChange }, value: nameFilter"
+                        data-value-update="keyup">
+                </div>
+            </div>
+        </div>
+
+        <div class="provider-search-panel__title">
+            Refine by:
+
+            <!-- <button type="button" class="hide-desktop js-toggle-panel">Done</button> -->
+            <button type="button" data-bind="click: vm_onClearAllClick, visible: vm_isClearFiltersVisible">Clear All</button>
+        </div>
+
+        <div class="panel-filter" data-bind="source: vm_getActiveFilters" data-template="filterCathegoryTemplate">
+        </div>
+    </div>
+</div>
+
+<div class="col5-sm col16-md-11 col16-lg-12 right-col provider-search-page__right-col" data-bind="css:{is-notification: vm_isNotificationActive}">
+    <div>
+        <div class="provider-search-page__container">
+            <div class="provider-search-header">
+                <div class="provider-search-header__toggle-info"
+                    data-bind="events: { click : vm_toogleAllContents }">
+                    <button type="button">
+                        <span class="icon_info-with-circle"></span>
+                    </button>
+                </div>
+
+                <div class="provider-search-header__time  js-toggle-all-content"
+                    data-bind="events: { click : vm_toogleAllFooters }">
+                    <button type="button">
+                        <span class="icon_clock"></span>
+                    </button>
+                </div>
+
+                <div class="provider-search-header__pager" data-bind="visible: vm_isAllCliniciansMode">
+                    <div class="pager"
+                        data-role="pager"
+                        data-bind="source: allCliniciansDS">
+                    </div>
+                </div>
+
+
+                <div class="provider-search-header__pager" data-bind="visible: vm_isFavoriteCliniciansMode">
+                    <div class="pager"
+                        data-role="pager"
+                        data-bind="source: favoriteCliniciansDS">
+                    </div>
+                </div>
+
+                <div class="provider-search-header__date">
+                    <div class="provider-search-header__date-wrap">
+                        <a data-bind="events: { click: vm_onDateBack }, visible: vm_onDateBackVisible "class="provider-search-header__date-back"><span class="icon_chevron-thin-left"></span></a>
+                        <div class="provider-search-header__date-inner">
+                            <span data-bind="text: vm_getDateDay">Wednesday,</span> <span data-bind="text: vm_getDateFormatted">December 22, 2016</span>
+                        </div>
+                        <a data-bind="click: vm_onDateForvard" class="provider-search-header__date-forward"><span class="icon_chevron-thin-right"></span></a>
+                    </div>
+                </div>
+
+                <div class="provider-search-header__results" data-bind="text: vm_getPagingCount">
+                </div>
+            </div>
+
+            <div class="provider-search-header__search">
+                <div class="search">
+                    <span class="icon_magnifying-glass"></span>
+                    <input type="text" placeholder="Enter Your Search">
+                </div>
+                <button type="button" class="js-toggle-panel">Refine</button>
+            </div>
+
+            <div class="provider-search-page__content"
+                data-bind="visible: vm_isFavoriteCliniciansMode">
+                <div
+                    data-role="listview"
+                    data-bind="source: favoriteCliniciansDS, events: { dataBound: vm_favoriteClinicianCardsList_onDataBound }"
+                    data-template="clinicianCardTemplate">
+                </div>
+
+                <div class="provider-search-empty" data-bind="visible: vm_isFavoriteCliniciansDSEmpty">
+                    <div class="provider-search-empty__box">
+                        <div class="provider-search-empty__icon">
+                            <span class="icon_user_clinician"></span>
+                        </div>
+                        <div class="provider-search-empty__title">No Providers Match <br>Your Current Search</div>
+                        <div class="provider-search-empty__subtitle">Please update your search and try again.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="provider-search-page__content"
+                data-bind="visible: vm_isAllCliniciansMode,
+                       css:{provider-search-page__content--grid: vm_isClinicianCardVerticalView}">
+                <div
+                    data-role="listview"
+                    data-bind="source: allCliniciansDS, events: { dataBound: vm_allClinicianCardsList_onDataBound }"
+                    data-template="clinicianCardTemplate">
+                </div>
+
+                <div class="provider-search-empty" data-bind="visible: vm_isAllCliniciansDSEmpty">
+                    <div class="provider-search-empty__box">
+                        <div class="provider-search-empty__icon">
+                            <span class="icon_user_clinician"></span>
+                        </div>
+                        <div class="provider-search-empty__title">No Providers Match <br>Your Current Search</div>
+                        <div class="provider-search-empty__subtitle">Please update your search and try again.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script id="clinicianCardTemplate" type="text/x-kendo-template">
+<div class="drawer-card drawer-card--provider drawer-card--available"
+    id="#: 'card_' + data.vm_cardId #"
+    data-bind = "css: {
+        drawer-card--appointment-request: apptsSlotsTray.vm_isEmpty,
+        is-active: vm_isSelected,
+        is-footer-active:  isFooterActive,
+        is-content: isContentActive,
+        is-bookmarked: isFavorite }">
+    <div class="drawer-card__container">
+        <div class="drawer-card__arrow"></div>
+
+        <div class="drawer-card__back"
+            data-bind= "events: { click: vm_toggleContent }">
+            <div class="icon_reply"></div>
+        </div>
+
+        <div class="drawer-card__main">
+            <div class="drawer-card__card">
+                <div class="drawer-card__userpic">
+                    <button type="button" class="drawer-card__user-info"
+                        data-bind= "events: { click: vm_toggleContent }">
+                        <span class="icon_info"></span>
+                    </button>
+
+                    <div class="userpic userpic--drawer-card userpic--is-available"
+                        data-bind= "events: { click: vm_toggleContent }">
+                        <img data-bind="attr:{src: photo}" alt="">
+                    </div>
+
+                    <div class="drawer-card__chevron"></div>
+                </div>
+
+                <button tyle="button" class="drawer-card__sub-action js-toggle-bookmark" data-bind="click: vm_toggleFavorite">
+                    <div class="drawer-card__bookmark">
+                        <div class="icon_star"></div>
+                    </div>
+                </button>
+
+                <div class="drawer-card__info"
+                    data-bind= "events: { click: vm_toggleContent }">
+                    <div class="drawer-card__name" data-bind="text: vm_getFullName">
+                    </div>
+
+                    <div class="drawer-card__secondary-info" data-bind="text: speciality">
+                    </div>
+
+                    <div class="drawer-card__tertiary-info" >
+                        <span data-bind="text: subSpeciality"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="drawer-card__content"
+                data-bind="visible: isContentActive">
+                <div class="drawer-info-panel">
+
+                    <div class="drawer-info-panel__cell drawer-info-panel__cell--practicing">
+                        <div class="drawer-info-panel__header">Practicing</div>
+                        <div class="drawer-info-panel__content"  data-bind="text: vm_getPracticingYears">
+                            <b>14</b><span>Years</span>
+                        </div>
+                    </div>
+
+                    <div class="drawer-info-panel__cell drawer-info-panel__cell--gender">
+                        <div class="drawer-info-panel__header">Gender</div>
+                        <div class="drawer-info-panel__content"><span data-bind="text: vm_getGenderText">Female</span></div>
+                    </div>
+
+                    <div class="drawer-info-panel__cell drawer-info-panel__cell--age">
+                        <div class="drawer-info-panel__header">Age</div>
+                        <div class="drawer-info-panel__content"><span  data-bind="ageString: dob"></span></div>
+                    </div>
+
+                    <div class="drawer-info-panel__cell drawer-info-panel__cell--states">
+                        <div class="drawer-info-panel__header">States Licensed</div>
+                        <div class="drawer-info-panel__content" data-template="country-template" data-role="listview" data-bind="source: statesLicensed"></div>
+                    </div>
+
+                    <div class="drawer-info-panel__cell drawer-info-panel__cell--address">
+                        <div class="drawer-info-panel__header">Address</div>
+                        <div class="drawer-info-panel__content"><span data-bind="text: address">121 Lexington Ave Glendale, CA 91203</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="drawer-card__footer">
+                <div
+                    class="drawer-card__footer-toggler"
+                    data-bind = "events: { click: vm_toogleFooter }">
+
+                    <span data-bind="invisible: apptsSlotsTray.vm_isEmpty">Schedule An Appointment</span>
+                    <span data-bind="visible: apptsSlotsTray.vm_isEmpty, html: apptsSlotsTray.vm_getNextApptSlotInfo"></span>
+                </div>
+
+                <button type="button" class="drawer-card__action">
+                    <div>Connect Now</div>
+                </button>
+
+                <div class="drawer-card__footer-content"
+                    data-bind="source: apptsSlotsTray, visible: isFooterActive"
+                    data-template="apptsSlotsTemplate1">
+                </div>
+            </footer>
+        </div>
+    </div>
+
+   <!--  <div class="drawer-card__footer-flip">
+        <div
+            class="drawer-card__footer-back"
+            data-bind = "events: { click: vm_toogleFooter }" >
+            <div class="icon_reply"></div>
+        </div>
+
+        <div class="drawer-card__name">
+            Dr. John Watson, MD
+        </div>
+
+        <div class="drawer-card__footer-flip-label">
+            Select a Time
+        </div>
+
+        <div class="drawer-card__footer-flip-card"
+            data-bind="source: apptsSlotsTray"
+            data-template="apptsSlotsTemplate2">
+        </div>
+    </div> -->
+</div>
+</script>
+
+<script id="apptsSlotsTemplate1" type="text/x-kendo-template">
+<div>
+    <div class="drawer-card__slider js-footer-slider"
+        data-bind="source: vm_slots"
+        data-template="apptSlotTemplate">
+    </div>
+</div>
+</script>
+
+<!-- <script id="apptsSlotsTemplate2" type="text/x-kendo-template">
+<div>
+    <div class="drawer-card__footer-flip-slider js-flip-slider"
+        data-bind="source: vm_slots"
+        data-template="apptSlotTemplate">
+    </div>
+</div>
+</script> -->
+
+<script id="apptSlotTemplate" type="text/x-kendo-template">
+<div data-bind = "css: { is-selected : vm_isInvisible" >
+    <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, text: formatedTime" ></button>
+</div>
+</script>
+
+<script id="filterCathegoryTemplate" type = "text/x-kendo-template">
+<div class="panel-filter__block">
+    <div class="panel-filter__title" data-bind="events: {click: vm_onCathegoryToogle}, css: {is-open: isCathegoryOpen}">
+        <span data-bind="text: cathegoryName"> </span>
+        <div type="button" class="panel-filter__arrow">
+            <span class="icon_chevron-small-down"></span>
+        </div>
+    </div>
+
+    <div class="panel-filter__list" data-bind="source: cathegoryFiltersList, slide: isCathegoryOpen" data-template="filterTemplate">
+    </div>
+</div>
+</script>
+<script type="text/x-kendi-template" id="filterTemplate">
+<label class="panel-filter__item" data-bind="visible: vm_showFilter">
+    <div class="panel-filter__caption">
+       <span data-bind="text: filterName"></span>
+       <span data-bind="text: vm_getFilterQuantity, visible: vm_showFilterQuantity"></span>
+    </div>
+    <div class="panel-filter__checkbox">
+        <div class="checkbox">
+            <input type="checkbox" tabindex="3" id="myCheck" indeterminate="false" data-bind="checked: isFilterChecked, events: {change: vm_onCheckedStateChange}" abindex="3">
+            <span class="checkbox__control"></span>
+        </div>
+    </div>
+</label>
+</script>
+
+<script id="country-template" type="text/x-kendo-template">
+<div class="drawer-info-panel__country">
+    <span class="drawer-info-panel__country-flag"><img src='/images/countries/flags/#: data.countryCode #-32.png'></span>
+    <span class="drawer-info-panel__country-states"> #: data.states #</span>
+</div>
+</script>

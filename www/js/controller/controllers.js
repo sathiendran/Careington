@@ -1175,6 +1175,83 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+				
+				  var hospitaData = {};
+                            hospitaData.hospitalId = $rootScope.hospitalId;
+                            hospitaData.brandName = data.data[0].brandName;
+                            hospitaData.subBrandName = data.data[0].brandTitle;
+                            hospitaData.clientName = data.data[0].hospitalName;
+                            hospitaData.brandColor = data.data[0].brandColor;
+                            hospitaData.hospitalLogo = data.data[0].hospitalImage;
+                            hospitaData.address = data.data[0].address;
+                            hospitaData.locale = data.data[0].locale;
+
+                            hospitaData.patientLogin = data.data[0].patientLogin;
+                            hospitaData.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
+
+                            hospitaData.customerSSO = data.data[0].customerSso;
+                            hospitaData.customerSSOButtonText = data.data[0].customerSsoLinkText;
+
+                            hospitaData.clinicianConsultEndUrl = data.data[0].clinicianConsultEndUrl;
+                            hospitaData.clinicianLogin = data.data[0].clinicianLogin;
+
+                            hospitaData.clinicianSSO = data.data[0].clinicianSso;
+                            hospitaData.clinicianSSOButtonText = data.data[0].clinicianSsoLinkText;
+
+                            hospitaData.contactNumber = data.data[0].contactNumber;
+                            hospitaData.email = data.data[0].email;
+                      var hosJsonData = JSON.stringify(hospitaData);
+                    $window.localStorage.setItem('snap_hospital_session', hosJsonData);
+
+                    var hsettings = {};
+
+                    hsettings.eCommerce = $rootScope.getDetails.indexOf("ECommerce") > -1;
+                    hsettings.onDemand = $rootScope.getDetails.indexOf("OnDemand") > -1;
+                    hsettings.cPTCodes = $rootScope.getDetails.indexOf("CPTCodes") > -1;
+                    hsettings.messaging = $rootScope.getDetails.indexOf("Messaging") > -1;
+
+                    hsettings.insuranceVerification = $rootScope.getDetails.indexOf("InsuranceVerification") > -1;
+                    hsettings.ePrescriptions = $rootScope.getDetails.indexOf("EPrescriptions") > -1;
+                    hsettings.ePrescriptions_EPSchedule = $rootScope.getDetails.indexOf("EPrescriptions_EPSchedule") > -1;
+                    hsettings.intakeForm = $rootScope.getDetails.indexOf("IntakeForm") > -1;
+                    hsettings.intakeForm_OnDemand = $rootScope.getDetails.indexOf("IntakeForm_OnDemand") > -1;
+                    hsettings.intakeForm_Scheduled = $rootScope.getDetails.indexOf("IntakeForm_Scheduled") > -1;
+                    hsettings.providerSearch = $rootScope.getDetails.indexOf("ClinicianSearch") > -1;
+                    hsettings.rxNTEHR = $rootScope.getDetails.indexOf("RxNTEHR") > -1;
+                    hsettings.rxNTPM = $rootScope.getDetails.indexOf("RxNTPM") > -1;
+                    hsettings.hidePaymentPageBeforeWaitingRoom = $rootScope.getDetails.indexOf("HidePaymentPageBeforeWaitingRoom") > -1;
+                    hsettings.fileSharing = $rootScope.getDetails.indexOf("FileSharing") > -1;
+                    hsettings.insuranceBeforeWaiting = $rootScope.getDetails.indexOf("InsuranceBeforeWaiting") > -1;
+                    hsettings.ePerscriptions = $rootScope.getDetails.indexOf("EPerscriptions") > -1;
+                    hsettings.ePSchedule1 = $rootScope.getDetails.indexOf("EPSchedule1") > -1;
+
+                    hsettings.iCD9Codes = $rootScope.getDetails.indexOf("ICD9Codes") > -1;
+                    hsettings.textMessaging = $rootScope.getDetails.indexOf("TextMessaging") > -1;
+                    hsettings.insVerificationDummy = $rootScope.getDetails.indexOf("InsVerificationDummy") > -1;
+                    hsettings.videoBeta = $rootScope.getDetails.indexOf("VideoBeta") > -1;
+                    hsettings.hidePaymentBeforeWaiting = $rootScope.getDetails.indexOf("HidePaymentBeforeWaiting") > -1;
+                    hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
+
+                    hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
+                    hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
+                    hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
+                    hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
+                    hsettings.organizationLocation = $rootScope.getDetails.indexOf("OrganizationLocation") > -1;
+
+                    hsettings.AddressValidation = $rootScope.getDetails.indexOf("AddressValidation") > -1;
+
+                    hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
+                    hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
+                    hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
+                    //alert(data.indexOf("HideDrToDrChat"));
+                    //Addd Public facing Hospital Setting
+                    if (data.data[0]['settings']) {
+                        $.extend(hsettings, data.data[0]['settings']);
+                    }
+                    var hsettingsJsonData = JSON.stringify(hsettings);
+                    $window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
+				
+				
                 $state.go('tab.password');
 
             },
@@ -1485,6 +1562,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 hospitalId: $rootScope.hospitalId,
                 success: function(data) {
                     $rootScope.accessToken = data.data[0].access_token;
+					
+					var userData = {};
+                    userData.apiDeveloperId = util.getHeaders()["X-Developer-Id"];
+                    userData.apiKey = util.getHeaders()["X-Api-Key"];
+                    userData.token = data.data[0].access_token;
+                    userData.snapLogin = true;
+                    var userDataJsonData = JSON.stringify(userData);
+                    $window.localStorage.setItem('snap_user_session', userDataJsonData);					
+					
                     $scope.getCurrentTimeForSessionLogout = new Date();
                     $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
                     $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
@@ -2056,6 +2142,27 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
                 $rootScope.currentPatientDetails = data.data;
+				  var profileData = {};
+                    profileData.firstName = data.data[0].firstName;
+                    profileData.fullName = data.data[0].fullName;
+                    profileData.gender = data.data[0].gender;
+                    profileData.lastName = data.data[0].lastName;
+                    profileData.profileId = data.data[0].profileId;
+                    profileData.userId = data.data[0].userId;
+                    profileData.timeZone = data.data[0].timeZone;
+                    profileData.timeZoneId = data.data[0].timeZoneId;
+                    profileData.hasRequiredFields = data.data[0].hasRequiredFields;
+                    profileData.contactNumber = data.data[0].mobilePhone;
+                    profileData.dob = data.data[0].dob;
+                    profileData.isLogouted = false;
+
+                  /*  profileData.profileImage = data.data[0].profileImagePath
+                        || getDefaultProfileImageForPatient(data.data[0].gender);*/
+                      profileData.profileImage = data.data[0].profileImagePath
+
+                      var userProfileJsonData = JSON.stringify(profileData);
+                      $window.localStorage.setItem('snap_patientprofile_session', userProfileJsonData);
+					  
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
                     $rootScope.doGetPatientProfiles();
@@ -2082,6 +2189,150 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getPatientFilledAllRequirements(params);
+    }
+	
+	  $scope.goTOSchedule = function() {
+    /*  $('<link/>', {
+       rel: 'stylesheet',
+       type: 'text/css',
+       href: 'https://emerald.snap-qa.com/less/v3/styles.v3.less.dynamic?brandColor=%230092bb&v=1681'
+    }).appendTo('head');*/
+
+		/*
+		   $.getScript( "https://kendo.cdn.telerik.com/2017.1.118/js/jquery.min.js", function( data, textStatus, jqxhr ) {
+
+		   });
+		   $.getScript( "https://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js", function( data, textStatus, jqxhr ) {
+
+		   });
+
+
+
+			$.getScript( "schedule/Scripts/slick.min.js", function( data, textStatus, jqxhr ) {
+
+			});
+			$.getScript( "schedule/Scripts/viewModels/patient/overlay.viewmodel.js", function( data, textStatus, jqxhr ) {
+
+			});
+			$.getScript( "schedule/Scripts/viewModels/patient/Schedule/providerSearch.viewmodel.js", function( data, textStatus, jqxhr ) {
+
+			});
+		   $.getScript( "schedule/Scripts/core/snap.core.js", function( data, textStatus, jqxhr ) {
+
+		  });
+		  $.getScript( "schedule/Scripts/core/snap.controller.js", function( data, textStatus, jqxhr ) {
+
+		 });
+		 $.getScript( "https://emerald.snap-qa.com/Scripts/min/snap.common.min.js?v=1692", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "https://emerald.snap-qa.com/scripts/min/snap.appUtils.min.js?v=1692", function( data, textStatus, jqxhr ) {
+
+		});
+		  $.getScript( "https://emerald.snap-test.com/Scripts/min/snap.core.min.js", function( data, textStatus, jqxhr ) {
+
+		});
+		 $.getScript( "schedule/Scripts/geolocationWidget.js?v=1682", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "https://emerald.snap-test.com/Scripts/jquery.signalR-2.2.0.min.js?v=1692", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "https://emerald.snap-test.com/api/signalr/hubs?v=1692", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/dataSources/codeSetDataSourceCreator.js?v=1682", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/pagecontroller/patient.pc.js", function( data, textStatus, jqxhr ) {
+
+		});
+
+		//gulp file
+		$.getScript( "schedule/Scripts/services/selfSchedulingService.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/schedule/appointmentService.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/patientResponseAddressDialog.viewmodel.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/Admin/PatientRules/rulesService.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/schedule/appointmentFactory.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/schedule/appointmentPopup.dialog.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/common/itemSelector.control.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/services/availabilityBlockService.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/schedule/familyGroupDataSource.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/common/timeUtils.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/common/scheduleCommon.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/schedule/apptSlotsTray.viewmodel.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/services/userService.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/hubs/patientSelfSchedulingHub.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/schedule/providersSlotsLocator.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/common/loadingStack.js", function( data, textStatus, jqxhr ) {
+
+		});
+		$.getScript( "schedule/Scripts/viewModels/patient/customerhome.new.viewmodel.js", function( data, textStatus, jqxhr ) {
+
+		});
+		//End GUlp file
+
+		//script/viewmodules/schedule
+		$.getScript( "schedule/schedule/appointmentFactory.js", function( data, textStatus, jqxhr ) {
+
+		});
+
+		$.getScript( "schedule/schedule/appointmentPopup.dialog.js", function( data, textStatus, jqxhr ) {
+
+		});
+
+		$.getScript( "schedule/schedule/appointmentService.js", function( data, textStatus, jqxhr ) {
+
+		});
+
+		$.getScript( "schedule/schedule/apptSlotsTray.viewmodel.js", function( data, textStatus, jqxhr ) {
+
+		});
+
+		$.getScript( "schedule/schedule/familyGroupDataSource.js", function( data, textStatus, jqxhr ) {
+
+		});
+
+		$.getScript( "schedule/schedule/providerSearch.viewmodel.js", function( data, textStatus, jqxhr ) {
+
+		});
+
+		$.getScript( "schedule/schedule/providersSlotsLocator.js", function( data, textStatus, jqxhr ) {
+
+		});*/
+		//script/viewmodules/schedule - ended
+		window.location.href='#/tab/providerSearch';
+
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId) {

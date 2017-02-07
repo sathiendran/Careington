@@ -1,0 +1,54 @@
+﻿/*
+    Use the DejaVu Sans font for display and embedding in the PDF file.
+    The standard PDF fonts have no support for Unicode characters.
+*/
+
+.k-pivot {
+    font-family: "DejaVu Sans", "Arial", sans-serif;
+}
+/*==================================================*/
+
+/*.k-header, .k-grid-header {
+  border-color: #e5e5e5;
+  background-image: none;
+  background-position: 50% 50%;
+}*/
+
+
+.k-grid .k-header .k-button{
+  color: #fff;
+  background-color: #283593;
+  border-color: #283593;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.k-grid .k-icon {
+  background-image: url('Material/sprite.png');
+  border-color: transparent;
+}
+
+.k-pivot .k-si-close{
+  background-position: -176px -80px;
+}
+
+.k-pivot .k-i-arrow-e{
+  background-position: 0 -190px;
+}
+
+.k-pivot .k-i-arrow-s {
+  background-position: 0 -224px;
+}
+
+.k-pivot-toolbar .k-button {
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.k-pivot-toolbar {
+  background-color: #3f51b5;  
+}
+
+.k-pivot-toolbar .k-empty {
+    color: #fff;
+}

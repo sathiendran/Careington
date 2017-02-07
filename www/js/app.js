@@ -674,6 +674,24 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
+	  .state('tab.appointmentDialog', {
+      url: '/appointmentDialog',
+      views: {
+       'tab-login': {
+           templateUrl: 'schedule/tab-appointmentDialog.html',
+           controller: ''
+          }
+       }
+   })
+   .state('tab.providerSearch', {
+     url: '/providerSearch',
+     views: {
+      'tab-login': {
+          templateUrl: 'schedule/tab-providerSearch.html',
+          controller: 'ScheduleCtrl'
+         }
+      }
+  })
     .state('tab.ChronicCondition', {
         url: '/ChronicCondition',
         views: {

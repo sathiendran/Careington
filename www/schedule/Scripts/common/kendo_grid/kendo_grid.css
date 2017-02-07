@@ -1,0 +1,37 @@
+﻿/*
+    We'll use the DejaVu Sans font for both display and embedding in the PDF file.
+    The standard PDF fonts have no support for Unicode characters.
+*/
+
+/*.k-grid {
+    font-family: "DejaVu Sans", "Arial", sans-serif;
+}*/
+
+/* Off-screen container used during export */
+.k-export-wrap {
+    position: absolute;
+    overflow: visible;
+    left: -5000px;
+}
+
+.k-export-wrap .k-grid {
+    float: left;
+}
+
+/* Remove all sizes and scrolling */
+.k-export-wrap .k-grid,
+.k-export-wrap .k-grid-content {
+    height: auto !important;
+    overflow: visible;
+}
+
+/* Remove empty space reserved above the scrollbar */
+.k-export-wrap .k-grid-header {
+    padding-right: 0 !important;
+}
+
+/* Hide the Grid header during export */
+.k-export-wrap .k-grid-toolbar
+{
+    display: none;
+}
