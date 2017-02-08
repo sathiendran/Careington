@@ -9909,6 +9909,18 @@ body {
   font-size: 20px;
   padding: 5px; }
 
+.ssooption {
+  width: 100%;
+  border: none;
+  background-color: #F3F3F3;
+  padding: 5px;
+  margin-left: -6px;
+  color: #666;
+  font-size: 16px !important; }
+
+.ssoaddress {
+  font-size: 16px !important; }
+
 .consultCharge_subHeader {
   border-bottom: 1px solid #C5C5C5;
   height: 60px;
@@ -9933,6 +9945,12 @@ body {
   margin: 139px 0 0 0; }
   .consultConPaymentMargin .AddCard {
     margin-top: 7px; }
+
+.paymentConSecton {
+  margin: 160px 0 0 0; }
+
+.addCardConScetion {
+  margin: 155px 0 0 0; }
 
 .consultCharge_content {
   padding-bottom: 30px;
@@ -10016,7 +10034,8 @@ body {
   .consultation_head .consultation_numberCopay {
     font-family: "Glober SemiBold";
     color: #666666;
-    text-align: right; }
+    text-align: right;
+    padding-right: 16px; }
     .consultation_head .consultation_numberCopay span {
       color: red;
       font-size: 22px; }
@@ -12838,15 +12857,14 @@ textarea {
   top: -90px; }
 
 .singleTermsContent-Android {
-  padding: 101px 7px 7px 7px;
+  padding: 190px 7px 7px 7px;
   font-size: 19px;
   color: #4D4D4D;
   text-align: justify;
-  position: relative;
-  top: -153px; }
+  position: relative; }
 
 .singleTermsContent-IOS {
-  padding: 160px 7px 7px 7px;
+  padding: 326px 7px 7px 7px;
   font-size: 19px;
   color: #4D4D4D;
   text-align: justify;
@@ -12854,14 +12872,14 @@ textarea {
   top: -115px; }
 
 .singleTermsconContent-Android {
-  padding: 150px 7px 7px 7px;
+  padding: 200px 7px 7px 7px;
   font-size: 19px;
   color: #4D4D4D;
   text-align: justify;
   position: relative; }
 
 .singleTermsconContent-IOS {
-  padding: 35px 7px 7px 7px;
+  padding: 180px 7px 7px 7px;
   font-size: 19px;
   color: #4D4D4D;
   text-align: justify;
@@ -13636,6 +13654,13 @@ hr {
 
 .useraddcontent {
   margin-top: 125px !important; }
+
+.emailbackground {
+  background-color: #FDD8C5  !important; }
+
+.emailext {
+  text-align: center;
+  font-size: 21pz !important; }
 
 @media (max-width: 320px) and (min-width: 315px) {
   .usercontent-IOS {
@@ -15746,7 +15771,7 @@ hr {
     color: #FFFFFF;
     text-align: center;
     line-height: 30px;
-    padding-top: 65px; }
+    padding-top: 13px; }
     .register h2 span {
       font-family: "Glober xBold";
       font-weight: bold;
@@ -17560,8 +17585,7 @@ input.ion-google-place[readonly] {
 
 .forgot_password_textSingle {
   text-align: center;
-  padding-top: 8px;
-  padding-bottom: 22px; }
+  padding-bottom: 20px; }
   .forgot_password_textSingle a {
     font-family: "Glober SemiBold";
     color: #fff;
@@ -18093,6 +18117,171 @@ input.ion-google-place[readonly] {
   color: red !important;
   font-family: Glober Bold; }
 
+.logSingCOntent-IOS {
+  padding-top: 52px !important; }
+
+.paymentSubHeader {
+  margin: 4px 7px 10px !important; }
+
+.locpopup .locicon {
+  padding: 3px; }
+
+.locpopup .popup-head {
+  padding: 18px 10px;
+  border-bottom: 1px solid #888;
+  text-align: left;
+  margin-top: 0px;
+  background-color: #ffc60b;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.locpopup .locationtitle {
+  font-family: Glober Regular;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal; }
+
+.locpopup .popup-body {
+  padding: 0px !important; }
+  .locpopup .popup-body .loc-content {
+    font-family: Glober Regular;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.33;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 10px !important; }
+  .locpopup .popup-body .loc-hr {
+    height: 0px;
+    background-color: rgba(0, 0, 0, 0.12); }
+
+.locpopup .loc-detcontent {
+  font-size: 18px;
+  font-family: Glober Regular;
+  font-style: normal;
+  font-stretch: normal;
+  color: rgba(0, 0, 0, 0.75); }
+  .locpopup .loc-detcontent .loc-popupcontent {
+    padding: 10px !important; }
+  .locpopup .loc-detcontent .loc-popupdet {
+    font-size: 20px;
+    font-family: Glober Bold;
+    padding: 8px !important; }
+    .locpopup .loc-detcontent .loc-popupdet span {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 20px; }
+  .locpopup .loc-detcontent .locval {
+    font-family: Glober Regular;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 10px !important; }
+
+.patient-list__search {
+  border-bottom: 2px solid #979797;
+  overflow: hidden;
+  height: 60px;
+  transition: height .3s ease; }
+  .patient-list__search.is-active {
+    height: 106px; }
+
+.patient-list__search-main {
+  padding: 13px 10px;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  height: 60px;
+  overflow: hidden; }
+
+.new-user {
+  font-family: Glober Regular; }
+  .new-user__header {
+    text-align: center;
+    padding-top: 5px; }
+  .new-user__bg {
+    background-color: #444;
+    height: 110px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: -1; }
+  .new-user__name {
+    font-family: Glober Regular;
+    font-size: 30px;
+    line-height: 42px;
+    color: #FFFFFF; }
+    .new-user__name b {
+      font-family: Glober Bold; }
+  .new-user__content .scroll {
+    height: 100%; }
+  .new-user__content.has-tabs {
+    bottom: 49px; }
+  .new-user__main {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-flow: column nowrap; }
+  .new-user__btn {
+    height: 80px;
+    width: 100%;
+    border: none;
+    border-radius: 0 !important;
+    font-size: 20px; }
+  .new-user__title {
+    text-align: center;
+    font-family: Glober Bold;
+    font-size: 24px;
+    line-height: 34px;
+    color: #666;
+    margin: 5px 0; }
+
+.header {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex; }
+  .header__left, .header__right {
+    width: 20%; }
+  .header__right {
+    text-align: right; }
+  .header__btn {
+    background-color: transparent;
+    border: none;
+    line-height: 0 !important; }
+  .header__menu {
+    font-size: 28px; }
+  .header__add {
+    color: #FFFFFF; }
+  .header__title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px;
+    font-family: Glober Bold;
+    color: #FFFFFF; }
+  .header__link {
+    font-size: 16px !important;
+    font-family: Glober Regular;
+    color: #FFFFFF; }
+  .header__userpic {
+    padding-right: 10px; }
+    .header__userpic .userpic {
+      float: right; }
+
+.sublocName {
+  font-family: Glober Regular;
+  font-size: 19px !important;
+  color: #666666 !important;
+  padding: 20px;
+  text-align: left !important; }
+
 .vdioControlPanel {
   width: 100% !important;
   display: block;
@@ -18146,7 +18335,8 @@ input.ion-google-place[readonly] {
   font-size: 11px !important;
   font-family: 'Glober Regular';
   margin-top: -10px;
-  height: 10px !important; }
+  height: 10px !important;
+  width: 100%; }
 
 .vdioBadge {
   background-color: #00B3D4 !important;

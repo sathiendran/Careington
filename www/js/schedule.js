@@ -5,13 +5,16 @@ angular.module('starter.controllers')
             snap.userSession = JSON.parse($window.localStorage.getItem("snap_user_session"));
             snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
             snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
+            snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
         }
         this.initKendoUI = function() {
             this.initSnapVars();
+            snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
 
-            snap.utility.PageStyle().applyStyleV3().then(function() {
+                $(".schedular-continer").html(html);
                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
-                kendo.bind($(".schedular-continer"), vm);
+                debugger;
+                kendo.bind($("#scd-bdy"), vm);
                 var viewMode = "all";
 
                 if (vm) {
@@ -20,7 +23,12 @@ angular.module('starter.controllers')
                     }
                     vm.setViewMode(viewMode);
                 }
+
             });
+            // debugger;
+            // snap.utility.PageStyle().applyStyleV3().then(function() {
+
+            //});
 
         }
         this.initKendoUI();
