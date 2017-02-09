@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'Emerald Healthcare Group';
+    var cobrandApp = 'TeleMD Virtual Clinic';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -124,11 +124,21 @@ if (deploymentEnv == 'Single') {
       singleStagingHospitalId = 126;
       singleHospitalId = 126;
       singleQAHospitalId = '';
-      singleSandboxHospitalId = 126;
+      singleSandboxHospitalId = 129; // 126;
       brandColor = '#0071bb';
       logo = 'https://sandbox.connectedcare.md/api/v2.1/images/745eb236-2286-4635-b7c1-50dfe7fac390';
       Hospital = 'Emerald City Healthcare';
       HospitalTag = 'Virtual Telemedicine';
+      ssoURL = "";
+  }else if (cobrandApp == 'TeleMD Virtual Clinic') {
+      singleStagingHospitalId = 167;
+      singleHospitalId = 268;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = 144; // 126;
+      brandColor = '#0000ff';
+      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/59953d85-4202-4b1b-ae0b-c4bf31203b19';
+      Hospital = 'TeleMD Virtual Clinic';
+      HospitalTag = 'Always Nearby';
       ssoURL = "";
   }
 
@@ -864,6 +874,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
+
     .state('tab.singleTerms', {
             url: '/singleTerms',
             views: {
