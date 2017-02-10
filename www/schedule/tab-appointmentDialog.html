@@ -1,6 +1,6 @@
 ﻿<div>
     <div class="dialogbox-master is-next is-pss">
-        <a class="dialogbox-master__close"  data-bind="events: { click: vm_onCloseClick }"></a>
+        <a class="dialogbox-master__close" data-bind="events: { click: vm_onCloseClick }"></a>
         <div class="dialogbox-master__titlebar dialogbox-master__titlebar--usertray dialogbox-master__titlebar--patient">
             <span data-bind="text: vm_dialogTitle"></span>
         </div>
@@ -16,7 +16,7 @@
                     <div class="notification-bar__desc" data-bind="text:vm_notification_msg"></div>
                 </div>
                 <div class="dialogbox-master__wrapper dialogbox-master__wrapper--full" data-bind="css:{ dialogbox-master__wrapper--timer:vm_isNew, is-disabled:isExpiredAppointment}">
-                    <div class="dialogbox-master__container js-scroll-container"  id="dialogbox-master__container">
+                    <div class="dialogbox-master__container js-scroll-container" id="dialogbox-master__left-container">
                         <div class="dialogbox-master__header is-absolute js-scroll-header">
                             <div class="dialogbox-master__title">Appointment Details</div>
                             <div class="dialogbox-master__title-link" data-bind="css: {is-active: vm_canShowTimeOffsets}, events: {click: vm_showTimeOffsets}">
@@ -25,23 +25,24 @@
                         </div>
 
                         <div class="dialogbox-master__box dialogbox-master__box--users">
-                            <div data-bind="css:{is-error:vm_isPatientSelectError}, source: patientsSelector"
-                                 data-template="patient_itemSelector"  tabindex="1"></div>
+                            <div data-bind="css:{is-error:vm_isPatientSelectError}, source: patientsSelector" data-template="patient_itemSelector"></div>
 
                             <div class="dialogbox-master__with"><span>with</span></div>
-                            <div class="dialogbox-master__user">
-                                <div class="dialogbox-master__time-offset dialogbox-master__time-offset--top" data-bind="css: {is-active: vm_isTimeOffsetsVisible}, text: vm_ProviderTimeText"></div>
-                                <div class="dialogbox-master__owner js-toggle-dir" tabindex="0"  data-bind="css: {dialogbox-master__owner--is-opacity: isClinicianDisabled}">
-                                    <div class="userpic userpic--is-available" data-bind="events: {click: vm_onViewClinicianProfileClick}, css: { userpic--warning: isClinicianDisabled }">
-                                        <img data-bind="attr: { src: clinicianImageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';">
-                                    </div>
-                                    <div class="dialogbox-master__userinfo">
-                                        <span class="dialogbox-master__name" data-bind="text: clinicianFullName"></span>
-                                        <span class="dialogbox-master__phone" data-bind="text: info, attr: {title: info}"></span>
+                            <div tabindex="2">
+                                <div class="dialogbox-master__user">
+                                    <div class="dialogbox-master__time-offset dialogbox-master__time-offset--top" data-bind="css: {is-active: vm_isTimeOffsetsVisible}, text: vm_ProviderTimeText"></div>
+                                    <div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isClinicianDisabled}">
+                                        <div class="userpic userpic--is-available" data-bind="events: {click: vm_onViewClinicianProfileClick}, css: { userpic--warning: isClinicianDisabled }">
+                                            <img data-bind="attr: { src: clinicianImageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';">
+                                        </div>
+                                        <div class="dialogbox-master__userinfo">
+                                            <span class="dialogbox-master__name" data-bind="text: clinicianFullName"></span>
+                                            <span class="dialogbox-master__phone" data-bind="text: info, attr: {title: info}"></span>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
                         </div>
 
@@ -50,29 +51,29 @@
 
                             <div class="consultation-type" data-bind="css:{is-disabled:isReadOnly}">
                                 <div class="consultation-type__list">
-                                    <div class="consultation-type__item js-toggle-type" data-id="3" data-bind="click:setEncounterTypeCode, css:{is-active:isVideo}" tabindex="7">
-                                        <div class="consultation-type__icon">
+                                    <div class="consultation-type__item js-toggle-type" data-bind="onEnterKey: setVideoType, click:setVideoType, css:{is-active:isVideo}">
+                                        <div class="consultation-type__icon" tabindex="3">
                                             <span class="icon_video_camera"></span>
                                         </div>
                                         <div class="consultation-type__title">Video</div>
                                     </div>
 
-                                    <div class="consultation-type__item js-toggle-type" data-id="2" data-bind="click:setEncounterTypeCode, css:{is-active:isPhone}" tabindex="8">
-                                        <div class="consultation-type__icon">
+                                    <div class="consultation-type__item js-toggle-type" data-bind="onEnterKey: setPhoneType, click:setPhoneType, css:{is-active:isPhone}">
+                                        <div class="consultation-type__icon" tabindex="4">
                                             <span class="icon_phone"></span>
                                         </div>
                                         <div class="consultation-type__title">Phone</div>
                                     </div>
 
-                                    <div class="consultation-type__item js-toggle-type is-disabled" data-id="1" tabindex="8">
-                                        <div class="consultation-type__icon">
+                                    <div class="consultation-type__item js-toggle-type is-disabled">
+                                        <div class="consultation-type__icon" tabindex="6">
                                             <span class="icon_chat"></span>
                                         </div>
                                         <div class="consultation-type__title">Chat</div>
                                     </div>
 
-                                    <div class="consultation-type__item js-toggle-type is-disabled" data-id="4" tabindex="9">
-                                        <div class="consultation-type__icon">
+                                    <div class="consultation-type__item js-toggle-type is-disabled">
+                                        <div class="consultation-type__icon" tabindex="7">
                                             <span class="icon_users"></span>
                                         </div>
                                         <div class="consultation-type__title">Office Visit</div>
@@ -87,23 +88,10 @@
                             <div class="consultation-phone js-phone-target" data-bind="css: {is-error: vm_phoneNumberError, is-active:vm_isPhoneNumberFilled}">
                                 <div class="consultation-phone__number">
                                     <div class="consultation-phone__icon"><span class="icon_phone"></span></div>
-                                    <input
-                                        type="text"
-                                        data-value-update="keyup"
-                                        data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly"
-                                        class="consultation-phone__input js-phone-input"
-                                        placeholder="Enter a phone number…"
-                                        tabindex="10">
+                                    <input type="text" data-value-update="keyup" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input" placeholder="Enter a phone number…" tabindex="5">
                                 </div>
                                 <div class="consultation-phone__type js-phone-wrap">
-                                    <input type="text"
-                                        data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly"
-                                        data-role="dropdownlist"
-                                        data-value-primitive="true"
-                                        data-text-field="text"
-                                        data-value-field="value"
-                                        class="consultation-phone__dropdown js-dropdown-phone"
-                                        tabindex="11">
+                                    <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone">
                                 </div>
                             </div>
 
@@ -127,7 +115,7 @@
                                     </div>
                                 </div>
 
-                                <div class="dialogbox-master__when"  data-bind="invisible: isDateAreaInEditMode">
+                                <div class="dialogbox-master__when" data-bind="invisible: isDateAreaInEditMode">
                                     <div class="dialogbox-master__time">
                                         <span class="dialogbox-master__hour" data-bind="html: vm_getStartTime"></span>
                                         <spoan class="dialogbox-master__timezone" data-bind="text: timezone">pst</spoan>
@@ -140,11 +128,11 @@
                         </div>
                     </div>
 
-                    <div class="dialogbox-master__additional dialogbox-master__additional--static"  data-bind="css:{ dialogbox-master__additional--timer:vm_isNew, is-disabled:isExpiredAppointment}">
+                    <div class="dialogbox-master__additional dialogbox-master__additional--static" data-bind="css:{ dialogbox-master__additional--timer:vm_isNew, is-disabled:isExpiredAppointment}">
 
                         <div class="dialogbox-master__container js-scroll-container">
 
-                            <div class="dialogbox-master__header is-absolute dialogbox-master__header--second js-scroll-header" >
+                            <div class="dialogbox-master__header is-absolute dialogbox-master__header--second js-scroll-header">
                                 <div class="dialogbox-master__title">Reasons for appointment</div>
                             </div>
 
@@ -160,55 +148,37 @@
 
                                 <ul class="dialogbox-master__reason-list js-reason-list">
                                     <li class="dialogbox-master__reason js-reason-item" data-bind="css:{is-active:vm_primaryConcernActive, is-other: vm_isPrimaryConcernOtherSelected, is-error:vm_primaryConcernError, is-smaller:displaySecondaryConcern}">
-                                        <select class="dialogbox-master__reason-dropdown"
-                                            data-role="dropdownlist"
-                                            data-option-label="Primary Concern/Reason"
-                                            data-value-primitive="true"
-                                            data-text-field="text"
-                                            data-value-field="codeId"
-                                            data-bind="
+                                        <select class="dialogbox-master__reason-dropdown" data-role="dropdownlist" data-option-label="Primary Concern/Reason" data-value-primitive="true" data-text-field="text" data-value-field="codeId" data-bind="
                                             value: vm_primaryConsernId,
                                             source: dataPrimaryConcernList,
-                                            events: { change: vm_onPrimaryConcernChange }" tabindex="25"></select>
+                                            events: { change: vm_onPrimaryConcernChange },
+                                            disabled: isReadOnly" tabindex="8"></select>
 
-                                            <div class="dialogbox-master__other"
-                                                 data-bind="visible: vm_isPrimaryConcernOtherSelected">
+                                        <div class="dialogbox-master__other" data-bind="visible: vm_isPrimaryConcernOtherSelected">
 
-                                                <textarea data-value-update="keyup"
-                                                          data-bind="
+                                            <textarea data-value-update="keyup" data-bind="
                                                         value: primaryConcernOtherText,
-                                                        events: { keyup: vm_onPrimaryConcernChange }" tabindex="26"></textarea>
-                                            </div>
+                                                        events: { keyup: vm_onPrimaryConcernChange }"></textarea>
+                                        </div>
                                     </li>
-                                    <li class="dialogbox-master__reason"
-                                        data-bind="visible: displaySecondaryConcern, css:{is-active:vm_secondaryConcernActive, is-error:vm_secondaryConcernError, is-other:vm_isSecondaryConcernOtherSelected, is-error:vm_secondaryConcernError}"  id="dialogbox-master__reason-primary">
-                                        <div class="dialogbox-master__reason-del"
-                                             data-bind="events: {click: vm_onRemoveSecondaryConcernClick}, invisible: isReadOnly"><span class="icon_circle-with-minus"></span></div>
-                                        <select class="dialogbox-master__reason-dropdown"
-                                            data-role="dropdownlist"
-                                            data-option-label="Secondary Concern/Reason"
-                                            data-value-primitive="true"
-                                            data-text-field="text"
-                                            data-value-field="codeId"
-                                            data-bind="
+                                    <li class="dialogbox-master__reason" data-bind="visible: displaySecondaryConcern, css:{is-active:vm_secondaryConcernActive, is-error:vm_secondaryConcernError, is-other:vm_isSecondaryConcernOtherSelected, is-error:vm_secondaryConcernError}" id="dialogbox-master__reason-primary">
+                                        <div class="dialogbox-master__reason-del" data-bind="events: {click: vm_onRemoveSecondaryConcernClick}, onEnterKey: vm_onRemoveSecondaryConcernClick, invisible: isReadOnly"><span class="icon_circle-with-minus" tabindex="11"></span></div>
+                                        <select class="dialogbox-master__reason-dropdown" data-role="dropdownlist" data-option-label="Secondary Concern/Reason" data-value-primitive="true" data-text-field="text" data-value-field="codeId" data-bind="
                                             value: vm_secondaryConsernId,
                                             source: dataSecondaryConcernList,
                                             events: { change: vm_onSecondaryConcernChange },
-                                            disabled: isReadOnly" tabindex="28"></select>
+                                            disabled: isReadOnly" tabindex="10"></select>
 
-                                            <div class="dialogbox-master__other"
-                                                 data-bind="visible: vm_isSecondaryConcernOtherSelected">
-                                                 <textarea data-value-update="keyup"
-                                                           data-bind="
+                                        <div class="dialogbox-master__other" data-bind="visible: vm_isSecondaryConcernOtherSelected">
+                                            <textarea data-value-update="keyup" data-bind="
                                                          value: secondaryConcernOtherText,
-                                                         events: { keyup: vm_onSecondaryConcernChange }" tabindex="29"></textarea>
-                                            </div>
+                                                         events: { keyup: vm_onSecondaryConcernChange }"></textarea>
+                                        </div>
                                     </li>
 
                                 </ul>
 
-                                <div class="dialogbox-master__reason-add js-reason-add"
-                                    data-bind="events: {click: vm_onAddConcernClick}, css:{is-active: vm_isAddConcernButtonVisible}"><span class="icon_circle-with-plus" tabindex="27"></span> Add another complaint</div>
+                                <div class="dialogbox-master__reason-add js-reason-add" data-bind="events: {click: vm_onAddConcernClick}, onEnterKey: vm_onAddConcernClick, css:{is-active: vm_isAddConcernButtonVisible}"><span class="icon_circle-with-plus" tabindex="9"></span> Add another complaint</div>
                             </div>
 
                             <div class="dialogbox-master__box dialogbox-master__box--notes">
@@ -218,12 +188,12 @@
                                             <span class="icon_text-document"></span>
                                         </div>
                                         <div class="consultation-note__title">Additional Notes</div>
-                                        <div class="consultation-note__action"  data-bind="invisible: isReadOnly, click:vm_expandAddNotes" tabindex="30">
+                                        <div class="consultation-note__action" data-bind="invisible: isReadOnly, click:vm_expandAddNotes">
                                             <span class="icon_plus"></span>
                                         </div>
                                     </div>
                                     <div class="consultation-note__drop">
-                                        <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}" tabindex="31"></textarea>
+                                        <textarea name="" id="" class="consultation-note__textarea js-autoresize-textarea" placeholder="Enter Additional Notes..." data-bind="value: additionalNotes, invisible: isReadOnly, events:{keyup: vm_onKeyUpAdditionalNotes}"></textarea>
 
                                         <textarea disabled name="" id="" class="consultation-note__textarea js-autoresize-textarea" data-bind="html: additionalNotes, visible: isReadOnly"></textarea>
                                     </div>
@@ -240,24 +210,24 @@
 
         <div class="dialogbox-master__buttons">
             <div data-bind="invisible: isReadOnly">
-                <button class="button button__red button__red--cancel"  data-bind="
+                <button class="button button__red button__red--cancel" tabindex="13" data-bind="
                         visible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onRemoveClick },
                         css: { is-loading: isLoading, error: isError, button__gray: isDisabled }"><span>Cancel Appointment</span></button>
-                <button class="button button__green"  data-bind="
+                <button class="button button__green" tabindex="13" data-bind="
                         invisible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onSubmitClick },
                         css: { is-loading: isLoading, button__red: isError, error: isError, button__green: vm_isNotError, button__gray: isDisabled }"><span data-bind="text:vm_saveBtnTxt"></span></button>
             </div>
 
-            <button class="button button__cancel js-cancel"  data-bind="events: { click: vm_onCloseClick }"><span>Close</span></button>
+            <button class="button button__cancel js-cancel" tabindex="12" data-bind="events: { click: vm_onCloseClick }"><span>Close</span></button>
         </div>
     </div>
 </div>
 <script id="scrollableItem" type="text/x-kendo-template">
-    <div class="directory__item" data-bind = "events: {click : onSelectClick}, visible: vm_isVisible">
+    <div class="directory__item" data-bind="events: {click : onSelectClick}, visible: vm_isVisible">
         <div class="directory__userpic userpic userpic--is-available" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault}"><img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';" /></div>
 
         <div class="directory__info">
@@ -275,9 +245,9 @@
 
 <script id="patient_itemSelector_item" type="text/x-kendo-template">
     <div class="dialogbox-master__user">
-        <div class="dialogbox-master__owner js-toggle-dir" tabindex="0"  data-bind="css: {dialogbox-master__owner--is-opacity: isDisabled, is-locked:isSelectorLocked}">
+        <div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isDisabled, is-locked:isSelectorLocked}">
             <div class="userpic" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault, userpic--warning: isDisabled}">
-                <img  data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';">
+                <img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';">
             </div>
             <div class="dialogbox-master__userinfo">
                 <span class="dialogbox-master__name" data-bind="text: name"></span>
@@ -295,8 +265,7 @@
 <script id="patient_itemSelector" type="text/x-kendo-template">
     <div>
         <!-- This div necessary for kendo template engine -->
-        <div data-bind="source: vm_getSelectedItemOrDefault, events: {click: vm_openItemsSelector}, class: {is-locked:isSelectorLocked}"
-             data-template="patient_itemSelector_item">
+        <div class="directory__opener" tabindex="1" data-bind="source: vm_getSelectedItemOrDefault, events: {click: vm_openItemsSelector}, class: {is-locked:isSelectorLocked}" data-template="patient_itemSelector_item">
         </div>
 
         <div class="directory directory--consultation" data-bind="invisible: isSelectorLocked, css: {is-active: isItemsSelectorVisible, is-loading: vm_isItemsLoading}">
@@ -311,30 +280,16 @@
                     <div class="directory__search">
                         <div class="search">
                             <span class="icon_magnifying-glass"></span>
-                            <input type="text" placeholder="Enter Your Search"
-                                data-bind="events: { keyup: vm_nameFilterChange }, value: nameFilter"
-                                data-value-update="keyup">
+                            <input class="nameFilterField" type="text" placeholder="Enter Your Search" data-bind="events: { keyup: vm_nameFilterChange }, value: nameFilter" data-value-update="keyup">
                         </div>
                     </div>
 
                 </div>
 
-                <div class="directory__selected-item"
-                    style= "max-height: 72px"
-                    class="directory__unselected-items"
-                    data-editable="false"
-                    data-bind="source: vm_getSelectedItems"
-                    data-template="scrollableItem"
-                    data-scrollable= "false"
-                ></div>
+                <div class="directory__selected-item" style="max-height: 72px" class="directory__unselected-items" data-editable="false" data-bind="source: vm_getSelectedItems" data-template="scrollableItem" data-scrollable="false"></div>
 
                 <div class="directory__list" data-bind="class: {is-active: vm_isSelectedItemsListNotEmpty}">
-                    <div class="directory__unselected-items"
-                        data-editable="false"
-                        data-scrollable= "{ virtual: true }"
-                        data-bind="source: ds, invisible: vm_isItemsListEmpty"
-                        data-template="scrollableItem"
-                    ></div>
+                    <div class="directory__unselected-items" data-editable="false" data-scrollable="{ virtual: true }" data-bind="source: ds, invisible: vm_isItemsListEmpty" data-template="scrollableItem"></div>
 
                     <div class="directory__empty-state" data-bind="visible: vm_isItemsListEmpty">
                         <span class="icon_user"></span>
@@ -346,14 +301,12 @@
 </script>
 
 <script id="patient_apptsSlotsTemplate" type="text/x-kendo-template">
-    <div class="drawer-card__slider js-footer-slider"
-        data-bind="source: vm_slots"
-        data-template="patient_apptSlotTemplate"></div>
+    <div class="drawer-card__slider js-footer-slider" data-bind="source: vm_slots" data-template="patient_apptSlotTemplate"></div>
 </script>
 
 
 <script id="patient_apptSlotTemplate" type="text/x-kendo-template">
-    <div data-bind = "css: { is-selected : vm_isInvisible" >
-        <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, text: formatedTime" ></button>
+    <div data-bind="css: { is-selected : vm_isInvisible">
+        <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, text: formatedTime"></button>
     </div>
 </script>

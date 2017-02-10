@@ -22,6 +22,7 @@ angular.module('starter.controllers')
                         vm.load();
                     }
                     vm.setViewMode(viewMode);
+
                 }
 
             });
