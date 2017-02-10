@@ -306,7 +306,15 @@
                <h4>Wrong Provider? <span ng-click="registerStpe1BackToSearchProvider();">Go Back to Search</span></h4>
             </div>
             <div class="acinfoRegisterBottomAcceptText-{{deviceName}}"  >
-               <p>By clicking below I understand that I am accepting the <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy </a></span> associated with the use of this service.</p>
+               <p ng-if="deploymentEnv == 'Multiple'">By clicking below I understand that I am accepting the
+                    <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy </a></span> associated with the use of this service.
+               </p>
+               <p ng-if="deploymentEnv != 'Multiple'">By clicking below I understand that I am accepting the
+                    <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy </a></span> associated with the use of this service.
+               </p>
+               <p ng-if="deploymentEnv != 'Multiple' &&  cobrandApp == 'LatchOn'">By clicking below I understand that I am accepting the
+                    <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy </a></span> associated with the use of this service.
+               </p>
             </div>
             <div class="hide-on-keyboard-open">
 
