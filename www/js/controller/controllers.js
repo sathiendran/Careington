@@ -1175,7 +1175,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
-				
+
 				  var hospitaData = {};
                             hospitaData.hospitalId = $rootScope.hospitalId;
                             hospitaData.brandName = data.data[0].brandName;
@@ -1250,8 +1250,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     }
                     var hsettingsJsonData = JSON.stringify(hsettings);
                     $window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
-				
-				
+
+
                 $state.go('tab.password');
 
             },
@@ -1562,15 +1562,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 hospitalId: $rootScope.hospitalId,
                 success: function(data) {
                     $rootScope.accessToken = data.data[0].access_token;
-					
+
 					var userData = {};
                     userData.apiDeveloperId = util.getHeaders()["X-Developer-Id"];
                     userData.apiKey = util.getHeaders()["X-Api-Key"];
                     userData.token = data.data[0].access_token;
                     userData.snapLogin = true;
                     var userDataJsonData = JSON.stringify(userData);
-                    $window.localStorage.setItem('snap_user_session', userDataJsonData);					
-					
+                    $window.localStorage.setItem('snap_user_session', userDataJsonData);
+
                     $scope.getCurrentTimeForSessionLogout = new Date();
                     $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
                     $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
@@ -2162,7 +2162,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                       var userProfileJsonData = JSON.stringify(profileData);
                       $window.localStorage.setItem('snap_patientprofile_session', userProfileJsonData);
-					  
+
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
                     $rootScope.doGetPatientProfiles();
@@ -2190,15 +2190,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         LoginService.getPatientFilledAllRequirements(params);
     }
-	
+
 	  $scope.goTOSchedule = function() {
-    /*  $('<link/>', {
+    	/*  $('<link/>', {
        rel: 'stylesheet',
        type: 'text/css',
-       href: 'https://emerald.snap-qa.com/less/v3/styles.v3.less.dynamic?brandColor=%230092bb&v=1681'
-    }).appendTo('head');*/
+       href: 'css/styles.v3.less.dynamic.css'
+    }).appendTo('head');
 
-		/*
+
 		   $.getScript( "https://kendo.cdn.telerik.com/2017.1.118/js/jquery.min.js", function( data, textStatus, jqxhr ) {
 
 		   });
@@ -2331,7 +2331,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 		});*/
 		//script/viewmodules/schedule - ended
-		window.location.href='#/tab/providerSearch';
+		//window.location.href='#/tab/providerSearch';
+      $state.go('tab.providerSearch', { viewMode : 'all' });
 
     }
 

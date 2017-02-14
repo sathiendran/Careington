@@ -684,7 +684,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
        }
    })
    .state('tab.providerSearch', {
-     url: '/providerSearch',
+     url: '/providerSearch/:viewMode',
      views: {
       'tab-login': {
           templateUrl: 'schedule/tab-providerSearch.html',

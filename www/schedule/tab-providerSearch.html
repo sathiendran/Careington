@@ -1,3 +1,120 @@
+<header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
+  <div class="row">
+      <div class="header__menu">
+          <a href="#" class="main-nav__toggle js-toggle-main-nav" data-bind="click:onNavClick">
+              <ins></ins>
+              <ins></ins>
+              <ins></ins>
+          </a>
+      </div>
+
+      <div class="header__brand">
+          <h1 data-bind="text:brandName, attr: {title: brandName }" title="EMERALD QA HEALTHCARE GROUP">EMERALD QA HEALTHCARE GROUP</h1>
+      </div>
+
+      <div class="header__nav">
+          <span class="header__flag header__flag--all-items" data-bind="visible:isFlagVisible" style="display: none;"></span>
+          <a href="#" data-bind="click:toggleHeaderDD" class="header__avatar"><img data-bind="attr: { src: user.profileImage || getDefaultProfileImageForPatient(), alt: profileName, title: profileName }" src="https://emerald.snap-qa.com/api/v2.1/images/ea4f988f-c4d5-428e-978d-f173a622ea8f" alt="" title=""></a>
+
+          <nav class="hide-mobile nav nav--header">
+              <ul>
+                  <li>
+                      <a href="#" data-bind="click:goToHome">
+                          <span class="icon icon_home"></span>
+                          <span class="text">Home</span>
+                          <span class="header__flag" data-bind="visible:isFlagVisible" style="display: none;"></span>
+                      </a>
+                  </li>
+                  <li style="display:none;">
+                      <a href="#" data-bind="click:goToHome">
+                          <span class="icon icon_dashboard"></span>
+                          <span class="text">Dashboard</span>
+                          <span class="header__flag" data-bind="visible:isFlagVisible" style="display: none;"></span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="#" data-bind="click:goToConsultHistory">
+                          <span class="icon icon_calendar"></span>
+                          <span class="text">Appointments</span>
+                          <span class="header__flag" data-bind="visible:isFlagVisible" style="display: none;"></span>
+                      </a>
+                  </li>
+                  <li style="display:none;">
+                      <a href="#">
+                          <span class="icon icon_bell"></span>
+                          <span class="text">Notifications</span>
+                          <span class="header__flag" data-bind="visible:isFlagVisible" style="display: none;"></span>
+                      </a>
+                  </li>
+              </ul>
+          </nav>
+
+          <ul class="header__dd-nav" data-bind="class:{is-active:isActiveHeaderDD">
+              <li>
+                  <a href="#" data-bind="click:goToMyAccount">
+                      <span class="icon icon_user"></span>
+                      <span class="text">My Account</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#">
+                      <span class="icon icon_home"></span>
+                      <span class="text">Home</span>
+                  </a>
+              </li>
+              <li style="display:none;">
+                  <a href="javascript:void(0);" onclick="javascript: window.location.href = snap.getPatientHome();" data-bind="click:goToHome">
+                      <span class="icon icon_dashboard"></span>
+                      <span class="text">Dashboard</span>
+                      <span class="flag" data-bind="visible:isFlagVisible" style="display: none;"></span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#" data-bind="click:goToConsultHistory">
+                      <span class="icon icon_calendar"></span>
+                      <span class="text">Appointments</span>
+                      <span class="flag" data-bind="visible:isFlagVisible" style="display: none;"></span>
+                  </a>
+              </li>
+              <li style="display:none;">
+                  <a href="#" data-bind="click:menuselect">
+                      <span class="icon icon_bell"></span>
+                      <span class="text">Notifications</span>
+                      <span class="flag" data-bind="visible:isFlagVisible" style="display: none;"></span>
+                  </a>
+              </li>
+              <li>
+                  <a href="#" data-bind="click:logout">
+                      <span class="icon icon_log-out"></span>
+                      <span class="text">Logout</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+    <div class="row" data-bind="invisible:isHideSubHeader">
+        <div class="header-bar">
+            <ul class="page-toggle hide-mobile">
+                <li><h1 data-bind="text: moduleTitle">Provider</h1></li>
+                <li class="page-toggle__module"><h1 data-bind="text: subModuleTitle" <="" h1="">All providers</h1></li>
+            </ul>
+
+            <ul class="menu-toggle">
+                <li class="menu-toggle__navigation"   data-bind="css:{is-active: vm_isSearchBarActive}">
+                    <a class="js-toggle-menu" data-bind="click: vm_toggleSearchAndFilter" ><span class="icon_list"></span></a>
+                </li>
+
+                <li data-bind="css:{is-active: isFavoriteCliniciansMode}">
+                    <a href="#/tab/providerSearch/favorite">My Providers</a>
+                </li>
+
+                 <li data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
+                    <a href="#/tab/providerSearch/all">All Providers</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
 <div class="schedular-continer">
 
 </div>
