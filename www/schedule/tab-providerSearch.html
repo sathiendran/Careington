@@ -104,12 +104,12 @@
                     <a class="js-toggle-menu"  _data-bind="click: vm_toggleSearchAndFilter" ><span class="icon_list"></span></a>
                 </li>
 
-                <li data-bind="css:{is-active: isFavoriteCliniciansMode}">
-                    <a href="#/tab/providerSearch/favorite">My Providers</a>
+                <li id="myProvider" data-bind="css:{is-active: isFavoriteCliniciansMode}">
+                    <a ng-click="getDetails('favorite')" _href="#/tab/providerSearch/favorite">My Providers</a>
                 </li>
 
-                 <li data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
-                    <a href="#/tab/providerSearch/all">All Providers</a>
+                 <li id="allProvider" data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
+                    <a ng-click="getDetails('all')"  _href="#/tab/providerSearch/all">All Providers</a>
                 </li>
             </ul>
         </div>

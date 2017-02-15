@@ -88,10 +88,10 @@
                 </div>
 
                 <div class="provider-search-page__content" data-bind="visible: vm_isFavoriteCliniciansMode">
-                    <div data-role="listview" data-bind="source: favoriteCliniciansDS, events: { dataBound: vm_favoriteClinicianCardsList_onDataBound }" data-template="clinicianCardTemplate">
+                    <div id="favoriteCliniciansDetailsDiv" data-role="listview" data-bind="source: favoriteCliniciansDS, events: { dataBound: vm_favoriteClinicianCardsList_onDataBound }" data-template="clinicianCardTemplate">
                     </div>
 
-                    <div class="provider-search-empty" data-bind="visible: vm_isFavoriteCliniciansDSEmpty">
+                    <div id="favoriteCliniciansEmpty" class="provider-search-empty" data-bind="visible: vm_isFavoriteCliniciansDSEmpty">
                         <div class="provider-search-empty__box">
                             <div class="provider-search-empty__icon">
                                 <span class="icon_user_clinician"></span>

@@ -17,7 +17,7 @@ angular.module('starter.controllers')
                 //snap.patient.PatientHeaderViewModel().setSubHeader({ viewMode: viewMode, module: "Provider", subModule: viewMode === "all" ? "All providers" : "My providers" });
                 debugger;
                 kendo.bind($("#scd-bdy"), vm);
-                var viewMode = $stateParams.viewMode; //"favorite";
+                var viewMode = "all"; //$stateParams.viewMode; //"favorite";
 
                 if (vm) {
                     if (!vm.isDataInit) {
@@ -43,5 +43,28 @@ angular.module('starter.controllers')
           } else {
             $("#searchFilter").addClass("is-active");
           }
+        }
+
+        $scope.getDetails = function(userName) {
+              var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
+              if(userName === 'favorite') {
+                $("#allProvider").removeClass("is-active");
+                $("#myProvider").addClass("is-active");
+                vm.allCliniciansDS.data().length;
+              } else if(userName === 'all') {
+                $("#myProvider").removeClass("is-active");
+                $("#allProvider").addClass("is-active");
+                vm.allCliniciansDS.data().length;
+              }
+
+              kendo.bind($("#scd-bdy"), vm);
+              var viewMode = userName; //$stateParams.viewMode; //"favorite";
+
+              if (vm) {
+                  if (!vm.isDataInit) {
+                      vm.load();
+                  }
+                  vm.setViewMode(viewMode);
+              }
         }
     });

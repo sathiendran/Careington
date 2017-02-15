@@ -2332,8 +2332,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 		});*/
 		//script/viewmodules/schedule - ended
 		//window.location.href='#/tab/providerSearch';
-      $state.go('tab.providerSearch', { viewMode : 'all' });
-
+    //  $state.go('tab.providerSearch', { viewMode : 'all' });
+      $state.go('tab.providerSearch');
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId) {

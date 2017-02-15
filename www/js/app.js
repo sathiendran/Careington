@@ -684,7 +684,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
        }
    })
    .state('tab.providerSearch', {
-     url: '/providerSearch/:viewMode',
+     url: '/providerSearch',
      views: {
       'tab-login': {
           templateUrl: 'schedule/tab-providerSearch.html',
@@ -692,6 +692,16 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
          }
       }
   })
+
+  .state('tab.providerBody', {
+    url: '/providerSearch',
+    views: {
+     'tab-login': {
+         templateUrl: 'schedule/tab-providerBody.html',
+         controller: 'ScheduleCtrl'
+        }
+     }
+ })
     .state('tab.ChronicCondition', {
         url: '/ChronicCondition',
         views: {
