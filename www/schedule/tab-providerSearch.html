@@ -1,5 +1,5 @@
 <header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
-  <div class="row">
+<!--  <div class="row">
       <div class="header__menu">
           <a href="#" class="main-nav__toggle js-toggle-main-nav" data-bind="click:onNavClick">
               <ins></ins>
@@ -91,7 +91,7 @@
               </li>
           </ul>
       </div>
-  </div>
+  </div>-->
     <div class="row" data-bind="invisible:isHideSubHeader">
         <div class="header-bar">
             <ul class="page-toggle hide-mobile">
@@ -100,8 +100,8 @@
             </ul>
 
             <ul class="menu-toggle">
-                <li class="menu-toggle__navigation"   data-bind="css:{is-active: vm_isSearchBarActive}">
-                    <a class="js-toggle-menu" data-bind="click: vm_toggleSearchAndFilter" ><span class="icon_list"></span></a>
+                <li class="menu-toggle__navigation" ng-click="getDatss()"  data-bind="css:{is-active: vm_isSearchBarActive}">
+                    <a class="js-toggle-menu"  _data-bind="click: vm_toggleSearchAndFilter" ><span class="icon_list"></span></a>
                 </li>
 
                 <li data-bind="css:{is-active: isFavoriteCliniciansMode}">

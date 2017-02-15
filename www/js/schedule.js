@@ -14,6 +14,7 @@ angular.module('starter.controllers')
 
                 $(".schedular-continer").html(html);
                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
+                //snap.patient.PatientHeaderViewModel().setSubHeader({ viewMode: viewMode, module: "Provider", subModule: viewMode === "all" ? "All providers" : "My providers" });
                 debugger;
                 kendo.bind($("#scd-bdy"), vm);
                 var viewMode = $stateParams.viewMode; //"favorite";
@@ -34,17 +35,13 @@ angular.module('starter.controllers')
         this.initKendoUI();
 
         $scope.getDatss = function() {
-          snap.patient.schedule.providerSearch.vm_toggleSearchAndFilter;
-          var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
-          debugger;
-          kendo.bind($("#scd-bdy"), vm);
-          var viewMode = $stateParams.viewMode; //"favorite";
-
-          if (vm) {
-              if (!vm.isDataInit) {
-                  vm.load();
-              }
-              vm.setViewMode(viewMode);
+        //  $scope.vm_isSearchBarActive = true;
+          //  $window.localStorage.setItem('vm_isSearchBarActive', true);
+        //  $("#fff").addClass("is-active");
+          if($("#searchFilter").hasClass("is-active")) {
+            $("#searchFilter").removeClass("is-active");
+          } else {
+            $("#searchFilter").addClass("is-active");
           }
         }
     });
