@@ -1,37 +1,41 @@
 <header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
-  <div class="row">
-      <div class="header__menu">
-          <a href="#" class="main-nav__toggle js-toggle-main-nav" data-bind="click:onNavClick">
-              <ins></ins>
-              <ins></ins>
-              <ins></ins>
-          </a>
-      </div>
+    <div class="row">
+        <div class="header__menu">
+            <a href="#" class="main-nav__toggle js-toggle-main-nav" data-bind="click:onNavClick">
+                <ins></ins>
+                <ins></ins>
+                <ins></ins>
+            </a>
+        </div>
 
-      <div class="header__brand">
-          <h1 data-bind="text:brandName, attr: {title: brandName }" title="EMERALD QA HEALTHCARE GROUP">EMERALD QA HEALTHCARE GROUP</h1>
-      </div>
-  </div>
+        <div class="header__brand">
+            <h1 data-bind="text:brandName, attr: {title: brandName }" title="EMERALD QA HEALTHCARE GROUP">EMERALD QA HEALTHCARE GROUP</h1>
+        </div>
+    </div>
 </header>
 <header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
     <div class="row" data-bind="invisible:isHideSubHeader">
         <div class="header-bar">
             <ul class="page-toggle hide-mobile">
-                <li><h1 data-bind="text: moduleTitle">Provider</h1></li>
-                <li class="page-toggle__module"><h1 data-bind="text: subModuleTitle" <="" h1="">All providers</h1></li>
+                <li>
+                    <h1 data-bind="text: moduleTitle">Provider</h1>
+                </li>
+                <li class="page-toggle__module">
+                    <h1 data-bind="text: subModuleTitle">All providers</h1>
+                </li>
             </ul>
 
             <ul class="menu-toggle">
-                <li class="menu-toggle__navigation" ng-click="getDatss()"  data-bind="css:{is-active: vm_isSearchBarActive}">
-                    <a class="js-toggle-menu"  _data-bind="click: vm_toggleSearchAndFilter" ><span class="icon_list"></span></a>
+                <li class="menu-toggle__navigation" ng-click="getDatss()" data-bind="css:{is-active: vm_isSearchBarActive}">
+                    <a class="js-toggle-menu" _data-bind="click: vm_toggleSearchAndFilter"><span class="icon_list"></span></a>
                 </li>
 
                 <li id="myProvider" data-bind="css:{is-active: isFavoriteCliniciansMode}">
                     <a ng-click="getDetails('favorite')" _href="#/tab/providerSearch/favorite">My Providers</a>
                 </li>
 
-                 <li id="allProvider" data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
-                    <a ng-click="getDetails('all')"  _href="#/tab/providerSearch/all">All Providers</a>
+                <li id="allProvider" data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
+                    <a ng-click="getDetails('all')" _href="#/tab/providerSearch/all">All Providers</a>
                 </li>
             </ul>
         </div>
