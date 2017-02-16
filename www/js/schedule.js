@@ -50,11 +50,23 @@ angular.module('starter.controllers')
               if(userName === 'favorite') {
                 $("#allProvider").removeClass("is-active");
                 $("#myProvider").addClass("is-active");
-                vm.allCliniciansDS.data().length;
+                if(vm.favoriteCliniciansDS.data().length === 0) {
+                  $("#favoriteCliniciansDetailsDiv").css("display", "none");
+                  $("#favoriteCliniciansEmpty").css("display", "block");
+                } else {
+                  $("#favoriteCliniciansEmpty").css("display", "none");
+                  $("#favoriteCliniciansDetailsDiv").css("display", "block");
+                }
               } else if(userName === 'all') {
                 $("#myProvider").removeClass("is-active");
                 $("#allProvider").addClass("is-active");
-                vm.allCliniciansDS.data().length;
+                if(vm.allCliniciansDS.data().length === 0) {
+                  $("#allCliniciansDetailsDiv").css("display", "none");
+                  $("#allCliniciansEmpty").css("display", "block");
+                } else {
+                  $("#allCliniciansEmpty").css("display", "none");
+                  $("#allCliniciansDetailsDiv").css("display", "block");
+                }
               }
 
               kendo.bind($("#scd-bdy"), vm);

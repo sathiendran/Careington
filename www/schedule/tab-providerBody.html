@@ -91,7 +91,7 @@
                     <div id="favoriteCliniciansDetailsDiv" data-role="listview" data-bind="source: favoriteCliniciansDS, events: { dataBound: vm_favoriteClinicianCardsList_onDataBound }" data-template="clinicianCardTemplate">
                     </div>
 
-                    <div id="favoriteCliniciansEmpty" class="provider-search-empty" data-bind="visible: vm_isFavoriteCliniciansDSEmpty">
+                    <!--<div id="favoriteCliniciansEmpty" class="provider-search-empty" _data-bind="visible: vm_isFavoriteCliniciansDSEmpty">
                         <div class="provider-search-empty__box">
                             <div class="provider-search-empty__icon">
                                 <span class="icon_user_clinician"></span>
@@ -99,15 +99,27 @@
                             <div class="provider-search-empty__title">No Providers Match1 <br>Your Current Search</div>
                             <div class="provider-search-empty__subtitle">Please update your search and try again.</div>
                         </div>
+                    </div>-->
+                    <div id="favoriteCliniciansEmpty" class="provider-search-empty" data-bind="visible: vm_isFavoriteCliniciansDSEmpty">
+                        <div class="provider-search-empty__box">
+                            <div class="provider-search-empty__icon">
+                                <span class="icon_user_clinician"></span>
+                            </div>
+                            <div class="provider-search-empty__title" data-bind="visible: vm_hasSearchConditions">No Providers Match <br>Your Current Search</div>
+                            <div class="provider-search-empty__subtitle" data-bind="visible: vm_hasSearchConditions">Please update your search and try again.</div>
+                            <div class="provider-search-empty__title" data-bind="invisible: vm_hasSearchConditions">You Do Not Have<br>Any Saved Providers</div>
+                            <div class="provider-search-empty__subtitle" data-bind="invisible: vm_hasSearchConditions">You can add providers from the all providers list</div>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="provider-search-page__content" data-bind="visible: vm_isAllCliniciansMode,
                        css:{provider-search-page__content--grid: vm_isClinicianCardVerticalView}">
-                    <div data-role="listview" data-bind="source: allCliniciansDS, events: { dataBound: vm_allClinicianCardsList_onDataBound }" data-template="clinicianCardTemplate">
+                    <div id="allCliniciansDetailsDiv" data-role="listview" data-bind="source: allCliniciansDS, events: { dataBound: vm_allClinicianCardsList_onDataBound }" data-template="clinicianCardTemplate">
                     </div>
 
-                    <div class="provider-search-empty" data-bind="visible: vm_isAllCliniciansDSEmpty">
+                    <div id="allCliniciansEmpty" class="provider-search-empty" data-bind="visible: vm_isAllCliniciansDSEmpty">
                         <div class="provider-search-empty__box">
                             <div class="provider-search-empty__icon">
                                 <span class="icon_user_clinician"></span>
