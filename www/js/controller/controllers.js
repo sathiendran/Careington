@@ -1094,10 +1094,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $state.go($rootScope.frontPage);
     }
 
-    $rootScope.getTokenDetailsForRegisterdUsers = function() {
+    $rootScope.DetailsForRegisterdUsers = function() {
       $rootScope.UserEmail = $rootScope.registedEmail;
       $scope.pass.password = $rootScope.registedPwd;
-      $scope.doGetToken();
+      $scope.do();
     }
 
     $rootScope.cancelProviderSearch = function() {
@@ -1329,6 +1329,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+                if( $rootScope.cuttlocations != "tab.ReportScreen"){
+                  $scope.doGetlocationResponse ();
+                }
+
                 $state.go('tab.userhome');
             },
             error: function(data, status) {
