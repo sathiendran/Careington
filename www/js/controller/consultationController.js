@@ -606,7 +606,12 @@ angular.module('starter.controllers')
                         $rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'ICD-10-DX'
                         });
-
+                        $rootScope.reportMediICD9 = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'ICD-9-DX'
+                        });
+                        $rootScope.reportSNOMED = $filter('filter')($scope.reportMedicalCodeDetails, {
+                            medicalCodingSystem: 'SNOMED-CT'
+                        });
                     } else {
                         $rootScope.reportMedicalCodeDetails = '';
                     }
