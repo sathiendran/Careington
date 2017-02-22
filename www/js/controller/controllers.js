@@ -990,8 +990,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $window.localStorage.setItem('username', "");
             $rootScope.chkedchkbox = false;
         }
-
-        $scope.doGetTokenSSO();
+        if(appStoreTestUserEmail === 'itunesmobiletester@gmail.com') {
+          $scope.doGetToken();
+        } else {
+          $scope.doGetTokenSSO();
+        }
     }
 
 
