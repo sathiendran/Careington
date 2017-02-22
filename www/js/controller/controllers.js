@@ -1094,10 +1094,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $state.go($rootScope.frontPage);
     }
 
-    $rootScope.DetailsForRegisterdUsers = function() {
+    $rootScope.getTokenDetailsForRegisterdUsers = function() {
       $rootScope.UserEmail = $rootScope.registedEmail;
       $scope.pass.password = $rootScope.registedPwd;
-      $scope.do();
+      $scope.doGetToken();
     }
 
     $rootScope.cancelProviderSearch = function() {
