@@ -12,8 +12,8 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Single'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -636,6 +636,14 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-userhome.html',
+                controller: 'LoginCtrl'
+            }
+        }
+    }).state('tab.CurrentLocationlist', {
+        url: '/CurrentLocationlist',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-CurrentLocationlist.html',
                 controller: 'LoginCtrl'
             }
         }

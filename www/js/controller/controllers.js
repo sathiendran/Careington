@@ -492,7 +492,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.PrimaryConcernPopupH = "height: 66px;";
             $rootScope.PrimaryConcernPopupSearchBox = "margin-top: -7px;";
             $rootScope.PrimaryConcernPopupTitle = "margin-top: 7px; font-family: 'Glober SemiBold'; ";
-            $rootScope.PrimaryConcernPopupDone = "margin-top: 14px; padding-right: 0px; padding-left: 0px;padding: 0px;";
+            $rootScope.PrimaryConcernPopupDone = "margin-top: 10px; padding-right: 0px; padding-left: 0px;padding: 0px;";
             $rootScope.PriorSurgeryPopupTitle = "margin-top: 16px;";
             $rootScope.PriorSurgeryPopupDone = "margin-top: 21px;";
             $rootScope.PriorSurgeryPopupCancel =  "margin-top: 2px;  padding-right: 0px; padding-left: 0px;padding: 0px;";
@@ -626,7 +626,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             ($rootScope.currState.$current.name === "tab.receipt") ||
             ($rootScope.currState.$current.name === "tab.videoConference") ||
             ($rootScope.currState.$current.name === "tab.connectionLost") ||
-            ($rootScope.currState.$current.name === "tab.ReportScreen")
+            ($rootScope.currState.$current.name === "tab.ReportScreen")||
+            ($rootScope.currState.$current.name === "tab.CurrentLocationlist")
         ) {
             // H/W BACK button is disabled for these states (these views)
             // Do not go to the previous state (or view) for these states.
@@ -659,7 +660,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.$storage = $window.localStorage;
     var checkAndChangeMenuIcon;
     $interval.cancel(checkAndChangeMenuIcon);
-
+    $scope.currentstateview=true;
     $rootScope.checkAndChangeMenuIcon = function() {
             if (!$ionicSideMenuDelegate.isOpen(true)) {
                 if ($('#BackButtonIcon svg').hasClass("ion-close")) {
@@ -696,6 +697,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.doRefreshUserHome = function() {
         $rootScope.doGetPatientProfiles();
+          $rootScope.cuttlocations ="tab.ReportScreen"
         $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $timeout(function() {
             $scope.$broadcast('scroll.refreshComplete');
@@ -1276,7 +1278,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.goBackProvider = function() {
         $state.go('tab.provider');
     };
-
+    $scope.mobileloc=false;
     $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme = function() {
         $rootScope.paymentMode = '';
         $rootScope.insuranceMode = '';
@@ -1330,6 +1332,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+                if( $rootScope.cuttlocations != "tab.ReportScreen"){
+                  $scope.doGetlocationResponse ();
+                }
+
                 $state.go('tab.userhome');
             },
             error: function(data, status) {
@@ -1915,7 +1921,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPharmacyDetails = data.data[0].pharmacyDetails;
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
-                $rootScope.address = data.data[0].address;
+                $rootScope.patientParticularaddress = data.data[0].addressLocation;
+                $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
+                $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
+                $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
                 $rootScope.dob = data.data[0].dob;
@@ -2053,6 +2064,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
                 $rootScope.currentPatientDetails = data.data;
                 if ($rootScope.hasRequiredFields === true) {
+                    $rootScope.cuttlocations = "";
                     $rootScope.doGetPatientProfiles();
                     $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
@@ -2203,7 +2215,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     if (deploymentEnv === "Single") {
                         $scope.doGetSingleUserHospitalInformationForCoBrandedHardCodedColorScheme();
                     } else {
+                      if( $rootScope.cuttlocations == "tab.ReportScreen"){
                         $state.go('tab.userhome');
+                      }else if($rootScope.cuttlocations == undefined){
+                          $scope.doGetlocationResponse ();
+                      }else{
+                          $scope.doGetlocationResponse ();
+                      }
+
 
                     }
                 } else {
@@ -2224,6 +2243,71 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         LoginService.getRelatedPatientProfiles(params);
     }
+
+var deregisterBackButton;
+        $scope.doGetlocationResponse = function() {
+
+            var params = {
+                accessToken: $rootScope.accessToken,
+                success: function(data) {
+                  if(data.active==true){
+                    $state.go('tab.userhome');
+
+                    deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e){}, 401);
+                    var confirmPopup = $ionicPopup.confirm({
+
+                        title: "<div class='locationtitle'> Confirm Current Location </div> ",
+
+                        templateUrl: 'templates/currentLocation.html',
+                        cssClass: 'locpopup',
+                        hardwareBackButtonClose: false,
+
+                        buttons: [{
+                            text: '<b>No</b>',
+                            onTap: function(e) {
+
+                              $scope.showAlert();
+                                return true;
+                            }
+                        }, {
+                            text: '<b>Yes</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                              //  return true;
+                                  //$rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                            }
+                        }, ],
+                    });
+                    confirmPopup.then(function(res) {
+                        if (res) {
+                          deregisterBackButton();
+                        } else {
+                          //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                        }
+                    });
+                  }
+                  else{
+                      $state.go('tab.userhome');
+
+
+                  }
+                },
+                error: function(data, status) {
+
+                }
+            };
+
+            LoginService.getLocationResponse(params);
+        }
+
+        $scope.showAlert = function() {
+          $rootScope.doGetCountryLocations();
+          $state.go("tab.CurrentLocationlist");
+          };
+          $scope.cancellocation=function(){
+            $scope.doGetlocationResponse();
+            //history.back();
+          }
 
     $scope.doGetExistingConsulatation = function() {
         $rootScope.consultionInformation = '';
@@ -2484,14 +2568,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     //Start Open Country List popup
     $scope.loadCountriesList = function() {
 
-        $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
+      /*  $ionicModal.fromTemplateUrl('templates/tab-CountryList.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-        });
+        });*/
 
     };
 
@@ -2518,14 +2602,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     //End Countries
 
     $scope.loadStateList = function(CountryCode) {
-        $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
+      /*  $ionicModal.fromTemplateUrl('templates/tab-StateList.html', {
             scope: $scope,
             animation: 'slide-in-up',
             focusFirstInput: false
         }).then(function(modal) {
             $scope.modal = modal;
             $scope.modal.show();
-        });
+        });*/
         $rootScope.CountryCode = CountryCode;
     };
     $scope.stateList = '';
@@ -3709,6 +3793,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     }
 
+
     $rootScope.doGetSelectedPatientProfiles = function(patientId, nextPage, seeADoc) {
 
         var params = {
@@ -3828,13 +3913,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             'schoolContact': index.schoolContact,
                             'schoolName': index.schoolName
                         });
+
                     });
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
+                    $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
+                    var cutaddresses=$rootScope.cutaddress.split(",");
+                      $rootScope.stateaddresses=cutaddresses[0];
                     var date = new Date($rootScope.currentPatientDetails[0].dob);
                     $rootScope.userDOBDateFormat = date;
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     $state.go(nextPage);
+
                 }
             },
             error: function(data, status) {
@@ -3873,7 +3963,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             $rootScope.P_isAuthorized = false;
                         }
                     }
-
+                        $rootScope.accountClinicianFooter = 'ngLoadingSpinner';
                     var date = new Date($scope.individualScheduledConsultationList.dob);
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
 
@@ -4071,7 +4161,21 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             accessToken: $rootScope.accessToken,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
+
+              angular.forEach(data.data[0].familyMembers, function(index) {
+                  if (index.patientId == $rootScope.checkpatid) {
+
+
+                      $rootScope.providerAvailability = index.providerAvailable;
+
+                  }
+              });
+
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
+
+
+
+
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -4142,6 +4246,113 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getListOfLocationOrganization(params);
     }
 
+$scope.loction={};
+    $rootScope.doGetCountryLocations = function() {
+      $rootScope.listOfCountries = '';
+        $rootScope.listOfCountry = '';
+
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.listOfCountries = [];
+                $rootScope.listOfCountry = [];
+
+             if (data.data[0] !== '') {
+                    angular.forEach(data.data, function(index) {
+                        $rootScope.listOfCountries.push({
+                            'conditionTypeId': index.conditionTypeId,
+                            'description': index.description,
+                            'createdDate': index.createdDate,
+                            'id': index.id,
+                            'country': angular.fromJson(index.countries)
+
+                        });
+                        angular.forEach(index.countries, function(index) {
+                            $rootScope.listOfCountry.push({
+                                'country': index.country,
+                                'countryCode': index.countryCode,
+                                'region': angular.fromJson(index.regions)
+                            });
+                        });
+
+                    });
+                }
+
+            },
+            error: function(data, status) {
+                if (status === 0) {
+
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getListOfCountryLocation(params);
+    }
+
+
+$scope.$watch('loction.loccountry', function(cutLoc) {
+  $rootScope.listOfSelectstate=[];
+        if (cutLoc) {
+            $rootScope.listOfLocState = $filter('filter')($rootScope.listOfCountry, {
+                country: cutLoc
+            });
+            if($rootScope.listOfLocState[0].region == undefined){
+                $scope.currentstateview = false;
+            }
+            angular.forEach($rootScope.listOfLocState[0].region, function(index) {
+                $rootScope.listOfSelectstate.push({
+                    'region':index.region
+                });
+                $scope.currentstateview = true;
+            });
+        } else {
+            $rootScope.listOfLocState = "";
+}
+
+});
+
+ $scope.updatelocation=function(){
+
+      $rootScope.upcountry=$( "#country option:selected" ).text();
+      $rootScope.upstate=$( "#state option:selected" ).text();
+      $rootScope.statereg=$rootScope.listOfLocState;
+      if($rootScope.upcountry == "Select your Country" &&  $rootScope.upstate == "Choose state" && $rootScope.listOfLocState == ""){
+        $scope.ErrorMessage = "Please select country";
+        $rootScope.Validation($scope.ErrorMessage);
+      } else if($rootScope.upcountry != "" &&   $rootScope.statereg[0].region != undefined && $rootScope.upstate == "Choose state"){
+        $scope.ErrorMessage = "Please select state";
+        $rootScope.Validation($scope.ErrorMessage);
+      }  else{
+      $scope.updateCurrentLocation();
+      }
+
+ }
+
+
+ $scope.updateCurrentLocation=function(){
+   if($rootScope.upcountry !=""  &&   $rootScope.upstate!="Choose state"){
+     $scope.upcountrystate = $rootScope.upcountry +","+$rootScope.upstate;
+   }else if($rootScope.upcountry!= ""  &&   $rootScope.upstate == "Choose state"){
+       $scope.upcountrystate = $rootScope.upcountry;
+   }
+   var params = {
+     accessToken: $rootScope.accessToken,
+     countrystate: $scope.upcountrystate,
+     //state:  $scope.upstate,
+
+     success: function(data,status) {
+         history.back();
+     },
+     error: function(data,status) {
+        alert("fail");
+     }
+   };
+     LoginService.putListOfCountryLocation(params);
+ }
     $rootScope.passededconsultants = function() {
 
         var params = {
@@ -4239,6 +4450,34 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if (clickEvent === "patientClick") {
                             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+                            var confirmPopup = $ionicPopup.confirm({
+
+                                title: "<div class='locationtitle'> Confirm Current Location </div> ",
+
+                                templateUrl: 'templates/currentLocation.html',
+                                cssClass: 'locpopup',
+
+                                buttons: [{
+                                    text: 'No',
+                                    onTap: function(e) {
+                                        $scope.showAlert();
+                                        return true;
+                                    }
+                                }, {
+                                    text: '<b>Yes</b>',
+                                    type: 'button-positive',
+                                    onTap: function(e) {
+
+                                    }
+                                }, ],
+                            });
+                            confirmPopup.then(function(res) {
+                                if (res) {
+
+                                } else {
+                                    $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
+                                }
+                            });
                         } else if (clickEvent === "sideMenuClick") {
                             var patid = $rootScope.patientId;
                             var primarypatid = $rootScope.primaryPatientId;
@@ -4283,6 +4522,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getListOfPassedConsultations(params);
 
     }
+
+
+
 
     $rootScope.doGetListOfCoUsers = function() {
         var params = {
@@ -4460,6 +4702,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     }
     $rootScope.GoToPatientDetailsFromRelatedUsers = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
+
         $rootScope.coUserAuthorization = $rootScope.patientId;
         $rootScope.patientId = P_Id;
         $rootScope.getCoUserAunthent = '';
@@ -4467,8 +4710,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
-        if ($rootScope.patientSearchKey !== '' || typeof $rootScope.patientSearchKey !== "undefined") {
 
+        if ($rootScope.patientSearchKey !== '' || typeof $rootScope.patientSearchKey !== "undefined") {
+              $rootScope.checkpatid=P_Id;
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
             if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
                 if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
@@ -4512,6 +4756,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
         if (clickEvent === "patientClick") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+
         } else if (clickEvent === "sideMenuClick") {
             var patid = $rootScope.patientId;
             var primarypatid = $rootScope.primaryPatientId;
@@ -4564,6 +4809,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         if (clickEvent === "patientClick") {
             $rootScope.doGetSelectedPatientProfiles(P_Id, 'tab.userAccount', '');
+
         } else if (clickEvent === "sideMenuClick") {
             var patid = $rootScope.patientId;
             var primarypatid = $rootScope.primaryPatientId;
@@ -4820,6 +5066,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $rootScope.EnableBackButton = function() {
+      var currentLocation = window.location;
+      var loc=currentLocation.href;
+      var newloc=loc.split("#");
+      var locat=newloc[1];
+      var sploc=locat.split("/");
+      $rootScope.cuttlocations=sploc[1] +"."+sploc[2];
         $rootScope.doGetPatientProfiles();
         $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         $state.go('tab.userhome');
@@ -4846,6 +5098,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
         LoginService.getAttachmentURL(params);
     }
+
+
 })
 
 .directive('inputMaxLengthNumber', function() {

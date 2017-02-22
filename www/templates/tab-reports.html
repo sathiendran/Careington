@@ -258,6 +258,18 @@
                         <p>{{reportMediICD.shortDescription}}</b>
                      </div>
                   </div>
+                  <div ng-if="reportMediICD9 != ''">
+                      <div class="objectiveTitle"><b>ICD-9-DX Code</b></div>
+                      <div ng-repeat="reportMediICD9 in reportMediICD9"  style="margin-left: 10%;">
+                         <p>{{reportMediICD9.shortDescription}}</b>
+                      </div>
+                   </div>
+                   <div ng-if="reportSNOMED!= ''">
+                      <div class="objectiveTitle"><b>SNOMED-CT Code</b></div>
+                      <div ng-repeat="reportSNOMED in reportSNOMED"  style="margin-left: 10%;">
+                         <p>{{reportSNOMED.shortDescription}}</b>
+                      </div>
+                   </div>  
                </div>
                <div ng-if="reportMedicalCodeDetails == ''">
                   <p>None Reported</p>
