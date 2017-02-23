@@ -12,8 +12,8 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Single'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -24,7 +24,7 @@ var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'Sandbox'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'Production'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'TeleMD Virtual Clinic';
+    var cobrandApp = '1800md';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;

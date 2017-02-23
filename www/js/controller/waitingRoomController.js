@@ -52,6 +52,90 @@ angular.module('starter.controllers')
     }, 100);
     $scope.$storage = $window.localStorage;
 
+    $scope.doGetSingleHosInfoForiTunesStage = function() {
+        $rootScope.paymentMode = '';
+        $rootScope.insuranceMode = '';
+        $rootScope.onDemandMode = '';
+        $rootScope.OrganizationLocation = '';
+        $rootScope.PPIsBloodTypeRequired = '';
+        $rootScope.PPIsHairColorRequired = '';
+        $rootScope.PPIsEthnicityRequired = '';
+        $rootScope.PPIsEyeColorRequired = '';
+        var params = {
+            hospitalId: $rootScope.hospitalId,
+            success: function(data) {
+                $rootScope.getDetails = data.data[0].enabledModules;
+                $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
+                $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
+                $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
+                if ($rootScope.getDetails !== '') {
+                    for (var i = 0; i < $rootScope.getDetails.length; i++) {
+                        if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+                            $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
+                            $rootScope.paymentMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
+                            $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
+                            $rootScope.OrganizationLocation = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
+                            $rootScope.PPIsBloodTypeRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
+                            $rootScope.PPIsHairColorRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
+                            $rootScope.PPIsEthnicityRequired = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
+                            $rootScope.PPIsEyeColorRequired = 'on';
+                        }
+                    }
+                }
+                $rootScope.brandColor = data.data[0].brandColor;
+                $rootScope.logo = data.data[0].hospitalImage;
+                $rootScope.Hospital = data.data[0].brandName;
+                if (deploymentEnvLogout === 'Multiple') {
+                    $rootScope.alertMsgName = 'Virtual Care';
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+                } else {
+                    $rootScope.alertMsgName = $rootScope.Hospital;
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+                }
+                $rootScope.HospitalTag = data.data[0].brandTitle;
+                $rootScope.contactNumber = data.data[0].contactNumber;
+                $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+                $rootScope.clientName = data.data[0].hospitalName;
+                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
+                    $rootScope.customerSso = "Mandatory";
+                    ssoURL = data.data[0].patientLogin;
+                } else {
+                    $rootScope.customerSso = '';
+                }
+                if (!angular.isUndefined(data.data[0].patientRegistrationApi) && data.data[0].patientRegistrationApi !== "") {
+                    $rootScope.isSSORegisterAvailable = data.data[0].patientRegistrationApi;
+                } else {
+                    $rootScope.isSSORegisterAvailable = '';
+                }
+                if (deploymentEnvLogout === "Multiple") {
+                    $state.go('tab.chooseEnvironment');
+                } else if (deploymentEnvLogout === "Single") {
+                    $state.go('tab.loginSingle');
+                } else {
+                    $state.go('tab.login');
+                }
+            },
+            error: function() {
+                $rootScope.serverErrorMessageValidation();
+            }
+        };
+        LoginService.getHospitalInfo(params);
+    }
+
     $rootScope.ClearRootScope = function() {
 
       $(".ion-google-place-container").css({
@@ -59,15 +143,13 @@ angular.module('starter.controllers')
       });
       $ionicBackdrop.release();
       $window.localStorage.setItem('tokenExpireTime', '');
-      $rootScope = $rootScope.$new(true);
-      $scope = $scope.$new(true);
-      for (var prop in $rootScope) {
-          if (prop.substring(0,1) !== '$') {
-              delete $rootScope[prop];
-          }
-      }
-
-
+      if (deploymentEnvLogout === 'Single' && deploymentEnvForProduction === 'Production' && appStoreTestUserEmail === 'itunesmobiletester@gmail.com' && api_keys_env === 'Staging') {
+            $rootScope.hospitalId = singleHospitalId;
+            apiCommonURL = 'https://connectedcare.md';
+            api_keys_env = 'Production';
+            $rootScope.APICommonURL = 'https://connectedcare.md';
+            $scope.doGetSingleHosInfoForiTunesStage();
+      } else {
         if (deploymentEnvLogout === "Multiple") {
             $state.go('tab.chooseEnvironment');
         } else if (deploymentEnvLogout === "Single") {
@@ -75,6 +157,14 @@ angular.module('starter.controllers')
         } else {
             $state.go('tab.login');
         }
+      }
+      $rootScope = $rootScope.$new(true);
+      $scope = $scope.$new(true);
+      for (var prop in $rootScope) {
+          if (prop.substring(0,1) !== '$') {
+              delete $rootScope[prop];
+          }
+      }
     }
 
 
