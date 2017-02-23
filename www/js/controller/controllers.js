@@ -3541,6 +3541,7 @@ var deregisterBackButton;
                             var splityear = newda.getFullYear();
                             var Aptdate = splityear + "/" + splitmnth + "/" + splitdate;
                             $scope.formatscheduleddate = moment(Aptdate, 'YYYY/MM/DD').format('MMM D');
+                            $rootScope.appointmentwaivefee=index.waiveFee;
                             $scope.paticipatingPatientName = $scope.paticipatingPatient.person.name.given + ' ' + $scope.paticipatingPatient.person.name.family;
                             $scope.paticipatingPatientInitial = getInitialForName($scope.paticipatingPatientName);
                             $scope.paticipatingPatientPhoto = $scope.paticipatingPatient.person.photoUrl;
@@ -4616,7 +4617,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                     });
                     if ($rootScope.listOfCreditDetails.length > 0) {
                         $rootScope.getIndividualPatientCreditCount = $rootScope.listOfCreditDetails.length;
-                        $rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount - 1;
+                        if($rootScope.appointmentwaivefee == true){
+                          $rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount;
+                        }else{
+                          $rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount - 1;$rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount - 1;
+                        }
+
                     } else {
                         $rootScope.getIndividualPatientCreditCount = 0;
                     }
@@ -4885,7 +4891,9 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
             $rootScope.doPutConsultationSave();
         } else if ($rootScope.appointmentsPage === true) {
-            if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
+            if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == false) {
+                $rootScope.doPostDepitDetails();
+            }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == true){
                 $rootScope.doPostDepitDetails();
             } else {
                 $scope.doGetHospitalInformation();
