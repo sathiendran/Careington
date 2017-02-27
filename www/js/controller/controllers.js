@@ -4896,7 +4896,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == true){
                 $rootScope.doPostDepitDetails();
             } else {
-                $scope.doGetHospitalInformation();
+                $rootScope.doGetHospitalInformation();
             }
         }
     }
@@ -4928,7 +4928,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
     }
 
 
-    $scope.doGetHospitalInformation = function() {
+    $rootScope.doGetHospitalInformation = function() {
         var params = {
             accessToken: $rootScope.accessToken,
             hospitalId: $rootScope.hospitalId,

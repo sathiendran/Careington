@@ -164,10 +164,19 @@ angular.module('starter.controllers')
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
-                $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
-                $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
-                $state.go('tab.ConsentTreat');
-            },
+                  $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
+                  $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
+               if ($rootScope.appointmentsPage === true) {
+                 if($rootScope.Cttonscheduled === 'on'){
+                   $state.go('tab.ConsentTreat');
+                 }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
+                       $rootScope.doPostDepitDetails();
+                   } else {
+                       $rootScope.doGetHospitalInformation();
+                   }
+                 }
+
+              },
             error: function(data, status) {
                 if (status === 0) {
 
