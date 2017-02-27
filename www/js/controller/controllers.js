@@ -1143,6 +1143,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
                         }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                            $rootScope.Cttonscheduled = 'on';
+                        }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
                         }
@@ -1214,6 +1217,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
                         }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                              $rootScope.Cttonscheduled = 'on';
+                          }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
                         }
@@ -1299,6 +1305,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                            $rootScope.Cttonscheduled = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
