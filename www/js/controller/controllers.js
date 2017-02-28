@@ -3120,7 +3120,8 @@ var deregisterBackButton;
             healthPlanId: $rootScope.healthPlanID,
             success: function() {
                 $rootScope.enablePaymentSuccess = "none";
-                $rootScope.enableCreditVerification = "none";
+                $rootScope.enableCreditVerification = "none"
+                $rootScope.enableWaivefeeVerification = "none";;
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
                 $scope.ReceiptTimeout();
@@ -3129,6 +3130,7 @@ var deregisterBackButton;
             error: function() {
                 $rootScope.enablePaymentSuccess = "none";
                 $rootScope.enableCreditVerification = "none";
+                $rootScope.enableWaivefeeVerification = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
                 $scope.ReceiptTimeout();
@@ -3164,6 +3166,7 @@ var deregisterBackButton;
                         $rootScope.disableSubmitpayment = "none";
                         $rootScope.enablePaymentSuccess = "block";
                         $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "none";
                         if ($rootScope.copayAmount !== 0) {
                             $rootScope.enableSubmitpaymentAddCard = "block";
                             $rootScope.disableSubmitpaymentAddCard = "none";
@@ -3276,6 +3279,7 @@ var deregisterBackButton;
     $scope.doGetReceipt = function() {
         $rootScope.enablePaymentSuccess = "none";
         $rootScope.enableCreditVerification = "none";
+        $rootScope.enableWaivefeeVerification = "none";
         $state.go('tab.receipt');
         $scope.ReceiptTimeout();
     }
@@ -4909,7 +4913,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == false) {
                 $rootScope.doPostDepitDetails();
             }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == true){
-                $rootScope.doPostDepitDetails();
+              $state.go('tab.receipt');
+              $rootScope.enablePaymentSuccess = "none";
+              $rootScope.enableInsuranceVerificationSuccess = "none";
+              $rootScope.enableCreditVerification = "none";
+              $rootScope.enableWaivefeeVerification = "block";
+              $scope.ReceiptTimeout();
             } else {
                 $rootScope.doGetHospitalInformation();
             }
@@ -4925,7 +4934,9 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 $state.go('tab.receipt');
                 $rootScope.enablePaymentSuccess = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "none";
+                $rootScope.enableWaivefeeVerification = "none";
                 $rootScope.enableCreditVerification = "block";
+
                 $scope.ReceiptTimeout();
             },
             error: function(data, status) {
@@ -4956,6 +4967,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                     }
                     $rootScope.enableInsuranceVerificationSuccess = "none";
                     $rootScope.enableCreditVerification = "none";
+                    $rootScope.enableWaivefeeVerification = "none";
 
                     if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
                         $rootScope.openAddHealthPlanSection();
@@ -4965,6 +4977,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
                         $rootScope.enablePaymentSuccess = "none";
                         $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "none";
                         $state.go('tab.receipt');
                         $scope.ReceiptTimeout();
                     } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
@@ -4995,6 +5008,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                         } else {
                             $rootScope.enablePaymentSuccess = "none";
                             $rootScope.enableCreditVerification = "none";
+                            $rootScope.enableWaivefeeVerification = "none";
                             $state.go('tab.receipt');
                             $scope.ReceiptTimeout();
                         }
