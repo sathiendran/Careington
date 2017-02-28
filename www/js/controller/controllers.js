@@ -891,14 +891,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     };
 
     $scope.GetLoginFunctionDetails = function() {
+            var usertconvetemail=$scope.userLogin.UserEmail.toString()
         if ($("input[class=isRemChecked]").is(':checked') === true) {
             $window.localStorage.setItem('username', $("#UserEmail").val());
-            $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $window.localStorage.oldEmail =usertconvetemail;
+            $rootScope.UserEmail = usertconvetemail;
             $rootScope.chkedchkbox = true;
 
         } else {
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $rootScope.UserEmail = usertconvetemail;
 
             $window.localStorage.oldEmail = '';
             $window.localStorage.setItem('username', "");
@@ -980,14 +981,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 api_keys_env = "Sandbox";
             }
         }
+        var convertemail= $scope.userLogin.UserEmail.toString();
         if ($("input[class=isRemChecked]").is(':checked') === true) {
             $window.localStorage.setItem('username', $("#UserEmail").val());
-            $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $window.localStorage.oldEmail = convertemail;
+            $rootScope.UserEmail =convertemail;
             $rootScope.chkedchkbox = true;
 
         } else {
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $rootScope.UserEmail = convertemail;
             $window.localStorage.oldEmail = '';
             $window.localStorage.setItem('username', "");
             $rootScope.chkedchkbox = false;
@@ -1620,14 +1622,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             api_keys_env = "Sandbox";
                         }
                     }
+                      var convertedemail= $scope.userLogin.UserEmail.toString();
                     if ($("#squaredCheckbox").prop('checked') === true) {
                         $window.localStorage.setItem('username', $("#UserEmail").val());
-                        $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
+                        $window.localStorage.oldEmail = convertedemail;
+                        $rootScope.UserEmail = convertedemail;
                         $rootScope.chkedchkbox = true;
 
                     } else {
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
+                        $rootScope.UserEmail = convertedemail;
                         $window.localStorage.oldEmail = '';
                         $window.localStorage.setItem('username', "");
                         $rootScope.chkedchkbox = false;
@@ -1931,8 +1934,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
                 $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
-                $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
-                $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
+                if($rootScope.patientEncounteraddress != undefined){
+                  $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
+                  $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
+                }
+
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
                 $rootScope.dob = data.data[0].dob;
