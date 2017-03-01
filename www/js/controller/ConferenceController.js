@@ -775,38 +775,39 @@ angular.module('starter.controllers')
             }
             document.getElementById('subscriber').appendChild(vdioContainer);
             document.getElementById('video-' + streamIdVal).appendChild(vdioPlayer);
-			setTimeout(function () {
-					lastSubscriber = event.stream.streamId;
+			lastSubscriber = event.stream.streamId;
 
-					var subscriber = session.subscribe(event.stream, streamIdVal, {
-						insertMode: 'append',
-						subscribeToAudio: true,
-						subscribeToVideo: true
-					});
-					$scope.createVideoThumbnail(event);
+			var subscriber = session.subscribe(event.stream, streamIdVal, {
+				insertMode: 'append',
+				subscribeToAudio: true,
+				subscribeToVideo: true
+			});
+			//setTimeout(function () {	
+			$scope.createVideoThumbnail(event);
+			//}, 1000);
 
 
-					$('.vdioBadge').html(participantsCount);
-					setTimeout(function(){
-					  if($('.clsPtVideoThumImage').length > 1){
-						  $('.clsPtVideoThumImage').eq(0).remove();
-					  }
-					}, 100);
-					var subChilds = $('#subscriber').children().length;
-					setTimeout(function () {
-						OT.updateViews();
-					}, 3000);
-                 if(subChilds > 1){
-                      for(var j = 1; j < subChilds.length; j++){
-                           $('#subscriber').children().eq(j).hide();
-                           $('#subscriber').children().eq(j).appendTo("#hiddenVideos");
-                      }
-                      OT.updateViews();
-                      if($('.clsPtVideoThumImage').length > 1){
-                          $('.clsPtVideoThumImage').eq(0).remove();
-                      }
-                 }
-            }, 7000);
+			$('.vdioBadge').html(participantsCount);
+			setTimeout(function(){
+			  if($('.clsPtVideoThumImage').length > 1){
+				  $('.clsPtVideoThumImage').eq(0).remove();
+			  }
+			}, 100);
+			var subChilds = $('#subscriber').children().length;
+			OT.updateViews();
+			
+			setTimeout(function () {	
+			 if(subChilds > 1){
+				  for(var j = 1; j < subChilds.length; j++){
+					   $('#subscriber').children().eq(j).hide();
+					   $('#subscriber').children().eq(j).appendTo("#hiddenVideos");
+				  }
+				  OT.updateViews();
+				  if($('.clsPtVideoThumImage').length > 1){
+					  $('.clsPtVideoThumImage').eq(0).remove();
+				  }
+			 }
+		 }, 1000);
         });
 
         //PatientImageSelectUser
