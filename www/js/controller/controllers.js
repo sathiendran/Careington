@@ -899,14 +899,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     };
 
     $scope.GetLoginFunctionDetails = function() {
+            var usertconvetemail=$scope.userLogin.UserEmail.toString()
         if ($("input[class=isRemChecked]").is(':checked') === true) {
             $window.localStorage.setItem('username', $("#UserEmail").val());
-            $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $window.localStorage.oldEmail =usertconvetemail;
+            $rootScope.UserEmail = usertconvetemail;
             $rootScope.chkedchkbox = true;
 
         } else {
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $rootScope.UserEmail = usertconvetemail;
 
             $window.localStorage.oldEmail = '';
             $window.localStorage.setItem('username', "");
@@ -988,14 +989,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 api_keys_env = "Sandbox";
             }
         }
+        var convertemail= $scope.userLogin.UserEmail.toString();
         if ($("input[class=isRemChecked]").is(':checked') === true) {
             $window.localStorage.setItem('username', $("#UserEmail").val());
-            $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $window.localStorage.oldEmail = convertemail;
+            $rootScope.UserEmail =convertemail;
             $rootScope.chkedchkbox = true;
 
         } else {
-            $rootScope.UserEmail = $scope.userLogin.UserEmail;
+            $rootScope.UserEmail = convertemail;
             $window.localStorage.oldEmail = '';
             $window.localStorage.setItem('username', "");
             $rootScope.chkedchkbox = false;
@@ -1242,6 +1244,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
                         }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                            $rootScope.Cttonscheduled = 'on';
+                        }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
                         }
@@ -1313,6 +1318,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
                         }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                              $rootScope.Cttonscheduled = 'on';
+                          }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
                         }
@@ -1401,6 +1409,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                            $rootScope.Cttonscheduled = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
@@ -1727,14 +1738,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             api_keys_env = "Sandbox";
                         }
                     }
+                      var convertedemail= $scope.userLogin.UserEmail.toString();
                     if ($("#squaredCheckbox").prop('checked') === true) {
                         $window.localStorage.setItem('username', $("#UserEmail").val());
-                        $window.localStorage.oldEmail = $scope.userLogin.UserEmail;
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
+                        $window.localStorage.oldEmail = convertedemail;
+                        $rootScope.UserEmail = convertedemail;
                         $rootScope.chkedchkbox = true;
 
                     } else {
-                        $rootScope.UserEmail = $scope.userLogin.UserEmail;
+                        $rootScope.UserEmail = convertedemail;
                         $window.localStorage.oldEmail = '';
                         $window.localStorage.setItem('username', "");
                         $rootScope.chkedchkbox = false;
@@ -2038,8 +2050,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
                 $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
-                $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
-                $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
+                if($rootScope.patientEncounteraddress != undefined){
+                  $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
+                  $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
+                }
+
                 $rootScope.city = data.data[0].city;
                 $rootScope.createDate = data.data[0].createDate;
                 $rootScope.dob = data.data[0].dob;
@@ -3221,7 +3236,8 @@ var deregisterBackButton;
             healthPlanId: $rootScope.healthPlanID,
             success: function() {
                 $rootScope.enablePaymentSuccess = "none";
-                $rootScope.enableCreditVerification = "none";
+                $rootScope.enableCreditVerification = "none"
+                $rootScope.enableWaivefeeVerification = "none";;
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
                 $scope.ReceiptTimeout();
@@ -3230,6 +3246,7 @@ var deregisterBackButton;
             error: function() {
                 $rootScope.enablePaymentSuccess = "none";
                 $rootScope.enableCreditVerification = "none";
+                $rootScope.enableWaivefeeVerification = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
                 $scope.ReceiptTimeout();
@@ -3265,6 +3282,7 @@ var deregisterBackButton;
                         $rootScope.disableSubmitpayment = "none";
                         $rootScope.enablePaymentSuccess = "block";
                         $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "none";
                         if ($rootScope.copayAmount !== 0) {
                             $rootScope.enableSubmitpaymentAddCard = "block";
                             $rootScope.disableSubmitpaymentAddCard = "none";
@@ -3377,6 +3395,7 @@ var deregisterBackButton;
     $scope.doGetReceipt = function() {
         $rootScope.enablePaymentSuccess = "none";
         $rootScope.enableCreditVerification = "none";
+        $rootScope.enableWaivefeeVerification = "none";
         $state.go('tab.receipt');
         $scope.ReceiptTimeout();
     }
@@ -3657,6 +3676,7 @@ var deregisterBackButton;
                             var splityear = newda.getFullYear();
                             var Aptdate = splityear + "/" + splitmnth + "/" + splitdate;
                             $scope.formatscheduleddate = moment(Aptdate, 'YYYY/MM/DD').format('MMM D');
+                            $rootScope.appointmentwaivefee=index.waiveFee;
                             $scope.paticipatingPatientName = $scope.paticipatingPatient.person.name.given + ' ' + $scope.paticipatingPatient.person.name.family;
                             $scope.paticipatingPatientInitial = getInitialForName($scope.paticipatingPatientName);
                             $scope.paticipatingPatientPhoto = $scope.paticipatingPatient.person.photoUrl;
@@ -4732,7 +4752,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                     });
                     if ($rootScope.listOfCreditDetails.length > 0) {
                         $rootScope.getIndividualPatientCreditCount = $rootScope.listOfCreditDetails.length;
-                        $rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount - 1;
+                        if($rootScope.appointmentwaivefee == true){
+                          $rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount;
+                        }else{
+                          $rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount - 1;$rootScope.getReceiptCreditCount = $rootScope.getIndividualPatientCreditCount - 1;
+                        }
+
                     } else {
                         $rootScope.getIndividualPatientCreditCount = 0;
                     }
@@ -5001,10 +5026,17 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
             $rootScope.doPutConsultationSave();
         } else if ($rootScope.appointmentsPage === true) {
-            if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
+            if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == false) {
                 $rootScope.doPostDepitDetails();
+            }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == true){
+              $state.go('tab.receipt');
+              $rootScope.enablePaymentSuccess = "none";
+              $rootScope.enableInsuranceVerificationSuccess = "none";
+              $rootScope.enableCreditVerification = "none";
+              $rootScope.enableWaivefeeVerification = "block";
+              $scope.ReceiptTimeout();
             } else {
-                $scope.doGetHospitalInformation();
+                $rootScope.doGetHospitalInformation();
             }
         }
     }
@@ -5018,7 +5050,9 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 $state.go('tab.receipt');
                 $rootScope.enablePaymentSuccess = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "none";
+                $rootScope.enableWaivefeeVerification = "none";
                 $rootScope.enableCreditVerification = "block";
+
                 $scope.ReceiptTimeout();
             },
             error: function(data, status) {
@@ -5036,7 +5070,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
     }
 
 
-    $scope.doGetHospitalInformation = function() {
+    $rootScope.doGetHospitalInformation = function() {
         var params = {
             accessToken: $rootScope.accessToken,
             hospitalId: $rootScope.hospitalId,
@@ -5049,6 +5083,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                     }
                     $rootScope.enableInsuranceVerificationSuccess = "none";
                     $rootScope.enableCreditVerification = "none";
+                    $rootScope.enableWaivefeeVerification = "none";
 
                     if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
                         $rootScope.openAddHealthPlanSection();
@@ -5058,6 +5093,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
                         $rootScope.enablePaymentSuccess = "none";
                         $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "none";
                         $state.go('tab.receipt');
                         $scope.ReceiptTimeout();
                     } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
@@ -5088,6 +5124,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                         } else {
                             $rootScope.enablePaymentSuccess = "none";
                             $rootScope.enableCreditVerification = "none";
+                            $rootScope.enableWaivefeeVerification = "none";
                             $state.go('tab.receipt');
                             $scope.ReceiptTimeout();
                         }

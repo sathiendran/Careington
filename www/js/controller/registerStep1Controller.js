@@ -231,9 +231,10 @@ angular.module('starter.controllers')
               error: function(data,status) {
                   $rootScope.isRegistrationCompleted = false;
                   if(data.status == 400){
-                    $scope.ErrorMessage = data.statusText.indexOf("already exists");
-                    if($scope.ErrorMessage >= 0) {
-                        $scope.contactmail=$scope.email;
+                  var emailerror = data.data.message;
+                  $scope.ErrorMessage = "Email address already registered.";
+                 if($scope.ErrorMessage === emailerror) {
+                   $scope.contactmail=$scope.email;
                         var myPopup = $ionicPopup.show({
 
                             title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",
@@ -349,10 +350,10 @@ angular.module('starter.controllers')
               }
             */
             if(data.status == 400){
-
-              $scope.ErrorMessage = data.statusText.indexOf("already exists");
-              if($scope.ErrorMessage >= 0) {
-                  $scope.contactmail=$scope.email;
+                   var emailerror = data.data.message;
+                $scope.ErrorMessage = "Email address already registered.";
+                if($scope.ErrorMessage === emailerror) {
+                    $scope.contactmail=$scope.email;
                   var myPopup = $ionicPopup.show({
 
                       title      :"<div class=''><p class='fname emailext' ><b>Account Already Exists</b></p> </div> ",

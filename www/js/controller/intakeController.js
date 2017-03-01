@@ -1214,12 +1214,14 @@ $scope.locat=false;
                   }
                   $rootScope.enableInsuranceVerificationSuccess = "none";
                   $rootScope.enableCreditVerification = "none";
+                    $rootScope.enableWaivefeeVerification = "none";
                   if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
                       $rootScope.openAddHealthPlanSection();
                   }
                   if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
                       $rootScope.enablePaymentSuccess = "none";
                       $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "none";
                       $state.go('tab.receipt');
                       $scope.ReceiptTimeout();
                   } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
@@ -1247,6 +1249,7 @@ $scope.locat=false;
                       } else {
                           $rootScope.enablePaymentSuccess = "none";
                           $rootScope.enableCreditVerification = "none";
+                            $rootScope.enableWaivefeeVerification = "none";
                           $state.go('tab.receipt');
                           $scope.ReceiptTimeout();
                       }
@@ -1275,6 +1278,7 @@ $scope.locat=false;
               $rootScope.enablePaymentSuccess = "none";
               $rootScope.enableInsuranceVerificationSuccess = "none";
               $rootScope.enableCreditVerification = "block";
+                $rootScope.enableWaivefeeVerification = "none";
               $scope.ReceiptTimeout();
             },
             error: function(data,status) {
