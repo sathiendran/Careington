@@ -169,9 +169,17 @@ angular.module('starter.controllers')
                if ($rootScope.appointmentsPage === true) {
                  if($rootScope.Cttonscheduled === 'on'){
                    $state.go('tab.ConsentTreat');
-                 }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on') {
+                 }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false) {
                        $rootScope.doPostDepitDetails();
-                   } else {
+                   }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true){
+                     $state.go('tab.receipt');
+                     $rootScope.enablePaymentSuccess = "none";
+                     $rootScope.enableInsuranceVerificationSuccess = "none";
+                     $rootScope.enableCreditVerification = "none";
+                     $rootScope.enableWaivefeeVerification = "block";
+                      $rootScope.ReceiptTimeout();
+                   }
+                    else {
                        $rootScope.doGetHospitalInformation();
                    }
                  }

@@ -1229,6 +1229,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+          $rootScope.Cttonscheduled = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1303,6 +1304,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+        $rootScope.Cttonscheduled = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1392,6 +1394,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+        $rootScope.Cttonscheduled = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -3240,7 +3243,7 @@ var deregisterBackButton;
                 $rootScope.enableWaivefeeVerification = "none";;
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
-                $scope.ReceiptTimeout();
+                $rootScope.ReceiptTimeout();
 
             },
             error: function() {
@@ -3249,7 +3252,7 @@ var deregisterBackButton;
                 $rootScope.enableWaivefeeVerification = "none";
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $state.go('tab.receipt');
-                $scope.ReceiptTimeout();
+                $rootScope.ReceiptTimeout();
             }
         };
 
@@ -3397,7 +3400,7 @@ var deregisterBackButton;
         $rootScope.enableCreditVerification = "none";
         $rootScope.enableWaivefeeVerification = "none";
         $state.go('tab.receipt');
-        $scope.ReceiptTimeout();
+        $rootScope.ReceiptTimeout();
     }
     $rootScope.verifyCardDisplay = "none";
     $rootScope.cardDisplay = "inherit;";
@@ -3822,7 +3825,7 @@ var deregisterBackButton;
         //});
     }
 
-    $scope.ReceiptTimeout = function() {
+    $rootScope.ReceiptTimeout = function() {
         var currentTimeReceipt = new Date();
         currentTimeReceipt.setSeconds(currentTimeReceipt.getSeconds() + 10);
         $rootScope.ReceiptTime = currentTimeReceipt.getTime();
@@ -3871,7 +3874,7 @@ var deregisterBackButton;
                     $rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
                     $scope.CreditCardDetails = data;
                     $state.go('tab.receipt');
-                    $scope.ReceiptTimeout();
+                    $rootScope.ReceiptTimeout();
                 },
                 error: function(data, status) {
                     if (status === 0) {
@@ -5026,15 +5029,15 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
             $rootScope.doPutConsultationSave();
         } else if ($rootScope.appointmentsPage === true) {
-            if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == false) {
+            if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false) {
                 $rootScope.doPostDepitDetails();
-            }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee == true){
+            }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === true){
               $state.go('tab.receipt');
               $rootScope.enablePaymentSuccess = "none";
               $rootScope.enableInsuranceVerificationSuccess = "none";
               $rootScope.enableCreditVerification = "none";
               $rootScope.enableWaivefeeVerification = "block";
-              $scope.ReceiptTimeout();
+              $rootScope.ReceiptTimeout();
             } else {
                 $rootScope.doGetHospitalInformation();
             }
@@ -5053,7 +5056,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 $rootScope.enableWaivefeeVerification = "none";
                 $rootScope.enableCreditVerification = "block";
 
-                $scope.ReceiptTimeout();
+                $rootScope.ReceiptTimeout();
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -5095,7 +5098,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                         $rootScope.enableCreditVerification = "none";
                         $rootScope.enableWaivefeeVerification = "none";
                         $state.go('tab.receipt');
-                        $scope.ReceiptTimeout();
+                        $rootScope.ReceiptTimeout();
                     } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
 
                         $rootScope.openAddHealthPlanSection();
@@ -5126,7 +5129,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                             $rootScope.enableCreditVerification = "none";
                             $rootScope.enableWaivefeeVerification = "none";
                             $state.go('tab.receipt');
-                            $scope.ReceiptTimeout();
+                            $rootScope.ReceiptTimeout();
                         }
                     }
                 }
