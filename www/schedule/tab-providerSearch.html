@@ -1,104 +1,134 @@
-<header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
-    <div class="row">
-        <div class="header__menu">
-            <a href="#" class="main-nav__toggle js-toggle-main-nav" data-bind="click:onNavClick">
-                <ins></ins>
-                <ins></ins>
-                <ins></ins>
-            </a>
+<nav class="main-nav" >
+    <a href="#" class="user-info user-info--main-nav">
+        <div class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)" style="border: 0px #fff solid;">
+
         </div>
 
-        <div class="header__brand">
-            <h1 data-bind="text:brandName, attr: {title: brandName }" title="EMERALD QA HEALTHCARE GROUP">EMERALD QA HEALTHCARE GROUP</h1>
-        </div>
-    </div>
-</header>
-<header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
-    <div class="row" data-bind="invisible:isHideSubHeader">
-        <div class="header-bar">
-            <ul class="page-toggle hide-mobile">
-                <li>
-                    <h1 data-bind="text: moduleTitle">Provider</h1>
-                </li>
-                <li class="page-toggle__module">
-                    <h1 data-bind="text: subModuleTitle">All providers</h1>
-                </li>
-            </ul>
-
-            <ul class="menu-toggle">
-                <li class="menu-toggle__navigation" ng-click="getDatss()" data-bind="css:{is-active: vm_isSearchBarActive}">
-                    <a class="js-toggle-menu" _data-bind="click: vm_toggleSearchAndFilter"><span class="icon_list"></span></a>
-                </li>
-
-                <li id="myProvider" data-bind="css:{is-active: isFavoriteCliniciansMode}">
-                    <a ng-click="getDetails('favorite')" _href="#/tab/providerSearch/favorite">My Providers</a>
-                </li>
-
-                <li id="allProvider" data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
-                    <a ng-click="getDetails('all')" _href="#/tab/providerSearch/all">All Providers</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</header>
-<div class="schedular-continer">
-
-</div>
-</script>
-
-<script id="apptsSlotsTemplate1" type="text/x-kendo-template">
-    <div>
-        <div class="drawer-card__slider js-footer-slider" data-bind="source: vm_slots" data-template="apptSlotTemplate">
-        </div>
-    </div>
-</script>
-
-<!-- <script id="apptsSlotsTemplate2" type="text/x-kendo-template">
-<div>
-    <div class="drawer-card__footer-flip-slider js-flip-slider"
-        data-bind="source: vm_slots"
-        data-template="apptSlotTemplate">
-    </div>
-</div>
-</script> -->
-
-<script id="apptSlotTemplate" type="text/x-kendo-template">
-    <div data-bind="css: { is-selected : vm_isInvisible">
-        <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, text: formatedTime"></button>
-    </div>
-</script>
-
-<script id="filterCathegoryTemplate" type="text/x-kendo-template">
-    <div class="panel-filter__block">
-        <div class="panel-filter__title" data-bind="events: {click: vm_onCathegoryToogle}, css: {is-open: isCathegoryOpen}">
-            <span data-bind="text: cathegoryName"> </span>
-            <div type="button" class="panel-filter__arrow">
-                <span class="icon_chevron-small-down"></span>
+        <div class="user-info__text">
+            <div class="user-info__name">
+                <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
+            </div>
+            <div class="user-info__info">
+                <span>{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span>
             </div>
         </div>
+    </a>
 
-        <div class="panel-filter__list" data-bind="source: cathegoryFiltersList, slide: isCathegoryOpen" data-template="filterTemplate">
+    <ul class="main-nav__list" style="position: absolute; bottom: 0px; width: 100%;">
+        <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span>Patient List</a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span>My Health</a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span>My Appointments</a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span>My Consultations</a></li>
+        <li ng-click="goTOSchedule()"><a><span class="icon_search-users"></span>Self Schedule</a></li>
+        <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power" style="font-size: 1.4em; padding-right: 20px;"></span>Logout</a></li>
+    </ul>
+</nav>
+
+<div class="wrapper page" >
+  <header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
+      <div class="row">
+          <div class="header__menu">
+              <a href="#" class="main-nav__toggle js-toggle-main-nav" data-bind="click:onNavClick">
+                  <ins></ins>
+                  <ins></ins>
+                  <ins></ins>
+              </a>
+          </div>
+
+          <div class="header__brand">
+              <h1 data-bind="text:brandName, attr: {title: brandName }" title="EMERALD QA HEALTHCARE GROUP">EMERALD QA HEALTHCARE GROUP</h1>
+          </div>
+      </div>
+  </header>
+  <header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
+      <div class="row" data-bind="invisible:isHideSubHeader">
+          <div class="header-bar">
+              <ul class="page-toggle hide-mobile">
+                  <li>
+                      <h1 data-bind="text: moduleTitle">Provider</h1>
+                  </li>
+                  <li class="page-toggle__module">
+                      <h1 data-bind="text: subModuleTitle">All providers</h1>
+                  </li>
+              </ul>
+
+              <ul class="menu-toggle">
+                  <li class="menu-toggle__navigation"  data-bind="css:{is-active: vm_isSearchBarActive}">
+                      <a class="js-toggle-menu" data-bind="click: vm_toggleSearchAndFilter"><span class="icon_list"></span></a>
+                  </li>
+
+                  <li id="myProvider" data-bind="css:{is-active: isFavoriteCliniciansMode}">
+                      <a ng-click="getDetails('favorite')" _href="#/tab/providerSearch/favorite">My Providers</a>
+                  </li>
+
+                  <li id="allProvider" data-bind="css:{is-active: isAllCliniciansMode}" class="is-active">
+                      <a ng-click="getDetails('all')" _href="#/tab/providerSearch/all">All Providers</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </header>
+  <div class="schedular-continer">
+
+  </div>
+  </script>
+
+    <script id="apptsSlotsTemplate1" type="text/x-kendo-template">
+        <div>
+            <div class="drawer-card__slider js-footer-slider" data-bind="source: vm_slots" data-template="apptSlotTemplate">
+            </div>
+        </div>
+    </script>
+
+    <!-- <script id="apptsSlotsTemplate2" type="text/x-kendo-template">
+    <div>
+        <div class="drawer-card__footer-flip-slider js-flip-slider"
+            data-bind="source: vm_slots"
+            data-template="apptSlotTemplate">
         </div>
     </div>
-</script>
-<script type="text/x-kendi-template" id="filterTemplate">
-    <label class="panel-filter__item" data-bind="visible: vm_showFilter">
-    <div class="panel-filter__caption">
-       <span data-bind="text: filterName"></span>
-       <span data-bind="text: vm_getFilterQuantity, visible: vm_showFilterQuantity"></span>
-    </div>
-    <div class="panel-filter__checkbox">
-        <div class="checkbox">
-            <input type="checkbox" tabindex="3" id="myCheck" indeterminate="false" data-bind="checked: isFilterChecked, events: {change: vm_onCheckedStateChange}" abindex="3">
-            <span class="checkbox__control"></span>
-        </div>
-    </div>
-</label>
-</script>
+    </script> -->
 
-<script id="country-template" type="text/x-kendo-template">
-    <div class="drawer-info-panel__country">
-        <span class="drawer-info-panel__country-flag"><img src='/images/countries/flags/#: data.countryCode #-32.png'></span>
-        <span class="drawer-info-panel__country-states"> #: data.states #</span>
-    </div>
-</script>
+    <script id="apptSlotTemplate" type="text/x-kendo-template">
+        <div data-bind="css: { is-selected : vm_isInvisible">
+            <button type="button" class="drawer-card__appointment-action" data-bind="events: {click: vm_onSlotClick }, text: formatedTime"></button>
+        </div>
+    </script>
+
+    <script id="filterCathegoryTemplate" type="text/x-kendo-template">
+        <div class="panel-filter__block">
+            <div class="panel-filter__title" data-bind="events: {click: vm_onCathegoryToogle}, css: {is-open: isCathegoryOpen}">
+                <span data-bind="text: cathegoryName"> </span>
+                <div type="button" class="panel-filter__arrow">
+                    <span class="icon_chevron-small-down"></span>
+                </div>
+            </div>
+
+            <div class="panel-filter__list" data-bind="source: cathegoryFiltersList, slide: isCathegoryOpen" data-template="filterTemplate">
+            </div>
+        </div>
+    </script>
+    <script type="text/x-kendi-template" id="filterTemplate">
+        <label class="panel-filter__item" data-bind="visible: vm_showFilter">
+        <div class="panel-filter__caption">
+           <span data-bind="text: filterName"></span>
+           <span data-bind="text: vm_getFilterQuantity, visible: vm_showFilterQuantity"></span>
+        </div>
+        <div class="panel-filter__checkbox">
+            <div class="checkbox">
+                <input type="checkbox" tabindex="3" id="myCheck" indeterminate="false" data-bind="checked: isFilterChecked, events: {change: vm_onCheckedStateChange}" abindex="3">
+                <span class="checkbox__control"></span>
+            </div>
+        </div>
+    </label>
+    </script>
+
+    <script id="country-template" type="text/x-kendo-template">
+        <div class="drawer-info-panel__country">
+            <span class="drawer-info-panel__country-flag"><img src='images/countries/flags/#: data.countryCode #-32.png'></span>
+            <span class="drawer-info-panel__country-states"> #: data.states #</span>
+        </div>
+    </script>
+</div>
+<div ng-controller="LoginCtrl">
+</div>

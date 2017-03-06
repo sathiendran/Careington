@@ -215,14 +215,14 @@
                         disabled: isDisabled,
                         events: { click: vm_onRemoveClick },
                         css: { is-loading: isLoading, error: isError, button__gray: isDisabled }"><span>Cancel Appointment</span></button>
-                <button class="button button__green" tabindex="13" data-bind="
+                <button style="min-height: 30px; line-height: 30px;" class="button button__green" tabindex="13" data-bind="
                         invisible: vm_isCancelBtnVisible,
                         disabled: isDisabled,
                         events: { click: vm_onSubmitClick },
                         css: { is-loading: isLoading, button__red: isError, error: isError, button__green: vm_isNotError, button__gray: isDisabled }"><span data-bind="text:vm_saveBtnTxt"></span></button>
             </div>
 
-            <button class="button button__cancel js-cancel" tabindex="12" data-bind="events: { click: vm_onCloseClick }"><span>Close</span></button>
+            <button style="min-height: 30px; line-height: 30px;" class="button button__cancel js-cancel" tabindex="12" data-bind="events: { click: vm_onCloseClick }"><span>Close</span></button>
         </div>
     </div>
 </div>

@@ -18,7 +18,7 @@ snap.dataSource = snap.dataSource || {};
             if (ds._firstRun) {
                 ds._firstRun = false;
                 $.ajax({
-                    url: "/api/v2/codesets",
+                    url: snap.baseUrl + "/api/v2/codesets",
                     type: "GET",
                     data: {
                         hospitalId: hospitalId,
@@ -83,7 +83,7 @@ snap.dataSource = snap.dataSource || {};
                 transport: {
                     read: function (options) {
                         ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
-                            var filteredData = (replaceNames && replaceNames.length > 0 && replaceByObjects 
+                            var filteredData = (replaceNames && replaceNames.length > 0 && replaceByObjects
                                 && replaceByObjects.length === replaceNames.length) ? (data.map(function (item) {
                                 var itemText = item.text.toLowerCase();
                                 for (var i = 0, l = replaceNames.length; i < l; i++) {

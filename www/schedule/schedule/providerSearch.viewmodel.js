@@ -1,6 +1,6 @@
 //@ sourceURL=providerSearch.viewmodel.js
 
-(function($, snap, kendo) {
+(function ($, snap, kendo) {
     "use strict";
 
     snap.namespace("snap.patient.schedule")
@@ -11,10 +11,9 @@
             "snap.patient.schedule.apptsSlotsTray",
             "snap.patient.schedule.patientSelfSchedulingHub",
             "snap.service.userService",
-            "snap.patient.schedule.providersSlotsLocator"
-        ])
+            "snap.patient.schedule.providersSlotsLocator"])
         .extend(kendo.observable)
-        .define("providerSearch", function($snapNotification, $eventAggregator, $selfSchedulingService, $appointmentDialog, $timeUtils, $apptsSlotsTray, $patientSelfSchedulingHub, $userService, $providersSlotsLocator) {
+        .define("providerSearch", function ($snapNotification, $eventAggregator, $selfSchedulingService, $appointmentDialog, $timeUtils, $apptsSlotsTray, $patientSelfSchedulingHub, $userService, $providersSlotsLocator) {
             var scope = this,
                 isFooterActive = true,
                 isContentActive = false;
@@ -68,39 +67,39 @@
                     this.filterQuantity = quantity;
                     this.isFilterChecked = checked || false;
 
-                    this.vm_showFilterQuantity = function() {
+                    this.vm_showFilterQuantity = function () {
                         return this.filterQuantity !== null && showFilterQuantity;
                     };
-                    this.vm_showFilter = function() {
+                    this.vm_showFilter = function () {
                         return this.filterQuantity !== 0 || this.isFilterChecked;
                     };
-                    this.vm_getFilterQuantity = function() {
+                    this.vm_getFilterQuantity = function () {
                         return ["(", this.filterQuantity, ")"].join("");
                     };
-                    this.vm_onCheckedStateChange = function() {
+                    this.vm_onCheckedStateChange = function () {
                         $eventAggregator.published(filterItemChangedEvent);
                     };
                 }
 
                 function Cathegory(name, filters, open) {
                     this.cathegoryName = name;
-                    this.cathegoryFiltersList = filters.map(function(filter) {
+                    this.cathegoryFiltersList = filters.map(function (filter) {
                         return kendo.observable(new Filter(filter.name, filter.quantity, filter.checked, filter.showFilterQuantity));
                     });
                     this.isCathegoryOpen = open || false;
 
-                    this.vm_onCathegoryToogle = function() {
+                    this.vm_onCathegoryToogle = function () {
                         this.set("isCathegoryOpen", !this.isCathegoryOpen);
                         $eventAggregator.published(filerCathegoryDisplayChanged, { name: this.cathegoryName, value: this.isCathegoryOpen });
                     };
                 }
 
                 return [kendo.observable(new Cathegory("Availability", [{
-                        name: "Available",
-                        quantity: filtersObject.total,
-                        checked: currentFilters.Availability.filters.Available,
-                        showFilterQuantity: false,
-                    }], currentFilters.Availability.isOpen)),
+                    name: "Available",
+                    quantity: filtersObject.total,
+                    checked: currentFilters.Availability.filters.Available,
+                    showFilterQuantity: false,
+                }], currentFilters.Availability.isOpen)),
                     kendo.observable(new Cathegory("Gender", [{
                         name: "Male",
                         quantity: filtersObject.genderMale,
@@ -143,7 +142,7 @@
                     serverPaging: true,
                     pageSize: 10,
                     transport: {
-                        read: function(options) {
+                        read: function (options) {
                             var filters = scope._getCliniciansFilters();
 
                             filters.take = options.data.take;
@@ -156,7 +155,7 @@
                                 dfd = $selfSchedulingService.getClinicianCard(options.data.userId, filters.date);
                             }
 
-                            $.when(dfd, $selfSchedulingService.getCliniciansCards(filters)).done(function(singlCardResult, listOfCardsResult) {
+                            $.when(dfd, $selfSchedulingService.getCliniciansCards(filters)).done(function (singlCardResult, listOfCardsResult) {
                                 var cards = listOfCardsResult[0].data[0].clinicians;
                                 var totals = listOfCardsResult[0].data[0].totals;
 
@@ -187,7 +186,7 @@
                                     data: cards,
                                     total: listOfCardsResult[0].total
                                 });
-                            }).fail(function(result) {
+                            }).fail(function (result) {
                                 if (!snap.isUnloading) { //for FF. This prevents error handling from happening on aborted request when browser leaves the page.
                                     $snapNotification.error(result);
                                     options.error(result);
@@ -197,8 +196,8 @@
                     },
                     schema: {
                         total: "total",
-                        data: function(response) {
-                            var clinicians = response.data.map(function(ap) {
+                        data: function (response) {
+                            var clinicians = response.data.map(function (ap) {
                                 return new Clinician(ap, scope);
                             });
 
@@ -208,23 +207,23 @@
                 });
             }
             /**************EVENT SUBSCRIPTIONS***************/
-            $eventAggregator.subscriber("vm_toggleSearchAndFilter", function() {
+            $eventAggregator.subscriber("vm_toggleSearchAndFilter", function () {
                 scope.set("vm_isSearchBarActive", !scope.vm_isSearchBarActive);
             });
 
-            $eventAggregator.subscriber($appointmentDialog.appointmentPopupSavedEvent, function() {
+            $eventAggregator.subscriber($appointmentDialog.appointmentPopupSavedEvent, function () {
                 scope._updateCliniciansList();
-                setTimeout(function() {
+                setTimeout(function () {
                     scope.set("vm_isNotificationActive", true);
                 }, 1000);
 
             });
 
-            $eventAggregator.subscriber($appointmentDialog.appointmentPopupClosedEvent, function() {
+            $eventAggregator.subscriber($appointmentDialog.appointmentPopupClosedEvent, function () {
                 scope.hasOpenDialog = false;
             });
 
-            $eventAggregator.subscriber(dataSourceReadSuccessEvent, function(payload) {
+            $eventAggregator.subscriber(dataSourceReadSuccessEvent, function (payload) {
                 scope.set(payload.mode === listViewMode.all ? "allFilters" : "favoriteFilters", counstructActiveFilters(payload.data, scope._getCurrentFilters()));
                 scope.trigger("change", {
                     field: "vm_getActiveFilters"
@@ -250,7 +249,7 @@
                 });
             });
 
-            $eventAggregator.subscriber(filterItemChangedEvent, function() {
+            $eventAggregator.subscriber(filterItemChangedEvent, function () {
                 scope._updateCliniciansList();
                 scope.allCliniciansDS.query({
                     page: 1,
@@ -264,7 +263,7 @@
                 scope.trigger("change", { field: "favoriteCliniciansDS" });
             });
 
-            $eventAggregator.subscriber(filerCathegoryDisplayChanged, function(evt) {
+            $eventAggregator.subscriber(filerCathegoryDisplayChanged, function (evt) {
                 for (var i = 0, l = scope.allFilters.length; i < l; i++) {
                     if (scope.allFilters[i].cathegoryName === evt.name) {
                         scope.allFilters[i].isCathegoryOpen = evt.value;
@@ -276,12 +275,12 @@
 
             });
             /***************** PUBLIC API *******************/
-            this.load = function() {
+            this.load = function () {
                 this.isDataInit = true;
                 loadJQuery();
 
                 var that = this;
-                $eventAggregator.subscriber("slotTray_goToDate", function(obj) {
+                $eventAggregator.subscriber("slotTray_goToDate", function (obj) {
                     var dateFilter = new Date(obj.nextDate);
                     dateFilter.setHours(0, 0, 0, 0);
 
@@ -305,7 +304,7 @@
                 });
 
 
-                $userService.getUserCurrentTime().done(function(response) {
+                $userService.getUserCurrentTime().done(function (response) {
                     var currentDateFilter = new Date(that.dateFilter);
                     currentDateFilter.setHours(0, 0, 0, 0);
 
@@ -320,7 +319,7 @@
                 });
             };
 
-            this.setViewMode = function(mode) {
+            this.setViewMode = function (mode) {
                 this.set("clinicianListViewMode", mode);
 
                 this.trigger("change", {
@@ -336,24 +335,27 @@
                 });
             };
 
+            this.cleanup = function () { //For all that should be done on route change
+                this.set("vm_isNotificationActive", false);
+            }
             /***************** MVVM BINDINGS *******************/
             this.vm_currentDate = new Date();
             this.vm_currentDate.setHours(0, 0, 0, 0);
 
             this.vm_isNotificationActive = false;
-            this.vm_closeNotification = function() {
+            this.vm_closeNotification = function () {
                 this.set("vm_isNotificationActive", false);
             };
-            this.vm_goToCalendar = function() {
+            this.vm_goToCalendar = function () {
                 this.vm_closeNotification();
-                window.setTimeout(function() {
+                window.setTimeout(function () {
                     sessionStorage.setItem("snap_tabName_ref", "Scheduled");
                     window.location.href = "/Customer/PatientConsultations";
                     return false;
                 }, 300);
             };
 
-            this.vm_isClearFiltersVisible = function() {
+            this.vm_isClearFiltersVisible = function () {
                 var filters = this._getActiveFilters();
                 for (var i = 0, l = filters.length; i < l; i++) {
                     var cathegory = filters[i].cathegoryFiltersList;
@@ -367,37 +369,37 @@
                 return false;
             };
 
-            this.vm_getPagingCount = function() {
+            this.vm_getPagingCount = function () {
                 var curCounts = this.clinicianListViewMode === listViewMode.all ? this.counts.all : this.counts.favorite;
                 var min = curCounts.total > 0 ? curCounts.skip + 1 : 0;
-                var max = typeof(curCounts.take) === "undefined" ? curCounts.total : curCounts.skip + curCounts.take;
+                var max = typeof (curCounts.take) === "undefined" ? curCounts.total : curCounts.skip + curCounts.take;
                 if (max > curCounts.total) {
                     max = curCounts.total;
                 }
                 return [min, "-", max, " of ", curCounts.total].join("");
             };
 
-            this.vm_onDateForvard = function() {
+            this.vm_onDateForvard = function () {
                 var newDate = new Date(this.dateFilter);
                 newDate.setDate(this.dateFilter.getDate() + 1);
                 this._setFilterDate(newDate);
             };
 
-            this.vm_onDateBack = function() {
+            this.vm_onDateBack = function () {
                 var newDate = new Date(this.dateFilter);
                 newDate.setDate(this.dateFilter.getDate() - 1);
                 this._setFilterDate(newDate);
             };
 
-            this.vm_onDateBackVisible = function() {
+            this.vm_onDateBackVisible = function () {
                 return this.vm_currentDate.getTime() < this.dateFilter.getTime();
             };
 
-            this.vm_getActiveFilters = function() {
+            this.vm_getActiveFilters = function () {
                 return this._getActiveFilters();
             };
 
-            this.vm_onClearAllClick = function() {
+            this.vm_onClearAllClick = function () {
                 var filters = this._getActiveFilters();
                 for (var i = 0, l = filters.length; i < l; i++) {
                     var cathegory = filters[i].cathegoryFiltersList;
@@ -416,49 +418,76 @@
                 this._updateCliniciansList();
             };
 
-            this.vm_allClinicianCardsList_onDataBound = function() {
+            this.vm_allClinicianCardsList_onDataBound = function () {
                 allProvidersSlotsLocator.setSlots(getSlotsFromDs(this.allCliniciansDS), this.dateFilter);
                 expandClinicanCards(this.allCliniciansDS);
 
                 this.set("vm_isAllCliniciansDSEmpty", this.allCliniciansDS.data().length === 0);
             };
 
-            this.vm_favoriteClinicianCardsList_onDataBound = function() {
-
+            this.vm_favoriteClinicianCardsList_onDataBound = function () {
                 myProvidersSlotsLocator.setSlots(getSlotsFromDs(this.favoriteCliniciansDS), this.dateFilter);
                 expandClinicanCards(this.favoriteCliniciansDS);
-
-                this.set("vm_isFavoriteCliniciansDSEmpty", this.allCliniciansDS.data().length === 0);
+                this.trigger("change", { field: "vm_isFavoriteCliniciansDSEmpty" });
+                this.trigger("change", { field: "vm_hasSearchConditions" });
             };
 
             function expandClinicanCards(clinicianCardsDS) {
 
-                setTimeout(function() {
-                    clinicianCardsDS.data().forEach(function(clinicianCard) {
+                setTimeout(function () {
+                    clinicianCardsDS.data().forEach(function (clinicianCard) {
                         clinicianCard.toogleFoter(true);
                     });
                 }, 100); // we need some delay in order to apply nested bindings. See this link for more details: http://www.telerik.com/forums/problem-with-databound-event-on-nested-list
             }
-
-            this.vm_isAllCliniciansMode = function() {
+            this.vm_isFavoriteCliniciansDSEmpty = function () {
+                return this.favoriteCliniciansDS.data().length === 0 ;
+            }
+            this.vm_hasSearchConditions = function () {
+                /*** Check if search conditions are not default. 
+                 ***  By default we have filters object like this:
+                 ***  {
+                 ***     availableOnly: false,
+                 ***     date: <today>, 
+                 ***     name: ""
+                 ***  }
+                 ***/
+                var filters = this._getCliniciansFilters();
+                for(var key in filters){
+                    if(filters.hasOwnProperty(key)
+                        && !(
+                            key === "date"
+                            || key === "name"
+                            || key === "availableOnly"
+                        )){
+                        return true;
+                    }
+                }
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+                return !(filters.date === $timeUtils.dateToString(today)
+                  && filters.name === ""
+                  && filters.availableOnly === false);
+            }
+            this.vm_isAllCliniciansMode = function () {
                 return this.clinicianListViewMode === listViewMode.all;
             };
 
-            this.vm_isFavoriteCliniciansMode = function() {
+            this.vm_isFavoriteCliniciansMode = function () {
                 return this.clinicianListViewMode === listViewMode.favorite;
             };
 
-            this.vm_toogleAllFooters = function() {
+            this.vm_toogleAllFooters = function () {
                 isFooterActive = !isFooterActive;
                 this._toogleAllFooters(isFooterActive);
             };
 
-            this.vm_toogleAllContents = function() {
+            this.vm_toogleAllContents = function () {
                 isContentActive = !isContentActive;
                 this._toogleAllContents(isContentActive);
             };
 
-            this.vm_onDateFilterChange = function() {
+            this.vm_onDateFilterChange = function () {
                 if (this.dateFilter === null) {
                     this.set("dateFilter", this.oldDateFilter);
                 } else {
@@ -471,32 +500,32 @@
                 });
             };
 
-            this.vm_onDateFilterOpen = function() {
+            this.vm_onDateFilterOpen = function () {
                 // This is a workaround in order to adjust date in datepicker footer.
                 var date = kendo.toString(this.get("vm_currentDate"), "dddd, MMMM dd, yyyy");
                 $("#dateFilterPiker_dateview .k-footer > a").html(date);
                 $("#dateFilterPiker_dateview .k-footer > a").attr("title", date);
 
                 var that = this;
-                $("#dateFilterPiker_dateview .k-footer > a").one("click", function() {
+                $("#dateFilterPiker_dateview .k-footer > a").one("click", function () {
                     that._setFilterDate(that.get("vm_currentDate"));
                 });
             };
 
-            this.vm_onNameFilterChange = function() {
+            this.vm_onNameFilterChange = function () {
                 this._updateCliniciansList();
             };
 
-            this.vm_getDateDay = function() {
+            this.vm_getDateDay = function () {
                 return kendo.toString(this.get("dateFilter"), "dddd, ");
             };
 
-            this.vm_getDateFormatted = function() {
+            this.vm_getDateFormatted = function () {
                 return kendo.toString(this.get("dateFilter"), "MMMM dd, yyyy");
             };
 
             /***************** PRIVATE API *******************/
-            this._setFilterDate = function(newDate) {
+            this._setFilterDate = function (newDate) {
                 this.set("dateFilter", newDate);
                 this._updateCliniciansList();
                 this.trigger("change", {
@@ -504,12 +533,12 @@
                 });
             };
 
-            this._getActiveFilters = function() {
+            this._getActiveFilters = function () {
                 var af = this.get("clinicianListViewMode") === listViewMode.all ? this.allFilters : this.favoriteFilters;
                 return af;
             };
 
-            this._updateCliniciansList = function(userId) {
+            this._updateCliniciansList = function (userId) {
                 var param = {
                     skip: 0
                 };
@@ -522,14 +551,14 @@
                 this.favoriteCliniciansDS.read(param);
             };
 
-            this._updateClinicianListForFavorite = function() {
+            this._updateClinicianListForFavorite = function () {
                 this.favoriteCliniciansDS.read();
                 if (this.clinicianListViewMode === listViewMode.favorite) {
                     this.allCliniciansDS.read();
                 }
             };
 
-            this._getCliniciansFilters = function() {
+            this._getCliniciansFilters = function () {
                 var currentFilters = this._getCurrentFilters();
                 var filterValues = {
                     date: $timeUtils.dateToString(this.dateFilter),
@@ -561,7 +590,7 @@
                     val: yearsCathegory["15+"]
                 }];
 
-                yearsArr = yearsArr.filter(function(yf) {
+                yearsArr = yearsArr.filter(function (yf) {
                     return yf.val;
                 });
 
@@ -585,31 +614,31 @@
                 return filterValues;
             };
 
-            this._toogleAllFooters = function(isFooterActive) {
+            this._toogleAllFooters = function (isFooterActive) {
                 var ds = this._getCurrentClinicianListTimeSlots();
 
-                ds.data().forEach(function(clinicianCard) {
+                ds.data().forEach(function (clinicianCard) {
                     clinicianCard.toogleFoter(isFooterActive);
                 });
             };
 
-            this._toogleAllContents = function(isContentActive) {
+            this._toogleAllContents = function (isContentActive) {
                 var ds = this._getCurrentClinicianListTimeSlots();
 
-                ds.data().forEach(function(clinicianCard) {
+                ds.data().forEach(function (clinicianCard) {
                     clinicianCard.toogleContent(isContentActive);
                 });
             };
 
 
-            this._getCurrentClinicianListTimeSlots = function() {
+            this._getCurrentClinicianListTimeSlots = function () {
                 return this.clinicianListViewMode === "all" ?
                     this.allCliniciansDS :
                     this.favoriteCliniciansDS;
             };
 
             var cardCounter = 0;
-            this._getCurrentFilters = function() {
+            this._getCurrentFilters = function () {
                 var protoFilters = {
                     "Gender": {
                         isOpen: false,
@@ -651,21 +680,19 @@
                 }
                 return $.extend({}, protoFilters, currentFilters);
             };
-
             function parseStatesLicensed(statesJson) {
                 try {
                     var statesObj = JSON.parse(statesJson);
-                    return statesObj.map(function(item) {
+                    return statesObj.map(function (item) {
                         return {
                             countryCode: item.countryCode,
-                            states: !!item.regions ? item.regions.map(function(region) { return region.regionCode }).join(", ") : ""
+                            states: !!item.regions ? item.regions.map(function (region) { return region.regionCode }).join(", ") : ""
                         }
                     });
                 } catch (e) {
                     return [];
                 }
             }
-
             function Clinician(opt, scope) {
                 this.opt = opt;
                 this.photo = opt.profilePhoto || getDefaultProfileImageForClinician();
@@ -681,7 +708,7 @@
 
                 this.vm_cardId = cardCounter++;
 
-                var openScheduleAppointmentDialog = function(timeSlotOptions) {
+                var openScheduleAppointmentDialog = function (timeSlotOptions) {
                     if (!scope.hasOpenDialog) {
                         $appointmentDialog.openNewAppointmentDialog(timeSlotOptions);
                         scope.hasOpenDialog = true;
@@ -697,7 +724,7 @@
                 this.isContentActive = false;
 
                 /*********** PUBLIC METHODS *************/
-                this.toogleFoter = function(isFooterActive) {
+                this.toogleFoter = function (isFooterActive) {
                     this._toogle(isFooterActive, "isFooterActive");
 
                     var footer = $("#card_" + this.vm_cardId).find('.js-footer-slider');
@@ -714,17 +741,17 @@
                     });
                 };
 
-                this.toogleContent = function(isContentActive) {
+                this.toogleContent = function (isContentActive) {
                     this._toogle(isContentActive, "isContentActive");
                 };
 
                 /*********** PRIVATE METHODS *************/
-                this._toogle = function(isActive, prop) {
+                this._toogle = function (isActive, prop) {
                     if (isActive === this.get(prop)) {
                         return;
                     }
 
-                    if (typeof(isActive) === "undefined") {
+                    if (typeof (isActive) === "undefined") {
                         isActive = !this.get(prop);
                     }
 
@@ -733,11 +760,12 @@
 
                 /*********** MVVM BINDINGS **************/
 
-                this.vm_toggleFavorite = function() {
+                this.vm_toggleFavorite = function () {
                     var clinician = this;
 
                     function updateclinicianState() {
                         clinician.set("isFavorite", !clinician.isFavorite);
+                        $snapNotification.success(["Provider is", clinician.isFavorite ? "added to" : "removed from", "My Providers list"].join(" "));
                         scope._updateClinicianListForFavorite();
                     }
                     if (this.isFavorite) {
@@ -750,14 +778,14 @@
                         $selfSchedulingService.addClinicianToFavourites(clinicianPerson).done(updateclinicianState);
                     }
                 };
-                this.vm_getPracticingYears = function() {
+                this.vm_getPracticingYears = function () {
                     var yearsOfPractice = new Date().getFullYear() - this.opt.practicingSince;
                     return [yearsOfPractice, " Year", yearsOfPractice > 1 ? "s" : ""].join("");
                 };
-                this.vm_getFullName = function() {
+                this.vm_getFullName = function () {
                     return [opt.name, opt.lastName].join(" ");
                 };
-                this.vm_getGenderText = function() {
+                this.vm_getGenderText = function () {
                     if (this.opt.gender === "M") {
                         return "Male";
                     } else if (this.opt.gender === "F") {
@@ -766,11 +794,11 @@
 
                     return "";
                 };
-                this.vm_toogleFooter = function() {
+                this.vm_toogleFooter = function () {
                     this.toogleFoter();
                 };
 
-                this.vm_toggleContent = function() {
+                this.vm_toggleContent = function () {
                     this.toogleContent();
                 };
             }
@@ -778,10 +806,10 @@
             function getSlotsFromDs(ds) {
                 var slots = [];
 
-                ds.data().forEach(function(clinicianCard) {
-                    clinicianCard.apptsSlotsTray.slots.sort(function(first, second) {
+                ds.data().forEach(function (clinicianCard) {
+                    clinicianCard.apptsSlotsTray.slots.sort(function (first, second) {
                         return first.from - second.from;
-                    }).forEach(function(slot) {
+                    }).forEach(function (slot) {
                         slots.push(slot);
                     });
                 });
@@ -790,17 +818,17 @@
             }
 
             function loadJQuery() {
-                $('.js-toggle-bookmark').on('click', function(event) {
+                $('.js-toggle-bookmark').on('click', function (event) {
                     event.stopPropagation();
                     $(this).closest('.drawer-card').toggleClass('is-bookmarked');
                 });
 
-                $('.js-toggle-panel').on('click', function() {
+                $('.js-toggle-panel').on('click', function () {
                     // TODO: Toggle refine panels
                     $('.left-col').toggleClass('is-active');
                 });
 
-                $('body').on('click', '.js-toggle-search', function() {
+                $('body').on('click', '.js-toggle-search', function () {
                     window.console.log('click');
                     $('.provider-search-header__search').toggleClass('is-active');
                     return false;
