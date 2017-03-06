@@ -6415,7 +6415,7 @@ div.ptag .remove {
     background: #737373
 }
 
-#file-sharing .heading .searchBox { 
+#file-sharing .heading .searchBox {
     position: relative;
     float: right;
     display: inline-block;
@@ -22475,15 +22475,16 @@ button {
 }
 
 .checkbox__control {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 4px;
-    border: 1px solid #666;
-    background-color: #fff;
-    transition: box-shadow 0.3s ease
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    border-radius: 4px !important;
+    border: 1px solid #666 !important;
+    background-color: #fff !important;
+    transition: box-shadow 0.3s ease !important;
+    width: 22px !important;
 }
 
 .checkbox__control::before {
@@ -55190,7 +55191,8 @@ only screen and (min-width:541px) {
 }
 
 .dialogbox-master__timer {
-    background-color: #00495e;
+    font-family: GloberSemiBold,"Helvetica Neue",Helvetica,Arial,Sans-Serif;
+    background-color: #20a2c1; /*#00495e;*/
     color: #fff;
     height: 32px;
     flex-shrink: 0;
