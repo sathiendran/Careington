@@ -1,10 +1,10 @@
-﻿(function ($, snap) {
+﻿(function($, snap) {
     "use strict";
-    snap.namespace("snap.service").using(["snapHttp"]).define("availabilityBlockService", function ($http) {
+    snap.namespace("snap.service").using(["snapHttp"]).define("availabilityBlockService", function($http) {
         var abApiUrl = "/api/v2.1/clinicians/availability-blocks",
             apptApiUrl = "/api/v2.1/clinicians/appointments";
 
-        this.getAvailabilityBlocks = function (opt) {
+        this.getAvailabilityBlocks = function(opt) {
             var path = abApiUrl;
 
             return $http.get(path, {
@@ -14,13 +14,13 @@
             });
         };
 
-        this.getSingleAvailabilityBlock = function (blockId) {
+        this.getSingleAvailabilityBlock = function(blockId) {
             var path = [abApiUrl, blockId].join("/");
 
             return $http.get(path);
         };
 
-        this.addAvailabilityBlock = function (block) {
+        this.addAvailabilityBlock = function(block) {
             var path = abApiUrl;
 
             return $.ajax({
@@ -33,7 +33,7 @@
 
         };
 
-        this.updateAvailabilityBlock = function (block, blockId) {
+        this.updateAvailabilityBlock = function(block, blockId) {
             var path = [abApiUrl, blockId].join("/");
 
             return $.ajax({
@@ -45,7 +45,7 @@
             });
         };
 
-        this.deleteAvailabilityBlock = function (blockId) {
+        this.deleteAvailabilityBlock = function(blockId) {
             var path = [abApiUrl, blockId].join("/");
 
             return $.ajax({
@@ -56,7 +56,7 @@
             });
         };
 
-        this.deleteAvailabilityBlockRule = function (blockId, ruleId) {
+        this.deleteAvailabilityBlockRule = function(blockId, ruleId) {
             var path = [abApiUrl, blockId, "rule", ruleId].join("/");
 
             return $.ajax({
@@ -67,37 +67,37 @@
             });
         };
 
-        this.getAvailabilityBlockClinician = function (blockId) {
+        this.getAvailabilityBlockClinician = function(blockId) {
             var path = [abApiUrl, blockId, "clinicians"].join("/");
 
             return $http.get(path);
         };
 
-        this.getAppointmentsForClinician = function (opt) {
+        this.getAppointmentsForClinician = function(opt) {
             var path = apptApiUrl;
 
             return $http.get(path, opt);
         };
 
-        this.getAppointmentsForPatient = function (opt) {
+        this.getAppointmentsForPatient = function(opt) {
             return $http.get("/api/v2.1/patients/filtered-appointments", opt);
         };
 
 
-        this.getAppointment = function (apptId) {
+        this.getAppointment = function(apptId) {
             var path = [apptApiUrl, apptId].join("/");
 
             return $http.get(path);
         };
 
-        this.getAppointmentForpatient = function (apptId) {
+        this.getAppointmentForpatient = function(apptId) {
             var path = ["/api/v2.1/patients/appointments", apptId].join("/");
 
             return $http.get(path);
         };
 
         /************************ Appointments *************************/
-        this.addAppointment = function (appt) {
+        this.addAppointment = function(appt) {
             var path = apptApiUrl;
 
             return $.ajax({
@@ -109,7 +109,7 @@
             });
         };
 
-        this.updateAppointment = function (appt, apptId) {
+        this.updateAppointment = function(appt, apptId) {
             var path = [apptApiUrl, apptId].join("/");
 
             return $.ajax({
@@ -121,7 +121,7 @@
             });
         };
 
-        this.deleteAppointment = function (apptId) {
+        this.deleteAppointment = function(apptId) {
             var path = [apptApiUrl, apptId].join("/");
 
             return $.ajax({
@@ -133,38 +133,38 @@
         };
 
         /************************ COVERAGES *************************/
-        this.getCoverageBlocks = function (filters) {
+        this.getCoverageBlocks = function(filters) {
             var dfd = $.Deferred();
             if (filters.type !== "all") {
-                $http.get('/api/v2.1/clinicians/availability-blocks/coverage', filters).done(function (coverageBlocks) {
+                $http.get('/api/v2.1/clinicians/availability-blocks/coverage', filters).done(function(coverageBlocks) {
                     var blocks = extendBlockArrayWithType(coverageBlocks.data, filters.type);
                     dfd.resolve({ data: blocks, total: blocks.length });
-                }).fail(function () {
+                }).fail(function() {
                     dfd.reject();
                 });
             } else {
                 $.when(
-                     $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "onDemand" })),
-                     $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "patientScheduled" })),
-                     $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "adminScheduled" })),
-                     $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "unavailable" }))
-                    ).done(function (onDemand, patientScheduled, adminScheduled, unavailable) {
-                        var blocks = [].concat(
-                            extendBlockArrayWithType(onDemand[0].data, 'onDemand'),
-                            extendBlockArrayWithType(patientScheduled[0].data, 'patientScheduled'),
-                            extendBlockArrayWithType(adminScheduled[0].data, 'adminScheduled'),
-                            extendBlockArrayWithType(unavailable[0].data, 'unavailable')
-                        );
-                        dfd.resolve({ data: blocks, total: blocks.length });
-                    }).fail(function () {
-                        dfd.reject();
-                    });
+                    $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "onDemand" })),
+                    $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "patientScheduled" })),
+                    $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "adminScheduled" })),
+                    $http.get('/api/v2.1/clinicians/availability-blocks/coverage', $.extend({}, filters, { type: "unavailable" }))
+                ).done(function(onDemand, patientScheduled, adminScheduled, unavailable) {
+                    var blocks = [].concat(
+                        extendBlockArrayWithType(onDemand[0].data, 'onDemand'),
+                        extendBlockArrayWithType(patientScheduled[0].data, 'patientScheduled'),
+                        extendBlockArrayWithType(adminScheduled[0].data, 'adminScheduled'),
+                        extendBlockArrayWithType(unavailable[0].data, 'unavailable')
+                    );
+                    dfd.resolve({ data: blocks, total: blocks.length });
+                }).fail(function() {
+                    dfd.reject();
+                });
             }
 
             return dfd.promise();
 
             function extendBlockArrayWithType(coverageBlocks, coverageBlockType) {
-                return coverageBlocks.map(function (item) {
+                return coverageBlocks.map(function(item) {
                     return $.extend({}, item, { type: coverageBlockType });
                 });
             }
@@ -185,20 +185,20 @@
         };
 
         /************************ CONCERNS **************************/
-        this.getPrimaryConcerns = function () {
+        this.getPrimaryConcerns = function() {
             var path = "/api/v2/schedule/concern/primary";
 
             return $http.get(path);
         };
 
-        this.getSecondaryConcerns = function () {
+        this.getSecondaryConcerns = function() {
             var path = "/api/v2/schedule/concern/secondary";
 
             return $http.get(path);
         };
 
         /************************ PERSON **************************/
-        this.getPatientList = function (providerId, searchText, take, skip) {
+        this.getPatientList = function(providerId, searchText, take, skip) {
             var path = ["/api/v2.1/providers", providerId, "patients"].join("/");
             var parameters = {
                 take: take,
@@ -210,19 +210,19 @@
             return $http.get(path, parameters);
         };
 
-        this.getClinicianList = function (providerId) {
+        this.getClinicianList = function(providerId) {
             var path = ["/api/v2.1/providers", providerId, "clinicians"].join("/");
 
             return $http.get(path);
         };
 
-        this.getAllStaffAccountsForScheduling = function (providerId) {
+        this.getAllStaffAccountsForScheduling = function(providerId) {
             var path = ["/api/v2.1/providers/", providerId, "/clinicians?roleFunctions=", snap.security.conduct_virtual_consultations].join("");
 
             return $http.get(path);
         };
 
-        this.getPersonByEmail = function (email, userType) {
+        this.getPersonByEmail = function(email, userType) {
             var path = "/api/v2.1/people?email=" + email;
 
             if (userType) {
@@ -232,11 +232,12 @@
             return $http.get(path);
         };
 
-        this.getUserCurrentTime = function () {
+        this.getUserCurrentTime = function() {
+
             return $http.get("/api/v2.1/users/current-time");
         };
 
-        this.getPatientProfile = function (providerId, patientId) {
+        this.getPatientProfile = function(providerId, patientId) {
             var path = ["/api/v2.1/providers", providerId, "patients", patientId].join("/");
 
             return $.ajax({
@@ -246,7 +247,7 @@
                 dataType: "json",
             });
         };
-        this.getPatientProfileForPatient = function (patientId) {
+        this.getPatientProfileForPatient = function(patientId) {
             var path = ["/api/v2/patients/profiles", patientId].join("/");
 
             return $.ajax({
@@ -256,7 +257,7 @@
                 dataType: "json"
             });
         };
-        this.getClinicianProfile = function (providerId, clinicianId) {
+        this.getClinicianProfile = function(providerId, clinicianId) {
             var path = ["/api/v2.1/providers", providerId, "users", clinicianId, "clinician/person"].join("/");
 
             return $.ajax({
@@ -274,6 +275,6 @@
             var path = "/api/v2/timezones";
             return $http.get(path);
         };
-        
+
     }).singleton();
 }(jQuery, window.snap = window.snap || {}));
