@@ -33,7 +33,7 @@
                                     <div class="dialogbox-master__time-offset dialogbox-master__time-offset--top" data-bind="css: {is-active: vm_isTimeOffsetsVisible}, text: vm_ProviderTimeText"></div>
                                     <div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isClinicianDisabled}">
                                         <div class="userpic userpic--is-available" data-bind="events: {click: vm_onViewClinicianProfileClick}, css: { userpic--warning: isClinicianDisabled }">
-                                            <img data-bind="attr: { src: clinicianImageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';">
+                                            <img data-bind="attr: { src: clinicianImageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';">
                                         </div>
                                         <div class="dialogbox-master__userinfo">
                                             <span class="dialogbox-master__name" data-bind="text: clinicianFullName"></span>
@@ -228,7 +228,7 @@
 </div>
 <script id="scrollableItem" type="text/x-kendo-template">
     <div class="directory__item" data-bind="events: {click : onSelectClick}, visible: vm_isVisible">
-        <div class="directory__userpic userpic userpic--is-available" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault}"><img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';" /></div>
+        <div class="directory__userpic userpic userpic--is-available" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault}"><img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';" /></div>
 
         <div class="directory__info">
             <div class="directory__info-name js-user-name" data-bind="text: name"></div>
@@ -247,7 +247,7 @@
     <div class="dialogbox-master__user">
         <div class="dialogbox-master__owner js-toggle-dir" data-bind="css: {dialogbox-master__owner--is-opacity: isDisabled, is-locked:isSelectorLocked}">
             <div class="userpic" data-bind="events: {click: onViewProfileClick}, css: { default-user :isDefault, userpic--warning: isDisabled}">
-                <img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='/images/default-user.jpg';">
+                <img data-bind="attr: { src: imageSource }" onerror="this.onerror=null;this.src='images/default-user.jpg';">
             </div>
             <div class="dialogbox-master__userinfo">
                 <span class="dialogbox-master__name" data-bind="text: name"></span>

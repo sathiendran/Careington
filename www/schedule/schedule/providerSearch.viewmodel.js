@@ -13,7 +13,7 @@
             "snap.service.userService",
             "snap.patient.schedule.providersSlotsLocator"])
         .extend(kendo.observable)
-        .define("providerSearch", function ($snapNotification, $eventAggregator, $selfSchedulingService, $appointmentDialog, $timeUtils, $apptsSlotsTray, $patientSelfSchedulingHub, $userService, $providersSlotsLocator) {
+        .define("providerSearch", function ($snapNotification, $eventAggregator, $selfSchedulingService, $appointmentDialog, $timeUtils, $apptsSlotsTray, $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $scope) {
             var scope = this,
                 isFooterActive = true,
                 isContentActive = false;
@@ -350,7 +350,11 @@
                 this.vm_closeNotification();
                 window.setTimeout(function () {
                     sessionStorage.setItem("snap_tabName_ref", "Scheduled");
-                    window.location.href = "/Customer/PatientConsultations";
+                  //  window.location.href = "/Customer/PatientConsultations";
+                    window.location.href = "#/tab/appointmentpatientdetails";
+                    //$rootScope.getUserAppointmentDet();
+                    $scope.$root.$broadcast("getUserAppointmentDet", {
+                     });
                     return false;
                 }, 300);
             };
@@ -444,11 +448,11 @@
                 return this.favoriteCliniciansDS.data().length === 0 ;
             }
             this.vm_hasSearchConditions = function () {
-                /*** Check if search conditions are not default. 
+                /*** Check if search conditions are not default.
                  ***  By default we have filters object like this:
                  ***  {
                  ***     availableOnly: false,
-                 ***     date: <today>, 
+                 ***     date: <today>,
                  ***     name: ""
                  ***  }
                  ***/

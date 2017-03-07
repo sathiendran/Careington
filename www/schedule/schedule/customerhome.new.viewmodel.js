@@ -491,7 +491,7 @@
                 visibilityRules: 4
             };
 
-            // Code for Type of Rules 
+            // Code for Type of Rules
             var ruleTypeCodeEnum = {
                 // The unknown, undefined rule
                 Unknown: 0,
@@ -535,7 +535,7 @@
                 // The unknown type
                 Unknown: 0,
 
-                // Is the subject in criteria                
+                // Is the subject in criteria
                 In: 1,
 
                 // Is the subject not in criteria
@@ -2257,7 +2257,7 @@
             var itemDefaultValues = {
                 id: null,
                 name: "Select a Person",
-                imageSource: "/images/default-user.jpg",
+                imageSource: "images/default-user.jpg",
                 info: "For the list",
             };
 
@@ -2520,7 +2520,7 @@
                     this._reloadItems();
                 };
 
-                //We need event subscription because we can not not use Kendo Observable in constructor. 
+                //We need event subscription because we can not not use Kendo Observable in constructor.
                 //And use var scope = this; scope.set("...", ...)
                 this.on = function(eventName, cb) {
                     var eventCbList = eventList[eventName];
@@ -2872,7 +2872,7 @@
             };
 
             // this.cliniciansSelector = function(opt) {
-            //     return patientsSelector(opt)  
+            //     return patientsSelector(opt)
             // }
 
             this.convertPersonToSelectorItem = function(person, id, personType, speciality) {
@@ -3307,7 +3307,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
         }
 
         function FamillyGroupDS() {
-            /************************************************************    
+            /************************************************************
              ****************** Call BASE constructor ********************
              *************************************************************/
             DS.call(this);
@@ -3409,7 +3409,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
         .define("ScheduleCommon", function($snapNotification) {
 
             /************************ START Timezone ***************************/
-            //This functionality check that we have timeZoneSystemId. 
+            //This functionality check that we have timeZoneSystemId.
             //If not, then we get timeZoneSystemId from "/api/v2/admin/userstaffprofile" api.
             if (isEmpty(snap.userSession.timeZoneSystemId)) {
                 window.console.warn("snap.userSession.timeZoneSystemId is undefined.");
@@ -3650,22 +3650,22 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             function Tray(clinicianCard, scheduleDate, slotClickCallback) {
 
                 // if(!$patientSelfSchedulingHub.isHubInitiated()) {
-                //     $patientSelfSchedulingHub.init();    
+                //     $patientSelfSchedulingHub.init();
                 // }
 
-                // $patientSelfSchedulingHub.on("lockSlot", function (data, from, to) { 
+                // $patientSelfSchedulingHub.on("lockSlot", function (data, from, to) {
                 //     //window.console.log("lockSlot:" + data + " time: " + from );
                 // });
 
-                // $patientSelfSchedulingHub.on("unlockSlot", function (data, from, to) { 
+                // $patientSelfSchedulingHub.on("unlockSlot", function (data, from, to) {
                 //     //window.console.log("unlockSlot:" + data + " time: " + from );
                 // });
 
-                // $patientSelfSchedulingHub.on("bookSlot", function (data, from, to) { 
+                // $patientSelfSchedulingHub.on("bookSlot", function (data, from, to) {
                 //     //window.console.log("bookSlot:" + data + " time: " + from );
                 // });
 
-                // if(!$patientSelfSchedulingHub.isHubInitiated()) { 
+                // if(!$patientSelfSchedulingHub.isHubInitiated()) {
                 //     $patientSelfSchedulingHub.start(
                 //         snap.userSession.token,
                 //         snap.profileSession.timeZone,
@@ -4739,7 +4739,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                         //Consultation should not be displayed in both Available and Scheduled lists.
                         //So if consultation in Available list we exclude it from Scheduled list.
 
-                        //Becuase now schedule comes from appointment and available is consulation 
+                        //Becuase now schedule comes from appointment and available is consulation
 
 
                         $.each(schedConsultData, function(index, value) {
@@ -4808,8 +4808,8 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                     userId: snap.profileSession.profileId,
                                     patientProfile: data.data[0]
                                 }).done(function() {
-                                    // If the Window has no set dimensions and is centered before its content is loaded with Ajax, it is probably going to resize after the content is loaded. 
-                                    // This naturally changes the position of the widget on the screen and it is no longer centered. 
+                                    // If the Window has no set dimensions and is centered before its content is loaded with Ajax, it is probably going to resize after the content is loaded.
+                                    // This naturally changes the position of the widget on the screen and it is no longer centered.
                                     dialog.rCenter();
                                 });
                             });
