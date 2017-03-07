@@ -1163,50 +1163,71 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
-                if ($rootScope.getDetails != '') {
-                    for (var i = 0; i < $rootScope.getDetails.length; i++) {
-                        if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
-                            $rootScope.insuranceMode = 'on';
-                        }
-                        if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
-                            $rootScope.paymentMode = 'on';
-                        }
-                        if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
-                            $rootScope.onDemandMode = 'on';
-                        }
-                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
-                            $rootScope.OrganizationLocation = 'on';
-                        }
-                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
-                            $rootScope.PPIsBloodTypeRequired = 'on';
-                        }
-                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
-                            $rootScope.PPIsHairColorRequired = 'on';
-                        }
-                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
-                            $rootScope.PPIsEthnicityRequired = 'on';
-                        }
-                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
-                            $rootScope.PPIsEyeColorRequired = 'on';
-                        }
-                    }
-                }
-                $rootScope.brandColor = data.data[0].brandColor;
-                //$rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
-                $rootScope.logo = data.data[0].hospitalImage;
-                $rootScope.Hospital = data.data[0].brandName;
-                if (deploymentEnvLogout == 'Single') {
-                    $rootScope.alertMsgName = $rootScope.Hospital;
-                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-                } else {
-                    $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase = 'Virtual Care';
-                }
-                $rootScope.HospitalTag = data.data[0].brandTitle;
-                $rootScope.contactNumber = data.data[0].contactNumber;
-                $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
-                $rootScope.clientName = data.data[0].hospitalName;
-                $state.go('tab.password');
+              //  $rootScope.mobileSettings = data.data[0].settings;
+            //  var mobappversion = $rootScope.mobileSettings[i].mobileApp_MinSupportedVersion;
+              // var sptversion = mobappversion.split(" ");
+            //   var checkmobilever = parseFloat(sptversion[1]);
+               var checkmobilever = 7.1;
+               if(appVersion < checkmobilever){
+                 if ($rootScope.getDetails != '') {
+                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
+                         if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+                             $rootScope.insuranceMode = 'on';
+                         }
+                         if ($rootScope.getDetails[i] == 'ECommerce' || $rootScope.getDetails[i] == 'mECommerce') {
+                             $rootScope.paymentMode = 'on';
+                         }
+                         if ($rootScope.getDetails[i] == 'OnDemand' || $rootScope.getDetails[i] == 'mOnDemand') {
+                             $rootScope.onDemandMode = 'on';
+                         }
+                         if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                             $rootScope.OrganizationLocation = 'on';
+                         }
+                         if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                             $rootScope.PPIsBloodTypeRequired = 'on';
+                         }
+                         if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                             $rootScope.PPIsHairColorRequired = 'on';
+                         }
+                         if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                             $rootScope.PPIsEthnicityRequired = 'on';
+                         }
+                         if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                             $rootScope.PPIsEyeColorRequired = 'on';
+                         }
+                     }
+                 }
+                 $rootScope.brandColor = data.data[0].brandColor;
+                 //$rootScope.logo = apiCommonURL + data.data[0].hospitalImage;
+                 $rootScope.logo = data.data[0].hospitalImage;
+                 $rootScope.Hospital = data.data[0].brandName;
+                 if (deploymentEnvLogout == 'Single') {
+                     $rootScope.alertMsgName = $rootScope.Hospital;
+                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+                 } else {
+                     $rootScope.alertMsgName = 'Virtual Care';
+                     $rootScope.reportHospitalUpperCase = 'Virtual Care';
+                 }
+                 $rootScope.HospitalTag = data.data[0].brandTitle;
+                 $rootScope.contactNumber = data.data[0].contactNumber;
+                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+                 $rootScope.clientName = data.data[0].hospitalName;
+                 $state.go('tab.password');
+               }else{
+
+                 var confirmPopup = $ionicPopup.confirm({
+
+                      title: " <div class='updatetitle'>Update required </div> ",
+
+                      templateUrl: 'templates/updationpopup.html',
+                      cssClass: 'locpopup',
+                      hardwareBackButtonClose: false,
+
+
+                  });
+                
+               }
+
 
             },
             error: function(data, status) {
@@ -4765,12 +4786,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
+
                 if ($rootScope.getDetails !== '') {
                     //  $rootScope.consultChargeSection = "block";
 
                     //  $rootScope.healthPlanSection = "block";
 
                     //Get Payment Details
+
                     if ($rootScope.paymentMode == 'on' && $rootScope.consultationAmount != 0 && typeof $rootScope.consultationAmount != 'undefined') {
 
                         $rootScope.doGetPatientPaymentProfiles();
