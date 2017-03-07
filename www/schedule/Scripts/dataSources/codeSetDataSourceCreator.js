@@ -3,8 +3,9 @@
 var snap = snap || {};
 snap.dataSource = snap.dataSource || {};
 
-(function () {
-    snap.dataSource.codeSetDataSourceWrapper = function (codeSetsList) {
+
+(function() {
+    snap.dataSource.codeSetDataSourceWrapper = function(codeSetsList) {
         this._codeSetsList = codeSetsList || [];
         this._firstRun = true;
     };
@@ -13,37 +14,40 @@ snap.dataSource = snap.dataSource || {};
         _codeSetsList: [],
         _firstRun: false,
         _codeSetsLoadingPromise: $.Deferred(),
-        _readCodeSets: function (hospitalId) {
+        _readCodeSets: function(hospitalId) {
             var ds = this;
             if (ds._firstRun) {
                 ds._firstRun = false;
+                var head = util.getHeaders();
+ debugger;
                 $.ajax({
                     url: snap.baseUrl + "/api/v2/codesets",
                     type: "GET",
                     data: {
                         hospitalId: hospitalId,
                         fields: ds._codeSetsList.join(',')
-                    }
+                    },
+                    headers: head
 
-                }).done(function (resp) {
+                }).done(function(resp) {
                     ds._codeSetItems = resp.data;
                     ds._codeSetsLoadingPromise.resolve(ds._codeSetItems);
-                }).fail(function () {
+                }).fail(function() {
                     ds._codeSetsLoadingPromise.reject();
                 });
             }
             return ds._codeSetsLoadingPromise.promise();
         },
-        _getCodeSetData: function (codeSetName, hospitalId) {
+        _getCodeSetData: function(codeSetName, hospitalId) {
             var readPromise = $.Deferred();
 
-            this._readCodeSets(hospitalId).done(function (data) {
+            this._readCodeSets(hospitalId).done(function(data) {
                 var codes = [];
-                var set = data.find(function (item) {
+                var set = data.find(function(item) {
                     return item.name.toLowerCase().indexOf(codeSetName) > -1;
                 });
                 if (set && set.codes) {
-                    codes = set.codes.sort(function (a, b) {
+                    codes = set.codes.sort(function(a, b) {
                         return a.displayOrder - b.displayOrder;
                     });
                     readPromise.resolve(codes);
@@ -51,16 +55,16 @@ snap.dataSource = snap.dataSource || {};
                     readPromise.reject();
                 }
 
-            }).fail(function () {
+            }).fail(function() {
                 readPromise.reject();
             });
             return readPromise.promise();
         },
 
-        getItemIdByName: function (codeSetName, hospitalId, requestedName) {
+        getItemIdByName: function(codeSetName, hospitalId, requestedName) {
             var def = $.Deferred();
             var ds = this;
-            ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
+            ds._getCodeSetData(codeSetName, hospitalId).done(function(data) {
                 var requestedNameLC = requestedName.toLowerCase();
                 for (var i = 0, l = data.length; i < l; i++) {
                     if (data[i].text.toLowerCase().indexOf(requestedNameLC) > -1) {
@@ -77,14 +81,14 @@ snap.dataSource = snap.dataSource || {};
             return def.promise();
         },
 
-        getCodeSetDataSourceReplacingNames: function (codeSetName, hospitalId, replaceNames, replaceByObjects) {
+        getCodeSetDataSourceReplacingNames: function(codeSetName, hospitalId, replaceNames, replaceByObjects) {
             var ds = this;
             return new kendo.data.DataSource({
                 transport: {
-                    read: function (options) {
-                        ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
-                            var filteredData = (replaceNames && replaceNames.length > 0 && replaceByObjects
-                                && replaceByObjects.length === replaceNames.length) ? (data.map(function (item) {
+                    read: function(options) {
+                        ds._getCodeSetData(codeSetName, hospitalId).done(function(data) {
+                            var filteredData = (replaceNames && replaceNames.length > 0 && replaceByObjects &&
+                                replaceByObjects.length === replaceNames.length) ? (data.map(function(item) {
                                 var itemText = item.text.toLowerCase();
                                 for (var i = 0, l = replaceNames.length; i < l; i++) {
                                     if (itemText.indexOf(replaceNames[i].toLowerCase()) > -1) {
@@ -94,7 +98,7 @@ snap.dataSource = snap.dataSource || {};
                                 return item;
                             })) : data;
                             options.success(filteredData);
-                        }).fail(function () {
+                        }).fail(function() {
                             options.error();
                         });
                     }
@@ -105,14 +109,14 @@ snap.dataSource = snap.dataSource || {};
             });
         },
 
-        getCodeSetDataSource: function (codeSetName, hospitalId) {
+        getCodeSetDataSource: function(codeSetName, hospitalId) {
             var ds = this;
             return new kendo.data.DataSource({
                 transport: {
-                    read: function (options) {
-                        ds._getCodeSetData(codeSetName, hospitalId).done(function (data) {
+                    read: function(options) {
+                        ds._getCodeSetData(codeSetName, hospitalId).done(function(data) {
                             options.success(data);
-                        }).fail(function () {
+                        }).fail(function() {
                             options.error();
                         });
                     }

@@ -1,15 +1,36 @@
 //@ sourceURL=selfSchedulingService.js
-
+var setUserVars = function() {
+    snap.userSession = JSON.parse(localStorage.getItem("snap_user_session"));
+    snap.profileSession = JSON.parse(localStorage.getItem("snap_patientprofile_session"));
+    snap.hospitalSession = JSON.parse(localStorage.getItem("snap_hospital_session"));
+    snap.hospitalSettings = JSON.parse(localStorage.getItem("snap_hospital_settings"));
+};
 (function($, snap) {
     "use strict";
+
     snap.namespace("snap.service").using(["snapHttp"]).define("selfSchedulingService", function($http) {
 
         var apptApiUrl = snap.baseUrl + "/api/v2.1/patients/appointments";
+        var getApptApiUrl = function() {
+            // if (!snap.userSession) {
+            snap.userSession = JSON.parse(localStorage.getItem("snap_user_session"));
+            snap.profileSession = JSON.parse(localStorage.getItem("snap_patientprofile_session"));
+            snap.hospitalSession = JSON.parse(localStorage.getItem("snap_hospital_session"));
+            snap.hospitalSettings = JSON.parse(localStorage.getItem("snap_hospital_settings"));
+            //}
+
+            return snap.baseUrl + "/api/v2.1/patients/appointments";
+        }
         this.getAppointment = function(apptId) {
-            return $http.get([apptApiUrl, apptId].join("/"));
+
+            return $http.get([getApptApiUrl(), apptId].join("/"));
+        }
+        this.getUserCurrentTime = function() {
+            return $http.get(snap.baseUrl + "/api/v2.1/users/current-time");
         }
         this.addAppointment = function(appt) {
-            var path = apptApiUrl;
+            var path = getApptApiUrl();
+            var headers = util.getHeaders();
 
             return $.ajax({
                 type: "POST",
@@ -21,7 +42,7 @@
         };
 
         this.removeAppointment = function(appointmentId) {
-            var path = [apptApiUrl, appointmentId].join("/");
+            var path = [getApptApiUrl(), appointmentId].join("/");
 
             return $.ajax({
                 type: "DELETE",
@@ -30,7 +51,7 @@
         };
 
         this.updateAppointment = function(appt, apptId) {
-            var path = [apptApiUrl, apptId].join("/");
+            var path = [getApptApiUrl(), apptId].join("/");
 
             return $.ajax({
                 type: "PUT",
@@ -1109,7 +1130,6 @@
                     $(".directory__opener").first().focus();
                 };
                 this.load = function() {
-                    debugger;
                     scope = this;
                     this.set("isReadOnly", this.isReadOnly || !this.vm_isNew() && $scheduleCommon.isAppointmentReadOnly(this.appointmentStatusCode));
 
@@ -2212,7 +2232,8 @@
                     result.appt.end = $timeUtils.dateFromSnapDateString(result.appt.endTime);
                     result.appt.phoneNumber = result.appt.where;
                     result.appt.phoneType = result.appt.whereUse;
-                    $availabilityBlockService.getUserCurrentTime().done(function(resp) {
+                    debugger;
+                    $selfSchedulingService.getUserCurrentTime().done(function(resp) {
                         var userDNATime = $timeUtils.dateFromSnapDateString(resp.data[0]);
                         userDNATime.setMinutes(userDNATime.getMinutes() - 30);
                         result.isFuture = userDNATime <= result.appt.end;
@@ -3834,12 +3855,14 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
     "use strict";
     snap.namespace("snap.service").using(["snapHttp"]).define("userService", function($http) {
         this.getUserCurrentTime = function() {
+            setUserVars();
             return $http.get(snap.baseUrl + "/api/v2.1/users/current-time").fail(function() {
                 snap.redirectToLogin();
             });
         };
 
         this.getUserTimeZoneId = function() {
+            setUserVars();
             return $http.get(snap.baseUrl + "/api/v2.1/users/current-time");
         };
     }).singleton();

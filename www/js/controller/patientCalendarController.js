@@ -45,18 +45,18 @@ angular.module('starter.controllers')
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
         $rootScope.checkAndChangeMenuIcon = function() {
-                if (!$ionicSideMenuDelegate.isOpen(true)) {
-                    if ($('#BackButtonIcon').hasClass("ion-close")) {
-                        $('#BackButtonIcon').removeClass("ion-close");
-                        $('#BackButtonIcon').addClass("ion-navicon-round");
-                    }
-                } else {
-                    if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
-                        $('#BackButtonIcon').removeClass("ion-navicon-round");
-                        $('#BackButtonIcon').addClass("ion-close");
-                    }
+            if (!$ionicSideMenuDelegate.isOpen(true)) {
+                if ($('#BackButtonIcon').hasClass("ion-close")) {
+                    $('#BackButtonIcon').removeClass("ion-close");
+                    $('#BackButtonIcon').addClass("ion-navicon-round");
+                }
+            } else {
+                if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
+                    $('#BackButtonIcon').removeClass("ion-navicon-round");
+                    $('#BackButtonIcon').addClass("ion-close");
                 }
             }
+        }
         $scope.toggleLeft = function() {
             $rootScope.statename = $rootScope.currState.$current.name;
             $ionicSideMenuDelegate.toggleLeft();
@@ -117,8 +117,14 @@ angular.module('starter.controllers')
             };
             LoginService.postGetConsultationId(params);
         }
+        $scope.editAppointment = function(scheduledListData) {
+            debugger;
+            var opt = new snap.patient.schedule.appointmentDialog();
+            opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
 
+        }
         $scope.GoToappoimentDetails = function(scheduledListData) {
+            debugger;
             $rootScope.AppointScheduleTime = '';
             $rootScope.scheduledListDatas = scheduledListData;
             var currentTime = $rootScope.scheduledListDatas.scheduledTime;
