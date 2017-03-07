@@ -140,6 +140,37 @@ if (deploymentEnv == 'Single') {
       Hospital = 'TeleMD Virtual Clinic';
       HospitalTag = 'Always Nearby';
       ssoURL = "";
+  } else if (cobrandApp == 'TheDocApp') {
+      singleStagingHospitalId = 162;
+      singleHospitalId = 259;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#4bc9f0';
+    //  logo = 'img/1800md.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/7900bdca-83e3-4a66-850e-7bd4c78a8f58';
+      Hospital = "TheDocApp";
+      HospitalTag = 'Convenient Care Anywhere';
+      ssoURL = "";
+  } else if (cobrandApp == 'eVirtualcare') {
+      singleStagingHospitalId = 168;
+      singleHospitalId = 271;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#0073c0';
+      logo = 'https://snapmdadmin.snap-stage.com/api/v2.1/images/ca001725-db79-4cdb-99d1-5193029a884b';
+      Hospital = "eVirtualcare";
+      HospitalTag = '';
+      ssoURL = "";
+  } else if (cobrandApp == 'UKOnline') {
+      singleStagingHospitalId = '';
+      singleHospitalId = '';
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = 129; // 126;
+      brandColor = '#007bb6';
+      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
+      Hospital = 'Online Doctor';
+      HospitalTag = 'Your Personal Online Consultation';
+      ssoURL = "";
   }
 
 }
