@@ -17,6 +17,7 @@ var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProdu
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
+var appVersion = 67;
 //var xApiKey = 'c69fe0477e08cb4352e07c502ddd2d146b316112'; // For Photo Upload
 //var xDeveloperId = '84f6101ff82d494f8fcc5c0e54005895'; // For Photo Upload
 var timeoutValue = 0;

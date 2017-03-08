@@ -1,11 +1,11 @@
 var indexOf = [].indexOf || function(item) {
-    for (var i = 0, l = this.length; i < l; i++) {
-        if (i in this && this[i] === item)
-            return i;
+        for (var i = 0, l = this.length; i < l; i++) {
+            if (i in this && this[i] === item) return i;
+        }
+        return -1;
     }
-    return -1;
-}
-
+    // request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
+    //request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
 var api_keys_env = '';
 var session = null;
 var publisher = null;
@@ -27,10 +27,8 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                //  request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
-                //  request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
-                request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
-                request.defaults.headers.post['X-Api-Key'] = '713c3ae05db67c5585ae395e022acbb8e121d3c1';
+                request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
+                request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
                 return request;
             } else {
                 if (typeof credentials !== 'undefined') {
@@ -55,14 +53,9 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
 
                 return headers;
             } else if (api_keys_env === 'Sandbox') {
-                /*  var headers = {
-                      'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
-                      'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
-                      'Content-Type': 'application/json; charset=utf-8'
-                  }; */
                 var headers = {
-                    'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
-                    'X-Api-Key': '713c3ae05db67c5585ae395e022acbb8e121d3c1',
+                    'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
+                    'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
                 if (typeof accessToken !== 'undefined') {
@@ -86,16 +79,16 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
 } else if (deploymentEnv === "Production") {
     var util = {
         setHeaders: function(request, credentials) {
-            if (api_keys_env === 'Production') {
-                if (typeof credentials !== 'undefined') {
+            if (api_keys_env == 'Production') {
+                if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
                 request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
                 request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
                 return request;
-            } else if (api_keys_env === 'Staging') {
-                if (typeof credentials !== 'undefined') {
+            } else if (api_keys_env == 'Staging') {
+                if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
@@ -142,31 +135,29 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 request.defaults.headers.post['X-Developer-Id'] = 'cc552a3733af44a88ccb0c88ecec2d78';
                 request.defaults.headers.post['X-Api-Key'] = '1dc3a07ce76d4de432967eaa6b67cdc3aff0ee38';
                 return request;
-            } else if (api_keys_env === 'Production') {
-                if (typeof credentials !== 'undefined') {
+            } else if (api_keys_env == 'Production') {
+                if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
                 request.defaults.headers.post['X-Developer-Id'] = '1f9480321986463b822a981066cad094';
                 request.defaults.headers.post['X-Api-Key'] = 'd3d2f653608d25c080810794928fcaa12ef372a2';
                 return request;
-            } else if (api_keys_env === 'QA') {
-                if (typeof credentials !== 'undefined') {
+            } else if (api_keys_env == 'QA') {
+                if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
                 request.defaults.headers.post['X-Developer-Id'] = '4ce98e9fda3f405eba526d0291a852f0';
                 request.defaults.headers.post['X-Api-Key'] = '1de605089c18aa8318c9f18177facd7d93ceafa5';
                 return request;
-            } else if (api_keys_env === 'Sandbox') {
-                if (typeof credentials !== 'undefined') {
+            } else if (api_keys_env == 'Sandbox') {
+                if (typeof credentials != 'undefined') {
                     request.defaults.headers.common['Authorization'] = "Bearer " + credentials.accessToken;
                 }
                 request.defaults.headers.post['Content-Type'] = 'application/json; charset=utf-8';
-                //  request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
-                //  request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
-                request.defaults.headers.post['X-Developer-Id'] = '84f6101ff82d494f8fcc5c0e54005895';
-                request.defaults.headers.post['X-Api-Key'] = '713c3ae05db67c5585ae395e022acbb8e121d3c1';
+                request.defaults.headers.post['X-Developer-Id'] = '1e9b9d60bb7f45d8bf41cd35627a60df';
+                request.defaults.headers.post['X-Api-Key'] = '21c50e877e0ec912bc014280aee25bcf978de453';
                 return request;
             }
         },
@@ -193,29 +184,24 @@ if (deploymentEnv === "Sandbox" || deploymentEnv === "Multiple" || deploymentEnv
                 }
 
                 return headers;
-            } else if (api_keys_env === 'QA') {
+            } else if (api_keys_env == 'QA') {
                 var headers = {
                     'X-Developer-Id': '4ce98e9fda3f405eba526d0291a852f0',
                     'X-Api-Key': '1de605089c18aa8318c9f18177facd7d93ceafa5',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
-                if (typeof accessToken !== 'undefined') {
+                if (typeof accessToken != 'undefined') {
                     headers['Authorization'] = 'Bearer ' + accessToken;
                 }
 
                 return headers;
-            } else if (api_keys_env === 'Sandbox') {
-                /*  var headers = {
-                      'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
-                      'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
-                      'Content-Type': 'application/json; charset=utf-8'
-                  };*/
+            } else if (api_keys_env == 'Sandbox') {
                 var headers = {
-                    'X-Developer-Id': '84f6101ff82d494f8fcc5c0e54005895',
-                    'X-Api-Key': '713c3ae05db67c5585ae395e022acbb8e121d3c1',
+                    'X-Developer-Id': '1e9b9d60bb7f45d8bf41cd35627a60df',
+                    'X-Api-Key': '21c50e877e0ec912bc014280aee25bcf978de453',
                     'Content-Type': 'application/json; charset=utf-8'
                 };
-                if (typeof accessToken !== 'undefined') {
+                if (typeof accessToken != 'undefined') {
                     headers['Authorization'] = 'Bearer ' + accessToken;
                 }
 
@@ -427,6 +413,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     } else {
         $rootScope.alertMsgName = 'Virtual Care';
+        $rootScope.reportHospitalUpperCase = 'Virtual Care';
     }
 
 
@@ -1132,127 +1119,140 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
-                if ($rootScope.getDetails !== '') {
-                    for (var i = 0; i < $rootScope.getDetails.length; i++) {
-                        if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
-                            $rootScope.insuranceMode = 'on';
-                        }
-                        if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
-                            $rootScope.paymentMode = 'on';
-                        }
-                        if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
-                            $rootScope.onDemandMode = 'on';
-                        }
-                        if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
-                            $rootScope.OrganizationLocation = 'on';
-                        }
-                        if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
-                            $rootScope.PPIsBloodTypeRequired = 'on';
-                        }
-                        if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
-                            $rootScope.PPIsHairColorRequired = 'on';
-                        }
-                        if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
-                            $rootScope.PPIsEthnicityRequired = 'on';
-                        }
-                        if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
-                            $rootScope.PPIsEyeColorRequired = 'on';
-                        }
-                    }
-                }
-                $rootScope.brandColor = data.data[0].brandColor;
+              //  $rootScope.mobileSettings = data.data[0].settings;
+            //  var mobappversion = $rootScope.mobileSettings[i].mobileApp_MinSupportedVersion;
+              // var sptversion = mobappversion.split(" ");
+            //   var checkmobilever = parseFloat(sptversion[1]);
+               var checkmobilever = 7.1;
+               if(appVersion < checkmobilever){               
+              
+					if ($rootScope.getDetails !== '') {
+						for (var i = 0; i < $rootScope.getDetails.length; i++) {
+							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
+								$rootScope.insuranceMode = 'on';
+							}
+							if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
+								$rootScope.paymentMode = 'on';
+							}
+							if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
+								$rootScope.onDemandMode = 'on';
+							}
+							if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
+								$rootScope.OrganizationLocation = 'on';
+							}
+							if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
+								$rootScope.PPIsBloodTypeRequired = 'on';
+							}
+							if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
+								$rootScope.PPIsHairColorRequired = 'on';
+							}
+							if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
+								$rootScope.PPIsEthnicityRequired = 'on';
+							}
+							if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
+								$rootScope.PPIsEyeColorRequired = 'on';
+							}
+						}
+					}
+					$rootScope.brandColor = data.data[0].brandColor;
 
-                $rootScope.logo = data.data[0].hospitalImage;
-                $rootScope.Hospital = data.data[0].brandName;
-                if (deploymentEnvLogout === 'Single') {
-                    $rootScope.alertMsgName = $rootScope.Hospital;
-                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-                } else {
-                    $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
-                }
-                $rootScope.HospitalTag = data.data[0].brandTitle;
-                $rootScope.contactNumber = data.data[0].contactNumber;
-                $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
-                $rootScope.clientName = data.data[0].hospitalName;
+					$rootScope.logo = data.data[0].hospitalImage;
+					$rootScope.Hospital = data.data[0].brandName;
+					if (deploymentEnvLogout === 'Single') {
+						$rootScope.alertMsgName = $rootScope.Hospital;
+						$rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+					} else {
+						$rootScope.alertMsgName = 'Virtual Care';
+						$rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
+					}
+					$rootScope.HospitalTag = data.data[0].brandTitle;
+					$rootScope.contactNumber = data.data[0].contactNumber;
+					$rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
+					$rootScope.clientName = data.data[0].hospitalName;
 
-                var hospitaData = {};
-                hospitaData.hospitalId = $rootScope.hospitalId;
-                hospitaData.brandName = data.data[0].brandName;
-                hospitaData.subBrandName = data.data[0].brandTitle;
-                hospitaData.clientName = data.data[0].hospitalName;
-                hospitaData.brandColor = data.data[0].brandColor;
-                hospitaData.hospitalLogo = data.data[0].hospitalImage;
-                hospitaData.address = data.data[0].address;
-                hospitaData.locale = data.data[0].locale;
+					var hospitaData = {};
+					hospitaData.hospitalId = $rootScope.hospitalId;
+					hospitaData.brandName = data.data[0].brandName;
+					hospitaData.subBrandName = data.data[0].brandTitle;
+					hospitaData.clientName = data.data[0].hospitalName;
+					hospitaData.brandColor = data.data[0].brandColor;
+					hospitaData.hospitalLogo = data.data[0].hospitalImage;
+					hospitaData.address = data.data[0].address;
+					hospitaData.locale = data.data[0].locale;
 
-                hospitaData.patientLogin = data.data[0].patientLogin;
-                hospitaData.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
+					hospitaData.patientLogin = data.data[0].patientLogin;
+					hospitaData.patientConsultEndUrl = data.data[0].patientConsultEndUrl;
 
-                hospitaData.customerSSO = data.data[0].customerSso;
-                hospitaData.customerSSOButtonText = data.data[0].customerSsoLinkText;
+					hospitaData.customerSSO = data.data[0].customerSso;
+					hospitaData.customerSSOButtonText = data.data[0].customerSsoLinkText;
 
-                hospitaData.clinicianConsultEndUrl = data.data[0].clinicianConsultEndUrl;
-                hospitaData.clinicianLogin = data.data[0].clinicianLogin;
+					hospitaData.clinicianConsultEndUrl = data.data[0].clinicianConsultEndUrl;
+					hospitaData.clinicianLogin = data.data[0].clinicianLogin;
 
-                hospitaData.clinicianSSO = data.data[0].clinicianSso;
-                hospitaData.clinicianSSOButtonText = data.data[0].clinicianSsoLinkText;
+					hospitaData.clinicianSSO = data.data[0].clinicianSso;
+					hospitaData.clinicianSSOButtonText = data.data[0].clinicianSsoLinkText;
 
-                hospitaData.contactNumber = data.data[0].contactNumber;
-                hospitaData.email = data.data[0].email;
-                var hosJsonData = JSON.stringify(hospitaData);
-                $window.localStorage.setItem('snap_hospital_session', hosJsonData);
+					hospitaData.contactNumber = data.data[0].contactNumber;
+					hospitaData.email = data.data[0].email;
+					var hosJsonData = JSON.stringify(hospitaData);
+					$window.localStorage.setItem('snap_hospital_session', hosJsonData);
 
-                var hsettings = {};
+					var hsettings = {};
 
-                hsettings.eCommerce = $rootScope.getDetails.indexOf("ECommerce") > -1;
-                hsettings.onDemand = $rootScope.getDetails.indexOf("OnDemand") > -1;
-                hsettings.cPTCodes = $rootScope.getDetails.indexOf("CPTCodes") > -1;
-                hsettings.messaging = $rootScope.getDetails.indexOf("Messaging") > -1;
+					hsettings.eCommerce = $rootScope.getDetails.indexOf("ECommerce") > -1;
+					hsettings.onDemand = $rootScope.getDetails.indexOf("OnDemand") > -1;
+					hsettings.cPTCodes = $rootScope.getDetails.indexOf("CPTCodes") > -1;
+					hsettings.messaging = $rootScope.getDetails.indexOf("Messaging") > -1;
 
-                hsettings.insuranceVerification = $rootScope.getDetails.indexOf("InsuranceVerification") > -1;
-                hsettings.ePrescriptions = $rootScope.getDetails.indexOf("EPrescriptions") > -1;
-                hsettings.ePrescriptions_EPSchedule = $rootScope.getDetails.indexOf("EPrescriptions_EPSchedule") > -1;
-                hsettings.intakeForm = $rootScope.getDetails.indexOf("IntakeForm") > -1;
-                hsettings.intakeForm_OnDemand = $rootScope.getDetails.indexOf("IntakeForm_OnDemand") > -1;
-                hsettings.intakeForm_Scheduled = $rootScope.getDetails.indexOf("IntakeForm_Scheduled") > -1;
-                hsettings.providerSearch = $rootScope.getDetails.indexOf("ClinicianSearch") > -1;
-                hsettings.rxNTEHR = $rootScope.getDetails.indexOf("RxNTEHR") > -1;
-                hsettings.rxNTPM = $rootScope.getDetails.indexOf("RxNTPM") > -1;
-                hsettings.hidePaymentPageBeforeWaitingRoom = $rootScope.getDetails.indexOf("HidePaymentPageBeforeWaitingRoom") > -1;
-                hsettings.fileSharing = $rootScope.getDetails.indexOf("FileSharing") > -1;
-                hsettings.insuranceBeforeWaiting = $rootScope.getDetails.indexOf("InsuranceBeforeWaiting") > -1;
-                hsettings.ePerscriptions = $rootScope.getDetails.indexOf("EPerscriptions") > -1;
-                hsettings.ePSchedule1 = $rootScope.getDetails.indexOf("EPSchedule1") > -1;
+					hsettings.insuranceVerification = $rootScope.getDetails.indexOf("InsuranceVerification") > -1;
+					hsettings.ePrescriptions = $rootScope.getDetails.indexOf("EPrescriptions") > -1;
+					hsettings.ePrescriptions_EPSchedule = $rootScope.getDetails.indexOf("EPrescriptions_EPSchedule") > -1;
+					hsettings.intakeForm = $rootScope.getDetails.indexOf("IntakeForm") > -1;
+					hsettings.intakeForm_OnDemand = $rootScope.getDetails.indexOf("IntakeForm_OnDemand") > -1;
+					hsettings.intakeForm_Scheduled = $rootScope.getDetails.indexOf("IntakeForm_Scheduled") > -1;
+					hsettings.providerSearch = $rootScope.getDetails.indexOf("ClinicianSearch") > -1;
+					hsettings.rxNTEHR = $rootScope.getDetails.indexOf("RxNTEHR") > -1;
+					hsettings.rxNTPM = $rootScope.getDetails.indexOf("RxNTPM") > -1;
+					hsettings.hidePaymentPageBeforeWaitingRoom = $rootScope.getDetails.indexOf("HidePaymentPageBeforeWaitingRoom") > -1;
+					hsettings.fileSharing = $rootScope.getDetails.indexOf("FileSharing") > -1;
+					hsettings.insuranceBeforeWaiting = $rootScope.getDetails.indexOf("InsuranceBeforeWaiting") > -1;
+					hsettings.ePerscriptions = $rootScope.getDetails.indexOf("EPerscriptions") > -1;
+					hsettings.ePSchedule1 = $rootScope.getDetails.indexOf("EPSchedule1") > -1;
 
-                hsettings.iCD9Codes = $rootScope.getDetails.indexOf("ICD9Codes") > -1;
-                hsettings.textMessaging = $rootScope.getDetails.indexOf("TextMessaging") > -1;
-                hsettings.insVerificationDummy = $rootScope.getDetails.indexOf("InsVerificationDummy") > -1;
-                hsettings.videoBeta = $rootScope.getDetails.indexOf("VideoBeta") > -1;
-                hsettings.hidePaymentBeforeWaiting = $rootScope.getDetails.indexOf("HidePaymentBeforeWaiting") > -1;
-                hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
+					hsettings.iCD9Codes = $rootScope.getDetails.indexOf("ICD9Codes") > -1;
+					hsettings.textMessaging = $rootScope.getDetails.indexOf("TextMessaging") > -1;
+					hsettings.insVerificationDummy = $rootScope.getDetails.indexOf("InsVerificationDummy") > -1;
+					hsettings.videoBeta = $rootScope.getDetails.indexOf("VideoBeta") > -1;
+					hsettings.hidePaymentBeforeWaiting = $rootScope.getDetails.indexOf("HidePaymentBeforeWaiting") > -1;
+					hsettings.showCTTOnScheduled = $rootScope.getDetails.indexOf("ShowCTTOnScheduled") > -1;
 
-                hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
-                hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
-                hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
-                hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
-                hsettings.organizationLocation = $rootScope.getDetails.indexOf("OrganizationLocation") > -1;
+					hsettings.pPIsBloodTypeRequired = $rootScope.getDetails.indexOf("PPIsBloodTypeRequired") > -1;
+					hsettings.pPIsHairColorRequired = $rootScope.getDetails.indexOf("PPIsHairColorRequired") > -1;
+					hsettings.pPIsEthnicityRequired = $rootScope.getDetails.indexOf("PPIsEthnicityRequired") > -1;
+					hsettings.pPIsEyeColorRequired = $rootScope.getDetails.indexOf("PPIsEyeColorRequired") > -1;
+					hsettings.organizationLocation = $rootScope.getDetails.indexOf("OrganizationLocation") > -1;
 
-                hsettings.AddressValidation = $rootScope.getDetails.indexOf("AddressValidation") > -1;
+					hsettings.AddressValidation = $rootScope.getDetails.indexOf("AddressValidation") > -1;
 
-                hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
-                hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
-                hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
-                //alert(data.indexOf("HideDrToDrChat"));
-                //Addd Public facing Hospital Setting
-                if (data.data[0]['settings']) {
-                    $.extend(hsettings, data.data[0]['settings']);
-                }
-                var hsettingsJsonData = JSON.stringify(hsettings);
-                $window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
-
-
-                $state.go('tab.password');
+					hsettings.hideOpenConsultation = $rootScope.getDetails.indexOf("HideOpenConsultation") > -1;
+					hsettings.hideDrToDrChat = $rootScope.getDetails.indexOf("HideDrToDrChat") > -1;
+					hsettings.drToDrChatInAdmin = false; //data.indexOf("DrToDrChatInAdmin") > -1;
+					//alert(data.indexOf("HideDrToDrChat"));
+					//Addd Public facing Hospital Setting
+					if (data.data[0]['settings']) {
+						$.extend(hsettings, data.data[0]['settings']);
+					}
+					var hsettingsJsonData = JSON.stringify(hsettings);
+					$window.localStorage.setItem('snap_hospital_settings', hsettingsJsonData);
+					$state.go('tab.password');
+				}else{
+					var confirmPopup = $ionicPopup.confirm({
+						  title: " <div class='updatetitle'>Update required </div> ",
+						  templateUrl: 'templates/updationpopup.html',
+						  cssClass: 'locpopup',
+						  hardwareBackButtonClose: false,
+					});                
+               }
 
             },
             error: function(data, status) {
@@ -5035,9 +5035,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
-                if ($rootScope.getDetails !== '') {
-                    if ($rootScope.paymentMode === 'on' && $rootScope.consultationAmount !== 0 && typeof $rootScope.consultationAmount !== 'undefined') {
 
+                if ($rootScope.getDetails !== '') {
+					//  $rootScope.consultChargeSection = "block";
+
+                    //  $rootScope.healthPlanSection = "block";
+
+                    //Get Payment Details
+
+                    if ($rootScope.paymentMode == 'on' && $rootScope.consultationAmount != 0 && typeof $rootScope.consultationAmount != 'undefined') {
                         $rootScope.doGetPatientPaymentProfiles();
                     }
                     $rootScope.enableInsuranceVerificationSuccess = "none";
