@@ -1,33 +1,71 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var bower = require('bower');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var sh = require('shelljs');
+var gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    bower = require('bower'),
+    concat = require('gulp-concat'),
+    sass = require('gulp-sass'),
+    less = require('gulp-less'),
+    prefixer = require('gulp-autoprefixer'),
+    prefixerOptions = { browsers: ['last 1 versions'] },
+    minifyCss = require('gulp-minify-css'),
+    rename = require('gulp-rename'),
+    sh = require('shelljs');
 
-var paths = {
-  sass: ['./scss/**/*.scss']
+var path = {
+    build: {
+        css: './www/css/',
+        fonts: './www/fonts/',
+    },
+    src: {
+        scss: './scss/ionic.app.scss',
+        less: './less/styles.less',
+        fonts: './fonts/**/*.*',
+    },
+    watch: {
+        scss: './scss/**/*.scss',
+        less: './less/**/*.*',
+        // fonts: './fonts/**/*.*',
+    }
 };
 
-gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
+  gulp.src(path.src.scss)
     .pipe(sass({errLogToConsole: true}))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest(path.build.css))
     .pipe(minifyCss({
-      keepSpecialComments: 0
+        keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest(path.build.css))
     .on('end', done);
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+gulp.task('less', function (done) {
+    gulp.src(path.src.less)
+        .pipe(less())
+        .pipe(prefixer(prefixerOptions))
+        .pipe(minifyCss({
+            keepSpecialComments: 0
+        }))
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(gulp.dest(path.build.css))
+        .on('end', done);
 });
+
+gulp.task('fonts', function() {
+    gulp.src(path.src.fonts)
+        .pipe(gulp.dest(path.build.fonts))
+});
+
+gulp.task('watch', function() {
+    gulp.watch(path.watch.scss, ['sass']);
+    gulp.watch(path.watch.less, ['less']);
+    // gulp.watch(path.watch.less, ['fonts']);
+});
+
+gulp.task('default', ['sass', 'less', 'watch']);
+
+gulp.task('serve:before', [ "sass", "less", "watch"]);
 
 gulp.task('install', ['git-check'], function() {
   return bower.commands.install()

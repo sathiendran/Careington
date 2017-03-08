@@ -1,11 +1,18 @@
 angular.module('starter.controllers')
 
 .controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList,$ionicBackdrop) {
+    $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
+
+    });
+    /*
+    $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
+
+    });*/
     window.plugins.insomnia.keepAwake();
     $rootScope.currState = $state;
     window.localStorage.setItem('videoCallPtImage', $rootScope.PatientImageSelectUser);
     window.localStorage.setItem('videoCallPtFullName', $rootScope.PatientFirstName + " " + $rootScope.PatientLastName);
-    $ionicPlatform.registerBackButtonAction(function(event, $state) {
+    $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
             ($rootScope.currState.$current.name === "tab.submitPayment") ||
@@ -72,66 +79,27 @@ angular.module('starter.controllers')
 
 
     $scope.isPhysicianStartedConsultaion = false;
-
-    /*
-    consultationStatusCheck = $interval(function(){
-         if(!$scope.isPhysicianStartedConsultaion){
-              $scope.checkIfPhysicianStartedConference();
-         }
-    }, 5000);
-
-    $scope.checkIfPhysicianStartedConference = function(){
-        var params = {
-            accessToken: $rootScope.accessToken,
-            consultationId: $rootScope.consultationId,
-            success: function (data) {
-                console.log('-------------------------------- ' +  data.data[0].consultationInfo.consultationStatus);
-                 if(data.data[0].consultationInfo.consultationStatus === REVIEW_CONSULTATION_STATUS_CODE){
-                      $interval.cancel(consultationStatusCheck);
-                      $scope.isPhysicianStartedConsultaion = true;
-                      $scope.getConferenceKeys();
-                      return;
-                 }
-            },
-            error: function (data) {
-				$rootScope.serverErrorMessageValidation();
-            }
-        };
-        LoginService.getExistingConsulatation(params);
-     };
-    */
-
     $scope.waitingMsg = "The Provider will be with you Shortly.";
     var initWaitingRoomHub = function() {
-        var connection = $.hubConnection();
-        var conHub = connection.createHubProxy('consultationHub');
-        connection.url = $rootScope.APICommonURL + "/api/signalR/";
+        var WaitingRoomConnection = $.hubConnection();
+        var WaitingRoomConHub = WaitingRoomConnection.createHubProxy('consultationHub');
+        WaitingRoomConnection.url = $rootScope.APICommonURL + "/api/signalR/";
         var consultationWatingId = +$rootScope.consultationId;
         var sound = $rootScope.AndroidDevice ? 'file://sound.mp3' : 'file://beep.caf';
-
-        // var conHub = $.connection.consultationHub;
-        connection.qs = {
+//if(WaitingRoomConnection.state ===4 )
+//WaitingRoomConnection.start();
+        WaitingRoomConnection.qs = {
             "Bearer": $rootScope.accessToken,
             "consultationId": consultationWatingId,
             "waitingroom": 1,
             "isMobile": true
         };
-        conHub.on("onConsultationReview", function() {
+        WaitingRoomConHub.on("onConsultationReview", function() {
             $scope.waitingMsg = "The Provider is now reviewing the intake form.";
-            /*
-            cordova.plugins.notification.local.schedule([
-            	{
-            		id: 1,
-            		text: "The clinician is now reviewing the intake form.",
-            		sound: sound,
-            	}
-            ]);
-            //navigator.notification.beep(1);
-            */
             $scope.$digest();
         });
-        conHub.on("onCustomerDefaultWaitingInformation", function() {
-            if(typeof appIdleInterval != "undefined")
+        WaitingRoomConHub.on("onCustomerDefaultWaitingInformation", function() {
+            if(typeof appIdleInterval !== "undefined")
                 clearInterval(appIdleInterval);
             appIdleInterval = undefined;
             appIdleInterval = 0;
@@ -139,34 +107,34 @@ angular.module('starter.controllers')
              window.localStorage.setItem('accessToken', $rootScope.accessToken);
              window.localStorage.setItem("waitingRoomConsultationId", +$rootScope.consultationId);
             $scope.waitingMsg = "Please Wait....";
+            $scope.postPollforCredit();
             $scope.$digest();
         });
-        conHub.on("onConsultationStarted", function() {
+        WaitingRoomConHub.on("onConsultationStarted", function() {
              window.localStorage.setItem("isCustomerInWaitingRoom", "No");
              if(typeof alive_waiting_room_pool !== 'undefined')
                  clearInterval(alive_waiting_room_pool);
             $scope.waitingMsg = "Please wait...";
-            /*
-			   cordova.plugins.notification.local.schedule([
-					{
-						id: 1,
-						text: "The clinician started consultation.",
-						sound: sound,
-						data: { updated:true }
-					}
-				]);
-				//navigator.notification.beep(2);
-				*/
-            $scope.$digest();;
-            $.connection.hub.stop();
+            $scope.$digest();
+           // $.connection.hub.stop();
+           WaitingRoomConnection.stop();
+            WaitingRoomConnection.qs = {};
+            WaitingRoomConnection = null;
+            WaitingRoomConHub = null;
             getConferenceKeys();
         });
-        connection.logging = true;
-        connection.start({
+        WaitingRoomConnection.logging = true;
+        window.whub = WaitingRoomConnection;
+        WaitingRoomConnection.start({
             withCredentials: false
         }).then(function() {
             $scope.waitingMsg = "The Provider will be with you Shortly.";
             $scope.$digest();
+            WaitingRoomConnection.disconnected(function() {
+               setTimeout(function() {
+                  // WaitingRoomConnection.start();
+               }, 5000); // Restart connection after 5 seconds.
+          });
         });
     };
     initWaitingRoomHub();
@@ -200,5 +168,32 @@ angular.module('starter.controllers')
         };
         LoginService.getVideoConferenceKeys(params);
     };
+
+    var alive_waiting_room_pool;
+    alive_waiting_room_pool = setInterval(function(){
+         if(window.localStorage.getItem("isCustomerInWaitingRoom") === "Yes"){
+             $scope.postPollforCredit();
+         }
+       }, 30000);
+
+       $scope.postPollforCredit = function() {
+           vConsultationWatingId = window.localStorage.getItem("waitingRoomConsultationId");
+           vAccessToken = window.localStorage.getItem("accessToken");
+           var alive_timestamp_url = apiCommonURL + '/api/v2/patients/activeconsultations/' + vConsultationWatingId + '/alive-timestamp';
+           var reqHeaders = util.getHeaders();
+           reqHeaders['Authorization'] = "Bearer " + vAccessToken;
+           $.ajax({
+               type: 'PUT',
+               headers: reqHeaders,
+               url: alive_timestamp_url,
+               success: function(){
+
+               },
+               failure: function(){
+
+               }
+             });
+       }
+
 
 })

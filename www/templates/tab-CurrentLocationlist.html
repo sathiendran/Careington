@@ -1,0 +1,116 @@
+
+<ion-view view-title="Patient list" class="patient-list">
+
+	<!--<ion-header-bar class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">-->
+		<!--<ion-header-bar class="header bar bar-header" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+			<button class="header__btn header__add" ng-click="cancellocation();">cancel</button>
+				<div class="header__title">Current Location</div>
+
+			<button class="header__btn header__add" ng-click="updatelocation();" >Save</button>
+			<div class="Server_Error ErrorMessageDiv" ></div>
+			<div id="Error_Message" class="depenErrorMsg-{{deviceName}}"></div>
+		</ion-header-bar>
+
+		<ion-content class="new-user__content">-->
+
+
+		<header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}};background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+ 				<div id="Error_Message" class="ErrorMessage ErrorMessageDiv"  ></div>
+			 <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="cancellocation()" >Cancel</button>
+			 <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Current Location</h1>
+			 <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="updatelocation()" >Save</button>
+
+		</header>
+
+
+	<!--<ion-content class="new-user__content">-->
+	 <ion-content has-header="true" class="concernListContent">
+
+		<div class="new-user__main">
+
+   <h2 class="subname sublocName">Set your current location </h2>
+
+
+    <div class="profile-props__item" style="padding: 17px;">
+    	<div class="profile-props__value">
+
+				<label class = "item item-input item-select">
+   			<div class = "input-label">Country</div>
+
+				<select id="country" class="profile-props__input"  ng-model="loction.loccountry"  name="loccountry">
+				<option >Select your Country</option>
+					<option ng-repeat="getcountry in listOfCountry" value="{{getcountry.country}}" > <b> {{getcountry.country}}</b></option>
+					<input type="hidden" id="organ" value="{{loction.loccountry.country}}" />
+				</select>
+			 </label>
+
+ 			</div>
+	</div>
+	<div class="profile-props__item" style="padding: 17px;"  ng-show="currentstateview">
+			<div class="profile-props__value">
+
+				<label class = "item item-input item-select">
+   			<div class = "input-label">State/Region</div>
+
+				<select class="profile-props__input"  name="currentLocation" id="state">
+						<option>Choose state</option>
+						<option ng-repeat="getstate in listOfSelectstate" value="{{getstate.regioncode}}" > <b> {{getstate.region}}</b></option>
+				 </select>
+			 </label>
+
+
+			</div>
+	</div>
+
+		</div>
+	</ion-content>
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div class="modal">
+   <ion-view>
+      <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+         <div class="ErrorMessage ErrorMessageDiv"  ></div>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
+         <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">Current Location</h1>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="" >Save</button>
+      </header>
+      <ion-content has-header="true" class="concernListContent">
+         <ion-list>
+            <ion-item class="search_home  concernListSearch">
+               <h2 class="subname subName-{{deviceName}}">Set your current location </h2>
+
+               <div class="srchlist">
+                   <div class="item item-input item-select">
+                     <select>
+                       <option>Blue</option>
+                       <option selected>Green</option>
+                       <option>Red</option>
+                     </select>
+                   </div>
+               </div>
+            </ion-item>
+         </ion-list>
+
+      </ion-content>
+   </ion-view>
+</div>
+-->

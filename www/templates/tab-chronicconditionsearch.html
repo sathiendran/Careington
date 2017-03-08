@@ -1,6 +1,5 @@
 <div class="modal" >
    <ion-view>
-
       <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
          <div class="ErrorMessage ErrorMessageDiv"  ></div>
          <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
@@ -12,29 +11,22 @@
             <ion-item class="search_home  concernListSearch">
                <h2 class="subname subName-{{deviceName}}">Chronic Conditions</h2>
                <div class=" searchbox" style="margin-top: 0px!important;">
-               <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
-                 <label class="item-input-wrapper">
-                  <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')" class="inputsearchtext"></i>
-                  <input type="search"  placeholder="Search" ng-model="data.searchProvider" class="inputsearchtext">
-
-                 </label>
+                  <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                     <label class="item-input-wrapper">
+                     <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')" class="inputsearchtext"></i>
+                     <input type="search"  placeholder="Search" ng-model="data.searchProvider" class="inputsearchtext">
+                     </label>
+                  </div>
                </div>
-          </div>
-              <!-- <div class="search_home UserHmeSub concernListSearchHome">
-                  <label class="item-input popupSearch SearchLabel-{{deviceName}}" style="{{PrimaryConcernPopupSearchBox}};" >
-                     <input type="search" placeholder="Search" class="innerSearchPop SearchBox currentSearchBox-{{deviceName}}" ng-model="searchText"   >
-
-                  </label>
-               </div>-->
-             <div class="srchlist">
-               <div ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
-                  <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: data.searchProvider"
-                     ng-model="chronic.checked"
-                     ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)"  ng-disabled="checkedChronic==limit && !chronic.checked">
-                     <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
-                  </ion-checkbox>
+               <div class="srchlist">
+                  <div ng-repeat="(letter, chronicConditionsearchList) in sortedchronic_users">
+                     <ion-checkbox ng-repeat="chronic in chronicConditionsearchList | filter: data.searchProvider"
+                        ng-model="chronic.checked"
+                        ng-checked="chronic.checked" ng-change="OnSelectChronicCondition(chronic)"  ng-disabled="checkedChronic==limit && !chronic.checked">
+                        <span class="ng-binding concernListDetails">   {{ chronic.text }} </span>
+                     </ion-checkbox>
+                  </div>
                </div>
-          </div>
             </ion-item>
             <ion-item  ng-show="(chronicConditionsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
          </ion-list>

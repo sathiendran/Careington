@@ -56,7 +56,29 @@ angular.module('starter.services', [])
                     }
                 });
     }
+    this.getcheckssoToken = function (params) {
+         var requestInfo = {
+             headers: util.getHeaders(),
+             url: params.apiSsoURL,
+             method: 'POST',
+             data: {
+               email: params.email,
+                 password: params.password
+             }
+         };
 
+         $http(requestInfo).
+                 success(function (data, status, headers, config) {
+                     if (typeof params.success != 'undefined') {
+                         params.success(data);
+                     }
+                 }).
+                 error(function (data, status, headers, config) {
+                     if (typeof params.error != 'undefined') {
+                        params.error(data, status);
+                     }
+                 });
+     }
 
     this.getTokenFromJWT = function (params) {
          var requestInfo = {
@@ -77,6 +99,28 @@ angular.module('starter.services', [])
                      }
                  });
      }
+
+  this.ssoPasswordReset=function(params){
+    var ssoresetpassword={
+      headers: util.getHeaders(),
+      url: params.apiSsoURL ,
+      method: 'POST',
+      data: {
+        email: params.email
+      }
+    };
+    $http(ssoresetpassword).
+    success(function(data,status,headers,config){
+      if(typeof params.success != 'undefined'){
+        params.success(data);
+      }
+    }).
+     error(function(data,status,headers,config){
+       if(typeof params.error != 'undefined'){
+         params.error(data);
+       }
+     });
+  }
 
 	this.postSendPasswordResetEmail = function(params) {
 		var confirmSendPasswordResetEmail = {
@@ -150,6 +194,42 @@ angular.module('starter.services', [])
 		});
 	}
 
+  this.postSsoRegisterDetails = function(params) {
+    var registerDetails = {
+      headers: util.getHeaders(),
+      url: params.apiSsoURL ,
+      method: 'POST',
+      data: {
+        email: params.email,
+        password:params.password,
+        firstname:params.firstname,
+        lastname:params.lastname,
+        address:params.address,
+        dob:params.dob,
+        gender: params.gender,
+        mobileNumberWithCountryCode:params.mobile,
+
+          }
+    };
+
+    $http(registerDetails).
+      success(function (data, status, headers, config) {
+        if (typeof params.success != 'undefined') {
+          params.success(data);
+        }
+      }).
+      catch(function (data, status, headers, config) {
+        if (typeof params.error != 'undefined') {
+          params.error(data,status);
+        }
+    });
+  }
+
+
+
+
+
+
 	this.postRegisterDetails = function(params) {
 		var registerDetails = {
 			headers: util.getHeaders(params.accessToken),
@@ -171,7 +251,7 @@ angular.module('starter.services', [])
 					params.success(data);
 				}
 			}).
-			error(function (data, status, headers, config) {
+			catch(function (data, status, headers, config) {
 				if (typeof params.error != 'undefined') {
 					params.error(data,status);
 				}
@@ -201,7 +281,8 @@ angular.module('starter.services', [])
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
       // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+		  // url: apiCommonURL + '/api/v2/patients/profile?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
+      url: apiCommonURL + '/api/v2/patients/profile?include=all',
        method: 'GET'
 		};
 
@@ -267,6 +348,26 @@ angular.module('starter.services', [])
     };
 
     $http(PatientDetailsList).
+      success(function (data, status, headers, config) {
+        if (typeof params.success != 'undefined') {
+          params.success(data);
+        }
+      }).
+      error(function (data, status, headers, config) {
+        if (typeof params.error != 'undefined') {
+          params.error(data,status);
+        }
+    });
+  }
+
+  this.getLocationResponse= function(params) {
+    var PatientLocation = {
+      headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2.1/patients/response-rules-active',
+            method: 'GET'
+    };
+
+    $http(PatientLocation).
       success(function (data, status, headers, config) {
         if (typeof params.success != 'undefined') {
           params.success(data);
@@ -438,14 +539,14 @@ this.getPatientMedicalProfile = function(params){
        $http(requestpatientInfo).
            success(function (data, status, headers, config) {
                if (typeof params.success != 'undefined') {
-                   params.success(data);
+                   params.success(data,status);
                }
            }).
-           error(function (data, status, headers, config) {
-               if (typeof params.error != 'undefined') {
-                   params.error(data,status);
-               }
-           });
+           catch(function (data, status, headers, config) {
+             if (typeof params.error != 'undefined') {
+               params.error(data,status);
+             }
+         });
      }
 
 
@@ -1279,7 +1380,7 @@ this.getPatientMedicalProfile = function(params){
     this.getChatTranscript = function (params) {
           var requestInfo = {
               headers: util.getHeaders(params.accessToken),
-              url: apiCommonURL + '/api/reports/consultationreportdetails/chatnote/' + params.consultationId,
+              url: apiCommonURL + '/api/v2/reports/consultation/chat/' + params.consultationId,
               method: 'GET'
           };
 
@@ -1489,6 +1590,63 @@ this.getPatientMedicalProfile = function(params){
                 }
             });
   }
+  /* Get Token using SSO JWT Token */
+
+  this.getTokenUsingSsoJwt = function(params){
+       var requestInfo = {
+           headers:util.getHeaders(params.accessToken),
+           url: apiCommonURL + '/api/v2/account/token?jwt='+params.jwt,
+           method: 'GET',
+       };
+       $http(requestInfo).
+           success(function (data, status, headers, config) {
+               if (typeof params.success != 'undefined') {
+                   params.success(data);
+               }
+           }).
+           catch(function (data, status, headers, config) {
+               if (typeof params.error != 'undefined') {
+                   params.success(data);
+               }
+           });
+  }
+  this.getListOfCountryLocation = function(params){
+       var requestInfo = {
+           headers: util.getHeaders(params.accessToken),
+           url: apiCommonURL + '/api/v2.1/admin/rules/patient-provider-license-meta-rules',
+           method: 'GET',
+       };
+       $http(requestInfo).
+           success(function (data, status, headers, config) {
+               if (typeof params.success != 'undefined') {
+                   params.success(data);
+               }
+           }).
+           error(function (data, status, headers, config) {
+               if (typeof params.error != 'undefined') {
+                   params.success(data);
+               }
+           });
+     }
+
+     this.putListOfCountryLocation = function(params){
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate ,
+            method: 'PUT',
+        };
+        $http(requestInfo).
+            success(function (data, status, headers, config) {
+                if (typeof params.success != 'undefined') {
+                    params.success(data);
+                }
+            }).
+            error(function (data, status, headers, config) {
+                if (typeof params.error != 'undefined') {
+                    params.success(data);
+                }
+            });
+      }
 
 })
 

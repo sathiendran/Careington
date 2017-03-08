@@ -7,21 +7,21 @@ angular.module('starter.controllers')
     });
     $rootScope.customerSso = '';
 
-    if (deploymentEnvLogout == 'Single') {
-        if (deploymentEnvForProduction == 'Production') {
+    if (deploymentEnvLogout === 'Single') {
+        if (deploymentEnvForProduction === 'Production') {
 
             $rootScope.hospitalId = singleHospitalId;
             apiCommonURL = 'https://connectedcare.md';
             api_keys_env = 'Production';
             $rootScope.APICommonURL = 'https://connectedcare.md';
 
-        } else if (deploymentEnvForProduction == 'Staging') {
+        } else if (deploymentEnvForProduction === 'Staging') {
             $rootScope.hospitalId = singleStagingHospitalId;
             api_keys_env = "Staging";
-        } else if (deploymentEnvForProduction == 'QA') {
+        } else if (deploymentEnvForProduction === 'QA') {
             $rootScope.hospitalId = singleQAHospitalId;
             api_keys_env = "QA";
-        } else if (deploymentEnvForProduction == 'Sandbox') {
+        } else if (deploymentEnvForProduction === 'Sandbox') {
             $rootScope.hospitalId = singleSandboxHospitalId;
             api_keys_env = "Sandbox";
         }
@@ -42,10 +42,13 @@ angular.module('starter.controllers')
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
+                $rootScope.ssopatienttoken=data.data[0].patientTokenApi;
+                $rootScope.ssopatientregister=data.data[0].patientRegistrationApi;
+                $rootScope.ssopatientforgetpwd=data.data[0].patientForgotPasswordApi;
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
 
-                        if ($rootScope.getDetails[i] == 'InsuranceVerification' || $rootScope.getDetails[i] == 'mInsVerification') {
+                        if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
@@ -54,19 +57,19 @@ angular.module('starter.controllers')
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'OrganizationLocation' || $rootScope.getDetails[i] == 'mOrganizationLocation') {
+                        if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsBloodTypeRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsBloodTypeRequired') {
                             $rootScope.PPIsBloodTypeRequired = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsHairColorRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsHairColorRequired') {
                             $rootScope.PPIsHairColorRequired = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsEthnicityRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsEthnicityRequired') {
                             $rootScope.PPIsEthnicityRequired = 'on';
                         }
-                        if ($rootScope.getDetails[i] == 'PPIsEyeColorRequired') {
+                        if ($rootScope.getDetails[i] === 'PPIsEyeColorRequired') {
                             $rootScope.PPIsEyeColorRequired = 'on';
                         }
                     }
@@ -74,9 +77,9 @@ angular.module('starter.controllers')
                 $rootScope.brandColor = data.data[0].brandColor;
                 $rootScope.logo = data.data[0].hospitalImage;
                 $rootScope.Hospital = data.data[0].brandName;
-                if (deploymentEnvLogout == 'Multiple') {
+                if (deploymentEnvLogout === 'Multiple') {
                     $rootScope.alertMsgName = 'Virtual Care';
-                    $rootScope.reportHospitalUpperCase = 'Virtual Care';
+                    $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                 } else {
                     $rootScope.alertMsgName = $rootScope.Hospital;
                     $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
@@ -100,7 +103,7 @@ angular.module('starter.controllers')
                 $ionicLoading.hide();
                 $state.go('tab.loginSingle');
             },
-            error: function(data) {
+            error: function() {
                 $ionicLoading.hide();
 
             }

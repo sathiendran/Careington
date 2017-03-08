@@ -4,15 +4,15 @@ angular.module('starter.controllers')
             document.getElementsByTagName('timer')[0].stop();
         }, 10);
 
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
-            if (($rootScope.currState.$current.name == "tab.userhome") ||
-                ($rootScope.currState.$current.name == "tab.addCard") ||
-                ($rootScope.currState.$current.name == "tab.submitPayment") ||
-                ($rootScope.currState.$current.name == "tab.waitingRoom") ||
-                ($rootScope.currState.$current.name == "tab.receipt") ||
-                ($rootScope.currState.$current.name == "tab.videoConference") ||
-                ($rootScope.currState.$current.name == "tab.connectionLost") ||
-                ($rootScope.currState.$current.name == "tab.ReportScreen")
+        $ionicPlatform.registerBackButtonAction(function() {
+            if (($rootScope.currState.$current.name === "tab.userhome") ||
+                ($rootScope.currState.$current.name === "tab.addCard") ||
+                ($rootScope.currState.$current.name === "tab.submitPayment") ||
+                ($rootScope.currState.$current.name === "tab.waitingRoom") ||
+                ($rootScope.currState.$current.name === "tab.receipt") ||
+                ($rootScope.currState.$current.name === "tab.videoConference") ||
+                ($rootScope.currState.$current.name === "tab.connectionLost") ||
+                ($rootScope.currState.$current.name === "tab.ReportScreen")
             ) {
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
@@ -45,20 +45,18 @@ angular.module('starter.controllers')
         var checkAndChangeMenuIcon;
         $interval.cancel(checkAndChangeMenuIcon);
         $rootScope.checkAndChangeMenuIcon = function() {
-                if (!$ionicSideMenuDelegate.isOpen(true)) {
-                    if ($('#BackButtonIcon').hasClass("ion-close")) {
-                        $('#BackButtonIcon').removeClass("ion-close");
-                        $('#BackButtonIcon').addClass("ion-navicon-round");
-                    }
-                } else {
-                    if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
-                        $('#BackButtonIcon').removeClass("ion-navicon-round");
-                        $('#BackButtonIcon').addClass("ion-close");
-                    }
+            if (!$ionicSideMenuDelegate.isOpen(true)) {
+                if ($('#BackButtonIcon').hasClass("ion-close")) {
+                    $('#BackButtonIcon').removeClass("ion-close");
+                    $('#BackButtonIcon').addClass("ion-navicon-round");
+                }
+            } else {
+                if ($('#BackButtonIcon').hasClass("ion-navicon-round")) {
+                    $('#BackButtonIcon').removeClass("ion-navicon-round");
+                    $('#BackButtonIcon').addClass("ion-close");
                 }
             }
-            //$localstorage.set("Cardben.ross.310.95348@gmail.com", undefined);
-            //$localstorage.set("CardTextben.ross.310.95348@gmail.com", undefined);
+        }
         $scope.toggleLeft = function() {
             $rootScope.statename = $rootScope.currState.$current.name;
             $ionicSideMenuDelegate.toggleLeft();
@@ -67,7 +65,7 @@ angular.module('starter.controllers')
                 $interval.cancel(checkAndChangeMenuIcon);
             }
             if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
-                if ($rootScope.statename = "tab.appointmentpatientdetails") {
+                if ($rootScope.statename === "tab.appointmentpatientdetails") {
                     $('.sidehomeappt').addClass("uhome");
                 }
             }
@@ -98,7 +96,7 @@ angular.module('starter.controllers')
             $scope.$apply();
         };
 
-        $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId, nextPage) {
+        $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId) {
             var params = {
                 accessToken: $rootScope.accessToken,
                 AppointmentId: appointmentId,
@@ -109,7 +107,7 @@ angular.module('starter.controllers')
                     $scope.$root.$broadcast("callAppointmentConsultation");
                 },
                 error: function(data) {
-                    if (data == 'null') {
+                    if (data === 'null') {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
@@ -119,9 +117,14 @@ angular.module('starter.controllers')
             };
             LoginService.postGetConsultationId(params);
         }
+        $scope.editAppointment = function(scheduledListData) {
+            debugger;
+            var opt = new snap.patient.schedule.appointmentDialog();
+            opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
 
+        }
         $scope.GoToappoimentDetails = function(scheduledListData) {
-            //$state.go('tab.appoimentDetails');
+            debugger;
             $rootScope.AppointScheduleTime = '';
             $rootScope.scheduledListDatas = scheduledListData;
             var currentTime = $rootScope.scheduledListDatas.scheduledTime;
@@ -135,13 +138,13 @@ angular.module('starter.controllers')
             }
             $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
             $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
-            if ($rootScope.appointSecondConcern == '' || typeof $rootScope.appointSecondConcern == 'undefined') {
+            if ($rootScope.appointSecondConcern === '' || typeof $rootScope.appointSecondConcern === 'undefined') {
                 $rootScope.appointSecondConcern = 'None Reported';
             } else {
                 $rootScope.appointSecondConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[1].customCode.description);
             }
             $rootScope.appointNotes = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.additionalNotes);
-            if ($rootScope.appointNotes == '' || typeof $rootScope.appointNotes == 'undefined') {
+            if ($rootScope.appointNotes === '' || typeof $rootScope.appointNotes === 'undefined') {
                 $rootScope.appointNotes = 'None Reported';
             } else {
                 $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
@@ -175,17 +178,16 @@ angular.module('starter.controllers')
         }
 
         if ($rootScope.getIndividualScheduleDetails !== undefined && $rootScope.getIndividualScheduleDetails.length !== 0) {
-            //if($rootScope.scheduledList[0].appointmentId !== $rootScope.getIndividualScheduleDetails[0].appointmentId) {
             var getReplaceTime2 = $rootScope.getIndividualScheduleDetails[0].scheduledTime;
             var getReplaceTime3 = $scope.addMinutes(getReplaceTime2, -30);
             var currentUserHomeDate = currentUserHomeDate;
             if ((new Date(getReplaceTime3).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
                 $scope.$on('timer-tick', function(event, args) {
-                    if (args.days == 0) {
+                    if (args.days === 0) {
                         $rootScope.hourDisplay = 'initial';
                         $rootScope.daysDisplay = 'none';
                         $rootScope.dayDisplay = 'none';
-                    } else if (args.days == 1) {
+                    } else if (args.days === 1) {
                         $rootScope.daysDisplay = 'none';
                         $rootScope.hourDisplay = 'none';
                         $rootScope.dayDisplay = 'initial';
@@ -243,15 +245,13 @@ angular.module('starter.controllers')
             document.getElementsByTagName('timer')[0].start();
         }, 1000);
 
-        <!-- Appointment Details search -->
-
         $scope.data = {};
         $scope.$watch('data.searchProvider', function(searchKey) {
             $rootScope.providerSearchKey = searchKey;
-            if (typeof $rootScope.providerSearchKey == 'undefined') {
+            if (typeof $rootScope.providerSearchKey === 'undefined') {
                 $scope.data.searchProvider = $rootScope.backProviderSearchKey;
             }
-            if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            if ($rootScope.providerSearchKey !== '' && typeof $rootScope.providerSearchKey !== 'undefined') {
                 $rootScope.iconDisplay = 'none';
             } else {
                 $rootScope.iconDisplay = 'Block';

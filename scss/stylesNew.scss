@@ -5,6 +5,13 @@ box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
 .useraddcontent {
 margin-top: 125px !important;
 }
+.emailbackground{
+  background-color: #FDD8C5  !important;
+}
+.emailext{
+  text-align:center;
+  font-size:21pz !important;
+}
 @media (max-width: 320px) and (min-width: 315px) {
 .usercontent-IOS {
     margin-top: 32% !important;
@@ -2430,11 +2437,12 @@ span {
 }
 .step2-Android {
 margin-top: -12px;
-}
+}.regstep1{ padding-bottom: 49px !important;}
 .register {
   margin-top: -3px;
   padding-bottom : 39px !important;
   padding-top: 38px;
+
   .newLogProviderSecDiv-Android {
        h4 {
             padding-top: 10px !important;
@@ -2446,7 +2454,8 @@ h2 {
     color: #FFFFFF;
     text-align: center;
     line-height: 30px;
-    padding-top: 65px;
+    //padding-top: 65px;
+    padding-top: 13px;
     span {
         @include font($fontFamily_xBold, bold, 34px);
         color: #FFFFFF;
@@ -2507,7 +2516,7 @@ h2 {
             color: #8e8e93 !important;
             width: 100%;
             padding-top: 1%;
-            @include font($fontFamily_regular, bold, 14px);
+            @include font($fontFamily_regular, normal, 14px);
             -webkit-appearance: none;
             -moz-appearance: none;
         }
@@ -2860,18 +2869,18 @@ p {
 }
 }
 .regDOBRequired {
-color: #adaeaf;
-position: absolute;
-width: 75%;
-height: 100%;
-z-index: 15;
-overflow: hidden;
-top: 24px;
-@include font($fontFamily_regular, bold, 13px);
+    color: #adaeaf;
+    position: absolute;
+    width: 75%;
+    height: 100%;
+    z-index: 15;
+    overflow: hidden;
+    top: 24px;
+    @include font($fontFamily_regular, normal, 13px);
 }
 .bar-subheader-provider {
-display: block;
-padding-top: 13px;
+    display: block;
+    padding-top: 13px;
 }
 /* Samsung Galaxy S5 ----------- */
 
@@ -3717,17 +3726,17 @@ input[type="color"] {
 .dobDependent-Android {
     font-size: 18px;
     line-height: 23px;
-    font-family: Glober Semibold;
+    font-family: Glober Regular;
     color: rgba(5, 4, 9, 0.54) !important;
     width: 159%;
 }
 }
 .dobDependent-IOS {
-font-size: 18px !important;
-line-height: 23px !important;
-font-family: Glober Semibold !important;
-color: rgba(5, 4, 9, 0.54) !important;
-width: 159% !important;
+    font-size: 18px !important;
+    line-height: 23px !important;
+    font-family: Glober Regular !important;
+    color: rgba(5, 4, 9, 0.54) !important;
+    width: 159% !important;
 }
 .adduseWeight-IOS {
 font-size: 18px;
@@ -3997,7 +4006,7 @@ margin-top: 33%;
 .icon-magnifying-glass {
     font-size: 15px;
     position: relative;
-    bottom: 2px;
+    bottom: 1px;
 }
 }
 #accountMngeProfile-Android {
@@ -4332,6 +4341,7 @@ p {
     line-height: 22px;
     font-family: $fontFamily_semibold;
     padding: 0 10%;
+    line-height: 32px;
 }
 .resetDone {
     margin-top: 80px;
@@ -4378,8 +4388,8 @@ p {
 }
 .forgot_password_textSingle {
 text-align: center;
-padding-top: 8px;
-padding-bottom: 22px;
+//padding-top: 8px;
+padding-bottom: 20px;
 a {
     font-family: $fontFamily_semibold;
     color: #fff;
@@ -4517,7 +4527,7 @@ margin-left: -5px;
 .creditCountNo {
     background-color: #fff;
     border-radius: 50%;
-    padding: 6px 8px 0px 7px;
+    padding: 5px 8px 0px 7px;
     color: #666666;
     font-size: 13px;
     font-family: $fontFamily_bold;
@@ -4860,7 +4870,7 @@ a {
     span {
       border: 1px solid;
        border-radius: 50%;
-       padding: 2px 6px 3px 6px;
+       padding: 2px 7px 2px 7px;
     }
     .icon-home {
       font-size: 20px;
@@ -4883,7 +4893,7 @@ a {
    span {
      border: 1px solid;
       border-radius: 50%;
-      padding: 2px 6px 3px 6px;
+      padding: 2px 7px 2px 7px;
    }
    .icon-group {
      font-size: 20px;
@@ -4929,6 +4939,7 @@ margin-right: 10px;
 }
 .regStep2Con {
      padding-top: 30px !important;
+     padding-bottom: 40px !important;
 .card {
      margin-top: 53px;
 }
@@ -5012,38 +5023,64 @@ margin-right: 10px;
 .healthUserIcon {
      margin-left: 12px;
 }
+
 .buttonupdate{
-  background-color: #A2D28A;
-border-color: #A2D28A;
-background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
-font-weight: normal;
-border-radius: 0px;
-font-size: 22px;
-min-height: 0px;
-text-decoration: none;
-font-family: "Glober Bold";
-font-family: "Glober Bold";
-border-radius: 10px;
-text-align: center;
-border: none;
-color: #FFFFFF;
-box-shadow: 2px 2px 1px 0px #a99b9b;
-padding: 3px 20px 0px 20px;
-margin: 0 !important;
-height: 43px;
+	background-color: #A2D28A;
+	border-color: #A2D28A;
+	background-image: linear-gradient(0deg, #A2D28A, #A2D28A 50%, transparent 50%);
+	font-weight: normal;
+	border-radius: 0px;
+	font-size: 22px;
+	min-height: 0px;
+	text-decoration: none;
+	font-family: "Glober Bold";
+	font-family: "Glober Bold";
+	border-radius: 10px;
+	text-align: center;
+	border: none;
+	color: #FFFFFF;
+	box-shadow: 2px 2px 1px 0px #a99b9b;
+	padding: 3px 20px 0px 20px;
+	margin: 0 !important;
+	height: 43px;
   }
 
 .updatetitle{
-  font-family: Glober Bold;
+	font-family: Glober Bold;
     font-size: 20px;
     text-align: center;
 }
 .updatecontent{
-  font-family: Glober Regular;
+	font-family: Glober Regular;
     padding: 12px;
     font-size: 16px;
     line-height: 24px;
     word-spacing: 3px;
     text-align: justify;
     color: rgba(0, 0, 0, 0.75);
+}
+
+ .my-custom-popup{
+	.popup {
+		width: 75% !important;
+	}
+	.popup-title{ text-align:center !important;}
+	.ietfonttype {
+		font-size: 19px;
+	}
+	.popup-buttons {
+		min-height: 45px;
+		padding: 0px;
+	 }
+}
+.alphanewcolor{
+  color:red !important;
+  font-family: Glober Bold;
+
+}
+.logSingCOntent-IOS {
+     padding-top: 52px !important;
+}
+.paymentSubHeader {
+     margin: 4px 7px 10px !important;
 }

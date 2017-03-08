@@ -15,16 +15,7 @@
 	 		<div id="Error_Message"></div
 			<span> Patient list </span>
 	</h1>
-		<a class="add-user-icon add-user-icon-{{deviceName}}" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a>
-		<!-- <span class="UserhomeSpanPlusIcon-{{deviceName}}" > </span> -->
-
-	<!--	<h1 class="{{title_patient}} {{HeaderList}} userTit-{{deviceName}}" style="margin-left: -38px;">Patient List</h1>
-	<span>
-			<a class="headerval" ng-click = "GoToPatientDetails(PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" style="position: relative; top:12px;">-->
-
-			<!--	<i class="iconfontSVG" style="font-size:145% !important;" ng-bind-html="drawSVGCIcon('plus')"></i>
-			</a>
-		</span>-->
+		<a class="add-user-icon add-user-icon-{{deviceName}}" ng-if="customerSso != 'Mandatory'" ng-click = "GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true,'tab.addnewuser')" _ng-href="#/tab/addnewuser" ><i class="icon ion-plus"></i></a>
 
 
 			<div class="bar bar-subheaderHomeUser subHeaderTop UserNeeds">
@@ -83,7 +74,7 @@
 		</ion-item>-->
 		<div style="display: none;"><timer end-time="time"  ></timer></div>
 
-		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, userHome)" ng-if="$first">
+		<ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first">
 			<a class="HrefListView"  >
 			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 			   <h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}} </b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2>
@@ -114,6 +105,8 @@
 		<ion-item ng-if="searched == true && filteredResult == ''" class="noResult" > Search result not found! </ion-item>
 		<div ng-controller="appoimentDetailsCtrl">
 		</div>
+		<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('video_camera_mute')"></i>
+		<i style="visibility:hidden;" class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('cross')"></i>
 
 	</ion-list>
 </ion-content>

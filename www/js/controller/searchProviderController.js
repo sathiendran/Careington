@@ -3,26 +3,26 @@ angular.module('starter.controllers')
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
-        $ionicPlatform.registerBackButtonAction(function(event, $state) {
-            if (($rootScope.currState.$current.name == "tab.userhome") ||
-                ($rootScope.currState.$current.name == "tab.addCard") ||
-                ($rootScope.currState.$current.name == "tab.submitPayment") ||
-                ($rootScope.currState.$current.name == "tab.waitingRoom") ||
-                ($rootScope.currState.$current.name == "tab.receipt") ||
-                ($rootScope.currState.$current.name == "tab.videoConference") ||
-                ($rootScope.currState.$current.name == "tab.connectionLost") ||
-                ($rootScope.currState.$current.name == "tab.ReportScreen")
+        $ionicPlatform.registerBackButtonAction(function() {
+            if (($rootScope.currState.$current.name === "tab.userhome") ||
+                ($rootScope.currState.$current.name === "tab.addCard") ||
+                ($rootScope.currState.$current.name === "tab.submitPayment") ||
+                ($rootScope.currState.$current.name === "tab.waitingRoom") ||
+                ($rootScope.currState.$current.name === "tab.receipt") ||
+                ($rootScope.currState.$current.name === "tab.videoConference") ||
+                ($rootScope.currState.$current.name === "tab.connectionLost") ||
+                ($rootScope.currState.$current.name === "tab.ReportScreen")
             ) {
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
-            } else if ($rootScope.currState.$current.name == "tab.login") {
+            } else if ($rootScope.currState.$current.name === "tab.login") {
                 navigator.app.exitApp();
-            } else if ($rootScope.currState.$current.name == "tab.loginSingle") {
+            } else if ($rootScope.currState.$current.name === "tab.loginSingle") {
                 navigator.app.exitApp();
             } else if ($rootScope.currState.$current.name === "tab.chooseEnvironment") {
                 navigator.app.exitApp();
-            } else if ($rootScope.currState.$current.name == "tab.cardDetails") {
+            } else if ($rootScope.currState.$current.name === "tab.cardDetails") {
                 var gSearchLength = $('.ion-google-place-container').length;
                 if (($('.ion-google-place-container').eq(gSearchLength - 1).css('display')) == 'block') {
                     $ionicBackdrop.release();
@@ -43,15 +43,15 @@ angular.module('starter.controllers')
         $scope.data = {};
         $scope.$watch('data.searchProvider', function(searchKey) {
             $rootScope.providerSearchKey = searchKey;
-            if (typeof $rootScope.providerSearchKey == 'undefined') {
+            if (typeof $rootScope.providerSearchKey === 'undefined') {
                 $scope.data.searchProvider = $rootScope.backProviderSearchKey;
             }
-            if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined') {
+            if ($rootScope.providerSearchKey !== '' && typeof $rootScope.providerSearchKey !== 'undefined') {
                 $rootScope.iconDisplay = 'none';
             } else {
                 $rootScope.iconDisplay = 'Block';
             }
-            if ($rootScope.providerSearchKey != '' && typeof $rootScope.providerSearchKey != 'undefined' && $rootScope.providerSearchKey.length >= 3) {
+            if ($rootScope.providerSearchKey !== '' && typeof $rootScope.providerSearchKey !== 'undefined' && $rootScope.providerSearchKey.length >= 3) {
                 $scope.doGetSearchProviderList($rootScope.providerSearchKey);
             } else {
                 $('#providerListDiv').hide();
@@ -69,12 +69,13 @@ angular.module('starter.controllers')
                         cordova.plugins.Keyboard.close();
                     }
                     $rootScope.searchProviderList = [];
-                    if (data.data != '') {
+                    if (data.data !== '') {
                         $('#startSearchProvider').hide();
                         $('#emptyProvider').hide();
                         $('#providerListDiv').show();
-                        angular.forEach(data.data, function(index, item) {
-                            if (typeof index.hospitalImage != 'undefined' && index.hospitalImage != '') {
+                        angular.forEach(data.data, function(index) {
+                          if(index.customerSso != "Mandatory"){
+                            if (typeof index.hospitalImage !== 'undefined' && index.hospitalImage !== '') {
                                 var hosImage = index.hospitalImage;
                                 $scope.chkImageorNot = "image";
                                 if (hosImage.indexOf("http") >= 0) {
@@ -97,6 +98,7 @@ angular.module('starter.controllers')
                                 'brandTitle': index.brandTitle,
                                 'hospitalImage': index.hospitalImage
                             });
+                          }
                         });
 
                     } else {
@@ -105,8 +107,14 @@ angular.module('starter.controllers')
                         $('#emptyProvider').show();
                     }
                 },
-                error: function(data) {
+                error: function(data,status) {
+                  if (status === 0) {
+                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                      $rootScope.Validation($scope.ErrorMessage);
+
+                  } else {
                     $scope.$root.$broadcast("callServerErrorMessageValidation");
+                  }
                 }
             };
             LoginService.getSearchProviderList(params);
@@ -126,9 +134,9 @@ angular.module('starter.controllers')
                     $rootScope.brandColor = data.data[0].brandColor;
                     $rootScope.logo = data.data[0].hospitalImage;
                     $rootScope.Hospital = data.data[0].brandName;
-                    if (deploymentEnvLogout == 'Multiple') {
+                    if (deploymentEnvLogout === 'Multiple') {
                         $rootScope.alertMsgName = 'Virtual Care';
-                        $rootScope.reportHospitalUpperCase = 'Virtual Care';
+                        $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();
                     } else {
                         $rootScope.alertMsgName = $rootScope.Hospital;
                         $rootScope.reportHospitalUpperCase = $rootScope.Hospital.toUpperCase();

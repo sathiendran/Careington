@@ -1,88 +1,65 @@
 <ion-header-bar align-title="left" class="bar-positiveHomeUser" style="background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
-
-
-    <!--<div class="backButtonDiv">
-       <a ng-click="EnableBackButton()"> <Span  style="float:left;margin: 13px 0 0 17px;font-size:20px;color:#fff;"><B>Done</B></Span></a>
-		</div>-->
-
-    <div class="buttons" style="{{ReportScreen}};">
-        <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="closeMissedView()">Done</button>
-    </div>
-
-    <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} ReportTittle" style="{{reportTitletop}};">Consult Report</h1>
-
-
-    <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}">
-        <div class="calendar_subHeader">
-            <!--<div class="subHeader_image">
-                <img src="{{PatientImageSelectUser}}" class="listImgView" />
-            </div>-->
-            <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
-            <div class="subHeader_content-{{deviceName}} ellipsis">
-                <div class="ellipsis subHeader_content_name">
-                    <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
-                    <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
-                </div>
-                <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+   <div class="buttons" style="{{ReportScreen}};">
+      <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="closeMissedView()">Done</button>
+   </div>
+   <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} ReportTittle" style="{{reportTitletop}};">Consult Report</h1>
+   <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}">
+      <div class="calendar_subHeader">
+         <div class="subHeader_image" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
+         <div class="subHeader_content-{{deviceName}} ellipsis">
+            <div class="ellipsis subHeader_content_name">
+               <span class="PatintHeaderFontStyle patientName ellipsis">{{PatientFirstName}}</span>
+               <span class="PatintHeaderFontStyleInner patientLastName ellipsis">{{PatientLastName}}</span>
             </div>
-        </div>
-    </div>
-
-
+            <div class="subHeader_content_age PatintHeaderFontStyleSub ellipsis"><span ng-if="userGender != ''">{{userGender}} .</span> {{userDOB | ageFilter}} <span ng-if="primaryPatientId != patientId"> . {{patRelationShip}}</span></div>
+         </div>
+      </div>
+   </div>
 </ion-header-bar>
-
 <ion-view title="Appointment Details">
- <ion-content class="paticoncontent">
-
-    <div class="list">
-
-        <a class="item item-avatar patavatar">
-             <img ng-src="{{profileImagePath}}" class="patimage">
-              <p class="pathead">With</p>
-              <h2 class="appfname"><span >{{reportDoctorFirstName}}</h2>
-                <span class="appfloat"><i class="icon ion-chevron-right "></i></span>
-              </p>
-              <p class="patage">{{gender}} </p>
-           </a>
-
-        <ion-item class="ionitem contalign" >
-           <div class="item item-text-wrap textwrap">
-              <div class="datecontent">
-                 <h2 class="fdate"><span class="fname ftime">{{consultationDate |date: "hh:mm"}}{{consultationDate | date: "a"}}</span> </h2>
-                   <p class="fday">{{consultationDate| date: "EEEE, MMMM dd, yyyy"}}</p>
+   <ion-content class="paticoncontent">
+      <div class="list">
+         <a class="item item-avatar patavatar">
+            <img ng-src="{{profileImagePath}}" class="patimage">
+            <p class="pathead">With</p>
+            <h2 class="appfname"><span >{{reportDoctorFirstName}}</h2>
+            <span class="appfloat"><i class="icon ion-chevron-right "></i></span>
+            </p>
+            <p class="patage">{{gender}} </p>
+         </a>
+         <ion-item class="ionitem contalign" >
+            <div class="item item-text-wrap textwrap">
+               <div class="datecontent">
+                  <h2 class="fdate"><span class="fname ftime">{{consultationDate |date: "hh:mm"}}{{consultationDate | date: "a"}}</span> </h2>
+                  <p class="fday">{{consultationDate| date: "EEEE, MMMM dd, yyyy"}}</p>
                </div>
-         </div>
-       </ion-item>
-
-      <a class="item" style="border-bottom:none; pointer-events: none;">
-
-        <div class="row seccontent" >
-          <div class="col col-10 patcol10">1</div>
-            <div class="col col-90 ">
-                <p class="parafont"><b>Primary Concern</b></p>
-                <p class="pfontsize">{{reportScreenPrimaryConcern}}</p>
             </div>
-       </div>
-          <br>
-
-       <div class="row seccontentone">
-          <div class="col col-10 patcol10">2</div>
-            <div class="col col-90 ">
-                <p class="parafont"><b>Secondary Concern</b></p>
-                <p class="pfontsize">{{reportScreenSecondaryConcern}}</p>
+         </ion-item>
+         <a class="item" style="border-bottom:none; pointer-events: none;">
+            <div class="row seccontent" >
+               <div class="col col-10 patcol10">1</div>
+               <div class="col col-90 ">
+                  <p class="parafont"><b>Primary Concern</b></p>
+                  <p class="pfontsize">{{reportScreenPrimaryConcern}}</p>
+               </div>
             </div>
-       </div>
-          <br>
-
-      <div class="row seccontentone" >
-        <div class="col col-10 patcol10">a</div>
-         <div class="col col-90 ">
-           <p class="parafont"><b>Notes</b></p>
-		  <p class="pfontsize" style="position: relative; top: 8px;" id="appointNotes" > </p>
-         </div>
-       </div>
-   </a>
- </div>
-
- </ion-content>
+            <br>
+            <div class="row seccontentone">
+               <div class="col col-10 patcol10">2</div>
+               <div class="col col-90 ">
+                  <p class="parafont"><b>Secondary Concern</b></p>
+                  <p class="pfontsize">{{reportScreenSecondaryConcern}}</p>
+               </div>
+            </div>
+            <br>
+            <div class="row seccontentone" >
+               <div class="col col-10 patcol10">a</div>
+               <div class="col col-90 ">
+                  <p class="parafont"><b>Notes</b></p>
+                  <p class="pfontsize" style="position: relative; top: 8px;" id="appointNotes" > </p>
+               </div>
+            </div>
+         </a>
+      </div>
+   </ion-content>
 </ion-view>

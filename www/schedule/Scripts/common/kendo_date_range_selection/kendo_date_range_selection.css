@@ -1,0 +1,51 @@
+﻿/* Styles for verification */
+#startDate + .k-widget.k-tooltip-validation,
+#endDate + .k-widget.k-tooltip-validation {
+	position:absolute;
+	padding: 15px 15px 0px 15px;
+    font-size: 21px;
+	border-radius:15px;
+	box-shadow:0 1px 3px #ccc;
+	border:0px;
+	display:none;
+    z-index: 1000;
+    top: 40px;
+    right: 0;
+    background-color: rgba(255, 0, 0, 0.8);
+    box-shadow: 5px 5px 5px #888888;
+    color: white;
+}
+
+#startDate + .k-widget.k-tooltip-validation:before,
+#startDate + .k-widget.k-tooltip-validation:after,
+#endDate + .k-widget.k-tooltip-validation:before,
+#endDate + .k-widget.k-tooltip-validation:after {
+    position: absolute;
+    bottom: 100%;
+    content: '';
+}
+
+#startDate + .k-widget.k-tooltip-validation:before,
+#endDate + .k-widget.k-tooltip-validation:before {
+    right: 52px;
+    border-right: 17px solid transparent;
+    border-bottom: 12px solid #ddd;
+    border-left: 17px solid transparent;
+           
+}
+
+#startDate + .k-widget.k-tooltip-validation:after,
+#endDate + .k-widget.k-tooltip-validation:after {
+    right: 53px;
+    border-right: 16px solid transparent;
+    border-bottom: 11px solid rgba(255, 0, 0, 0.8);
+    border-left: 16px solid transparent;
+}
+
+.k-icon.k-warning {
+    width: 31px;
+    height: 31px;
+    position: relative;
+    bottom: 10px;
+    background: url('../../../Images/sprite03.png') -195px -34px, no-repeat;
+}

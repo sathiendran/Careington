@@ -1,89 +1,65 @@
-
 <ion-view>
-    <div id="Error_Message" ></div>
-	<ion-content class="register regStep2Con" style="background-color: {{brandColor}};" scroll="true" >
-    <div class="terms-back">
-      <div class="button_back icon ion-chevron-left"  ng-click="GoBackToStep1();">
-        <span class="registerback">Back</span>
+   <div id="Error_Message" ></div>
+   <ion-content class="register regStep2Con" style="background-color: {{brandColor}};" scroll="true" >
+      <div class="terms-back">
+         <div class="button_back icon ion-chevron-left"  ng-click="GoBackToStep1();">
+            <span class="registerback">Back</span>
+         </div>
       </div>
-     </div>
-		<div class="epassbg epassbgreg2">
-			<div><img ng-src="{{logo}}" style="position:relative;" /></div>
-			<h2 style="padding-top: 0px;">{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
-		</div>
-
-
-
-	<!-- <form ng-submit="postRegistersStep2()" class="regstep2"> -->
-			<div class="card">
-                <div class="regcontent">
-                    <h2>Hello, {{step1RegDetails[0].FName}}</h2>
-                    <p class="lineheight">We just need a little more information <br>to complete your registration</p>
-                </div>
-                <div class="item-input-inset">
-                    <label class="item-input-wrapper place">
-                        <input type="email" ng-model="regStep2.emailID" placeholder="Email Address" id="RegEmail">
-                    </label>
-                </div>
-                <div class="item-input-inset">
-                    <label class="item-input-wrapper place1">
-                        <input type="password" ng-model="regStep2.password" placeholder="Password" >
-                    </label>
-                </div>
-                <div class="item-input-inset">
-                    <label class="item-input-wrapper place1">
-                        <input type="password" ng-model="regStep2.confirmPwd" placeholder="Confirm Password" >
-                    </label>
-                </div>
-                <div class="birth"><p>Birthdate</p></div>
-                <div class="item-input-inset">
-                    <label class="item-input-wrapper place">
-
-                         <div class="regDOBRequired" ng-if="!regStep2.dob">MM/DD/YYYY</div>
-                      <input style="padding-top: 12px;" type="date" ng-model="regStep2.dob"  id="dob">
-                    </label>
-                </div>
-                <div  style="text-align:center;padding-bottom: 18px;">
-              <!--  <span class="btn1">
-                  <button type="button" class="button regback" ng-click="backregister()">
-                        Back
-                  </button>
-                </span>-->
-					<span class="btn1" style="margin: 0px 0px 24px 6px !important;">
+      <div class="epassbg epassbgreg2">
+         <div><img ng-src="{{logo}}" style="position:relative;" /></div>
+         <h2 style="padding-top: 0px;">{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
+      </div>
+      <div class="card">
+         <div class="regcontent">
+            <h2>Hello, {{step1RegDetails[0].FName}}</h2>
+            <p class="lineheight">We just need a little more information <br>to complete your registration</p>
+         </div>
+         <div class="item-input-inset">
+            <label class="item-input-wrapper place">
+            <input type="email" ng-model="regStep2.emailID" placeholder="Email Address" id="RegEmail">
+            </label>
+         </div>
+         <div class="item-input-inset">
+            <label class="item-input-wrapper place1">
+            <input type="password" ng-model="regStep2.password" placeholder="Password" >
+            </label>
+         </div>
+         <div class="item-input-inset">
+            <label class="item-input-wrapper place1">
+            <input type="password" ng-model="regStep2.confirmPwd" placeholder="Confirm Password" >
+            </label>
+         </div>
+         <div class="birth">
+            <p>Birthdate</p>
+         </div>
+         <div class="item-input-inset">
+            <label class="item-input-wrapper place">
+               <div class="regDOBRequired" ng-if="!regStep2.dob">MM/DD/YYYY</div>
+               <input style="padding-top: 12px;" type="date" ng-model="regStep2.dob"  id="dob">
+            </label>
+         </div>
+         <div  style="text-align:center;padding-bottom: 18px;">
+            <span class="btn1" style="margin: 0px 0px 24px 6px !important;">
             <button type="button" class="button" ng-click="postRegistersStep2()" style="top:5px;">
-									Register
-						</span>
-</div>
-
-					</div>
-
-			</div>
-		<!-- </form> -->
-
-
-		<div class="acinfo1-{{deviceName}}">
-			<h4>Already have an account? <span ng-click="backtoPreviousPage();">Login</span></h4>
-		</div>
-
-		<div ng-controller="LoginCtrl">
-		</div>
-
-	</ion-content>
-    <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
-        <div class="ConcernsFooter">
-            <div class="FooterLeft" style="width: 100%;">
-                <a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');">Terms & Conditions</a>
-            </div>
-        <div>
-    </ion-footer-bar>
-
-
-	<ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important;">
-		<div class="ConcernsFooter">
-			<div class="FooterLeft" style="width: 100%;">
-				<a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</a>
-			</div>
-		<div>
-	</ion-footer-bar>
-
+            Register
+            </span>
+         </div>
+      </div>
+      </div>
+      <div class="acinfo1-{{deviceName}}" style="padding-bottom: 30px;">
+         <h4>Already have an account? <span ng-click="backtoPreviousPage();">Login</span></h4>
+      </div>
+      <div ng-controller="LoginCtrl">
+      </div>
+   </ion-content>
+   <div class="hide-on-keyboard-open">
+   <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+      <div class="ConcernsFooter">
+      <div class="FooterLeft" style="width: 100%;">
+         <a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');">Terms & Conditions</a>
+      </div>
+      <div>
+   </ion-footer-bar>
+   </div>
 </ion-view>

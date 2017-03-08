@@ -1,41 +1,27 @@
-
 <div class="bar bar-headerLess">
-    <div id="Error_Message" ></div>
-	<div class="Server_Error" ></div>
+   <div id="Error_Message" ></div>
+   <div class="Server_Error" ></div>
 </div>
-
 <ion-view title="Login">
-
-	<!-- Header Start---->
-	<ion-header-bar align-title="left" class="bar-positiveLess">
-
-            <div class="bar bar-headerLess">
-                <!--<div id="Error_Message" ></div>-->
-            </div>
-
-            <div class="bar {{SubHeaderLessDevice}}" style="{{loginSub}}">
-                <h2 class="{{HeadTitleLessDevice}}" style="{{loginSubTitle}}">Virtual Care</h2>
-            </div>
-
-
-	</ion-header-bar>
-	<!-- Header end-->
-
-
-	<!-- Content Start-->
-
-	<ion-content class="ContentList_provider-{{deviceName}} scroll-content ionic-scroll  has-header has-footer" >
-		 <form>
-				<ion-list>
-                 <!--   <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="hospitalDetails in hospitalDetailsList" ng-click="ProviderFunction(hospitalDetails.providerId,hospitalDetails.name)"> -->
-                    <ion-item class="item-remove-animate item-avatar item-icon-right providerIcon" ng-repeat="env in envList" ng-click="ChangeEnv(env)"style="border-color: #A9ABA7;{{providerItamTop}};">
-                        <div class="ellipsis providerName">{{env}}</div>
-                        <i class="icon ion-chevron-right icon-accessory" style="top: 3px;"></i>
-                      </ion-item>
-
-                 </ion-list>
-			</form>
-	</ion-content>
-	<!-- Content End-->
-
+   <!-- Header Start---->
+   <ion-header-bar align-title="left" class="bar-positiveLess">
+      <div class="bar bar-headerLess">
+      </div>
+      <div class="bar {{SubHeaderLessDevice}}" style="{{loginSub}}">
+         <h2 class="{{HeadTitleLessDevice}}" style="{{loginSubTitle}}">Virtual Care</h2>
+      </div>
+   </ion-header-bar>
+   <!-- Header end-->
+   <!-- Content Start-->
+   <ion-content class="ContentList_provider-{{deviceName}} scroll-content ionic-scroll  has-header has-footer" >
+      <form>
+         <ion-list>
+            <ion-item class="item-remove-animate item-avatar item-icon-right providerIcon" ng-repeat="env in envList" ng-click="ChangeEnv(env)"style="border-color: #A9ABA7;{{providerItamTop}};">
+               <div class="ellipsis providerName">{{env}}</div>
+               <i class="icon ion-chevron-right icon-accessory" style="top: 3px;"></i>
+            </ion-item>
+         </ion-list>
+      </form>
+   </ion-content>
+   <!-- Content End-->
 </ion-view>

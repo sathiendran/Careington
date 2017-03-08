@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
-    .controller('videoLostCtrl',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading,$ionicScrollDelegate,$ionicModal,$filter,$ionicPopup,$log,$window,$ionicBackdrop) {
-         if(typeof appIdleInterval != "undefined"){
+    .controller('videoLostCtrl',function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading) {
+         if(typeof appIdleInterval !== "undefined"){
               $interval.cancel(appIdleInterval);
               appIdleInterval = undefined;
               appIdleInterval = 0;
@@ -25,11 +25,6 @@ angular.module('starter.controllers')
           $rootScope.appointmentsPatientDOB = '';
           $rootScope.appointmentsPatientGurdianName = '';
           $rootScope.appointmentsPatientImage = '';
-          if ($rootScope.accessToken === 'No Token') {
-              alert('No token.  Get token first then attempt operation.');
-              return;
-          }
-
           var params = {
               consultationId: $rootScope.consultationId,
               accessToken: $rootScope.accessToken,
@@ -60,7 +55,7 @@ angular.module('starter.controllers')
                       }
                   }
               },
-              error: function(data) {
+              error: function() {
               }
           };
           $ionicLoading.show({
@@ -77,7 +72,7 @@ angular.module('starter.controllers')
           $scope.doGetExistingConsulatationReport();
       };
 
-      if($stateParams.retry == 1){
+      if($stateParams.retry === '1'){
           $rootScope.videoLostMessage = 'Video connection lost.';
           $rootScope.videoLostMessageSub = 'Please make sure that you are connected to internet.';
       }else{
