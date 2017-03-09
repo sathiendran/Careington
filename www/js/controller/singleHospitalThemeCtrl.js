@@ -42,9 +42,9 @@ angular.module('starter.controllers')
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
-                $rootScope.ssopatienttoken=data.data[0].patientTokenApi;
-                $rootScope.ssopatientregister=data.data[0].patientRegistrationApi;
-                $rootScope.ssopatientforgetpwd=data.data[0].patientForgotPasswordApi;
+                $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
+                $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
+                $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
 
@@ -93,12 +93,14 @@ angular.module('starter.controllers')
                 logo = $rootScope.logo;
                 HospitalTag = $rootScope.HospitalTag;
                 Hospital = $rootScope.Hospital;
-                if (!angular.isUndefined(data.data[0].customerSso)) {
-                    if (data.data[0].customerSso === "Mandatory") {
-                        $rootScope.customerSso = "Mandatory";
-                        ssoURL = data.data[0].patientLogin;
-
-                    }
+                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
+                    $rootScope.customerSso = "Mandatory";
+                    ssoURL = data.data[0].patientLogin;
+                }
+                if (!angular.isUndefined(data.data[0].patientRegistrationApi) && data.data[0].patientRegistrationApi !== "") {
+                    $rootScope.isSSORegisterAvailable = data.data[0].patientRegistrationApi;
+                } else {
+                    $rootScope.isSSORegisterAvailable = '';
                 }
                 $ionicLoading.hide();
                 $state.go('tab.loginSingle');

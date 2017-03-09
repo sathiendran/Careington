@@ -12,8 +12,8 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Single'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -25,7 +25,7 @@ var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'Sandbox'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'Production'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -35,7 +35,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = 'Emerald Healthcare Group';
+    var cobrandApp = '1800md';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -125,11 +125,52 @@ if (deploymentEnv == 'Single') {
       singleStagingHospitalId = 126;
       singleHospitalId = 126;
       singleQAHospitalId = '';
-      singleSandboxHospitalId = 126;
+      singleSandboxHospitalId = 129; // 126;
       brandColor = '#0071bb';
       logo = 'https://sandbox.connectedcare.md/api/v2.1/images/745eb236-2286-4635-b7c1-50dfe7fac390';
       Hospital = 'Emerald City Healthcare';
       HospitalTag = 'Virtual Telemedicine';
+      ssoURL = "";
+  }else if (cobrandApp == 'TeleMD Virtual Clinic') {
+      singleStagingHospitalId = 167;
+      singleHospitalId = 268;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = 144; // 126;
+      brandColor = '#0000ff';
+      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/59953d85-4202-4b1b-ae0b-c4bf31203b19';
+      Hospital = 'TeleMD Virtual Clinic';
+      HospitalTag = 'Always Nearby';
+      ssoURL = "";
+  } else if (cobrandApp == 'TheDocApp') {
+      singleStagingHospitalId = 162;
+      singleHospitalId = 259;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#4bc9f0';
+    //  logo = 'img/1800md.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/7900bdca-83e3-4a66-850e-7bd4c78a8f58';
+      Hospital = "TheDocApp";
+      HospitalTag = 'Convenient Care Anywhere';
+      ssoURL = "";
+  } else if (cobrandApp == 'eVirtualcare') {
+      singleStagingHospitalId = 168;
+      singleHospitalId = 271;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#0073c0';
+      logo = 'https://snapmdadmin.snap-stage.com/api/v2.1/images/ca001725-db79-4cdb-99d1-5193029a884b';
+      Hospital = "eVirtualcare";
+      HospitalTag = '';
+      ssoURL = "";
+  } else if (cobrandApp == 'UKOnline') {
+      singleStagingHospitalId = '';
+      singleHospitalId = '';
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = 129; // 126;
+      brandColor = '#007bb6';
+      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
+      Hospital = 'Online Doctor';
+      HospitalTag = 'Your Personal Online Consultation';
       ssoURL = "";
   }
 
@@ -901,6 +942,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
+
     .state('tab.singleTerms', {
             url: '/singleTerms',
             views: {

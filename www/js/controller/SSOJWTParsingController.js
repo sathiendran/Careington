@@ -61,6 +61,10 @@ angular.module('starter.controllers')
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
+                $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
+                $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
+                $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
+                
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
@@ -103,6 +107,17 @@ angular.module('starter.controllers')
                 $rootScope.contactNumber = data.data[0].contactNumber;
                 $rootScope.hospitalDomainName = data.data[0].hospitalDomainName;
                 $rootScope.clientName = data.data[0].hospitalName;
+                if (!angular.isUndefined(data.data[0].customerSso) && data.data[0].customerSso === "Mandatory") {
+                    $rootScope.customerSso = "Mandatory";
+                    ssoURL = data.data[0].patientLogin;
+                } else {
+                    $rootScope.customerSso = '';
+                }
+                if (!angular.isUndefined(data.data[0].patientRegistrationApi) && data.data[0].patientRegistrationApi !== "") {
+                    $rootScope.isSSORegisterAvailable = data.data[0].patientRegistrationApi;
+                } else {
+                    $rootScope.isSSORegisterAvailable = '';
+                }
             },
             error: function() {
                 $rootScope.serverErrorMessageValidation();
