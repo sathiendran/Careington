@@ -18,6 +18,11 @@ snap.dataSource = snap.dataSource || {};
             var ds = this;
             if (ds._firstRun) {
                 ds._firstRun = false;
+                $('<link/>', {
+                    rel: 'stylesheet',
+                    type: 'text/css',
+                    href: 'css/styles.v3.less.dynamic.css'
+                }).appendTo('head');
                 var head = util.getHeaders();
  debugger;
                 $.ajax({

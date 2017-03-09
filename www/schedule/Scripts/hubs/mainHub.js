@@ -6,7 +6,7 @@
     if (snap.hub && snap.hub.mainHub) {
         return;
     }
-  
+
     snap.namespace("snap.hub").use(["snap.hub.hubModel"])
         .define("mainHub", function($hubModel) {
 
@@ -28,7 +28,7 @@
             $.connection.hub.connectionSlow(function() {
                 console.log("SignalR: connectionSlow");
             });
-           
+
             $.connection.hub.stateChanged(function(change) {
                 console.log("SignalR newState: " + change.newState);
                 if (change.newState === $.signalR.connectionState.connected) {
@@ -38,7 +38,7 @@
                     }
                     onStart();
                 } else if (change.newState === $.signalR.connectionState.disconnected) {
-                    
+
                     onDisconnect();
                 }
             });
@@ -77,7 +77,7 @@
             };
             var hubReconnctTimer = null;
             var numberofRetry = 0;
-            var notificationIsActive = false; 
+            var notificationIsActive = false;
 
             var onDisconnect = function() {
                 var wasConsultation = snap.ConsultationPage;
@@ -93,7 +93,7 @@
 
                 //only show the message on consulation Page
                 if (wasConsultation) {
-                    snapInfo("Attempting to reconnect...."); //todo keep this up 
+                    snapInfo("Attempting to reconnect...."); //todo keep this up
                 }
                 if (hubReconnctTimer) {
                     clearInterval(hubReconnctTimer);
@@ -102,7 +102,7 @@
                 hubReconnctTimer = setInterval(function () {
                     numberofRetry++;
                     if (numberofRetry >= 5 && !notificationIsActive) {
-                        
+
                         notificationIsActive = true;
 
                         var yesCall = function () {
@@ -117,7 +117,7 @@
 
                         snap
                             .SnapNotification()
-                            .confirmationWithCallbacks("Connection to the system is lost. Do you want to refresh the page?", yesCall, noCall);
+                          //  .confirmationWithCallbacks("Connection to the system is lost. Do you want to refresh the page?", yesCall, noCall);
                     }
 
                     console.log("SignalR: Reconnection attempt");
@@ -150,7 +150,7 @@
                 numberofRetry = 0;
                 this.isManualStop = true;
                 $.connection.hub.stop();
-                
+
 
                 window.setTimeout(function () {
                     var option = {};
@@ -165,7 +165,7 @@
                         dfd.reject();
                     });
                 }, 100);
-                
+
                 return dfd.promise();
             };
 

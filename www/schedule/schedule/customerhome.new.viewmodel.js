@@ -1460,6 +1460,7 @@ var setUserVars = function() {
                 };
 
                 this.vm_onCloseClick = function(e) {
+                    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                     this._clearDeactivationTimeout();
                     $eventAggregator.published(fact.closeEvent, this);
 

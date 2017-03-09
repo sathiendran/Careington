@@ -90,7 +90,7 @@
             }, 110000);
         },
         redirectToLogin: function () {
-            //window.location.href = getLoginPath();
+            window.location.href = getLoginPath();
         },
 
         cancelTimeout: function () {

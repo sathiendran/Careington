@@ -2,7 +2,7 @@ angular.module('starter.controllers')
 
 
 .controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
-
+      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -158,6 +158,16 @@ angular.module('starter.controllers')
         $('.AvailableIn').hide();
         $('.enterAppoinment').show();
     };
+
+    $scope.editAppointment = function(scheduledListData) {
+        $ionicLoading.show({
+            template: '<img src="img/puff.svg" alt="Loading" />',
+            duration: 3000
+        });
+        var opt = new snap.patient.schedule.appointmentDialog();
+        opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
+
+    }
 
     $scope.doGetConcentToTreat = function() {
           var params = {

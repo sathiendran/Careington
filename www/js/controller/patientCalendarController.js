@@ -117,12 +117,7 @@ angular.module('starter.controllers')
             };
             LoginService.postGetConsultationId(params);
         }
-        $scope.editAppointment = function(scheduledListData) {
-            debugger;
-            var opt = new snap.patient.schedule.appointmentDialog();
-            opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
-
-        }
+        
         $scope.GoToappoimentDetails = function(scheduledListData) {
             debugger;
             $rootScope.AppointScheduleTime = '';

@@ -326,6 +326,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 .controller('LoginCtrl', function($scope, $ionicScrollDelegate, $sce, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, get2CharInString, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations, $ionicPopup) {
     window.localStorage.setItem('isVideoCallProgress', "No");
     window.localStorage.setItem("isCustomerInWaitingRoom", "No");
+    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     $rootScope.is_iPadDeviceWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     $rootScope.drawSVGCIcon = function(iconName) {
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
@@ -1123,9 +1124,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             //  var mobappversion = $rootScope.mobileSettings[i].mobileApp_MinSupportedVersion;
               // var sptversion = mobappversion.split(" ");
             //   var checkmobilever = parseFloat(sptversion[1]);
-               var checkmobilever = 7.1;
-               if(appVersion < checkmobilever){               
-              
+               var checkmobilever = 79.1;
+               if(appVersion < checkmobilever){
+
 					if ($rootScope.getDetails !== '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
 							if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
@@ -1251,7 +1252,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 						  templateUrl: 'templates/updationpopup.html',
 						  cssClass: 'locpopup',
 						  hardwareBackButtonClose: false,
-					});                
+					});
                }
 
             },
