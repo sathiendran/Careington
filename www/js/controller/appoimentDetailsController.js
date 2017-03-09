@@ -164,6 +164,13 @@ angular.module('starter.controllers')
             template: '<img src="img/puff.svg" alt="Loading" />',
             duration: 3000
         });
+        if(snap.profileSession === undefined) {
+          snap.userSession = JSON.parse($window.localStorage.getItem("snap_user_session"));
+          snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
+          snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
+          snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
+        }
+
         var opt = new snap.patient.schedule.appointmentDialog();
         opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
 
