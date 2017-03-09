@@ -22605,10 +22605,11 @@ button {
 
 .checkbox.checkbox-round .checkbox__control {
     border: none;
-    border-radius: 50%;
+    border-radius: 50% !important;
     overflow: hidden;
-    background-color: transparent;
-    border: 1px solid #a2d28a
+    background-color: transparent !important;
+    border: 1px solid #a2d28a !important;
+    height: 22px;
 }
 
 .checkbox.checkbox-round .checkbox__control::before {
@@ -55274,7 +55275,9 @@ only screen and (min-width:541px) {
     width: 56px;
     overflow: hidden;
     position: absolute;
-    right: 5px
+    right: 5px;
+    min-height: 32px !important;
+    text-overflow: clip !important;
 }
 
 .dialogbox-master__buttons .button__red--cancel span {
