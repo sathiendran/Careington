@@ -3740,7 +3740,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return newdate;
     }
 
-    $rootScope.doGetConsultationId = function(appointmentId, personId, nextPage) {
+  /*  $rootScope.doGetConsultationId = function(appointmentId, personId, nextPage) {
         var params = {
             accessToken: $rootScope.accessToken,
             AppointmentId: appointmentId,
@@ -3763,7 +3763,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.postGetConsultationId(params);
-    }
+    }*/
 
     $rootScope.doGetScheduledConsulatation = function() {
         $rootScope.scheduledConsultationList = [];
@@ -4213,6 +4213,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.accountClinicianFooter = 'ngLoadingSpinner';
                     var date = new Date($scope.individualScheduledConsultationList.dob);
                     $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+                    $rootScope.appointmentsPatientDOB = $filter('date')(date, "yyyy-MM-dd");
 
                     if ($rootScope.userDOB !== "" && !angular.isUndefined($rootScope.userDOB)) {
                         var ageDifMs = Date.now() - new Date($rootScope.userDOB).getTime(); // parse string to date
@@ -5265,6 +5266,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData, fromPreviousPage) {
         $rootScope.AppointScheduleTime = '';
+        $rootScope.appointmentsPatientId = '';
         $rootScope.scheduledListDatas = scheduledListData;
         var currentTime = $rootScope.scheduledListDatas.scheduledTime;
         var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
@@ -5319,7 +5321,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         }
         if (fromPreviousPage !== "AppointmentPage") {
-            $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
+            $rootScope.appointmentId = scheduledListData.appointmentId;
+            $rootScope.appointPersonId = scheduledListData.participants[0].person.id
+            $rootScope.appointmentsPatientId = $rootScope.patientId;
+            $rootScope.assignedDoctorId = 875; //$rootScope.scheduledListDatas.participants[0].person.id;
+            $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
+            $rootScope.appointmentDisplay = "test";
+            $scope.$root.$broadcast("callAppointmentConsultation");
+          //  $rootScope.doGetConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
         }
     };
     $scope.doGetWaitingRoom = function() {

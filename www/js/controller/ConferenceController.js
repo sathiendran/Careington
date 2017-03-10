@@ -8,6 +8,7 @@ angular.module('starter.controllers')
     $.getScript( "https://snap-qa.com/api/signalR/hubs", function( data, textStatus, jqxhr ) {
 
     });*/
+    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
      function resetSessionLogoutTimer(){
          window.localStorage.setItem('Active', timeoutValue);
          var timeoutValue = 0;
@@ -673,7 +674,7 @@ angular.module('starter.controllers')
         $(".ion-google-place-container").css({
             "display": "none"
         });
-        $ionicBackdrop.release();      
+        $ionicBackdrop.release();
     }
 
     $window.localStorage.setItem('ChkVideoConferencePage', "videoConference");
@@ -874,7 +875,7 @@ angular.module('starter.controllers')
 				subscribeToAudio: true,
 				subscribeToVideo: true
 			});
-			//setTimeout(function () {	
+			//setTimeout(function () {
 			$scope.createVideoThumbnail(event);
 			//}, 1000);
 
@@ -887,8 +888,8 @@ angular.module('starter.controllers')
 			}, 100);
 			var subChilds = $('#subscriber').children().length;
 			OT.updateViews();
-			
-			setTimeout(function () {	
+
+			setTimeout(function () {
 			 if(subChilds > 1){
 				  for(var j = 1; j < subChilds.length; j++){
 					   $('#subscriber').children().eq(j).hide();
@@ -1345,5 +1346,16 @@ angular.module('starter.controllers')
             $rootScope.doGetExistingConsulatationReport();
         }
         window.plugins.insomnia.allowSleepAgain();
+    }
+    $scope.goTOSchedule = function() {
+        /* $("#style1").attr("disabled", "disabled");
+          $("#style2").attr("disabled", "disabled");*/
+        $('<link/>', {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'css/styles.v3.less.dynamic.css'
+        }).appendTo('head');
+        //  $state.go('tab.providerSearch', { viewMode : 'all' });
+        $state.go('tab.providerSearch');
     }
 })

@@ -1,5 +1,6 @@
 angular.module('starter.controllers')
     .controller('userAccountCtrl', function($scope, $ionicScrollDelegate, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $filter, $timeout, $ionicPopup) {
+      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $rootScope.drawSVGCIcon = function(iconName) {
             return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
         };
@@ -161,7 +162,7 @@ angular.module('starter.controllers')
             $rootScope.AllegiesCountValid = "";
             $rootScope.MedicationCountValid = "";
             $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
-          
+
 
         }
 
@@ -176,4 +177,16 @@ angular.module('starter.controllers')
             }
             $state.go('tab.appointmentpatientdetails');
         }
+        $scope.goTOSchedule = function() {
+            /* $("#style1").attr("disabled", "disabled");
+              $("#style2").attr("disabled", "disabled");*/
+            $('<link/>', {
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'css/styles.v3.less.dynamic.css'
+            }).appendTo('head');
+            //  $state.go('tab.providerSearch', { viewMode : 'all' });
+            $state.go('tab.providerSearch');
+        }
+
     })

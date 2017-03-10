@@ -77,14 +77,37 @@ angular.module('starter.controllers')
         return newdate;
     }
 
-    $scope.enterWaitingRoom = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
+    $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId) {
+          var params = {
+              accessToken: $rootScope.accessToken,
+              AppointmentId: appointmentId,
+              personID: personId,
+              success: function(data) {
+                  $rootScope.consultationId = data.data[0].consultationId;
+                  $scope.doCheckExistingConsulatationStatus();
+              //    $rootScope.appointmentDisplay = "test";
+                //  $scope.$root.$broadcast("callAppointmentConsultation");
+              },
+              error: function(data) {
+                  if (data === 'null') {
+                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                      $rootScope.Validation($scope.ErrorMessage);
+                  } else {
+                      $rootScope.serverErrorMessageValidation();
+                  }
+              }
+          };
+          LoginService.postGetConsultationId(params);
+      }
+
+    $scope.enterWaitingRoom = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian,appointmentId,appointPersonId) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.appointPatientGuardian = P_Guardian;
         $rootScope.appointmentsPage = true;
-        $scope.doCheckExistingConsulatationStatus();
+        $rootScope.doGetAppointmentConsultationId(appointmentId,appointPersonId);
     }
     $scope.doGetWaitingRoom = function() {
         $state.go('tab.waitingRoom');
@@ -95,7 +118,7 @@ angular.module('starter.controllers')
             document.getElementsByTagName('timer')[0].start();
         }, 10);
         $("#appointNotes").html($rootScope.appointNotes);
-        $rootScope.consultationId = $rootScope.consultationId;
+    //    $rootScope.consultationId = $rootScope.consultationId;
         var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
 
         var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
@@ -301,7 +324,9 @@ angular.module('starter.controllers')
     }
 
     $scope.$on("callAppointmentConsultation", function(event, args) {
-        $scope.doGeAppointmentExistingConsulatation();
+      // $scope.doGeAppointmentExistingConsulatation();
+      $scope.doGetExistingPatientName();
+      $rootScope.doGetDoctorDetails();
     });
 
     $rootScope.doGetIndividualScheduledDetails = function() {
@@ -588,13 +613,11 @@ angular.module('starter.controllers')
                 }
                 $rootScope.patientExistInfomation = data.data[0].patientInformation;
                 $rootScope.intakeForm = data.data[0].intakeForm;
-                $rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
-                $rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
-                $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.patientExistInfomation.guardianName);
-                $rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
-                $rootScope.appointmentsPatientImage = $rootScope.patientExistInfomation.profileImagePath;
-                $scope.doGetExistingPatientName();
-                $rootScope.doGetDoctorDetails();
+              //  $rootScope.assignedDoctorId = $rootScope.consultionInformation.assignedDoctor.id;
+              //  $rootScope.appointmentsPatientDOB = $rootScope.patientExistInfomation.dob;
+              //  $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.patientExistInfomation.guardianName);
+              //  $rootScope.appointmentsPatientId = $rootScope.consultionInformation.patient.id;
+                //$rootScope.appointmentsPatientImage = $rootScope.patientExistInfomation.profileImagePath;
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -610,6 +633,12 @@ angular.module('starter.controllers')
     }
 
     $scope.doGetExistingPatientName = function() {
+      $rootScope.consultionInformation = '';
+      $rootScope.appointmentsPatientFirstName = '';
+      $rootScope.appointmentsPatientLastName = '';
+      $rootScope.appointmentsPatientDOB = '';
+      $rootScope.appointmentsPatientGurdianName = '';
+      $rootScope.appointmentsPatientImage = '';
         var params = {
             patientId: $rootScope.appointmentsPatientId,
             accessToken: $rootScope.accessToken,
@@ -617,7 +646,6 @@ angular.module('starter.controllers')
                 $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
                 $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
-
             },
             error: function(data, status) {
                 if (status === 0) {

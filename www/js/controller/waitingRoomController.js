@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
 
 .controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList,$ionicBackdrop) {
+  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
     });
@@ -283,6 +284,18 @@ angular.module('starter.controllers')
 
                }
              });
+       }
+
+       $scope.goTOSchedule = function() {
+           /* $("#style1").attr("disabled", "disabled");
+             $("#style2").attr("disabled", "disabled");*/
+           $('<link/>', {
+               rel: 'stylesheet',
+               type: 'text/css',
+               href: 'css/styles.v3.less.dynamic.css'
+           }).appendTo('head');
+           //  $state.go('tab.providerSearch', { viewMode : 'all' });
+           $state.go('tab.providerSearch');
        }
 
 

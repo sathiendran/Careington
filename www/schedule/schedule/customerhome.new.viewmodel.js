@@ -1483,6 +1483,7 @@ var setUserVars = function() {
                         that.remove().done(function() {
                             $eventAggregator.published(fact.removedEvent, that);
                             $snapNotification.success("Appointment is unassigned successfully");
+                            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                         }).fail(function(error) {
                             $snapNotification.error(error);
                             that.set("isError", true);

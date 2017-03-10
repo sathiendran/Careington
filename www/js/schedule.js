@@ -9,7 +9,9 @@ angular.module('starter.controllers')
         }
 
         this.initKendoUI = function() {
-            this.initSnapVars();
+            if(snap.profileSession === undefined) {
+              this.initSnapVars();
+            }
             snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
 
                 $(".schedular-continer").html(html);

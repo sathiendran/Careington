@@ -96,7 +96,12 @@ angular.module('starter.controllers')
             $scope.$apply();
         };
 
-        $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId) {
+        if($stateParams.getPage === 'webSS'){
+          $rootScope.doGetScheduledConsulatation();
+          $rootScope.doGetIndividualScheduledConsulatation();
+        }
+
+      /*  $rootScope.doGetAppointmentConsultationId = function(appointmentId, personId) {
             var params = {
                 accessToken: $rootScope.accessToken,
                 AppointmentId: appointmentId,
@@ -116,10 +121,12 @@ angular.module('starter.controllers')
                 }
             };
             LoginService.postGetConsultationId(params);
-        }
-        
+        }*/
+
         $scope.GoToappoimentDetails = function(scheduledListData) {
             debugger;
+            $rootScope.appointmentId = '';
+            $rootScope.appointPersonId = '';
             $rootScope.AppointScheduleTime = '';
             $rootScope.scheduledListDatas = scheduledListData;
             var currentTime = $rootScope.scheduledListDatas.scheduledTime;
@@ -144,7 +151,16 @@ angular.module('starter.controllers')
             } else {
                 $rootScope.appointNotes = $rootScope.scheduledListDatas.intakeMetadata.additionalNotes;
             }
-            $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
+            $rootScope.appointmentId = scheduledListData.appointmentId;
+            $rootScope.appointPersonId = scheduledListData.participants[0].person.id
+            $rootScope.appointmentsPatientDOB = $rootScope.PatientAge;
+            $rootScope.appointmentsPatientId = $rootScope.patientId;
+            $rootScope.assignedDoctorId = 875; //$rootScope.scheduledListDatas.participants[0].person.id;
+            $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
+
+              $rootScope.appointmentDisplay = "test";
+              $scope.$root.$broadcast("callAppointmentConsultation");
+          //  $rootScope.doGetAppointmentConsultationId($rootScope.scheduledListDatas.appointmentId, $rootScope.scheduledListDatas.participants[0].person.id, 'tab.appoimentDetails');
         };
 
         $scope.addmore = false;
