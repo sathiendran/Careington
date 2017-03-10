@@ -1350,7 +1350,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 					$state.go('tab.password');
 				}else{
 					var confirmPopup = $ionicPopup.confirm({
-						  title: " <div class='updatetitle'>Update required </div> ",
+						 
 						  templateUrl: 'templates/updationpopup.html',
 						  cssClass: 'locpopup',
 						  hardwareBackButtonClose: false,
