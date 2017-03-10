@@ -1226,8 +1226,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             //  var mobappversion = $rootScope.mobileSettings[i].mobileApp_MinSupportedVersion;
               // var sptversion = mobappversion.split(" ");
             //   var checkmobilever = parseFloat(sptversion[1]);
-               var checkmobilever = 79.1;
-               if(appVersion < checkmobilever){
+               var checkmobilever = 72;
+               if(appVersion > checkmobilever){
 
 					if ($rootScope.getDetails !== '') {
 						for (var i = 0; i < $rootScope.getDetails.length; i++) {
@@ -1350,9 +1350,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 					$state.go('tab.password');
 				}else{
 					var confirmPopup = $ionicPopup.confirm({
-						  title: " <div class='updatetitle'>Update required </div> ",
+
 						  templateUrl: 'templates/updationpopup.html',
-						  cssClass: 'locpopup',
+						  cssClass: 'updatepopup',
 						  hardwareBackButtonClose: false,
 					});
                }

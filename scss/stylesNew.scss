@@ -1,3 +1,4 @@
+
 .newcard {
 margin: 33px 10px !important;
 box-shadow: 0 1px 3px rgba(0, 0, 0, 0) !important;
@@ -4293,6 +4294,7 @@ padding-bottom: 45px;
 }
 .newLogBut {
 padding: 20px 0px 20px;
+text-align:center;
 }
 .newProviderSub {
 padding: 33px;
@@ -5045,18 +5047,14 @@ margin-right: 10px;
 	height: 43px;
   }
 
-.updatetitle{
-	font-family: Glober Bold;
-    font-size: 20px;
-    text-align: center;
-}
+
 .updatecontent{
 	font-family: Glober Regular;
     padding: 12px;
     font-size: 16px;
     line-height: 24px;
     word-spacing: 3px;
-    text-align: justify;
+    text-align: center;
     color: rgba(0, 0, 0, 0.75);
 }
 
@@ -5083,9 +5081,4 @@ margin-right: 10px;
 }
 .paymentSubHeader {
      margin: 4px 7px 10px !important;
-}
-.appointEdit {
-  text-align: right;
-  margin-top: 7px;
-  margin-bottom: -8px;
 }
