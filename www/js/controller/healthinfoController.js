@@ -1,5 +1,6 @@
 angular.module('starter.controllers')
 .controller('healthinfoController', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService,$window,$ionicBackdrop) {
+  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
   $rootScope.drawSVGCIcon = function(iconName) {
     return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
   };
@@ -2069,4 +2070,16 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             return this.value.indexOf('?') >= 0;
         }).remove();
     }, 100);
+
+    $scope.goTOSchedule = function() {
+        /* $("#style1").attr("disabled", "disabled");
+          $("#style2").attr("disabled", "disabled");*/
+        $('<link/>', {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'css/styles.v3.less.dynamic.css'
+        }).appendTo('head');
+        //  $state.go('tab.providerSearch', { viewMode : 'all' });
+        $state.go('tab.providerSearch');
+    }
 });

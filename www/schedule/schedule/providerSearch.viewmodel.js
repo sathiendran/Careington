@@ -13,7 +13,7 @@
             "snap.service.userService",
             "snap.patient.schedule.providersSlotsLocator"])
         .extend(kendo.observable)
-        .define("providerSearch", function ($snapNotification, $eventAggregator, $selfSchedulingService, $appointmentDialog, $timeUtils, $apptsSlotsTray, $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $scope) {
+        .define("providerSearch", function ($snapNotification, $eventAggregator, $selfSchedulingService, $appointmentDialog, $timeUtils, $apptsSlotsTray, $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $scope, $state) {
             var scope = this,
                 isFooterActive = true,
                 isContentActive = false;
@@ -350,11 +350,7 @@
                 this.vm_closeNotification();
                 window.setTimeout(function () {
                     sessionStorage.setItem("snap_tabName_ref", "Scheduled");
-                  //  window.location.href = "/Customer/PatientConsultations";
-                    window.location.href = "#/tab/appointmentpatientdetails";
-                    //$rootScope.getUserAppointmentDet();
-                    $scope.$root.$broadcast("getUserAppointmentDet", {
-                     });
+                    window.location.href = "#/tab/appointmentpatientdetails/getPage='webSS'";
                     return false;
                 }, 300);
             };

@@ -1,6 +1,7 @@
 angular.module('starter.controllers')
 
 .controller('newuserController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $cordovaFileTransfer) {
+$("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -153,6 +154,18 @@ angular.module('starter.controllers')
             }
         };
         LoginService.postAddCousers(params);
+    }
+
+    $scope.goTOSchedule = function() {
+        /* $("#style1").attr("disabled", "disabled");
+          $("#style2").attr("disabled", "disabled");*/
+        $('<link/>', {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'css/styles.v3.less.dynamic.css'
+        }).appendTo('head');
+        //  $state.go('tab.providerSearch', { viewMode : 'all' });
+        $state.go('tab.providerSearch');
     }
 
     $scope.cancelcouser = function() {

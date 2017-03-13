@@ -1,5 +1,7 @@
 angular.module('starter.controllers')
     .controller('patientdetailsController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state) {
+      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
                 ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -94,6 +96,17 @@ angular.module('starter.controllers')
             $scope.addmore = true;
             $scope.healthhide = false;
 
+        }
+        $scope.goTOSchedule = function() {
+            /* $("#style1").attr("disabled", "disabled");
+              $("#style2").attr("disabled", "disabled");*/
+            $('<link/>', {
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'css/styles.v3.less.dynamic.css'
+            }).appendTo('head');
+            //  $state.go('tab.providerSearch', { viewMode : 'all' });
+            $state.go('tab.providerSearch');
         }
 
     });

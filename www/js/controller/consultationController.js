@@ -1,5 +1,6 @@
 angular.module('starter.controllers')
     .controller('consultationController', function($scope, $sanitize, $ionicSideMenuDelegate, $ionicPlatform, $interval, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, htmlEscapeValue) {
+        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $rootScope.couserdetails = false;
         $rootScope.dupcouser = false;
         $ionicPlatform.registerBackButtonAction(function() {
@@ -866,6 +867,18 @@ angular.module('starter.controllers')
             $scope.passedsearchshow = false;
             $scope.missedsearchshow = false;
             $scope.droppedsearchshow = true;
+        }
+
+        $scope.goTOSchedule = function() {
+            /* $("#style1").attr("disabled", "disabled");
+              $("#style2").attr("disabled", "disabled");*/
+            $('<link/>', {
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'css/styles.v3.less.dynamic.css'
+            }).appendTo('head');
+            //  $state.go('tab.providerSearch', { viewMode : 'all' });
+            $state.go('tab.providerSearch');
         }
 
 

@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 
 .controller('addnewdependentController', function($scope, $ionicPlatform, $interval, $ionicSideMenuDelegate, $timeout, $rootScope, $state, LoginService, $stateParams, $location, $cordovaFileTransfer, $ionicLoading, $ionicScrollDelegate, $ionicModal, $filter, $ionicPopup, $log, $window, $ionicBackdrop) {
-
+  $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
     $timeout(function() {
         $('option').filter(function() {
             return this.value.indexOf('?') >= 0;
@@ -801,6 +801,19 @@ angular.module('starter.controllers')
          $scope.$apply();
 
     }
+
+    $scope.goTOSchedule = function() {
+        /* $("#style1").attr("disabled", "disabled");
+          $("#style2").attr("disabled", "disabled");*/
+        $('<link/>', {
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: 'css/styles.v3.less.dynamic.css'
+        }).appendTo('head');
+        //  $state.go('tab.providerSearch', { viewMode : 'all' });
+        $state.go('tab.providerSearch');
+    }
+
     $scope.$watch('addNewDependent.healthInfoOrganization', function(newVal) {
         if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '' && angular.isUndefined(newVal)) {
             $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
