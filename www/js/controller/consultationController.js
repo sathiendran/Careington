@@ -414,6 +414,25 @@ angular.module('starter.controllers')
                         $rootScope.doctorGender = 'None Reported';
                     }
 
+                    if ($rootScope.existingConsultationReport.encounterTypeCode !== '' && typeof $rootScope.existingConsultationReport.encounterTypeCode !== 'undefined') {
+                        if ($rootScope.existingConsultationReport.encounterTypeCode == 2) {
+                            $rootScope.encountertype = "Phone Consultation";
+                            $rootScope.consultationphone = $rootScope.existingConsultationReport.ConsultationPhoneNumber
+                            if($rootScope.existingConsultationReport.ConsultationPhoneType == 1){
+                              $rootScope.phonetype = "Mobile"
+                            }if($rootScope.existingConsultationReport.ConsultationPhoneType == 2){
+                              $rootScope.phonetype = "Home"
+                            }if($rootScope.existingConsultationReport.ConsultationPhoneType == 3){
+                              $rootScope.phonetype = "Other"
+                            }
+
+                        } else if ($rootScope.existingConsultationReport.encounterTypeCode == 1) {
+                            $rootScope.encountertype = "Video Consultation";
+                        }
+                    } else {
+                        $rootScope.encountertype = 'None Reported';
+                    }
+
                     if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
                         $rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
                     } else {

@@ -1226,7 +1226,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             //  var mobappversion = $rootScope.mobileSettings[i].mobileApp_MinSupportedVersion;
               // var sptversion = mobappversion.split(" ");
             //   var checkmobilever = parseFloat(sptversion[1]);
-               var checkmobilever = 72;
+               var checkmobilever = 71;
                if(appVersion > checkmobilever){
 
 					if ($rootScope.getDetails !== '') {
