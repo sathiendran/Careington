@@ -76,7 +76,14 @@ angular.module('starter.controllers')
                 }, 300);
             }
         };
-
+        $scope.homepatient = function(){
+          $rootScope.doGetPatientProfiles();
+          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+        }
+        $scope.homepat = function(){
+          $rootScope.doGetPatientProfiles();
+          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+        }
         $scope.addMinutes = function(inDate, inMinutes) {
             var newdate = new Date();
             newdate.setTime(inDate.getTime() + inMinutes * 60000);

@@ -718,4 +718,4 @@ angular.module('starter.controllers')
         $(".enterAppoinment2").css("display", "block");
     }
 
-})
+    })

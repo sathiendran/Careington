@@ -189,6 +189,17 @@
             </div>
          </div>
          <div id="soapReport">
+           <div class="reportObjective">
+              <div class="objectiveTitle" ><b>COMMUNICATION METHOD</b></div>
+              <div class="objectiveUnderline">	</div>
+              <div>
+                 <p >{{encountertype}}</p>
+                 <p ng-if="encountercode != 3">Phone Type:{{consultationphone}}</p>
+
+                 <p ng-if="encountercode != 3">Phone Number:{{phonetype}}</p>
+              </div>
+
+           </div>
             <div class="reportObjective">
                <div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
                <div class="objectiveUnderline">	</div>

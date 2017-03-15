@@ -180,6 +180,10 @@ angular.module('starter.controllers')
                 $rootScope.iconDisplay = 'Block';
             }
         });
+        $rootScope.changeptient = function(){
+          $rootScope.doGetPatientProfiles();
+          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+        }
         $rootScope.doUpdateDependentsAuthorize = function(relateDependentId, relateDependentRelationCode, relateDependentAuthorize) {
             var params = {
                 accessToken: $rootScope.accessToken,
