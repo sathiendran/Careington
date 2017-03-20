@@ -1222,11 +1222,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.getDetails = data.data[0].enabledModules;
-              //  $rootScope.mobileSettings = data.data[0].settings;
-            //  var mobappversion = $rootScope.mobileSettings[i].mobileApp_MinSupportedVersion;
-              // var sptversion = mobappversion.split(" ");
-            //   var checkmobilever = parseFloat(sptversion[1]);
-               var checkmobilever = 72;
+               $rootScope.mobileSettings = data.data[0].settings;
+              var mobappversion = $rootScope.mobileSettings.mobileApp_MinSupportedVersion;
+               var sptversion = mobappversion.split("v");
+               var checkmobilever = parseFloat(sptversion[1]);
+              // var checkmobilever = 71;
                if(appVersion > checkmobilever){
 
 					if ($rootScope.getDetails !== '') {

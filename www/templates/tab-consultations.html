@@ -29,7 +29,7 @@
             </div>
             <div class="col col-33 uAPlProfileImage" ng-bind-html="drawImage(PatientImageSelectUser,PatientFirstName,PatientLastName)"></div>
             <div class="col col-33 uAPChangePatient">
-               <a ng-href='#/tab/userhome'>
+               <a  ng-click="patchange()">
                   <div class="icon groupicon">
                      <div class="buttons">
                         <span><i ng-bind-html="drawSVGCIcon('group');"></i></span>
@@ -75,7 +75,7 @@
                         <p class="colfamily"> {{passedData.consultationDate}}</p>
                      </div>
                      <div class="passedTime-{{deviceName}}">
-                        <p class="colfamily">{{passedData.consultationTimeInfo  | date: "hh:mm a"}}</p>
+                        <p class="colfamily">{{passedData.consultationTime}}</p>
                      </div>
                      <div class="ellipsis passedDoc-{{deviceName}}">
                         <p class="ellipsis">
@@ -157,7 +157,7 @@
                         <p class="colfamily">{{droppedData.consultationDate}}</p>
                      </div>
                      <div class="passedTime-{{deviceName}}">
-                        <p class="colfamily">{{droppedData.consultationTimeInfo | date: "h:mm a"}}</p>
+                        <p class="colfamily">{{droppedData.consultationTime}}</p>
                      </div>
                      <div class="ellipsis passedDoc-{{deviceName}}">
                         <p class="ellipsis">

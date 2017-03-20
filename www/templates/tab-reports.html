@@ -189,6 +189,18 @@
                </div>
             </div>
             <div id="soapReport">
+
+              <div class="reportObjective">
+                 <div class="objectiveTitle" ><b>COMMUNICATION METHOD</b></div>
+                 <div class="objectiveUnderline">	</div>
+                 <div>
+                    <p >{{encountertype}}</p>
+                    <p ng-if="encountercode != 3">Phone Type:{{consultationphone}}</p>
+
+                    <p ng-if="encountercode != 3">Phone Number:{{phonetype}}</p>
+                 </div>
+
+              </div>
                <div class="reportObjective">
                   <div class="objectiveTitle" ><b>SUBJECTIVE</b></div>
                   <div class="objectiveUnderline">	</div>
@@ -269,7 +281,7 @@
                       <div ng-repeat="reportSNOMED in reportSNOMED"  style="margin-left: 10%;">
                          <p>{{reportSNOMED.shortDescription}}</b>
                       </div>
-                   </div>  
+                   </div>
                </div>
                <div ng-if="reportMedicalCodeDetails == ''">
                   <p>None Reported</p>

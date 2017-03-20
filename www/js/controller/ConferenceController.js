@@ -212,6 +212,29 @@ angular.module('starter.controllers')
                     $rootScope.reportDoctorLastName = 'None Reported';
                 }
 
+                if ($rootScope.existingConsultationReport.encounterTypeCode !== '' && typeof $rootScope.existingConsultationReport.encounterTypeCode !== 'undefined') {
+                  $rootScope.encountercode =  $rootScope.existingConsultationReport.encounterTypeCode;
+                    if ($rootScope.encountercode == 2) {
+                        $rootScope.encountertype = "Phone Consultation";
+                        $rootScope.consultationphone = $rootScope.existingConsultationReport.consultationPhoneNumber;
+                        if($rootScope.existingConsultationReport.consultationPhoneType == 1){
+                          $rootScope.phonetype = "Mobile"
+                        }if($rootScope.existingConsultationReport.consultationPhoneType == 2){
+                          $rootScope.phonetype = "Home"
+                        }if($rootScope.existingConsultationReport.consultationPhoneType == 3){
+                          $rootScope.phonetype = "Other"
+                        }
+
+                    } else if ($rootScope.encountercode == 3) {
+                        $rootScope.encountertype = "Video Consultation";
+                    }
+                } else {
+                    $rootScope.encountertype = 'None Reported';
+                }
+
+
+
+
                 if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
                     $rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
                 } else {

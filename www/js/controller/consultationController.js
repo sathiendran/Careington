@@ -11,7 +11,8 @@ angular.module('starter.controllers')
                 ($rootScope.currState.$current.name === "tab.receipt") ||
                 ($rootScope.currState.$current.name === "tab.videoConference") ||
                 ($rootScope.currState.$current.name === "tab.connectionLost") ||
-                ($rootScope.currState.$current.name === "tab.ReportScreen")
+                ($rootScope.currState.$current.name === "tab.ReportScreen") ||
+                  ($rootScope.currState.$current.name === "tab.reports")
             ) {
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
@@ -82,6 +83,14 @@ angular.module('starter.controllers')
         $scope.showsearch = function() {
             $scope.isdiplay = !$scope.isdiplay;
 
+        }
+        $rootScope.patchange = function(){
+          $rootScope.doGetPatientProfiles();
+          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+        }
+        $scope.patientchange = function(){
+          $rootScope.doGetPatientProfiles();
+          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
         }
         $rootScope.passedconsult = function() {
             $rootScope.passededconsultants();
@@ -413,6 +422,26 @@ angular.module('starter.controllers')
                         }
                     } else {
                         $rootScope.doctorGender = 'None Reported';
+                    }
+
+                    if ($rootScope.existingConsultationReport.encounterTypeCode !== '' && typeof $rootScope.existingConsultationReport.encounterTypeCode !== 'undefined') {
+                      $rootScope.encountercode =  $rootScope.existingConsultationReport.encounterTypeCode;
+                        if ($rootScope.encountercode == 2) {
+                            $rootScope.encountertype = "Phone Consultation";
+                            $rootScope.consultationphone = $rootScope.existingConsultationReport.consultationPhoneNumber;
+                            if($rootScope.existingConsultationReport.consultationPhoneType == 1){
+                              $rootScope.phonetype = "Mobile"
+                            }if($rootScope.existingConsultationReport.consultationPhoneType == 2){
+                              $rootScope.phonetype = "Home"
+                            }if($rootScope.existingConsultationReport.consultationPhoneType == 3){
+                              $rootScope.phonetype = "Other"
+                            }
+
+                        } else if ($rootScope.encountercode == 3) {
+                            $rootScope.encountertype = "Video Consultation";
+                        }
+                    } else {
+                        $rootScope.encountertype = 'None Reported';
                     }
 
                     if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {

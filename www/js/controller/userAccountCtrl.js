@@ -64,7 +64,10 @@ angular.module('starter.controllers')
                     }
                 }
             }
-
+            $rootScope.changeptienthome=function(){
+              $rootScope.doGetPatientProfiles();
+              $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            }
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
             $rootScope.checkAndChangeMenuIcon();
