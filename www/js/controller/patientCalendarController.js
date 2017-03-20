@@ -3,6 +3,7 @@ angular.module('starter.controllers')
         setTimeout(function() {
             document.getElementsByTagName('timer')[0].stop();
         }, 10);
+        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
         $ionicPlatform.registerBackButtonAction(function() {
             if (($rootScope.currState.$current.name === "tab.userhome") ||
@@ -293,6 +294,18 @@ angular.module('starter.controllers')
             $scope.healthsearchhide = false;
             $scope.addmoresearch = true;
             $rootScope.doGetScheduledConsulatation();
+        }
+
+        $scope.goTOSchedule = function() {
+            /* $("#style1").attr("disabled", "disabled");
+              $("#style2").attr("disabled", "disabled");*/
+            $('<link/>', {
+                rel: 'stylesheet',
+                type: 'text/css',
+                href: 'css/styles.v3.less.dynamic.css'
+            }).appendTo('head');
+            //  $state.go('tab.providerSearch', { viewMode : 'all' });
+            $state.go('tab.providerSearch');
         }
 
     })
