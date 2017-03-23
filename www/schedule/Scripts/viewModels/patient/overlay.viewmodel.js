@@ -16,7 +16,7 @@
         	    var dfd = $.Deferred();
 
         	    if(content === null) {
-        	        $.get("/content/patient/overlay.html" + snap.addVersion, function (data) {
+        	        $.get("schedule/tab-overlay.html" + snap.addVersion, function (data) { 
         	            content = data;
         	            dfd.resolve(content);
         	        });
@@ -33,12 +33,12 @@
         		loadContent().done(function(content) {
         		    if($(container).length === 0) {
         		        $("body").append("<div id='overlayContainer'></div>");
-        		    } 
+        		    }
         		    var $overlay = $(container);
                     $overlay.html(content);
         		    kendo.bind($overlay, $scope);
 
-        		    dfd.resolve(); 
+        		    dfd.resolve();
         		});
 
         		return dfd.promise();

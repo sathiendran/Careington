@@ -744,6 +744,16 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }
      }
  })
+
+ .state('tab.overlay', {
+   url: '/overlay',
+   views: {
+    'tab-login': {
+        templateUrl: 'schedule/tab-overlay.html',
+        controller: 'ScheduleCtrl'
+       }
+    }
+})
     .state('tab.ChronicCondition', {
         url: '/ChronicCondition',
         views: {
@@ -790,7 +800,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         })
         .state('tab.ConsentTreat', {
-            url: '/ConsentTreat',
+            url: '/ConsentTreat/:getPage',
             views: {
                 'tab-login': {
                     templateUrl: 'templates/tab-ConsentTreat.html',
