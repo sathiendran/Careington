@@ -16,6 +16,7 @@
     if (typeof($.signalR) !== "function") {
         throw new Error("SignalR: SignalR is not loaded. Please ensure jquery.signalR-x.js is referenced before ~/signalr/js.");
     }
+    var snap = snap || {};
 
     var signalR = $.signalR;
 
@@ -520,7 +521,8 @@
         return proxies;
     };
 
-    signalR.hub = $.hubConnection("https://emerald.snap-qa.com/api/signalr", { useDefaultPath: false });
+    var baseUrl = snap.baseUrl || "https://emerald.snap-qa.com";
+    signalR.hub = $.hubConnection(baseUrl + "/api/signalr", { useDefaultPath: false });
     $.extend(signalR, signalR.hub.createHubProxies());
 
 }(window.jQuery, window));

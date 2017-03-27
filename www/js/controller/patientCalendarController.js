@@ -105,6 +105,11 @@ angular.module('starter.controllers')
         };
 
         if($stateParams.getPage === 'webSS'){
+          $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
+          $rootScope.doGetpatDetailsForSS($rootScope.patientId,"notNow");
+        }
+
+        if($stateParams.getPage === 'webSSCancel'){
           $rootScope.doGetScheduledConsulatation();
           $rootScope.doGetIndividualScheduledConsulatation();
         }
@@ -163,7 +168,7 @@ angular.module('starter.controllers')
             $rootScope.appointPersonId = scheduledListData.participants[0].person.id
             $rootScope.appointmentsPatientDOB = $rootScope.PatientAge;
             $rootScope.appointmentsPatientId = $rootScope.patientId;
-            $rootScope.assignedDoctorId = 875; //$rootScope.scheduledListDatas.participants[0].person.id;
+            $rootScope.assignedDoctorId = scheduledListData.clinicianId; //$rootScope.scheduledListDatas.participants[0].person.id;
             $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
 
               $rootScope.appointmentDisplay = "test";

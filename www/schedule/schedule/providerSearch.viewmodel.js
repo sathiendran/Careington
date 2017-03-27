@@ -350,7 +350,7 @@
                 this.vm_closeNotification();
                 window.setTimeout(function () {
                     sessionStorage.setItem("snap_tabName_ref", "Scheduled");
-                    window.location.href = "#/tab/appointmentpatientdetails/getPage='webSS'";
+                    window.location.href = "#/tab/appointmentpatientdetails/webSS";
                     return false;
                 }, 300);
             };

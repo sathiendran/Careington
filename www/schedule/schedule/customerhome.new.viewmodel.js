@@ -167,12 +167,13 @@ var setUserVars = function() {
 
             function saveAppointmen(appt) {
                 var dfd = $.Deferred();
+                sessionStorage.setItem("appointPatId", appt.participants[1].patientId);
                 saveAppt(appt).done(function(appointmentResponse) {
                     if (appt.isNow && $overlay) {
                         var isLoading = true;
 
                         $overlay.loadOverlay();
-                        $overlay.setLoadingIcn("/images/svg-v3/Clipboard-Anim-C.svg");
+                        $overlay.setLoadingIcn("images/Clipboard-Anim-C.svg");
                         $overlay.toggleOverlay();
 
 
@@ -190,7 +191,9 @@ var setUserVars = function() {
 
                         //tony.y: i should not do this, copypaste from \Scripts\pagevm\sharedvm\consultationsListing.viewmodel.js direct violation of DRY principle
                         // TODO: create common service to inject it into this object
+                        snap.patientPage = true;
                         if (snap.patientPage) {
+                          debugger;
                             var path = snap.baseUrl + '/api/v2.1/patients/appointments/' + appointmentResponse.data[0].appointmentId;
                             $.ajax({
                                 type: "GET",
@@ -201,13 +204,14 @@ var setUserVars = function() {
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
-                                    $overlay.setLoadingIcn("/images/svg-v3/Clipboard-Done-C.svg");
+                                    $overlay.setLoadingIcn("images/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {
                                         $overlay.setSubTxt("A provider will call you shortly.");
                                     } else {
-                                        $overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
+                                        //$overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
+                                        $overlay.setSubTxt(" ");
                                     }
 
                                     Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
@@ -224,6 +228,7 @@ var setUserVars = function() {
                         }
 
                     }
+                    sessionStorage.setItem("SSscheduledAppointmentId", appointmentResponse.data[0].appointmentId);
                     dfd.resolve(appointmentResponse); //Success
                 }).fail(function(error) {
                     dfd.reject(formatErrorMessage(error));
@@ -1298,6 +1303,8 @@ var setUserVars = function() {
                     promise.done(function() {
                         if (!that.vm_isNew()) {
                             $snapNotification.success(that._typeName + " updated successfully");
+                            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                            location.href = "#/tab/appoimentDetails/webSSAppointUpdate";
                         }
                         that.set("isError", false);
                     }).fail(function() {
@@ -1460,7 +1467,9 @@ var setUserVars = function() {
                 };
 
                 this.vm_onCloseClick = function(e) {
-                    $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                    if(sessionStorage.getItem('chkSSAddOrEdit') === 'Edit') {
+                      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                    }
                     this._clearDeactivationTimeout();
                     $eventAggregator.published(fact.closeEvent, this);
 
@@ -1484,6 +1493,7 @@ var setUserVars = function() {
                             $eventAggregator.published(fact.removedEvent, that);
                             $snapNotification.success("Appointment is unassigned successfully");
                             $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                            location.href = "#/tab/appointmentpatientdetails/webSSCancel";
                         }).fail(function(error) {
                             $snapNotification.error(error);
                             that.set("isError", true);
@@ -2218,7 +2228,7 @@ var setUserVars = function() {
                 var dfd = $.Deferred();
 
                 var that = this;
-
+                sessionStorage.setItem('chkSSAddOrEdit', 'Edit');
                 $selfSchedulingService.getAppointment(apptId).done(function(resp) {
                     var result = {
                         appt: resp.data[0],
@@ -4665,21 +4675,26 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                         }
 
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
-                                            location.href = "/Customer/Intake/#/Confirmation";
+                                            //location.href = "/Customer/Intake/#/Confirmation";
+                                            location.href = "#/tab/ConsentTreat/CTT/newConsultationId";
                                         } else if (snap.hospitalSettings.insuranceBeforeWaiting) {
-                                            location.href = "/Customer/Intake/#/Insurance";
+                                            //location.href = "/Customer/Intake/#/Insurance";
+                                            location.href = "#/tab/consultCharge/CTT/newConsultationId";
                                         } else if (snap.hospitalSettings.eCommerce && consultationAmount > 0 && !snap.hospitalSettings.hidePaymentPageBeforeWaitingRoom) {
-                                            location.href = "/Customer/Intake/#/Payment";
+                                            //location.href = "/Customer/Intake/#/Payment";
+                                            location.href = "#/tab/consultCharge/CTT/newConsultationId";
                                         } else {
                                             if (kendo.support.mobileOS) {
                                                 snap.openMobileApp(parseInt(newConsultationId), function() {
                                                     sessionStorage.setItem("consultationinitaction", "1");
-                                                    location.href = "/Customer/Main/#/Waiting";
+                                                    //location.href = "/Customer/Main/#/Waiting";
+                                                    location.href = "#/tab/receipt/CTT/newConsultationId";
                                                 });
                                                 return;
                                             }
                                             sessionStorage.setItem("consultationinitaction", "1");
-                                            location.href = "/Customer/Main/#/Waiting";
+                                            //location.href = "/Customer/Main/#/Waiting";
+                                            location.href = "#/tab/receipt/CTT/newConsultationId";
                                         }
                                     }
                                 });

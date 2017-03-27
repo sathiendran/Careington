@@ -699,7 +699,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }
     })
     .state('tab.appoimentDetails', {
-        url: '/appoimentDetails',
+        url: '/appoimentDetails/:getPage',
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-appoimentDetails.html',
@@ -800,7 +800,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         })
         .state('tab.ConsentTreat', {
-            url: '/ConsentTreat/:getPage',
+            url: '/ConsentTreat/:getPage/:getconsultId',
             views: {
                 'tab-login': {
                     templateUrl: 'templates/tab-ConsentTreat.html',
@@ -809,7 +809,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         })
     .state('tab.consultCharge', {
-        url: '/consultCharge',
+        url: '/consultCharge/:getPage/:getconsultId',
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-consultCharge.html',
@@ -881,7 +881,8 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
         }
     })
     .state('tab.receipt', {
-        url: '/receipt',
+        //url: '/receipt',
+          url: '/receipt/:getPage/:getconsultId',
         views: {
             'tab-login': {
                 templateUrl: 'templates/tab-receipt.html',
