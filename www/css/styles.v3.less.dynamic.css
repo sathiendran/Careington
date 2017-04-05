@@ -21308,8 +21308,8 @@ input[type="radio"].radio:checked+span::before {
 .button:active {
     background: #ddd;
     transition: all 0s;
-    top: 2px;
-    left: 2px;
+  /*  top: 2px;
+   left: 2px;*/
     box-shadow: none
 }
 
@@ -21437,7 +21437,7 @@ input[type="radio"].radio:checked+span::before {
 
 .button__green.is-loading {
     cursor: default;
-    background: url("/images/rings.svg") #a2d28a no-repeat center center;
+    background: url("../images/rings.svg") #a2d28a no-repeat center center;
     -webkit-transition: none;
     -moz-transition: none;
     -ms-transition: none;
@@ -21453,7 +21453,7 @@ input[type="radio"].radio:checked+span::before {
     -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
-    background: url("/images/rings.svg") #a2d28a no-repeat center center
+    background: url("../images/rings.svg") #a2d28a no-repeat center center
 }
 
 .button__green.is-complete {
@@ -21715,7 +21715,7 @@ input[type="radio"].radio:checked+span::before {
 
 .button__yellow.is-loading {
     cursor: default;
-    background: url("/images/rings.svg") #ffc60b no-repeat center center;
+    background: url("../images/rings.svg") #ffc60b no-repeat center center;
     -webkit-transition: none;
     -moz-transition: none;
     -ms-transition: none;
@@ -21731,7 +21731,7 @@ input[type="radio"].radio:checked+span::before {
     -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
-    background: url("/images/rings.svg") #ffc60b no-repeat center center
+    background: url("../images/rings.svg") #ffc60b no-repeat center center
 }
 
 .button__orange {
@@ -21829,7 +21829,7 @@ input[type="radio"].radio:checked+span::before {
 
 .button__red.is-loading {
     cursor: default;
-    background: url("/images/rings.svg") #f04c27 no-repeat center center
+    background: url("../images/rings.svg") #f04c27 no-repeat center center
 }
 
 .button__red.is-loading span {
@@ -21840,7 +21840,7 @@ input[type="radio"].radio:checked+span::before {
     -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
-    background: url("/images/rings.svg") #f04c27 no-repeat center center
+    background: url("../images/rings.svg") #f04c27 no-repeat center center
 }
 
 .button__red.error {
@@ -22181,7 +22181,7 @@ input[type="radio"].radio:checked+span::before {
 
 .button__brand.is-loading {
     cursor: default;
-    background: url("/images/rings.svg") #0092bb no-repeat center center;
+    background: url("../images/rings.svg") #0092bb no-repeat center center;
     color: #fff;
     -webkit-transition: none;
     -moz-transition: none;
@@ -22198,7 +22198,7 @@ input[type="radio"].radio:checked+span::before {
     -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
     box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.3);
-    background: url("/images/rings.svg") #0092bb no-repeat center center;
+    background: url("../images/rings.svg") #0092bb no-repeat center center;
     color: #fff
 }
 
@@ -34543,7 +34543,7 @@ only screen and (min-width:541px) {
     transform: translate(-50%, -50%);
     width: 20%;
     height: 20%;
-    background: url(/images/rings.svg) center no-repeat;
+    background: url("../images/rings.svg") center no-repeat;
     background-size: contain;
     z-index: 2
 }
@@ -35178,7 +35178,7 @@ only screen and (min-width:541px) {
     top: 0;
     left: 0;
     z-index: 1;
-    background: url(/images/rings.svg) rgba(0, 146, 187, 0.45) center no-repeat
+    background: url("../images/rings.svg") rgba(0, 146, 187, 0.45) center no-repeat
 }
 
 .nav--header a {
@@ -38754,7 +38754,7 @@ only screen and (min-width:541px) {
     flex-grow: 1;
     overflow-y: auto;
     display: block;
-    padding-bottom: 10px;
+    padding-bottom: 100px;
     margin: 0;
     list-style-type: none;
     -webkit-overflow-scrolling: touch
@@ -52893,7 +52893,7 @@ only screen and (min-width:541px) {
     width: 100%;
     height: 100%;
     left: 0;
-    background: url("/images/rings.svg") center center no-repeat rgba(142, 142, 142, 0.3)
+    background: url("../images/rings.svg") center center no-repeat rgba(142, 142, 142, 0.3)
 }
 
 .scheduler__event--a-scheduled {
@@ -57969,7 +57969,7 @@ only screen and (min-width:541px) {
 
 .dialogbox__usertray.is-loading {
     cursor: default;
-    background: url("/images/rings.svg") #cbcbcb no-repeat center center !important
+    background: url("../images/rings.svg") #cbcbcb no-repeat center center !important
 }
 
 .dialogbox__usertray.is-loading .dialogbox__empty-state {

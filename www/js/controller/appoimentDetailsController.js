@@ -159,7 +159,8 @@ angular.module('starter.controllers')
     }
 
     var d = new Date();
-    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+    //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+    var currentUserHomeDate = d;
 
     if (getReplaceTime < currentUserHomeDate) {
         $rootScope.timeNew = 'none';
@@ -453,7 +454,8 @@ angular.module('starter.controllers')
 
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
-                    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    var currentUserHomeDate = d;
                     $rootScope.individualNextAppointmentDisplay = 'none';
                     $rootScope.individualwithoutAppointmentDisplay = 'block';
                     $rootScope.accountClinicianFooter = 'block';
@@ -520,7 +522,8 @@ angular.module('starter.controllers')
                             });
                             $rootScope.time = new Date(getReplaceTime).getTime();
                             var d = new Date();
-                            var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                          //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                            var currentUserHomeDate = d;
                             if (getReplaceTime < currentUserHomeDate) {
                                 $rootScope.timerCOlor = '#E1FCD4';
                                 $('.AvailableIn').hide();

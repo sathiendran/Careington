@@ -1,8 +1,8 @@
 angular.module('starter.controllers')
     .controller('patientCalendarCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar, CreditCardValidations) {
-        setTimeout(function() {
+      /*  setTimeout(function() {
             document.getElementsByTagName('timer')[0].stop();
-        }, 10);
+        }, 10);*/
         $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
 
         $ionicPlatform.registerBackButtonAction(function() {
@@ -93,7 +93,8 @@ angular.module('starter.controllers')
         $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
         var d = new Date();
         d.setHours(d.getHours() + 12);
-        var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+      //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+      var currentUserHomeDate = d;
 
         $scope.doRefreshApptDetails = function() {
             $rootScope.doGetScheduledConsulatation();
@@ -245,7 +246,8 @@ angular.module('starter.controllers')
                 if (getReplaceTime3 < currentUserHomeDate) {
                     $rootScope.timerCOlor = '#E1FCD4';
                 }
-                var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                var currentUserHomeDate = d;
                 if (getReplaceTime3 < currentUserHomeDate) {
                     $rootScope.timeNew = 'none';
                     $rootScope.timeNew1 = 'block';

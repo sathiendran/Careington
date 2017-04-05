@@ -426,6 +426,7 @@
             };
 
             this.vm_favoriteClinicianCardsList_onDataBound = function () {
+                this.set("vm_isNotificationActive", false);
                 myProvidersSlotsLocator.setSlots(getSlotsFromDs(this.favoriteCliniciansDS), this.dateFilter);
                 expandClinicanCards(this.favoriteCliniciansDS);
                 this.trigger("change", { field: "vm_isFavoriteCliniciansDSEmpty" });

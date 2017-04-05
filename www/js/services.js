@@ -1335,6 +1335,25 @@ this.getPatientMedicalProfile = function(params){
     });
   }
 
+  this.getUserTimezone = function (params) {
+        var requestInfo = {
+            headers: util.getHeaders(params.accessToken),
+            url: apiCommonURL + '/api/v2.1/users/current-time',
+            method: 'GET'
+        };
+
+        $http(requestInfo).
+                success(function (data, status, headers, config) {
+                    if (typeof params.success != 'undefined') {
+                        params.success(data);
+                    }
+                }).
+                error(function (data, status, headers, config) {
+                    if (typeof params.error != 'undefined') {
+                       params.error(data,status);
+                    }
+                });
+    }
 
 	this.getAttachmentList = function (params) {
         var requestInfo = {
@@ -1849,9 +1868,15 @@ this.getCountryDetails = function () {
     }
 
 	this.getLocalTime = function(dateTime){
-       var utcTime = moment.utc(dateTime).toDate();
+    /*   var utcTime = moment.utc(dateTime).toDate();
 		var localTime = $filter('date')(utcTime, 'yyyy-MM-ddTHH:mm:ss');
-        return new Date(dateTime);//localTime;
+        return new Date(dateTime);//localTime;*/
+        var year = dateTime.slice(0, 4);
+              var month = dateTime.slice(5, 7) - 1;
+              var day = dateTime.slice(8, 10);
+              var hours = dateTime.slice(11, 13);
+              var min = dateTime.slice(14, 16);
+              return new Date(year, month, day, hours, min);
     }
 
     this.getMonthName = function(PriorSurgerymonth) {

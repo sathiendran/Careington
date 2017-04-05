@@ -169,7 +169,8 @@ angular.module('starter.controllers')
                     $rootScope.accountClinicianFooter = 'block';
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
-                    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    var currentUserHomeDate = d;
                     if ($rootScope.scheduledList !== '') {
                         var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;

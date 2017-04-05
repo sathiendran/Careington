@@ -59,7 +59,7 @@
 
                 return dfd.promise();
             }
-          
+
 
             function saveAppointmen(appt) {
                 var dfd = $.Deferred();
@@ -68,16 +68,16 @@
                         var isLoading = true;
 
                         $overlay.loadOverlay();
-                        $overlay.setLoadingIcn("/images/svg-v3/Clipboard-Anim-C.svg");
+                        $overlay.setLoadingIcn("../images/svg-v3/Clipboard-Anim-C.svg");
                         $overlay.toggleOverlay();
 
-                        
+
                         setTimeout(function(){
                             if(isLoading){
                                 $overlay.setLoadingTxt("Sending your appointment information.");
                             }
                         }, 3000);
-                            
+
                         setTimeout(function(){
                             if(isLoading){
                                 $overlay.setLoadingTxt("Prepping your consultation room.");
@@ -97,7 +97,7 @@
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
-                                    $overlay.setLoadingIcn("/images/svg-v3/Clipboard-Done-C.svg");
+                                    $overlay.setLoadingIcn("../images/svg-v3/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {
@@ -105,13 +105,13 @@
                                     } else {
                                         $overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
                                     }
-                                    
+
                                     Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
                                         window.setTimeout(function() {
                                             $overlay.toggleOverlay();
                                         }, 2000);
                                     });
-                                    
+
                                 },
                                 error: function () {
                                     snapError("Cannot find appointment.");

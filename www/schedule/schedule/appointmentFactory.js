@@ -22,7 +22,7 @@
             $itemSelector, $scheduleCommon, $eventAggregator,
             $availabilityBlockService, $appointmentService,
             $familyGroupDataSource, $apptsSlotsTray, $selfSchedulingService,
-            $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $timer) {
+            $patientSelfSchedulingHub, $userService, $providersSlotsLocator, $timer, $ionicScrollDelegate) {
 
             this.closeEvent = "pappt_OnCloseClick";
             this.savedEvent = "pappt_OnSaved";
@@ -49,7 +49,7 @@
                 var defaultPatient = {
                     id: null,
                     name: "Select a Patient",
-                    imageSource: "/images/Patient-Male.gif",
+                    imageSource: "../images/Patient-Male.gif",
                     info: "For this appointment"
                 };
 
@@ -58,7 +58,7 @@
                 this._removedSuccesfullyMessage = "The Appointment was removed successfully";
 
                 this.clinician = null;
-                this.clinicianImageSource = "/images/Patient-Male.gif";
+                this.clinicianImageSource = "../images/Patient-Male.gif";
                 this.clinicianFullName = "Select a Provider";
 
 
@@ -96,7 +96,7 @@
 
                 this.phoneNumber = "";
                 this.phoneType = phoneTypeEnum.other;
-                
+
                 this.timeZoneId = snap.profileSession.timeZoneId;
                 this.serviceTypeId = opt.serviceTypeId;
 
@@ -171,7 +171,7 @@
                 /*********************** PUBLIC API ***********************/
                 this.load = function () {
                     this.set("isReadOnly", this.isReadOnly || !this.vm_isNew() && $scheduleCommon.isAppointmentReadOnly(this.appointmentStatusCode));
-                    
+
                     this.set("vm_isLoading", true);
                     this._isPatientLoaded = false;
                     this._areConcernsLoaded = false;
@@ -324,7 +324,7 @@
                     var that = this;
                     var promise = $appointmentService.saveAppointment(this.getOptions());
                     promise.done(function () {
-                       
+
                         that.set("isError", false);
                     }).fail(function () {
                         that.set("isError", true);
@@ -420,10 +420,10 @@
                         onTimerTickCallback: function(timerTick) {
                             that.set("availableTime", [timerTick.formatted.minutes, timerTick.formatted.seconds].join(":"));
                         }
-                    });                   
+                    });
 
                     timer.start();
-                }; 
+                };
 
                 this.vm_currentDate = function () {
                     var dateFilter = new Date();
@@ -460,7 +460,7 @@
                         var errors = this.validate();
                         if (errors.length === 0) {
                             saveAction();
-                           
+
                         } else {
                             this.set("isLoading", false);
                             this.set("isError", true);
@@ -555,7 +555,7 @@
                             var timeZoneName = convertedTime.targetTimeZone.abbreviation;
                             var convertedEndTime = new Date(convertedStartTime);
                             convertedEndTime.setTime(convertedEndTime.getTime() + duration);
-                            that.set("vm_ProviderTimeText", kendo.toString(convertedStartTime, "h:mm tt ") + timeZoneName + " - " + 
+                            that.set("vm_ProviderTimeText", kendo.toString(convertedStartTime, "h:mm tt ") + timeZoneName + " - " +
                                 kendo.toString(convertedEndTime, "h:mm tt ") + timeZoneName);
                         }
                     });
@@ -603,7 +603,7 @@
                         this.set("phoneType", phoneTypeEnum.other);
                     }
                     this._onDataChange();
-                };
+                };               
 
                 this.vm_onPhoneTypeChange = function () {
                     // get phone type
@@ -853,7 +853,7 @@
                 /*********************** PRIVATE API ***********************/
                 this._setOptions = function (opt, clinicianCard) {
                     this._setSelectorTime();
-                    
+
                     if (opt.intakeMetadata) {
                         this.additionalNotes = opt.intakeMetadata.additionalNotes ? opt.intakeMetadata.additionalNotes : "";
 
@@ -945,13 +945,13 @@
                         that.set("isDisabled", true);
                         that.set("vm_notification_msg", "This appointment has expired. Please close this dialogue and select a new time.");
                         that.set("vm_hideTimer", true);
-                        
+
                         setTimeout(function() {
                             that.set("isExpiredAppointment", true);
                         }, 1000);
-                            
+
                         $patientSelfSchedulingHub.unlockSlot(that.availabilityBlockId, that.start, that.end);
-                    }, 
+                    },
                     5 * 60 * 1000);
                 };
 

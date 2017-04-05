@@ -173,7 +173,7 @@ var setUserVars = function() {
                         var isLoading = true;
 
                         $overlay.loadOverlay();
-                        $overlay.setLoadingIcn("images/Clipboard-Anim-C.svg");
+                        $overlay.setLoadingIcn("../images/Clipboard-Anim-C.svg");
                         $overlay.toggleOverlay();
 
 
@@ -204,7 +204,7 @@ var setUserVars = function() {
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
-                                    $overlay.setLoadingIcn("images/Clipboard-Done-C.svg");
+                                    $overlay.setLoadingIcn("../images/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {
@@ -1005,7 +1005,7 @@ var setUserVars = function() {
                 var defaultPatient = {
                     id: null,
                     name: "Select a Patient",
-                    imageSource: "/images/Patient-Male.gif",
+                    imageSource: "../images/Patient-Male.gif",
                     info: "For this appointment"
                 };
 
@@ -1020,7 +1020,7 @@ var setUserVars = function() {
                 this._removedSuccesfullyMessage = "The Appointment was removed successfully";
 
                 this.clinician = null;
-                this.clinicianImageSource = "/images/Patient-Male.gif";
+                this.clinicianImageSource = "../images/Patient-Male.gif";
                 this.clinicianFullName = "Select a Provider";
 
 
@@ -1303,8 +1303,10 @@ var setUserVars = function() {
                     promise.done(function() {
                         if (!that.vm_isNew()) {
                             $snapNotification.success(that._typeName + " updated successfully");
-                            $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                            location.href = "#/tab/appoimentDetails/webSSAppointUpdate";
+                            setTimeout(function() {
+                              $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+                              location.href = "#/tab/appoimentDetails/webSSAppointUpdate";
+                            }, 3000);
                         }
                         that.set("isError", false);
                     }).fail(function() {
@@ -1599,6 +1601,17 @@ var setUserVars = function() {
                         this.set("phoneType", phoneTypeEnum.other);
                     }
                     this._onDataChange();
+                };
+
+                this.vm_phoneClick = function() {
+                  window.scrollTo(0, 150);
+                  debugger;
+                //  alert('gggg123');
+                /*  var $htmlOrBody = $('html, body'), // scrollTop works on <body> for some browsers, <html> for others
+                  scrollTopPadding = 8;
+                  var textareaTop = $(this).offset().top;
+                  // scroll to the textarea
+                  $htmlOrBody.scrollTop(textareaTop - scrollTopPadding);*/
                 };
 
                 this.vm_onPhoneTypeChange = function() {
@@ -2290,7 +2303,7 @@ var setUserVars = function() {
             var itemDefaultValues = {
                 id: null,
                 name: "Select a Person",
-                imageSource: "images/default-user.jpg",
+                imageSource: "../images/default-user.jpg",
                 info: "For the list",
             };
 
@@ -4676,25 +4689,25 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
 
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
                                             //location.href = "/Customer/Intake/#/Confirmation";
-                                            location.href = "#/tab/ConsentTreat/CTT/newConsultationId";
+                                            location.href = "#/tab/ConsentTreat/CTT/" +newConsultationId;
                                         } else if (snap.hospitalSettings.insuranceBeforeWaiting) {
                                             //location.href = "/Customer/Intake/#/Insurance";
-                                            location.href = "#/tab/consultCharge/CTT/newConsultationId";
+                                            location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
                                         } else if (snap.hospitalSettings.eCommerce && consultationAmount > 0 && !snap.hospitalSettings.hidePaymentPageBeforeWaitingRoom) {
                                             //location.href = "/Customer/Intake/#/Payment";
-                                            location.href = "#/tab/consultCharge/CTT/newConsultationId";
+                                            location.href = "#/tab/consultCharge/CTT/" +newConsultationId;
                                         } else {
                                             if (kendo.support.mobileOS) {
                                                 snap.openMobileApp(parseInt(newConsultationId), function() {
                                                     sessionStorage.setItem("consultationinitaction", "1");
                                                     //location.href = "/Customer/Main/#/Waiting";
-                                                    location.href = "#/tab/receipt/CTT/newConsultationId";
+                                                    location.href = "#/tab/receipt/CTT/" +newConsultationId;
                                                 });
                                                 return;
                                             }
                                             sessionStorage.setItem("consultationinitaction", "1");
                                             //location.href = "/Customer/Main/#/Waiting";
-                                            location.href = "#/tab/receipt/CTT/newConsultationId";
+                                            location.href = "#/tab/receipt/CTT/" +newConsultationId;
                                         }
                                     }
                                 });

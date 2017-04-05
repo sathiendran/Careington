@@ -1,7 +1,7 @@
 ﻿<div>
     <div class="dialogbox-master is-next is-pss">
         <a class="dialogbox-master__close" data-bind="events: { click: vm_onCloseClick }"></a>
-        <div class="dialogbox-master__titlebar dialogbox-master__titlebar--usertray dialogbox-master__titlebar--patient">
+        <div id="appoitEditPop" class="dialogbox-master__titlebar dialogbox-master__titlebar--usertray dialogbox-master__titlebar--patient appoitEditPop">
             <span data-bind="text: vm_dialogTitle"></span>
         </div>
         <div class="dialogbox-master__main" data-bind="css:{dialogbox-master__main--timer:vm_isNew, is-disabled:isExpiredAppointment}">
@@ -88,10 +88,11 @@
                             <div class="consultation-phone js-phone-target" data-bind="css: {is-error: vm_phoneNumberError, is-active:vm_isPhoneNumberFilled}">
                                 <div class="consultation-phone__number">
                                     <div class="consultation-phone__icon"><span class="icon_phone"></span></div>
-                                    <input type="text" data-value-update="keyup" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input" placeholder="Enter a phone number…" tabindex="5">
+                                    <input id="ffff" type="tel" data-value-update="keyup" data-bind="events: { keyup: vm_onPhoneNumberChange }, value: phoneNumber, disabled: isReadOnly" class="consultation-phone__input js-phone-input" placeholder="Enter a phone number…" tabindex="5">
                                 </div>
                                 <div class="consultation-phone__type js-phone-wrap">
                                     <input type="text" data-bind="value: phoneType, source: phoneTypeDs, events: {change: vm_onPhoneTypeChange}, disabled: isReadOnly" data-role="dropdownlist" data-value-primitive="true" data-text-field="text" data-value-field="value" class="consultation-phone__dropdown js-dropdown-phone">
+                                    <!--<i class="ion-chevron-down"></i>-->
                                 </div>
                             </div>
 

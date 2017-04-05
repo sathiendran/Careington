@@ -1379,6 +1379,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
       $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
       $rootScope.userhome = true;
       $rootScope.consultationId = $stateParams.getconsultId;
+      $rootScope.concentToTreatPreviousPage = "tab.userhome";
       $rootScope.doGetpatDetailsForSS($rootScope.patientId,"Now");
     }
 
@@ -1829,6 +1830,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 apiSsoURL: $rootScope.ssopatienttoken,
                 success: function(data) {
                     $rootScope.accessToken = data.access_token;
+                  //  $rootScope.doGetUserTimezone();
                     $scope.getCurrentTimeForSessionLogout = new Date();
                     $rootScope.addMinutesForSessionLogout = $scope.addMinutes($scope.getCurrentTimeForSessionLogout, 20);
                     $window.localStorage.setItem('tokenExpireTime', $rootScope.addMinutesForSessionLogout);
@@ -1870,6 +1872,36 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     }
 
+  /*  $rootScope.doGetUserTimezone = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              var userData = {};
+              userData.apiDeveloperId = util.getHeaders()["X-Developer-Id"];
+              userData.apiKey = util.getHeaders()["X-Api-Key"];
+              userData.token = $rootScope.accessToken;
+              userData.snapLogin = true;
+              userData.timeZoneSystemId = data.message;
+              var userDataJsonData = JSON.stringify(userData);
+              $window.localStorage.setItem('snap_user_session', userDataJsonData);
+            },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else if (status === 401) {
+                    $scope.ErrorMessage = "You are not authorized to view this account";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getUserTimezone(params);
+    }*/
 
     $scope.doGetToken = function() {
         if ($('#password').val() === '') {
@@ -1905,8 +1937,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $rootScope.Validation($scope.ErrorMessage);
                     } else {
                         $scope.tokenStatus = 'alert-success';
+                      //  $rootScope.doGetUserTimezone();
                         $scope.doGetCodesSet();
-
                         $scope.chkPatientFilledAllRequirements();
                     }
                     window.localStorage.setItem('rootScope', angular.fromJson($rootScope));
@@ -3327,6 +3359,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         } else if ($rootScope.consultChargeNoPlanPage === "block") {
             $rootScope.consultChargeNoPlanPage = "none";
             $rootScope.healthPlanPage = "block";
+        } else {
+          $rootScope.doGetScheduledConsulatation();
+          $rootScope.doGetIndividualScheduledConsulatation();
+          $state.go('tab.userhome');
         }
 
     }
@@ -4037,7 +4073,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.nextAppointmentDisplay = 'none';
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
-                    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    var currentUserHomeDate = d;
 
                     if ($rootScope.scheduledList != '') {
                         var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
@@ -4505,7 +4542,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
-                    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    var currentUserHomeDate = d;
                     $rootScope.individualNextAppointmentDisplay = 'none';
                     $rootScope.individualwithoutAppointmentDisplay = 'block';
                     $rootScope.accountClinicianFooter = 'block';
@@ -4574,7 +4612,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             });
                             $rootScope.time = new Date(getReplaceTime).getTime();
                             var d = new Date();
-                            var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                            //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                            var currentUserHomeDate = d;
                             if (getReplaceTime < currentUserHomeDate) {
                                 $rootScope.timerCOlor = '#E1FCD4';
                                 $('.AvailableIn').hide();
@@ -4612,18 +4651,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 angular.forEach(data.data[0].familyMembers, function(index) {
                     if (index.patientId == $rootScope.checkpatid) {
-
-
                         $rootScope.providerAvailability = index.providerAvailable;
-
                     }
                 });
 
                 $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
-
-
-
-
             },
             error: function(data, status) {
                 if (status === 0) {

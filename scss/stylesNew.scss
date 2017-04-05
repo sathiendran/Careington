@@ -5085,3 +5085,179 @@ margin-right: 10px;
 .appointEdit {
   margin-top: 6px;
 }
+.provNameCircle {
+  width: 106% !important;
+  height: 106% !important;
+  border-radius: 50%;
+  border: 2px solid #C4C5C3;
+  font-size: 20px !important;
+  padding-top: 31% !important;
+}
+.k-animation-container, .k-widget, .k-widget *, .k-animation-container *, .k-widget *:before, .k-animation-container *:after, .k-block .k-header, .k-list-container {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.k-notification.k-notification-error {
+  background-color: #ffe0d9;
+  color: #fff;
+  border-color: #ffb7a8;
+}
+.k-group, .k-toolbar, .k-grouping-header, .k-pager-wrap, .k-group-footer td, .k-grid-footer, .k-footer-template td, .k-widget .k-status, .k-calendar th, .k-dropzone-hovered, .k-widget.k-popup {
+  background-color: #f5f5f5;
+}
+
+.k-notification-error.k-group {
+  background: rgba(255, 0, 0, 0.8) !important;
+  color: #fff;
+  padding: 0;
+}
+
+[class*="k-state"], [class*="k-state"]>.k-select {
+  transition: all .3s;
+}
+
+.k-popup {
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.k-block, .k-button, .k-textbox, .k-drag-clue, .k-touch-scrollbar, .k-window, .k-window-titleless .k-window-content, .k-window-action, .k-inline-block, .k-grid .k-filter-options, .k-grouping-header .k-group-indicator, .k-autocomplete, .k-multiselect, .k-combobox, .k-dropdown, .k-dropdown-wrap, .k-datepicker, .k-timepicker, .k-colorpicker, .k-datetimepicker, .k-notification, .k-numerictextbox, .k-picker-wrap, .k-numeric-wrap, .k-colorpicker, .k-list-container, .k-calendar-container, .k-calendar td, .k-calendar .k-link, .k-treeview .k-in, .k-editor-inline, .k-tooltip, .k-tile, .k-slider-track, .k-slider-selection, .k-upload {
+  border-radius: 5px;
+}
+
+.k-widget, .k-widget * {
+  -moz-background-clip: border-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+.snapSuccess, .snapInfo, .snapEmail, .snapAnnouncement, .snapError {
+  padding: 20px;
+  padding-left: 60px;
+  margin: auto 0;
+  overflow: hidden;
+  margin: 0;
+  clear: both;
+  display: inline-block;
+  line-height: 1.2em;
+  text-shadow: 1px, 1px, 1px, #000;
+  cursor: pointer;
+}
+
+.snapSuccess [class="icon_circle-with-cross"], .snapInfo [class="icon_circle-with-cross"], .snapEmail [class="icon_circle-with-cross"], .snapAnnouncement [class="icon_circle-with-cross"], .snapError [class="icon_circle-with-cross"] {
+  position: absolute;
+  right: 10px;
+  left: auto;
+}
+
+.snapSuccess [class^="icon_"], .snapInfo [class^="icon_"], .snapEmail [class^="icon_"], .snapAnnouncement [class^="icon_"], .snapError [class^="icon_"] {
+  position: absolute;
+  left: 20px;
+  font-size: 1.5em;
+}
+
+[class^="icon_"], [class*=" icon_"], #file-sharing .k-dropzone:before, #file-sharing ul.actions .toggle:before, #file-sharing .sort:after, #file-sharing .heading .uploadFiles:before, .admin #header .admin-menu li a:before, #adminContent .sidebar .content .close:before, #adminContent #newClient .secondary .close:before, #file-sharing ul.tags ul:before, .carousel .navigate.prev a:before, .carousel .navigate.next a:after, .k-group-delete:before, .sort_client_by .order:before, .k-si-arrow-n:before, .k-si-arrow-s:before, .icon-button:before, .k-update:before, .k-cancel:before, .k-edit:before, .k-delete:before, .k-i-seek-w:before, .k-i-seek-e:before, div.stats .seats.clinician:before {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  font-size: 20px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon_circle-with-cross:before {
+  content: "\e664";
+}
+.snapError h3 {
+  color: #fff !important;
+  font-family: "GloberxBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+}
+
+.snapSuccess h3, .snapInfo h3, .snapEmail h3, .snapAnnouncement h3, .snapError h3 {
+  font-weight: normal;
+  padding: 0px 10px 5px 0px;
+  font-size: 1.3em;
+  line-height: 1.1em;
+  margin: 0;
+  color: #111;
+  float: left;
+}
+.snapSuccess p, .snapInfo p, .snapEmail p, .snapAnnouncement p, .snapError p {
+  font-weight: normal;
+  padding-top: 0;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0;
+  float: left;
+  clear: both;
+}
+.icon_warning:before {
+  content: "\e609";
+}
+.k-popup {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.k-block, .k-widget, .k-grid, .k-slider, .k-splitter, .k-treeview, .k-panelbar, .k-content, .k-header-column-menu {
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.k-block, .k-widget {
+  line-height: normal;
+  outline: 0;
+}
+
+.k-widget, .k-block, .k-inline-block, .k-draghandle {
+  border-style: solid;
+  border-width: 1px;
+  -webkit-appearance: none;
+}
+
+.k-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none;
+}
+
+.k-notification {
+  font-size: 14px !important;
+}
+
+[class^="k-notification-"], [class*="k-notification-"] {
+  padding: 1.5em 2em;
+  border-radius: .5em;
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  min-height: 100px;
+}
+.snapSuccess [class="icon_circle-with-cross"], .snapInfo [class="icon_circle-with-cross"], .snapEmail [class="icon_circle-with-cross"], .snapAnnouncement [class="icon_circle-with-cross"], .snapError [class="icon_circle-with-cross"] {
+  position: absolute;
+  right: 10px;
+  left: auto;
+}
+.k-notification.k-notification-success {
+  background-color: #eaf7ec;
+  color: #fff;
+  border-color: #c3e8ca;
+}
+.k-notification-success.k-group {
+  background: rgba(0, 153, 0, 0.8) !important;
+  color: #fff;
+  padding: 0;
+}
+.k-notification-success.k-group h3 {
+  color: #fff !important;
+}

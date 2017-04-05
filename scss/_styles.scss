@@ -71,6 +71,15 @@
     font-family: 'Glober xBold';
     src: url("Glober xBold.otf");
 }
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?o8g2tt');
+    src: url('../fonts/icomoon.eot?o8g2tt#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?o8g2tt') format('truetype'), url('../fonts/icomoon.woff?o8g2tt') format('woff'), url('../fonts/icomoon.svg?o8g2tt#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
 html,
 body,
 video,

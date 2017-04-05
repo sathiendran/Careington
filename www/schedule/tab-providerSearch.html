@@ -1,6 +1,6 @@
 <nav class="main-nav" >
     <a href="#" class="user-info user-info--main-nav">
-        <div class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)" style="border: 0px #fff solid;">
+        <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImage(PatientImage,primaryPatientName,primaryPatientLastName)" style="border: 0px #fff solid;">
 
         </div>
 
@@ -14,7 +14,7 @@
         </div>
     </a>
 
-    <ul class="main-nav__list" style="position: absolute; bottom: 0px; width: 100%;">
+    <ul class="main-nav__list" >
         <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span>Patient List</a></li>
         <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span>My Health</a></li>
         <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span>My Appointments</a></li>
@@ -25,7 +25,7 @@
 </nav>
 
 <div class="wrapper page" >
-  <header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}">
+  <header class="header header__patient-ss" data-bind="class:{header--hide-patient:isConsultHeader}" style="background-color:{{brandColor}};border-color:{{brandColor}};">
       <div class="row">
           <div class="header__menu">
               <a href="#" class="main-nav__toggle js-toggle-main-nav" data-bind="click:onNavClick">

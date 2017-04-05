@@ -64,7 +64,7 @@ angular.module('starter.controllers')
                 $rootScope.ssopatienttoken = data.data[0].patientTokenApi;
                 $rootScope.ssopatientregister = data.data[0].patientRegistrationApi;
                 $rootScope.ssopatientforgetpwd = data.data[0].patientForgotPasswordApi;
-                
+
                 if ($rootScope.getDetails !== '') {
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
@@ -170,7 +170,8 @@ angular.module('starter.controllers')
                     $rootScope.accountClinicianFooter = 'block';
                     var d = new Date();
                     d.setHours(d.getHours() + 12);
-                    var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                    var currentUserHomeDate = d;
                     if ($rootScope.scheduledList !== '') {
                         var getReplaceTime = $rootScope.scheduledList[0].scheduledTime;
                         var currentUserHomeDate = currentUserHomeDate;

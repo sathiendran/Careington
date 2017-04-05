@@ -1,20 +1,59 @@
 angular.module('starter.controllers')
     .controller('ScheduleCtrl', function($scope, $cordovaFileTransfer, $ionicPlatform, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicModal, $ionicPopup, $ionicHistory, $filter, ageFilter, $ionicLoading, $timeout, CustomCalendar, SurgeryStocksListService, $window, $ionicBackdrop) {
+
+      $rootScope.doGetUserTimezone = function() {
+          var params = {
+              accessToken: $rootScope.accessToken,
+              success: function(data) {
+                var userData = {};
+                userData.apiDeveloperId = snap.userSession.apiDeveloperId;
+                userData.apiKey = snap.userSession.apiKey;
+                userData.token = snap.userSession.token;
+                userData.snapLogin = true;
+                userData.timeZoneSystemId = data.message;
+                var userDataJsonData = JSON.stringify(userData);
+                $window.localStorage.setItem('snap_user_session', userDataJsonData);
+              },
+              error: function(data, status) {
+                  if (status === 0) {
+                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                      $rootScope.Validation($scope.ErrorMessage);
+
+                  } else if (status === 401) {
+                      $scope.ErrorMessage = "You are not authorized to view this account";
+                      $rootScope.Validation($scope.ErrorMessage);
+
+                  } else {
+                      $rootScope.serverErrorMessageValidation();
+                  }
+              }
+          };
+
+          LoginService.getUserTimezone(params);
+      }
+
         this.initSnapVars = function() {
             // snap.baseUrl = "https://emerald.snap-qa.com";
             snap.userSession = JSON.parse($window.localStorage.getItem("snap_user_session"));
             snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
             snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
             snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
+            $rootScope.doGetUserTimezone();
         }
+        $('.appoitEditPop').css('background-color', brandColor);
 
         this.initKendoUI = function() {
             if(snap.profileSession === undefined) {
               this.initSnapVars();
             }
-            snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
 
+            snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
                 $(".schedular-continer").html(html);
+                var chkClass = $("body").hasClass("is-main-nav");
+                if(chkClass) {
+                  $("body").removeClass("is-main-nav");
+                }
+                snap.updateSnapJsSession("snap_user_session", "timeZoneSystemId", snap.userSession.timeZoneSystemId);
                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
                 headerVM.set("moduleTitle", "Provider");
@@ -36,15 +75,6 @@ angular.module('starter.controllers')
             });
         }
         this.initKendoUI();
-
-        /*  $scope.getDatss = function() {
-              if ($("#searchFilter").hasClass("is-active")) {
-                  $("#searchFilter").removeClass("is-active");
-              } else {
-                  $("#searchFilter").addClass("is-active");
-              }
-          }*/
-
         $scope.getDetails = function(userName) {
             var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
             var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
