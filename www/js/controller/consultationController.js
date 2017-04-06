@@ -245,6 +245,7 @@ angular.module('starter.controllers')
                                     'clinicianId': item.clinicianId,
                                     'appointmentId': item.appointmentId,
                                     'priConcern': item.intakeMetadata.concerns[0].customCode.description,
+                                    'encounter':item.encounterTypeCode,
                                     'secConcern': secConcern
                                 });
 
@@ -302,7 +303,8 @@ angular.module('starter.controllers')
                             'patientLastName': index.patientLastName,
                             'patientName': index.patientName,
                             'startedConsultation': index.startedConsultation,
-                            'waitingConsultation': index.waitingConsultation
+                            'waitingConsultation': index.waitingConsultation,
+                            'encountertype':index.encounterTypeCode
                         });
                     });
 
