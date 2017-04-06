@@ -5261,3 +5261,46 @@ margin-right: 10px;
 .k-notification-success.k-group h3 {
   color: #fff !important;
 }
+.encountericon {
+  background-color: #666;
+border-radius: 50%;
+  padding: 1px 5px 0px 4px;
+  color: white;
+  margin-left: -13px;
+[class^="icon-"], [class*=" icon-"] {
+    font-size: 9px;
+}
+}
+
+.encounterappticon {
+  background-color: #666;
+border-radius: 50%;
+padding: 5px 6px 0px 5px;
+color: white;
+margin-left: -19px;
+    [class^="icon-"], [class*=" icon-"] {
+        font-size: 14px;
+    }
+
+}.encounterappticon {
+  background-color: #666;
+border-radius: 50%;
+padding: 5px 6px 0px 5px;
+color: white;
+margin-left: -19px;
+    [class^="icon-"], [class*=" icon-"] {
+        font-size: 14px;
+    }
+
+}
+.encountercalicon {
+  background-color: #666;
+     border-radius: 50%;
+     padding: 0px 5px 0px 5px;
+     color: white;
+     margin-left: -25px;
+    [class^="icon-"], [class*=" icon-"] {
+        font-size: 9px;
+    }
+
+}
