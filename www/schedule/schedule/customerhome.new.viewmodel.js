@@ -1302,6 +1302,7 @@ var setUserVars = function() {
                     var promise = $appointmentService.saveAppointment(this.getOptions());
                     promise.done(function() {
                         if (!that.vm_isNew()) {
+                            sessionStorage.setItem('ssAppointUpdate', 'yes');
                             $snapNotification.success(that._typeName + " updated successfully");
                             setTimeout(function() {
                               $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -4686,7 +4687,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                         if (callback && callback.call) {
                                             callback.call();
                                         }
-
+                                        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
                                             //location.href = "/Customer/Intake/#/Confirmation";
                                             location.href = "#/tab/ConsentTreat/CTT/" +newConsultationId;

@@ -84,7 +84,8 @@ angular.module('starter.controllers')
               personID: personId,
               success: function(data) {
                   $rootScope.consultationId = data.data[0].consultationId;
-                  $rootScope.doCheckExistingConsulatationStatus();
+                  $rootScope.SSPage = false;
+                  $rootScope.doCheckExistingConsulatationStatus('tab.appoimentDetails');
               //    $rootScope.appointmentDisplay = "test";
                 //  $scope.$root.$broadcast("callAppointmentConsultation");
               },
@@ -200,7 +201,7 @@ angular.module('starter.controllers')
 
     }
 
-    $scope.doGetConcentToTreat = function() {
+  /*  $scope.doGetConcentToTreat = function() {
           var params = {
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
@@ -238,11 +239,8 @@ angular.module('starter.controllers')
             }
         };
         LoginService.getConcentToTreat(params);
-    }
+    }*/
 
-    if($stateParams.getPage === 'webSSAppointUpdate'){
-      $scope.GetSelectedappoimentDetails(JSON.parse(sessionStorage.getItem("SSscheduledAppointmentId")));
-    };
 
     $scope.doGetSelectedappoimentDetails = function(SSscheduledAppointmentId) {
       $rootScope.appointmentId = '';
@@ -331,6 +329,9 @@ angular.module('starter.controllers')
     };
 
 
+    if($stateParams.getPage === 'webSSAppointUpdate'){
+      $scope.doGetSelectedappoimentDetails(sessionStorage.getItem("SSscheduledAppointmentId"));
+    };
 
     $scope.$on("callAppointmentConsultation", function(event, args) {
       // $scope.doGeAppointmentExistingConsulatation();

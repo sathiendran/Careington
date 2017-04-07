@@ -57,6 +57,8 @@ angular.module('starter.controllers')
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+        $rootScope.Cttonscheduled = '';
+        $rootScope.onSSAvailability = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -74,6 +76,12 @@ angular.module('starter.controllers')
                         }
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                            $rootScope.Cttonscheduled = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') {
+                            $rootScope.onSSAvailability = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
