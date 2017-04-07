@@ -4098,6 +4098,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 'patLastName': $scope.paticipatingPatient.person.name.family,
                                 'phiFirstName': $scope.paticipatingPhysician.person.name.given,
                                 'phiLastName': $scope.paticipatingPhysician.person.name.family,
+                                'encountertypecode':index.encounterTypeCode,
                                 'clinicianId': index.clinicianId
                             });
                             angular.forEach(index.participants, function(index, item) {
@@ -4137,6 +4138,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                             }
                         }
                     }
+
                 }
             },
             error: function(status) {
@@ -4547,7 +4549,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.individualScheduleParticipants = [];
                     var currentDate = new Date();
                     currentDate = $scope.addMinutes(currentDate, -30);
-
+                    $rootScope.individualmobile = $scope.individualScheduledConsultationList.mobilePhone;
                     angular.forEach($scope.individualScheduledConsultationList.appointments, function(index) {
                         if (currentDate < CustomCalendar.getLocalTime(index.startTime)) {
 
@@ -4571,6 +4573,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 'participants': angular.fromJson(index.participants),
                                 'waiveFee': index.waiveFee,
                                 'scheduledDate': $scope.formatscheduleddate,
+                                'encountertypecode':index.encounterTypeCode,
                                 'clinicianId': index.clinicianId
                             });
                             angular.forEach(index.participants, function(index) {
@@ -4587,7 +4590,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                     });
 
-                    $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList, "scheduledTime"), "a");
+                    $rootScope.individualScheduledList = $filter('filter')($filter('orderBy')($rootScope.getIndividualScheduledList,"scheduledTime"), "a");
                     $rootScope.getIndividualScheduleDetails = $rootScope.individualScheduledList;
 
                     var d = new Date();
@@ -4902,6 +4905,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 } else {
                     $rootScope.getCoUserAunthent = 'Authorized';
                     $rootScope.Passedconsultations = data.data;
+                      $rootScope.encountercode =  $rootScope.Passedconsultations.encounterTypeCode;
+
+
                 }
 
 
@@ -5549,6 +5555,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData, fromPreviousPage) {
         $rootScope.AppointScheduleTime = '';
         $rootScope.appointmentsPatientId = '';
+        $rootScope.schedulemobile = scheduledListData.participants[1].person.phones[0].value;
         $rootScope.scheduledListDatas = scheduledListData;
         var currentTime = $rootScope.scheduledListDatas.scheduledTime;
         var getMinsExtraTime = $scope.addMinutes(currentTime, 30);

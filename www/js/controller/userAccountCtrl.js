@@ -171,6 +171,8 @@ angular.module('starter.controllers')
 
         $rootScope.doGetCurrentUserAppointment = function() {
             $rootScope.passededconsultants();
+            $rootScope.doGetIndividualScheduledConsulatation();
+            
             if ($rootScope.primaryPatientId === $rootScope.currentPatientDetails[0].account.patientId) {
                 $rootScope.viewmyhealthDisplay = 'block';
                 $rootScope.viewhealthDisplay = 'none';

@@ -263,6 +263,7 @@ angular.module('starter.controllers')
                     'participants': angular.fromJson(index.participants),
                     'patientId': index.patientId,
                     'waiveFee': index.waiveFee,
+                    'encountertypecode':index.encounterTypeCode,
                     'patientName': $scope.paticipatingPatientName,
                     'patientInitial': $scope.paticipatingPatientInitial,
                     'patientImage': $scope.paticipatingPatientPhoto,
