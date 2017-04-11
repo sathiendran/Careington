@@ -183,6 +183,36 @@ angular.module('starter.controllers')
         $('.AvailableIn').hide();
         $('.enterAppoinment').show();
     };
+    $scope.doGetUserTimezone = function() {
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              var userData = {};
+              userData.apiDeveloperId = snap.userSession.apiDeveloperId;
+              userData.apiKey = snap.userSession.apiKey;
+              userData.token = snap.userSession.token;
+              userData.snapLogin = true;
+              userData.timeZoneSystemId = data.message;
+              var userDataJsonData = JSON.stringify(userData);
+              $window.localStorage.setItem('snap_user_session', userDataJsonData);
+            },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else if (status === 401) {
+                    $scope.ErrorMessage = "You are not authorized to view this account";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getUserTimezone(params);
+    }
 
     $scope.editAppointment = function(scheduledListData) {
         $ionicLoading.show({
@@ -194,6 +224,7 @@ angular.module('starter.controllers')
           snap.profileSession = JSON.parse($window.localStorage.getItem("snap_patientprofile_session"));
           snap.hospitalSession = JSON.parse($window.localStorage.getItem("snap_hospital_session"));
           snap.hospitalSettings = JSON.parse($window.localStorage.getItem("snap_hospital_settings"));
+          $scope.doGetUserTimezone();
         }
 
         var opt = new snap.patient.schedule.appointmentDialog();
@@ -201,57 +232,38 @@ angular.module('starter.controllers')
 
     }
 
-  /*  $scope.doGetConcentToTreat = function() {
-          var params = {
-            documentType: 2,
-            hospitalId: $rootScope.hospitalId,
-            success: function(data) {
-                  $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
-                  $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
-               if ($rootScope.appointmentsPage === true) {
-                 if($rootScope.Cttonscheduled === 'on'){
-                   $state.go('tab.ConsentTreat');
-                 }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false) {
-                       $rootScope.doPostDepitDetails();
-                   }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true){
-                     $state.go('tab.receipt');
-                     $rootScope.enablePaymentSuccess = "none";
-                     $rootScope.enableInsuranceVerificationSuccess = "none";
-                     $rootScope.enableCreditVerification = "none";
-                     $rootScope.enableWaivefeeVerification = "block";
-                      $rootScope.ReceiptTimeout();
-                   }
-                    else {
-                       $rootScope.doGetHospitalInformation();
-                   }
-                 }
-
-              },
-            error: function(data, status) {
-                if (status === 0) {
-
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            }
-        };
-        LoginService.getConcentToTreat(params);
-    }*/
-
-
     $scope.doGetSelectedappoimentDetails = function(SSscheduledAppointmentId) {
-      $rootScope.appointmentId = '';
-      $rootScope.appointPersonId = '';
-      $rootScope.AppointScheduleTime = '';
+    //  $rootScope.appointmentId = '';
+    //  $rootScope.appointPersonId = '';
+    //  $rootScope.AppointScheduleTime = '';
       var params = {
           accessToken: $rootScope.accessToken,
           appointmentId: SSscheduledAppointmentId,
           success: function(data) {
               $rootScope.scheduledListDatas = [];
               angular.forEach(data.data, function(index) {
+                $scope.paticipatingPatient = $filter('filter')(angular.fromJson(index.participants), {
+                    "participantTypeCode": "1"
+                })[0];
+                var apptdate = index.startTime
+                var dataw = Date.parse(apptdate);
+                var newda = new Date(dataw);
+                var splitmnth = newda.getMonth() + 1;
+                var splitdate = newda.getDate();
+                var splityear = newda.getFullYear();
+                var Aptdate = splityear + "/" + splitmnth + "/" + splitdate;
+                $scope.formatscheduleddate = moment(Aptdate, 'YYYY/MM/DD').format('MMM D');
+                $rootScope.appointmentwaivefee=index.waiveFee;
+                $scope.paticipatingPatientName = $scope.paticipatingPatient.person.name.given + ' ' + $scope.paticipatingPatient.person.name.family;
+                $scope.paticipatingPatientInitial = getInitialForName($scope.paticipatingPatientName);
+                $scope.paticipatingPatientPhoto = $scope.paticipatingPatient.person.photoUrl;
+                $scope.paticipatingPhysician = $filter('filter')(angular.fromJson(index.participants), {
+                    "participantTypeCode": "2"
+                })[0];
+                $scope.paticipatingPhysicianName = $scope.paticipatingPhysician.person.name.given + ' ' + $scope.paticipatingPhysician.person.name.family;
+                $scope.paticipatingPhysicianInitial = getInitialForName($scope.paticipatingPhysicianName);
+                $scope.paticipatingPhysicianPhoto = $scope.paticipatingPhysician.person.photoUrl;
+
                 $rootScope.scheduledListDatas.push({
                     'scheduledTime': CustomCalendar.getLocalTime(index.startTime),
                     'appointmentId': index.appointmentId,
@@ -278,15 +290,20 @@ angular.module('starter.controllers')
                     'clinicianId': index.clinicianId
                 });
               });
+              $rootScope.scheduledListDatas = $rootScope.scheduledListDatas[0];
+
               var currentTime = $rootScope.scheduledListDatas.scheduledTime;
               var getMinsExtraTime = $scope.addMinutes(currentTime, 30);
               var getEnterTime = new Date();
               var getMissedAppointmentExpiryTime = ((new Date(getMinsExtraTime).getTime()) - (getEnterTime.getTime()));
               if (getMissedAppointmentExpiryTime > 0) {
                   $rootScope.AppointScheduleTime = getMissedAppointmentExpiryTime;
+                  $('.enterAppoinment2').hide();
+                  $(".enterAppoinment2").css("display", "none");
               } else {
                   $rootScope.AppointScheduleTime = '';
               }
+
               $rootScope.appointPrimaryConcern = htmlEscapeValue.getHtmlEscapeValue($rootScope.scheduledListDatas.intakeMetadata.concerns[0].customCode.description);
               $rootScope.appointSecondConcern = $rootScope.scheduledListDatas.intakeMetadata.concerns[1];
               if ($rootScope.appointSecondConcern === '' || typeof $rootScope.appointSecondConcern === 'undefined') {
@@ -306,8 +323,88 @@ angular.module('starter.controllers')
               $rootScope.appointmentsPatientId = $rootScope.patientId;
               $rootScope.assignedDoctorId = $rootScope.scheduledListDatas.clinicianId; //$rootScope.scheduledListDatas.participants[0].person.id;
               $rootScope.appointmentsPatientGurdianName = htmlEscapeValue.getHtmlEscapeValue($rootScope.primaryPatientFullName);
+              $rootScope.appointmentDisplay = "test";
 
-                $rootScope.appointmentDisplay = "test";
+              var d = new Date();
+              d.setHours(d.getHours() + 12);
+              //var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+              var currentUserHomeDate = d;
+              $rootScope.individualNextAppointmentDisplay = 'none';
+              $rootScope.individualwithoutAppointmentDisplay = 'block';
+              $rootScope.accountClinicianFooter = 'block';
+              $rootScope.accountStyle = "";
+              $rootScope.userAccContent = "";
+
+                  var getReplaceTime = $rootScope.scheduledListDatas.scheduledTime;
+                  var currentUserHomeDate = currentUserHomeDate;
+
+
+                  if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+                      $("#appointNotes").html($rootScope.appointNotes);
+                      $rootScope.accountClinicianFooter = 'none';
+                      $rootScope.individualNextAppointmentDisplay = 'block';
+                      $rootScope.individualwithoutAppointmentDisplay = 'none';
+                      $rootScope.accountStyle = "AppointNone" + $rootScope.deviceName;
+                      $rootScope.userAccContent = "userAccContent" + $rootScope.deviceName;
+                      $rootScope.appointmentPatientId = $rootScope.patientId;
+                      var beforAppointmentTime = getReplaceTime;
+                      var doGetAppointmentTime = $scope.addMinutes(beforAppointmentTime, -30);
+                      if ((new Date(doGetAppointmentTime).getTime()) <= (new Date().getTime())) {}
+                  }
+                  var getReplaceTime1 = $rootScope.scheduledListDatas.scheduledTime;
+                  var getReplaceTime = $scope.addMinutes(getReplaceTime1, -30);
+                  var currentUserHomeDate = currentUserHomeDate;
+                  if ((new Date(getReplaceTime).getTime()) <= (new Date(currentUserHomeDate).getTime())) {
+
+                      $rootScope.time = new Date(getReplaceTime).getTime();
+
+                      $timeout(function() {
+                          document.getElementsByTagName('timer')[0].stop();
+                          document.getElementsByTagName('timer')[0].start();
+                      }, 10);
+
+                      $scope.$on('timer-tick', function(event, args) {
+                          if (args.days === 0) {
+                              $rootScope.hourDisplay = 'initial';
+                              $rootScope.daysDisplay = 'none';
+                              $rootScope.dayDisplay = 'none';
+                          } else if (args.days === 1) {
+                              $rootScope.daysDisplay = 'none';
+                              $rootScope.hourDisplay = 'none';
+                              $rootScope.dayDisplay = 'initial';
+                          } else if (args.days > 1) {
+                              $rootScope.daysDisplay = 'initial';
+                              $rootScope.hourDisplay = 'none';
+                              $rootScope.dayDisplay = 'none';
+                          }
+                          if (args.millis < 600) {
+                              $rootScope.timeNew = 'none';
+                              $rootScope.timeNew1 = 'block';
+                              $rootScope.timerCOlor = '#E1FCD4';
+                              $('.AvailableIn').hide();
+                              $('.enterAppoinment').show();
+                          } else if (args.millis > 600) {
+                              $rootScope.timeNew = 'block';
+                              $rootScope.timeNew1 = 'none';
+                              $rootScope.timerCOlor = '#FDD8C5';
+                              $('.AvailableIn').show();
+                              $('.enterAppoinment').hide();
+                          }
+                      });
+                      $rootScope.time = new Date(getReplaceTime).getTime();
+                      var d = new Date();
+                    //  var currentUserHomeDate = CustomCalendar.getLocalTime(d);
+                      var currentUserHomeDate = d;
+                      if (getReplaceTime < currentUserHomeDate) {
+                          $rootScope.timerCOlor = '#E1FCD4';
+                          $('.AvailableIn').hide();
+                          $('.enterAppoinment').show();
+                      }
+                  } else if ((new Date(getReplaceTime).getTime()) >= (new Date(d).getTime())) {
+                      $rootScope.timerCOlor = 'transparent';
+                  }
+
+
                 $scope.doGetExistingPatientName();
                 $rootScope.doGetDoctorDetails();
 

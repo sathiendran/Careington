@@ -1496,7 +1496,9 @@ var setUserVars = function() {
                             $eventAggregator.published(fact.removedEvent, that);
                             $snapNotification.success("Appointment is unassigned successfully");
                             $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                            location.href = "#/tab/appointmentpatientdetails/webSSCancel";
+                            setTimeout(function() {
+                                location.href = "#/tab/appointmentpatientdetails/webSSCancel";
+                            }, 2000);
                         }).fail(function(error) {
                             $snapNotification.error(error);
                             that.set("isError", true);

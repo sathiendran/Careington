@@ -2691,13 +2691,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.patGender = "NA";
                     }
 
-                    var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
-                        codeId: index.relationCode
-                    })
-                    if (getdependRelationShip.length !== 0) {
-                        var depRelationShip = getdependRelationShip[0].text;
-                    } else {
-                        var depRelationShip = '';
+                    if($rootScope.listOfRelationship != '' && typeof($rootScope.listOfRelationship !== 'undefined')) {
+                      var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                          codeId: index.relationCode
+                      })
+                      if (getdependRelationShip.length !== 0) {
+                          var depRelationShip = getdependRelationShip[0].text;
+                      } else {
+                          var depRelationShip = '';
+                      }
                     }
 
                     $rootScope.RelatedPatientProfiles.push({

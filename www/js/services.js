@@ -452,6 +452,26 @@ angular.module('starter.services', [])
                 });
     }
 
+    this.getSelectedappoimentDetails = function (params) {
+          var requestInfo = {
+              headers: util.getHeaders(params.accessToken),
+  			      url: apiCommonURL + '/api/v2.1/patients/appointments/' + params.appointmentId,
+              method: 'GET'
+
+          };
+
+          $http(requestInfo).
+                  success(function (data, status, headers, config) {
+                      if (typeof params.success != 'undefined') {
+                          params.success(data);
+                      }
+                  }).
+                  error(function (data, status, headers, config) {
+                      if (typeof params.error != 'undefined') {
+                         params.error(data,status);
+                      }
+                  });
+      }
 
 		this.getListOfCodeSet = function(params) {
 			var PatientDetailsList = {
