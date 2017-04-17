@@ -1,0 +1,40 @@
+<div class="modal">
+   <ion-view>
+      <header class="bar bar-header bar-dark concernListHeader" style="{{PrimaryConcernPopupH}}; background-color:{{brandColor}};border-color:{{brandColor}};{{backgroundimage}};">
+         <div class="ErrorMessage ErrorMessageDiv"  ></div>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
+         <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My Health</h1>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="medicationdone()" >Done</button>
+      </header>
+      <ion-content has-header="true" class="concernListContent">
+         <ion-list>
+            <ion-item class="search_home  concernListSearch">
+               <h2 class="subname subName-{{deviceName}}">Select an Id type</h2>
+               <div class=" searchbox" style="margin-top: 0px!important;">
+                  <div class="item-input-inset" style="margin-top: 0px!important;margin-bottom: 0px!important;">
+                     <label class="item-input-wrapper">
+                     <i style="display: {{iconDisplay}}" ng-bind-html="drawSVGCIcon('magnifying-glass')" class="inputsearchtext"></i>
+                     <input type="search" class="inputsearchtext" placeholder="Search" ng-model="data.searchProvider">
+                     </label>
+                  </div>
+               </div>
+               <div class="srchlist">
+                  <div  id="index_{{letter}}"  ng-repeat="(letter, currentPatientsearchList) in sorted_users" >
+                     <ion-checkbox ng-repeat="currentpatientid in filteredItems = (currentPatientsearchList | filter:data.searchProvider)"
+                        ng-model="currentpatientid.checked"
+                        ng-checked="currentpatientid.checked" ng-change="OnSelectMedication(currentpatientid)"  ng-disabled="currentpatientid==limit && !currentpatientid.checked" checkbox-group>
+                        <span class="ng-binding concernListDetails">   {{ currentpatientid.display }} </span>
+                     </ion-checkbox>
+                  </div>
+               </div>
+            </ion-item>
+            <ion-item  ng-show="(currentPatientsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
+         </ion-list>
+         <ul class="alpha_sidebar" ng-show="(currentPatientsearchList | filter:data.searchProvider).length!=0" id="nav">
+            <li ng-click="gotopatList('index_{{letter}}')" ng-repeat="letter in alphabet" id="lettertest" class="">
+               {{letter}}
+            </li>
+         </ul>
+      </ion-content>
+   </ion-view>
+</div>

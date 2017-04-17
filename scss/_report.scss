@@ -1,0 +1,48 @@
+.popup{
+    position: static !important;
+}
+
+.pc-report--print{
+    width:100% !important;
+    margin:0 auto;
+    height:100% !important;
+    overflow:visible !important;
+}
+
+.pc-report__print-header{
+    display: block;
+}
+
+.pc-report__page-break{
+    display:block;
+    page-break-after: always;
+}
+
+.pc-report__patient-info {
+    float: left;
+    width: calc(50% - 5px);
+    position: relative;
+}
+
+.pc-report__encounter-info {
+    float: right;
+    width: 50%;
+    padding-left: 5px;
+}
+
+.pc-report__med-history-left {
+    float: left;
+    width: calc(50% - 17px);
+    margin-right: 17px;
+    position: relative;
+}
+
+.pc-report__med-history-right {
+    float: right;
+    width: 50%;
+}
+
+.pc-report__med-history div[data-template="ul-template"],
+.pc-report__med-history div[data-template="surgeries-ul-template"]{
+    min-height:auto !important;
+}
