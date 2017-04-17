@@ -419,6 +419,7 @@ angular.module('starter.controllers')
     $scope.edittext = function() {
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
+          $rootScope.getPatientids();
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -1374,6 +1375,67 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     };
 
     $scope.getCodesSetsForHospital();
+    $rootScope.getPatientids = function() {
+        var params = {
+
+            accessToken: $rootScope.accessToken,
+
+            success: function(data) {
+$rootScope.currentPatientsearchList = data;
+$rootScope.currentPatientsidsList = data;
+  $rootScope.CurPatientidCount = $scope.currentPatientsidsList.length;
+            },
+            error: function(data,status) {
+              if(status===0 ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }else{
+                  $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.getListOfPatientids(params);
+    };
+      $rootScope.getPatientids();
+    $rootScope.healthpatid = function(){
+      $rootScope.getPatientids();
+              $scope.data.searchProvider = '';
+              $scope.clearSelectionAndRebindSelectionList($rootScope.currentPatientsidsList, $rootScope.currentPatientsearchList);
+              if (typeof $rootScope.CurPatientidCount === 'undefined') {
+                  $rootScope.currentpatientid = 0;
+              } else {
+                  $rootScope.currentpatientid = $rootScope.CurPatientidCount;
+              }
+              $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+              $ionicModal.fromTemplateUrl('templates/tab-addpatientid.html', {
+                  scope: $scope,
+                  animation: 'slide-in-up',
+                  focusFirstInput: false,
+                  backdropClickToClose: false
+              }).then(function(modal) {
+                  $scope.modal = modal;
+                  $scope.modal.show();
+              });
+              $scope.alphabet = iterateAlphabet();
+              var users = $rootScope.currentPatientsearchList;
+              var userslength = users.length;
+              var log = [];
+              var tmp = {};
+              for (i = 0; i < userslength; i++) {
+                  var letter = users[i].text.toUpperCase().charAt(0);
+                  if (tmp[letter] == undefined) {
+                      tmp[letter] = []
+                  }
+                  tmp[letter].push(users[i]);
+              }
+              $rootScope.sorted_users = tmp;
+              $scope.selectedObject = {};
+              $rootScope.gotopatList = function(id) {
+              $location.hash(id);
+              $ionicScrollDelegate.anchorScroll();
+              }
+
+    }
     $scope.healthsearch = function(patientmedications) {
         $scope.data.searchProvider = '';
         $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedications, $rootScope.currentMedicationsearchList);
@@ -1508,7 +1570,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                             text: $scope.data.CurrentMedicationOther,
                             checked: true
                         };
-                        $rootScope.currentMedicationsearchList.splice(1, 0, newCurrentMedicationItem);
+                        $rootScope. b.splice(1, 0, newCurrentMedicationItem);
                         var users = $rootScope.currentMedicationsearchList;
                         var userslength = users.length;
                         var log = [];

@@ -340,6 +340,29 @@
                         <p id="patientAuthorize" ng-show="patientUnAuthorize" ng-click="doDependentToAuthorized(currentPatientDetails[0])">Unauthorized</p>
                      </div>
                   </div>
+
+
+                  <div><h3 class="healthpat"><div><span>Patient IDs</span></div></h3></div>
+
+                  <div class="item item-input itemtab validated" \>
+                     <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('mail')"></i><b class="formlabel labelfont">Email</b><i  class="emailion ion-asterisk"></i></span>
+                     <span class="healthViewDetails" >
+                     <input type="email" name="healthInfoEmail ellipsis" id="healthInfoEmail"   value="{{currentPatientDetails[0].account.email}}" class="textdata" placeholder="Required" ng-blur="emailBlur()" ng-keyup="editmail()">
+                     </span>
+                  </div>
+
+
+                  <div ng-click="healthpatid();">
+                     <div class="PrimaryContent" style="text-align:center;margin-top:15px;">
+                         <div></div>
+                        <h16 class="titleaddbtn"><i ng-bind-html="drawSVGCIcon('plus')"></i> Add An ID</h6>
+                      <!--  <p class="patientConternFontStyle">Select any chronic medical conditions
+                           <br/>
+                           <span class="patientConternFontStyleSubTitle">Select up to four</span>
+                        </p>
+                        <div><i class="addBtn" ng-bind-html="drawSVGCIcon('circle-with-plus')"></i></div> -->
+                     </div>
+                  </div>
                </div>
             </div>
          </ion-content>

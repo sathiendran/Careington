@@ -808,7 +808,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
           //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
-		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
 		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
 
             method: 'GET'
@@ -1571,6 +1571,26 @@ this.getPatientMedicalProfile = function(params){
                  }
              });
    }
+
+        this.getListOfPatientids = function(params){
+          var requestInfo = {
+              headers: util.getHeaders(params.accessToken),
+               url: apiCommonURL+'/api/v2/patients/profiles/identifier-types?role/'+1,
+              method: 'GET',
+          };
+          $http(requestInfo).
+              success(function (data, status, headers, config) {
+                  if (typeof params.success != 'undefined') {
+                      params.success(data);
+                  }
+              }).
+              error(function (data, status, headers, config) {
+                  if (typeof params.error != 'undefined') {
+                      params.success(data);
+                  }
+              });
+        }
+
 
    this.getCountiesList = function(params){
         var requestInfo = {

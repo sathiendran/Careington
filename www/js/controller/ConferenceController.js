@@ -160,6 +160,7 @@ angular.module('starter.controllers')
                 }
                 $rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
                 $rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
+                $rootScope.reportpatientid =htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientId);
                 if ($rootScope.primaryPatientId !== $rootScope.existingConsultationReport.patientId){
                   if ($rootScope.existingConsultationReport.guardianName !== '' && typeof $rootScope.existingConsultationReport.guardianName !== 'undefined') {
                       $rootScope.reportGuardian = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.guardianName);
@@ -180,7 +181,7 @@ angular.module('starter.controllers')
                 if ($rootScope.existingConsultationReport.hospitalAddress !== '' && typeof $rootScope.existingConsultationReport.hospitalAddress !== 'undefined') {
                     $rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
                 } else {
-
+                  $rootScope.reportHospitalAddress 'N/A';
                 }
 
                 if (!angular.isUndefined($rootScope.existingConsultationReport.location)) {
@@ -206,12 +207,13 @@ angular.module('starter.controllers')
                     $rootScope.reportMedicalSpeciality = '';
                 }
 
+                $rootScope.reportpatientid = $rootScope.existingConsultationReport.patientId;
                 if ($rootScope.existingConsultationReport.doctorFirstName != '' && typeof $rootScope.existingConsultationReport.doctorFirstName != 'undefined') {
                     $rootScope.reportDoctorLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.doctorLastName);
                 } else {
                     $rootScope.reportDoctorLastName = 'None Reported';
                 }
-
+                $rootScope.reportethnicity = $rootScope.existingConsultationReport.ethnicity;
                 if ($rootScope.existingConsultationReport.encounterTypeCode !== '' && typeof $rootScope.existingConsultationReport.encounterTypeCode !== 'undefined') {
                   $rootScope.encountercode =  $rootScope.existingConsultationReport.encounterTypeCode;
                     if ($rootScope.encountercode == 2) {
@@ -323,6 +325,9 @@ angular.module('starter.controllers')
                 } else if ($rootScope.vaccinationsCurrent === 'Y') {
                     $rootScope.vaccinationsCurrent = 'Yes';
                 }
+                var repdob =$rootScope.existingConsultationReport.dob;
+                var reptdate = repdob.split("T");
+                $rootScope.reportdob = reptdate[0];
 
                 if($rootScope.existingConsultationReport.dob !== "" && !angular.isUndefined($rootScope.existingConsultationReport.dob)) {
                   var ageDifMs = Date.now() - new Date($rootScope.existingConsultationReport.dob).getTime(); // parse string to date
