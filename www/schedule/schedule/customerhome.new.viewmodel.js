@@ -1302,6 +1302,7 @@ var setUserVars = function() {
                     var promise = $appointmentService.saveAppointment(this.getOptions());
                     promise.done(function() {
                         if (!that.vm_isNew()) {
+                            sessionStorage.setItem('ssAppointUpdate', 'yes');
                             $snapNotification.success(that._typeName + " updated successfully");
                             setTimeout(function() {
                               $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
@@ -1495,7 +1496,9 @@ var setUserVars = function() {
                             $eventAggregator.published(fact.removedEvent, that);
                             $snapNotification.success("Appointment is unassigned successfully");
                             $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
-                            location.href = "#/tab/appointmentpatientdetails/webSSCancel";
+                            setTimeout(function() {
+                                location.href = "#/tab/appointmentpatientdetails/webSSCancel";
+                            }, 2000);
                         }).fail(function(error) {
                             $snapNotification.error(error);
                             that.set("isError", true);
@@ -4686,7 +4689,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                         if (callback && callback.call) {
                                             callback.call();
                                         }
-
+                                        $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
                                         if (snap.hospitalSettings.showCTTOnScheduled) {
                                             //location.href = "/Customer/Intake/#/Confirmation";
                                             location.href = "#/tab/ConsentTreat/CTT/" +newConsultationId;

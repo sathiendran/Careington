@@ -4766,6 +4766,23 @@ span {
     color: #fff;
 }
 }
+.patProfileImageSS {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  text-align: center;
+  font-family: Glober XBold;
+  font-size: 26px;
+  border: 2px solid #fff;
+  position: relative;
+  left: -5px;
+  top: -5px;
+  span {
+      position: relative;
+      top: 25px;
+      color: #fff;
+  }
+}
 .userHomeImage {
 float: left;
 }

@@ -352,6 +352,26 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     };
 
+    $rootScope.drawImageSS = function(imagePath, firstName, lastName) {
+        $('.patProfileImageSS').css({
+            'background-color': $rootScope.brandColor
+        });
+        var Name = getInitialFromName(firstName, lastName);
+        if (Name === 'WW') {
+            Name = 'W';
+        }
+        if (!angular.isUndefined(imagePath) && imagePath !== '') {
+            if (imagePath.indexOf("api") >= 0) {
+                var image = imagePath;
+                return "<img ng-src=" + image + " src=" + image + " class='UserHmelistImgView'>";
+            } else {
+                return $sce.trustAsHtml("<div class='patProfileImageSS'><span>" + Name + "</sapn></div>");
+            }
+        } else {
+            return $sce.trustAsHtml("<div class='patProfileImageSS'><span>" + Name + "</sapn></div>");
+        }
+    };
+
     $rootScope.drawSVGCIconForVideo = function(iconName) {
         return "<svg class='icon-" + iconName + " svgIcon" + iconName + " svgIconForVideo'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
@@ -1006,6 +1026,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+        $rootScope.Cttonscheduled = '';
+        $rootScope.onSSAvailability = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1034,6 +1056,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] === 'OnDemand' || $rootScope.getDetails[i] === 'mOnDemand') {
                             $rootScope.onDemandMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
+                              $rootScope.Cttonscheduled = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') {
+                            $rootScope.onSSAvailability = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
@@ -1217,7 +1245,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
-          $rootScope.Cttonscheduled = '';
+        $rootScope.Cttonscheduled = '';
+        $rootScope.onSSAvailability = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1243,6 +1272,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
               if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
                     $rootScope.Cttonscheduled = 'on';
                 }
+              if ($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') {
+                  $rootScope.onSSAvailability = 'on';
+              }
 							if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
 								$rootScope.OrganizationLocation = 'on';
 							}
@@ -1378,12 +1410,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
       $rootScope.patientId = JSON.parse(sessionStorage.getItem("appointPatId"));
       $rootScope.userhome = true;
+      $rootScope.SSPage = true;
       $rootScope.consultationId = $stateParams.getconsultId;
+      $rootScope.P_isAuthorized = true;
       $rootScope.concentToTreatPreviousPage = "tab.userhome";
       $rootScope.doGetpatDetailsForSS($rootScope.patientId,"Now");
     }
 
-    $rootScope.doCheckExistingConsulatationStatus = function() {
+    $rootScope.doCheckExistingConsulatationStatus = function(CurrentPage) {
         var params = {
             consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
@@ -1391,9 +1425,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $scope.existingConsultation = data;
                 $rootScope.consultionInformation = data.data[0].consultationInfo;
                 //Get Hospital Information
-                $rootScope.patientId = $rootScope.appointmentsPatientId;
-                if ($rootScope.primaryPatientId != $rootScope.patientId) {
-                    $rootScope.PatientGuardian = $rootScope.appointPatientGuardian;
+                if(!$rootScope.SSPage) {
+                  $rootScope.patientId = $rootScope.appointmentsPatientId;
+                  if ($rootScope.primaryPatientId != $rootScope.patientId) {
+                      $rootScope.PatientGuardian = $rootScope.appointPatientGuardian;
+                  }
                 }
                 $rootScope.consultationAmount = $rootScope.consultionInformation.consultationAmount;
                 $rootScope.copayAmount = $rootScope.consultationAmount;
@@ -1448,7 +1484,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         );
                         return false;
                     } else {
-                        $scope.doGetConcentToTreat();
+                        $scope.doGetConcentToTreat(CurrentPage);
                     }
 
                 }
@@ -1525,19 +1561,18 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getSelectedPatientProfiles(params);
     }
 
-    $scope.doGetConcentToTreat = function() {
+    $scope.doGetConcentToTreat = function(CurrentPage) {
           var params = {
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
-                  $rootScope.concentToTreatPreviousPage = "tab.userhome";
+                  $rootScope.concentToTreatPreviousPage = CurrentPage;
                   $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
-               if ($rootScope.userhome === true) {
                  if($rootScope.Cttonscheduled === 'on'){
                    $state.go('tab.ConsentTreat');
                  }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false) {
                        $rootScope.doPostDepitDetails();
-                   }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true){
+                  }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true){
                      $state.go('tab.receipt');
                      $rootScope.enablePaymentSuccess = "none";
                      $rootScope.enableInsuranceVerificationSuccess = "none";
@@ -1548,8 +1583,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     else {
                        $rootScope.doGetHospitalInformation();
                    }
-                 }
-
               },
             error: function(data, status) {
                 if (status === 0) {
@@ -1575,6 +1608,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
         $rootScope.Cttonscheduled = '';
+        $rootScope.onSSAvailability = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1592,7 +1626,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
                               $rootScope.Cttonscheduled = 'on';
-                          }
+                        }
+                        if ($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') {
+                            $rootScope.onSSAvailability = 'on';
+                        }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
                         }
@@ -1665,6 +1702,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
         $rootScope.Cttonscheduled = '';
+        $rootScope.onSSAvailability = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1685,6 +1723,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         }
                         if ($rootScope.getDetails[i] === 'ShowCTTOnScheduled' || $rootScope.getDetails[i] === 'mShowCTTOnScheduled') {
                             $rootScope.Cttonscheduled = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'ClinicianSearch' || $rootScope.getDetails[i] === 'mClinicianSearch') {
+                            $rootScope.onSSAvailability = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'OrganizationLocation' || $rootScope.getDetails[i] === 'mOrganizationLocation') {
                             $rootScope.OrganizationLocation = 'on';
@@ -2650,13 +2691,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.patGender = "NA";
                     }
 
-                    var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
-                        codeId: index.relationCode
-                    })
-                    if (getdependRelationShip.length !== 0) {
-                        var depRelationShip = getdependRelationShip[0].text;
-                    } else {
-                        var depRelationShip = '';
+                    if($rootScope.listOfRelationship != '' && typeof($rootScope.listOfRelationship !== 'undefined')) {
+                      var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
+                          codeId: index.relationCode
+                      })
+                      if (getdependRelationShip.length !== 0) {
+                          var depRelationShip = getdependRelationShip[0].text;
+                      } else {
+                          var depRelationShip = '';
+                      }
                     }
 
                     $rootScope.RelatedPatientProfiles.push({
@@ -3997,6 +4040,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }*/
 
     $rootScope.doGetScheduledConsulatation = function() {
+        $rootScope.scheduledConsultationList = '';
+        $rootScope.getScheduledList = '';
+        $rootScope.scheduleParticipants = '';
+        $rootScope.scheduledList = '';
         $rootScope.scheduledConsultationList = [];
         var params = {
             patientId: $rootScope.primaryPatientId,
@@ -4406,7 +4453,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.userDOBDateForAuthorize = $filter('date')(date, "MM-dd-yyyy");
                     $scope.checkEditOptionForCoUser($rootScope.currentPatientDetails[0].account.patientId);
                     if(nextPage === 'SS') {
-                      $rootScope.doCheckExistingConsulatationStatus();
+                      $rootScope.doCheckExistingConsulatationStatus('tab.userhome');
                     } else {
                       $state.go(nextPage);
                     }
@@ -4431,7 +4478,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
 
     $rootScope.doGetIndividualScheduledConsulatation = function() {
+        $scope.individualScheduledConsultationList = '';
         $rootScope.appointmentPatientId = '';
+        $rootScope.getIndividualScheduledList = '';
+        $rootScope.individualScheduleParticipants = '';
+        $rootScope.individualScheduledList = '';
+        $rootScope.getIndividualScheduleDetails = '';
         $rootScope.individualScheduledConsultationList = [];
         var params = {
             patientId: $rootScope.patientId,

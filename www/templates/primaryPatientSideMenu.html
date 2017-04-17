@@ -33,7 +33,7 @@
          </ion-list>
       </a>
 
-	  <a ng-if="SSSchedulerLink == true" ng-click="goTOSchedule()" class="sidemenuContent1" >
+	  <a ng-if="onSSAvailability == 'on'" ng-click="goTOSchedule()" class="sidemenuContent1" >
          <ion-list>
             <ion-item class="icon tabfont" id="{{sidemenuHome}}">
                <i ng-bind-html="drawSVGCIcon('health_card')"></i>
