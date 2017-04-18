@@ -150,11 +150,12 @@
                             <!-- Report Chart -->
                             <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">Status</span>
-                                <span class="pc-report__data-list-desc pc-report__data-list-desc--successful">Successful</span>
+                                <span ng-if="consultstatus == 72" class="pc-report__data-list-desc pc-report__data-list-desc--successful">{{reportStatus}}</span>
+                                <span ng-if="consultstatus == 79" class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">encounter</span>
-                                <span class="pc-report__data-list-desc">Aug 15, 2016, 12:55pm PST</span>
+                                <span class="pc-report__data-list-desc">{{consultdate | date: "MMM dd, yyyy"}}, {{consultdate | date: "hh:mm"}}, {{consultdate | date: "a"}} PST</span>
                             </div>
 
                             <div class="pc-report__data-list pc-report__data-list-item">
@@ -517,17 +518,14 @@
                          <div class="pc-report__sub-section-title pc-report__sub-section-title--border-dashed">Other Attachments</div>
 
                          <ul class="pc-report__other-atmts" ng-if="getAttachmentList != ''">
-                             <li  ng-repeat="getAttachment in getAttachmentList" >
+                             <li  ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" >
                                  <span class="pc-report__atmt-icon"><img src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png"></span>
                                  <div class="pc-report__atmt-block">
                                      <span class="pc-report__atmt-name">{{getAttachment.name}}</span>
-                                     <span class="pc-report__atmt-details"></span>
+                                     <span class="pc-report__atmt-details">{{foldersize}}    {{foldercreation}}</span>
                                  </div>
 
-                                 <div class="hide-mobile pc-report__atmt-dwnld" ng-click="doGetAttachmentURL({{getAttachment.id}});" >
-                                     <span class="icon_download"></span>
-                                     Download
-                                 </div>
+
                              </li>
 
 

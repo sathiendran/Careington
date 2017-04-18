@@ -477,7 +477,16 @@ angular.module('starter.controllers')
                     }
 
 
-
+                    if ($rootScope.existingConsultationReport.consultationStatus !== '' && typeof $rootScope.existingConsultationReport.consultationStatus !== 'undefined') {
+                      $rootScope.consultstatus =  $rootScope.existingConsultationReport.consultationStatus;
+                        if ($rootScope.consultstatus == 72) {
+                            $rootScope.reportStatus = "Successful";
+                        } else if ($rootScope.consultstatus == 79) {
+                            $rootScope.reportStatus = "Cancelled";
+                        }
+                    } else {
+                        $rootScope.reportStatus = 'None Reported';
+                    }
 
 
                     if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
@@ -489,7 +498,7 @@ angular.module('starter.controllers')
                     var startTimeISOString = $rootScope.existingConsultationReport.consultationDate;
                     var startTime = new Date(startTimeISOString);
                     $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
-
+                    $rootScope.consultdate =  $rootScope.existingConsultationReport.consultationDate;
                     if ($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined') {
                         $rootScope.displayCOnsultationDuration = "display";
                         var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
@@ -733,7 +742,9 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $scope.getSoapNotes();
                     $rootScope.getAttachmentList = []
-
+                    $rootScope.snapdetails = data.data[0];
+                    $rootScope.foldersize = $rootScope.snapdetails.myFolderMaxSize;
+                    $rootScope.foldercreation = $rootScope.snapdetails.snapFile.createdDate;
                     angular.forEach(data.data[0].snapFile.files, function(index) {
                         var attachImage = index.name.split(".");
                         $rootScope.getAttachmentList.push({
