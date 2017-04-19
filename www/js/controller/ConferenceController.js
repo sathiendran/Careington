@@ -276,6 +276,8 @@ angular.module('starter.controllers')
                                 $rootScope.reportStatus = "Successful";
                             } else if ($rootScope.consultstatus == 79) {
                                 $rootScope.reportStatus = "Cancelled";
+                            }else if ($rootScope.consultstatus == 81) {
+                                $rootScope.reportStatus = "Dropped";
                             }
                         } else {
                             $rootScope.reportStatus = 'None Reported';

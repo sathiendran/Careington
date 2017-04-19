@@ -19,13 +19,13 @@
                   </div>
                </div>
                <div class="srchlist">
-                  <div  id="index_{{letter}}"  ng-repeat="(letter, currentPatientsearchList) in sorted_users" >
-                     <ion-checkbox ng-repeat="currentpatientid in filteredItems = (currentPatientsearchList | filter:data.searchProvider)"
-                        ng-model="currentpatientid.checked"
-                        ng-checked="currentpatientid.checked" ng-change="OnSelectMedication(currentpatientid)"  ng-disabled="currentpatientid==limit && !currentpatientid.checked" checkbox-group>
-                        <span class="ng-binding concernListDetails">   {{ currentpatientid.display }} </span>
+                <!--  <div  id="index_{{letter}}"  ng-repeat="(letter, currentPatientsearchList) in sorted_users" >-->
+                     <ion-checkbox ng-repeat="currentpatientdet in currentPatientsearchList | filter:data.searchProvider"
+                        ng-model="currentpatientdet.checked"
+                        ng-checked="currentpatientdet.checked" ng-change="OnSelectPatientid(currentpatientdet)"  ng-disabled="currentpatientdet==limit && !currentpatientdet.checked" checkbox-group>
+                        <span class="ng-binding concernListDetails">   {{ currentpatientdet.display }} </span>
                      </ion-checkbox>
-                  </div>
+                  <!--</div>-->
                </div>
             </ion-item>
             <ion-item  ng-show="(currentPatientsearchList | filter:data.searchProvider).length==0" class="noResult" style="white-space: normal;">Sorry No Result Found!</ion-item>
