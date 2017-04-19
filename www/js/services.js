@@ -301,9 +301,9 @@ angular.module('starter.services', [])
 
 	this.getSelectedPatientProfiles = function(params) {
 		var PatientDetailsList = {
-			headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/api/v2/patients/profile/'+params.patientId+'?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
+			headers: util.getHeaders(params.accessToken), 
+           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
+		   url: apiCommonURL + '/api/v2/patients/profile/'+params.patientId+'?include=All/role/'+1,
             method: 'GET'
 		};
 

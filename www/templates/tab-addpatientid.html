@@ -4,7 +4,7 @@
          <div class="ErrorMessage ErrorMessageDiv"  ></div>
          <button class="button button-clear {{concernListDoneStyle}}" style="{{PriorSurgeryPopupCancel}};" ng-click="removemodal()" >Cancel</button>
          <h1 class="title {{concernListTitleStyle}}" style="{{PrimaryConcernPopupTitle}}; ">My Health</h1>
-         <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="medicationdone()" >Done</button>
+         <button class="button button-clear {{concernListDoneStyle}}" style="{{PrimaryConcernPopupDone}};" ng-click="patientdone()" >Done</button>
       </header>
       <ion-content has-header="true" class="concernListContent">
          <ion-list>
@@ -22,7 +22,7 @@
                 <!--  <div  id="index_{{letter}}"  ng-repeat="(letter, currentPatientsearchList) in sorted_users" >-->
                      <ion-checkbox ng-repeat="currentpatientdet in currentPatientsearchList | filter:data.searchProvider"
                         ng-model="currentpatientdet.checked"
-                        ng-checked="currentpatientdet.checked" ng-change="OnSelectPatientid(currentpatientdet)"  ng-disabled="currentpatientdet==limit && !currentpatientdet.checked" checkbox-group>
+                        ng-checked="currentpatientdet.checked" ng-change="OnSelectPatientdet(currentpatientdet)"  ng-disabled="checkedpatientdet==limit && !currentpatientdet.checked" checkbox-group>
                         <span class="ng-binding concernListDetails">   {{ currentpatientdet.display }} </span>
                      </ion-checkbox>
                   <!--</div>-->

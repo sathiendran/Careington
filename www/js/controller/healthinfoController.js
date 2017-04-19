@@ -1404,9 +1404,16 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
 
           success: function(data) {
          $rootScope.currentPatientsearchList = data.data;
-          $rootScope.currentPatientsidsList = data.data;
-          $rootScope.CurPatientidCount = $scope.currentPatientsidsList.length;
+
+          $rootScope.CurPatientidCount = $scope.currentPatientsearchList.length;
           $scope.data.searchProvider = '';
+          $scope.data.searchProvider = '';
+        $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
+        if (typeof $rootScope.PatidentifierCount === 'undefined') {
+            $rootScope.checkedpatientdet = 0;
+        } else {
+            $rootScope.checkedpatientdet = $rootScope.PatidentifierCount;
+        }
           $ionicModal.fromTemplateUrl('templates/tab-addpatientid.html', {
               scope: $scope,
               animation: 'slide-in-up',
@@ -1428,13 +1435,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
       };
       LoginService.getListOfPatientids(params);
 
-          //    $scope.clearSelectionAndRebindSelectionList($rootScope.currentPatientsidsList, $rootScope.currentPatientsearchList);
-              /*if (typeof $rootScope.CurPatientidCount === 'undefined') {
-                  $rootScope.currentpatientid = 0;
-              } else {
-                  $rootScope.currentpatientid = $rootScope.CurPatientidCount;
-              }*/
-            //  $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+
+
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
 
              $scope.alphabet = iterateAlphabet();
               var users = $rootScope.currentPatientsearchList;
@@ -1453,6 +1456,45 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               $rootScope.gotopatList = function(id) {
               $location.hash(id);
               $ionicScrollDelegate.anchorScroll();
+            }
+
+    }
+
+    $scope.patientdone = function(){
+      $rootScope.PatientidupdateList = [];
+       $rootScope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
+           checked: true
+       });
+       if ($rootScope.PatientsearchItem !== '') {
+           $rootScope.patientmedicationsSearch = $rootScope.PatientsearchItem;
+           $rootScope.PatientsdetCount = $rootScope.PatientsearchItem.length;
+           for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
+               $rootScope.PatientidupdateList.push({
+                   identifierTypeCode: $rootScope.PatientsearchItem[i].identifierTypeCode,
+                   display: $rootScope.PatientsearchItem[i].display
+               });
+           }
+           $scope.modal.hide();
+       }
+
+    }
+    $scope.OnSelectPatientdet = function(currentpatientdet) {
+        if (currentpatientdet.checked === true) {
+            $rootScope.checkedpatientdet++;
+
+        } else {
+            $rootScope.checkedpatientdet--;
+            currentpatientdet.checked === false;
+        }
+
+            if ($rootScope.checkedpatientdet == 4) {
+
+                $rootScope.checkedpatientdet--;
+                $scope.medicationdone();
+            }
+            if ($rootScope.checkedpatientdet >= 4) {
+                currentpatientdet.checked === false;
+                $scope.modal.hide();
             }
 
     }
@@ -2152,7 +2194,22 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             return this.value.indexOf('?') >= 0;
         }).remove();
     }, 100);
-
+    $scope.clearSelectionAndRebindpatSelectionList = function(selectedListItem, mainListItem) {
+        angular.forEach(mainListItem, function(item, key2) {
+            item.checked = false;
+        });
+        if (!angular.isUndefined(selectedListItem)) {
+            if (selectedListItem.length > 0) {
+                angular.forEach(selectedListItem, function(value1, key1) {
+                    angular.forEach(mainListItem, function(value2, key2) {
+                        if (value1.display === value2.display) {
+                            value2.checked = true;
+                        }
+                    });
+                });
+            }
+        }
+    };
     $scope.goTOSchedule = function() {
         /* $("#style1").attr("disabled", "disabled");
           $("#style2").attr("disabled", "disabled");*/
