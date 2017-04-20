@@ -24,7 +24,7 @@ var videoCallSessionDuration = 8000;
 var videoCallStartTime = new Date();
 if (deploymentEnv == 'Single') {
     appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
-    deploymentEnvForProduction = 'Production'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
+    deploymentEnvForProduction = 'Staging'; //'Production', 'Staging', 'QA', 'Sandbox'; // Set 'Production' Only for Single Production - For Apple testing purpose
 
     var singleStagingHospitalId;
     var singleHospitalId;
@@ -34,7 +34,7 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = '1800md';
+    var cobrandApp = 'Total 24';
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -139,6 +139,38 @@ if (deploymentEnv == 'Single') {
       logo = 'https://sandbox.connectedcare.md/api/v2.1/images/59953d85-4202-4b1b-ae0b-c4bf31203b19';
       Hospital = 'TeleMD Virtual Clinic';
       HospitalTag = 'Always Nearby';
+      ssoURL = "";
+  }else if (cobrandApp == 'eVirtualcare') {
+      singleStagingHospitalId = 168;
+      singleHospitalId = 271;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#0073c0';
+      logo = 'https://snapmdadmin.snap-stage.com/api/v2.1/images/ca001725-db79-4cdb-99d1-5193029a884b';
+      Hospital = "eVirtualcare";
+      HospitalTag = '';
+      ssoURL = "";
+  }
+  else if (cobrandApp == 'Ava MD Telederm') {
+      singleStagingHospitalId = 170;
+      singleHospitalId = 293;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#0073c0';
+      logo = 'https://connectedcare.md/api/v2.1/images/0ad39512-5d3f-40a4-afa7-e829a1c996f2';
+      Hospital = "Ava MD Telederm";
+      HospitalTag = '';
+      ssoURL = "";
+  }
+  else if (cobrandApp == 'Total 24') {
+      singleStagingHospitalId = 172;
+      singleHospitalId = 283;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#0073c0';
+      logo = 'https://connectedcare.md/api/v2.1/images/0ad39512-5d3f-40a4-afa7-e829a1c996f2';
+      Hospital = "Total 24";
+      HospitalTag = '';
       ssoURL = "";
   }
 
