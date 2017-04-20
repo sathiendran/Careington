@@ -34,7 +34,9 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
+
     var cobrandApp = 'Quensic Health Connect';
+
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -140,7 +142,19 @@ if (deploymentEnv == 'Single') {
       Hospital = 'TeleMD Virtual Clinic';
       HospitalTag = 'Always Nearby';
       ssoURL = "";
-  }else if (cobrandApp == 'eVirtualcare') {
+
+  } else if (cobrandApp == 'TheDocApp') {
+      singleStagingHospitalId = 162;
+      singleHospitalId = 259;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#4bc9f0';
+    //  logo = 'img/1800md.png';
+      logo = 'https://snap-stage.com/api/v2.1/images/7900bdca-83e3-4a66-850e-7bd4c78a8f58';
+      Hospital = "TheDocApp";
+      HospitalTag = 'Convenient Care Anywhere';
+      ssoURL = "";
+  } else if (cobrandApp == 'eVirtualcare') {
       singleStagingHospitalId = 168;
       singleHospitalId = 271;
       singleQAHospitalId = '';
@@ -160,9 +174,30 @@ if (deploymentEnv == 'Single') {
        Hospital = "Quensic Health";
        HospitalTag = '';
        ssoURL = "";
-     }
+ }else if (cobrandApp == 'Totalcare') {
+      singleStagingHospitalId = 172 ;
+      singleHospitalId = 283;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#275ba9';
+      logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
+      Hospital = "Total Care";
+      HospitalTag = '';
+      ssoURL = "";
+  } else if (cobrandApp == 'UKOnline') {
+      singleStagingHospitalId = '';
+      singleHospitalId = '';
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = 129; // 126;
+      brandColor = '#007bb6';
+      logo = 'https://sandbox.connectedcare.md/api/v2.1/images/9bc12213-bf66-4aa6-81b2-d932d6034690';
+      Hospital = 'Online Doctor';
+      HospitalTag = 'Your Personal Online Consultation';
+      ssoURL = "";
+  }
+ }
 
-}
+
 
 var handleOpenURL = function(url) {
     setTimeout(function() {
@@ -437,6 +472,67 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
           }, 30000);
       }*/
 
+      cordova.plugins.backgroundMode.onactivate = function () {
+           var backGroundNetConnection;
+           backGroundNetConnection = setInterval(function() {
+                $rootScope.flagpopup=true;
+                var myPopup;
+               $rootScope.online = navigator.onLine;
+
+                $window.addEventListener("offline", function() {
+                  $rootScope.$apply(function() {
+                       if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                           console.log('gggg5');
+                          $('#thumbVideos').remove();
+                          $('#videoControls').remove();
+                          session.unpublish(publisher)
+                          session.disconnect();
+                          $('#publisher').hide();
+                          $('#subscriber').hide();
+                          OT.updateViews();
+                         // $state.go('tab.videoLost', { retry : 1 });
+                      }else{
+                          $('.popup').addClass("ietpopup");
+                          $('.popup-title').addClass("iettitle");
+                          $('.popup-buttons').addClass("ietpopup-buttons");
+                          $rootScope.flagpopup=false;
+                              // An elaborate, custom popup
+                              myPopup = $ionicPopup.show({
+                                template: '<b>Please make sure that you have network connection.</b>',
+                                title: 'No Internet Connection',
+                                cssClass: 'my-custom-popup',
+                                buttons: [
+                                       { text: '<b class="ietfonttype">ok</b>',
+                                         type:'button',
+                                      }
+
+                                     ]
+
+                                   });
+                           myPopup.then(function(res) {
+                             console.log('Tapped!', res);
+                           });
+                      }
+                      return false;
+                  });
+                }, false);
+
+                $window.addEventListener("online", function() {
+                  $rootScope.$apply(function() {
+                       console.log('Closing in controller!');
+                        if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                             $rootScope.netConnectionStaus = true;
+                            //$state.go('tab.videoLost', { retry : 2 });
+                        }else{
+                          if($rootScope.flagpopup==false){
+                            myPopup.close();
+                          }
+                        }
+                  });
+                }, false);
+          }, 30000);
+      }
+
         setTimeout(function() {
           //  Idle.watch();
             if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
@@ -506,6 +602,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 clearInterval(alive_waiting_room_pool);
             alive_waiting_room_pool = undefined;
             setTimeout(function() {
+                 if($rootScope.netConnectionStaus === true ) {
+                      $state.go('tab.videoLost', { retry : 2 });
+                      //$state.go('tab.login');
+                 }
                 //  Idle.watch();
                 if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                   if(window.localStorage.getItem("external_load").indexOf('jwt') >= 0) {

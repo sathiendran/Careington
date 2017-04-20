@@ -2051,8 +2051,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 $rootScope.patientParticularaddress = data.data[0].addressLocation;
                 if($rootScope.patientParticularaddress != undefined){
-                  $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
-                  $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                     $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                     $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+
                 }
 
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
@@ -2199,6 +2200,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.currentPatientDetails = data.data;
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
+                    $rootScope.viewmyhealthDisplay = 'block';
+                    $rootScope.viewhealthDisplay = 'none';
                     $rootScope.doGetPatientProfiles();
                     $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
