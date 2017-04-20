@@ -193,7 +193,7 @@ if (deploymentEnv == 'Single') {
       ssoURL = "";
   }
  }
-}
+
 
 var handleOpenURL = function(url) {
     setTimeout(function() {
