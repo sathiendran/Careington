@@ -2050,8 +2050,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 $rootScope.patientParticularaddress = data.data[0].addressLocation;
-                $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
-                $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                if($rootScope.patientParticularaddress != undefined){
+                  $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                  $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                }
+
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
                 if($rootScope.patientEncounteraddress != undefined){
                   $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
