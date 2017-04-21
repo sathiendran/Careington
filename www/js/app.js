@@ -35,7 +35,7 @@ if (deploymentEnv == 'Single') {
 
 
 
-    var cobrandApp = 'Quensic Health Connect';
+    var cobrandApp = 'Totalcare';
 
 
     if (cobrandApp == 'EpicMD') {
@@ -164,7 +164,7 @@ if (deploymentEnv == 'Single') {
       Hospital = "eVirtualcare";
       HospitalTag = '';
       ssoURL = "";
-  }else if (cobrandApp == 'Quensic Health Connect') {
+  }else if (cobrandApp == 'Quensic') {
        singleStagingHospitalId = 169;
        singleHospitalId = 298;
        singleQAHospitalId = '';
@@ -182,6 +182,16 @@ if (deploymentEnv == 'Single') {
       brandColor = '#275ba9';
       logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
       Hospital = "Total Care";
+      HospitalTag = '';
+      ssoURL = "";
+  } else if (cobrandApp == 'AvaMD') {
+      singleStagingHospitalId = 170;
+      singleHospitalId = 293;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#0073c0';
+      logo = 'https://connectedcare.md/api/v2.1/images/0ad39512-5d3f-40a4-afa7-e829a1c996f2';
+      Hospital = "AVA MD";
       HospitalTag = '';
       ssoURL = "";
   } else if (cobrandApp == 'UKOnline') {
