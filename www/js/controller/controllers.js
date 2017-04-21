@@ -3020,13 +3020,15 @@ var deregisterBackButton;
     }
 
     $scope.backConsultCharge = function() {
-        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
+        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
             $state.go('tab.ConsentTreat');
-        } else if ($rootScope.healthPlanPage === "block") {
+        } else if ($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') {
             $state.go('tab.ConsentTreat');
         } else if ($rootScope.consultChargeNoPlanPage === "block") {
             $rootScope.consultChargeNoPlanPage = "none";
             $rootScope.healthPlanPage = "block";
+        } else if ($rootScope.Cttonscheduled !== 'on'){
+          $state.go($rootScope.concentToTreatPreviousPage);
         }
 
     }
