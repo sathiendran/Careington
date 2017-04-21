@@ -464,6 +464,14 @@ angular.module('starter.controllers')
         $scope.editimg = true;
         $('#ss').hide();
         $('#aaa').show();
+
+        if($rootScope.PatidentifierCount == 0){
+          $scope.patientapi = true;
+          $scope.patientmodal = false;
+        }else{
+            $scope.patientmodal = true;
+            $scope.patientapi = false;
+        }
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
         $scope.userdob = new Date($rootScope.userDOB);
@@ -1408,7 +1416,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           $rootScope.CurPatientidCount = $scope.currentPatientsearchList.length;
           $scope.data.searchProvider = '';
           $scope.data.searchProvider = '';
-        $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
+          if($rootScope.PatidentifierCount == 0){
+              $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
+          }else{
+              $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
+          }
         if (typeof $rootScope.PatidentifierCount === 'undefined') {
             $rootScope.checkedpatientdet = 0;
         } else {
@@ -2203,6 +2215,22 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 angular.forEach(selectedListItem, function(value1, key1) {
                     angular.forEach(mainListItem, function(value2, key2) {
                         if (value1.display === value2.display) {
+                            value2.checked = true;
+                        }
+                    });
+                });
+            }
+        }
+    };
+    $scope.clearSelectionAndRebindpatapiSelectionList = function(selectedListItem, mainListItem) {
+        angular.forEach(mainListItem, function(item, key2) {
+            item.checked = false;
+        });
+        if (!angular.isUndefined(selectedListItem)) {
+            if (selectedListItem.length > 0) {
+                angular.forEach(selectedListItem, function(value1, key1) {
+                    angular.forEach(mainListItem, function(value2, key2) {
+                        if (value1.identifierTypeTitle === value2.display) {
                             value2.checked = true;
                         }
                     });
