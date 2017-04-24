@@ -2398,8 +2398,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 $rootScope.patientParticularaddress = data.data[0].addressLocation;
-                $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
-                $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                if($rootScope.patientParticularaddress != undefined){
+                     $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                     $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+
+                }
+
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
                 if($rootScope.patientEncounteraddress != undefined){
                   $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
@@ -3563,19 +3567,20 @@ $scope.cardchange = function(){
     }
 
     $scope.backConsultCharge = function() {
-        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
+        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
             $state.go('tab.ConsentTreat');
-        } else if ($rootScope.healthPlanPage === "block") {
+        } else if ($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') {
             $state.go('tab.ConsentTreat');
         } else if ($rootScope.consultChargeNoPlanPage === "block") {
             $rootScope.consultChargeNoPlanPage = "none";
             $rootScope.healthPlanPage = "block";
+        } else if ($rootScope.Cttonscheduled !== 'on'){
+            $state.go($rootScope.concentToTreatPreviousPage);
         } else {
           $rootScope.doGetScheduledConsulatation();
           $rootScope.doGetIndividualScheduledConsulatation();
           $state.go('tab.userhome');
         }
-
     }
 
     $scope.goToNextPage = function() {

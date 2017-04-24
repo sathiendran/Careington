@@ -35,7 +35,9 @@ if (deploymentEnv == 'Single') {
     var HospitalTag;
 
 
-    var cobrandApp = '1800md';
+
+    var cobrandApp = 'Totalcare';
+
 
     if (cobrandApp == 'EpicMD') {
         singleStagingHospitalId = 155;
@@ -141,6 +143,7 @@ if (deploymentEnv == 'Single') {
       Hospital = 'TeleMD Virtual Clinic';
       HospitalTag = 'Always Nearby';
       ssoURL = "";
+
   } else if (cobrandApp == 'TheDocApp') {
       singleStagingHospitalId = 162;
       singleHospitalId = 259;
@@ -162,6 +165,36 @@ if (deploymentEnv == 'Single') {
       Hospital = "eVirtualcare";
       HospitalTag = '';
       ssoURL = "";
+  }else if (cobrandApp == 'Quensic') {
+       singleStagingHospitalId = 169;
+       singleHospitalId = 298;
+       singleQAHospitalId = '';
+       singleSandboxHospitalId = '';
+       brandColor = '#275ba9';
+       logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
+       Hospital = "Quensic Health";
+       HospitalTag = '';
+       ssoURL = "";
+ }else if (cobrandApp == 'Totalcare') {
+      singleStagingHospitalId = 172 ;
+      singleHospitalId = 283;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#275ba9';
+      logo = 'https://snapadmin.snap-stage.com/api/v2.1/images/acd5f13c-94b1-49b8-8c86-a84fac870a70';
+      Hospital = "Total Care";
+      HospitalTag = '';
+      ssoURL = "";
+  } else if (cobrandApp == 'AvaMD') {
+      singleStagingHospitalId = 170;
+      singleHospitalId = 293;
+      singleQAHospitalId = '';
+      singleSandboxHospitalId = '';
+      brandColor = '#0073c0';
+      logo = 'https://connectedcare.md/api/v2.1/images/0ad39512-5d3f-40a4-afa7-e829a1c996f2';
+      Hospital = "AVA MD";
+      HospitalTag = '';
+      ssoURL = "";
   } else if (cobrandApp == 'UKOnline') {
       singleStagingHospitalId = '';
       singleHospitalId = '';
@@ -173,8 +206,9 @@ if (deploymentEnv == 'Single') {
       HospitalTag = 'Your Personal Online Consultation';
       ssoURL = "";
   }
+ }
 
-}
+
 
 var handleOpenURL = function(url) {
     setTimeout(function() {
@@ -449,6 +483,67 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
           }, 30000);
       }*/
 
+      cordova.plugins.backgroundMode.onactivate = function () {
+           var backGroundNetConnection;
+           backGroundNetConnection = setInterval(function() {
+                $rootScope.flagpopup=true;
+                var myPopup;
+               $rootScope.online = navigator.onLine;
+
+                $window.addEventListener("offline", function() {
+                  $rootScope.$apply(function() {
+                       if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                           console.log('gggg5');
+                          $('#thumbVideos').remove();
+                          $('#videoControls').remove();
+                          session.unpublish(publisher)
+                          session.disconnect();
+                          $('#publisher').hide();
+                          $('#subscriber').hide();
+                          OT.updateViews();
+                         // $state.go('tab.videoLost', { retry : 1 });
+                      }else{
+                          $('.popup').addClass("ietpopup");
+                          $('.popup-title').addClass("iettitle");
+                          $('.popup-buttons').addClass("ietpopup-buttons");
+                          $rootScope.flagpopup=false;
+                              // An elaborate, custom popup
+                              myPopup = $ionicPopup.show({
+                                template: '<b>Please make sure that you have network connection.</b>',
+                                title: 'No Internet Connection',
+                                cssClass: 'my-custom-popup',
+                                buttons: [
+                                       { text: '<b class="ietfonttype">ok</b>',
+                                         type:'button',
+                                      }
+
+                                     ]
+
+                                   });
+                           myPopup.then(function(res) {
+                             console.log('Tapped!', res);
+                           });
+                      }
+                      return false;
+                  });
+                }, false);
+
+                $window.addEventListener("online", function() {
+                  $rootScope.$apply(function() {
+                       console.log('Closing in controller!');
+                        if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                             $rootScope.netConnectionStaus = true;
+                            //$state.go('tab.videoLost', { retry : 2 });
+                        }else{
+                          if($rootScope.flagpopup==false){
+                            myPopup.close();
+                          }
+                        }
+                  });
+                }, false);
+          }, 30000);
+      }
+
         setTimeout(function() {
           //  Idle.watch();
             if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
@@ -518,6 +613,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 clearInterval(alive_waiting_room_pool);
             alive_waiting_room_pool = undefined;
             setTimeout(function() {
+                 if($rootScope.netConnectionStaus === true ) {
+                      $state.go('tab.videoLost', { retry : 2 });
+                      //$state.go('tab.login');
+                 }
                 //  Idle.watch();
                 if (window.localStorage.getItem("external_load") != null && window.localStorage.getItem("external_load") != "" && window.localStorage.getItem("external_load") != "null") {
                   if(window.localStorage.getItem("external_load").indexOf('jwt') >= 0) {
