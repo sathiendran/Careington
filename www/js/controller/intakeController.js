@@ -1235,7 +1235,7 @@ $scope.locat=false;
                               $rootScope.consultChargeNoPlanPage = "block";
                           }
                           $state.go('tab.consultCharge');
-                          if (typeof $rootScope.userDefaultPaymentProfile == "undefined") {
+                          if (typeof $rootScope.userDefaultPaymentProfile == "undefined"  || $rootScope.userDefaultPaymentProfile === null) {
                               $('#addNewCard').val('Choose Your Card');
                               $('#addNewCard_addCard').val('Choose Your Card');
                               $('#addNewCard_submitPay').val('Choose Your Card');

@@ -21,6 +21,14 @@
             return '/snapmdadmin/Login';
         } else if ((currentUrl.indexOf('/customer/') != -1)) {
             return snap.patientLogin();
+        } else {
+          if (deploymentEnv == "Multiple") {
+              return "#/tab/chooseEnvironment";
+          } else if (deploymentEnv == "Single") {
+            return "#/tab/singleTheme";
+          } else {
+              return "#/tab/login";
+          }
         }
 
     };

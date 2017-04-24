@@ -1,0 +1,92 @@
+<ion-view title="Card Details">
+   <form ng-submit="doEditPaymentProfileDetails()" name="CardForm" novalidate=''>
+      <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}}; {{backgroundimage}}; {{HeadercardDetails}}" >
+         <div id="Error_Message" class="ErrorMessageDiv" ></div>
+         <div class="Server_Error ErrorMessageDiv" ></div>
+         <div class="buttons" style="width: 50%; display: {{cardDisplay}}; {{HeadercardDetailsBack}}" >
+            <site-header2 back="Cancel"></site-header2>
+         </div>
+         <div class="buttons" style="width: 50%; " >
+
+            <div style="width: 100%; text-align: right;">
+               <button type="submit" class="button_new icon PlanNext"  style="{{CardDetailsNextButton}}">Save</button>
+            </div>
+         </div>
+      </ion-header-bar>
+      <ion-content class="planDetails_content" >
+         <div>
+            <div class="healthPlan_text cardDetailsHeading" style="display: {{cardDisplay}}">
+               Card Details
+            </div>
+            <div class="CardInformation" style="display: {{cardDisplay}}" >
+               Edit your card information below
+            </div>
+            <div class="healthPlan_text verifyPlanHeading" style="display: {{verifyCardDisplay}}">
+               Verifying Card
+            </div>
+            <div class="verifyCardDisplay" style="display: {{verifyCardDisplay}}" >
+            </div>
+            <div class="list" style="opacity:{{planverify}};">
+               <div class="item item-input" >
+                  <span class="input-label cardfont" >First Name</span>
+                  <input type="text" placeholder="Required" name="FirstName" id="editFirstName" value="{{editbilling.first}}" required>
+               </div>
+               <div class="item item-input cards" >
+                  <span class="input-label cardfont" >Last Name</span>
+                  <input type="text" placeholder="Required"  name="LastName" value="{{editbilling.last}}" id="editLastName" required>
+               </div>
+               <div class="item item-input ">
+                  <span class="input-label cardfont" >Card Number</span>
+                  <input type="text"  value="xxxx-xxxx-xxxx-{{editcardNumber}}" placeholder="Required" name="CardNumber" id="editCardNumber" readonly="true" required>
+               </div>
+               <div class="item item-input">
+                  <span class="input-label cardfont">Expiration Date</span>
+                  <select id="editExpmonth" name="CardExpireDatesMonth"  style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailmonth}}" required>
+                     <option ng-repeat="month in monthsList" value="{{month.value}}" ng-selected="{{month.selected}}">
+                        <b><span>{{month.text}}</span></b>
+                     </option>
+                  </select>
+                  <span> /{{validCC}}</span>
+                  <select id="editExpyear" name="CardExpireDatesYear" style="appearance: none; -webkit-appearance: none; border: none; background-color: white; margin-top: -3px; font-size: 18px;{{invalidMonth}}{{CardDetailYear}}" required>
+                     <option ng-repeat="ccYear in ccYearsList" value="{{ccYear.value}}">
+                        <b><span>{{ccYear.text }}</span></b>
+                     </option>
+                  </select>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont" >Security Code</span>
+                  <input type="password" pattern="[0-9]*"  inputmode="numeric" id="editcvv" style="{{invalidCVV}}" placeholder="XXX" maxlength="{{editCvvLength}}"   name="Cvv"  required>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont" >Billing Address</span>
+                  <input type="text" placeholder="Required" value="{{editbilling.street}}" name="BillingAddress" id="editbillingAddress" required>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont" >City</span>
+                      <input type="text" placeholder="Required"   value="{{editbilling.city}}"  name="City" id="editCity" required>
+               </div>
+               <div class="item item-input">
+                  <span class="input-label cardfont" >State</span>
+                  <input type="text" placeholder="Required"    value="{{editbilling.state}}"  name="State" id="editState" required>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont" >Country</span>
+                <!--  <input type="text" placeholder="Required" ng-model="getCardDetails.Country" value="{{editbilling.country}}"  name="Country" id="Country" required>-->
+                <select class="textdata optionselect"  name="healthInfoCountry" id="editCountry" ng-model="editcard.cardcountry" >
+                   <option value="">Choose</option>
+                   <option ng-selected="editbilling.country == country.name"  ng-repeat="country in serviceCountries"  value="{{country.name}}" ><b>{{country.name}}</b></option>
+                </select>
+               </div>
+               <div class="item item-input" >
+                  <span class="input-label cardfont" >Zip</span>
+                  <input type="number" placeholder="Required" ng-model="editzip"   input-max-length-number maxlength="7" name="Zip" id="editZip" required/>
+               </div>
+            </div>
+            <div class="planDetails"  style="opacity:{{planverify}};">
+               <p class="carddetails">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
+            </div>
+            <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
+         </div>
+      </ion-content>
+   </form>
+</ion-view>

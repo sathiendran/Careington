@@ -40,15 +40,18 @@
                   <div class="consultation_number"> ${{consultationAmount}}*</div>
                </div>
             </div>
-            <div class="password_home contentPayHomeAddCard">
+            <div class="password_home contentPayHomeAddCard">            
                <div class="healthPlan_header" style="display: {{enableSubmitpaymentAddCard}}" >
                   <div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
+                    <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
                      <div  class="dropdownContainer">
                         <div id="cardViewport" class="viewport">Card ending in...{{userCardNumber}}</div>
-                        <select class="healthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" style="border: none;">
+                        <select class="healthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange()" style="border: none;">
                            <option><b>Choose Your Card</b></option>
-                           <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>Card ending in...{{getPayment.cardNumber}}</span></b></option>
+                           <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b>
+                             <!--<span>Card ending in...{{getPayment.cardNumber}}</span></b></option>-->
+                              <span>{{getPayment.cardType}}</span>  <span >{{ + '      ' +  'XXXX-XXXX-XXXX-'+getPayment.cardNumber}}</span></b></option>
                            <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                         </select>
                      </div>

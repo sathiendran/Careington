@@ -835,6 +835,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
+    .state('tab.planeditDetails', {
+        url: '/planeditDetails',
+        views: {
+            'tab-login': {
+                templateUrl: 'templates/tab-planeditDetails.html',
+                controller: 'LoginCtrl'
+            }
+        }
+    })
     .state('tab.applyPlan', {
         url: '/applyPlan',
         views: {
@@ -871,6 +880,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 }
             }
         })
+        .state('tab.cardeditDetails', {
+           url: '/cardeditDetails',
+           views: {
+               'tab-login': {
+                   templateUrl: 'templates/tab-cardeditDetails.html',
+                   controller: 'LoginCtrl'
+               }
+           }
+       })
     .state('tab.submitPayment', {
         url: '/submitPayment',
         views: {

@@ -4055,11 +4055,18 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                     $mainHub.register($patientSelfSchedulingHub);
 
                     $userService.getUserTimeZoneId().done(function(response) {
-                        $patientSelfSchedulingHub.start(
+                      /*  $patientSelfSchedulingHub.start(
                             snap.userSession.token,
                             response.message,
                             hubListeningDate);
-                        dfd.resolve();
+                        dfd.resolve();*/
+
+                        $patientSelfSchedulingHub.start(
+                              snap.userSession.token,
+                              snap.userSession.timeZoneSystemId,
+                              hubListeningDate);
+                          dfd.resolve(); 
+
                     });
                 } else if ($patientSelfSchedulingHub.isHubStarted() && $patientSelfSchedulingHub.getHubListeningDate().getTime() !== hubListeningDate.getTime()) {
                     lockedSlotsList.clear();
