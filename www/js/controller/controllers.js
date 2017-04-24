@@ -1512,6 +1512,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //angular.fromJson(index.billingAddress)
                 angular.forEach(data.data, function(index) {
                     $scope.selPatDetails.push({
+                        'identifiers': angular.fromJson(index.identifiers),
                         'account': angular.fromJson(index.account),
                         'address': index.address,
                         'addresses': angular.fromJson(index.addresses),
@@ -2620,6 +2621,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 //angular.fromJson(index.billingAddress)
                 angular.forEach(data.data, function(index) {
                     $scope.selectedPatientDetails.push({
+                      'identifiers': angular.fromJson(index.identifiers),
                         'account': angular.fromJson(index.account),
                         'address': index.address,
                         'addresses': angular.fromJson(index.addresses),
@@ -2647,6 +2649,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 });
                 $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                 $rootScope.PatientImageSelectUser = $rootScope.currentPatientDetails[0].account.profileImage;
+                $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
                 $rootScope.PatientImage = $rootScope.PatientImageSelectUser;
                 $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
                 $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
@@ -4693,6 +4696,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                     $rootScope.selectedRelatedDependentDetails = [];
                     angular.forEach(data.data, function(index) {
                         $rootScope.selectedRelatedDependentDetails.push({
+                          'identifiers': angular.fromJson(index.identifiers),
                             'account': angular.fromJson(index.account),
                             'address': index.address,
                             'addresses': angular.fromJson(index.addresses),
@@ -4712,7 +4716,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
 
                         });
                     });
-
+                    $rootScope.PatientIdentifiers = $rootScope.selectedRelatedDependentDetails[0].identifiers;
                     var date = new Date($rootScope.selectedRelatedDependentDetails[0].dob);
                     $rootScope.dependentDOB = $filter('date')(date, "yyyy-MM-dd");
                     if ($rootScope.selectedRelatedDependentDetails[0].gender === 'M') {
@@ -4778,6 +4782,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                     $scope.selectedPatientDetails = [];
                     angular.forEach(data.data, function(index) {
                         $scope.selectedPatientDetails.push({
+                          'identifiers': angular.fromJson(index.identifiers),
                             'account': angular.fromJson(index.account),
                             'address': index.address,
                             'addresses': angular.fromJson(index.addresses),
@@ -4806,6 +4811,8 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                     });
                     $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                     $rootScope.cutaddress = $rootScope.currentPatientDetails[0].address;
+                    $rootScope.PatientIdentifiers = $rootScope.currentPatientDetails[0].identifiers;
+                    $rootScope.PatidentifierCount = $scope.PatientIdentifiers.length;
                     var cutaddresses = $rootScope.cutaddress.split(",");
                     $rootScope.stateaddresses = cutaddresses[0];
                     var date = new Date($rootScope.currentPatientDetails[0].dob);

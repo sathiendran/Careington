@@ -351,6 +351,12 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined') {
                         if ($rootScope.existingConsultationReport.heightUnit !== '' && typeof $rootScope.existingConsultationReport.heightUnit !== 'undefined') {
                             $rootScope.reportHeight = $rootScope.existingConsultationReport.height + " " + $rootScope.existingConsultationReport.heightUnit;
+                            var reheight = $rootScope.existingConsultationReport.height.split("|")
+                            $rootScope.reportheight1 = reheight[0];
+                            $rootScope.reportheight2 = reheight[1];
+                            var reheightunit = $rootScope.existingConsultationReport.heightUnit.split("/");
+                            $rootScope.reportheightunit1 = reheightunit[0];
+                            $rootScope.reportheightunit2 = reheightunit[1];
                         } else {
                             $rootScope.reportHeight = $rootScope.existingConsultationReport.height;
                         }
@@ -358,19 +364,28 @@ angular.module('starter.controllers')
                         $rootScope.reportHeight = 'NA';
                     }
                     if ($rootScope.existingConsultationReport.weight !== '' && typeof $rootScope.existingConsultationReport.weight !== 'undefined') {
-                        $rootScope.reportWeight = $rootScope.existingConsultationReport.weight + " " + $rootScope.existingConsultationReport.weightUnit;
+                        $rootScope.reportWeight = $rootScope.existingConsultationReport.weight;
+                        $rootScope.reportWeightunit =  $rootScope.existingConsultationReport.weightUnit;
                     } else {
                         $rootScope.reportWeight = 'NA';
                     }
+                    if($rootScope.existingConsultationReport.note !== '' && typeof $rootScope.existingConsultationReport.note !== 'undefined') {
+                      $rootScope.repadditionalnotes = $rootScope.existingConsultationReport.note;
+                    }
+                    else{
+                        $rootScope.repadditionalnotes = 'NA';
+                    }
                     $rootScope.reportPatientName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientName);
                     $rootScope.reportLastName = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.lastName);
+                      $rootScope.reportpatientid =htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientId);
                      if ($rootScope.primaryPatientId !== $rootScope.existingConsultationReport.patientId){
                        if ($rootScope.existingConsultationReport.guardianName !== '' && typeof $rootScope.existingConsultationReport.guardianName !== 'undefined') {
                            $rootScope.reportGuardian = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.guardianName);
                        }
                       }
 
-
+                      $rootScope.reportethnicity = $rootScope.existingConsultationReport.ethnicity;
+                      $rootScope.reportservicetype = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.serviceTypeName);
                     if ($rootScope.existingConsultationReport.patientAddress !== '' && typeof $rootScope.existingConsultationReport.patientAddress !== 'undefined') {
                         $rootScope.reportPatientAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.patientAddress);
                     } else {
@@ -398,6 +413,7 @@ angular.module('starter.controllers')
                     if ($rootScope.existingConsultationReport.hospitalAddress !== '' && typeof $rootScope.existingConsultationReport.hospitalAddress !== 'undefined') {
                         $rootScope.reportHospitalAddress = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.hospitalAddress);
                     } else {
+                        $rootScope.reportHospitalAddress = 'NA';
                     }
 
                     if ($rootScope.existingConsultationReport.doctorFirstName !== '' && typeof $rootScope.existingConsultationReport.doctorFirstName !== 'undefined') {
@@ -446,6 +462,36 @@ angular.module('starter.controllers')
                         $rootScope.encountertype = 'None Reported';
                     }
 
+
+                    if ($rootScope.existingConsultationReport.appointmentType !== '' && typeof $rootScope.existingConsultationReport.appointmentType !== 'undefined') {
+                      $rootScope.appointmentcode =  $rootScope.existingConsultationReport.appointmentType;
+                        if ($rootScope.appointmentcode == 1) {
+                            $rootScope.appointmenttype = "ClinicianScheduled";
+                        } else if ($rootScope.appointmentcode == 2) {
+                            $rootScope.appointmenttype = "OnDemand";
+                        }else if ($rootScope.appointmentcode == 3) {
+                            $rootScope.appointmenttype = "PatientScheduled";
+                        }
+                    } else {
+                        $rootScope.appointmenttype = 'None Reported';
+                    }
+
+
+                    if ($rootScope.existingConsultationReport.consultationStatus !== '' && typeof $rootScope.existingConsultationReport.consultationStatus !== 'undefined') {
+                     $rootScope.consultstatus =  $rootScope.existingConsultationReport.consultationStatus;
+
+                        if ($rootScope.consultstatus == 72) {
+                            $rootScope.reportStatus = "Successful";
+                        } else if ($rootScope.consultstatus == 79) {
+                            $rootScope.reportStatus = "Cancelled";
+                        } else if ($rootScope.consultstatus == 81) {
+                            $rootScope.reportStatus = "Dropped";
+                        }
+                    } else {
+                        $rootScope.reportStatus = 'None Reported';
+                    }
+
+
                     if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
                         $rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
                     } else {
@@ -455,7 +501,7 @@ angular.module('starter.controllers')
                     var startTimeISOString = $rootScope.existingConsultationReport.consultationDate;
                     var startTime = new Date(startTimeISOString);
                     $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
-
+                    $rootScope.consultdate =  $rootScope.existingConsultationReport.consultationDate;
                     if ($rootScope.existingConsultationReport.consultationDuration !== 0 && typeof $rootScope.existingConsultationReport.consultationDuration !== 'undefined') {
                         $rootScope.displayCOnsultationDuration = "display";
                         var consultationMinutes = Math.floor($rootScope.existingConsultationReport.consultationDuration / 60);
@@ -534,7 +580,9 @@ angular.module('starter.controllers')
                     } else if ($rootScope.vaccinationsCurrent === 'Y') {
                         $rootScope.vaccinationsCurrent = 'Yes';
                     }
-
+                    var repdob =$rootScope.existingConsultationReport.dob;
+                    var reptdate = repdob.split("T");
+                    $rootScope.reportdob = reptdate[0];
                     var usDOB = ageFilter.getDateFilter($rootScope.existingConsultationReport.dob);
 
                     if (typeof usDOB !== 'undefined' && usDOB !== '') {
@@ -635,17 +683,44 @@ angular.module('starter.controllers')
                         $rootScope.reportMediCPT = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'CPT'
                         });
+                        if($rootScope.reportMediCPT != ""){
+
+                          var cptcode =   $rootScope.reportMediCPT[0].shortDescription;
+                          var spcptcode = cptcode.split("-");
+                          $rootScope.reportMediCPTcode = spcptcode[0];
+                          $rootScope.reportMediCPTdescription = spcptcode[1];
+                        }
+
+
                         $rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'ICD-10-DX'
                         });
+                        if($rootScope.reportMediICD != ""){
+                          var icdcode =   $rootScope.reportMediICD[0].shortDescription;
+                          var spicdcode = cptcode.split("-");
+                          $rootScope.reportMediICDcode = spicdcode[0];
+                          $rootScope.reportMediICDdescription = spicdcode[1];
+                        }
                         $rootScope.reportMediICD9 = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'ICD-9-DX'
                         });
+                        if($rootScope.reportMediICD9 != ""){
+                          var icd9code =   $rootScope.reportMediICD9[0].shortDescription;
+                          var spicd9code = cptcode.split("-");
+                          $rootScope.reportMediICD9code = spicd9code[0];
+                          $rootScope.reportMediICD9description = spicd9code[1];
+                        }
                         $rootScope.reportSNOMED = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'SNOMED-CT'
                         });
+                        if($rootScope.reportSNOMED != ""){
+                          var snocode =   $rootScope.reportSNOMED[0].shortDescription;
+                          var spsnocode = cptcode.split("-");
+                          $rootScope.reportMediSnocode = spsnocode[0];
+                          $rootScope.reportMediSnodescription = spsnocode[1];
+                        }
                     } else {
-                        $rootScope.reportMedicalCodeDetails = '';
+                        $rootScope.reportMedicalCodeDetails = 'None Reported';
                     }
 
                     session = null;
@@ -670,7 +745,9 @@ angular.module('starter.controllers')
                 success: function(data) {
                     $scope.getSoapNotes();
                     $rootScope.getAttachmentList = []
-
+                    $rootScope.snapdetails = data.data[0];
+                    $rootScope.foldersize = $rootScope.snapdetails.myFolderMaxSize;
+                    $rootScope.foldercreation = $rootScope.snapdetails.snapFile.createdDate;
                     angular.forEach(data.data[0].snapFile.files, function(index) {
                         var attachImage = index.name.split(".");
                         $rootScope.getAttachmentList.push({

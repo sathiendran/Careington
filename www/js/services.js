@@ -302,8 +302,8 @@ angular.module('starter.services', [])
 	this.getSelectedPatientProfiles = function(params) {
 		var PatientDetailsList = {
 			headers: util.getHeaders(params.accessToken),
-           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations',
-		   url: apiCommonURL + '/api/v2/patients/profile/'+params.patientId+'?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
+           // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
+		   url: apiCommonURL + '/api/v2/patients/profile/'+params.patientId+'?include=All/role/'+1,
             method: 'GET'
 		};
 
@@ -901,14 +901,8 @@ this.putEditHealthPlan = function(params) {
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-          //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
-		 //  url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
-		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
-
-           // method: 'GET'
- //  url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
-		  url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
-
+            //  url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		          url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
             method: 'GET'
         };
 
@@ -1456,7 +1450,7 @@ this.putEditHealthPlan = function(params) {
 	this.getAttachmentList = function (params) {
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer&patientId=0',
+            url: apiCommonURL + '/api/consultation/filesharing/' + params.consultationId + '/folder?fileSharingType=customer',
             method: 'GET'
         };
 
@@ -1669,6 +1663,26 @@ this.putEditHealthPlan = function(params) {
                  }
              });
    }
+
+        this.getListOfPatientids = function(params){
+          var requestInfo = {
+              headers: util.getHeaders(params.accessToken),
+               url: apiCommonURL+'/api/v2/patients/profiles/identifier-types?role/'+1,
+              method: 'GET',
+          };
+          $http(requestInfo).
+              success(function (data, status, headers, config) {
+                  if (typeof params.success != 'undefined') {
+                      params.success(data);
+                  }
+              }).
+              error(function (data, status, headers, config) {
+                  if (typeof params.error != 'undefined') {
+                      params.success(data);
+                  }
+              });
+        }
+
 
    this.getCountiesList = function(params){
         var requestInfo = {

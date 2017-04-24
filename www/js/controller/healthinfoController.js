@@ -419,6 +419,7 @@ angular.module('starter.controllers')
     $scope.edittext = function() {
         $scope.healthfoottab=false;
         $scope.healthfootsave=false;
+        //  $rootScope.getPatientids();
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -463,6 +464,14 @@ angular.module('starter.controllers')
         $scope.editimg = true;
         $('#ss').hide();
         $('#aaa').show();
+
+        if($rootScope.PatidentifierCount == 0){
+          $scope.patientapi = true;
+          $scope.patientmodal = false;
+        }else{
+            $scope.patientmodal = true;
+            $scope.patientapi = false;
+        }
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
         $scope.userdob = new Date($rootScope.userDOB);
@@ -1374,6 +1383,133 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     };
 
     $scope.getCodesSetsForHospital();
+  /*  $rootScope.getPatientids = function() {
+        var params = {
+
+            accessToken: $rootScope.accessToken,
+
+            success: function(data) {
+           $rootScope.currentPatientsearchList = data.data;
+            $rootScope.currentPatientsidsList = data.data;
+            $rootScope.CurPatientidCount = $scope.currentPatientsidsList.length;
+            },
+            error: function(data,status) {
+              if(status===0 ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }else{
+                  $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.getListOfPatientids(params);
+    };*/
+  //    $rootScope.getPatientids();
+    $rootScope.healthpatid = function(){
+      var params = {
+
+          accessToken: $rootScope.accessToken,
+
+          success: function(data) {
+         $rootScope.currentPatientsearchList = data.data;
+
+          $rootScope.CurPatientidCount = $scope.currentPatientsearchList.length;
+          $scope.data.searchProvider = '';
+          $scope.data.searchProvider = '';
+          if($rootScope.PatidentifierCount == 0){
+              $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
+          }else{
+              $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
+          }
+        if (typeof $rootScope.PatidentifierCount === 'undefined') {
+            $rootScope.checkedpatientdet = 0;
+        } else {
+            $rootScope.checkedpatientdet = $rootScope.PatidentifierCount;
+        }
+          $ionicModal.fromTemplateUrl('templates/tab-addpatientid.html', {
+              scope: $scope,
+              animation: 'slide-in-up',
+              focusFirstInput: false,
+              backdropClickToClose: false
+          }).then(function(modal) {
+              $scope.modal = modal;
+              $scope.modal.show();
+          });
+          },
+          error: function(data,status) {
+            if(status===0 ){
+              $scope.ErrorMessage = "Internet connection not available, Try again later!";
+              $rootScope.Validation($scope.ErrorMessage);
+            }else{
+                $rootScope.serverErrorMessageValidation();
+            }
+          }
+      };
+      LoginService.getListOfPatientids(params);
+
+
+
+            $ionicScrollDelegate.$getByHandle('isScroll').scrollTop();
+
+             $scope.alphabet = iterateAlphabet();
+              var users = $rootScope.currentPatientsearchList;
+              var userslength = users.length;
+              var log = [];
+              var tmp = {};
+              for (i = 0; i < userslength; i++) {
+                  var letter = users[i].text.toUpperCase().charAt(0);
+                  if (tmp[letter] == undefined) {
+                      tmp[letter] = []
+                  }
+                  tmp[letter].push(users[i]);
+              }
+              $rootScope.sorted_users = tmp;
+              $scope.selectedObject = {};
+              $rootScope.gotopatList = function(id) {
+              $location.hash(id);
+              $ionicScrollDelegate.anchorScroll();
+            }
+
+    }
+
+    $scope.patientdone = function(){
+      $rootScope.PatientidupdateList = [];
+       $rootScope.PatientsearchItem = $filter('filter')($rootScope.currentPatientsearchList, {
+           checked: true
+       });
+       if ($rootScope.PatientsearchItem !== '') {
+           $rootScope.patientmedicationsSearch = $rootScope.PatientsearchItem;
+           $rootScope.PatientsdetCount = $rootScope.PatientsearchItem.length;
+           for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
+               $rootScope.PatientidupdateList.push({
+                   identifierTypeCode: $rootScope.PatientsearchItem[i].identifierTypeCode,
+                   display: $rootScope.PatientsearchItem[i].display
+               });
+           }
+           $scope.modal.hide();
+       }
+
+    }
+    $scope.OnSelectPatientdet = function(currentpatientdet) {
+        if (currentpatientdet.checked === true) {
+            $rootScope.checkedpatientdet++;
+
+        } else {
+            $rootScope.checkedpatientdet--;
+            currentpatientdet.checked === false;
+        }
+
+            if ($rootScope.checkedpatientdet == 4) {
+
+                $rootScope.checkedpatientdet--;
+                $scope.medicationdone();
+            }
+            if ($rootScope.checkedpatientdet >= 4) {
+                currentpatientdet.checked === false;
+                $scope.modal.hide();
+            }
+
+    }
     $scope.healthsearch = function(patientmedications) {
         $scope.data.searchProvider = '';
         $scope.clearSelectionAndRebindSelectionList($rootScope.patientmedications, $rootScope.currentMedicationsearchList);
@@ -1508,7 +1644,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                             text: $scope.data.CurrentMedicationOther,
                             checked: true
                         };
-                        $rootScope.currentMedicationsearchList.splice(1, 0, newCurrentMedicationItem);
+                        $rootScope. b.splice(1, 0, newCurrentMedicationItem);
                         var users = $rootScope.currentMedicationsearchList;
                         var userslength = users.length;
                         var log = [];
@@ -2070,7 +2206,38 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             return this.value.indexOf('?') >= 0;
         }).remove();
     }, 100);
-
+    $scope.clearSelectionAndRebindpatSelectionList = function(selectedListItem, mainListItem) {
+        angular.forEach(mainListItem, function(item, key2) {
+            item.checked = false;
+        });
+        if (!angular.isUndefined(selectedListItem)) {
+            if (selectedListItem.length > 0) {
+                angular.forEach(selectedListItem, function(value1, key1) {
+                    angular.forEach(mainListItem, function(value2, key2) {
+                        if (value1.display === value2.display) {
+                            value2.checked = true;
+                        }
+                    });
+                });
+            }
+        }
+    };
+    $scope.clearSelectionAndRebindpatapiSelectionList = function(selectedListItem, mainListItem) {
+        angular.forEach(mainListItem, function(item, key2) {
+            item.checked = false;
+        });
+        if (!angular.isUndefined(selectedListItem)) {
+            if (selectedListItem.length > 0) {
+                angular.forEach(selectedListItem, function(value1, key1) {
+                    angular.forEach(mainListItem, function(value2, key2) {
+                        if (value1.identifierTypeTitle === value2.display) {
+                            value2.checked = true;
+                        }
+                    });
+                });
+            }
+        }
+    };
     $scope.goTOSchedule = function() {
         /* $("#style1").attr("disabled", "disabled");
           $("#style2").attr("disabled", "disabled");*/
