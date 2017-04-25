@@ -35,7 +35,7 @@
                <div class="provider planProviderText" style="opacity:{{planverify}};">Select your provider</div>
                <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
                 <div  class="dropdownContainer" style="opacity:{{planverify}}; margin-left: 50px;">
-                     <select class="healthPlanDropDown" id="editprovider" ng-model="EditHealth.Provider" name="" id="" >
+                     <select class="healthPlanDropDown inseditselect" id="editprovider" ng-model="EditHealth.Provider" name="" id="" >
                       <option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}" ng-selected="insuranceList.insuranceCompany == ProviderData.payerName "><b>{{ProviderData.payerName}}</b></option>
                      </select>
 
