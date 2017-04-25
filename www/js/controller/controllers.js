@@ -6314,10 +6314,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                 icons: '@icons'
             },
             link: function(scope, element) {
-                $(element[0]).on('click', function() {
-                  if($rootScope.userDefaultPaymentProfileText === 'undefined') {
-                    rootScope.editCardStyle ="none";
-                  }
+                $(element[0]).on('click', function() {                  
                     history.back();
                     scope.$apply();
                 });
