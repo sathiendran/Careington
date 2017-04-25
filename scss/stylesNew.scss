@@ -206,13 +206,14 @@ color: #888;
     margin-left: 20px !important;
 }
 .headerfont {
+    //font-family: Glober SemiBold;
 }
 .shadowcard {
     box-shadow: 0 1px 3px transparent !important;
     margin: 21px 10px !important;
 }
 .sidemenu {
-    bottom: 60px !important;
+  //  bottom: 60px !important;
 }
 .searchcontent {
     margin-top: 84px;
@@ -1285,10 +1286,13 @@ margin: 38px 10px !important;
 }
 /*Start SideMenu by Poomani*/
 .sideMenu {
-bottom: 0;
-position: absolute;
-width: 100%;
-bottom: 60px;
+  //bottom: 0;
+  position: absolute;
+  width: 100%;
+  top: 75px;
+  background-color: #d8d8d8;
+  color: #666;
+//  bottom: 60px;
 }
 /*End SideMenu by Poomani*/
 
@@ -5319,6 +5323,484 @@ margin-left: -19px;
         font-size: 9px;
     }
 
+}
+.selectInsurancelist{
+  text-align: left;
+  margin-left: 13px;
+  span {
+    margin-right: 18px;
+    margin-top: -5px;
+    svg {
+      position: relative;
+      top: 3px;
+      margin-left: 7px;
+    }
+  }
+}
+
+.insurancelist{
+  font-family: Glober Regular;
+  color: #666666;
+  font-size: 15px;
+}
+.insuranceedit{
+  float:right;
+  cursor: pointer;
+  font-size:15px;
+  [class^="icon-"], [class*=" icon-"] {
+    font-size: 17px;
+}
+}
+.healthPlanDropDown {
+  font-size:16px;
+}
+
+.main-nav {
+    overflow-x: hidden;
+    overflow-y: auto;
+  //  position: absolute;
+    top: 0;
+    left: -75%;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    background-color: #d8d8d8;
+    font-family: GloberBook;
+    -webkit-transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -ms-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
+    -webkit-overflow-scrolling: touch;
+    .icon_search-users:before {
+        content: "\e916"
+    }
+    ::selection {
+      background: #78aace;
+      color: #fff;
+    }
+}
+
+.main-nav::before {
+    position: absolute;
+    right: -7px;
+    top: 0;
+    z-index: 1;
+    width: 1px;
+    height: 100%;
+    -webkit-box-shadow: -2px 0px 19px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px 0px 19px -2px rgba(0, 0, 0, 0.75);
+    box-shadow: -2px 0px 19px -2px rgba(0, 0, 0, 0.75);
+    content: ""
+}
+
+.main-nav__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+//    font-size: 0.875em !important;
+    clear: both
+}
+
+.main-nav__list li {
+    margin-bottom: 1px;
+    position: relative
+}
+
+.main-nav__list li:hover::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: #fff;
+    top: 0
+}
+
+.main-nav__list li:hover::after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: #fff;
+    bottom: 0;
+}
+
+.main-nav__list li:last-child {
+    border: none;
+}
+
+.main-nav__list a {
+    display: block;
+    width: 100%;
+    height: 48px;
+    background-color: #e6e6e6;
+    color: #666;
+    padding: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    line-height: 26px;
+
+}
+
+.main-nav__list a:hover,
+.main-nav__list a:active,
+.main-nav__list a:focus {
+    color: #fff;
+    background-color: #0092bb;
+    text-decoration: none
+}
+
+.main-nav__list a span {
+    padding-right: 15px;
+    float: left
+}
+
+.main-nav__toggle {
+    position: relative;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin: 0 15px
+}
+
+.main-nav__toggle ins {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: #000;
+    transition: all .3s ease
+}
+
+.main-nav__toggle ins:nth-of-type(1) {
+    top: 4px;
+    transform-origin: 0% 100%
+}
+
+.main-nav__toggle ins:nth-of-type(2) {
+    top: 12px
+}
+
+.main-nav__toggle ins:nth-of-type(3) {
+    top: 20px;
+    transform-origin: 0% 100%
+}
+
+.main-nav footer {
+    text-align: center
+}
+
+.main-nav footer a {
+    display: block
+}
+
+.main-nav footer img {
+    width: 50px
+}
+
+.main-nav__bottom-aligner {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 0px
+}
+
+.main-nav__bottom-aligner--patient {
+  height: calc(100% - 398px);
+}
+
+.main-nav__bottom-aligner--clinician {
+    height: calc(100% - 749px)
+}
+
+.main-nav__bottom-aligner--admin {
+    height: calc(100% - 896px)
+}
+
+.main-nav__toc {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding: 18px 0;
+    margin-top: -27px;
+    border-top: 1px solid #666;
+    color: #666;
+    font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  //  font-size: 0.9em
+}
+
+
+@media only screen and (min-width:768px) {
+    .main-nav {
+        left: -300px;
+        width: 300px
+    }
+}
+.user-info {
+    float: left;
+    width: 100%;
+    height: 50px;
+    padding: 10px 2%;
+    box-sizing: border-box;
+    background-color: #ececec;
+    -webkit-transition: background 0.2s ease-in;
+    -moz-transition: background 0.2s ease-in;
+    -ms-transition: background 0.2s ease-in;
+    -o-transition: background 0.2s ease-in;
+    transition: background 0.2s ease-in
+}
+
+.user-info:hover {
+    -webkit-transition: background-color 0.2s ease-in;
+    -moz-transition: background-color 0.2s ease-in;
+    -ms-transition: background-color 0.2s ease-in;
+    -o-transition: background-color 0.2s ease-in;
+    transition: background-color 0.2s ease-in;
+    background-color: #fff;
+}
+
+.user-info:active {
+    text-decoration: none
+}
+
+.user-info__avatar {
+    overflow: hidden;
+    float: left;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #666;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 0px 1px 0px rgba(0, 0, 0, 0.75)
+}
+
+.user-info__avatar img {
+    width: 100%
+}
+
+.user-info__avatar--consult-screen {
+    width: 50px;
+    height: 50px
+}
+
+.user-info__text {
+    margin-left: 40px;
+    line-height: 1
+}
+
+.user-info__text>* {
+    box-sizing: border-box;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+    word-wrap: break-word
+}
+
+.user-info__text--consult-screen {
+    margin-left: 60px
+}
+
+.user-info__name {
+    width: 90%;
+    color: #111;
+  //  font-size: 0.875em;
+    font-family: inherit
+}
+
+.user-info__name--consult-screen {
+    font-size: 1.3225em;
+    font-family: "GloberBook", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    color: #fff
+}
+
+.user-info__name--consult-screen strong {
+    font-family: "GloberxBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif
+}
+
+.user-info__fname {
+    font-size: 1.25em;
+    line-height: 1.3;
+    font-family: "GloberBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif
+}
+
+.user-info__lname {
+    font-size: 1.25em
+}
+
+.user-info__info {
+    color: #888;
+    width: 80%;
+    line-height: 1.2;
+    font-size: 0.6em
+}
+
+.user-info__info--consult-screen {
+    color: #888;
+    font-size: 0.661em
+}
+
+.user-info--main-nav {
+    height: 76px;
+    background: #444;
+    padding: 15px
+}
+
+.user-info--main-nav:hover {
+    background: #444;
+    text-decoration: none
+}
+
+.user-info--main-nav:hover .userpic::before,
+.user-info--main-nav:hover .userpic::after {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease
+}
+
+.user-info--main-nav .user-info__name {
+    color: #fff
+}
+
+.user-info--main-nav .user-info__text {
+    margin-left: 60px;
+    margin-top: 5px
+}
+
+.user-info--main-nav .user-info__info {
+    //font-size: 0.8em;
+    font-size: 1.1em !important;
+    color: #fff;
+    font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    width: 100%
+}
+.userpic {
+    overflow: hidden;
+    position: relative;
+    width: 37px;
+    height: 37px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 2px #888 solid;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    font-size: 0.525em;
+    line-height: 10px;
+    float: left;
+    background: #fff
+}
+
+.userpic::before,
+.userpic::after {
+    border-radius: 50%;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    top: 28px;
+}
+
+.userpic::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    padding-top: 10px;
+    font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    line-height: .9em;
+    color: #fff;
+    font-size: 10px;
+    content: "View Profile";
+    background-color: rgba(0, 146, 187, 0.7)
+}
+
+.userpic::after {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: -19px;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-family: 'icomoon';
+    content: "\e639"
+}
+
+.userpic--white-border {
+    border: 2px #fff solid
+}
+
+.userpic--main-nav {
+    font-size: 0.625em;
+    height: 44px;
+    width: 44px;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.userpic--main-nav::after {
+    bottom: -25px
+}
+.main-nav__bottom-aligner {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 0px
+}
+.insuranceNameDisplayed {
+  font-family: GloberBold;
+  div {
+    font-family: GloberRegular;
+  }
+}
+.insProviderName {
+  font-family: GloberBold !important;
+  font-size: 18px;
+  position: relative;
+  top: -5px;
+}
+.insCHooseProviderName {
+  font-family: GloberBold !important;
+  font-size: 18px;
+  position: relative;
+  top: 4px;
+}
+.insSubscriberName {
+  font-family: GloberRegular;
+  font-size: 15px;
+  position: relative;
+  top: -5px;
 }
 .healthpat{
   font-size: 20px;

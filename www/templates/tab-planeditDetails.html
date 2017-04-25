@@ -1,5 +1,5 @@
-<ion-view title="Plan Details">
-   <form  ng-submit="PlanDetailsValidation()" name="HealthForm"  novalidate>
+<ion-view title="Plan Edit Details">
+   <form  ng-submit="PlanediValidation()" name="HealteditForm" >
       <ion-header-bar align-title="left" class="bar-positiveHomeUser PlanHeader" style="background-color:{{brandColor}};border-color:{{brandColor}};  {{HeadercardDetails}};{{backgroundimage}}" >
          <div id="Error_Message" class="ErrorMessageDiv" ></div>
          <div class="Server_Error ErrorMessageDiv" ></div>
@@ -8,14 +8,14 @@
             <span>Cancel</span>
             </a>
          </div>
-         <div class="buttons" style="width: 50%; display: {{PlanDisplay}}" >
+         <div class="buttons" style="width: 50%; display: {{PlaneditDisplay}}" >
             <div style="width: 100%; text-align: right;" ng-if="HealthForm.$invalid">
-               <button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}};"  ng-disabled="HealthForm.$invalid" >
-               Next
-               </button>
+               <!--<button type="submit" class="button_new icon PlanNext" style="color:#999;{{CardDetailsNextButton}};"  ng-disabled="HealthForm.$invalid" >
+               Save
+             </button>-->
             </div>
             <div style="width: 100%; text-align: right;" ng-if="!HealthForm.$invalid">
-               <button type="submit" class="button_new icon PlanNext" style="{{CardDetailsNextButton}}"   ng-disabled="HealthForm.$invalid" > Next
+               <button type="submit" class="button_new icon PlanNext" style="{{CardDetailsNextButton}}"   ng-click="PlanediValidation()"> Save
                </button>
             </div>
          </div>
@@ -30,48 +30,65 @@
             </div>
             <div class="healthPlan_header" style="{{PlanDetails}};"  >
                <div class="planInformation"  style="{{SubDetailsPlanDetails}}; display:{{subdetailsdisplay}}">
-                  Enter your health plan information
+                  Edit your health plan information
                </div>
                <div class="provider planProviderText" style="opacity:{{planverify}};">Select your provider</div>
                <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
+                <div  class="dropdownContainer" style="opacity:{{planverify}}; margin-left: 50px;">
+                     <select class="healthPlanDropDown" id="editprovider" ng-model="EditHealth.Provider" name="" id="" >
+                      <option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}" ng-selected="insuranceList.insuranceCompany == ProviderData.payerName "><b>{{ProviderData.payerName}}</b></option>
+                     </select>
+
+               </div>
+             </div>
+              <!-- <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
                   <div  class="dropdownContainer" style="opacity:{{planverify}}; margin-left: 50px;">
-                     <div class="viewport1">Plan Provider</div>
-                     <select class="healthPlanDropDown" id="Provider" ng-model="AddHealth.Provider" style="border: none; width: 75%;" required>
-                        <option value=""><b>Plan Provider</b></option>
-                        <option class="planDetailOption" ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
+                   <div class="viewport1"></div>
+
+                     <select class="healthPlanDropDown optionselect" id="Provider" ng-model="EditHealth.Provider" style="border: none; width: 75%;" required>
+                       <option value="">Choose Organization</option>
+                        <option class=""  ng-selected="insuranceList.insuranceCompany  == ProviderData.payerName "  ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
                      </select>
                   </div>
-               </div>
+               </div>-->
             </div>
             <div class="list addhealthplan" style="opacity:{{planverify}};">
                <div class="item item-input" >
                   <span class="input-label cardfont">First Name</span>
-                  <input  type="text" placeholder="Required" ng-model="AddHealth.firstName" name="firstName" id="firstName" required>
+                  <input  type="text" placeholder="Required" value="{{insuranceList.subscriberFirstName}}"   name="firstName" id="editfirstName" required>
                </div>
                <div class="item item-input" >
                   <span class="input-label cardfont">Last Name</span>
-                  <input type="text" placeholder="Required" ng-model="AddHealth.lastName" name="lastName" id="lastName" required >
+                  <input type="text" placeholder="Required" value="{{insuranceList.subscriberLastName}}"  name="lastName" id="editlastName" required >
                </div>
                <div class="item item-input">
                   <span class="input-label cardfont">Policy Number</span>
-                  <input type="text" placeholder="Required"  ng-model="AddHealth.policyNumber" id="policyNumber" name="policyNumber" required>
+                  <input type="text" placeholder="Required"  value="{{insuranceList.policyNumber}}"  id="editpolicyNumber" name="editpolicyNumber" required>
                </div>
-               <label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
+               <div class="item item-input">
+                  <span class="input-label cardfont">Date of Birth <div style="font-size: 10px;">for the policy holder</div></span>
+                  <input type="date" placeholder="Required"  value="{{editinsDOB}}"  id="editdate" name="editdate" required>
+               </div>
+            <!--
+  <label ng-if="deviceName == 'IOS'" class="item item-input datePlaceholder" >
                   <span class="input-label cardfont" style="padding: 5px 10px 3px 0px;">
                      Date of Birth
                      <div style="font-size: 10px;">for the policy holder</div>
                   </span>
-                  <div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
-                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth"  id="date"  required>
+                  <div class="dobRequired">Required</div>
+                     <input type="date"  name="editateofbirth" value="{{editinsDOB}}" id="editdate"  ng-model="userdob" placeholder="Required" >
+
                </label>
                <label ng-if="deviceName != 'IOS'" class="item item-input datePlaceholder" >
                   <span class="input-label cardfont" style="padding: 5px 10px 3px 0px;"  >
                      Date of Birth
                      <div style="font-size: 10px;">for the policy holder</div>
                   </span>
-                  <div class="dobRequired" ng-if="!AddHealth.dateBirth">Required</div>
-                  <input class="userDateofbirth" type="date" ng-model="AddHealth.dateBirth" value="{{PreviousDate}}"   id="date"  required>
-               </label>
+
+
+              <input type="date"  name="healthInfoDOB" id="editiosdate" value="{{editinsDOB}}"  class="textdata" ng-model="userdob" placeholder="" >
+
+            </label-->
             </div>
             <div class="planDetails"  style="opacity:{{planverify}};">
                <p>When you add a health plan, information about your plan will be sent to your provider for verification.</p>
@@ -80,4 +97,4 @@
          </div>
       </ion-content>
    </form>
-</ion-view>
+ </ion-view>

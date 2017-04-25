@@ -301,7 +301,7 @@ angular.module('starter.services', [])
 
 	this.getSelectedPatientProfiles = function(params) {
 		var PatientDetailsList = {
-			headers: util.getHeaders(params.accessToken), 
+			headers: util.getHeaders(params.accessToken),
            // url: apiCommonURL + '/api/v2/patients?include=AccountDetails,Physician,Pharmacy,Anatomy,Addresses,Consultations,Tracking,All',
 		   url: apiCommonURL + '/api/v2/patients/profile/'+params.patientId+'?include=All/role/'+1,
             method: 'GET'
@@ -822,15 +822,87 @@ this.getPatientMedicalProfile = function(params){
 	}
 
 
+this.putEditHealthPlan = function(params) {
+		var confirmPatientProfile = {
+			headers: util.getHeaders(params.accessToken),
+  //    url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+            url: apiCommonURL + '/api/healthplan/'+ params.healthPlanID,
+            method: 'PUT',
+			data: {
+        healthPlanId: params.healthPlanID,
+				patientId: params.PatientId,
+				insuranceCompany: params.insuranceCompany,
+				insuranceCompanyNameId: params.insuranceCompanyNameId,
+				isDefaultPlan: params.isDefaultPlan,
+				insuranceCompanyPhone: params.insuranceCompanyPhone,
+				memberName: params.memberName,
+				subsciberId: params.subsciberId,
+				policyNumber: params.policyNumber,
+				subscriberFirstName: params.subscriberFirstName,
+				subscriberLastName: params.subscriberLastName,
+				subscriberDob: params.subscriberDob,
+				isActive: params.isActive,
+				payerId: params.payerId
+            }
+		};
+
+		$http(confirmPatientProfile).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+                    return data;
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data,status);
+				}
+		});
+	}
+
+  this.editPaymentProfile = function(params) {
+		var editPayment = {
+			headers: util.getHeaders(params.accessToken),
+  //    url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+            url: apiCommonURL + '/api/patients/payments/'+ params.Patientprofileid,
+            method: 'PUT',
+			data: {
+        emailId: params.EmailId,
+        billingAddress: params.BillingAddress,
+        cardNumber: params.CardNumber,
+        city: params.City,
+        expiryMonth: params.ExpiryMonth,
+        expiryYear: params.ExpiryYear,
+        firstName: params.FirstName,
+        lastName: params.LastName,
+        state: params.State,
+        zip: params.Zip,
+        country: params.Country,
+        profileID: params.ProfileId,
+        cvv: params.Cvv
+            }
+		};
+
+		$http(editPayment).
+			success(function (data, status, headers, config) {
+				if (typeof params.success != 'undefined') {
+					params.success(data);
+                    return data;
+				}
+			}).
+			error(function (data, status, headers, config) {
+				if (typeof params.error != 'undefined') {
+					params.error(data,status);
+				}
+		});
+	}
     this.getConsultationFinalReport = function (params) {
         //https://snap-dev.com/reports/consultationreportdetails/2440
         //util.setHeaders($http, params);
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-          //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
-		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
-		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
-
+            //  url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		          url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
             method: 'GET'
         };
 
@@ -1687,6 +1759,27 @@ this.getPatientMedicalProfile = function(params){
                }
            });
      }
+
+ this.getInsuranceDetails = function(params) {
+   		var PatientInsuranceList = {
+   			headers: util.getHeaders(params.accessToken),
+               url: apiCommonURL + '/api/healthplan?policyNumber=' + params.policyNumber +'&patientId=' + params.patientId,
+               method: 'GET'
+   		};
+
+   		$http(PatientInsuranceList).
+   			success(function (data, status, headers, config) {
+   				if (typeof params.success != 'undefined') {
+   					params.success(data);
+   				}
+   			}).
+   			error(function (data, status, headers, config) {
+   				if (typeof params.error != 'undefined') {
+   					params.error(data,status);
+   				}
+   		});
+   }
+
 
      this.putListOfCountryLocation = function(params){
         var requestInfo = {

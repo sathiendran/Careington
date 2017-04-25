@@ -38,13 +38,38 @@
             <div class="animated slideInRight" >
                <div>
                   <div style="display: {{enableAddHealthPlan}}">
-                     <div class="healthPlan_header"  >
-                        <div class="healthPlan_text NoPlanText" >Select your Health Plan</div>
+                     <div class="healthPlan_header consultInsurance"  >
+						                 <!--<h4 class="insurancelist"> <div>select your health plan
+                      <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span></div></h4>
+                    <ion-item >
+                      <select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;" ng-chang="planchange()">
+                         <option value="Choose Your Health Plan"><b>Choose Your Health Plan</b></option>
+                         <option class="planlist" ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId == providerName + '@' + PolicyNo + '@' + healthPlanID">
+                           <b><span >{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumberLong}}</span></b>
+
+                         </option>
+                         <option><b>Add a new health plan</b></option>
+
+                      </select>
+
+                    </ion-item>-->
+
+                      <!--<div class="healthPlan_text NoPlanText" >Select your Health Plan</div>
+                        <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
+                        <h4 class="insurancelist">
+                           <div class="selectInsurancelist">select your health plan
+                             <span class="insuranceedit" style="display: {{editplan}}"; ng-click="editinsurance()">Edit this plan <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                           </div>
+                        </h4>
                         <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
                            <div  class="dropdownContainer">
-                              <div style = "display: {{chooseHealthHide}};" class="viewport">Choose Your Health Plan</div>
-                              <div style = "display: {{chooseHealthShow}};" class="viewport">{{providerName +' '+ PolicyNo}}</div>
-                              <select class="healthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan" style="border: none;">
+                              <div style = "display: {{chooseHealthHide}};" class="viewport healthSelectedValue"><div class="insCHooseProviderName">Choose Your Health Plan</div></div>
+                              <div style = "display: {{chooseHealthShow}};" class="viewport insuranceNameDisplayed healthSelectedValue">
+                                <!--<b>{{providerName +' '+ PolicyNo}}</b>-->
+                                <div class="insProviderName">{{providerName}}</div><div class="insSubscriberName">Subscriber ID:{{PolicyNo}}</div>
+
+                              </div>
+                              <select class="consultHealthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;">
                                  <option value="Choose Your Health Plan"><b>Choose Your Health Plan</b></option>
                                  <option class="planlist" ng-repeat="GetPlanList in patientHealthPlanList" value="{{GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId}}" ng-selected="GetPlanList.insuranceCompany + '@' + GetPlanList.policyNumberLong + '@' + GetPlanList.healthPlanId == providerName + '@' + PolicyNo + '@' + healthPlanID"><b>
                                     <span >{{GetPlanList.insuranceCompany + ' ' + GetPlanList.policyNumberLong}}</span></b>
@@ -103,15 +128,35 @@
          <div class="password_home contentPayHome">
             <div class="animated slideInRight" >
                <div style="display: {{enableSubmitpayment}}">
-                  <div class="healthPlan_header"  >
-                     <div class="healthPlan_text NoPlanText payCardText"  >Select your Payment card</div>
+                  <div class="healthPlan_header consultCard"  >
+					<!-- <h4 class="insurancelist"> <div>Select your Payment card
+                   <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span></div></h4>
+                   <ion-item >
+
+                     <select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;width:80%;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange()">
+                        <option ><b>Choose Your Card</b></option>
+                        <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value={{PaymentProfile.profileID}} ><b>
+
+                        <sapn>{{PaymentProfile.cardType}}</span>  <span >{{ + '      ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
+                        <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
+                     </select>
+
+                   </ion-item>-->
+                     <!--<div class="healthPlan_text NoPlanText payCardText"  >Select your Payment card</div>
+                     <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
+                     <h4 class="insurancelist">
+                       <div class="selectInsurancelist">Select your Payment card
+                              <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editCardStyle}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                        </div>
+                     </h4>
                      <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
                         <div  class="dropdownContainer">
-                           <div ng-if="userDefaultPaymentProfileText == null"  id="cardViewport" class="cardViewport">Choose Your Card</div>
-                           <div ng-if="userDefaultPaymentProfileText != null" id="cardViewport" class="cardViewport">{{userDefaultPaymentProfileText}}</div>
-                           <select class="healthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard">
+                           <div ng-if="userDefaultPaymentProfileText == null || userDefaultPaymentProfileText == 'undefined'"  id="cardViewport" class="cardViewport">Choose Your Card</div>
+                           <div ng-if="userDefaultPaymentProfileText != null && userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport">{{userDefaultPaymentProfileText}}</div>
+                           <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange()">
                               <option ><b>Choose Your Card</b></option>
-                              <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value={{PaymentProfile.profileID}} ><b><span>Card ending in...{{PaymentProfile.cardNumber}}</span></b></option>
+                              <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID}}" ><b>
+                                <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                               <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                            </select>
                         </div>

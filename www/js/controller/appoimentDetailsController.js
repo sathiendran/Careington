@@ -195,6 +195,8 @@ angular.module('starter.controllers')
               userData.timeZoneSystemId = data.message;
               var userDataJsonData = JSON.stringify(userData);
               $window.localStorage.setItem('snap_user_session', userDataJsonData);
+              snap.hub.mainHub().register(snap.patient.schedule.patientSelfSchedulingHub(), {dateForListening: new Date(), timeZoneSystemId: userData.timeZoneSystemId});
+              snap.hub.mainHub().start();
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -229,7 +231,10 @@ angular.module('starter.controllers')
 
         var opt = new snap.patient.schedule.appointmentDialog();
         opt.openExistedAppointmentDialog(scheduledListData.appointmentId);
-
+      /*  if (!$mainHub.isHubStarted()) {
+            $mainHub.start();
+            snap.hub.mainHub().stop();
+        }  */
     }
 
     $scope.doGetSelectedappoimentDetails = function(SSscheduledAppointmentId) {
@@ -241,6 +246,7 @@ angular.module('starter.controllers')
           appointmentId: SSscheduledAppointmentId,
           success: function(data) {
               $rootScope.scheduledListDatas = [];
+            //  snap.hub.mainHub().stop();
               angular.forEach(data.data, function(index) {
                 $scope.paticipatingPatient = $filter('filter')(angular.fromJson(index.participants), {
                     "participantTypeCode": "1"

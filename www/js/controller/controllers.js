@@ -747,9 +747,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     }
 
-    $('#Provider').change(function() {
+  /*  $('#Provider').change(function() {
         $('div.viewport1').text($("option:selected", this).text());
-    });
+    });*/
     $scope.currentYear = new Date().getFullYear()
     $scope.currentMonth = new Date().getMonth() + 1
     $scope.months = $locale.DATETIME_FORMATS.MONTH
@@ -2398,8 +2398,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.patientPhysicianDetails = data.data[0].physicianDetails;
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 $rootScope.patientParticularaddress = data.data[0].addressLocation;
-                $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
-                $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                if($rootScope.patientParticularaddress != undefined){
+                     $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                     $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+
+                }
+
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
                 if($rootScope.patientEncounteraddress != undefined){
                   $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
@@ -2565,6 +2569,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
+                    $rootScope.viewmyhealthDisplay = 'block';
+                    $rootScope.viewhealthDisplay = 'none';
                     $rootScope.doGetPatientProfiles();
                     $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
@@ -2694,7 +2700,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.patGender = "NA";
                     }
 
-                    if($rootScope.listOfRelationship != '' && typeof($rootScope.listOfRelationship !== 'undefined')) {
+                    if($rootScope.listOfRelationship.length > 0) {
                       var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                           codeId: index.relationCode
                       })
@@ -2703,6 +2709,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                       } else {
                           var depRelationShip = '';
                       }
+                    } else {
+                      var depRelationShip = '';
                     }
 
                     $rootScope.RelatedPatientProfiles.push({
@@ -3049,16 +3057,32 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else if ($rootScope.currState.$current.name === "tab.planDetails") {
                         $rootScope.disableAddHealthPlan = "none";
                         $rootScope.enableAddHealthPlan = "block";
+						$rootScope.editplan = "block";
+                        $rootScope.planchange();
                         $state.go('tab.consultCharge');
 
-                    }
+                    }  else if ($rootScope.currState.$current.name === "tab.planeditDetails") {
+                       $rootScope.disableAddHealthPlan = "none";
+                       $rootScope.enableAddHealthPlan = "block";
+                       $rootScope.editplan = "block";
+                       $rootScope.planchange();
+                       $state.go('tab.consultCharge');
+
+                   }
                 } else {
                     if ($rootScope.currState.$current.name === "tab.consultCharge") {
                         $rootScope.enableAddHealthPlan = "none";
                         $rootScope.disableAddHealthPlan = "block;";
+						$rootScope.editplan = "block";
                     } else if ($rootScope.currState.$current.name === "tab.planDetails") {
+						$rootScope.planchange();
                         $state.go('tab.consultCharge');
-                    }
+						$rootScope.editplan = "block";
+                    } else if ($rootScope.currState.$current.name === "tab.planeditDetails") {
+                       $rootScope.planchange();
+                       $state.go('tab.consultCharge');
+                        $rootScope.editplan = "block";
+                   }
                 }
 
             },
@@ -3202,15 +3226,63 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         /* country and State */
 
     $("#addHealthPlan").change(function() {
-
+      $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
-            $rootScope.submitPayBack = $rootScope.currState.$current.name;
-            $scope.doGetHealthPlanProvider();
-
+			         $rootScope.currentplan ="";
+               $rootScope.submitPayBack = $rootScope.currState.$current.name;
+			         $rootScope.currentplan = "tab.planDetails";
+               $scope.doGetHealthPlanProvider();
+		    } else if ($('option:selected', this).text() === 'Choose Your Health Plan') {
+              $rootScope.editplan ="none";
+              $("div.viewport").html('<div class="insCHooseProviderName">Choose Your Health Plan</div>');
         } else {
-            $('div.viewport').text($("option:selected", this).text());
+            //  $('div.viewport').text($("option:selected", this).text());
+              var selectedValue = $('option:selected', this).val().split('@');
+              $("div.viewport").html('<div class="insProviderName">'+selectedValue[0]+'</div><div class="insSubscriberName">Subscriber ID:'+selectedValue[1]+'</div>');
+			         $rootScope.editplan ="block";
         }
     });
+$rootScope.planchange = function(){
+      var insplan = $('#addHealthPlan').val();
+      if( insplan != 'Choose Your Health Plan'){
+       $rootScope.editplan ="block";
+     } else{
+       $rootScope.editplan ="none";
+     }
+   }
+ $scope.editinsurance = function(){
+   var ponum = $("#addHealthPlan").val();
+   var num = ponum.split("@");
+   $rootScope.policynumber = num[1];
+
+  // $rootScope.submitPayBack = $rootScope.currState.$current.name;
+   $scope.doGetInsuranceDetails();
+ }
+
+$scope.doGetInsuranceDetails = function(){
+    $rootScope.insuranceList = [];
+  var params = {
+    patientId: $rootScope.patientId,
+    accessToken: $rootScope.accessToken,
+    policyNumber:$scope.policynumber,
+    success: function(data, status) {
+      if(data != ''){
+        $rootScope.insuranceList = data;
+        var date = new Date($rootScope.insuranceList.subscriberDob);
+        $rootScope.editinsDOB = $filter('date')(date, "yyyy-MM-dd");
+        $rootScope.edithealthplanid =   $rootScope.insuranceList.healthPlanId;
+        $rootScope.currentplan = "tab.planeditDetails";
+        $scope.doGetHealthPlanProvider();
+      }
+    },
+        error: function(data, status) {
+          //alert("fail");
+    }
+
+  };
+  LoginService.getInsuranceDetails(params);
+
+}
 
     $scope.doGetHealthPlanProvider = function() {
         $rootScope.HealthPlanProvidersList = [];
@@ -3230,7 +3302,19 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
                     });
                 });
-                $state.go('tab.planDetails');
+               // $state.go('tab.planDetails');
+               if(typeof($rootScope.currentplan) === 'undefined') {
+                 $rootScope.currentplan = "tab.planDetails";
+               }
+               	var currentplandet = $rootScope.currentplan;
+                if(currentplandet === "tab.planDetails"){
+                    $state.go('tab.planDetails');
+                }else if(currentplandet === "tab.planeditDetails"){
+
+                  $state.go('tab.planeditDetails');
+
+
+                }
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -3302,6 +3386,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 } else {
                     $scope.ErrorMessage = data.message;
                     $rootScope.Validation($scope.ErrorMessage);
+					$scope.addinsplan = true;
+                    $scope.editinsplan = true;
                     $state.go('tab.planDetails');
                 }
             },
@@ -3318,6 +3404,82 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         LoginService.postNewHealthPlan(params);
     }
+$scope.EditHealth = {};
+    $scope.doEditHealthPlan = function() {
+
+        var HealthPlanProviders =$('#editprovider').val().split("@");
+        $scope.insuranceCompany = HealthPlanProviders[0];
+        $scope.insuranceCompanyNameId = HealthPlanProviders[1];
+        $scope.payerId = HealthPlanProviders[2];
+        $scope.ProviderId = HealthPlanProviders[3];
+        //End
+        $rootScope.providerName = HealthPlanProviders[0];
+        $rootScope.PolicyNo = $('#editpolicyNumber').val();
+        $rootScope.edihealthPlanID =   $rootScope.edithealthplanid;
+        if (typeof $rootScope.patientHealthPlanList !== 'undefined') {
+
+            var subsciberNewID = $rootScope.patientHealthPlanList.length + 1;
+        } else {
+            var subsciberNewID = 1;
+        }
+
+        $scope.insuranceCompany = $scope.insuranceCompany;
+        $scope.insuranceCompanyNameId = $scope.insuranceCompanyNameId;
+        $scope.isDefaultPlan = 'Y';
+        $scope.insuranceCompanyPhone = '8888888888';
+        $scope.memberName = $("#editfirstName").val() + $("#editlastName").val();
+        $scope.subsciberId = subsciberNewID // patient id
+        $scope.policyNumber = $("#editpolicyNumber").val(); //P20
+        $scope.subscriberFirstName = $("#editfirstName").val() ;
+        $scope.subscriberLastName = $("#editlastName").val() ;
+        $scope.subscriberDob = $("#editdate").val() ;
+        $scope.isActive = 'A';
+        $scope.payerId = $scope.payerId;
+
+        var params = {
+            accessToken: $rootScope.accessToken,
+            healthPlanID: $rootScope.edihealthPlanID ,
+            PatientId: $rootScope.patientId,
+            insuranceCompany: $scope.insuranceCompany,
+            insuranceCompanyNameId: $scope.insuranceCompanyNameId,
+            isDefaultPlan: $scope.isDefaultPlan,
+            insuranceCompanyPhone: $scope.insuranceCompanyPhone,
+            memberName: $scope.memberName,
+            subsciberId: $scope.subsciberId,
+            policyNumber: $scope.policyNumber,
+            subscriberFirstName: $scope.subscriberFirstName,
+            subscriberLastName: $scope.subscriberLastName,
+            subscriberDob: $scope.subscriberDob,
+            isActive: $scope.isActive,
+            payerId: $scope.payerId,
+
+            success: function(data) {
+                $scope.NewHealtheditPlan = data;
+                if ($scope.NewHealtheditPlan.healthPlanID !== '') {
+                    $rootScope.healthPlanID = data.healthPlanID;
+                    $scope.doGetPatientHealthPlansList();
+                    $rootScope.planchange();
+                } else {
+                    $scope.ErrorMessage = data.message;
+                    $rootScope.Validation($scope.ErrorMessage);
+                    $scope.addinsplan = true;
+                    $scope.editinsplan = true;
+                    $state.go('tab.planeditDetails');
+                }
+            },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.putEditHealthPlan(params);
+    }
 
     $scope.goCardDetailsPage = function() {
         $rootScope.cardPage = "consultCharge";
@@ -3327,14 +3489,27 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.cardPage = "addCard";
         $state.go('tab.cardDetails');
     }
-
+$scope.cardchange = function(){
+      var insplan = $('#addNewCard').val();
+    if( insplan !== 'Choose Your Card' && insplan !== 'Add a new card'){
+        $rootScope.editCardStyle ="block";
+     } else{
+       $rootScope.editCardStyle ="none";
+     }
+   }
 
     $("#addNewCard").change(function() {
         if ($('option:selected', this).text() === 'Add a new card') {
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "consultCharge";
             $state.go('tab.cardDetails');
+			      $rootScope.editCardStyle ="none";
         } else {
+            if ($('option:selected', this).text() === 'Choose Your Card') {
+              $rootScope.editCardStyle ="none";
+            } else {
+              $rootScope.editCardStyle ="block";
+            }
             $('div.cardViewport').text($("option:selected", this).text());
         }
     });
@@ -3382,6 +3557,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.copayAmount = $rootScope.consultationAmount;
         $rootScope.healthPlanPage = "none";
         $rootScope.consultChargeNoPlanPage = "block";
+		      $rootScope.editCardStyle = "none";
         $('option').filter(function() {
             return this.value.indexOf('?') >= 0;
         }).remove();
@@ -3398,19 +3574,24 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.backConsultCharge = function() {
-        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
+        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
             $state.go('tab.ConsentTreat');
-        } else if ($rootScope.healthPlanPage === "block") {
+        } else if ($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') {
             $state.go('tab.ConsentTreat');
         } else if ($rootScope.consultChargeNoPlanPage === "block") {
             $rootScope.consultChargeNoPlanPage = "none";
             $rootScope.healthPlanPage = "block";
+        } else if ($rootScope.Cttonscheduled !== 'on'){
+            if($rootScope.concentToTreatPreviousPage === "tab.CurrentMedication") {
+                $state.go('tab.ConsentTreat');
+            } else {
+                $state.go($rootScope.concentToTreatPreviousPage);
+            }
         } else {
           $rootScope.doGetScheduledConsulatation();
           $rootScope.doGetIndividualScheduledConsulatation();
           $state.go('tab.userhome');
         }
-
     }
 
     $scope.goToNextPage = function() {
@@ -3666,6 +3847,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
                                 'isBusiness': index.isBusiness,
                                 'profileID': index.profileID,
+								'cardType' : index.cardType,
                             });
                         });
                         $rootScope.totalPaymentCard = $rootScope.PaymentProfile.length;
@@ -3730,6 +3912,33 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         LoginService.getPatientPaymentProfile(params);
     }
 
+$rootScope.editcard={};
+    $scope.editpaymentcard = function(){
+      var proid = $("#addNewCard").val();
+      $rootScope.profileid = proid;
+      $rootScope.editPaymentProfile = [];
+    angular.forEach(  $rootScope.PaymentProfile, function(index) {
+                   if (index.profileID  == $rootScope.profileid) {
+
+                     $rootScope.editPaymentProfile.push({
+                         'id': index.$id,
+                         'billingAddress': angular.fromJson(index.billingAddress),
+                         'cardExpiration': index.cardExpiration,
+                         'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
+                         'isBusiness': index.isBusiness,
+                         'profileID': index.profileID,
+                         'cardType' : index.cardType,
+                     });
+
+                   }
+               });
+               $rootScope.editbilling =  $rootScope.editPaymentProfile[0].billingAddress;
+                $rootScope.editcardNumber =  $rootScope.editPaymentProfile[0].cardNumber;
+                  $rootScope.editcard.cardcountry = $rootScope.editbilling.country;
+                  $("#editCountry").val(  $rootScope.editcard.cardcountry);
+               $state.go('tab.cardeditDetails');
+
+    }
     $scope.doPostClearHealthPlan = function() {
         var params = {
             healthPlanID: $rootScope.healthPlanID,
@@ -3794,8 +4003,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $rootScope.cardDisplay = "inherit;";
     $rootScope.planverify = "inherit";
     $scope.getCardDetails = {};
-
+	$scope.editCard = {};
     $scope.ccCvvLength = 3;
+	 $rootScope.editCvvLength = 3;
+    $rootScope.editsecuritycode = $('#editcvv').val();
     $scope.$watch('getCardDetails.CardNumber', function(cardNumber) {
         var ccn1 = String(cardNumber).substr(0, 1);
         if (typeof cardNumber !== "undefined") {
@@ -3806,6 +4017,137 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             }
         }
     });
+$scope.$watch('editsecuritycode', function(cardNumber) {
+        var ccn1 = String(cardNumber).substr(0, 1);
+        if (typeof cardNumber !== "undefined") {
+            if (ccn1 === 3) {
+              $rootScope.editCvvLength = 4;
+            } else {
+              $rootScope.editCvvLength = 3;
+            }
+        }
+    });
+
+    $scope.doEditPaymentProfileDetails = function() {
+
+
+        var editzipCount = $('#editZip').val().length;
+        var currentTime = new Date()
+        var EditexpiryDateCheck = new Date();
+      //  EditexpiryDateCheck.setFullYear($scope.getCardDetails.CardExpireDatesYear, $scope.getCardDetails.CardExpireDatesMonth, 1);
+      //  ExpiryDateCheck.setFullYear($scope.getCardDetails.CardExpireDatesYear, $scope.getCardDetails.CardExpireDatesMonth, 1);
+
+        $rootScope.editFirstName = $("#editFirstName").val();
+        $rootScope.editLastName = $("#editLastName").val();
+        $rootScope.editCardNumber = $("#editCardNumber").val();
+        $rootScope.editCvv =  $("#editcvv").val();
+        $rootScope.editBillingAddress = $("#editbillingAddress").val();
+        $rootScope.editCity =  $("#editCity").val();
+        $rootScope.editState =  $("#editState").val();
+        $rootScope.editZip =  $("#editZip").val();
+        $rootScope.editExpiryMonth =  $("#editExpmonth").val();
+        $rootScope.editExpiryYear = $("#editExpyear").val();
+        $scope.editCountry =  $("#editCountry").val();
+EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryMonth, 1);
+
+
+        if ($('#editFirstName').val() === '') {
+            $scope.ErrorMessage = "First Name can't be empty";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if ($('#editlaststName').val() === '') {
+              $scope.ErrorMessage = "Last Name can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        } else if ($('#editExpmonth').val() === '') {
+              $scope.ErrorMessage = "Expiry Month can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        }else if ($('#editExpyear').val() === '') {
+              $scope.ErrorMessage = "Expiry can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        } else if (EditexpiryDateCheck < currentTime) {
+            $scope.invalidMonth = "border: 1px solid red;";
+            $scope.ErrorMessage = "Invalid Expiry Month";
+
+            $rootScope.Validation($scope.ErrorMessage);
+        }else if ($('#editcvv').val() === '') {
+              $scope.ErrorMessage = "security code can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        } else if ($rootScope.editCvv.length !== $rootScope.editCvvLength) {
+            $scope.invalidZip = "";
+            $scope.invalidMonth = "";
+            $scope.invalidCard = "";
+            $scope.invalidCVV = "border: 1px solid red;";
+            $scope.ErrorMessage = "Security code must be " + $rootScope.editCvvLength + " numbers";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if ($('#editZip').val() === '') {
+              $scope.ErrorMessage = "Zip code can't be empty";
+              $rootScope.Validation($scope.ErrorMessage);
+
+        } else if (editzipCount <= 4) {
+            $scope.invalidMonth = "";
+            $scope.invalidCard = "";
+            $scope.invalidCVV = "";
+            $scope.invalidZip = "border: 1px solid red;";
+            $scope.ErrorMessage = "Verify Zip";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else {
+
+            $rootScope.cardDisplay = "none;";
+            $rootScope.verifyCardDisplay = "inherit";
+            $rootScope.planverify = "0.3";
+            var params = {
+                EmailId: $rootScope.UserEmail,
+                BillingAddress: $rootScope.editBillingAddress,
+                CardNumber: $rootScope.editCardNumber,
+                City: $rootScope.editCity,
+                ExpiryMonth: $rootScope.editExpiryMonth,
+                ExpiryYear: $rootScope.editExpiryYear,
+                FirstName: $rootScope.editFirstName,
+                LastName: $rootScope.editLastName,
+                State: $rootScope.editState,
+                Zip: $rootScope.editZip,
+                Country: $scope.editCountry,
+                ProfileId: $rootScope.profileid,
+                Cvv: $rootScope.editCvv,
+                Patientprofileid:  $rootScope.patientprofileID,
+                accessToken: $rootScope.accessToken,
+
+
+                success: function(data) {
+                  $scope.EditPaymentDetails = data;
+                  $rootScope.userCardDetails = $rootScope.profileid;
+                if (typeof $rootScope.CardNumber === 'undefined') {
+                        $rootScope.choosePaymentShow = 'none';
+                        $rootScope.choosePaymentHide = 'initial';
+                    } else if (typeof $rootScope.CardNumber !== 'undefined') {
+                        $rootScope.choosePaymentShow = 'initial';
+                        $rootScope.choosePaymentHide = 'none';
+                        var cardNo = $rootScope.CardNumber;
+                        var strCardNo = cardNo.toString();
+                        var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                        $rootScope.userCardNumber = getLastFour;
+                    }
+                    $rootScope.doGetPatientPaymentProfiles();
+                    $state.go('tab.submitPayment');
+                    $rootScope.cardDisplay = "inherit;";
+                    $rootScope.verifyCardDisplay = "none";
+                    $rootScope.planverify = "inherit";
+                },
+                error: function() {
+                    $rootScope.cardDisplay = "inherit;";
+                    $rootScope.verifyCardDisplay = "none";
+                    $rootScope.planverify = "inherit";
+                    $rootScope.serverErrorMessageValidationForPayment();
+                }
+            };
+
+            LoginService.editPaymentProfile(params);
+
+        }
+    }
 
     $scope.doPostPaymentProfileDetails = function() {
 
@@ -4205,7 +4547,41 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $state.go('tab.applyPlan');
         }
     }
+	$rootScope.PlaneditDisplay = "inherit";
+    $rootScope.verifyPlaneditDisplay = "none;";
+    $rootScope.plaeditnverify = "inherit";
+    $rootScope.subdetailseditdisplay = "inherit";
 
+    $scope.PlanediValidation = function(model) {
+        $rootScope.doddate = $('#editdate').val();
+        $rootScope.restage = getAge($rootScope.doddate);
+
+        if ($('#editprovider').val() === '') {
+            $scope.ErrorMessage = "Required fields can't be empty";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if ($('#editfirstName').val() === '') {
+            $scope.ErrorMessage = "Required fields can't be empty";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if ($('#editlastName').val() === '') {
+            $scope.ErrorMessage = "Required fields can't be empty";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if ($('#editpolicyNumber').val() === '') {
+            $scope.ErrorMessage = "Required fields can't be empty";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if ($('#editdate').val() === '') {
+            $scope.ErrorMessage = "Required fields can't be empty";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else if ($rootScope.restage < 13) {
+            $scope.ErrorMessage = "Subscriber should be atleast 13 years old";
+            $rootScope.Validation($scope.ErrorMessage);
+        } else {
+            $rootScope.verifyPlaneditDisplay = "inherit";
+            $rootScope.PlaneditDisplay = "none;";
+            $rootScope.planeditverify = "0.3";
+            $rootScope.subdetailseditdisplay = "none";
+            $scope.doEditHealthPlan();
+        }
+    }
 
     $rootScope.SubmitCardValidation = function($a) {
         function refresh_close() {
@@ -4890,7 +5266,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 history.back();
             },
             error: function(data, status) {
-                alert("fail");
+                //alert("fail");
             }
         };
         LoginService.putListOfCountryLocation(params);
@@ -5431,9 +5807,11 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
                 $rootScope.healthPlanPage = "none";
                 $rootScope.consultChargeNoPlanPage = "block";
+				$rootScope.editplan ="none";
             } else {
                 $rootScope.consultChargeNoPlanPage = "none";
                 $rootScope.healthPlanPage = "block";
+				 $rootScope.editplan ="none";
             }
 
             $rootScope.doPutConsultationSave();
@@ -5526,7 +5904,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                                 $rootScope.consultChargeNoPlanPage = "block";
                             }
                             $state.go('tab.consultCharge');
-                            if (typeof $rootScope.userDefaultPaymentProfile === "undefined") {
+                            if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
                                 $('#addNewCard').val('Choose Your Card');
                                 $('#addNewCard_addCard').val('Choose Your Card');
                                 $('#addNewCard_submitPay').val('Choose Your Card');
@@ -5632,6 +6010,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     $scope.doGetWaitingRoom = function() {
 
         $state.go('tab.waitingRoom');
+    }
+
+    $scope.backToEdiORAddPlan = function() {
+      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.providerName === '') {
+            $rootScope.editplan ="none";
+        } else {
+            $rootScope.editplan ="block";
+        }
+      $state.go('tab.consultCharge');
     }
 
     $scope.doRefreshReportDetails = function() {
@@ -5927,7 +6314,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 icons: '@icons'
             },
             link: function(scope, element) {
-                $(element[0]).on('click', function() {
+                $(element[0]).on('click', function() {                  
                     history.back();
                     scope.$apply();
                 });

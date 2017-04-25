@@ -6,26 +6,26 @@
      snap.namespace("snap.patient.schedule")
         .use(["snapNotification", "snap.admin.schedule.TimeUtils", "snap.patient.schedule.patientSelfSchedulingHub", "snap.service.userService",
             "snap.hub.mainHub"])
-        .define("providersSlotsLocator", function($snapNotification, $timeUtils, $patientSelfSchedulingHub, $userService, $mainHub) { 
+        .define("providersSlotsLocator", function($snapNotification, $timeUtils, $patientSelfSchedulingHub, $userService, $mainHub) {
             var lockedSlotsList = new SlotList();
 
-            $patientSelfSchedulingHub.on("start", function () { 
+            $patientSelfSchedulingHub.on("start", function () {
                 window.console.log("patientSelfSchedulingHub started");
             });
 
-            $patientSelfSchedulingHub.on("lockSlot", function (availabilityBlockId, from, to) { 
+            $patientSelfSchedulingHub.on("lockSlot", function (availabilityBlockId, from, to) {
                 window.console.log("lockSlot:" + availabilityBlockId + " time: " + from);
-                
+
                 lockedSlotsList.addSlot(convertToSlot(availabilityBlockId, from, to));
             });
 
-            $patientSelfSchedulingHub.on("unlockSlot", function (availabilityBlockId, from, to) { 
+            $patientSelfSchedulingHub.on("unlockSlot", function (availabilityBlockId, from, to) {
                 window.console.log("unlockSlot:" + availabilityBlockId + " time: " + from);
-                
+
                 lockedSlotsList.removeSlot(convertToSlot(availabilityBlockId, from, to));
             });
 
-            $patientSelfSchedulingHub.on("bookSlot", function (availabilityBlockId, from, to) { 
+            $patientSelfSchedulingHub.on("bookSlot", function (availabilityBlockId, from, to) {
                 window.console.log("bookSlot:" + availabilityBlockId + " time: " + from);
 
                 lockedSlotsList.addSlot(convertToSlot(availabilityBlockId, from, to));
@@ -45,17 +45,24 @@
                     hubListeningDate = new Date();
                 }
                 hubListeningDate.setHours(0, 0, 0, 0);
-            
+
                 if(!$patientSelfSchedulingHub.isHubInitiated()) {
                     $mainHub.register($patientSelfSchedulingHub);
 
-                    $userService.getUserTimeZoneId().done(function(response) {
+                  /*  $userService.getUserTimeZoneId().done(function(response) {
                         var pr = $patientSelfSchedulingHub.start(
                             snap.userSession.token,
                             response.message,
                             hubListeningDate);
                         dfd.resolve();
-                    });
+                    });*/
+
+                    $patientSelfSchedulingHub.start(
+                          snap.userSession.token,
+                          snap.userSession.timeZoneSystemId,
+                          hubListeningDate);
+                      dfd.resolve();  
+
                 } else if($patientSelfSchedulingHub.isHubStarted() && $patientSelfSchedulingHub.getHubListeningDate().getTime() !== hubListeningDate.getTime()) {
                     lockedSlotsList.clear();
                     $patientSelfSchedulingHub.changeHubListeningDate(hubListeningDate);
@@ -73,7 +80,7 @@
                     if(this.findSlot(slot) === null) {
                         if (!(slot.availabilityBlockId in slotsDictionary)) {
                             slotsDictionary[slot.availabilityBlockId] = [];
-                        } 
+                        }
 
                         slotsDictionary[slot.availabilityBlockId].push(slot);
                     }
@@ -81,7 +88,7 @@
 
                 this.removeSlot = function(slot) {
                     slot = this.findSlot(slot);
-                    if(slot) { 
+                    if(slot) {
                         var slotindex = slotsDictionary[slot.availabilityBlockId].indexOf(slot);
                         slotsDictionary[slot.availabilityBlockId].splice(slotindex, 1);
                     }
@@ -109,21 +116,21 @@
             function ProvidersSlotsLocator() {
                 var uiSlotsList = new SlotList();
 
-                $patientSelfSchedulingHub.on("lockSlot", function (availabilityBlockId, from, to) { 
+                $patientSelfSchedulingHub.on("lockSlot", function (availabilityBlockId, from, to) {
                     var uiSlot = uiSlotsList.findSlot(convertToSlot(availabilityBlockId, from, to));
                     if(uiSlot) {
                         uiSlot.hide();
                     }
                 });
 
-                $patientSelfSchedulingHub.on("unlockSlot", function (availabilityBlockId, from, to) { 
+                $patientSelfSchedulingHub.on("unlockSlot", function (availabilityBlockId, from, to) {
                     var uiSlot = uiSlotsList.findSlot(convertToSlot(availabilityBlockId, from, to));
                     if(uiSlot) {
                         uiSlot.show();
                     }
                 });
 
-                $patientSelfSchedulingHub.on("bookSlot", function (availabilityBlockId, from, to) { 
+                $patientSelfSchedulingHub.on("bookSlot", function (availabilityBlockId, from, to) {
                     var uiSlot = uiSlotsList.findSlot(convertToSlot(availabilityBlockId, from, to));
                     if(uiSlot) {
                         uiSlot.hide();
