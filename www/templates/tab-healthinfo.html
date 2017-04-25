@@ -351,16 +351,16 @@
 
                   <div><h3 class="healthpat"><div><span>Patient IDs</span></div></h3></div>
 
-                
-                  <div class="item item-input itemtab validated" ng-repeat="patientdisplay in PatientidupdateList" ng-show ="patientapi">
-                     <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientdisplay.display}}</b><i  class="emailion ion-asterisk"></i></span>
+
+                  <div class="item item-input itemtab validated" ng-repeat="patientdisplay in PatientidupdateList" style="display: {{viewpatapiDisplay}};">
+                     <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientdisplay.display}}</b></span>
                      <span class="healthViewDetails" >
                      <input type="email" name="healthInfoEmail ellipsis" id=""   value="" class="textdata" placeholder="Required">
                      </span>
                   </div>
 
-                  <div class="item item-input itemtab validated" ng-repeat="patientidentifi in PatientIdentifiers" ng-show="patientmodal">
-                     <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientidentifi.identifierTypeTitle}}</b><i  class="emailion ion-asterisk"></i></span>
+                  <div class="item item-input itemtab validated" ng-repeat="patientidentifi in PatientIdentifiers" style="display: {{viewpatmodalDisplay}};" >
+                     <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientidentifi.identifierTypeTitle}}</b></span>
                      <span class="healthViewDetails" >
                      <input type="email" name="healthInfoEmail ellipsis" id=""   value="{{patientidentifi.value}}" class="textdata" placeholder="Required">
                      </span>
