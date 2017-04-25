@@ -5326,9 +5326,9 @@ margin-left: -19px;
 }
 .selectInsurancelist{
   text-align: left;
-  margin-left: 22px;
+  margin-left: 13px;
   span {
-    margin-right: 22px;
+    margin-right: 18px;
     margin-top: -5px;
     svg {
       position: relative;
@@ -5345,6 +5345,7 @@ margin-left: -19px;
 }
 .insuranceedit{
   float:right;
+  cursor: pointer;
   font-size:15px;
   [class^="icon-"], [class*=" icon-"] {
     font-size: 17px;
@@ -5784,10 +5785,16 @@ margin-left: -19px;
   }
 }
 .insProviderName {
-  font-family: GloberBold;
+  font-family: GloberBold !important;
   font-size: 18px;
   position: relative;
-  top: -7px;
+  top: -5px;
+}
+.insCHooseProviderName {
+  font-family: GloberBold !important;
+  font-size: 18px;
+  position: relative;
+  top: 4px;
 }
 .insSubscriberName {
   font-family: GloberRegular;

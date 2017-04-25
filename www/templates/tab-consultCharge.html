@@ -63,11 +63,10 @@
                         </h4>
                         <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}" >
                            <div  class="dropdownContainer">
-                              <div style = "display: {{chooseHealthHide}};" class="viewport healthSelectedValue">Choose Your Health Plan</div>
+                              <div style = "display: {{chooseHealthHide}};" class="viewport healthSelectedValue"><div class="insCHooseProviderName">Choose Your Health Plan</div></div>
                               <div style = "display: {{chooseHealthShow}};" class="viewport insuranceNameDisplayed healthSelectedValue">
                                 <!--<b>{{providerName +' '+ PolicyNo}}</b>-->
-                                <b>{{providerName + '</b>
-                                <div>Subscriber ID:' + PolicyNo}}</div>
+                                <div class="insProviderName">{{providerName}}</div><div class="insSubscriberName">Subscriber ID:{{PolicyNo}}</div>
 
                               </div>
                               <select class="consultHealthPlanDropDown" id="addHealthPlan" name="addHealthPlan" ng-model="Health.addHealthPlan"  style="border: none;">
@@ -147,17 +146,17 @@
                      <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
                      <h4 class="insurancelist">
                        <div class="selectInsurancelist">Select your Payment card
-                              <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                              <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editCardStyle}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
                         </div>
                      </h4>
                      <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
                         <div  class="dropdownContainer">
-                           <div ng-if="userDefaultPaymentProfileText == null"  id="cardViewport" class="cardViewport">Choose Your Card</div>
-                           <div ng-if="userDefaultPaymentProfileText != null" id="cardViewport" class="cardViewport">{{userDefaultPaymentProfileText}}</div>
+                           <div ng-if="userDefaultPaymentProfileText == null || userDefaultPaymentProfileText == 'undefined'"  id="cardViewport" class="cardViewport">Choose Your Card</div>
+                           <div ng-if="userDefaultPaymentProfileText != null && userDefaultPaymentProfileText != 'undefined'" id="cardViewport" class="cardViewport">{{userDefaultPaymentProfileText}}</div>
                            <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange()">
                               <option ><b>Choose Your Card</b></option>
-                              <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value={{PaymentProfile.profileID}} ><b>
-                                <span>{{PaymentProfile.cardType}}</span>  <span >{{ + '           ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
+                              <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID}}" ><b>
+                                <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                               <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                            </select>
                         </div>

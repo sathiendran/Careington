@@ -4,7 +4,7 @@
          <div id="Error_Message" class="ErrorMessageDiv" ></div>
          <div class="Server_Error ErrorMessageDiv" ></div>
          <div class="buttons" style="width: 50%; display: {{PlanDisplay}}; {{HeadercardDetailsBack}}">
-            <a class="button_new icon PlanCancel" ng-href="#/tab/consultCharge" >
+            <a class="button_new icon PlanCancel" ng-click="backToEdiORAddPlan();" >
             <span>Cancel</span>
             </a>
          </div>
@@ -36,7 +36,7 @@
                <div class="addHealthPlan_header noPlanContainer-{{deviceName}} planSelectedBox"  >
                 <div  class="dropdownContainer" style="opacity:{{planverify}}; margin-left: 50px;">
                      <select class="healthPlanDropDown" id="editprovider" ng-model="EditHealth.Provider" name="" id="" >
-                      <option class=""  ng-selected="insuranceList.insuranceCompany  == ProviderData.payerName "  ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}"><b>{{ProviderData.payerName}}</b></option>
+                      <option ng-repeat="ProviderData in ProviderList" value="{{ProviderData.payerName + '@' + ProviderData.id + '@' + ProviderData.payerId}}" ng-selected="insuranceList.insuranceCompany == ProviderData.payerName "><b>{{ProviderData.payerName}}</b></option>
                      </select>
 
                </div>

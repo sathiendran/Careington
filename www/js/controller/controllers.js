@@ -2700,7 +2700,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.patGender = "NA";
                     }
 
-                    if($rootScope.listOfRelationship != '' && typeof($rootScope.listOfRelationship !== 'undefined')) {
+                    if($rootScope.listOfRelationship.length > 0) {
                       var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                           codeId: index.relationCode
                       })
@@ -2709,6 +2709,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                       } else {
                           var depRelationShip = '';
                       }
+                    } else {
+                      var depRelationShip = '';
                     }
 
                     $rootScope.RelatedPatientProfiles.push({
@@ -3224,7 +3226,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         /* country and State */
 
     $("#addHealthPlan").change(function() {
-
+      $rootScope.getHlthSctValue = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new health plan') {
 			         $rootScope.currentplan ="";
                $rootScope.submitPayBack = $rootScope.currState.$current.name;
@@ -3232,6 +3234,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                $scope.doGetHealthPlanProvider();
 		    } else if ($('option:selected', this).text() === 'Choose Your Health Plan') {
               $rootScope.editplan ="none";
+              $("div.viewport").html('<div class="insCHooseProviderName">Choose Your Health Plan</div>');
         } else {
             //  $('div.viewport').text($("option:selected", this).text());
               var selectedValue = $('option:selected', this).val().split('@');
@@ -3273,7 +3276,7 @@ $scope.doGetInsuranceDetails = function(){
       }
     },
         error: function(data, status) {
-alert("fail");
+          //alert("fail");
     }
 
   };
@@ -3488,10 +3491,10 @@ $scope.EditHealth = {};
     }
 $scope.cardchange = function(){
       var insplan = $('#addNewCard').val();
-      if( insplan != 'Choose Your Card'){
-       $rootScope.editcard ="block";
+    if( insplan !== 'Choose Your Card' && insplan !== 'Add a new card'){
+        $rootScope.editCardStyle ="block";
      } else{
-       $rootScope.editcard ="none";
+       $rootScope.editCardStyle ="none";
      }
    }
 
@@ -3500,10 +3503,14 @@ $scope.cardchange = function(){
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "consultCharge";
             $state.go('tab.cardDetails');
-			$rootScope.editcard ="none";
+			      $rootScope.editCardStyle ="none";
         } else {
+            if ($('option:selected', this).text() === 'Choose Your Card') {
+              $rootScope.editCardStyle ="none";
+            } else {
+              $rootScope.editCardStyle ="block";
+            }
             $('div.cardViewport').text($("option:selected", this).text());
-			 $rootScope.editcard ="block";
         }
     });
 
@@ -3550,7 +3557,7 @@ $scope.cardchange = function(){
         $rootScope.copayAmount = $rootScope.consultationAmount;
         $rootScope.healthPlanPage = "none";
         $rootScope.consultChargeNoPlanPage = "block";
-		$rootScope.editcard = "none";
+		      $rootScope.editCardStyle = "none";
         $('option').filter(function() {
             return this.value.indexOf('?') >= 0;
         }).remove();
@@ -3575,7 +3582,11 @@ $scope.cardchange = function(){
             $rootScope.consultChargeNoPlanPage = "none";
             $rootScope.healthPlanPage = "block";
         } else if ($rootScope.Cttonscheduled !== 'on'){
-            $state.go($rootScope.concentToTreatPreviousPage);
+            if($rootScope.concentToTreatPreviousPage === "tab.CurrentMedication") {
+                $state.go('tab.ConsentTreat');
+            } else {
+                $state.go($rootScope.concentToTreatPreviousPage);
+            }
         } else {
           $rootScope.doGetScheduledConsulatation();
           $rootScope.doGetIndividualScheduledConsulatation();
@@ -5255,7 +5266,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                 history.back();
             },
             error: function(data, status) {
-                alert("fail");
+                //alert("fail");
             }
         };
         LoginService.putListOfCountryLocation(params);
@@ -5927,13 +5938,6 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
         };
         LoginService.getHospitalInfo(params);
     }
-    $rootScope.fff = function() {
-      $(".planlist").each(function(){
-        if($(this).val() == "Aetna - Allianz Life Insurance Company of New York@P3040@3134"){
-          $(".viewport").html('<div class="insProviderName">providerName</div><div class="insSubscriberName">Subscriber ID:12345</div>');
-        }
-      });
-    }
 
     $rootScope.GoToappoimentDetailsFromUserHome = function(scheduledListData, fromPreviousPage) {
         $rootScope.AppointScheduleTime = '';
@@ -6006,6 +6010,15 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
     $scope.doGetWaitingRoom = function() {
 
         $state.go('tab.waitingRoom');
+    }
+
+    $scope.backToEdiORAddPlan = function() {
+      if($rootScope.getHlthSctValue === 'Add a new health plan' || $rootScope.getHlthSctValue === 'Choose Your Health Plan' || $rootScope.providerName === '') {
+            $rootScope.editplan ="none";
+        } else {
+            $rootScope.editplan ="block";
+        }
+      $state.go('tab.consultCharge');
     }
 
     $scope.doRefreshReportDetails = function() {
@@ -6302,6 +6315,9 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
             },
             link: function(scope, element) {
                 $(element[0]).on('click', function() {
+                  if($rootScope.userDefaultPaymentProfileText === 'undefined') {
+                    rootScope.editCardStyle ="none";
+                  }
                     history.back();
                     scope.$apply();
                 });
