@@ -1271,6 +1271,16 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }
         }
     })
+    .state('tab.addpatientid', {
+            url: '/addpatientid',
+            views: {
+                'tab-login': {
+                    templateUrl: 'templates/tab-addpatientid.html',
+                    controller: 'healthinfocontroller'
+                }
+            }
+        })
+
     .state('tab.appointmentpatientdetailssearch', {
         url: '/appointmentpatientdetailssearch',
         views: {
