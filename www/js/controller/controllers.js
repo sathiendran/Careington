@@ -3489,13 +3489,20 @@ $scope.EditHealth = {};
         $rootScope.cardPage = "addCard";
         $state.go('tab.cardDetails');
     }
-$scope.cardchange = function(){
-      var insplan = $('#addNewCard').val();
-    if( insplan !== 'Choose Your Card' && insplan !== 'Add a new card'){
-        $rootScope.editCardStyle ="block";
-     } else{
-       $rootScope.editCardStyle ="none";
-     }
+    $scope.cardchange = function(pageName){
+      if(pageName === 'consulCharge') {
+        var insplan = $('#addNewCard').val();
+      } else if(pageName === 'addNewCard') {
+        var insplan = $('#addNewCard_addCard').val();
+      } else if (pageName === 'submitPay') {
+        var insplan = $('#addNewCard_submitPay').val();
+      }
+
+      if( insplan !== 'Choose Your Card' && insplan !== 'Add a new card'){
+          $rootScope.editCardStyle ="block";
+       } else{
+         $rootScope.editCardStyle ="none";
+       }
    }
 
     $("#addNewCard").change(function() {
@@ -3507,10 +3514,13 @@ $scope.cardchange = function(){
         } else {
             if ($('option:selected', this).text() === 'Choose Your Card') {
               $rootScope.editCardStyle ="none";
+              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
             } else {
               $rootScope.editCardStyle ="block";
+              var payValue = ($('option:selected', this).val()).split("@");
+              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[0]+'</div>');
             }
-            $('div.cardViewport').text($("option:selected", this).text());
+            //$('div.cardViewport').text($("option:selected", this).text());
         }
     });
 
@@ -3519,8 +3529,17 @@ $scope.cardchange = function(){
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "addCard";
             $state.go('tab.cardDetails');
+            $rootScope.editCardStyle ="none";
         } else {
-            $('div.cardViewport').text($("option:selected", this).text());
+            //$('div.cardViewport').text($("option:selected", this).text());
+            if ($('option:selected', this).text() === 'Choose Your Card') {
+              $rootScope.editCardStyle ="none";
+              $("div.cardViewport").html('<div class="insCHooseProviderName">Choose Your Card</div>');
+            } else {
+              $rootScope.editCardStyle ="block";
+              var payValue = ($('option:selected', this).val()).split("@");
+              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[0]+'</div>');
+            }
         }
     });
 
@@ -3530,7 +3549,9 @@ $scope.cardchange = function(){
             rootScope.cardPage = "submitPayment";
             $state.go('tab.cardDetails');
         } else {
-            $('div.cardViewport').text($("option:selected", this).text());
+          //  $('div.cardViewport').text($("option:selected", this).text());
+          var payValue = ($('option:selected', this).val()).split("@");
+          $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[0]+'</div>');
         }
     });
 
@@ -3702,6 +3723,7 @@ $scope.cardchange = function(){
                             $rootScope.PlanCoversAmount = '';
                         }
                         $rootScope.doGetPatientPaymentProfiles();
+                        $rootScope.editCardStyle ="none";
                         $state.go('tab.addCard');
                     } else {
                         if ($scope.Health.addHealthPlan !== '') {
@@ -3830,6 +3852,7 @@ $scope.cardchange = function(){
 
 
     $rootScope.doGetPatientPaymentProfiles = function() {
+      $rootScope.userCardType = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             patientId: $rootScope.patientId,
@@ -3847,9 +3870,19 @@ $scope.cardchange = function(){
                                 'cardNumber': replaceCardNumber.getCardNumber(index.cardNumber),
                                 'isBusiness': index.isBusiness,
                                 'profileID': index.profileID,
-								'cardType' : index.cardType,
+								                'cardType' : index.cardType,
                             });
                         });
+                        if(typeof $rootScope.chkProfileIdForCrdType !== 'undefined' && $rootScope.chkProfileIdForCrdType !== '') {
+                          $scope.userCrdType = $filter('filter')($rootScope.PaymentProfile, {
+                              profileID: $rootScope.chkProfileIdForCrdType
+                          });
+                          $rootScope.userCardType = $scope.userCrdType[0].cardType;
+                          $scope.crdNum = $scope.userCrdType[0].cardNumber.split('XXXX');
+                          $rootScope.userCardNumber = $scope.crdNum[1];
+                          $rootScope.editCardStyle ="block";
+                        }
+
                         $rootScope.totalPaymentCard = $rootScope.PaymentProfile.length;
                         $rootScope.enableSubmitpayment = "block";
                         $rootScope.disableSubmitpayment = "none";
@@ -3912,9 +3945,10 @@ $scope.cardchange = function(){
         LoginService.getPatientPaymentProfile(params);
     }
 
-$rootScope.editcard={};
+    $rootScope.editcard={};
     $scope.editpaymentcard = function(){
       var proid = $("#addNewCard").val();
+      $rootScope.editCardStyle ="none";
       $rootScope.profileid = proid;
       $rootScope.editPaymentProfile = [];
     angular.forEach(  $rootScope.PaymentProfile, function(index) {
@@ -4048,7 +4082,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         $rootScope.editExpiryMonth =  $("#editExpmonth").val();
         $rootScope.editExpiryYear = $("#editExpyear").val();
         $scope.editCountry =  $("#editCountry").val();
-EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryMonth, 1);
+        EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryMonth, 1);
 
 
         if ($('#editFirstName').val() === '') {
@@ -4119,6 +4153,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                 success: function(data) {
                   $scope.EditPaymentDetails = data;
                   $rootScope.userCardDetails = $rootScope.profileid;
+                  $rootScope.chkProfileIdForCrdType = $rootScope.profileid;
                 if (typeof $rootScope.CardNumber === 'undefined') {
                         $rootScope.choosePaymentShow = 'none';
                         $rootScope.choosePaymentHide = 'initial';
@@ -4234,6 +4269,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                 success: function(data) {
                     $scope.PostPaymentDetails = data;
                     $rootScope.userCardDetails = data.data[0].paymentProfileId;
+                    $rootScope.chkProfileIdForCrdType = data.data[0].paymentProfileId;
                     if (typeof $rootScope.CardNumber === 'undefined') {
                         $rootScope.choosePaymentShow = 'none';
                         $rootScope.choosePaymentHide = 'initial';
@@ -4621,13 +4657,21 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
         } else {
 
             if (typeof $scope.cardPaymentId.addNewCard !== 'undefined') {
-                $rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
+                //$rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
+                var payValue = $scope.cardPaymentId.addNewCard.split("@");
+                $rootScope.paymentProfileId = payValue[0];
+                $rootScope.paymentProfileIdType = payValue[1];
+                $rootScope.paymentProfileIdNumber = payValue[2];
             } else if (typeof $scope.cardPaymentId.addNewCard === 'undefined') {
                 if (typeof $rootScope.userCardDetails === 'undefined') {
                     $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
                     $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                    $rootScope.paymentProfileIdType = $rootScope.userDefaultPaymentProfileType;
+                    $rootScope.paymentProfileIdNumber = $rootScope.userDefaultPaymentProfileNumber;
                 } else {
                     $rootScope.paymentProfileId = $rootScope.userCardDetails;
+                    $rootScope.paymentProfileIdType = $rootScope.userCardType;
+                    $rootScope.paymentProfileIdNumber =$rootScope.userCardNumber;
                 }
             }
 
@@ -4640,9 +4684,11 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                 accessToken: $rootScope.accessToken,
                 success: function(data) {
                     //To save the last used card for user.
-                    var cardSelectedText = $('#cardViewport').html();
+                  //  var cardSelectedText = $('#cardViewport').html();
                     $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
-                    $window.localStorage.setItem("CardText" + $rootScope.UserEmail, cardSelectedText);
+                    $window.localStorage.setItem("CardNumber" + $rootScope.UserEmail, $rootScope.paymentProfileIdNumber);
+                    $window.localStorage.setItem("CardType" + $rootScope.UserEmail, $rootScope.paymentProfileIdType);
+
                     $rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
                     $scope.CreditCardDetails = data;
                     $state.go('tab.receipt');
@@ -5347,7 +5393,8 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                         $rootScope.newDependentImagePath = '';
                         $rootScope.appointmentDisplay = '';
                         $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-                        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+                        $rootScope.userDefaultPaymentProfileNumber = $window.localStorage.getItem("CardNumber" + $rootScope.UserEmail);
+                        $rootScope.userDefaultPaymentProfileType = $window.localStorage.getItem("CardType" + $rootScope.UserEmail);
                         $rootScope.locationdet = Pat_locat;
                         $rootScope.PatientImageSelectUser = P_img;
                         $rootScope.PatientFirstName = P_Fname;
@@ -5656,7 +5703,8 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
         $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+        $rootScope.userDefaultPaymentProfileNumber = $window.localStorage.getItem("CardNumber" + $rootScope.UserEmail);
+        $rootScope.userDefaultPaymentProfileType = $window.localStorage.getItem("CardType" + $rootScope.UserEmail);
         $rootScope.locationdet = Pat_locat;
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
@@ -5729,7 +5777,8 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
         $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+        $rootScope.userDefaultPaymentProfileNumber = $window.localStorage.getItem("CardNumber" + $rootScope.UserEmail);
+        $rootScope.userDefaultPaymentProfileType = $window.localStorage.getItem("CardType" + $rootScope.UserEmail);
         $rootScope.locationdet = Pat_locat;
         $rootScope.patientId = P_Id;
 
@@ -5908,7 +5957,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                                 $('#addNewCard').val('Choose Your Card');
                                 $('#addNewCard_addCard').val('Choose Your Card');
                                 $('#addNewCard_submitPay').val('Choose Your Card');
-                                $rootScope.userDefaultPaymentProfileText = null;
+                                $rootScope.userDefaultPaymentProfileNumber = null;
 
                             } else {
                                 $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
@@ -5984,7 +6033,8 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
             $rootScope.newDependentImagePath = '';
             $rootScope.appointmentDisplay = '';
             $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-            $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+            $rootScope.userDefaultPaymentProfileNumber = $window.localStorage.getItem("CardNumber" + $rootScope.UserEmail);
+            $rootScope.userDefaultPaymentProfileType = $window.localStorage.getItem("CardType" + $rootScope.UserEmail);
             $rootScope.PatientImageSelectUser = $rootScope.scheduledListDatas.patientImage;
             $rootScope.PatientFirstName = $rootScope.scheduledListDatas.patFirstName;
             $rootScope.PatientLastName = $rootScope.scheduledListDatas.patLastName;
@@ -6314,7 +6364,7 @@ EditexpiryDateCheck.setFullYear($rootScope.editExpiryYear,$rootScope.editExpiryM
                 icons: '@icons'
             },
             link: function(scope, element) {
-                $(element[0]).on('click', function() {                  
+                $(element[0]).on('click', function() {
                     history.back();
                     scope.$apply();
                 });

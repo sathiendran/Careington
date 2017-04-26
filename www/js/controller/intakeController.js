@@ -1239,7 +1239,7 @@ $scope.locat=false;
                               $('#addNewCard').val('Choose Your Card');
                               $('#addNewCard_addCard').val('Choose Your Card');
                               $('#addNewCard_submitPay').val('Choose Your Card');
-                              $rootScope.userDefaultPaymentProfileText = 'undefined';
+                              $rootScope.userDefaultPaymentProfileNumber = 'undefined';
                           } else {
                               $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
                               $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
