@@ -1670,6 +1670,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return false;
     });
 
+    $rootScope.sideMenuHospitallink = function() {
+      var url = 'https://' + $rootScope.hospitalDomainName + '/public/#/UserTerms';
+      window.open(encodeURI(url), '_system', 'location=yes');
+      return false;
+  }
+
 
     $scope.ProviderFunction = function(hospitalDetailsDatas) {
         $rootScope.hospitalId = hospitalDetailsDatas.providerId;
