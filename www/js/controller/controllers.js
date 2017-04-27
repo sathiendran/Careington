@@ -3946,10 +3946,30 @@ $scope.EditHealth = {};
     }
 
     $rootScope.editcard={};
-    $scope.editpaymentcard = function(){
-      var proid = $("#addNewCard").val();
+    $scope.editpaymentcard = function(pageName){
+    //  var proid = $("#addNewCard").val();
+    if(pageName === 'consulCharge') {
+      var insplanCrdVal = $('#addNewCard').val();
+    } else if(pageName === 'addNewCard') {
+      var insplanCrdVal = $('#addNewCard_addCard').val();
+    } else if (pageName === 'submitPay') {
+      var insplanCrdVal = $('#addNewCard_submitPay').val();
+    }
+
+    if (typeof insplanCrdVal !== 'undefined') {
+        //$rootScope.paymentProfileId = $scope.cardPaymentId.addNewCard;
+        var payValue = insplanCrdVal.split("@");
+        $rootScope.profileid = payValue[0];
+    } else if (typeof insplanCrdVal === 'undefined') {
+        if (typeof $rootScope.userCardDetails === 'undefined') {
+            $rootScope.profileid = $rootScope.userDefaultPaymentProfile;
+        } else {
+            $rootScope.profileid = $rootScope.userCardDetails;
+        }
+    }
+
       $rootScope.editCardStyle ="none";
-      $rootScope.profileid = proid;
+      //$rootScope.profileid = proid;
       $rootScope.editPaymentProfile = [];
     angular.forEach(  $rootScope.PaymentProfile, function(index) {
                    if (index.profileID  == $rootScope.profileid) {
