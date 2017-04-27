@@ -353,16 +353,16 @@
 
 
                   <div class="item item-input itemtab validated" ng-repeat="patientdisplay in PatientidupdateList" style="display: {{viewpatapiDisplay}};">
-                     <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientdisplay.display}}</b></span>
+                     <span class="input-label labelcolor"  id="pattext" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientdisplay.display}}</b></span>
                      <span class="healthViewDetails" >
-                     <input type="email" name="healthInfoEmail ellipsis" id=""   value="" class="textdata" placeholder="Required">
+                     <input type="text" name="healthInfoEmail ellipsis" id="patval"   value="" class="textdata" placeholder="Required">
                      </span>
                   </div>
 
                   <div class="item item-input itemtab validated" ng-repeat="patientidentifi in PatientIdentifiers" style="display: {{viewpatmodalDisplay}};" >
                      <span class="input-label labelcolor"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('vcard')"></i><b class="formlabel labelfont">{{patientidentifi.identifierTypeTitle}}</b></span>
                      <span class="healthViewDetails" >
-                     <input type="email" name="healthInfoEmail ellipsis" id=""   value="{{patientidentifi.value}}" class="textdata" placeholder="Required">
+                     <input type="text" name="healthInfoEmail ellipsis" id="patvalue"   value="{{patientidentifi.value}}" class="textdata" placeholder="Required">
                      </span>
                   </div>
 
