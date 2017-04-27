@@ -40,18 +40,25 @@
                   <div class="consultation_number"> ${{consultationAmount}}*</div>
                </div>
             </div>
-            <div class="password_home contentPayHomeAddCard">            
-               <div class="healthPlan_header" style="display: {{enableSubmitpaymentAddCard}}" >
-                  <div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
-                    <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+            <div class="password_home contentPayHomeAddCard">
+               <div class="healthPlan_header consultCard" style="display: {{enableSubmitpaymentAddCard}}" >
+                  <!--<div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
+                    <span class="insuranceedit" ng-click="editpaymentcard()" style="display: {{editcard}};">Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>-->
+                    <h4 class="insurancelist">
+                      <div class="selectInsurancelist">Select your Payment card
+                             <span class="insuranceedit" style="display: {{editCardStyle}};" ng-click="editpaymentcard('submitPay')" >Edit this card <i class="iconfontSVG" ng-bind-html="drawSVGCIconForVideo('new-message')"></i></span>
+                       </div>
+                    </h4>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
                      <div  class="dropdownContainer">
-                        <div id="cardViewport" class="viewport">Card ending in...{{userCardNumber}}</div>
-                        <select class="healthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange()" style="border: none;">
+                        <!--<div id="cardViewport" class="viewport">Card ending in...{{userCardNumber}}</div>-->
+                          <div id="cardViewport" class="cardViewport" style="margin-top: 8px;">
+                            <div class="insCardName">{{userCardType}}</div><div class="insCardNumber">{{ 'XXXX-XXXX-XXXX-'+userCardNumber}}</div>
+                          </div>
+                        <select class="consultHealthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('submitPay')" style="border: none;">
                            <option><b>Choose Your Card</b></option>
                            <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b>
-                             <!--<span>Card ending in...{{getPayment.cardNumber}}</span></b></option>-->
-                              <span>{{getPayment.cardType}}</span>  <span >{{ + '      ' +  'XXXX-XXXX-XXXX-'+getPayment.cardNumber}}</span></b></option>
+                              <span>{{getPayment.cardType + '       '}}</span>  <span >{{ + '             ' +  'XXXX-XXXX-XXXX-'+getPayment.cardNumber}}</span></b></option>
                            <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
                         </select>
                      </div>
