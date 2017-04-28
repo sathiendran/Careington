@@ -1,4 +1,4 @@
-angular.module('starter.controllers')
+ angular.module('starter.controllers')
     .controller('relateduserController', function($scope, $ionicPlatform, $ionicModal, $interval, $ionicSideMenuDelegate, $rootScope, $state, LoginService, $stateParams, $location, $ionicScrollDelegate, $log, $ionicPopup, ageFilter, $window, $filter, $timeout) {
       $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
         $ionicPlatform.registerBackButtonAction(function() {
@@ -182,7 +182,7 @@ angular.module('starter.controllers')
         });
         $rootScope.changeptient = function(){
           $rootScope.doGetPatientProfiles();
-          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            $state.go('tab.userhome');
         }
         $rootScope.doUpdateDependentsAuthorize = function(relateDependentId, relateDependentRelationCode, relateDependentAuthorize) {
             var params = {

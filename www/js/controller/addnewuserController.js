@@ -72,7 +72,7 @@ angular.module('starter.controllers')
 
         $scope.userpatient = function(){
           $rootScope.doGetPatientProfiles();
-          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+          $state.go('tab.userhome');
         }
         $rootScope.doGetLocations = function() {
             $rootScope.listOfOrganization = '';

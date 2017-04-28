@@ -8,7 +8,8 @@
          <span class="button icon button-clear {{menuiconIOS}}" id="BackButtonIcon" style="{{MenuInnerStyle}} {{MenuIconBottom}}" ng-click="toggleLeft()"><i ng-bind-html="drawSVGCIcon('menu')"></i></span>
       </div>
       <h1 class="{{title_patient}} {{HeaderList}} {{intakeTittle}} useracctheader accoTitle-{{deviceName}}" > <span class="headerfont _accountHeader-{{deviceName}}">Consult Report</span>
-         <span> <a class="headerval _accountCancel-{{deviceName}}" ng-click="closeReportView();" >Done</a>
+         <span> <a class="headerval _accountCancel-{{deviceName}}" ng-click="EnableBackButton();" >Done</a>
+
          </span>
       </h1>
       <div class="bar bar-subheaderHomeUser patient_subHeader calendar_subHeader_height" style="{{patient_subHeaderTopMove}}" >
@@ -133,7 +134,7 @@
                                 <span class="pc-report__data-list-title">Status</span>
                                 <span ng-if="consultstatus == 72" class="pc-report__data-list-desc pc-report__data-list-desc--successful">{{reportStatus}}</span>
                                 <span ng-if="consultstatus == 79" class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
-                                  <span ng-if="consultstatus == 81 class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
+                                  <span ng-if="consultstatus == 81" class="pc-report__data-list-desc pc-report__data-list-desc--canceled">{{reportStatus}}</span>
                             </div>
                                <div class="pc-report__data-list pc-report__data-list-item">
                                 <span class="pc-report__data-list-title">encounter</span>

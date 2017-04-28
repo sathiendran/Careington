@@ -548,7 +548,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if ($rootScope.AndroidDevice) {
+    } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2284,7 +2284,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             $rootScope.viewhealthDisplay = 'block';
             $("#HealthFooter").css("display", "block");
         } else {
-            $rootScope.doGetRelatedPatientProfiles('tab.Health');
+            $rootScope.c('tab.Health');
             $rootScope.doGetPatientProfiles();
         }
 
@@ -2747,8 +2747,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     } else {
                         if ($rootScope.cuttlocations == "tab.ReportScreen") {
                             $state.go('tab.userhome');
-                        } else if ($rootScope.cuttlocations == undefined) {
-                            $scope.doGetlocationResponse();
+                        }  else if ($rootScope.cuttlocations == undefined) {
+                          $scope.doGetlocationResponse();
                         } else {
                             $scope.doGetlocationResponse();
                         }
@@ -5332,6 +5332,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         var params = {
             accessToken: $rootScope.accessToken,
             countrystate: $scope.upcountrystate,
+            patientID:$rootScope.primaryPatientId,
             //state:  $scope.upstate,
 
             success: function(data, status) {
