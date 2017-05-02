@@ -3524,7 +3524,7 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[0]+'</div>');
+              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
             }
             //$('div.cardViewport').text($("option:selected", this).text());
         }
@@ -3544,7 +3544,7 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[0]+'</div>');
+              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
             }
         }
     });
@@ -3557,7 +3557,7 @@ $scope.EditHealth = {};
         } else {
           //  $('div.cardViewport').text($("option:selected", this).text());
           var payValue = ($('option:selected', this).val()).split("@");
-          $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[0]+'</div>');
+          $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
         }
     });
 

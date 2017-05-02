@@ -70,7 +70,7 @@ angular.module('starter.controllers')
         var cal_difference_ms = vCurrTime - vStartTime;
         videoCallSessionDuration = cal_difference_ms + 6000;
     }else{
-         videoCallStartTime = new Date();
+         videoCallStartTime = new  Date();
         window.localStorage.setItem('ConferenceCallConsultationId', $rootScope.consultationId);
         window.localStorage.setItem('accessToken', $rootScope.accessToken);
         window.localStorage.setItem('isVideoCallProgress', "No");
