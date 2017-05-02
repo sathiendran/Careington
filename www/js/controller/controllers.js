@@ -2706,7 +2706,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                         $scope.patGender = "NA";
                     }
 
-                    if($rootScope.listOfRelationship.length > 0) {
+                    if(typeof $rootScope.listOfRelationship !== 'undefined') {
                       var getdependRelationShip = $filter('filter')($rootScope.listOfRelationship[0].codes, {
                           codeId: index.relationCode
                       })

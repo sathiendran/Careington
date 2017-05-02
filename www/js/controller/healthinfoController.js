@@ -556,21 +556,32 @@ $scope.editDob=function(){
             var now = new Date();
             var dt1 = Date.parse(now),
                 dt2 = Date.parse(selectDate);
-$rootScope.counter = $rootScope.PatientIdentifiers.length;
- /*var msg = '';
- 	for(i=1; i<counter; i++){
-    	  msg += "\n Textbox #" + i + " : " + $('#patvalue' + i).val();
- 	}
-     	  alert(msg);*/
 
-             for (var i = 0; i < $rootScope.counter; i++) {
-  $scope.identifiervalue = $('#patvalue').val();
-     $rootScope.CurrentpatientidList = [];
-                  $rootScope.CurrentpatientidList.push({
-
-                  identifierTypeTitle :  $scope.identifiervalue
-                      });
+              $rootScope.listOfPatientIdentifiers = [];
+              if(typeof $rootScope.PatientidupdateList !== 'undefined' && $rootScope.PatientidupdateList !== '') {
+                  var patIndentifierDetailsArray =  $("input[name^='patIndentifierDetails']");
+                  var patIndentifierDetailsLength = $("input[name^= 'patIndentifierDetails']").length;
+                  var patIdentValue = $("input[id^='patval']");
+              } else {
+                var patIndentifierDetailsArray =  $("input[name^='patientidentifiDetails']");
+                var patIndentifierDetailsLength = $("input[name^= 'patientidentifiDetails']").length;
+                var patIdentValue = $("input[id^='patvalue']");
               }
+                for(i=0;i<patIndentifierDetailsLength;i++)
+                {
+                 var patIndentifierArray =  patIndentifierDetailsArray[i].value;
+                 var patIndentifierSingleArrayDetails = (patIndentifierDetailsArray[i].value).split(',');
+                 $rootScope.listOfPatientIdentifiers.push({
+                      effectiveDate : patIndentifierSingleArrayDetails[2],
+                      identifierTypeCode :  patIndentifierSingleArrayDetails[0],
+                      identifierTypeTitle : patIndentifierSingleArrayDetails[1],
+                      statusCode: patIndentifierSingleArrayDetails[3],
+                      value : patIdentValue[i].value
+                  });
+                }
+
+
+
             $scope.healthInfoFirstName = $('#healthInfoFirstName').val();
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
             $rootScope.healthInfoDOB = $('#healthInfoDOB').val();
@@ -978,6 +989,18 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
         }
     $rootScope.doPutProfileUpdation = function() {
+      /*$scope.ConsultationSaveData = {
+          "medicationAllergies": [],
+          "surgeries": [],
+          "medicalConditions": [],
+          "medications": [],
+          "infantData": [],
+          "concerns": []
+      };
+      $scope.ConsultationSaveData.medicationAllergies.push({
+          code: $rootScope.patinentMedicationAllergies[i].codeId,
+          description: $rootScope.patinentMedicationAllergies[i].text
+      });*/
         var params = {
             accessToken: $rootScope.accessToken,
             emailAddress: $scope.healthInfoEmail,
@@ -1009,6 +1032,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 weightUnit: $scope.healthInfoWeightUnit,
                 organizationId: $scope.healthInfoOrganization,
                 locationId: $scope.healthInfoLocation,
+                identifiers:$rootScope.listOfPatientIdentifiers,
                 country: $scope.healthInfoCountry
             },
             timeZoneId: $scope.healthInfoTimezone,
@@ -1038,6 +1062,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
                   $scope.uploadPhotoForExistingPatient();
               }
+              $rootScope.PatientIdentifiers = $rootScope.listOfPatientIdentifiers;
               var depPatientSuccessPtId = data.patientID;
               var depPatientSecurityToken = data.securityToken;
                 if (!angular.isUndefined(depPatientSecurityToken) && $rootScope.restage >= 12 && $scope.healthInfoEmail != "") {
@@ -1490,6 +1515,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     }
 
     $scope.patientdone = function(){
+    //  $rootScope.oldPatientIdentifiersDetails = $rootScope.PatientIdentifiers;
 
 
       $rootScope.PatientidupdateList = [];
@@ -1497,15 +1523,21 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
            checked: true
        });
        if ($rootScope.PatientsearchItem !== '') {
-         $rootScope.PatientIdentifiers == '';
+         $rootScope.PatientIdentifiers = [];
            $rootScope.patientmedicationsSearch = $rootScope.PatientsearchItem;
            $rootScope.PatientsdetCount = $rootScope.PatientsearchItem.length;
            for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
                $rootScope.PatientidupdateList.push({
                    identifierTypeCode: $rootScope.PatientsearchItem[i].identifierTypeCode,
-                   display: $rootScope.PatientsearchItem[i].display
+                   display: $rootScope.PatientsearchItem[i].display,
+                   value:$rootScope.PatientsearchItem[i].value,
+                  effectiveDate:$rootScope.PatientsearchItem[i].effectiveDate,
+                   statusCode:$rootScope.PatientsearchItem[i].statusCode,
+                    identifierTypeTitle: $rootScope.PatientsearchItem[i].identifierTypeTitle
                });
            }
+           $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
+
            $scope.modal.hide();
            $rootScope.viewpatapiDisplay = 'flex';
            $rootScope.viewpatmodalDisplay = 'none';
@@ -1984,7 +2016,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         };
         LoginService.deleteAccountCoUser(params);
     }
-    $scope.removemodal = function() {
+    $scope.removePatientIdmodal = function() {
+      $rootScope.PatientidupdateList = $rootScope.PatientIdentifiers;
         $scope.modal.hide();
         $scope.cancelshow = true;
     };
@@ -2254,6 +2287,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     angular.forEach(mainListItem, function(value2, key2) {
                         if (value1.identifierTypeTitle === value2.display) {
                             value2.checked = true;
+                            value2.value = value1.value;
+                            value2.effectiveDate = value1.effectiveDate;
+                            value2.identifierTypeCode = value1.identifierTypeCode;
+                            value2.identifierTypeTitle = value1.identifierTypeTitle;
+                            value2.statusCode = value1.statusCode;
                         }
                     });
                 });
