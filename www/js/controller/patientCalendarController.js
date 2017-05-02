@@ -79,11 +79,11 @@ angular.module('starter.controllers')
         };
         $scope.homepatient = function(){
           $rootScope.doGetPatientProfiles();
-          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+          $state.go('tab.userhome');
         }
         $scope.homepat = function(){
           $rootScope.doGetPatientProfiles();
-          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+          $state.go('tab.userhome');
         }
         $scope.addMinutes = function(inDate, inMinutes) {
             var newdate = new Date();

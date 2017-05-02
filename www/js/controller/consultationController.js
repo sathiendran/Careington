@@ -86,11 +86,11 @@ angular.module('starter.controllers')
         }
         $rootScope.patchange = function(){
           $rootScope.doGetPatientProfiles();
-          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            $state.go('tab.userhome');
         }
         $scope.patientchange = function(){
           $rootScope.doGetPatientProfiles();
-          $rootScope.doGetRelatedPatientProfiles('tab.userhome');
+            $state.go('tab.userhome');
         }
         $rootScope.passedconsult = function() {
             $rootScope.passededconsultants();

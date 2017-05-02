@@ -1784,7 +1784,7 @@ this.putEditHealthPlan = function(params) {
      this.putListOfCountryLocation = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate ,
+            url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate+'&patientID=' + params.patientID,
             method: 'PUT',
         };
         $http(requestInfo).
