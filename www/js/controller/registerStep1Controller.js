@@ -328,6 +328,8 @@ angular.module('starter.controllers')
           email: $scope.email,
           name: $scope.userFirstandLastName,
           password: $scope.password,
+          gender: $scope.gender,
+          mobile: $scope.mobile,
           providerId: $rootScope.hospitalId,
           success: function() {
               $rootScope.isRegistrationCompleted = true;
