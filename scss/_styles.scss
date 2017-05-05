@@ -4088,14 +4088,14 @@ form.ng-submitted input.ng-valid + i.icon.error {
 .noPlanContainer-Android {
     .dropdownContainer {
         .healthPlanDropDown {
-            z-index: 2;
+          //  z-index: 2;
             position: relative;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+           -webkit-appearance: none;
+           -moz-appearance: none;
             background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
             width: 102%;
-            text-indent: 0.01px;
-            text-overflow: "";
+          //  text-indent: 0.01px;
+          // text-overflow: "";
             border-radius: 7px;
             margin-left: 8px;
             padding: 6px;
@@ -4151,7 +4151,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         }
     }
     .healthPlanDropDown {
-        color: transparent;
+      //  color: transparent;
         background: none;
     }
     .dropdownContainer {
@@ -4260,7 +4260,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
             border-top: 1px solid #666666! important;
             height: 60px;
             font-size: 18px;
-            color: transparent;
+          //  color: transparent;
             option {
                 color: #666666;
             }
@@ -4289,7 +4289,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         }
     }
     .healthPlanDropDown {
-        color: transparent;
+      //  color: transparent;
         background: none;
     }
 

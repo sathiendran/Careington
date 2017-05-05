@@ -236,11 +236,13 @@ angular.module('starter.services', [])
               url: apiCommonURL + '/api/v2/patients/single-trip-registration',
 			  method: 'POST',
 			  data: {
-                address: params.address,
-                dob: params.dob,
+        address: params.address,
+        dob: params.dob,
 				email: params.email,
 				name: params.name,
 				password: params.password,
+        mobile: params.mobile,
+        gender: params.gender,
 				providerId: params.providerId,
               }
 		};
