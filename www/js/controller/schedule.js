@@ -70,7 +70,7 @@ angular.module('starter.controllers')
                         vm.load();
                     }
                     vm.setViewMode(viewMode);
-                    vm.vm_favoriteClinicianCardsList_onDataBound();
+                //    vm.vm_favoriteClinicianCardsList_onDataBound();
                 }
             });
         }
@@ -102,7 +102,7 @@ angular.module('starter.controllers')
                   }*/
                 headerVM.set("subModuleTitle", "All providers");
             }
-            vm.vm_favoriteClinicianCardsList_onDataBound();
+          //  vm.vm_favoriteClinicianCardsList_onDataBound();
             kendo.bind($("#scd-bdy"), vm);
             var viewMode = userName; //$stateParams.viewMode; //"favorite";
 

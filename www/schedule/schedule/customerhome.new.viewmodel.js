@@ -4065,7 +4065,7 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                               snap.userSession.token,
                               snap.userSession.timeZoneSystemId,
                               hubListeningDate);
-                          dfd.resolve(); 
+                          dfd.resolve();
 
                     });
                 } else if ($patientSelfSchedulingHub.isHubStarted() && $patientSelfSchedulingHub.getHubListeningDate().getTime() !== hubListeningDate.getTime()) {
@@ -4223,13 +4223,13 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
             "snap.service.availabilityBlockService", "snap.hub.mainHub", "snap.hub.consultationsListingHub", "snap.hub.creditHub", "snap.patient.PatientHeaderViewModel",
             "snap.hub.notificationService",
             "snap.clinician.patientQueue.reEnterConsultationDialog",
-            "snap.common.dialogWindow", "snap.common.timer", "snap.patient.patientResponseAddressDialog"
+            "snap.common.dialogWindow", "snap.common.timer", "snap.patient.patientResponseAddressDialog", "snap.common.utility"
         ])
         .extend(kendo.observable)
         .define("PatientHomeNewViewModel", function($snapNotification, $snapHttp, $snapLoader, $eventAggregator, $service, $appointmentService, $availabilityBlockService,
             $mainHub, $consultationsListingHub, $creditHub, $patientHeaderVM, $notificationService,
             $reEnterConsultationDialog,
-            $dialogWindow, $timer, $patientResponseAddressDialog) {
+            $dialogWindow, $timer, $patientResponseAddressDialog, $utility) {
             var $scope = this;
             var timer = null;
             var HOUR_LIMIT = 12; // How only new in 12 hours
@@ -4869,7 +4869,11 @@ snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.s
                                 dialog.open({
                                     patientId: snap.profileSession.profileId,
                                     userId: snap.profileSession.profileId,
-                                    patientProfile: data.data[0]
+                                    currentLocation: $utility.getLocationFromPatientProfile(data.data[0]),
+                                   imageSource: snap.profileSession.profileImage,
+                                   fullName: snap.profileSession.fullName,
+                                   firstName: snap.profileSession.firstName
+                                  //  patientProfile: data.data[0]
                                 }).done(function() {
                                     // If the Window has no set dimensions and is centered before its content is loaded with Ajax, it is probably going to resize after the content is loaded.
                                     // This naturally changes the position of the widget on the screen and it is no longer centered.

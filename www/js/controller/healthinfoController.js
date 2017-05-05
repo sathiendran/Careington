@@ -1499,7 +1499,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               var log = [];
               var tmp = {};
               for (i = 0; i < userslength; i++) {
-                  var letter = users[i].text.toUpperCase().charAt(0);
+                  var letter = users[i].display.toUpperCase().charAt(0);
                   if (tmp[letter] == undefined) {
                       tmp[letter] = []
                   }
@@ -1523,7 +1523,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
            checked: true
        });
        if ($rootScope.PatientsearchItem !== '') {
-         $rootScope.PatientIdentifiers = [];
+        // $rootScope.PatientIdentifiers = [];
            $rootScope.patientmedicationsSearch = $rootScope.PatientsearchItem;
            $rootScope.PatientsdetCount = $rootScope.PatientsearchItem.length;
            for (var i = 0; i < $rootScope.PatientsdetCount; i++) {
@@ -1536,7 +1536,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     identifierTypeTitle: $rootScope.PatientsearchItem[i].identifierTypeTitle
                });
            }
-           $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
+        //   $rootScope.PatientIdentifiers = $rootScope.PatientidupdateList;
 
            $scope.modal.hide();
            $rootScope.viewpatapiDisplay = 'flex';

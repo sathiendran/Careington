@@ -824,6 +824,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
           }
        }
    })
+   .state('tab.confirmPatientAddressDialog', {
+     url: '/confirmPatientAddressDialog',
+     views: {
+      'tab-login': {
+          templateUrl: 'schedule/tab-confirmPatientAddressDialog.html',
+          controller: ''
+         }
+      }
+  })
    .state('tab.providerSearch', {
      url: '/providerSearch',
      views: {

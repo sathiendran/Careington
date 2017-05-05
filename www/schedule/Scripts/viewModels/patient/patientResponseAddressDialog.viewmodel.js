@@ -1,6 +1,6 @@
 ﻿//@ sourceURL=patientResponseAddressDialog.viewmodel.js
 
-(function ($, snap, kendo) {
+(function ($, snap) {
     "use strict";
 
     snap.namespace("snap.patient")
@@ -8,12 +8,13 @@
             "snapNotification", 
             "snap.EventAggregator",
             "snap.admin.patientRules.ruleService",
-            "snap.DataService.customerDataService"
+            "snap.DataService.customerDataService",
+            "snap.common.utility"
         ])
-        .define("patientResponseAddressDialog", function ($snapNotification, $eventAggregator, $ruleService, $customerDataService) {
-        	var userId = null;
-            var patientId = null;
-        	var dialog = null;
+        .define("patientResponseAddressDialog", function ($snapNotification, $eventAggregator, $ruleService, $customerDataService,  $utility) {
+            var dialog = null,
+                patientId = null;
+
 
         	this.isEditMode = false;
 
@@ -25,48 +26,58 @@
             this.currentLocation = "";
 
             this.setOptions = function(opt) {
+                dialog = opt.dialog;
                 patientId = opt.opt.patientId;
-            	userId = opt.opt.userId;
-            	dialog = opt.dialog;
 
-
-                var location = opt.opt.patientProfile.encounterAddressLocation ? opt.opt.patientProfile.encounterAddressLocation : opt.opt.patientProfile.addressLocation;
-
-                var displayLocation = "";
-                if(location) {
-                    displayLocation = location.country;
-                    if(location.state) {
-                        displayLocation = [location.state, location.country].join(", ");
-                    }
-                } else {
-                    displayLocation = opt.opt.patientProfile.address;
-                }
-
-                this.set("currentLocation", displayLocation);
+                this.set("currentLocation", opt.opt.currentLocation);
+                this.set("vm_patientProfileImg", opt.opt.imageSource);
+                this.set("vm_fullName", opt.opt.fullName);
+                this.set("vm_firstName", opt.opt.firstName);
 
                 var that = this;
                 this.loadCountries().done(function() {
                     that.loadStatesForSelectedCountry();
                 });
+
+                this.set("isEditMode", false);
+                this.set("vm_isLocationAutocompleteFocused", false);
+                this.set("vm_countryError", false);
+                this.set("vm_stateError", false);
+                this.set("vm_isError", false);
+                this.set("vm_isLoading", false);
+
+                this.set("vm_isLoading", false);
+
+                this.trigger("change", { field: "vm_isSelfLocationDialog" });
             };
 
             this.vm_isRegionsAutocompleteEnable = function() {
                 return this.regions.length > 0;
             };
+
+            this.vm_isLocationAutocompleteFocused = false;
             this.vm_countryError = false;
+            this.vm_isCountryFilled = true;
             this.vm_stateError = false;
+            this.vm_isStateFilled = false;
             this.vm_isError = false;
             this.vm_isLoading = false;
             this.vm_saveButtonText = "Save";
+
+            this.vm_patientProfileImg = "";
+
+            this.vm_isSelfLocationDialog = function() {
+                return patientId === snap.profileSession.profileId;
+            }
 
             this.vm_onYesClick = function() {
                 this.set("vm_isLoading", true);
 
                 var that = this;
-                $customerDataService.updatePatientResponseAddress(this.currentLocation).done(function() {
+                $customerDataService.updatePatientResponseAddress(this.currentLocation, patientId).done(function() {
                     that.set("vm_isLoading", false);
                     dialog.close();
-                    $eventAggregator.publish("patientResponseDialog_locationConfirmed");
+                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", that.currentLocation);
                 });
             };
 
@@ -93,18 +104,27 @@
                 this.set("vm_isLoading", true);
 
                 
-                var address = [this.selectedRegion, this.selectedCountry].join(", ");
+                var address = this.selectedCountry;
+                if(this.selectedRegion) {
+                    address = [this.selectedRegion, this.selectedCountry].join(", ");
+                }
 
                 var that = this;
-                $customerDataService.updatePatientResponseAddress(address).done(function() {
+                $customerDataService.updatePatientResponseAddress(address, patientId).done(function() {
                     that.set("vm_isLoading", false);
                     dialog.close();
-                    $eventAggregator.publish("patientResponseDialog_locationConfirmed");
+                    $eventAggregator.publish("patientResponseDialog_locationConfirmed", address);
                 });
             };
 
             this.vm_onCountryChange = function() {
                 this.loadStatesForSelectedCountry();
+
+                if (this.selectedCountry.length > 0) {
+                    this.set("vm_isCountryFilled", true);
+                } else {
+                    this.set("vm_isCountryFilled", false);
+                }
             };
 
             this.vm_onRegionChange = function() {
@@ -114,10 +134,16 @@
 
                 if(selectedRegion){
                     this.set("vm_isSaveDisabled", false);
+                    this.set("vm_isStateFilled", true);
                 } else{
                     this.set("vm_isSaveDisabled", true);
+                    this.set("vm_isStateFilled", false);
                 }
             };
+
+            this.vm_onFocus = function() {
+                console.log("fff");
+            }
 
             this.loadCountries = function() {
                 var that = this;
@@ -206,7 +232,16 @@
 	            return 0;
 	        }
 
-            this.loadNonMVVM = function() {
+			this.loadNonMVVM = function () {
+                var that = this;
+
+			    $('.search input').on('focus', function() {
+                    that.set("vm_isLocationAutocompleteFocused", true);
+                });
+
+                $('.search input').on('blur', function(){
+                    that.set("vm_isLocationAutocompleteFocused", false);
+                });
             };
         }).singleton();
-}(jQuery, snap, kendo));
+}(jQuery, snap));
