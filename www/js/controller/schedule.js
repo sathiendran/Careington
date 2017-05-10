@@ -57,7 +57,7 @@ angular.module('starter.controllers')
                 var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
                 var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
                 headerVM.set("moduleTitle", "Provider");
-                headerVM.set("subModuleTitle", "My provider");
+                headerVM.set("subModuleTitle", "All providers");
                 headerVM.isFavoriteCliniciansMode = true;
                 kendo.bind($("#scd-bdy"), vm);
                 kendo.bind($(".header__patient-ss"), headerVM);
@@ -70,7 +70,7 @@ angular.module('starter.controllers')
                         vm.load();
                     }
                     vm.setViewMode(viewMode);
-                //    vm.vm_favoriteClinicianCardsList_onDataBound();
+                  // vm.vm_favoriteClinicianCardsList_onDataBound();
                 }
             });
         }
