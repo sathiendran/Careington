@@ -1,7 +1,7 @@
-﻿(function ($, snap, kendo) {
+(function ($, snap) {
     "use strict";
 
-    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.admin.schedule.TimeUtils", "snap.common.overlay"])
+    snap.namespace("snap.patient.schedule").use(["snap.service.selfSchedulingService", "snap.common.timeUtils", "snap.common.overlay"])
         .define("patientAppointmentService", function ($selfSchedulingService, $timeUtils, $overlay) {
             var formatErrorMessage = function (error) {
                 if (typeof (error) === "undefined" || error === null) {
@@ -26,7 +26,7 @@
                                 errorMessage = parsedMessage.message;
                             }
                         } catch (e) {
-
+                            snap.util.logToConsole(e);
                         }
                     } else {
                         errorMessage = error.statusText;
@@ -68,7 +68,7 @@
                         var isLoading = true;
 
                         $overlay.loadOverlay();
-                        $overlay.setLoadingIcn("../images/svg-v3/Clipboard-Anim-C.svg");
+                        $overlay.setLoadingIcn("images/svg-v3/Clipboard-Anim-C.svg");
                         $overlay.toggleOverlay();
 
 
@@ -97,13 +97,13 @@
                                     isLoading = false;
                                     var data = response.data[0];
                                     //this works slow
-                                    $overlay.setLoadingIcn("../images/svg-v3/Clipboard-Done-C.svg");
+                                    $overlay.setLoadingIcn("images/svg-v3/Clipboard-Done-C.svg");
                                     $overlay.setLoadingTxt("All set.");
 
                                     if (appt.encounterTypeCode === snap.enums.EncounterTypeCode.Phone) {
                                         $overlay.setSubTxt("A provider will call you shortly.");
                                     } else {
-                                        $overlay.setSubTxt("Accept the consent to treat agreement to enter the waiting room.");
+                                        $overlay.setSubTxt(" ");
                                     }
 
                                     Snap.Patient.PatientHomeNewViewModel().goToSchedConsultInternal(data, function() {
@@ -180,4 +180,4 @@
                 return promise.promise();
             };
         });
-}(jQuery, snap, kendo));
+}(jQuery, snap));

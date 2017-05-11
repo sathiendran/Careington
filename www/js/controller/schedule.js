@@ -13,6 +13,33 @@ angular.module('starter.controllers')
                 userData.timeZoneSystemId = data.message;
                 var userDataJsonData = JSON.stringify(userData);
                 $window.localStorage.setItem('snap_user_session', userDataJsonData);
+
+                            snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
+                                $(".schedular-continer").html(html);
+                                var chkClass = $("body").hasClass("is-main-nav");
+                                if(chkClass) {
+                                  $("body").removeClass("is-main-nav");
+                                }
+                                snap.updateSnapJsSession("snap_user_session", "timeZoneSystemId", snap.userSession.timeZoneSystemId);
+                                var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
+                                var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
+                                headerVM.set("moduleTitle", "Provider");
+                                headerVM.set("subModuleTitle", "All providers");
+                                headerVM.isFavoriteCliniciansMode = true;
+                                kendo.bind($("#scd-bdy"), vm);
+                                kendo.bind($(".header__patient-ss"), headerVM);
+                                var viewMode = "all"; //$stateParams.viewMode; //"favorite";
+                                $("#myProvider").removeClass("is-active");
+                                $("#allProvider").addClass("is-active");
+
+                                if (vm) {
+                                    if (!vm.isDataInit) {
+                                        vm.load();
+                                    }
+                                    vm.setViewMode(viewMode);
+                                  // vm.vm_favoriteClinicianCardsList_onDataBound();
+                                }
+                            });
               },
               error: function(data, status) {
                   if (status === 0) {
@@ -43,38 +70,12 @@ angular.module('starter.controllers')
         $('.appoitEditPop').css('background-color', brandColor);
 
         this.initKendoUI = function() {
-            if(snap.profileSession === undefined) {
+            //if(snap.profileSession === undefined) {
               this.initSnapVars();
-            }
-
-            snap.cachedGetHtml("schedule/tab-providerBody.html").then(function(html) {
-                $(".schedular-continer").html(html);
-                var chkClass = $("body").hasClass("is-main-nav");
-                if(chkClass) {
-                  $("body").removeClass("is-main-nav");
-                }
-                snap.updateSnapJsSession("snap_user_session", "timeZoneSystemId", snap.userSession.timeZoneSystemId);
-                var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
-                var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");
-                headerVM.set("moduleTitle", "Provider");
-                headerVM.set("subModuleTitle", "All providers");
-                headerVM.isFavoriteCliniciansMode = true;
-                kendo.bind($("#scd-bdy"), vm);
-                kendo.bind($(".header__patient-ss"), headerVM);
-                var viewMode = "all"; //$stateParams.viewMode; //"favorite";
-                $("#myProvider").removeClass("is-active");
-                $("#allProvider").addClass("is-active");
-
-                if (vm) {
-                    if (!vm.isDataInit) {
-                        vm.load();
-                    }
-                    vm.setViewMode(viewMode);
-                  // vm.vm_favoriteClinicianCardsList_onDataBound();
-                }
-            });
+          //  }
         }
         this.initKendoUI();
+        
         $scope.getDetails = function(userName) {
             var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
             var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");

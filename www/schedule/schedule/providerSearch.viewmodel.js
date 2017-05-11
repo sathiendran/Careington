@@ -814,6 +814,7 @@ this.vm_patientsNameFilter = "";
             this._getCliniciansFilters = function () {
                 var currentFilters = this._getCurrentFilters();
                 var filterValues = {
+                  date: $timeUtils.dateToString(this.dateFilter),
                      name: this.nameFilter,
                     availableOnly: currentFilters.Availability.filters.Available,
                     patientId: this.selectedPatient.id

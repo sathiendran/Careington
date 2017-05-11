@@ -1,4 +1,4 @@
-﻿snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.selfSchedulingService", "snap.common.schedule.ScheduleCommon"])
+snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.service.selfSchedulingService", "snap.common.schedule.ScheduleCommon"])
        .define("familyGroupDataSource", function ($snapNotification, $selfSchedulingService, $scheduleCommon) {
 
            function CachedDS(items) {
@@ -28,7 +28,7 @@
                CachedDS.call(this, items);
                var localItems = items;
                this.selectByName = function (name) {
-                   var filtered = [];
+                   var filtered;
                    if (typeof (name) === "undefined" || name === null || name === "") {
                        filtered = localItems;
                    } else {
@@ -45,11 +45,6 @@
 
            function DS() {
                this.read = function (nameFilter) {
-                   var filter = "";
-
-                   if (typeof (nameFilter) !== "undefined" && nameFilter !== null) {
-                       filter = $.trim(nameFilter);
-                   }
 
                    var dfd = $.Deferred();
 
@@ -94,7 +89,7 @@
            }
 
            function FamillyGroupDS() {
-               /************************************************************    
+               /************************************************************
                ****************** Call BASE constructor ********************
                *************************************************************/
                DS.call(this);
@@ -115,10 +110,9 @@
                                 personType: "patient",
                             };
                         });
-                      source = new LocalDS(data);
-                      dfd.resolve(source);
+                      dfd.resolve(new LocalDS(data));
                    });
-                   
+
                    return dfd.promise();
                };
            }

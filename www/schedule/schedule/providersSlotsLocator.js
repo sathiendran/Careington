@@ -1,10 +1,10 @@
-﻿//@ sourceURL=providersSlotsLocator.js
+//@ sourceURL=providersSlotsLocator.js
 
 (function($, snap) {
     "use strict";
 
      snap.namespace("snap.patient.schedule")
-        .use(["snapNotification", "snap.admin.schedule.TimeUtils", "snap.patient.schedule.patientSelfSchedulingHub", "snap.service.userService",
+        .use(["snapNotification", "snap.common.timeUtils", "snap.patient.schedule.patientSelfSchedulingHub", "snap.service.userService",
             "snap.hub.mainHub"])
         .define("providersSlotsLocator", function($snapNotification, $timeUtils, $patientSelfSchedulingHub, $userService, $mainHub) {
             var lockedSlotsList = new SlotList();
@@ -46,23 +46,16 @@
                 }
                 hubListeningDate.setHours(0, 0, 0, 0);
 
-                if(!$patientSelfSchedulingHub.isHubInitiated()) {
+                if(!$patientSelfSchedulingHub.isHubInitialized()) {
                     $mainHub.register($patientSelfSchedulingHub);
 
-                  /*  $userService.getUserTimeZoneId().done(function(response) {
-                        var pr = $patientSelfSchedulingHub.start(
+                    $userService.getUserTimeZoneId().done(function(response) {
+                        $patientSelfSchedulingHub.start(
                             snap.userSession.token,
                             response.message,
                             hubListeningDate);
                         dfd.resolve();
-                    });*/
-
-                    $patientSelfSchedulingHub.start(
-                          snap.userSession.token,
-                          snap.userSession.timeZoneSystemId,
-                          hubListeningDate);
-                      dfd.resolve();  
-
+                    });
                 } else if($patientSelfSchedulingHub.isHubStarted() && $patientSelfSchedulingHub.getHubListeningDate().getTime() !== hubListeningDate.getTime()) {
                     lockedSlotsList.clear();
                     $patientSelfSchedulingHub.changeHubListeningDate(hubListeningDate);

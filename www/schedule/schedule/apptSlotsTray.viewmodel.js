@@ -1,10 +1,10 @@
-﻿//@ sourceURL=apptSlotsTray.viewmodel.js
+//@ sourceURL=apptSlotsTray.viewmodel.js
 
 (function ($, snap, kendo) {
     "use strict";
 
-    snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.EventAggregator", "snap.admin.schedule.TimeUtils", "snap.service.userService", "snap.patient.schedule.patientSelfSchedulingHub"])
-        .define("apptsSlotsTray", function ($snapNotification, $eventAggregator, $timeUtils, $userService, $patientSelfSchedulingHub) {
+    snap.namespace("snap.patient.schedule").use(["snapNotification", "snap.EventAggregator", "snap.common.timeUtils", "snap.service.userService"])
+        .define("apptsSlotsTray", function ($snapNotification, $eventAggregator, $timeUtils, $userService) {
             var defaultCard = {
                 slots: []
             };
@@ -48,33 +48,7 @@
                 };
             })();
 
-           function Tray(clinicianCard, scheduleDate, slotClickCallback) { 
-
-                // if(!$patientSelfSchedulingHub.isHubInitiated()) {
-                //     $patientSelfSchedulingHub.init();    
-                // }
-                
-                // $patientSelfSchedulingHub.on("lockSlot", function (data, from, to) { 
-                //     //window.console.log("lockSlot:" + data + " time: " + from );
-                // });
-
-                // $patientSelfSchedulingHub.on("unlockSlot", function (data, from, to) { 
-                //     //window.console.log("unlockSlot:" + data + " time: " + from );
-                // });
-
-                // $patientSelfSchedulingHub.on("bookSlot", function (data, from, to) { 
-                //     //window.console.log("bookSlot:" + data + " time: " + from );
-                // });
-
-                // if(!$patientSelfSchedulingHub.isHubInitiated()) { 
-                //     $patientSelfSchedulingHub.start(
-                //         snap.userSession.token,
-                //         snap.profileSession.timeZone,
-                //         scheduleDate);
-                // }
-                
-
-
+           function Tray(clinicianCard, scheduleDate, slotClickCallback, refreshCardOnSlotLockUnlock) {
                 this.userSelectedDate = new Date(scheduleDate);
                 this.userSelectedDate.setHours(0, 0, 0, 0);
 
@@ -82,8 +56,12 @@
 
                 this.userId = clinicianCard.userId;
                 this.slots = clinicianCard.slots.map(function(s) {
-                    return new Slot(s, clinicianCard.userId, trayModel.userSelectedDate, slotClickCallback);
+                    return new Slot(s, clinicianCard.userId, trayModel.userSelectedDate, slotClickCallback, refreshCardOnSlotLockUnlock);
                 });
+
+                this.getSlots = function() {
+                    return getFilteredSlots(this.slots, this.userSelectedDate);
+                };
 
                 this.vm_slots = function() {
                     var slots =  getFilteredSlots(this.slots, this.userSelectedDate);
@@ -94,7 +72,7 @@
                             halfOfApptDuration = getHalfOfAppointmentDuration(),
                             nowStart = new Date(firstSlot.from.getTime() - halfOfApptDuration * 60000),
                             nowEnd = new Date(firstSlot.from.getTime() + halfOfApptDuration * 60000);
-                        
+
                         firstSlot.isNow = nowStart < currentTime && currentTime < nowEnd;
                     }
 
@@ -110,23 +88,31 @@
                     return getFilteredSlots(this.slots, this.userSelectedDate).length === 0;
                 };
 
-                this.vm_onNextButtuonClick = function() {
-                    snapInfo("Not implemented yet!!!");
+                this.vm_hasSlotsForRightNow = function() {
+                    var slots = getFilteredSlots(this.slots, this.userSelectedDate).filter(function(slot) {
+                        return slot.isNow && slot.vm_isInvisible === false;
+                    });
+
+                    return slots.length > 0;
                 };
+
+                // this.vm_onNextButtuonClick = function() {
+                //     snapInfo("Not implemented yet!!!");
+                // };
 
                 this.vm_getNextApptSlotInfo = function() {
                     var nextDay = getClosestNextSlotDate(this.slots);
 
                     if(nextDay) {
-                        return "Next Self-Scheduling available <b>" + kendo.toString(nextDay, "MMMM dd, yyyy") + "</b>";
+                        return "Next available appointment on <b>" + kendo.toString(nextDay, "MMMM dd, yyyy") + "</b>";
                     }
 
-                    return "There is no slots for Self-Scheduling";
+                    return "There are no appoinments currently available";
                 };
 
-                this.vm_goToNextDate = function() {
-                    snapInfo("Not implemented yet");
-                };
+                // this.vm_goToNextDate = function() {
+                //     snapInfo("Not implemented yet");
+                // };
 
                 function getFilteredSlots(slots, userSelectedDate) {
                     var currentTime = Singleton.getCurrentTime();
@@ -152,7 +138,7 @@
                         return null;
                     }
 
-                    var minDate = new Date(Math.min.apply(null,dates)); 
+                    var minDate = new Date(Math.min.apply(null,dates));
                     minDate.setHours(0, 0, 0, 0);
 
                     return minDate;
@@ -183,29 +169,43 @@
                 }
             }
 
-            function Slot(slot, clinicianUserId, userSelectedDate, slotClickCallback) {
+            function Slot(slot, clinicianUserId, userSelectedDate, slotClickCallback, refreshCardOnSlotLockUnlock) {
                 this.from = $timeUtils.dateFromSnapDateString(slot.from);
                 this.to = $timeUtils.dateFromSnapDateString(slot.to);
                 this.availabilityBlockId = slot.availabilityBlockId;
+                this.clinicianUserId = clinicianUserId;
 
                 this.vm_isInvisible = false;
                 this.vm_onSlotClick = function () {
-                    slotClickCallback({ clinicianId: clinicianUserId, start: new Date(this.from), end: new Date(this.to), availabilityBlockId: this.availabilityBlockId, isNow: this.isNow });
+                    slotClickCallback({ clinicianId: this.clinicianUserId, start: new Date(this.from), end: new Date(this.to), availabilityBlockId: this.availabilityBlockId, isNow: this.isNow });
                     $eventAggregator.published("slotTray_slotClickCallback");
                 };
 
                 this.isNow = false;
 
-                this.formatedTime = function() {
-                    return this.isNow ? "Now" : kendo.toString(this.from, "t");
+                this.formatedTime = function () {
+                    if (this.isNow) {
+                        return "NOW"
+                    } else {
+                        var time = kendo.toString(this.from, "t").split(" ");
+                        return time[0] + " <span class='drawer-card__timestamp'>"+ time[1] + "</span>"
+                    }
                 };
 
                 this.hide = function() {
                     this.set("vm_isInvisible", true);
+
+                    if(refreshCardOnSlotLockUnlock) {
+                        refreshCardOnSlotLockUnlock();
+                    }
                 };
 
                 this.show = function() {
                     this.set("vm_isInvisible", false);
+
+                    if(refreshCardOnSlotLockUnlock) {
+                        refreshCardOnSlotLockUnlock();
+                    }
                 };
             }
 
@@ -213,7 +213,7 @@
                 this.vm_isVisible = true;
 
                 this.formatedTime = function() {
-                    return "Next";
+                    return "NEXT";
                 };
 
                 this.vm_onSlotClick = function () {
@@ -224,9 +224,9 @@
                 };
             }
 
-            this.createTimeSlotsTray = function (clinicianCard, userSelectedDate, slotClickCallback) {
+            this.createTimeSlotsTray = function (clinicianCard, userSelectedDate, slotClickCallback, refreshCardOnSlotLockUnlock) {
                 var tray = $.extend(true, {}, defaultCard, clinicianCard);
-                return kendo.observable(new Tray(tray, userSelectedDate, slotClickCallback || function(){}));
+                return kendo.observable(new Tray(tray, userSelectedDate, slotClickCallback, refreshCardOnSlotLockUnlock));
             };
         }).singleton();
 }(jQuery, snap, kendo));
