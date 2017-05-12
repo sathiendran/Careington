@@ -1,9 +1,10 @@
 {
-  "name": "ConnectedCare",
+  "name": "SelfSchedule",
   "app_id": "",
   "gulpStartupTasks": [
     "sass",
-    "watch"
+    "watch",
+    "less"
   ],
   "watchPatterns": [
     "www/**/*",
