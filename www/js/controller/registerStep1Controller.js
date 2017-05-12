@@ -55,6 +55,16 @@ angular.module('starter.controllers')
           $('.regstgender').removeClass("emailbackground");
           $('.ssooption').removeClass("emailbackground");
         }
+        $scope.countryBlur=function(){
+          $scope.countryError =false;
+          $('.regstCountry').removeClass("emailbackground");
+          $('.ssooptionCountry').removeClass("emailbackground");
+        }
+        $scope.timeZoneBlur=function(){
+          $scope.timeZoneError =false;
+          $('.regstTimezone').removeClass("emailbackground");
+          $('.ssooptionTimezone').removeClass("emailbackground");
+        }
         $scope.addressBlur=function(){
           $scope.adderror=false;
           $('.regstaddress').removeClass("emailbackground");
@@ -149,6 +159,10 @@ angular.module('starter.controllers')
             $scope.homeaddress= $('#regaddress').val();
             $scope.email= $('#regEmail').val();
             $scope.mobile=  $('#regMobile').val();
+            $scope.regCountry2 =  ($('#regCountry').val()).split('@');
+              $scope.regCountryCode =  $scope.regCountry2[0];
+              $scope.regCountryName =  $scope.regCountry2[1];
+            $scope.regTimezone =  $('#regTimezone').val();
             $scope.password=  $('#regPassword').val();
             $scope.confirmPwd=$('#regConfrmPassword').val();
             var selectedDate = document.getElementById('regDOB').value;
@@ -187,6 +201,14 @@ angular.module('starter.controllers')
           }else if(typeof $scope.mobile === 'undefined' ||$scope.mobile === ''){
             $('.regstmobile').addClass("emailbackground");
             $scope.mobilemanderror=true;
+          }else if(typeof $scope.regCountry2[0] === 'undefined' ||$scope.regCountry2[0] === ''){
+            $scope.countryError = true;
+              $('.regstCountry').addClass("emailbackground");
+              $('.ssooptionCountry').addClass("emailbackground");
+          }else if(typeof $scope.regTimezone === 'undefined' ||$scope.regTimezone === ''){
+            $scope.timeZoneError = true;
+              $('.regstTimezone').addClass("emailbackground");
+              $('.ssooptionTimezone').addClass("emailbackground");
           }else if ($scope.mobilelength < 14) {
               $scope.mobileerror=true;
           }  else if (typeof $scope.password === 'undefined' || $scope.password === '') {
@@ -329,6 +351,10 @@ angular.module('starter.controllers')
           name: $scope.userFirstandLastName,
           password: $scope.password,
           providerId: $rootScope.hospitalId,
+          gender: $scope.gender,
+          mobileNumberWithCountryCode: $scope.regCountryCode + $scope.mobile,
+          timeZoneId: $scope.regTimezone,
+          country: $scope.regCountryName,
           success: function() {
               $rootScope.isRegistrationCompleted = true;
               $rootScope.registedEmail = $scope.email;

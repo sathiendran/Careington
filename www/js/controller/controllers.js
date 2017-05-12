@@ -1176,6 +1176,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.goToSearchProvider = function(currentPage) {
+        $scope.doGetConutriesList();
+        $scope.getTimezoneList();
         $rootScope.frontPage = 'tab.' + currentPage;
         $rootScope.backProviderSearchKey = '';
         if (currentPage === "loginSingle") {

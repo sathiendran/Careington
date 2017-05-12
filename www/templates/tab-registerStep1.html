@@ -112,6 +112,37 @@
                </div>
             </div>
             <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('globe');"></i></div>
+               <div class="user-account__fieldset regstCountry">
+                  <div>
+                     <label class="user-account__label">Country</label>
+                     <div class="user-account__input">
+                       <select class="ssooptionCountry textdata" ng-model="regStep1.regCountry" name="regCountry" id="regCountry" ng-change="countryBlur()" >
+                         <option value="">Choose</option>
+                         <option ng-repeat="country in serviceCountries"  value="{{country.code + '@' +country.name}}" ><b>{{country.name}}</b></option>
+                       </select>
+
+                        <span class="user-account__error-message" ng-show="countryError">Please choose your country</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('clock');"></i></div>
+               <div class="user-account__fieldset regstTimezone">
+                  <div>
+                     <label class="user-account__label">Timezone</label>
+                     <div class="user-account__input">
+                       <select class="ssooptionTimezone textdata" ng-model="regStep1.regTimezone" name="regTimezone" id="regTimezone" ng-change="timeZoneBlur()" >
+                          <option value="">Choose</option>
+                         <option  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.name"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
+                      </select>
+                        <span class="user-account__error-message" ng-show="timeZoneError">Please choose your timezone</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
                <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('lock');"></i></div>
                <div class="user-account__fieldset regstpwd" >
                   <div>
@@ -268,6 +299,37 @@
                         <input type="tel" placeholder="type here..." ng-model="regStep1.regMobile" name="regMobile" id="regMobile" ng-keyup="moblieBlur()"  phone-input>
                         <span class="user-account__error-message" ng-show="mobilemanderror" >Please enter a mobile number</span>
                         <span class="user-account__error-message" ng-show="mobileerror" >Please enter a valid mobile number</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('globe');"></i></div>
+               <div class="user-account__fieldset regstCountry">
+                  <div>
+                     <label class="user-account__label">Country</label>
+                     <div class="user-account__input">
+                       <select class="ssooptionCountry textdata" ng-model="regStep1.regCountry" name="regCountry" id="regCountry" ng-change="countryBlur()" >
+                         <option value="">Choose</option>
+                         <option ng-repeat="country in serviceCountries"  value="{{country.code + '@' +country.name}}" ><b>{{country.name}}</b></option>
+                       </select>
+
+                        <span class="user-account__error-message" ng-show="countryError">Please choose your country</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="registerContent__mainField">
+               <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('clock');"></i></div>
+               <div class="user-account__fieldset regstTimezone">
+                  <div>
+                     <label class="user-account__label">Timezone</label>
+                     <div class="user-account__input">
+                       <select class="ssooptionTimezone textdata" ng-model="regStep1.regTimezone" name="regTimezone" id="regTimezone" ng-change="timeZoneBlur()" >
+                         <option value="">Choose</option>
+                         <option  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.name"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
+                      </select>
+                        <span class="user-account__error-message" ng-show="timeZoneError">Please choose your timezone</span>
                      </div>
                   </div>
                </div>

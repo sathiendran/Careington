@@ -256,12 +256,14 @@ angular.module('starter.controllers')
         refresh_close();
     }
     $scope.heighteditsave=function(){
+      $rootScope.patHeightUnit = '';
       $('#heightuser').val('');
       $rootScope.height1=$('#healthInfoHeight').val();
       $rootScope.height2=$('#healthInfoHeight2').val();
      var heightunit = $("#healthInfoHeightUnit").val().split("@").slice(1, 2);
      var heightunitid = $("#healthInfoHeightUnit").val().split("@").slice(0, 1);
      var getheightunitid=_.first(heightunitid);
+     $rootScope.patHeightUnit = getheightunitid;
      var getheightunit=_.first(heightunit);
        if(getheightunit==="ft/in"){
          if($rootScope.height1!=='' && $rootScope.height2 !==''  ){
@@ -583,24 +585,26 @@ $scope.editDob=function(){
             }else{
                 $scope.healthInfoHeight2 =  $rootScope.height2;
             }
-            if($scope.healthInfoHeightUnit==="" ||$scope.healthInfoHeightUnit===undefined ){
-              var hghtinval=$('#heightuser').val();
+            if($scope.patHeightUnit==="" ||$scope.patHeightUnit===undefined ){
+              $scope.healthInfoHeightUnit = $rootScope.currentPatientDetails[0].anatomy.heightUnitId;
+              /*var hghtinval=$('#heightuser').val();
               var reminspace=hghtinval.split(" ");
               var units=reminspace[1];
               if(units==="ft"){
-                $scope.healthInfoHeightUnit="4715"
+                  $scope.healthInfoHeightUnit="4715"
               }else{
                   $scope.healthInfoHeightUnit="4716"
-              }
+              }*/
             }else{
-              var hghtinval=$('#heightuser').val();
+              $scope.healthInfoHeightUnit = $rootScope.patHeightUnit;
+            /*  var hghtinval=$('#heightuser').val();
               var reminspace=hghtinval.split(" ");
               var units=reminspace[1];
               if(units==="ft"){
                 $scope.healthInfoHeightUnit="4715"
               }else{
                   $scope.healthInfoHeightUnit="4716"
-              }
+              }*/
             }
             $scope.healthInfoGender = $("#healthInfoGender").val();
             $scope.HeightUnit = $('#healthInfoHeightUnit').val();

@@ -228,7 +228,7 @@
                      <span class="healthViewDetails">
                         <select class="textdata optionselect"  name="healthInfoTimezone" id="healthInfoTimezone" ng-model="healthInfoModel.healthInfoTimezone" >
                            <option>Choose</option>
-                           <option  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.name"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
+                           <option  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.id"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
                         </select>
                      </span>
                   </div>

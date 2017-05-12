@@ -238,10 +238,14 @@ angular.module('starter.services', [])
 			  data: {
                 address: params.address,
                 dob: params.dob,
-				email: params.email,
-				name: params.name,
-				password: params.password,
-				providerId: params.providerId,
+        				email: params.email,
+        				name: params.name,
+        				password: params.password,
+        				providerId: params.providerId,
+                gender: params.gender,
+                mobileNumberWithCountryCode: params.mobileNumberWithCountryCode,
+                timeZoneId: params.timeZoneId,
+                country: params.country
               }
 		};
 
