@@ -135,7 +135,7 @@
                      <div class="user-account__input">
                        <select class="ssooptionTimezone textdata" ng-model="regStep1.regTimezone" name="regTimezone" id="regTimezone" ng-change="timeZoneBlur()" >
                           <option value="">Choose</option>
-                         <option  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.name"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
+                         <option  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
                       </select>
                         <span class="user-account__error-message" ng-show="timeZoneError">Please choose your timezone</span>
                      </div>
@@ -327,7 +327,7 @@
                      <div class="user-account__input">
                        <select class="ssooptionTimezone textdata" ng-model="regStep1.regTimezone" name="regTimezone" id="regTimezone" ng-change="timeZoneBlur()" >
                          <option value="">Choose</option>
-                         <option  ng-selected="getTimeZoneName(currentPatientDetails[0].account.timeZoneId)== timeZone.name"  ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
+                         <option ng-repeat="timeZone in timeZones" value="{{timeZone.id}}" ><b>{{timeZone.name}}</b></option>
                       </select>
                         <span class="user-account__error-message" ng-show="timeZoneError">Please choose your timezone</span>
                      </div>
