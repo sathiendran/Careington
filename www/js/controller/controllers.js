@@ -345,6 +345,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
 
+    $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
+
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
         $('.patProfileImage').css({
             'background-color': $rootScope.brandColor
@@ -1943,7 +1945,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                $rootScope.serviceCountries = angular.fromJson(data.data);
+            //  $rootScope.aaa = [];
+               $rootScope.serviceCountries = angular.fromJson(data.data);
+              /* angular.forEach($rootScope.serviceCountries, function(item,index) {
+                 if((item.code).length === 2) {
+                   $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name;
+                 } else if((item.code).length === 3) {
+                    $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
+                 } else if((item.code).length === 4) {
+                    $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
+                 }
+                    $rootScope.aaa.push({
+                        'code': item.code,
+                        'name': item.name,
+                        'id': item.id,
+                        'sd': $scope.cntryCode
+                    });
+                });*/
                 $scope.getTimezoneList();
             },
             error: function() {

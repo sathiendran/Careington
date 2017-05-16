@@ -40,7 +40,20 @@ angular.module('starter.controllers')
             }
         }, 100);
 
+      /*  $rootScope.formatIsdCode = function(countryCode) {
+          if(!angular.isUndefined(countryCode) && countryCode !== 0) {
+              var tt = $(this)[0].country.code.length;
+              if (tt === 2)
+                  return ($(this)[0].country.code) + "             " + ($(this)[0].country.name);
+              else if (tt === 3)
+                  return ($(this)[0].country.code) + "    " + ($(this)[0].country.name);
+              else if (tt === 4)
+                  return ($(this)[0].country.code) + "              " + ($(this)[0].country.name);
+          }
+        };*/
 
+
+        $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
 
         $scope.fnameBlur=function(){
           $scope.fnameerror =false;
@@ -59,6 +72,12 @@ angular.module('starter.controllers')
           $scope.countryError =false;
           $('.regstCountry').removeClass("emailbackground");
           $('.ssooptionCountry').removeClass("emailbackground");
+          if (($('#regCountryCode').val() === 'Choose') || ($('#regCountryCode').val() === ' ')) {
+                $("div.viewport").html('<div class="insCHooseProviderName">Choose</div>');
+          } else {
+                var selectedValue = $('#regCountryCode').val();
+                $("div.viewport").html('<div class="insProviderName">'+selectedValue+'</div>');
+          }
         }
         $scope.timeZoneBlur=function(){
           $scope.timeZoneError =false;
@@ -150,6 +169,8 @@ angular.module('starter.controllers')
               $scope.cnfrmpwderror =false;
           }
         }
+
+
         $rootScope.postRegisterStep1 = function() {
 
             $scope.fname=$('#regFName').val();
@@ -159,10 +180,10 @@ angular.module('starter.controllers')
             $scope.homeaddress= $('#regaddress').val();
             $scope.email= $('#regEmail').val();
             $scope.mobile=  $('#regMobile').val();
-            $scope.regCountry2 =  ($('#regCountry').val()).split('@');
-              $scope.regCountryCode =  $scope.regCountry2[0];
-              $scope.regCountryName =  $scope.regCountry2[1];
-            $scope.regTimezone =  $('#regTimezone').val();
+            $scope.regCountry2 =  $('#regCountryCode').val();
+            //  $scope.regCountryCode =  $scope.regCountry2[0];
+            //  $scope.regCountryName =  $scope.regCountry2[1];
+          //  $scope.regTimezone =  $('#regTimezone').val();
             $scope.password=  $('#regPassword').val();
             $scope.confirmPwd=$('#regConfrmPassword').val();
             var selectedDate = document.getElementById('regDOB').value;
@@ -201,14 +222,18 @@ angular.module('starter.controllers')
           }else if(typeof $scope.mobile === 'undefined' ||$scope.mobile === ''){
             $('.regstmobile').addClass("emailbackground");
             $scope.mobilemanderror=true;
-          }else if(typeof $scope.regCountry2[0] === 'undefined' ||$scope.regCountry2[0] === ''){
-            $scope.countryError = true;
+          }else if(typeof $scope.regCountry2 === 'undefined' || $scope.regCountry2 === '' || $scope.regCountry2 === 'Choose'){
               $('.regstCountry').addClass("emailbackground");
               $('.ssooptionCountry').addClass("emailbackground");
-          }else if(typeof $scope.regTimezone === 'undefined' ||$scope.regTimezone === ''){
+              //  $scope.countryError = true;
+              $scope.ErrorMessage = "Please choose your country code";
+              $scope.$root.$broadcast("callValidation", {
+                  errorMsg: $scope.ErrorMessage
+              });
+        /*  }else if(typeof $scope.regTimezone === 'undefined' ||$scope.regTimezone === ''){
             $scope.timeZoneError = true;
               $('.regstTimezone').addClass("emailbackground");
-              $('.ssooptionTimezone').addClass("emailbackground");
+              $('.ssooptionTimezone').addClass("emailbackground");*/
           }else if ($scope.mobilelength < 14) {
               $scope.mobileerror=true;
           }  else if (typeof $scope.password === 'undefined' || $scope.password === '') {
@@ -352,9 +377,9 @@ angular.module('starter.controllers')
           password: $scope.password,
           providerId: $rootScope.hospitalId,
           gender: $scope.gender,
-          mobileNumberWithCountryCode: $scope.regCountryCode + $scope.mobile,
-          timeZoneId: $scope.regTimezone,
-          country: $scope.regCountryName,
+          mobileNumberWithCountryCode: $scope.regCountry2 + $scope.mobile,
+          //timeZoneId: $scope.regTimezone,
+        //  country: $scope.regCountryName,
           success: function() {
               $rootScope.isRegistrationCompleted = true;
               $rootScope.registedEmail = $scope.email;

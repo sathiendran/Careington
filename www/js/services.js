@@ -244,8 +244,8 @@ angular.module('starter.services', [])
         				providerId: params.providerId,
                 gender: params.gender,
                 mobileNumberWithCountryCode: params.mobileNumberWithCountryCode,
-                timeZoneId: params.timeZoneId,
-                country: params.country
+              //  timeZoneId: params.timeZoneId,
+              //  country: params.country
               }
 		};
 
