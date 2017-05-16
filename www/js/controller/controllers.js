@@ -4506,6 +4506,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
    var params = {
      accessToken: $rootScope.accessToken,
      countrystate: $scope.upcountrystate,
+     patientID:$rootScope.primaryPatientId,
      //state:  $scope.upstate,
 
      success: function(data,status) {
