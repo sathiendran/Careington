@@ -2227,6 +2227,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 } else {
                     $scope.doGetSingleHospitalRegistrationInformation();
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
+                    $state.go('tab.healthinfo');
                     $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId);
                 }
 
@@ -2305,7 +2306,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
                 $scope.doGetConutriesList();
                 $rootScope.doGetLocations();
-                $state.go('tab.healthinfo');
                 $rootScope.getHealtPageForFillingRequiredDetails();
 
             },

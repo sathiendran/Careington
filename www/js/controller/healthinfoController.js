@@ -1297,6 +1297,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $rootScope.height1='';
         $rootScope.height2='';
         $rootScope.updatedPatientImagePath = '';
+        $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
+           $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;       
             var date = new Date($rootScope.currentPatientDetails[0].dob);
             $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
             $scope.userDOB = $filter('date')(date, "yyyy-MM-dd");
