@@ -92,6 +92,8 @@
 		position: relative;
 		color: @grey_dark;
 		margin-bottom: 5px;
+		font-family: Glober;
+		 font-weight: bold;
 	}
 
 	&__update {
@@ -1019,12 +1021,12 @@
     }
 }
 .acinfoRegisterBottomAcceptText-IOS {
-	color: #9B9B9B;
+	  color: #9B9B9B;
     font-size: 14px;
     text-align: center;
     font-family: @semibold_family;
     margin-top: 32px;
-	padding-bottom: 40px;
+	  padding-bottom: 40px;
 	//min-height: 183px;
 	p {
 		margin-left: 10%;
@@ -1108,9 +1110,10 @@
 }
 
 .pc-report{
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 16px;
-    height: ~'calc(100vh - 132px)';
+  //  height: ~'calc(100vh - 132px)';
+
 
     &__header{
         background: @grey_darker;
@@ -1199,22 +1202,30 @@
         width:140px;
         color: @grey_darker;
         text-align: right;
+				font-size:12px;
 
         h1{
             font-size:0.7em;
             font-family: @bold_family;
+						font-size:12px;
+            font-family: Glober;
+            font-weight: bold;
             margin:0 0 2px 0;
+						font-size: 12px;
         }
 
         h2{
             font-size:0.6em;
             font-family: @bold_family;
             margin:0;
+						font-size: 10px;
+						font-family: Glober;
+            font-weight: bold;
 
             &:last-of-type{
                 margin-top:5px;
             }
-        }
+						        }
 
         address{
             font-size:0.56em;
@@ -1223,6 +1234,7 @@
             line-height: 1.5;
             display: inline-block;
             width: 100px;
+						font-size: 12px;
         }
 
         p{
@@ -1242,7 +1254,7 @@
 
     &__title{
         font-family: @bold_family;
-        font-size:1.01em;
+        font-size:18px;
         color:@grey_dark;
         line-height: 1.33;
         display: inline-block;
@@ -1252,7 +1264,7 @@
     }
 
     &__section-title{
-        font-size:1em;
+        font-size:16px;
         color:@grey_dark;
         line-height: 1.44;
         font-family: @bold_family;
@@ -1264,14 +1276,18 @@
         float: left;
         width: 100%;
         height:26px;
+			  font-family: Glober;
+				font-weight: bold;
     }
 
     &__sub-section-title{
-        font-size:0.65em;
+        font-size:11px;
         font-family: @bold_family;
         color:@grey_dark;
         clear:both;
         line-height: 2;
+				font-family: Glober;
+				font-weight: bold;
 
         &--border-dashed{
             border-bottom: 1px dashed #979797;
@@ -1315,7 +1331,7 @@
         margin-top:-5px;
 
         &--patient{
-            font-size:1.4em;
+            font-size:24px;
             color:@black;
         }
 
@@ -1374,6 +1390,10 @@
         height:21px;
         line-height: 2;
         -webkit-print-color-adjust: exact;
+
+				font-family: Glober;
+				font-weight: bold;
+				font-size: 9px;
     }
 
     &__data-list-desc{
@@ -1388,6 +1408,7 @@
         margin:0;
         height:21px;
         line-height: 1.3;
+				padding-top:4px;
 
         &::after{
             font-family:'icomoon';
@@ -1460,21 +1481,26 @@
         font-size:0.7em;
         font-family: @xbold_family;
         color:@grey_darker;
-        margin: 5px 0 0 14px;
+        margin: 5px 0 0 0px;
         padding:0;
 
         li{
             margin:0;
             padding:0;
             line-height: 18px;
+						font-size: 12px;
+						font-family: Glober;
+						font-weight: bold;
+
         }
     }
 
     &__add-notes{
-        font-size:0.7em;
+        font-size:12px;
         color:@grey_darker;
         margin-top: 5px;
         line-height: 18px;
+				font-family: Glober;
 
         strong{
             font-family: @xbold_family;
@@ -1722,7 +1748,7 @@
         height: 40px;
         width: 100%;
         display: block;
-        line-height: 2;
+        line-height: 3;
         text-align: center;
         border: solid 1px #cccccc;
         font-family:@bold_family;
@@ -1791,7 +1817,8 @@
 
         &--smoke{
             &::before{
-                content:"\e707";
+          //      content:"\1f6ac;";
+								content:"\eb4b;";
             }
         }
     }
@@ -2090,6 +2117,7 @@
 
     .pc-report__complaints{
         margin-left:20px;
+
     }
 
     .pc-report__print-header{
