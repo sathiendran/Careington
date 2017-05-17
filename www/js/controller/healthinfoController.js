@@ -75,6 +75,19 @@ angular.module('starter.controllers')
               return "";
       }
     };
+
+    $rootScope.getCountryCode = function(countryCode) {
+        if (!angular.isUndefined(countryCode) && countryCode !== '') {
+            var countryInfo = $rootScope.serviceCountries.filter(function(r) { var show = r.code == countryCode; return show; });
+            if (countryInfo[0])
+                return countryInfo[0].code;
+            else if (countryInfo)
+                return countryInfo.code;
+            else
+                return "";
+        }
+    };
+
     $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
     $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
     $rootScope.couserdetails = false;

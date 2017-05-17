@@ -121,6 +121,7 @@
                   </label>
                   <label class="item item-input itemtab validated">
                      <span class="input-label labelcolor"> <i class="iconfontSVG" ng-bind-html="drawSVGCIcon('phone')"></i><b class="formlabel labelfont">Mobile</b> </span>
+                     <div class="healthViewDetails" ng-if="currentPatientDetails[0].mobilePhone" style="width: auto; float: left; position: relative; top: 3px;">{{getCountryCode(currentPatientDetails[0].countryCode)}}</div>
                      <div class="healthViewDetails" ng-if="currentPatientDetails[0].mobilePhone">
                         <input type="text" readonly="true" value="{{getPhoneNumberWithoutCountryCode(currentPatientDetails[0].mobilePhone) |  tel}}" style="background-color: #fff; font-size: 18px; color: #444;">
                      </div>
@@ -243,7 +244,7 @@
                         <!-- <select stryle="height: 41px; padding-top: 14px;" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="healthInfoModel.healthInfoCountryCode" >
                             <option  ng-repeat="country in currntCountryCode" ng-selected="currentPatientDetails[0].countryCode == country.code"  value="{{country.code}}" ><b>{{country.code}}</b></option>
                         </select>-->
-                        <input type="text" readonly="readonly" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="healthInfoModel.healthInfoCountryCode"  >
+                        <input style="background-color: #e9e9e9;" type="text" readonly="readonly" class="textdata optionselect"  name="healthInfoCountryCode" id="healthInfoCountryCode" ng-model="healthInfoModel.healthInfoCountryCode"  >
                       </div>
                        <input type="tel" style="width: 60%; left: -7px; position: relative;" name="healthInfoMobilePhone" id="healthInfoMobilePhone"  phone-input ng-model="mobileval" class=" textdata" placeholder="Required"></span>
                   </div>
