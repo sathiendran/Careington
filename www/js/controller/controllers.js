@@ -2247,6 +2247,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         LoginService.getPatientFilledAllRequirements(params);
     }
+    $scope.getOnlyNumbers = function(text) {
+        var newStr = "";
+        if (text) {
+            newStr = text.replace(/[^0-9.]/g, "");
+        }
+        return newStr;
+    }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId) {
         $rootScope.PatientImageSelectUser = '';
@@ -2295,6 +2302,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
                 $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
                 $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
+                $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
+                $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
                 $scope.doGetConutriesList();
                 $rootScope.doGetLocations();
                 $rootScope.getHealtPageForFillingRequiredDetails();

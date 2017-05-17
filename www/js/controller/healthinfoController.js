@@ -152,6 +152,7 @@ angular.module('starter.controllers')
     $scope.healthInfoModel = {};
     //$rootScope.timezoneDisplay = 'none';
     $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;
+    $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
     $scope.addmore = false;
     $scope.healthhide = true;
     $scope.healthfoottab=true;
@@ -1968,6 +1969,20 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 });
             } else {
                 $rootScope.listOfLocForCurntOrg = '';
+            }
+        }
+    });
+
+    $scope.$watch('healthInfoModel.healthInfoCountry', function(newVal) {
+        if (!angular.isUndefined($rootScope.currentPatientDetails[0].countryCode) && $rootScope.currentPatientDetails[0].countryCode !== '' && angular.isUndefined(newVal)) {
+            $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
+            $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
+        } else {
+            if (newVal) {
+              $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
+              $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
+            } else {
+                $rootScope.currntCountryCode = '';
             }
         }
     });
