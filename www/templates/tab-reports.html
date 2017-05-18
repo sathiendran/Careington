@@ -74,6 +74,7 @@
                     <div class="pc-report__company-info">
                         <h1>Company Name</h1>
                         <address>{{reportHospitalAddress}}</address>
+
                         <h2 ng-if="OrganizationLocation === 'on'">Organization</h2>
                         <p ng-if="OrganizationLocation === 'on'"> {{organization}}</p>
 
@@ -288,7 +289,7 @@
                              <span class="pc-report__vital-title">Philips Device</span>
 
                              <div class="pc-report__vital-box">
-                                 <span class="pc-report__vital-data">NA/span>
+                                 <span class="pc-report__vital-data">NA</span>
                                  <div class="pc-report__vital-type">BMI</div>
                              </div>
                          </div>
@@ -303,7 +304,7 @@
                              </div>
                          </div>
                          <div class="pc-report__social">
-                             <div class="pc-report__social-icon"></div>
+                             <div class="pc-report__social-icon pc-report__social-icon--smoke"></div>
                              <div class="pc-report__social-block">
                                  <span class="pc-report__social-title">Smoking Tobacco Use</span>
                                  <span class="pc-report__social-desc">NA</span>
