@@ -1,7 +1,7 @@
 <form name="userRegister" id="userRegister" ng-submit="postRegisterStep1()" >
 <ion-view>
    <div id="Error_Message" ></div>
-     <div class="registerContent__registerCard" ng-if="is_iPadDeviceWidth < 768">
+   <div class="registerContent__registerCard" ng-if="is_iPadDeviceWidth < 768">
    <ion-content class="register registerContent" >
       <div class="epassbg registerContent__registerHeading" style="background-color: {{brandColor}}">
          <img ng-src="{{logo}}" style="position:relative;"/>
@@ -100,8 +100,21 @@
             </div>
             <div class="registerContent__mainField">
                <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('mobile');"></i></div>
+               <div class="user-account__fieldset regstCountry" style="width: 30%; float: left; border-right: none;">
+                  <div class="regContainer">
+                     <label class="user-account__label">Country</label>
+                     <div class="user-account__input regDropDownContainer">
+                        <div class="viewport">Choose</div>
+                         <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
+                            <option value="Choose"><b>Choose</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                         </select>
+                        <span class="user-account__error-message" ng-show="countryError">Please choose your country code</span>
+                     </div>
+                  </div>
+               </div>
                <div class="user-account__fieldset regstmobile" >
-                  <div>
+                  <div style="position: relative; left: -20px;">
                      <label class="user-account__label">Mobile</label>
                      <div class="user-account__input">
                         <input type="tel" placeholder="type here..." ng-model="regStep1.regMobile" name="regMobile" id="regMobile" ng-keyup="moblieBlur()"  phone-input>
@@ -168,7 +181,6 @@
          <img ng-src="{{logo}}" style="position:relative;"/>
          <h2>{{selectedSearchProviderList.brandName}} <br><span>Registration</span></h2>
       </div>
-      <!--<div>Let's Get Started</div>-->
 
       <div class="registerContent__registerCard" >
 
@@ -237,8 +249,7 @@
                   <div>
                      <label class="user-account__label">Full Home Address</label>
                      <div class="user-account__input" >
-                        <!--<input type="text" placeholder="type here..."  ng-model="regStep1.regAddress" name="regAddress" id="regAddress" required>-->
-                         <ion-google-place class="ssoaddress" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"  />
+                        <ion-google-place class="ssoaddress" placeholder="type here..." ng-model="regStep1.homeadd" id="regaddress" ng-change="addressBlur()"  />
 
                      </div>
                      <span class="user-account__error-message" ng-show="adderror">Please Select your address</span>
@@ -261,8 +272,21 @@
             </div>
             <div class="registerContent__mainField">
                <div class="user-account__fieldIcon" style="float:left;"><i ng-bind-html="drawSVGCIcon('mobile');"></i></div>
+               <div class="user-account__fieldset regstCountry" style="width: 30%; float: left; border-right: none;">
+                  <div class="regContainer">
+                     <label class="user-account__label">Country</label>
+                     <div class="user-account__input regDropDownContainer">
+                        <div class="viewport">Choose</div>
+                         <select class="ssooptionCountry textdata consultHealthPlanDropDown" id="regCountryCode" name="regCountryCode" ng-model="regStep1.regCountryCode"  ng-change="countryBlur()" >
+                            <option value="Choose"><b>Choose</b></option>
+                            <option class="planlist" ng-repeat="country in serviceCountries" value="{{country.code}}"><b>{{formatIsdCode(country.code, "&nbsp;", 10 ) + country.name}}</b></option>
+                         </select>
+                        <span class="user-account__error-message" ng-show="countryError">Please choose your country code</span>
+                     </div>
+                  </div>
+               </div>
                <div class="user-account__fieldset regstmobile" >
-                  <div>
+                <div style="position: relative; left: -20px;">
                      <label class="user-account__label">Mobile</label>
                      <div class="user-account__input">
                         <input type="tel" placeholder="type here..." ng-model="regStep1.regMobile" name="regMobile" id="regMobile" ng-keyup="moblieBlur()"  phone-input>
@@ -330,7 +354,7 @@
             </div>
           </div>
        </ion-content>
-
+</div>
 
 </ion-view>
  </form>

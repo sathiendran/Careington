@@ -236,14 +236,16 @@ angular.module('starter.services', [])
               url: apiCommonURL + '/api/v2/patients/single-trip-registration',
 			  method: 'POST',
 			  data: {
-        address: params.address,
-        dob: params.dob,
-				email: params.email,
-				name: params.name,
-				password: params.password,
-        mobile: params.mobile,
-        gender: params.gender,
-				providerId: params.providerId,
+                address: params.address,
+                dob: params.dob,
+        				email: params.email,
+        				name: params.name,
+        				password: params.password,
+        				providerId: params.providerId,
+                gender: params.gender,
+                mobileNumberWithCountryCode: params.mobileNumberWithCountryCode,
+              //  timeZoneId: params.timeZoneId,
+              //  country: params.country
               }
 		};
 

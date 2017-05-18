@@ -439,23 +439,29 @@ angular.module('starter.controllers')
         $scope.mobilelength = $("#mobile").val().length;
         $scope.homeaddress = $scope.addNewDependent.homeadd;
         if ($rootScope.OrganizationLocation === 'on') {
-            var org = document.getElementById("organization");
-            var loc = document.getElementById("location");
-            if (org !== "Choose Organization") {
+          //  var org = document.getElementById("organization");
+            //var loc = document.getElementById("location");
+            var org =$("#organization option:selected").val();
+            var loc = $("#location option:selected").val();
+
+            if (org === "" || org === "Choose Organization") {
                 $scope.organization = null;
                 $scope.orgid = null;
             } else {
-                var dependentorgan = org.options[org.selectedIndex].text;
+              /*  var dependentorgan = org.options[org.selectedIndex].text;
                 $scope.organization = dependentorgan;
-                $scope.orgid = org.options[org.selectedIndex].value;
+                $scope.orgid = org.options[org.selectedIndex].value;*/
+                var dependentorgan = $("#organization option:selected").text();
+                  $scope.organization = dependentorgan;
+                  $scope.orgid = $("#organization option:selected").val();
             }
-            if (loc !== "Choose Location") {
+            if (loc === "" || loc === "Choose Location") {
                 $scope.location = null;
                 $scope.locationid = null;
             } else {
-                var dependentloc = loc.options[loc.selectedIndex].text;
+                var dependentloc = $("#location option:selected").text();
                 $scope.location = dependentloc;
-                $scope.locationid = loc.options[loc.selectedIndex].value;
+                $scope.locationid = loc;
 
             }
         } else {
@@ -828,6 +834,15 @@ angular.module('starter.controllers')
                 $rootScope.listOfLocForCurntOrg = "";
             }
         }
+    });
+
+    $scope.$watch('addNewDependent.healthInfoCountry', function(newVal) {
+          if (!angular.isUndefined(newVal) && newVal !== '') {
+              $scope.depCurrntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
+              $scope.addNewDependent.healthInfoCountryCode =  $scope.depCurrntCountryCode[0].code;
+            } else {
+                $scope.addNewDependent.healthInfoCountryCode = '+1';
+            }
     });
     //Function to open ActionSheet when clicking Camera Button
     //================================================================================================================
