@@ -1,17 +1,15 @@
-<div class="" >
+        <div class="" >
+                <h2 class="loc-content" >We need to know your current location
+                  to match you with providers licensed to practice in your area.
+                </h2>
+                <hr class="loc-hr">
+                <div class="loc-detcontent ">
+                  <p class="loc-popupcontent">  Your Current location is in : </p>
+             <p class="loc-popupdet" ng-if="patientEncounteraddress == undefined && patientParticularaddress != undefined"><span class="ion-ios-location locicon"></span> {{stateaddresses}} , {{countryaddress}}</p>
+                  <p class="loc-popupdet" ng-if="(patientEncounteraddress !='' && patientEncounteraddress != undefined && encounterstate != '') " ><span class="ion-ios-location locicon"></span>{{encounterstate}} , {{encountercountry}}</p>
+                  <p class="loc-popupdet" ng-if=" encountercountry!='' && encounterstate ==''"><span class="ion-ios-location locicon"></span>{{encountercountry}}</p>
+         <p class="loc-popupdet" ng-if="patientEncounteraddress == undefined && patientParticularaddress == undefined"><span class="ion-ios-location locicon"></span> {{primaryPatientDetails[0].address}}</p>
+                  <p class="locval">Is this where you are now? <p>
 
-        <h2 class="loc-content" >We need to know your current location
-          to match you with providers licensed to practice in your area.
-        </h2>
-        <hr class="loc-hr">
-        <div class="loc-detcontent ">
-          <p class="loc-popupcontent">  Your Current location is in : </p>
-
-     <p class="loc-popupdet" ng-if="patientEncounteraddress == undefined && patientParticularaddress != undefined"><span class="ion-ios-location locicon"></span> {{stateaddresses}} , {{countryaddress}}</p>
-          <p class="loc-popupdet" ng-if="(patientEncounteraddress !='' && patientEncounteraddress != undefined && encounterstate != '') " ><span class="ion-ios-location locicon"></span>{{encounterstate}} , {{encountercountry}}</p>
-          <p class="loc-popupdet" ng-if=" encountercountry!='' && encounterstate ==''"><span class="ion-ios-location locicon"></span>{{encountercountry}}</p>
- <p class="loc-popupdet" ng-if="patientEncounteraddress == undefined && patientParticularaddress == undefined"><span class="ion-ios-location locicon"></span> {{primaryPatientDetails[0].address}}</p>
-          <p class="locval">Is this where you are now? <p>
-
-        </div>
-        </div>
+                </div>
+                </div>

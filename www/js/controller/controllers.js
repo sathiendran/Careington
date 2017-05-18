@@ -332,6 +332,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
 
+    $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
+
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
         $('.patProfileImage').css({
             'background-color': $rootScope.brandColor
@@ -1192,6 +1194,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.goToSearchProvider = function(currentPage) {
+        $scope.doGetConutriesList();
+        $scope.getTimezoneList();
         $rootScope.frontPage = 'tab.' + currentPage;
         $rootScope.backProviderSearchKey = '';
         if (currentPage === "loginSingle") {
@@ -2295,7 +2299,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                $rootScope.serviceCountries = angular.fromJson(data.data);
+            //  $rootScope.aaa = [];
+               $rootScope.serviceCountries = angular.fromJson(data.data);
+              /* angular.forEach($rootScope.serviceCountries, function(item,index) {
+                 if((item.code).length === 2) {
+                   $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name;
+                 } else if((item.code).length === 3) {
+                    $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
+                 } else if((item.code).length === 4) {
+                    $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
+                 }
+                    $rootScope.aaa.push({
+                        'code': item.code,
+                        'name': item.name,
+                        'id': item.id,
+                        'sd': $scope.cntryCode
+                    });
+                });*/
                 $scope.getTimezoneList();
             },
             error: function() {
@@ -2581,8 +2601,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
                     $scope.doGetSingleHospitalRegistrationInformation();
-                    $state.go('tab.healthinfo');
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
+                    $state.go('tab.healthinfo');
                     $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId);
                 }
 
@@ -2601,6 +2621,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getPatientFilledAllRequirements(params);
+    }
+    $scope.getOnlyNumbers = function(text) {
+        var newStr = "";
+        if (text) {
+            newStr = text.replace(/[^0-9.]/g, "");
+        }
+        return newStr;
     }
 
     $scope.goTOSchedule = function() {
@@ -2664,6 +2691,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
                 $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
                 $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
+                $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
+                $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
                 $scope.doGetConutriesList();
                 $rootScope.doGetLocations();
                 $rootScope.getHealtPageForFillingRequiredDetails();
@@ -5346,6 +5375,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
         };
         LoginService.putListOfCountryLocation(params);
     }
+
     $rootScope.passededconsultants = function() {
 
         var params = {
