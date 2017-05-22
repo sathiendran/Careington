@@ -4614,6 +4614,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                         $rootScope.doGetIndividualScheduledConsulatation();
                         $rootScope.doGetonDemandAvailability();
                         $rootScope.doGetListOfCoUsers();
+                        $scope.getHealthHistoryDetails();
                         if (!$rootScope.P_isAuthorized) {
                             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
                             $rootScope.SubmitCardValidation($scope.ErrorMessage);
@@ -4880,6 +4881,35 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             exit;
         }
     }
+
+    $scope.getHealthHistoryDetails = function() {
+        $rootScope.PatientMedicalProfileList = [];
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.healthHistoryInformation = [];
+                $rootScope.PatientMedicalProfileList = data.data;
+                $rootScope.patvalues = $rootScope.PatientMedicalProfileList;
+                $rootScope.patientmedications = $rootScope.PatientMedicalProfileList[0].medications;
+                $rootScope.CurMedicationCount = $scope.patientmedications.length;
+                $rootScope.patientmedicationsallergies = $rootScope.PatientMedicalProfileList[0].medicationAllergies;
+                $rootScope.CurAllergiesCount = $scope.patientmedicationsallergies.length;
+                $rootScope.patientmedicalConditions = $rootScope.PatientMedicalProfileList[0].medicalConditions;
+                $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
+                $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
+                $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
+              },
+            error: function(data,status) {
+              if(status===0 ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }
+            }
+        };
+        LoginService.getPatientMedicalProfile(params);
+    }
+
     $rootScope.GoToPatientDetailsFromRelatedUsers = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
 
         $rootScope.coUserAuthorization = $rootScope.patientId;
@@ -4925,6 +4955,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetListOfCoUsers();
+        $scope.getHealthHistoryDetails();
         if (!$rootScope.P_isAuthorized) {
             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
@@ -5221,6 +5252,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetListOfCoUsers();
+        $scope.getHealthHistoryDetails();
         if(fromPreviousPage === 'userHome') {
           $rootScope.userAgeForIntake = '';
           $rootScope.updatedPatientImagePath = '';

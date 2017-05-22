@@ -969,6 +969,105 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             }
         }
     $rootScope.doPutProfileUpdation = function() {
+      $scope.patientMedicalHistoryDetails = {};
+      $scope.patientMedicalHistoryDetails.patientId = $rootScope.currentPatientDetails[0].account.patientId;
+      if($rootScope.ChronicCount > 0 ) {
+        if($rootScope.ChronicCount === 1 ) {
+            $scope.patientMedicalHistoryDetails.medicalCondition1 = $rootScope.patientmedicalConditions[0].code;
+         } else  if($rootScope.ChronicCount === 2 ) {
+          $scope.patientMedicalHistoryDetails.medicalCondition1 = $rootScope.patientmedicalConditions[0].code;
+            $scope.patientMedicalHistoryDetails.medicalCondition2 = $rootScope.patientmedicalConditions[1].code;
+          } else  if($rootScope.ChronicCount === 3 ) {
+          $scope.patientMedicalHistoryDetails.medicalCondition1 = $rootScope.patientmedicalConditions[0].code;
+            $scope.patientMedicalHistoryDetails.medicalCondition2 = $rootScope.patientmedicalConditions[1].code;
+            $scope.patientMedicalHistoryDetails.medicalCondition3 = $rootScope.patientmedicalConditions[2].code;
+          } else  if($rootScope.ChronicCount === 4 ) {
+            $scope.patientMedicalHistoryDetails.medicalCondition1 = $rootScope.patientmedicalConditions[0].code;
+            $scope.patientMedicalHistoryDetails.medicalCondition2 = $rootScope.patientmedicalConditions[1].code;
+            $scope.patientMedicalHistoryDetails.medicalCondition3 = $rootScope.patientmedicalConditions[2].code;
+            $scope.patientMedicalHistoryDetails.medicalCondition4 = $rootScope.patientmedicalConditions[3].code;
+          }
+      }
+      if($rootScope.CurAllergiesCount > 0 ) {
+        if($rootScope.CurAllergiesCount === 1 ) {
+            $scope.patientMedicalHistoryDetails.allergicMedication1 = $rootScope.patientmedicationsallergies[0].code;
+         } else  if($rootScope.CurAllergiesCount === 2 ) {
+          $scope.patientMedicalHistoryDetails.allergicMedication1 = $rootScope.patientmedicationsallergies[0].code;
+            $scope.patientMedicalHistoryDetails.allergicMedication2 = $rootScope.patientmedicationsallergies[1].code;
+          } else  if($rootScope.CurAllergiesCount === 3 ) {
+          $scope.patientMedicalHistoryDetails.allergicMedication1 = $rootScope.patientmedicationsallergies[0].code;
+            $scope.patientMedicalHistoryDetails.allergicMedication2 = $rootScope.patientmedicationsallergies[1].code;
+            $scope.patientMedicalHistoryDetails.allergicMedication3 = $rootScope.patientmedicationsallergies[2].code;
+          } else  if($rootScope.CurAllergiesCount === 4 ) {
+            $scope.patientMedicalHistoryDetails.allergicMedication1 = $rootScope.patientmedicationsallergies[0].code;
+            $scope.patientMedicalHistoryDetails.allergicMedication2 = $rootScope.patientmedicationsallergies[1].code;
+            $scope.patientMedicalHistoryDetails.allergicMedication3 = $rootScope.patientmedicationsallergies[2].code;
+            $scope.patientMedicalHistoryDetails.allergicMedication4 = $rootScope.patientmedicationsallergies[3].code;
+          }
+      }
+
+      if($rootScope.CurMedicationCount > 0 ) {
+        if($rootScope.CurMedicationCount === 1 ) {
+            $scope.patientMedicalHistoryDetails.takingMedication1 = $rootScope.patientmedications[0].code;
+         } else  if($rootScope.CurMedicationCount === 2 ) {
+          $scope.patientMedicalHistoryDetails.takingMedication1 = $rootScope.patientmedications[0].code;
+            $scope.patientMedicalHistoryDetails.takingMedication2 = $rootScope.patientmedications[1].code;
+          } else  if($rootScope.CurMedicationCount === 3 ) {
+          $scope.patientMedicalHistoryDetails.takingMedication1 = $rootScope.patientmedications[0].code;
+            $scope.patientMedicalHistoryDetails.takingMedication2 = $rootScope.patientmedications[1].code;
+            $scope.patientMedicalHistoryDetails.takingMedication3 = $rootScope.patientmedications[2].code;
+          } else  if($rootScope.CurMedicationCount === 4 ) {
+            $scope.patientMedicalHistoryDetails.takingMedication1 = $rootScope.patientmedications[0].code;
+            $scope.patientMedicalHistoryDetails.takingMedication2 = $rootScope.patientmedications[1].code;
+            $scope.patientMedicalHistoryDetails.takingMedication3 = $rootScope.patientmedications[2].code;
+            $scope.patientMedicalHistoryDetails.takingMedication4 = $rootScope.patientmedications[3].code;
+          }
+      }
+
+      if($rootScope.patientMedicalSurgeriesCount > 0 ) {
+        if($rootScope.patientMedicalSurgeriesCount === 1 ) {
+            $scope.patientMedicalHistoryDetails.priorSurgery1 = $rootScope.patientmedicalsurgeries[0].description;
+            $scope.patientMedicalHistoryDetails.surgery1Month = $rootScope.patientmedicalsurgeries[0].month;
+            $scope.patientMedicalHistoryDetails.surgery1Year = $rootScope.patientmedicalsurgeries[0].year;
+         } else  if($rootScope.patientMedicalSurgeriesCount === 2 ) {
+           $scope.patientMedicalHistoryDetails.priorSurgery1 = $rootScope.patientmedicalsurgeries[0].description;
+           $scope.patientMedicalHistoryDetails.surgery1Month = $rootScope.patientmedicalsurgeries[0].month;
+           $scope.patientMedicalHistoryDetails.surgery1Year = $rootScope.patientmedicalsurgeries[0].year;
+
+           $scope.patientMedicalHistoryDetails.priorSurgery2 = $rootScope.patientmedicalsurgeries[1].description;
+           $scope.patientMedicalHistoryDetails.surgery2Month = $rootScope.patientmedicalsurgeries[1].month;
+           $scope.patientMedicalHistoryDetails.surgery2Year = $rootScope.patientmedicalsurgeries[1].year;
+          } else  if($rootScope.patientMedicalSurgeriesCount === 3 ) {
+            $scope.patientMedicalHistoryDetails.priorSurgery1 = $rootScope.patientmedicalsurgeries[0].description;
+            $scope.patientMedicalHistoryDetails.surgery1Month = $rootScope.patientmedicalsurgeries[0].month;
+            $scope.patientMedicalHistoryDetails.surgery1Year = $rootScope.patientmedicalsurgeries[0].year;
+
+            $scope.patientMedicalHistoryDetails.priorSurgery2 = $rootScope.patientmedicalsurgeries[1].description;
+            $scope.patientMedicalHistoryDetails.surgery2Month = $rootScope.patientmedicalsurgeries[1].month;
+            $scope.patientMedicalHistoryDetails.surgery2Year = $rootScope.patientmedicalsurgeries[1].year;
+
+            $scope.patientMedicalHistoryDetails.priorSurgery3 = $rootScope.patientmedicalsurgeries[2].description;
+            $scope.patientMedicalHistoryDetails.surgery3Month = $rootScope.patientmedicalsurgeries[2].month;
+            $scope.patientMedicalHistoryDetails.surgery3Year = $rootScope.patientmedicalsurgeries[2].year;
+          } else  if($rootScope.patientMedicalSurgeriesCount === 4 ) {
+            $scope.patientMedicalHistoryDetails.priorSurgery1 = $rootScope.patientmedicalsurgeries[0].description;
+            $scope.patientMedicalHistoryDetails.surgery1Month = $rootScope.patientmedicalsurgeries[0].month;
+            $scope.patientMedicalHistoryDetails.surgery1Year = $rootScope.patientmedicalsurgeries[0].year;
+
+            $scope.patientMedicalHistoryDetails.priorSurgery2 = $rootScope.patientmedicalsurgeries[1].description;
+            $scope.patientMedicalHistoryDetails.surgery2Month = $rootScope.patientmedicalsurgeries[1].month;
+            $scope.patientMedicalHistoryDetails.surgery2Year = $rootScope.patientmedicalsurgeries[1].year;
+
+            $scope.patientMedicalHistoryDetails.priorSurgery3 = $rootScope.patientmedicalsurgeries[2].description;
+            $scope.patientMedicalHistoryDetails.surgery3Month = $rootScope.patientmedicalsurgeries[2].month;
+            $scope.patientMedicalHistoryDetails.surgery3Year = $rootScope.patientmedicalsurgeries[2].year;
+            
+            $scope.patientMedicalHistoryDetails.priorSurgery4 = $rootScope.patientmedicalsurgeries[3].description;
+            $scope.patientMedicalHistoryDetails.surgery4Month = $rootScope.patientmedicalsurgeries[3].month;
+            $scope.patientMedicalHistoryDetails.surgery4Year = $rootScope.patientmedicalsurgeries[3].year;
+          }
+      }
+
         var params = {
             accessToken: $rootScope.accessToken,
             emailAddress: $scope.healthInfoEmail,
@@ -1022,9 +1121,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 email: true,
                 timeZone: true
             },
-            patientMedicalHistoryData: {
-                patientId: $rootScope.currentPatientDetails[0].account.patientId,
-            },
+            patientMedicalHistoryData: $scope.patientMedicalHistoryDetails,
             success: function(data) {
               if ($rootScope.updatedPatientImagePath !== '' && typeof $rootScope.updatedPatientImagePath !== 'undefined') {
                   $scope.uploadPhotoForExistingPatient();
@@ -1285,7 +1382,36 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         edittextarea.addClass('textdata');
     }
 
+    $scope.getHealthHistoryDetails = function() {
+        $rootScope.PatientMedicalProfileList = [];
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.healthHistoryInformation = [];
+                $rootScope.PatientMedicalProfileList = data.data;
+                $rootScope.patvalues = $rootScope.PatientMedicalProfileList;
+                $rootScope.patientmedications = $rootScope.PatientMedicalProfileList[0].medications;
+                $rootScope.CurMedicationCount = $scope.patientmedications.length;
+                $rootScope.patientmedicationsallergies = $rootScope.PatientMedicalProfileList[0].medicationAllergies;
+                $rootScope.CurAllergiesCount = $scope.patientmedicationsallergies.length;
+                $rootScope.patientmedicalConditions = $rootScope.PatientMedicalProfileList[0].medicalConditions;
+                $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
+                $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
+                $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
+              },
+            error: function(data,status) {
+              if(status===0 ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }
+            }
+        };
+        LoginService.getPatientMedicalProfile(params);
+    }
+
     $rootScope.getHealtPageForFillingRequiredDetails = function() {
+      $scope.getHealthHistoryDetails();
         $rootScope.editOption = "None";
         $scope.healthfootsave=false;
         $scope.cancelshow = false;
@@ -1298,7 +1424,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $rootScope.height2='';
         $rootScope.updatedPatientImagePath = '';
         $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
-           $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;       
+           $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
             var date = new Date($rootScope.currentPatientDetails[0].dob);
             $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
             $scope.userDOB = $filter('date')(date, "yyyy-MM-dd");
