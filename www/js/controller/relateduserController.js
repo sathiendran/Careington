@@ -533,6 +533,7 @@ angular.module('starter.controllers')
             }
         }
         $rootScope.patientprofile = function(getDependentDetails) {
+          $rootScope.currentPatientDetails[0].account.patientId = getDependentDetails.patientId;
 
             $rootScope.GoToPatientDetails(cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'sideMenuClick');
             var primarypatid = $rootScope.primaryPatientId;

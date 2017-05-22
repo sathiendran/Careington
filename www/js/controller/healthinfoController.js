@@ -1061,7 +1061,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             $scope.patientMedicalHistoryDetails.priorSurgery3 = $rootScope.patientmedicalsurgeries[2].description;
             $scope.patientMedicalHistoryDetails.surgery3Month = $rootScope.patientmedicalsurgeries[2].month;
             $scope.patientMedicalHistoryDetails.surgery3Year = $rootScope.patientmedicalsurgeries[2].year;
-            
+
             $scope.patientMedicalHistoryDetails.priorSurgery4 = $rootScope.patientmedicalsurgeries[3].description;
             $scope.patientMedicalHistoryDetails.surgery4Month = $rootScope.patientmedicalsurgeries[3].month;
             $scope.patientMedicalHistoryDetails.surgery4Year = $rootScope.patientmedicalsurgeries[3].year;
@@ -1384,10 +1384,20 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
 
     $scope.getHealthHistoryDetails = function() {
         $rootScope.PatientMedicalProfileList = [];
+        $rootScope.patvalues = '';
+          $rootScope.patientmedications = '';
+          $rootScope.CurMedicationCount = '';
+          $rootScope.patientmedicationsallergies = '';
+          $rootScope.CurAllergiesCount = '';
+          $rootScope.patientmedicalConditions = '';
+          $rootScope.ChronicCount = '';
+          $rootScope.patientmedicalsurgeries = '';
+          $rootScope.patientMedicalSurgeriesCount = '';
         var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
+              if(data) {
                 $rootScope.healthHistoryInformation = [];
                 $rootScope.PatientMedicalProfileList = data.data;
                 $rootScope.patvalues = $rootScope.PatientMedicalProfileList;
@@ -1399,6 +1409,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
                 $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
                 $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
+              }
               },
             error: function(data,status) {
               if(status===0 ){
@@ -1450,7 +1461,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           $scope.healthfootsave=true;
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
-      }else {
+      }else {      
         $scope.ErrorMessage = "Please fill all required details ";
         $rootScope.Validation($scope.ErrorMessage);
       }
@@ -1458,6 +1469,15 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
 
     $scope.health = function() {
         $rootScope.PatientMedicalProfileList = [];
+          $rootScope.patvalues = '';
+          $rootScope.patientmedications = '';
+          $rootScope.CurMedicationCount = '';
+          $rootScope.patientmedicationsallergies = '';
+          $rootScope.CurAllergiesCount = '';
+          $rootScope.patientmedicalConditions = '';
+          $rootScope.ChronicCount = '';
+          $rootScope.patientmedicalsurgeries = '';
+          $rootScope.patientMedicalSurgeriesCount = '';
         var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,

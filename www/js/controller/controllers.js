@@ -2298,6 +2298,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 });
                 $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                 $rootScope.PatientImageSelectUser = $rootScope.currentPatientDetails[0].account.profileImage;
+                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
                 $rootScope.PatientImage = $rootScope.PatientImageSelectUser;
                 $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
                 $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
@@ -4884,6 +4885,15 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
     $scope.getHealthHistoryDetails = function() {
         $rootScope.PatientMedicalProfileList = [];
+        $rootScope.patvalues = '';
+          $rootScope.patientmedications = '';
+          $rootScope.CurMedicationCount = '';
+          $rootScope.patientmedicationsallergies = '';
+          $rootScope.CurAllergiesCount = '';
+          $rootScope.patientmedicalConditions = '';
+          $rootScope.ChronicCount = '';
+          $rootScope.patientmedicalsurgeries = '';
+          $rootScope.patientMedicalSurgeriesCount = '';
         var params = {
             patientId: $rootScope.patientId,
             accessToken: $rootScope.accessToken,
