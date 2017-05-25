@@ -601,8 +601,22 @@ $scope.editDob=function(){
           }
            if($rootScope.PatientIdentifiers.length >  $rootScope.listOfPatientIdentifiers.length) {
                 $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
-                $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers
-
+                $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
+            } else if($rootScope.PatientIdentifiers.length ===  $rootScope.listOfPatientIdentifiers.length) {
+                  $scope.unique = function(arr) {
+                     var a = arr.concat();
+                     for(var i=0; i<a.length; ++i) {
+                         for(var j=i+1; j<a.length; ++j) {
+                             if(a[i] === a[j])
+                                 a.splice(j--, 1);
+                         }
+                     }
+                     return a;
+                 };
+                 $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
+                 $rootScope.patAllIdentifier = $scope.unique($rootScope.PatientIdentifiers.concat($rootScope.patSelectedIdentifier));
+            }
+            if($rootScope.PatientIdentifiers.length) {
                 $rootScope.patAllIdentifier.forEach(function(item){
                 var result = addEmpty(item);
                   if(!result)
@@ -620,7 +634,7 @@ $scope.editDob=function(){
               }
             } else {
               $rootScope.patAllIdentifier =   $rootScope.listOfPatientIdentifiers;
-           }
+            }
 
             $scope.healthInfoFirstName = $('#healthInfoFirstName').val();
             $scope.healthInfoLastName = $('#healthInfoLastName').val();
@@ -1362,7 +1376,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $rootScope.height2='';
         $rootScope.updatedPatientImagePath = '';
         $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
-           $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;       
+           $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
             var date = new Date($rootScope.currentPatientDetails[0].dob);
             $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
             $scope.userDOB = $filter('date')(date, "yyyy-MM-dd");
