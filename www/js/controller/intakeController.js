@@ -154,7 +154,7 @@ angular.module('starter.controllers')
           "display": "none"
       });
 
-      $ionicBackdrop.release();      
+      $ionicBackdrop.release();
     }
     $rootScope.checkPreLoadDataAndSelectionAndRebindSelectionList = function(selectedListItem, mainListItem) {
         angular.forEach(mainListItem, function(item) {
@@ -525,6 +525,7 @@ $scope.locat=false;
     $scope.secondaryConcernList = $rootScope.scondaryConcernsCodesList;
     $scope.loadSecondaryConcerns = function() {
         $scope.data.searchProvider='';
+        $scope.clearSelectionAndRebindSelectionList($rootScope.PatientSecondaryConcernItem, $scope.secondaryConcernList);
         if ($rootScope.getSecondaryConcernAPIList !== "") {
             if ($scope.PatientPrimaryConcernItem !== '') {
                 $scope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
@@ -533,14 +534,14 @@ $scope.locat=false;
                 $scope.getCheckedPrimaryConcern[0].checked = false;
             }
             if (typeof $scope.PatientSecondaryConcernItem !== 'undefined') {
-                if ($rootScope.secondaryConcernLength !== '') {
+                if ($rootScope.secondaryConcernValueExist !== '') {
                     $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
                         text: $rootScope.SecondaryConcernText
                     });
                     $scope.getCheckedSecondaryConcern[0].checked = true;
                 }
 
-                if ($rootScope.secondaryConcernLength === '') {
+                if ($rootScope.secondaryConcernValueExist === '') {
                     $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
                         text: $rootScope.SecondaryConcernText
                     });
@@ -548,7 +549,7 @@ $scope.locat=false;
                 }
             }
             if (typeof $scope.PatientSecondaryConcernItem === 'undefined') {
-                if ($rootScope.secondaryConcernLength !== '') {
+                if ($rootScope.secondaryConcernValueExist !== '') {
                     $scope.getCheckedSecondaryConcern = $filter('filter')($scope.secondaryConcernList, {
                         text: $rootScope.SecondaryConcernText
                     });
@@ -579,10 +580,12 @@ $scope.locat=false;
                     $rootScope.ValidationFunction1($scope.ErrorMessage);
                 } else {
                     $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
+                    $rootScope.secondaryConcernValueExist = $rootScope.PatientSecondaryConcern.length;
                     $scope.modal.hide();
                 }
             } else {
                 $rootScope.PatientSecondaryConcern = $scope.PatientSecondaryConcernItem;
+                $rootScope.secondaryConcernValueExist = $rootScope.PatientSecondaryConcern.length;
                 $scope.modal.hide();
             }
         }
@@ -642,8 +645,9 @@ $scope.locat=false;
         $rootScope.PatientSecondaryConcern.splice(index, 1);
         var indexPos = $scope.secondaryConcernList.indexOf(item);
         $scope.secondaryConcernList[indexPos].checked = false;
-        $rootScope.secondaryConcernLength = $rootScope.PatientSecondaryConcern.length;
+        $rootScope.secondaryConcernValueExist = $rootScope.PatientSecondaryConcern.length;
         $rootScope.SecondaryConcernText = '';
+        $rootScope.secondaryConcernValueExist = '';
     }
     /*Secondary concern End here*/
     $scope.OnDemandConsultationSaveData = {
@@ -1334,6 +1338,7 @@ $scope.locat=false;
                     $rootScope.MedicationCount = "";
                     $rootScope.checkedMedication = 0;
                     $rootScope.IsValue = "";
+                    $rootScope.secondaryConcernValueExist = "";
                     $rootScope.IsToPriorCount = "";
                     $rootScope.ChronicCountValidCount = "";
                     $rootScope.PriorSurgeryValidCount = "";

@@ -1178,22 +1178,17 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.goToSearchProvider = function(currentPage) {
-        $scope.doGetConutriesList();
-        $scope.getTimezoneList();
-        $rootScope.frontPage = 'tab.' + currentPage;
-        $rootScope.backProviderSearchKey = '';
-        if (currentPage === "loginSingle") {
-            $rootScope.regStep1 = {};
-            $rootScope.selectedSearchProviderList = [];
-            $rootScope.selectedSearchProviderList.push({
-                'brandName': $rootScope.Hospital,
-            });
-            $rootScope.selectedSearchProviderList = $rootScope.selectedSearchProviderList[0];
-            $state.go('tab.registerStep1');
+        $rootScope.LogCurrentPage = currentPage;
+        $rootScope.isNotificationDisplayed = false;
+        $window.localStorage.setItem('FlagForCheckingAuthorization', '');
+        if (ionic.Platform.is('browser') !== true) {
+            $scope.nameForChckingCurrentFuncForMic = 'SearchProvidePage';
+            chkCameraAndMicroPhoneSettings($scope.nameForChckingCurrentFuncForMic);
         } else {
-            $state.go('tab.searchprovider');
+              $scope.chkSearchProviderPage(currentPage);
         }
     }
+
 
     $rootScope.backtoPreviousPage = function() {
         $state.go($rootScope.frontPage);
@@ -2212,6 +2207,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.chkPatientFilledAllRequirements = function() {
+      $scope.doGetConutriesList();
+      $rootScope.doGetLocations();
 
         var params = {
             accessToken: $rootScope.accessToken,
@@ -2305,8 +2302,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
                 $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
-                $scope.doGetConutriesList();
-                $rootScope.doGetLocations();
                 $rootScope.getHealtPageForFillingRequiredDetails();
 
             },
@@ -4823,6 +4818,25 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         LoginService.GetCreditDetails(params);
     }
 
+    $scope.chkSearchProviderPage = function(currentPage) {
+      $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+      $scope.doGetConutriesList();
+      $scope.getTimezoneList();
+      $rootScope.frontPage = 'tab.' + currentPage;
+      $rootScope.backProviderSearchKey = '';
+      if (currentPage === "loginSingle") {
+          $rootScope.regStep1 = {};
+          $rootScope.selectedSearchProviderList = [];
+          $rootScope.selectedSearchProviderList.push({
+              'brandName': $rootScope.Hospital,
+          });
+          $rootScope.selectedSearchProviderList = $rootScope.selectedSearchProviderList[0];
+          $state.go('tab.registerStep1');
+      } else {
+          $state.go('tab.searchprovider');
+      }
+    }
+
     function chkCameraAndMicroPhoneSettings(getCurrentFuncName) {
         $window.localStorage.setItem('FlagForCheckingFirstLogin', '');
         cordova.plugins.diagnostic.requestCameraAuthorization(function(status) {
@@ -4854,6 +4868,8 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                             $scope.GetLoginFunctionDetails();
                         } else if (getCurrentFuncName === 'SingleFuncLogin') {
                             $scope.GetSingleLoginDetailsFOrCheckingMic();
+                        } else if(getCurrentFuncName === "SearchProvidePage") {
+                              $scope.chkSearchProviderPage($rootScope.LogCurrentPage);
                         }
                     }
                 }, function() {

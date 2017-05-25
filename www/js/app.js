@@ -12,8 +12,8 @@
 // Production - https://connectedcare.md
 // QA - https://snap-qa.com
 // Multiple - https://sandbox.connectedcare.md and https://snap.qa.com this will let the user to choose env first
-var deploymentEnv = 'Single'; //Production //Multiple //Multiple //Single //Demo
-var deploymentEnvLogout = 'Single'; // same as above var deploymentEnvForProduction = 'Production';
+var deploymentEnv = 'Multiple'; //Production //Multiple //Multiple //Single //Demo
+var deploymentEnvLogout = 'Multiple'; // same as above var deploymentEnvForProduction = 'Production';
 var appStoreTestUserEmail = 'itunesmobiletester@gmail.com';
 var deploymentEnvForProduction = ''; //'Production'; // Set 'Production' Only for Single Production - For Apple testing purpose
 var loginPageEnv = 'Single';
@@ -390,13 +390,36 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $(".footer").show();
             }
         });
+        /*                $rootScope.flagpopup=false;
+                    // An elaborate, custom popup
+                    myPopup = $ionicPopup.show({
+                      template: '<b>Please make sure that you have network connection.</b>',
+                      title: 'No Internet Connection',
+                      cssClass: 'my-custom-popup',
+                      buttons: [
+                             { text: '<b class="ietfonttype">ok</b>',
+                               type:'button',
+                            }
+                          ]
+
+                        });
+           myPopup.then(function(res) {
+             console.log('Tapped!', res);
+           });
+           navigator.notification.alert(
+                 'Please make sure that you have network connection.', // message
+                 null,
+                 'No Internet Connection', // title
+                 'Ok' // buttonName
+             );*/
+
 
         setTimeout(function() {
             document.addEventListener("offline", onOffline, false);
             document.addEventListener("online", onOnline, false);
         }, 100);
         $rootScope.flagpopup=true;
-       var myPopup;
+        var myPopup;
         function onOffline() {
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $('#thumbVideos').remove();
@@ -411,29 +434,29 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('.popup').addClass("ietpopup");
                 $('.popup-title').addClass("iettitle");
                 $('.popup-buttons').addClass("ietpopup-buttons");
-                $rootScope.flagpopup=false;
-                    // An elaborate, custom popup
-                    myPopup = $ionicPopup.show({
-                      template: '<b>Please make sure that you have network connection.</b>',
-                      title: 'No Internet Connection',
-                      cssClass: 'my-custom-popup',
-                      buttons: [
-                             { text: '<b class="ietfonttype">ok</b>',
-                               type:'button',
-                            }
+                $rootScope.alertPopupA = function() {
+                      $rootScope.flagpopup=false;
+                      myPopup = $ionicPopup.show({
+                          template: '<b>Please make sure that you have network connection.</b>',
+                          title: 'No Internet Connection',
+                          cssClass: 'my-custom-popup',
+                          buttons: [
+                                 { text: '<b class="ietfonttype">ok</b>',
+                                   type:'button',
+                                }
 
-                           ]
-
-                         });
-            myPopup.then(function(res) {
-              console.log('Tapped!', res);
-            });
-            /*  navigator.notification.alert(
-                  'Please make sure that you have network connection.', // message
-                  null,
-                  'No Internet Connection', // title
-                  'Ok' // buttonName
-              );*/
+                               ]
+                       }).then(function(result){
+                          console.log('Tapped', result);
+                       }, function(error){
+                          console.log('error', error);
+                       }, function(popup){
+                          popup.close();
+                       });
+                 }
+                 if($rootScope.flagpopup===true) {
+                    $rootScope.alertPopupA();
+                 }
 
             }
             return false;
@@ -505,23 +528,32 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                           $('.popup').addClass("ietpopup");
                           $('.popup-title').addClass("iettitle");
                           $('.popup-buttons').addClass("ietpopup-buttons");
-                          $rootScope.flagpopup=false;
+                          // $rootScope.flagpopup=false;
                               // An elaborate, custom popup
+                        $rootScope.alertPopupA = function() {
+                              $rootScope.flagpopup=false;
                               myPopup = $ionicPopup.show({
-                                template: '<b>Please make sure that you have network connection.</b>',
-                                title: 'No Internet Connection',
-                                cssClass: 'my-custom-popup',
-                                buttons: [
-                                       { text: '<b class="ietfonttype">ok</b>',
-                                         type:'button',
-                                      }
+                                  template: '<b>Please make sure that you have network connection.</b>',
+                                  title: 'No Internet Connection',
+                                  cssClass: 'my-custom-popup',
+                                  buttons: [
+                                         { text: '<b class="ietfonttype">ok</b>',
+                                           type:'button',
+                                        }
 
-                                     ]
+                                       ]
+                               }).then(function(result){
+                                  console.log('Tapped', result);
+                               }, function(error){
+                                  console.log('error', error);
+                               }, function(popup){
+                                  popup.close();
+                               });
+                         }
+                         if($rootScope.flagpopup===true) {
+                            $rootScope.alertPopupA();
+                         }
 
-                                   });
-                           myPopup.then(function(res) {
-                             console.log('Tapped!', res);
-                           });
                       }
                       return false;
                   });

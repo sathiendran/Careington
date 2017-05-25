@@ -51,9 +51,10 @@ angular.module('starter.controllers')
     };
     $rootScope.getCountryName = function(countryCode) {
         if(!angular.isUndefined(countryCode)) {
-            var countryInfo = $filter('filter')($rootScope.serviceCountries, {
+            /*var countryInfo = $filter('filter')($rootScope.serviceCountries, {
                 code: countryCode
-            });
+            });*/
+            var countryInfo  = $rootScope.serviceCountries.filter(function(r) { var show = r.code == countryCode; return show; });
             if (countryInfo[0])
                 return countryInfo[0].name;
             else if (countryInfo)
@@ -64,9 +65,10 @@ angular.module('starter.controllers')
     };
     $rootScope.getTimeZoneName = function(timezoneCode) {
       if(!angular.isUndefined(timezoneCode) && timezoneCode !== 0) {
-          var timezoneInfo = $filter('filter')($rootScope.timeZones, {
+        /*  var timezoneInfo = $filter('filter')($rootScope.timeZones, {
               id: timezoneCode
-          });
+          });*/
+          var timezoneInfo  = $rootScope.timeZones.filter(function(r) { var show = r.id == timezoneCode; return show; });
           if (timezoneInfo[0])
               return timezoneInfo[0].name;
           else if (timezoneInfo)
@@ -169,7 +171,7 @@ angular.module('starter.controllers')
     $scope.addmore = false;
     $scope.healthhide = true;
     $scope.healthfoottab=true;
-    $scope.healthfootsave=true;
+    $scope.healthfootsave="none";
     $scope.editshow = true;
     $scope.doneshow = true;
     $scope.readattr = false;
@@ -433,7 +435,7 @@ angular.module('starter.controllers')
     }
     $scope.edittext = function() {
         $scope.healthfoottab=false;
-        $scope.healthfootsave=false;
+        $scope.healthfootsave="flex";
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -480,7 +482,12 @@ angular.module('starter.controllers')
         $('#aaa').show();
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
-        $scope.userdob = new Date($rootScope.userDOB);
+        var reFormatDate = $rootScope.userDOB.split('-')[1];
+        if($rootScope.userDOB.split('-')[1] < 10) {
+          $scope.userdob = new Date($rootScope.userDOB.split('-')[0]+'-'+$rootScope.userDOB.split('-')[1].replace('0','')+'-'+$rootScope.userDOB.split('-')[2]);
+        } else {
+          $scope.userdob = new Date($rootScope.userDOB);
+        }
         $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
         $scope.healthInfoModel.healthInfoCountry = $rootScope.currentPatientDetails[0].countryCode;
@@ -1177,7 +1184,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   $rootScope.flag = true;
                   $scope.doneedit = false;
                   $scope.healthfoottab=true;
-                  $scope.healthfootsave=true;
+                  $scope.healthfootsave="none";
                   var editvalues = angular.element(document.getElementsByTagName('input'));
                   var edittextarea = angular.element(document.getElementsByTagName('textarea'));
                   editvalues.removeClass('editdata');
@@ -1364,12 +1371,16 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           $scope.editshow = false;
           $scope.doneshow = false;
           $scope.healthfoottab=false;
-          $scope.healthfootsave=false;
+          $scope.healthfootsave="flex";
         }else{
             $scope.editshow = true;
             $scope.doneshow = true;
             $scope.healthfoottab=true;
-            $scope.healthfootsave=true;
+            $scope.healthfootsave="none";
+        }
+        if($rootScope.hasRequiredFields !== true) {
+          $scope.healthfootsave="flex";
+          $scope.doneshow = false;
         }
         $scope.addmore = false;
         $scope.healthhide = true;
@@ -1424,7 +1435,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $rootScope.getHealtPageForFillingRequiredDetails = function() {
       $scope.getHealthHistoryDetails();
         $rootScope.editOption = "None";
-        $scope.healthfootsave=false;
+        $scope.healthfootsave="flex";
         $scope.cancelshow = false;
         $scope.doneshow = false;
         $scope.flag = false;
@@ -1444,6 +1455,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
 
     $scope.validationForChkingRequiredFields = function() {
        $ionicSideMenuDelegate.toggleLeft();
+        $scope.healthfootsave="flex";
       $scope.ErrorMessage = "Please fill all required details ";
       $rootScope.Validation($scope.ErrorMessage);
     }
@@ -1452,16 +1464,18 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         if($rootScope.hasRequiredFields === true) {
           $state.go(nextPage);
         }else {
+          $scope.healthfootsave="flex";
           $scope.ErrorMessage = "Please fill all required details ";
           $rootScope.Validation($scope.ErrorMessage);
         }
     }
     $scope.getMedicalDetailsinHealthInfo = function() {
           $scope.healthfoottab=true;
-          $scope.healthfootsave=true;
+          $scope.healthfootsave="none";
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
-      }else {      
+      }else {
+        $scope.healthfootsave="flex";
         $scope.ErrorMessage = "Please fill all required details ";
         $rootScope.Validation($scope.ErrorMessage);
       }
