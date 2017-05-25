@@ -171,7 +171,7 @@ angular.module('starter.controllers')
     $scope.addmore = false;
     $scope.healthhide = true;
     $scope.healthfoottab=true;
-    $scope.healthfootsave="none";
+    $scope.healthfootsave=true;
     $scope.editshow = true;
     $scope.doneshow = true;
     $scope.readattr = false;
@@ -435,7 +435,7 @@ angular.module('starter.controllers')
     }
     $scope.edittext = function() {
         $scope.healthfoottab=false;
-        $scope.healthfootsave="flex";
+        $scope.healthfootsave=false;
         $rootScope.doddate = $rootScope.currentPatientDetails[0].dob;
         $rootScope.restage = getAge( $rootScope.doddate);
         if ($rootScope.restage >= 12 || ($rootScope.primaryPatientId ===  $rootScope.currentPatientDetails[0].account.patientId)) {
@@ -1184,7 +1184,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   $rootScope.flag = true;
                   $scope.doneedit = false;
                   $scope.healthfoottab=true;
-                  $scope.healthfootsave="none";
+                  $scope.healthfootsave=true;
                   var editvalues = angular.element(document.getElementsByTagName('input'));
                   var edittextarea = angular.element(document.getElementsByTagName('textarea'));
                   editvalues.removeClass('editdata');
@@ -1371,15 +1371,15 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           $scope.editshow = false;
           $scope.doneshow = false;
           $scope.healthfoottab=false;
-          $scope.healthfootsave="flex";
+          $scope.healthfootsave=false;
         }else{
             $scope.editshow = true;
             $scope.doneshow = true;
             $scope.healthfoottab=true;
-            $scope.healthfootsave="none";
+            $scope.healthfootsave=true;
         }
         if($rootScope.hasRequiredFields !== true) {
-          $scope.healthfootsave="flex";
+          $scope.healthfootsave=false;
           $scope.doneshow = false;
         }
         $scope.addmore = false;
@@ -1435,7 +1435,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     $rootScope.getHealtPageForFillingRequiredDetails = function() {
       $scope.getHealthHistoryDetails();
         $rootScope.editOption = "None";
-        $scope.healthfootsave="flex";
+        $scope.healthfootsave=false;
         $scope.cancelshow = false;
         $scope.doneshow = false;
         $scope.flag = false;
@@ -1455,7 +1455,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
 
     $scope.validationForChkingRequiredFields = function() {
        $ionicSideMenuDelegate.toggleLeft();
-        $scope.healthfootsave="flex";
+        $scope.healthfootsave=false;
       $scope.ErrorMessage = "Please fill all required details ";
       $rootScope.Validation($scope.ErrorMessage);
     }
@@ -1464,18 +1464,18 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         if($rootScope.hasRequiredFields === true) {
           $state.go(nextPage);
         }else {
-          $scope.healthfootsave="flex";
+          $scope.healthfootsave=false;
           $scope.ErrorMessage = "Please fill all required details ";
           $rootScope.Validation($scope.ErrorMessage);
         }
     }
     $scope.getMedicalDetailsinHealthInfo = function() {
           $scope.healthfoottab=true;
-          $scope.healthfootsave="none";
+          $scope.healthfootsave=true;
       if($rootScope.hasRequiredFields === true) {
         $scope.health();
       }else {
-        $scope.healthfootsave="flex";
+        $scope.healthfootsave=false;
         $scope.ErrorMessage = "Please fill all required details ";
         $rootScope.Validation($scope.ErrorMessage);
       }
