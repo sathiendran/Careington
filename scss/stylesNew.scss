@@ -5849,11 +5849,14 @@ font-family: glober bold;
   color: #666666;
 }
 .inseditselect{
-  width: 80%;
+width: 80%;
 color: #7c7c7c;
 border: none;
-background-color: #eee;
+-webkit-appearance: none;
+//background-color: #eee;
+background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
 font-size: 20px;
 padding: 5px;
+padding-right: 39px;
 border-radius: 6px;
 }

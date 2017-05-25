@@ -32903,8 +32903,8 @@ only screen and (min-width: 541px) {
     color: #666;
     padding: 15px;
     transition: background-color 0.3s ease, color 0.3s ease;
-    font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-    line-height: 20px
+      font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    line-height: 26px
 }
 .main-nav__list a:hover,
 .main-nav__list a:active,
@@ -32960,7 +32960,7 @@ only screen and (min-width: 541px) {
     width: 0px
 }
 .main-nav__bottom-aligner--patient {
-    height: calc(100% - 602px)
+    height: calc(100% - 406px)
 }
 .main-nav__bottom-aligner--clinician {
     height: calc(100% - 749px)
@@ -32977,7 +32977,7 @@ only screen and (min-width: 541px) {
     border-top: 1px solid #666;
     color: #666;
     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
-    font-size: 0.9em
+    font-size: 0.8em
 }
 .is-main-nav .main-nav {
     transform: translateX(100%)
@@ -33005,11 +33005,11 @@ only screen and (min-width: 541px) {
         transform: translateX(300px)
     }
     .is-main-nav .wrapper {
-        transform: translateX(300px)
+        transform: translateX(273px)
     }
     .main-nav {
         left: -300px;
-        width: 300px
+        width: 275px
     }
 }
 .modal {
@@ -43913,7 +43913,7 @@ only screen and (min-width: 541px) {
     margin-top: 5px
 }
 .user-info--main-nav .user-info__info {
-    font-size: 0.8em;
+    font-size: 15px !important;
     color: #fff;
     font-family: "GloberRegular", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     width: 100%
@@ -54399,7 +54399,7 @@ only screen and (min-width: 541px) {
     .dialogbox-master--croppie .dialogbox-master__close::before,
     .dialogbox-master--croppie .dialogbox-master__close::after {
         background-color: rgba(255, 255, 255, 0.7)
-    }
+  }
     .dialogbox-master--croppie .dialogbox-master__main {
         overflow: visible;
         border-radius: 0 0 5px 5px
