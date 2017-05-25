@@ -483,8 +483,8 @@ angular.module('starter.controllers')
         var editsvalues = angular.element(document.getElementsByTagName('input'));
         var edittextarea = angular.element(document.getElementsByTagName('textarea'));
         var reFormatDate = $rootScope.userDOB.split('-')[1];
-        if($rootScope.userDOB.split('-')[1] < 10) {
-          $scope.userdob = new Date($rootScope.userDOB.split('-')[0]+'-'+$rootScope.userDOB.split('-')[1].replace('0','')+'-'+$rootScope.userDOB.split('-')[2]);
+        if($rootScope.userDOB) {
+          $scope.userdob = new Date($rootScope.userDOB.split('-')[0]+'/'+$rootScope.userDOB.split('-')[1]+'/'+$rootScope.userDOB.split('-')[2]);
         } else {
           $scope.userdob = new Date($rootScope.userDOB);
         }
