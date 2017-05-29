@@ -1443,10 +1443,11 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $scope.doneshow = false;
         $scope.flag = false;
         $rootScope.viewmyhealthDisplay = 'block';
+        $rootScope.emailDisplay = 'flex';
         $rootScope.viewhealthDisplay = 'none';
         $("#HealthFooter").css("display", "none");
         $rootScope.height1='';
-        $rootScope.height2='';
+        $rootScope.height2=''; 
         $rootScope.updatedPatientImagePath = '';
         $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
            $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
