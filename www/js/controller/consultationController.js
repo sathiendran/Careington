@@ -642,7 +642,7 @@ angular.module('starter.controllers')
                     angular.forEach(data.data[0].snapFile.files, function(index) {
                         var attachImage = index.name.split(".");
                         $rootScope.getAttachmentList.push({
-                            'id': index.id,
+                            'id': "'" + index.id + "'",
                             'name': index.name,
                             'image': attachImage[attachImage.length - 1]
                         });
@@ -666,7 +666,7 @@ angular.module('starter.controllers')
                 success: function(data) {
 
                     $rootScope.chatTranscript = [];
-                    if (data.count !== 0) {
+                    if (data.data[0].length !== 0) {
                       var chatdetails=data.data[0];
                         angular.forEach(chatdetails, function(index) {
                             $rootScope.chatTranscript.push({
