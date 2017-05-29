@@ -914,6 +914,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 } else if (dt2 > dt1) {
                     $scope.ErrorMessage = "DOB can not be in Future";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if ($rootScope.restage <= 11) {
+                  $scope.ErrorMessage = "User should be atleast 12 years old";
+                  $rootScope.Validation($scope.ErrorMessage);
                 } else if (typeof $scope.healthInfoEmail === 'undefined' || $scope.healthInfoEmail === '') {
                     $scope.ErrorMessage = "Please enter Email Id";
                     $rootScope.Validation($scope.ErrorMessage);
