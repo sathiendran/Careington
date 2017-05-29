@@ -40867,6 +40867,7 @@ only screen and (min-width: 541px) {
     padding-left: 34px !important;
     box-sizing: border-box;
     border-radius: 16px;
+    padding-top: 6px;
     transition: box-shadow 0.3s ease, background-color 0.3s ease
 }
 .search input::-webkit-input-placeholder {
@@ -51936,7 +51937,7 @@ only screen and (min-width: 541px) {
     transition-timing-function: cubic-bezier(0.345, 1.055, 0.38, 1.025);
     opacity: 0
 }
-.dialogbox-master__main {
+  .dialogbox-master__main {
     display: block;
     background-color: #fff;
     overflow: visible;
@@ -53846,12 +53847,12 @@ only screen and (min-width: 541px) {
     }
     .dialogbox-master.is-visible {
         -webkit-transform: translateY(-50%);
-        -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
-        transform: translateY(-50%);
+        -moz-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        -o-transform: translateY(0%);
+        transform: translateY(0%);
         position: relative;
-        top: 50%
+        /*top: 50%*/
     }
     .dialogbox-master.is-next {
         max-width: 640px !important
