@@ -3882,9 +3882,11 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 .regContainer {
+     height: 49px;     
+     position: fixed;
   .regDropDownContainer {
-    position: relative;
-    height: 33px;
+    /*position: relative;
+    height: 33px;*/
     .viewport {
         pointer-events: none;
         color: #60605D;

@@ -673,7 +673,7 @@ angular.module('starter.controllers')
         $(".ion-google-place-container").css({
             "display": "none"
         });
-        $ionicBackdrop.release();      
+        $ionicBackdrop.release();
     }
 
     $window.localStorage.setItem('ChkVideoConferencePage', "videoConference");
@@ -709,7 +709,7 @@ angular.module('starter.controllers')
             connection.start({
                withCredentials: false
             }).then(function() {
-               conHub.invoke("joinCustomer").then(function() {});
+               //conHub.invoke("joinCustomer").then(function() {}); 
                $rootScope.waitingMsg = "The Provider will be with you Shortly.";
                window.localStorage.setItem('isVideoCallProgress', "Yes");
                /*connection.on("disconnected",function(){
@@ -874,7 +874,7 @@ angular.module('starter.controllers')
 				subscribeToAudio: true,
 				subscribeToVideo: true
 			});
-			//setTimeout(function () {	
+			//setTimeout(function () {
 			$scope.createVideoThumbnail(event);
 			//}, 1000);
 
@@ -887,8 +887,8 @@ angular.module('starter.controllers')
 			}, 100);
 			var subChilds = $('#subscriber').children().length;
 			OT.updateViews();
-			
-			setTimeout(function () {	
+
+			setTimeout(function () {
 			 if(subChilds > 1){
 				  for(var j = 1; j < subChilds.length; j++){
 					   $('#subscriber').children().eq(j).hide();
