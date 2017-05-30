@@ -443,7 +443,7 @@ angular.module('starter.controllers')
       $rootScope.doGetDoctorDetails();
     });
 
-    $rootScope.doGetIndividualScheduledDetails = function() {
+  /*  $rootScope.doGetIndividualScheduledDetails = function() {
         $rootScope.appointmentPatientId = '';
         $rootScope.individualScheduledConsultationList = [];
         var params = {
@@ -651,10 +651,11 @@ angular.module('starter.controllers')
             }
         };
         LoginService.getIndividualScheduledConsulatation(params);
-    }
+    }*/
 
-    $scope.doRefreshAccountdetails = function() {
-        $rootScope.doGetIndividualScheduledDetails();
+    $scope.doRefreshAccountdetails = function(curntAppointId) {
+      //  $rootScope.doGetIndividualScheduledDetails();
+        $scope.doGetSelectedappoimentDetails(curntAppointId);
         $timeout(function() {
             $scope.$broadcast('scroll.refreshComplete');
         }, 1000);

@@ -2567,6 +2567,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
     $scope.chkPatientFilledAllRequirements = function() {
 
+      $scope.doGetConutriesList();
+      $rootScope.doGetLocations();
+
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
@@ -2693,8 +2696,6 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
                 $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
                 $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
-                $scope.doGetConutriesList();
-                $rootScope.doGetLocations();
                 $rootScope.getHealtPageForFillingRequiredDetails();
 
             },

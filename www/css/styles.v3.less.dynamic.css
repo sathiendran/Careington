@@ -51102,10 +51102,10 @@ only screen and (min-width: 541px) {
 }
 .notification-bar__title {
     float: left;
-    color: #000;
+    color: #000  !important;;
     font-size: 1.1em;
     line-height: 18px;
-    margin-left: 15px
+    margin-left: 15px;
 }
 .notification-bar__desc {
     float: left;
