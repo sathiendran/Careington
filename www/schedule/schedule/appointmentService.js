@@ -74,7 +74,7 @@
 
                         setTimeout(function(){
                             if(isLoading){
-                              $overlay.setLoadingTxt("Sending your appointment information.");
+                                $overlay.setLoadingTxt("Sending your appointment information.");
                             }
                         }, 3000);
 
