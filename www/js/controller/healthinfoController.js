@@ -1414,17 +1414,19 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               if(data) {
                 $rootScope.healthHistoryInformation = [];
                 $rootScope.PatientMedicalProfileList = data.data;
-                $rootScope.patvalues = $rootScope.PatientMedicalProfileList;
-                $rootScope.patientmedications = $rootScope.PatientMedicalProfileList[0].medications;
-                $rootScope.CurMedicationCount = $scope.patientmedications.length;
-                $rootScope.patientmedicationsallergies = $rootScope.PatientMedicalProfileList[0].medicationAllergies;
-                $rootScope.CurAllergiesCount = $scope.patientmedicationsallergies.length;
-                $rootScope.patientmedicalConditions = $rootScope.PatientMedicalProfileList[0].medicalConditions;
-                $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
-                $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
-                $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
+                if(typeof data.data !== 'undefined' && data.data !== '' ) {
+                  $rootScope.patvalues = $rootScope.PatientMedicalProfileList;
+                  $rootScope.patientmedications = $rootScope.PatientMedicalProfileList[0].medications;
+                  $rootScope.CurMedicationCount = $scope.patientmedications.length;
+                  $rootScope.patientmedicationsallergies = $rootScope.PatientMedicalProfileList[0].medicationAllergies;
+                  $rootScope.CurAllergiesCount = $scope.patientmedicationsallergies.length;
+                  $rootScope.patientmedicalConditions = $rootScope.PatientMedicalProfileList[0].medicalConditions;
+                  $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
+                  $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
+                  $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
+                }
               }
-              },
+            },
             error: function(data,status) {
               if(status===0 ){
                 $scope.ErrorMessage = "Internet connection not available, Try again later!";
@@ -1436,7 +1438,6 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
     }
 
     $rootScope.getHealtPageForFillingRequiredDetails = function() {
-      $scope.getHealthHistoryDetails();
         $rootScope.editOption = "None";
         $scope.healthfootsave=false;
         $scope.cancelshow = false;
@@ -1447,14 +1448,17 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         $rootScope.viewhealthDisplay = 'none';
         $("#HealthFooter").css("display", "none");
         $rootScope.height1='';
-        $rootScope.height2=''; 
+        $rootScope.height2='';
         $rootScope.updatedPatientImagePath = '';
         $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == $rootScope.currentPatientDetails[0].countryCode; return show; });
-           $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
-            var date = new Date($rootScope.currentPatientDetails[0].dob);
-            $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-            $scope.userDOB = $filter('date')(date, "yyyy-MM-dd");
-            $('#healthInfoDOB').val($scope.userDOB);
+        if($rootScope.currntCountryCode.length !== 0) {
+         $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
+        }
+          var date = new Date($rootScope.currentPatientDetails[0].dob);
+          $rootScope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+          $scope.userDOB = $filter('date')(date, "yyyy-MM-dd");
+          $('#healthInfoDOB').val($scope.userDOB);
+          $scope.getHealthHistoryDetails();
     }
 
     $scope.validationForChkingRequiredFields = function() {
