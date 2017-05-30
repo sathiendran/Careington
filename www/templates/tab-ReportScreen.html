@@ -279,7 +279,7 @@
             <div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
             <div class="objectiveUnderline"></div>
             <div ng-if="getAttachmentList != ''">
-               <div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" style="height: 60px;">
+               <div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}})" style="height: 60px;">
                   <div style="float: left;position: relative;top: 7px; padding-right: 10px;">
                      <img style="width: 40px; height: 45px;" src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
                   </div>
