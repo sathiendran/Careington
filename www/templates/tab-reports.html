@@ -223,19 +223,19 @@
                </div>
             </div>
             <div class="reportObjective">
-               <div class="objectiveTitle" ><b>Prescriptions</b></div>
+               <div class="objectiveTitle" ><b>PRESCRIPTIONS</b></div>
                <div class="objectiveUnderline">	</div>
-               <div ng-if="reportrx.length">
+               <div ng-if="reportrx !== 'None Reported'">
 			    <div class = "row">
-				   <div class = "col col-50 presTitle">Name</div>
+				   <div class = "col col-67 presTitle">Name</div>
 				   <div class = "col presTitle">Dosage</div>
                 </div>
-                 <div class = "row" ng-repeat = "reportr in reportrx">
-                   <div class = "col col-50" style="font-size: 14px;">{{reportr.drugName}}</div>
-                   <div class = "col" style="font-size: 14px;">{{reportr.drugDosage}}</div>
+                 <div class = "row" ng-repeat = "presDetails in reportrx">
+                   <div class = "col col-67" style="font-size: 14px;">{{presDetails.drugName}}</div>
+                   <div class = "col" style="font-size: 14px;">{{presDetails.drugDosage}}</div>
                  </div>
                </div>
-               <div ng-if="!reportrx.length">
+               <div class ="preNoneReport" ng-if="reportrx === 'None Reported'" >
                   None Reported
                </div>
             </div>
@@ -246,7 +246,7 @@
                   <p ng-if="chatTranscript.length">
                   <li ng-repeat = "chatTranscript in chatTranscript">{{chatTranscript.ChatMessage}}</li>
                   </p>
-                  <p ng-if="!chatTranscript.length">None Reported</p>
+                  <p ng-if="!chatTranscript.length" style="padding-top: 0px;">None Reported</p>
                </div>
             </div>
             <div class="reportObjective" >
