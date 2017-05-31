@@ -223,11 +223,20 @@
                </div>
             </div>
             <div class="reportObjective">
-               <div class="objectiveTitle" ><b>RX</b></div>
+               <div class="objectiveTitle" ><b>Prescriptions</b></div>
                <div class="objectiveUnderline">	</div>
-               <div>
-                  <p>{{reportrx}}  </p>
-                  <!--<p>None Reported</p>-->
+               <div ng-if="reportrx.length">
+			    <div class = "row">
+				   <div class = "col col-50 presTitle">Name</div>
+				   <div class = "col presTitle">Dosage</div>
+                </div>
+                 <div class = "row" ng-repeat = "reportr in reportrx">
+                   <div class = "col col-50" style="font-size: 14px;">{{reportr.drugName}}</div>
+                   <div class = "col" style="font-size: 14px;">{{reportr.drugDosage}}</div>
+                 </div>
+               </div>
+               <div ng-if="!reportrx.length">
+                  None Reported
                </div>
             </div>
             <div class="reportObjective">

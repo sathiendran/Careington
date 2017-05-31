@@ -812,7 +812,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
           //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
-		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
 		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
 
             method: 'GET'

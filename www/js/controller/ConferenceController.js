@@ -140,6 +140,7 @@ angular.module('starter.controllers')
                 $rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0];
                 $rootScope.existconsultationparticipants=data.data[0].participants;
+                $rootScope.existconsultationPrescriptions=data.data[0].prescriptions;
 
                 if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined')
                 {
@@ -211,11 +212,20 @@ angular.module('starter.controllers')
                     $rootScope.reportDoctorLastName = 'None Reported';
                 }
 
-                if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
-                    $rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
-                } else {
-                    $rootScope.reportrx = 'None Reported';
-                }
+                $rootScope.reportrx = [];
+
+                    if ($rootScope.existconsultationPrescriptions !== '' && typeof $rootScope.existconsultationPrescriptions !== 'undefined' && $rootScope.existconsultationPrescriptions.length !== 0) {
+                        angular.forEach($rootScope.existconsultationPrescriptions, function(index) {
+                            $rootScope.reportrx.push({
+                                'drugDosage': index.drugDosage,
+                                'drugName': index.drugName,
+                                'noRefills': index.noRefills,
+                                'quality': index.quality
+                            });
+                        });
+                    } else {
+                        $rootScope.reportrx = 'None Reported';
+                    }
                 var startTimeISOString = $rootScope.existingConsultationReport.consultationDate;
                 var startTime = new Date(startTimeISOString);
                 $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
