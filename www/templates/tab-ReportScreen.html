@@ -222,14 +222,23 @@
                </div>
             </div>
          </div>
-         <div class="reportObjective">
-            <div class="objectiveTitle" ><b>RX</b></div>
-            <div class="objectiveUnderline">	</div>
-            <div>
-               <p>{{reportrx}}  </p>
-               <!--<p>None Reported</p>-->
-            </div>
-         </div>
+		  <div class="reportObjective">
+			   <div class="objectiveTitle" ><b>PRESCRIPTIONS</b></div>
+			   <div class="objectiveUnderline">	</div>
+			   <div ng-if="reportrx !== 'None Reported'">
+				<div class = "row">
+				   <div class = "col col-67 presTitle">Name</div>
+				   <div class = "col presTitle">Dosage</div>
+				</div>
+				 <div class = "row" ng-repeat = "presDetails in reportrx">
+				   <div class = "col col-67" style="font-size: 14px;">{{presDetails.drugName}}</div>
+				   <div class = "col" style="font-size: 14px;">{{presDetails.drugDosage}}</div>
+				 </div>
+			   </div>
+			   <div class ="preNoneReport" ng-if="reportrx === 'None Reported'" style="font-size: 14px; padding-top: 10px;">
+				  None Reported
+			   </div>
+			</div>
          <div class="reportObjective">
             <div class="objectiveTitle" ><b>CHAT TRANSCRIPT</b></div>
             <div class="objectiveUnderline"> </div>
@@ -237,7 +246,7 @@
                <p ng-if="chatTranscript.length">
                <li ng-repeat = "chatTranscript in chatTranscript">{{chatTranscript.ChatMessage}}</li>
                </p>
-               <p ng-if="!chatTranscript.length">None Reported</p>
+               <p ng-if="!chatTranscript.length"  style="padding-top: 0px;">None Reported</p>
             </div>
          </div>
          <div class="reportObjective" >
@@ -279,7 +288,7 @@
             <div class="objectiveTitle" ><b>FILE  ATTACHMENT</b></div>
             <div class="objectiveUnderline"></div>
             <div ng-if="getAttachmentList != ''">
-               <div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}});" style="height: 60px;">
+               <div ng-repeat="getAttachment in getAttachmentList" ng-click="doGetAttachmentURL({{getAttachment.id}})" style="height: 60px;">
                   <div style="float: left;position: relative;top: 7px; padding-right: 10px;">
                      <img style="width: 40px; height: 45px;" src="{{APICommonURL}}/images/filetypes/png/{{getAttachment.image}}.png" alt="" >
                   </div>

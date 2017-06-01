@@ -140,6 +140,7 @@ angular.module('starter.controllers')
                 $rootScope.attachmentLength = '';
                 $rootScope.existingConsultationReport = data.data[0].details[0];
                 $rootScope.existconsultationparticipants=data.data[0].participants;
+                $rootScope.existconsultationPrescriptions=data.data[0].prescriptions;
 
                 if ($rootScope.existingConsultationReport.height !== '' && typeof $rootScope.existingConsultationReport.height !== 'undefined')
                 {
@@ -211,11 +212,20 @@ angular.module('starter.controllers')
                     $rootScope.reportDoctorLastName = 'None Reported';
                 }
 
-                if ($rootScope.existingConsultationReport.rx !== '' && typeof $rootScope.existingConsultationReport.rx !== 'undefined') {
-                    $rootScope.reportrx = htmlEscapeValue.getHtmlEscapeValue($rootScope.existingConsultationReport.rx);
-                } else {
-                    $rootScope.reportrx = 'None Reported';
-                }
+                $rootScope.reportrx = [];
+
+                    if ($rootScope.existconsultationPrescriptions !== '' && typeof $rootScope.existconsultationPrescriptions !== 'undefined' && $rootScope.existconsultationPrescriptions.length !== 0) {
+                        angular.forEach($rootScope.existconsultationPrescriptions, function(index) {
+                            $rootScope.reportrx.push({
+                                'drugDosage': index.drugDosage,
+                                'drugName': index.drugName,
+                                'noRefills': index.noRefills,
+                                'quality': index.quality
+                            });
+                        });
+                    } else {
+                        $rootScope.reportrx = 'None Reported';
+                    }
                 var startTimeISOString = $rootScope.existingConsultationReport.consultationDate;
                 var startTime = new Date(startTimeISOString);
                 $rootScope.consultationDate = new Date(startTime.getTime() + (startTime.getTimezoneOffset() * 60000));
@@ -451,7 +461,7 @@ angular.module('starter.controllers')
                 angular.forEach(data.data[0].snapFile.files, function(index) {
                     var attachImage = index.name.split(".");
                     $rootScope.getAttachmentList.push({
-                        'id': index.id,
+                        'id': "'" + index.id + "'",
                         'name': index.name,
                         'image': attachImage[attachImage.length - 1]
                     });
@@ -490,7 +500,7 @@ angular.module('starter.controllers')
             success: function(data) {
 
               $rootScope.chatTranscript = [];
-              if(data.count !== 0) {
+              if(data.data[0].length !== 0) {
                 var chatdetails=data.data[0];
                   angular.forEach(chatdetails, function(index) {
                     $rootScope.chatTranscript.push({
@@ -673,7 +683,7 @@ angular.module('starter.controllers')
         $(".ion-google-place-container").css({
             "display": "none"
         });
-        $ionicBackdrop.release();      
+        $ionicBackdrop.release();
     }
 
     $window.localStorage.setItem('ChkVideoConferencePage', "videoConference");
@@ -709,7 +719,7 @@ angular.module('starter.controllers')
             connection.start({
                withCredentials: false
             }).then(function() {
-               conHub.invoke("joinCustomer").then(function() {});
+               //conHub.invoke("joinCustomer").then(function() {});
                $rootScope.waitingMsg = "The Provider will be with you Shortly.";
                window.localStorage.setItem('isVideoCallProgress', "Yes");
                /*connection.on("disconnected",function(){
@@ -874,7 +884,7 @@ angular.module('starter.controllers')
 				subscribeToAudio: true,
 				subscribeToVideo: true
 			});
-			//setTimeout(function () {	
+			//setTimeout(function () {
 			$scope.createVideoThumbnail(event);
 			//}, 1000);
 
@@ -887,8 +897,8 @@ angular.module('starter.controllers')
 			}, 100);
 			var subChilds = $('#subscriber').children().length;
 			OT.updateViews();
-			
-			setTimeout(function () {	
+
+			setTimeout(function () {
 			 if(subChilds > 1){
 				  for(var j = 1; j < subChilds.length; j++){
 					   $('#subscriber').children().eq(j).hide();

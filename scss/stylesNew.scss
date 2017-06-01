@@ -2441,7 +2441,7 @@ margin-top: -12px;
 .register {
   margin-top: -3px;
   padding-bottom : 39px !important;
-  padding-top: 38px;
+  padding-top: 86px;
 
   .newLogProviderSecDiv-Android {
        h4 {
@@ -4559,7 +4559,7 @@ background-color: #23B4D6 !important;
     }
 }
 .labelcolor {
-    width: 49%;
+    width: 44%; 
 }
 }
 .ioncontentalign {
@@ -5049,4 +5049,12 @@ font-size: 19px;
 }
 .paymentSubHeader {
      margin: 4px 7px 10px !important;
+}
+.presTitle {
+	font-size: 14px;
+    font-weight: bold;
+}
+.preNoneReport {
+	font-size: 14px;
+	padding-top: 10px;
 }

@@ -345,6 +345,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
     };
 
+    $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
+
     $rootScope.drawImage = function(imagePath, firstName, lastName) {
         $('.patProfileImage').css({
             'background-color': $rootScope.brandColor
@@ -1176,20 +1178,17 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.goToSearchProvider = function(currentPage) {
-        $rootScope.frontPage = 'tab.' + currentPage;
-        $rootScope.backProviderSearchKey = '';
-        if (currentPage === "loginSingle") {
-            $rootScope.regStep1 = {};
-            $rootScope.selectedSearchProviderList = [];
-            $rootScope.selectedSearchProviderList.push({
-                'brandName': $rootScope.Hospital,
-            });
-            $rootScope.selectedSearchProviderList = $rootScope.selectedSearchProviderList[0];
-            $state.go('tab.registerStep1');
+        $rootScope.LogCurrentPage = currentPage;
+        $rootScope.isNotificationDisplayed = false;
+        $window.localStorage.setItem('FlagForCheckingAuthorization', '');
+        if (ionic.Platform.is('browser') !== true) {
+            $scope.nameForChckingCurrentFuncForMic = 'SearchProvidePage';
+            chkCameraAndMicroPhoneSettings($scope.nameForChckingCurrentFuncForMic);
         } else {
-            $state.go('tab.searchprovider');
+              $scope.chkSearchProviderPage(currentPage);
         }
     }
+
 
     $rootScope.backtoPreviousPage = function() {
         $state.go($rootScope.frontPage);
@@ -1941,7 +1940,23 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         var params = {
             accessToken: $rootScope.accessToken,
             success: function(data) {
-                $rootScope.serviceCountries = angular.fromJson(data.data);
+            //  $rootScope.aaa = [];
+               $rootScope.serviceCountries = angular.fromJson(data.data);
+              /* angular.forEach($rootScope.serviceCountries, function(item,index) {
+                 if((item.code).length === 2) {
+                   $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name;
+                 } else if((item.code).length === 3) {
+                    $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
+                 } else if((item.code).length === 4) {
+                    $scope.cntryCode = item.code + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+ item.name
+                 }
+                    $rootScope.aaa.push({
+                        'code': item.code,
+                        'name': item.name,
+                        'id': item.id,
+                        'sd': $scope.cntryCode
+                    });
+                });*/
                 $scope.getTimezoneList();
             },
             error: function() {
@@ -2051,8 +2066,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.PatientImage = $rootScope.patientAccount.profileImagePath;
                 $rootScope.patientParticularaddress = data.data[0].addressLocation;
                 if($rootScope.patientParticularaddress != undefined){
-                  $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
-                  $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+                     $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
+                     $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
+
                 }
 
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
@@ -2191,6 +2207,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
     }
 
     $scope.chkPatientFilledAllRequirements = function() {
+      $scope.doGetConutriesList();
+      $rootScope.doGetLocations();
 
         var params = {
             accessToken: $rootScope.accessToken,
@@ -2199,12 +2217,14 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 $rootScope.currentPatientDetails = data.data;
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
+                    $rootScope.viewmyhealthDisplay = 'block';
+                    $rootScope.viewhealthDisplay = 'none';
                     $rootScope.doGetPatientProfiles();
                     $rootScope.doGetRelatedPatientProfiles('tab.userhome');
                 } else {
-                      $scope.doGetSingleHospitalRegistrationInformation();
-                    $state.go('tab.healthinfo');
+                    $scope.doGetSingleHospitalRegistrationInformation();
                     $rootScope.primaryPatientId = $rootScope.currentPatientDetails[0].profileId;
+                    $state.go('tab.healthinfo');
                     $rootScope.doGetRequiredPatientProfiles($rootScope.currentPatientDetails[0].profileId);
                 }
 
@@ -2223,6 +2243,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getPatientFilledAllRequirements(params);
+    }
+    $scope.getOnlyNumbers = function(text) {
+        var newStr = "";
+        if (text) {
+            newStr = text.replace(/[^0-9.]/g, "");
+        }
+        return newStr;
     }
 
     $rootScope.doGetRequiredPatientProfiles = function(patientId) {
@@ -2268,12 +2295,13 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 });
                 $rootScope.currentPatientDetails = $scope.selectedPatientDetails;
                 $rootScope.PatientImageSelectUser = $rootScope.currentPatientDetails[0].account.profileImage;
+                $rootScope.patientId = $rootScope.currentPatientDetails[0].account.patientId;
                 $rootScope.PatientImage = $rootScope.PatientImageSelectUser;
                 $rootScope.primaryPatientName = $rootScope.currentPatientDetails[0].patientName;
                 $rootScope.primaryPatientLastName = $rootScope.currentPatientDetails[0].lastName;
                 $rootScope.dob = $rootScope.currentPatientDetails[0].dob;
-                $scope.doGetConutriesList();
-                $rootScope.doGetLocations();
+                $rootScope.currentPatientDetails[0].homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].homePhone));
+                $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
                 $rootScope.getHealtPageForFillingRequiredDetails();
 
             },
@@ -3017,13 +3045,15 @@ var deregisterBackButton;
     }
 
     $scope.backConsultCharge = function() {
-        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
+        if (($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on' && $rootScope.Cttonscheduled === 'on') || ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on')) {
             $state.go('tab.ConsentTreat');
-        } else if ($rootScope.healthPlanPage === "block") {
+        } else if ($rootScope.healthPlanPage === "block" && $rootScope.Cttonscheduled === 'on') {
             $state.go('tab.ConsentTreat');
         } else if ($rootScope.consultChargeNoPlanPage === "block") {
             $rootScope.consultChargeNoPlanPage = "none";
             $rootScope.healthPlanPage = "block";
+        } else if ($rootScope.Cttonscheduled !== 'on'){
+          $state.go($rootScope.concentToTreatPreviousPage);
         }
 
     }
@@ -4481,6 +4511,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
    var params = {
      accessToken: $rootScope.accessToken,
      countrystate: $scope.upcountrystate,
+     patientID:$rootScope.primaryPatientId,
      //state:  $scope.upstate,
 
      success: function(data,status) {
@@ -4579,6 +4610,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                         $rootScope.doGetIndividualScheduledConsulatation();
                         $rootScope.doGetonDemandAvailability();
                         $rootScope.doGetListOfCoUsers();
+                        $scope.getHealthHistoryDetails();
                         if (!$rootScope.P_isAuthorized) {
                             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
                             $rootScope.SubmitCardValidation($scope.ErrorMessage);
@@ -4786,6 +4818,25 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         LoginService.GetCreditDetails(params);
     }
 
+    $scope.chkSearchProviderPage = function(currentPage) {
+      $window.localStorage.setItem('FlagForCheckingAuthorization', 'Authorized');
+      $scope.doGetConutriesList();
+      $scope.getTimezoneList();
+      $rootScope.frontPage = 'tab.' + currentPage;
+      $rootScope.backProviderSearchKey = '';
+      if (currentPage === "loginSingle") {
+          $rootScope.regStep1 = {};
+          $rootScope.selectedSearchProviderList = [];
+          $rootScope.selectedSearchProviderList.push({
+              'brandName': $rootScope.Hospital,
+          });
+          $rootScope.selectedSearchProviderList = $rootScope.selectedSearchProviderList[0];
+          $state.go('tab.registerStep1');
+      } else {
+          $state.go('tab.searchprovider');
+      }
+    }
+
     function chkCameraAndMicroPhoneSettings(getCurrentFuncName) {
         $window.localStorage.setItem('FlagForCheckingFirstLogin', '');
         cordova.plugins.diagnostic.requestCameraAuthorization(function(status) {
@@ -4817,6 +4868,8 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                             $scope.GetLoginFunctionDetails();
                         } else if (getCurrentFuncName === 'SingleFuncLogin') {
                             $scope.GetSingleLoginDetailsFOrCheckingMic();
+                        } else if(getCurrentFuncName === "SearchProvidePage") {
+                              $scope.chkSearchProviderPage($rootScope.LogCurrentPage);
                         }
                     }
                 }, function() {
@@ -4845,6 +4898,44 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             exit;
         }
     }
+
+    $scope.getHealthHistoryDetails = function() {
+        $rootScope.PatientMedicalProfileList = [];
+        $rootScope.patvalues = '';
+          $rootScope.patientmedications = '';
+          $rootScope.CurMedicationCount = '';
+          $rootScope.patientmedicationsallergies = '';
+          $rootScope.CurAllergiesCount = '';
+          $rootScope.patientmedicalConditions = '';
+          $rootScope.ChronicCount = '';
+          $rootScope.patientmedicalsurgeries = '';
+          $rootScope.patientMedicalSurgeriesCount = '';
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                $rootScope.healthHistoryInformation = [];
+                $rootScope.PatientMedicalProfileList = data.data;
+                $rootScope.patvalues = $rootScope.PatientMedicalProfileList;
+                $rootScope.patientmedications = $rootScope.PatientMedicalProfileList[0].medications;
+                $rootScope.CurMedicationCount = $scope.patientmedications.length;
+                $rootScope.patientmedicationsallergies = $rootScope.PatientMedicalProfileList[0].medicationAllergies;
+                $rootScope.CurAllergiesCount = $scope.patientmedicationsallergies.length;
+                $rootScope.patientmedicalConditions = $rootScope.PatientMedicalProfileList[0].medicalConditions;
+                $rootScope.ChronicCount = $scope.patientmedicalConditions.length;
+                $rootScope.patientmedicalsurgeries = $rootScope.PatientMedicalProfileList[0].surgeries;
+                $rootScope.patientMedicalSurgeriesCount = $rootScope.patientmedicalsurgeries.length;
+              },
+            error: function(data,status) {
+              if(status===0 ){
+                $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                $rootScope.Validation($scope.ErrorMessage);
+              }
+            }
+        };
+        LoginService.getPatientMedicalProfile(params);
+    }
+
     $rootScope.GoToPatientDetailsFromRelatedUsers = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
 
         $rootScope.coUserAuthorization = $rootScope.patientId;
@@ -4890,6 +4981,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetListOfCoUsers();
+        $scope.getHealthHistoryDetails();
         if (!$rootScope.P_isAuthorized) {
             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
@@ -5186,6 +5278,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetIndividualScheduledConsulatation();
         $rootScope.doGetListOfCoUsers();
+        $scope.getHealthHistoryDetails();
         if(fromPreviousPage === 'userHome') {
           $rootScope.userAgeForIntake = '';
           $rootScope.updatedPatientImagePath = '';

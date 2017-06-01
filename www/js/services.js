@@ -238,10 +238,14 @@ angular.module('starter.services', [])
 			  data: {
                 address: params.address,
                 dob: params.dob,
-				email: params.email,
-				name: params.name,
-				password: params.password,
-				providerId: params.providerId,
+        				email: params.email,
+        				name: params.name,
+        				password: params.password,
+        				providerId: params.providerId,
+                gender: params.gender,
+                mobileNumberWithCountryCode: params.mobileNumberWithCountryCode,
+              //  timeZoneId: params.timeZoneId,
+              //  country: params.country
               }
 		};
 
@@ -808,7 +812,7 @@ this.getPatientMedicalProfile = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
           //  url: apiCommonURL + '/api/reports/consultationreportdetails/' + params.consultationId,
-		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+		   url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
 		   // url: apiCommonURL + '/api/v2/reports/consultation/4461?include=',
 
             method: 'GET'
@@ -1632,7 +1636,7 @@ this.getPatientMedicalProfile = function(params){
      this.putListOfCountryLocation = function(params){
         var requestInfo = {
             headers: util.getHeaders(params.accessToken),
-            url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate ,
+            url: apiCommonURL + '/api/v2.1/patients/encounter/address?addressText='+ params.countrystate+'&patientID=' + params.patientID,
             method: 'PUT',
         };
         $http(requestInfo).
