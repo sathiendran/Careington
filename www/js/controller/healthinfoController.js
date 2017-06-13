@@ -583,9 +583,6 @@ $scope.editDob=function(){
             var patIndentifierDetailsLength = $("input[name^= 'patientidentifiDetails']").length;
             var patIdentValue = $("input[id^='helthPatVal']");
           }
-          $scope.change = function() {
-                alert("changed");
-                };
 
           for(i=0;i<patIndentifierDetailsLength;i++)
             {
@@ -1111,9 +1108,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     }
                     $scope.doPutProfileUpdation();
                 }
-
             }
-              $scope.doPutProfileUpdation();
         }
     $rootScope.doPutProfileUpdation = function() {
         var params = {
