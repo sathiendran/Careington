@@ -138,7 +138,7 @@ angular.module('starter.controllers')
         }*/
 
         $scope.GoToappoimentDetails = function(scheduledListData) {
-            debugger;
+            // debugger;
             $rootScope.appointmentId = '';
             $rootScope.appointPersonId = '';
             $rootScope.AppointScheduleTime = '';

@@ -75,7 +75,7 @@ angular.module('starter.controllers')
           //  }
         }
         this.initKendoUI();
-        
+
         $scope.getDetails = function(userName) {
             var vm = snap.resolveObject("snap.patient.schedule.providerSearch");
             var headerVM = snap.resolveObject("snap.patient.PatientHeaderViewModel");

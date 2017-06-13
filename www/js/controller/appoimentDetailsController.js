@@ -2,7 +2,11 @@ angular.module('starter.controllers')
 
 
 .controller('appoimentDetailsCtrl', function($scope, $ionicScrollDelegate, htmlEscapeValue, $location, $window, ageFilter, replaceCardNumber, $ionicBackdrop, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, SurgeryStocksListService, $filter, $timeout, StateList, CustomCalendar) {
-      $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+ // $('link[src="css/styles.v3.less.dynamic.css"]').remove();
+  //     $("link[href*='css/styles.v3.less.dynamic.css']").attr("disabled", "disabled");
+  $("link[href*='css/styles.v3.less.dynamic.css']").prop('disabled', true);
+$("link[href*='css/styles.v3.less.dynamic.css']").remove();
+
     $ionicPlatform.registerBackButtonAction(function() {
         if (($rootScope.currState.$current.name === "tab.userhome") ||
             ($rootScope.currState.$current.name === "tab.addCard") ||
@@ -216,7 +220,8 @@ angular.module('starter.controllers')
         LoginService.getUserTimezone(params);
     }
 
-    $scope.editAppointment = function(scheduledListData) {
+    $scope.editAppointment = function(scheduledListData,$timeout) {
+          $scope.betDelay=true;
         $ionicLoading.show({
             template: '<img src="img/puff.svg" alt="Loading" />',
             duration: 3000
@@ -235,7 +240,15 @@ angular.module('starter.controllers')
             $mainHub.start();
             snap.hub.mainHub().stop();
         }  */
+
     }
+
+    $scope.delay = function () {
+             $scope.betDelay=true;
+            $timeout(function() {
+                $scope.betDelay=false;
+            }, 4000);
+        }
 
     $scope.doGetSelectedappoimentDetails = function(SSscheduledAppointmentId) {
     //  $rootScope.appointmentId = '';
@@ -438,7 +451,7 @@ angular.module('starter.controllers')
     };
 
     $scope.$on("callAppointmentConsultation", function(event, args) {
-      // $scope.doGeAppointmentExistingConsulatation();
+     // $scope.doGeAppointmentExistingConsulatation();
       $scope.doGetExistingPatientName();
       $rootScope.doGetDoctorDetails();
     });
@@ -760,9 +773,17 @@ angular.module('starter.controllers')
             patientId: $rootScope.appointmentsPatientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
+              debugger;
+
+                  // $rootScope.appointmentsPatientFirstName =  data.data[0].patientName;
+                  //  $rootScope.appointmentsPatientLastName = data.data[0].lastName;
+                  // $rootScope.appointmentsPatientFirstName =  $rootScope.scheduledListDatas.patFirstName;
+                  //   $rootScope.appointmentsPatientLastName = $rootScope.scheduledListDatas.patLastName;
                 $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                 $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
                 $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
+                  //  $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) ;
+            // $rootScope.GoToPatientDetails = function(Pat_locat,   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.appointmentsPatientDOB, '',  $rootScope.patientId, 'true', 'notNow');
             },
             error: function(data, status) {
                 if (status === 0) {
@@ -827,6 +848,7 @@ angular.module('starter.controllers')
         }).appendTo('head');
         //  $state.go('tab.providerSearch', { viewMode : 'all' });
         $state.go('tab.providerSearch');
+            // $scope.isDisabled = false;
     }
 
     if ($rootScope.AppointScheduleTime !== '') {

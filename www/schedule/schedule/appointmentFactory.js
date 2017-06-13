@@ -603,7 +603,7 @@
                         this.set("phoneType", phoneTypeEnum.other);
                     }
                     this._onDataChange();
-                };               
+                };
 
                 this.vm_onPhoneTypeChange = function () {
                     // get phone type

@@ -354,6 +354,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         }
     };
 
+
     $rootScope.drawImageSS = function(imagePath, firstName, lastName) {
         $('.patProfileImageSS').css({
             'background-color': $rootScope.brandColor
@@ -3304,8 +3305,9 @@ $scope.doGetInsuranceDetails = function(){
     success: function(data, status) {
       if(data != ''){
         $rootScope.insuranceList = data;
-        var date = new Date($rootScope.insuranceList.subscriberDob);
-        $rootScope.editinsDOB = $filter('date')(date, "yyyy-MM-dd");
+       $rootScope.editinsDOB = new Date($rootScope.insuranceList.subscriberDob);
+      //   var date = new Date($rootScope.insuranceList.subscriberDob);
+      //  $rootScope.editinsDOB = $filter('date')(date, "dd-mm-yyyy");
         $rootScope.edithealthplanid =   $rootScope.insuranceList.healthPlanId;
         $rootScope.currentplan = "tab.planeditDetails";
         $scope.doGetHealthPlanProvider();
@@ -3319,6 +3321,11 @@ $scope.doGetInsuranceDetails = function(){
   LoginService.getInsuranceDetails(params);
 
 }
+// $scope.editinsuranceDOB=function(){
+//   var chngedob=$('#date').val();
+//   var patdob =new Date(chngedob);
+//   // $rootScope.restage =getAge(patdob);
+// }
 
     $scope.doGetHealthPlanProvider = function() {
         $rootScope.HealthPlanProvidersList = [];
@@ -3526,6 +3533,7 @@ $scope.EditHealth = {};
         $state.go('tab.cardDetails');
     }
     $scope.cardchange = function(pageName){
+
       if(pageName === 'consulCharge') {
         var insplan = $('#addNewCard').val();
       } else if(pageName === 'addNewCard') {
@@ -3554,7 +3562,8 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              // $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+            $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
             //$('div.cardViewport').text($("option:selected", this).text());
         }
@@ -3574,7 +3583,8 @@ $scope.EditHealth = {};
             } else {
               $rootScope.editCardStyle ="block";
               var payValue = ($('option:selected', this).val()).split("@");
-              $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+              // $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+            $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
             }
         }
     });
@@ -3587,7 +3597,8 @@ $scope.EditHealth = {};
         } else {
           //  $('div.cardViewport').text($("option:selected", this).text());
           var payValue = ($('option:selected', this).val()).split("@");
-          $("div.cardViewport").html('<div class="insCardName">'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+          // $("div.cardViewport").html('<div class="insCardName"><img ng-src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png" />'+payValue[1]+'</div><div class="insCardNumber">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div>');
+        $("div.cardViewport").html('<div class="parenttt" style=" display: table;padding: 4px;  width: 100%;  margin: -10px 5px;"><div class="insCardImage"><img src = "https://emerald.snap-qa.com/images/creditcards/Visa-dark.png"  style =" width: 75px;  height: 50px;vertical-align: middle;"/> '+payValue[1]+'</div> <div class="insCardNumber" style =" vertical-align: middle;display: table-cell; text-align: justify; font-family: GloberSemiBold; font-size: 21px;padding: 12px 0px 12px 25px;">'+ 'XXXX-XXXX-XXXX-'+payValue[2]+'</div> </div>');
         }
     });
 
@@ -5744,7 +5755,7 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
 
     $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
 
-        if ($rootScope.patientSearchKey !== '' || typeof $rootScope.patientSearchKey !== "undefined") {
+        if ($rootScope.patientSearchKey !== '' && typeof $rootScope.patientSearchKey !== "undefined") {
             $rootScope.checkpatid = P_Id;
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
             if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {

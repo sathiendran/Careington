@@ -581,8 +581,12 @@ $scope.editDob=function(){
           } else {
             var patIndentifierDetailsArray =  $("input[name^='patientidentifiDetails']");
             var patIndentifierDetailsLength = $("input[name^= 'patientidentifiDetails']").length;
-            var patIdentValue = $("input[id^='patvalue']");
+            var patIdentValue = $("input[id^='helthPatVal']");
           }
+          $scope.change = function() {
+                alert("changed");
+                };
+
           for(i=0;i<patIndentifierDetailsLength;i++)
             {
              var patIndentifierArray =  patIndentifierDetailsArray[i].value;
@@ -602,6 +606,7 @@ $scope.editDob=function(){
            if($rootScope.PatientIdentifiers.length >  $rootScope.listOfPatientIdentifiers.length) {
                 $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
                 $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
+                $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
             } else if($rootScope.PatientIdentifiers.length ===  $rootScope.listOfPatientIdentifiers.length) {
                   $scope.unique = function(arr) {
                      var a = arr.concat();
@@ -615,6 +620,11 @@ $scope.editDob=function(){
                  };
                  $rootScope.patSelectedIdentifier = $rootScope.listOfPatientIdentifiers;
                  $rootScope.patAllIdentifier = $scope.unique($rootScope.PatientIdentifiers.concat($rootScope.patSelectedIdentifier));
+                  $scope.total_patients =  $rootScope.listOfPatientIdentifiers.length;
+            }else if($rootScope.PatientIdentifiers.length <  $rootScope.listOfPatientIdentifiers.length) {
+            $rootScope.patAllIdentifier =  $rootScope.PatientIdentifiers;
+            $rootScope.patSelectedIdentifier =$rootScope.listOfPatientIdentifiers;
+           $scope.total_patients = $rootScope.listOfPatientIdentifiers.length;
             }
             if($rootScope.PatientIdentifiers.length) {
                 $rootScope.patAllIdentifier.forEach(function(item){
@@ -767,6 +777,22 @@ $scope.editDob=function(){
                       return this.value.indexOf('?') >= 0;
                   }).remove();
               }, 100);
+
+              var identifierTypeCode_ = '', span_Text ='';
+             for(i=1 ; i<=$scope.total_patients;i++){
+               if(typeof $rootScope.PatientidupdateList !== 'undefined' && $rootScope.PatientidupdateList !== '') {
+                    $scope.patvalue = $('#patval_'+i).val();
+               } else {
+                  $scope.patvalue = $('#helthPatVal_'+i).val();
+               }
+                if (typeof $scope.patvalue === 'undefined' || $scope.patvalue === '') {
+                    identifierTypeCode_ =document.getElementById("pattext_"+i).innerText;
+                   //  identifierTypeCode_ = $('#identifierTypeCode_'+i).val();
+                     break;
+                }
+              }
+
+
 if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.patientId) {
                 if (($rootScope.restage >= 12)) {
                     if($rootScope.currentPatientDetails[0].account.email !== '') {
@@ -834,7 +860,18 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                       } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                           $scope.ErrorMessage = "Please select Blood Type";
                           $rootScope.Validation($scope.ErrorMessage);
-                      } else {
+                      } else if(identifierTypeCode_ !== ''){
+                         if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
+                             $scope.ErrorMessage = "Please enter Driver's licence number";
+                          }else if(identifierTypeCode_.indexOf("Employee number") != -1) {
+                             $scope.ErrorMessage = "Please enter Employee number";
+                          }else if(identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                          }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                          }
+                        $rootScope.Validation($scope.ErrorMessage);
+                      }else {
                           if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                               $scope.healthInfoHeight2 = "0";
                           }
@@ -898,7 +935,18 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                         } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                             $scope.ErrorMessage = "Please select Blood Type";
                             $rootScope.Validation($scope.ErrorMessage);
-                        } else {
+                        } else if(identifierTypeCode_ !== ''){
+                         if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
+                             $scope.ErrorMessage = "Please enter Driver's licence number";
+                          }else if(identifierTypeCode_.indexOf("Employee number") != -1) {
+                             $scope.ErrorMessage = "Please enter Employee number";
+                          }else if(identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                          }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                          }
+                        $rootScope.Validation($scope.ErrorMessage);
+                      }else {
                             if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                                 $scope.healthInfoHeight2 = "0";
                             }
@@ -961,7 +1009,18 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                         $scope.ErrorMessage = "Please select Blood Type";
                         $rootScope.Validation($scope.ErrorMessage);
-                    } else {
+                    } else if(identifierTypeCode_ !== ''){
+                         if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
+                             $scope.ErrorMessage = "Please enter Driver's licence number";
+                          }else if(identifierTypeCode_.indexOf("Employee number") != -1) {
+                             $scope.ErrorMessage = "Please enter Employee number";
+                          }else if(identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                          }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                          }
+                        $rootScope.Validation($scope.ErrorMessage);
+                      }else {
                         if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                             $scope.healthInfoHeight2 = "0";
                         }
@@ -1035,7 +1094,18 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 } else if ($rootScope.PPIsBloodTypeRequired === 'on' && (typeof $scope.healthInfoBloodType === 'undefined' || $scope.healthInfoBloodType === '')) {
                     $scope.ErrorMessage = "Please select Blood Type";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else {
+                } else if(identifierTypeCode_ !== ''){
+                         if (identifierTypeCode_.indexOf("Driver's license number") != -1) {
+                             $scope.ErrorMessage = "Please enter Driver's licence number";
+                          }else if(identifierTypeCode_.indexOf("Employee number") != -1) {
+                             $scope.ErrorMessage = "Please enter Employee number";
+                          }else if(identifierTypeCode_.indexOf("Patient Medicaid number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient Medicaid number";
+                          }else if(identifierTypeCode_.indexOf("Patient's Medicare number") != -1) {
+                             $scope.ErrorMessage = "Please enter Patient's Medicare number";
+                          }
+                        $rootScope.Validation($scope.ErrorMessage);
+                      }else {
                     if (typeof $scope.healthInfoHeight2 === 'undefined' || $scope.healthInfoHeight2 === '') {
                         $scope.healthInfoHeight2 = "0";
                     }
@@ -1043,6 +1113,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 }
 
             }
+              $scope.doPutProfileUpdation();
         }
     $rootScope.doPutProfileUpdation = function() {
         var params = {

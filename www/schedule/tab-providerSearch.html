@@ -1,3 +1,4 @@
+<!--
 <nav class="main-nav" >
     <a href="#" class="user-info user-info--main-nav">
         <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)" style="border: 0px #fff solid;">
@@ -25,6 +26,34 @@
     <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
 
        <a class="main-nav__toc" ng-click="sideMenuHospitallink()"  _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a>
+</nav> -->
+
+<nav class="main-nav" >
+    <a href="#" class="user-info user-info--main-nav">
+        <div ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" class="userpic userpic--white-border userpic--main-nav" ng-bind-html="drawImageSS(PatientImage,primaryPatientName,primaryPatientLastName)" style="border: 2px #fff solid;">
+
+        </div>
+
+        <div class="user-info__text">
+            <div class="user-info__name">
+                <span class="user-info__fname">{{primaryPatientName}} </span> <span class="user-info__lname">{{primaryPatientLastName}} </span>
+            </div>
+            <div class="user-info__info">
+                <span>{{primaryPatGender}}</span> • <span>{{dob | ageFilter}}</span> • <span>{{mobilePhone}}</span>
+            </div>
+        </div>
+    </a>
+
+    <ul class="main-nav__list" >
+        <li><a ng-href="#/tab/userhome"><span> <i ng-bind-html="drawSVGCIcon('users')"></i></span>Patient List</a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClick')" ><a><span> <i ng-bind-html="drawSVGCIcon('clipboard')"></i></span>My Health</a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'sideMenuClickApoointments')"><a><span><i ng-bind-html="drawSVGCIcon('calendar')"></i></span>My Appointments</a></li>
+        <li ng-click="GoToPatientDetails(location,PatientImage,primaryPatientName,primaryPatientLastName,dob,primaryPatientGuardianName,primaryPatientId,true, 'tab.consultations')"><a><span><i ng-bind-html="drawSVGCIcon('health_card')"></i></span>My Consultations</a></li>
+        <li ng-if="onSSAvailability == 'on'" ng-click="goTOSchedule()"><a><span class="icon_search-users"></span>Self Schedule</a></li>
+        <li ng-click="ClearRootScope()" style="font-size: 1.0em;" ><a><span class="ion-power" style="font-size: 1.4em; padding-right: 20px;"></span>Logout</a></li>
+    </ul>
+    <div class="main-nav__bottom-aligner main-nav__bottom-aligner--patient"></div>
+    <a  class="main-nav__toc"  ng-click="sideMenuHospitallink()"  _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">Terms &amp; Conditions</a>
 </nav>
 
 <div class="wrapper page" >
