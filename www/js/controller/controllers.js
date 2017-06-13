@@ -1020,6 +1020,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+        $rootScope.InsVerificationDummy = '';
+        $rootScope.InsuranceBeforeWaiting = '';
+        $rootScope.HidePaymentPageBeforeWaitingRoom = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1042,6 +1045,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
+                            $rootScope.InsuranceBeforeWaiting = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
+                            $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
+                            $rootScope.InsVerificationDummy = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
@@ -1229,6 +1241,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
           $rootScope.Cttonscheduled = '';
+          $rootScope.InsVerificationDummy = '';
+          $rootScope.InsuranceBeforeWaiting = '';
+          $rootScope.HidePaymentPageBeforeWaitingRoom = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1237,6 +1252,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
+                            $rootScope.InsuranceBeforeWaiting = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
+                            $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
+                            $rootScope.InsVerificationDummy = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
@@ -1304,6 +1328,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
         $rootScope.Cttonscheduled = '';
+        $rootScope.InsVerificationDummy = '';
+        $rootScope.InsuranceBeforeWaiting = '';
+        $rootScope.HidePaymentPageBeforeWaitingRoom = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1312,6 +1339,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
+                            $rootScope.InsuranceBeforeWaiting = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
+                            $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
+                            $rootScope.InsVerificationDummy = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
@@ -1394,6 +1430,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
         $rootScope.Cttonscheduled = '';
+        $rootScope.InsVerificationDummy = '';
+        $rootScope.InsuranceBeforeWaiting = '';
+        $rootScope.HidePaymentPageBeforeWaitingRoom = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -1405,6 +1444,15 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
+                            $rootScope.InsuranceBeforeWaiting = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
+                            $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
+                            $rootScope.InsVerificationDummy = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
@@ -3293,7 +3341,35 @@ var deregisterBackButton;
     }
 
 
+    $rootScope.doGetPayAddCardDetails = function() {
+      $rootScope.addCardStatus = '';
+      $rootScope.PayAddCardDetails = '';
+        var params = {
+            accessToken: $rootScope.accessToken,
+            success: function(data, status) {
+              $rootScope.PayAddCardDetails = [];
+              $rootScope.addCardStatus = status;
+                if (data !== '') {
+                   $rootScope.PayAddCardDetails = data;
+                //   $scope.doPostChargifyDetails();
+                }
+            },
+            error: function(data, status) {
+              $rootScope.addCardStatus = status;
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getPayCardDetails(params);
+    }
+
+
     $rootScope.doGetPatientPaymentProfiles = function() {
+        $rootScope.doGetPayAddCardDetails();
         var params = {
             hospitalId: $rootScope.hospitalId,
             patientId: $rootScope.patientId,
@@ -3435,6 +3511,11 @@ var deregisterBackButton;
         $state.go('tab.receipt');
         $rootScope.ReceiptTimeout();
     }
+
+    //$("#Cvv").keyup(function() {
+      //  $("#Cvv").val(this.value.match(/[0-9]*/));
+    //});
+
     $rootScope.verifyCardDisplay = "none";
     $rootScope.cardDisplay = "inherit;";
     $rootScope.planverify = "inherit";
@@ -3518,51 +3599,101 @@ var deregisterBackButton;
             $rootScope.cardDisplay = "none;";
             $rootScope.verifyCardDisplay = "inherit";
             $rootScope.planverify = "0.3";
-            var params = {
-                EmailId: $rootScope.UserEmail,
-                BillingAddress: $rootScope.BillingAddress,
-                CardNumber: $rootScope.CardNumber,
-                City: $rootScope.City,
-                ExpiryMonth: $rootScope.ExpiryMonth,
-                ExpiryYear: $rootScope.ExpiryYear,
-                FirstName: $rootScope.FirstName,
-                LastName: $rootScope.LastName,
-                State: $rootScope.State,
-                Zip: $rootScope.Zip,
-                Country: $scope.Country,
-                ProfileId: $rootScope.patientprofileID,
-                Cvv: $rootScope.Cvv,
-                accessToken: $rootScope.accessToken,
 
-                success: function(data) {
-                    $scope.PostPaymentDetails = data;
-                    $rootScope.userCardDetails = data.data[0].paymentProfileId;
-                    if (typeof $rootScope.CardNumber === 'undefined') {
-                        $rootScope.choosePaymentShow = 'none';
-                        $rootScope.choosePaymentHide = 'initial';
-                    } else if (typeof $rootScope.CardNumber !== 'undefined') {
-                        $rootScope.choosePaymentShow = 'initial';
-                        $rootScope.choosePaymentHide = 'none';
-                        var cardNo = $rootScope.CardNumber;
-                        var strCardNo = cardNo.toString();
-                        var getLastFour = strCardNo.substr(strCardNo.length - 4);
-                        $rootScope.userCardNumber = getLastFour;
+            if($rootScope.addCardStatus === 200) {
+                  var params = {
+                      api_id: $rootScope.PayAddCardDetails.form["secure[api_id]"],
+                      data: $rootScope.PayAddCardDetails.form["secure[data]"],
+                      nonce: $rootScope.PayAddCardDetails.form["secure[nonce]"],
+                      timestamp: $rootScope.PayAddCardDetails.form["secure[timestamp]"],
+                      signature: $rootScope.PayAddCardDetails.form["secure[signature]"],
+                      customerID: $rootScope.PayAddCardDetails.form["signup[customer][id]"],
+                      productID: $rootScope.PayAddCardDetails.form["signup[product][id]"],
+                      card_number: $rootScope.CardNumber,
+                      expiration_month: $rootScope.ExpiryMonth,
+                      expiration_year: $rootScope.ExpiryYear,
+                      cvv: $rootScope.Cvv,
+                      first_name: $rootScope.FirstName,
+                      last_name: $rootScope.LastName,
+                      billing_address: $rootScope.BillingAddress,
+                      billing_city: $rootScope.City,
+                      billing_zip: $rootScope.Zip,
+                      billing_country: $scope.Country,
+                      accessToken: $rootScope.accessToken,
+                      success: function(data) {
+                        $scope.PostPaymentDetails = data;
+                        $rootScope.userCardDetails = data.paymentProfileId;
+                        if (typeof $rootScope.CardNumber === 'undefined') {
+                            $rootScope.choosePaymentShow = 'none';
+                            $rootScope.choosePaymentHide = 'initial';
+                        } else if (typeof $rootScope.CardNumber !== 'undefined') {
+                            $rootScope.choosePaymentShow = 'initial';
+                            $rootScope.choosePaymentHide = 'none';
+                            var cardNo = $rootScope.CardNumber;
+                            var strCardNo = cardNo.toString();
+                            var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                            $rootScope.userCardNumber = getLastFour;
+                        }
+                        $rootScope.doGetPatientPaymentProfiles();
+                        $state.go('tab.submitPayment');
+                        $rootScope.cardDisplay = "inherit;";
+                        $rootScope.verifyCardDisplay = "none";
+                        $rootScope.planverify = "inherit";
+                      },
+                      error: function(data, status) {
+                        $rootScope.cardDisplay = "inherit;";
+                        $rootScope.verifyCardDisplay = "none";
+                        $rootScope.planverify = "inherit";
+                        $rootScope.serverErrorMessageValidationForPayment();
+                      }
+                  };
+                  LoginService.PostChargifyDetails(params);
+
+            } else {
+                var params = {
+                    EmailId: $rootScope.UserEmail,
+                    BillingAddress: $rootScope.BillingAddress,
+                    CardNumber: $rootScope.CardNumber,
+                    City: $rootScope.City,
+                    ExpiryMonth: $rootScope.ExpiryMonth,
+                    ExpiryYear: $rootScope.ExpiryYear,
+                    FirstName: $rootScope.FirstName,
+                    LastName: $rootScope.LastName,
+                    State: $rootScope.State,
+                    Zip: $rootScope.Zip,
+                    Country: $scope.Country,
+                    ProfileId: $rootScope.patientprofileID,
+                    Cvv: $rootScope.Cvv,
+                    accessToken: $rootScope.accessToken,
+                    success: function(data) {
+                        $scope.PostPaymentDetails = data;
+                        $rootScope.userCardDetails = data.data[0].paymentProfileId;
+                        if (typeof $rootScope.CardNumber === 'undefined') {
+                            $rootScope.choosePaymentShow = 'none';
+                            $rootScope.choosePaymentHide = 'initial';
+                        } else if (typeof $rootScope.CardNumber !== 'undefined') {
+                            $rootScope.choosePaymentShow = 'initial';
+                            $rootScope.choosePaymentHide = 'none';
+                            var cardNo = $rootScope.CardNumber;
+                            var strCardNo = cardNo.toString();
+                            var getLastFour = strCardNo.substr(strCardNo.length - 4);
+                            $rootScope.userCardNumber = getLastFour;
+                        }
+                        $rootScope.doGetPatientPaymentProfiles();
+                        $state.go('tab.submitPayment');
+                        $rootScope.cardDisplay = "inherit;";
+                        $rootScope.verifyCardDisplay = "none";
+                        $rootScope.planverify = "inherit";
+                    },
+                    error: function() {
+                        $rootScope.cardDisplay = "inherit;";
+                        $rootScope.verifyCardDisplay = "none";
+                        $rootScope.planverify = "inherit";
+                        $rootScope.serverErrorMessageValidationForPayment();
                     }
-                    $rootScope.doGetPatientPaymentProfiles();
-                    $state.go('tab.submitPayment');
-                    $rootScope.cardDisplay = "inherit;";
-                    $rootScope.verifyCardDisplay = "none";
-                    $rootScope.planverify = "inherit";
-                },
-                error: function() {
-                    $rootScope.cardDisplay = "inherit;";
-                    $rootScope.verifyCardDisplay = "none";
-                    $rootScope.planverify = "inherit";
-                    $rootScope.serverErrorMessageValidationForPayment();
-                }
-            };
-
-            LoginService.postPaymentProfileDetails(params);
+                };
+                LoginService.postPaymentProfileDetails(params);
+            }
 
         }
     }

@@ -61,6 +61,9 @@ angular.module('starter.controllers')
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+        $rootScope.InsVerificationDummy = '';
+        $rootScope.InsuranceBeforeWaiting = '';
+        $rootScope.HidePaymentPageBeforeWaitingRoom = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -72,6 +75,15 @@ angular.module('starter.controllers')
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
+                            $rootScope.InsuranceBeforeWaiting = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
+                            $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
+                            $rootScope.InsVerificationDummy = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
