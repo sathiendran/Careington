@@ -5932,9 +5932,8 @@ $scope.$watch('editsecuritycode', function(cardNumber) {
     }
 
     $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) {
-
-        if ($rootScope.patientSearchKey !== '' && typeof $rootScope.patientSearchKey !== "undefined") {
-            $rootScope.checkpatid = P_Id;
+          $rootScope.checkpatid = P_Id;
+        if ($rootScope.patientSearchKey !== '' && typeof $rootScope.patientSearchKey !== "undefined") {          
             //Removing main patient from the dependant list. If the first depenedant name and patient names are same, removing it. This needs to be changed when actual API given.
             if ($rootScope.RelatedPatientProfiles.length !== 0 && $rootScope.RelatedPatientProfiles !== '') {
                 if ($rootScope.primaryPatientFullName === $rootScope.RelatedPatientProfiles[0].patientName) {
