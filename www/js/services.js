@@ -825,8 +825,7 @@ this.getPatientMedicalProfile = function(params){
 		});
 	}
 
-
-this.putEditHealthPlan = function(params) {
+  this.putEditHealthPlan = function(params) {
 		var confirmPatientProfile = {
 			headers: util.getHeaders(params.accessToken),
   //    url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
@@ -864,6 +863,54 @@ this.putEditHealthPlan = function(params) {
 		});
 	}
 
+
+  this.PostChargifyDetails = function(params) {
+  		var confirmPatientProfile = {
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              url: 'https://api.chargify.com/api/v2/signups',
+              method: 'POST',
+              transformRequest: function(obj) {
+              var str = [];
+              for(var p in obj)
+              str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+              return str.join("&");
+          },
+  			data: {
+                  "secure[api_id]": params.api_id,
+          				"secure[data]": params.data,
+          				"secure[nonce]": params.nonce,
+          				"secure[timestamp]": params.timestamp,
+          				"secure[signature]": params.signature,
+          				"signup[customer][id]": params.customerID,
+          				"signup[product][id]": params.productID,
+          				"signup[payment_profile][card_number]": params.card_number,
+          				"signup[payment_profile][expiration_month]": params.expiration_month,
+          				"signup[payment_profile][expiration_year]": params.expiration_year,
+          				"signup[payment_profile][cvv]": params.cvv,
+          				"signup[payment_profile][first_name]": params.first_name,
+          				"signup[payment_profile][last_name]": params.last_name,
+          				"signup[payment_profile][billing_address]": params.billing_address,
+                  "signup[payment_profile][billing_city]": params.billing_city,
+                  "signup[payment_profile][billing_state]": params.billing_state,
+                  "signup[payment_profile][billing_zip]": params.billing_zip,
+                  "signup[payment_profile][billing_country]": params.billing_country
+              }
+  		};
+
+  		$http(confirmPatientProfile).
+  			success(function (data, status, headers, config) {
+  				if (typeof params.success != 'undefined') {
+  					params.success(data);
+                      return data;
+  				}
+  			}).
+  			error(function (data, status, headers, config) {
+  				if (typeof params.error != 'undefined') {
+  					params.error(data,status);
+  				}
+  		});
+  	}
+
   this.editPaymentProfile = function(params) {
 		var editPayment = {
 			headers: util.getHeaders(params.accessToken),
@@ -900,28 +947,30 @@ this.putEditHealthPlan = function(params) {
 				}
 		});
 	}
-    this.getConsultationFinalReport = function (params) {
-        //https://snap-dev.com/reports/consultationreportdetails/2440
-        //util.setHeaders($http, params);
-        var requestInfo = {
-            headers: util.getHeaders(params.accessToken),
-            //  url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
-		          url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
-            method: 'GET'
-        };
 
-        $http(requestInfo).
-                success(function (data, status, headers, config) {
-                    if (typeof params.success != 'undefined') {
-                        params.success(data);
-                    }
-                }).
-                error(function (data, status, headers, config) {
-                    if (typeof params.error != 'undefined') {
-                       params.error(data,status);
-                    }
-                });
-    }
+
+  this.getConsultationFinalReport = function (params) {
+         //https://snap-dev.com/reports/consultationreportdetails/2440
+         //util.setHeaders($http, params);
+         var requestInfo = {
+             headers: util.getHeaders(params.accessToken),
+             //  url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=',
+ 		          url: apiCommonURL + '/api/v2/reports/consultation/'+ params.consultationId +'?include=prescription',
+             method: 'GET'
+         };
+
+         $http(requestInfo).
+                 success(function (data, status, headers, config) {
+                     if (typeof params.success != 'undefined') {
+                         params.success(data);
+                     }
+                 }).
+                 error(function (data, status, headers, config) {
+                     if (typeof params.error != 'undefined') {
+                        params.error(data,status);
+                     }
+                 });
+     }
 
 	this.getPatientsSoapNotes = function (params) {
 		var confirmSoapPost = {
@@ -943,6 +992,32 @@ this.putEditHealthPlan = function(params) {
 		});
 
 	}
+
+  this.getPayCardDetails = function (params) {
+      var requestInfo = {
+          headers: util.getHeaders(params.accessToken),
+          url: apiCommonURL + '/api/v2.1/payments/direct/add-card',
+          method: 'GET'
+      };
+
+      $http(requestInfo).
+              success(function (data, status, headers, config) {
+                  if (typeof params.success != 'undefined') {
+                      params.success(data, status);
+                  }
+              }).
+              error(function (data, status, headers, config) {
+                  if(status == 404) {
+                    if (typeof params.error != 'undefined') {
+                      params.success(data, status);
+                    }
+                  } else {
+                    if (typeof params.error != 'undefined') {
+                       params.error(data,status);
+                    }
+                  }
+              });
+      }
 
     this.getPatientPaymentProfile = function (params) {
         var requestInfo = {

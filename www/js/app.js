@@ -391,28 +391,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $(".footer").show();
             }
         });
-
-        setTimeout(function() {
-            document.addEventListener("offline", onOffline, false);
-            document.addEventListener("online", onOnline, false);
-        }, 100);
-        $rootScope.flagpopup=true;
-       var myPopup;
-        function onOffline() {
-            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
-                $('#thumbVideos').remove();
-                $('#videoControls').remove();
-                session.unpublish(publisher)
-                session.disconnect();
-                $('#publisher').hide();
-                $('#subscriber').hide();
-                OT.updateViews();
-                $state.go('tab.videoLost', { retry : 1 });
-            }else{
-                $('.popup').addClass("ietpopup");
-                $('.popup-title').addClass("iettitle");
-                $('.popup-buttons').addClass("ietpopup-buttons");
-                $rootScope.flagpopup=false;
+        /*                $rootScope.flagpopup=false;
                     // An elaborate, custom popup
                     myPopup = $ionicPopup.show({
                       template: '<b>Please make sure that you have network connection.</b>',
@@ -422,19 +401,65 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                              { text: '<b class="ietfonttype">ok</b>',
                                type:'button',
                             }
+                          ]
 
-                           ]
+                        });
+           myPopup.then(function(res) {
+             console.log('Tapped!', res);
+           });
+           navigator.notification.alert(
+                 'Please make sure that you have network connection.', // message
+                 null,
+                 'No Internet Connection', // title
+                 'Ok' // buttonName
+             );*/
 
-                         });
-            myPopup.then(function(res) {
-              console.log('Tapped!', res);
-            });
-            /*  navigator.notification.alert(
-                  'Please make sure that you have network connection.', // message
-                  null,
-                  'No Internet Connection', // title
-                  'Ok' // buttonName
-              );*/
+
+        setTimeout(function() {
+            document.addEventListener("offline", onOffline, false);
+            document.addEventListener("online", onOnline, false);
+        }, 100);
+        $rootScope.flagpopup=true;
+        var myPopup;
+        function onOffline() {
+            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                $rootScope.connAlertStatus = true;
+                $('#thumbVideos').remove();
+                $('#videoControls').remove();
+                session.unpublish(publisher)
+                session.disconnect();
+                $('#publisher').hide();
+                $('#subscriber').hide();
+                OT.updateViews();
+                $state.go('tab.videoLost', { retry : 1 });
+            }else{
+                $rootScope.connAlertStatus = true;
+                $('.popup').addClass("ietpopup");
+                $('.popup-title').addClass("iettitle");
+                $('.popup-buttons').addClass("ietpopup-buttons");
+                $rootScope.alertPopupA = function() {
+                      $rootScope.flagpopup=false;
+                      myPopup = $ionicPopup.show({
+                          template: '<b>Please make sure that you have network connection.</b>',
+                          title: 'No Internet Connection',
+                          cssClass: 'my-custom-popup',
+                          buttons: [
+                                 { text: '<b class="ietfonttype">ok</b>',
+                                   type:'button',
+                                }
+
+                               ]
+                       }).then(function(result){
+                          console.log('Tapped', result);
+                       }, function(error){
+                          console.log('error', error);
+                       }, function(popup){
+                          popup.close();
+                       });
+                 }
+                 if($rootScope.flagpopup===true) {
+                    $rootScope.alertPopupA();
+                 }
 
             }
             return false;
@@ -442,6 +467,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
         function onOnline() {
           console.log('Closing in controller!');
+          $rootScope.connAlertStatus = false;
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
             }else{
@@ -492,37 +518,48 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
                 $window.addEventListener("offline", function() {
                   $rootScope.$apply(function() {
-                       if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
-                           console.log('gggg5');
-                          $('#thumbVideos').remove();
-                          $('#videoControls').remove();
-                          session.unpublish(publisher)
-                          session.disconnect();
-                          $('#publisher').hide();
-                          $('#subscriber').hide();
-                          OT.updateViews();
-                         // $state.go('tab.videoLost', { retry : 1 });
-                      }else{
-                          $('.popup').addClass("ietpopup");
-                          $('.popup-title').addClass("iettitle");
-                          $('.popup-buttons').addClass("ietpopup-buttons");
-                          $rootScope.flagpopup=false;
-                              // An elaborate, custom popup
-                              myPopup = $ionicPopup.show({
-                                template: '<b>Please make sure that you have network connection.</b>',
-                                title: 'No Internet Connection',
-                                cssClass: 'my-custom-popup',
-                                buttons: [
-                                       { text: '<b class="ietfonttype">ok</b>',
-                                         type:'button',
-                                      }
+                       if($rootScope.connAlertStatus !== true) {
+                            if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                                console.log('gggg5');
+                               $('#thumbVideos').remove();
+                               $('#videoControls').remove();
+                               session.unpublish(publisher)
+                               session.disconnect();
+                               $('#publisher').hide();
+                               $('#subscriber').hide();
+                               OT.updateViews();
+                              // $state.go('tab.videoLost', { retry : 1 });
+                           }else{
+                               $('.popup').addClass("ietpopup");
+                               $('.popup-title').addClass("iettitle");
+                               $('.popup-buttons').addClass("ietpopup-buttons");
+                               // $rootScope.flagpopup=false;
+                                   // An elaborate, custom popup
+                             $rootScope.alertPopupA = function() {
+                                   $rootScope.flagpopup=false;
+                                   myPopup = $ionicPopup.show({
+                                       template: '<b>Please make sure that you have network connection.</b>',
+                                       title: 'No Internet Connection',
+                                       cssClass: 'my-custom-popup',
+                                       buttons: [
+                                              { text: '<b class="ietfonttype">ok</b>',
+                                                type:'button',
+                                             }
 
-                                     ]
+                                            ]
+                                    }).then(function(result){
+                                       console.log('Tapped', result);
+                                    }, function(error){
+                                       console.log('error', error);
+                                    }, function(popup){
+                                       popup.close();
+                                    });
+                              }
+                              if($rootScope.flagpopup===true) {
+                                 $rootScope.alertPopupA();
+                              }
 
-                                   });
-                           myPopup.then(function(res) {
-                             console.log('Tapped!', res);
-                           });
+                           }
                       }
                       return false;
                   });
@@ -531,13 +568,15 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $window.addEventListener("online", function() {
                   $rootScope.$apply(function() {
                        console.log('Closing in controller!');
-                        if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
-                             $rootScope.netConnectionStaus = true;
-                            //$state.go('tab.videoLost', { retry : 2 });
-                        }else{
-                          if($rootScope.flagpopup==false){
-                            myPopup.close();
-                          }
+                       if($rootScope.connAlertStatus !== false) {
+                             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
+                                  $rootScope.netConnectionStaus = true;
+                                 //$state.go('tab.videoLost', { retry : 2 });
+                             }else{
+                               if($rootScope.flagpopup==false){
+                                 myPopup.close();
+                               }
+                             }
                         }
                   });
                 }, false);

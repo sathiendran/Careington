@@ -2445,7 +2445,7 @@ margin-top: -12px;
 .register {
   margin-top: -3px;
   padding-bottom : 39px !important;
-  padding-top: 38px;
+  padding-top: 86px;
 
   .newLogProviderSecDiv-Android {
        h4 {
@@ -4581,7 +4581,7 @@ background-color: #23B4D6 !important;
     }
 }
 .labelcolor {
-    width: 49%;
+    width: 44%;
 }
 }
 .ioncontentalign {
@@ -5119,6 +5119,7 @@ margin-right: 10px;
 .paymentSubHeader {
      margin: 4px 7px 10px !important;
 }
+
 .appointEdit {
   margin-top: 6px;
 }
@@ -5860,4 +5861,13 @@ font-size: 20px;
 padding: 5px;
 padding-right: 39px;
 border-radius: 6px;
+=======
+.presTitle {
+	font-size: 14px;
+    font-weight: bold;
+}
+.preNoneReport {
+	font-size: 14px;
+	padding-top: 10px;
+>>>>>>> SSOImplementation
 }

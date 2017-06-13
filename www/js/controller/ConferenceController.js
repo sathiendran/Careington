@@ -575,6 +575,7 @@ angular.module('starter.controllers')
             success: function(data) {
 
               $rootScope.chatTranscript = [];
+				//if(data.data[0].length !== 0) {
               if(data.count !== 0) {
                 var chatdetails=data.data[0];
                   angular.forEach(chatdetails, function(index) {
@@ -654,6 +655,9 @@ angular.module('starter.controllers')
         $rootScope.PPIsHairColorRequired = '';
         $rootScope.PPIsEthnicityRequired = '';
         $rootScope.PPIsEyeColorRequired = '';
+		$rootScope.InsVerificationDummy = '';
+        $rootScope.InsuranceBeforeWaiting = '';
+        $rootScope.HidePaymentPageBeforeWaitingRoom = '';
         var params = {
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
@@ -665,6 +669,15 @@ angular.module('starter.controllers')
                     for (var i = 0; i < $rootScope.getDetails.length; i++) {
                         if ($rootScope.getDetails[i] === 'InsuranceVerification' || $rootScope.getDetails[i] === 'mInsVerification') {
                             $rootScope.insuranceMode = 'on';
+                        }
+						 if ($rootScope.getDetails[i] === 'InsuranceBeforeWaiting' || $rootScope.getDetails[i] === 'mInsuranceBeforeWaiting') {
+                            $rootScope.InsuranceBeforeWaiting = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'HidePaymentPageBeforeWaitingRoom' || $rootScope.getDetails[i] === 'mHidePaymentPageBeforeWaitingRoom') {
+                            $rootScope.HidePaymentPageBeforeWaitingRoom = 'on';
+                        }
+                        if ($rootScope.getDetails[i] === 'InsVerificationDummy' || $rootScope.getDetails[i] === 'mInsVerificationDummy') {
+                            $rootScope.InsVerificationDummy = 'on';
                         }
                         if ($rootScope.getDetails[i] === 'ECommerce' || $rootScope.getDetails[i] === 'mECommerce') {
                             $rootScope.paymentMode = 'on';
@@ -794,7 +807,7 @@ angular.module('starter.controllers')
             connection.start({
                withCredentials: false
             }).then(function() {
-               conHub.invoke("joinCustomer").then(function() {});
+               //conHub.invoke("joinCustomer").then(function() {});
                $rootScope.waitingMsg = "The Provider will be with you Shortly.";
                window.localStorage.setItem('isVideoCallProgress', "Yes");
                /*connection.on("disconnected",function(){
