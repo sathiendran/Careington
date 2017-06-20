@@ -218,7 +218,7 @@ var handleOpenURL = function(url) {
     }, 0);
 }
 
-angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.services' , 'ngMaterial' ])
 
 .run(function($ionicPlatform, $state, $rootScope, LoginService, $ionicPopup, $window, Idle, $ionicBackdrop, $interval) {
 

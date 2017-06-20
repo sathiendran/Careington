@@ -773,17 +773,25 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             patientId: $rootScope.appointmentsPatientId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
+
               debugger;
 
                   // $rootScope.appointmentsPatientFirstName =  data.data[0].patientName;
                   //  $rootScope.appointmentsPatientLastName = data.data[0].lastName;
-                  // $rootScope.appointmentsPatientFirstName =  $rootScope.scheduledListDatas.patFirstName;
-                  //   $rootScope.appointmentsPatientLastName = $rootScope.scheduledListDatas.patLastName;
-                $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
-                $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
+                  if($rootScope.scheduledListDatas.patFirstName !== undefined ){
+                    $rootScope.appointmentsPatientFirstName =  $rootScope.scheduledListDatas.patFirstName;
+                      $rootScope.appointmentsPatientLastName = $rootScope.scheduledListDatas.patLastName;
+                  }else{
+                    $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
+                    $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
+                  }
+                // $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
+                // $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
                 $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
                   //  $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) ;
-            // $rootScope.GoToPatientDetails = function(Pat_locat,   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.appointmentsPatientDOB, '',  $rootScope.patientId, 'true', 'notNow');
+                  //  $rootScope.GoToPatientDetails('',$rootScope.appointmentsPatientImage, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, '', ' ');
+                 // $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.appointmentsPatientDOB, '',  $rootScope.patientId, '', '');
+                 // $rootScope.GoToPatientDetails('', '', $scope.paticipatingPatient.person.name.given, $scope.paticipatingPatient.person.name.family, $rootScope.appointmentsPatientDOB, '',  $rootScope.appointmentsPatientId, '', '');
             },
             error: function(data, status) {
                 if (status === 0) {

@@ -364,7 +364,7 @@
                      <span class="input-label labelcolor"  id="pattext_{{ $index + 1 }}" style=" white-space: normal;" ><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont">{{patientdisplay.display}}</b></span>
                      <span class="healthViewDetails" >
                       <input type="hidden" value="{{patientdisplay.identifierTypeCode+','+ patientdisplay.identifierTypeTitle +','+ patientdisplay.effectiveDate +','+ patientdisplay.statusCode}}" name="patIndentifierDetails[]" id="identifierTypeCode_{{ $index + 1 }}">
-                      <input type="text" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}"   value="{{patientdisplay.value}}" class="textdata" placeholder="Required">
+                      <input type="text" name="healthInfoEmail ellipsis" id="patval_{{ $index + 1 }}"   value="{{patientdisplay.value}}" class="textdata" placeholder="Required" >
                      </span>
                   </div>
 
@@ -374,7 +374,7 @@
                      <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont">{{patientidentifi.identifierTypeTitle}}</b></span>
                      <span class="healthViewDetails" >
                        <input type="text" value="{{patientidentifi.identifierTypeCode+','+ patientidentifi.identifierTypeTitle +','+ patientidentifi.effectiveDate +','+ patientidentifi.statusCode}}" name="patientidentifiDetails[]" id="identifierTypeCode_{{ $index + 1 }}">
-                       <input type="text" name="healthInfoEmail ellipsis" id="helthPatVal_{{ $index + 1 }}"   value="{{patientidentifi.value}}" class="textdata" placeholder="Required" ng-change='alert("changed!")'>
+                       <input type="text" name="healthInfoEmail ellipsis" id="helthPatVal_{{ $index + 1 }}"   value="{{patientidentifi.value}}" class="textdata" placeholder="Required">
 
 
                      </span>
