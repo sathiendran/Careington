@@ -41,19 +41,31 @@ angular.module('starter.controllers')
         }, 100);
 
       /*  $rootScope.formatIsdCode = function(countryCode) {
-          if(!angular.isUndefined(countryCode) && countryCode !== 0) {
+          if(!angular.isUndefined(countryCode) && countryCode !== 0 && countryCode !== '') {
               var tt = $(this)[0].country.code.length;
               if (tt === 2)
-                  return ($(this)[0].country.code) + "             " + ($(this)[0].country.name);
+                  return ($(this)[0].country.code) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + ($(this)[0].country.name);
               else if (tt === 3)
-                  return ($(this)[0].country.code) + "    " + ($(this)[0].country.name);
+                  return ($(this)[0].country.code) + "&nbsp;&nbsp;&nbsp;&nbsp;" + ($(this)[0].country.name);
               else if (tt === 4)
-                  return ($(this)[0].country.code) + "              " + ($(this)[0].country.name);
+                  return ($(this)[0].country.code) + "&nbsp;&nbsp;&nbsp;" + ($(this)[0].country.name);
           }
         };*/
 
 
-        $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
+      //  $scope.formatIsdCode = (s,c,n) => (s.length<n) ? s+c.repeat(n-s.length): s;
+
+        $scope.formatIsdCode = function(s,c,n) {
+          String.prototype.repeat= function(n){
+              n= n || 1;
+              return Array(n+1).join(this);
+          }
+           if(s.length<n) {
+             return s+c.repeat(n-s.length);
+           } else {
+            return s;
+           }
+        }
 
         $scope.fnameBlur=function(){
           $scope.fnameerror =false;
