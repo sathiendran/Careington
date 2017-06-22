@@ -790,7 +790,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
                   //  $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) ;
                   //  $rootScope.GoToPatientDetails('',$rootScope.appointmentsPatientImage, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, '', ' ');
-                 // $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.appointmentsPatientDOB, '',  $rootScope.patientId, '', '');
+                 $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.scheduledListDatas.patFirstName, $rootScope.scheduledListDatas.patLastName, $rootScope.PatientAge, '',  $rootScope.scheduledListDatas.patientId, '', '');
                  // $rootScope.GoToPatientDetails('', '', $scope.paticipatingPatient.person.name.given, $scope.paticipatingPatient.person.name.family, $rootScope.appointmentsPatientDOB, '',  $rootScope.appointmentsPatientId, '', '');
             },
             error: function(data, status) {

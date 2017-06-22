@@ -63,15 +63,15 @@
 			 </div>
 		</ion-item>
 	</a>
-
-	<!--<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
+ <div style="display: none;"><timer end-time="time"  ></timer></div>
+	<ion-item class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-click="GoToPatientDetails()">
 			<a class="HrefListView"  >
 			   <span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 			   <h2 class="DateFormateStyle"><b>OCT 12 </b> <span class="NextAppointTime"><sup>@</sup></span> <b>12:15</b><span class="NextAppointAMorPM">PM</span></h2>
 			   <list class="ion-chevron-right ListLinkHref nextList"></list>
 			   <span class="DateFormateStyle AppointmentView" >View Details</span>
 		    </a>
-		</ion-item>-->
+		</ion-item>
 
 
 
@@ -91,9 +91,9 @@
 
 		</ion-item>
 
-		<div style="display: none;"><timer end-time="time"  ></timer></div>
 
-	  <ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first">
+
+	  <!-- <ion-item style="background-color: {{userHomeRecentAppointmentColor}}; border-top: none; display: {{nextAppointmentDisplay}}"  class="UserHomeNextAppointment ItemList" ng-hide="data.searchQuery" ng-repeat="scheduledListData in scheduledList"  ng-click="GoToappoimentDetailsFromUserHome(scheduledListData, 'userHome')" ng-if="$first">
 	 	 <a class="HrefListView"  >
 	 			<span class = "ListText UHomeNextAppoinment">Next Appointment:</span>
 	 			<h2 class="DateFormateStyle"><b>{{scheduledListData.scheduledTime | date: "MMM dd"}}</b> <span class="NextAppointTime"><sup>@</sup></span> <b>{{scheduledListData.scheduledTime | date: "hh:mm"}}</b><span class="NextAppointAMorPM"  style="font-size: 15px; font-weight: bold;">{{scheduledListData.scheduledTime | date: "a"}}</span></h2>
@@ -101,7 +101,7 @@
 	 			<span class="DateFormateStyle AppointmentView" >View Details</span>
 
 	 		 </a>
-	  </ion-item>
+	  </ion-item> -->
 
 
 
