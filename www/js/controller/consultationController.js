@@ -674,42 +674,58 @@ angular.module('starter.controllers')
 
                     if ($rootScope.existingConsultationReport.medicalCodeDetails !== '' && typeof $rootScope.existingConsultationReport.medicalCodeDetails !== 'undefined') {
                         angular.forEach($rootScope.existingConsultationReport.medicalCodeDetails, function(index, item) {
+                          var cptcode = index.shortDescription;
+                          var spcptcode = cptcode.split("-");
+                          var icdcode =   index.shortDescription;
+                          var spicdcode = icdcode.split("-");
+                          var icd9code =   index.shortDescription;
+                          var spicd9code = icdcode.split("-");
+                          var snocode =   index.shortDescription;
+                          var spsnocode = snocode.split("-");
                             $rootScope.reportMedicalCodeDetails.push({
                                 'Number': item + 1,
                                 'shortDescription': index.shortDescription,
-                                'medicalCodingSystem': index.medicalCodingSystem
+                                'medicalCodingSystem': index.medicalCodingSystem,
+                                'EnCPTCode' : spcptcode[0],
+                                'EnCPTDescription' : spcptcode[1],
+                                'EnICDcode' : spicdcode[0],
+                                'EnICDDescription' : spicdcode[1],
+                                'EnICD9code' : spicd9code[0],
+                                'EnICD9Description' : spicd9code[1],
+                                'SNOMEDcode' : spsnocode[0],
+                                'SNOMEDcodeDescription' : spsnocode[1]
                             });
                         });
                         $rootScope.reportMediCPT = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'CPT'
                         });
-                        if($rootScope.reportMediCPT != ""){
-
-                          var cptcode =   $rootScope.reportMediCPT[0].shortDescription;
-                          var spcptcode = cptcode.split("-");
-                          $rootScope.reportMediCPTcode = spcptcode[0];
-                          $rootScope.reportMediCPTdescription = spcptcode[1];
-                        }
+                        // if($rootScope.reportMediCPT != ""){
+                        //
+                        //   var cptcode =   $rootScope.reportMediCPT[0].shortDescription;
+                        //   var spcptcode = cptcode.split("-");
+                        //   $rootScope.reportMediCPTcode = spcptcode[0];
+                        //   $rootScope.reportMediCPTdescription = spcptcode[1];
+                        // }
 
 
                         $rootScope.reportMediICD = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'ICD-10-DX'
                         });
-                        if($rootScope.reportMediICD != ""){
-                          var icdcode =   $rootScope.reportMediICD[0].shortDescription;
-                          var spicdcode = cptcode.split("-");
-                          $rootScope.reportMediICDcode = spicdcode[0];
-                          $rootScope.reportMediICDdescription = spicdcode[1];
-                        }
+                        // if($rootScope.reportMediICD != ""){
+                        //   var icdcode =   $rootScope.reportMediICD[0].shortDescription;
+                        //   var spicdcode = cptcode.split("-");
+                        //   $rootScope.reportMediICDcode = spicdcode[0];
+                        //   $rootScope.reportMediICDdescription = spicdcode[1];
+                        // }
                         $rootScope.reportMediICD9 = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'ICD-9-DX'
                         });
-                        if($rootScope.reportMediICD9 != ""){
-                          var icd9code =   $rootScope.reportMediICD9[0].shortDescription;
-                          var spicd9code = cptcode.split("-");
-                          $rootScope.reportMediICD9code = spicd9code[0];
-                          $rootScope.reportMediICD9description = spicd9code[1];
-                        }
+                        // if($rootScope.reportMediICD9 != ""){
+                        //   var icd9code =   $rootScope.reportMediICD9[0].shortDescription;
+                        //   var spicd9code = cptcode.split("-");
+                        //   $rootScope.reportMediICD9code = spicd9code[0];
+                        //   $rootScope.reportMediICD9description = spicd9code[1];
+                        // }
                         $rootScope.reportSNOMED = $filter('filter')($scope.reportMedicalCodeDetails, {
                             medicalCodingSystem: 'SNOMED-CT'
                         });

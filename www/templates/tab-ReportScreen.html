@@ -345,31 +345,35 @@
                                <span>Code</span>
                                <span>Description</span>
                            </div>
-                          <div ng-if = "medicalCodeDetails != ''">
-                           <div class="pc-report__table-row pc-report__table-row--right" ng-if="reportMediCPT != ''">
-                               <span>CPT</span>
-                               <span>{{reportMediCPTcode}}</span>
-                               <span ng-repeat="reportMediCPT in reportMediCPT">{{reportMediCPTdescription}}</span>
-                           </div>
+                           <div ng-if = "medicalCodeDetails != ''">
+                            <div class="pc-report__table-row pc-report__table-row--right" ng-if="reportMediCPT != ''"
+                           ng-repeat="reportMediCPT in reportMediCPT" >
+                                <span>CPT</span>
+                                <span>{{reportMediCPT.EnCPTCode}}</span>
+                                <span>{{reportMediCPT.EnICDDescription}}</span>
+                            </div>
 
-                           <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportMediICD != ''">
-                               <span>ICD-10-DX</span>
-                               <span>{{reportMediICDcode}}</span>
-                               <span ng-repeat="reportMediICD in reportMediICD">{{reportMediICDdescription}}</span>
-                           </div>
+                            <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportMediICD != ''"
+                            ng-repeat="reportMediICD in reportMediICD">
+                                <span>ICD-10-DX</span>
+                                <span>{{reportMediICD.EnICDcode}}</span>
+                                <span>{{reportMediICD.EnICDDescription}}</span>
+                            </div>
 
-                           <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportMediICD9 != ''">
-                               <span>ICD-9-DX</span>
-                               <span>{{reportMediICD9code}}</span>
-                               <span ng-repeat="reportMediICD9 in reportMediICD9" >{{reportMediICD9description}}</span>
-                           </div>
+                            <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportMediICD9 != ''"
+                            ng-repeat="reportMediICD9 in reportMediICD9">
+                                <span>ICD-9-DX</span>
+                                <span>{{reportMediICD9.EnICD9code}}</span>
+                                <span>{{reportMediICD9.EnICD9Description}}</span>
+                            </div>
 
-                           <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportSNOMED != ''">
-                               <span>ICD-9-DX</span>
-                               <span>{{reportMediSnocode}}</span>
-                               <span ng-repeat="reportSNOMED in reportSNOMED">{{reportMediSnodescription}}</span>
-                           </div>
-                      </div>
+                            <div class="pc-report__table-row pc-report__table-row--right"  ng-if="reportSNOMED != ''"
+                            reportSNOMED in reportSNOMED>
+                                <span>ICD-9-DX</span>
+                                <span>{{reportSNOMED.SNOMEDcode}}</span>
+                                <span>{{reportSNOMED.SNOMEDcodeDescription}}</span>
+                            </div>
+                       </div>
                           <div ng-if = "medicalCodeDetails == '' || undefined">
                             <p>None Reported</p>
                           </div>
