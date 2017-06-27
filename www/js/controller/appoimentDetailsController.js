@@ -867,6 +867,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             $('.enterAppoinment').hide();
             $('.enterAppoinment2').show();
             $(".enterAppoinment2").css("display", "block");
+            $scope.betDelay=true;
         }, $rootScope.AppointScheduleTime);
     } else {
         $rootScope.timeNew = 'none';
@@ -875,6 +876,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
         $('.enterAppoinment').hide();
         $('.enterAppoinment2').show();
         $(".enterAppoinment2").css("display", "block");
+        $scope.betDelay=true;
     }
 
     })
