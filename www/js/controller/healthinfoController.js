@@ -1926,7 +1926,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     description: $rootScope.CurrentMedicationsearchItem[i].text
                 });
             }
-            // $scope.modal.hide();
+            $scope.modal.hide();
         //$scope.patientdone();
         }
 
