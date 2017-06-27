@@ -25782,6 +25782,7 @@ only screen and (min-width: 541px) {
     overflow: hidden
 }
 .consultation-phone__dropdown.k-dropdown .k-input {
+    background: #E6E6E6 url(../img/select-arrow.png) no-repeat 95% center;
     font-family: "GloberSemiBold", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
     font-size: 16px !important;
     border-radius: 0;

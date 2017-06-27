@@ -4,6 +4,7 @@ angular.module('starter.controllers')
   $rootScope.drawSVGCIcon = function(iconName) {
     return "<svg class='icon-" + iconName + "'><use xlink:href='symbol-defs.svg#icon-" + iconName + "'></use></svg>";
   };
+     $scope.firsttimecall = 0;
     $rootScope.patientAuthorize = true;
     $rootScope.patientUnAuthorize = false;
     $rootScope.patientAuthorizeValue = 'Y';
@@ -1763,14 +1764,15 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
           $scope.data.searchProvider = '';
           $scope.data.searchProvider = '';
           if($rootScope.PatidentifierCount == 0){
-              $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
-          }else{
-              $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
-          }
+                $scope.clearSelectionAndRebindpatSelectionList($rootScope.PatientidupdateList, $rootScope.currentPatientsearchList);
+            }else{
+                $scope.clearSelectionAndRebindpatapiSelectionList($rootScope.PatientIdentifiers, $rootScope.currentPatientsearchList);
+            }
         if (typeof $rootScope.PatidentifierCount === 'undefined') {
             $rootScope.checkedpatientdet = 0;
         } else {
             $rootScope.checkedpatientdet = $rootScope.PatidentifierCount;
+
         }
           $ionicModal.fromTemplateUrl('templates/tab-addpatientid.html', {
               scope: $scope,
@@ -1857,10 +1859,10 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
             currentpatientdet.checked === false;
         }
 
-            if ($rootScope.checkedpatientdet == 4) {
+            if ($rootScope.checkedpatientdet === 4) {
 
                 $rootScope.checkedpatientdet--;
-                $scope.medicationdone();
+                 $scope.patientdone();
             }
             if ($rootScope.checkedpatientdet >= 4) {
                 currentpatientdet.checked === false;
@@ -1925,7 +1927,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 });
             }
             // $scope.modal.hide();
-        $scope.patientdone();
+        //$scope.patientdone();
         }
 
         $scope.InfantData = [];
@@ -2600,6 +2602,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
         angular.forEach(mainListItem, function(item, key2) {
             item.checked = false;
         });
+
         if (!angular.isUndefined(selectedListItem)) {
             if (selectedListItem.length > 0) {
                 angular.forEach(selectedListItem, function(value1, key1) {

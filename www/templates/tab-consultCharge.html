@@ -154,7 +154,7 @@
 
 
                      <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}">
-                        <!-- <div  class="dropdownContainer"> -->
+                         <div  class="dropdownContainer">
                            <div ng-if="userDefaultPaymentProfileText == null || userDefaultPaymentProfileText == 'undefined'"  id="cardViewport" class="cardViewport">
                               <div class="insCHooseProviderName">Choose Your Card</div>
                            </div>
@@ -162,8 +162,8 @@
 
                                <div class="insCardName">{{userDefaultPaymentProfileText}}</div><div class="insCardNumber">{{'XXXX-'+userDefaultPaymentProfileType}}</div>
                            </div>
-                         <div flex="65" layout-align="start center">
-                           <md-select  id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-change="cardchange('consulCharge')" placeholder=" Choose Your Card ">
+                         <!-- <div flex="65" layout-align="start center">
+                           <md-select  md-container-class="mySelect" class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchang('consulCharge')">
 
                             <md-option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}"><b>
                            <div style="display:inline-block; align: center;vertical-align: middle;">
@@ -171,18 +171,18 @@
                             <div style="display:inline-block;vertical-align: middle;">   <span >{{  + '             ' +  'XXXX-'+PaymentProfile.cardNumber}}</span> </div></b></md-option>
                          		<md-option ng-if="totalPaymentCard != 10"><b>Add a new card</b></md-option>
                          	</md-select>
-                        </div>
+                        </div> -->
 
 
-                           <!-- <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
+                           <select class="consultHealthPlanDropDown" id="addNewCard" name="addNewCard" style="border: none;" ng-model="cardPaymentId.addNewCard" ng-chang="cardchange('consulCharge')">
                               <option><b>Choose Your Card</b></option>
                               <option  ng-repeat="PaymentProfile in PaymentProfile" ng-selected="PaymentProfile.profileID == userDefaultPaymentProfile" value="{{PaymentProfile.profileID + '@' + PaymentProfile.cardType + '@' + PaymentProfile.cardNumber}}"><b>
                                <div> <img
                                <span>{{PaymentProfile.cardType + '       '}}</span>  <span >{{  + '             ' +  'XXXX-XXXX-XXXX-'+PaymentProfile.cardNumber}}</span></b></option>
                               <option ng-if="totalPaymentCard != 10"><b>Add a new card</b></option>
-                           </select> -->
+                           </select>
 
-                        <!-- </div> -->
+                     </div>
                      </div>
                   </div>
 

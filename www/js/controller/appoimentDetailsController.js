@@ -247,7 +247,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
              $scope.betDelay=true;
             $timeout(function() {
                 $scope.betDelay=false;
-            }, 4000);
+            }, 5000);
         }
 
     $scope.doGetSelectedappoimentDetails = function(SSscheduledAppointmentId) {
