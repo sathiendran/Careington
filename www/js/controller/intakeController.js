@@ -307,7 +307,7 @@ $scope.locat=false;
     $scope.clearSelectionAndRebindSelectionList($rootScope.PatientPrimaryConcernItem, $scope.primaryConcernList);
       if ($rootScope.getSecondaryConcernAPIList !== "") {
             if (typeof $scope.PatientPrimaryConcernItem !== 'undefined') {
-                if ($rootScope.IsValue !== '') {
+                if ($rootScope.IsValue !== '' && $rootScope.IsValue !== 0) {
                     $rootScope.getCheckedPrimaryConcern = $filter('filter')($scope.primaryConcernList, {
                         text: $rootScope.PrimaryConcernText
                     });
@@ -1128,6 +1128,64 @@ $scope.locat=false;
         $rootScope.IsToPriorCount--;
     }
 
+    $scope.doGetPatientHealthPlansList = function() {
+
+        var params = {
+            patientId: $rootScope.patientId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+                if (data.data != 0) {
+                    $rootScope.patientHealthPlanList = [];
+                    angular.forEach(data.data, function(index,item) {
+                        $rootScope.patientHealthPlanList.push({
+                            'id': index.$id,
+                            'healthPlanId': index.healthPlanId,
+                            'familyGroupId': index.familyGroupId,
+                            'patientId': index.patientId,
+                            'insuranceCompany': index.insuranceCompany,
+                            'isDefaultPlan': index.isDefaultPlan,
+                            'insuranceCompanyPhone': index.insuranceCompanyPhone,
+                            'memberName': index.memberName,
+                            'subsciberId': index.subsciberId,
+                            'payerId': index.payerId,
+                            'policyNumberLong': index.policyNumber,
+                            'policyNumber': index.policyNumber.substring(index.policyNumber.length - 4, index.policyNumber.length),
+                        });
+                    });
+
+                    if ($rootScope.currState.$current.name === "tab.consultCharge") {
+                        $rootScope.enableAddHealthPlan = "block";
+                        $rootScope.disableAddHealthPlan = "none;";
+                    } else if ($rootScope.currState.$current.name === "tab.planDetails") {
+                        $rootScope.disableAddHealthPlan = "none";
+                        $rootScope.enableAddHealthPlan = "block";
+                        $state.go('tab.consultCharge');
+
+                    }
+                } else {
+                    if ($rootScope.currState.$current.name === "tab.consultCharge") {
+                        $rootScope.enableAddHealthPlan = "none";
+                        $rootScope.disableAddHealthPlan = "block;";
+                    } else if ($rootScope.currState.$current.name === "tab.planDetails") {
+                        $state.go('tab.consultCharge');
+                    }
+                }
+
+            },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+
+        LoginService.getPatientHealthPlansList(params);
+
+    }
+
     $scope.ConsultationSaveData = {
         "medicationAllergies": [],
         "surgeries": [],
@@ -1221,54 +1279,65 @@ $scope.locat=false;
             accessToken: $rootScope.accessToken,
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
-              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on') {
+              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount !== 0 ) {
                 $rootScope.doPostDepitDetails();
               } else {
                   $scope.ConsultationSave = "success";
-                  if ($rootScope.paymentMode === 'on' && $rootScope.consultationAmount !== 0) {
+                  if($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on') {
+                    $rootScope.applyPlanMode = "block";
+                    $rootScope.verifyPlanMode = "none";
+                    $rootScope.consultChargeNoPlanPage = "none";
+                    $rootScope.healthPlanPage = "block";
+                    $rootScope.chooseHealthHide = 'initial';
+                    $rootScope.chooseHealthShow = 'none';
+                    $rootScope.providerName = "";
+                    $rootScope.PolicyNo = "";
+                    if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
+                        $('#addNewCard').val('Choose Your Card');
+                        $('#addNewCard_addCard').val('Choose Your Card');
+                        $('#addNewCard_submitPay').val('Choose Your Card');
+                        $rootScope.userDefaultPaymentProfileText = null;
+                    } else {
+                        $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+                        $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+                        $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+                        $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                        $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                    }                    
+                    $rootScope.doGetPatientPaymentProfiles();
+                    $scope.doGetPatientHealthPlansList();
+                    $state.go('tab.consultCharge');
+                  } else if($rootScope.insuranceMode === 'on' && (($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') || ($rootScope.paymentMode !== 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on'))) {
+                    $rootScope.openAddHealthPlanSection();
+                    $state.go('tab.consultCharge');
+                  } else if($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on' && $rootScope.consultationAmount !== 0 && typeof $rootScope.consultationAmount !== 'undefined') {
+                    if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
+                        $('#addNewCard').val('Choose Your Card');
+                        $('#addNewCard_addCard').val('Choose Your Card');
+                        $('#addNewCard_submitPay').val('Choose Your Card');
+                        $rootScope.userDefaultPaymentProfileText = null;
+                    } else {
+                        $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+                        $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+                        $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+                        $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                        $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                    }
+                      $rootScope.paymentBackPage = true;
                       $rootScope.doGetPatientPaymentProfiles();
-                  }
-                  $rootScope.enableInsuranceVerificationSuccess = "none";
-                  $rootScope.enableCreditVerification = "none";
-                    $rootScope.enableWaivefeeVerification = "none";
-                  if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on') {
-                      $rootScope.openAddHealthPlanSection();
-                  }
-                  if ($rootScope.insuranceMode != 'on' && $rootScope.paymentMode != 'on') {
-                      $rootScope.enablePaymentSuccess = "none";
-                      $rootScope.enableCreditVerification = "none";
-                        $rootScope.enableWaivefeeVerification = "none";
-                      $state.go('tab.receipt');
-                      $scope.ReceiptTimeout();
-                  } else if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on') {
-                      $rootScope.openAddHealthPlanSection();
+                      $rootScope.healthPlanPage = "none";
+                      $rootScope.consultChargeNoPlanPage = "block";
                       $state.go('tab.consultCharge');
-                  } else {
-                      if ($rootScope.consultationAmount > 0) {
-                          if ($rootScope.insuranceMode !== 'on' && $rootScope.paymentMode === 'on') {
-                              $rootScope.healthPlanPage = "none";
-                              $rootScope.consultChargeNoPlanPage = "block";
-                          }
-                          $state.go('tab.consultCharge');
-                          if (typeof $rootScope.userDefaultPaymentProfile == "undefined") {
-                              $('#addNewCard').val('Choose Your Card');
-                              $('#addNewCard_addCard').val('Choose Your Card');
-                              $('#addNewCard_submitPay').val('Choose Your Card');
-                              $rootScope.userDefaultPaymentProfileText = 'undefined';
-                          } else {
-                              $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
-                              $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
-                              $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
-                              $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
-                              $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
-                          }
-                      } else {
-                          $rootScope.enablePaymentSuccess = "none";
-                          $rootScope.enableCreditVerification = "none";
-                            $rootScope.enableWaivefeeVerification = "none";
-                          $state.go('tab.receipt');
-                          $scope.ReceiptTimeout();
-                      }
+                      $rootScope.enableInsuranceVerificationSuccess = "none";
+                      $rootScope.enableCreditVerification = "none";
+                      $rootScope.enableWaivefeeVerification = "none";
+                  } else if($rootScope.consultationAmount === 0 || ($rootScope.HidePaymentPageBeforeWaitingRoom === 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') || ($rootScope.paymentMode !== 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on')) {
+                    $rootScope.enablePaymentSuccess = "none";
+                    $rootScope.enableCreditVerification = "none"
+                    $rootScope.enableWaivefeeVerification = "none";;
+                    $rootScope.enableInsuranceVerificationSuccess = "none";
+                    $state.go('tab.receipt');
+                    $rootScope.ReceiptTimeout();
                   }
               }
             },

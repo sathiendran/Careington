@@ -118,12 +118,13 @@ angular.module('starter.controllers')
                 $rootScope.dayDisplay = 'none';
             }
 
-              if (args.millis < 600) {
+            //  if (args.millis < 600) {
+            if (args.minutes === 0 && args.seconds === 1) {
                 $rootScope.timeNew = 'none';
                 $rootScope.timeNew1 = 'block';
                 $('.AvailableIn').hide();
                 $('.enterAppoinment').show();
-            } else if (args.millis > 600) {
+            } else if (args.minutes >= 0 && args.seconds > 0) {
                 $('.AvailableIn').show();
                 $('.enterAppoinment').hide();
             }
@@ -169,9 +170,9 @@ angular.module('starter.controllers')
                if ($rootScope.appointmentsPage === true) {
                  if($rootScope.Cttonscheduled === 'on'){
                    $state.go('tab.ConsentTreat');
-                 }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false) {
+                 }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
                        $rootScope.doPostDepitDetails();
-                   }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true){
+                   }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){
                      $state.go('tab.receipt');
                      $rootScope.enablePaymentSuccess = "none";
                      $rootScope.enableInsuranceVerificationSuccess = "none";
@@ -197,6 +198,28 @@ angular.module('starter.controllers')
             }
         };
         LoginService.getConcentToTreat(params);
+    }
+
+    $scope.doGetAppointPaymentStatus = function() {
+      $rootScope.isPaid = '';
+          var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $rootScope.isPaid = data.isPaid;
+              $scope.doGetConcentToTreat();
+              },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getAppointPaymentStatus(params);
     }
 
     $scope.doCheckExistingConsulatationStatus = function() {
@@ -264,7 +287,8 @@ angular.module('starter.controllers')
                         );
                         return false;
                     } else {
-                        $scope.doGetConcentToTreat();
+                        //$scope.doGetConcentToTreat();
+                        $scope.doGetAppointPaymentStatus();
                     }
 
                 }
@@ -454,13 +478,15 @@ angular.module('starter.controllers')
                                     $rootScope.hourDisplay = 'none';
                                     $rootScope.dayDisplay = 'none';
                                 }
-                                if (args.millis < 600) {
+                                //if (args.millis < 600) {
+                                if (args.minutes === 0 && args.seconds === 1) {
                                     $rootScope.timeNew = 'none';
                                     $rootScope.timeNew1 = 'block';
                                     $rootScope.timerCOlor = '#E1FCD4';
                                     $('.AvailableIn').hide();
                                     $('.enterAppoinment').show();
-                                } else if (args.millis > 600) {
+                              //  } else if (args.millis > 600) {
+                              } else if (args.minutes >= 0 && args.seconds > 0) {
                                     $rootScope.timeNew = 'block';
                                     $rootScope.timeNew1 = 'none';
                                     $rootScope.timerCOlor = '#FDD8C5';

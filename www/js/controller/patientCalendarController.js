@@ -190,13 +190,15 @@ angular.module('starter.controllers')
                         $rootScope.hourDisplay = 'none';
                         $rootScope.dayDisplay = 'none';
                     }
-                    if (args.millis < 600) {
+                  //  if (args.millis < 600) {
+                    if (args.minutes === 0 && args.seconds === 1) {
                         $rootScope.timeNew = 'none';
                         $rootScope.timeNew1 = 'block';
                         $rootScope.timerCOlor = '#E1FCD4';
                         $('.AvailableIn').hide();
                         $('.enterAppoinment').show();
-                    } else if (args.millis > 600) {
+                  //  } else if (args.millis > 600) {
+                    } else if (args.minutes >= 0 && args.seconds > 0) {
                         $rootScope.timeNew = 'block';
                         $rootScope.timeNew1 = 'none';
                         $rootScope.timerCOlor = '#FEEFE8';

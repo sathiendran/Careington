@@ -414,7 +414,7 @@ angular.module('starter.services', [])
             headers: util.getHeaders(params.accessToken),
             //url: apiCommonURL + '/api/v2/patients/scheduledconsultations?Id=' + params.patientId,
 			//url: apiCommonURL + '/api/v2/patients/profile?include=Appointments',
-	url: apiCommonURL + '/api/v2.1/patients/appointments',
+	     url: apiCommonURL + '/api/v2.1/patients/appointments?includePatientCoUsers=false ',
             method: 'GET'
         };
 
@@ -1725,6 +1725,25 @@ this.getPatientMedicalProfile = function(params){
                 }
             });
       }
+
+      this.getAppointPaymentStatus = function(params){
+           var requestInfo = {
+               headers: util.getHeaders(params.accessToken),
+               url: apiCommonURL + '/api/v2.1/patients/copay/'+params.consultationId+'/paymentstatus',
+               method: 'GET',
+           };
+           $http(requestInfo).
+               success(function (data, status, headers, config) {
+                   if (typeof params.success != 'undefined') {
+                       params.success(data);
+                   }
+               }).
+               error(function (data, status, headers, config) {
+                   if (typeof params.error != 'undefined') {
+                       params.success(data);
+                   }
+               });
+         }
 
 })
 
