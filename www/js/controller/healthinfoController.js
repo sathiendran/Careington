@@ -505,6 +505,11 @@ angular.module('starter.controllers')
         $rootScope.currentPatientDetails[0].mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails[0].mobilePhone));
         $scope.healthInfoModel.healthInfoCountry = $rootScope.currentPatientDetails[0].countryCode;
         $scope.healthInfoModel.healthInfoTimezone = $rootScope.currentPatientDetails[0].account.timeZoneId;
+        if (!angular.isUndefined($rootScope.currentPatientDetails[0].organizationId) && $rootScope.currentPatientDetails[0].organizationId !== '') {
+           $rootScope.listOfLocForCurntOrg = $filter('filter')($rootScope.listOfLocation, {
+               organizationId: $rootScope.currentPatientDetails[0].organizationId
+           });
+       }
         $scope.phoneval = $rootScope.currentPatientDetails[0].homePhone;
         $scope.mobileval = $rootScope.currentPatientDetails[0].mobilePhone;
         $scope.healthInfoModel.address = $rootScope.currentPatientDetails[0].address;

@@ -146,12 +146,13 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 $rootScope.dayDisplay = 'none';
             }
 
-              if (args.millis < 600) {
+              //  if (args.millis < 600) {
+            if (args.minutes === 0 && args.seconds === 1) {
                 $rootScope.timeNew = 'none';
                 $rootScope.timeNew1 = 'block';
                 $('.AvailableIn').hide();
                 $('.enterAppoinment').show();
-            } else if (args.millis > 600) {
+            } else if (args.minutes >= 0 && args.seconds > 0) {
                 $('.AvailableIn').show();
                 $('.enterAppoinment').hide();
             }
@@ -240,15 +241,16 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             $mainHub.start();
             snap.hub.mainHub().stop();
         }  */
-
+         $scope.betDelay=false;
     }
 
     $scope.delay = function () {
              $scope.betDelay=true;
             $timeout(function() {
                 $scope.betDelay=false;
-            }, 5000);
+            }, 5500);
         }
+
 
     $scope.doGetSelectedappoimentDetails = function(SSscheduledAppointmentId) {
     //  $rootScope.appointmentId = '';
@@ -423,7 +425,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                       $rootScope.timerCOlor = 'transparent';
                   }
 
-
+                history.length = history.length - 1;
                 $scope.doGetExistingPatientName();
                 $rootScope.doGetDoctorDetails();
 
@@ -779,8 +781,9 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                   // $rootScope.appointmentsPatientFirstName =  data.data[0].patientName;
                   //  $rootScope.appointmentsPatientLastName = data.data[0].lastName;
                   if($rootScope.scheduledListDatas.patFirstName !== undefined ){
-                    $rootScope.appointmentsPatientFirstName =  $rootScope.scheduledListDatas.patFirstName;
+                    $rootScope.appointmentsPatientFirstName  =  $rootScope.scheduledListDatas.patFirstName;
                       $rootScope.appointmentsPatientLastName = $rootScope.scheduledListDatas.patLastName;
+                       $rootScope.appointmentPatientId       = $rootScope.scheduledListDatas.patientId ;
                   }else{
                     $rootScope.appointmentsPatientFirstName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].patientName);
                     $rootScope.appointmentsPatientLastName = htmlEscapeValue.getHtmlEscapeValue(data.data[0].lastName);
@@ -790,7 +793,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 $rootScope.appointmentsPatientImage = data.data[0].profileImagePath;
                   //  $rootScope.GoToPatientDetails = function(Pat_locat, P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Id, P_isAuthorized, clickEvent) ;
                   //  $rootScope.GoToPatientDetails('',$rootScope.appointmentsPatientImage, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, '', ' ');
-                 $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.scheduledListDatas.patFirstName, $rootScope.scheduledListDatas.patLastName, $rootScope.PatientAge, '',  $rootScope.scheduledListDatas.patientId, '', '');
+                 $rootScope.GoToPatientDetails('',   $rootScope.appointmentsPatientImage, $rootScope.appointmentsPatientFirstName, $rootScope.appointmentsPatientLastName, $rootScope.PatientAge, '',  $rootScope.appointmentPatientId, '', '');
                  // $rootScope.GoToPatientDetails('', '', $scope.paticipatingPatient.person.name.given, $scope.paticipatingPatient.person.name.family, $rootScope.appointmentsPatientDOB, '',  $rootScope.appointmentsPatientId, '', '');
             },
             error: function(data, status) {
@@ -867,7 +870,6 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             $('.enterAppoinment').hide();
             $('.enterAppoinment2').show();
             $(".enterAppoinment2").css("display", "block");
-            $scope.betDelay=true;
         }, $rootScope.AppointScheduleTime);
     } else {
         $rootScope.timeNew = 'none';
@@ -876,7 +878,6 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
         $('.enterAppoinment').hide();
         $('.enterAppoinment2').show();
         $(".enterAppoinment2").css("display", "block");
-        $scope.betDelay=true;
     }
 
     })
