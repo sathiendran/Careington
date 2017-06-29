@@ -1279,6 +1279,7 @@ $scope.locat=false;
             accessToken: $rootScope.accessToken,
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
+              $scope.cardPaymentId = [];
               if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount !== 0 ) {
                 $rootScope.doPostDepitDetails();
               } else {
@@ -1303,7 +1304,7 @@ $scope.locat=false;
                         $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
                         $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
                         $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
-                    }                    
+                    }
                     $rootScope.doGetPatientPaymentProfiles();
                     $scope.doGetPatientHealthPlansList();
                     $state.go('tab.consultCharge');

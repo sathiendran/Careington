@@ -3624,12 +3624,14 @@ var deregisterBackButton;
             $scope.ErrorMessage = "Invalid Expiry Month";
 
             $rootScope.Validation($scope.ErrorMessage);
-        } else if ($rootScope.Cvv.length !== $scope.ccCvvLength) {
+      //  } else if ($rootScope.Cvv.length !== $scope.ccCvvLength) {
+      } else if ($rootScope.Cvv.length < 3) {
             $scope.invalidZip = "";
             $scope.invalidMonth = "";
             $scope.invalidCard = "";
             $scope.invalidCVV = "border: 1px solid red;";
-            $scope.ErrorMessage = "Security code must be " + $scope.ccCvvLength + " numbers";
+          //  $scope.ErrorMessage = "CVV code must be " + $scope.ccCvvLength + " numbers";
+            $scope.ErrorMessage = "Invalid CVV code";
             $rootScope.Validation($scope.ErrorMessage);
         } else if (zipCount <= 4) {
             $scope.invalidMonth = "";
