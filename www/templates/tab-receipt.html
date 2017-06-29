@@ -8,7 +8,7 @@
          </div>
          <div class="PaymentSuccess" style="display: {{enablePaymentSuccess}}">
             Payment Successful!
-            <div class="PaymentConfirmation" >
+            <div class="PaymentConfirmation" style="display: {{enableConfirmationNumber}}" >
                Confirmation #{{paymentConfirmationNumber}}
                <div class="ConfirmationReceipt">
                   A receipt has been sent to you via email
@@ -30,7 +30,7 @@
          </div>
          <div class="CreditSuccess" style="display: {{enableWaivefeeVerification}}">
             <div class="PaymentConfirmation">
-          
+
                <div class="ConfirmationReceipt">
                   <span>{{getReceiptCreditCount}}</span> On-Demand Credits Remaining
                </div>

@@ -52054,9 +52054,10 @@ only screen and (min-width: 541px) {
     height: 27px
 }
 .dialogbox-master__buttons .button__red--cancel {
-    width: 56px;
+    /*width: 56px;*/
     overflow: hidden;
-    position: absolute;
+    margin-top: -2px;
+    /*position: absolute;*/
     right: 5px
 }
 .dialogbox-master__buttons .button__red--cancel span {
@@ -54419,6 +54420,8 @@ only screen and (min-width: 541px) {
     height: 100vh;
     width: 100vw;
     overflow-y: auto;
+    width: 85% !important;
+    border-radius: 7px;
     overflow-x: hidden
 }
 .dialogbox__close {
@@ -56953,7 +56956,7 @@ only screen and (min-width: 541px) {
     top: 0;
     left: 0
 }
-.dialogbox--person-location {
+  .dialogbox--person-location {
     width: 100%;
     max-width: 382px !important;
     height: auto;

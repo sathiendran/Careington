@@ -419,7 +419,8 @@
                         $rootScope.listOfAccountDependents.push({
                             'addresses': index.addresses,
                             'profileImagePath': $scope.iDependentPatientPhoto,
-                            'birthdate': ageFilter.getDateFilter(index.birthdate),
+                            'modifiedBirthdate': ageFilter.getDateFilter(index.birthdate),
+                            'birthdate': index.birthdate,
                             'PatientAge': $rootScope.patage,
                             'bloodType': index.bloodType,
                             'ethnicity': index.ethnicity,

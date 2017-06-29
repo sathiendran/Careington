@@ -146,12 +146,13 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
                 $rootScope.dayDisplay = 'none';
             }
 
-              if (args.millis < 600) {
+              //  if (args.millis < 600) {
+            if (args.minutes === 0 && args.seconds === 1) {
                 $rootScope.timeNew = 'none';
                 $rootScope.timeNew1 = 'block';
                 $('.AvailableIn').hide();
                 $('.enterAppoinment').show();
-            } else if (args.millis > 600) {
+            } else if (args.minutes >= 0 && args.seconds > 0) {
                 $('.AvailableIn').show();
                 $('.enterAppoinment').hide();
             }
@@ -240,7 +241,7 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
             $mainHub.start();
             snap.hub.mainHub().stop();
         }  */
-        
+         $scope.betDelay=false;
     }
 
     $scope.delay = function () {

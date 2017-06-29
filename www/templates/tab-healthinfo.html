@@ -373,7 +373,7 @@
 
                      <span class="input-label labelcolor" style=" white-space: normal;"><i class="iconfontSVG" ng-bind-html="drawSVGCIcon('female')"></i><b class="formlabel labelfont">{{patientidentifi.identifierTypeTitle}}</b></span>
                      <span class="healthViewDetails" >
-                       <input type="text" value="{{patientidentifi.identifierTypeCode+','+ patientidentifi.identifierTypeTitle +','+ patientidentifi.effectiveDate +','+ patientidentifi.statusCode}}" name="patientidentifiDetails[]" id="identifierTypeCode_{{ $index + 1 }}">
+                       <input type="hidden" value="{{patientidentifi.identifierTypeCode+','+ patientidentifi.identifierTypeTitle +','+ patientidentifi.effectiveDate +','+ patientidentifi.statusCode}}" name="patientidentifiDetails[]" id="identifierTypeCode_{{ $index + 1 }}">
                        <input type="text" name="healthInfoEmail ellipsis" id="helthPatVal_{{ $index + 1 }}"   value="{{patientidentifi.value}}" class="textdata" placeholder="Required">
 
 

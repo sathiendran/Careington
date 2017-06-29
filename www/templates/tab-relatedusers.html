@@ -92,7 +92,7 @@
                      <div class="docAppointImage" ng-bind-html="drawImage(getDependentDetails.profileImagePath,getDependentDetails.patientFirstName,getDependentDetails.patientLastName)"></div>
                      <span ng-click="showtab(getDependentDetails.tabPatientId)">
                         <h2  class="relatedhead"><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-                        <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
+                        <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.modifiedBirthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
                      </span>
                   </a>
                   <div class="row dotrow authorizePatient-{{deviceName}}" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="tabView">
