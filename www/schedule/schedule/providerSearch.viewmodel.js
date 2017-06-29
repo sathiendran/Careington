@@ -335,7 +335,7 @@
  $eventAggregator.subscriber("patientResponseDialog_locationConfirmed", function(currentLocation) {
                 if(scope.selectedPatient !== null) {
                     scope.selectedPatient.currentLocation = currentLocation;
-
+                     debugger;
                     scope.set("vm_currentPatientLocation", currentLocation);
 
                     var filters = scope._getCliniciansFilters();
@@ -521,6 +521,7 @@ this.vm_patientsNameFilter = "";
 
             this.vm_isNotificationActive = false;
             this.vm_closeNotification = function () {
+                this.vm_isNotificationActive = false;
                 this.set("vm_isNotificationActive", false);
             };
             this.vm_goToCalendar = function () {
@@ -766,6 +767,7 @@ this.vm_patientsNameFilter = "";
                 $customerDataService.getPatientProfileDetails(patient.id, "all").done(function (data) {
                     var location = "";
                     if(that.isResponseRuleActive) {
+
                         location = $utility.getEncounterAddressFromPatientProfile(data.data[0]);
                     } else if (that.isAddressRuleActive) {
                         location = $utility.getLocalAddressFromPatientProfile(data.data[0]);
