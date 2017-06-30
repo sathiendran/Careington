@@ -1211,8 +1211,12 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                 } else if(status === 0 ){
                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
                   $rootScope.Validation($scope.ErrorMessage);
-                }else {
-                    $rootScope.serverErrorMessageValidation();
+                } else if(data.statusText === "City is empty"){
+                  $scope.ErrorMessage = "City is empty";
+                  $rootScope.Validation($scope.ErrorMessage);
+                }
+                else {
+                  $rootScope.serverErrorMessageValidation();
                 }
             }
         };
