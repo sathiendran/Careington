@@ -1,3 +1,8 @@
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <form name="userRegister" id="userRegister" ng-submit="postRegisterStep1()" >
 <ion-view>
    <div id="Error_Message" ></div>
@@ -163,16 +168,16 @@
             <div ng-controller="LoginCtrl">
             </div>
        </ion-content>
-            <div class="hide-on-keyboard-open">
+            <!-- <div class="hide-on-keyboard-open"> -->
 
-               <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter" >
+               <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter hide-on-keyboard-open" >
                   <div class="regFooter__regConcernsFooter">
                      <button type="submit" class="button">
                      Agree & Create Account
                      </button>
                   </div>
                </ion-footer-bar>
-            </div>
+            <!-- </div> -->
      </div>
 
 <div ng-if="is_iPadDeviceWidth >= 768" >
@@ -340,16 +345,16 @@
                     <span style="text-decoration: underline;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep1');">Terms & Conditions</span> as well as the <span style="text-decoration: underline;"><a class="hospitalDynamicLink" ng-click="hospitallink()" >Privacy Policy </a></span> associated with the use of this service.
                </p>
             </div>
-            <div class="hide-on-keyboard-open">
+            <!-- <div class="hide-on-keyboard-open"> -->
 
-              <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter" >
+              <ion-footer-bar  class="bar bar-footer footer  footer-color regFooter hide-on-keyboard-open" >
                  <div class="regFooter__regConcernsFooter">
                     <button type="submit" class="button" >
                     Agree & Create Account
                     </button>
                  </div>
               </ion-footer-bar>
-          </div>
+          <!-- </div> -->
             <div ng-controller="LoginCtrl">
             </div>
           </div>
