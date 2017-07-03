@@ -545,7 +545,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if ($rootScope.AndroidDevice) {
+    } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -1720,6 +1720,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
 
         if (window.localStorage.getItem("tokenExpireTime") !== null && window.localStorage.getItem("tokenExpireTime") !== "") {
             if ($rootScope.currState.$current.name !== "tab.waitingRoom" && $rootScope.currState.$current.name !== "videoConference") {
+
                 navigator.notification.alert(
                     'Your session timed out.', // message
                     null,
@@ -2471,6 +2472,7 @@ var deregisterBackButton;
                     $state.go('tab.userhome');
 
                     deregisterBackButton = $ionicPlatform.registerBackButtonAction(function(e){}, 401);
+
                     var confirmPopup = $ionicPopup.confirm({
 
                         title: "<div class='locationtitle'> Confirm Current Location </div> ",
@@ -2494,11 +2496,16 @@ var deregisterBackButton;
                                   //$rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
                             }
                         }, ],
+
                     });
+                    $timeout(function(){
+                     confirmPopup.close();
+                        }, 1794000);
                     confirmPopup.then(function(res) {
                         if (res) {
                           deregisterBackButton();
                         } else {
+
                           //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
                         }
                     });
@@ -2512,6 +2519,7 @@ var deregisterBackButton;
                 error: function(data, status) {
 
                 }
+
             };
 
             LoginService.getLocationResponse(params);
