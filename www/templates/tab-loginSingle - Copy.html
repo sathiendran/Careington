@@ -1,5 +1,8 @@
-
-
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <ion-view title="Login">
 
 	<div ng-include src="'templates/password_header.html'"></div>
@@ -76,8 +79,8 @@
 
 
 	<!-- Footer Start-->
-	<div class="hide-on-keyboard-open">
-		<ion-footer-bar class="footer"  >
+	<!-- <div class="hide-on-keyboard-open"> -->
+		<ion-footer-bar class="footer" hide-on-keyboard="true">
 		 <div class="terms" >
 			 <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
 			 <a ng-if="deploymentEnv != 'Multiple'" ng-click="doGetTermsandCondition('tab.singleTerms', 'tab.loginSingle');" _ng-href="#/tab/singleTerms"><b>Terms & Conditions</b></a>
@@ -89,8 +92,6 @@
 			<a><b>v5.0.4<b></a>
 		  </div>
 		</ion-footer-bar>
-	</div>
+	<!-- </div> -->
 	<!-- Footer End-->
-
-
 </ion-view>

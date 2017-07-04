@@ -58,8 +58,8 @@
    <!--Side Menu File Include --->
    <div ng-include src="'templates/SideMenu.html'"></div>
    <!--<div ng-include src="'templates/consultCharge_footer.html'"></div>-->
-   <div class="hide-on-keyboard-open">
-      <ion-footer-bar align-title="left" class="footer">
+   <!-- <div class="hide-on-keyboard-open"> -->
+      <ion-footer-bar align-title="left" class="footer" hide-on-keyboard="true">
          <div class="ConsultChargeFooter">
             <div class="ConsultChargeBack" >
                <a class="button_new icon ion-chevron-left" ng-click="goToNextPage()" ><span> Back</span></a>
@@ -70,5 +70,5 @@
             </div>
          </div>
       </ion-footer-bar>
-   </div>
+   <!-- </div> -->
 </ion-view>
