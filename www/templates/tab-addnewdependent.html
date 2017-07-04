@@ -130,7 +130,7 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <select class="optionselect textdata" name="healthInfoCountry" id="dependentCountry" ng-model="addNewDependent.healthInfoCountry" >
-                        <option ng-repeat="country in serviceCountries" value="{{country.code}}" ><b>{{country.name}}</b></option>
+                        <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == primaryPatientDetails[0].countryCode" ><b>{{country.name}}</b></option>
                      </select>
                   </div>
                </div>
