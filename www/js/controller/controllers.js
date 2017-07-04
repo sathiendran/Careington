@@ -2083,6 +2083,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.patientAnatomy = '';
         $rootScope.patientPharmacyDetails = '';
         $rootScope.patientPhysicianDetails = '';
+        $rootScope.encounterstate = '';
+        $rootScope.encountercountry = '';
 
         var params = {
             accessToken: $rootScope.accessToken,
@@ -4116,12 +4118,13 @@ var deregisterBackButton;
                 },
                 error: function(data, status) {
                     if (status === 0) {
-
-                        $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                        $rootScope.Validation($scope.ErrorMessage);
-
+                      $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                      $rootScope.Validation($scope.ErrorMessage);
+                    } else if (status === 400) {
+                      $scope.ErrorMessage = "There's an error with this transaction due to technical issues";
+                      $rootScope.Validation($scope.ErrorMessage);
                     } else {
-                        $rootScope.serverErrorMessageValidation();
+                      $rootScope.serverErrorMessageValidation();
                     }
                 }
             };
@@ -5397,7 +5400,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 $state.go('tab.receipt');
                 $rootScope.ReceiptTimeout();
               } else if($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on' && $rootScope.consultationAmount !== 0 && typeof $rootScope.consultationAmount !== 'undefined') {
-                if($rootScope.isPaid !== true) {
+                if($rootScope.isPaid !== true  && ($rootScope.getIndividualPatientCreditCount === 0 || angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
                   if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
                       $('#addNewCard').val('Choose Your Card');
                       $('#addNewCard_addCard').val('Choose Your Card');
@@ -5502,7 +5505,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                     $state.go('tab.receipt');
                     $rootScope.ReceiptTimeout();
                   } else if($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on' && $rootScope.consultationAmount !== 0 && typeof $rootScope.consultationAmount !== 'undefined') {
-                    if($rootScope.isPaid !== true) {
+                    if($rootScope.isPaid !== true  && ($rootScope.getIndividualPatientCreditCount === 0 || angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
                       if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
                           $('#addNewCard').val('Choose Your Card');
                           $('#addNewCard_addCard').val('Choose Your Card');
