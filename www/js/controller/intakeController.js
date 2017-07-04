@@ -445,6 +445,7 @@ $scope.locat=false;
         $(".Error_Message").append(top);
         refresh_close();
     }
+
     $scope.PatientConcernsDirectory = function(ChronicValid) {
         $rootScope.ChronicValid = ChronicValid; // pre populated valid value
         $rootScope.IsValue = $rootScope.PatientPrimaryConcern.length;
@@ -455,6 +456,7 @@ $scope.locat=false;
             }
         } else {
             $rootScope.birHistory = {};
+            $rootScope.isPaid = '';
             $scope.doPostOnDemandConsultation();
         }
     }
@@ -661,6 +663,29 @@ $scope.locat=false;
         $rootScope.SecondaryConcernText = '';
         $rootScope.secondaryConcernValueExist = '';
     }
+
+    $scope.doGetAppointPaymentStatus = function() {
+      $rootScope.isPaidOnDemand = '';
+          var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $rootScope.isPaidOnDemand = data.isPaid;
+              },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getAppointPaymentStatus(params);
+    }
+
+
     /*Secondary concern End here*/
     $scope.OnDemandConsultationSaveData = {
         "concerns": [],
@@ -1272,7 +1297,7 @@ $scope.locat=false;
                     }
                 });
             }
-        }
+        } //$rootScope.isPaidOnDemand
 
         var params = {
             consultationId: $rootScope.consultationId,
@@ -1280,8 +1305,8 @@ $scope.locat=false;
             ConsultationSaveData: $scope.ConsultationSaveData,
             success: function(data) {
               $scope.cardPaymentId = [];
-              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount !== 0 ) {
-                $rootScope.doPostDepitDetails();
+              if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount !== 0  && $rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.isPaidOnDemand !== true) {
+                $scope.doPostDepitDetails();
               } else {
                   $scope.ConsultationSave = "success";
                   if($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on') {
@@ -1293,45 +1318,62 @@ $scope.locat=false;
                     $rootScope.chooseHealthShow = 'none';
                     $rootScope.providerName = "";
                     $rootScope.PolicyNo = "";
-                    if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
-                        $('#addNewCard').val('Choose Your Card');
-                        $('#addNewCard_addCard').val('Choose Your Card');
-                        $('#addNewCard_submitPay').val('Choose Your Card');
-                        $rootScope.userDefaultPaymentProfileText = null;
-                    } else {
-                        $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
-                        $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
-                        $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
-                        $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
-                        $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                    if ($rootScope.getIndividualPatientCreditCount === 0 && $rootScope.getIndividualPatientCreditCount !== '') {
+                      if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
+                          $('#addNewCard').val('Choose Your Card');
+                          $('#addNewCard_addCard').val('Choose Your Card');
+                          $('#addNewCard_submitPay').val('Choose Your Card');
+                          $rootScope.userDefaultPaymentProfileText = null;
+                      } else {
+                          $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+                          $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+                          $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+                          $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                          $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                      }
+                      $rootScope.doGetPatientPaymentProfiles();
                     }
-                    $rootScope.doGetPatientPaymentProfiles();
                     $scope.doGetPatientHealthPlansList();
                     $state.go('tab.consultCharge');
                   } else if($rootScope.insuranceMode === 'on' && (($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') || ($rootScope.paymentMode !== 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on'))) {
                     $rootScope.openAddHealthPlanSection();
                     $state.go('tab.consultCharge');
                   } else if($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on' && $rootScope.consultationAmount !== 0 && typeof $rootScope.consultationAmount !== 'undefined') {
-                    if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
-                        $('#addNewCard').val('Choose Your Card');
-                        $('#addNewCard_addCard').val('Choose Your Card');
-                        $('#addNewCard_submitPay').val('Choose Your Card');
-                        $rootScope.userDefaultPaymentProfileText = null;
-                    } else {
-                        $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
-                        $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
-                        $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
-                        $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
-                        $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
-                    }
-                      $rootScope.paymentBackPage = true;
-                      $rootScope.doGetPatientPaymentProfiles();
-                      $rootScope.healthPlanPage = "none";
-                      $rootScope.consultChargeNoPlanPage = "block";
-                      $state.go('tab.consultCharge');
-                      $rootScope.enableInsuranceVerificationSuccess = "none";
-                      $rootScope.enableCreditVerification = "none";
-                      $rootScope.enableWaivefeeVerification = "none";
+                    if($rootScope.isPaidOnDemand !== true && ($rootScope.getIndividualPatientCreditCount === 0 || angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
+                      if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
+                          $('#addNewCard').val('Choose Your Card');
+                          $('#addNewCard_addCard').val('Choose Your Card');
+                          $('#addNewCard_submitPay').val('Choose Your Card');
+                          $rootScope.userDefaultPaymentProfileText = null;
+                      } else {
+                          $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+                          $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+                          $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+                          $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                          $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                      }
+                        $rootScope.paymentBackPage = true;
+                        $rootScope.doGetPatientPaymentProfiles();
+                        $rootScope.healthPlanPage = "none";
+                        $rootScope.consultChargeNoPlanPage = "block";
+                        $state.go('tab.consultCharge');
+                        $rootScope.enableInsuranceVerificationSuccess = "none";
+                        $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "none";
+                      } else if($rootScope.isPaidOnDemand === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
+                        $rootScope.enableConfirmationNumber = "none";
+                        $rootScope.enableInsuranceVerificationSuccess = "none";
+                        $rootScope.enablePaymentSuccess = "none";
+                        if($rootScope.appointmentwaivefee === true) {
+                          $rootScope.enableCreditVerification = "none";
+                          $rootScope.enableWaivefeeVerification = "block";
+                        } else {
+                          $rootScope.enableWaivefeeVerification = "none";
+                          $rootScope.enableCreditVerification = "block";
+                        }
+                        $state.go('tab.receipt');
+                        $rootScope.ReceiptTimeout();
+                      }
                   } else if($rootScope.consultationAmount === 0 || ($rootScope.HidePaymentPageBeforeWaitingRoom === 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') || ($rootScope.paymentMode !== 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on')) {
                     $rootScope.enablePaymentSuccess = "none";
                     $rootScope.enableCreditVerification = "none"
@@ -1354,18 +1396,92 @@ $scope.locat=false;
         };
         LoginService.putConsultationSave(params);
     }
-    $rootScope.doPostDepitDetails = function() {
+    $scope.doPostDepitDetails = function() {
         var params = {
             patientId: $rootScope.patientId,
             consultationId: $rootScope.consultationId,
             accessToken: $rootScope.accessToken,
             success: function(data) {
-              $state.go('tab.receipt');
+            /*  $state.go('tab.receipt');
               $rootScope.enablePaymentSuccess = "none";
               $rootScope.enableInsuranceVerificationSuccess = "none";
               $rootScope.enableCreditVerification = "block";
                 $rootScope.enableWaivefeeVerification = "none";
-              $scope.ReceiptTimeout();
+              $scope.ReceiptTimeout();*/
+              if($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on') {
+                $rootScope.applyPlanMode = "block";
+                $rootScope.verifyPlanMode = "none";
+                $rootScope.consultChargeNoPlanPage = "none";
+                $rootScope.healthPlanPage = "block";
+                $rootScope.chooseHealthHide = 'initial';
+                $rootScope.chooseHealthShow = 'none';
+                $rootScope.providerName = "";
+                $rootScope.PolicyNo = "";
+                if ($rootScope.getIndividualPatientCreditCount === 0 && $rootScope.getIndividualPatientCreditCount !== '') {
+                  if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
+                      $('#addNewCard').val('Choose Your Card');
+                      $('#addNewCard_addCard').val('Choose Your Card');
+                      $('#addNewCard_submitPay').val('Choose Your Card');
+                      $rootScope.userDefaultPaymentProfileText = null;
+                  } else {
+                      $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+                      $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+                      $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+                      $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                      $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                  }
+                  $rootScope.doGetPatientPaymentProfiles();
+                }
+                $scope.doGetPatientHealthPlansList();
+                $state.go('tab.consultCharge');
+              } else if($rootScope.insuranceMode === 'on' && (($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') || ($rootScope.paymentMode !== 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on'))) {
+                $rootScope.openAddHealthPlanSection();
+                $state.go('tab.consultCharge');
+              } else if($rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on' && $rootScope.consultationAmount !== 0 && typeof $rootScope.consultationAmount !== 'undefined') {
+                if($rootScope.isPaidOnDemand !== true && ($rootScope.getIndividualPatientCreditCount === 0 || angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
+                    if (typeof $rootScope.userDefaultPaymentProfile === "undefined" || $rootScope.userDefaultPaymentProfile === null) {
+                        $('#addNewCard').val('Choose Your Card');
+                        $('#addNewCard_addCard').val('Choose Your Card');
+                        $('#addNewCard_submitPay').val('Choose Your Card');
+                        $rootScope.userDefaultPaymentProfileText = null;
+                    } else {
+                        $('#addNewCard').val($rootScope.userDefaultPaymentProfile);
+                        $('#addNewCard_addCard').val($rootScope.userDefaultPaymentProfile);
+                        $('#addNewCard_submitPay').val($rootScope.userDefaultPaymentProfile);
+                        $rootScope.paymentProfileId = $rootScope.userDefaultPaymentProfile;
+                        $scope.cardPaymentId.addNewCard = $rootScope.userDefaultPaymentProfile;
+                    }
+                      $rootScope.paymentBackPage = true;
+                      $rootScope.doGetPatientPaymentProfiles();
+                      $rootScope.healthPlanPage = "none";
+                      $rootScope.consultChargeNoPlanPage = "block";
+                      $state.go('tab.consultCharge');
+                      $rootScope.enableInsuranceVerificationSuccess = "none";
+                      $rootScope.enableCreditVerification = "none";
+                      $rootScope.enableWaivefeeVerification = "none";
+                  } else if($rootScope.isPaidOnDemand === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
+                      $rootScope.enableConfirmationNumber = "none";
+                      $rootScope.enableInsuranceVerificationSuccess = "none";
+                      $rootScope.enablePaymentSuccess = "none";
+                      if($rootScope.appointmentwaivefee === true) {
+                        $rootScope.enableCreditVerification = "none";
+                        $rootScope.enableWaivefeeVerification = "block";
+                      } else {
+                        $rootScope.enableWaivefeeVerification = "none";
+                        $rootScope.enableCreditVerification = "block";
+                      }
+                      $state.go('tab.receipt');
+                      $rootScope.ReceiptTimeout();
+                  }
+              } else if($rootScope.consultationAmount === 0 || ($rootScope.HidePaymentPageBeforeWaitingRoom === 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') || ($rootScope.paymentMode !== 'on' && $rootScope.insuranceMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on')) {
+                $rootScope.enablePaymentSuccess = "none";
+                $rootScope.enableCreditVerification = "none"
+                $rootScope.enableWaivefeeVerification = "none";;
+                $rootScope.enableInsuranceVerificationSuccess = "none";
+                $state.go('tab.receipt');
+                $rootScope.ReceiptTimeout();
+              }
+              $scope.doGetAppointPaymentStatus();
             },
             error: function(data,status) {
               if(status===0 ){

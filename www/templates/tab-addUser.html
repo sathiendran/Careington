@@ -1,3 +1,8 @@
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <ion-side-menus>
 <ion-side-menu-content>
    <form name="myForm" id="couserform" ng-submit="postNewuserDetails()">
@@ -57,13 +62,13 @@
          </ion-content>
          <div ng-controller="LoginCtrl">
          </div>
-         <div class="hide-on-keyboard-open">
-            <ion-footer-bar class=" bar-footer  footer-color footerrsheight" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" >
+         <!-- <div class="hide-on-keyboard-open"> -->
+            <ion-footer-bar class=" bar-footer  footer-color footerrsheight" hide-on-keyboard="true" style="position:fixed;left:0;right:0;" ng-click="buttonClicked = true" >
                <button  type="submit" class="submitbutton" >
                   <h1 class="title" id="centercolor">Send Invitation</h1>
                </button>
             </ion-footer-bar>
-         </div>
+         <!-- </div> -->
       </ion-view>
    </form>
 </ion-side-menu-content>
