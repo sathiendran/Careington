@@ -2269,7 +2269,12 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
-                $rootScope.currentPatientDetails = data.data;
+                $rootScope.currentPatientDetails = data.data;;
+                  // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
+                  $rootScope.Country_codsplit = $rootScope.currentPatientDetails[0].mobilePhone.split('(');
+                  $rootScope.countrycodevalue = $rootScope.Country_codsplit[0];
+
+
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
                     $rootScope.viewmyhealthDisplay = 'block';
