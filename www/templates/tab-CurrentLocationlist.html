@@ -39,7 +39,7 @@
 
 				<select id="country" class="profile-props__input"  ng-model="loction.loccountry"  name="loccountry">
 				<option >Select your Country</option>
-					<option ng-repeat="getcountry in listOfCountry" value="{{getcountry.country}}" > <b> {{getcountry.country}}</b></option>
+					<option ng-repeat="getcountry in listOfCountry" value="{{getcountry.country}}"><b>{{getcountry.country}}</b></option>
 					<input type="hidden" id="organ" value="{{loction.loccountry.country}}" />
 				</select>
 			 </label>
@@ -54,7 +54,7 @@
 
 				<select class="profile-props__input"  name="currentLocation" id="state">
 						<option>Choose state</option>
-						<option ng-repeat="getstate in listOfSelectstate" value="{{getstate.regioncode}}" > <b> {{getstate.region}}</b></option>
+						<option ng-repeat="getstate in listOfSelectstate" value="{{getstate.regioncode}}"><b>{{getstate.region}}</b></option>
 				 </select>
 			 </label>
 

@@ -3882,7 +3882,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
 }
 
 .regContainer {
-     height: 49px;     
+     height: 49px;
      position: fixed;
   .regDropDownContainer {
     /*position: relative;
@@ -4150,7 +4150,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     .viewport1 {
         pointer-events: none;
         color: #60605D;
-        position: absolute;
+        position: absolute;;
         width: 60%;
         height: 100%;
         z-index: 15;
@@ -4161,7 +4161,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         text-overflow: ellipsis;
         font-size: 19px;
         padding: 6px;
-        left: 45px;
+        margin-left: 20%;
         top: 8px;
       text-align: left;
     }

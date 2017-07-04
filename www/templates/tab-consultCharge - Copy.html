@@ -1,3 +1,8 @@
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <div id="Error_Message" class="ErrorMessageDiv" ></div>
 	 <div class="Server_Error ErrorMessageDiv" ></div>
 	 <div class="Error_Message ErrorMessageDiv" ></div>
@@ -241,8 +246,8 @@
 </ion-view>
 	<!--<div ng-include src="'templates/consultCharge_footer.html'"></div> --->
 
-	<div class="hide-on-keyboard-open">
-		<ion-footer-bar align-title="left" class="footer">
+	<!-- <div class="hide-on-keyboard-open"> -->
+		<ion-footer-bar align-title="left" class="footer" hide-on-keyboard="true">
 			<div class="ConsultChargeFooter">
 				<div class="ConsultChargeBack" >
                    <a class="button_new icon ion-chevron-left" ng-click="backConsultCharge();"  ><span> Back</span></a>
@@ -255,7 +260,7 @@
 
 			</div>
 		</ion-footer-bar>
-	</div>
+	<!-- </div> -->
 
 </ion-side-menu-content>
 <div ng-include src="'templates/SideMenu.html'"></div>
