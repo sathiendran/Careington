@@ -163,7 +163,8 @@
                   <a class="item fadediv" id="authorizeddiv" ng-click="authorizeduser(getDependentDetails.tabPatientId)">
                      <div class="docAppointImage" ng-bind-html="drawImage(getDependentDetails.profileImagePath,getDependentDetails.patientFirstName,getDependentDetails.patientLastName)"></div>
                      <h2 class="relatedhead"><span class="sfont fname">{{getDependentDetails.patientFirstName}}</span> <span class="sname">{{getDependentDetails.patientLastName}}</span> </h2>
-                     <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
+                     <!-- <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.birthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p> -->
+                     <p class="relatediconfont">{{getDependentDetails.gender}} .<span ng-if="getDependentDetails.birthdate != ''">  {{getDependentDetails.modifiedBirthdate}}</span> <span ng-if="getDependentDetails.relationship != ''"> . {{getDependentDetails.relationship}} </span></p>
                   </a>
                   <a class="item authorizedval" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="viewunauthorized" ng-click="addauthorized(getDependentDetails.tabPatientId)">
                      <p class="authorizedicon"><i class="ion-chevron-down"></i></p>
