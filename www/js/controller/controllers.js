@@ -545,7 +545,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if (!$rootScope.AndroidDevice) {
+    } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -4701,7 +4701,8 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
  $scope.updatelocation=function(){
 
-      $rootScope.upcountry=$( "#country option:selected" ).text();
+    //  $rootScope.upcountry=$( "#country option:selected" ).text();
+        $rootScope.upcountry =$rootScope.listOfLocState[0].countryCode;
       $rootScope.upstate=$( "#state option:selected" ).text();
       $rootScope.statereg=$rootScope.listOfLocState;
       if($rootScope.upcountry == "Select your Country" &&  $rootScope.upstate == "Choose state" && $rootScope.listOfLocState == ""){

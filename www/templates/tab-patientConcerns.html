@@ -30,7 +30,7 @@
                </div>
             </ion-item>
             <ion-item class="SecondaryList">
-               <div ng-click="loadSecondaryConcerns();" >
+               <div ng-if="secondaryConcernList.length != 0" ng-click="loadSecondaryConcerns();" >
                   <div class="SecondaryContent">
                      <h1 class="title ChronicCondition concernsSubTit">Secondary Concern</h1>
                      <p class="{{patientConternFontStyle}}">Any additional reason(s) to add?</p>
@@ -39,6 +39,9 @@
                      </div>
                   </div>
                </div>
+               <div ng-if="secondaryConcernList.length == 0">
+                    Secondary concerns are not available.
+                </div>
             </ion-item>
             <ion-item ng-repeat="item in PatientSecondaryConcern">
                <div class="PrimaryConcernList"  >
