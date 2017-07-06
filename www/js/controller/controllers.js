@@ -4695,7 +4695,8 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
 
  $scope.updatelocation=function(){
 
-      $rootScope.upcountry=$( "#country option:selected" ).text();
+    //  $rootScope.upcountry=$( "#country option:selected" ).text();
+        $rootScope.upcountry =$rootScope.listOfLocState[0].countryCode;
       $rootScope.upstate=$( "#state option:selected" ).text();
       $rootScope.statereg=$rootScope.listOfLocState;
       if($rootScope.upcountry == "Select your Country" &&  $rootScope.upstate == "Choose state" && $rootScope.listOfLocState == ""){
