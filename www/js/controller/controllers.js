@@ -545,7 +545,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if (!$rootScope.AndroidDevice) {
+    } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -3093,7 +3093,6 @@ var deregisterBackButton;
     $scope.showConsultChargeNoPlan = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian, P_Page) {
       if($rootScope.isPaid === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
         $rootScope.enableInsuranceVerificationSuccess = "none";
-        $rootScope.enableConfirmationNumber = "none";
         $rootScope.enablePaymentSuccess = "none";
         if($rootScope.appointmentwaivefee === true) {
           $rootScope.enableCreditVerification = "none";
@@ -3105,7 +3104,6 @@ var deregisterBackButton;
         $state.go('tab.receipt');
         $rootScope.ReceiptTimeout();
       } else {
-        $rootScope.enableConfirmationNumber = "block";
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
@@ -3253,11 +3251,9 @@ var deregisterBackButton;
                             $rootScope.PlanCoversAmount = '';
                         }
                       if($rootScope.isPaid !== true && ($rootScope.getIndividualPatientCreditCount === 0 || $rootScope.getIndividualPatientCreditCount === '')) {
-                        $rootScope.enableConfirmationNumber = "block";
                         $rootScope.doGetPatientPaymentProfiles();
                         $state.go('tab.addCard');
                       } else if($rootScope.isPaid === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
-                        $rootScope.enableConfirmationNumber = "none";
                         $rootScope.enableInsuranceVerificationSuccess = "none";
                         $rootScope.enablePaymentSuccess = "none";
                         if($rootScope.appointmentwaivefee === true) {
@@ -3378,13 +3374,11 @@ var deregisterBackButton;
               if($rootScope.isPaid === true) {
                 $rootScope.enableInsuranceVerificationSuccess = "block";
                 $rootScope.enablePaymentSuccess = "none";
-                $rootScope.enableConfirmationNumber = "none";
                 $rootScope.enableCreditVerification = "none";
                 $rootScope.enableWaivefeeVerification = "none";
                 $state.go('tab.receipt');
                 $rootScope.ReceiptTimeout();
               } else {
-                  $rootScope.enableConfirmationNumber = "block";
                   if($rootScope.paymentMode !== 'on' || $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
                     $rootScope.enablePaymentSuccess = "none";
                     $rootScope.enableCreditVerification = "none"
@@ -5321,13 +5315,35 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $state.go($rootScope.concentToTreatPreviousPage);
     }
 
+    $scope.doGetOndemandAppointPaymentStatus = function() {
+      $rootScope.isPaidOnDemand = '';
+          var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            success: function(data) {
+              $rootScope.isPaidOnDemand = data.isPaid;
+              $rootScope.doPutConsultationSave();
+              },
+            error: function(data, status) {
+                if (status === 0) {
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getAppointPaymentStatus(params);
+    }
+
     $scope.GoToConsultCharge = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
         $rootScope.PatientGuardian = $rootScope.primaryPatientFullName;
-        if ($rootScope.appointmentsPage === false) {
+        if ($rootScope.appointmentsPage !== true) {
 
             if ($rootScope.insuranceMode === 'on' && $rootScope.paymentMode !== 'on' && $rootScope.InsuranceBeforeWaiting !== 'on') {
                 $rootScope.healthPlanPage = "none";
@@ -5336,8 +5352,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                 $rootScope.consultChargeNoPlanPage = "none";
                 $rootScope.healthPlanPage = "block";
             }
-
-            $rootScope.doPutConsultationSave();
+            $scope.doGetOndemandAppointPaymentStatus();
         } else if ($rootScope.appointmentsPage === true) {
             if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.isPaid !== true) {
                 $rootScope.doPostDepitDetails();
@@ -5426,9 +5441,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                     $rootScope.enableInsuranceVerificationSuccess = "none";
                     $rootScope.enableCreditVerification = "none";
                     $rootScope.enableWaivefeeVerification = "none";
-                    $rootScope.enableConfirmationNumber = "block";
                   } else if($rootScope.isPaid === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
-                    $rootScope.enableConfirmationNumber = "none";
                     $rootScope.enableInsuranceVerificationSuccess = "none";
                     $rootScope.enablePaymentSuccess = "none";
                     if($rootScope.appointmentwaivefee === true) {
@@ -5531,9 +5544,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                         $rootScope.enableInsuranceVerificationSuccess = "none";
                         $rootScope.enableCreditVerification = "none";
                         $rootScope.enableWaivefeeVerification = "none";
-                        $rootScope.enableConfirmationNumber = "block";
                       } else if($rootScope.isPaid === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
-                        $rootScope.enableConfirmationNumber = "none";
                         $rootScope.enableInsuranceVerificationSuccess = "none";
                         $rootScope.enablePaymentSuccess = "none";
                         if($rootScope.appointmentwaivefee === true) {

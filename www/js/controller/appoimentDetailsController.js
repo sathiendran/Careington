@@ -82,6 +82,8 @@ angular.module('starter.controllers')
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
+        $scope.schedulePatAgeChange = new Date(P_Age);
+        $rootScope.schedulePatAge = getAge($scope.schedulePatAgeChange);
         $rootScope.appointPatientGuardian = P_Guardian;
         $rootScope.appointmentsPage = true;
         $scope.doCheckExistingConsulatationStatus();
@@ -165,13 +167,20 @@ angular.module('starter.controllers')
             documentType: 2,
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
-                  $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
                   $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
                if ($rootScope.appointmentsPage === true) {
-                 if($rootScope.Cttonscheduled === 'on'){
-                   $state.go('tab.ConsentTreat');
-                 }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
-                       $rootScope.doPostDepitDetails();
+                 if($rootScope.schedulePatAge === 0) {
+                   $rootScope.birHistory = {};
+                   $rootScope.appointIntakePage = 0;
+                   $rootScope.concentToTreatPreviousPage = "tab.intakeBornHistory";
+                   $state.go('tab.intakeBornHistory');
+                 } else {
+                   $rootScope.appointIntakePage = '';
+                   $rootScope.concentToTreatPreviousPage = "tab.appoimentDetails";
+                   if($rootScope.Cttonscheduled === 'on'){
+                       $state.go('tab.ConsentTreat');
+                   }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
+                     $rootScope.doPostDepitDetails();
                    }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){
                      $state.go('tab.receipt');
                      $rootScope.enablePaymentSuccess = "none";
@@ -184,7 +193,7 @@ angular.module('starter.controllers')
                        $rootScope.doGetHospitalInformation();
                    }
                  }
-
+               }
               },
             error: function(data, status) {
                 if (status === 0) {
