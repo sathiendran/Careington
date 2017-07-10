@@ -458,8 +458,29 @@ $scope.locat=false;
             $rootScope.birHistory = {};
             $rootScope.isPaid = '';
             $rootScope.appointIntakePage = '';
+            $rootScope.appointmentsPage = '';
             $scope.doPostOnDemandConsultation();
         }
+    }
+    $scope.doPutScheduledConsultationSave = function() {
+        var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            ConsultationSaveData: $rootScope.scheduledConsultSave,
+            success: function(data) {
+              console.log($rootScope.scheduledConsultSave);
+            },
+            error: function(data,status) {
+              if(status===0 ){
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.putConsultationSave(params);
     }
     $scope.doGetConcentToTreat = function() {
         var params = {
@@ -469,6 +490,9 @@ $scope.locat=false;
                 $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
                 if ($rootScope.appointmentsPage === true && $rootScope.schedulePatAge === 0) {
                   //$rootScope.appointmentsPage = false;
+                  if($rootScope.schedulePatAge === 0 && $rootScope.Cttonscheduled !== 'on') {
+                    $scope.doPutScheduledConsultationSave();
+                  }
                   if($rootScope.Cttonscheduled === 'on'){
                       $state.go('tab.ConsentTreat');
                   }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
@@ -502,7 +526,16 @@ $scope.locat=false;
     }
 
     $scope.goToConsentToTreat = function() {
+      $rootScope.scheduledConsultSave = '';
         if($rootScope.userAgeForIntake === 8) {
+          $scope.sConsultationSaveData = {
+              "medicationAllergies": [],
+              "surgeries": [],
+              "medicalConditions": [],
+              "medications": [],
+              "infantData": [],
+              "concerns": []
+          };
           if (typeof $("input[name='birthBorn']:checked").val() === 'undefined' || $("input[name='birthBorn']:checked").val() === ' ') {
               $scope.ErrorMessage = "Please choose if the patient was born at full term or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
@@ -523,6 +556,7 @@ $scope.locat=false;
               "dischargedWithMother": $("input[name='birthDischargedwithMother']:checked").val(),
               "vaccinationsCurrent": $("input[name='birthVaccination']:checked").val()
             }
+            $rootScope.scheduledConsultSave = $scope.ConsultationSaveData;
             //$rootScope.appointmentsPage = false;
             $scope.doGetConcentToTreat();
           }

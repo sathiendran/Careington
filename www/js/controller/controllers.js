@@ -5338,6 +5338,29 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         LoginService.getAppointPaymentStatus(params);
     }
 
+    $scope.doPutScheduledConsultationSave = function() {
+        var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            ConsultationSaveData: $rootScope.scheduledConsultSave,
+            success: function(data) {
+              console.log($rootScope.scheduledConsultSave);
+            },
+            error: function(data,status) {
+              if(status===0 ){
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.putConsultationSave(params);
+    }
+
+
+
     $scope.GoToConsultCharge = function(P_img, P_Fname, P_Lname, P_Age, P_Guardian) {
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
@@ -5355,6 +5378,9 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
             }
             $scope.doGetOndemandAppointPaymentStatus();
         } else if ($rootScope.appointmentsPage === true) {
+            if($rootScope.schedulePatAge === 0) {
+              $scope.doPutScheduledConsultationSave();
+            }
             if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.isPaid !== true) {
                 $rootScope.doPostDepitDetails();
             }else if($rootScope.getIndividualPatientCreditCount !== 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){
