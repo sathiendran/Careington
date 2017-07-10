@@ -457,8 +457,30 @@ $scope.locat=false;
         } else {
             $rootScope.birHistory = {};
             $rootScope.isPaid = '';
+            $rootScope.appointIntakePage = '';
+            $rootScope.appointmentsPage = '';
             $scope.doPostOnDemandConsultation();
         }
+    }
+    $scope.doPutScheduledConsultationSave = function() {
+        var params = {
+            consultationId: $rootScope.consultationId,
+            accessToken: $rootScope.accessToken,
+            ConsultationSaveData: $rootScope.scheduledConsultSave,
+            success: function(data) {
+              console.log($rootScope.scheduledConsultSave);
+            },
+            error: function(data,status) {
+              if(status===0 ){
+                   $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                   $rootScope.Validation($scope.ErrorMessage);
+
+              }else{
+                $rootScope.serverErrorMessageValidation();
+              }
+            }
+        };
+        LoginService.putConsultationSave(params);
     }
     $scope.doGetConcentToTreat = function() {
         var params = {
@@ -466,7 +488,30 @@ $scope.locat=false;
             hospitalId: $rootScope.hospitalId,
             success: function(data) {
                 $rootScope.concentToTreatContent = htmlEscapeValue.getHtmlEscapeValue(data.data[0].documentText);
-                $state.go('tab.ConsentTreat');
+                if ($rootScope.appointmentsPage === true && $rootScope.schedulePatAge === 0) {
+                  //$rootScope.appointmentsPage = false;
+                  if($rootScope.schedulePatAge === 0 && $rootScope.Cttonscheduled !== 'on') {
+                    $scope.doPutScheduledConsultationSave();
+                  }
+                  if($rootScope.Cttonscheduled === 'on'){
+                      $state.go('tab.ConsentTreat');
+                  }else  if (!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount != 0 && $rootScope.paymentMode === 'on' &&  $rootScope.appointmentwaivefee === false && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on') {
+                    $rootScope.doPostDepitDetails();
+                  }else if($rootScope.getIndividualPatientCreditCount !== 0 &&  $rootScope.appointmentwaivefee === true && $rootScope.HidePaymentPageBeforeWaitingRoom === 'on'){
+                    $state.go('tab.receipt');
+                    $rootScope.enablePaymentSuccess = "none";
+                    $rootScope.enableInsuranceVerificationSuccess = "none";
+                    $rootScope.enableCreditVerification = "none";
+                    $rootScope.enableWaivefeeVerification = "block";
+                     $rootScope.ReceiptTimeout();
+                  }
+                   else {
+                      $rootScope.doGetHospitalInformation();
+                  }
+                } else {
+                  $rootScope.appointmentsPage = false;
+                  $state.go('tab.ConsentTreat');
+                }
             },
             error: function(data) {
               if(data =='null' ){
@@ -481,7 +526,16 @@ $scope.locat=false;
     }
 
     $scope.goToConsentToTreat = function() {
+      $rootScope.scheduledConsultSave = '';
         if($rootScope.userAgeForIntake === 8) {
+          $scope.sConsultationSaveData = {
+              "medicationAllergies": [],
+              "surgeries": [],
+              "medicalConditions": [],
+              "medications": [],
+              "infantData": [],
+              "concerns": []
+          };
           if (typeof $("input[name='birthBorn']:checked").val() === 'undefined' || $("input[name='birthBorn']:checked").val() === ' ') {
               $scope.ErrorMessage = "Please choose if the patient was born at full term or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
@@ -502,7 +556,8 @@ $scope.locat=false;
               "dischargedWithMother": $("input[name='birthDischargedwithMother']:checked").val(),
               "vaccinationsCurrent": $("input[name='birthVaccination']:checked").val()
             }
-            $rootScope.appointmentsPage = false;
+            $rootScope.scheduledConsultSave = $scope.ConsultationSaveData;
+            //$rootScope.appointmentsPage = false;
             $scope.doGetConcentToTreat();
           }
         } else {
@@ -513,7 +568,7 @@ $scope.locat=false;
             "dischargedWithMother": "",
             "vaccinationsCurrent": ""
           }
-          $rootScope.appointmentsPage = false;
+          //$rootScope.appointmentsPage = false;
           $scope.doGetConcentToTreat();
         }
     };
@@ -524,6 +579,15 @@ $scope.locat=false;
             $scope.goToConsentToTreat();
       }
     };
+
+    $scope.backFromIntakeBornHisPage = function() {
+      if($rootScope.concentToTreatPreviousPage === 'tab.intakeBornHistory' && $rootScope.appointIntakePage === 0) {
+            $state.go('tab.appoimentDetails');
+      }else {
+            $state.go('tab.CurrentMedication');
+      }
+    };
+
     $scope.data = {};
     $scope.$watch('data.searchProvider', function(searchKey) {
         $rootScope.providerSearchKey = searchKey;
@@ -663,28 +727,6 @@ $scope.locat=false;
         $rootScope.SecondaryConcernText = '';
         $rootScope.secondaryConcernValueExist = '';
     }
-
-    $scope.doGetAppointPaymentStatus = function() {
-      $rootScope.isPaidOnDemand = '';
-          var params = {
-            consultationId: $rootScope.consultationId,
-            accessToken: $rootScope.accessToken,
-            success: function(data) {
-              $rootScope.isPaidOnDemand = data.isPaid;
-              },
-            error: function(data, status) {
-                if (status === 0) {
-                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
-                    $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
-                    $rootScope.serverErrorMessageValidation();
-                }
-            }
-        };
-        LoginService.getAppointPaymentStatus(params);
-    }
-
 
     /*Secondary concern End here*/
     $scope.OnDemandConsultationSaveData = {
@@ -1306,7 +1348,7 @@ $scope.locat=false;
             success: function(data) {
               $scope.cardPaymentId = [];
               if(!angular.isUndefined($rootScope.getIndividualPatientCreditCount) && $rootScope.getIndividualPatientCreditCount !== 0  && $rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on' && $rootScope.isPaidOnDemand !== true) {
-                $scope.doPostDepitDetails();
+                $scope.doPostOndemandDepitDetails();
               } else {
                   $scope.ConsultationSave = "success";
                   if($rootScope.insuranceMode === 'on' && $rootScope.paymentMode === 'on' && $rootScope.HidePaymentPageBeforeWaitingRoom !== 'on') {
@@ -1361,7 +1403,6 @@ $scope.locat=false;
                         $rootScope.enableCreditVerification = "none";
                         $rootScope.enableWaivefeeVerification = "none";
                       } else if($rootScope.isPaidOnDemand === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
-                        $rootScope.enableConfirmationNumber = "none";
                         $rootScope.enableInsuranceVerificationSuccess = "none";
                         $rootScope.enablePaymentSuccess = "none";
                         if($rootScope.appointmentwaivefee === true) {
@@ -1396,7 +1437,7 @@ $scope.locat=false;
         };
         LoginService.putConsultationSave(params);
     }
-    $scope.doPostDepitDetails = function() {
+    $scope.doPostOndemandDepitDetails = function() {
         var params = {
             patientId: $rootScope.patientId,
             consultationId: $rootScope.consultationId,
@@ -1460,7 +1501,6 @@ $scope.locat=false;
                       $rootScope.enableCreditVerification = "none";
                       $rootScope.enableWaivefeeVerification = "none";
                   } else if($rootScope.isPaidOnDemand === true || ($rootScope.getIndividualPatientCreditCount !== 0 && !angular.isUndefined($rootScope.getIndividualPatientCreditCount))) {
-                      $rootScope.enableConfirmationNumber = "none";
                       $rootScope.enableInsuranceVerificationSuccess = "none";
                       $rootScope.enablePaymentSuccess = "none";
                       if($rootScope.appointmentwaivefee === true) {
@@ -1481,7 +1521,6 @@ $scope.locat=false;
                 $state.go('tab.receipt');
                 $rootScope.ReceiptTimeout();
               }
-              $scope.doGetAppointPaymentStatus();
             },
             error: function(data,status) {
               if(status===0 ){

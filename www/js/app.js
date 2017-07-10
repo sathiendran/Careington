@@ -466,11 +466,20 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
         function onOnline() {
           console.log('Closing in controller!');
+
           $rootScope.connAlertStatus = false;
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
             }else{
+
               if($rootScope.flagpopup==false){
+                $rootScope.$watch(function(){
+             if($state.$current.name == "tab.waitingRoom")
+              // $window.alert($state.$current.name);
+             $rootScope.waitingroomlostconnection();
+              }, function(newVal, oldVal){
+              //do something with values
+              });
                 myPopup.close();
               }
             }

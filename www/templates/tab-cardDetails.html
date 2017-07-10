@@ -85,7 +85,7 @@
                   <input type="text" style="{{invalidZip}}" placeholder="Required"  ng-model="getCardDetails.CardZipCode"  input-max-length-number maxlength="10" name="Zip" id="Zip" required/>
                </div>
             </div>
-            <div class="planDetails"  style="opacity:{{planverify}};">
+            <div class="planDetails" ng-if="$rootScope.addCardStatus != 200" style="opacity:{{planverify}};">
                <p class="carddetails">When you add a credit card, information about your card, will be sent to Authorize.net and your card issuer.</p>
             </div>
             <div class="privacy" style="opacity:{{planverify}};"><a class="hospitalDynamicLink" style="padding: 5px; position: relative; left: -5px; color: #39BAD9;" _onclick="window.open('https://docyourway.snap-stage.com/Main/#/UserTerms', '_system', 'location=yes'); return false;">About {{Hospital}} Privacy</a></div>
