@@ -2206,7 +2206,9 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                      $(".code6").css("width", "64%");
                      $(".code6").css("left", "-8px");
                      $(".item-input .editdata").css("font-size","14px");
-                     $(".item-input .textdata").css("font-size","14px")
+                     $(".item-input .textdata").css("font-size","14px");
+                     $(".item-input .editdata").css("font-weight","bold");
+                     $(".item-input .textdata").css("font-weight","bold");
                   }
                   // else{
                   //   $(".item-input .editdata").css("font-size","14px");
