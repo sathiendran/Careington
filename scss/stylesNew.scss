@@ -4559,7 +4559,12 @@ background-color: #23B4D6 !important;
     }
 }
 .labelcolor {
-    width: 45%; 
+    width: 45%;
+}
+@media screen and (min-width: 320px) and (max-width:568px) {
+ .labelcolor {
+  width: 51%;
+  }
 }
 }
 .ioncontentalign {
@@ -5058,3 +5063,8 @@ font-size: 19px;
 	font-size: 14px;
 	padding-top: 10px;
 }
+// @media screen and (min-width: 320px) and (max-width:568px) {
+//   #code6 {
+//     width: 79%;
+//   }
+// }
