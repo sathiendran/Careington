@@ -471,15 +471,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
             }else{
-
+              if($state.$current.name == "tab.waitingRoom")
+                 $rootScope.waitingroomlostconnection();
               if($rootScope.flagpopup==false){
-                $rootScope.$watch(function(){
-             if($state.$current.name == "tab.waitingRoom")
-              // $window.alert($state.$current.name);
-             $rootScope.waitingroomlostconnection();
-              }, function(newVal, oldVal){
-              //do something with values
-              });
                 myPopup.close();
               }
             }
