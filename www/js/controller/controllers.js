@@ -3649,7 +3649,7 @@ var deregisterBackButton;
 
             $rootScope.Validation($scope.ErrorMessage);
       //  } else if ($rootScope.Cvv.length !== $scope.ccCvvLength) {
-      } else if ($rootScope.Cvv.length < 3) {
+      } else if ($rootScope.Cvv.toString().length < 3) {
             $scope.invalidZip = "";
             $scope.invalidMonth = "";
             $scope.invalidCard = "";
