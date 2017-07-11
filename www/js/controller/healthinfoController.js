@@ -2201,16 +2201,35 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
               $rootScope.currntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
               $scope.healthInfoModel.healthInfoCountryCode =  $rootScope.currntCountryCode[0].code;
                if($scope.healthInfoModel.healthInfoCountryCode.length == 6){
-                     $("#health_width").css("width", "62px");
-                }
+                     $("#health_width").css("width", "54px");
+                     $("#health_width").css("left", "-7px" );
+                     $(".code6").css("width", "64%");
+                     $(".code6").css("left", "-8px");
+                     $(".item-input .editdata").css("font-size","14px");
+                     $(".item-input .textdata").css("font-size","14px");
+                     $(".item-input .editdata").css("font-weight","bold");
+                     $(".item-input .textdata").css("font-weight","bold");
+                  }
+                  // else{
+                  //   $(".item-input .editdata").css("font-size","14px");
+                  //   $(".item-input .textdata").css("font-size","14px")
+                  // }
                 else if ($scope.healthInfoModel.healthInfoCountryCode.length == 4){
-                 $("#health_width").css("width", "47px");
+                 $("#health_width").css("width", "44px");
+                  $(".code6").css("width", "71%");
+                  $(".item-input .editdata").css("font-size","16px");
+                  $(".item-input .textdata").css("font-size","16px")
+
                }
               else if($scope.healthInfoModel.healthInfoCountryCode.length == 3){
                     $("#health_width").css("width", "36px");
+                    $(".item-input .editdata").css("font-size","16px");
+                    $(".item-input .textdata").css("font-size","16px")
                 }
                 else if($scope.healthInfoModel.healthInfoCountryCode.length == 2){
                       $("#health_width").css("width", "24px");
+                      $(".item-input .editdata").css("font-size","16px");
+                      $(".item-input .textdata").css("font-size","16px")
                   }
             } else{
               if($rootScope.countrycodevalue.length == 6){
