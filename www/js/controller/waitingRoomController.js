@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
 
-.controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList,$ionicBackdrop) {
+.controller('waitingRoomCtrl', function($scope, $window, $ionicPlatform, htmlEscapeValue, $interval, $locale, $ionicLoading, $http, $ionicModal, $ionicSideMenuDelegate, $ionicHistory, LoginService, StateLists, CountryList, UKStateList, $state, $rootScope, $stateParams, dateFilter, $timeout, SurgeryStocksListService, $filter, StateList,$ionicBackdrop) {
     $.getScript( "lib/jquery.signalR-2.1.2.js", function( data, textStatus, jqxhr ) {
 
     });
@@ -332,17 +332,17 @@ angular.module('starter.controllers')
                               window.localStorage.setItem('isVideoCallProgress', "No");
                               $('#thumbVideos').remove();
                                 $('#videoControls').remove();
-                                session.disconnect();
+                              //  session.disconnect();
                                 $('#publisher').hide();
                                 $('#subscriber').hide();
                                 $('#divVdioControlPanel').hide();
 
                                navigator.notification.alert(
                                    'Consultation already completed!', // message
+                                   consultationEndedAlertDismissed,
                                    $rootScope.alertMsgName, // title
                                    'Done' // buttonName
                                );
-                              $rootScope.doGetExistingConsulatationReport();
                           } else if ($rootScope.consultationStatusId === 79) {
                              navigator.notification.alert(
                                  'Your consultation is cancelled.', // message
@@ -365,8 +365,9 @@ angular.module('starter.controllers')
                                  'Done' // buttonName
                              );
                              return false;
+                         } else if ($rootScope.consultationStatusId === 82 || $rootScope.consultationStatusId === 70) {
+                           initWaitingRoomHub();
                          }
-
                      }
 
                    }
@@ -810,6 +811,9 @@ angular.module('starter.controllers')
                angular.element(this).attr('href', 'javascript:void(0);');
                angular.element(this).attr('onclick', onClickLink);
            });
+       }
+       function consultationEndedAlertDismissed() {
+            $rootScope.doGetExistingConsulatationReport();
        }
 
     $rootScope.waitingroomlostconnection = function(){
