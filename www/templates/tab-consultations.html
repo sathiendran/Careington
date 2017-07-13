@@ -85,7 +85,7 @@
                      <div class="ellipsis passedDoc-{{deviceName}}">
                         <p class="ellipsis">
                            <a class="colfamily" ng-if="!passedData.assignedDoctorName">N/A</a>
-                           <a class="colfamily" ng-if="passedData.assignedDoctorName">Dr.{{passedData.assignedDoctorName}}</a>
+                           <a class="colfamily" ng-if="passedData.assignedDoctorName">{{passedData.assignedDoctorName}}</a>
                         </p>
                      </div>
                      <div class="passedDetails-{{deviceName}}">
@@ -131,7 +131,7 @@
                         <p class="ellipsis">
                            <a class="colfamily" ng-if="!misseddata.docname">N/A
                            </a>
-                           <a class="colfamily" ng-if="misseddata.docname">Dr.{{misseddata.docname}}
+                           <a class="colfamily" ng-if="misseddata.docname">{{misseddata.docname}}
                            </a>
                         </p>
                      </div>
@@ -177,7 +177,7 @@
                      <div class="ellipsis passedDoc-{{deviceName}}">
                         <p class="ellipsis">
                            <a class="colfamily" ng-if="!droppedData.assignedDoctorName">N/A</a>
-                           <a class="colfamily" ng-if="droppedData.assignedDoctorName">Dr.{{droppedData.assignedDoctorName}}</a>
+                           <a class="colfamily" ng-if="droppedData.assignedDoctorName">{{droppedData.assignedDoctorName}}</a>
                         </p>
                      </div>
                      <div class="passedDetails-{{deviceName}}">

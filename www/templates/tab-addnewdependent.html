@@ -1,3 +1,8 @@
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <ion-side-menus>
 <ion-side-menu-content>
    <form name="depForm" id="dependentuserform" ng-submit="postDependentDetails()">
@@ -130,7 +135,7 @@
                   </div>
                   <div class="col col-50 depGreyLabel">
                      <select class="optionselect textdata" name="healthInfoCountry" id="dependentCountry" ng-model="addNewDependent.healthInfoCountry" >
-                        <option ng-repeat="country in serviceCountries" value="{{country.code}}" ><b>{{country.name}}</b></option>
+                        <option ng-repeat="country in serviceCountries" value="{{country.code}}" ng-selected="country.code == primaryPatientDetails[0].countryCode" ><b>{{country.name}}</b></option>
                      </select>
                   </div>
                </div>
@@ -268,8 +273,8 @@
             </div>
             <input type="submit" style="visibility: hidden;">
          </ion-content>
-            <div class="hide-on-keyboard-open">
-         <ion-footer-bar class="bar bar-footer footer footerrsheight" style="background-color:#CBCBCB !important; border-color: #CBCBCB !important; padding: 0px;" ng-hide="tempfooter">
+            <!-- <div class="hide-on-keyboard-open"> -->
+         <ion-footer-bar class="bar bar-footer footer footerrsheight" hide-on-keyboard="true" style="background-color:#CBCBCB !important; border-color: #CBCBCB !important; padding: 0px;" ng-hide="tempfooter">
                <p class="alterfooter">Please Complete</br>
                All Required Fields
             </p>
@@ -281,7 +286,7 @@
                   <h1 class="title" id="centercolor" >Add Dependent</h1>
                </button>
             </ion-footer-bar>
-         </div>
+         <!-- </div> -->
       </ion-view>
    </form>
 </ion-side-menu-content>

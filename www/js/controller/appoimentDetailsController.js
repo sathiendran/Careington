@@ -110,6 +110,8 @@ $("link[href*='css/styles.v3.less.dynamic.css']").remove();
         $rootScope.PatientFirstName = P_Fname;
         $rootScope.PatientLastName = P_Lname;
         $rootScope.PatientAge = P_Age;
+        $scope.schedulePatAgeChange = new Date(P_Age);
+        $rootScope.schedulePatAge = getAge($scope.schedulePatAgeChange);
         $rootScope.appointPatientGuardian = P_Guardian;
         $rootScope.appointmentsPage = true;
         $rootScope.doGetAppointmentConsultationId(appointmentId,appointPersonId);

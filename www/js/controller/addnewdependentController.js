@@ -841,7 +841,8 @@ angular.module('starter.controllers')
               $scope.depCurrntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
               $scope.addNewDependent.healthInfoCountryCode =  $scope.depCurrntCountryCode[0].code;
             } else {
-                $scope.addNewDependent.healthInfoCountryCode = '+1';
+              //  $scope.addNewDependent.healthInfoCountryCode = '+1';
+             $scope.addNewDependent.healthInfoCountryCode =  $rootScope.primaryPatientDetails[0].countryCode;
             }
     });
     //Function to open ActionSheet when clicking Camera Button

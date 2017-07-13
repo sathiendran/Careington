@@ -1,3 +1,8 @@
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <ion-view>
    <div id="Error_Message" ></div>
    <div class="Server_Error" ></div>
@@ -66,16 +71,16 @@
       </div>
    </ion-content>
    <!-- Footer Start-->
-   <div class="hide-on-keyboard-open">
-      <ion-footer-bar class="footer" style="background-color: #EF4B27 !important; border-color: #EF4B27 !important">
+   <!-- <div class="hide-on-keyboard-open"> -->
+      <ion-footer-bar class="footer" hide-on-keyboard='true' style="background-color: #EF4B27 !important; border-color: #EF4B27 !important">
          <div class="terms" >
             <a ng-if="deploymentEnv == 'Multiple'" class="button_new icon ion-chevron-left terms_footer_a" ng-href="#/tab/chooseEnvironment"><span>Back</span></a>
             <a ng-if="deploymentEnv != 'Multiple'" ng-href="#/tab/terms"><b>Terms & Conditions</b></a>
          </div>
          <div class="powerdBySnapMD">
-            <a><b>v7.6.15<b></a>
+            <a><b>v7.7.3<b></a>
          </div>
       </ion-footer-bar>
-   </div>
+   <!-- </div> -->
    <!-- Footer End-->
 </ion-view>

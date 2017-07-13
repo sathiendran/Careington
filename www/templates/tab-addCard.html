@@ -1,3 +1,8 @@
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <div class="Error_Message ErrorMessageDiv" ></div>
 <div class="Server_Error ErrorMessageDiv" ></div>
 <ion-view title="Add Card">
@@ -98,8 +103,8 @@
             </div>
          </div>
       </ion-content>
-      <div class="hide-on-keyboard-open">
-         <ion-footer-bar align-title="left" class="footer">
+      <!-- <div class="hide-on-keyboard-open"> -->
+         <ion-footer-bar align-title="left" class="footer" hide-on-keyboard="true">
             <div class="ConsultChargeFooter">
                <div class="ConsultChargeBack">
                </div>
@@ -108,7 +113,7 @@
                </div>
             </div>
          </ion-footer-bar>
-      </div>
+      <!-- </div> -->
    </ion-side-menu-content>
    <!--Side Menu File Include --->
    <div ng-include src="'templates/SideMenu.html'"></div>

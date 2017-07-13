@@ -4403,7 +4403,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
     .viewport1 {
         pointer-events: none;
         color: #60605D;
-        position: absolute;
+        position: absolute;;
         width: 60%;
         height: 100%;
         z-index: 15;
@@ -4414,7 +4414,7 @@ form.ng-submitted input.ng-valid + i.icon.error {
         text-overflow: ellipsis;
         font-size: 19px;
         padding: 6px;
-        left: 45px;
+        margin-left: 20%;
         top: 8px;
       text-align: left;
     }
@@ -4954,7 +4954,7 @@ padding: 200px 7px 7px 7px;
 .labelcolor {
     color: #cccccc;
     margin-left: 5px;
-    width: 45%;
+    width: 70%;
     max-width: 50%;
     .iconsize {
         font-size: 25px;
@@ -5038,9 +5038,10 @@ hr {
     margin-top: -8px;
 }
 .editicons {
-    float: right;
-    margin-right: 16px;
-    margin-top: -32px;
+  float: right;
+  margin-right: 9px;
+  margin-top: -50px;
+  padding: 15px 8px 9px 14px;
 }
 .closeicon {
     float: right;
@@ -5056,13 +5057,15 @@ hr {
     }
 }
 .currentedit {
-    float: right;
-    margin-right: 12px;
+  float: right;
+  margin-right: 9px;
+  padding: 0px 7px 5px 7px;
 }
 .editicon {
-    float: right;
-    margin-right: 16px;
-    margin-top: -32px;
+  float: right;
+  margin-right: 2px;
+  margin-top: -50px;
+  padding: 17px 18px 15px 11px;
 }
 .dotalign {
     margin-top: -8px;
@@ -5495,3 +5498,15 @@ hr {
     padding:0px !important;
   }
 }
+// @media screen and (min-width: 320px) and (max-width:568px) {
+//   .listprofileEdit .labelsize {
+//   width: 51%;
+//   }
+//   .health_wid{
+//     width: 44px;
+//   }
+//   .code6{
+//    width: 70%;
+//    left: -5px;
+//   }
+// }

@@ -1,3 +1,8 @@
+<style>
+.has-footer{
+  bottom: 0px!important;
+}
+</style>
 <ion-view>
    <div id="Error_Message" ></div>
    <ion-content class="register regStep2Con" style="background-color: {{brandColor}};" scroll="true" >
@@ -53,13 +58,13 @@
       <div ng-controller="LoginCtrl">
       </div>
    </ion-content>
-   <div class="hide-on-keyboard-open">
-   <ion-footer-bar  class="footer" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
+   <!-- <div class="hide-on-keyboard-open"> -->
+   <ion-footer-bar  class="footer" hide-on-keyboard="true" style="background-color: {{brandColor}} !important; border-color: {{brandColor}} !important">
       <div class="ConcernsFooter">
       <div class="FooterLeft" style="width: 100%;">
          <a class="button_new icon" style="font-size: 9px;" ng-click="doGetTermsandCondition('tab.registerTerms', 'tab.registerStep2');">Terms & Conditions</a>
       </div>
-      <div>
+    </div>
    </ion-footer-bar>
-   </div>
+   <!-- </div> -->
 </ion-view>

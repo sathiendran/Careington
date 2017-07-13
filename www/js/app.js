@@ -285,74 +285,76 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
     }
 
     function goInactive() {
-        var inactiveDuration = window.localStorage.getItem('InActiveSince');
-        var isCustomerInWaitingRoomVal = window.localStorage.getItem("isCustomerInWaitingRoom");
-        var isVideoCallProgressVal = window.localStorage.getItem('isVideoCallProgress')
-        inactiveDuration = Number(inactiveDuration);
-        if(inactiveDuration === 30){
-            if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
-                if(isCustomerInWaitingRoomVal != 'Yes' && isVideoCallProgressVal != 'Yes') {
-                  $(".ion-google-place-container").css({
-                      "display": "none"
-                  });
-                  $ionicBackdrop.release();
-                  window.localStorage.setItem('Inactive Success', timeoutValue);
-                  timeoutValue = 0;
-                  clearSessionLogoutTimer();
-                  if ($rootScope.currState.$current.name == "tab.addnewdependent") {
-                        if( $rootScope.flagdeptmodal==true){
-                          $rootScope.ClearRootScope();
-                        //  $rootScope.removemodal();
-                          navigator.notification.alert(
-                               'Your session timed out.', // message
-                               null,
-                               $rootScope.alertMsgName,
-                               'Ok' // buttonName
-                           );
-                        }else{
-                          $rootScope.ClearRootScope();
-                          $rootScope.removemodal();
-                          navigator.notification.alert(
-                               'Your session timed out.', // message
-                               null,
-                               $rootScope.alertMsgName,
-                               'Ok' // buttonName
-                           );
-                        }
-                      }else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
-                           if( $rootScope.flagmodal==true){
-                             $rootScope.ClearRootScope();
-                            // $rootScope.editremovemodal();
-                             navigator.notification.alert(
-                                  'Your session timed out.', // message
-                                  null,
-                                  $rootScope.alertMsgName,
-                                  'Ok' // buttonName
-                              );
-                           }else{
-                             $rootScope.ClearRootScope();
-                             $rootScope.editremovemodal();
-                             navigator.notification.alert(
-                                  'Your session timed out.', // message
-                                  null,
-                                  $rootScope.alertMsgName,
-                                  'Ok' // buttonName
-                              );
-                           }
-                              }
-                        else{
+      if($state.$current.name !== "tab.waitingRoom" && $state.$current.name !== "tab.videoConference" && $state.$current.name !== "tab.videoLost") {
+          var inactiveDuration = window.localStorage.getItem('InActiveSince');
+          var isCustomerInWaitingRoomVal = window.localStorage.getItem("isCustomerInWaitingRoom");
+          var isVideoCallProgressVal = window.localStorage.getItem('isVideoCallProgress')
+          inactiveDuration = Number(inactiveDuration);
+          if(inactiveDuration === 30){
+              if (window.localStorage.getItem("tokenExpireTime") != null && window.localStorage.getItem("tokenExpireTime") != "") {
+                  if(isCustomerInWaitingRoomVal != 'Yes' && isVideoCallProgressVal != 'Yes') {
+                    $(".ion-google-place-container").css({
+                        "display": "none"
+                    });
+                    $ionicBackdrop.release();
+                    window.localStorage.setItem('Inactive Success', timeoutValue);
+                    timeoutValue = 0;
+                    clearSessionLogoutTimer();
+                    if ($rootScope.currState.$current.name == "tab.addnewdependent") {
+                          if( $rootScope.flagdeptmodal==true){
                             $rootScope.ClearRootScope();
+                          //  $rootScope.removemodal();
                             navigator.notification.alert(
                                  'Your session timed out.', // message
                                  null,
                                  $rootScope.alertMsgName,
                                  'Ok' // buttonName
                              );
-                        }
+                          }else{
+                            $rootScope.ClearRootScope();
+                            $rootScope.removemodal();
+                            navigator.notification.alert(
+                                 'Your session timed out.', // message
+                                 null,
+                                 $rootScope.alertMsgName,
+                                 'Ok' // buttonName
+                             );
+                          }
+                        }else if ($rootScope.currState.$current.name == "tab.healthinfo" ) {
+                             if( $rootScope.flagmodal==true){
+                               $rootScope.ClearRootScope();
+                              // $rootScope.editremovemodal();
+                               navigator.notification.alert(
+                                    'Your session timed out.', // message
+                                    null,
+                                    $rootScope.alertMsgName,
+                                    'Ok' // buttonName
+                                );
+                             }else{
+                               $rootScope.ClearRootScope();
+                               $rootScope.editremovemodal();
+                               navigator.notification.alert(
+                                    'Your session timed out.', // message
+                                    null,
+                                    $rootScope.alertMsgName,
+                                    'Ok' // buttonName
+                                );
+                             }
+                                }
+                          else{
+                              $rootScope.ClearRootScope();
+                              navigator.notification.alert(
+                                   'Your session timed out.', // message
+                                   null,
+                                   $rootScope.alertMsgName,
+                                   'Ok' // buttonName
+                               );
+                          }
 
-                }
-            }
-        }
+                  }
+              }
+          }
+      }
     }
     function goActive() {
         console.log('Active');
@@ -373,7 +375,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             //}, 10000);
         }
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
            cordova.plugins.Keyboard.disableScroll(true);
          }
          if(window.StatusBar) {
@@ -467,10 +469,13 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
 
         function onOnline() {
           console.log('Closing in controller!');
+
           $rootScope.connAlertStatus = false;
             if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                 $state.go('tab.videoLost', { retry : 2 });
             }else{
+              if($state.$current.name == "tab.waitingRoom")
+                 $rootScope.waitingroomlostconnection();
               if($rootScope.flagpopup==false){
                 myPopup.close();
               }

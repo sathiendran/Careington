@@ -550,7 +550,7 @@
                 $rootScope.viewemailDisplay = 'flex';
                 $rootScope.viewtimezoneDisplay = 'flex';
             } else {
-                $rootScope.viewemailDisplay = 'none';
+                //  $rootScope.viewemailDisplay = 'none';
                 $rootScope.viewtimezoneDisplay = 'none';
             }
             if (primarypatid === patid) {
