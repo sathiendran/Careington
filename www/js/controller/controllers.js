@@ -4109,6 +4109,7 @@ var deregisterBackButton;
                     var cardSelectedText = $('#cardViewport').html();
                     $window.localStorage.setItem("Card" + $rootScope.UserEmail, $rootScope.paymentProfileId);
                     $window.localStorage.setItem("CardText" + $rootScope.UserEmail, cardSelectedText);
+                    $window.localStorage.setItem("hosNameforCard", $rootScope.hospitalName);
                     $rootScope.paymentConfirmationNumber = data.data[0].confirmationNumber;
                     $scope.CreditCardDetails = data;
                     $rootScope.enableInsuranceVerificationSuccess = "none";
@@ -4805,8 +4806,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
                         $rootScope.updatedPatientImagePath = '';
                         $rootScope.newDependentImagePath = '';
                         $rootScope.appointmentDisplay = '';
-                        $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-                        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+                        if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
+                          $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+                          $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+                        } else {
+                          $rootScope.userDefaultPaymentProfile = null;
+                        }
                         $rootScope.locationdet = Pat_locat;
                         $rootScope.PatientImageSelectUser = P_img;
                         $rootScope.PatientFirstName = P_Fname;
@@ -5174,8 +5179,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.updatedPatientImagePath = '';
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
-        $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+        if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
+          $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+          $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+        } else {
+          $rootScope.userDefaultPaymentProfile = null;
+        }
         $rootScope.locationdet = Pat_locat;
         $rootScope.PatientImageSelectUser = P_img;
         $rootScope.PatientFirstName = P_Fname;
@@ -5248,8 +5257,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.updatedPatientImagePath = '';
         $rootScope.newDependentImagePath = '';
         $rootScope.appointmentDisplay = '';
-        $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-        $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+        if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
+          $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+          $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+        } else {
+          $rootScope.userDefaultPaymentProfile = null;
+        }
         $rootScope.locationdet = Pat_locat;
         $rootScope.patientId = P_Id;
 
@@ -5747,8 +5760,12 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
           $rootScope.updatedPatientImagePath = '';
           $rootScope.newDependentImagePath = '';
           $rootScope.appointmentDisplay = '';
-          $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
-          $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+          if($window.localStorage.getItem("hosNameforCard") === $rootScope.hospitalName) {
+            $rootScope.userDefaultPaymentProfile = $window.localStorage.getItem("Card" + $rootScope.UserEmail);
+            $rootScope.userDefaultPaymentProfileText = $window.localStorage.getItem("CardText" + $rootScope.UserEmail);
+          } else {
+            $rootScope.userDefaultPaymentProfile = null;
+          }
           $rootScope.PatientImageSelectUser = $rootScope.scheduledListDatas.patientImage;
           $rootScope.PatientFirstName = $rootScope.scheduledListDatas.patFirstName;
           $rootScope.PatientLastName = $rootScope.scheduledListDatas.patLastName;

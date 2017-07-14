@@ -96,7 +96,7 @@
                      </span>
                   </a>
                   <div class="row dotrow authorizePatient-{{deviceName}}" ng-if="getDependentDetails.tabPatientId == tabWithPatientId" ng-show="tabView">
-                     <div class="dotcol dotcolDoc-{{deviceName}}" ng-click="seeaPatientConcerns(getDependentDetails)">
+                     <div class="dotcol dotcolDoc-{{deviceName}}" ng-click="seeaPatientConcerns(getDependentDetails, getDependentDetails.patientId)">
                         <div class="tabicon" style="margin-top: -12px;"> <i class="ion-chevron-down"></i></div>
                         <div class="tabiconDoc-{{deviceName}}">
                            <i class="icon contacticon seeDocIcon-{{deviceName}}" ng-bind-html="drawSVGCIcon('users')"></i>
