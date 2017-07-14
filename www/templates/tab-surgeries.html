@@ -36,14 +36,14 @@
                <span class="patientConternFontStyleSubTitle" style="font-size:14px !important;">Enter up to three</span>
             </div>
             <span ng-if="patientmedicalsurgeries.length < 3"><a ng-click="showNewSurgeryAddScreen();"><i class="ion-plus editicon" style="color:#666666;"> </i></a></span>
-            <div class="item item-button-right" href="#" ng-repeat="surgery in patientmedicalsurgeries" ng-if="patientmedicalsurgeries.length > 0">
+            <div class="item item-button-right" href="#" ng-repeat="surgery in patientmedicalsurgeries" ng-if="patientmedicalsurgeries.length > 0" style="overflow: inherit;">
                <h2 class="regularfamily">{{surgery.description}}</h2>
                <p>{{getMonthName(surgery.month)}}, {{surgery.year}}</p>
                <button class="button" style="margin-top: 10px; border: none !important; background: white;" ng-click="removeSurgeryItem({{$index}});">
                <i class="icon ion-ios-close"></i>
                </button>
             </div>
-            <div class="item" ng-if="patientmedicalsurgeries.length == 0">
+            <div class="item" ng-if="patientmedicalsurgeries.length == 0" style="overflow: inherit;">
                <p>No Records Found</p>
             </div>
          </div>

@@ -2504,6 +2504,8 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
              }
              else if($scope.healthInfoModel.healthInfoCountryCode.length == 2){
                    $("#health_width").css("width", "24px");
+               } else {
+                 $("#health_width").css("width", "10px");
                }
         }
 
@@ -2519,21 +2521,27 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                     $("#health_width").css("width", "36px");
                }  else if($scope.healthInfoModel.healthInfoCountryCode.length == 2){
                     $("#health_width").css("width", "24px");
+               }  else {
+                 $("#health_width").css("width", "10px");
                }
             } else{
-              if($rootScope.countrycodevalue.length == 6){
-                    $("#health_width").css("width", "62px");
-               }
-               else if($rootScope.countrycodevalue.length == 4){
-                $("#health_width").css("width", "47px");
-              }
-               else if($rootScope.countrycodevalue.length == 3){
-                   $("#health_width").css("width", "36px");
-               }
-               else if($rootScope.countrycodevalue.length == 2){
-                     $("#health_width").css("width", "24px");
+              if(typeof $rootScope.countrycodevalue !== 'undefined') {
+                if($rootScope.countrycodevalue.length == 6){
+                      $("#health_width").css("width", "62px");
                  }
+                 else if($rootScope.countrycodevalue.length == 4){
+                  $("#health_width").css("width", "47px");
                 }
+                 else if($rootScope.countrycodevalue.length == 3){
+                     $("#health_width").css("width", "36px");
+                 }
+                 else if($rootScope.countrycodevalue.length == 2){
+                       $("#health_width").css("width", "24px");
+                   }
+                 } else {
+                   $("#health_width").css("width", "10px");
+                 }
+              }
         }
     });
     //Function to open ActionSheet when clicking Camera Button

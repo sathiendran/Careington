@@ -505,7 +505,46 @@
             $rootScope.GoToPatientDetails(cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.consultations');
         }
 
-        $scope.seeaPatientConcerns = function(getDependentDetails) {
+        $scope.doGetonDemandAvailabilityforDependent = function(getDependentDetails, curntDepPatientId) {
+          var params = {
+            accessToken: $rootScope.accessToken,
+            hospitalId: $rootScope.hospitalId,
+            success: function(data) {
+
+              angular.forEach(data.data[0].familyMembers, function(index) {
+                  if (index.patientId == curntDepPatientId) {
+                      $scope.depProviderAvailability = index.providerAvailable;
+                  }
+              });
+                $rootScope.onDemandAvailability = data.data[0].onDemandAvailabilityBlockCount;
+                if ($rootScope.onDemandAvailability > 0 && $rootScope.P_isAuthorized && $scope.depProviderAvailability == true) {
+                    $rootScope.cutlocations = 'tab.relatedusers';
+                    $rootScope.GoToPatientDetails($rootScope.cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
+                } else {
+                    $scope.ErrorMessage = "Provider or On demand unavailable. Please try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+                }
+            },
+            error: function(data, status) {
+                if (status === 0) {
+
+                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else if (status === 401) {
+                    $scope.ErrorMessage = "You are not authorized to view this account";
+                    $rootScope.Validation($scope.ErrorMessage);
+
+                } else {
+                    $rootScope.serverErrorMessageValidation();
+                }
+            }
+        };
+        LoginService.getonDemandAvailability(params);
+    }
+
+
+        $scope.seeaPatientConcerns = function(getDependentDetails, curntDepPatientId) {
             $rootScope.PatientPrimaryConcernItem;
             $rootScope.patinentMedicationAllergies = $rootScope.MedicationAllegiesItem;
             $rootScope.patinentCurrentMedication = $rootScope.CurrentMedicationItem;
@@ -531,12 +570,7 @@
             $rootScope.PriorSurgeryValidCount = "";
             $rootScope.AllegiesCountValid = "";
             $rootScope.MedicationCountValid = "";
-            if ($rootScope.onDemandAvailability > 0) {
-                $rootScope.GoToPatientDetails(cutlocations, getDependentDetails.profileImagePath, getDependentDetails.patientFirstName, getDependentDetails.patientLastName, getDependentDetails.birthdate, getDependentDetails.guardianName, getDependentDetails.patientId, getDependentDetails.isAuthorized, 'tab.patientConcerns');
-            } else {
-                $scope.ErrorMessage = "Provider or On demand unavailable. Please try again later!";
-                $rootScope.Validation($scope.ErrorMessage);
-            }
+            $scope.doGetonDemandAvailabilityforDependent(getDependentDetails, curntDepPatientId);
         }
         $rootScope.patientprofile = function(getDependentDetails) {
           $rootScope.currentPatientDetails[0].account.patientId = getDependentDetails.patientId;
