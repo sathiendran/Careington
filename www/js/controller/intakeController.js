@@ -528,13 +528,8 @@ $scope.locat=false;
     $scope.goToConsentToTreat = function() {
       $rootScope.scheduledConsultSave = '';
         if($rootScope.userAgeForIntake === 8) {
-          $scope.sConsultationSaveData = {
-              "medicationAllergies": [],
-              "surgeries": [],
-              "medicalConditions": [],
-              "medications": [],
-              "infantData": [],
-              "concerns": []
+          $scope.schedConsultationSaveData = {
+              "infantData": []
           };
           if (typeof $("input[name='birthBorn']:checked").val() === 'undefined' || $("input[name='birthBorn']:checked").val() === ' ') {
               $scope.ErrorMessage = "Please choose if the patient was born at full term or not?";
@@ -549,14 +544,14 @@ $scope.locat=false;
               $scope.ErrorMessage = "Please choose if the patients vaccinations are up-to-date or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
           }else {
-            $scope.ConsultationSaveData.infantData = {
+            $scope.schedConsultationSaveData.infantData = {
               "patientAgeUnderOneYear": "Y",
               "fullTerm": $("input[name='birthBorn']:checked").val(),
               "vaginalBirth": $("input[name='birthVagin']:checked").val(),
               "dischargedWithMother": $("input[name='birthDischargedwithMother']:checked").val(),
               "vaccinationsCurrent": $("input[name='birthVaccination']:checked").val()
             }
-            $rootScope.scheduledConsultSave = $scope.ConsultationSaveData;
+            $rootScope.scheduledConsultSave = $scope.schedConsultationSaveData;
             //$rootScope.appointmentsPage = false;
             $scope.doGetConcentToTreat();
           }

@@ -545,7 +545,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if (!$rootScope.AndroidDevice) {
+    } else if ($rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2270,7 +2270,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             success: function(data) {
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
                 $rootScope.currentPatientDetails = data.data;
-                
+
 
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
@@ -3067,7 +3067,7 @@ var deregisterBackButton;
     $("#addNewCard_submitPay").change(function() {
         if ($('option:selected', this).text() === 'Add a new card') {
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
-            rootScope.cardPage = "submitPayment";
+            $rootScope.cardPage = "submitPayment";
             $state.go('tab.cardDetails');
         } else {
             $('div.cardViewport').text($("option:selected", this).text());
