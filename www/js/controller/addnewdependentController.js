@@ -827,9 +827,33 @@ angular.module('starter.controllers')
           if (!angular.isUndefined(newVal) && newVal !== '') {
               $scope.depCurrntCountryCode = $rootScope.serviceCountries.filter(function(r) { var show = r.code == newVal; return show; });
               $scope.addNewDependent.healthInfoCountryCode =  $scope.depCurrntCountryCode[0].code;
+              if($scope.addNewDependent.healthInfoCountryCode.length == 6){
+                    $("#health_width").css("width", "62px");
+               }
+               else if ($scope.addNewDependent.healthInfoCountryCode.length == 4){
+                $("#health_width").css("width", "47px");
+              }
+             else if($scope.addNewDependent.healthInfoCountryCode.length == 3){
+                   $("#health_width").css("width", "36px");
+               }
+               else if($scope.addNewDependent.healthInfoCountryCode.length == 2){
+                     $("#health_width").css("width", "24px");
+                 }
             } else {
               //  $scope.addNewDependent.healthInfoCountryCode = '+1';
              $scope.addNewDependent.healthInfoCountryCode =  $rootScope.primaryPatientDetails[0].countryCode;
+             if($scope.addNewDependent.healthInfoCountryCode.length == 6){
+                   $("#health_width").css("width", "62px");
+              }
+              else if ($scope.addNewDependent.healthInfoCountryCode.length == 4){
+               $("#health_width").css("width", "47px");
+             }
+            else if($scope.addNewDependent.healthInfoCountryCode.length == 3){
+                  $("#health_width").css("width", "36px");
+              }
+              else if($scope.addNewDependent.healthInfoCountryCode.length == 2){
+                    $("#health_width").css("width", "24px");
+                }
             }
     });
     //Function to open ActionSheet when clicking Camera Button

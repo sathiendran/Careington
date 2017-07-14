@@ -545,7 +545,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if ($rootScope.AndroidDevice) {
+    } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -2269,11 +2269,8 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
             accessToken: $rootScope.accessToken,
             success: function(data) {
                 $rootScope.hasRequiredFields = data.data[0].hasRequiredFields;
-                $rootScope.currentPatientDetails = data.data;;
-                  // $rootScope.Country_cod =  $rootScope.currentPatientDetails[0].mobilePhone;
-                  $rootScope.Country_codsplit = $rootScope.currentPatientDetails[0].mobilePhone.split('(');
-                  $rootScope.countrycodevalue = $rootScope.Country_codsplit[0];
-
+                $rootScope.currentPatientDetails = data.data;
+                
 
                 if ($rootScope.hasRequiredFields === true) {
                     $rootScope.cuttlocations = "";
