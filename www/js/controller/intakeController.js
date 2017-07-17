@@ -528,6 +528,14 @@ $scope.locat=false;
     $scope.goToConsentToTreat = function() {
       $rootScope.scheduledConsultSave = '';
         if($rootScope.userAgeForIntake === 8) {
+          $scope.ConsultationSaveData = {
+              "medicationAllergies": [],
+              "surgeries": [],
+              "medicalConditions": [],
+              "medications": [],
+              "infantData": [],
+              "concerns": []
+          };
           $scope.schedConsultationSaveData = {
               "infantData": []
           };
@@ -544,6 +552,13 @@ $scope.locat=false;
               $scope.ErrorMessage = "Please choose if the patients vaccinations are up-to-date or not?";
               $rootScope.ValidationFunction1($scope.ErrorMessage);
           }else {
+            $scope.ConsultationSaveData.infantData = {
+              "patientAgeUnderOneYear": "Y",
+              "fullTerm": $("input[name='birthBorn']:checked").val(),
+              "vaginalBirth": $("input[name='birthVagin']:checked").val(),
+              "dischargedWithMother": $("input[name='birthDischargedwithMother']:checked").val(),
+              "vaccinationsCurrent": $("input[name='birthVaccination']:checked").val()
+            }
             $scope.schedConsultationSaveData.infantData = {
               "patientAgeUnderOneYear": "Y",
               "fullTerm": $("input[name='birthBorn']:checked").val(),

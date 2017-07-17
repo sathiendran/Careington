@@ -289,10 +289,11 @@ angular.module('starter.controllers')
               },
               error: function(data,status) {
                   $rootScope.isRegistrationCompleted = false;
-                  if(data.status == 400){
-                  var emailerror = data.data.message;
-                  $scope.ErrorMessage = "Email address already registered.";
-                 if($scope.ErrorMessage === emailerror) {
+                 if(data.status == 400){
+                     //   var emailerror = data.data.message;
+                   //  $scope.ErrorMessage = "Email address already registered.";
+                     //if($scope.ErrorMessage === emailerror) {
+                  if (data.data.message.indexOf('already registered') > 0) {
                    $scope.contactmail=$scope.email;
                         var myPopup = $ionicPopup.show({
 
@@ -400,22 +401,11 @@ angular.module('starter.controllers')
           },
           error: function(data,status) {
               $rootScope.isRegistrationCompleted = false;
-            /*  if (data.message.indexOf('already registered') > 0) {
-                  navigator.notification.alert(
-                      data.message, // message
-                      function() {},
-                      $rootScope.alertMsgName, // title
-                      'Done' // buttonName
-                  );
-                  return false;
-              } else {
-                  $scope.$root.$broadcast("callServerErrorMessageValidation");
-              }
-            */
-            if(data.status == 400){
-                   var emailerror = data.data.message;
-                $scope.ErrorMessage = "Email address already registered.";
-                if($scope.ErrorMessage === emailerror) {
+              if(data.status == 400){
+                  //   var emailerror = data.data.message;
+                //  $scope.ErrorMessage = "Email address already registered.";
+                  //if($scope.ErrorMessage === emailerror) {
+               if (data.data.message.indexOf('already registered') > 0) {
                     $scope.contactmail=$scope.email;
                   var myPopup = $ionicPopup.show({
 

@@ -1511,7 +1511,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 }
 
                 if( $rootScope.cuttlocations != "tab.ReportScreen"){
-                  $scope.doGetlocationResponse ();
+                  $scope.doGetlocationResponse();
                 }
 
                 $state.go('tab.userhome');
@@ -2085,6 +2085,10 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.patientPhysicianDetails = '';
         $rootScope.encounterstate = '';
         $rootScope.encountercountry = '';
+        $rootScope.encounterStateCode = '';
+        $rootScope.encounterCountryCode = '';
+        $rootScope.stateAddressesCode = '';
+        $rootScope.countryAddressCode = '';
 
         var params = {
             accessToken: $rootScope.accessToken,
@@ -2123,13 +2127,16 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                 if($rootScope.patientParticularaddress != undefined){
                      $rootScope.stateaddresses=$rootScope.patientParticularaddress.state;
                      $rootScope.countryaddress=$rootScope.patientParticularaddress.country;
-
+                     $rootScope.stateAddressesCode=$rootScope.patientParticularaddress.stateCode;
+                     $rootScope.countryAddressCode=$rootScope.patientParticularaddress.countryCode;
                 }
 
                 $rootScope.patientEncounteraddress=data.data[0].encounterAddressLocation;
                 if($rootScope.patientEncounteraddress != undefined){
                   $rootScope.encounterstate=$rootScope.patientEncounteraddress.state;
+                  $rootScope.encounterStateCode=$rootScope.patientEncounteraddress.stateCode;
                   $rootScope.encountercountry=$rootScope.patientEncounteraddress.country;
+                  $rootScope.encounterCountryCode=$rootScope.patientEncounteraddress.countryCode;
                 }
 
                 $rootScope.city = data.data[0].city;
@@ -2440,9 +2447,9 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
                       if( $rootScope.cuttlocations == "tab.ReportScreen"){
                         $state.go('tab.userhome');
                       }else if($rootScope.cuttlocations == undefined){
-                          $scope.doGetlocationResponse ();
+                          $scope.doGetlocationResponse();
                       }else{
-                          $scope.doGetlocationResponse ();
+                          $scope.doGetlocationResponse();
                       }
 
 
@@ -2464,6 +2471,32 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         };
 
         LoginService.getRelatedPatientProfiles(params);
+    }
+
+    $scope.updateYesCurrentLocation=function(){
+      if(typeof $rootScope.patientEncounteraddress === 'undefined' && typeof $rootScope.patientParticularaddress !== 'undefined') {
+         $scope.upcountrystate = $rootScope.stateAddressesCode +","+$rootScope.countryAddressCode;
+      }else if($rootScope.patientEncounteraddress !=='' && typeof $rootScope.patientEncounteraddress !== 'undefined' && $rootScope.encounterstate !== ''){
+          $scope.upcountrystate = $rootScope.encounterStateCode+","+$rootScope.encounterCountryCode;
+      } else if($rootScope.encountercountry !== '' && $rootScope.encounterstate === '') {
+          $scope.upcountrystate = $rootScope.encounterCountryCode;
+      } else if(typeof $rootScope.patientEncounteraddress === 'undefined' && typeof $rootScope.patientParticularaddress === 'undefined') {
+          $scope.upcountrystate = $rootScope.primaryPatientDetails[0].address;
+      }
+      var params = {
+        accessToken: $rootScope.accessToken,
+        countrystate: $scope.upcountrystate,
+        patientID:$rootScope.primaryPatientId,
+        //state:  $scope.upstate,
+
+        success: function(data,status) {
+          //  history.back();
+        },
+        error: function(data,status) {
+           alert("fail");
+        }
+      };
+        LoginService.putListOfCountryLocation(params);
     }
 
 var deregisterBackButton;
@@ -2509,7 +2542,7 @@ var deregisterBackButton;
                         if (res) {
                           deregisterBackButton();
                         } else {
-
+                            $scope.updateYesCurrentLocation();
                           //  $rootScope.GoUserPatientDetails(cutlocations, currentPatientDetails[0].account.patientId, 'tab.patientConcerns');
                         }
                     });
@@ -3686,6 +3719,7 @@ var deregisterBackButton;
                       cvv: $rootScope.Cvv,
                       first_name: $rootScope.FirstName,
                       last_name: $rootScope.LastName,
+                      billing_state: $rootScope.State,
                       billing_address: $rootScope.BillingAddress,
                       billing_city: $rootScope.City,
                       billing_zip: $rootScope.Zip,
