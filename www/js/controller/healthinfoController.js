@@ -1157,7 +1157,15 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   }
                 }else {
                   if ($rootScope.primaryPatientId !== data.patientID) {
+                      if($rootScope.patientAuthorizeValue === 'Y')
+                      {
+                          $scope.authen = true;
+                      } else {
+                          $scope.authen = false;
+                      }
                       $scope.updateDependentRelation(data.patientID, $scope.getRelationshipId, $rootScope.patientAuthorizeValue);
+                  } else {
+                    $scope.authen = true;
                   }
                   $rootScope.currentPatientDetails.homePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.homePhone));
                   $rootScope.currentPatientDetails.mobilePhone = getOnlyPhoneNumber($scope.getOnlyNumbers($rootScope.currentPatientDetails.mobilePhone));
@@ -1174,7 +1182,7 @@ if ($rootScope.primaryPatientId !== $rootScope.currentPatientDetails[0].account.
                   var sploc=locat.split("/");
                   var cutlocations=sploc[1] +"."+sploc[2];
 
-                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $rootScope.currentPatientDetails.account.isAuthorized, ' ');
+                  $rootScope.GoToPatientDetails(cutlocations,$rootScope.currentPatientDetails.account.profileImagePath, $rootScope.currentPatientDetails.patientName, $rootScope.currentPatientDetails.lastName, $rootScope.currentPatientDetails.dob, $rootScope.currentPatientDetails.guardianName, data.patientID, $scope.authen, ' ');
                   var editdate = $rootScope.currentPatientDetails.dob;
                   $rootScope.doddate = new Date($rootScope.healthInfoDOB);
                   $rootScope.restage = getAge( $rootScope.doddate);

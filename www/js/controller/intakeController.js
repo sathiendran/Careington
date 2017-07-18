@@ -1620,8 +1620,8 @@ $scope.locat=false;
         $rootScope.checkAndChangeMenuIcon();
         if (checkAndChangeMenuIcon) {
             $interval.cancel(checkAndChangeMenuIcon);
-        }
-        if ($state.current.name !== "tab.login" || $state.current.name !== "tab.loginSingle") {
+        } 
+        if ($state.current.name !== "tab.login" && $state.current.name !== "tab.loginSingle" && $state.current.name !== "tab.waitingRoom" && $state.current.name !== "tab.videoConference" && $state.current.name !== "tab.connectionLost" ) {
             checkAndChangeMenuIcon = $interval(function() {
                 $rootScope.checkAndChangeMenuIcon();
             }, 300);

@@ -2026,7 +2026,7 @@ this.getCountryDetails = function () {
 .service('replaceCardNumber', function(){
 	this.getCardNumber = function(cardNo) {
 		var str = cardNo;
-		var res = str.replace("XXXX", '');
+		var res = str.replace("XXXX-XXXX-XXXX-", '');
 		return res;
      };
 })

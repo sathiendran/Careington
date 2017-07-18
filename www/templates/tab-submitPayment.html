@@ -51,7 +51,7 @@
                   <div class="healthPlan_text NoPlanText payCardText"  >Select your payment card</div>
                   <div class="addHealthPlan_header NoPlanAddCardDropdown noPlanContainer-{{deviceName}}"  >
                      <div  class="dropdownContainer">
-                        <div id="cardViewport" class="viewport">Card ending in...{{userCardNumber}}</div>
+                       <div id="cardViewport" class="viewport">{{userCardNumber}}</div>
                         <select class="healthPlanDropDown" id="addNewCard_submitPay" name="addNewCard_submitPay" ng-model="cardPaymentId.addNewCard" style="border: none;">
                            <option><b>Choose Your Card</b></option>
                            <option  ng-repeat="getPayment in PaymentProfile" value="{{getPayment.profileID}}" ng-selected="userCardDetails == getPayment.profileID"><b><span>Card ending in...{{getPayment.cardNumber}}</span></b></option>

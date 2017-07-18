@@ -439,24 +439,29 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                 $('.popup-title').addClass("iettitle");
                 $('.popup-buttons').addClass("ietpopup-buttons");
                 $rootScope.alertPopupA = function() {
-                      $rootScope.flagpopup=false;
-                      myPopup = $ionicPopup.show({
-                          template: '<b>Please make sure that you have network connection.</b>',
-                          title: 'No Internet Connection',
-                          cssClass: 'my-custom-popup',
-                          buttons: [
-                                 { text: '<b class="ietfonttype">ok</b>',
-                                   type:'button',
-                                }
-
-                               ]
-                       }).then(function(result){
-                          console.log('Tapped', result);
-                       }, function(error){
-                          console.log('error', error);
-                       }, function(popup){
-                          popup.close();
+                      $rootScope.flagpopup=false;                      
+                       var myPopup = $ionicPopup.show({
+                           template: '<b>Please make sure that you have network connection.</b>',
+                           title: 'No Internet Connection',
+                           rootScope: $rootScope,
+                           cssClass: 'my-custom-popup',
+                           buttons: [{
+                               text: '<b class="ietfonttype">ok</b>',
+                                type:'button',
+                           }]
                        });
+
+                       myPopup.then(function(res) {
+                           if (res) {
+                               console.log('res', res);
+                           } else {
+                             console.log('else');
+                           }
+                       });
+                       $rootScope.closepopup = function() {
+                           myPopup.close();
+                           $rootScope.flagpopup = true;
+                       }
                  }
                  if($rootScope.flagpopup===true) {
                     $rootScope.alertPopupA();
@@ -475,9 +480,9 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
             }else{
               if($state.$current.name == "tab.waitingRoom")
                  $rootScope.waitingroomlostconnection();
-              if($rootScope.flagpopup==false){
-                myPopup.close();
-              }
+            //  if($rootScope.flagpopup==false){
+                $rootScope.closepopup();
+              //}
             }
         }
 
@@ -516,7 +521,7 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
       cordova.plugins.backgroundMode.onactivate = function () {
            var backGroundNetConnection;
            backGroundNetConnection = setInterval(function() {
-                $rootScope.flagpopup=true;
+              //  $rootScope.flagpopup=true;
                 var myPopup;
                $rootScope.online = navigator.onLine;
 
@@ -532,32 +537,36 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                                $('#publisher').hide();
                                $('#subscriber').hide();
                                OT.updateViews();
-                              // $state.go('tab.videoLost', { retry : 1 });
                            }else{
                                $('.popup').addClass("ietpopup");
                                $('.popup-title').addClass("iettitle");
                                $('.popup-buttons').addClass("ietpopup-buttons");
-                               // $rootScope.flagpopup=false;
-                                   // An elaborate, custom popup
                              $rootScope.alertPopupA = function() {
                                    $rootScope.flagpopup=false;
-                                   myPopup = $ionicPopup.show({
-                                       template: '<b>Please make sure that you have network connection.</b>',
-                                       title: 'No Internet Connection',
-                                       cssClass: 'my-custom-popup',
-                                       buttons: [
-                                              { text: '<b class="ietfonttype">ok</b>',
-                                                type:'button',
-                                             }
-
-                                            ]
-                                    }).then(function(result){
-                                       console.log('Tapped', result);
-                                    }, function(error){
-                                       console.log('error', error);
-                                    }, function(popup){
-                                       popup.close();
+                                    var myPopup = $ionicPopup.show({
+                                        template: '<b>Please make sure that you have network connection.</b>',
+                                        title: 'No Internet Connection',
+                                        rootScope: $rootScope,
+                                        cssClass: 'my-custom-popup',
+                                        buttons: [{
+                                            text: '<b class="ietfonttype">ok</b>',
+                                            onTap: function(e) {
+                                                return false;
+                                            }
+                                        }]
                                     });
+
+                                    myPopup.then(function(res) {
+                                        if (res) {
+                                            console.log('res', res);
+                                        } else {
+                                          console.log('else');
+                                        }
+                                    });
+                                    $rootScope.closepopup = function() {
+                                        myPopup.close();
+                                        $rootScope.flagpopup = true;
+                                    }
                               }
                               if($rootScope.flagpopup===true) {
                                  $rootScope.alertPopupA();
@@ -575,11 +584,10 @@ angular.module('starter', ['ionic', 'ngTouch','starter.controllers', 'starter.se
                        if($rootScope.connAlertStatus !== false) {
                              if (window.localStorage.getItem('isVideoCallProgress') == "Yes") {
                                   $rootScope.netConnectionStaus = true;
-                                 //$state.go('tab.videoLost', { retry : 2 });
                              }else{
-                               if($rootScope.flagpopup==false){
-                                 myPopup.close();
-                               }
+                               //if($rootScope.flagpopup==false){
+                                 $rootScope.closepopup();
+                               //}
                              }
                         }
                   });

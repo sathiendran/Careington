@@ -545,7 +545,7 @@ angular.module('starter.controllers', ['starter.services', 'ngLoadingSpinner', '
         $rootScope.ConstantTreat = "font-size: 16px;";
         $rootScope.NeedanAcountStyle = "NeedanAcount_ios";
         $rootScope.calendarBackStyle = "top: 13px !important;";
-    } else if ($rootScope.AndroidDevice) {
+    } else if (!$rootScope.AndroidDevice) {
         $rootScope.deviceName = "Android";
         $rootScope.BarHeaderLessDevice = "bar-headerLessAndroid";
         $rootScope.SubHeaderLessDevice = "bar-subheaderLessAndroid";
@@ -3098,11 +3098,14 @@ var deregisterBackButton;
     });
 
     $("#addNewCard_submitPay").change(function() {
+        $rootScope.userCardNumber = $('option:selected', this).text();
         if ($('option:selected', this).text() === 'Add a new card') {
+            $rootScope.userCardDetails = $('option:selected', this).text();
             $rootScope.submitPayBack = $rootScope.currState.$current.name;
             $rootScope.cardPage = "submitPayment";
             $state.go('tab.cardDetails');
         } else {
+            $rootScope.userCardDetails = $('option:selected', this).val();
             $('div.cardViewport').text($("option:selected", this).text());
         }
     });
@@ -3737,7 +3740,7 @@ var deregisterBackButton;
                             var cardNo = $rootScope.CardNumber;
                             var strCardNo = cardNo.toString();
                             var getLastFour = strCardNo.substr(strCardNo.length - 4);
-                            $rootScope.userCardNumber = getLastFour;
+                            $rootScope.userCardNumber = "Card ending in..." + getLastFour;
                         }
                         $rootScope.doGetPatientPaymentProfiles();
                         $state.go('tab.submitPayment');
@@ -3782,7 +3785,7 @@ var deregisterBackButton;
                             var cardNo = $rootScope.CardNumber;
                             var strCardNo = cardNo.toString();
                             var getLastFour = strCardNo.substr(strCardNo.length - 4);
-                            $rootScope.userCardNumber = getLastFour;
+                            $rootScope.userCardNumber = "Card ending in..." + getLastFour;
                         }
                         $rootScope.doGetPatientPaymentProfiles();
                         $state.go('tab.submitPayment');
@@ -5232,6 +5235,7 @@ $scope.$watch('loction.loccountry', function(cutLoc) {
         $rootScope.doGetonDemandAvailability();
         $rootScope.doGetListOfCoUsers();
         $scope.getHealthHistoryDetails();
+        $rootScope.P_isAuthorized = P_isAuthorized;
         if (!$rootScope.P_isAuthorized) {
             $scope.ErrorMessage = "You are not currently authorized to request appointments for " + $rootScope.PatientFirstName + ' ' + $rootScope.PatientLastName + '!';
             $rootScope.SubmitCardValidation($scope.ErrorMessage);
