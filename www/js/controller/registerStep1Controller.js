@@ -329,8 +329,9 @@ angular.module('starter.controllers')
                       $scope.ErrorMessage = data.statusText;
                       $rootScope.Validation($scope.ErrorMessage);
                     }
-                  }
-               else {
+                  } else if(status === 503) {
+                    $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                  } else {
                       $scope.$root.$broadcast("callServerErrorMessageValidation");
                   }
               }
@@ -437,7 +438,9 @@ angular.module('starter.controllers')
                   $scope.closepopup = function() {
                       myPopup.close();
                   }
-              }else if(data.statusText == "Bad Request" && data.status == 400){
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else if(data.statusText == "Bad Request" && data.status == 400){
                 $scope.ErrorMessage = "Patient Registration is not allowed for this address!";
                 $rootScope.Validation($scope.ErrorMessage);
               } else {
@@ -465,12 +468,13 @@ angular.module('starter.controllers')
                       $state.go('tab.registerAddress');
                     }
               },
-              error: function(data) {
+              error: function(data,status) {
                 if(data ==='null' ){
                $scope.ErrorMessage = "Internet connection not available, Try again later!";
                $rootScope.Validation($scope.ErrorMessage);
-             }
-             else{
+             } else if(status === 503) {
+               $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+             } else{
                  $rootScope.serverErrorMessageValidation();
              }
               }

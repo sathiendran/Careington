@@ -195,6 +195,10 @@ angular.module('starter.controllers')
                         $scope.$root.$broadcast("callValidation", {
                             errorMsg: $scope.ErrorMessage
                         });
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                    }else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else {
                         if (data === null || status === 0) {
 
@@ -351,10 +355,12 @@ angular.module('starter.controllers')
                         }
                     });
                 },
-                error: function(data) {
+                error: function(data, status) {
                     if (data === 'null') {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else {
                         $rootScope.serverErrorMessageValidation();
                     }
@@ -440,10 +446,12 @@ angular.module('starter.controllers')
                         });
                     });
                 },
-                error: function(data) {
+                error: function(data, status) {
                     if (data === 'null') {
                         $scope.ErrorMessage = "Internet connection not available, Try again later!";
                         $rootScope.Validation($scope.ErrorMessage);
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else {
                         $rootScope.serverErrorMessageValidation();
                     }
@@ -467,8 +475,12 @@ angular.module('starter.controllers')
                     var listOfLocation = $rootScope.orgloclist;
                     $rootScope.locationdetails = _.pluck(listOfLocation, 'locations');
                 },
-                error: function() {
+                error: function(data, status) {
+                  if(status === 503) {
+                   $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                 } else {
                     $rootScope.serverErrorMessageValidation();
+                  }
                 }
             };
             LoginService.getListOfLocationOrganization(params);
@@ -522,10 +534,10 @@ angular.module('starter.controllers')
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else if (status === 401) {
                     $scope.ErrorMessage = "You are not authorized to view this account";
                     $rootScope.Validation($scope.ErrorMessage);

@@ -150,7 +150,7 @@ angular.module('starter.controllers')
                     $rootScope.registedPwd = $scope.regStep2.password;
                     $state.go('tab.registerSuccess');
                 },
-                error: function(data) {
+                error: function(data,status) {
                     $rootScope.isRegistrationCompleted = false;
                     if (data.message.indexOf('already registered') > 0) {
                         navigator.notification.alert(
@@ -160,6 +160,8 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else {
                         $scope.$root.$broadcast("callServerErrorMessageValidation");
                     }
@@ -187,7 +189,7 @@ angular.module('starter.controllers')
                     $rootScope.registedPwd = $scope.regStep2.password;
                     $state.go('tab.registerSuccess');
                 },
-                error: function(data) {
+                error: function(data,status) {
                     $rootScope.isRegistrationCompleted = false;
                     if (data.message.indexOf('already registered') > 0) {
                         navigator.notification.alert(
@@ -197,6 +199,8 @@ angular.module('starter.controllers')
                             'Done' // buttonName
                         );
                         return false;
+                    } else if(status === 503) {
+                      $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                     } else {
                         $scope.$root.$broadcast("callServerErrorMessageValidation");
                     }
