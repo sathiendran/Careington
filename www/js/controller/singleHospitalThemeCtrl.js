@@ -117,8 +117,12 @@ angular.module('starter.controllers')
                 $ionicLoading.hide();
                 $state.go('tab.loginSingle');
             },
-            error: function() {
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $ionicLoading.hide();
+              }
 
             }
         };

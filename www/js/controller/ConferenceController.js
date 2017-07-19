@@ -121,8 +121,10 @@ angular.module('starter.controllers')
                 }
 
             },
-            error: function() {
-
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              }
             }
         };
 
@@ -435,11 +437,11 @@ angular.module('starter.controllers')
             },
             error: function(data,status) {
               if(status===0 ){
-
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -473,11 +475,11 @@ angular.module('starter.controllers')
             },
             error: function(data,status) {
               if(status===0 ){
-
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -511,11 +513,11 @@ angular.module('starter.controllers')
             },
             error: function(data,status) {
               if(status===0 ){
-
                    $scope.ErrorMessage = "Internet connection not available, Try again later!";
                    $rootScope.Validation($scope.ErrorMessage);
-
-              }else{
+              } else if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else{
                 $rootScope.serverErrorMessageValidation();
               }
             }
@@ -659,8 +661,12 @@ angular.module('starter.controllers')
                     $state.go('tab.login');
                 }
             },
-            error: function() {
+            error: function(data, status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getHospitalInfo(params);

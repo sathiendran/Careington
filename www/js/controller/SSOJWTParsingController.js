@@ -131,8 +131,12 @@ angular.module('starter.controllers')
                     $rootScope.isSSORegisterAvailable = '';
                 }
             },
-            error: function() {
+            error: function(data, status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getHospitalInfo(params);
@@ -204,10 +208,10 @@ angular.module('starter.controllers')
             },
             error: function(data, status) {
                 if (status === 0) {
-
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -250,6 +254,8 @@ angular.module('starter.controllers')
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -331,7 +337,10 @@ angular.module('starter.controllers')
                 $scope.doGetPrimaryPatientLastName();
                 $rootScope.doGetScheduledConsulatation();
             },
-            error: function() {
+            error: function(data,status) {
+               if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
                 $scope.ssoMessage = 'Authentication Failed! Please try again later!';
                 $rootScope.patientInfomation = '';
                 $rootScope.patientAccount = '';
@@ -356,6 +365,7 @@ angular.module('starter.controllers')
                 $rootScope.state = '';
                 $rootScope.zipCode = '';
                 $rootScope.primaryPatientId = '';
+              }
             }
         };
 
@@ -409,8 +419,12 @@ angular.module('starter.controllers')
                     $scope.doGetExistingConsulatation();
                 }
             },
-            error: function() {
-                $rootScope.serverErrorMessageValidation();
+            error: function(data,status) {
+              if(status === 503) {
+                $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+              } else {
+                 $rootScope.serverErrorMessageValidation();
+              }
             }
         };
         LoginService.getRelatedPatientProfiles(params);
@@ -471,8 +485,9 @@ angular.module('starter.controllers')
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
-                } else {
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                }else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -574,7 +589,8 @@ angular.module('starter.controllers')
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -605,7 +621,8 @@ angular.module('starter.controllers')
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
                 } else {
                     $rootScope.serverErrorMessageValidation();
                 }
@@ -625,7 +642,9 @@ angular.module('starter.controllers')
                 if (status === 0) {
                     $scope.ErrorMessage = "Internet connection not available, Try again later!";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else {
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                }else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
@@ -651,12 +670,14 @@ angular.module('starter.controllers')
                 $scope.doGetPatientProfiles();
                 $scope.doGetRelatedPatientProfiles('userhome');
             },
-            error: function() {
+            error: function(data, status) {
                 var networkState = navigator.connection.type;
                 if (networkState !== 'none') {
                     $scope.ErrorMessage = "Incorrect Password. Please try again";
                     $rootScope.Validation($scope.ErrorMessage);
-                } else {
+                } else if(status === 503) {
+                  $scope.$root.$broadcast("callServiceUnAvailableErrorPage");
+                }else {
                     $rootScope.serverErrorMessageValidation();
                 }
             }
